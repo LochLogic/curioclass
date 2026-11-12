@@ -7,38 +7,42 @@ h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0
 table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
 .student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
-.q { font-style: italic; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
-.student td:first-child { width: 30%; font-size: 12pt; } .student td:nth-child(2) { width: 42%; } .meta td:first-child { width: 22%; font-weight: bold; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; font-size: 12pt; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 20%; font-size: 12pt; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
 .slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .25in; margin: 0 1% .2in 0; vertical-align: top; font-size: 13pt; }
 .screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
-</style></head><body class="teacher"><h1>Day 91: the generator sheet</h1><p><b>Make and print it:</b> <a href="https://curioclass.org/closet/worksheets/make/measure-shapes/?grade=4&amp;skill=formulas&amp;count=12">https://curioclass.org/closet/worksheets/make/measure-shapes/?grade=4&amp;skill=formulas&amp;count=12</a>. Each press of New sheet gives a fresh sheet and its key; print one sheet per student and the key for you.</p><h2>What it holds</h2>
-<p>Twelve problems in words, with no drawings, then five wrong answers to fix, one for each error A to E. The twelve
-mix both formulas: an area from two sides, an area with a side that is a multiple of 10, a missing side from an
-area, a missing side from a perimeter, a perimeter with two- and three-digit sides, a perimeter with fraction sides
-(like denominators), and a side that is "times as long" as the other. The order is shuffled, so the words have to
-say which measure is asked for.</p>
-<p>The generator never uses a pair of numbers that the unit's lessons, exits or checks use, so the sheet cannot hand
-students an answer they will meet on the end check.</p>
+</style></head><body class="teacher"><h1>Day 91: the generator sheet</h1><p><b>Make and print it:</b> <a href="https://curioclass.org/closet/worksheets/make/measure-shapes/?grade=4&amp;skill=formulas&amp;count=12&amp;fixes=off">https://curioclass.org/closet/worksheets/make/measure-shapes/?grade=4&amp;skill=formulas&amp;count=12&amp;fixes=off</a>. Each press of New sheet gives a fresh sheet and its key; print one sheet per student and the key for you.</p><h2>What it holds</h2>
+<p>Twelve problems in words, with no drawings, and no fixes: day 91 runs its own five fixes first. The twelve mix
+both formulas: an area from two sides, two areas with a side that is a multiple of 10, a missing side from an
+area, a missing side from a perimeter, a perimeter with two- and three-digit sides, and a perimeter with fraction
+sides (like denominators). The order is shuffled, so the words have to say which measure is asked for. The sheet
+says 18 minutes on its head.</p>
+<p>The generator never uses a fact that the unit's lessons, exits or checks use: two sides with their area or their
+perimeter, in any order. So the sheet cannot hand students an answer they will meet on the end check. Each story
+thing comes in units and sizes it really has.</p>
 <h2>Making it</h2>
 <p>Open the link above, press New sheet once, and print one copy per student and the key for yourself. Every student
 gets the same sheet, so pairs can compare. The sheet code printed in its foot (five letters) reprints exactly the
 same sheet; write it on the day 91 teacher page if you want it again next year.</p>
 <h2>Using it on day 91</h2>
 <p>Alone for 18 minutes, then 4 minutes in pairs checking against each other; where partners disagree, both redo the
-problem. Then put the key up. The fixes at the end are the same five errors the lesson just named, so a student who
-gets a fix wrong is showing which error to watch on the exit.</p>
+problem. Then put the key up. Most students finish 8 to 10; the pairs check what is done.</p>
 <h2>Without a printer or a device</h2>
-<p>Write these six on the board; students work them in their notebooks. None uses the unit's lesson or check numbers.</p>
+<p>Write these six on the board; students work them in their notebooks. None uses a fact from the unit's lessons or
+checks (they are rows in the plan, so the gate checks them). The answers are in brackets.</p>
 <ol>
-<li>A patio is 8 yards long and 6 yards wide. How much ground does it cover? (48 square yards)</li>
-<li>A poster covers 54 square inches. It is 6 inches wide. How long is it? (9 inches)</li>
-<li>A pen uses 46 feet of fence. It is 15 feet long. How wide is it? (8 feet)</li>
-<li>A field is 236 meters long and 118 meters wide. How far is it around the edge? (708 meters)</li>
-<li>A card is 3 2/6 inches long and 2 1/6 inches wide. Find its perimeter. (11 inches, or 10 6/6)</li>
-<li>A garden bed is 4 feet wide and 2 times as long as it is wide. Find its area. (32 square feet)</li>
+<li>A patio is 11 yards long and 6 yards wide. How much ground does it cover? <strong>[11 × 6 = 66; 66 square yards]</strong></li>
+<li>A poster covers 84 square inches. It is 7 inches wide. How long is it? <strong>[7 × ? = 84; 12 inches]</strong></li>
+<li>A goat pen uses 46 feet of fence. It is 15 feet long. How wide is it? <strong>[15 + ? + 15 + ? = 46; 8 feet]</strong></li>
+<li>A field is 236 meters long and 118 meters wide. How far is it around the edge? <strong>[236 + 118 = 354; 354 + 354 = 708; 708 meters]</strong></li>
+<li>A card is 4 1/8 inches long and 2 5/8 inches wide. Find its perimeter. <strong>[13 4/8 inches; 12 12/8 is also right]</strong></li>
+<li>A garden is 40 yards long and 8 yards wide. How much ground does it cover? <strong>[40 × 8 = 320; 320 square yards]</strong></li>
 </ol><div class="foot">Curio Class, grade 4 math, unit 11.1, sheet-d091, version draft 1, not yet taught, CC BY 4.0, curioclass.org</div></body></html>

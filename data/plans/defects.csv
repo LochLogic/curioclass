@@ -61,3 +61,53 @@ date,course,artifact,layer,found_by,kind,summary,status,ref
 2026-11-11,math-4,courses/math-4/u11-1/d090.md,lesson,expert,wording,"F11: Five wording repairs (readiness branch minutes, 9 by 9 table, collect at 5 minutes, one square foot, paper sign of counted)",fixed,docs/reviews/lesson-day-2026-11-12.md
 2026-11-11,math-4,courses/math-4/u11-1/d090.md,lesson,expert,other,F12: Minutes for changeovers and talk; one-minute turn-and-talk added on the first fix; changeovers to time in the taught run,open,docs/reviews/lesson-day-2026-11-12.md
 2026-11-11,math-4,docs/courses/LESSON-DAY.md,template,expert,other,F13: How days are read named under What the script checks; cap judgment kept for math,fixed,docs/reviews/lesson-day-2026-11-12.md
+2026-11-12,math-4,d089.md,process,expert,handoff,Tomorrow promised responses that day 90 did not hold,fixed,docs/reviews/day-089-2026-11-12.md
+2026-11-12,math-4,d089.md,process,expert,layout,Student page had no room for the asked-for equations; frames added; PDF empty-height report not built,fixed,docs/reviews/day-089-2026-11-12.md
+2026-11-12,math-4,items.csv,process,expert,layout,Display showed a plain outline on a day about squares and unit sides; grid and marks figure flags added,fixed,docs/reviews/day-089-2026-11-12.md
+2026-11-12,math-4,d089.md,process,expert,missing,"Stretch 10 hand-back leaned on answers the day did not carry; meets answers printed, s10.md in leans_on; meets token not built (stretch 10 not in data)",fixed,docs/reviews/day-089-2026-11-12.md
+2026-11-12,math-4,opener.md,day,expert,key,Edge-squares error misnamed and unregistered; error F added with slip signs,fixed,docs/reviews/day-089-2026-11-12.md
+2026-11-12,math-4,d089.md,day,expert,sequence,"Twenty minutes of whole-class modelling and one minute of talk; split parts, pairs added",fixed,docs/reviews/day-089-2026-11-12.md
+2026-11-12,math-4,lesson.py,process,expert,script,Display ran in a different order from the day and added an unused screen,fixed,docs/reviews/day-089-2026-11-12.md
+2026-11-12,math-4,lesson.py,process,expert,script,Minutes gate forced two jobs into one part,fixed,docs/reviews/day-089-2026-11-12.md
+2026-11-12,math-4,d089.md,day,expert,wording,Small wording repairs on day 89,fixed,docs/reviews/day-089-2026-11-12.md
+2026-11-12,math-4,opener.md,process,expert,sequence,"Readiness reteach repeats day 89 worked example a day late; left to the unit plan writer, not settled",open,docs/reviews/day-089-2026-11-12.md
+2026-11-12,math-4,measure-shapes.js,process,expert,generator,"Generator sheet reused the unit facts, end check included; fact triples now reserved",fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,sheet-d091.md,process,expert,generator,"Day, sheet, plan and generator disagreed on what the sheet is; now 12, no fixes, 18 minutes",fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,measure-shapes.js,process,expert,generator,Generator put real things in impossible units,fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,measure-shapes.js,process,expert,sequence,Times as long was on the day 91 sheet before it is taught,fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,d091.md,process,expert,handoff,Tomorrow promised changes the next day did not carry; Tomorrow hand-off gate added,fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,opener.md,day,expert,missing,The eight answers with no units did not exist; written into the opener,fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,lesson.py,process,expert,script,Display said the wrong things in three places,fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,d091.md,process,expert,layout,"Warm-up printed as 1, 2, 2, 4; table plus a one-line two-question gate",fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,d091.md,process,expert,layout,Sketch it with nowhere to sketch; small box and sketch-box gate,fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,lesson.py,process,expert,script,Figure cells could not hold mixed numbers,fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,items.csv,day,expert,key,Two keys and three wrong-answer rows wrong,fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,d090.md,day,expert,sequence,"After a reteach, day 90 On your own questions had nowhere to go",fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,days.csv,process,expert,script,"Plan rows lagged the day; minutes gate added, parts-order check not built",fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,d091.md,day,expert,wording,Small wording repairs on the day 91 teacher page,fixed,docs/reviews/day-091-2026-11-12.md
+2026-11-12,math-4,d092.md,process,expert,handoff,Day 91 Tomorrow promised three things day 92 did not do,fixed,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,items.csv,process,expert,wording,Exit gave away the measure; cue words removed and cue word defined,fixed,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,d092.md,day,expert,sequence,First planned question asked after the steps answered it,fixed,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,lesson.py,process,expert,script,Display not in teaching order; check screen did not fit the day,fixed,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,d092.md,day,expert,sequence,Grid paper came back for the six problems the day after it was withdrawn,fixed,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,d093.md,process,expert,handoff,Day 92 Tomorrow sent students to things day 93 did not have,fixed,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,items.csv,day,expert,key,Key marked a correct fraction answer wrong (P92-2),fixed,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,lesson.py,process,expert,layout,Dog pen table columns about a quarter inch wide; wide-table gate added,fixed,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,items.csv,process,expert,missing,"Written task look-fors lived in prose, not its row; judged rows need steps and samples",fixed,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,d092.md,day,expert,layout,Student page left no room where needed and was collected too early,fixed,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,items.csv,process,expert,wording,Dog run and chicken run brought back a settled word; words.csv rule gate added,fixed,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,d092.md,day,expert,sequence,Dog pen did not fit its 10 minutes and two people could not hold it,fixed,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,items.csv,day,expert,coverage,Times as long taught without the bar picture the reteach uses,fixed,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,opener.md,process,expert,missing,"Pieces named on the day exist nowhere; ten situations not authored as rows, named-piece gate not built",open,docs/reviews/day-092-2026-11-12.md
+2026-11-12,math-4,d093.md,process,expert,handoff,Respond half left parts e and f unanswered and leaned on a piece that cannot exist yet,fixed,docs/reviews/day-093-2026-11-12.md
+2026-11-12,math-4,record.md,process,expert,missing,Record sheet could not hold what the day asks it to record,fixed,docs/reviews/day-093-2026-11-12.md
+2026-11-12,math-4,items.csv,process,expert,missing,Judged sample answers lived only in s11.md; samples cell and gate added,fixed,docs/reviews/day-093-2026-11-12.md
+2026-11-12,math-4,items.csv,process,expert,coverage,Challenge and extension repeated day 91 word for word; duplicate and same-numbers gate added,fixed,docs/reviews/day-093-2026-11-12.md
+2026-11-12,math-4,opener.md,process,expert,coverage,Opener printed end-check item 3 numbers as its day 91 example; opener number scan gate not built,fixed,docs/reviews/day-093-2026-11-12.md
+2026-11-12,math-4,items.csv,process,expert,wording,Readiness item 2 described a figure never drawn,fixed,docs/reviews/day-093-2026-11-12.md
+2026-11-12,math-4,DEFAULTS.md,process,expert,missing,No extra-time path on a hard 30-minute stop,fixed,docs/reviews/day-093-2026-11-12.md
+2026-11-12,math-4,lesson.py,process,expert,script,Check-day display showed only answers; groups had no written task,fixed,docs/reviews/day-093-2026-11-12.md
+2026-11-12,math-4,lesson.py,process,expert,key,Key and record did not name the part each item tests,fixed,docs/reviews/day-093-2026-11-12.md
+2026-11-12,math-4,lesson.py,process,expert,layout,Questions printed in italics and mixed numbers on one line,fixed,docs/reviews/day-093-2026-11-12.md
+2026-11-12,math-4,d093.md,day,expert,wording,Day 93 wording and materials: six small repairs,fixed,docs/reviews/day-093-2026-11-12.md
+2026-11-12,math-4,items.csv,day,expert,wording,"End-check item wording; three fixes made, item 5(b) border wording left as an unsettled judgment for the taught run",open,docs/reviews/day-093-2026-11-12.md

@@ -7,16 +7,19 @@ h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0
 table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
 .student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
-.q { font-style: italic; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
-.student td:first-child { width: 30%; font-size: 12pt; } .student td:nth-child(2) { width: 42%; } .meta td:first-child { width: 22%; font-weight: bold; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; font-size: 12pt; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 20%; font-size: 12pt; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
 .slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .25in; margin: 0 1% .2in 0; vertical-align: top; font-size: 13pt; }
 .screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
-</style></head><body class="teacher"><h1>Day 90: Find the missing side</h1><p>Teacher page</p><p class="warn">Not ready to teach: tools/community-plot-planner/community-plot-planner.html missing.</p><table class="meta"><tr><td>Day</td><td>90, unit 11.1, understanding day</td></tr><tr><td>Goal</td><td>I can find a missing side from the area or the perimeter</td></tr><tr><td>Standard parts</td><td>4.MD.A.3 (a) the area formula, a side unknown; 4.MD.A.3 (b) the perimeter formula, a side unknown; 4.MD.A.3 (f) the perimeter formula as 2 × (l + w): length plus width is half the perimeter; 4.MD.A.3 (g) the area formula, both sides known</td></tr><tr><td>Tool</td><td>Community Plot Planner (key), 25 min</td></tr><tr><td>Materials</td><td>per student, grid paper (1 sheet) and a device with Community Plot Planner open in Lot planner; per class, the projector with the display page, and a board (no document camera: draw it on the board)</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit slip, 1 per student (paper path only); facts check part 2 sheet from stretch 1, 1 per student; the key, 1 for the teacher</td></tr><tr><td>Leans on</td><td>tools/community-plot-planner/community-plot-planner.html; courses/math-4/u11-1/opener.md; courses/math-4/u01-1/facts-check-2.md; courses/math-4/u11-1/record.md</td></tr><tr><td>Version</td><td>draft 2, not ready, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
+</style></head><body class="teacher"><h1>Day 90: Find the missing side</h1><p>Teacher page</p><p class="warn">Not ready to teach: tools/community-plot-planner/community-plot-planner.html missing.</p><table class="meta"><tr><td>Day</td><td>90, unit 11.1, understanding day</td></tr><tr><td>Goal</td><td>I can find a missing side from the area or the perimeter</td></tr><tr><td>Standard parts</td><td>4.MD.A.3 (a) the area formula, a side unknown; 4.MD.A.3 (b) the perimeter formula, a side unknown; 4.MD.A.3 (f) the perimeter formula as 2 × (l + w): length plus width is half the perimeter (on a branch or Longer only); 4.MD.A.3 (g) the area formula, both sides known (on a branch or Longer only)</td></tr><tr><td>Tool</td><td>Community Plot Planner (key), 25 min</td></tr><tr><td>Materials</td><td>per student, grid paper (1 sheet) and a device with Community Plot Planner open in Lot planner; per class, the projector with the display page, and a board (no document camera: draw it on the board)</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit slip, 1 per student (paper path only); facts check part 2 sheet from stretch 1, 1 per student; the key, 1 for the teacher</td></tr><tr><td>Leans on</td><td>tools/community-plot-planner/community-plot-planner.html; courses/math-4/u11-1/opener.md; courses/math-4/u01-1/facts-check-2.md; courses/math-4/u11-1/record.md</td></tr><tr><td>Version</td><td>draft 2, not ready, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
 <p>Print the student page both sides, the facts check part 2 sheet and the key. Open Community Plot Planner on each
 device in Lot planner. Put the display page on the projector.</p>
 <h3>The day</h3>
@@ -26,11 +29,13 @@ marked wrong. Mark the sheets after class. After the facts check, students under
 by 9 table out for the lesson.</p>
 <p><strong>If the readiness check showed gaps</strong> (more than a third missed item 1 or 2): the warm-up goes to the reteach in
 the unit opener, with five minutes from "On your own" and the partner check; the facts check moves to day 91, and
-those two questions move to day 91's warm-up.</p>
+those two questions are dropped; day 91's fixes 3 and 4 ask the same two parts.</p>
+<p><strong>If day 89's slips showed many A</strong> (area and perimeter swapped): Ava's rug again, "covers" or "goes around"; the
+facts check moves to day 91. With the reteach also here, the reteach comes first and A goes to day 91's warm-up.</p>
 <h4>10 min. Teaching first: two worked examples</h4>
 <p>Whole class. Students fill the two frames on side 1 as you go, not ahead of you. The display shows each figure,
 then each step on its own screen.</p>
-<p><strong>Example 1</strong> (<em>A garden bed covers 63 square feet. It is 7 feet wide. How long is it?</em> <strong>[7 × ? = 63; 9 feet]</strong>). The missing side is a missing factor. Each square stands for one square foot.</p>
+<p><strong>Example 1</strong> (A garden bed covers 63 square feet. It is 7 feet wide. How long is it? <strong>[7 × ? = 63; 9 feet]</strong>). The missing side is a missing factor. Each square stands for one square foot.</p>
 <ol>
 <li>Sketch the bed: 7 feet wide, the length unknown, 63 square feet inside.</li>
 <li>Area is how many squares cover it. Each square stands for one square foot, and they come in rows of 7.</li>
@@ -39,7 +44,7 @@ then each step on its own screen.</p>
 <li>7 × 9 = 63, so the bed is 9 feet long.</li>
 <li>Check: 7 × 9 = 63.</li>
 </ol>
-<p><strong>Example 2</strong> (<em>A goat pen has 38 feet of fence all the way around. It is 12 feet long. How wide is it?</em> <strong>[12 + ? + 12 + ? = 38; 7 feet]</strong>). </p>
+<p><strong>Example 2</strong> (A goat pen has 38 feet of fence all the way around. It is 12 feet long. How wide is it? <strong>[12 + ? + 12 + ? = 38; 7 feet]</strong>). </p>
 <ol>
 <li>Sketch the pen: 12 feet on both long sides, because opposite sides of a rectangle match. The width is unknown on both short sides.</li>
 <li>The fence goes all the way round: 12 + ? + 12 + ? = 38.</li>
@@ -52,18 +57,18 @@ then each step on its own screen.</p>
 <p>Write the four-side equation first, every time: it stops errors B and D.</p>
 <h4>20 min. Community Plot Planner: the five notes</h4>
 <p>Alone, in Lot planner. Each family note gives one number and one side; the student finds the missing side, writes
-the equation, then fills the plot's tag with the measure the note did not give. Students write each fence
+the equation, then tags the plot with the measure the note did not give. Students write each fence
 equation as four sides in the Plot notes table on side 2, even where the tool shows 2 × (5 + ?) = 30
-(<em>The Lee family needs 48 square feet. Their plot is 6 feet wide. How long is it?</em> <strong>[6 × ? = 48; 8 feet; fence 28 feet]</strong>, <em>The Nguyen family needs 36 square feet. Their plot is 4 feet wide. How long is it?</em> <strong>[4 × ? = 36; 9 feet; fence 26 feet]</strong>, <em>The Clark family needs 60 square feet. Their plot is 5 feet wide. How long is it?</em> <strong>[5 × ? = 60; 12 feet; fence 34 feet]</strong>, <em>The Ortiz family puts 30 feet of fence all the way around their plot. The plot is 5 feet wide. How long is it?</em> <strong>[5 + ? + 5 + ? = 30; 10 feet; area 50 square feet]</strong>, <em>The Abebe family puts 24 feet of fence all the way around their plot. The plot is 8 feet long. How wide is it?</em> <strong>[8 + ? + 8 + ? = 24; 4 feet; area 32 square feet]</strong>).</p>
+(The Lee family needs 48 square feet. Their plot is 6 feet wide. How long is it? <strong>[6 × ? = 48; 8 feet; fence 28 feet]</strong>, The Nguyen family needs 36 square feet. Their plot is 4 feet wide. How long is it? <strong>[4 × ? = 36; 9 feet; fence 26 feet]</strong>, The Clark family needs 60 square feet. Their plot is 5 feet wide. How long is it? <strong>[5 × ? = 60; 12 feet; fence 34 feet]</strong>, The Ortiz family puts 30 feet of fence all the way around their plot. The plot is 5 feet wide. How long is it? <strong>[5 + ? + 5 + ? = 30; 10 feet; area 50 square feet]</strong>, The Abebe family puts 24 feet of fence all the way around their plot. The plot is 8 feet long. How wide is it? <strong>[8 + ? + 8 + ? = 24; 4 feet; area 32 square feet]</strong>).</p>
 <p>Watch for a tag marked "counted" or a plot "built with squares" (the pieces came back), and a missing side that
 is the note's two numbers added or taken away (54 or 42 for the Lee family: error C). Ask as you walk: "Which
 number is fixed? Which side is missing? What equation says that?"</p>
-<p><strong>Stop at 20 minutes</strong>, lot finished or not. The notes, equations and tags are the job; placing plots is the reward.</p>
+<p><strong>Stop at 20 minutes</strong>, lot finished or not: the notes, equations and tags are the job.</p>
 <h4>15 min. On paper: fix two, then two alone</h4>
-<p>"Fix it", side 1 (<em>Jo says: "A rug covers 35 square feet. It is 5 feet wide, so it is 30 feet long."</em> <strong>[5 × ? = 35; 7 feet. Jo subtracted]</strong>, <em>Max says: "A goat pen has 44 feet of fence all the way around. It is 14 feet long, so it is 30 feet wide."</em> <strong>[14 + ? + 14 + ? = 44; 8 feet. Max took off one side only]</strong>), 6 minutes. For Jo's, one minute of turn-and-talk in pairs, then
+<p>"Fix it", side 1 (Jo says: "A rug covers 35 square feet. It is 5 feet wide, so it is 30 feet long." <strong>[5 × ? = 35; 7 feet. Jo subtracted]</strong>, Max says: "A goat pen has 44 feet of fence all the way around. It is 14 feet long, so it is 30 feet wide." <strong>[14 + ? + 14 + ? = 44; 8 feet. Max took off one side only]</strong>), 6 minutes. For Jo's, one minute of turn-and-talk in pairs, then
 the class. The display shows each wrong working beside the right one. Jo subtracted: area is rows times columns,
 so ask "5 times what is 35?". Max took off one long side and stopped: a fence has two long sides and two short ones.</p>
-<p>"On your own", side 2 (<em>A table top covers 27 square feet. It is 3 feet wide. How long is it?</em> <strong>[3 × ? = 27; 9 feet]</strong>, <em>A dog yard has 42 feet of fence all the way around. It is 13 feet long. How wide is it?</em> <strong>[13 + ? + 13 + ? = 42; 8 feet]</strong>), 6 minutes, alone, no grid. Then 3 minutes in pairs:
+<p>"On your own", side 2 (A table top covers 27 square feet. It is 3 feet wide. How long is it? <strong>[3 × ? = 27; 9 feet]</strong>, A dog yard has 42 feet of fence all the way around. It is 13 feet long. How wide is it? <strong>[13 + ? + 13 + ? = 42; 8 feet]</strong>), 6 minutes, alone, no grid. Then 3 minutes in pairs:
 partners swap and check each answer by putting it back in the equation ("Does 3 × 9 give 27?"). A mismatch gets
 a question mark, not the answer.</p>
 <p>If many miss the area question: rows of 3 on grid paper until 27 squares are used. If many miss the fence
@@ -71,35 +76,32 @@ question: fill in 13 + <span class="blank" style="width:0.9em"></span> + 13 + <s
 <h4>5 min. Pull it together</h4>
 <p>Whole class.</p>
 <p><strong>Ask.</strong> "For the garden bed we never took anything away. For the goat pen we took away and then halved. Why?"
-Expect: "area is rows times columns, so it is what times 7"; "the fence has two of each side". Show the first
-answer, then the second, then connect them: both began with an equation for this rectangle, its numbers and one
-unknown.</p>
+Expect: "area is rows times columns, so it is what times 7"; "the fence has two of each side". Show the first,
+then the second; both began with an equation for this rectangle with one unknown.</p>
 <p><strong>Ask.</strong> "How can you check a missing side with no one to tell you?" Expect: put it back in the equation.</p>
 <h4>5 min. Exit: On your own in Community Plot Planner, or the slip</h4>
 <p>Alone. With devices: "On your own" from the tool's header, no hints, the same two parts as the slip with other
-numbers (<em>A plot is 56 square feet and 7 feet wide. How long is it?</em> <strong>[8 feet]</strong>, <em>A plot is 18 square feet and 3 feet wide. How long is it?</em> <strong>[6 feet]</strong>, <em>A plot has 40 feet of fence all the way around. It is 12 feet long. How wide is it?</em> <strong>[8 feet]</strong>, <em>A plot has 22 feet of fence all the way around. It is 7 feet long. How wide is it?</em> <strong>[4 feet]</strong>). Students show the end screen; write area and
-perimeter results on the record sheet under E90. No devices: the exit slip (<em>A card covers 21 square inches. It is 3 inches wide. How long is it? Write the equation.</em> <strong>[3 × ? = 21; 7 inches]</strong>, <em>A frame has 46 inches of edge all the way around. It is 17 inches long. How wide is it? Write the equation.</em> <strong>[17 + ? + 17 + ? = 46; 6 inches]</strong>).</p>
+numbers (A plot is 56 square feet and 7 feet wide. How long is it? <strong>[8 feet]</strong>, A plot is 18 square feet and 3 feet wide. How long is it? <strong>[6 feet]</strong>, A plot has 40 feet of fence all the way around. It is 12 feet long. How wide is it? <strong>[8 feet]</strong>, A plot has 22 feet of fence all the way around. It is 7 feet long. How wide is it? <strong>[4 feet]</strong>). Students show the end screen; write area and
+perimeter results on the record sheet under E90. No devices: the exit slip (A card covers 21 square inches. It is 3 inches wide. How long is it? Write the equation. <strong>[3 × ? = 21; 7 inches]</strong>, A frame has 46 inches of edge all the way around. It is 17 inches long. How wide is it? Write the equation. <strong>[17 + ? + 17 + ? = 46; 6 inches]</strong>).</p>
 <h3>Other rooms</h3>
 <ul>
-<li><strong>No devices, or the tool not yet built.</strong> The 20 minutes become the paper path. Students solve the five notes
-  in the table on side 2, shading rows on grid paper for the area notes and sketching the fence with four
-  labelled sides. They check each area note by multiplying back and each fence note by adding the four sides. Walk
-  the room for a note solved by adding or taking away the two numbers (error C) and a fence answer not halved
-  (error D); ask the same three questions.</li>
+<li><strong>No devices, or the tool not yet built.</strong> The 20 minutes become the paper path: the five notes in the table on
+  side 2, area notes shaded in rows on grid paper, fences sketched with four labelled sides, each checked by
+  multiplying back or adding the four sides. Watch for errors C and D; ask the same three questions.</li>
 <li><strong>One projector.</strong> You run the tool; the class writes each equation on side 2 before you type it.</li>
 <li><strong>One child at home.</strong> Build the first "On your own" rectangle from 27 paper squares in rows of 3, then write
   the equation.</li>
 </ul>
 <h3>Shorter or longer</h3>
 <p>Shorter: drop the partner check (students check their own) and the challenge. Never drop the fixes or the written
-equations, and never give the grid back for "On your own". Longer: the challenge (<em>A rectangle has an area of 40 square feet and a perimeter of 26 feet. How long are its sides?</em> <strong>[5 feet and 8 feet]</strong>), then the
-extension (<em>Find every rectangle with whole-number sides and an area of 36 square feet. Find the perimeter of each.</em> <strong>[1 by 36, perimeter 74; 2 by 18, 40; 3 by 12, 30; 4 by 9, 26; 6 by 6, 24]</strong>).</p>
+equations, and never give the grid back for "On your own". Longer: the challenge (A rectangle has an area of 40 square feet and a perimeter of 26 feet. How long are its sides? <strong>[5 feet and 8 feet]</strong>), then the
+extension (Find every rectangle with whole-number sides and an area of 36 square feet. Find the perimeter of each. <strong>[1 by 36, perimeter 74; 2 by 18, 40; 3 by 12, 30; 4 by 9, 26; 6 by 6, 24]</strong>).</p>
 <h3>Words and supports</h3>
 <p>Word Wall cards: area, perimeter, length, width, square foot, equation. Frames on the display: "The missing side
 is <span class="blank" style="width:0.9em"></span> because <span class="blank" style="width:0.9em"></span> × <span class="blank" style="width:0.9em"></span> = <span class="blank" style="width:0.9em"></span>." "The two short sides are <span class="blank" style="width:0.9em"></span> feet together, so each one is <span class="blank" style="width:0.9em"></span> feet."</p>
 <h3>Tomorrow</h3>
-<p>On the slip, 18 or 24, or 63, on the card (error C): day 91 opens with Jo's wrong answer again; on the end
-screen the same sign is 49 or 63, or 15 or 21. On the slip, 29 or 12 on the frame (error D): it opens with Max's;
+<p>On the slip, 18 or 24, or 63, on the card (error C): day 91 takes fix 3 first, whole class; on the end
+screen the same sign is 49 or 63, or 15 or 21. On the slip, 29 or 12 on the frame (error D): day 91 takes fix 4 first;
 on the end screen 28 or 16, or 15 or 8. Students with a tag marked "counted", or who shaded every square one by
 one on paper, sit near you for day 91's first ten minutes.</p>
 <h3>Credit</h3>

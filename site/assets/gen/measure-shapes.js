@@ -12,7 +12,7 @@ const GRADES = [['2', 'Grade 2'], ['3', 'Grade 3'], ['4', 'Grade 4'], ['5', 'Gra
 const SKILLS = {
   2: [['perim', 'Perimeter of shapes']],
   3: [['perim', 'Perimeter of polygons'], ['area', 'Area of rectangles'], ['compo', 'Area of L-shapes'], ['mix3', 'Area and perimeter'], ['unknown', 'Perimeter with a missing side'], ['grid', 'Area by counting squares']],
-  4: [['ap', 'Area and perimeter of rectangles'], ['compo', 'Composite shapes'], ['missing', 'Find the missing side'], ['mix4', 'Mixed review'], ['formulas', 'Both formulas, no pictures (12 and 5 to fix)']],
+  4: [['ap', 'Area and perimeter of rectangles'], ['compo', 'Composite shapes'], ['missing', 'Find the missing side'], ['mix4', 'Mixed review'], ['formulas', 'Both formulas, no pictures (12, then 5 to fix if chosen)']],
   5: [['vol', 'Volume of rectangular prisms'], ['volc', 'Volume of two joined boxes']],
   6: [['tri', 'Area of triangles'], ['para', 'Area of parallelograms'], ['trap', 'Area of trapezoids'], ['poly', 'Triangles, parallelograms and trapezoids'], ['sa', 'Surface area of rectangular prisms']],
   7: [['circ', 'Circumference of circles'], ['carea', 'Area of circles'], ['circles', 'Circumference and area'], ['prismsa', 'Surface area of triangular prisms']],
@@ -327,81 +327,86 @@ void UNAME;
 const rNote = p => (p.kind === 'circle' || p.kind === 'cyl' || p.kind === 'solid') && p.useD ? `r = ${p.rad * 2} ÷ 2 = ${p.rad} ${p.u}. ` : '';
 
 /* ---------- grade 4 "formulas": the unit sheet for 4.MD.A.3 (grade 4 math, unit 11.1, day 91) ----------
-   Twelve problems with no pictures, in mixed order: 2 area with both sides (one within 100, one a one-digit number
+   Twelve problems with no pictures, in mixed order: 3 area with both sides (one within 100, two a one-digit number
    times a multiple of 10), 2 area with a side unknown, 2 perimeter with a side unknown (even, 100 or less), 3
-   perimeter with multi-digit sides, 2 perimeter with like-denominator fraction sides, 1 "times as long" area. Then 5
-   wrong answers to fix, one for each error A to E of the unit's error register. Half bare rectangles, half one-line
-   stories. No problem uses a pair of numbers that the unit teaches or checks (RESERVED_S11, kept in step with
+   perimeter with multi-digit sides, 2 perimeter with like-denominator fraction sides. Then, unless fixes=off, 5 wrong
+   answers to fix, one for each error A to E of the unit's error register. Half bare rectangles, half one-line stories,
+   each story thing in units and sizes it really has. No problem uses a fact the unit teaches or checks: a triple of
+   two sides with their area or their perimeter, matched in any order (RESERVED_S11, kept in step with
    data/plans/math-4/items.csv by `python -X utf8 scripts/plan.py reserve math-4 11`). */
 // RESERVED_S11 begin (generated; do not edit by hand)
-const RESERVED_S11 = [['1', '6', '9'], ['1 1/8', '2 3/8'], ['1 4/5', '2 3/5'], ['1 7/8', '3 5/8'], ['10', '17', '7'], ['10', '2'], ['10', '3'], ['11', '8'], ['12', '38'], ['12', '40'], ['129', '264'], ['13', '42'], ['138', '60', '9'], ['14', '30', '44'], ['14', '9'], ['147', '318'], ['148', '235'], ['150', '3', '50'], ['158', '264'], ['16', '50'], ['17', '24', '58'], ['17', '46'], ['18', '3'], ['189', '274', '463'], ['2', '6'], ['2', '7'], ['2', '9'], ['2 3/4', '6 3/4'], ['2 4/10', '3 1/10'], ['21', '3'], ['22', '5', '6'], ['22', '7'], ['24', '7'], ['24', '8'], ['26', '40'], ['27', '3'], ['275', '419'], ['28', '4'], ['3', '4'], ['3', '5'], ['3', '8'], ['30', '35', '5'], ['30', '5'], ['32', '60'], ['36', '4'], ['4', '5'], ['4', '9'], ['40', '6'], ['42', '6'], ['48', '6'], ['48', '8'], ['5', '60'], ['5', '9'], ['56', '7'], ['6', '7'], ['63', '7'], ['64', '72', '8'], ['70', '8'], ['72', '8']];
+const RESERVED_S11 = [['1', '12', '5'], ['1', '122', '60'], ['1', '17', '17'], ['1', '17', '36'], ['1', '20', '20'], ['1', '20', '42'], ['1', '36', '74'], ['1', '42', '86'], ['1', '5', '5'], ['10', '2', '20'], ['10', '2', '24'], ['10', '2', '5'], ['10', '26', '3'], ['10', '3', '30'], ['10', '30', '5'], ['10', '32', '6'], ['10', '34', '7'], ['10', '36', '8'], ['10', '38', '9'], ['10', '5', '50'], ['10', '6', '60'], ['10', '8', '80'], ['10', '9', '90'], ['100', '12', '38'], ['100', '20', '5'], ['104', '12', '40'], ['1040', '26', '40'], ['108', '48', '6'], ['11', '12/5', '31/10'], ['11', '15/8', '29/8'], ['11', '34', '6'], ['11', '36', '7'], ['11', '38', '8'], ['11', '6', '66'], ['11', '7', '77'], ['11', '8', '88'], ['11/4', '19', '27/4'], ['11/4', '27/4', '297/16'], ['110', '13', '42'], ['112', '28', '4'], ['112', '48', '8'], ['115225', '275', '419'], ['117/25', '13/5', '9/5'], ['118', '236', '27848'], ['118', '236', '708'], ['12', '17', '58'], ['12', '2', '24'], ['12', '2', '4'], ['12', '2', '6'], ['12', '3', '3'], ['12', '3', '30'], ['12', '3', '4'], ['12', '32', '4'], ['12', '34', '5'], ['12', '36', '6'], ['12', '38', '456'], ['12', '38', '7'], ['12', '4', '48'], ['12', '40', '480'], ['12', '40', '8'], ['12', '5', '60'], ['12', '6', '72'], ['12', '7', '84'], ['12/5', '186/25', '31/10'], ['122', '15', '46'], ['126', '14', '9'], ['126', '17', '46'], ['126', '56', '7'], ['129', '264', '34056'], ['129', '264', '786'], ['13', '2', '26'], ['13', '36', '5'], ['13', '42', '546'], ['13', '42', '8'], ['13', '5', '65'], ['13/5', '44/5', '9/5'], ['130', '5', '60'], ['132', '16', '50'], ['132', '26', '40'], ['1388', '275', '419'], ['14', '2', '28'], ['14', '2', '7'], ['14', '3', '34'], ['14', '3', '4'], ['14', '36', '4'], ['14', '4', '56'], ['14', '44', '8'], ['14', '46', '9'], ['14', '7', '98'], ['140', '63', '7'], ['144', '36', '4'], ['147', '318', '46746'], ['147', '318', '930'], ['148', '235', '34780'], ['148', '235', '766'], ['15', '2', '30'], ['15', '3', '36'], ['15', '3', '45'], ['15', '3', '5'], ['15', '38', '4'], ['15', '46', '690'], ['15', '46', '8'], ['15/8', '29/8', '435/64'], ['150', '3', '50'], ['150', '30', '5'], ['154', '22', '7'], ['156', '70', '8'], ['158', '264', '41712'], ['158', '264', '844'], ['16', '2', '32'], ['16', '2', '36'], ['16', '2', '6'], ['16', '2', '8'], ['16', '3', '5'], ['16', '50', '800'], ['16', '50', '9'], ['160', '72', '8'], ['168', '24', '7'], ['17', '2', '34'], ['17', '46', '6'], ['17', '46', '782'], ['171/64', '19/8', '9/8'], ['18', '2', '40'], ['18', '2', '7'], ['18', '2', '9'], ['18', '3', '42'], ['18', '3', '54'], ['18', '3', '6'], ['18', '4', '5'], ['18', '54', '9'], ['182', '7', '84'], ['184', '32', '60'], ['189', '274', '926'], ['19/8', '7', '9/8'], ['192', '24', '8'], ['1920', '32', '60'], ['2', '21', '46'], ['2', '22', '9'], ['2', '30', '64'], ['2', '4', '8'], ['20', '3', '46'], ['20', '4', '5'], ['20', '5', '5'], ['20', '5', '50'], ['21', '3', '48'], ['21', '3', '63'], ['21', '3', '7'], ['21/8', '27/2', '33/8'], ['21/8', '33/8', '693/64'], ['22', '3', '8'], ['22', '4', '7'], ['22', '58', '7'], ['24', '3', '8'], ['24', '4', '8'], ['24', '5', '7'], ['24', '6', '6'], ['24', '62', '7'], ['24', '64', '8'], ['240', '40', '6'], ['25', '5', '5'], ['252', '42', '6'], ['256', '38', '90'], ['26', '4', '9'], ['26', '5', '8'], ['26', '6', '7'], ['27', '3', '60'], ['27', '3', '81'], ['27', '3', '9'], ['28', '4', '64'], ['28', '4', '7'], ['28', '5', '9'], ['28', '6', '8'], ['288', '48', '6'], ['3', '3', '9'], ['30', '5', '6'], ['30', '5', '70'], ['300', '5', '60'], ['32', '4', '8'], ['320', '40', '8'], ['34', '8', '9'], ['3420', '38', '90'], ['35', '5', '7'], ['36', '4', '80'], ['36', '4', '9'], ['36', '9', '9'], ['384', '48', '8'], ['392', '56', '7'], ['40', '5', '8'], ['40', '6', '92'], ['40', '8', '96'], ['42', '6', '7'], ['42', '6', '96'], ['441', '63', '7'], ['45', '5', '9'], ['48', '6', '8'], ['54', '6', '9'], ['540', '60', '9'], ['56', '7', '8'], ['560', '70', '8'], ['576', '72', '8'], ['588', '7', '84'], ['63', '7', '9'], ['72', '8', '9'], ['81', '9', '9']];
 // RESERVED_S11 end
-const reservedHit = nums => { const s = nums.map(String); return RESERVED_S11.some(set => s.every(x => set.includes(x))); };
+// a fact triple (side, side, area or perimeter) as sorted canonical strings: whole numbers, or fractions in lowest terms
+const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; };
+const canon = x => typeof x === 'number' ? String(x) : (() => { const g = gcd(x[0], x[1]); return x[1] / g === 1 ? String(x[0] / g) : `${x[0] / g}/${x[1] / g}`; })();
+const tripleKey = t => t.map(canon).sort().join('|');
+const RESERVED_SET = new Set(RESERVED_S11.map(t => [...t].sort().join('|')));
+const reservedHit = t => RESERVED_SET.has(tripleKey(t));
 const FXU = [['ft', 'feet', 'square feet'], ['m', 'meters', 'square meters'], ['in', 'inches', 'square inches'], ['yd', 'yards', 'square yards'], ['cm', 'centimeters', 'square centimeters']];
 const FXU_C = FXU.filter(u => ['ft', 'in', 'yd'].includes(u[0])), FXU_M = FXU.filter(u => ['m', 'cm'].includes(u[0]));
-const AREA_THINGS = ['rug', 'garden bed', 'poster', 'patio', 'tablecloth', 'classroom floor', 'mural', 'tile'];
-const EDGE_THINGS = [['fence', 'a pen'], ['ribbon', 'a gift box lid'], ['trim', 'a window'], ['rope', 'a play area'], ['tape', 'a table top']];
+// each thing with the units it is measured in and the side lengths it can really have, so no poster is 300 feet long
+const AREA_THINGS = [['field', ['ft', 'yd', 'm'], 30, 420], ['classroom floor', ['ft', 'm'], 6, 60], ['patio', ['ft', 'm'], 6, 60], ['hall', ['ft', 'm'], 6, 60],
+  ['rug', ['ft'], 3, 12], ['tablecloth', ['ft'], 3, 12], ['mural', ['ft'], 3, 12], ['garden bed', ['ft'], 2, 12],
+  ['poster', ['in', 'cm'], 2, 30], ['card', ['in', 'cm'], 2, 30], ['tile', ['in', 'cm'], 2, 30], ['picture', ['in', 'cm'], 2, 30]];
+const EDGE_THINGS = [['fence', 'a goat pen', ['ft', 'yd', 'm'], 6, 60], ['rope', 'a play area', ['ft', 'yd', 'm'], 6, 60], ['ribbon', 'a gift box lid', ['in', 'cm'], 2, 30],
+  ['trim', 'a window', ['in'], 10, 60], ['tape', 'a table top', ['in', 'cm'], 12, 90]];
+const fits = (t, u, sides, at = 1) => t[at].includes(u) && sides.every(s => s >= t[at + 1] && s <= t[at + 2]);
+const areaThing = (r, u, sides) => { const ok = AREA_THINGS.filter(t => fits(t, u, sides)); return ok.length ? r.pick(ok)[0] : null; };
+const edgeThing = (r, u, sides) => { const ok = EDGE_THINGS.filter(t => fits(t, u, sides, 2)); return ok.length ? r.pick(ok) : null; };
 const NAMES = ['Ava', 'Ben', 'Cruz', 'Dina', 'Eli', 'Fay', 'Gus', 'Hana', 'Ivan', 'June', 'Kai', 'Lena', 'Milo', 'Nia', 'Omar', 'Pia', 'Raj', 'Sol', 'Tess', 'Uma'];
 const fracText = (w, n, d) => n === 0 ? `${w}` : w ? `${w} ${n}/${d}` : `${n}/${d}`;
 const fracHtml = (w, n, d) => n === 0 ? `${w}` : H.mixed(w, n, d);
 // a total in eighths (or any d) as a mixed number with the fraction part under 1, not simplified (grade 4: 4.NF.B.3)
 const asMixed = (num, d) => [Math.floor(num / d), num % d];
+const cap = s => s[0].toUpperCase() + s.slice(1);
 
 function fxProblem(r, type, units) {
   const pool = units === 'metric' ? FXU_M : units === 'customary' ? FXU_C : FXU;
   const [u, ulong, usq] = r.pick(pool), story = r.chance(.5);
-  const thing = r.pick(AREA_THINGS), [edge, around] = r.pick(EDGE_THINGS);
   if (type === 'areaSmall' || type === 'areaTens') {
     const w = r.int(3, 9), l = type === 'areaSmall' ? r.int(w + 1, Math.min(12, Math.floor(100 / w))) : 10 * r.int(2, 9);
     if (type === 'areaSmall' && w * l > 100) return null;
-    const ans = l * w, nums = [l, w];
-    const text = story ? `A ${thing} is ${l} ${ulong} long and ${w} ${ulong} wide. How much space does it cover?`
+    const ans = l * w, thing = story ? areaThing(r, u, [l, w]) : null;
+    const text = thing ? `A ${thing} is ${l} ${ulong} long and ${w} ${ulong} wide. How much space does it cover?`
       : `A rectangle is ${l} ${ulong} long and ${w} ${ulong} wide. Find its area.`;
-    return { type, nums, text, html: esc(text), eq: `${l} × ${w} = ${ans}`, a: `${ans} ${usq}`, ans, unitKind: 'sq', p: { type, l, w } };
+    return { type, triple: [l, w, ans], text, html: esc(text), eq: `${l} × ${w} = ${ans}`, a: `${ans} ${usq}`, ans, unitKind: 'sq', p: { type, l, w, u, thing } };
   }
   if (type === 'areaMissing') {
     const w = r.int(3, 9), l = r.int(w + 1, 12), A = l * w;
     if (A > 100) return null;
-    const nums = [A, w];
-    const text = story ? `A ${thing} covers ${A} ${usq}. It is ${w} ${ulong} wide. How long is it?`
+    const thing = story ? areaThing(r, u, [l, w]) : null;
+    const text = thing ? `A ${thing} covers ${A} ${usq}. It is ${w} ${ulong} wide. How long is it?`
       : `A rectangle has an area of ${A} ${usq}. One side is ${w} ${ulong}. Find the other side.`;
-    return { type, nums, text, html: esc(text), eq: `${w} × ? = ${A}, so ? = ${l}`, a: `${l} ${ulong}`, ans: l, unitKind: 'len', p: { type, A, w } };
+    return { type, triple: [A, w, l], text, html: esc(text), eq: `${w} × ? = ${A}, so ? = ${l}`, a: `${l} ${ulong}`, ans: l, unitKind: 'len', p: { type, A, w, u, thing } };
   }
   if (type === 'perimMissing') {
     const l = r.int(6, 30), w = r.int(2, l - 1), P = 2 * (l + w);
     if (P > 100) return null;
-    const nums = [P, l];
-    const text = story ? `${edge[0].toUpperCase() + edge.slice(1)} goes all the way around ${around}: ${P} ${ulong}. It is ${l} ${ulong} long. How wide is it?`
+    const et = story ? edgeThing(r, u, [l, w]) : null;
+    const text = et ? `${cap(et[0])} goes all the way around ${et[1]}: ${P} ${ulong}. It is ${l} ${ulong} long. How wide is it?`
       : `A rectangle has a perimeter of ${P} ${ulong}. It is ${l} ${ulong} long. How wide is it?`;
-    return { type, nums, text, html: esc(text), eq: `${l} + ? + ${l} + ? = ${P}, so ? = ${w}`, a: `${w} ${ulong}`, ans: w, unitKind: 'len', p: { type, P, l } };
+    return { type, triple: [P, l, w], text, html: esc(text), eq: `${l} + ? + ${l} + ? = ${P}, so ? = ${w}`, a: `${w} ${ulong}`, ans: w, unitKind: 'len', p: { type, P, l, u, thing: et && et[1].slice(2), edge: true } };
   }
   if (type === 'perimBig') {
     const l = r.int(100, 420), w = r.int(25, Math.min(l - 1, 480 - l)), P = 2 * (l + w);
     if (P >= 1000 || w < 10) return null;
-    const nums = [l, w];
-    const text = story ? `A field is ${l} ${ulong} long and ${w} ${ulong} wide. How far is it all the way around?`
+    const thing = story ? areaThing(r, u, [l, w]) : null;
+    const text = thing ? `A ${thing} is ${l} ${ulong} long and ${w} ${ulong} wide. How far is it all the way around?`
       : `A rectangle is ${l} ${ulong} long and ${w} ${ulong} wide. Find its perimeter.`;
-    return { type, nums, text, html: esc(text), eq: `${l} + ${w} = ${l + w}; ${l + w} + ${l + w} = ${P}`, a: `${P.toLocaleString('en-US')} ${ulong}`, ans: P, unitKind: 'len', p: { type, l, w } };
+    return { type, triple: [l, w, P], text, html: esc(text), eq: `${l} + ${w} = ${l + w}; ${l + w} + ${l + w} = ${P}`, a: `${P.toLocaleString('en-US')} ${ulong}`, ans: P, unitKind: 'len', p: { type, l, w, u, thing } };
   }
   if (type === 'perimFrac') {
     const d = r.pick([2, 3, 4, 5, 6, 8, 10, 12]), lw = r.int(2, 8), ln = r.int(1, d - 1), ww = r.int(1, lw), wn = r.int(1, d - 1);
     if (ww === lw && wn >= ln) return null;
-    const total = 2 * ((lw * d + ln) + (ww * d + wn)), [tw, tn] = asMixed(total, d);
+    const lnum = lw * d + ln, wnum = ww * d + wn, total = 2 * (lnum + wnum), [tw, tn] = asMixed(total, d);
     const L = fracText(lw, ln, d), Wt = fracText(ww, wn, d), A = fracText(tw, tn, d);
-    const nums = [L, Wt];
-    const lead = story ? `A card is` : `A rectangle is`;
-    const tail = story ? `How long is the edge all the way around?` : `Find its perimeter.`;
+    const thing = story ? areaThing(r, u, [lnum / d, wnum / d]) : null;
+    const lead = thing ? `A ${thing} is` : `A rectangle is`;
+    const tail = thing ? `How long is the edge all the way around?` : `Find its perimeter.`;
     const text = `${lead} ${L} ${ulong} long and ${Wt} ${ulong} wide. ${tail}`;
-    return { type, nums, text, html: `${lead} ${fracHtml(lw, ln, d)} ${esc(ulong)} long and ${fracHtml(ww, wn, d)} ${esc(ulong)} wide. ${tail}`,
-      eq: `${L} + ${Wt} + ${L} + ${Wt} = ${A}`, a: `${A} ${ulong}`, ans: total / d, unitKind: 'len', p: { type, d, lnum: lw * d + ln, wnum: ww * d + wn } };
-  }
-  if (type === 'times') {
-    const w = r.int(2, 5), k = r.int(2, 4), l = k * w, A = l * w;
-    if (A > 100) return null;
-    const nums = [w, k];
-    const text = story ? `A ${thing} is ${w} ${ulong} wide. It is ${k} times as long as it is wide. Find its area.`
-      : `A rectangle is ${w} ${ulong} wide and ${k} times as long. Find its area.`;
-    return { type, nums, text, html: esc(text), eq: `length ${k} × ${w} = ${l}; area ${l} × ${w} = ${A}`, a: `${A} ${usq}`, ans: A, unitKind: 'sq', p: { type, w, k } };
+    return { type, triple: [[lnum, d], [wnum, d], [total, d]], text, html: `${lead} ${fracHtml(lw, ln, d)} ${esc(ulong)} long and ${fracHtml(ww, wn, d)} ${esc(ulong)} wide. ${tail}`,
+      eq: `${L} + ${Wt} + ${L} + ${Wt} = ${A}`, a: `${A} ${ulong}`, ans: total / d, unitKind: 'len', p: { type, d, lnum, wnum, u, thing } };
   }
   return null;
 }
@@ -413,70 +418,90 @@ function fxFix(r, err, units) {
   if (err === 'A') {   // area asked, perimeter given
     const l = r.int(5, 12), w = r.int(2, l - 2), right = l * w, wrong = 2 * (l + w);
     if (right === wrong) return null;
-    return { err, nums: [l, w], text: `${who} says: "A rectangle ${l} ${ulong} by ${w} ${ulong} has an area of ${wrong} ${usq}."`,
-      a: `${right} ${usq}: ${l} × ${w} = ${right}. ${who} found the perimeter`, ans: right, p: { err, l, w } };
+    return { err, triple: [l, w, right], text: `${who} says: "A rectangle ${l} ${ulong} by ${w} ${ulong} has an area of ${wrong} ${usq}."`,
+      a: `${right} ${usq}: ${l} × ${w} = ${right}. ${who} found the perimeter`, ans: right, p: { err, l, w, u } };
   }
   if (err === 'B') {   // perimeter as one length plus one width
     const l = r.int(8, 25), w = r.int(3, l - 1), right = 2 * (l + w);
-    return { err, nums: [l, w], text: `${who} says: "A rectangle ${l} ${ulong} by ${w} ${ulong} has a perimeter of ${l + w} ${ulong}."`,
-      a: `${right} ${ulong}: ${l} + ${w} + ${l} + ${w} = ${right}. ${who} added only two sides`, ans: right, p: { err, l, w } };
+    return { err, triple: [l, w, right], text: `${who} says: "A rectangle ${l} ${ulong} by ${w} ${ulong} has a perimeter of ${l + w} ${ulong}."`,
+      a: `${right} ${ulong}: ${l} + ${w} + ${l} + ${w} = ${right}. ${who} added only two sides`, ans: right, p: { err, l, w, u } };
   }
   if (err === 'C') {   // side from an area by subtracting
     const w = r.int(3, 9), l = r.int(w + 1, 11), A = l * w;
     if (A > 100) return null;
-    return { err, nums: [A, w], text: `${who} says: "The area is ${A} ${usq} and one side is ${w} ${ulong}, so the other side is ${A - w} ${ulong}."`,
-      a: `${l} ${ulong}: ${w} × ? = ${A}, so ? = ${l}. ${who} subtracted`, ans: l, p: { err, A, w } };
+    return { err, triple: [A, w, l], text: `${who} says: "The area is ${A} ${usq} and one side is ${w} ${ulong}, so the other side is ${A - w} ${ulong}."`,
+      a: `${l} ${ulong}: ${w} × ? = ${A}, so ? = ${l}. ${who} subtracted`, ans: l, p: { err, A, w, u } };
   }
   if (err === 'D') {   // side from a perimeter: one side taken off, not halved
     const l = r.int(8, 24), w = r.int(2, l - 1), P = 2 * (l + w);
     if (P > 100) return null;
-    return { err, nums: [P, l], text: `${who} says: "The perimeter is ${P} ${ulong} and it is ${l} ${ulong} long, so it is ${P - l} ${ulong} wide."`,
-      a: `${w} ${ulong}: ${l} + ? + ${l} + ? = ${P}, so ? = ${w}. ${who} took off one side and did not halve`, ans: w, p: { err, P, l } };
+    return { err, triple: [P, l, w], text: `${who} says: "The perimeter is ${P} ${ulong} and it is ${l} ${ulong} long, so it is ${P - l} ${ulong} wide."`,
+      a: `${w} ${ulong}: ${l} + ? + ${l} + ? = ${P}, so ? = ${w}. ${who} took off one side and did not halve`, ans: w, p: { err, P, l, u } };
   }
-  if (err === 'E') {   // area written in a length unit
-    const l = r.int(4, 12), w = r.int(2, 9), A = l * w;
-    return { err, nums: [l, w], text: `${who} says: "A rug ${l} ${ulong} by ${w} ${ulong} has an area of ${A} ${ulong}."`,
-      a: `${A} ${usq}. The number is right, but area is in square units`, ans: A, p: { err, l, w } };
+  if (err === 'E') {   // area written in a length unit; a rug only in feet and only rug-sized
+    const l = r.int(4, 12), w = r.int(2, 9), A = l * w, thing = u === 'ft' && w >= 3 ? 'rug' : null;
+    return { err, triple: [l, w, A], text: `${who} says: "A ${thing || 'rectangle'} ${l} ${ulong} by ${w} ${ulong} has an area of ${A} ${ulong}."`,
+      a: `${A} ${usq}. The number is right, but area is in square units`, ans: A, p: { err, l, w, u, thing } };
   }
   return null;
 }
 
 function makeFormulas(v, r) {
-  const plan = r.shuffle(['areaSmall', 'areaTens', 'areaMissing', 'areaMissing', 'perimMissing', 'perimMissing', 'perimBig', 'perimBig', 'perimBig', 'perimFrac', 'perimFrac', 'times']);
+  const withFixes = v.fixes !== 'off';
+  const plan = r.shuffle(['areaSmall', 'areaTens', 'areaTens', 'areaMissing', 'areaMissing', 'perimMissing', 'perimMissing', 'perimBig', 'perimBig', 'perimBig', 'perimFrac', 'perimFrac']);
   const used = new Set(), probs = [];
-  const fresh = (maker) => { for (let t = 0; t < 400; t++) { const p = maker(); if (!p) continue; const k = p.nums.join('|'); if (used.has(k) || reservedHit(p.nums)) continue; used.add(k); return p; } return null; };
+  const fresh = (maker) => { for (let t = 0; t < 400; t++) { const p = maker(); if (!p) continue; const k = tripleKey(p.triple); if (used.has(k) || RESERVED_SET.has(k)) continue; used.add(k); return p; } return null; };
   for (const t of plan) { const p = fresh(() => fxProblem(r, t, v.units)); if (p) probs.push(p); }
-  const fixes = ['A', 'B', 'C', 'D', 'E'].map(e => fresh(() => fxFix(r, e, v.units))).filter(Boolean);
-  const items = probs.map(p => ({ q: p.text, a: p.a, p: { ...p.p, unitKind: p.unitKind } }))
-    .concat(fixes.map(f => ({ q: f.text, a: f.a, p: f.p })));
+  const fixes = withFixes ? ['A', 'B', 'C', 'D', 'E'].map(e => fresh(() => fxFix(r, e, v.units))).filter(Boolean) : [];
+  const items = probs.map(p => ({ q: p.text, a: p.a, p: { ...p.p, unitKind: p.unitKind, triple: p.triple } }))
+    .concat(fixes.map(f => ({ q: f.text, a: f.a, p: { ...f.p, triple: f.triple } })));
   const cells = probs.map((p, i) => H.q(i + 1, p.html, `<p class="ms-ans">Equation: ${H.blank(p.eq, 12)}</p><p class="ms-ans">Answer: ${H.blank(p.a)}</p>`));
   const fixCells = fixes.map((f, i) => H.q(probs.length + i + 1, esc(f.text), `<p class="ms-ans">What went wrong, and the right answer: ${H.blank(f.a, 16)}</p>`));
   const teacher = `<h3>Equations</h3><ol class="ms-steps">${probs.map(p => `<li>${esc(p.eq)}; ${esc(p.a)}</li>`).join('')}${fixes.map(f => `<li>Error ${f.err}: ${esc(f.a)}</li>`).join('')}</ol>`;
+  const parts = [part('Practice', cells.join(''))];
+  if (withFixes) parts.push(part('Fix it', fixCells.join('')));
   return {
     title: 'Area and perimeter formulas: Grade 4', level: 'Grade 4',
     ican: 'I can use both formulas with no picture, with big sides and fraction sides.',
-    directions: 'Write an equation for each rectangle, then answer with the unit. Sketch a rectangle if it helps.',
-    minutes: 30, materials: 'pencil, scrap paper for sketches',
-    parts: [part('Practice', cells.join('')), part('Fix it', fixCells.join(''))], items, teacher,
+    directions: withFixes ? 'Write an equation for each rectangle, then answer with the unit. Sketch a rectangle if it helps.'
+      : 'Sketch each rectangle and label its sides. Write an equation, then the answer with its unit.',
+    minutes: withFixes ? 30 : 18, materials: 'pencil, scrap paper for sketches',
+    parts, items, teacher,
     mistakes: 'A: one formula for the other measure. B: one length plus one width. C: a side from an area by subtracting. D: from a perimeter, one side taken off or not halved. E: a length unit on an area.',
-    notes: 'Made for grade 4 math, unit 11.1, day 91 (Curio Class course). No problem reuses a pair of numbers the unit teaches or checks. A fraction answer is written with its fraction part under 1 and not simplified; equivalent forms are right.',
+    notes: `Made for grade 4 math, unit 11.1, day 91 (Curio Class course)${withFixes ? '' : ', where the five fixes come first from the board'}. No problem reuses a fact the unit teaches or checks, in any order: two sides with their area or their perimeter. Each story thing comes in units and sizes it really has. A fraction answer is written with its fraction part under 1 and not simplified; equivalent forms are right.`,
   };
 }
 
-function verifyFormulas(s) {
+function verifyFormulas(s, v) {
   const out = [];
   const num = a => { const m = String(a).match(/^([\d,]+)(?: (\d+)\/(\d+))?/); return m ? +m[1].replace(/,/g, '') + (m[2] ? m[2] / m[3] : 0) : NaN; };
+  const seen = new Set();
   for (const it of s.items) {
-    const p = it.p; let want;
-    if (p.err) want = { A: p.l * p.w, B: 2 * (p.l + p.w), C: p.A / p.w, D: p.P / 2 - p.l, E: p.l * p.w }[p.err];
-    else want = { areaSmall: p.l * p.w, areaTens: p.l * p.w, areaMissing: p.A / p.w, perimMissing: p.P / 2 - p.l, perimBig: 2 * (p.l + p.w),
-      perimFrac: p.d ? 2 * (p.lnum + p.wnum) / p.d : NaN, times: p.k * p.w * p.w }[p.type];
+    const p = it.p; let want, tr;
+    if (p.err) {
+      want = { A: p.l * p.w, B: 2 * (p.l + p.w), C: p.A / p.w, D: p.P / 2 - p.l, E: p.l * p.w }[p.err];
+      tr = { A: [p.l, p.w, want], B: [p.l, p.w, want], C: [p.A, p.w, want], D: [p.P, p.l, want], E: [p.l, p.w, want] }[p.err];
+    } else {
+      want = { areaSmall: p.l * p.w, areaTens: p.l * p.w, areaMissing: p.A / p.w, perimMissing: p.P / 2 - p.l, perimBig: 2 * (p.l + p.w),
+        perimFrac: p.d ? 2 * (p.lnum + p.wnum) / p.d : NaN }[p.type];
+      tr = p.type === 'perimFrac' ? [[p.lnum, p.d], [p.wnum, p.d], [2 * (p.lnum + p.wnum), p.d]]
+        : { areaSmall: [p.l, p.w, want], areaTens: [p.l, p.w, want], areaMissing: [p.A, p.w, want], perimMissing: [p.P, p.l, want], perimBig: [p.l, p.w, want] }[p.type];
+    }
     const got = num(it.a);
     if (!(Math.abs(got - want) < 1e-9)) out.push(`${it.q}: key says ${it.a}, want ${want}`);
     if (!Number.isInteger(want) && !p.d) out.push(`${it.q}: not a whole number`);
     if (p.unitKind && /square/.test(it.a) !== (p.unitKind === 'sq')) out.push(`${it.q}: unit ${it.a}`);
+    if (!tr || reservedHit(tr)) out.push(`${it.q}: uses a fact the unit teaches or checks`);
+    else { const k = tripleKey(tr); if (seen.has(k)) out.push(`${it.q}: repeats a fact on the sheet`); seen.add(k); }
+    if (/times as long/.test(it.q)) out.push(`${it.q}: "times as long" is not on this sheet`);
+    if (p.thing && p.thing !== 'rug') {
+      const t = p.edge ? EDGE_THINGS.find(e => e[1] === 'a ' + p.thing) : AREA_THINGS.find(a => a[0] === p.thing);
+      if (!t || !(p.edge ? t[2] : t[1]).includes(p.u)) out.push(`${it.q}: ${p.thing} is not measured in ${p.u}`);
+    }
+    if (p.thing === 'rug' && p.u !== 'ft') out.push(`${it.q}: a rug in ${p.u}`);
   }
-  if (s.items.length !== 17) out.push(`${s.items.length} items, want 17`);
+  const n = v && v.fixes === 'off' ? 12 : 17;
+  if (s.items.length !== n) out.push(`${s.items.length} items, want ${n}`);
   return out;
 }
 
@@ -499,6 +524,7 @@ Gen.add('measure-shapes', {
     { id: 'units', label: 'Units', type: 'select', options: UNITS, def: 'both' },
     { id: 'pi', label: 'Pi', type: 'select', options: [['3.14', 'Use 3.14'], ['pi', 'Answer in terms of π']], def: '3.14', show: piChoice },
     { id: 'count', label: 'Problems', type: 'select', options: COUNTS.map(c => [String(c), String(c)]), def: '9' },
+    { id: 'fixes', label: 'Wrong answers to fix', type: 'select', options: [['on', 'Five, one per error'], ['off', 'None']], def: 'on', show: v => v.skill === 'formulas' },
   ],
   make(v, r) {
     if (v.skill === 'formulas') return makeFormulas(v, r);
@@ -573,7 +599,7 @@ Gen.add('measure-shapes', {
     };
   },
   verify(s, v) {
-    if (v.skill === 'formulas') return verifyFormulas(s);
+    if (v.skill === 'formulas') return verifyFormulas(s, v);
     const out = [];
     const g = +v.grade;
     for (const it of s.items) {

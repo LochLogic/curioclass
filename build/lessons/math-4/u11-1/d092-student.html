@@ -7,33 +7,34 @@ h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0
 table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
 .student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
-.q { font-style: italic; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
-.student td:first-child { width: 30%; font-size: 12pt; } .student td:nth-child(2) { width: 42%; } .meta td:first-child { width: 22%; font-weight: bold; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; font-size: 12pt; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 20%; font-size: 12pt; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
 .slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .25in; margin: 0 1% .2in 0; vertical-align: top; font-size: 13pt; }
 .screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
 </style></head><body class="student"><h1>Day 92: Area or perimeter?</h1><div class="side"><p>Name ______________________ Date __________</p><p><strong>I can decide which measure a real problem needs.</strong></p>
-<p><strong>The dog pen.</strong> <em>A dog pen is a rectangle. It uses all 36 feet of fence. Which pen gives the dog the most room?</em></p>
-<table>
-<thead>
-<tr>
-<th>Length</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<p><strong>The dog pen.</strong> A dog pen is a rectangle. It uses all 36 feet of fence. Which pen gives the dog the most room?</p>
+<table class="wide">
+
+<tbody><tr>
+<td>Length</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
-</thead>
-<tbody>
 <tr>
 <td>Width</td>
 <td></td>
@@ -73,39 +74,41 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 </tbody>
 </table>
 <p>The most room: <span class="blank" style="width:1.8em"></span> feet by <span class="blank" style="width:1.8em"></span> feet, <span class="blank" style="width:1.8em"></span> square feet.</p>
-<p><strong>Example 1.</strong> <em>A rug is 7 feet wide. Its length is 2 times its width. How much floor is under the rug?</em></p>
+<p><strong>Example 1.</strong> A rug is 7 feet wide. Its length is 2 times its width. How much floor is under the rug?</p>
 <div class="sketch"></div>
 
 <p>Length: <span class="blank" style="width:1.8em"></span> × <span class="blank" style="width:1.8em"></span> = <span class="blank" style="width:1.8em"></span>  Area or perimeter? <span class="blank" style="width:3.6em"></span>  Answer: <span class="blank" style="width:1.8em"></span> <span class="blank" style="width:3.6em"></span></p>
-<p><strong>Example 2.</strong> <em>A chicken run takes up 72 square feet of the yard. It is 8 feet wide. How much fence does it need?</em></p>
+<p><strong>Example 2.</strong> A chicken yard has 72 square feet of ground. It is 8 feet wide. How much fence does it need?</p>
 <div class="sketch"></div>
 
-<p>Step 1: <span class="blank" style="width:1.8em"></span> × <span class="blank" style="width:1.8em"></span> = <span class="blank" style="width:1.8em"></span>  Step 2: <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> = <span class="blank" style="width:1.8em"></span>  Answer: <span class="blank" style="width:1.8em"></span> <span class="blank" style="width:3.6em"></span></p><div class="foot">Curio Class, grade 4 math, day 92, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div><div class="side"><p><strong>Six problems.</strong> Write area or perimeter first. Then solve. Write the unit.</p>
+<p>Step 1: <span class="blank" style="width:1.8em"></span> × <span class="blank" style="width:1.8em"></span> = <span class="blank" style="width:1.8em"></span>  Step 2: <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> = <span class="blank" style="width:1.8em"></span>  Answer: <span class="blank" style="width:1.8em"></span> <span class="blank" style="width:3.6em"></span></p><div class="foot">Curio Class, grade 4 math, day 92, version draft 1, not yet taught, CC BY 4.0, curioclass.org</div></div><div class="side"><p><strong>Six problems.</strong> Write area or perimeter first. Then solve. Write the unit.</p>
 <ol>
 <li>
-<p><em>A kitchen floor is 9 feet long and 6 feet wide. Each tile is 1 foot by 1 foot. How many tiles fill the floor?</em></p>
-<p>Area or perimeter? <span class="blank" style="width:3.6em"></span>  Answer: <span class="blank" style="width:3.6em"></span></p>
+<p>A kitchen floor is 9 feet long and 6 feet wide. Each tile is 1 foot by 1 foot. How many tiles does the floor need?</p>
+<p>Area or perimeter? <span class="blank" style="width:3.6em"></span>  Answer: <span class="blank" style="width:9.0em"></span></p>
 </li>
 <li>
-<p><em>Zoe makes a rectangle out of tape on the gym floor. It is 14 feet long and 9 feet wide. How much tape does she use?</em></p>
-<p>Area or perimeter? <span class="blank" style="width:3.6em"></span>  Answer: <span class="blank" style="width:3.6em"></span></p>
+<p>Zoe makes a rectangle out of tape on the gym floor. It is 14 feet long and 9 feet wide. How much tape does she use?</p>
+<p>Area or perimeter? <span class="blank" style="width:3.6em"></span>  Answer: <span class="blank" style="width:9.0em"></span></p>
 </li>
 <li>
-<p><em>A bench seat is 2 feet wide. It is 6 times as long as it is wide. Mom paints the top of the seat. How much does she paint?</em></p>
-<p>Area or perimeter? <span class="blank" style="width:3.6em"></span>  Answer: <span class="blank" style="width:3.6em"></span></p>
+<p>A bench seat is 2 feet wide. It is 6 times as long as it is wide. Mom paints the top of the seat. How much does she paint?</p>
+<p>Area or perimeter? <span class="blank" style="width:3.6em"></span>  Answer: <span class="blank" style="width:9.0em"></span></p>
 </li>
 <li>
-<p><em>A dog run is 6 feet wide. It has 42 square feet of ground. How much fence closes it in?</em></p>
-<p>Area or perimeter? <span class="blank" style="width:3.6em"></span>  Answer: <span class="blank" style="width:3.6em"></span></p>
+<p>A dog yard is 6 feet wide. It has 42 square feet of ground. How much fence closes it in?</p>
+<p>Area or perimeter? <span class="blank" style="width:3.6em"></span>  Answer: <span class="blank" style="width:9.0em"></span></p>
 </li>
 <li>
-<p><em>A flag is 9 inches wide. It is 2 times as long as it is wide. Gold trim is sewn along each side. How much trim is used?</em></p>
-<p>Area or perimeter? <span class="blank" style="width:3.6em"></span>  Answer: <span class="blank" style="width:3.6em"></span></p>
+<p>A flag is 9 inches wide. It is 2 times as long as it is wide. Gold trim makes a border on the flag. How much trim is used?</p>
+<p>Area or perimeter? <span class="blank" style="width:3.6em"></span>  Answer: <span class="blank" style="width:9.0em"></span></p>
 </li>
 <li>
-<p><em>Kai bends 24 inches of wire into a rectangle. It is 7 inches long. How wide is it?</em></p>
-<p>Area or perimeter? <span class="blank" style="width:3.6em"></span>  Answer: <span class="blank" style="width:3.6em"></span></p>
+<p>Kai bends 24 inches of wire into a rectangle. It is 7 inches long. How wide is it?</p>
+<p>Area or perimeter? <span class="blank" style="width:3.6em"></span>  Answer: <span class="blank" style="width:9.0em"></span></p>
 </li>
 </ol>
-<p><strong>Tell me.</strong> <em>Look at problem 2. Did it need area or perimeter? How did you know?</em></p>
-<div class="sketch work"></div><div class="foot">Curio Class, grade 4 math, day 92, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div></body></html>
+<p><strong>Tell me.</strong> Look at problem 2. Did it need area or perimeter? How did you know?</p>
+<div class="sketch work"></div>
+
+<div class="sketch work"></div><div class="foot">Curio Class, grade 4 math, day 92, version draft 1, not yet taught, CC BY 4.0, curioclass.org</div></div></body></html>

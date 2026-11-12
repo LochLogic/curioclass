@@ -18,7 +18,7 @@ adds the rest.
 | **Student page** | Each student | Written frame; every question pulled from data | One sheet, both sides of US Letter at most. Words a student reads counts everything printed for the student, questions included; the cap is set per course in DEFAULTS.md (grade 4 math: 350, ours, untested), and the gate reports frame and questions apart. No sentence over 15 words in grades 3 to 5. 18 point type in kindergarten to grade 2, with a line telling the teacher what to read aloud; 14 point in grades 3 to 5; 12 point from grade 6 |
 | **Exit slip** | Each student, then the teacher | Generated from data: the paper path's exit rows | A quarter page, four to a sheet |
 | **Key** | The teacher | Generated from data: every answer on both exit paths, its equation or working, and what each wrong answer means | Usually one side |
-| **Display page** | The class, on the projector | Generated from data. For each worked example, the question with its labelled figure, then the steps one screen at a time; for each wrong answer to fix, their working beside the right working; one screen per planned question; the sentence frames; a "check your answers" screen for any partner or self check | No words of its own |
+| **Display page** | The class, on the projector | Generated from data, in the order the teacher page runs, part by part. For each worked example, the question with its labelled figure, then the steps one screen at a time; for each wrong answer to fix, their working beside the right working; one screen per **Ask.**; a challenge screen; the answers to a plain sum; a "check your answers" screen only where a part names a partner or self check (a `Check: ...` line in the part gives its sentence); on a check day, the answers screen and one screen per group in the respond part; the sentence frames last | No words of its own |
 | **Slides** | Nobody | **None.** The display page and the tool's own screen do this job; a slide deck would be a second copy of the teacher page to write and keep right | 0 |
 | **Materials** | The teacher | A line in the header: per student, per class, what to print and how many, and the stand-in for a room without it ("no document camera: draw it on the board") | Part of the header |
 
@@ -48,15 +48,21 @@ example's steps from the row's `steps` cell, the same cell the display reveals, 
 display cannot drift; `[[note:id]]` prints a short form (who, and the numbers given) from the row's `figure` cell
 for a table. `python -X utf8 scripts/lesson.py build` makes the print pages in `build/lessons/`.
 
-A row may carry, beside its key: `figure` (a labelled shape, `rect w=7 l=? A=63 u=ft`), `steps` (the worked steps
-as the teacher says them, split by `|`; for a wrong answer to fix, their working then the right working), `path`
-(an exit's `tool` or `paper`) and `source` (rule 4).
+A row may carry, beside its key: `figure` (a labelled shape, `rect w=7 l=? A=63 u=ft`; a mixed number joins
+with `_`, as `l=6_3/4`; flags `grid` draw the unit squares and `marks` tick and number each unit side; `around=`
+names what goes round; small whole sides are drawn to scale; every number in the figure must be in the stem),
+`steps` (the worked steps as the teacher says them, split by `|`; for a wrong answer to fix, their working then
+the right working; a teacher-judged row lists its look-fors here), `samples` (a teacher-judged row's two sample
+answers, one meeting the look-fors and one not, shown on the key), `path` (an exit's `tool` or `paper`; `board`
+for a practice row written on the board when there is no printer) and `source` (rule 4).
 
 The file starts with a header block: `day`, `course`, `unit`, `version` ("draft, not yet taught" until a taught
 run), `materials`, `print`, `credit` (see rule 4) and `leans_on`: every outside piece the day needs, by path (the
 tool, the unit opener, a sheet from another stretch, the record sheet), or "nothing". The check fails a day whose
 piece is missing unless its version says "not ready", and the build then prints "Not ready to teach: <piece>
-missing" at the top of the teacher page.
+missing" at the top of the teacher page. A piece that does not exist yet and is not needed to teach the day is
+written `when it exists: <path>`; the check skips it, the header prints it as "Uses when it exists", and the
+prose must say what the day does until it exists.
 
 ## The teacher page, in this order
 
@@ -81,13 +87,17 @@ Fixed headings, so a script can find each part and a teacher always finds it in 
 6. **Words and supports.** The key words with their Word Wall cards, the sentence frames, and any access note:
    only what differs from the unit opener.
 7. **Tomorrow.** What the exit tells the teacher, and what changes the next day because of it, naming the sign
-   of each error on both exit paths.
+   of each error on both exit paths. The hand-off is two-sided: the next day's file carries an "If many ...
+   day N's exit" line (or an "If day N's slips showed ..." branch) that acts on it, and the gate checks it.
 8. **Credit.** See rule 4.
 
 ## The student page
 
 - A name and date line, then the goal in student words.
-- Frames to fill during the worked examples, so copying the model is part of the page.
+- Frames to fill during the worked examples, so copying the model is part of the page. A frame on the
+  teacher page under Words and supports is printed on the student page too.
+- Room to write: every question that asks for a sketch has a box (`{sketch}`, or `{small}` for a short fix);
+  every "show your working" has `{work}`.
 - Then the day's questions in the order they are used, each pulled from data, with room to write.
 - No answers printed. No timer, score or rank. Black and white, readable with no colour.
 - A large-print version (18 point) is generated from the same file.
@@ -129,7 +139,12 @@ the check is the evidence.
 ## What the script checks
 
 `python -X utf8 scripts/lesson.py check` fails a day on: a missing header field or heading, or a heading with
-nothing under it; minutes that do not add up to the day or disagree with `days.csv`; a prose cap passed, or the
+nothing under it; minutes that do not add up to the day or disagree with `days.csv` (the parts after the warm-up
+must sum to the plan's lesson minutes, and a check day's parts follow its `check_min`); a Tomorrow that the next
+day's file does not pick up; two numbered questions on one source line; a sketch with no box; a table too wide
+for its page (under half an inch a column); a "when it exists" piece the prose does not explain; a figure number
+missing from its stem; a teacher-judged row with no look-fors or samples (from `plan.py check`, which also
+checks duplicate stems, challenges with the same numbers and the course's word rules in `words.csv`); a prose cap passed, or the
 student reading cap (frame and questions together); a question sentence over 15 words in grades 3 to 5; an
 `[[id]]` with no row, or a row for the day that no page uses; a keyed row with no computed key (from `plan.py
 check`, which it runs); a reused set of numbers; a `leans_on` piece missing on a day not marked "not ready"; an
@@ -141,8 +156,11 @@ output says so when it was skipped). It cannot judge whether the day teaches; th
 unit in each course by a teacher, in a taught run.
 
 **Known gaps in the gates** (expert finding 8, for the taught run): a compute cell that only restates its answer;
-the same fact turned round, or a readiness item's fact, reused on an exit; error letters named in prose not
-checked against the register; sub-minutes inside a part not checked against the part.
+error letters named in prose not checked against the register; sub-minutes inside a part not checked against the
+part; the order of parts against the plan's row (only their minutes are checked); a rendered page's empty space
+(the two-side count is checked, not wasted height); numbers in the unit opener's prose against the reserve.
+The same fact turned round (two sides with their area or perimeter, in any order) is now caught by the reserve,
+on every row and in the generator.
 
 ## What changes by subject
 

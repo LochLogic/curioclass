@@ -42,9 +42,11 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
    - Community Plot Planner is the first build in the Codex queue (`codex_queue.py` PILOT), with a note sending the
      builder to d090.md and the TOOL-ASKS asks. Codex needs main merged into `codex/queue` first.
    - Costs: [pilots/COST.md](pilots/COST.md). One agent per day cost 128,000 to 137,000 tokens.
-   - **Next (recommended 2026-11-12):** one cold expert read of days 89, 91, 92 and 93 together, its token cost logged
-     in COST.md, and its plan gaps settled by the expert; meanwhile Codex builds Community Plot Planner, then Claude
-     Refine and exit check on it. Then the unit goes to the people in step 5. Desk cards 109 (unit) and 110 (Recess).
+   - **Done 2026-11-12: expert cold reads of days 89, 91, 92, 93** (docs/reviews/day-0NN-2026-11-12.md): 50 findings,
+     none for Cory, 35 in the process; settled fixes applied and logged in defects.csv. Each read cost about 170,500
+     tokens (COST.md). How often to read from here: [pilots/REVIEW-CADENCE.md](pilots/REVIEW-CADENCE.md).
+   - **Waiting on Cory: Desk card 111 `q-plan-after-11-1`** (review cadence; math only vs the ELA and science pilots
+     first; hold tools until the frame is built). Asked in chat 2026-11-12.
    - Still owed: the Spanish family note needs a qualified reader; the module has no Word Wall cards of its own
      (area, perimeter, square unit, formula, length, width exist under other modules), which is the Word Wall
      owner's to add; the plan should say where day 90's two "On your own" items go when day 91's warm-up is the facts

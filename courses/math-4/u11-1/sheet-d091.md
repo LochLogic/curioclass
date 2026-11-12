@@ -11,14 +11,15 @@ preset: math-4 40
 
 ## What it holds
 
-Twelve problems in words, with no drawings, then five wrong answers to fix, one for each error A to E. The twelve
-mix both formulas: an area from two sides, an area with a side that is a multiple of 10, a missing side from an
-area, a missing side from a perimeter, a perimeter with two- and three-digit sides, a perimeter with fraction sides
-(like denominators), and a side that is "times as long" as the other. The order is shuffled, so the words have to
-say which measure is asked for.
+Twelve problems in words, with no drawings, and no fixes: day 91 runs its own five fixes first. The twelve mix
+both formulas: an area from two sides, two areas with a side that is a multiple of 10, a missing side from an
+area, a missing side from a perimeter, a perimeter with two- and three-digit sides, and a perimeter with fraction
+sides (like denominators). The order is shuffled, so the words have to say which measure is asked for. The sheet
+says 18 minutes on its head.
 
-The generator never uses a pair of numbers that the unit's lessons, exits or checks use, so the sheet cannot hand
-students an answer they will meet on the end check.
+The generator never uses a fact that the unit's lessons, exits or checks use: two sides with their area or their
+perimeter, in any order. So the sheet cannot hand students an answer they will meet on the end check. Each story
+thing comes in units and sizes it really has.
 
 ## Making it
 
@@ -29,16 +30,16 @@ same sheet; write it on the day 91 teacher page if you want it again next year.
 ## Using it on day 91
 
 Alone for 18 minutes, then 4 minutes in pairs checking against each other; where partners disagree, both redo the
-problem. Then put the key up. The fixes at the end are the same five errors the lesson just named, so a student who
-gets a fix wrong is showing which error to watch on the exit.
+problem. Then put the key up. Most students finish 8 to 10; the pairs check what is done.
 
 ## Without a printer or a device
 
-Write these six on the board; students work them in their notebooks. None uses the unit's lesson or check numbers.
+Write these six on the board; students work them in their notebooks. None uses a fact from the unit's lessons or
+checks (they are rows in the plan, so the gate checks them). The answers are in brackets.
 
-1. A patio is 8 yards long and 6 yards wide. How much ground does it cover? (48 square yards)
-2. A poster covers 54 square inches. It is 6 inches wide. How long is it? (9 inches)
-3. A pen uses 46 feet of fence. It is 15 feet long. How wide is it? (8 feet)
-4. A field is 236 meters long and 118 meters wide. How far is it around the edge? (708 meters)
-5. A card is 3 2/6 inches long and 2 1/6 inches wide. Find its perimeter. (11 inches, or 10 6/6)
-6. A garden bed is 4 feet wide and 2 times as long as it is wide. Find its area. (32 square feet)
+1. [[s11-B91-1]]
+2. [[s11-B91-2]]
+3. [[s11-B91-3]]
+4. [[s11-B91-4]]
+5. [[s11-B91-5]]
+6. [[s11-B91-6]]

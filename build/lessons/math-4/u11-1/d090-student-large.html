@@ -7,21 +7,24 @@ h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0
 table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
 .student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
-.q { font-style: italic; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
-.student td:first-child { width: 30%; font-size: 12pt; } .student td:nth-child(2) { width: 42%; } .meta td:first-child { width: 22%; font-weight: bold; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; font-size: 12pt; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 20%; font-size: 12pt; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
 .slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .25in; margin: 0 1% .2in 0; vertical-align: top; font-size: 13pt; }
 .screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
 </style></head><body class="student large"><h1>Day 90: Find the missing side</h1><div class="side"><p>Name ______________________ Date __________</p><p><strong>I can find a missing side from the area or the perimeter.</strong></p>
-<p><strong>Example 1.</strong> <em>A garden bed covers 63 square feet. It is 7 feet wide. How long is it?</em></p>
+<p><strong>Example 1.</strong> A garden bed covers 63 square feet. It is 7 feet wide. How long is it?</p>
 <div class="sketch"></div>
 
 <p>Equation: <span class="blank" style="width:1.8em"></span> × <span class="blank" style="width:1.8em"></span> = <span class="blank" style="width:1.8em"></span>  The bed is <span class="blank" style="width:1.8em"></span> feet long.  Check: <span class="blank" style="width:1.8em"></span> × <span class="blank" style="width:1.8em"></span> = <span class="blank" style="width:1.8em"></span></p>
-<p><strong>Example 2.</strong> <em>A goat pen has 38 feet of fence all the way around. It is 12 feet long. How wide is it?</em></p>
+<p><strong>Example 2.</strong> A goat pen has 38 feet of fence all the way around. It is 12 feet long. How wide is it?</p>
 <div class="sketch"></div>
 
 <p>Equation: <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> = <span class="blank" style="width:1.8em"></span>  The pen is <span class="blank" style="width:1.8em"></span> feet wide.</p>
@@ -29,17 +32,17 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 <p><strong>Fix it.</strong> Each answer is wrong. Say what went wrong. Then do it right.</p>
 <ol>
 <li>
-<p><em>Jo says: "A rug covers 35 square feet. It is 5 feet wide, so it is 30 feet long."</em></p>
+<p>Jo says: "A rug covers 35 square feet. It is 5 feet wide, so it is 30 feet long."</p>
 <p>What went wrong: <span class="blank" style="width:17.1em"></span></p>
 <p><div class="sketch work"></div></p>
 </li>
 <li>
-<p><em>Max says: "A goat pen has 44 feet of fence all the way around. It is 14 feet long, so it is 30 feet wide."</em></p>
+<p>Max says: "A goat pen has 44 feet of fence all the way around. It is 14 feet long, so it is 30 feet wide."</p>
 <p>What went wrong: <span class="blank" style="width:17.1em"></span></p>
 <p><div class="sketch work"></div></p>
 </li>
 </ol><div class="foot">Curio Class, grade 4 math, day 90, version draft 2, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div><div class="side"><p><strong>Plot notes.</strong> Write each equation. For a fence, write the four sides.</p>
-<table>
+<table class="wide">
 <thead>
 <tr>
 <th>Note</th>
@@ -84,14 +87,14 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 <p><strong>On your own.</strong> Write the equation, solve it, then check it.</p>
 <ol>
 <li>
-<p><em>A table top covers 27 square feet. It is 3 feet wide. How long is it?</em></p>
+<p>A table top covers 27 square feet. It is 3 feet wide. How long is it?</p>
 <p><div class="sketch work"></div></p>
 <p>Equation: <span class="blank" style="width:7.2em"></span>  Answer: <span class="blank" style="width:2.7em"></span>  Check: <span class="blank" style="width:7.2em"></span></p>
 </li>
 <li>
-<p><em>A dog yard has 42 feet of fence all the way around. It is 13 feet long. How wide is it?</em></p>
+<p>A dog yard has 42 feet of fence all the way around. It is 13 feet long. How wide is it?</p>
 <p><div class="sketch work"></div></p>
 <p>Equation: <span class="blank" style="width:7.2em"></span>  Answer: <span class="blank" style="width:2.7em"></span>  Check: <span class="blank" style="width:7.2em"></span></p>
 </li>
 </ol>
-<p><strong>Challenge.</strong> <em>A rectangle has an area of 40 square feet and a perimeter of 26 feet. How long are its sides?</em> Sides: <span class="blank" style="width:3.6em"></span> and <span class="blank" style="width:3.6em"></span></p><div class="foot">Curio Class, grade 4 math, day 90, version draft 2, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div></body></html>
+<p><strong>Challenge.</strong> A rectangle has an area of 40 square feet and a perimeter of 26 feet. How long are its sides? Sides: <span class="blank" style="width:3.6em"></span> and <span class="blank" style="width:3.6em"></span></p><div class="foot">Curio Class, grade 4 math, day 90, version draft 2, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div></body></html>

@@ -34,8 +34,10 @@ and solve it. They do not recall a formula and fill it in. That is what "apply" 
 the Common Core State Standards, Geometric Measurement).
 
 **Bigger and harder numbers.** Day 91 uses sides of two and three digits (find l + w, then add the sum to
-itself) and sides that are fractions with like denominators (2 3/8 + 1 1/8 + 2 3/8 + 1 1/8). Day 92 asks
-students to decide which measure a situation needs, with no cue word such as "covers" or "around".
+itself) and sides that are fractions with like denominators (1 5/6 + 2 2/6 + 1 5/6 + 2 2/6). Day 92 asks
+students to decide which measure a situation needs, with no cue word. A cue word is any word that names the
+inside or the edge (covers, fills, around, edge, side, border of, whole floor); the situation (fence, tape,
+paint, trim, wire) is not a cue.
 
 **Limits.** Rectangles only. Areas stay within 100, or a one-digit number times a multiple of 10. A side found
 from a perimeter comes from an even perimeter of 100 or less. Larger areas come back in stretches 12 to 14.
@@ -58,6 +60,12 @@ what students will meet on every later page.
 | C | Find a side from an area by subtracting, adding or multiplying the two numbers given | They do not see a missing factor | Rows of the known side on grid paper until the area is used up |
 | D | From a perimeter, take off one side only, or forget to halve | They count one pair of sides | Fill in 14 + __ + 14 + __ = 44 together |
 | E | Write "40 feet" for an area | Squares and lengths are not told apart | Eight answers with no units: write feet or square feet on each |
+| F | Count the squares along the edge, not the unit sides (12 for a 5 by 3 rectangle) | The edge is not yet seen as unit lengths | Tick and number each unit side along the edge, then count the ticks |
+
+Eight answers with no units (error E): the fence round a yard, 64; the carpet on a bedroom floor, 120; the ribbon
+round a card, 30; the paint on a wall, 96; the tape round a rug, 26; the grass in a park, 900; the rope round a
+play area, 80; the tiles on a hall floor, 54. Students write feet or square feet (yards for the park) on each and
+say why.
 
 Each day's teacher page names the wrong answer that signals each error on that day's exit.
 
@@ -78,7 +86,7 @@ For item 3 (8 × ? = 48) gaps: fact help goes into the warm-ups only, not into t
 ## Supplies for the unit
 
 - Per student: grid paper (about six sheets over the unit; large squares for students who need them), about
-  20 tiles or paper squares (day 89), a pencil.
+  15 tiles or paper squares (day 89), a pencil.
 - Per class: the projector for the display pages, a board, one string loop 36 units long (day 92's pens).
 - Devices for day 90 if Community Plot Planner is built; otherwise grid paper.
 - A room with nothing: hand-ruled grids and squares cut from paper do every job.

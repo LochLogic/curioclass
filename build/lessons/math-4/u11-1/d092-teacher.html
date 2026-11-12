@@ -7,29 +7,41 @@ h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0
 table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
 .student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
-.q { font-style: italic; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
-.student td:first-child { width: 30%; font-size: 12pt; } .student td:nth-child(2) { width: 42%; } .meta td:first-child { width: 22%; font-weight: bold; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; font-size: 12pt; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 20%; font-size: 12pt; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
 .slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .25in; margin: 0 1% .2in 0; vertical-align: top; font-size: 13pt; }
 .screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
-</style></head><body class="teacher"><h1>Day 92: Area or perimeter?</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>92, unit 11.1, use day</td></tr><tr><td>Goal</td><td>I can decide which measure a real problem needs</td></tr><tr><td>Standard parts</td><td>4.MD.A.3 (c) perimeter with multi-digit sides; 4.MD.A.3 (d) perimeter with fraction sides; 4.MD.A.3 (e) choosing the measure in a real problem; 4.MD.A.3 (f) the perimeter formula as 2 × (l + w): length plus width is half the perimeter</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, grid paper (1 sheet) and a pencil; per class, the 36-foot string loop, the projector with the display page, and a board (no document camera: draw it on the board)</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit slip, 1 per student; the key, 1 for the teacher</td></tr><tr><td>Leans on</td><td>courses/math-4/u11-1/opener.md; courses/math-4/u11-1/record.md</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
-<p>Print the student page both sides, the exit slips and the key. Have the 36-foot string loop and grid paper out.
-Put the display page on the projector. Write the two warm-up problems on the board.</p>
+</style></head><body class="teacher"><h1>Day 92: Area or perimeter?</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>92, unit 11.1, use day</td></tr><tr><td>Goal</td><td>I can decide which measure a real problem needs</td></tr><tr><td>Standard parts</td><td>4.MD.A.3 (c) perimeter with multi-digit sides; 4.MD.A.3 (d) perimeter with fraction sides; 4.MD.A.3 (e) choosing the measure in a real problem; 4.MD.A.3 (f) the perimeter formula as 2 × (l + w): length plus width is half the perimeter</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, grid paper (1 sheet) and a pencil; per class, the 36-foot string loop, the projector with the display page, and a board (no document camera: draw it on the board)</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit slip, 1 per student; the key, 1 for the teacher</td></tr><tr><td>Leans on</td><td>courses/math-4/u11-1/opener.md; courses/math-4/u11-1/record.md</td></tr><tr><td>Version</td><td>draft 1, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
+<p>Print what the header lists. Have the 36-foot string loop and grid paper out, the display on the projector, and
+the two warm-up problems on the board.</p>
 <h3>The day</h3>
 <h4>5 min. Warm-up: two perimeters</h4>
-<p>Alone, on the back of the grid paper. <em>A rectangle is 264 feet long and 129 feet wide. Find its perimeter.</em> <strong>[786 feet]</strong> and <em>A rectangle is 2 3/5 inches long and 1 4/5 inches wide. Find its perimeter.</em> <strong>[8 4/5 inches; 7 9/5 is also right]</strong>. Students add the length and the width,
-then add the sum to itself, as on day 91. Go over both at 5 minutes. A sum not doubled (393, or 4 2/5) is error B:
-trace the four sides on the board.</p>
+<p>Alone, on the back of the grid paper. A rectangle is 264 feet long and 129 feet wide. Find its perimeter. <strong>[786 feet]</strong> and A rectangle is 2 3/5 inches long and 1 4/5 inches wide. Find its perimeter. <strong>[8 4/5 inches; 6 14/5, 7 9/5 and 44/5 are also right]</strong>. Students add the length and the width,
+then add the sum to itself, as on day 91. Go over both at 5 minutes. A sum not doubled (393, 4 2/5 or 3 7/5) is
+error B: trace the four sides on the board.</p>
+<p><strong>If many made B on day 91's exit</strong> (383 or 5 5/10): Ben's wrong answer from day 91's display first, one minute.
+<strong>E</strong> (240 feet): the opener's eight answers with no units replace A rectangle is 2 3/5 inches long and 1 4/5 inches wide. Find its perimeter. <strong>[8 4/5 inches; 6 14/5, 7 9/5 and 44/5 are also right]</strong>. <strong>A</strong> (92 for the hall): open
+the dog pen with Lia's wrong answer: "Does the floor cover, or go around?"</p>
 <h4>20 min. The dog pen, then teaching first</h4>
-<p><strong>10 minutes: the task, in pairs</strong> (<em>A dog pen is a rectangle. It uses all 36 feet of fence. Which pen gives the dog the most room?</em> <strong>[9 feet by 9 feet: 81 square feet. Every pen's length plus width is 18]</strong>). Read the task aloud once. Two volunteers hold the string loop
-as a long thin pen, then a square one: same string, which dog has more room? Pairs sketch pens on grid paper and
-fill the table on side 1: length, width, length plus width, room inside. Push for whole feet only. Watch for pairs
-who change the fence while changing the pen (a 10 by 10 pen): count its sides with them.</p>
-<p>Close it whole class, from the pairs' tables, smallest pen first:</p>
+<p><strong>10 minutes: the task, in pairs</strong> (A dog pen is a rectangle. It uses all 36 feet of fence. Which pen gives the dog the most room? <strong>[9 feet by 9 feet: 81 square feet. Every pen's length plus width is 18]</strong>). Read the task aloud once. Four volunteers hold the corners of
+the string loop as a long thin pen, then a square one: same string, which dog has more room? Pairs sketch two pens
+on the grid side, the long thin one and the square, and fill the rest of the table on side 1 by numbers alone:
+length + width must be 18. Watch for pairs who change the fence while changing the pen (a 10 by
+10 pen): count its sides with them.</p>
+<p><strong>Ask.</strong> "Every pen used 36 feet of fence. What is the same about the length plus the width of each? Why?"
+Expect: "they all make 18"; then "the fence is two lengths and two widths, so one of each is half". Take the
+first, then press for the second.</p>
+<p><strong>Ask.</strong> "Two rectangles have the same perimeter. Must they have the same area?" Expect "no": point at 1 by 17
+(17 square feet) and 9 by 9 (81).</p>
+<p>Ask first, from the pairs' tables. Then close it, smallest pen first:</p>
 <ol>
 <li>Every pen uses all 36 feet: two lengths and two widths.</li>
 <li>So one length and one width use half the fence: 18 feet.</li>
@@ -38,15 +50,11 @@ who change the fence while changing the pen (a 10 by 10 pen): count its sides wi
 <li>1 × 17 = 17, 5 × 13 = 65, 8 × 10 = 80, 9 × 9 = 81.</li>
 <li>The 9 by 9 pen gives the most room: 81 square feet.</li>
 </ol>
-<p><strong>Ask.</strong> "Every pen used 36 feet of fence. What is the same about the length plus the width of each? Why?"
-Expect: "they all make 18"; then "the fence is two lengths and two widths, so one of each is half". Take the
-first, then press for the second.</p>
-<p><strong>Ask.</strong> "Two rectangles have the same perimeter. Must they have the same area?" Expect "no": point at 1 by 17
-(17 square feet) and 9 by 9 (81).</p>
 <p><strong>10 minutes: two worked examples, whole class.</strong> Students fill the frames on side 1 as you go.</p>
-<p><strong>Example 1, times as long</strong> (<em>A rug is 7 feet wide. Its length is 2 times its width. How much floor is under the rug?</em> <strong>[Length 2 × 7 = 14 feet; area 14 × 7 = 98 square feet]</strong>). </p>
+<p><strong>Example 1, times as long</strong> (A rug is 7 feet wide. Its length is 2 times its width. How much floor is under the rug? <strong>[Length 2 × 7 = 14 feet; area 14 × 7 = 98 square feet]</strong>). </p>
 <ol>
 <li>Sketch the rug: 7 feet wide, the length unknown.</li>
+<li>Draw the width as 1 bar of 7. The length is 2 bars of 7.</li>
 <li>"2 times its width" means 2 × 7, not 7 + 2. The rug is 14 feet long.</li>
 <li>The floor under the rug is the inside of the rectangle: the area.</li>
 <li>Area is length times width: 14 × 7 = 98.</li>
@@ -54,62 +62,59 @@ first, then press for the second.</p>
 <li>Check: 14 is 2 sevens, and 98 is 14 rows of 7.</li>
 </ol>
 <p>"2 times as long" is 2 × 7, not 7 + 2: the same as stretch 10's comparing. A child who writes 9 is adding.</p>
-<p><strong>Example 2, two steps</strong> (<em>A chicken run takes up 72 square feet of the yard. It is 8 feet wide. How much fence does it need?</em> <strong>[8 × ? = 72, so 9 feet long; fence 9 + 8 + 9 + 8 = 34 feet]</strong>). </p>
+<p><strong>Example 2, two steps</strong> (A chicken yard has 72 square feet of ground. It is 8 feet wide. How much fence does it need? <strong>[8 × ? = 72, so 9 feet long; fence 9 + 8 + 9 + 8 = 34 feet]</strong>). </p>
 <ol>
-<li>Sketch the run: 8 feet wide, the length unknown, 72 square feet inside.</li>
-<li>Step 1: the 72 square feet is the inside, so 8 × ? = 72. 8 × 9 = 72: the run is 9 feet long.</li>
-<li>Step 2: fence runs along the edge of the run. That is the perimeter.</li>
+<li>Sketch the yard: 8 feet wide, the length unknown, 72 square feet inside.</li>
+<li>Step 1: the 72 square feet is the inside, so 8 × ? = 72. 8 × 9 = 72: the yard is 9 feet long.</li>
+<li>Step 2: fence goes along the edge of the yard. That is the perimeter.</li>
 <li>9 + 8 + 9 + 8 = 34, or 2 × (9 + 8) = 34.</li>
-<li>The run needs 34 feet of fence. Feet, because it is a length.</li>
+<li>The yard needs 34 feet of fence. Feet, because it is a length.</li>
 </ol>
-<p>Say the question in each step: "What is this number, the inside or the edge?"</p>
+<p>In each step ask: "Is this number the inside or the edge?"</p>
 <h4>20 min. Six problems by hand</h4>
-<p>Alone, side 2. Read each problem aloud once, all six at the start, then students work. For each, students
-write "area" or "perimeter" first, sketch on the grid paper, then the answer with its unit. None of the six says "covers" or
-"around": the story tells which. Problems 3 and 5 are "times as long".
-<em>A kitchen floor is 9 feet long and 6 feet wide. Each tile is 1 foot by 1 foot. How many tiles fill the floor?</em> <strong>[9 × 6 = 54 tiles (area, 54 square feet)]</strong> <em>Zoe makes a rectangle out of tape on the gym floor. It is 14 feet long and 9 feet wide. How much tape does she use?</em> <strong>[14 + 9 + 14 + 9 = 46 feet (perimeter)]</strong> <em>A bench seat is 2 feet wide. It is 6 times as long as it is wide. Mom paints the top of the seat. How much does she paint?</em> <strong>[Length 6 × 2 = 12 feet; 12 × 2 = 24 square feet (area)]</strong> <em>A dog run is 6 feet wide. It has 42 square feet of ground. How much fence closes it in?</em> <strong>[6 × ? = 42, so 7 feet long; fence 7 + 6 + 7 + 6 = 26 feet]</strong> <em>A flag is 9 inches wide. It is 2 times as long as it is wide. Gold trim is sewn along each side. How much trim is used?</em> <strong>[Length 2 × 9 = 18 inches; 18 + 9 + 18 + 9 = 54 inches (perimeter)]</strong> <em>Kai bends 24 inches of wire into a rectangle. It is 7 inches long. How wide is it?</em> <strong>[7 + ? + 7 + ? = 24; 5 inches (the wire is the perimeter)]</strong></p>
-<p>After 15 minutes, pairs swap and check each answer against the story: "Is your number the inside or the edge?"
-A mismatch gets a question mark.</p>
+<p>Alone, side 2. Read all six aloud once at the start. For each, students
+write "area" or "perimeter" first, sketch on the back of the grid paper (a plain rectangle with its sides
+labelled; do not count squares), then the answer with its unit. None of the six says "covers" or
+"around": the story tells which.
+A kitchen floor is 9 feet long and 6 feet wide. Each tile is 1 foot by 1 foot. How many tiles does the floor need? <strong>[9 × 6 = 54 tiles (area, 54 square feet)]</strong> Zoe makes a rectangle out of tape on the gym floor. It is 14 feet long and 9 feet wide. How much tape does she use? <strong>[14 + 9 + 14 + 9 = 46 feet (perimeter)]</strong> A bench seat is 2 feet wide. It is 6 times as long as it is wide. Mom paints the top of the seat. How much does she paint? <strong>[Length 6 × 2 = 12 feet; 12 × 2 = 24 square feet (area)]</strong> A dog yard is 6 feet wide. It has 42 square feet of ground. How much fence closes it in? <strong>[6 × ? = 42, so 7 feet long; fence 7 + 6 + 7 + 6 = 26 feet]</strong> A flag is 9 inches wide. It is 2 times as long as it is wide. Gold trim makes a border on the flag. How much trim is used? <strong>[Length 2 × 9 = 18 inches; 18 + 9 + 18 + 9 = 54 inches (perimeter)]</strong> Kai bends 24 inches of wire into a rectangle. It is 7 inches long. How wide is it? <strong>[7 + ? + 7 + ? = 24; 5 inches (the wire is the perimeter)]</strong></p>
+<p>After 15 minutes, pairs swap and check each answer against the story.</p>
+<p>Check: Is your number the inside or the edge? Is the unit right? If not, put a question mark.</p>
 <p>Watch for: a "times as long" length found by adding (8 for the bench, 11 for the flag); the wrong measure (30
 tiles, 126 feet of tape, 162 inches of trim: error A); "54 feet" of tiles (error E); stopping at the side (7 for
-the dog run). If many choose the wrong measure: each pair sketches problem 1 and shades what the story asks
+the dog yard). If many choose the wrong measure: each pair sketches problem 1 and shades what the story asks
 for, the inside or the edge. If many add for "times as long": draw 2 bars of 9 for the flag.</p>
 <h4>5 min. Written task</h4>
-<p>Alone, the box at the foot of side 2: <em>Look at problem 2. Did it need area or perimeter? How did you know?</em> <strong>[Perimeter, 46 feet: the tape makes the sides, not the floor inside (look-fors and samples on the teacher page)]</strong>. Students may answer aloud to you instead (a scribe is
-allowed). Collect them; read after class.</p>
-<p>Four look-fors, each ticked alone: (1) says what is measured, the inside or the edge; (2) names the measure;
-(3) the unit matches, feet for perimeter; (4) the reason comes from the situation, not from one word.</p>
-<p>Meets (ours, untested): "Perimeter. The tape makes the lines of the rectangle. It does not fill the floor. 14 + 9
-+ 14 + 9 = 46 feet." Does not meet: "Area, because it says floor. 14 × 9 = 126 square feet." That answer
-rests on one word and measures the inside. A child who writes "perimeter because it is tape" has look-fors 2 and
-3 only: ask "what does the tape do?"</p>
+<p>Alone, the box at the foot of side 2: Look at problem 2. Did it need area or perimeter? How did you know? <strong>[Perimeter, 46 feet: the tape makes the sides, not the floor inside]</strong>. Students may answer aloud to you instead (a scribe is
+allowed). Collect the student pages with the exit slips at the end; read after class.</p>
+<p>Tick each look-for on the key alone; the key gives samples that meet, partly meet and do not (ours, untested). A
+child who writes "tape, lines, 46 feet" with no full sentence has look-fors 1 to 3: that is language, not math.</p>
 <h4>5 min. Pull it together</h4>
 <p>Whole class.</p>
-<p><strong>Ask.</strong> "Which problem was hardest to decide? What in the story told you?" Expect the dog run or the flag.
-Show a problem where the answer came from the story first, then one from a word. Connect them: ask "inside or
+<p><strong>Ask.</strong> "Which problem was hardest to decide? What in the story told you?" Expect the dog yard or the flag.
+Show one decided from the story, then one from a word; connect them: "inside or
 edge?" before any number.</p>
 <h4>5 min. Exit: the slip</h4>
-<p>Alone, on paper: <em>A patio is 4 yards wide. Its length is 3 times its width. (a) Ana paints the whole patio floor. How much floor is that? (b) She hangs a string of lights along all four edges. How long is the string? Write the units.</em> <strong>[48 square yards; 32 yards]</strong>. Read it aloud once. Write the results on the record sheet under E92.</p>
+<p>Alone, on paper: A patio is 4 yards wide. Its length is 3 times its width. (a) Ana paints the patio. How much does she paint? (b) She fences in the patio. How much fence does she need? Write the units. <strong>[48 square yards; 32 yards]</strong>. Read it aloud once. Write the results on the record sheet under E92.</p>
 <h3>Other rooms</h3>
 <ul>
-<li><strong>No string loop.</strong> Draw a long thin pen and a square one on the board with 36 squares of edge each.</li>
-<li><strong>One projector.</strong> As in the defaults; the class writes each answer on side 2 before you show it.</li>
+<li><strong>No string loop.</strong> Draw a 17 by 1 pen and a 9 by 9 pen on the board, each with 36 feet of edge.</li>
 <li><strong>One child at home.</strong> Make the 36-foot pens from a 36-inch string on a table, with paper squares for the room
   inside. Then do problems 1 to 3 together and 4 to 6 alone.</li>
 </ul>
 <h3>Shorter or longer</h3>
 <p>Shorter: stop the task's table at 6 pens and close it from there; drop the partner check (students check their
-own). Never drop the written task or the reading aloud. Longer: the challenge (<em>A dog pen is 10 feet long and 2 feet wide. Draw a pen with more room but less fence.</em> <strong>[For example 5 by 5: 25 square feet and 20 feet of fence. The 10 by 2 pen has 20 square feet and 24 feet of fence]</strong>), on the back of the
+own). Never drop the written task or the reading aloud. Longer: the challenge (A dog pen is 10 feet long and 2 feet wide. Draw a pen with more room but less fence. <strong>[For example 5 by 5: 25 square feet and 20 feet of fence. The 10 by 2 pen has 20 square feet and 24 feet of fence]</strong>), on the back of the
 grid paper.</p>
 <h3>Words and supports</h3>
 <p>Word Wall cards: area, perimeter, length, width, square foot, times as long. Frames on the display: "This
 problem needs <span class="blank" style="width:0.9em"></span> because the story asks about the <span class="blank" style="width:0.9em"></span>." "The length is <span class="blank" style="width:0.9em"></span> times <span class="blank" style="width:0.9em"></span>, so it is <span class="blank" style="width:0.9em"></span> feet."</p>
 <h3>Tomorrow</h3>
-<p>Day 93 is the end check. On the slip, a length of 7 (so 28 and 22) is adding for "times as long": those students
-go to stretch 10's comparing help in the respond half. Swapped measures (32 for the floor, 48 for the
-string) is error A; "48 yards" is error E: both groups take their error's "if many" action. Hand back the written
-tasks at the door, each with its look-fors ticked; no class time is taken.</p>
+<p>Day 93 is the end check; the check sets its groups. Mark E92. A length of 7 (28 and 22) is adding for "times as
+long": those students join day 94's first five minutes with end item 5's "length of 9" group (3 bars of 4).
+Swapped measures (32 for the floor, 48 for the fence: A) or "48 yards" (E): a student who also misses end item 7
+is in its group already. Hand back the written tasks at the door, look-fors ticked; missing look-for 1 or 4 joins
+the item 7 group in the respond half.</p>
 <h3>Credit</h3>
 <p>Ours. Informed by, not adapted from: Illustrative Mathematics K-5, grade 4, unit 5 (CC BY 4.0,
 https://curriculum.illustrativemathematics.org/k5/), and the Progressions for the Common Core State Standards,
-Geometric Measurement.</p><div class="foot">Curio Class, grade 4 math, day 92, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></body></html>
+Geometric Measurement.</p><div class="foot">Curio Class, grade 4 math, day 92, version draft 1, not yet taught, CC BY 4.0, curioclass.org</div></body></html>

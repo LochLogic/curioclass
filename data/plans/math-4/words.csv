@@ -1,0 +1,3 @@
+pattern,use,reason
+"^(?!.*\b(?:goat|dog|chicken) pen\b).*\bpen\b",goat pen or dog pen,a bare pen reads as a writing pen (expert day 92)
+"\b(?:dog|chicken|goat) run\b",yard,a run is not a word fourth graders know for an enclosure (expert day 92)

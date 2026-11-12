@@ -78,3 +78,15 @@ s11-P92-7,"length 11, trim 40",9+2 | 2*(9+2+9),11 | 40,,"""2 more"", stretch 10"
 s11-P92-7,162,9*(2*9),162,A,
 s11-P92-8,17,24-7,17,D,one long side taken off
 s11-P92-8,10,24-2*7,10,D,not halved
+s11-X89,18,2*(8+3)-4,18,F,squares along the edge
+s11-P89-2,24,2*(9+5)-4,24,F,squares along the edge
+s11-P89-3,22,2*(10+3)-4,22,F,squares along the edge
+s11-X91a,"""240 feet""",,,E,
+s11-X91b,666 or 746,2*(235+148)-100 | 2*(235+148-10),666 | 746,,a lost regrouped ten
+s11-P92-2,3 7/5,F(13;5)+F(9;5),3 7/5,B,
+s11-E3,6 8/16,,,,added the denominators; fraction slips go to the warm-up
+s11-R1,26,2*(6+7),26,A,
+s11-R2,13,9+4,13,B,
+s11-R2,36,9*4,36,A,
+s11-R3,40 or 56,48-8 | 48+8,40 | 56,,not seen as a missing factor
+s11-R3,384,48*8,384,,not seen as a missing factor

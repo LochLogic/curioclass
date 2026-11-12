@@ -5,7 +5,7 @@
     python -X utf8 scripts/plan.py pack   <course> <stretch>  print one agent's reading pack
     python -X utf8 scripts/plan.py defect <course> <artifact> <layer> <found_by> <kind> "<summary>" [ref]
     python -X utf8 scripts/plan.py defects                    counts by reader and layer
-    python -X utf8 scripts/plan.py reserve <course> <stretch> write the stretch's number sets into its generator
+    python -X utf8 scripts/plan.py reserve <course> <stretch> write the stretch's fact triples into its generator
 
 Facts live in data/plans/<course>/ (parts, days, items, wrongs, errors). The plan files in
 docs/courses/<course>/ keep prose for judgment; their tables are generated between
@@ -101,11 +101,83 @@ def numbers(text):
 RESERVED = {('math-4', '11'): 'site/assets/gen/measure-shapes.js'}   # (course, stretch): the generator that serves it
 
 
+def canon(v):
+    """One number as the generator writes it: a whole number, or a fraction in lowest terms ("27/2")."""
+    v = Fraction(v)
+    return str(v.numerator) if v.denominator == 1 else '%d/%d' % (v.numerator, v.denominator)
+
+
+def facts(i):
+    """The fact triples a row teaches or checks, as sorted tuples of canon() strings, matched in any order:
+    (side, side, area) for an area or a side from an area, (side, side, perimeter) for a perimeter or a side from
+    a perimeter. Read from the compute cell, plus both measures of any rectangle the stem names by two numbers."""
+    out = set()
+
+    def add(*xs):
+        if all(isinstance(x, Fraction) and x > 0 for x in xs):
+            out.add(tuple(sorted(canon(x) for x in xs)))
+
+    def is_add(n):
+        return isinstance(n, ast.BinOp) and isinstance(n.op, ast.Add)
+
+    def ev(n):
+        if isinstance(n, ast.Expression):
+            return ev(n.body)
+        if isinstance(n, ast.Constant):
+            return Fraction(n.value) if isinstance(n.value, int) and not isinstance(n.value, bool) else None
+        if isinstance(n, ast.Call) and getattr(n.func, 'id', '') == 'F' and len(n.args) == 2:
+            a, b = ev(n.args[0]), ev(n.args[1])
+            return a / b if a is not None and b else None
+        if isinstance(n, ast.BinOp):
+            a, b = ev(n.left), ev(n.right)
+            if a is None or b is None:
+                return None
+            if isinstance(n.op, ast.Add):
+                r = a + b
+                if is_add(n.left) and ast.dump(n.left) == ast.dump(n.right):   # (l + w) + (l + w)
+                    add(ev(n.left.left), ev(n.left.right), r)
+                return r
+            if isinstance(n.op, ast.Sub):
+                return a - b
+            if isinstance(n.op, ast.Mult):
+                r = a * b
+                dbl = n.right if a == 2 else n.left if b == 2 else None
+                if dbl is not None and is_add(dbl):
+                    add(ev(dbl.left), ev(dbl.right), r)          # 2 × (l + w)
+                else:
+                    add(a, b, r)
+                return r
+            if isinstance(n.op, ast.Div) and b:
+                r = a / b
+                L = n.left
+                if (b == 2 and isinstance(L, ast.BinOp) and isinstance(L.op, ast.Sub) and isinstance(L.right, ast.BinOp)
+                        and isinstance(L.right.op, ast.Mult)):   # (P - 2 × l) ÷ 2
+                    m = L.right
+                    add(ev(L.left), ev(m.right) if ev(m.left) == 2 else ev(m.left), r)
+                else:
+                    add(a, b, r)
+                return r
+            return None
+        for c in ast.iter_child_nodes(n):
+            ev(c)
+        return None
+
+    for c in split(i['compute']):
+        try:
+            ev(ast.parse(c.replace(';', ','), mode='eval'))
+        except SyntaxError:
+            pass
+    ns = [parse_value(x) for x in numbers(i['stem'])]
+    if len(ns) == 2:
+        add(ns[0], ns[1], ns[0] * ns[1])
+        add(ns[0], ns[1], 2 * (ns[0] + ns[1]))
+    return out
+
+
 def reserved_js(items, st):
-    """Every number set the stretch teaches or checks, as a JS array literal, sorted for a stable diff."""
-    sets = sorted({tuple(sorted(numbers(i['stem']))) for i in items
-                   if i['stretch'] == st and (i['check'] in CHECKS) and len(numbers(i['stem'])) >= 2})
-    return '[' + ', '.join('[' + ', '.join("'%s'" % n.replace(',', '') for n in t) + ']' for t in sets) + ']'
+    """Every fact triple the stretch teaches or checks, as a JS array literal, sorted for a stable diff."""
+    ts = sorted({t for i in items if i['stretch'] == st and i['check'] in CHECKS for t in facts(i)})
+    return '[' + ', '.join('[' + ', '.join("'%s'" % n for n in t) + ']' for t in ts) + ']'
 
 
 def reserve(course, st):
@@ -130,6 +202,7 @@ def check(course):
     ids = {i['item_id'] for i in items}
     if len(ids) != len(items):
         fails.append('items.csv: duplicate item_id')
+    wordrules = [(w['pattern'], w['use'], w['reason']) for w in rows(course, 'words')]   # settled wording, per course
     letters = {(e['stretch'], e['letter']) for e in errors}
     stretches = sorted({d['stretch'] for d in days} | {i['stretch'] for i in items}, key=int)
 
@@ -142,8 +215,18 @@ def check(course):
         if i['judged'] not in ('key', 'teacher'):
             fails.append('%s: judged must be key or teacher' % i['item_id'])
         # lesson-day columns (docs/courses/LESSON-DAY.md): an exit names its path; an adapted item carries its credit
-        if i.get('path', '') not in ('', 'tool', 'paper') or (i.get('path') and i['check'] != 'exit'):
-            fails.append('%s: path must be tool or paper, and only on an exit' % i['item_id'])
+        # an exit's path is tool or paper; a practice row written on the board when the sheet is not printed is board
+        pth = i.get('path', '')
+        if not (pth == '' or (pth in ('tool', 'paper') and i['check'] == 'exit') or (pth == 'board' and i['check'] == 'practice')):
+            fails.append('%s: path must be tool or paper on an exit, or board on a practice row' % i['item_id'])
+        # a teacher-judged row carries its look-fors (steps) and its samples (meets | partly | not), so the key holds them
+        if i['judged'] == 'teacher' and not i.get('steps', '').strip():
+            fails.append('%s: judged by the teacher but has no look-fors in its steps cell' % i['item_id'])
+        if i['judged'] == 'teacher' and not i.get('samples', '').strip():
+            fails.append('%s: judged by the teacher but has no samples cell (meets | partly | not)' % i['item_id'])
+        for pat, use, why in wordrules:
+            if re.search(pat, i['stem'], re.I):
+                fails.append('%s: stem breaks a settled word rule (%s): use %s' % (i['item_id'], why, use))
         src = i.get('source', '')
         if src and (re.search(r'\bnc\b|noncommercial|sharealike|-sa\b|\bnd\b|-nd\b|noderivatives', src, re.I)
                     or 'http' not in src or not re.search(r'cc by|cc0|public domain', src, re.I)):
@@ -194,6 +277,15 @@ def check(course):
             for b, nb in asked[k + 1:]:
                 if na == nb:
                     fails.append('%s and %s use the same numbers: %s' % (a, b, ', '.join(sorted(na))))
+        # 3b. no two rows of a stretch share a stem, and no two challenges share their numbers under new ids
+        sr = [i for i in items if i['stretch'] == s]
+        for k, a in enumerate(sr):
+            for b in sr[k + 1:]:
+                if a['stem'].strip() == b['stem'].strip():
+                    fails.append('%s and %s have the same stem' % (a['item_id'], b['item_id']))
+                elif (a['check'] == b['check'] == 'challenge' and len(numbers(a['stem'])) >= 2
+                      and numbers(a['stem']) == numbers(b['stem'])):
+                    fails.append('%s and %s are challenges with the same numbers' % (a['item_id'], b['item_id']))
         # 4. days
         sd = sorted((d for d in days if d['stretch'] == s), key=lambda d: int(d['day']))
         nums = [int(d['day']) for d in sd]
@@ -224,7 +316,7 @@ def check(course):
                 if stated != int(d['tool_min'] or 0):
                     fails.append('%s: tool minutes in words add to %d, tool_min says %s' % (lab, stated, d['tool_min']))
             if d['kind'] == 'Check':
-                tot = sum(int(m) for m in re.findall(r'\d+', d['check_min']))
+                tot = sum(int(re.findall(r'\d+', re.sub(r'\(.*?\)', '', s))[-1]) for s in d['check_min'].split(';') if re.findall(r'\d+', re.sub(r'\(.*?\)', '', s)))   # the last number of each part, notes in brackets aside
                 if tot != DAY_MIN:
                     fails.append('%s: check day parts add to %d minutes, not %d' % (lab, tot, DAY_MIN))
                 if not any(i['check'] == 'end' and i['day'] == d['day'] for i in items):
