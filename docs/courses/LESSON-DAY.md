@@ -166,8 +166,11 @@ slides) holds everywhere. Known now to differ:
 
 - Spanish student pages (ROADMAP, finished course item 14: Cory's in or not-now).
 - An accessibility conformance level for print (item 10: Cory's).
-- How a day uses the older shelves: for now a day names a worksheet, Word Wall card or chart only when it serves as
-  it is, by link.
+- (Decided 2026-11-12, card `q-shelves-in-courses`.) How a day uses the older shelves: a day names each shelf
+  item it uses (Word Wall card, chart, worksheet row, generator preset, game) by id, and the gate fails on an id
+  that does not exist. Not built into `lesson.py` yet; it comes with unit 11.1's shelf pieces. A course day's Sub
+  Day packet is generated from the day itself. The Reading Room is not where course texts come from below the
+  higher grades (card `q-course-texts`).
 
 ## The worked case: day 90
 

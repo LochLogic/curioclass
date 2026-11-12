@@ -591,3 +591,26 @@ So: docs/courses/LESSON-DAY.md draft 2 is the shape of every lesson day, proved 
 ELA and science pilots run. Questions 2 (no slides) and 3 (build the rest of unit 11.1 now) were not answered
 separately; the card stays open on them. Cory also asked where the older shelves (sub day, Word Wall and the
 rest, each tied to a tool) fit now that the lesson day exists; answered in chat the same day.
+
+## 2026-11-12: the rest of q-lesson-day, the feedback note, the shelves, and course texts (Cory, on the Desk and in chat)
+
+Card `q-lesson-day`: "Yes, no slides." and "Yes, build it now. Day 90 stays 'not ready' until its tool and sheets
+exist." So lesson days ship with no slide decks, and the rest of unit 11.1 is built now.
+
+Card `q-banner-hide`: "the x should stash it in a small peak panel so it can be brought back by the user if
+needed". Done and live the same day: × tucks the home page note into a small "Feedback?" tab that brings it back.
+
+Card `q-shelves-in-courses`: yes to all four. A lesson day names shelf items by id and the gate fails on an id that
+does not exist; a course day's Sub Day packet is generated from the day; per-tool lesson plans stay for using a
+tool on its own and link to the course days; unit 11.1 fills its own shelf gaps as pilot pieces, the generator
+sheet as a preset of the existing generator, counted in COST.md.
+
+In chat: "all questions answered. i have an additional comment though, i dont agree with your proposal for the
+Reading Room. the rest of the proposals are good but that one needs changed. the reading room is too unrefined to
+use as content for ELA. i have found that it is pretty good at higher levels but in mid and lower levels, im
+finding that on average the stories are either very old or from other countries and cultures. thats fine for a
+reading room but id like something newer and more relatable for course content."
+
+So the Reading Room stays a shelf for independent reading and is not the source of course texts below the higher
+grades (ECOSYSTEM.md). Where the newer texts come from, where the line falls, and what it means for the grade 6
+ELA pilot (every one of its texts is an old Reading Room book) are on card `q-course-texts`.

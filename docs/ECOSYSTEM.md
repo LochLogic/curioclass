@@ -44,15 +44,15 @@ Every shelf that prints standards reads them from the tool or the ledger, not fr
 
 | Shelf | Keyed to | Under the change | Work |
 |---|---|---|---|
-| Lesson plans | tool | Stays one per tool. For a `see why` or `practice` tool the plan is where `unit_adds` lives: the talk, the writing, the worksheet to pull | Check focus against the tool's codes |
-| Sub Day packets | tool | Stays one per tool. Best for `lesson` tools (a substitute needs the tool to carry the teaching); a `see why` tool's packet names the worksheet that completes it | Same check; pull words by module as now |
+| Lesson plans | tool | Stays one per tool, for teachers who use one tool on its own, with a link to the course days that use it. No per-tool plan is written for a course's key tool (Cory, 2026-11-12). For a `see why` or `practice` tool the plan is where `unit_adds` lives: the talk, the writing, the worksheet to pull | Check focus against the tool's codes |
+| Sub Day packets | tool, or a course day | For a day inside a course, generated from that lesson day (Cory, 2026-11-12). Per-tool packets stay for tools used outside a course. Best for `lesson` tools (a substitute needs the tool to carry the teaching); a `see why` tool's packet names the worksheet that completes it | Same check; pull words by module as now |
 | Word Wall | module | Unchanged, because modules do not move. A second tool in a module shares the same wall | None |
 | Anchor charts | module | Unchanged. "The first tool built writes the chart" becomes "the module's `lesson` tool writes it" | One line in the plan brief |
 | Game Night | module | Unchanged. The family sheet names the module's `lesson` tool, not "the first built tool" | Template line |
 | Research cards | module | Unchanged | Add a checker (none today) |
 | Worksheets | course, row, module title | Now the named home of fluency volume and extra practice, recorded in the ledger. The join by module title is fragile (four modules share a title today) | Join by `module_id`; add each preset or row to the ledger |
 | Generators | rules on subject, strand, grade | Same role as worksheets for fluency. A `practice` or `see why` tool links to its preset | Record preset per standard in the ledger |
-| Reading Room | story | The named home of year-long reading and topic threads. Needs the `record`, `topics` and code fields the plan already describes (ROADMAP item 8c) | Fields before the ten-story pilot |
+| Reading Room | story | **Not the source of course texts below the higher grades** (Cory, 2026-11-12: its stories at mid and lower levels are mostly very old or from other countries and cultures, "fine for a reading room but id like something newer and more relatable for course content"; card `q-course-texts`). It stays a shelf for independent reading. The named home of year-long reading and topic threads. Needs the `record`, `topics` and code fields the plan already describes (ROADMAP item 8c) | Fields before the ten-story pilot |
 | The Map | module | A stop is "ready" when its `lesson` tool is live, not any tool. Later it shows the measure per stop | Small build change |
 | Related tools | derived | Inside a module, show siblings first and in order: see why, do it, use it | Small build change; a `role` and order column on tools |
 | Posters, Break Box | band or grade | Unaffected | None |
