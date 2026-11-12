@@ -72,3 +72,34 @@ fewer that the cheap read could not, drop to step 3 for the next unit.
 
 This is the strategic review's quality plan (cold reads on every unit, a second read on a one-in-five sample, a
 defect ledger per reader) made concrete for lesson days.
+
+## Step 2 with a cheap read first: stretches 1 and 9 (days 1 to 6, 72 to 77), read 2026-11-12
+
+Each day had a cheap focused read (docs/agents/CHEAP-READ.md, a smaller model) and then a full expert read that
+listed only what the cheap read missed.
+
+| | Stretch 1 (6 days) | Stretch 9 (6 days) |
+|---|---|---|
+| Cheap read findings | 67 (11.2 a day) | 65 (10.8 a day) |
+| Cheap findings the expert agreed with | 45 of 59 | 51 of 60 |
+| Expert findings the cheap read missed | 47 (7.8 a day) | 42 (7.0 a day) |
+| of which a script could catch | 3 | 12 |
+| of which the cheap read should have caught | 13 | 12 |
+| of which only an expert could catch | 31 (5.2 a day) | 18 (3.0 a day) |
+| Same kind as an earlier finding | 35 of 47 | 26 of 42 |
+| Tokens per cheap read | mean 107,700 | mean 108,700 |
+| Tokens per expert read | mean 188,600 | mean 185,600 |
+
+**What it shows.** The cheap read pays: for about 60% of an expert read's cost it finds more per day than the
+expert read did alone on stretch 10 (9.7), and the expert agrees with most of it. Together the two reads found
+about 19 things a day, double stretch 10. But the expert still found 3 to 5 a day that only an expert would see,
+mostly teaching sense: a worked example that does not teach what the exit asks (days 3, 4, 72, 76), a stop rule
+that cannot end the search (day 2), items that cannot tell two errors apart (days 74, 77), an example that builds
+the habit the day later undoes (day 75). That is well above one a day, so step 3 is not earned. The expert read stays
+on every day of the next unit, after the cheap read.
+
+**What changes next.** The script share rose on stretch 9 (12 of 42), so the fix passes added gates: products
+equal to reserved numbers, and every registered error must have an exit or end wrong row. The expert-only kinds
+above will go into the next day writers' brief as checks the writer runs on their own day ("rework the exit with only what
+the examples showed"; "does each item give a different wrong answer for each error it targets"). Next unit: measure
+whether those fall.
