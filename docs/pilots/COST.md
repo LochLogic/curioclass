@@ -82,6 +82,14 @@ million (days 72 to 79; day 78 is Check 2, which waits on stretches 6 to 8).
 | Day 5 lesson | 212,163 by its agent (47 tool uses) | 0.17 (10.4 min), all six in parallel | 0 | 0 by the scripts at merge | Teaching from the shared brief with the 13 expert-read days' lessons |
 | Day 6 lesson | 148,862 by its agent (35 tool uses) | 0.07 (3.9 min), all six in parallel | 0 | 0 by the scripts at merge | Teaching from the shared brief with the 13 expert-read days' lessons |
 | Shared pieces (readiness, two openers, record, rows table, day 3 practice sheet, 1 to 30 chart, family note) | 208,162 by one agent (92 tool uses) | 0.18 (10.7 min) | 0 | 0 by the scripts | lesson.py gained piece options (item lists, written columns, fact blanks) |
+| Stretch 1 writer-flagged fix pass | 224,132 by one agent (66 tool uses) | 0.17 (10.3 min) | 0 | 10 found by the day writers: 9 fixed, 1 open (no number-line figure) | lesson.py: tool-row check screens, singular units, figures from answers, natural order for end items like 9.1a |
+| Day 72 lesson | 161,766 by its agent (40 tool uses) | 0.10 (5.8 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
+| Day 73 lesson | 187,449 by its agent (47 tool uses) | 0.12 (7.2 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
+| Day 74 lesson | 198,835 by its agent (61 tool uses) | 0.14 (8.5 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
+| Day 75 lesson | 183,346 by its agent (38 tool uses) | 0.10 (6.2 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
+| Day 76 lesson | 160,528 by its agent (38 tool uses) | 0.08 (4.9 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
+| Day 77 lesson | 160,840 by its agent (44 tool uses) | 0.09 (5.1 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
+| Stretch 9 shared pieces (readiness, two openers, record, column sheet, day 77 mixed set, family note) | 198,774 by one agent (61 tool uses) | 0.12 (7.2 min) | 0 | 0 by the scripts | |
 
 ## Grade 6 ELA, stretch 2, five pilot days
 
