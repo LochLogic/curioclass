@@ -440,3 +440,34 @@ two single modules fold into their nearest course.
 
 Also: the spine's balance table gained a check column, and "practice tool" became "light tool" wherever it meant
 the mark. Where it means the role (lesson, see why, practice) it stays.
+
+## 2026-11-11 (evening): three cards answered (Cory, in Desk comments)
+
+The full record, with what each answer means and what is still to apply, is in docs/HANDOFF.md.
+
+**q-plans-4d-1 (grade 4 math plans, 9 choices).** Cory: "1, yes. 2, yes. 3, yes but mark for follow up after more
+progress. 4, agree. 5, yes. 6, yes, always cover the whole standard. 7, yes. 8, yes. 9, yes."
+So: stretch 3 teaches benchmarks before common denominators; word caps become 1,000 (unit plan, not counting
+checks, errors, days) and 800 (stretch sheet, not counting check tables and error register), with one tool-asks
+file per course; Fraction Wall Duel is a light tool, to be looked at again after more progress; the number line
+splitter waits for stretch 7; the facts check (36 and 36, untimed, mark 32, a 9 by 9 table through stretch 3);
+day 14 both directions, and as a standing rule always cover the whole standard; the fractions no-reuse rule;
+stretch 10 number sizes; stretch 2 limits.
+
+**q-bar-subjects (11 choices).** Cory: "1 needs a better option. this may require a unification of content
+standards or possibly a "high watermark" method. 2 shelf foreign languages for a later pass (ASL included). 3 all.
+4 they can stay separate but are allowed to be smaller than other courses by nature of the subject. 5 is another
+place where i feel a "high watermark" may be best (follow the higher quality or rigor). 6 i lean to once per year,
+but up to three times if the evidence indicates a need for more. 7 accept for now. 8 i agree for now but this is a
+future area of growth. 9 yes and it might be small and thats okay. 10 yes but mark this for a deeper review. 11,
+agreed"
+Open after this: 1 (social studies content standards: work up unified and high watermark options) and 5 (what
+"higher" means where instruments conflict on values). World languages, ASL included, are shelved.
+
+**q-standards-currency (5 gaps).** Cory: "1, agree. 2 agree, lets fully update and cleanup where needed. 3, yes.
+4, yes, fix with an opus model later. 5, agree but dont lose the note to load them when writing the spine."
+The note for 5: the 26 AP and psychology modules get marked as not yet standards-checked now, and the course
+framework is loaded when that course's spine is written.
+
+None of these was applied to the spine, the template or the plans on the day. The apply list is in
+docs/HANDOFF.md, "Decided but not yet applied".

@@ -408,6 +408,16 @@ choice below.
 
 ## Open choices for Cory
 
+**Answered 2026-11-11 (Desk card q-bar-subjects); this list has not been rewritten yet. Cory's words and what
+they mean are in [HANDOFF.md](HANDOFF.md). In short: choice 1 is still open (he wants a unified or "high
+watermark" option, not one state's set); world languages, American Sign Language included, are shelved for a
+later pass; all sensitive health topics are carried; SEL and library skills stay courses and may be small;
+choice 5 leans to the higher quality or rigor and needs working out; informed action once a year, up to three
+times if the evidence shows a need; the pass rule is accepted for now; no professional learning for now; the
+library bar is ours; the design half stands for SEL and personal finance, marked for a deeper review; family
+notes in English and Spanish. Also: 26 AP and psychology modules have no standards file; their course
+framework is loaded when that course's spine is written.**
+
 In the expert's order, by how much each changes what courses teach.
 
 1. **Which content standards does social studies teach?** Options: one state's standards for kindergarten to grade
