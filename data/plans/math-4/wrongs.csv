@@ -388,9 +388,9 @@ s01-E5v2,agrees with Ana,,,F,
 s01-E5v2,"""no"" with no pair",,,,"a guess, or a size rule; ask for the pair"
 s01-E6,"""No, she must try up to 35""",,,C,
 s01-E6,"""yes, there are only two"", with no reason",,,,"a count, not a reason; ask what happens after 7"
-s01-X1,only 2 by 5,,,A,
-s01-X1,2 by 5 and 5 by 2 counted as two,,,C,
-s01-X1,"""yes"", with a shape whose last row is short",,,,not a rectangle; 10 squares in 3 rows leave one short row
+s01-X1v2,only 2 by 5,,,A,
+s01-X1v2,2 by 5 and 5 by 2 counted as two,,,C,
+s01-X1v2,"""yes"", with a shape whose last row is short",,,,not a rectangle; 10 squares in 3 rows leave one short row
 s01-X2,no 2 × 25,,,B,
 s01-X2,no 1 × 50,,,A,
 s01-X2,10 × 5 as a fourth pair,,,C,
@@ -462,9 +462,9 @@ s01-K1-2,"""yes"" for 5 rows, with short rows",,,,not a rectangle; every row mus
 s01-P1-1,2 by 9 and 9 by 2 drawn as two,9*2,18,C,
 s01-P1-1,no 1 by 18,,,A,
 s01-P1-1,a shape of 4 rows with a short row,4*4 | 4*5,16 | 20,,not a rectangle: 4 rows of 4 is 16 and 4 rows of 5 is 20
-s01-P1-2,4 by 5 and 5 by 4 drawn as two,5*4,20,C,
-s01-P1-2,no 1 by 20,,,A,
-s01-P1-2,a shape of 3 rows with a short row,3*6 | 3*7,18 | 21,,not a rectangle: 3 rows of 6 is 18 and 3 rows of 7 is 21
+s01-P1-2v2,2 by 7 and 7 by 2 drawn as two,7*2,14,C,
+s01-P1-2v2,no 1 by 14,,,A,
+s01-P1-2v2,a shape of 3 rows with a short row,3*4 | 3*5,12 | 15,,not a rectangle: 3 rows of 4 is 12 and 3 rows of 5 is 15
 s01-P1-3,"no 4 by 4: ""a square is not a rectangle""",,,,a square is a rectangle with all sides the same
 s01-P1-3,2 by 8 and 8 by 2 drawn as two,8*2,16,C,
 s01-P1-3,no 1 by 16,,,A,
@@ -511,7 +511,7 @@ s01-P3-4,no 3 × 22 or no 6 × 11,,,B,
 s01-P3-4,11 × 6 or 22 × 3 added,,,C,
 s01-C3-1,"""No: 28 is not in the 3 times table""",,,B,
 s01-K4-1,"""7 is a multiple of 21""",,,D,the two words swapped
-s01-K4-2,"""no: the 6s stop at 60""",,,E,
+s01-K4-2v2,"""no: the 6s stop at 60""",,,E,
 s01-T4-1,"""no: the 7s stop at 70""",,,E,
 s01-T4-2,"""yes: 58 is even""",,,E,
 s01-T4-3,"""no: the 5s stop at 50""",,,E,

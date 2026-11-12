@@ -297,8 +297,12 @@ def check_day(d, items, days):
         i = byid.get(r)
         if i and i.get('figure'):
             for k, spec in enumerate(figures(i)):
-                # the problem's picture keeps to its stem; a fix's right picture may use the right working too
-                sn = set(plan.numbers(i['stem'] + (' ' + i.get('steps', '') if k else '')))
+                # the problem's picture keeps to its stem; a fix's right picture may use the right working too; a
+                # worked example's picture shows the working, so it may use its answer and steps (day 2: 24 drawn
+                # as the 4 by 6 at the turn); the display holds it back until the step that draws it
+                ex = i['check'] == 'example'
+                sn = set(plan.numbers(i['stem'] + (' ' + i.get('steps', '') if k or ex else '')
+                                      + (' ' + i['answer'] if ex else '')))
                 if spec.startswith('strip'):
                     try:
                         fv = strip_numbers(spec)
@@ -309,7 +313,8 @@ def check_day(d, items, days):
                 for v in fv:
                     if v != '?' and v.replace('_', ' ') not in sn:
                         f.append('%s: %s figure has %s, which its %s does not say'
-                                 % (lab, r, v.replace('_', ' '), 'working' if k else 'stem'))
+                                 % (lab, r, v.replace('_', ' '), 'working' if k else 'stem, answer or steps' if ex
+                                    else 'stem'))
     for r in set(REF.findall(d['student'])):
         if r in byid and byid[r]['check'] == 'exit':
             f.append('%s: exit question %s is printed on the student page; it belongs on the slip' % (lab, r))
@@ -353,6 +358,11 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
 """
+
+
+def nkey(i):
+    """A row's n in natural order: '2' before '10', and '9.1a', '9.1b', '9.2a' (stretch 9's end numbers)."""
+    return [(0, int(x), '') if x.isdigit() else (1, 0, x) for x in re.findall(r'\d+|[^\d.]+', i.get('n') or '0')]
 
 
 def put(path, text, encoding='utf-8'):
@@ -425,7 +435,10 @@ def md(text, items, teacher=False):
 
     def sub_fig(m):   # its own paragraph, so markdown leaves the SVG alone
         i = byid.get(m[1])
-        return '\n\n<div class="fig" style="margin:.2em 0">%s</div>\n\n' % figure(figures(i)[0], 0.6) if i and figures(i) else m[0]
+        if not (i and figures(i)):
+            return m[0]
+        cap = '' if figures(i)[0].startswith('strip') else ';max-width:3.4in'   # a rectangle at full width runs long
+        return '\n\n<div class="fig" style="margin:.2em 0%s">%s</div>\n\n' % (cap, figure(figures(i)[0], 0.6))
     text = FIG.sub(sub_fig, NOTE.sub(sub_note, STEPS.sub(sub_steps, text)))
     text = REF.sub(sub, text).replace('{sketch}', '<div class="sketch"></div>').replace(
         '{work}', '<div class="sketch work"></div>').replace('{small}', '<div class="sketch small"></div>').replace(
@@ -435,6 +448,14 @@ def md(text, items, teacher=False):
 
 
 UNIT_WORD = {'ft': 'feet', 'in': 'inches', 'cm': 'centimeters', 'm': 'meters', 'yd': 'yards', 'units': 'units'}
+ONE_UNIT = {'feet': 'foot', 'inches': 'inch'}   # irregular singulars; any other unit word drops its last s
+
+
+def unit_for(v, unit):
+    """The unit word for a count of v: '1 tile', '1 foot', '12 tiles' (a 1-wide figure printed "1 units")."""
+    if fig_num(v) != 1:
+        return unit
+    return ONE_UNIT.get(unit, unit[:-1] if unit.endswith('s') and not unit.endswith('ss') else unit)
 
 
 def fig_fields(spec):
@@ -457,8 +478,10 @@ def note(i):
     f, _ = fig_fields(i['figure'])
     unit = UNIT_WORD.get(f.get('u', 'ft'), f.get('u', ''))
     who = re.search(r'The (\w+) family', i['stem'])
-    given = (['%s square %s' % (f['A'], unit)] if 'A' in f else []) + (['%s %s of fence' % (f['P'], unit)] if 'P' in f else [])
-    given += ['%s %s %s' % (f[k], unit, {'w': 'wide', 'l': 'long'}[k]) for k in ('w', 'l') if f.get(k, '?') != '?']
+    given = (['%s square %s' % (f['A'], unit_for(f['A'], unit))] if 'A' in f else []) + (
+        ['%s %s of fence' % (f['P'], unit_for(f['P'], unit))] if 'P' in f else [])
+    given += ['%s %s %s' % (f[k], unit_for(f[k], unit), {'w': 'wide', 'l': 'long'}[k]) for k in ('w', 'l')
+              if f.get(k, '?') != '?']
     return (who[1] + ': ' if who else '') + ', '.join(given)
 
 
@@ -633,7 +656,7 @@ def rect(spec, size=1.0):
     f, flags = fig_fields(spec)
     u = f.get('u', 'ft')
     unit = UNIT_WORD.get(u, u)
-    lab = lambda v: '?' if v == '?' else '%s %s' % (v, unit)
+    lab = lambda v: '?' if v == '?' else '%s %s' % (v, unit_for(v, unit))
     L, Wd = fig_num(f.get('l', '?')), fig_num(f.get('w', '?'))
     scaled = L and Wd and L <= 12 and Wd <= 12
     W = 420 * size
@@ -644,9 +667,9 @@ def rect(spec, size=1.0):
     x0, y0, w, h = 170 * size + pad, 60 * size + pad, W, H
     mid = ''
     if 'A' in f:
-        mid = '%s square %s inside' % (f['A'], unit)
+        mid = '%s square %s inside' % (f['A'], unit_for(f['A'], unit))
     elif 'P' in f:
-        mid = '%s %s%s all the way around' % (f['P'], unit, ' of ' + f['around'] if f.get('around') else '')
+        mid = '%s %s%s all the way around' % (f['P'], unit_for(f['P'], unit), ' of ' + f['around'] if f.get('around') else '')
     fs = 36 * size
     t = lambda x, y, s, a='middle', z=fs: '<text x="%.0f" y="%.0f" text-anchor="%s" font-size="%.0f">%s</text>' % (
         x, y, a, z, html.escape(s))
@@ -726,7 +749,9 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     tt = tool_title(row['tool']) if row['tool'] else ''
     mine = [i for i in items if i['day'] == h['day'] and i['check'] in plan.LESSON_KINDS | {'exit'}]
     # a check day is measured by its end rows, which carry the stretch, not the day
-    end = sorted((i for i in items if i['stretch'] == row['stretch'] and i['check'] == 'end'), key=lambda i: int(i['n']))
+    # (a stretch with two check days keeps each day's end rows apart: select by the day being built)
+    end = sorted((i for i in items if i['stretch'] == row['stretch'] and i['check'] == 'end' and i['day'] == h['day']),
+                 key=nkey)
     if row['kind'] != 'Check':
         end = []
     pk = {(i['code'], p) for i in (end or mine) for p in plan.partset(i)}   # a cell may name several: "f, g"
@@ -738,7 +763,7 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     byid = {i['item_id']: i for i in items}
     refs = sorted({r for r in REF.findall(d['teacher'] + d['student']) + STEPS.findall(d['teacher']) if r in byid},
                   key=lambda r: (ORDER.index(byid[r]['check']) if byid[r]['check'] in ORDER else 9,
-                                 byid[r].get('path', ''), int(byid[r]['n'] or 0)))
+                                 byid[r].get('path', ''), nkey(byid[r]), r))   # the id last: ties print in one order
     refs = [i['item_id'] for i in end] + [r for r in refs if r not in {i['item_id'] for i in end}]
     credits = sorted({byid[r]['source'] for r in refs if byid[r].get('source')})
     foot = foot_line(h, course, ([h['credit']] if h['credit'].lower() != 'ours' else []) + credits)
@@ -844,8 +869,8 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         return ('<div class="screen"><p><b>Answers.</b> Any letter is right. An equation is right in any order if it '
                 'says the same thing. Mark your own in pen. Items %s are read by your teacher.</p><ol>%s</ol></div>' % (
                     ' and '.join(i['n'] for i in end if i['judged'] == 'teacher') or 'none',
-                    ''.join('<li value="%s">%s</li>' % (i['n'], html.escape(i['answer'] if i['judged'] == 'key'
-                                                                            else 'read by your teacher')) for i in end)))
+                    ''.join('<li style="list-style:none"><b>%s.</b> %s</li>' % (html.escape(i['n']), html.escape(
+                        i['answer'] if i['judged'] == 'key' else 'read by your teacher')) for i in end)))
 
     def walk(text, prac):
         for m in tok.finditer(text):
@@ -863,7 +888,7 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                     if r not in done and r in byid:
                         done.add(r)
                         scr.extend(screens(byid[r]))
-                        if byid[r]['check'] == 'practice':
+                        if byid[r]['check'] in ('practice', 'tool'):
                             prac.append(byid[r])
                 continue
             if m[1] in done or m[1] not in byid:
@@ -871,7 +896,7 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
             done.add(m[1])
             i = byid[m[1]]
             scr.extend(screens(i))
-            if i['check'] == 'practice':
+            if i['check'] in ('practice', 'tool'):
                 prac.append(i)
 
     shown = False
@@ -883,6 +908,23 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
             for b in re.findall(r'^- (.+?)(?=^- |\n\s*\n|\Z)', btxt, re.M | re.S):
                 scr.append('<div class="screen"><p><b>Group.</b> %s</p></div>' % html.escape(' '.join(b.split())))
         walk(btxt, prac)
+        # tool rows (the paper path of a tool part) get their check screens here, so the teacher never reads the
+        # answers from the key: a long row (a story, a whole table) its own, after its question if the student page
+        # does not print it; short rows with short answers (a table's lines, day 83) share one screen
+        tools, prac = [i for i in prac if i['check'] == 'tool'], [i for i in prac if i['check'] != 'tool']
+        ct = re.search(r'^Check(?: \(sort\))?: (.+)$', btxt, re.M)
+        say_t = html.escape(ct[1].strip() if ct else 'Does yours match? Fix it in pen.')
+        brief = [i for i in tools if words(stem(i)) <= 12 and len(i['answer']) <= 60]
+        for i in tools:
+            if i in brief:
+                continue
+            if i['item_id'] not in on_page:
+                scr.append('<div class="screen"><p>%s</p></div>' % stacked(stem(i)))
+            scr.append('<div class="screen"><p><b>Check your answers.</b> %s</p><p>%s</p><p><b>%s</b></p></div>' % (
+                say_t, stacked(stem(i)), html.escape(i['answer'])))
+        if brief:
+            scr.append('<div class="screen"><p><b>Check your answers.</b> %s</p><ol>%s</ol></div>' % (say_t, ''.join(
+                '<li>%s<br><b>%s</b></li>' % (stacked(stem(i)), html.escape(i['answer'])) for i in brief)))
         # a practice row the student page does not print has no other place to be read: a long one (a story) gets
         # its own screen, then its answer; short ones (warm-up facts) share one screen, answered below
         cm0 = re.search(r'^Check(?: \((sort)\))?: (.+)$', btxt, re.M) or peer.search(btxt)
@@ -945,7 +987,8 @@ def slip_item(k, i):
     frames = [s for s in sents if '__' in s]
     blank = lambda s: re.sub(r'_{2,}', '<span class="blank" style="width:5em"></span>', stacked(s))
     box = ('<div class="sketch tall"></div>' if i['judged'] == 'teacher' else
-           '<div class="sketch"></div>' if DRAWS.search(stem(i)) else '')
+           '<div class="sketch"></div>' if DRAWS.search(stem(i)) and not re.search(r'grid paper', stem(i), re.I)
+           else '')
     lines = ''.join('<p>%s</p>' % blank(s) for s in frames) or (
         '<p>__________________________</p><p>__________________________</p>')
     if frames and not re.search(r'\b(?:finish|answer)\b', ' '.join(frames), re.I) and len(frames) < 2:
@@ -1050,7 +1093,7 @@ def piece_rows(p, items):
         byid = {i['item_id']: i for i in items}
         return [byid[r] for r in named if r in byid]
     return sorted([i for i in items if i['check'] == h.get('check') and i['stretch'] == h.get('stretch')],
-                  key=lambda i: int(i['n'] or 0))
+                  key=nkey)
 
 
 def unit_foot(h, course, what):

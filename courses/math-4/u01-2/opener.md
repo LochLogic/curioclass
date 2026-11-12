@@ -68,9 +68,9 @@ Unit 1.1's opener explains A to C; they can return in day 5's warm-up and day 6'
 
 | | What students do | What it shows | What to do when many do it |
 |---|---|---|---|
-| D | Swap factor and multiple: "the multiples of 6 are 1, 2, 3, 6" | The two words are not yet tied to one equation | Sort 1, 2, 3, 4, 6, 12, 24, 36, 60 and 72 into "factor of 12" and "multiple of 12"; say each with its equation |
+| D | Swap factor and multiple: "the multiples of 6 are 1, 2, 3, 6" | The two words are not yet tied to one equation | Sort 1, 3, 9, 18, 27 and 54 into "factor of 9" and "multiple of 9"; say each with its equation |
 | E | Judge "a multiple of" by the last digit or by even and odd, or stop at ten times | A rule that works for 2, 5 and 10 is stretched; the tables are taken for all the multiples | Fence four numbers between two products of the number tested, starting from ten times where needed |
-| F | Call a number prime because it is odd, or not in the tables | Prime is a look, not the result of a search | Test 2, 3, 5 and 7 in order on 39, 57 and 91; call a number prime only after the search finds nothing |
+| F | Call a number prime because it is odd, or not in the tables | Prime is a look, not the result of a search | Test 2, 3, 5 and 7 in order on 39, 57 and 95; call a number prime only after the search finds nothing |
 | G | Call 1 prime, or 2 composite because it is even | Prime is "few factors", not exactly two | Write the factors of 1, 2, 3 and 4 and count them: one, two, two, three |
 
 The day each wrong example is shown: D and E on day 4, F and G on day 5. Each day's teacher page names the wrong

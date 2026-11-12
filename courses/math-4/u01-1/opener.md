@@ -45,7 +45,7 @@ The model the unit carries. A table with three columns: rows, "fits, with __", o
 1 is tried in order; each fit is written as an equation; the turn is marked with a star.
 
 - **Day 1.** Square tiles, then grid paper. Every rectangle for 12 under the camera, then pairs build 18 and
-  20. An equation inside each rectangle.
+  14. An equation inside each rectangle.
 - **Day 2.** The rows table on paper (rows-table.md), checked by the fact or on grid paper. Every list ends at
   the turn.
 - **Day 3.** Lists only. No tiles, no grid. The table is drawn only by a student who is stuck.
@@ -68,7 +68,7 @@ Unit 1.2 meets errors D to G; its opener explains them. E appears once here, on 
 | | What students do | What it shows | What to do when many do it |
 |---|---|---|---|
 | A | List some pairs and stop; often leave out 1 × the number | There is no order to the search | Search 30 in order as a class: for 1 to 6 rows, say "yes, with __" or "no" |
-| B | Find only pairs from the times tables: no 3 × 14 for 42 | A factor is "a fact I know", not "a number of rows that fits" | Test 3 and 4 on 42, 45, 56 and 60, starting from ten times |
+| B | Find only pairs from the times tables: no 3 × 14 for 42 | A factor is "a fact I know", not "a number of rows that fits" | Test 3 and 4 on 42, 45, 56 and 81, starting from ten times |
 | C | Count a turned pair as new, or keep searching past the turn | 4 × 9 and 9 × 4 are not yet seen as one rectangle | Cut a 4 by 9 rectangle from grid paper, turn it, name it both ways; cross out the turned pairs in two lists |
 
 The day each wrong example is shown: A and C on day 2, B on day 3. Each day's teacher page names the wrong
