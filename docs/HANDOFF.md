@@ -70,6 +70,12 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
      tools as ingredients). **Now:** mock-ups of the grade 4 math course page and a lesson day page, and a check
      that every existing piece of the site still has a home. Nothing is built until Cory has seen them. The at-home
      block goes into LESSON-DAY.md and the day writers' brief before the next unit is written.
+   - **Decided 2026-11-12 (DESK-ANSWERS, "the home check, the mock-ups and names"):** Cory liked the mock-ups
+     (https://claude.ai/artifact/ReGX8xmhDNBCBEKwhVzLzT). The design is [SITE-DESIGN.md](SITE-DESIGN.md), with a
+     proposed build order (step 1: course and day pages for grade 4 math behind a `--courses` flag). The Teaching
+     map is hidden from the deploy build until it returns as a picture of the spines; Sub Day becomes one
+     sub-ready day per unit; names are being locked to the best-known word inside and out (GLOSSARY.md and
+     reviews/naming-scan-2026-11-12.md).
    - Still owed: the Spanish family note needs a qualified reader; the module has no Word Wall cards of its own
      (area, perimeter, square unit, formula, length, width exist under other modules), which is the Word Wall
      owner's to add; the plan should say where day 90's two "On your own" items go when day 91's warm-up is the facts

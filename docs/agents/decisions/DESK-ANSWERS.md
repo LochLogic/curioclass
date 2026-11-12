@@ -664,3 +664,19 @@ home path and lean on partner work.
    pages and say where they are used; unbuilt courses still useful and plainly labelled; community without accounts
    (report a problem on every day, a public errata list, sign up to try a unit). Cory asked for a check that every
    existing piece still has a home before anything is built. Mock-ups and that check come next; no build yet.
+
+## 2026-11-12: the home check, the mock-ups and names (Cory, in chat)
+
+Shown the three mock-up boards (course page, day 74, where every piece lives) and the three overlaps the home check
+found. Cory: "the draft pages look great! lets take the next step in solidifying the new design."
+
+1. Teaching map: "I really like the teachers map but i agree with your perspective. can we meet in the middle and
+   hide the map for now, then bring it back as a newly imagined visual representation of the spines and courses
+   after they are all built?" Done the same day: the map is off the deploy build (`--map` builds it locally); its
+   data is kept.
+2. Sub Day: "sub day, i agree with you, your idea works." One sub-ready day per unit in each course; the per-tool
+   packets stay on the Supply Closet shelf.
+3. Names: "i prefer accuracy and standardization. lets go with the best known word for each thing we build and lock
+   it in both internally and externally." A deep scan writes docs/GLOSSARY.md and a staged rename plan; obvious
+   fixes are made, the rest come back as a plan.
+4. The design is written down in docs/SITE-DESIGN.md, with a proposed build order.
