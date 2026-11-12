@@ -833,3 +833,17 @@ s03-P15-15,1,10-(18-9),1,B,the same taken from both
 s03-P15-16,230,,,A,one number kept
 s03-P15-16,140,230-(100-10),140,B,the same taken from both
 s03-P15-17,9,7+(4-2),9,B,"the same added to both, first blank"
+s03-F16-1,"""not equal"": agrees with Lena",,,E,
+s03-K16-1,circles 24/12,,,B,
+s03-K16-1,circles 22/5,,,A,
+s03-K16-1,leaves out 11/5,,,,uses the rule one way only
+s03-P16-2,not equal,,,,uses the rule one way only
+s03-P16-3,equal,,,B,
+s03-P16-4,not equal,,,E,
+s03-P16-5,not equal,,,D,
+s03-P16-6,equal,,,A,
+s03-P16-7,not equal,,,E,
+s03-P16-8,not equal,,,E,
+s03-P16-9,equal,,,,"both can be grouped, but the names differ"
+s03-C16-1,3/100,,,A,
+s03-K16-1,220/100 is more than 22/10,,,D,
