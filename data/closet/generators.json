@@ -29,7 +29,7 @@
     {"id": "vocabulary", "group": "words", "title": "Vocabulary Practice", "grades": "K-12", "types": ["Vocabulary", "Review"],
      "blurb": "Pick any module on the Word Wall: match words to meanings, then fill in the missing word."},
     {"id": "word-puzzles", "group": "words", "title": "Word Puzzles", "grades": "1-12", "types": ["Puzzle", "Vocabulary"],
-     "blurb": "A word search or crossword made from any module's Word Wall words, with the meanings as clues."},
+     "blurb": "A word search or crossword made from any topic's Word Wall words, with the meanings as clues."},
     {"id": "map-skills", "group": "words", "title": "Map Skills", "grades": "1-6", "types": ["Map"],
      "blurb": "A made-up town on a grid with a compass rose, a key and a scale: find places, give directions and measure distances."},
     {"id": "timeline", "group": "words", "title": "Timelines", "grades": "2-12", "types": ["Timeline"],
