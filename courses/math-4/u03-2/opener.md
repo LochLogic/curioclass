@@ -97,7 +97,7 @@ numbers by __." For day 14: "I put the parts in groups of __, so I divide both n
 Exits on days 13 to 16, on paper, written on the unit record sheet by error letter (courses/math-4/u03-1/
 record.md). Day 16's written task (Mo's 5/3 = 10/6: what does each 2 mean on the line?) is judged with three
 look-fors on that day's key and handed back on day 17. End-of-unit assessment items 3.2a and 3.2b, on day 24, are
-this section's. The family note (family.md) goes home on day 13.
+this section's.
 
 ## Credit
 

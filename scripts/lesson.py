@@ -462,6 +462,12 @@ def check_day(d, items, days):
                     sn = {x.replace(',', '') for x in sn}
                     ff = fig_fields(spec)[0]
                     fv = [cm[1], cm[2]] + ([ff['ans']] if 'ans' in ff and '/' not in ff['ans'] else [])
+                elif kind(spec) in FRACTION_FIGS:
+                    try:
+                        fv = line_numbers(spec) if kind(spec) == 'line' else fstrip_numbers(spec)
+                        figure(spec)
+                    except (ValueError, ZeroDivisionError) as e:
+                        f.append('%s: %s figure: %s' % (lab, r, e)); continue
                 else:
                     fv = [v for kk, v in (x.split('=', 1) for x in spec.split()[1:] if '=' in x) if kk in ('l', 'w', 'A', 'P')]
                 for v in fv:
@@ -659,8 +665,13 @@ def md(text, items, teacher=False):
         i = byid.get(m[1])
         if not (i and figures(i)):
             return m[0]
-        cap = '' if figures(i)[0].startswith('strip') else ';max-width:3.4in'   # a rectangle at full width runs long
-        return '\n\n<div class="fig" style="margin:.2em 0%s">%s</div>\n\n' % (cap, figure(figures(i)[0], 0.6))
+        cap = '' if kind(figures(i)[0]) in ('strip',) + FRACTION_FIGS else ';max-width:3.4in'   # a rectangle at full width runs long
+        div = '<div class="fig" style="margin:.2em 0%s">%s</div>' % (cap, figure(figures(i)[0], 0.6))
+        ls = m.string.rfind('\n', 0, m.start()) + 1
+        if m.start() > ls and not m.string[ls:m.start()].strip():
+            # indented under a numbered item: an inline span, so markdown keeps it and the lines after it in the item
+            return div.replace('<div class="fig" style="', '<span class="fig" style="display:block;', 1)[:-6] + '</span>'
+        return '\n\n%s\n\n' % div
     text = FIG.sub(sub_fig, NOTE.sub(sub_note, STEPS.sub(sub_steps, text)))
     text = REF.sub(sub, text).replace('{sketch}', '<div class="sketch"></div>').replace(
         '{work}', '<div class="sketch work"></div>').replace('{small}', '<div class="sketch small"></div>').replace(
@@ -717,7 +728,9 @@ def figures(i):
 
 
 def figure(spec, size=1.0):
-    """A figure cell drawn as inline SVG: a strip diagram ('strip ...') or a labelled rectangle ('rect ...')."""
+    """A figure cell drawn as inline SVG: a strip diagram ('strip ...'), dots in rows ('rows ...'), place-value
+    columns ('cols ...'), number lines ('line ...'), fraction strips ('fstrip ...') or a labelled rectangle
+    ('rect ...')."""
     if not spec:
         return ''
     if spec.split()[0] == 'strip':
@@ -726,7 +739,18 @@ def figure(spec, size=1.0):
         return rows_fig(spec, size)
     if spec.split()[0] == 'cols':
         return cols(spec, size)
+    if spec.split()[0] == 'line':
+        return numline(spec, size)
+    if spec.split()[0] == 'fstrip':
+        return fstrip(spec, size)
     return rect(spec, size)
+
+
+FRACTION_FIGS = ('line', 'fstrip')   # number lines and fraction strips: drawn on exit tickets too
+
+
+def kind(spec):
+    return spec.split()[0] if spec else ''
 
 
 SCALE = re.compile(r'scale=(\d+)')   # draw as if the longest bar were this long, so two figures of one day share a unit
@@ -964,6 +988,226 @@ def rows_fig(spec, size=1.0):
     return ('<svg viewBox="0 0 %.0f %.0f" width="%.0f" style="width:100%%;max-width:4in;height:auto" role="img" '
             'aria-label="%s" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif">%s</svg>') % (
         W, H, W, html.escape(alt), ''.join(out))
+
+
+PARTS_WORD = {1: 'wholes', 2: 'halves', 3: 'thirds', 4: 'fourths', 5: 'fifths', 6: 'sixths', 7: 'sevenths',
+              8: 'eighths', 9: 'ninths', 10: 'tenths', 12: 'twelfths', 15: 'fifteenths', 16: 'sixteenths',
+              20: 'twentieths', 24: 'twenty-fourths', 30: 'thirtieths', 100: 'hundredths'}
+FIG_FS = 30   # the font of the fraction figures' drawing space: at size 0.6 it prints at about 11 point
+
+
+def fig_style(W, H, size, fs=FIG_FS):
+    """Full size fills the width (the display); a smaller size prints its words at about 11 point on a page and
+    shrinks to fit a narrow place (an exit ticket), never past its box."""
+    if size >= 1:
+        return 'width:100%;max-width:9in;height:auto'
+    return 'display:block;width:%.2fin;max-width:100%%;height:auto' % (W / fs * 11 / 72 * size / 0.6)
+
+
+def sfrac(x, y, v, fs, anchor='middle'):
+    """A number as SVG text with its baseline at y: '3/4' stacked (numerator over a bar over denominator), whole
+    numbers and '?' on one line. Returns (svg, height above the baseline)."""
+    t = lambda yy, s: '<text x="%.0f" y="%.0f" text-anchor="%s" font-size="%d">%s</text>' % (x, yy, anchor, fs, html.escape(s))
+    if '/' not in v:
+        return t(y, v), fs * 0.75
+    n, d = v.split('/', 1)
+    w = max(len(n), len(d)) * fs * 0.56 + 6
+    x1 = x - w / 2 if anchor == 'middle' else x - w if anchor == 'end' else x
+    # Georgia's figures hang below the line (old style), so the bar sits well under the numerator's baseline
+    return (t(y - fs * 1.32, n) + '<line x1="%.0f" y1="%.0f" x2="%.0f" y2="%.0f" stroke="#000" stroke-width="2"/>'
+            % (x1, y - fs * 1.02, x1 + w, y - fs * 1.02) + t(y, d)), fs * 2.1
+
+
+def line_rows(spec):
+    """'line to=2 d=4 sub=3 pt=7/4 / d=12 blank=21/12' as (options, rows): options hold to= and the names flag;
+    each row (split at a lone '/') holds d, sub, lab, pt, blank, seg and name."""
+    opts, rows = {'to': '1', 'names': False}, [{}]
+    for tok in spec.split()[1:]:
+        if tok == '/':
+            rows.append({})
+        elif tok == 'names':
+            opts['names'] = True
+        elif '=' in tok:
+            k, v = tok.split('=', 1)
+            if k in ('to', 'scale'):
+                opts[k] = v
+            elif k in ('d', 'sub', 'lab', 'pt', 'blank', 'seg', 'name'):
+                rows[-1][k] = v
+            else:
+                raise ValueError('line figure: "%s" is not to=, d=, sub=, lab=, pt=, blank=, seg= or name=' % tok)
+        else:
+            raise ValueError('line figure: "%s" is not a field (to=, d=, ...), the names flag or a lone /' % tok)
+    for r in rows:
+        if not re.fullmatch(r'\d+', r.get('d', '')):
+            raise ValueError('line figure: each line needs d= (the parts in one whole), as d=4')
+    if not re.fullmatch(r'[1-9]', opts['to']):
+        raise ValueError('line figure: to= is a whole number, as to=1 or to=2')
+    return opts, rows
+
+
+def line_numbers(spec):
+    """The numbers a line figure prints as given (its points, a strip laid on it, a listed label), for the
+    figure-and-stem gate. A blank point is the student's to name, and tick labels come from d=, so neither counts."""
+    out = []
+    for r in line_rows(spec)[1]:
+        for k in ('pt', 'seg'):
+            out += [v for v in r.get(k, '').split(',') if v]
+        if r.get('lab', '') not in ('', 'all', 'none', 'whole'):
+            out += [v for v in r['lab'].split(',') if v and v != '0']
+    return out
+
+
+def numline(spec, size=1.0, upto=None, span=900):
+    """Number lines from a figure cell, stacked to one scale so a point on one sits straight above the same amount
+    on the next: 'line to=1 d=4 pt=3/4 / d=8'. to= the range from 0 (1 or 2); per line, split by a lone '/':
+    d= the parts in one whole (ticks), sub= cuts each part again with short ticks, lab= the labels under the ticks
+    (whole: 0, 1, 2, the default; all: every tick, as fractions between the wholes; none; or a list, 0,1/4,1),
+    pt= points marked and named above the line (pt=3/4,5/4), blank= points marked with
+    an empty box above for the student to write the name, seg= a shaded strip lying on the line from 0, name= a
+    word at the left ('names' writes each line's parts word: fourths). upto=n draws only the first n lines;
+    span is the drawn length from 0 to the end (an exit ticket draws it shorter, so its words keep their size)."""
+    opts, rows = line_rows(spec)
+    fs, ffs = FIG_FS, 26
+    to = int(opts['to'])
+    bw, bh = 92, 116   # a blank box: room for a written fraction at the printed size
+    word = lambda r: r.get('name', '').replace('_', ' ') or (PARTS_WORD.get(int(r['d']), '') if opts['names'] else '')
+    lw = max([len(word(r)) * fs * 0.52 for r in rows] + [0])
+    x0 = (lw + 24 if lw else 0) + 30
+    X = lambda v: x0 + float(Fraction(v)) * span / to
+    out, y = [], 6
+    for ri, r in enumerate(rows):
+        if upto is not None and ri == upto:
+            hidden = len(out)
+        d = int(r['d'])
+        sub = int(r.get('sub', '1') or 1)
+        pts = [v for v in r.get('pt', '').split(',') if v]
+        blanks = [v for v in r.get('blank', '').split(',') if v]
+        lab = r.get('lab', 'whole')
+        listed = lab.split(',') if lab not in ('whole', 'all', 'none') else []
+        fr = (lab == 'all' and d > 1) or any('/' in v for v in listed)
+        top = max([bh + 18] * bool(blanks) + [ffs * 2.15 + 22] * any('/' in v for v in pts)
+                  + [fs * 0.8 + 22] * bool(pts) + [18] * bool(r.get('seg')) + [14])
+        ly = y + top
+        out.append('<line x1="%.0f" y1="%.0f" x2="%.0f" y2="%.0f" stroke="#000" stroke-width="3"/>' % (
+            X(0) - 2, ly, X(to) + 2, ly))
+        if r.get('seg'):
+            out.append('<rect x="%.0f" y="%.0f" width="%.0f" height="14" fill="#bbb" stroke="#000" stroke-width="2"/>'
+                       % (X(0), ly - 16, X(r['seg']) - X(0)))
+        for k in range(d * sub * to + 1):
+            v = Fraction(k, d * sub)
+            h = 18 if v.denominator == 1 else 13 if k % sub == 0 else 7
+            out.append('<line x1="%.1f" y1="%.0f" x2="%.1f" y2="%.0f" stroke="#000" stroke-width="%s"/>' % (
+                X(v), ly - h, X(v), ly + h, '3' if v.denominator == 1 else '2'))
+        # labels under the ticks
+        below = []
+        if lab == 'whole' or lab == 'all':
+            below += [(Fraction(w), str(w)) for w in range(to + 1)]
+        if lab == 'all':
+            below += [(Fraction(k, d), '%d/%d' % (k, d)) for k in range(1, d * to) if k % d]
+        for v in listed:
+            below = [b for b in below if b[0] != Fraction(v)] + [(Fraction(v), v)]
+        for v, s in below:   # a whole number among fractions sits level with their bars
+            sv, _ = sfrac(X(v), ly + 22 + (ffs * 2.1 - (0 if '/' in s else ffs * 0.75) if fr else fs * 0.8), s,
+                          ffs if '/' in s else fs)
+            out.append(sv)
+        for v in pts + blanks:
+            out.append('<circle cx="%.1f" cy="%.0f" r="9" fill="#000"/>' % (X(v), ly))
+        for v in pts:
+            sv, _ = sfrac(X(v), ly - 22, v, ffs)
+            out.append(sv)
+        for v in blanks:
+            out.append('<rect x="%.0f" y="%.0f" width="%d" height="%d" fill="#fff" stroke="#000" stroke-width="2" '
+                       'stroke-dasharray="8 5"/>' % (X(v) - bw / 2, ly - 16 - bh, bw, bh))
+        if word(r):
+            out.append('<text x="%.0f" y="%.0f" text-anchor="end" font-size="%d">%s</text>' % (
+                X(0) - 30, ly + fs * 0.35, fs, html.escape(word(r))))
+        y = ly + 22 + (ffs * 2.1 if fr else fs * 0.8) + 10 + (18 if ri < len(rows) - 1 else 0)
+    if upto is not None and upto < len(rows):
+        out = out[:hidden]
+    W, H = X(to) + 46, y + 4
+    alt = 'Number lines from 0 to %d, one under the other: ' % to if len(rows) > 1 else 'A number line from 0 to %d: ' % to
+    alt += '; '.join('in %s%s%s%s' % (
+        PARTS_WORD.get(int(r['d']), '%s parts' % r['d']),
+        (', each part cut into %s' % r['sub']) if r.get('sub') else '',
+        (', a point at %s' % ' and '.join(v for v in r['pt'].split(',') if v != '?')) if r.get('pt') else '',
+        (', a point to name at %s' % ' and '.join(r['blank'].split(','))) if r.get('blank') else '') for r in rows)
+    return ('<svg viewBox="0 0 %.0f %.0f" width="%.0f" style="%s" role="img" aria-label="%s" '
+            'xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif">%s</svg>') % (
+        W, H, W, fig_style(W, H, size), html.escape(alt), ''.join(out))
+
+
+FSTRIP = re.compile(r'^(?:(?P<name>[^:]+):)?(?P<k>\d+)/(?P<n>\d+)(?P<blank>=\?)?$')
+
+
+def fstrip_bars(spec):
+    """'fstrip 2/3 Lu:4/6=?' as [(name, k, n, blank)]: each a whole cut into n equal parts, k shaded."""
+    bars = []
+    for tok in spec.split()[1:]:
+        if tok in ('unit', 'lab=none'):
+            continue
+        m = FSTRIP.match(tok)
+        if not m or int(m['n']) < 1:
+            raise ValueError('fraction strip "%s" is not k/n, Name:k/n or k/n=?' % tok)
+        bars.append(((m['name'] or '').replace('_', ' '), int(m['k']), int(m['n']), bool(m['blank'])))
+    if not bars:
+        raise ValueError('a fraction strip needs at least one k/n')
+    return bars
+
+
+def fstrip_numbers(spec):
+    """The fractions a strip figure names (not a blank one, not an unshaded 0/n), for the figure-and-stem gate."""
+    return ['%d/%d' % (k, n) for _, k, n, b in fstrip_bars(spec) if not b and k]
+
+
+def fstrip(spec, size=1.0, upto=None, span=780):
+    """Fraction strips from a figure cell, stacked to one length so they compare: 'fstrip 1/2 2/4 4/8'. Each
+    k/n is a whole cut into n equal parts with the first k shaded; past n (7/4) a second whole follows, its edge
+    drawn heavy. 'Lu:1/6' writes the name at the left instead of the fraction; '2/6=?' leaves an empty box there
+    for the student; 'lab=none' writes nothing at the left; 'unit' writes 1/n in each part wide enough to hold it.
+    upto=n draws only the first n strips (the display, a step at a time)."""
+    bars = fstrip_bars(spec)
+    flags = set(spec.split()[1:])
+    fs, ffs, bh, gap = FIG_FS, 26, 58, 20
+    wholes = max(-(-k // n) for _, k, n, _ in bars) or 1
+    L = span / wholes
+    nolab = 'lab=none' in flags
+    lw = 0 if nolab else max([len(nm) * fs * 0.52 if nm else 64 for nm, _, _, b in bars] + [0])
+    x0 = lw + (26 if lw else 0) + 6
+    out, y = [], 6
+    for bi, (nm, k, n, blank) in enumerate(bars):
+        if upto is not None and bi == upto:
+            hidden = len(out)
+        w = L / n
+        cnt = max(-(-k // n), 1) * n
+        for j in range(cnt):
+            out.append('<rect x="%.1f" y="%.0f" width="%.1f" height="%d" fill="%s" stroke="#000" stroke-width="2.5"/>' % (
+                x0 + j * w, y, w, bh, '#bbb' if j < k else '#fff'))
+            if 'unit' in flags and w >= 44:
+                sv, _ = sfrac(x0 + (j + .5) * w, y + bh / 2 + 22, '1/%d' % n, 22)
+                out.append(sv)
+        for j in range(n, cnt + 1, n):   # the edge of each whole, heavy
+            out.append('<line x1="%.1f" y1="%.0f" x2="%.1f" y2="%.0f" stroke="#000" stroke-width="6"/>' % (
+                x0 + j * w, y - 3, x0 + j * w, y + bh + 3))
+        out.append('<line x1="%.1f" y1="%.0f" x2="%.1f" y2="%.0f" stroke="#000" stroke-width="6"/>' % (x0, y - 3, x0, y + bh + 3))
+        if not nolab:
+            if blank:
+                out.append('<rect x="%.0f" y="%.0f" width="64" height="%d" fill="#fff" stroke="#000" stroke-width="2" '
+                           'stroke-dasharray="8 5"/>' % (x0 - 26 - 64, y - 6, bh + 12))
+            elif nm:
+                out.append('<text x="%.0f" y="%.0f" text-anchor="end" font-size="%d">%s</text>' % (
+                    x0 - 18, y + bh / 2 + fs * 0.35, fs, html.escape(nm)))
+            else:
+                sv, _ = sfrac(x0 - 18 - 20, y + bh / 2 + ffs, '%d/%d' % (k, n), ffs)
+                out.append(sv)
+        y += bh + gap
+    if upto is not None and upto < len(bars):
+        out = out[:hidden]
+    W, H = x0 + L * wholes + 10, y - gap + 8
+    alt = ('Fraction strips of one length, one under the other: ' if len(bars) > 1 else 'A fraction strip: ') + '; '.join(
+        '%s%d of %d equal parts shaded' % ((nm + ', ') if nm else '', k, n) for nm, k, n, _ in bars)
+    return ('<svg viewBox="0 0 %.0f %.0f" width="%.0f" style="%s" role="img" aria-label="%s" '
+            'xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif">%s</svg>') % (
+        W, H, W, fig_style(W, H, size), html.escape(alt), ''.join(out))
 
 
 PLACE = ['ones', 'tens', 'hundreds', 'thousands', 'ten thousands', 'hundred thousands', 'millions']
@@ -1223,7 +1467,7 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         # a strip figure prints with its question (a fix: their picture, then the right one)
         pics = ''.join('<div style="margin:.2em 0">%s%s</div>' % (
             ('<i>%s</i>' % ('Their picture' if k == 0 else 'The right picture')) if len(figures(i)) == 2 else '',
-            figure(x, 0.6)) for k, x in enumerate(figures(i)) if x.startswith('strip'))
+            figure(x, 0.6)) for k, x in enumerate(figures(i)) if x and kind(x) in ('strip',) + FRACTION_FIGS)
         kr.append('<tr><td>%s</td><td>%s</td><td>%s</td><td class="q">%s%s</td><td>%s</td><td>%s</td></tr>' % (
             html.escape(where), html.escape(i['item_id']), html.escape(part_of(i)), html.escape(stem(i)), pics, ans,
             html.escape('; '.join(ws))))
@@ -1264,10 +1508,12 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         if not spec or k < first:
             return ''
         upto = None
-        if spec.startswith('strip') and k < n - 1:
-            nb = len(strip_bars(spec))
+        grow = {'strip': (strip, lambda s: len(strip_bars(s))), 'line': (numline, lambda s: len(line_rows(s)[1])),
+                'fstrip': (fstrip, lambda s: len(fstrip_bars(s)))}.get(kind(spec))
+        if grow and k < n - 1:   # a picture of several bars or lines grows one a step, whole by the last step
+            nb = grow[1](spec)
             upto = min(nb, k - first + 1) if k - first + 1 < nb else None
-        svg = strip(spec, 1.0, upto) if spec.startswith('strip') else figure(spec)
+        svg = grow[0](spec, 1.0, upto) if grow else figure(spec)
         return svg if k < 2 else '<div style="max-width:60%%">%s</div>' % svg
 
     def screens(i):
@@ -1526,7 +1772,12 @@ def slip_item(k, i):
         box = '<div class="sketch tall"></div>'
         lines = ''.join('<p>%s: <span class="blank" style="width:%sem"></span></p>' % (
             l, '13' if l in ('Rename', 'Became', 'Check') else '9') for l in labels)
-    return '<p>%d. %s</p>%s%s' % (k + 1, stacked(' '.join(ask)), box, lines)
+    # a number line or fraction strip the question names prints on the ticket, to mark on (unit 3: "on the line
+    # marked in twelfths" printed with no line)
+    pic = ''.join('<div class="fig" style="margin:.15em 0">%s</div>' % (
+        numline(x, 0.6, span=520) if kind(x) == 'line' else fstrip(x, 0.6, span=480))
+                  for x in figures(i) if kind(x) in FRACTION_FIGS)
+    return '<p>%d. %s</p>%s%s%s' % (k + 1, stacked(' '.join(ask)), pic, box, lines)
 
 
 def part_of(i):

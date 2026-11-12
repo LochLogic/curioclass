@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 18: Closer to 1: student page, large print</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="student large"><h1>Day 18: Closer to 1</h1><div class="side"><p>Name ______________________ Date __________</p><p><strong>I can use 1 to compare, and tell which fraction is closer to 1.</strong></p>
+<p><strong>Warm-up.</strong> <span class="frac"><span>7</span><span>3</span></span> = <span class="blank" style="width:0.9em"></span>/12 <span class="blank" style="width:2.7em"></span></p>
+<p><strong>My line.</strong> Rule a line 6 inches long. Mark 0, 1/2, 1 and 2.</p>
+<div class="sketch"></div>
+
+<p><strong>Example 1.</strong> Mark <span class="frac"><span>5</span><span>6</span></span> and <span class="frac"><span>6</span><span>5</span></span> on the line from 0 to 2. Write &gt;, = or &lt;: <span class="frac"><span>5</span><span>6</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>6</span><span>5</span></span>.</p>
+<p><span class="blank" style="width:1.8em"></span> is less than 1. <span class="blank" style="width:1.8em"></span> is more than 1. So <span class="blank" style="width:1.8em"></span> &lt; <span class="blank" style="width:1.8em"></span>.</p>
+<p><strong>Each side of 1.</strong> Write &gt;, = or &lt;.</p>
+<table class="wide">
+
+<tbody><tr>
+<td>1. <span class="frac"><span>7</span><span>5</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>9</span><span>12</span></span></td>
+<td>2. <span class="frac"><span>6</span><span>8</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>5</span><span>3</span></span></td>
+<td>3. <span class="frac"><span>8</span><span>8</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>10</span><span>10</span></span></td>
+<td>4. <span class="frac"><span>9</span><span>5</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>9</span><span>12</span></span></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example 2.</strong> <span class="frac"><span>4</span><span>5</span></span> and <span class="frac"><span>5</span><span>6</span></span> are each one part short of 1. Which is closer to 1? Write <span class="frac"><span>4</span><span>5</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>5</span><span>6</span></span>.</p>
+<p><span class="blank" style="width:1.8em"></span> is missing 1/<span class="blank" style="width:0.9em"></span>. <span class="blank" style="width:1.8em"></span> is missing 1/<span class="blank" style="width:0.9em"></span>. A <span class="blank" style="width:1.8em"></span> is smaller. So <span class="blank" style="width:1.8em"></span> &lt; <span class="blank" style="width:1.8em"></span>.</p><div class="foot">Curio Class, grade 4 math, day 18, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div><div class="side"><p><strong>Fix it.</strong> Each answer is wrong. Say what went wrong. Then do it right.</p>
+<ol>
+<li>
+<p>Rio says <span class="frac"><span>5</span><span>6</span></span> = <span class="frac"><span>7</span><span>8</span></span>, because each is one part short of 1.</p>
+<p>What went wrong: <span class="blank" style="width:17.1em"></span></p>
+<p><div class="sketch work"></div></p>
+</li>
+<li>
+<p>Ivy says <span class="frac"><span>2</span><span>3</span></span> is more than <span class="frac"><span>5</span><span>6</span></span>, because thirds are bigger pieces.</p>
+<p>What went wrong: <span class="blank" style="width:17.1em"></span></p>
+<p><div class="sketch work"></div></p>
+</li>
+</ol>
+<p><strong>One part short.</strong> Write the sign. What is each one missing?</p>
+<ol start="3">
+<li>
+<p><span class="frac"><span>3</span><span>4</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>2</span><span>3</span></span>. Each is one part short of 1.</p>
+<p>Missing: <span class="blank" style="width:2.7em"></span> and <span class="blank" style="width:2.7em"></span></p>
+</li>
+<li>
+<p><span class="frac"><span>1</span><span>2</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>99</span><span>100</span></span>. Each is one part short of 1.</p>
+<p>Missing: <span class="blank" style="width:2.7em"></span> and <span class="blank" style="width:2.7em"></span></p>
+</li>
+</ol>
+<p><strong>Dee's claim.</strong> Dee says <span class="frac"><span>3</span><span>4</span></span> and <span class="frac"><span>5</span><span>6</span></span> are the same distance from 1, because each is one part short. Is Dee right? Mark both on the line and explain.</p>
+<div class="sketch tall"></div>
+
+<p><strong>Challenge.</strong> <span class="frac"><span>5</span><span>4</span></span> and <span class="frac"><span>13</span><span>12</span></span> are each one part more than 1. Which is closer to 1? Write <span class="frac"><span>5</span><span>4</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>13</span><span>12</span></span>. <span class="blank" style="width:2.7em"></span></p><div class="foot">Curio Class, grade 4 math, day 18, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div></body></html>

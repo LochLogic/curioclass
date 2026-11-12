@@ -1,0 +1,110 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 13: Cut each part, multiply both numbers: teacher page</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="teacher"><h1>Day 13: Cut each part, multiply both numbers</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>13, section 3.2, understanding day</td></tr><tr><td>Goal</td><td>I can say what cutting each part into n does to both numbers, and write it as multiplying</td></tr><tr><td>Standard parts</td><td>4.OA.B.4 (a) all factor pairs for a whole number in the range 1 to 100; 4.OA.B.4 (c) whether a whole number in the range 1 to 100 is a multiple of a given one-digit number; 4.NF.A.1 (a) two fractions are equivalent, by using visual fraction models; 4.NF.A.1 (b) equivalent fractions: on a line in section 3.1, by the rule and with no drawing in section 3.2 (on a branch or Longer only); 4.NF.A.1 (c) equivalent fractions: with a model in section 3.1, with the rule in section 3.2 (two unit assessment items)</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, a pencil and a ruler; per class, the projector with the display page, and a board (no document camera: draw the line on the board)</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides (it carries the printed lines); exit ticket, 1 per student; the key, 1 for the teacher; the E12 tickets, marked, to hand back</td></tr><tr><td>At home</td><td>the At home view, d013-home.html, 33 minutes with one child</td></tr><tr><td>Leans on</td><td>courses/math-4/u03-2/opener.md; courses/math-4/u03-1/record.md</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
+<p>Print the student page both sides, the exit tickets and the key. Mark and sort the E12 tickets: "yes, the same
+amount" is error B. Put the display page on the projector. Draw a long line from 0 to 1 on the board, marked in
+fifths, with a point at 2/5. It stays up all lesson.</p>
+<h3>The day</h3>
+<h4>5 min. Warm-up: multiples and factor pairs</h4>
+<p>Alone, side 1 (Write the first six multiples of 7. <strong>[7, 14, 21, 28, 35, 42]</strong>, Find all the factor pairs of 18. <strong>[1 × 18, 2 × 9, 3 × 6]</strong>). Hand back the E12 tickets and day 12's written tasks as they work.
+On a task marked "One point?" (6/8 called more, error D), point at the board line: one point, two names. At 4 minutes, the answers
+on the display; students fix in pen. Today these products count parts.</p>
+<p>Check: Do the multiples run 7 to 42? Does 18 have three pairs?</p>
+<h4>15 min. Teaching first: the rule under the line</h4>
+<p>Whole class. Students draw the cuts and fill the frames on side 1 as you go: the old name above the point, the
+new name below it, the rule under the line. You cut the board line; the display shows each step on its own
+screen.</p>
+<p><strong>If day 12's tickets showed many B</strong> (2/3 and 4/5 called the same amount): Jo's claim takes the first 5
+minutes. Read it aloud: "3/4 = 5/6, because I added 2 to the top and the bottom." Mark both on one line from 0
+to 1: two points. Then Tam says 2/5 = 4/7, because he added 2 to the top and the bottom. <strong>[Not equal: 4/7 is past 2/5 on the line. Adding moves the point; cutting does not]</strong>: mark 4/7 beside 2/5 on the board line. Adding moved the point. Example 2
+then opens the cuts, and On your own 5 is dropped.</p>
+<p><strong>Example 1</strong> (The line from 0 to 1 is marked in fifths, with a point at 2/5. Cut each fifth into 2 equal parts. What is the new name? <strong>[2/5 = (2 × 2)/(2 × 5) = 4/10]</strong>). </p>
+<ol>
+<li>Write the old name above the point: 2/5. The whole, 0 to 1, is cut into 5 parts. The point is 2 parts from 0.</li>
+<li>Cut each fifth into 2 equal parts. Draw the new marks.</li>
+<li>Count the parts in the whole now. 5 parts, each cut into 2: 2 × 5 = 10.</li>
+<li>Count the parts from 0 to the point. 2 parts, each cut into 2: 2 × 2 = 4.</li>
+<li>Write the new name below the point: 4/10. The point did not move.</li>
+<li>Write the rule under the line: 2/5 = (2 × 2)/(2 × 5) = 4/10. Each 2 in front is the cut: each fifth cut into 2.</li>
+</ol>
+<p>Point at each number as you say it. The 2 in front is the cut. The 5 and the 10 count the parts in one whole.
+The 2 and the 4 count the parts from 0 to the point.</p>
+<p><strong>Example 2</strong> (The line from 0 to 2 is marked in halves, with a point at 3/2. Cut each half into 3 equal parts. What is the new name? <strong>[3/2 = (3 × 3)/(3 × 2) = 9/6]</strong>). Past 1, the whole is still 0 to 1. </p>
+<ol>
+<li>Write the old name above the point: 3/2. One whole is 0 to 1: 2 halves. The point is 3 halves from 0.</li>
+<li>Cut each half into 3 equal parts, past 1 too. Draw the new marks.</li>
+<li>Count the parts in one whole, 0 to 1. 2 halves, each cut into 3: 3 × 2 = 6.</li>
+<li>Count the parts from 0 to the point. 3 halves, each cut into 3: 3 × 3 = 9.</li>
+<li>Write the new name below the point: 9/6. The point did not move.</li>
+<li>Write the rule: 3/2 = (3 × 3)/(3 × 2) = 9/6. The 3 in front is the cut: each half cut into 3.</li>
+</ol>
+<p><strong>Ask.</strong> "What did the cut change, and what did it not change?" Expect: "the numbers: more parts, each one
+smaller", then "the point". Take "more parts" first and "the point" last.</p>
+<h4>15 min. Cuts on printed lines</h4>
+<p>Alone, 12 minutes (Two lines from 0 to 1 are marked in halves, with a point at 1/2. Cut each half into 3 on the first line. Cut each half into 5 on the second. Write each rule. <strong>[1/2 = (3 × 1)/(3 × 2) = 3/6; 1/2 = (5 × 1)/(5 × 2) = 5/10]</strong>, The line from 0 to 2 is marked in thirds, with a point at 5/3. Cut each third into 2 equal parts. Write the rule. <strong>[5/3 = (2 × 5)/(2 × 3) = 10/6]</strong>, The line from 0 to 2 is marked in fourths, with a point at 5/4. Cut each fourth into 2 equal parts. Write the rule. <strong>[5/4 = (2 × 5)/(2 × 4) = 10/8]</strong>). On each line: the cuts, the old name above, the
+new name below, the rule under it. Then 3 minutes in pairs: partners check each new name by counting on the line,
+the parts from 0 to the point and the parts in one whole. A mismatch gets a question mark, not the answer.</p>
+<p>Check: Are the new names 3/6, 5/10, 10/6 and 10/8? Is the cut in front, on the top and on the bottom?</p>
+<p>Watch for the top left alone, 1/6 or 5/8 (error A): "Were the parts up to the point cut too?" For 7/5 or 7/6
+(error B): "Where on the line do you see adding?" For 10/12 or 10/16 (error K): cover the line past 1 and count
+one whole. If many write A: count the parts up to the point aloud on the board line, before the fix.</p>
+<h4>6 min. Fix it: 2/5 = 2/10</h4>
+<p>Side 2 (Ria cut each fifth into 2 equal parts. She wrote 2/5 = 2/10. Her line shows the point at 4/10. <strong>[2/5 = (2 × 2)/(2 × 5) = 4/10. Ria changed the bottom number only]</strong>). Two minutes alone, one in pairs, then the class. The display shows Ria's working beside
+the right working. Ria counted the new parts in the whole and forgot the parts up to the point. On the board line,
+2/10 is another point, nearer 0. If many keep the 2: count the parts up to the point aloud, one by one.</p>
+<h4>9 min. Is it twice as much?</h4>
+<p>Pairs, then alone.</p>
+<p><strong>Ask.</strong> "We multiplied both numbers by 2. Is 4/10 twice as much as 2/5?" One minute in pairs, then the class.
+Expect "yes, it is times 2" first, then "no, it is the same point". Let the board line settle it: one point, so one
+amount. Twice as many parts, each half as big.</p>
+<p>Then the fix for Sam, side 2 (Sam says 4/10 is twice as much as 2/5, because both numbers were multiplied by 2. <strong>[Not twice: 4/10 and 2/5 are at one point. There are twice as many parts, each half as big]</strong>), 3 minutes alone. The display shows his working beside the right
+one. If many still write "twice" (error F): mark 2/5 and 4/10 on one line; one point.</p>
+<h4>5 min. Pull it together</h4>
+<p>Whole class.</p>
+<p><strong>Ask.</strong> "In 3/2 = (3 × 3)/(3 × 2), which number tells the cut? Which numbers count parts?" Expect: "the 3 in
+front is the cut"; "6 is the parts in one whole, 9 the parts up to the point". The rule is the cut, written down.</p>
+<h4>5 min. Exit ticket</h4>
+<p>Alone, on paper (A line from 0 to 2 is marked in fourths, with a point at 7/4. "Each fourth is cut into 3 equal parts. Finish: 7/4 = (<span class="blank" style="width:0.9em"></span> × 7)/(<span class="blank" style="width:0.9em"></span> × 4) = <span class="blank" style="width:0.9em"></span>/<span class="blank" style="width:0.9em"></span>. What does the number in the blanks tell you about the cut?" <strong>[7/4 = (3 × 7)/(3 × 4) = 21/12; the 3 says each fourth was cut into 3]</strong>), read aloud once. Collect at the door; results go on the record sheet under E13.</p>
+<h3>Other rooms</h3>
+<ul>
+<li><strong>No printer.</strong> Rule each line on the board with its marks and point; students copy it with a ruler, then cut.
+  The key is read aloud.</li>
+</ul>
+<h3>Shorter or longer</h3>
+<p>Shorter: drop On your own 5 and the pairs check (students count their own). Never drop the rule under each line,
+the fix for 2/5 = 2/10 or the twice question. Longer: the challenge (A point is at 5/3. Each third is cut into equal parts. The new name is <span class="blank" style="width:0.9em"></span>/12. Into how many parts was each third cut? Finish the name. <strong>[Each third cut into 4: 5/3 = (4 × 5)/(4 × 3) = 20/12]</strong>), then the extension
+(Write 3/4 as hundredths. Into how many parts is each fourth cut? <strong>[Each fourth cut into 25: 3/4 = (25 × 3)/(25 × 4) = 75/100]</strong>), for the few who are ready: hundredths come on day 15.</p>
+<h3>Words and supports</h3>
+<p>Word Wall cards: multiply, equal, cut, parts in one whole, each shown on a cut line. A student may say the cut in
+a home language first. Frame on the display: "Each part was cut into <span class="blank" style="width:0.9em"></span>, so I multiply both numbers by <span class="blank" style="width:0.9em"></span>."
+Lines may be printed large; a student may say the cuts and you draw them.</p>
+<h3>Tomorrow</h3>
+<p>On the ticket, 7/12 (error A, the top kept): day 14 opens with 2/5 = 2/10 again, counting the parts up to the
+point aloud. 10/7 (error B, 3 added to both): day 14 opens with 2/5 and 4/7 marked on one line. "The fraction is
+3 times as big" (error F): day 14 opens with 2/5 and 4/10 on one line, one point. Students who named 7/4 as 21/24
+count one whole with you before day 14's teaching.</p>
+<h3>Credit</h3>
+<p>Ours. Informed by, not adapted from: Illustrative Mathematics K-5, grade 4, unit 2, lesson 10 (CC BY 4.0,
+https://curriculum.illustrativemathematics.org/k5/), the Progressions for the Common Core State Standards,
+Number and Operations, Fractions, 3 to 5, and the federal fractions practice guide, roadblock 2.3.</p><div class="foot">Curio Class, grade 4 math, day 13, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></body></html>

@@ -1,0 +1,121 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 21: Same count, different parts: teacher page</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="teacher"><h1>Day 21: Same count, different parts</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>21, section 3.4, understanding day</td></tr><tr><td>Goal</td><td>I can compare by making the numerators the same</td></tr><tr><td>Standard parts</td><td>4.NF.A.1 (c) equivalent fractions: with a model in section 3.1, with the rule in section 3.2 (two unit assessment items); 4.NF.A.2 (d) two fractions with different numerators and different denominators: to 1/2 or 1 in section 3.3, by a common denominator or numerator in section 3.4 (two unit assessment items); 4.NF.A.2 (f) the result of a comparison with &gt;, = or &lt;; 4.NF.A.2 (g) the conclusion, for example with a visual fraction model</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, a pencil and the student page (its two printed lines, tenths and twelfths, are the day&#x27;s number lines); per class, the projector with the display page, and a board (no document camera: hold a large tenths strip and twelfths strip up side by side, or draw both lines on the board)</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit ticket, 1 per student; the key, 1 for the teacher; the E20 tickets, marked, to hand back</td></tr><tr><td>At home</td><td>the At home view, d021-home.html, 37 minutes with one child</td></tr><tr><td>Leans on</td><td>courses/math-4/u03-4/opener.md; courses/math-4/u03-1/record.md</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
+<p>Print the student page both sides, the exit tickets and the key. Mark the E20 tickets and sort them by error: A
+(3/20 and 7/20), D (3/4 &lt; 7/10), G (sign turned round). Put the display page on the projector. Cut two long paper
+strips of one length; mark one in tenths and one in twelfths, to hold up.</p>
+<h3>The day</h3>
+<h4>5 min. Warm-up: an equal fraction and a benchmark</h4>
+<p>Alone, side 1: 5/6 = <span class="blank" style="width:0.9em"></span>/12 <strong>[10]</strong> and Mark 9/10 and 1/2 on the tenths line. Write &gt;, = or &lt;: 9/10 <span class="blank" style="width:0.9em"></span> 1/2. <strong>[&gt;: 9/10 is past 5/10, which is 1/2]</strong>, on the tenths line. Then hand back the E20 tickets.</p>
+<p><strong>If day 20's tickets showed many A</strong> (3/20 and 7/20, one number kept): before Example 2, cut one fourth of the
+tenths line's whole into 5 on the board and count: 3 fourths is 15 twentieths, not 3. Take the minute from Pull it
+together.</p>
+<p><strong>If many D</strong> (3/4 &lt; 7/10): hold up the two strips, tenths over twelfths, and say four pairs aloud as "parts of
+size": "4 parts of size one tenth", "4 parts of size one twelfth".</p>
+<p><strong>If many G</strong> (the sign turned round): read six comparisons aloud as sentences; the open side faces the greater
+number. Take the minutes from Pull it together.</p>
+<h4>5 min. Teaching first: same count, different parts</h4>
+<p>Whole class. Students fill the frames on side 1 as you go. The display shows each step on its own screen.</p>
+<p><strong>Example 1</strong> (Which is greater, 1/10 or 1/12? <strong>[1/10 &gt; 1/12: a tenth is longer than a twelfth]</strong>). Hold the two strips up, ends together.</p>
+<ol>
+<li>Look at the two lines on side 1. Both go from 0 to 1: the same whole.</li>
+<li>The top line is cut into 10 parts. The bottom line is cut into 12 parts.</li>
+<li>More parts in the same whole means each part is shorter.</li>
+<li>One tenth is longer than one twelfth. So 1/10 &gt; 1/12.</li>
+</ol>
+<p><strong>Example 2</strong> (Compare 2/5 and 4/12. Make the numerators the same. <strong>[2/5 = 4/10, and 4/10 &gt; 4/12, so 2/5 &gt; 4/12]</strong>). </p>
+<ol>
+<li>The numerators are 2 and 4. Make 2/5 have 4 parts, like 4/12.</li>
+<li>Cut each fifth into 2 equal parts: 2/5 = (2 × 2)/(2 × 5) = 4/10.</li>
+<li>Now both have 4 parts: 4/10 and 4/12. Find both on the lines on side 1.</li>
+<li>Tenths are longer than twelfths. 4 longer parts are more than 4 shorter parts.</li>
+<li>4/10 &gt; 4/12, so 2/5 &gt; 4/12.</li>
+<li>Check with 1/2: both are under 1/2, so 1/2 does not settle it. The renaming does.</li>
+</ol>
+<p><strong>Ask.</strong> "Both have 4 parts. Which parts are longer, tenths or twelfths?" Expect: tenths, because the same whole is
+cut into fewer parts. Take "4 and 4 are the same, so they are equal" first, then point at the two lines: the counts
+match, the lengths do not.</p>
+<h4>10 min. Two ways, one pair</h4>
+<p>Whole class, then pairs. Students fill the frame for Example 3.</p>
+<p><strong>Example 3</strong> (Compare 1/3 and 2/8 two ways. Which way is quicker? <strong>[1/3 = 2/6, and 2/6 &gt; 2/8; or 8/24 &gt; 6/24. So 1/3 &gt; 2/8. Same numerators is quicker here]</strong>). </p>
+<ol>
+<li>Way 1, same numerators. 2/8 has 2 parts. Cut each third into 2: 1/3 = 2/6.</li>
+<li>Sixths are longer than eighths: fewer parts in the same whole. So 2/6 &gt; 2/8, and 1/3 &gt; 2/8.</li>
+<li>Way 2, same denominators. 24 is a multiple of 3 and of 8. 1/3 = 8/24 and 2/8 = 6/24.</li>
+<li>8/24 &gt; 6/24, so 1/3 &gt; 2/8. The same sign both ways.</li>
+<li>Which was quicker? Same numerators: one fraction renamed, by 2. Same denominators: both renamed, by 8 and by 3.</li>
+</ol>
+<p><strong>Ask.</strong> "Which way is quicker for this pair?" One minute of turn-and-talk in pairs, then the class. Expect: same
+numerators, because only 1/3 needed renaming, by 2. Then: "When would the other way be quicker?" Expect: when one
+denominator fits into the other, as 3 into 12. Do not settle on one way for every pair.</p>
+<h4>7 min. Fix it: Mia's claim</h4>
+<p>Side 1 (Mia says 3/12 is more than 3/10, because 12 is more than 10. Is she right? <strong>[No. Both have 3 parts, and twelfths are shorter than tenths, so 3/12 &lt; 3/10]</strong>). Two minutes alone, two in pairs, then the class: the display shows Mia's working beside the
+right working (error D). If many still agree with Mia: on the two lines,
+count 3 tenths from 0 and 3 twelfths from 0, and compare where each stops.</p>
+<h4>20 min. On your own: six pairs</h4>
+<p>Alone, side 2 (4/5 <span class="blank" style="width:0.9em"></span> 4/6 <strong>[&gt;: fifths are longer than sixths]</strong> to 1/3 <span class="blank" style="width:0.9em"></span> 5/12 <strong>[1/3 = 4/12, and 4/12 &lt; 5/12, so &lt; (or 5/15 &lt; 5/12). Same denominators is quicker here]</strong>). Each pair gets renamed fractions, a sign, and the word for the
+larger parts. Pairs 1 and 2 already have the same numerators; 3 and 4 need one fraction renamed; 5 is equal; for 6
+the student says which way was quicker. A student may sketch a line in the box.</p>
+<p>Walk with one question: "How many parts, and of what size?" Watch for:</p>
+<ul>
+<li>&lt; on 1 or &gt; on 2: the bigger denominator read as the bigger fraction (error D). Point to the two lines on side 1.</li>
+<li>3/4 for 1/4 on 3, or 8/6 for 4/6 on 4: one number changed (error A). Ask what each fourth was cut into.</li>
+<li>The right renaming, then the sign turned round (G): ask them to read it aloud as a sentence.</li>
+<li>On 6, "thirds are bigger pieces" (error J): ask "how many parts, of what size?" for each.</li>
+</ul>
+<p>At 14 minutes, partners swap pages and read each comparison aloud as a sentence ("4 fifths is greater than 4
+sixths"). Check: Partners read each comparison aloud and agree on the sign. A mismatch gets a question mark, not
+the answer. If many miss 3 or 4, redo Example 2 together with 1/4 and 3/10.</p>
+<h4>8 min. Pull it together</h4>
+<p>Whole class.</p>
+<p><strong>Ask.</strong> "Pair 1 had the same numerators. Pair 6 was quicker in twelfths. How do you choose?" Expect: "look for a
+denominator or a numerator that fits the other"; "either way gives the same sign". Show Example 3's two ways side by side.</p>
+<p><strong>Ask.</strong> "Why is 4 tenths more than 4 twelfths, when 12 is more than 10?" Expect: twelfths are shorter, because the
+same whole is cut into more parts.</p>
+<h4>5 min. Exit ticket</h4>
+<p>Alone, on paper ((a) 5/12 <span class="blank" style="width:0.9em"></span> 5/8. (b) Make the numerators the same, then compare: 2/3 <span class="blank" style="width:0.9em"></span> 6/10. Which parts are bigger, and how do you know? <strong>[(a) &lt;; (b) 2/3 = 6/9, ninths are bigger than tenths because the whole is cut into fewer parts, so 2/3 &gt; 6/10]</strong>). Read it aloud once, signs as words. Collect at the door; write results on the record
+sheet under E21.</p>
+<h3>Other rooms</h3>
+<ul>
+<li><strong>No printer.</strong> Draw the two lines on the board, the same length, one in tenths and one in twelfths; students
+  copy the pairs and rule their own two lines of one length.</li>
+<li><strong>One projector.</strong> Show one pair at a time; each student writes the renamed fractions and holds up a sign card
+  before the line is shown.</li>
+</ul>
+<h3>Shorter or longer</h3>
+<p>Shorter: drop pair 5 and the partner reading (students read their own aloud quietly). Never drop the fix or the
+renamed fractions written beside each sign. Longer: the challenge (Find a fraction with numerator 4. It must be greater than 2/5 and less than 1/2. <strong>[4/9: 2/5 = 4/10 and 1/2 = 4/8, and ninths are between]</strong>): the answer is a ninth, off the
+list, found only by making the numerators the same.</p>
+<h3>Words and supports</h3>
+<p>Word Wall cards: numerator, denominator, greater than, less than, common numerator. Read every sign as words. Frame
+on the display: "<span class="blank" style="width:0.9em"></span> and <span class="blank" style="width:0.9em"></span> both have <span class="blank" style="width:0.9em"></span> parts. <span class="blank" style="width:0.9em"></span> are longer than <span class="blank" style="width:0.9em"></span>, so <span class="blank" style="width:0.9em"></span> &gt; <span class="blank" style="width:0.9em"></span>."</p>
+<h3>Tomorrow</h3>
+<p>On the ticket, (a) &gt; or (b) &lt; (error D, the bigger numbers read as the bigger fraction): day 22's teaching first
+puts the tenths and twelfths lines up again and says the pair as "parts of size" before the two ways. 2/3 = 6/3
+(error A, one number kept): day 22 has those students cut each third into 3 on a line and count. Students who wrote
+a sign with no renamed fractions sit near you for day 22's first ten minutes.</p>
+<h3>Credit</h3>
+<p>Ours. Informed by, not adapted from: Illustrative Mathematics K-5, grade 4, unit 2 (CC BY 4.0,
+https://curriculum.illustrativemathematics.org/k5/), and the Progressions for the Common Core State Standards,
+Number and Operations, Fractions, 3 to 5.</p><div class="foot">Curio Class, grade 4 math, day 21, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></body></html>

@@ -1,0 +1,117 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 19: Rename one, then compare: teacher page</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="teacher"><h1>Day 19: Rename one, then compare</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>19, section 3.4, understanding day</td></tr><tr><td>Goal</td><td>I can compare two fractions when one can be renamed in the other&#x27;s parts</td></tr><tr><td>Standard parts</td><td>4.OA.B.4 (c) whether a whole number in the range 1 to 100 is a multiple of a given one-digit number; 4.NF.A.2 (d) two fractions with different numerators and different denominators: to 1/2 or 1 in section 3.3, by a common denominator or numerator in section 3.4 (two unit assessment items); 4.NF.A.2 (f) the result of a comparison with &gt;, = or &lt;</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, a pencil and the paper strips from section 3.1 in their envelope; per class, the projector with the display page, a board, and a large thirds strip and a large twelfths strip cut to one length (no document camera: hold the large strips up, or draw them on the board)</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit ticket, 1 per student; the key, 1 for the teacher</td></tr><tr><td>At home</td><td>the At home view, d019-home.html, 35 minutes with one child</td></tr><tr><td>Leans on</td><td>courses/math-4/u03-4/opener.md; courses/math-4/u03-1/record.md</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
+<p>Print the student page both sides, the exit tickets and the key. Put the display page on the projector. Cut a
+thirds strip and a twelfths strip of one length from card, big enough for the room to see. Strip envelopes from
+section 3.1 go on desks.</p>
+<h3>The day</h3>
+<h4>5 min. Warm-up: a common multiple and one half</h4>
+<p>Alone, top of side 1 (Write a number that is a multiple of both 3 and 4. <strong>[12 (24 or 36 also work)]</strong>, Use 1/2 to compare. Write &gt;, = or &lt;. 2/12 <span class="blank" style="width:0.9em"></span> 4/6 <strong>[&lt;: 2/12 is less than 1/2 and 4/6 is more]</strong>). Hand back day 18's written task (Dee's claim) as they work. Read the answers aloud at
+4 minutes. Take 12, 24 or 36 for
+the first, then say "12 is 3 times 4": Example 1 needs it. For the second, each fraction goes on its own side of
+the 1/2 mark on the printed line. A "&gt;" there is error D.</p>
+<p><strong>If day 18's tickets showed many D</strong> (9/10 &gt; 7/6): the D students sit near you, and in Example 1 give Kai's
+claim a full minute of turn-and-talk before step 2. <strong>If many I</strong> (7/8 = 11/12, "each is one part short"): after
+Example 2, do Pair 1 together: 3/4 and 7/8 are each one part short, yet 6/8 &lt; 7/8. <strong>If many J</strong> ("eighths are bigger, so 7/8 &gt; 11/12"): in both examples, say each fraction as "how many
+parts, of what size" before you rename.</p>
+<h4>2 min. Two pairs from grade 3</h4>
+<p>Alone, side 1 (Circle the larger: 3/8 or 5/8. <strong>[5/8]</strong>, Circle the larger: 1/4 or 1/6. <strong>[1/4]</strong>): readiness item 3 again, with new numbers. Hands up for each
+answer. A child who circles 1/6 (error D) lays a fourths strip beside a sixths strip: more parts, each smaller.
+They sit near you for the examples.</p>
+<h4>13 min. Teaching first: two worked examples</h4>
+<p>Whole class. Students fill the frames on side 1 as you go and cut and mark on the printed lines. The display
+shows each step on its own screen. At step 4 of Example 1, hold the large thirds strip on the twelfths strip.</p>
+<p><strong>Example 1</strong> (Compare 2/3 and 7/12. Write &gt;, = or &lt;. <strong>[2/3 = 8/12 and 8/12 &gt; 7/12, so 2/3 &gt; 7/12]</strong>). </p>
+<ol>
+<li>Kai says 7/12 is more than 2/3, because 7 and 12 are bigger. Is he right?</li>
+<li>Thirds and twelfths are parts of different sizes. We cannot compare the 2 and the 7 yet.</li>
+<li>Does 3 fit into 12? 12 = 3 × 4. So cut each third into 4 equal parts.</li>
+<li>Cut each third on the line into 4. The whole now has 12 parts. Lay the thirds strip on the twelfths strip: one third is 4 twelfths.</li>
+<li>2/3 = (4 × 2)/(4 × 3) = 8/12. The point did not move; it has a new name.</li>
+<li>Mark 7/12 on the same line: count 7 twelfths from 0.</li>
+<li>8/12 and 7/12 have parts of one size. 8 is more than 7, so 8/12 &gt; 7/12.</li>
+<li>So 2/3 &gt; 7/12: two thirds is greater than seven twelfths. Kai is not right.</li>
+</ol>
+<p><strong>Ask.</strong> "Why can't we just compare the 2 and the 7 in 2/3 and 7/12?" Expect, in this order: "they are different
+parts"; "a third is bigger than a twelfth"; "a third is 4 twelfths, so 2 thirds is 8 twelfths". Finish on the
+last: it names the size.</p>
+<p><strong>Example 2</strong> (Compare 5/4 and 9/8. Write &gt;, = or &lt;. <strong>[5/4 = 10/8 and 10/8 &gt; 9/8, so 5/4 &gt; 9/8]</strong>). </p>
+<ol>
+<li>Fourths and eighths. Which fits into the other? 8 = 4 × 2.</li>
+<li>Cut each fourth on the line into 2 equal parts, all the way from 0 to 2.</li>
+<li>5/4 = (2 × 5)/(2 × 4) = 10/8.</li>
+<li>Mark 9/8: count 9 eighths from 0. Eight eighths make 1, so 9/8 is one eighth past 1.</li>
+<li>10/8 and 9/8 have parts of one size. 10 is more than 9, so 10/8 &gt; 9/8.</li>
+<li>So 5/4 &gt; 9/8: five fourths is greater than nine eighths. Check: 5/4 is to the right of 9/8 on the line.</li>
+</ol>
+<p>Write it the long way every time: 2/3 = 8/12 and 8/12 &gt; 7/12, so 2/3 &gt; 7/12. Read every sign as words.</p>
+<h4>8 min. Fix it: two wrong answers</h4>
+<p>Side 2 (Rae says: "9/12 is more than 5/6, because 9 and 12 are bigger." <strong>[5/6 = 10/12, and 10/12 &gt; 9/12, so 5/6 &gt; 9/12. Rae read the numbers as whole numbers]</strong>, Ivy says: "4/5 = 4/10, so 4/5 &lt; 7/10." <strong>[4/5 = 8/10, and 8/10 &gt; 7/10, so 4/5 &gt; 7/10. Ivy changed the bottom number only]</strong>). Pairs for 5 minutes, then the class; the display shows each wrong working
+beside the right one.</p>
+<p>Rae read 9 and 12 as whole numbers (error D): ask "what size are the parts?", then cut each sixth into 2. Ivy
+changed the bottom number only (error A): ask "how many tenths are in one fifth?" and count them on a line.</p>
+<p>If many back Rae: one strip in tenths and one in twelfths side by side, then four pairs said aloud as "parts of
+size", as in "7 parts of size one tenth". If many back Ivy: fold a fifths strip into tenths and count the shaded
+parts aloud.</p>
+<h4>20 min. Four more pairs</h4>
+<p>Alone for 15 minutes, side 2 (3/4 <span class="blank" style="width:0.9em"></span> 7/8 <strong>[3/4 = 6/8 and 6/8 &lt; 7/8, so 3/4 &lt; 7/8]</strong>, 2/4 <span class="blank" style="width:0.9em"></span> 3/8 <strong>[2/4 = 4/8 and 4/8 &gt; 3/8, so 2/4 &gt; 3/8]</strong>, 3/12 <span class="blank" style="width:0.9em"></span> 1/4 <strong>[1/4 = 3/12, so 3/12 = 1/4]</strong>, 13/10 <span class="blank" style="width:0.9em"></span> 7/5 <strong>[7/5 = 14/10 and 13/10 &lt; 14/10, so 13/10 &lt; 7/5]</strong>): rename one fraction,
+mark both on the printed line, write the comparison the long way, then the sign. Each line is printed in the
+parts of the fraction to rename; the child cuts each part. Strips are allowed.</p>
+<p>Then 5 minutes in pairs: partners swap and read each comparison aloud as a sentence. A mismatch gets a question
+mark, not the answer.</p>
+<p>Check: Read it aloud. Is the greater one to the right on the line? Does the open side face it?</p>
+<p>Watch for renaming the wrong fraction (fourths from eighths), a name with one number changed (A), and the right
+renaming with the sign turned round (error G, first met today): have the child read it aloud. Pair 3 is equal,
+one point with two names. Pair 4 runs past 1.</p>
+<h4>7 min. Pull it together</h4>
+<p>Whole class.</p>
+<p><strong>Ask.</strong> "How did you choose which fraction to rename?" Expect: "the one whose bottom number fits into the
+other's"; "8 is 4 times 2, so fourths cut into eighths".</p>
+<p><strong>Ask.</strong> "Pair 3 came out equal. What does that look like on the line?" Expect: one point with two names.</p>
+<p>Three children read a comparison aloud; the class checks the sign.</p>
+<h4>5 min. Exit ticket</h4>
+<p>Alone. The ticket (Rename one fraction in each pair so the parts are the same size. Then write &gt;, = or &lt;. (a) 5/12 <span class="blank" style="width:0.9em"></span> 1/2 (b) 3/2 <span class="blank" style="width:0.9em"></span> 11/8. <strong>[(a) 5/12 &lt; 6/12, so &lt;; (b) 12/8 &gt; 11/8, so &gt;]</strong>), read aloud once, signs included. Collect it, and write the results under E19 on
+the record sheet.</p>
+<h3>Other rooms</h3>
+<ul>
+<li><strong>No printer.</strong> Copy the pairs on the board; students rule a line for each, mark the parts as well as they can,
+  and you read the key aloud.</li>
+<li><strong>No strips.</strong> Fold paper strips of one length in fourths, eighths and twelfths.</li>
+</ul>
+<h3>Shorter or longer</h3>
+<p>Shorter: drop the second <strong>Ask.</strong> in "Pull it together" and Pair 2. Never drop the fixes, the printed lines or
+the comparison written the long way. Longer: the challenge (Write a fraction in twelfths that is between 3/4 and 1. <strong>[10/12 or 11/12 (3/4 = 9/12)]</strong>).</p>
+<h3>Words and supports</h3>
+<p>Word Wall cards: greater than, less than, equal to, twelfths, rename, each beside a marked line. Read every sign
+as words. Frame on the display and the student page: "<span class="blank" style="width:0.9em"></span> and <span class="blank" style="width:0.9em"></span> are both <span class="blank" style="width:0.9em"></span>ths now, and <span class="blank" style="width:0.9em"></span> is more than <span class="blank" style="width:0.9em"></span>, so
+<span class="blank" style="width:0.9em"></span> &gt; <span class="blank" style="width:0.9em"></span>." Access: a sign card (&gt;, =, &lt;) may be placed instead of written, and a comparison may be said aloud.</p>
+<h3>Tomorrow</h3>
+<p>On the ticket, (a) &gt; or (b) &lt; with no renaming (error D): day 20's task opens with the wrong example on 9/12 and
+5/6 and the tenths and twelfths strips. 1/2 = 1/12, or 3/2 = 3/8 (error A): day 20 opens with the one on 4/5 and
+7/10, folded into tenths, before its own A example. The right renaming with the sign turned round (error G):
+day 20's warm-up reads six comparisons aloud as sentences, the open side to the greater.</p>
+<h3>Credit</h3>
+<p>Ours. Informed by, not adapted from: Illustrative Mathematics K-5, grade 4, unit 2 (CC BY 4.0,
+https://curriculum.illustrativemathematics.org/k5/), and the Progressions for the Common Core State Standards,
+Number and Operations, Fractions, 3 to 5.</p><div class="foot">Curio Class, grade 4 math, day 19, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></body></html>

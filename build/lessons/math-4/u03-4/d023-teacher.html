@@ -1,0 +1,108 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 23: Pick a way and prove it: teacher page</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="teacher"><h1>Day 23: Pick a way and prove it</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>23, section 3.4, application day</td></tr><tr><td>Goal</td><td>I can pick a way to compare, and prove my answer</td></tr><tr><td>Standard parts</td><td>4.NF.A.2 (d) two fractions with different numerators and different denominators: to 1/2 or 1 in section 3.3, by a common denominator or numerator in section 3.4 (two unit assessment items); 4.NF.A.2 (e) that a comparison is valid only when the two fractions refer to the same whole; 4.NF.A.2 (f) the result of a comparison with &gt;, = or &lt;; 4.NF.A.2 (g) the conclusion, for example with a visual fraction model</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, a pencil and sign cards (&gt;, =, &lt;) from day 19; per pair, the card key (cut from a copy of the key); per class, the projector with the display page, and a board (no document camera: draw it on the board or hold up a large paper strip)</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; the key, 1 per pair and 1 for the teacher; exit ticket, 1 per student</td></tr><tr><td>At home</td><td>the At home view, d023-home.html, 39 minutes with one child</td></tr><tr><td>Leans on</td><td>courses/math-4/u03-4/opener.md; courses/math-4/u03-1/record.md</td></tr><tr><td>Uses when it exists</td><td>tools/fraction-wall-duel/fraction-wall-duel.html</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
+<p>Print what the header lists. Stack the pairs' keys and cut out the eight card rows (s03-P23-2 to s03-P23-9,
+together in the table): that strip is the card key, and the rest stays hidden. Put the display page on the
+projector. Have day 22's written tasks ready to hand back, look-fors ticked.</p>
+<h3>The day</h3>
+<h4>5 min. Warm-up: one benchmark</h4>
+<p>Alone, no line given. Hand back day 22's written tasks as students start. Use 1/2 to decide. Write &gt;, = or &lt;. 45/100 <span class="blank" style="width:0.9em"></span> 9/12 <strong>[&lt;: 45/100 is less than 1/2 and 9/12 is more]</strong> Students write the sign
+and one sentence. Go over it at 5 minutes: half of 100 is 50, half of 12 is 6. A student who wrote &gt; read 45
+and 100 as big numbers (error D).</p>
+<p><strong>If day 22's tickets showed many D</strong> ((a) &lt;, (b) &gt; or (c) &lt;): before the example, two minutes from the cards.
+Hold up a strip cut in tenths and one in twelfths, and say four pairs aloud as "parts of size": "7 parts of size
+one twelfth". <strong>If many G</strong> (signs turned round): read six comparisons from day 22 aloud as sentences; the open
+side faces the greater number. Both: D first, G in the stories' pull-together.</p>
+<h4>5 min. Teaching first: one pair, three ways</h4>
+<p>Whole class. Students fill the three lines of the frame on side 1 as you go. The display shows each step on its
+own screen; sketch one line from 0 to 1 on the board for the first way.</p>
+<p><strong>Example</strong> (Compare 2/10 and 3/4 three ways: with 1/2, with the same parts, and with the same count. <strong>[2/10 &lt; 3/4: 2/10 is under 1/2 and 3/4 is over; 4/20 &lt; 15/20; 6/30 &lt; 6/8]</strong>). </p>
+<ol>
+<li>With 1/2: half of 10 is 5, and 2 is less, so 2/10 is under 1/2.</li>
+<li>Half of 4 is 2, and 3 is more, so 3/4 is over 1/2. One under, one over: 2/10 &lt; 3/4.</li>
+<li>Same parts: 20 is a multiple of 10 and of 4. 2/10 = 4/20 and 3/4 = 15/20.</li>
+<li>The parts are the same size now, and 4 parts are fewer than 15. So 4/20 &lt; 15/20, and 2/10 &lt; 3/4.</li>
+<li>Same count: make both tops 6. 2/10 = 6/30 and 3/4 = 6/8.</li>
+<li>6 parts each. Eighths are bigger than thirtieths, because the whole is cut into fewer parts. So 6/30 &lt; 6/8, and 2/10 &lt; 3/4.</li>
+<li>Three ways, one answer. Here 1/2 was quickest, because one is under and one is over. When both are under or both over, 1/2 cannot settle it.</li>
+</ol>
+<p>Say it plainly: every way gives the same sign, so pick the one that is quickest for this pair, then prove it.</p>
+<h4>25 min. Cards, with a partner holding the key</h4>
+<p>Pairs. Fraction Wall Duel may take this slot once it is built and played; until it exists, the day runs on the
+eight cards on side 1 (5/10 <span class="blank" style="width:0.9em"></span> 7/12 <strong>[&lt;: 5/10 is 1/2, and 7/12 is more than 1/2]</strong>, 2/8 <span class="blank" style="width:0.9em"></span> 3/12 <strong>[=: 2/8 = 6/24 and 3/12 = 6/24 (both are 1/4)]</strong>, Jay read 1/2 of a short book. Kim read 1/3 of a long book. Who read more pages? <strong>[Cannot tell: the books are different wholes. 1/2 &gt; 1/3 is true only of the same whole]</strong>, 8/12 <span class="blank" style="width:0.9em"></span> 4/5 <strong>[&lt;: 4/5 = 8/10, and tenths are bigger than twelfths (or 40/60 &lt; 48/60)]</strong>, 9/8 <span class="blank" style="width:0.9em"></span> 5/4 <strong>[&lt;: 5/4 = 10/8, and 9/8 &lt; 10/8]</strong>, 6/8 <span class="blank" style="width:0.9em"></span> 8/10 <strong>[&lt;: 30/40 &lt; 32/40; or 6/8 is 1/4 short of 1 and 8/10 is only 1/5 short]</strong>,
+Mo drank 4/8 of a small carton of milk. Lu drank 1/6 of a big carton. Who drank more milk? <strong>[Cannot tell: the cartons are different wholes. 4/8 &gt; 1/6 is true only of the same whole]</strong>, 1/5 <span class="blank" style="width:0.9em"></span> 2/12 <strong>[&gt;: 1/5 = 2/10, and tenths are bigger than twelfths (or 12/60 &gt; 10/60)]</strong>). Partner A takes card 1 and says the sign and the way before writing anything;
+then writes the proof in the row. Partner B holds the card key and says only "yes" or "try again". Swap for
+card 2, and so on.</p>
+<p>Two cards are traps (the book and the milk): the two fractions are of different wholes, so the answer is
+"cannot tell". Read both aloud to the class at the start. Warn pairs that a trap is only a trap when the story
+names two different things.</p>
+<p>Watch for:</p>
+<ul>
+<li>A &gt; on 8/12 and 4/5, &gt; on 9/8 and 5/4, &lt; on 1/5 and 2/12 or &lt; on 2/8 and 3/12: bigger numbers read as a bigger
+  fraction (error D). Ask "how many parts, and of what size?"</li>
+<li>An = on 6/8 and 8/10, "each is two parts short" (error I): ask which missing piece is longer, 2/8 or 2/10.</li>
+<li>"Jay" or "Mo" (error H): ask "half of what?"</li>
+<li>1/2 tried on 8/12 and 4/5, both over: send them to same parts or same count.</li>
+</ul>
+<p>If many miss the traps, hold two strips of different length and fold each in half. Stop at 25 minutes; collect
+the card keys.</p>
+<h4>20 min. Two stories, the written task, the planned question</h4>
+<p><strong>Stories, 8 minutes, alone</strong> (Ivy's ribbon is 13/10 meters long. Max's ribbon is 5/3 meters long. Whose ribbon is longer? Write the comparison with &gt;, = or &lt;. <strong>[Max's: 13/10 &lt; 5/3 (39/30 &lt; 50/30; or 13/10 is 3/10 past 1, 5/3 is 2/3 past 1, and 3/10 &lt; 2/3)]</strong>, Noor ate 4/6 of a small sandwich. Sam ate 3/5 of a big sandwich. Noor says, "I ate more, because 4/6 &gt; 3/5." Can she be sure? Tell why. <strong>[No. 4/6 &gt; 3/5 is true (20/30 &gt; 18/30), but the sandwiches are different wholes, so the fractions cannot tell who ate more]</strong>). Read both aloud once. The ribbons are past 1;
+the sandwiches are different wholes. Then 2 minutes: partners compare answers, and each mismatch gets a
+question mark.</p>
+<p>Check: Max's ribbon is longer, 13/10 &lt; 5/3. Noor cannot be sure: the sandwiches are different wholes.</p>
+<p>Watch for "Ivy's" (D) and "Max's" with 13/10 &gt; 5/3 written (G). For Noor, a "yes" is H; a "no" with no reason
+gets "why not?".</p>
+<p><strong>Written task, 6 minutes, alone</strong>, the box at the foot of side 2: Which is greater, 5/6 or 9/10? Prove it two ways. One way may be a number line. <strong>[9/10: 25/30 &lt; 27/30; or each is one part short of 1 and a tenth is smaller than a sixth; or both on one line. 5/6 &lt; 9/10]</strong>. A student may answer aloud to
+you instead (a scribe is allowed). Collect the pages at the end; read after class against the key's look-fors
+and samples.</p>
+<p><strong>Pull it together, 4 minutes, whole class.</strong></p>
+<p><strong>Ask.</strong> "Which way did you pick for 6/8 and 8/10, and why not another?" Expect: same parts or same count,
+"1/2 can't settle it: both are over". Take one of each, then: "For 1/5 and 2/12?" Expect same count, one rename.</p>
+<p><strong>Ask.</strong> "When does 'cannot tell' fit?" Expect: only when the wholes are different things.</p>
+<h4>5 min. Exit ticket</h4>
+<p>Alone, on paper: No line given. "Ana and Ben walk the same trail. Ana has walked 2/5 of it. Ben has walked 3/8 of it. Who has walked farther? Write the comparison with &gt;, = or &lt;, and show or tell how you know." <strong>[Ana: 2/5 &gt; 3/8 (16/40 &gt; 15/40, or 6/15 &gt; 6/16)]</strong>. Read it aloud once. Write the results on the record sheet under E23.</p>
+<h3>Other rooms</h3>
+<ul>
+<li><strong>No printer.</strong> Write the eight cards on the board, numbered; pairs work in notebooks, and the partner reads
+  the key from your copy, card by card.</li>
+<li><strong>One projector.</strong> One card at a time on the screen. Every student writes the sign and the reason, then holds
+  up a sign card, or "cannot compare" for a trap.</li>
+</ul>
+<h3>Shorter or longer</h3>
+<p>Shorter: drop cards 1 and 8 and the partner swap after the stories. Never drop the traps, the written task or
+the proof on each card. Longer: "Find a fraction between 2/3 and 3/4. Prove it.", on the back of side 2.</p>
+<h3>Words and supports</h3>
+<p>Word Wall cards: greater than, less than, common denominator, common numerator, same whole. Each card sits
+beside a marked line. Frame on the display: "<span class="blank" style="width:0.9em"></span> and <span class="blank" style="width:0.9em"></span> are both <span class="blank" style="width:0.9em"></span>ths now, and <span class="blank" style="width:0.9em"></span> is more than <span class="blank" style="width:0.9em"></span>, so <span class="blank" style="width:0.9em"></span> &gt; <span class="blank" style="width:0.9em"></span>."
+Read every sign aloud as words. A student may place sign cards instead of writing a sign, and may say a proof
+aloud.</p>
+<h3>Tomorrow</h3>
+<p>Day 24 is the end-of-unit assessment; mark E23 tonight. "Ben" is error D. Ana's answer with 2/5 &lt; 3/8 written
+is error G. "Cannot tell" takes the same-whole rule too far: the trail is one whole. Hand back the E23 tickets
+and the written tasks, look-fors ticked, when pencils go down on day 24, so their D, G and "cannot tell" join the
+respond groups.</p>
+<h3>Credit</h3>
+<p>Ours. Informed by, not adapted from: the Progressions for the Common Core State Standards, Number and
+Operations, Fractions, grades 3 to 5.</p><div class="foot">Curio Class, grade 4 math, day 23, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></body></html>

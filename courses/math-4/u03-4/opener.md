@@ -24,8 +24,8 @@ multiple of the other, so only one fraction is renamed.
 
 **When neither fits the other.** For 2/3 and 4/5, thirds and fifths both cut evenly into fifteenths, because 15 is
 a multiple of 3 and of 5 (unit 1's common multiples): 10/15 and 12/15. The product of the two denominators always
-works. Any common multiple works, and the least one is not needed; no least common denominator is asked. A common
-denominator found while working may fall outside the grade's list (15, 20, 24, 30, 40), and that is fine.
+works; any common multiple will do, and no least common denominator is asked. It may fall outside the grade's
+list (15, 20, 24, 30, 40).
 
 **Same count: compare the size of the parts.** 1/3 and 1/8: one part each, and a third is bigger, so 1/3 > 1/8.
 The same holds for any equal count: 2/5 and 2/8 are both 2 parts, and fifths are bigger. So a pair can also be
@@ -33,28 +33,26 @@ compared by making the numerators the same: 1/3 = 2/6, and 2/6 > 2/8 because six
 is the move students find hardest to say, because the larger denominator now means the smaller fraction (day 21).
 
 **Choosing a way.** By day 23 students have three ways: a benchmark (section 3.3), the same parts, the same count.
-For some pairs one way is far quicker; the point of day 23 is to look at the pair before choosing, and to prove
-the answer, not to follow one method every time.
+The point of day 23 is to look at the pair before choosing a way, and to prove the answer, not
+to follow one method every time.
 
 **The sign.** > and < are read as words every time: "is greater than", "is less than". The open side faces the
 greater number. A student who reasons rightly and writes the sign the wrong way round (error G) has not yet
 read the sign as a sentence.
 
-**Limits.** Fractions given have denominators from the grade's list; renamed ones may not. Two fractions at a
-time; ordering three or more is not taught.
+**Limits.** Two fractions at a time; ordering three or more is not taught.
 
 ## The line, then none
 
-- **Day 19.** Both fractions on one printed line, the sign written beside it: the day the drawing is tied to the
-  written comparison. Pairs past 1 too, such as 5/4 and 9/8.
+- **Day 19.** Both fractions on one printed line, the sign written beside it: the drawing tied to the written
+  comparison, pairs past 1 too.
 - **Days 20 and 21.** Printed lines for the first pairs, then none. Each answer is checked against 1/2 or 1 where
   that settles it.
 - **Day 22.** No line is given, and the line from 0 to 2 with 1/2 and 1 marked is withdrawn too. A student may
   sketch one to justify.
 - **Day 23.** No line. Paper cards, with trap cards, and a partner holding the key; then two story problems.
 
-The number lines sheet from section 3.1 (u03-1/number-lines.md) serves days 19 to 21. The written form all
-section: 2/3 = 8/12 and 8/12 > 7/12, so 2/3 > 7/12.
+The number lines sheet from section 3.1 (u03-1/number-lines.md) serves days 19 to 21.
 
 ## Why this model
 
@@ -74,8 +72,7 @@ it does not exist, so they run on paper with a key.
 | G | Reason rightly and write the sign the wrong way round: "2/5 = 4/10, and 3/10 is less, so 3/10 > 2/5" | The signs are not yet read as words | Read six comparisons aloud as sentences; the open side faces the greater number |
 
 The day each wrong example is shown: D on days 19 and 21, A on day 20 (a right answer from wrong names, so it is
-easy to miss), G on day 22. Each day's teacher page names the wrong answer that signals each error on that day's
-exit. On day 23 watch for "cannot tell" on a story where the whole is the same: the same-whole rule from section 3.3
+easy to miss), G on day 22. On day 23 watch for "cannot tell" on a story where the whole is the same: the same-whole rule from section 3.3
 taken too far.
 
 ## Readiness item 3, asked again
@@ -85,23 +82,20 @@ Read it beside the record sheet's R3. A student who missed both times sits with 
 
 ## Day 24
 
-The end-of-unit assessment, 30 minutes, unaided; a sketched line may be drawn. Then the respond half as in the
-course defaults: mark items 3.1a, 3.2a, 3.2b, 3.3b and 3.4a against the key on the screen, pen down, 5 minutes,
-each wrong answer with its error letter. Then groups by error, 15 minutes, each doing its letter's "if many"
-action: A to D and K from section 3.1's opener (D on a comparing item from this one), E and F from section 3.2's,
-H, I and J from section 3.3's, G from this one. The E23 tickets go back when pencils go down, and their errors join
-the groups. A student in two groups goes to the earlier letter; a student who missed nothing finds a fraction
-between 2/3 and 3/4 and proves it. The last ten minutes are unit 4's readiness check. Items 3.1b and 3.3a are judged
-after class and answered in day 25's first five minutes.
+The end-of-unit assessment, 30 minutes, unaided; a sketched line is allowed. Then the respond half: 5 minutes of
+marking against the key, each wrong answer with its error letter, then 15 minutes in groups by letter, each doing
+its "if many" action from the opener that owns it (A to D and K, section 3.1; E and F, 3.2; H, I and J, 3.3; G,
+and D on a comparing item, this one). The E23 tickets and written tasks go back when pencils go down, and their
+errors join the groups. The last ten minutes are unit 4's readiness check. Items 3.1b and 3.3a are judged after
+class and answered in day 25's first five minutes.
 
 ## Supplies for the section
 
 - Per student: the number lines sheet (days 19 to 21); paper practice sets with their keys (days 20 and 22); sign
   cards, >, = and <, written by each student on three scraps of card on day 19 and kept; a pencil.
 - Per pair, day 23: the paper cards, trap cards included, and their key, as day 23's teacher page sets them out.
-- Per class: the projector for the display pages; a board. There is no document camera: draw each line on the
-  board after students have written their renamed fractions and held up a sign card.
-- A room with nothing: lines ruled by hand; pairs copied from the board; the key read aloud.
+- Per class: the projector and a board (no document camera: draw each line on the board after students hold up
+  a sign card).
 
 ## Words
 
@@ -114,7 +108,7 @@ than __, so __ > __." For day 21: "Both have __ parts. __ths are bigger, so __ >
 Exits on days 19 to 23, on paper, written on the unit record sheet by error letter (courses/math-4/u03-1/
 record.md). Day 22's short written item and day 23's written task are judged with three look-fors on their keys;
 day 22's goes back on day 23, day 23's when pencils go down on day 24. End-of-unit assessment item 3.4a is this
-section's; all seven items are given on day 24. The family note (family.md) goes home on day 19.
+section's; all seven items are given on day 24.
 
 ## Credit
 

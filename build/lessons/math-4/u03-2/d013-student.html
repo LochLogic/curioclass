@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 13: Cut each part, multiply both numbers: student page</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="student"><h1>Day 13: Cut each part, multiply both numbers</h1><div class="side"><p>Name ______________________ Date __________</p><p><strong>I can say what cutting each part does to both numbers, and write it as multiplying.</strong></p>
+<p><strong>Warm-up.</strong></p>
+<ol>
+<li>
+<p>Write the first six multiples of 7. <span class="blank" style="width:13.5em"></span></p>
+</li>
+<li>
+<p>Find all the factor pairs of 18. <span class="blank" style="width:13.5em"></span></p>
+</li>
+</ol>
+<p><strong>Example 1.</strong> The line from 0 to 1 is marked in fifths, with a point at <span class="frac"><span>2</span><span>5</span></span>. Cut each fifth into 2 equal parts. What is the new name?</p>
+<div class="fig" style="margin:.2em 0"><svg viewBox="0 0 976 144" width="976" style="display:block;width:4.97in;max-width:100%;height:auto" role="img" aria-label="A number line from 0 to 1: in fifths, a point at 2/5" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><line x1="28" y1="84" x2="932" y2="84" stroke="#000" stroke-width="3"/><line x1="30.0" y1="66" x2="30.0" y2="102" stroke="#000" stroke-width="3"/><line x1="210.0" y1="71" x2="210.0" y2="97" stroke="#000" stroke-width="2"/><line x1="390.0" y1="71" x2="390.0" y2="97" stroke="#000" stroke-width="2"/><line x1="570.0" y1="71" x2="570.0" y2="97" stroke="#000" stroke-width="2"/><line x1="750.0" y1="71" x2="750.0" y2="97" stroke="#000" stroke-width="2"/><line x1="930.0" y1="66" x2="930.0" y2="102" stroke="#000" stroke-width="3"/><text x="30" y="130" text-anchor="middle" font-size="30">0</text><text x="930" y="130" text-anchor="middle" font-size="30">1</text><circle cx="390.0" cy="84" r="9" fill="#000"/><text x="390" y="28" text-anchor="middle" font-size="26">2</text><line x1="380" y1="35" x2="400" y2="35" stroke="#000" stroke-width="2"/><text x="390" y="62" text-anchor="middle" font-size="26">5</text></svg></div>
+
+<p>Each fifth was cut into <span class="blank" style="width:1.8em"></span>, so I multiply both numbers by <span class="blank" style="width:1.8em"></span>.</p>
+<p>2/5 = (<span class="blank" style="width:1.8em"></span> × 2)/(<span class="blank" style="width:1.8em"></span> × 5) = <span class="blank" style="width:1.8em"></span>/<span class="blank" style="width:1.8em"></span></p>
+<p><strong>Example 2.</strong> The line from 0 to 2 is marked in halves, with a point at <span class="frac"><span>3</span><span>2</span></span>. Cut each half into 3 equal parts. What is the new name?</p>
+<div class="fig" style="margin:.2em 0"><svg viewBox="0 0 976 144" width="976" style="display:block;width:4.97in;max-width:100%;height:auto" role="img" aria-label="A number line from 0 to 2: in halves, a point at 3/2" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><line x1="28" y1="84" x2="932" y2="84" stroke="#000" stroke-width="3"/><line x1="30.0" y1="66" x2="30.0" y2="102" stroke="#000" stroke-width="3"/><line x1="255.0" y1="71" x2="255.0" y2="97" stroke="#000" stroke-width="2"/><line x1="480.0" y1="66" x2="480.0" y2="102" stroke="#000" stroke-width="3"/><line x1="705.0" y1="71" x2="705.0" y2="97" stroke="#000" stroke-width="2"/><line x1="930.0" y1="66" x2="930.0" y2="102" stroke="#000" stroke-width="3"/><text x="30" y="130" text-anchor="middle" font-size="30">0</text><text x="480" y="130" text-anchor="middle" font-size="30">1</text><text x="930" y="130" text-anchor="middle" font-size="30">2</text><circle cx="705.0" cy="84" r="9" fill="#000"/><text x="705" y="28" text-anchor="middle" font-size="26">3</text><line x1="695" y1="35" x2="715" y2="35" stroke="#000" stroke-width="2"/><text x="705" y="62" text-anchor="middle" font-size="26">2</text></svg></div>
+
+<p>Each half was cut into <span class="blank" style="width:1.8em"></span>.  3/2 = (<span class="blank" style="width:1.8em"></span> × 3)/(<span class="blank" style="width:1.8em"></span> × 2) = <span class="blank" style="width:1.8em"></span>/<span class="blank" style="width:1.8em"></span></p>
+<p><strong>On your own.</strong> Mark the cuts on each line. Write the old name above the point and the new name below. Then write the rule.</p>
+<ol start="3">
+<li>
+<p>Two lines from 0 to 1 are marked in halves, with a point at <span class="frac"><span>1</span><span>2</span></span>. Cut each half into 3 on the first line. Cut each half into 5 on the second. Write each rule.</p>
+<p><svg viewBox="0 0 640 90" style="width:47%;display:inline-block;margin:.4em 2% .2em 0" role="img" aria-label="A line from 0 to 1, each whole cut into 2 equal parts, with a point at 1 of those parts" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><line x1="24" y1="46" x2="616" y2="46" stroke="#000" stroke-width="3"/><line x1="24" y1="32" x2="24" y2="60" stroke="#000" stroke-width="3"/><text x="24" y="82" text-anchor="middle" font-size="22">0</text><line x1="320" y1="37" x2="320" y2="55" stroke="#000" stroke-width="2"/><line x1="616" y1="32" x2="616" y2="60" stroke="#000" stroke-width="3"/><text x="616" y="82" text-anchor="middle" font-size="22">1</text><circle cx="320" cy="46" r="7" fill="#000"/></svg> <svg viewBox="0 0 640 90" style="width:47%;display:inline-block;margin:.4em 2% .2em 0" role="img" aria-label="A line from 0 to 1, each whole cut into 2 equal parts, with a point at 1 of those parts" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><line x1="24" y1="46" x2="616" y2="46" stroke="#000" stroke-width="3"/><line x1="24" y1="32" x2="24" y2="60" stroke="#000" stroke-width="3"/><text x="24" y="82" text-anchor="middle" font-size="22">0</text><line x1="320" y1="37" x2="320" y2="55" stroke="#000" stroke-width="2"/><line x1="616" y1="32" x2="616" y2="60" stroke="#000" stroke-width="3"/><text x="616" y="82" text-anchor="middle" font-size="22">1</text><circle cx="320" cy="46" r="7" fill="#000"/></svg></p>
+<p>Rule: <span class="blank" style="width:9.9em"></span>  Rule: <span class="blank" style="width:9.9em"></span></p>
+</li>
+</ol><div class="foot">Curio Class, grade 4 math, day 13, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div><div class="side"><ol start="4">
+<li>
+<p>The line from 0 to 2 is marked in thirds, with a point at <span class="frac"><span>5</span><span>3</span></span>. Cut each third into 2 equal parts. Write the rule.</p>
+<p><span class="fig" style="display:block;margin:.2em 0"><svg viewBox="0 0 976 200" width="976" style="display:block;width:4.97in;max-width:100%;height:auto" role="img" aria-label="A number line from 0 to 2: in thirds, a point to name at 5/3" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><line x1="28" y1="140" x2="932" y2="140" stroke="#000" stroke-width="3"/><line x1="30.0" y1="122" x2="30.0" y2="158" stroke="#000" stroke-width="3"/><line x1="180.0" y1="127" x2="180.0" y2="153" stroke="#000" stroke-width="2"/><line x1="330.0" y1="127" x2="330.0" y2="153" stroke="#000" stroke-width="2"/><line x1="480.0" y1="122" x2="480.0" y2="158" stroke="#000" stroke-width="3"/><line x1="630.0" y1="127" x2="630.0" y2="153" stroke="#000" stroke-width="2"/><line x1="780.0" y1="127" x2="780.0" y2="153" stroke="#000" stroke-width="2"/><line x1="930.0" y1="122" x2="930.0" y2="158" stroke="#000" stroke-width="3"/><text x="30" y="186" text-anchor="middle" font-size="30">0</text><text x="480" y="186" text-anchor="middle" font-size="30">1</text><text x="930" y="186" text-anchor="middle" font-size="30">2</text><circle cx="780.0" cy="140" r="9" fill="#000"/><rect x="734" y="8" width="92" height="116" fill="#fff" stroke="#000" stroke-width="2" stroke-dasharray="8 5"/></svg></span></p>
+<p>Rule: <span class="blank" style="width:9.9em"></span></p>
+</li>
+<li>
+<p>The line from 0 to 2 is marked in fourths, with a point at <span class="frac"><span>5</span><span>4</span></span>. Cut each fourth into 2 equal parts. Write the rule.</p>
+<p><span class="fig" style="display:block;margin:.2em 0"><svg viewBox="0 0 976 200" width="976" style="display:block;width:4.97in;max-width:100%;height:auto" role="img" aria-label="A number line from 0 to 2: in fourths, a point to name at 5/4" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><line x1="28" y1="140" x2="932" y2="140" stroke="#000" stroke-width="3"/><line x1="30.0" y1="122" x2="30.0" y2="158" stroke="#000" stroke-width="3"/><line x1="142.5" y1="127" x2="142.5" y2="153" stroke="#000" stroke-width="2"/><line x1="255.0" y1="127" x2="255.0" y2="153" stroke="#000" stroke-width="2"/><line x1="367.5" y1="127" x2="367.5" y2="153" stroke="#000" stroke-width="2"/><line x1="480.0" y1="122" x2="480.0" y2="158" stroke="#000" stroke-width="3"/><line x1="592.5" y1="127" x2="592.5" y2="153" stroke="#000" stroke-width="2"/><line x1="705.0" y1="127" x2="705.0" y2="153" stroke="#000" stroke-width="2"/><line x1="817.5" y1="127" x2="817.5" y2="153" stroke="#000" stroke-width="2"/><line x1="930.0" y1="122" x2="930.0" y2="158" stroke="#000" stroke-width="3"/><text x="30" y="186" text-anchor="middle" font-size="30">0</text><text x="480" y="186" text-anchor="middle" font-size="30">1</text><text x="930" y="186" text-anchor="middle" font-size="30">2</text><circle cx="592.5" cy="140" r="9" fill="#000"/><rect x="546" y="8" width="92" height="116" fill="#fff" stroke="#000" stroke-width="2" stroke-dasharray="8 5"/></svg></span></p>
+<p>Rule: <span class="blank" style="width:9.9em"></span></p>
+</li>
+</ol>
+<p><strong>Fix it.</strong> The answer is wrong. Say what went wrong. Then do it right.</p>
+<ol start="6">
+<li>
+<p>Ria cut each fifth into 2 equal parts. She wrote <span class="frac"><span>2</span><span>5</span></span> = <span class="frac"><span>2</span><span>10</span></span>. Her line shows the point at <span class="frac"><span>4</span><span>10</span></span>.</p>
+<p><span class="fig" style="display:block;margin:.2em 0"><svg viewBox="0 0 976 144" width="976" style="display:block;width:4.97in;max-width:100%;height:auto" role="img" aria-label="A number line from 0 to 1: in tenths, a point at 4/10" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><line x1="28" y1="84" x2="932" y2="84" stroke="#000" stroke-width="3"/><line x1="30.0" y1="66" x2="30.0" y2="102" stroke="#000" stroke-width="3"/><line x1="120.0" y1="71" x2="120.0" y2="97" stroke="#000" stroke-width="2"/><line x1="210.0" y1="71" x2="210.0" y2="97" stroke="#000" stroke-width="2"/><line x1="300.0" y1="71" x2="300.0" y2="97" stroke="#000" stroke-width="2"/><line x1="390.0" y1="71" x2="390.0" y2="97" stroke="#000" stroke-width="2"/><line x1="480.0" y1="71" x2="480.0" y2="97" stroke="#000" stroke-width="2"/><line x1="570.0" y1="71" x2="570.0" y2="97" stroke="#000" stroke-width="2"/><line x1="660.0" y1="71" x2="660.0" y2="97" stroke="#000" stroke-width="2"/><line x1="750.0" y1="71" x2="750.0" y2="97" stroke="#000" stroke-width="2"/><line x1="840.0" y1="71" x2="840.0" y2="97" stroke="#000" stroke-width="2"/><line x1="930.0" y1="66" x2="930.0" y2="102" stroke="#000" stroke-width="3"/><text x="30" y="130" text-anchor="middle" font-size="30">0</text><text x="930" y="130" text-anchor="middle" font-size="30">1</text><circle cx="390.0" cy="84" r="9" fill="#000"/><text x="390" y="28" text-anchor="middle" font-size="26">4</text><line x1="372" y1="35" x2="408" y2="35" stroke="#000" stroke-width="2"/><text x="390" y="62" text-anchor="middle" font-size="26">10</text></svg></span></p>
+<p>What went wrong: <span class="blank" style="width:17.1em"></span></p>
+<p>Right rule: <span class="blank" style="width:9.9em"></span></p>
+</li>
+<li>
+<p>Sam says <span class="frac"><span>4</span><span>10</span></span> is twice as much as <span class="frac"><span>2</span><span>5</span></span>, because both numbers were multiplied by 2.</p>
+<p>What went wrong: <span class="blank" style="width:17.1em"></span></p>
+<p><div class="sketch small"></div></p>
+</li>
+</ol>
+<p><strong>Challenge.</strong> A point is at <span class="frac"><span>5</span><span>3</span></span>. Each third is cut into equal parts. The new name is <span class="blank" style="width:0.9em"></span>/12. Into how many parts was each third cut? Finish the name. <span class="blank" style="width:6.3em"></span></p><div class="foot">Curio Class, grade 4 math, day 13, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div></body></html>

@@ -57,7 +57,8 @@ Grade 4 math unit 11 (the pilot unit) is in data and passes. Day 90's lesson row
 the lesson-day template (docs/courses/LESSON-DAY.md). Lesson rows count as taught: no exit or check item may reuse
 their numbers. `python -X utf8 scripts/lesson.py check` gates the day files in `courses/`, and `build` makes their
 print pages. Four optional item columns serve lesson days (draft 2 of the template): `path` (an exit's `tool`
-or `paper`), `figure` (a labelled shape for the display, `rect w=7 l=? A=63 u=ft`), `steps` (worked steps split
+or `paper`), `figure` (a labelled shape for the display, `rect w=7 l=? A=63 u=ft`; a tape picture `strip`, a number line
+`line to=2 d=4 pt=7/4 / d=8` or a fraction strip `fstrip 1/2 2/4 4/8`, written out in docs/courses/LESSON-DAY.md), `steps` (worked steps split
 by `|`) and `source` (the credit of an adapted item; CC BY, CC0 or public domain with a link, or the gate fails).
 Units 1, 3, 9 and 10 are in data too (unit 3 on 2026-11-12); unit 2 is still prose only, apart from its
 readiness rows;

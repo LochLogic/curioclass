@@ -1,0 +1,79 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 21: Same count, different parts: student page</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="student"><h1>Day 21: Same count, different parts</h1><div class="side"><p>Name ______________________ Date __________</p><p><strong>I can compare by making the numerators the same.</strong></p>
+<p>One whole, two ways: tenths on top, twelfths below.</p>
+<div class="fig" style="margin:.2em 0"><svg viewBox="0 0 1125 168" width="1125" style="display:block;width:5.73in;max-width:100%;height:auto" role="img" aria-label="Number lines from 0 to 1, one under the other: in tenths; in twelfths" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><line x1="177" y1="20" x2="1081" y2="20" stroke="#000" stroke-width="3"/><line x1="178.8" y1="2" x2="178.8" y2="38" stroke="#000" stroke-width="3"/><line x1="268.8" y1="7" x2="268.8" y2="33" stroke="#000" stroke-width="2"/><line x1="358.8" y1="7" x2="358.8" y2="33" stroke="#000" stroke-width="2"/><line x1="448.8" y1="7" x2="448.8" y2="33" stroke="#000" stroke-width="2"/><line x1="538.8" y1="7" x2="538.8" y2="33" stroke="#000" stroke-width="2"/><line x1="628.8" y1="7" x2="628.8" y2="33" stroke="#000" stroke-width="2"/><line x1="718.8" y1="7" x2="718.8" y2="33" stroke="#000" stroke-width="2"/><line x1="808.8" y1="7" x2="808.8" y2="33" stroke="#000" stroke-width="2"/><line x1="898.8" y1="7" x2="898.8" y2="33" stroke="#000" stroke-width="2"/><line x1="988.8" y1="7" x2="988.8" y2="33" stroke="#000" stroke-width="2"/><line x1="1078.8" y1="2" x2="1078.8" y2="38" stroke="#000" stroke-width="3"/><text x="179" y="66" text-anchor="middle" font-size="30">0</text><text x="1079" y="66" text-anchor="middle" font-size="30">1</text><text x="149" y="30" text-anchor="end" font-size="30">tenths</text><line x1="177" y1="108" x2="1081" y2="108" stroke="#000" stroke-width="3"/><line x1="178.8" y1="90" x2="178.8" y2="126" stroke="#000" stroke-width="3"/><line x1="253.8" y1="95" x2="253.8" y2="121" stroke="#000" stroke-width="2"/><line x1="328.8" y1="95" x2="328.8" y2="121" stroke="#000" stroke-width="2"/><line x1="403.8" y1="95" x2="403.8" y2="121" stroke="#000" stroke-width="2"/><line x1="478.8" y1="95" x2="478.8" y2="121" stroke="#000" stroke-width="2"/><line x1="553.8" y1="95" x2="553.8" y2="121" stroke="#000" stroke-width="2"/><line x1="628.8" y1="95" x2="628.8" y2="121" stroke="#000" stroke-width="2"/><line x1="703.8" y1="95" x2="703.8" y2="121" stroke="#000" stroke-width="2"/><line x1="778.8" y1="95" x2="778.8" y2="121" stroke="#000" stroke-width="2"/><line x1="853.8" y1="95" x2="853.8" y2="121" stroke="#000" stroke-width="2"/><line x1="928.8" y1="95" x2="928.8" y2="121" stroke="#000" stroke-width="2"/><line x1="1003.8" y1="95" x2="1003.8" y2="121" stroke="#000" stroke-width="2"/><line x1="1078.8" y1="90" x2="1078.8" y2="126" stroke="#000" stroke-width="3"/><text x="179" y="154" text-anchor="middle" font-size="30">0</text><text x="1079" y="154" text-anchor="middle" font-size="30">1</text><text x="149" y="118" text-anchor="end" font-size="30">twelfths</text></svg></div>
+
+<p><strong>Warm-up.</strong></p>
+<ol>
+<li>
+<p><span class="frac"><span>5</span><span>6</span></span> = <span class="blank" style="width:0.9em"></span>/12 <span class="blank" style="width:2.7em"></span></p>
+</li>
+<li>
+<p>Mark <span class="frac"><span>9</span><span>10</span></span> and <span class="frac"><span>1</span><span>2</span></span> on the tenths line. Write &gt;, = or &lt;: <span class="frac"><span>9</span><span>10</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>1</span><span>2</span></span>. <span class="blank" style="width:2.7em"></span></p>
+</li>
+</ol>
+<p><strong>Example 1.</strong> Which is greater, <span class="frac"><span>1</span><span>10</span></span> or <span class="frac"><span>1</span><span>12</span></span>? 1/10 <span class="blank" style="width:1.8em"></span> 1/12. The <span class="blank" style="width:3.6em"></span> are longer.</p>
+<p><strong>Example 2.</strong> Compare <span class="frac"><span>2</span><span>5</span></span> and <span class="frac"><span>4</span><span>12</span></span>. Make the numerators the same.</p>
+<p>2/5 = <span class="blank" style="width:1.8em"></span>/<span class="blank" style="width:1.8em"></span>. Both have <span class="blank" style="width:1.8em"></span> parts. So 2/5 <span class="blank" style="width:1.8em"></span> 4/12.</p>
+<p><strong>Example 3.</strong> Compare <span class="frac"><span>1</span><span>3</span></span> and <span class="frac"><span>2</span><span>8</span></span> two ways. Which way is quicker?</p>
+<p>Same numerators: 1/3 = <span class="blank" style="width:1.8em"></span>/6, so 1/3 <span class="blank" style="width:1.8em"></span> 2/8.</p>
+<p>Same denominators: 1/3 = <span class="blank" style="width:1.8em"></span>/24 and 2/8 = <span class="blank" style="width:1.8em"></span>/24.</p>
+<p>Quicker: <span class="blank" style="width:9.0em"></span></p>
+<p><strong>Fix it.</strong> The answer is wrong. Say what went wrong. Then do it right.</p>
+<ol start="3">
+<li>
+<p>Mia says <span class="frac"><span>3</span><span>12</span></span> is more than <span class="frac"><span>3</span><span>10</span></span>, because 12 is more than 10. Is she right?</p>
+<p>What went wrong: <span class="blank" style="width:17.1em"></span></p>
+<p><div class="sketch small"></div></p>
+</li>
+</ol><div class="foot">Curio Class, grade 4 math, day 21, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div><div class="side"><p><strong>On your own.</strong> Make the numerators the same, or the denominators. Write the sign.</p>
+<p><span class="blank" style="width:1.8em"></span> and <span class="blank" style="width:1.8em"></span> both have <span class="blank" style="width:1.8em"></span> parts. <span class="blank" style="width:1.8em"></span> are longer than <span class="blank" style="width:1.8em"></span>, so <span class="blank" style="width:1.8em"></span> &gt; <span class="blank" style="width:1.8em"></span>.</p>
+<ol>
+<li>
+<p><span class="frac"><span>4</span><span>5</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>4</span><span>6</span></span>   Sign: <span class="blank" style="width:1.8em"></span>  Longer parts: <span class="blank" style="width:4.5em"></span></p>
+</li>
+<li>
+<p><span class="frac"><span>2</span><span>12</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>2</span><span>8</span></span>   Sign: <span class="blank" style="width:1.8em"></span>  Longer parts: <span class="blank" style="width:4.5em"></span></p>
+</li>
+<li>
+<p><span class="frac"><span>1</span><span>4</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>3</span><span>10</span></span></p>
+<p>Renamed: <span class="blank" style="width:5.4em"></span>  Sign: <span class="blank" style="width:1.8em"></span></p>
+</li>
+<li>
+<p><span class="frac"><span>8</span><span>10</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>4</span><span>6</span></span></p>
+<p>Renamed: <span class="blank" style="width:5.4em"></span>  Sign: <span class="blank" style="width:1.8em"></span></p>
+</li>
+<li>
+<p><span class="frac"><span>2</span><span>4</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>4</span><span>8</span></span></p>
+<p>Renamed: <span class="blank" style="width:5.4em"></span>  Sign: <span class="blank" style="width:1.8em"></span></p>
+</li>
+<li>
+<p><span class="frac"><span>1</span><span>3</span></span> <span class="blank" style="width:0.9em"></span> <span class="frac"><span>5</span><span>12</span></span></p>
+<p>Renamed: <span class="blank" style="width:5.4em"></span>  Sign: <span class="blank" style="width:1.8em"></span>  Quicker way: <span class="blank" style="width:6.3em"></span></p>
+</li>
+</ol>
+<div class="sketch"></div>
+
+<p><strong>Challenge.</strong> Find a fraction with numerator 4. It must be greater than <span class="frac"><span>2</span><span>5</span></span> and less than <span class="frac"><span>1</span><span>2</span></span>. <span class="blank" style="width:3.6em"></span></p><div class="foot">Curio Class, grade 4 math, day 21, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div></body></html>

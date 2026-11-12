@@ -10,17 +10,18 @@ credit: ours
 
 ## English
 
-For the next three school days your child is learning that one amount can have more than one fraction name.
+For the next three weeks your child is learning that one amount can have many fraction names, and how to compare
+two fractions.
 
-**Fold and see.** Fold a strip of paper in half and shade one half. Fold it in half again. Now there are 4 parts
-and 2 are shaded, so 1/2 = 2/4. The parts got smaller, there are more of them, and the shaded length did not
-change.
+**Fold and see.** Fold a strip of paper in half and shade one half. Fold it in half again. Now 2 of 4 parts are
+shaded, so 1/2 = 2/4. The parts are smaller, there are more of them, and the shaded length did not change.
 
-**Try this at home, five minutes.** Give your child a strip of paper. Ask them to fold it and show you why 1/2 and
-2/4 are the same amount. Then ask: "Is 2/4 bigger, because 2 and 4 are bigger numbers?" Listen for the reason: the
-parts are smaller.
+**Comparing.** First your child asks: is it more or less than one half? Than one? Then they give both fractions
+parts of the same size: 2/3 = 8/12, and 8/12 > 7/12.
 
-If you know a quick rule for this, hold it back for now. Next week the class finds it from the folds.
+**Try this at home, five minutes.** Ask your child to fold a strip and show you why 1/2 and 2/4 are the same
+amount. Later in the unit, use a ruler: "Which is longer, 3/4 inch or 5/8 inch? How do you know?" If you know a
+quick rule, hold it back: the class finds it from the folds.
 
 No worksheet to return.
 

@@ -71,6 +71,17 @@ a line and the answer. A wrong answer's working takes `carry=3` (the places, one
 `ans=4136` (or `ans=5/12/7/14` for a column written whole). On the display a worked example fills in step by
 step as `by=` says, one entry a step: `0` the numbers only, `r2` the rename of the first two places, `d3` three
 answer places, `-` no figure, `*` everything.
+Fractions have two kinds. A number line is `line to=2 d=4 pt=7/4 / d=8`: `to=` the range from 0 (1 by
+default), then one line per group split by a lone `/`, all stacked to one scale so a point sits straight above the
+same amount below. Per line: `d=` the parts in a whole (the ticks), `sub=` cuts each part again with short ticks,
+`lab=` the labels under the ticks (`whole` 0, 1, 2 by default; `all` adds every fraction; `none`; or a list,
+`0,1/4,1`), `pt=` points named above the line, `blank=` points with an empty box above for the student to write
+the name, `seg=` a shaded strip lying on the line from 0, `name=` a word at the left (the flag `names` writes each
+line's parts word: fourths). A fraction strip is `fstrip 1/2 2/4 4/8`: each `k/n` a whole in n equal parts with k
+shaded (past n a second whole follows), all at one length so they compare; `Lu:2/6` names the strip at its left,
+`2/6=?` leaves a box there, `unit` writes 1/n in each part, `lab=none` writes nothing. Points, labels listed and
+shaded strips count as the figure's numbers for the stem gate; ticks, blanks and generated labels do not. On the
+display a line or strip figure grows one line or strip a step, and an exit ticket prints its figure on the ticket.
 `steps` (the worked steps as the teacher says them, split by `|`; for a wrong answer to fix, their working then
 the right working; a teacher-judged row lists its look-fors here), `samples` (a teacher-judged row's two sample
 answers, one meeting the look-fors and one not, shown on the key), `path` (an exit's `tool` or `paper`; `board`

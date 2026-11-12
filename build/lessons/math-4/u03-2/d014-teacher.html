@@ -1,0 +1,112 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 14: Group the parts: teacher page</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="teacher"><h1>Day 14: Group the parts</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>14, section 3.2, understanding day</td></tr><tr><td>Goal</td><td>I can go the other way: group the parts and get a name with smaller numbers</td></tr><tr><td>Standard parts</td><td>4.OA.B.4 (a) all factor pairs for a whole number in the range 1 to 100; 4.OA.B.4 (c) whether a whole number in the range 1 to 100 is a multiple of a given one-digit number; 4.NF.A.1 (b) equivalent fractions: on a line in section 3.1, by the rule and with no drawing in section 3.2; 4.NF.A.1 (c) equivalent fractions: with a model in section 3.1, with the rule in section 3.2 (two unit assessment items)</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, a pencil; per class, the projector with the display page, a board, and a long paper strip folded in twelfths to hold up (no document camera: draw the strips on the board or hold up the strip)</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit ticket, 1 per student; the key, 1 for the teacher; the E13 tickets, marked, to hand back</td></tr><tr><td>At home</td><td>the At home view, d014-home.html, 35 minutes with one child</td></tr><tr><td>Leans on</td><td>nothing</td></tr><tr><td>Uses when it exists</td><td>courses/math-4/u03-2/opener.md; courses/math-4/u03-1/record.md</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
+<p>Print the student page both sides, the exit tickets and the key. Mark the E13 tickets and sort them by error: A
+(7/12, one number changed), B (10/7, 3 added to both), F ("3 times as big"). Fold a long strip in twelfths and
+shade 8. Put the display page on the projector.</p>
+<h3>The day</h3>
+<h4>5 min. Warm-up: factors and multiples</h4>
+<p>Alone, then whole class: Find all the factor pairs of 8. <strong>[1 × 8, 2 × 4]</strong>, Find all the factor pairs of 10. <strong>[1 × 10, 2 × 5]</strong>, Is 9 a multiple of 3? Is 10 a multiple of 4? <strong>[Yes, 3 × 3 = 9; no]</strong>. Read the answers aloud; students tick their
+own. Say once: today a group size has to fit two numbers, so these facts come back.</p>
+<h4>5 min. Teaching first: twelfths in twos, then sixths in twos</h4>
+<p>Whole class. Hand back the E13 tickets as you start.</p>
+<p><strong>If day 13's tickets showed many A</strong> (7/12): before Example 1, put "2/5 = 2/10" beside the line cut in tenths,
+the point at 4/10. Count the shaded parts aloud: 4, not 2.</p>
+<p><strong>If many B</strong> (10/7): mark 2/5 and 4/7 on one line. Adding moved the point; cutting did not.</p>
+<p><strong>If many F</strong> ("3 times as big"): "4/10 is twice 2/5". Mark both on one line: one point.</p>
+<p>A branch takes 2 minutes; take them from "On your own" (drop problem 3).</p>
+<p><strong>Example 1</strong> (A strip from 0 to 1 is cut in twelfths. 8 twelfths are shaded. Put the twelfths in groups of 2. Then put the sixths in groups of 2. Write each new name. <strong>[8/12 = 4/6 = 2/3]</strong>). Hold up the strip. Students circle the groups on the strip on side 1 and fill the
+frame as you go. The display shows each step on its own screen.</p>
+<ol>
+<li>8 of the 12 twelfths are shaded: 8/12.</li>
+<li>Circle the twelfths in groups of 2. The whole strip makes 6 groups, so each group is a sixth. The shaded part makes 4 groups: 8/12 = 4/6.</li>
+<li>Write it: 8/12 = (8 ÷ 2)/(12 ÷ 2) = 4/6. The 2 is the size of each group.</li>
+<li>Now circle the sixths in groups of 2. The whole makes 3 groups, so each group is a third. The shaded part makes 2 groups: 4/6 = (4 ÷ 2)/(6 ÷ 2) = 2/3.</li>
+<li>Nothing was added or taken away. The shaded part still ends at the same point: fewer parts, each one bigger.</li>
+</ol>
+<p>The number we divide by is the size of each group. It is the same on top and bottom, because the shaded parts
+and the whole are grouped the same way.</p>
+<h4>8 min. Example 2: hundredths in tens</h4>
+<p>Whole class. Hundredths are new: each tenth holds 10 hundredths, and day 15 shows the cut. Students circle on side
+1 as you go.</p>
+<p><strong>Example 2</strong> (A strip from 0 to 1 is cut in tenths. Each tenth is cut into 10 hundredths. 50 hundredths are shaded. Group the hundredths in tens. Then group the tenths to make halves. Write each name. <strong>[50/100 = 5/10 = 1/2]</strong>). </p>
+<ol>
+<li>50 of the 100 hundredths are shaded: 50/100.</li>
+<li>Circle the hundredths in groups of 10. Each group of 10 hundredths is 1 tenth. The whole makes 10 groups and the shaded part makes 5: 50/100 = 5/10.</li>
+<li>Write it: 50/100 = (50 ÷ 10)/(100 ÷ 10) = 5/10.</li>
+<li>Now make halves. The whole must make 2 equal groups: 10 tenths in 2 groups is 5 in each. Circle the tenths in groups of 5. The shaded part makes 1 group: 5/10 = (5 ÷ 5)/(10 ÷ 5) = 1/2.</li>
+<li>50/100, 5/10 and 1/2 are one point on the line. Only the size of the parts changed.</li>
+</ol>
+<p>Stop at the halves step. <strong>Ask.</strong> "How did we know each group needs 5 tenths?" Expect: halves means the whole is 2
+equal groups, and 10 tenths in 2 groups is 5 each. This is the step the exit needs: from the new name, find the
+group size.</p>
+<p>Watch for 50/10: the groups in the whole were counted, the shaded ones were not (error A).</p>
+<h4>10 min. Fix it: Lu and Max</h4>
+<p>Side 1 (Lu says 4/8 = 2/6. He took 2 from the top and 2 from the bottom. <strong>[4/8 = 2/4 (or 1/2). Taking the same number from both moves the point]</strong>, Max put the hundredths in groups of 10. He wrote 70/100 = 70/10. <strong>[70/100 = 7/10: the 70 shaded hundredths make 7 groups, not 70]</strong>). Two minutes alone, two minutes of turn-and-talk in pairs, then the class:
+the display shows each wrong working beside the right one.</p>
+<p>Lu took 2 from both (error B). Mark 4/8 and 2/6 on one strip: taking away moved the point. Max kept the top
+number (error A): count the shaded groups aloud, "one ten, two tens ... seven tens". 70/10 is 7 wholes, far past 1.</p>
+<p>If many still subtract: grouping never takes parts away, it only circles them. If many keep a number: count the
+shaded groups first, then the groups in the whole.</p>
+<h4>14 min. On your own, then a partner check</h4>
+<p>Side 2, problems 1 to 3 (The strip is cut in tenths. 4 tenths are shaded. Group the tenths in twos. Write the new name. <strong>[4/10 = 2/5]</strong>, The strip is cut in eighths. 6 eighths are shaded. Group the eighths in twos. Write the new name. <strong>[6/8 = 3/4]</strong>, 40 hundredths are shaded. Group the hundredths in tens. Then group the tenths to make fifths. Write each name. <strong>[40/100 = 4/10 = 2/5]</strong>). Ten minutes alone: circle the groups, write
+the new name and the equation with ÷. Then four minutes in pairs.</p>
+<p>Check: Does the shaded part end at the same point? Is every group the same size?</p>
+<p>A mismatch gets a question mark, not the answer. Watch for 4/5 or 6/4 (top kept, A) and 2/8 or 4/6 (subtracted,
+B). If many miss problem 3, do its fifths step together on the board: 10 tenths in 5 groups is 2 each.</p>
+<h4>8 min. Which ones can be grouped?</h4>
+<p>Pairs, then whole class. Side 2 (Circle each fraction that has a name with smaller numbers. Write that name: 5/12, 6/12, 7/8, 10/100. <strong>[6/12 = 3/6, 2/4 or 1/2; 10/100 = 1/10. 5/12 and 7/8 have none]</strong>). Pairs try group sizes from 2 upward for each fraction. A group
+cannot hold more parts than the shaded count, so the search stops at the top number.</p>
+<p><strong>Ask.</strong> "8/12 has a name with smaller numbers. Does 3/8? How can you tell?" Take "no, I tried" first, then the
+reason. Expect: no; groups of 2 do not fit 3, and groups of 3 do not fit 8; a group size must fit both numbers,
+and 3 and 8 share only 1. Link it to the warm-up: 8 has the factors 1, 2, 4 and 8.</p>
+<h4>5 min. Pull it together</h4>
+<p>Whole class.</p>
+<p><strong>Ask.</strong> "Yesterday we cut each part into 2. Today we grouped parts in twos. What happened to the two numbers each
+time?" Expect: cutting multiplies both by the same number; grouping divides both by the same number; the point
+never moved.</p>
+<h4>5 min. Exit ticket</h4>
+<p>Alone, on paper (A line from 0 to 1 is marked in twelfths, with a point at 4/12. "(a) Put the twelfths in equal groups to make thirds. 4/12 = <span class="blank" style="width:0.9em"></span>/3. How many twelfths are in each group? (b) Write 20/100 in tenths." <strong>[(a) 4/12 = 1/3, groups of 4 twelfths; (b) 20/100 = 2/10]</strong>). Read it aloud once if a student asks. Write results under E14 on the record sheet;
+until the record sheet exists, on a class list.</p>
+<h3>Other rooms</h3>
+<ul>
+<li><strong>No printer.</strong> Draw each strip on the board; students rule strips of 12, 10 and 8 boxes on plain paper and
+  shade them before circling.</li>
+</ul>
+<h3>Shorter or longer</h3>
+<p>Shorter: drop problem 3 and the partner check (students check their own). Never drop the fixes or the halves step
+of Example 2. Longer: the challenge (Which fractions from 1/6 to 5/6 have a name with smaller numbers? Write each name. How do you know you found them all? <strong>[2/6 = 1/3, 3/6 = 1/2, 4/6 = 2/3; 1/6 and 5/6 have none. All five were checked]</strong>): the search ends when all five sixths are checked.</p>
+<h3>Words and supports</h3>
+<p>Word Wall cards: group, equal groups, divide, equal, hundredth. Frames on the display: "I put the parts in groups
+of <span class="blank" style="width:0.9em"></span>, so I divide both numbers by <span class="blank" style="width:0.9em"></span>." "To make <span class="blank" style="width:0.9em"></span>, the whole makes <span class="blank" style="width:0.9em"></span> groups of <span class="blank" style="width:0.9em"></span>."</p>
+<p>The section opener, when it exists, holds the math of grouping at an adult's level; until then this page holds
+all the day needs.</p>
+<h3>Tomorrow</h3>
+<p>On the ticket, 4/3 or 20/10 (error A: the top number kept) or 1/9 (error B: 3 taken from both): day 15 opens with
+70/100 = 70/10 for A, or 4/8 = 2/6 for B, each marked on one strip. A ticket with no group size in (a)
+means the student guessed the name: day 15's first set starts with "how many in each group?"</p>
+<h3>Credit</h3>
+<p>Ours. Informed by, not adapted from: Illustrative Mathematics K-5, grade 4, unit 2 (CC BY 4.0,
+https://curriculum.illustrativemathematics.org/k5/), and the Progressions for the Common Core State Standards,
+Number and Operations, Fractions, 3 to 5.</p><div class="foot">Curio Class, grade 4 math, day 14, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></body></html>

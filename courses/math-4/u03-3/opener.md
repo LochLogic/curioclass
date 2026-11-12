@@ -99,7 +99,7 @@ are read as words. Frame, to take or leave: "__ is less than 1/2 and __ is more 
 Exits on days 17 and 18, on paper, written on the unit record sheet by error letter (courses/math-4/u03-1/
 record.md). Day 17's exit has a sentence in part (a): a tick needs the reason, not "no" alone. Day 18's written
 task (Dee's claim) is judged with three look-fors on that day's key and handed back on day 19. End-of-unit
-assessment items 3.3a and 3.3b, on day 24, are this section's. The family note (family.md) goes home on day 17.
+assessment items 3.3a and 3.3b, on day 24, are this section's.
 
 ## Credit
 
