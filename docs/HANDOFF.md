@@ -83,6 +83,17 @@ The pilot unit comes first (grade 4 math unit 11, one section, 11.1: [courses/ma
      exit slip to exit ticket, the day kind `Use` to Application, topic pages from /modules/ to /topics/ with redirects,
      the tool role "lesson" to "teach". Ids, folders and file names keep their names (`s11-...`, `sNN.md`, `uNN-N/`,
      `math-4-spine.md`, `UNIT-PLAN.md`, `LESSON-DAY.md`). This page uses the new words; dated reports keep theirs.
+   - **Done 2026-11-12: renames and the At home block.** The course-word rename ran everywhere: course docs, code,
+     day files, the site (/topics/ with a splat redirect), the Review Desk card titles and page labels, then a
+     continuity pass (b2b67bb8). Still lagging on purpose: ids, folders, CSV columns, `module_id`, the worksheet
+     code's `unit`, R2 keys under modules/. Every built grade 4 math day (1 to 6, 72 to 77, 80 to 93) now has its
+     `### At home` block (LESSON-DAY.md item 5, writers' brief [agents/DAY-WRITER.md](agents/DAY-WRITER.md)),
+     built as `dNNN-home.html`; `HOME_TODO` in lesson.py is empty, so a day without one fails the check. **Next on
+     the back end:** units 2 and 3 (days 7 to 24) with writer, cheap read, expert read and fix, At home included;
+     units 4 to 8 stay frozen until a teacher reads unit 11; the Community Plot Planner tool (Codex queue) finishes
+     unit 11. Known view quirks: a problem with no heading over it prints stray asterisks in the home view (day 74
+     skipped it); day 81's cards label as "Example 2 1, 2"; the gate counts a table question with no number as
+     off the student page.
    - Still owed: the Spanish family note needs a qualified reader; the topic has no Word Wall cards of its own
      (area, perimeter, square unit, formula, length, width exist under other topics), which is the Word Wall
      owner's to add; the plan should say where day 90's two "On your own" items go when day 91's warm-up is the facts
