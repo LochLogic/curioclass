@@ -142,11 +142,15 @@ teacher page.
 
 - **Minutes.** 30 to 40 on a teaching day. On an assessment day, the assessment alone, then the respond part one
   to one, about 45 in all (40 to 50).
-- **Parts**, written `- **N min. Name.** ...`, in the order of the day. Their minutes add up to the total; there is
-  no other place the total is written.
+- **Parts**, written `- **N min. Name.** ...`, in the order of the day: the minutes and the name inside one pair of
+  `**`, on one line. The closing period may be left off, and a name may end in "?" or "!". The check names any part
+  line it cannot read. Their minutes add up to the total; there is no other place the total is written.
 - **Items by name.** Each question is named by its id, `[[s11-P90-1]]`, and must be on that day's student page
   (or the day's paper exit ticket). The view prints it by where it sits ("On your own 1 (side 2)"), so the parent
-  finds it on the page in the child's hands. Fewer items than the class, never other ones.
+  finds it on the page in the child's hands. A bold label ending in ".", "?", "!" or ":" names the group below it,
+  across the side break, until the next label; a label with its own question ("**Example 2.** [[id]]") names only
+  that question. A question in a table row with no number is found by its table and row ("Bo's stamps, row 2"), so
+  a table needs no numbers for the At home block to name its rows. Fewer items than the class, never other ones.
 - **Say.** Wherever the class version has pairs or whole-class talk, at least one `**Say.**` line (indented under
   its part) gives the parent's words in quotes and the answer to expect (`Expect: ...`). The parent is the partner.
 - **Swap.** One `**Swap.**` line, above the parts, for each thing a home lacks that the day's materials name: no

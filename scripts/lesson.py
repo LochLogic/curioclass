@@ -32,7 +32,8 @@ HOME_TEACH, HOME_CHECK = (30, 40), (40, 50)   # minutes at home: a teaching day;
 # report "At home block missing" as a note, not a failure. The agent that writes a section's blocks removes it here;
 # when the list is empty, delete it.
 HOME_TODO = set()
-HOME_PART = re.compile(r'^- \*\*(\d+) min\. (.+?)\.\*\*(.*?)(?=^- \*\*\d+ min\.|^\*\*|\Z)', re.M | re.S)
+# A part: "- **N min. Name.**", the name on one line; its closing "." may be left off, and "?" or "!" is kept.
+HOME_PART = re.compile(r'^- \*\*(\d+) min\.? ([^*\n]+?[?!]?)\.?\*\*(.*?)(?=^- \*\*\d+ min|^\*\*|\Z)', re.M | re.S)
 TALK = re.compile(r'\bpairs?\b|turn-and-talk|whole class|\bthe class\b|\*\*Ask\.\*\*', re.I)
 HOME_LACKS = re.compile(r'projector|grid paper|tiles|device|string loop|document camera|large tiles', re.I)
 SENTENCE_MAX = 15            # words in one student sentence, grades 3 to 5 (ours, untested)
@@ -144,33 +145,60 @@ def home_parts(d):
 
 
 def page_labels(d):
-    """Each question on the student page by the name a parent finds it under: "side 2, On your own 1"."""
+    """Each question on the student page by the name a parent finds it under: "side 2, On your own 1".
+
+    A bold label opens a group ("**On your own.**", ending in ".", "?", "!" or ":"); the group carries over to side 2
+    until a new label. A label that names its own question ("**Example 2.** [[id]]") names that question only, so the
+    numbered questions after it stay in the group above it ("Equation cards 1", not "Example 2 1"). A question in a
+    table row with no number is named by its table and row ("Bo's stamps, row 2"): the table is the group, or the
+    table's first header cell when there is no group, and a second table in one group is "table 2"."""
     lab = {}
+    cur = ''
     for side, body in d['sides']:
         sn = side.lower()
-        cur, row = '', 0
+        tab, tabs, row = None, 0, 0
         for ln in body.splitlines():
-            m = re.match(r'\s*\*\*(?!I can)([^*]+?)\.\*\*', ln)
+            m = re.match(r'\s*\*\*(?!I can)([^*]+?)[.?!:]\*\*', ln)
             if m:
-                cur, row = m[1].strip(), 0
-                cur = 'item %s' % cur if cur.isdigit() else cur
-                for r in REF.findall(ln[m.end():])[:1]:   # "**Example 1.** [[id]]": the label is the question's name
-                    lab.setdefault(r, '%s, %s' % (sn, cur))
+                tab, tabs = None, 0
+                name = m[1].strip()
+                name = 'item %s' % name if name.isdigit() else name
+                refs = REF.findall(ln[m.end():])[:1]
+                for r in refs:   # "**Example 1.** [[id]]": the label is the question's name
+                    lab.setdefault(r, '%s, %s' % (sn, name))
+                if not refs:
+                    cur = name
                 continue
-            if ln.lstrip().startswith('|'):
-                ns = NOTE.findall(ln)
-                if ns:
-                    row += 1
-                    lab.setdefault(ns[0], '%s, %s, row %d' % (sn, cur, row))
-                for n, r in re.findall(r'(\d+)\.\s*\[\[([A-Za-z0-9-]+)\]\]', ln):
-                    lab.setdefault(r, '%s, %s %s' % (sn, cur, n))
+            s = ln.strip()
+            if s.startswith('|'):
+                if re.fullmatch(r'\|?[\s:|-]+\|?', s):   # the header rule
+                    continue
+                cells = [c.strip() for c in s.strip('|').split('|')]
+                if tab is None:   # a new table: its first line is the header
+                    tabs += 1
+                    first = re.sub(r'\[\[[^]]*\]\]|\d+\.', '', cells[0]).strip()
+                    tab = cur or first or 'the table'
+                    if tabs > 1:
+                        tab = '%s, table %d' % (tab, tabs)
+                    row = 0
+                    if not REF.search(s):   # a header with no question in it is not a row
+                        continue
+                row += 1
+                numbered = dict((r, n) for n, r in re.findall(r'(\d+)\.\s*\[\[([A-Za-z0-9-]+)\]\]', s))
+                for r in NOTE.findall(s)[:1] + REF.findall(s):
+                    if r in numbered:
+                        lab.setdefault(r, '%s, %s' % (sn, ('%s %s' % (cur, numbered[r])) if cur else
+                                                      'problem %s' % numbered[r]))
+                    else:
+                        lab.setdefault(r, '%s, %s, row %d' % (sn, tab, row))
                 continue
+            tab = None
             m = re.match(r'\s*(\d+)\.\s+.*?\[\[([A-Za-z0-9-]+)\]\]', ln)
             if m:
-                lab.setdefault(m[2], '%s, %s %s' % (sn, cur, m[1]))
+                lab.setdefault(m[2], '%s, %s' % (sn, ('%s %s' % (cur, m[1])) if cur else 'problem %s' % m[1]))
                 continue
             for r in REF.findall(ln):
-                lab.setdefault(r, '%s, %s' % (sn, cur))
+                lab.setdefault(r, '%s, %s' % (sn, cur) if cur else sn)
     return lab
 
 
@@ -189,9 +217,13 @@ def check_home(d, items, row, lab):
         return ['%s: At home block missing' % lab]
     home, h = d['secs']['At home'], d['head']
     assess = row['kind'] == 'Check'
+    for ln in re.findall(r'^- \*\*\d.*$', home, re.M):   # a part line the parser cannot read
+        if not HOME_PART.match(ln):
+            f.append('%s: At home part "%s" is not written "- **N min. Name.** ..." (minutes, then the name, both '
+                     'inside one pair of ** on one line)' % (lab, ln[:50]))
     parts = home_parts(d)
     if not parts:
-        return ['%s: At home has no parts written "- **N min. Name.** ..."' % lab]
+        return f + ['%s: At home has no parts written "- **N min. Name.** ..."' % lab]
     lo, hi = HOME_CHECK if assess else HOME_TEACH
     tot = sum(p[0] for p in parts)
     if not lo <= tot <= hi:
@@ -1115,13 +1147,15 @@ def home_html(d, row, items, warn, foot):
         g = re.match(r'(.*?)(?:,? (?:row |question )?\d+)?(?: \((side \d)\))?$', w)
         group = (g[1], g[2])
         gap = home[last['end']:m.start()]
-        same = group == last['group'] and len(gap) <= 8   # ", ", " and ", ", then ", " to "
-        last.update(group=group, end=m.end())
-        if same:
-            w = w[len(g[1]):].split(' (side')[0].lstrip(', ')
+        same = last['group'] and g[1] == last['group'][0] and len(gap) <= 8   # ", ", " and ", ", then ", " to "
+        if same:   # the same place: the number alone, and its side only when the run turns the page
+            w = w[len(g[1]):].lstrip(', ')
+            if group == last['group']:
+                w = w.split(' (side')[0]
         elif re.search(r'(?:^|\.\**)\s*$', home[:m.start()]):   # a sentence starts with it
             w = w[0].upper() + w[1:]
-        return '**%s**' % w
+        last.update(group=group, end=m.end())
+        return '**%s**' % w.strip()
     body = md(REF.sub(name, home), items)
     qs = ''.join('<tr><td>%s</td><td class="q">%s</td><td>%s</td></tr>' % (
         html.escape(where(r)), stacked(stem(byid[r])), html.escape(byid[r]['answer'])) for r in named)
