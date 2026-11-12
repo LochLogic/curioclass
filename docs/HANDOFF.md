@@ -14,8 +14,8 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
    ([reviews/unit-plan-s11-2026-11-12.md](reviews/unit-plan-s11-2026-11-12.md)): 15 findings, none for Cory,
    verdict "the build can start". `scripts/plan.py check` passes (18 items, 31 wrong answers). Sara's own read
    as a teacher is still owed at the top of that report; it does not hold up step 2.
-2. **Written, read, revised: [courses/LESSON-DAY.md](courses/LESSON-DAY.md), draft 2 (2026-11-12). NEXT: Cory's
-   yes** (Desk card `q-lesson-day`). What one teaching day ships as, with sizes, written against day 90
+2. **Written, read, revised: [courses/LESSON-DAY.md](courses/LESSON-DAY.md), draft 2 (2026-11-12). Approved by Cory
+   2026-11-12** (Desk card `q-lesson-day`; DESK-ANSWERS). What one teaching day ships as, with sizes, written against day 90
    ([courses/math-4/u11-1/d090.md](../courses/math-4/u11-1/d090.md)). `scripts/lesson.py check` and `build --pdf`
    gate and print it. The expert's cold read
    ([reviews/lesson-day-2026-11-12.md](reviews/lesson-day-2026-11-12.md)) had 13 findings: 1 to 7 were made
@@ -47,7 +47,8 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
   items 10 to 15).
 - How long the home page feedback note stays hidden after × (card `q-banner-hide`, 2026-11-12). It had not gone
   away: Cory's Chrome had it hidden for good from one click. One message ever received, our own test.
-- A yes on `LESSON-DAY.md` draft 2 (card `q-lesson-day`, 2026-11-12). His read of the approach pages, and his final yes on the science
+- (Answered 2026-11-12: yes on `LESSON-DAY.md` draft 2. Still open on the card: no slides, and building the
+  rest of unit 11.1 now.) His read of the approach pages, and his final yes on the science
   and ELA spines, are still owed from before.
 
 **Frozen until the pilot is read:** new spines, stretch sheets, unit plans and specs. One exception: the grade 4

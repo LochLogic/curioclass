@@ -1,8 +1,8 @@
 # The lesson day: what one teaching day ships as
 
 Draft 2, 2026-11-12. Written against day 90 of grade 4 math (pilot unit 11.1), which is the worked case at the
-end. BASELINE rule 27 points here. **Not yet approved: Cory says yes once, because this sets the shape of about
-15,000 lesson days.** The curriculum expert read draft 1 cold (docs/reviews/lesson-day-2026-11-12.md); draft 2
+end. BASELINE rule 27 points here. **Approved by Cory, 2026-11-12: this sets the shape of about 15,000 lesson
+days.** The curriculum expert read draft 1 cold (docs/reviews/lesson-day-2026-11-12.md); draft 2
 makes its seven "before the yes" changes. **Proved on grade 4 math only** until the ELA and science pilots run.
 
 A unit plan says what each day is for. This page says what a teacher and a student hold in their hands on that

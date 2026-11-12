@@ -582,3 +582,12 @@ Cory: docs/HANDOFF.md, "The folders".
 
 "Review, then merge". Reviewed: 141 new files and 5 changed, all under tools/, no conflict, no tool goes live,
 the checkers pass. Merged codex/queue into main the same day. The tools stay in the frozen bin.
+
+## 2026-11-12: the lesson-day template (Cory, in chat; card q-lesson-day)
+
+"yes i approve lesson day."
+
+So: docs/courses/LESSON-DAY.md draft 2 is the shape of every lesson day, proved on grade 4 math only until the
+ELA and science pilots run. Questions 2 (no slides) and 3 (build the rest of unit 11.1 now) were not answered
+separately; the card stays open on them. Cory also asked where the older shelves (sub day, Word Wall and the
+rest, each tied to a tool) fit now that the lesson day exists; answered in chat the same day.
