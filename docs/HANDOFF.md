@@ -49,9 +49,18 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
      the next unit, then spot checks; grade 4 math is the main thread, with the ELA and science pilots alongside once
      11.1 has its teacher read and no other math course before them; tools held until the frame is built, except
      Community Plot Planner and Codex's non-course queue until 2026-11-30.
-   - **Now: stretch 10 (days 79 to 88, units 10.1 to 10.3)**, the next unit. Its prose plan goes into data first
-     (`plan.py check`), then one agent per day as for 11.1, then a full expert read on every day (REVIEW-CADENCE.md
-     step 2). Costs go in COST.md.
+   - **Done 2026-11-12: stretch 10 (days 80 to 88, units 10.1 to 10.3)** built in `courses/math-4/u10-1..3`, with a
+     full expert read on every day (docs/reviews/day-080 to 088): 87 findings, none for Cory, 85 fixed, 2 open,
+     about 10 new gates. 7 in 10 findings repeated an 11.1 kind, so step 3 is not earned: REVIEW-CADENCE.md now adds
+     a cheap focused read on every day before the expert read for the next units (brief in the session scratchpad,
+     to be copied to docs/agents when first used).
+   - **The 11.1 teacher-read pack** is `build/pilot/math-4-u11-1-teacher-read.pdf` (57 pages), sent to Cory
+     2026-11-12 for a teacher.
+   - **Now: stretches 1 and 9.** Both are in data (merged 2026-11-12). Stretch 1 (days 1 to 6): one writer per day
+     plus a shared-pieces agent running; then the writer-flagged fixes, the cheap read and the full expert read on
+     every day. Stretch 9 (days 72 to 79) next, the same way, days 72 to 77 only: day 78 is Check 2, which needs
+     items from stretches 6 to 8 (frozen), and day 79 responds to it. The tool-rows gate flags days 2 to 5 and 77
+     until their writers add T rows. Costs go in COST.md.
    - Still owed: the Spanish family note needs a qualified reader; the module has no Word Wall cards of its own
      (area, perimeter, square unit, formula, length, width exist under other modules), which is the Word Wall
      owner's to add; the plan should say where day 90's two "On your own" items go when day 91's warm-up is the facts
