@@ -933,3 +933,22 @@ s03-P23-9,<,,,D,
 s03-P23-10,Ivy's,,,D,13 and 10 read as bigger numbers
 s03-P23-10,"Max's, with 13/10 > 5/3 written",,,G,
 s03-P23-11,Yes,,,H,
+s03-P19-2,>,,,D,2 and 12 read as bigger numbers
+s03-P19-4,1/6,,,D,6 read as bigger
+s03-K19-1,7/12 > 2/3,,,D,"Kai's claim, in the steps"
+s03-K19-1,"2/3 = 2/12, so 2/3 < 7/12",,,A,
+s03-K19-2,9/8 > 5/4,,,D,
+s03-K19-2,"5/4 = 5/8, so 5/4 < 9/8",,,A,
+s03-F19-1,9/12 > 5/6,,,D,the wrong answer shown
+s03-F19-2,"4/5 = 4/10, so 4/5 < 7/10",,,A,the wrong answer shown
+s03-P19-5,"3/4 = 3/8, so 3/4 < 7/8",,,A,right sign from a wrong name
+s03-P19-5,"6/8 < 7/8, so 3/4 > 7/8",,,G,
+s03-P19-6,< with no renaming,,,D,3 and 8 read as bigger
+s03-P19-6,"2/4 = 2/8, so 2/4 < 3/8",,,A,
+s03-P19-6,"4/8 > 3/8, so 2/4 < 3/8",,,G,
+s03-P19-7,3/12 > 1/4 with no renaming,,,D,
+s03-P19-7,"1/4 = 1/12, so 3/12 > 1/4",,,A,
+s03-P19-8,13/10 > 7/5 with no renaming,,,D,
+s03-P19-8,"7/5 = 7/10, so 13/10 > 7/5",,,A,
+s03-P19-8,"13/10 < 14/10, so 13/10 > 7/5",,,G,
+s03-X19,"3/2 = 3/8, so 3/2 < 11/8",,,A,(b): the bottom number only
