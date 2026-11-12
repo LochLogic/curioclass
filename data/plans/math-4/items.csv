@@ -17,3 +17,15 @@ s11-X91a,exit,91,11,11.1,1,4.MD.A.3,,,key,"""A hall is 40 feet long and 6 feet w
 s11-X91b,exit,91,11,11.1,2,4.MD.A.3,,,key,"""A park is 235 yards long and 148 yards wide. Perimeter?""",766 yards,2*(235+148),766
 s11-X91c,exit,91,11,11.1,3,4.MD.A.3,,,key,"""A card is 3 1/10 inches long and 2 4/10 inches wide. Perimeter?""",11 inches; 10 10/10 is also right,2*(F(31;10)+F(24;10)),11
 s11-X92,exit,92,11,11.1,1,4.MD.A.3,,,key,"""A patio is 4 yards wide. Its length is 3 times its width. (a) Ana paints the whole patio floor. How much floor is that? (b) She hangs a string of lights along all four edges. How long is the string? Write the units.""",48 square yards; 32 yards,4*(3*4) | 2*(4+3*4),48 | 32
+s11-K90-1,example,90,11,11.1,1,4.MD.A.3,a,MP.2,key,A garden bed covers 63 square feet. It is 7 feet wide. How long is it?,7 × ? = 63; 9 feet,63/7,9
+s11-K90-2,example,90,11,11.1,2,4.MD.A.3,b,MP.2,key,A pen has 38 feet of fence all the way around. It is 12 feet long. How wide is it?,12 + ? + 12 + ? = 38; 7 feet,(38-2*12)/2,7
+s11-T90-1,tool,90,11,11.1,1,4.MD.A.3,a,MP.2,key,The Lee family needs 48 square feet. Their plot is 6 feet wide. How long is it?,6 × ? = 48; 8 feet; fence 28 feet,48/6 | 2*(6+8),8 | 28
+s11-T90-2,tool,90,11,11.1,2,4.MD.A.3,a,MP.2,key,The Nguyen family needs 36 square feet. Their plot is 4 feet wide. How long is it?,4 × ? = 36; 9 feet; fence 26 feet,36/4 | 2*(4+9),9 | 26
+s11-T90-3,tool,90,11,11.1,3,4.MD.A.3,a,MP.2,key,The Clark family needs 60 square feet. Their plot is 5 feet wide. How long is it?,5 × ? = 60; 12 feet; fence 34 feet,60/5 | 2*(5+12),12 | 34
+s11-T90-4,tool,90,11,11.1,4,4.MD.A.3,b,MP.2,key,The Ortiz family has 30 feet of fence. Their plot is 5 feet wide. How long is it?,5 + ? + 5 + ? = 30; 10 feet; area 50 square feet,(30-2*5)/2 | 5*10,10 | 50
+s11-T90-5,tool,90,11,11.1,5,4.MD.A.3,b,MP.2,key,The Abebe family has 24 feet of fence. Their plot is 8 feet long. How wide is it?,8 + ? + 8 + ? = 24; 4 feet; area 32 square feet,(24-2*8)/2 | 8*4,4 | 32
+s11-F90-1,fix,90,11,11.1,1,4.MD.A.3,a,MP.2,key,"Jo says: ""A rug covers 35 square feet and is 5 feet wide, so it is 30 feet long.""",5 × ? = 35; 7 feet. Jo subtracted,35/5,7
+s11-F90-2,fix,90,11,11.1,2,4.MD.A.3,b,MP.2,key,"Max says: ""A pen has 44 feet of fence and is 14 feet long, so it is 30 feet wide.""",14 + ? + 14 + ? = 44; 8 feet. Max took off one side only,(44-2*14)/2,8
+s11-P90-1,practice,90,11,11.1,1,4.MD.A.3,a,MP.2,key,A table top covers 27 square feet. It is 3 feet wide. How long is it?,3 × ? = 27; 9 feet,27/3,9
+s11-P90-2,practice,90,11,11.1,2,4.MD.A.3,b,MP.2,key,A dog run has 42 feet of fence. It is 13 feet long. How wide is it?,13 + ? + 13 + ? = 42; 8 feet,(42-2*13)/2,8
+s11-C90-1,challenge,90,11,11.1,1,4.MD.A.3,f,MP.2,key,A rectangle has an area of 40 square feet and a perimeter of 26 feet. How long are its sides?,5 feet and 8 feet,40/8 | 26/2-5,5 | 8

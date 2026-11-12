@@ -30,3 +30,10 @@ s11-X91c,5 5/10,F(31;10)+F(24;10),5 5/10,B,
 s11-X92,length 7,4+3,7,,"""3 more"", stretch 10"
 s11-X92,swapped,,,A,
 s11-X92,"""48 yards""",,,E,
+s11-F90-1,30,35-5,30,C,the wrong answer shown
+s11-F90-2,30,44-14,30,D,the wrong answer shown
+s11-P90-1,24 or 30,27-3 | 27+3,24 | 30,C,
+s11-P90-1,81,27*3,81,C,
+s11-P90-2,29,42-13,29,D,one long side taken off
+s11-P90-2,16,42-2*13,16,D,not halved
+s11-T90-1,54 or 42,48+6 | 48-6,54 | 42,C,

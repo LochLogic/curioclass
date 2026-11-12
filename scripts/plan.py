@@ -21,6 +21,8 @@ LESSON_MIN = 50          # the lesson part of a 60 minute day (spine: warm-up 5,
 DAY_MIN = 60
 KINDS = {'Understanding', 'Fluency', 'Use', 'Check', 'Respond'}
 MARKS = {'key', 'light'}
+LESSON_KINDS = {'example', 'tool', 'fix', 'practice', 'challenge'}   # rows a lesson day adds; all count as taught
+CHECKS = {'readiness', 'end', 'exit'} | LESSON_KINDS
 READERS = {'script', 'expert', 'sara', 'teacher', 'student', 'cory', 'writer'}
 
 
@@ -115,6 +117,8 @@ def check(course):
     for i in items:
         if codes and i['code'] not in codes:
             fails.append('%s: standard code %s is not in the standards file' % (i['item_id'], i['code']))
+        if i['check'] not in CHECKS:
+            fails.append('%s: check "%s" is not one of %s' % (i['item_id'], i['check'], ', '.join(sorted(CHECKS))))
         if i['judged'] not in ('key', 'teacher'):
             fails.append('%s: judged must be key or teacher' % i['item_id'])
         if i['judged'] == 'key' and not i['compute'].strip():
@@ -151,6 +155,8 @@ def check(course):
         # 3. no end-check item or exit question reuses the numbers of a taught example or of another item
         taught = [('error %s example' % e['letter'], numbers(e['example'])) for e in errors if e['stretch'] == s]
         taught += [('day %s' % d['day'], numbers(d['opens'] + ' ' + d['by_hand'])) for d in days if d['stretch'] == s]
+        # lesson-day rows (docs/courses/LESSON-DAY.md, rule 3): worked examples, tool notes, fixes, practice
+        taught += [(i['item_id'], numbers(i['stem'])) for i in items if i['stretch'] == s and i['check'] in LESSON_KINDS]
         asked = [(i['item_id'], numbers(i['stem'])) for i in items if i['stretch'] == s and i['check'] in ('end', 'exit')]
         for k, (a, na) in enumerate(asked):
             if len(na) < 2:
