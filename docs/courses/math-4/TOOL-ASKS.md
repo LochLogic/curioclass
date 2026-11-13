@@ -18,7 +18,7 @@ How to read it:
 - Unit 3's section numbers are those of the plans after the swap of sections 3.3 and 3.4 (Cory, 2026-11-11). The
   swap is done: benchmarks are taught first. See [s03.md](s03.md).
 
-Units planned so far: 1, 2, 3, 9, 10 and 11. Each new unit adds its asks here.
+Units planned so far: 1, 2, 3, 4, 9, 10 and 11. Each new unit adds its asks here.
 
 ## Egg Carton Factory
 
@@ -262,6 +262,42 @@ Asks, from [s11](s11.md) field U5 as first written:
    replaced. (Expert read of the lesson-day template, docs/reviews/lesson-day-2026-11-12.md, finding 2.)
 
 Not a gap: the 30 by 20 lot. The tool states 600 and never asks for it; keep it that way.
+
+## Recipe Scaler
+
+- **Mark.** Key on days 26, 33 and 35; light on days 30, 36 and 37 (the plans' own). Spec only.
+- **Verdict.** Partly fits. Every part of 4.NF.B.3 is in it with feedback on each try, but it runs as one 35 to
+  45 minute sitting in a fixed order, and its picture is a cup, not the number line unit 4 carries.
+- **Spec.** tools/recipe-scaler/spec.md.
+
+| Day | Part | Job | Plan |
+|---|---|---|---|
+| 26 | Building rounds, with second ways | Show why, 20 min | [u04-1](u04-1.md) |
+| 30 | The mug and pan rounds | Show why, 5 min | [u04-2](u04-2.md) |
+| 33 | The double batch and the test bake | Practise with feedback, 15 min | [u04-3](u04-3.md) |
+| 35 | The pantry rounds | Practise with feedback, 20 min | [u04-3](u04-3.md) |
+| 36 | Kitchen stories | Practise with feedback, 15 min | [u04-4](u04-4.md) |
+| 37 | On your own | Check unaided, 10 min | [u04-4](u04-4.md) |
+
+Days 25, 27 to 29, 31, 32 and 34 run on paper.
+
+Asks, from [s04](s04.md) field 8 and the four section plans:
+
+1. Each part opens by itself, from the header, whether or not the earlier parts are done. Unit 4 uses six
+   parts on six days. (s04; all four section plans.)
+2. A number line under the cup in the building and pantry rounds, from 0 to 5, so the cup's fill and the
+   unit's carried line show one amount. (s04; u04-1; u04-3.)
+3. The pantry and double-batch rounds ask for the way: the child picks "as fractions" or "wholes and parts",
+   and a "the other way" button redoes the same sum, so both of the standard's ways are met. (u04-3.)
+4. Pantry rounds where the parts are too few, so a whole must be broken, are at least half the take-aways;
+   the spec has three of six. (u04-3.)
+5. "On your own" is scored by the unit's seven parts (s04 field 2), not the five codes: 4.NF.B.3b's decompose
+   and justify, and 4.NF.B.3c's add and subtract, each read apart. (u04-4.)
+6. Kitchen stories with the unknown at the start (one of eight) and compare stories with "fewer" (none). (u04-4.)
+7. A different-wholes story among the kitchen stories, beside the mug and pan rounds. (u04-4.)
+8. Its rounds, stories and "on your own" items must keep out of the plan's checks: the plan's side was chosen
+   so (s04 field 5). Recheck if the spec changes, and enter its items as rows when the plan-data job runs.
+   (s04.)
 
 ## Earlier-grade tools named for reteach
 

@@ -1,5 +1,5 @@
 id,course,unit,kind,role,target,after,status,worker,started,ended,commit,note
-math-4-u04-plan,math-4,4,plan,planner,25-38,,taken,lead,2026-11-12 22:21,,,
+math-4-u04-plan,math-4,4,plan,planner,25-38,,done,lead,2026-11-12 22:21,2026-11-12 22:32,,
 math-4-u04-plan-read,math-4,4,plan-read,expert,25-38,math-4-u04-plan,waiting,,,,,
 math-4-u04-plan-data,math-4,4,plan-data,planner,25-38,math-4-u04-plan-read,waiting,,,,,
 math-4-u05-plan,math-4,5,plan,planner,39-41,,waiting,,,,,
