@@ -213,7 +213,13 @@ the check is the evidence.
    adapted item carries its credit in its row's `source` cell (title, author, licence with link, what we changed,
    in the form the licensor asks for), and every built piece that prints the item prints the credit at its foot.
    A name or logo the licence excludes appears only in the credit line. A day adapted as a whole says so in its
-   `credit` header. Sources read only to learn are named under Credit as "informed by". A day that is all ours
+   `credit` header.
+   **A day adapted from a base text (docs/sources/BASE-TEXTS.md) carries one short credit and no more** (Cory,
+   2026-11-13: minimal and clean on the live site). The `credit` header, printed once in the foot, reads:
+   `Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 7 and 8, CC BY 4.0,
+   https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.` The teacher page's Credit section says
+   the same in one line. Rows taken from that lesson do not repeat it in `source`. The source's name appears
+   nowhere else (`lesson.py check` fails on it). Sources read only to learn are named under Credit as "informed by". A day that is all ours
    says so. Texts, images and other material used but not adapted have their own rights record (texts.csv for
    ELA), and the first pilot in that subject sets its rule here.
 5. **It stands alone.** A teacher who has read the section opener can teach the day from its teacher page. Nothing

@@ -39,6 +39,9 @@ HOME_LACKS = re.compile(r'projector|grid paper|tiles|device|string loop|document
 SENTENCE_MAX = 15            # words in one student sentence, grades 3 to 5 (ours, untested)
 BAD_LICENCE = re.compile(r'\bnc\b|noncommercial|non-commercial|sharealike|share-alike|-sa\b|\bnd\b|-nd\b|'
                          r'noderivatives|no derivatives', re.I)
+# Base-text and reference names: allowed only in the credit header (LESSON-DAY rule 4; Cory 2026-11-13).
+SOURCE_NAME = re.compile(r'Illustrative Math\w*|Kendall Hunt|kendallhunt|accessim|OpenSciEd|EL Education|'
+                         r'Eureka Math|EngageNY|\bIM\b(?:®)?', re.I)
 REF = re.compile(r'\[\[([A-Za-z0-9-]+)\]\]')
 STEPS = re.compile(r'\[\[steps:([A-Za-z0-9-]+)\]\]')
 NOTE = re.compile(r'\[\[note:([A-Za-z0-9-]+)\]\]')   # a short form for a table: who, and the numbers given
@@ -516,6 +519,10 @@ def check_day(d, items, days):
     if c != 'ours' and not ('adapted' in c and 'http' in c and re.search(r'cc by|cc0|public domain', c)):
         f.append('%s: credit must be "ours" or say "adapted from" with the licence (CC BY, CC0 or public domain) '
                  'and a link' % lab)
+    outside = d['teacher'].replace(d['secs'].get('Credit', ''), '') + d['student']
+    for name in sorted(set(SOURCE_NAME.findall(outside))):
+        f.append('%s: "%s" names a source outside the credit header; credit lives only there (LESSON-DAY rule 4)'
+                 % (lab, name))
     adapted = c.split('informed by')[0]
     if BAD_LICENCE.search(adapted):
         f.append('%s: a NonCommercial, ShareAlike or NoDerivatives source cannot be adapted (Curio Class content is '

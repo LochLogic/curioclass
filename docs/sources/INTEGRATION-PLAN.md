@@ -52,7 +52,15 @@ Per subject:
   part built on a trade book is rewritten on our text. EL lessons run 60 minutes, so one may span more than one day.
   Skills Block (K to 2) needs the least rewriting.
 
-## 3. Pipeline changes (each small; none made yet)
+## 3. Pipeline changes
+
+**Cory, 2026-11-13: minimal citations on the live site, light rigor on boundaries, few tokens spent managing it.**
+So what was built is small: one short credit per adapted day (LESSON-DAY rule 4), a `lesson.py check` gate that
+fails on a source's name outside the credit, and a "When your day has a base text" section in DAY-WRITER.md. The
+writer reads the source lesson file directly. Not built, and not planned unless a problem shows up: the `base`
+column, the pack script, the 8-word copy index. The fuller list below is kept as the option if one is needed.
+
+Option list (from the analyses):
 
 1. `base` column in `data/plans/<course>/days.csv`; `plan.py check` validates its format and, when the store is
    present, that the files exist. Documented in data/plans/README.md.
@@ -75,8 +83,8 @@ Per subject:
    grade 4 unit 3 lessons 7 to 12. Note the naming: IM's own unit 4 is decimals. Stage 1: days 25 to 28, one writer at
    a time, cheap and expert reads, then go or no-go. Stage 2: days 29 to 38. Days 36 to 38 have no IM lesson and stay
    ours, which gives an in-unit control.
-   Go rule: writer tokens within 10 percent of unit 2 (194,000 per day, pack included); expert-only findings 3 per day
-   or fewer; zero 8-word overlap with Eureka; zero rights findings. Tokens up but findings down: Cory's call.
+   Go rule: writer tokens within 10 percent of unit 2 (194,000 per day); expert-only findings 3 per day or fewer;
+   no rights finding from the expert read. Tokens up but findings down: Cory's call.
 2. **If go:** the remaining grade 4 math units take IM through the same pipeline. The day-to-lesson map is in
    analysis-math.md section 1. Order differences to plan around: IM multiplies fractions by whole numbers before
    adding them (cut those links); area and perimeter is spread over four IM places (unit 11 draws on all four).
