@@ -101,12 +101,13 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     studies (56 of the 105 courses) are the first focus; the other subjects follow. This bends where work is
     complementary (a shared rule, a bar page, a standards fix that serves both). When a choice has to be made, the
     core subjects come first. Every course is still finished to the bar; this sets the order, not the scope.
-25. **Prove at the bottom before planning wider** (Cory, 2026-11-11, accepting the cold strategic review,
-    docs/reviews/strategic-review-2026-11-11.md). One unit is built all the way down (lesson days, print, checks
-    with keys, its tool) and read before more plans are written to the same template. A unit is planned only
-    when the unit before it is built. The first pilot is grade 4 math pilot unit 11 (one section, 11.1); the first ELA and science
-    pilots follow as soon as it has been read. Until then no new scope and sequence, unit plan, section plan or spec is
-    written, except the pieces a pilot needs.
+25. **Plan top down, test with a probe and a guard** (Cory, 2026-11-13, replacing "prove at the bottom before
+    planning wider" of 2026-11-11). The core subjects are planned layer by layer before more days are written:
+    progressions and course frames for all four together, then scope and sequence and units one subject at a time
+    (social studies first, math last), each with a review and a baseline. A probe (a few days written from each
+    subject's units) and a guard (a few days per subject before full writing) test the plans, with "on" and "off"
+    set beforehand. Sections, days and tools come after. The order is docs/PRODUCTION-PATH.md, section 3; the
+    decision is DESK-ANSWERS 2026-11-13, "the build order for the core subjects".
 26. **Old tools and specs are sorted by demand** (same day). Three bins, set by script, never by inspection:
     (a) named by a section plan, as key or light: gets course work; (b) live and passing the teaching test but not
     named: stays on the shelf as a free-standing tool and claims no course coverage; (c) everything else: frozen,

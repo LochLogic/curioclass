@@ -10,9 +10,10 @@ attacked the logic ("not sound as is; sound with changes"). Drafts 2 and 3 took 
 added Cory's decisions of the morning of 2026-11-13 and the layer above the course, and was cold-checked again.
 **Draft 5 (this one) replaces the path with the build order Cory set later the same day** (DESK-ANSWERS,
 "the build order for the core subjects"), after two rounds of assessment in chat: every core subject is planned
-layer by layer, across all four subjects, down to the unit level, before any more days are written. Sections 1 and
-3 to 6 are rewritten; section 2 (the unit 4 evidence) is unchanged. What the checks corrected is listed in section
-7, so nothing was quietly folded in.
+top down: progressions and course frames across all four subjects together, then scope and sequence and units
+subject by subject, before any more days are written. Sections 1 and 3 to 6 are rewritten; section 2 (the unit 4
+evidence) keeps its numbers, with its references and two sentences updated. What the checks corrected is listed in
+section 7, so nothing was quietly folded in.
 
 Evidence, all in the repo: docs/reviews/pipeline-audit-2026-11-13.md, the eight unit 4 reads (cheap-d025 to d028,
 day-025 to day-028), the two reliability reads (reliability-u04-d025-028, reliability-u02-d007-009),
@@ -26,17 +27,19 @@ same kind of model that wrote them.
 1. **Plan every core subject from the widest scope down, one layer at a time, before writing days.** ROADMAP's
    layers set the order: foundation, standards, approach, **progressions** (layer 4: what each grade owns, assumes
    and hands on, per subject, across all its grades), each course's frame and scope and sequence (with its map
-   against the base text, where there is one), then units. A layer is built and reviewed for all four core
-   subjects (math, ELA, science, social studies: 56 courses) before the layer under it. Sections, days, lessons and
+   against the base text, where there is one), then units. Progressions and course frames are built and reviewed
+   for all four core subjects together (math, ELA, science, social studies: 56 courses); scope and sequence and
+   units then go one subject at a time, each reviewed from its progression down. Sections, days, lessons and
    tools come only after every core subject's units are planned and reviewed. This replaces BASELINE rule 25
-   ("prove at the bottom before planning wider"; Cory, 2026-11-13). Cory's reasoning: well-made units in a sound
+   ("prove at the bottom before planning wider"; Cory, 2026-11-13). Cory's reasoning, in chat: well-made units in a sound
    progression leave fewer problems below, and fixing back up the chain is a cost that cannot be avoided anyway.
-   (Likely: the plan-time read of unit 4 caught 11 cross-day problems before writing; how much it saves at the day
+   (Likely: the plan-time read of unit 4 caught 11 cross-day problems, 9 of them in the 10 planned days, before writing; how much it saves at the day
    level is not measured yet, which is what the probe and the guard are for.)
 2. **Test the plans against real days twice, with "on" and "off" set beforehand.** Once early, as a **probe**: a
-   few social studies days written at baseline 2, before the other three subjects copy the unit template. Once at
-   the end, as the **guard**: a few days written in each subject once every unit is planned, before full writing
-   starts. Each measures how far off the plans were (section 3, steps 4 and 9).
+   few days written in each subject once its units are planned, first in social studies at baseline 2, before the
+   other three subjects copy the unit template. Once at the end, as the **guard**: a few days written in each
+   subject once every unit is planned, before full writing starts. Each measures how far off the plans were
+   (section 3, steps 4 and 7; the measures are set in P4).
 3. **Learn the process on clean work first; convert old work last.** Social studies goes first because nothing of
    it has been planned (no scope and sequence, no plan), so the process is learned without bending old work into
    it. Math goes last, because it holds the most old work (a grade 4 scope and sequence, unit plans and 48 written
@@ -54,7 +57,7 @@ same kind of model that wrote them.
 
 ## 2. What the measurements say
 
-(Unchanged from draft 4. This is the unit 4 evidence the path rests on.)
+(The unit 4 evidence the path rests on. Numbers as in draft 4; references and two sentences updated.)
 
 ### Reliability at the end (same brief, fresh reader, both sets fixed)
 
@@ -114,7 +117,7 @@ unless unit 4's result is unclear.
 The audit found only about 6% of earlier findings in the plan layer; here the cross-day share is higher because
 this unit's plan predates the source and fits it worst. Read honestly, this table says planning well can prevent
 up to about 9 of these 26 (the cross-day and stale-plan rows); the 11 in the day itself are left to the writer and
-the reads whatever the plans are. The probe and the guard (steps 4 and 9) measure whether that holds.
+the reads whatever the plans are. The probe and the guard (steps 4 and 7) measure whether that holds.
 
 ## 3. The path, step by step
 
@@ -125,17 +128,27 @@ math progression page.
 
 ### Pre-work (before step 1; Cory, 2026-11-13: "should be a solved issue before the plan gets started")
 
-- **P1. The social studies content standard.** Cory wants better than "pick one state": a unified set, or a "high
-  watermark" (take the more demanding expectation where states differ), and the same question for values conflicts
-  between state instruments (HANDOFF, card q-bar-subjects, items 1 and 5). A short options paper with a
-  recommendation goes to Cory; he decides. No social studies progression starts before it is settled.
+- **P1. The social studies content standard: confirm what is on record.** Card q-bar-subjects (items 1 and 5)
+  left it open, but on 2026-11-12 Cory chose option (d): C3 for skills, Massachusetts 2018 as the content anchor in
+  its course order, checked unit by unit against a named few states, with Curio Class's own content replacing the
+  anchor's own-state year; and the values rule (higher court, then facts and backed sources, then dignity and
+  openness, set to grade level) (DESK-ANSWERS 2026-11-12; docs/reviews/social-studies-content-standard-2026-11-12.md).
+  P1 asks Cory one thing: does option (d) stand, or does a unified set or "high watermark" replace it? If it
+  stands, P1 is done. No social studies progression starts before he answers.
 - **P2. A social studies base text.** Scout for an openly licensed social studies curriculum whose licence lets us
   adapt it (some open material bars commercial use; each licence gets a verdict, light rigor). If one fits, it is
   loaded to the source store and used like IM. If none fits, social studies stays the clean-slate subject, and
   science goes second so the base-text lessons are learned before math.
 - **P3. The rule change on record.** BASELINE rule 25 is replaced by this order, and HANDOFF and ROADMAP point
   here, so no worker follows the old rule.
-- **P4. The probe and guard measures, set now** (section 3, steps 4 and 9), before any plan is written.
+- **P4. The probe and guard measures, set now, before any plan is written** (the lead's addition, agreed in chat as
+  part of the probe). For each probe (step 4) and the guard (step 7): the share of day findings traced to the unit
+  plan or above (on: about the unit 4 re-plan's level or lower; off: clearly higher); how many unit plans need a
+  change; whether a change is to the template or to one unit. The lead writes the exact thresholds; they are shown
+  to Cory before the first probe runs.
+- **Who decides, at every review and baseline.** The expert settles item-level choices. Cory decides go or no-go
+  at each baseline, at the final review and on an "off" result from a probe or the guard, and any change to scope
+  (what a course or grade teaches, the course list, a subject's order).
 
 ### Step 1. Progressions for the four core subjects, then a review
 
@@ -163,9 +176,10 @@ million for the four subjects.
 ### Step 2. Course frames for the four core subjects, then a review: baseline 1
 
 A course frame says what the course is: its grades, the standards and progression skills it owns, its days, its
-unit list with a reason for each unit, and, where there is a base text, the course map (every base lesson placed in
+unit list with a reason for each unit, and, where there is a base text, the source map (data/plans/<course>/source-map.csv: every base lesson placed in
 one of our units, scripted from the source's free pages, then judged for unit edges and day counts; grade 4 math's
-table of 149 IM lessons is already scripted). The 56 core courses get one each. The three scopes and sequences on
+table of 149 IM lessons is already scripted, kept outside the repo in the source store). A course frame is the course-level
+summary; its scope and sequence (step 3) then sets every day in order. The 56 core courses get one each. The three scopes and sequences on
 file are read as input against the progressions, not assumed right.
 
 Then **baseline 1**, a whole-structure review:
@@ -191,19 +205,19 @@ expert reads each against the progression and the content standard P1 set; Cory 
 - **Baseline 2**: a full review of social studies from the progression down, plus the probe's result. Template
   changes are made here, once, before step 5.
 
-### Step 5. Science, ELA, then math: the same cycle
+### Step 5. The other three subjects, math last: the same cycle
 
 Each subject in turn runs step 3 and step 4's planning and review (scope and sequence, review, units, review), with
-a review from the progression down at its end. Order: science, then ELA, then math (science goes second in any
-case if P2 finds no social studies base text). The probe runs once, in social studies; the other subjects run it
-again only if baseline 2 changed the template a lot.
+the probe, and a review from the progression down at its end. Math goes last. Science goes second if P2 finds no
+social studies base text; otherwise the order of science and ELA is Cory's (section 6, question 3). The probe runs
+in every subject: a few days each is cheap, and each subject's units can be off in their own way.
 
 Science 6 to 8 follows OpenSciEd's order after its loss check. ELA K to 5 and middle school science test the base
 text paths that INTEGRATION-PLAN's two small trials were meant to test, so those trials fold into this step.
 
 **Math last.** Math converts the most old work: grade 4's scope and sequence, unit plans, the unit 4 re-plan and
 its source map are read against the new layers and changed where the review finds it, rather than kept because
-they exist. The grade 4 course map resumes here.
+they exist. The grade 4 source map resumes here.
 
 ### Step 6. The final review: every subject, every course
 
@@ -234,20 +248,29 @@ section written, test whether the set read can stand in for the separate cheap c
 step 3 is unchanged: the expert drops to spot checks only when no process finding repeats from an earlier unit (19
 of 26 repeated in unit 4) and expert-only findings are about one a day, and a qualified teacher still reads a
 sample. Plan as if the expert read stays on every day: about 650,000 tokens a fully read day (an estimate including
-the set read), which across about 13,300 days is about 8.6 billion, a floor for the assumed day counts (it leaves
-out unit-level pieces, planning, tooling and re-reads). The day counts for 49 courses are assumed.
+the set read), which across about 13,300 days (all 105 courses) is about 8.6 billion, a floor (it leaves out unit-level
+pieces, planning, tooling and re-reads). Most of those day counts are assumed until each course's frame sets them.
 
-### Step 9. The guard's measures (set in P4)
-
-For the probe and the guard, before writing: what share of day findings trace to the unit plan or above (on: about
-the unit 4 re-plan's level or lower; off: clearly higher); how many unit plans need a change; whether a change is to
-the template or to one unit. The exact thresholds are written in P4 and shown to Cory before the probe runs.
-
-### Step 10. Tools
+### Step 9. Tools
 
 Tools stay held until days are being written; then key tools are built or rebuilt for the sections that name them,
 live and verified, with print covering the rest (FOUNDATION 6.3). Tools already live stay live as free-standing
 tools and claim no course coverage until a section names them (BASELINE rule 26).
+
+### Existing work: what happens to each piece
+
+- Grade 4 math scope and sequence, unit plans (s01 to s04, s09 to s11), section plans (u04-1 to u04-4 and the
+  rest), the unit 4 re-plan and its source map and cross-day files: held, input to math's turn in step 5.
+- Section 11.1 (built, all but its tool) and its owed teacher read: held; the teacher read happens when a teacher is
+  found and counts toward math's finishing.
+- The start-of-year check and the unit 4 readiness items (the old rule 25 exceptions): held with grade 4 math.
+- The grade 6 ELA and grade 4 science scopes and sequences: input to step 2 and their subject's turn; Cory's final
+  yes waits until they are read against the progressions.
+- Sara's list (docs/courses/NEXT-SPINES.md): input to step 2's course frames.
+- The science simulations to list per unit (Cory's earlier ask): listed when science's units are planned.
+- The Codex queue's queued builds (for example Community Plot Planner): paused with all tool work until step 9,
+  unless Cory wants Pro's last weeks spent on them; his call (question 1b).
+- The 149-lesson IM table: kept in the source store for math's source map.
 
 ### After the core subjects
 
@@ -260,7 +283,7 @@ development with ELA; health with science), the cross_subject column notes it fo
 
 - **A reader of a different model kind** at each baseline: Codex reads a sample cold against the same brief, and
   its findings are compared with the expert's. Pro ends 2026-11-30; before then the most useful read is P1's
-  options paper or a first progression draft. It runs through the Codex queue Cory pastes himself (section 6).
+  first progression draft. It runs through the Codex queue Cory pastes himself (section 6).
 - **A social studies content reviewer** matters first now, since social studies is planned first; a math content
   reviewer is still required before grade 4 math is called finished (FOUNDATION 7.3), and a teacher reads samples.
   Cory finds the people; nothing is sent or spent without his yes.
@@ -297,11 +320,20 @@ development with ELA; health with science), the cross_subject column notes it fo
 1. **People and timing** (FOUNDATION 7.5):
    - 1a. Who and when for a social studies content reviewer (needed first now), the grade 3 to 5 teacher, and the
      math content reviewer.
-   - 1b. Whether you will paste one Codex read into your queue before 2026-11-30. Recommended: yes, on P1's options
-     paper or the first progression draft, whichever is ready.
-2. **P1, the social studies content standard**: comes to you as an options paper with a recommendation. Nothing to
-   answer yet.
-3. **The probe and guard thresholds** (P4): shown to you before the probe runs. Nothing to answer yet.
+   - 1b. How to spend Codex Pro before it ends on 2026-11-30: one cold read of this plan's first product (the first
+     progression draft), the queued tool builds, or both. Recommended: the read first; tool builds wait, since
+     tools come last in this order.
+2. **P1: does the social studies standard you chose on 2026-11-12 stand?** Option (d): C3 for skills,
+   Massachusetts 2018 as the content anchor, checked against a named few states, plus the values rule. My
+   recommendation: it stands. It already takes the more demanding expectation where checked states differ in the
+   unit-by-unit check, which is most of what a "high watermark" asks, and it is settled work. Alternative: replace it
+   with a unified set across states (larger, slower, and a new review).
+3. **Science or ELA second**, only if P2 finds a social studies base text (otherwise science is second). Can wait
+   until P2 reports.
+4. **A spending ceiling for the planning phase.** Its size is not known (progressions guessed at 6 to 8 million
+   tokens; frames, scopes and sequences and units not sized). Recommended: no ceiling now; social studies' real
+   cost is reported at baseline 2 with an estimate for the rest, and you set a ceiling then if you want one.
+5. **The probe and guard thresholds** (P4): shown to you before the first probe. Nothing to answer yet.
 
 Answered on 2026-11-13 and recorded in DESK-ANSWERS: the unit 4 re-plan and the unit 8 test; the IM login; the
 pause; the progression layer; this build order, its probe and guard, the rule 25 change, and the non-core courses
@@ -310,7 +342,13 @@ retired by this order.
 
 ## 7. What the independent check corrected (from draft 1)
 
-Draft 5 replaces the path with Cory's build order (above). Draft 4's own cold check corrected: step 3's stale
+Draft 5 replaces the path with Cory's build order (above); items 7, 9 and 11 below are superseded by it (the ELA
+and science pilots are retired). Draft 5's cold check corrected: the subject order (science second only if P2 finds
+no base text); the probe in every subject, not once; only progressions and frames go across all four subjects; P1
+reopened a standard Cory chose on 2026-11-12, and a values question he settled; wrong step cross-references; the
+"section 2 unchanged" claim; the 11 count; "49 courses" for the assumed day counts; no decision owners; "course
+map" against GLOSSARY; existing work with no stated fate; section 6 missing the order, the standard and a money
+question. Draft 4's own cold check corrected: step 3's stale
 pre-re-plan paragraph; the cross-day count (9 in the planned days, not 11); the re-read count (6, not 7); tool
 rounds listed as built; step 0 stated as settled and its data undefined; question 4 without a cost.
 

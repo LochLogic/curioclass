@@ -1,5 +1,12 @@
 # Roadmap
 
+**The build order changed on 2026-11-13 (Cory).** The core subjects are planned top down before more days are
+written: progressions and course frames for all four, then scope and sequence and units one subject at a time
+(social studies first, math last), with reviews, baselines, a probe and a guard; then sections, days and tools. The
+order is docs/PRODUCTION-PATH.md (draft 5), section 3, and BASELINE rule 25 now says so. Where this file still
+speaks of the pilot unit first, "prove at the bottom", the ELA and science pilots or one unit ahead, it is stale
+and PRODUCTION-PATH wins until this file is reworked.
+
 **Read this first (2026-11-11).** The current state and the next action live in docs/HANDOFF.md. This file holds
 the order of work only. History and superseded plans were moved to docs/archive/ROADMAP-history-2026-11-11.md;
 nothing in that file is current.

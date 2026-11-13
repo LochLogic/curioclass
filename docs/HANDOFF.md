@@ -3,6 +3,19 @@
 **This is the single page that says where the work stands and what to do next. Last updated 2026-11-12, after
 section 11.1 was built (all but its tool) and the course words were renamed ([GLOSSARY.md](GLOSSARY.md)). Everything here is pushed to `spec/sara` and `main`.**
 
+## 2026-11-13: read this before anything below
+
+**The plan is [PRODUCTION-PATH.md](PRODUCTION-PATH.md), draft 5.** Cory set a new build order on 2026-11-13
+(DESK-ANSWERS, last entries): the four core subjects are planned top down before more days are written.
+Pre-work (P1 to P4), then progressions for all four subjects, then course frames for all four (baseline 1), then
+social studies' scopes and sequences and units with a probe (baseline 2), then science, ELA and math the same way
+(math last), a final review, then sections and days (starting with a guard), then tools. BASELINE rule 25 is
+replaced. **All math planning and writing is paused** until math's turn (small fixes to written days may run,
+except days 25 to 28). The unit 4 re-plan (days 29 to 38) is done, expert-read and held. Open for Cory: section 6
+of PRODUCTION-PATH (people, how to spend Codex Pro before 2026-11-30, whether the 2026-11-12 social studies
+standard stands, a spending ceiling). Everything below this block is from before that change: where it speaks of
+the pilot unit first, the ELA and science pilots, or one unit ahead, PRODUCTION-PATH wins.
+
 [ROADMAP.md](ROADMAP.md) holds the order of work only. Its history is in `docs/archive/`. If another page
 disagrees with this one, the other page is stale: check the date, fix it, and say so.
 
