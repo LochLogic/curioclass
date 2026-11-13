@@ -783,7 +783,7 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
 1. Course order: no preference; do what is pedagogically best. Where a base text exists, its order is the default
    frame only when the loss check finds it at least as good for learning.
 2. Grade 4 math: same answer. Keeping the approved order is fine if it does not harm learning.
-3. Teacher reader: not yet answered.
+3. Teacher reader: the expert agent reads in the teacher's place for now (Cory 2026-11-13).
 4. Budget for the control reliability read and the unit 8 base-text-first test: approved. Keep it small, but quality
    comes first.
 5. Login-gated IM material (cool-downs, teacher guides, assessments): take it. Cory signs in himself in Chrome; the

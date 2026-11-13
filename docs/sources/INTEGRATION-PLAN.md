@@ -112,7 +112,7 @@ Option list (from the analyses):
 Order follows what teaches best: a base text's order is the default frame where the loss check finds it no worse;
 grade 4 math keeps its order unless it harms learning. The control reliability read and the unit 8 base-text-first
 test are approved, kept small, quality first. IM's login-gated files are to be pulled under Cory's own sign-in. The
-teacher reader question stays open. Details: docs/agents/decisions/DESK-ANSWERS.md.
+expert agent stands in as the teacher reader for now. Details: docs/agents/decisions/DESK-ANSWERS.md.
 
 Next (Cory 2026-11-13): once the unit 4 reliability review is in, fold it into the pipeline audit and write one firm
 "best path forward", judged against the end goal and Cory's quality bar. Changes to existing work are expected where
