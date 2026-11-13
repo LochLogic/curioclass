@@ -446,6 +446,145 @@ def trace(course, days, items, parts, wrongs, fails, notes):
             notes.append('%s: shows names no end-of-unit item; the unit assessment does not see this goal' % lab)
 
 
+# ------------------------------------------------------------------ cross-day files (data/plans/README.md, 2026-11-13)
+DECISIONS = {'keep', 'split', 'merge', 'cut', 'ours'}
+HARMS = {'yes', 'no', 'unclear'}
+
+
+def day_file(course, n):
+    """A day's file, found the way lesson.py finds the next day: any section folder of the course."""
+    return next(iter(sorted((ROOT / 'courses' / course).glob('u*/d%03d.md' % n))), None)
+
+
+def day_list(cell):
+    xs = cell.split()
+    return [int(x) for x in xs] if xs and all(x.isdigit() for x in xs) else None
+
+
+def cross_day(course, days, items, units, fails, notes):
+    """The unit 4 test's cross-day facts: hand-backs, materials, reserved examples and the source map. A day inside
+    the course's days in data/units.csv whose section is not in days.csv yet is allowed: its writer picks the row up."""
+    known = {int(d['day']): d for d in days}
+    last = sum(int(u['days']) for u in units if u['days'].isdigit())
+    parsed = {}
+
+    def exists(n):
+        return n in known or 1 <= n <= last
+
+    def parse(n):
+        if n not in parsed:
+            f = day_file(course, n)
+            if f is None:
+                parsed[n] = None
+            else:
+                import lesson   # lesson.py reads a day file; imported here, since it imports this module
+                parsed[n] = lesson.parse(f)
+        return parsed[n]
+
+    # hand-backs
+    byid = {i['item_id']: i for i in items}
+    land = {}
+    for k, h in enumerate(rows(course, 'handbacks'), 2):
+        lab = 'handbacks.csv row %d' % k
+        if not (h['from_day'].isdigit() and h['to_day'].isdigit()):
+            fails.append('%s: from_day and to_day must be day numbers' % lab)
+            continue
+        a, b = int(h['from_day']), int(h['to_day'])
+        for n in (a, b):
+            if not exists(n):
+                fails.append('%s: day %d is not a day of the course' % (lab, n))
+        if b <= a:
+            fails.append('%s: to_day %d is not later than from_day %d' % (lab, b, a))
+        if h['minutes'] and not h['minutes'].isdigit():
+            fails.append('%s: minutes "%s" is not a whole number' % (lab, h['minutes']))
+        d = parse(b)
+        if d is None:
+            continue
+        txt = d['teacher'] + d['student']
+        ids = [x for x in h['what'].split() if x in byid]
+        named = (re.search(r'\bday %d\b|\bE%d\b' % (a, a), txt, re.I) or any(x in txt for x in ids)
+                 or (ids and all(byid[x]['check'] == 'readiness' for x in ids) and re.search(r'readiness', txt, re.I)))
+        if not named:
+            fails.append('%s: day %d is written but never names day %d (or E%d, or the items sent)' % (lab, b, a, a))
+        land.setdefault((b, h['where']), []).append((lab, int(h['minutes']) if h['minutes'].isdigit() else 0))
+    slots = {}
+    for (b, where), got in sorted(land.items()):
+        blocks, w = parse(b)['blocks'], where.lower()
+        if w == 'opening':   # the first timed part after the warm-up
+            k = next((j for j, (m, nm, _) in enumerate(blocks) if not nm.lower().startswith('warm-up')), None)
+        else:                # words of the part's heading
+            k = next((j for j, (m, nm, _) in enumerate(blocks) if w in nm.lower()), None)
+        if k is None:
+            notes.append('day %d: hand-backs land in "%s", which names no timed part of the day (%s)'
+                         % (b, where, ', '.join(x for x, _ in got)))
+        else:
+            slots.setdefault((b, k), []).extend(got)
+    for (b, k), got in sorted(slots.items()):
+        m, nm, _ = parse(b)['blocks'][k]
+        tot = sum(x for _, x in got)
+        if tot > m:
+            notes.append('day %d: hand-backs take %d minutes in "%s", a %d-minute part; they may not fit (%s)'
+                         % (b, tot, nm, m, ', '.join(x for x, _ in got)))
+
+    # materials
+    for k, m in enumerate(rows(course, 'materials'), 2):
+        lab = 'materials.csv row %d (%s)' % (k, m['material'])
+        used = day_list(m['used_days'])
+        if not m['made_day'].isdigit() or not used:
+            fails.append('%s: made_day must be a day number and used_days day numbers, space separated' % lab)
+            continue
+        for n in used:
+            if not exists(n):
+                fails.append('%s: day %d is not a day of the course' % (lab, n))
+            if n < int(m['made_day']):
+                fails.append('%s: day %d uses it before day %s makes it' % (lab, n, m['made_day']))
+            d = parse(n)
+            if d is not None:   # the Materials section is the header's materials and print lines
+                said = ' '.join([d['head'].get('materials', ''), d['head'].get('print', ''),
+                                 d['secs'].get('Before class', '')])
+                if m['material'].lower() not in said.lower():
+                    fails.append('%s: day %d is listed, but its materials, print line and Before class never name it'
+                                 % (lab, n))
+
+    # reserved worked examples: no item of an earlier day gives the same set of numbers
+    for k, r in enumerate(rows(course, 'reserved'), 2):
+        lab = 'reserved.csv row %d' % k
+        if not r['day'].isdigit():
+            fails.append('%s: day must be a day number' % lab)
+            continue
+        if r['item_id'] and r['item_id'] not in byid:
+            fails.append('%s: item %s has no row in items.csv' % (lab, r['item_id']))
+        want = numbers(r['numbers'])
+        for i in items:
+            if (want and i['day'].isdigit() and int(i['day']) < int(r['day']) and i['item_id'] != r['item_id']
+                    and numbers(i['stem']) == want):
+                fails.append('%s: %s on day %s gives %s, saved for day %s' % (lab, i['item_id'], i['day'],
+                                                                           r['numbers'], r['day']))
+
+    # the source map
+    mapped = {}
+    for k, s in enumerate(rows(course, 'source-map'), 2):
+        lab = 'source-map.csv row %d (%s)' % (k, s['source'])
+        if s['decision'] not in DECISIONS:
+            fails.append('%s: decision "%s" is not one of %s' % (lab, s['decision'], ', '.join(sorted(DECISIONS))))
+        if s['decision'] in ('cut', 'ours') and not s['why'].strip():
+            fails.append('%s: a %s row says why' % (lab, s['decision']))
+        ds = day_list(s['days']) if s['days'].strip() else []
+        if ds is None:
+            fails.append('%s: days must be day numbers, space separated' % lab)
+            ds = []
+        for n in ds:
+            if not exists(n):
+                fails.append('%s: day %d is not a day of the course' % (lab, n))
+        if s['order_conflict'].strip() and s['harms_learning'] not in HARMS:
+            fails.append('%s: an order conflict needs harms_learning (yes, no or unclear)' % lab)
+        if s['unit'].strip():
+            mapped.setdefault(s['unit'].strip(), set()).update(ds)
+    for u, got in sorted(mapped.items()):
+        for n in sorted({int(d['day']) for d in days if d['unit'] == u} - got):
+            fails.append('source-map.csv: day %d of section %s is in no row' % (n, u))
+
+
 def check(course):
     global FIRST_DAY
     FIRST_DAY = first_days() if course == 'math-4' else {}
@@ -827,6 +966,7 @@ def check(course):
             notes.append('unit %s: %d words of prose outside the generated tables (%s)' % (s, len(t.split()), f.name))
 
     trace(course, days, items, parts, wrongs, fails, notes)
+    cross_day(course, days, items, units, fails, notes)
     planned = sorted({int(m[1]) for f in (DOCS / course).glob('s[0-9][0-9].md') for m in [re.match(r's(\d+)', f.name)]})
     missing = [n for n in planned if str(n) not in stretches]
     if missing:

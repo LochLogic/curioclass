@@ -47,6 +47,26 @@ STEPS = re.compile(r'\[\[steps:([A-Za-z0-9-]+)\]\]')
 NOTE = re.compile(r'\[\[note:([A-Za-z0-9-]+)\]\]')   # a short form for a table: who, and the numbers given
 FIG = re.compile(r'\[\[fig:([A-Za-z0-9-]+)\]\]')     # the row's figure, drawn where it stands (a fix: their picture)
 CHROME = Path(r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+# A reteach branch in a timed part (unit 4 reliability read, its one major: day 26's 5-minute opening named five).
+# A bold "If ...", a bold label ending in a colon ("Five 1/6s:", "Item 3:"), "If many", "If day N's", "Gap on", or a
+# letter bullet ("B:"). A part that caps itself ("at most two branches") counts no more than its cap.
+BRANCH = re.compile(r"\*\*(?:If [^*]+|[^*\n]{1,40}:)\*\*|(?<![*\w])(?:If many\b|If day \d+'s\b|Gap on\b)|^\s*-?\s*[A-K]:",
+                    re.M)
+BRANCH_CAP = re.compile(r'at most (\w+) branch', re.I)
+BRANCH_MIN = 2.5   # minutes one branch needs, about
+
+
+def branch_notes(d, lab):
+    out = []
+    for m, nm, txt in d['blocks']:
+        n = len(BRANCH.findall(txt))
+        cap = BRANCH_CAP.search(txt)
+        if cap:
+            n = min(n, NUM_WORD.get(cap[1].lower(), int(cap[1]) if cap[1].isdigit() else n))
+        if n > max(1, int(m / BRANCH_MIN)):
+            out.append('NOTE %s: "%d min. %s" names %d reteach branches; at about %s minutes a branch, it holds %d. '
+                       'Name a cap ("at most N branches") or move one' % (lab, m, nm, n, BRANCH_MIN, max(1, int(m / BRANCH_MIN))))
+    return out
 
 
 # ------------------------------------------------------------------ reading a day file
@@ -330,6 +350,7 @@ def check_day(d, items, days):
         got = [b[0] for b in d['blocks']]
         if got != want:
             f.append('%s: the parts run %s min; days.csv check_min says %s' % (lab, got, want))
+    f += branch_notes(d, lab)
     # Tomorrow: the next day by number, in any section folder of the course, must carry the hand-off ("day N" in it)
     nxt = int(h.get('day', 0) or 0) + 1
     tm = d['secs'].get('Tomorrow', '')
