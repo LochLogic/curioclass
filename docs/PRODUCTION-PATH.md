@@ -133,7 +133,7 @@ be judged again.
   for grades 2 to 5; what to cut). Decided once.
 - **IM's login-gated files** once Cory signs in: cool-downs and assessments feed the source map and exit design.
 
-### Step 3. Unit 4 sections 2 to 4: re-plan from the source map, then write (recommended; Cory's go)
+### Step 3. Unit 4 sections 2 to 4: re-plan from the source map, then write (Cory's go, 2026-11-13)
 
 Sections 2 to 4 (days 29 to 38) were planned before the source. Writing them now would repeat the day-by-day
 reconciliation this path is meant to end. So: build unit 4's source map and cross-day CSVs, re-plan u04-2 to u04-4
@@ -217,7 +217,7 @@ Before it is called finished, beyond the days:
 
 ## 6. For Cory
 
-1. **Unit 4, sections 2 to 4, and the unit 8 test.** The go rule was mixed: writer and rights passed; the expert
+1. **Answered 2026-11-13: re-plan first, unit 8 test dropped.** **Unit 4, sections 2 to 4, and the unit 8 test.** The go rule was mixed: writer and rights passed; the expert
    criterion could not be measured, and like-for-like findings were the lowest yet. Recommended: re-plan sections 2
    to 4 from a source map first, then write (step 3), and drop the separate unit 8 test you approved, since unit 4
    is the harder and more telling case; keep unit 8 only if unit 4's result is unclear. Alternatives: write days 29

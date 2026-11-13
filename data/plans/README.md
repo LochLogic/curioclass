@@ -59,6 +59,33 @@ register; a standard code that is not in the standards file.
 In a plan file a table sits between `<!-- gen:NAME -->` and `<!-- /gen -->`. Names: `parts`, `readiness`,
 `end-check`, `errors`, `exits`, `days`.
 
+## Cross-day files and the source map (added 2026-11-13, docs/PRODUCTION-PATH.md step 2)
+
+The unit 4 test found that a third of the problems only an expert caught crossed days: a hand-back no later day
+made time for, a strip sheet one day reprinted and the next assumed kept, a worked example used before its day.
+A day writer sees one day; these files let the gates see across them. One row per fact, as everywhere here.
+
+| File | One row is | Columns |
+|---|---|---|
+| `handbacks.csv` | one thing a day sends to a later day | `from_day`, `to_day`, `what` (an item id, or words such as "written task"), `where` (the part of the later day: warm-up, opening, Groups, exit...), `minutes`, `error` (a register letter, or blank), `note` |
+| `materials.csv` | one material a day uses | `material` (a short name, the words the day's Materials section uses), `made_day` (printed, cut or first handed out), `used_days` (space separated), `kept_in` (envelope, folder, wall...), `per` (student, pair, group, room), `note` |
+| `reserved.csv` | one worked example saved for its day | `day`, `numbers` (the given numbers, as an item's stem writes them), `item_id` (when it is a row in items.csv), `note` |
+| `source-map.csv` | one base-text lesson, or one of our days with no base lesson | `source` (`im-g4-u3-l09`; `ours` for a day with none), `title`, `goals` (short, from the lesson's prep file), `standards`, `unit` (our section, `4.2`), `days` (space separated), `decision` (keep, split, merge, cut, ours), `why`, `order_conflict` (blank, or what the order clash is), `harms_learning` (yes, no, unclear; blank when no clash) |
+
+Tool rounds need no file of their own: they are already item rows with `check` tool and a `day`.
+
+What the gates hold (plan.py; lesson.py where a written day file is read):
+
+- **handbacks:** both days exist in days.csv; `to_day` is later; a written `to_day` file names the day it comes
+  from; the minutes landing in one part of a day fit that part's minutes (a NOTE when they may not).
+- **materials:** every day in `used_days` exists; a written day that is listed names the material in its Materials
+  or Before class section; no day before `made_day` uses it.
+- **reserved:** no item of an earlier day uses the same set of given numbers.
+- **source-map:** `decision` is one of the five; `cut` and `ours` rows have a `why`; every day listed exists; every
+  day of a mapped section appears in at least one row; an `order_conflict` has `harms_learning` filled.
+
+The prose plans point at these files instead of restating them.
+
 ## What the gates cannot see
 
 Whether a question is a good question, whether a day teaches, whether the wording suits a nine-year-old, and any

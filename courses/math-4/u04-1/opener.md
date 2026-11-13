@@ -70,8 +70,9 @@ Wrong examples: A and B on day 25, D on day 26, C on day 27. B and C are the rea
 ## The reteach (readiness items 1 to 4)
 
 The readiness check (readiness.md) is given in the last ten minutes of day 24 and marked before day 25. Day 25's
-second five minutes, after the warm-up, go to unit 3's judged items, so the reteach is day 26's warm-up and first five minutes: for the
-whole class if more than a third missed an item, otherwise for the students who missed it.
+second five minutes, after the warm-up, go to unit 3's judged items, so the reteach is day 26's warm-up and first five minutes: whole class for at
+most two branches (day 25's tickets or an item) that more than a third showed, B first; any other, and items 3
+and 4 always, go to the students named. Item 2 waits for day 27.
 
 1. **Item 1, counting on past 1.** Pairs pool their fourth-pieces and lay them in a row past a whole strip,
    saying "one fourth, two fourths, ... five fourths", then mark 5/4 on a line from 0 to 2. The count does not

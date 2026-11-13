@@ -2264,8 +2264,17 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                 # only the first quoted question after **Ask.** is a screen: a follow-up the teacher may ask, or
                 # an "if many" line, quoted later in the paragraph is the teacher's, not the class's (unit 2
                 # reliability read #2, #5); answers ("Expect: ...") are quoted without a question mark
-                qs = ([q for q in re.findall(r'"([^"]+)"', m[3]) if q.rstrip().endswith('?')] or
-                      re.findall(r'"([^"]+)"', m[3]))[:1]
+                # a later question the class is asked next ("Then: "...?"", "Then point to the 7: "...?"", "take
+                # one of each, then: "...?"") stays a screen; one after "ask", "if" or "push" is the teacher's (re-read
+                # a6252157 #1)
+                qm = list(re.finditer(r'"([^"]+)"', m[3]))
+                qs = [q[1] for q in qm if q[1].rstrip().endswith('?')][:1] or [q[1] for q in qm][:1]
+                for a, b in zip(qm, qm[1:]):
+                    gap = m[3][a.end():b.start()]
+                    if (b[1].rstrip().endswith('?') and b[1] not in qs and
+                            re.search(r'(?:(?:^\s*|[.;!?]\s+)Then\b[^".?!;]*|\bthen:\s*)$', gap) and
+                            not re.search(r'\b(?:ask|if|push)\b[^".?!;]*$', gap, re.I)):
+                        qs.append(b[1])
                 after = re.search(r'\bafter step (\d+)\b', m[3], re.I)
                 out = []
                 for q in qs:

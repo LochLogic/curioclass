@@ -788,3 +788,12 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    comes first.
 5. Login-gated IM material (cool-downs, teacher guides, assessments): take it. Cory signs in himself in Chrome; the
    lead downloads under his session. Same light-rigor credit rule.
+
+## 2026-11-13: unit 4 sections 2 to 4 (docs/PRODUCTION-PATH.md, section 6, question 1)
+
+> Go with your recommendation to replan
+
+1. Unit 4 sections 2 to 4 (days 29 to 38) are re-planned from unit 4's source map and cross-day CSVs before any of
+   their days are written, then written, read and fixed (PRODUCTION-PATH step 3).
+2. The separate unit 8 base-text-first test is dropped; unit 4 is the harder case. Unit 8 comes back only if unit
+   4's result is unclear.
