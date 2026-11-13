@@ -819,3 +819,14 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    work set a limit the plan should decide.
 2. If the map leaves unit 4's edges and day count standing, the days are written on the re-plan as fixed. If it
    moves them, unit 4 is re-planned again first.
+
+## 2026-11-13: all math mapped at the course level first (Cory, in chat: "Option A")
+
+1. Every math course, K to 12, gets a scope and sequence and a course map against IM (every IM lesson placed in one
+   of our units, scripted from IM's free pages, then judged), with the handoffs between grades checked, before any
+   more math days are written. Order: grade 4 (running), grades 3 and 5 with grade 4's edges rechecked, the rest
+   of K to 8, then high school. An expert reads the maps; scope and sequence changes come to Cory.
+2. Unit and section plans stay one unit ahead of writing (BASELINE rule 25); they are not planned in advance.
+3. Fixes to written days keep running, except days 25 to 28 (unit 4), held until the grade 4 map is read.
+4. All other math day writing is paused. The ELA and science pilots are not affected by this; when they start, the
+   same top-down rule is settled for them.
