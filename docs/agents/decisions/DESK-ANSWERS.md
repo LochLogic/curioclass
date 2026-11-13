@@ -863,3 +863,19 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
 5. Then sections, days and lessons, starting with a guard: a few entries written below the full unit level, with
    "on" and "off" defined beforehand. Then tools are unlocked.
 6. The 49 non-core courses come after the core subjects.
+
+## 2026-11-13: the standard stands, no people yet, Codex, no ceiling (Cory, in chat)
+
+> yes it stands unless you have reason to believe it isnt solid enough for our new plan. if thats the case we do
+> more pre-work and make it good enough. [...] we have no people, part of the pre-work will need to be ensuring our
+> expert reviewing agent is well built enough to handle this work. codex can absolutely be used. [...] no spend
+> ceiling. lets be judicious and efficient with our tokens but again, we dont sacrifice quality.
+
+1. **Social studies option (d) of 2026-11-12 stands.** The lead found it sound as a decision but not yet usable for
+   a progression (anchor not loaded, course list still in California's order, check states not named, the
+   replaced state-study year not designed). That work is pre-work P1a to P1e in docs/PRODUCTION-PATH.md.
+2. **No people yet.** Pre-work P5 makes the expert agent good enough first: subject lenses, a science bar and the
+   social studies bar, briefs for the new layers, and a calibration test with planted faults, read by the expert
+   and by Codex. FOUNDATION 7.3 still applies: nothing is called finished without qualified people.
+3. **Codex is used freely** (its weekly budget resets; large use is open when needed).
+4. **No spending ceiling.** Judicious and efficient with tokens, never at the cost of quality.

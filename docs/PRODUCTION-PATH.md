@@ -52,8 +52,9 @@ same kind of model that wrote them.
    that our day did not carry, so the gain is real but not automatic (section 2). Course order follows what teaches
    best: a base text's order is the default only where the loss check finds it at least as good for learning.
 6. **People and a second kind of reader at each baseline.** Every reliability number here is the model judging
-   itself. A reader of a different model kind (Codex) and qualified people (a teacher, content reviewers) each read
-   at a baseline; who and when is Cory's (section 6).
+   itself. There are no people yet (Cory, 2026-11-13), so the expert agent is checked and strengthened first (P5)
+   and Codex reads beside it at every baseline; qualified people are added when found, and nothing is called
+   finished without them (FOUNDATION 7.3).
 
 ## 2. What the measurements say
 
@@ -128,13 +129,25 @@ math progression page.
 
 ### Pre-work (before step 1; Cory, 2026-11-13: "should be a solved issue before the plan gets started")
 
-- **P1. The social studies content standard: confirm what is on record.** Card q-bar-subjects (items 1 and 5)
-  left it open, but on 2026-11-12 Cory chose option (d): C3 for skills, Massachusetts 2018 as the content anchor in
-  its course order, checked unit by unit against a named few states, with Curio Class's own content replacing the
-  anchor's own-state year; and the values rule (higher court, then facts and backed sources, then dignity and
-  openness, set to grade level) (DESK-ANSWERS 2026-11-12; docs/reviews/social-studies-content-standard-2026-11-12.md).
-  P1 asks Cory one thing: does option (d) stand, or does a unified set or "high watermark" replace it? If it
-  stands, P1 is done. No social studies progression starts before he answers.
+- **P1. Make the social studies standard usable for the plan.** The decision stands (Cory, 2026-11-13): option
+  (d) of 2026-11-12, C3 for skills and Massachusetts 2018 as the content anchor in its course order, checked unit by
+  unit against a named few states, with Curio Class's own content replacing the anchor's own-state year, under the
+  values rule (DESK-ANSWERS 2026-11-12; docs/reviews/social-studies-content-standard-2026-11-12.md). The decision is
+  sound; what is missing is the material a progression is built from. Five pieces:
+  - **P1a. Load the anchor.** data/standards/ holds only C3. Load the Massachusetts 2018 standards as ids with an
+    own-words line each (its terms allow free non-commercial copying with credit, but Curio Class pages are CC BY,
+    so we store ids and our own words, as with CCSS), one file, gated like the others.
+  - **P1b. Redraw the course list.** data/courses.csv still holds the California-order list (grade 4 state
+    history, grade 8 to 1877, and so on). Redraw the 14 courses to Massachusetts's order (about 8 change), with
+    COURSES-STATUS rebuilt. The list is scope: the redraw goes to Cory as one table for a yes.
+  - **P1c. Name the check states.** "A named few" is not named yet. Recommended in the paper's own terms: the
+    strongest sets with usable terms or a matching order (New York for high school order; California and Tennessee
+    by ids and our own words only). The lead names them; recorded with P1b.
+  - **P1d. Design the replaced state-study year.** What Curio Class teaches in place of Massachusetts grade 3 (a
+    short outline with its standards and sources), so the grade 3 progression rows have content.
+  - **P1e. Psychology and electives.** The APA high school psychology standards are cited but not loaded; load ids
+    and own words, or mark psychology (an elective, not flagged core) for after the core.
+  No social studies progression starts before P1a to P1d are done.
 - **P2. A social studies base text.** Scout for an openly licensed social studies curriculum whose licence lets us
   adapt it (some open material bars commercial use; each licence gets a verdict, light rigor). If one fits, it is
   loaded to the source store and used like IM. If none fits, social studies stays the clean-slate subject, and
@@ -146,6 +159,28 @@ math progression page.
   plan or above (on: about the unit 4 re-plan's level or lower; off: clearly higher); how many unit plans need a
   change; whether a change is to the template or to one unit. The lead writes the exact thresholds; they are shown
   to Cory before the first probe runs.
+- **P5. Make the expert reader good enough for this work** (Cory, 2026-11-13: there are no people yet, so the
+  expert agent and Codex are the reviewers until there are). Today docs/agents/EXPERT.md and the briefs in
+  docs/pipeline/briefs/ are built for math plans and days; rubrics are on file for math K to 8 and ELA only. Before
+  step 1:
+  - **P5a. Subject lenses.** One short lens file per core subject the expert reads first: what good teaching of it
+    looks like and the errors reviewers catch (social studies: the C3 inquiry arc, sourcing and claims with
+    evidence, historical thinking, the values rule, sensitive topics; science: the three dimensions of NGSS, a
+    phenomenon that drives the unit, models and argument; ELA: text complexity, building knowledge, writing from
+    sources; math: the existing pages). Each names its sources (the progressions documents, the frameworks' own
+    guidance), read once into our own words.
+  - **P5b. A bar for science and social studies.** A rubric file for science (named in earlier reviews, not filed)
+    and the social studies part of docs/ADOPTION-BAR-SUBJECTS.md, so every read has a bar to read against.
+  - **P5c. Briefs for the new layers.** Progression-read and frame-read briefs, with the data each read must check.
+  - **P5d. Calibration before trust.** A small test set: copies of a progression slice and a unit plan with planted
+    faults of known kinds (a skill owned twice, a handoff that skips a grade, a model used before it is taught, a
+    standard taught in part, a values-rule miss, an exit that misses the goal), plus past findings whose truth is
+    settled. The expert reads it cold; we count what it catches and what it flags wrongly. Codex reads the same set,
+    so we see what both miss. "Good enough" is set before the run (recommended: catches at least 8 in 10 planted
+    major faults with few false alarms, and no kind missed by both). Re-run after any change to EXPERT.md or a
+    brief.
+  - The FOUNDATION 7.3 rule that qualified people read a course before it is called finished still stands; with no
+    people, nothing is called finished, but planning goes ahead on the expert and Codex.
 - **Who decides, at every review and baseline.** The expert settles item-level choices. Cory decides go or no-go
   at each baseline, at the final review and on an "off" result from a probe or the guard, and any change to scope
   (what a course or grade teaches, the course list, a subject's order).
@@ -209,7 +244,7 @@ expert reads each against the progression and the content standard P1 set; Cory 
 
 Each subject in turn runs step 3 and step 4's planning and review (scope and sequence, review, units, review), with
 the probe, and a review from the progression down at its end. Math goes last. Science goes second if P2 finds no
-social studies base text; otherwise the order of science and ELA is Cory's (section 6, question 3). The probe runs
+social studies base text; otherwise the order of science and ELA is Cory's (section 6, question 2). The probe runs
 in every subject: a few days each is cheap, and each subject's units can be off in their own way.
 
 Science 6 to 8 follows OpenSciEd's order after its loss check. ELA K to 5 and middle school science test the base
@@ -268,8 +303,8 @@ tools and claim no course coverage until a section names them (BASELINE rule 26)
   yes waits until they are read against the progressions.
 - Sara's list (docs/courses/NEXT-SPINES.md): input to step 2's course frames.
 - The science simulations to list per unit (Cory's earlier ask): listed when science's units are planned.
-- The Codex queue's queued builds (for example Community Plot Planner): paused with all tool work until step 9,
-  unless Cory wants Pro's last weeks spent on them; his call (question 1b).
+- The Codex queue's queued builds (for example Community Plot Planner): paused with all tool work until step 9;
+  Codex's budget goes to reads (P5d and the baselines) first.
 - The 149-lesson IM table: kept in the source store for math's source map.
 
 ### After the core subjects
@@ -281,12 +316,12 @@ development with ELA; health with science), the cross_subject column notes it fo
 
 ### People and a second reader, through all of it
 
-- **A reader of a different model kind** at each baseline: Codex reads a sample cold against the same brief, and
-  its findings are compared with the expert's. Pro ends 2026-11-30; before then the most useful read is P1's
-  first progression draft. It runs through the Codex queue Cory pastes himself (section 6).
-- **A social studies content reviewer** matters first now, since social studies is planned first; a math content
-  reviewer is still required before grade 4 math is called finished (FOUNDATION 7.3), and a teacher reads samples.
-  Cory finds the people; nothing is sent or spent without his yes.
+- **A reader of a different model kind** at each baseline and in P5d's calibration: Codex reads cold against the
+  same brief, and its findings are compared with the expert's. Cory pastes the prompts himself. Codex's weekly
+  budget resets often and is open for large use (Cory, 2026-11-13); Pro ends 2026-11-30.
+- **People: none yet** (Cory, 2026-11-13). The expert agent, checked in P5, and Codex are the reviewers. A social
+  studies content reviewer, a math content reviewer and teachers are still needed before any course is called
+  finished (FOUNDATION 7.3); they are added when found.
 - The expert agent stands in as the teacher reader until a teacher is found (Cory 2026-11-13).
 
 ## 4. What changes in existing work
@@ -312,32 +347,22 @@ development with ELA; health with science), the cross_subject column notes it fo
   tokens for the progressions; units for 56 courses not yet sized.
 - How long the whole planning phase takes, so how long no new days go live. Cory accepted this (2026-11-13).
 - Whether a base text helps in ELA and science as it did in math (step 5 tells).
-- Whether the expert's findings match a teacher's and a content reviewer's.
+- How well the expert reads outside math (P5d measures it); whether its findings match a teacher's and a content
+  reviewer's (only people can say).
 - Whether a set read can replace any per-day read (step 8).
 
 ## 6. For Cory
 
-1. **People and timing** (FOUNDATION 7.5):
-   - 1a. Who and when for a social studies content reviewer (needed first now), the grade 3 to 5 teacher, and the
-     math content reviewer.
-   - 1b. How to spend Codex Pro before it ends on 2026-11-30: one cold read of this plan's first product (the first
-     progression draft), the queued tool builds, or both. Recommended: the read first; tool builds wait, since
-     tools come last in this order.
-2. **P1: does the social studies standard you chose on 2026-11-12 stand?** Option (d): C3 for skills,
-   Massachusetts 2018 as the content anchor, checked against a named few states, plus the values rule. My
-   recommendation: it stands. It already takes the more demanding expectation where checked states differ in the
-   unit-by-unit check, which is most of what a "high watermark" asks, and it is settled work. Alternative: replace it
-   with a unified set across states (larger, slower, and a new review).
-3. **Science or ELA second**, only if P2 finds a social studies base text (otherwise science is second). Can wait
+1. **The redrawn social studies course list** (P1b): one table for your yes, when it is ready.
+2. **Science or ELA second**, only if P2 finds a social studies base text (otherwise science is second). Can wait
    until P2 reports.
-4. **A spending ceiling for the planning phase.** Its size is not known (progressions guessed at 6 to 8 million
-   tokens; frames, scopes and sequences and units not sized). Recommended: no ceiling now; social studies' real
-   cost is reported at baseline 2 with an estimate for the rest, and you set a ceiling then if you want one.
-5. **The probe and guard thresholds** (P4): shown to you before the first probe. Nothing to answer yet.
+3. **The probe and guard thresholds** (P4) and the expert's "good enough" line (P5d): shown to you before they are
+   used. Nothing to answer yet.
 
 Answered on 2026-11-13 and recorded in DESK-ANSWERS: the unit 4 re-plan and the unit 8 test; the IM login; the
 pause; the progression layer; this build order, its probe and guard, the rule 25 change, and the non-core courses
-after the core. The earlier questions on the ELA and science pilots and on when grade 4's frame counts as built are
+after the core; option (d) stands, with more pre-work to make it usable; no people yet, so the expert is made good
+enough first; Codex used freely; no spending ceiling (judicious with tokens, never at the cost of quality). The earlier questions on the ELA and science pilots and on when grade 4's frame counts as built are
 retired by this order.
 
 ## 7. What the independent check corrected (from draft 1)
