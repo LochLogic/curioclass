@@ -144,6 +144,15 @@ The pilot unit comes first (grade 4 math unit 11, one section, 11.1: [courses/ma
 **Frozen until the pilot is read:** new scopes and sequences, unit plans, section plans and specs. One exception: the grade 4
 start-of-year check and unit 4's readiness items (Sara's piece 4; the readiness sheet was written 2026-11-12, card 113).
 
+## Decided 2026-11-12: math base text, social studies anchor (DESK-ANSWERS)
+
+- **Math adapts Illustrative Mathematics (CC BY 4.0)** into Curio Class days; Eureka Math is a reference for ideas
+  and sequence only (its NC-SA terms would change our CC BY licence). Days 25 to 38 are held off the writer until
+  an adapted unit 4 is tested against units 2 and 3 (same reads, quality and tokens).
+- **Social studies: option (d) on Massachusetts, in its course order.** About 8 of 14 course outlines get redrawn
+  (docs/reviews/social-studies-content-standard-2026-11-12.md). Still open for Cory: state study as "your state",
+  and the values order.
+
 ## Decided 2026-11-12: card q-ela-piece-2 (ELA)
 
 > 1, yes. 2, I agree with you. 3, i agree with you. 4, lets do our own research and find our own preferred

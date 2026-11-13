@@ -707,3 +707,18 @@ found. Cory: "the draft pages look great! lets take the next step in solidifying
 
 Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readiness.md`, rows s04-R1 to R4.
 
+
+## 2026-11-12: math base text and the social studies content standard (Cory, in chat)
+
+> okay, i like your suggestion for IM being our base and eureka being a reference. that covers math [...] for
+> social studies, i like option D "hybrid" and Massachusetts is great. im also okay with the 8 of 14 outline
+> adjustment.
+
+1. **Math:** Illustrative Mathematics (CC BY 4.0) is the base text Curio Class adapts into its own days, tone and
+   format, with a credit line that says it was changed. Eureka Math / EngageNY (CC BY-NC-SA 4.0) is a reference
+   only: its sequence, models and ideas, never its problems or wording, so every page stays CC BY 4.0. First step:
+   adapt the matching grade 4 unit into our unit 4 days and run it through the same reads as units 2 and 3.
+2. **Social studies:** option (d), Path 1: C3 for skills, Massachusetts 2018 as the content anchor in
+   Massachusetts's course order (about 8 of 14 course outlines redrawn), checked unit by unit against a named few,
+   every addition recorded. Paper: docs/reviews/social-studies-content-standard-2026-11-12.md. Not yet decided:
+   the "your state" plan for state study and the values order (both in that paper).
