@@ -154,7 +154,10 @@ start-of-year check and unit 4's readiness items (Sara's piece 4; the readiness 
   replaced with Curio Class's own content. Values rule: higher court, then facts and backed sources, then dignity
   and openness (we do not hide humanity), set to grade level (DESK-ANSWERS).
 - **FOUNDATION section 1** now allows a "base text" (CC BY or public domain open program, adapted with credit).
-  ELA and science open material is being checked in depth (reports to come).
+  ELA and science open material checked 2026-11-12 (docs/reviews/ela-open-material-2026-11-12.md,
+  docs/reviews/science-open-material-2026-11-12.md). CC BY bases found: OpenSciEd Middle School (science 6 to 8),
+  EL Education K-5 2017 edition (ELA, its own texts excluded; do not mix with the NC 2025 edition). Everything
+  else is reference only or written by us. Cory has not chosen yet.
 
 ## Decided 2026-11-12: card q-ela-piece-2 (ELA)
 
