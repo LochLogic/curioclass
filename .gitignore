@@ -21,3 +21,6 @@ build/research-voice/
 
 # Messages pulled from the home page message box (scripts/messages.py): private, never committed
 docs/Return/messages/
+
+# pipeline runner logs (scripts/pipeline_runner.py)
+data/pipeline/runner/

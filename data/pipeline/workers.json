@@ -1,0 +1,28 @@
+{
+  "codex": {
+    "roles": ["writer"],
+    "model": "codex default",
+    "cmd": ["codex", "exec", "--sandbox", "workspace-write", "-C", "{repo}", "--json", "-"],
+    "timeout_min": 60,
+    "enabled": true
+  },
+  "sara": {
+    "roles": ["cheap"],
+    "model": "sonnet",
+    "cmd": ["claude", "-p", "--model", "sonnet", "--output-format", "json",
+            "--allowedTools", "Read Edit Write Glob Grep Agent Bash(python:*) Bash(git status:*) Bash(git diff:*) Bash(git log:*) Bash(git show:*)"],
+    "env": {"CLAUDE_CONFIG_DIR": "C:/Users/Cory/.claude-sara"},
+    "timeout_min": 60,
+    "enabled": false,
+    "note": "Sara's own account: she signs in once herself in this config folder. Off until the Claude command line is installed."
+  },
+  "claude": {
+    "roles": ["planner", "expert", "fixer", "lead"],
+    "model": "opus",
+    "cmd": ["claude", "-p", "--model", "opus", "--output-format", "json",
+            "--allowedTools", "Read Edit Write Glob Grep Agent Bash(python:*) Bash(git status:*) Bash(git diff:*) Bash(git log:*) Bash(git show:*)"],
+    "timeout_min": 120,
+    "enabled": false,
+    "note": "Cory's account. Off until the Claude command line is installed; until then the lead session takes these jobs by hand."
+  }
+}
