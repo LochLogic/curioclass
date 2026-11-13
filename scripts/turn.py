@@ -26,7 +26,9 @@ TURN = PIPE / 'turn.json'
 BRIEFS = ROOT / 'docs' / 'pipeline' / 'briefs'
 COLS = ['id', 'course', 'unit', 'kind', 'role', 'target', 'after', 'status', 'worker', 'started', 'ended', 'commit', 'note']
 ROLE = {'plan': 'planner', 'plan-read': 'expert', 'plan-data': 'planner', 'write': 'writer', 'cheap': 'cheap',
-        'expert': 'expert', 'fix': 'fixer', 'measure': 'lead'}
+        'expert': 'expert', 'fix': 'fixer', 'measure': 'lead',
+        # the new layers (PRODUCTION-PATH P5c): a progression job's course cell holds the subject
+        'progression-read': 'expert', 'frame-read': 'expert'}
 # never committed by a turn: Cory's own untracked files and agent worktrees
 KEEP_OUT = ['docs/Curio-Class-Plan.pdf', 'docs/US Curriculum Design Blueprint.pdf', 'docs/Return',
             'docs/agents/audit/wordwall-movement-cards.jpg', '.claude']
@@ -114,15 +116,22 @@ def push(msg, paths=None):
     sys.exit('push failed three times; the commit is local. Run `git push origin HEAD:main` by hand.')
 
 
+def subject_of(course):
+    """The subject of a course id; a progression job names the subject itself."""
+    import csv
+    with open(ROOT / 'data' / 'courses.csv', newline='', encoding='utf-8') as f:
+        return {r['course_id']: r['subject'] for r in csv.DictReader(f)}.get(course, course)
+
+
 def fill(job):
     kind = job['kind']
     t = (BRIEFS / (kind + '.md')).read_text(encoding='utf-8')
-    unit = int(job['unit'])
+    unit = int(job['unit'] or 0)
     first, last = (job['target'].split('-') + [''])[:2] if '-' in job['target'] else (job['target'], job['target'])
     day = job['target'] if kind == 'write' else ''
     vals = {'course': job['course'], 'unit': str(unit), 'uu': '%02d' % unit, 'first': first, 'last': last,
             'day': day, 'ddd': ('%03d' % int(day)) if day else '', 'date': datetime.date.today().isoformat(),
-            'job': job['id'], 'note': job.get('note', '')}
+            'job': job['id'], 'note': job.get('note', ''), 'subject': subject_of(job['course'])}
     if day:
         vals['prev'] = str(int(day) - 1)
         vals['next'] = str(int(day) + 1)

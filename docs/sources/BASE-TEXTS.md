@@ -29,6 +29,20 @@ Never base texts, even though they share the name:
   `reference-only-do-not-copy\openscied-ms-cs-variants\`.
 - EL Education 2025 edition and Skills Block 2024: CC BY-NC.
 
+## Social studies: no base text (P2, 2026-11-13)
+
+Scouted in docs/reviews/social-studies-open-material-2026-11-13.md. No open curriculum covers a whole course under
+this bar, so every social studies course is our own. Partial bases, none loaded yet (later.csv L9):
+
+- CFPB personal finance activities (public domain; the CFPB name and logo excluded): the finance half of economics.
+- East Tennessee State University, World History Since 1500 (2022, CC BY 4.0, college level): world-hist-2 and
+  1500 to 1800 in world-hist-hs. Read its copyright page and image credits before adapting.
+- Washington OSPI, Since Time Immemorial (CC BY 4.0): a tribal sovereignty strand in grades 4, 5, 8 and high school,
+  after the sensitivity review; OSPI asks that adaptations keep its content design.
+- Waiting on Cory (Desk card q-ss-partial-bases): Oak National Academy ancient civilisations units (UK Open
+  Government Licence v3.0) for grades 6 and 7, and the OpenStax CC BY books whose prefaces bar taking them into
+  AI (American Government 3e, Economics 2e, Psychology 1e).
+
 ## Our own (no base text)
 
 - Math past Algebra 2 (precalculus, statistics, calculus).

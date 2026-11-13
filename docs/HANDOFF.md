@@ -265,7 +265,7 @@ What was done, with nothing deleted that was not first saved:
   ([reviews/DIGEST.md](reviews/DIGEST.md), started 2026-11-12: copy each report's "Settled by the expert" table
   into it).
 - The Review Desk is https://claude.ai/artifact/SVXBzgyS941dyqmEzQHgNC. A question card has status `question`,
-  then `answered`. Cory answers in a comment on the card. Next free card order: 110. Sara's session cannot open the Desk; the main session places her cards. After changes, refresh the
+  then `answered`. Cory answers in a comment on the card. Next free card order: 112. Sara's session cannot open the Desk; the main session places her cards. After changes, refresh the
   Dashboard with `python -X utf8 scripts/course_status.py <out.json>` (Desk doc `stats/courses`) and the Roadmap
   tab with `python -X utf8 scripts/desk_roadmap.py <out.json>` (Desk doc `stats/roadmap`).
 - Core subjects first (BASELINE rule 24, a soft goal): see "The order after the pilot".

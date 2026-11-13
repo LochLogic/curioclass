@@ -156,14 +156,17 @@ math progression page.
 - **P2. A social studies base text.** Scout for an openly licensed social studies curriculum whose licence lets us
   adapt it (some open material bars commercial use; each licence gets a verdict, light rigor). If one fits, it is
   loaded to the source store and used like IM. If none fits, social studies stays the clean-slate subject, and
-  science goes second so the base-text lessons are learned before math.
+  science goes second so the base-text lessons are learned before math. **Done 2026-11-13: none fits a whole
+  course, so science goes second** (docs/reviews/social-studies-open-material-2026-11-13.md; partial bases and two
+  licence calls on Desk card q-ss-partial-bases).
 - **P3. The rule change on record.** BASELINE rule 25 is replaced by this order, and HANDOFF and ROADMAP point
   here, so no worker follows the old rule.
 - **P4. The probe and guard measures, set now, before any plan is written** (the lead's addition, agreed in chat as
   part of the probe). For each probe (step 4) and the guard (step 7): the share of day findings traced to the unit
   plan or above (on: about the unit 4 re-plan's level or lower; off: clearly higher); how many unit plans need a
   change; whether a change is to the template or to one unit. The lead writes the exact thresholds; they are shown
-  to Cory before the first probe runs.
+  to Cory before the first probe runs. **Done 2026-11-13:** docs/pipeline/PROBE-GUARD.md, on the Desk as card
+  q-probe-guard.
 - **P5. Make the expert reader good enough for this work** (Cory, 2026-11-13: there are no people yet, so the
   expert agent and Codex are the reviewers until there are). Today docs/agents/EXPERT.md and the briefs in
   docs/pipeline/briefs/ are built for math plans and days; rubrics are on file for math K to 8 and ELA only. Before
@@ -359,10 +362,10 @@ development with ELA; health with science), the cross_subject column notes it fo
 ## 6. For Cory
 
 1. **The redrawn social studies course list** (P1b): answered yes 2026-11-13 and done.
-2. **Science or ELA second**, only if P2 finds a social studies base text (otherwise science is second). Can wait
-   until P2 reports.
-3. **The probe and guard thresholds** (P4) and the expert's "good enough" line (P5d): shown to you before they are
-   used. Nothing to answer yet.
+2. **Science or ELA second**: settled by P2 (2026-11-13). No social studies base text, so science is second. Two
+   licence calls for partial bases are on the Desk as card q-ss-partial-bases.
+3. **The probe and guard thresholds** (P4): on the Desk as card q-probe-guard (2026-11-13). The expert's "good
+   enough" line (P5d) follows when P5 is done.
 
 Answered on 2026-11-13 and recorded in DESK-ANSWERS: the unit 4 re-plan and the unit 8 test; the IM login; the
 pause; the progression layer; this build order, its probe and guard, the rule 25 change, and the non-core courses
