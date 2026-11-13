@@ -527,6 +527,87 @@ def check_day(d, items, days):
     f += check_lists(d, items, lab)
     f += check_home(d, items, row, lab)
     f += check_reads3(d, items, row, lab, nf)
+    f += check_reads4(d, items, row, days, lab, nf)
+    return f
+
+
+REASON = re.compile(r'\b(?:why|because|how I know|how do you know|what went wrong|explain|I notice|reason)\b', re.I)
+
+
+def body_of(path):
+    """A day file's text without its header block."""
+    return re.sub(r'^---.*?---', '', path.read_text(encoding='utf-8'), flags=re.S)
+
+
+def check_reads4(d, items, row, days, lab, nf):
+    """Gates from grouping every cheap and expert finding of units 1, 2, 3, 9, 10 and 11 (2026-11-12): the exit
+    tickets go back, the seam between units, room for a challenge and a reason, an assessment day collects, and
+    (a note) a respond group for every letter the end items can show."""
+    f, h = [], d['head']
+    n = int(h.get('day', 0) or 0)
+    check_kind = row['kind'] == 'Check'
+    # the exit tickets of a teaching day come back the next day (days 8, 13, 14, 20: tickets with no hand-back)
+    if nf and not check_kind:
+        ex = [i['item_id'] for i in items if i['day'] == str(n) and i['check'] == 'exit'
+              and i.get('path', '') in ('', 'paper')]
+        nb = body_of(nf)
+        if ex and not (re.search(r'\bE%d\b' % n, nb) or any(e in nb for e in ex)
+                       or re.search(r"\bday %d'?s? (?:exit )?(?:tickets?|exit)\b" % n, nb, re.I)):
+            f.append('%s: day %d never picks up day %d\'s exit tickets (name "E%d", the exit id, or "day %d\'s '
+                     'tickets")' % (lab, n + 1, n, n, n))
+    # the seam between units (unit 2 reads: day 9 to day 10 broke): the first day of a unit reads the last day of the
+    # unit before, names it, and that day's Tomorrow names this one
+    prev = next((x for x in days if x['day'] == str(n - 1)), None)
+    if prev is None and n > 1:
+        f.append('NOTE %s: day %d has no days.csv row (its unit is not in data yet); read its plan for what it hands on'
+                 % (lab, n - 1))
+    elif prev and prev['stretch'] != row['stretch']:
+        pf = next(iter(sorted(d['path'].parent.parent.glob('u*/d%03d.md' % (n - 1)))), None)
+        if pf is None:
+            f.append('NOTE %s: the first day of unit %s; day %d (%s) is not written, so read its days.csv row and plan '
+                     'for what it hands on' % (lab, row['stretch'], n - 1, prev['unit']))
+        else:
+            if not re.search(r'\bday %d\b' % (n - 1), body_of(d['path']), re.I):
+                f.append('%s: the first day of unit %s never names day %d, the last day before it; pick up its '
+                         'Tomorrow' % (lab, row['stretch'], n - 1))
+            if not re.search(r'\bday %d\b' % n, parse(pf)['secs'].get('Tomorrow', ''), re.I):
+                f.append('%s: "Tomorrow" of day %d (%s) never names day %d, the first day of unit %s'
+                         % (lab, n - 1, pf.relative_to(ROOT).as_posix(), n, row['stretch']))
+    # room on the student page (cheap reads, every unit: one short line for a challenge or a reason)
+    byid = {i['item_id']: i for i in items}
+    s = d['student']
+    refs = [(m.start(), m[1]) for m in REF.finditer(s)]
+    for k, (pos, r) in enumerate(refs):
+        if byid.get(r, {}).get('check') == 'challenge':
+            seg = re.split(r'\n\*\*|\n###', s[pos:refs[k + 1][0] if k + 1 < len(refs) else len(s)])[0]
+            if not re.search(r'_{4,}|\{(?:sketch|work|small|tall)\}|^\|', seg, re.M) and not re.search(
+                    r'paper|\bback\b|notebook', seg, re.I):
+                f.append('%s: challenge %s has no room to answer on the page (a line, a box, or "on the back")' % (lab, r))
+    for ln in s.splitlines():
+        bl = re.findall(r'_{2,}', ln)
+        if (REASON.search(ln) and bl and max(map(len, bl)) < 20 and not ln.lstrip().startswith('|')
+                and not re.search(r'[=×]', ln)):
+            f.append('%s: a reason line has only a short blank ("%s"); give it a full-width line' % (lab, ln.strip()[:50]))
+    if check_kind:
+        td = d['secs'].get('The day', '')
+        # an assessment day collects the pages (day 24: nothing collected them)
+        if not re.search(r'\bcollect', td, re.I):
+            f.append('%s: an assessment day that never says when the pages are collected' % lab)
+        # every letter an end item's wrong rows can show has a respond group (days 9, 24, 88: groups that did not
+        # fit the register); a note, since a teacher-judged item may go back the next day instead
+        named = set()
+        for a, b in re.findall(r'\b([A-K]) to ([A-K])\b', td):
+            named |= {chr(c) for c in range(ord(a), ord(b) + 1)}
+        for x in 'ABCDEFGHIJK':
+            if re.search(r'\(%s\)|\berrors? %s\b|^- %s\b|\b%s\b(?= and| or|,|\)| group| pile| students|\.| \()|'
+                         r'(?:and|or|,|\() ?%s\b' % ((x,) * 5), td, re.M):
+                named.add(x)
+        ends = {i['item_id'] for i in items if i['day'] == str(n) and i['check'] == 'end'}
+        rows_ = _WRONGS.get(h.get('course', '')) or plan.rows(h.get('course', ''), 'wrongs')
+        miss = sorted({w['error'] for w in rows_ if w['item_id'] in ends and w['error'] not in ('', 'x')} - named)
+        if miss:
+            f.append('NOTE %s: end items can show error(s) %s, but the respond part names no group for them'
+                     % (lab, ', '.join(miss)))
     return f
 
 

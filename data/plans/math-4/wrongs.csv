@@ -12,8 +12,8 @@ s11-E5,swapped,,,A,
 s11-E5,25,5+4*5,25,B,
 s11-E5,"""100 feet""",,,E,
 s11-E6,8 by 11,,,,the same rectangle
-s11-E6,"sides with the same area, such as 22 by 4",22*4==11*8,True,,
-s11-E6,four sides added,,,,
+s11-E6,"sides with the same area, such as 22 by 4",22*4==11*8,True,A,kept the area the item did not ask for
+s11-E6,four sides added,,,,the item asks how to tell without adding all four sides: look-for 2 not shown
 s11-E7,156,2*(70+8),156,A,
 s11-E7,"56 or 5,600",,,,a zero slip
 s11-E7,"""560 centimeters""",,,E,

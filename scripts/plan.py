@@ -358,6 +358,94 @@ def register_letters(course, st):
     return out
 
 
+def written_days(course):
+    """Day numbers that have a day file under courses/<course>/."""
+    out = set()
+    for f in (ROOT / 'courses' / course).glob('u*/d[0-9][0-9][0-9].md'):
+        m = re.search(r'^day: (\d+)', f.read_text(encoding='utf-8'), re.M)
+        if m:
+            out.add(int(m[1]))
+    return out
+
+
+GOAL_SEP = re.compile(r',\s*and\s+|,\s*or\s+|\s+and\s+|\s+or\s+|,\s+')
+
+
+def goal_clauses(goal):
+    """The goal's clauses as (start, end, text) spans, "I can" left off: split at commas, "and" and "or"."""
+    st = re.match(r'\s*I can\s+', goal)
+    pos, out = st.end() if st else 0, []
+    for m in GOAL_SEP.finditer(goal, pos):
+        if goal[pos:m.start()].strip():
+            out.append((pos, m.start(), goal[pos:m.start()]))
+        pos = m.end()
+    if goal[pos:].strip():
+        out.append((pos, len(goal), goal[pos:]))
+    return out
+
+
+def trace(course, days, items, parts, wrongs, fails, notes):
+    """The goal-to-item trace (unit 2 reads, day 8: the exit and item 4 never asked for a later step). days.csv `shows`
+    names, for each piece of the day's goal, the exit and end-of-unit items that show it:
+    `phrase = id id; phrase = id`. Required on every written day; checked on any row that has it."""
+    have = written_days(course)
+    byid = {i['item_id']: i for i in items}
+    for d in days:
+        sh, n = d.get('shows', '').strip(), int(d['day'])
+        lab = 'day %d' % n
+        if not sh:
+            if n in have and d['kind'] in ('Understanding', 'Fluency', 'Application', 'Check'):
+                fails.append('%s: days.csv shows is empty; name the exit and end-of-unit items that show each piece '
+                             'of the goal ("phrase = id id; phrase = id", data/plans/README.md)' % lab)
+            continue
+        goal, check_day = d['goal'], d['kind'] == 'Check'
+        spans, named = [], []
+        for chunk in [c for c in sh.split(';') if c.strip()]:
+            if ' = ' not in chunk:
+                fails.append('%s: shows piece "%s" is not "phrase = id id"' % (lab, chunk.strip()[:40]))
+                continue
+            ph, ids = chunk.split(' = ', 1)
+            ph, ids = ph.strip(), ids.split()
+            at = goal.lower().find(ph.lower())
+            if at < 0:
+                fails.append('%s: shows phrase "%s" is not in the goal "%s"' % (lab, ph, goal))
+            else:
+                spans.append((at, at + len(ph)))
+            if not ids:
+                fails.append('%s: shows phrase "%s" names no item' % (lab, ph))
+            ok = []
+            for r in ids:
+                i = byid.get(r)
+                if i is None:
+                    fails.append('%s: shows names %s, which has no row in items.csv' % (lab, r))
+                elif check_day and not (i['check'] == 'end' and i['day'] == d['day']):
+                    fails.append('%s: shows names %s; an assessment day names its own end-of-unit items' % (lab, r))
+                elif not check_day and not ((i['check'] == 'exit' and i['day'] == d['day'])
+                                            or (i['check'] == 'end' and i['stretch'] == d['stretch'])):
+                    fails.append('%s: shows names %s, which is neither an exit of day %d nor an end-of-unit item of '
+                                 'unit %s' % (lab, r, n, d['stretch']))
+                else:
+                    ok.append(i)
+            named += ok
+            if ok and not check_day and not any(i['check'] == 'exit' for i in ok):
+                notes.append('%s: the goal piece "%s" is shown by no exit of the day, only by %s; does the exit '
+                             'check the goal?' % (lab, ph, ', '.join(i['item_id'] for i in ok)))
+        if check_day:
+            got = {(i['code'], p) for i in named for p in partset(i)}
+            miss = [p for p in parts if p['stretch'] == d['stretch'] and (p['code'], p['part']) not in got]
+            if miss:
+                fails.append('%s: the items shows names miss part(s) %s of parts.csv' % (
+                    lab, ', '.join('%s (%s)' % (p['code'], p['part']) for p in miss)))
+            continue
+        for a, b, txt in goal_clauses(goal):
+            if not any(s < b and a < e for s, e in spans):
+                fails.append('%s: the goal piece "%s" names no item in shows' % (lab, txt.strip()))
+        if named and not any(i['check'] == 'exit' for i in named):
+            fails.append('%s: shows names no exit of the day; the exit ticket must check the goal' % lab)
+        if named and not any(i['check'] == 'end' for i in named):
+            notes.append('%s: shows names no end-of-unit item; the unit assessment does not see this goal' % lab)
+
+
 def check(course):
     global FIRST_DAY
     FIRST_DAY = first_days() if course == 'math-4' else {}
@@ -448,6 +536,27 @@ def check(course):
         # a wrong answer that needs multiplying beyond the grade's limit is one a child cannot reach (expert, day 87)
         if w['compute'].strip() and over_limit(w['compute'], course):
             notes.append(lab + ': its compute multiplies beyond the grade limit; read it (day 87 read)')
+        # a wrong answer with no letter says why in its note (cheap reads, units 1, 3 and 9: rows with a blank code);
+        # x is any other wrong answer, no group
+        if not w['error'].strip() and not w['note'].strip():
+            fails.append(lab + ': no error letter and no note; give it a letter, x, or a note saying why none')
+    # every keyed exit, end-of-unit item and fix-it has its expected wrong answers in wrongs.csv (cheap reads, units
+    # 3 and 9: "no wrongs rows", "missing wrongs rows")
+    has = {w['item_id'] for w in wrongs}
+    for i in items:
+        if i['judged'] == 'key' and i['check'] in ('exit', 'end', 'fix') and i['item_id'] not in has:
+            fails.append('%s: a keyed %s with no row in wrongs.csv; write the wrong answers you expect, each with its '
+                         'error letter' % (i['item_id'], i['check']))
+    # a fix-it on the same numbers as a worked example or practice row of its day is copied, not found (unit 9 day 73,
+    # unit 3 days 13 and 21, unit 2 day 8; the 3f note below covers big sums and differences)
+    for i in items:
+        ni = set(numbers(i['stem']))
+        if i['check'] != 'fix' or len(ni) < 2:
+            continue
+        x = next((x for x in items if x['day'] == i['day'] and x['check'] in ('example', 'practice')
+                  and set(numbers(x['stem'])) == ni), None)
+        if x and not re.fullmatch(r'\d{3,}[+-]\d{3,}', split(i['compute'])[0] if i['compute'] else ''):
+            notes.append('%s: a fix on the same numbers as %s of its day; students copy, not find' % (i['item_id'], x['item_id']))
     # an exit whose wrong answers are sentences asks for a sentence, or the sign cannot show (expert, day 85)
     for i in items:
         if i['check'] == 'exit':
@@ -717,6 +826,7 @@ def check(course):
             t = re.sub(r'<!-- gen:.*?<!-- /gen -->', '', f.read_text(encoding='utf-8'), flags=re.S)
             notes.append('unit %s: %d words of prose outside the generated tables (%s)' % (s, len(t.split()), f.name))
 
+    trace(course, days, items, parts, wrongs, fails, notes)
     planned = sorted({int(m[1]) for f in (DOCS / course).glob('s[0-9][0-9].md') for m in [re.match(r's(\d+)', f.name)]})
     missing = [n for n in planned if str(n) not in stretches]
     if missing:

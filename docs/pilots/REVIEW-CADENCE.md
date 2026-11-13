@@ -163,3 +163,27 @@ display dropping an Ask written without a period, numbers reused from taught lis
 hand-back, an end item sharing 3 or more numbers with a taught list, and two notes) plus the `tiles` figure and
 error `x`. For the next unit: keep writing in order, and give the first day of each unit the last day of the unit
 before as a required read, since the seam between units is where the hand-off now breaks.
+
+## Before mass production: the findings grouped into kinds (2026-11-12)
+
+Every cheap and expert finding of units 1, 2, 3, 9, 10 and 11 in defects.csv was grouped by kind. Kinds seen three
+or more times and not yet gated were gated where a script can see them, so other writers carry the same bar:
+
+| Kind | Now |
+|---|---|
+| Exit tickets never handed back | gate: the next day names E<day>, the exit id or "day N's tickets" |
+| The seam between units | gate: the first day of a unit names the last day before it, whose Tomorrow names it (note when that day is not written) |
+| Exit or assessment item does not measure the goal | gate: the goal-to-item trace, days.csv `shows` (data/plans/README.md) |
+| Keyed exits, end items or fix-its with no wrong rows; wrong rows with no letter | gates in plan.py (a row with no letter needs a note) |
+| No room for a challenge or a reason | gates: a challenge has a line, box or "on the back"; a reason line has a full-width blank |
+| Assessment pages never collected | gate: an assessment day says when it collects |
+| Respond groups that do not fit the register | note: a letter the end items can show with no group |
+| A fix-it on the numbers of an example or practice row | note, for any fix (3f kept for big sums) |
+
+Not scriptable, so they stay with the writer's checklist and the cheap read (docs/agents/DAY-WRITER.md): whether a
+promise is kept in substance, whether an item asks what the trace says, examples that do not teach what the exit
+asks, items that cannot tell errors apart on practice rows, rules false in general, habit-building examples, cue
+words (a judgment of the day's goal: half the flagged cases were rejected), box heights and cramped cells (need the
+printed page), minutes (pace), materials and reteach agreement across opener and day (free prose in two files),
+figures against steps beyond their numbers, the reason bar, Ask placement (an Ask after the steps is often a fair
+closing question), grade level, and what Shorter keeps.
