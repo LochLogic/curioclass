@@ -48,8 +48,7 @@ the Progressions, and the source of two errors (I and J below).
   5/8. This is the day the benchmark is tied to the written form.
 - **Day 18.** The same printed line, now used for 1: pairs on each side of 1, then pairs each one part short.
 
-The number lines sheet from section 3.1 (u03-1/number-lines.md) has the line from 0 to 2 with 1/2 and 1 marked on
-side 2. The line is withdrawn on day 22, in section 3.4; benchmark comparisons return in the warm-ups of days 19 to
+Each day's student page prints the line, so no one rules it. The line is withdrawn on day 22, in section 3.4; benchmark comparisons return in the warm-ups of days 19 to
 23. A sketched line is always one way to justify.
 
 ## Why this model
@@ -82,8 +81,8 @@ day 17's exit.
 
 ## Supplies for the section
 
-- Per student: two paper strips of different length (day 17), cut from scrap; the number lines sheet (side 2,
-  days 17 and 18); a pencil.
+- Per student: two paper strips about 2 inches wide (day 17), one cut along a sheet (11 inches) and one across
+  (8 1/2 inches); a printed line on each day's student page (days 17 and 18); a pencil.
 - Per class: the projector for the display pages; a board; a short and a long strip for the teacher to fold where
   all can see. There is no document camera: fold them at the front, then draw the two halves on the board.
 - A room with nothing: two strips torn from scrap paper; a line ruled by hand with 1/2 and 1 marked.

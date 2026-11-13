@@ -8,6 +8,6 @@ Check only these, by looking across files side by side:
 3. Page fit. Run `python -X utf8 scripts/lesson.py build --pdf` and look at this day's student PDF and slips under build/lessons/math-4/: every blank and box is big enough to write in, nothing is cut off, tables are readable, every task that asks for a drawing has room for it, the display order matches the day.
 4. Minutes. Each part's tasks fit its minutes for a grade 4 class; parts add to the day.
 5. Giveaways. Exit and check items test choosing: no cue words or sentence frames that give the operation or the answer away, no numbers or facts reused from taught rows.
-6. The repeat list from earlier expert reads: docs/pilots/REVIEW-CADENCE.md and the "What the expert reads found" section of the day writers' brief named in your task. Check each item on it against this day.
+6. The repeat list from earlier expert reads: docs/pilots/REVIEW-CADENCE.md and the "What the expert reads found" section of docs/agents/DAY-WRITER.md. Check each item on it against this day.
 
 Write docs/reviews/cheap-d0NN-2026-11-12.md (your three-digit day number, for example cheap-d004-2026-11-12.md): each finding as one short paragraph (what, where, the exact fix), tagged CHECK n (1 to 6). No verdict essay. Final message: the count by CHECK and the report path.

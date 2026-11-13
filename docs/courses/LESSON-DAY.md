@@ -82,6 +82,17 @@ shaded (past n a second whole follows), all at one length so they compare; `Lu:2
 `2/6=?` leaves a box there, `unit` writes 1/n in each part, `lab=none` writes nothing. Points, labels listed and
 shaded strips count as the figure's numbers for the stem gate; ticks, blanks and generated labels do not. On the
 display a line or strip figure grows one line or strip a step, and an exit ticket prints its figure on the ticket.
+Three words set what each page shows (unit 3 reads). `then` starts the lines or strips that are the answer: the
+student page and the display's question screen stop before it, the key and the last step show all
+(`line d=5 pt=2/5 / then d=5 sub=2 pt=4/10`, `fstrip 8/12 then 4/6 2/3`). `ask=N` prints only the first N lines
+or strips on the student page and the question screen (`fstrip 6/8 1/2 ask=1`). `by=` sets the display, one entry
+a screen, the question screen first and then one per step: a number of lines or strips, `-` none, `*` all, the last
+entry carried on (`by=1,1,2,*`). With no `by=`, a figure with `then` or `ask=`, or a worked example whose later
+lines carry points, opens with the lines it asks about (one line in the second case) and adds one a step from the
+first step that says cut, draw, fold, sketch or circle, all by the last step; the question screen never shows the
+answer's line. A strip of more than 24 parts prints as thin lines with a heavy line every 10 parts, so tenths of a
+hundred count by eye. On the student page a line figure's words and whole numbers print at 14 point (its
+fractions stay at the figure's size, so the page keeps to two sides).
 `steps` (the worked steps as the teacher says them, split by `|`; for a wrong answer to fix, their working then
 the right working; a teacher-judged row lists its look-fors here), `samples` (a teacher-judged row's two sample
 answers, one meeting the look-fors and one not, shown on the key), `path` (an exit's `tool` or `paper`; `board`
@@ -108,7 +119,10 @@ Fixed headings, so a script can find each part and a teacher always finds it in 
    for, and what to do if many get it wrong (from the error register). Wording is written out only where the
    words matter: the steps of a worked example (from the row, `[[steps:id]]`), and the planned questions, each
    marked **Ask.** with the answers to expect and the order to show them in. Everything else is told, not
-   scripted.
+   scripted. An action counted out ("say four pairs aloud", "read six comparisons") lists the pairs or
+   comparisons it counts, so the teacher does not invent them in front of the class and the reserve sees them
+   (unit 3 reads). An Ask that belongs inside a worked example says "after step N": its screen waits for that
+   step on the display.
 4. **Other rooms.** The paper path when there are no devices, no printer, one projector: only what differs from
    the course's DEFAULTS.md. Every day has a paper path. When the day's tool is planned but not built, the paper
    path is written as fully as the tool path: what students do, how they check, what to watch for. One child at
@@ -142,6 +156,12 @@ Fixed headings, so a script can find each part and a teacher always finds it in 
 - No answers printed. No timer, score or rank. Black and white, readable with no colour.
 - A large-print version (18 point) is generated from the same file.
 - Instructions a student reads are short sentences in plain words; numbers are written as numerals.
+- A stem with parts prints each of (a), (b), (c) on its own line, on the page and on the ticket.
+- An exit ticket gives each sentence of its stem the room it asks for: a blank to fill is the room for its
+  sentence, a "why" or "how do you know" gets two lines, a question or a "write" gets one, and a stem that says
+  show, rename or explain gives every part a line.
+- A stem holds only what the student reads: no "No drawing." or "No line given." (that goes on the teacher page),
+  no quote marks round the student text, no description of the figure printed beside it.
 
 ## The At home block
 
@@ -247,6 +267,27 @@ ungrouping whose two errors (smaller from larger, the small 1 only) give one ans
 taught, a row keying only one of them; notes for an exit whose carries fall where the day's worked example's do,
 a fix on a worked example's numbers, and a row coded to a standard the scope and sequence teaches later. The key's opening
 line is the equal-forms note only on a day with an equation, the estimate rule on a day of estimates.
+
+Added from the unit 3 reads. The display: a fix shows the stem, the picture and their working, then, after the
+class answers the Ask (or at the fix's `[[steps:id]]`), their working beside the right working, one step a line;
+a warm-up's questions get a screen before "Check your answers"; that screen says an equal name is right, and that
+a sign is right when it reads true as a sentence, when the answers hold fractions or signs. The key lists the
+assessment rows first, then rows in the order the student page meets them (the warm-up first), names an error
+without its example, prints a strip or fraction figure in a full-width row under its item, and on a fraction day
+says any right grouping or cut is right and a name need not be the smallest. The At home view gives a worked
+example's steps and a judged row's look-fors, names a question inside an example "Example 2, question 3", and on
+an assessment day names every assessment item. New gates (FAIL unless marked note): a "when it exists" course piece
+that exists; `Check:` written mid-line; "after each set" with fewer `Check:` lines than sets; a partner check with
+no `Check:` line or peer key; a student table of only ■ cells (draw an `fstrip`); a student line that runs
+a blank or a number into a fraction ("___/15   4/5"), which prints as a mixed number; a Words and supports frame missing from the side
+it names; a paper exit with no room to write; notes for a fraction Tomorrow says day N+1 uses that it does not, a
+"from day N" material day N never names, a strip, card or sheet handled and not listed, and an opener sheet
+listed for the day that the day never names. `plan.py check` adds: a stem that starts "No drawing", "No line
+given", "No strips" or "No grid"; student text in quote marks beside other words; a check or exit part that
+prints both fractions of an equality a taught row names (stem, answer or `F()` terms, either order, by the exit's
+day); challenges whose one fraction matches; notes for a comparing section's register letter no comparing end
+item has a wrong row for, and one shown value under two letters on a check item. A fraction rule's
+multiplications are not area facts, and the "same answer" note skips answers that are only True or False.
 
 **How days are read.** Every day by the gates; a sample of days per section by the expert; the whole of the first
 section in each course by a teacher, in a taught run.

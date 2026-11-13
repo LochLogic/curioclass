@@ -73,7 +73,7 @@
 ### Unit 7. Decimals (days 52 to 61; 4.NF.C.5 to C.7)
 
 - **Grade 3 hands it (Weak):** very little directly. Tenths and hundredths are outside grade 3's denominators. The number line (3.NF.A.2) and money (2.MD.C.8) carry over.
-- **Readiness.** (1) W, this year: writes 3/10 as hundredths (4.NF.A.1, unit 3). (2) W, this year: finds 3/10 + 4/10 (4.NF.B.3, unit 4). (3) W: circles the larger of 3/8 and 5/8 (3.NF.A.3d). (4) W: writes how many dimes and how many cents make a dollar (2.MD.C.8).
+- **Readiness.** (1) W, this year: writes 1/4 as hundredths, 25/100 (4.NF.A.1, unit 3). (2) W, this year: finds 3/10 + 4/10 (4.NF.B.3, unit 4). (3) W: circles the larger of 3/8 and 5/8 (3.NF.A.3d). (4) W: writes how many dimes and how many cents make a dollar (2.MD.C.8).
 - **Grade 5 needs from it:** decimals as fractions over 10 or 100, to reach thousandths (5.NBT.A.3) and explain decimal arithmetic (5.NBT.B.7); the number line, as in unit 3.
 - **Limits:** tenths and hundredths. Comparing, not computing, in decimal notation. Adding is done as fractions (4.NF.C.5), with dimes and cents (Prog. p. 154 (148)).
 - **The decimals rule. Decided, Cory, 2026-11-11.** For this unit and unit 15. Decimal notation may be used; computing in it waits for grade 5 (Prog. p. 89 (83); 5.NBT.B.7).

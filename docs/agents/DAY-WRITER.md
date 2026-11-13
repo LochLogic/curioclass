@@ -61,10 +61,10 @@ gate checks it. What the gate cannot check is yours:
 - A **Swap.** for each thing named in the materials that a home lacks: tiles become coins or paper squares, grid
   paper becomes squares ruled on plain paper, the projector becomes the page itself, a string loop a short string.
 
-## Before you hand in: check your own day
+## What the expert reads found: check your own day before you hand in
 
-The gates catch the mechanical repeats. These are the kinds only an expert caught on units 1 and 9; run each on
-your own day and fix what you find.
+The gates catch the mechanical repeats. These are the kinds only an expert caught on units 1, 9 and 3; run each on
+your own day and fix what you find. Cheap reads use this list as their repeat checklist.
 
 1. **Rework the exit with only what the examples showed.** Cover everything but the worked examples and answer
    the exit ticket from them alone. If a step is needed that no example showed, teach it or change the exit.
@@ -78,6 +78,16 @@ your own day and fix what you find.
 6. **Cue words.** Practice meant to make the child choose does not give it away with "covers" or "around".
 7. **Page fit and blanks.** The student page prints on two sides with room to write every answer asked for.
 8. **The key against the data.** Every wrong answer the prose names has a row in wrongs.csv, with its error letter.
+9. **Figures draw what the steps say.** Every cut, point or line a step names is on the display and key figure;
+   the student figure holds no answer (use `then` and `ask=` for what only the key shows).
+10. **Student stems are the child's words.** No plan framing ("No line given", "No drawing"), no quote marks,
+    no frame that names the method, and room to write each "why" or each renaming.
+11. **Numbers new to checks.** Exits, written tasks and the assessment use no pair or equivalence a taught row
+    on an earlier day used; grep items.csv before keeping one.
+12. **Materials named where used.** Every strip, card or sheet a part hands out is in that day's materials and
+    the opener's supplies, and every opener sheet is used by a day.
+13. **One letter per wrong answer.** Where two errors (D and A, D and G) give the same sign, the item asks for
+    the working that tells them apart, and wrongs.csv has a row for each.
 
 ## Gates (run until 0 failures for your day)
 
@@ -93,4 +103,4 @@ days' files are not yours; leave them.
 
 The worktree path; the files you changed; the teacher, At home and student word counts and the sides from the
 gate; any days.csv change; anything in the plan you found wrong or had to decide (one line each); which of the
-eight self-checks changed something; anything you could not do.
+self-checks changed something; anything you could not do.

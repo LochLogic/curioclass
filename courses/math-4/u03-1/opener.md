@@ -45,9 +45,8 @@ these cuts on printed lines by hand, and decide whether two fractions are the sa
 
 The fraction strips sheet (strip-sheet.md): nine labelled strips, one whole to twelfths, all one length, on page
 1; ten blank strips to fold on page 2. Print both pages one-sided, one set a student, for day 10; the cut strips
-stay in an envelope all unit. The number lines sheet (number-lines.md): blank lines from 0 to 1 and 0 to 2 on side
-1; tenths, twelfths, and 0 to 2 with 1/2 and 1 marked on side 2. Print it both sides, one a student for each of
-days 11 and 12.
+stay in an envelope all unit. The number lines sheet (number-lines.md), lines 1 to 12: on side 1, lines 1 to 3 blank from 0 to 1
+and lines 4 to 6 from 0 to 2 in halves, fifths and fourths. Print it both sides, one a student, for day 11 only.
 
 ## Why this model
 
@@ -88,10 +87,10 @@ One more readiness question, half of a small pizza against half of a large one, 
 
 ## Supplies for the section
 
-- Per student: the fraction strips sheet (day 10), scissors, an envelope; the number lines sheet (days 11 and
-  12); a pencil and a ruler.
-- Per class: the projector for the display pages; a board; a long paper strip. No document camera: fold the long
-  strip at the front, then draw each fold on the board.
+- Per student: the fraction strips sheet (day 10), scissors, an envelope; the number lines sheet and a ruler (day
+  11 only); a pencil.
+- Per class: the projector for the display pages; a board; three long paper strips (day 10). No document camera:
+  fold a long strip at the front, then draw each fold on the board.
 - A room with nothing: strips cut from scrap paper, all one length, and lines ruled by hand.
 
 ## Words

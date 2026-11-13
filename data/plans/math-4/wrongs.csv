@@ -699,44 +699,51 @@ s03-R3,1/8,,,D,
 s03-R4,1/3 for 3,,,,a whole number not yet written as a fraction; the reteach
 s03-E1,4/6,F(4;3*2),4/6,A,
 s03-E1,6/5,F(4+2;3+2),6/5,B,
-s03-E1,7/6 or 9/6,,,C,
+s03-E1,9/6,F(8+1;6),9/6,C,counts the mark at 0 as one
 s03-E1,8/12,,,K,cut the whole line from 0 to 2 as one whole
-s03-E2,agrees with Rosa,,,D,
-s03-E2,"""you times by 2"", with no drawing or reason",,,,"the rule said, not explained"
+s03-E2v2,agrees with Rosa,,,D,
+s03-E2v2,"""you times by 2"", with no drawing or reason",,,,"the rule said, not explained"
 s03-E3,circles 8/12,,,B,
 s03-E3,circles 6/100,,,A,
 s03-E3,leaves out 3/5,,,,uses the rule one way only
 s03-E3,"""no"" in (ii)",,,E,
-s03-E4,"7, 5 or 11",,,A,one number kept
-s03-E4,"13, 11 or 101",7+(12-6) | 5+(12-6) | 11+(100-10),13 | 11 | 101,B,
+s03-E4,"first blank 7, second 5 or third 11",,,A,one number kept
+s03-E4,"first blank 13, second 11 or third 101",7+(12-6) | 5+(12-6) | 11+(100-10),13 | 11 | 101,B,
 s03-E5,48/100 > 3/5,,,D,
 s03-E5,right order from the size of the parts alone,,,J,
 s03-E5,"right order, no use of 1/2",,,,the item asks for 1/2
 s03-E5,sign turned round,,,G,
 s03-E6,Yes,,,H,
-s03-E7,"(a) <, (b) > or (c) <",,,D,
-s03-E7,"right renaming, sign turned round",,,G,
+s03-E7v2,"(a) <, (b) > or (c) <",,,D,
+s03-E7v2,"only the bottom renamed: (a) 5/30 < 7/30, (b) 3/30 > 1/30 or (c) 7/8 < 14/8",,,A,
+s03-E7v2,"right renaming, sign turned round",,,G,
 s03-X10,2/6,F(2;3*2),2/6,A,
 s03-X10,4/3,F(2*2;3),4/3,A,
 s03-X10,4/5,F(2+2;3+2),4/5,B,
-s03-X11,5/8 or 7/8,,,C,
-s03-X11,3/8,F(3;4*2),3/8,A,
-s03-X11,"""yes, it moved""",,,,a new name is taken for a new number
-s03-X12,"""yes"", the same amount",,,B,
-s03-X13,7/12,F(7;3*4),7/12,A,
-s03-X13,10/7,F(7+3;4+3),10/7,B,
-s03-X13,"""the fraction is 3 times as big""",,,F,
-s03-X14,4/3,,,A,
-s03-X14,1/9,F(4-3;12-3),1/9,B,takes 3 from both
-s03-X14,20/10,,,A,
-s03-X15,"1, 9 or 4",,,A,one number kept
-s03-X15,"7, 99 or 14",1+(12-6) | 9+(100-10) | 4+(15-5),7 | 99 | 14,B,
-s03-X16,circles 10/12,,,B,
-s03-X16,circles 4/10,,,A,
-s03-X16,leaves out 4/5,,,,uses the rule one way only
-s03-X16,"""not equal"" in (b)",,,E,
-s03-X17,"(a) ""yes""",,,H,
-s03-X17,"(b) 3/8 > 1/2, or 3/8 > 2/3",,,D,
+s03-X10,4/6 with no cuts drawn,,,,the name without the picture: draw it first in day 11's warm-up
+s03-X11v2,7/8,F(3*2+1;8),7/8,C,counted the mark at 0
+s03-X11v2,3/8,F(3;4*2),3/8,A,
+s03-X11v2,"""yes, it moved""",,,,a new name is taken for a new number
+s03-X11v2,8/10 for (b),F(8;10),4/5,K,took 0 to 2 as the whole
+s03-X12v2,"""yes"", the same amount",F(2+2;3+2),4/5,B,2 added to the top and the bottom of 2/3
+s03-X13v2,7/12,F(7;3*4),7/12,A,
+s03-X13v2,10/7,F(7+3;4+3),10/7,B,
+s03-X13v2,"""the fraction is 3 times as big""",,,F,
+s03-X14v2,4/3,,,A,
+s03-X14v2,10/90,F(20-10;100-10),1/9,B,takes 10 from both
+s03-X14v2,20/10,,,A,
+s03-X14v2,3 twelfths in each group,,,,"counts the groups, not the parts in each"
+s03-X15v2,"20, 9 or 4",,,A,one number kept
+s03-X15v2,"11, 99 or 14",20-(12-3) | 9+(100-10) | 4+(15-5),11 | 99 | 14,B,
+s03-X16v2,circles 10/8,,,B,
+s03-X16v2,circles 8/12,,,A,
+s03-X16v2,leaves out 4/3,,,,uses the rule one way only
+s03-X16v2,leaves out 16/12,,,,uses the rule one way only
+s03-X16v2,"""not equal"" in (b)",,,E,
+s03-X17v2,"(a) ""yes""",,,H,
+s03-X17v2,"(a) ""no"" with only ""1/4 < 1/3"" as the reason",,,,"true, but no word on the wholes; x on the record"
+s03-X17v2,"(b) 3/8 > 2/3, or 3/8 > 1/2 in the working",,,D,
+s03-X17v2,(b) 2/3 < 1/2 in the working,,,J,halves read as bigger pieces
 s03-X18,(a) >,,,D,
 s03-X18,(b) =,,,I,
 s03-X18,"(b) > ""because eighths are bigger""",,,J,"looks at the parts kept, not the part missing"
@@ -746,16 +753,20 @@ s03-X19,"right renaming, sign turned round",,,G,
 s03-X20,3/4 < 7/10,,,D,
 s03-X20,3/20 and 7/20,,,A,
 s03-X20,sign turned round,,,G,
-s03-X21,(a) > or (b) <,,,D,
-s03-X21,2/3 = 6/3,,,A,
+s03-X21v2,(a) > or (b) <,,,D,
+s03-X21v2,2/3 = 6/3,,,A,
+s03-X21v2,"(b) <, after 6/9 and 6/10 written",,,G,"right renaming, sign turned round"
 s03-X22,"(a) <, (b) > or (c) <",,,D,
 s03-X22,signs turned round,,,G,
-s03-X23,Ben,,,D,
-s03-X23,"""cannot tell""",,,,takes the same-whole rule too far: the trail is one whole
-s03-X23,sign turned round,,,G,
+s03-X22,(a) < with 16/24 and 15/24 written,,,G,"right renaming, sign turned round"
+s03-X22,(c) >,,,J,tenths are bigger pieces
+s03-X23,Ben,,,D,"no renaming, or wrong renaming"
+s03-X23,"""cannot tell""",,,,"takes the same-whole rule too far: the trail is one whole; write ct in the E23 cell"
+s03-X23,sign turned round,,,G,"right renaming (16/40 and 15/40), sign turned round"
 s03-W12,6/8 is more,,,D,
 s03-W16,"""10/6 is 2 times as big""",,,F,
 s03-W18,"""Dee is right""",,,I,
+s03-W18,"""3/4 is closer to 1""",,,J,"looks at the size of the part kept, not the part missing"
 s03-W22,2/10 > 1/4,,,D,
 s03-W23,"5/6 > 9/10, ""sixths are bigger pieces""",,,J,
 s03-W10-1,865,618+257-10,865,,did not carry the 1 from the ones
@@ -765,10 +776,12 @@ s03-K10-2,1/6,F(1;3*2),1/6,A,
 s03-K10-2,2/4,F(1+1;3+1),1/2,B,
 s03-P10-1,1/6,F(1;6),1/6,A,
 s03-P10-1,5/6,F(1+4;2+4),5/6,B,
-s03-P10-2,2/4 and 2/8,F(2;4) | F(2;8),1/2 | 1/4,A,
-s03-P10-3,5/12,F(5;6*2),5/12,A,
-s03-P10-3,10/6,5*2 | 6,10 | 6,A,
-s03-P10-3,11/12,F(5+6;6+6),11/12,B,
+s03-P10-2v2,2/10,F(2;5*2),1/5,A,
+s03-P10-2v2,4/5,F(2*2;5),4/5,A,
+s03-P10-2v2,7/10,F(2+5;5+5),7/10,B,
+s03-P10-3v2,5/12,F(5;6*2),5/12,A,
+s03-P10-3v2,10/6,5*2 | 6,10 | 6,A,
+s03-P10-3v2,11/12,F(5+6;6+6),11/12,B,
 s03-F10-1,1/6,F(1;3*2),1/6,A,the wrong answer shown
 s03-F10-1,2/4,F(1+1;3+1),1/2,B,
 s03-F10-2,6/6,3*2 | 6,6 | 6,A,the wrong answer shown
@@ -776,9 +789,9 @@ s03-F10-2,3/12,F(3;6*2),1/4,A,
 s03-F10-2,9/12,F(3+6;6+6),3/4,B,
 s03-K13-1,2/10,F(2;2*5),2/10,A,
 s03-K13-1,4/7,F(2+2;5+2),4/7,B,
-s03-K13-2,3/6,F(3;3*2),3/6,A,
-s03-K13-2,6/5,F(3+3;2+3),6/5,B,
-s03-K13-2,9/12,F(9;12),9/12,K,counted the sixths from 0 to 2 as one whole
+s03-K13-2v2,3/10,F(3;5*2),3/10,A,
+s03-K13-2v2,8/7,F(3+5;2+5),8/7,B,
+s03-K13-2v2,15/20,F(15;20),3/4,K,counted the tenths from 0 to 2 as one whole
 s03-P13-1,1/6 or 1/10,F(1;3*2) | F(1;5*2),1/6 | 1/10,A,
 s03-P13-1,4/5 or 6/7,F(1+3;2+3) | F(1+5;2+5),4/5 | 6/7,B,
 s03-P13-2,5/6,F(5;2*3),5/6,A,
@@ -788,18 +801,19 @@ s03-P13-3,5/8,F(5;2*4),5/8,A,
 s03-P13-3,7/6,F(5+2;4+2),7/6,B,
 s03-P13-3,10/16,F(10;16),10/16,K,counted the eighths from 0 to 2 as one whole
 s03-F13-1,2/10,F(2;2*5),2/10,A,
-s03-F13-2,"""yes, twice""",,,F,
+s03-F13-2v2,"""yes, 3 times""",,,F,
 s03-F13-3,"""equal""",,,B,
 s03-C13-1,14/12,F(5+9;3+9),14/12,B,added 9 to the top and the bottom
-s03-X13,21/24,F(3*7;3*8),21/24,K,took the line from 0 to 2 as one whole
+s03-X13v2,21/24,F(3*7;3*8),7/8,K,took the line from 0 to 2 as one whole
 s03-K14-1,8/12 = 4/12,,,A,changes the top number only
 s03-F14-1,2/6,F(4-2;8-2),1/3,B,takes 2 from both
 s03-F14-2,70/10,,,A,keeps the top number
-s03-P14-1,4/5,,,A,keeps the top number
-s03-P14-1,2/8,F(4-2;10-2),1/4,B,takes 2 from both
-s03-P14-2,6/4,,,A,keeps the top number
-s03-P14-2,4/6,F(6-2;8-2),2/3,B,takes 2 from both
-s03-P14-3,40/10,,,A,keeps the top number
+s03-P14-1v2,4/5,,,A,keeps the top number
+s03-P14-1v2,2/8,F(4-2;10-2),1/4,B,takes 2 from both
+s03-P14-2v2,10/6,,,A,keeps the top number
+s03-P14-2v2,8/10,F(10-2;12-2),4/5,B,takes 2 from both
+s03-P14-3v2,30/10,,,A,keeps the top number
+s03-P14-3v2,20/90,F(30-10;100-10),2/9,B,takes 10 from both
 s03-P14-4,5/12 = 4/11 or 7/8 = 6/7,,,B,takes 1 from both
 s03-P14-4,10/100 = 10/10,,,A,keeps the top number
 s03-K14-2,50/10,,,A,keeps the top number
@@ -833,11 +847,12 @@ s03-P15-15,1,10-(18-9),1,B,the same taken from both
 s03-P15-16,230,,,A,one number kept
 s03-P15-16,140,230-(100-10),140,B,the same taken from both
 s03-P15-17,9,7+(4-2),9,B,"the same added to both, first blank"
+s03-P15-17,7,,,A,one number kept
+s03-C15-1,11/100,,,A,one number kept
 s03-F16-1,"""not equal"": agrees with Lena",,,E,
 s03-K16-1,circles 24/12,,,B,
 s03-K16-1,circles 22/5,,,A,
 s03-K16-1,leaves out 11/5,,,,uses the rule one way only
-s03-P16-2,not equal,,,,uses the rule one way only
 s03-P16-3,equal,,,B,
 s03-P16-4,not equal,,,E,
 s03-P16-5,not equal,,,D,
@@ -845,8 +860,11 @@ s03-P16-6,equal,,,A,
 s03-P16-7,not equal,,,E,
 s03-P16-8,not equal,,,E,
 s03-P16-9,equal,,,,"both can be grouped, but the names differ"
-s03-C16-1,3/100,,,A,
+s03-P16-10,not equal,,,,groups once and stops at two different names
+s03-C16-2,10,6+(12-8),10,B,the same added to both
+s03-C16-2,6,,,A,one number kept
 s03-K16-1,220/100 is more than 22/10,,,D,
+s03-K16-1,leaves out 220/100,,,,uses the rule one way only
 s03-P17-1,7,2+5,7,B,added 5 to the top and the bottom
 s03-F17-1,the large 1/2 is greater than the small 1/2,,,H,the wrong answer shown
 s03-F17-2,4/10 > 1/2,,,D,the wrong answer shown
@@ -868,6 +886,8 @@ s03-P18-7,>,,,J,halves are bigger pieces
 s03-C18-1,=,,,I,each one part more than 1
 s03-C18-1,<,,,D,13 and 12 are bigger
 s03-K20-1,2/15 and 4/15,,,A,the task's wrong example: a right sign from wrong names
+s03-K20-2v2,5/8 < 7/12,,,D,the bigger numbers called bigger
+s03-K20-2v2,5/24 and 7/24,,,A,
 s03-F20-1,4/30 and 5/30,,,A,the wrong answer shown
 s03-P20-1,5/8 > 4/5,,,D,the bigger numbers called bigger
 s03-P20-1,5/40 and 4/40,,,A,
@@ -888,26 +908,32 @@ s03-K21-3,1/3 = 1/6,,,A,one number kept
 s03-F21-1,Mia is right,,,D,the wrong answer shown
 s03-P21-1,<,,,D,6 is bigger than 5
 s03-P21-2,>,,,D,12 is bigger than 8
-s03-P21-3,1/4 = 3/4,,,A,one number kept
-s03-P21-3,">, after 3/12 > 3/10",,,D,12 is bigger than 10
-s03-P21-3,">, after 3/12 < 3/10",,,G,"right renaming, sign turned round"
+s03-P21-3v2,1/5 = 2/5,,,A,one number kept
+s03-P21-3v2,"<, after 2/10 < 2/12",,,D,12 is bigger than 10
+s03-P21-3v2,"<, after 2/10 > 2/12",,,G,"right renaming, sign turned round"
 s03-P21-4,4/6 = 8/6,,,A,one number kept
 s03-P21-4,"<, after 8/10 < 8/12",,,D,12 is bigger than 10
 s03-P21-5,<,,,D,4 and 8 are bigger numbers
 s03-P21-6,">, thirds are bigger pieces",,,J,the size of the parts alone
 s03-P21-6,1/3 = 5/3,,,A,one number kept
-s03-C21-1,4/10,,,,"4/10 is 2/5 itself, not greater"
+s03-C21-1,4/10,,,,"not an error from the register: 4/10 is 2/5 itself, not greater"
 s03-P22-1,11,5+6,11,B,added 6 to both
 s03-F22-1,3/10 > 2/5,,,G,Rio's sign kept
 s03-K22-1,3/5 > 6/8 from 24/40 < 30/40,,,G,"right renaming, sign turned round"
 s03-P22-3,>,,,D,7 and 10 are bigger
-s03-P22-5,>,,,D,8 and 6 are bigger
+s03-P22-4,<,,,D,10 is bigger than 8
+s03-P22-5v2,16/10 > 8/5,,,D,16 and 10 are bigger
+s03-P22-6,>,,,D,5 and 12 are bigger
+s03-P22-7,<,,,D,25 and 100 are bigger
+s03-P22-8,>,,,D,7 and 6 are bigger
 s03-P22-9v2,>,,,D,6 is bigger than 4
+s03-P22-10v2,<,,,D,6 and 10 are bigger
 s03-P22-11,>,,,D,9 and 12 are bigger
 s03-P22-12,> with 35/40 < 36/40 written,,,G,"right renaming, sign turned round"
+s03-P22-12,> with no renaming,,,J,eighths are bigger pieces
 s03-C24-1,none: nothing comes between 2 and 3,,,D,reads the numerals as whole numbers
 s03-C24-2,none: nothing comes between 6 and 5,,,D,reads the numerals as whole numbers
-s03-F11-1,6/6,F(5+1;6),6/6,C,the wrong answer shown
+s03-F11-1v2,6/6,F(5+1;6),6/6,C,the wrong answer shown
 s03-F11-2,5/8,F(5;8),5/8,K,the wrong answer shown
 s03-K11-1,1/8,F(1;4*2),1/8,A,
 s03-K11-1,3/8,F(1*2+1;8),3/8,C,counted the mark at 0
@@ -915,25 +941,29 @@ s03-P11-4,2/8,F(2;4*2),2/8,A,
 s03-P11-4,5/8,F(2*2+1;8),5/8,C,counted the mark at 0
 s03-P11-5,4/10,F(4;5*2),4/10,A,
 s03-P11-5,9/10,F(4*2+1;10),9/10,C,counted the mark at 0
+s03-P11-6,"6/5, then 11/10",F(5+1;5) | F(10+1;10),6/5 | 11/10,C,counted the mark at 0
+s03-P11-6,"1/5, then 5/10",F(1;5) | F(5;10),1/5 | 1/2,A,one number kept
 s03-K11-2,3/8,F(3;2*4),3/8,A,
 s03-K11-2,12/16,F(12;16),12/16,K,took 0 to 2 as the whole
 s03-P11-7,7/10,F(7;5*2),7/10,A,
 s03-P11-7,14/20,F(14;20),14/20,K,took 0 to 2 as the whole
 s03-P11-8,"8/8, then 16/16",F(8;8) | F(16;16),8/8 | 16/16,K,took 0 to 2 as the whole
-s03-P23-1,>,,,D,45 and 100 read as bigger numbers
+s03-P23-1v2,>,,,D,47 and 100 read as bigger numbers
 s03-P23-2,>,,,G,
 s03-P23-3,<,,,D,3 and 12 read as bigger numbers
 s03-P23-4,Jay,,,H,compares the fractions of two different books
 s03-P23-5,>,,,D,
-s03-P23-6,>,,,D,
+s03-P23-6v2,> with no renaming or wrong renaming,,,D,9 and 8 read as bigger numbers
+s03-P23-6v2,> with 27/24 and 32/24 written,,,G,"right renaming, sign turned round"
 s03-P23-7,=,,,I,each is two parts short of 1
 s03-P23-7,>,,,G,
 s03-P23-8,Mo,,,H,compares the fractions of two different cartons
-s03-P23-9,<,,,D,
+s03-P23-9v2,< with no renaming or wrong renaming,,,D,2 and 12 read as bigger numbers
+s03-P23-9v2,< with 2/8 and 2/12 written,,,G,"right renaming, sign turned round"
 s03-P23-10,Ivy's,,,D,13 and 10 read as bigger numbers
 s03-P23-10,"Max's, with 13/10 > 5/3 written",,,G,
 s03-P23-11,Yes,,,H,
-s03-P19-2,>,,,D,2 and 12 read as bigger numbers
+s03-P19-2v2,>,,,D,4 and 10 read as bigger numbers
 s03-P19-4,1/6,,,D,6 read as bigger
 s03-K19-1,7/12 > 2/3,,,D,"Kai's claim, in the steps"
 s03-K19-1,"2/3 = 2/12, so 2/3 < 7/12",,,A,
@@ -943,9 +973,9 @@ s03-F19-1,9/12 > 5/6,,,D,the wrong answer shown
 s03-F19-2,"4/5 = 4/10, so 4/5 < 7/10",,,A,the wrong answer shown
 s03-P19-5,"3/4 = 3/8, so 3/4 < 7/8",,,A,right sign from a wrong name
 s03-P19-5,"6/8 < 7/8, so 3/4 > 7/8",,,G,
-s03-P19-6,< with no renaming,,,D,3 and 8 read as bigger
-s03-P19-6,"2/4 = 2/8, so 2/4 < 3/8",,,A,
-s03-P19-6,"4/8 > 3/8, so 2/4 < 3/8",,,G,
+s03-P19-6v2,< with no renaming,,,D,3 and 6 read as bigger
+s03-P19-6v2,"2/3 = 2/6, so 2/3 < 3/6",,,A,
+s03-P19-6v2,"4/6 > 3/6, so 2/3 < 3/6",,,G,
 s03-P19-7,3/12 > 1/4 with no renaming,,,D,
 s03-P19-7,"1/4 = 1/12, so 3/12 > 1/4",,,A,
 s03-P19-8,13/10 > 7/5 with no renaming,,,D,
@@ -960,4 +990,8 @@ s03-P12-7,"not the same, 5/10 is more",,,D,
 s03-P12-8,the same,F(1+1;3+1),2/4,B,1 added to the top and the bottom
 s03-F12-1,"yes, the lines agree",F(3+2;4+2),5/6,B,the wrong answer shown
 s03-F12-2,Kai is right,,,D,the wrong answer shown
-s03-X12,2/12 for 2/3,F(2;3*4),2/12,A,one number kept
+s03-X12v2,2/12 for 2/3,F(2;3*4),2/12,A,one number kept
+s04-R1,"4/5, 5/6, 6/7",,,,counts both numbers up
+s04-R1,stops at 4/4,,,,stops at one whole
+s04-R2,2/4,,,,writes the whole number on top
+s04-R3,3/4,,,,adds the same number to both (unit 3 error B)

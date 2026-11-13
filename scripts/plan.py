@@ -182,8 +182,13 @@ def facts(i, stem=True):
     (side, side, area) for an area or a side from an area, (side, side, perimeter) for a perimeter or a side from
     a perimeter. Read from the compute cell, plus both measures of any rectangle the stem names by two numbers."""
     out = set()
+    # a fraction rule ("2/3 = (2 x 4)/(3 x 4) = 8/12") multiplies top and bottom by one number: its products are
+    # not facts a row teaches (unit 3 reads), so its Mult and Div terms add nothing
+    rule = bool(re.search(r'\d+/\d+\s*=\s*(?:\(|\d+/\d+)', i.get('answer', '')))
 
     def add(*xs):
+        if rule:
+            return
         if all(isinstance(x, Fraction) and x > 0 for x in xs):
             out.add(tuple(sorted(canon(x) for x in xs)))
 
@@ -309,6 +314,50 @@ def first_days():
     return out
 
 
+SPEECH = re.compile(r'\b(?:says|said|wrote|writes|asks|asked|thinks|claims|answers|answered|reads)[,:]?\s*$', re.I)
+DIRECTION = re.compile(r'^\s*No (?:drawing|line(?: given)?|strips?|grid)\b')
+
+
+def stray_quote(stem):
+    """A stem that wraps its student text in quote marks after (or before) plan words: the marks and the plan words
+    print on the student page (unit 3 reads, days 23 and 24). A whole-stem quote is stripped by lesson.py, and a
+    quote after "says" or inside a sentence ("Say it with "factor"") is a word or a voice, so both pass."""
+    s = stem.strip()
+    if s.startswith('"') and s.endswith('"') and s.count('"') == 2:
+        return None
+    for m in re.finditer(r'"([^"]*)"', s):
+        pre = s[:m.start()]
+        if not SPEECH.search(pre) and (not pre.strip() or re.search(r'[.?!:]\s*$', pre) and not pre.rstrip().endswith(':')):
+            return m[1]
+    return None
+
+
+def fractions_of(i):
+    """The fractions a row names: in its stem, its answer and the F(a;b) terms of its compute cell."""
+    t = i['stem'] + ' ' + i.get('answer', '')
+    out = {(int(a), int(b)) for a, b in re.findall(r'(?<![\d/])(\d+)/(\d+)(?![\d/])', t) if int(b)}
+    out |= {(int(a), int(b)) for a, b in re.findall(r'F\((\d+);(\d+)\)', i.get('compute', '')) if int(b)}
+    return out
+
+
+def equal_pairs(fr):
+    """Pairs of different fractions with the same value, each as a sorted pair of 'a/b' strings."""
+    fr = sorted(fr)
+    return {tuple(sorted(('%d/%d' % x, '%d/%d' % y))) for k, x in enumerate(fr) for y in fr[k + 1:]
+            if x != y and Fraction(*x) == Fraction(*y)}
+
+
+def register_letters(course, st):
+    """The letters each section opener of a unit names in its error table, as {section folder: set of letters}."""
+    out = {}
+    for op in sorted((ROOT / 'courses' / course).glob('u%02d-*/opener.md' % int(st))):
+        t = op.read_text(encoding='utf-8')
+        m = re.search(r'## The errors to expect[^\n]*\n(.*?)(?=\n## |\Z)', t, re.S)
+        if m:
+            out[op.parent.name] = set(re.findall(r'^\|\s*([A-Z])\s*\|', m[1], re.M))
+    return out
+
+
 def check(course):
     global FIRST_DAY
     FIRST_DAY = first_days() if course == 'math-4' else {}
@@ -349,6 +398,15 @@ def check(course):
             fails.append('%s: judged by the teacher but has no look-fors in its steps cell' % i['item_id'])
         if i['judged'] == 'teacher' and not i.get('samples', '').strip():
             fails.append('%s: judged by the teacher but has no samples cell (meets | partly | not)' % i['item_id'])
+        # plan words printed to students (unit 3 reads, days 23 and 24): a condition for the page ("No drawing.",
+        # "No line given.") belongs in the teacher page or a column, and student text is not wrapped in quotes
+        if DIRECTION.match(i['stem']):
+            fails.append('%s: stem starts with a direction for the page ("%s"); put it in the teacher page and drop it '
+                         'from the stem' % (i['item_id'], DIRECTION.match(i['stem'])[0].strip()))
+        q = stray_quote(i['stem'])
+        if q is not None:
+            fails.append('%s: stem wraps student text in quote marks beside other words ("%s..."); the marks print'
+                         % (i['item_id'], q[:30]))
         for pat, use, why in wordrules:
             if re.search(pat, i['stem'], re.I):
                 fails.append('%s: stem breaks a settled word rule (%s): use %s' % (i['item_id'], why, use))
@@ -449,6 +507,24 @@ def check(course):
                         if turned:
                             fails.append('%s gives %s, the answer of the taught row %s on the same fact %s'
                                          % (i['item_id'], ', '.join(sorted(turned)), x['item_id'], ' '.join(t)))
+        # 3a for fractions (day 16 read): a check or exit stem that prints both fractions of an equality a taught row
+        # names (a/b = c/d from its stem, answer or F() terms, either order, by the exit's day) gives the answer away
+        tp = {}
+        for x in items:
+            if x['stretch'] == s and x['check'] in LESSON_KINDS:
+                for pr in equal_pairs(fractions_of(x)):
+                    tp.setdefault(pr, []).append(x)
+        for i in items:
+            if i['stretch'] == s and i['check'] in ('end', 'exit'):
+                # within one part: (b)'s 1/3 and (c)'s 2/6 are two questions, not a pair given away
+                shown = [{'%s/%s' % (a, b) for a, b in re.findall(r'(?<![\d/])(\d+)/(\d+)(?![\d/])', pt)}
+                         for pt in re.split(r'\((?:[a-h]|i{1,3}|iv)\)', i['stem'])]
+                for pr in sorted(tp):
+                    # by the exit's own day; before an end item's day (that day's rows come after the assessment)
+                    xs = [x for x in tp[pr] if int(x['day']) < int(i['day']) + (i['check'] == 'exit')]
+                    if xs and any(set(pr) <= sh for sh in shown):
+                        fails.append('%s prints %s and %s, an equality taught in %s'
+                                     % (i['item_id'], pr[0], pr[1], xs[0]['item_id']))
         # taught against taught, across days: allowed for practice, but counted so a writer sees it
         cross = sorted(t for t, xs in tf.items() if len({x['day'] for x in xs}) > 1)
         if cross:
@@ -456,7 +532,9 @@ def check(course):
                          % (s, len(cross), '; '.join(' '.join(t) for t in cross[:4])))
         # an exit whose answer is a taught answer on the same part of its own day can be copied (lesson-day read, day 85)
         for i in items:
-            if i['stretch'] == s and i['check'] == 'exit' and i['value'].strip():
+            # a comparison computes to True: matching truth values say nothing (day 17 read)
+            if i['stretch'] == s and i['check'] == 'exit' and i['value'].strip() and \
+                    not all(v in ('True', 'False') for v in split(i['value'])):
                 same = [x['item_id'] for x in items if x['day'] == i['day'] and x['check'] in ('example', 'fix')
                         and partset(x) & partset(i) and split(x['value'])[:1] == split(i['value'])[:1]]
                 if same:
@@ -467,9 +545,35 @@ def check(course):
             for b in sr[k + 1:]:
                 if a['stem'].strip() == b['stem'].strip():
                     fails.append('%s and %s have the same stem' % (a['item_id'], b['item_id']))
-                elif (a['check'] == b['check'] == 'challenge' and len(numbers(a['stem'])) >= 2
+                elif (a['check'] == b['check'] == 'challenge'   # one fraction is enough to compare (day 16 read)
+                      and (len(numbers(a['stem'])) >= 2 or any('/' in x for x in numbers(a['stem'])))
                       and numbers(a['stem']) == numbers(b['stem'])):
                     fails.append('%s and %s are challenges with the same numbers' % (a['item_id'], b['item_id']))
+        # a comparing end item's wrong rows cover each letter its section's register names (day 24 read, note)
+        cmp_end = [i for i in end if re.search(r'[<>]', i['compute'])]
+        if cmp_end:
+            have = {w['error'] for w in wrongs if any(w['item_id'] == i['item_id'] for i in cmp_end)}
+            for sec, ls in register_letters(course, s).items():
+                sx = [x for x in items if x['check'] == 'exit' and x['stretch'] == s and any(
+                    d['day'] == x['day'] and d['unit'] == '%s.%s' % (int(sec[1:3]), sec.split('-')[1]) for d in days)]
+                # a comparing section: every exit of it compares
+                if sx and all(re.search(r'[<>]', x['compute']) for x in sx) and ls - have:
+                    notes.append('unit %s: %s register names %s, but no comparing end item (%s) has a wrong row for it'
+                                 % (s, sec, ', '.join(sorted(ls - have)), ', '.join(i['item_id'] for i in cmp_end)))
+        # one shown value under two letters on a check item sorts a student into two groups (day 24 read; a note:
+        # a digit can be right under two errors in other units, so the reader judges it)
+        for i in end + [x for x in items if x['stretch'] == s and x['check'] == 'exit']:
+            seen = {}
+            for w in wrongs:
+                if w['item_id'] == i['item_id'] and w['error'] and not re.search(
+                        r'\([a-h]\)|\((?:i|ii|iii|iv)\)|\b(?:first|second|third|fourth|top|bottom)\b', w['shown'], re.I):
+                    for v in re.split(r',\s+|\s+or\s+', w['shown'].strip()):
+                        if re.fullmatch(r'[\d/,. ]+', v):
+                            seen.setdefault(v, set()).add(w['error'])
+            two = sorted(v for v, ls in seen.items() if len(ls) > 1)
+            if two:
+                notes.append('%s: wrong answer %s sits under two letters (%s); say which blank or part each is'
+                             % (i['item_id'], ', '.join(two), ', '.join(sorted(seen[two[0]]))))
         # 4. days
         sd = sorted((d for d in days if d['stretch'] == s), key=lambda d: int(d['day']))
         nums = [int(d['day']) for d in sd]

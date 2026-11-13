@@ -442,3 +442,345 @@ date,course,artifact,layer,found_by,kind,summary,status,ref
 2026-11-12,math-4,lesson.py,day,cheap,key,Equation boilerplate on the key; accept(),fixed,docs/reviews/cheap-d077-2026-11-12.md#11
 2026-11-12,math-4,d080.md,process,writer,materials,Day 80's print line lacked the family note the u10-1 opener sends home that day; caught by the new gate,fixed,
 2026-11-12,math-4,s09.md,plan,expert,sequence,C2.1 (day 78): pass it into a new place so E gets a second cold chance; for day 78's writer,open,docs/reviews/day-077-2026-11-12.md
+2026-11-12,math-4,lesson.py,process,expert,key,"the key lists rows in student-page order, warm-up first and labelled",fixed,docs/reviews/day-010-2026-11-12.md#4
+2026-11-12,math-4,plan.py,process,expert,gate,"reserve gate reads fraction equalities (stem, answer, F() terms, either order) and fails a check or exit part printing both",fixed,docs/reviews/day-011-2026-11-12.md#4
+2026-11-12,math-4,lesson.py,process,expert,figure,key draws strip and fraction figures full width in a row under the item,fixed,docs/reviews/day-011-2026-11-12.md#6
+2026-11-12,math-4,lesson.py,process,expert,sequence,fix right working on its own screen after the Ask; a worked line opens with its first line and points come with the steps,fixed,docs/reviews/day-012-2026-11-12.md#3
+2026-11-12,math-4,lesson.py,process,expert,missing,home view prints a worked example's steps and a judged row's look-fors,fixed,docs/reviews/day-012-2026-11-12.md#4
+2026-11-12,math-4,lesson.py,process,expert,figure,figure grammar: then marks display and key lines or strips; never on the student page or ticket,fixed,docs/reviews/day-013-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,expert,figure,ask=N prints the first N lines or strips on the student page and question screen; gate fails tables of only shaded cells,fixed,docs/reviews/day-014-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,expert,key,key names the error without the register example that contradicted the row,fixed,docs/reviews/day-014-2026-11-12.md#3
+2026-11-12,math-4,lesson.py,process,expert,gate,check fails a when-it-exists course piece that exists,fixed,docs/reviews/day-014-2026-11-12.md#5
+2026-11-12,math-4,plan.py,process,expert,gate,reserve compares taught fraction equalities with check and exit stems,fixed,docs/reviews/day-014-2026-11-12.md#7
+2026-11-12,math-4,lesson.py,process,expert,figure,fstrip over 24 parts draws thin lines with a heavy divider every 10 parts,fixed,docs/reviews/day-015-2026-11-12.md#5
+2026-11-12,math-4,lesson.py,process,expert,sequence,display puts a warm-up questions screen before its answers,fixed,docs/reviews/day-015-2026-11-12.md#7
+2026-11-12,math-4,lesson.py,process,expert,sequence,"fix shows their working alone first, right working after its Ask or at its steps ref",fixed,docs/reviews/day-016-2026-11-12.md#3
+2026-11-12,math-4,plan.py,process,expert,gate,gate 3b compares challenges with one fraction,fixed,docs/reviews/day-016-2026-11-12.md#4
+2026-11-12,math-4,plan.py,process,expert,gate,gate 3a reads fraction pairs from taught rows; X16 now fails,fixed,docs/reviews/day-016-2026-11-12.md#5
+2026-11-12,math-4,lesson.py,process,expert,key,accept() ignores signs inside a fraction rule and gives the fraction line on fraction days,fixed,docs/reviews/day-016-2026-11-12.md#6
+2026-11-12,math-4,lesson.py,process,expert,gate,note gate for an opener sheet listed for a day that never names it; the printed line is the day writer's,fixed,docs/reviews/day-017-2026-11-12.md#3
+2026-11-12,math-4,lesson.py,process,expert,sequence,"each fix gets two screens: their working, then both after the pair minute",fixed,docs/reviews/day-017-2026-11-12.md#4
+2026-11-12,math-4,plan.py,process,expert,gate,exit same-answer note skips answers that are only True or False,fixed,docs/reviews/day-017-2026-11-12.md#8
+2026-11-12,math-4,lesson.py,process,expert,key,"display prints every right-working step of a fix, one line each",fixed,docs/reviews/day-018-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,expert,wording,home labels write question N after a label ending in a digit,fixed,docs/reviews/day-018-2026-11-12.md#5
+2026-11-12,math-4,lesson.py,process,expert,gate,note: a from-day-N material day N never names,fixed,docs/reviews/day-019-2026-11-12.md#3
+2026-11-12,math-4,lesson.py,process,expert,gate,"no gate yet for a free frame not under a question; LESSON-DAY rule stands, gate left for the next pass",open,docs/reviews/day-019-2026-11-12.md#4
+2026-11-12,math-4,lesson.py,process,expert,gate,check fails a student line that runs a blank or number into a fraction (prints as a mixed number),fixed,docs/reviews/day-020-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,expert,figure,"by= on line and fstrip sets lines per screen; the part-word gate (a step naming a line not yet shown) is left open, it needs a word-to-line map",open,docs/reviews/day-020-2026-11-12.md#3
+2026-11-12,math-4,lesson.py,process,expert,missing,"screen for a taught wrong example from a wrongs note: left open, wrongs rows carry no placement and the day files would need a new ref",open,docs/reviews/day-020-2026-11-12.md#6
+2026-11-12,math-4,lesson.py,process,expert,key,key sorts rows by where they sit on the student page,fixed,docs/reviews/day-020-2026-11-12.md#7
+2026-11-12,math-4,lesson.py,process,expert,layout,exit slip keeps sentences in order and gives why or how-do-you-know two lines,fixed,docs/reviews/day-021-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,expert,sequence,a worked line with later points opens on its first line only and grows with the steps,fixed,docs/reviews/day-021-2026-11-12.md#4
+2026-11-12,math-4,lesson.py,process,expert,gate,check fails after each set with fewer Check: lines than sets,fixed,docs/reviews/day-022-2026-11-12.md#1
+2026-11-12,math-4,LESSON-DAY.md,process,expert,missing,LESSON-DAY says a counted action lists its pairs; the reserve does not read prose pairs yet,fixed,docs/reviews/day-022-2026-11-12.md#4
+2026-11-12,math-4,lesson.py,process,expert,gate,check fails a Words and supports frame missing from the side it names,fixed,docs/reviews/day-022-2026-11-12.md#6
+2026-11-12,math-4,lesson.py,process,expert,missing,"generated card key: left open, more than a small change (a new page kind and print line)",open,docs/reviews/day-023-2026-11-12.md#2
+2026-11-12,math-4,plan.py,process,expert,gate,"plan check fails a stem starting No drawing, No line given, No strips or No grid, and student text in quote marks",fixed,docs/reviews/day-023-2026-11-12.md#4
+2026-11-12,math-4,lesson.py,process,expert,gate,"note: a strip, card or sheet handled in The day and on no materials, print or leans_on line",fixed,docs/reviews/day-023-2026-11-12.md#6
+2026-11-12,math-4,lesson.py,process,expert,layout,plan check fails page directions in stems; parts (a) (b) (c) print one to a line on page and ticket,fixed,docs/reviews/day-024-2026-11-12.md#4
+2026-11-12,math-4,lesson.py,process,expert,missing,home view names every end item on an assessment day with look-fors; check fails one missing,fixed,docs/reviews/day-024-2026-11-12.md#6
+2026-11-12,math-4,lesson.py,process,expert,key,answers screen says any equal name is right and a sign is right if it reads true,fixed,docs/reviews/day-024-2026-11-12.md#8
+2026-11-12,math-4,lesson.py,process,cheap,key,key error names drop the stock register example on rows it does not fit,fixed,docs/reviews/cheap-d020-2026-11-12.md#2
+2026-11-12,math-4,d010.md,day,cheap,sequence,"Error B reteach used 2/4, not the ticket's 4/5; day 10 Tomorrow and day 11 both lay 2/3 beside 4/5",fixed,docs/reviews/cheap-d010-2026-11-12.md#1
+2026-11-12,math-4,d010.md,day,cheap,missing,"Strip sheet treated as not existing; leans_on plain path, strips cut ahead in Before class",fixed,docs/reviews/cheap-d010-2026-11-12.md#2
+2026-11-12,math-4,d011.md,day,cheap,missing,leans_on named lines.md; now number-lines.md,fixed,docs/reviews/cheap-d010-2026-11-12.md#3
+2026-11-12,math-4,d010.md,day,cheap,wording,"Strip count did not match the sheet; materials name nine labelled strips and blank strips, examples fold blank strips",fixed,docs/reviews/cheap-d010-2026-11-12.md#4
+2026-11-12,math-4,d010.md,day,cheap,key,"Example 1 frame had no single answer; now 'Each fold made __ times as many parts', the cut frame sits under Example 2",fixed,docs/reviews/cheap-d010-2026-11-12.md#5
+2026-11-12,math-4,items.csv,day,cheap,key,"Fold and record 2 could not show error B; replaced by s03-P10-2v2 (2/5 = 4/10, the expert's numbers, not the cheap read's reserved 3/4) with A and B wrongs",fixed,docs/reviews/cheap-d010-2026-11-12.md#6
+2026-11-12,math-4,d010.md,day,cheap,sequence,"Make Mo's fix error B; expert: two fixes from each side of error A are the right day 10 pair, B comes on days 12 and 13",rejected,docs/reviews/cheap-d010-2026-11-12.md#7
+2026-11-12,math-4,d010.md,day,cheap,layout,What went wrong was one short line; now two full-width lines,fixed,docs/reviews/cheap-d010-2026-11-12.md#8
+2026-11-12,math-4,d010.md,day,cheap,layout,Fix-it work box too short for two strips; now the tall box,fixed,docs/reviews/cheap-d010-2026-11-12.md#9
+2026-11-12,math-4,d010.md,day,cheap,layout,Warm-up cells had no room for working; a work row added,fixed,docs/reviews/cheap-d010-2026-11-12.md#10
+2026-11-12,math-4,d010.md,day,cheap,layout,Challenge answer line too short; two full-width lines,fixed,docs/reviews/cheap-d010-2026-11-12.md#11
+2026-11-12,math-4,d010.md,day,cheap,minutes,Cutting strips inside the warm-up; strips cut ahead (day 9 or pre-cut) in Before class,fixed,docs/reviews/cheap-d010-2026-11-12.md#12
+2026-11-12,math-4,d010.md,day,cheap,minutes,"Fix two in 10 minutes too tight; Fold and record 18, Fix 12",fixed,docs/reviews/cheap-d010-2026-11-12.md#13
+2026-11-12,math-4,d010.md,day,cheap,gate,"Exit gives the factor; the cheap read itself found no change needed, and the tick rule is expert finding 1",rejected,docs/reviews/cheap-d010-2026-11-12.md#14
+2026-11-12,math-4,d010.md,day,cheap,sequence,Exit cuts two shaded parts no example did; item 2 now counts two shaded parts aloud before the exit,fixed,docs/reviews/cheap-d010-2026-11-12.md#15
+2026-11-12,math-4,items.csv,day,expert,missing,"Nothing drawn all day; P10-2v2 and P10-3v2 print strips and say draw your cuts, X10 tick needs the cuts, wrongs row for 4/6 with no cuts",fixed,docs/reviews/day-010-2026-11-12.md#1
+2026-11-12,math-4,items.csv,day,expert,figure,Fix-it pictures never showed the wrong answer; F10-1 and F10-2 figures now wrong beside right,fixed,docs/reviews/day-010-2026-11-12.md#2
+2026-11-12,math-4,items.csv,day,expert,wording,"Folding thirds into sixths not told; K10-2 step 2 is the Z-fold, teacher line on sixths into twelfths",fixed,docs/reviews/day-010-2026-11-12.md#3
+2026-11-12,math-4,d010.md,day,expert,missing,"Equivalent never said; a line after Example 1, second Ask dropped",fixed,docs/reviews/day-010-2026-11-12.md#5
+2026-11-12,math-4,opener.md,plan,expert,missing,"Teacher strips: day 10 and the opener now say three long strips (halves, thirds, plain); ruler on day 11 only",fixed,docs/reviews/day-010-2026-11-12.md#6
+2026-11-12,math-4,d012.md,day,cheap,sequence,"Day 12 did not keep day 11's A and yes-moved promises; day 12 opening now has C, A, yes-moved and K branches as day 11 says",fixed,docs/reviews/cheap-d011-2026-11-12.md#1
+2026-11-12,math-4,d010.md,day,cheap,missing,Day 11 needs fifths and tenths strips day 10 did not list; day 10 materials and Other rooms rule them,fixed,docs/reviews/cheap-d011-2026-11-12.md#2
+2026-11-12,math-4,d011.md,day,cheap,missing,leans_on and text named lines.md; now number-lines.md,fixed,docs/reviews/cheap-d011-2026-11-12.md#3
+2026-11-12,math-4,wrongs.csv,day,cheap,key,"Error C on X11 gives 7/8 only; X11v2 C row 7/8 with compute, 5/8 dropped from Tomorrow",fixed,docs/reviews/cheap-d011-2026-11-12.md#4
+2026-11-12,math-4,wrongs.csv,day,cheap,key,"P11-6 had no wrongs; C 6/5 then 11/10 and A 1/5 then 5/10 added, with a watch-for",fixed,docs/reviews/cheap-d011-2026-11-12.md#5
+2026-11-12,math-4,number-lines.md,day,cheap,layout,"Too few lines and none numbered; sheet now lines 1 to 12, day 11 names a line per question",fixed,docs/reviews/cheap-d011-2026-11-12.md#6
+2026-11-12,math-4,d011.md,day,cheap,layout,Challenge had one short line; two full-width lines,fixed,docs/reviews/cheap-d011-2026-11-12.md#7
+2026-11-12,math-4,d011.md,day,cheap,figure,"Display figure jumped size mid-example; the build now draws every display figure at full width (process fix), checked in the d011 display",fixed,docs/reviews/cheap-d011-2026-11-12.md#8
+2026-11-12,math-4,d011.md,day,cheap,minutes,"Cut and rename too tight; 8 alone plus 2 in pairs, item 6 for early finishers",fixed,docs/reviews/cheap-d011-2026-11-12.md#9
+2026-11-12,math-4,items.csv,day,cheap,gate,"Exit never past 1; s03-X11v2 adds (b) 8/5 on a fifths line from 0 to 2, K wrong 8/10, Tomorrow K branch",fixed,docs/reviews/cheap-d011-2026-11-12.md#10
+2026-11-12,math-4,items.csv,day,cheap,gate,"Exit 3/4 reuse with W12; CONFLICT decided for day 12, the owner: W12 keeps 3/4 = 6/8",rejected,docs/reviews/cheap-d011-2026-11-12.md#11
+2026-11-12,math-4,items.csv,day,cheap,wording,'Every other fourth' in K11-1 steps; steps rewritten,fixed,docs/reviews/cheap-d011-2026-11-12.md#12
+2026-11-12,math-4,d011.md,day,cheap,wording,"Warm-up title now a sum, a difference and a fact",fixed,docs/reviews/cheap-d011-2026-11-12.md#13
+2026-11-12,math-4,d011.md,day,cheap,missing,At home swap could not make fifths; rule a 10 inch strip every 2 inches,fixed,docs/reviews/cheap-d011-2026-11-12.md#14
+2026-11-12,math-4,number-lines.md,day,expert,figure,"0 to 2 lines at half the strip scale; lines 4 to 6 printed in halves, fifths and fourths, page says mark the middles",fixed,docs/reviews/day-011-2026-11-12.md#1
+2026-11-12,math-4,items.csv,day,expert,wording,"Steps folded a strip students lack; K11-1 and K11-2 steps lay strips and mark middles, Cut and rename text",fixed,docs/reviews/day-011-2026-11-12.md#2
+2026-11-12,math-4,items.csv,day,expert,figure,"Ana's fix could read as right, no fix showed a line; s03-F11-1v2 stem and figures, F11-2 figure, both print on the page",fixed,docs/reviews/day-011-2026-11-12.md#3
+2026-11-12,math-4,d011.md,day,expert,missing,"Board and teacher strips set up for 0 to 1 only; 0 to 2 board line, day 10's three long strips",fixed,docs/reviews/day-011-2026-11-12.md#5
+2026-11-12,math-4,d011.md,day,expert,wording,"Small repairs: full goal line, readiness and day 10 error both handled, opener number lines sheet day 11 only",fixed,docs/reviews/day-011-2026-11-12.md#7
+2026-11-12,math-4,d012.md,day,cheap,sequence,Yes-moved promised and not kept; opening branch lays the strip before and after the cut,fixed,docs/reviews/cheap-d012-2026-11-12.md#1
+2026-11-12,math-4,items.csv,day,cheap,figure,"K12-2 figure lacked 5/12; superseded by expert finding 2, s03-K12-2v2 figure draws both points",fixed,docs/reviews/cheap-d012-2026-11-12.md#2
+2026-11-12,math-4,items.csv,day,cheap,wording,K12-2 step 4 not grade 4 reasoning; superseded by s03-K12-2v2 steps (halfway),fixed,docs/reviews/cheap-d012-2026-11-12.md#3
+2026-11-12,math-4,items.csv,day,cheap,key,Key pair figures had no points; P12-5 to P12-8 add pointed lines after then (key and display only),fixed,docs/reviews/cheap-d012-2026-11-12.md#4
+2026-11-12,math-4,wrongs.csv,day,cheap,key,X12 B row compute set to F(2+2;3+2); C12-1 wrongs rows not added (expert: a challenge needs no wrong rows),fixed,docs/reviews/cheap-d012-2026-11-12.md#5
+2026-11-12,math-4,d012.md,day,cheap,wording,Pair 1 prints on side 1; prose now says side 1 (pair 1) and side 2 (pairs 2 to 4),fixed,docs/reviews/cheap-d012-2026-11-12.md#6
+2026-11-12,math-4,d012.md,day,cheap,layout,Frame blanks too small; __/__ blanks,fixed,docs/reviews/cheap-d012-2026-11-12.md#7
+2026-11-12,math-4,d012.md,day,cheap,layout,"Challenge had no answer room, Jo and Kai one short line; now a full challenge line, two lines each, the line stack named",fixed,docs/reviews/cheap-d012-2026-11-12.md#8
+2026-11-12,math-4,items.csv,day,cheap,wording,"Exit stem carried No strips and quote marks; s03-X12v2 stem clean, direction stays on the teacher page",fixed,docs/reviews/cheap-d012-2026-11-12.md#9
+2026-11-12,math-4,d012.md,day,cheap,minutes,Reteach took 3 minutes from 2; now the pairs' 2 minutes and 1 from the class talk,fixed,docs/reviews/cheap-d012-2026-11-12.md#10
+2026-11-12,math-4,d012.md,day,cheap,minutes,"Two examples tight in 10 minutes; K12-2v2 steps are shorter, long strip dropped",fixed,docs/reviews/cheap-d012-2026-11-12.md#11
+2026-11-12,math-4,items.csv,day,cheap,sequence,"Pairs alternated same, not; pairs 3 and 4 swapped (same, not, not, same), watch-fors updated",fixed,docs/reviews/cheap-d012-2026-11-12.md#12
+2026-11-12,math-4,items.csv,day,cheap,level,"Change W12 to 2/3 and 6/9; expert: the task is the plan's own, its cut by 2 differs from Example 1's by 3, ninths are outside the unit",rejected,docs/reviews/cheap-d012-2026-11-12.md#13
+2026-11-12,math-4,items.csv,day,cheap,key,Exit 4/5 tolerance: key and teacher page both accept past 8/12 and short of 1; no fifths line added (expert: it would give the answer away),fixed,docs/reviews/cheap-d012-2026-11-12.md#14
+2026-11-12,math-4,d012.md,day,expert,missing,"Students never cut; cut-first lines in Teaching first, Same or not, Kai and the written task, and the line stack direction on the page",fixed,docs/reviews/day-012-2026-11-12.md#1
+2026-11-12,math-4,items.csv,day,expert,figure,"Example 2 points 2 mm apart; s03-K12-2v2 is 2/5 against 6/12, warm-up line now points the fives at the question",fixed,docs/reviews/day-012-2026-11-12.md#2
+2026-11-12,math-4,d012.md,day,expert,missing,"Unprepared long strip; dropped, Kai's mark on the display or board, header per class, opener supplies match",fixed,docs/reviews/day-012-2026-11-12.md#5
+2026-11-12,math-4,d012.md,day,expert,wording,"Pair with 3/6 and 5/10 has no cut; watch-for says it is not D (error E, day 16)",fixed,docs/reviews/day-012-2026-11-12.md#6
+2026-11-12,math-4,d012.md,day,expert,wording,"Small repairs: envelopes stay in desks closed for the exit, B fix on the board line (label size is process)",fixed,docs/reviews/day-012-2026-11-12.md#7
+2026-11-12,math-4,d013.md,day,cheap,sequence,Day 13 Tomorrow K branch did not meet day 14; now counts one whole before day 14's Example 1,fixed,docs/reviews/cheap-d013-2026-11-12.md#1
+2026-11-12,math-4,d013.md,day,cheap,wording,"Pull-together wording did not match the rule taught; now 3/2 = (5 x 3)/(5 x 2), the 5 is the cut",fixed,docs/reviews/cheap-d013-2026-11-12.md#2
+2026-11-12,math-4,d013.md,day,cheap,wording,Warm-up 'One point?' move had nothing to mark; reworded to 'Watch Example 1: one point gets two names',fixed,docs/reviews/cheap-d013-2026-11-12.md#3
+2026-11-12,math-4,d013.md,day,cheap,key,"Watch-for missed 5/6 as error A; now lists 1/6, 5/6 or 5/8",fixed,docs/reviews/cheap-d013-2026-11-12.md#4
+2026-11-12,math-4,items.csv,day,cheap,figure,"P13-1 figure showed one line for two halves problems; now two lines, d=2 pt=1/2 each",fixed,docs/reviews/cheap-d013-2026-11-12.md#5
+2026-11-12,math-4,items.csv,day,cheap,layout,"Exit had no room and quoted student text; stem reworked as s03-X13v2 (7/4 = ____, say in a sentence what the cut did)",fixed,docs/reviews/cheap-d013-2026-11-12.md#6
+2026-11-12,math-4,d013.md,day,cheap,layout,No room under the point for the new name; labels at 14pt and the page re-laid on 2 sides with merged frames,fixed,docs/reviews/cheap-d013-2026-11-12.md#7
+2026-11-12,math-4,d013.md,day,cheap,layout,Sam's box label did not say where to work; now 'Right working (on the line in problem 3)',fixed,docs/reviews/cheap-d013-2026-11-12.md#8
+2026-11-12,math-4,d013.md,day,cheap,minutes,Branch minutes unsourced and 'problem 5' unnamed; B branch takes 3 minutes from problem 5,fixed,docs/reviews/cheap-d013-2026-11-12.md#10
+2026-11-12,math-4,items.csv,day,cheap,gate,Exit frame gave the answer away; removed with X13v2,fixed,docs/reviews/cheap-d013-2026-11-12.md#11
+2026-11-12,math-4,d013.md,day,cheap,sequence,"Example 1 reused from day 12; expert: the plan and register fix that pair, no change",rejected,docs/reviews/cheap-d013-2026-11-12.md#12
+2026-11-12,math-4,items.csv,day,expert,sequence,"Both examples cut by their own numerator; Example 1 says 'both happen to be 2', Example 2 is now s03-K13-2v2 (3/2 cut into 5 = 15/10)",fixed,docs/reviews/day-013-2026-11-12.md#1
+2026-11-12,math-4,d013.md,day,expert,minutes,"If many B branch: Tam only, 3 minutes taken from problem 5, Examples 1 and 2 as written",fixed,docs/reviews/day-013-2026-11-12.md#3
+2026-11-12,math-4,items.csv,day,expert,figure,Ria's line drawn in tenths; F13-1 now fifths cut in two (line d=5 sub=2 pt=4/10),fixed,docs/reviews/day-013-2026-11-12.md#4
+2026-11-12,math-4,items.csv,day,expert,sequence,"Sam's fix repeated the class question; s03-F13-2v2 is 3/6 called 3 times 1/2, on problem 3's line",fixed,docs/reviews/day-013-2026-11-12.md#5
+2026-11-12,math-4,items.csv,day,expert,figure,"Examples printed the old name their step says to write; K13-1 figure uses then, step 1 'The old name is above the point'",fixed,docs/reviews/day-013-2026-11-12.md#6
+2026-11-12,math-4,d013.md,day,expert,wording,Warm-up 'One point?' pointed at a one-name line; now points to Example 1,fixed,docs/reviews/day-013-2026-11-12.md#7
+2026-11-12,math-4,opener.md,plan,expert,sequence,"Opener lists did not match the day; day 13 owns its cuts, the number lines sheet is now only the no-printer stand-in, error-days paragraph names Tam and K (day file preferred as owner)",fixed,docs/reviews/day-013-2026-11-12.md#8
+2026-11-12,math-4,d014.md,day,cheap,sequence,"Day 14 Tomorrow did not match day 15; now A 20/100 = 20/10 and 4/12 = 4/3, B 4/8 and 2/6 on two strips (day 15 owns its warm-up, preferred over day 14's settled 70/100)",fixed,docs/reviews/cheap-d014-2026-11-12.md#1
+2026-11-12,math-4,d014.md,day,cheap,missing,K tickets from day 13 had no hand-back; K pile in Before class and a K line in Teaching first,fixed,docs/reviews/cheap-d014-2026-11-12.md#2
+2026-11-12,math-4,d014.md,day,cheap,sequence,"Twos then fours not taught before practice; teaching now twelfths in twos, sixths in twos, then fours in one step (K14-1 step added)",fixed,docs/reviews/cheap-d014-2026-11-12.md#3
+2026-11-12,math-4,items.csv,day,cheap,key,X14 wrong 1/9 not a likely error; s03-X14v2 with wrongs 10/90 (B) and 3 twelfths per group,fixed,docs/reviews/cheap-d014-2026-11-12.md#5
+2026-11-12,math-4,wrongs.csv,day,cheap,missing,Missing wrongs rows added for the new day 14 items,fixed,docs/reviews/cheap-d014-2026-11-12.md#6
+2026-11-12,math-4,d014.md,day,cheap,figure,Hand-typed strips were unequal; student page now uses fig tags with ask=1,fixed,docs/reviews/cheap-d014-2026-11-12.md#7
+2026-11-12,math-4,items.csv,day,cheap,figure,Hundredths could not be circled; s03-P14-3v2 fstrip 30/100 with a heavy divider every 10,fixed,docs/reviews/cheap-d014-2026-11-12.md#8
+2026-11-12,math-4,items.csv,day,cheap,layout,"Exit had no room and quoted text; s03-X14v2 with blanks, no quotes",fixed,docs/reviews/cheap-d014-2026-11-12.md#9
+2026-11-12,math-4,days.csv,day,cheap,minutes,"Minutes tight; teaching 7 min, Which ones 6 min, days.csv row 14 updated; the 45-minute aside rejected, expert: 45 is by-hand time plus 5 of opening",fixed,docs/reviews/cheap-d014-2026-11-12.md#11
+2026-11-12,math-4,items.csv,day,cheap,gate,"Exit says 'thirds', a giveaway; expert: not a giveaway on a grouping day",rejected,docs/reviews/cheap-d014-2026-11-12.md#12
+2026-11-12,math-4,d014.md,day,cheap,sequence,Repeat-list cross-reference; covered by the fixes above,fixed,docs/reviews/cheap-d014-2026-11-12.md#13
+2026-11-12,math-4,d014.md,day,cheap,sequence,Repeat-list cross-reference; covered by the fixes above,fixed,docs/reviews/cheap-d014-2026-11-12.md#14
+2026-11-12,math-4,d014.md,day,cheap,sequence,Repeat-list cross-reference; covered by the fixes above,fixed,docs/reviews/cheap-d014-2026-11-12.md#15
+2026-11-12,math-4,items.csv,day,cheap,wording,Cue words in practice stems; expert: fair on a first practice,rejected,docs/reviews/cheap-d014-2026-11-12.md#16
+2026-11-12,math-4,opener.md,plan,cheap,sequence,"Hundredths on day 14 before day 15; opener and u03-2.md field 1 now say hundredths enter day 14 grouped in tens, day 15 shows the cut",fixed,docs/reviews/cheap-d014-2026-11-12.md#17
+2026-11-12,math-4,items.csv,day,expert,sequence,"Exit on a line while the day is on strips; 10/12 = 5/6 on a line added as s03-P14-2v2, days.csv holds one printed line",fixed,docs/reviews/day-014-2026-11-12.md#1
+2026-11-12,math-4,errors.csv,process,expert,key,"Error B said 'adds' beside subtracting answers; widened to adds or takes away, 4/8 = 2/6",fixed,docs/reviews/day-014-2026-11-12.md#3
+2026-11-12,math-4,d014.md,day,expert,missing,"Branches and Fix it asked for undrawn board lines and two fractions on one strip; board lines in Before class, Fix it on two strips, ruler added",fixed,docs/reviews/day-014-2026-11-12.md#4
+2026-11-12,math-4,d014.md,day,expert,sequence,Which ones tried every number; now uses factors of the top number from the warm-up,fixed,docs/reviews/day-014-2026-11-12.md#6
+2026-11-12,math-4,items.csv,day,expert,key,"Small repairs: P14-4 answer adds 5/50 and 2/20, ask=1 figures, groups frame, Again? line",fixed,docs/reviews/day-014-2026-11-12.md#8
+2026-11-12,math-4,d015.md,day,cheap,sequence,Day 14 to 15 hand-off A did not match; day 15 warm-up uses the v2 ids and new A branch,fixed,docs/reviews/cheap-d015-2026-11-12.md#1
+2026-11-12,math-4,d015.md,day,cheap,sequence,B branch used 1/9; now day 14's 4/8 and 2/6 (day 14 owns the B example),fixed,docs/reviews/cheap-d015-2026-11-12.md#2
+2026-11-12,math-4,d015.md,day,cheap,sequence,"Day 15 Tomorrow did not match day 16; now A 9/10 = 9/100, B 20/12 = 11/3, seating line",fixed,docs/reviews/cheap-d015-2026-11-12.md#3
+2026-11-12,math-4,wrongs.csv,day,cheap,missing,"Wrongs rows added: P15-17 7 (A), C15-1 11/100 (A), X15v2 rows",fixed,docs/reviews/cheap-d015-2026-11-12.md#5
+2026-11-12,math-4,items.csv,day,cheap,layout,Blanks too short; P15-5 to P15-17 widened to ____,fixed,docs/reviews/cheap-d015-2026-11-12.md#7
+2026-11-12,math-4,d015.md,day,cheap,layout,Header row on the set table dropped,fixed,docs/reviews/cheap-d015-2026-11-12.md#8
+2026-11-12,math-4,d015.md,day,cheap,layout,Challenge line now has two blanks,fixed,docs/reviews/cheap-d015-2026-11-12.md#9
+2026-11-12,math-4,items.csv,day,cheap,wording,Exit quoted student text; s03-X15v2 has none,fixed,docs/reviews/cheap-d015-2026-11-12.md#10
+2026-11-12,math-4,items.csv,day,cheap,figure,Fix-it figure kinds; F15-1 and F15-2 now right-only line figures,fixed,docs/reviews/cheap-d015-2026-11-12.md#11
+2026-11-12,math-4,d015.md,day,cheap,minutes,Fix it minutes; now 9 min with the Kim link to day 14,fixed,docs/reviews/cheap-d015-2026-11-12.md#13
+2026-11-12,math-4,d015.md,day,cheap,missing,Day 14 tickets had no hand-back; hand-back at the door in Before class,fixed,docs/reviews/cheap-d015-2026-11-12.md#14
+2026-11-12,math-4,items.csv,day,cheap,gate,"Exit did not make students choose a direction; s03-X15v2 mixes 20/12 = __/3, 9/10 = __/100, 5/4 = 15/__",fixed,docs/reviews/cheap-d015-2026-11-12.md#15
+2026-11-12,math-4,d015.md,day,cheap,wording,'Multiply' cue gave the direction; board line now 'Find the number that connects the two',fixed,docs/reviews/cheap-d015-2026-11-12.md#16
+2026-11-12,math-4,items.csv,day,cheap,sequence,Warm-up facts did not feed the sets; P15-1v2 to P15-4v2 missing-factor facts (P15-2v2 4 x __ = 8 to clear the same-fact gate against X15v2),fixed,docs/reviews/cheap-d015-2026-11-12.md#17
+2026-11-12,math-4,items.csv,day,cheap,sequence,Bottom-first path not shown in the examples; K15-2 step added,fixed,docs/reviews/cheap-d015-2026-11-12.md#18
+2026-11-12,math-4,items.csv,day,cheap,sequence,Top-first habit; covered by the K15-2 step,fixed,docs/reviews/cheap-d015-2026-11-12.md#21
+2026-11-12,math-4,d015.md,day,expert,gate,"Display showed all twelve answers at once; each set has its own Check line, fix a miss in pen",fixed,docs/reviews/day-015-2026-11-12.md#1
+2026-11-12,math-4,d015.md,day,expert,sequence,E14 reteach for A fixed the other direction; A branch now 20/100 = 20/10 and 4/12 = 4/3,fixed,docs/reviews/day-015-2026-11-12.md#2
+2026-11-12,math-4,d015.md,day,expert,figure,"B reteach marked 7/5 on a line that stops at 1; board line 0 to 2, 7/5 is 14/10",fixed,docs/reviews/day-015-2026-11-12.md#3
+2026-11-12,math-4,items.csv,day,expert,wording,"'One tenth cut into 10' where every tenth must be; K15-1 and days.csv say each tenth, first tenth cut on the board",fixed,docs/reviews/day-015-2026-11-12.md#4
+2026-11-12,math-4,d015.md,day,expert,layout,"Kim's screen showed the answer before the talk; display opens at Example 1, Kim after the talk",fixed,docs/reviews/day-015-2026-11-12.md#6
+2026-11-12,math-4,items.csv,day,expert,key,"Challenge key left out 13/4; s03-C15-2v2 asks every other name for 13/4 with (8, 12, 100)",fixed,docs/reviews/day-015-2026-11-12.md#8
+2026-11-12,math-4,d015.md,day,expert,wording,'What repeats' praised an adding pattern; replaced with the 'so adding works' line,fixed,docs/reviews/day-015-2026-11-12.md#9
+2026-11-12,math-4,math-3-5-progression.md,process,expert,sequence,"Unit 7 readiness item was day 15's example; now writes 1/4 as hundredths, 25/100",fixed,docs/reviews/day-015-2026-11-12.md#10
+2026-11-12,math-4,opener.md,process,expert,missing,"Opener supply list drifted from the day; supplies line rewritten (ruler days 13 and 14, pen days 15 and 16)",fixed,docs/reviews/day-015-2026-11-12.md#11
+2026-11-12,math-4,d015.md,day,expert,layout,Set items had no numbers; cells numbered 1 to 12,fixed,docs/reviews/day-015-2026-11-12.md#12
+2026-11-12,math-4,d015.md,day,expert,wording,"Small repairs: record line removed, shorter wording, floating frame dropped",fixed,docs/reviews/day-015-2026-11-12.md#13
+2026-11-12,math-4,d016.md,day,cheap,sequence,Day 16 A branch did not match day 15; now 9/10 = 9/100 (day 15's new pair preferred over the day 16 settled row),fixed,docs/reviews/cheap-d016-2026-11-12.md#1
+2026-11-12,math-4,d016.md,day,cheap,sequence,Day 16 B branch did not match day 15; now 20/12 = 11/3,fixed,docs/reviews/cheap-d016-2026-11-12.md#2
+2026-11-12,math-4,d016.md,day,cheap,sequence,"Tomorrow named 'leaves out 4/5' with no day 17 branch; Tomorrow now generic, and d017's line now says 8/6 = 4/3 to match X16v2",fixed,docs/reviews/cheap-d016-2026-11-12.md#3
+2026-11-12,math-4,wrongs.csv,day,cheap,key,"Wrongs rows with a blank error code; new rows carry codes, X16 and P16-2 rows gone; P16-9's note-only row kept, as readiness rows use (an answer no error letter names)",fixed,docs/reviews/cheap-d016-2026-11-12.md#4
+2026-11-12,math-4,wrongs.csv,day,cheap,missing,"Missing wrongs rows added: X16v2, C16-2, P16-10, K16-1",fixed,docs/reviews/cheap-d016-2026-11-12.md#5
+2026-11-12,math-4,d016.md,day,cheap,layout,Answer boxes too small; page re-laid,fixed,docs/reviews/cheap-d016-2026-11-12.md#6
+2026-11-12,math-4,d016.md,day,cheap,layout,How I know lines cramped; each on its own full line,fixed,docs/reviews/cheap-d016-2026-11-12.md#7
+2026-11-12,math-4,d016.md,day,cheap,layout,Challenge had one blank for two answers; now two,fixed,docs/reviews/cheap-d016-2026-11-12.md#8
+2026-11-12,math-4,items.csv,day,cheap,wording,Exit stem a run-on; X16v2 reworded,fixed,docs/reviews/cheap-d016-2026-11-12.md#9
+2026-11-12,math-4,d016.md,day,cheap,figure,"Lena figure; side 1 shows her work, fix after we talk",fixed,docs/reviews/cheap-d016-2026-11-12.md#10
+2026-11-12,math-4,d016.md,day,cheap,minutes,Set minutes; re-built 6 then 1 per set,fixed,docs/reviews/cheap-d016-2026-11-12.md#11
+2026-11-12,math-4,items.csv,day,cheap,sequence,"P16-2 repeated an earlier pair (fixed: deleted, P16-10 added); new numbers for W16 rejected, expert: the plan's own task",fixed,docs/reviews/cheap-d016-2026-11-12.md#12
+2026-11-12,math-4,d016.md,day,cheap,gate,"Warm-up gives the facts away; expert: the facts are support, not a giveaway",rejected,docs/reviews/cheap-d016-2026-11-12.md#13
+2026-11-12,math-4,items.csv,day,cheap,gate,Exit needs no change; expert finding 2 overruled it and the exit changed to X16v2,rejected,docs/reviews/cheap-d016-2026-11-12.md#14
+2026-11-12,math-4,errors.csv,day,expert,wording,"'Different names, so not equal' taught as a false rule; E if_many adds 'if they differ, put them in the same parts', P16-3 and P16-9 answers give the same-parts reason, K16-1 step 3 puts both in fifths",fixed,docs/reviews/day-016-2026-11-12.md#1
+2026-11-12,math-4,items.csv,day,expert,sequence,"Example, exit and end check put equal fractions in the same places; X16v2 (8/6 with 8/12, 16/12, 10/8, 4/3; 8/6 not the expert's 8/10, which fails the taught-equality gate on 4/5 = 8/10) and C16-2 6/8 = __/12",fixed,docs/reviews/day-016-2026-11-12.md#2
+2026-11-12,math-4,d016.md,process,expert,sequence,"Day 15 and day 16 seated different groups near the teacher; seating line matched, 'near you' on one line",fixed,docs/reviews/day-016-2026-11-12.md#7
+2026-11-12,math-4,d016.md,day,expert,sequence,Pull-together expected an answer no pair shows; now 'in the same parts the counts differ',fixed,docs/reviews/day-016-2026-11-12.md#8
+2026-11-12,math-4,d016.md,process,expert,missing,Materials drifted between opener and day; d016 materials and opener supplies aligned,fixed,docs/reviews/day-016-2026-11-12.md#9
+2026-11-12,math-4,d017.md,day,cheap,sequence,"day 16's Tomorrow names leaves out 4/5 with no day 17 branch; added to the E16 branch (8/10 = 4/5, both divided by 2)",fixed,docs/reviews/cheap-d017-2026-11-12.md#1
+2026-11-12,math-4,items.csv,day,cheap,key,"X17 (b) middle comparison cannot show D, 1/10 does not test D; s03-X17v2 puts 3/8 __ 2/3 first so its sign shows D; the sort note was already accurate",fixed,docs/reviews/cheap-d017-2026-11-12.md#2
+2026-11-12,math-4,d017.md,day,cheap,layout,"sort table two short rows; four rows and ""write each fraction in its column""",fixed,docs/reviews/cheap-d017-2026-11-12.md#3
+2026-11-12,math-4,d017.md,day,cheap,layout,fix-it What went wrong line short and box half an inch; longer line and a 0.9 inch box (side 1 cannot hold two lines and a full inch),fixed,docs/reviews/cheap-d017-2026-11-12.md#4
+2026-11-12,math-4,d017.md,day,cheap,layout,challenge answer one short line; two full-width lines,fixed,docs/reviews/cheap-d017-2026-11-12.md#5
+2026-11-12,math-4,d017.md,day,cheap,layout,exit (a) has no writing room; the slip builder now gives the explain sentence two lines (checked on the built slip),fixed,docs/reviews/cheap-d017-2026-11-12.md#6
+2026-11-12,math-4,items.csv,day,cheap,layout,Rio's right working cut across two screens; s03-F17-1 right working split into three short steps,fixed,docs/reviews/cheap-d017-2026-11-12.md#7
+2026-11-12,math-4,items.csv,day,cheap,figure,"Example 2 figure 0 to 1 against ""from 0 to 2"" and 2/5 shown at step 1; s03-K17-2 figure to=2, halves line first, fifths and eighths after then, by=-,1,2,3,*; steps 2 and 3 merged (expert settled)",fixed,docs/reviews/cheap-d017-2026-11-12.md#8
+2026-11-12,math-4,d017.md,day,cheap,minutes,"Fix it and On your own tight; minutes now 5, 5, 14, 10, 9, 8, 4, 5 (expert finding 1)",fixed,docs/reviews/cheap-d017-2026-11-12.md#9
+2026-11-12,math-4,items.csv,day,cheap,wording,"exit (b) laid out as the benchmark frame; s03-X17v2 asks 3/8 __ 2/3, then ""Show how you know""",fixed,docs/reviews/cheap-d017-2026-11-12.md#10
+2026-11-12,math-4,d017.md,day,cheap,wording,On your own frame printed on both items; now on item 1 only,fixed,docs/reviews/cheap-d017-2026-11-12.md#11
+2026-11-12,math-4,items.csv,day,cheap,sequence,"exit's 2/3 and 3/8 return taught on day 18; expert: the exit is given before that teaching, so nothing tested is taught first",rejected,docs/reviews/cheap-d017-2026-11-12.md#12
+2026-11-12,math-4,d017.md,day,cheap,missing,2/3 > 1/2 by half the bottom not modelled; expert: Example 2 models half of an odd bottom and P17-3's key does the more-than side,rejected,docs/reviews/cheap-d017-2026-11-12.md#13
+2026-11-12,math-4,d017.md,day,expert,sequence,"planned question came after Example 1 answered it; students fold during Example 1, the Ask after step 3, Fold and lay together part deleted, minutes 5, 5, 14, 10, 9, 8, 4, 5",fixed,docs/reviews/day-017-2026-11-12.md#1
+2026-11-12,math-4,items.csv,day,expert,key,"exit (a) had no rule for a true no that skips the wholes, (b) no J row; s03-X17v2 answer rules on it, two wrongs rows, Tomorrow and day 18's H branch name it",fixed,docs/reviews/day-017-2026-11-12.md#2
+2026-11-12,math-4,d017.md,day,expert,missing,"students' strips 2 to 1; now 11 and 8 1/2 inches, cutting line in Before class, opener supply line",fixed,docs/reviews/day-017-2026-11-12.md#5
+2026-11-12,math-4,d017.md,day,expert,missing,"A and Kim branches need cut strips; materials name the day 10 strip sheet and envelopes, Kim line uses them",fixed,docs/reviews/day-017-2026-11-12.md#6
+2026-11-12,math-4,u03-3.md,plan,expert,sequence,"section plan field 1 printed the exit's two facts; now 1/2 = 5/10 so 4/10 is less, and half of 5 fifths (left open by the process pass)",fixed,docs/reviews/day-017-2026-11-12.md#7
+2026-11-12,math-4,days.csv,plan,expert,sequence,"row 17 still listed 2/5 against 5/8 under by hand; opens now names the folds and 2/5 and 5/8 in teaching, opens_min 19, by hand 31 (left open by the process pass)",fixed,docs/reviews/day-017-2026-11-12.md#9
+2026-11-12,math-4,d017.md,day,expert,wording,branch cut the pizza talk (now takes 3 minutes from the sort's partner check); benchmark said in Example 2; MP.3 on s03-X17v2 and s03-F17-2,fixed,docs/reviews/day-017-2026-11-12.md#10
+2026-11-12,math-4,d018.md,day,cheap,sequence,"Tomorrow promised three things day 19 does not do; rewritten to day 19's D, I and J branches and the E18 hand-back (day 19 hands back E18)",fixed,docs/reviews/cheap-d018-2026-11-12.md#1
+2026-11-12,math-4,d018.md,day,cheap,sequence,day 17's 3/8 > 2/3 D answer had no day 18 branch; D branch now names it,fixed,docs/reviews/cheap-d018-2026-11-12.md#2
+2026-11-12,math-4,d018.md,day,cheap,figure,"plan says printed line, day had students rule one; expert settled: print K18-1, K18-2 and W18 figures, drop the ruler and My line",fixed,docs/reviews/cheap-d018-2026-11-12.md#3
+2026-11-12,math-4,wrongs.csv,day,cheap,key,"W18 had no J row; added ""3/4 is closer to 1"" coded J",fixed,docs/reviews/cheap-d018-2026-11-12.md#5
+2026-11-12,math-4,items.csv,day,cheap,key,"X18 (b) right under D, so the reason carries the tick; answer now says a tick needs the reason",fixed,docs/reviews/cheap-d018-2026-11-12.md#6
+2026-11-12,math-4,d018-exit,day,cheap,layout,exit slip printed (b) before (a); slip builder now keeps stem order (checked on the built slip),fixed,docs/reviews/cheap-d018-2026-11-12.md#8
+2026-11-12,math-4,d018-exit,day,cheap,layout,exit slip had no writing room for the two whys; two lines each now (checked on the built slip),fixed,docs/reviews/cheap-d018-2026-11-12.md#9
+2026-11-12,math-4,d018.md,day,cheap,layout,"question numbers repeat across sides; expert: LESSON-DAY forbids two items 1 on one side, not across sides",rejected,docs/reviews/cheap-d018-2026-11-12.md#10
+2026-11-12,math-4,d018.md,day,cheap,figure,4/5 and 5/6 a tenth of an inch apart on a hand line; printed two-line figures under each example,fixed,docs/reviews/cheap-d018-2026-11-12.md#11
+2026-11-12,math-4,d018.md,day,cheap,figure,Dee's claim had no line on side 2; s03-W18 figure line d=4 / d=6 printed in Dee's box,fixed,docs/reviews/cheap-d018-2026-11-12.md#12
+2026-11-12,math-4,d018.md,day,cheap,layout,"challenge sign wrapped with one short blank; C18-1 is now item 5 with Closer to 1 and Extra blanks, C18-2 the only challenge",fixed,docs/reviews/cheap-d018-2026-11-12.md#13
+2026-11-12,math-4,d018.md,day,cheap,layout,stray blank after the warm-up stem removed,fixed,docs/reviews/cheap-d018-2026-11-12.md#14
+2026-11-12,math-4,items.csv,day,cheap,figure,"steps said one line and shade over two-line unshaded figures; K18-1, K18-2 and F18-1 steps name the two lines and the gap, no shading",fixed,docs/reviews/cheap-d018-2026-11-12.md#15
+2026-11-12,math-4,d018.md,day,cheap,minutes,warm-up ruling too long for 5 minutes; ruling dropped (line printed),fixed,docs/reviews/cheap-d018-2026-11-12.md#16
+2026-11-12,math-4,d018.md,day,cheap,minutes,"8 then 3 minutes read as 11; now ""8 minutes: 5 alone, 3 in pairs""",fixed,docs/reviews/cheap-d018-2026-11-12.md#17
+2026-11-12,math-4,d018.md,day,cheap,minutes,"Fix it tight and both branches on one 3 minutes; Example 2 6 and Fix it 9 minutes, with both branches D waits for Each side of 1 in place of its strips",fixed,docs/reviews/cheap-d018-2026-11-12.md#18
+2026-11-12,math-4,items.csv,day,cheap,level,"exit (b) gives the method and reuses 7/8, replace with 8/9 and 11/12; expert: ninths are not on the grade 4 list, keep 7/8 and 11/12",rejected,docs/reviews/cheap-d018-2026-11-12.md#20
+2026-11-12,math-4,items.csv,day,cheap,wording,"item 7 and Dee's claim say ""each is one part short""; expert: on an Understanding day the frame is fair, finding 1 is the real gap",rejected,docs/reviews/cheap-d018-2026-11-12.md#21
+2026-11-12,math-4,d018.md,day,cheap,gate,"teacher word count to verify; expert: the gate counts 854, under 900",rejected,docs/reviews/cheap-d018-2026-11-12.md#27
+2026-11-12,math-4,items.csv,day,expert,level,"second half could not tell the right reason from D; s03-C18-1 now practice (One part short 5, Extra blanks), block renamed, 8 minutes from Dee's 10, third Ask on 5/4 and 13/12, watch-for line",fixed,docs/reviews/day-018-2026-11-12.md#1
+2026-11-12,math-4,items.csv,day,expert,wording,"Ivy's right working led with renaming to sixths; s03-F18-2 steps and answer lead with the missing parts, teacher prose shades both on the board line",fixed,docs/reviews/day-018-2026-11-12.md#3
+2026-11-12,math-4,d018.md,day,expert,wording,"Watch-for said questions 1, 2 and 4; now all four, with < on 3 where both are 1",fixed,docs/reviews/day-018-2026-11-12.md#4
+2026-11-12,math-4,d019.md,day,cheap,sequence,Tomorrow D did not match day 20; rewritten to day 20's Kai claim on the board line,fixed,docs/reviews/cheap-d019-2026-11-12.md#1
+2026-11-12,math-4,d019.md,day,cheap,sequence,Tomorrow A did not match day 20; now one half cut into 6 on the board line,fixed,docs/reviews/cheap-d019-2026-11-12.md#2
+2026-11-12,math-4,d019.md,day,cheap,sequence,Tomorrow G named the warm-up; now E19's answers read as sentences in day 20's task,fixed,docs/reviews/cheap-d019-2026-11-12.md#3
+2026-11-12,math-4,d018.md,day,cheap,sequence,"Day 18's Tomorrow promises (D, I, E18 record) not met by day 19; d018 Tomorrow now matches d019's branches and E18 hand-back",fixed,docs/reviews/cheap-d019-2026-11-12.md#4
+2026-11-12,math-4,items.csv,day,cheap,key,P19-2 let D go either way; s03-P19-2v2 4/10 __ 2/3 (4/9 rejected: 9 off the grade list),fixed,docs/reviews/cheap-d019-2026-11-12.md#5
+2026-11-12,math-4,d019.md,day,cheap,layout,D and A give the same signs on pairs and X19; pairs print the renaming blank and the slip now gives each part its own line,fixed,docs/reviews/cheap-d019-2026-11-12.md#6
+2026-11-12,math-4,errors.csv,plan,cheap,sequence,Error G 'first met today' but errors.csv said day 22; G's day set to 19,fixed,docs/reviews/cheap-d019-2026-11-12.md#7
+2026-11-12,math-4,d019.md,day,cheap,layout,"Pair blanks lacked the middle step; now '____ = ____, and ____ ____ ____, so ____'",fixed,docs/reviews/cheap-d019-2026-11-12.md#8
+2026-11-12,math-4,d019.md,day,cheap,layout,X19 slip had one line for two parts; each part now has its own line,fixed,docs/reviews/cheap-d019-2026-11-12.md#9
+2026-11-12,math-4,d019.md,day,cheap,layout,Fix it boxes about half an inch; kept {small}; page room: {work} boxes print a third side,open,docs/reviews/cheap-d019-2026-11-12.md#10
+2026-11-12,math-4,d019.md,day,cheap,layout,"Pair 4's fifths line cramped for halving; not lengthened, named as the pair to leave; page room: side 2 is full",open,docs/reviews/cheap-d019-2026-11-12.md#11
+2026-11-12,math-4,items.csv,day,cheap,figure,K19-1 and K19-2 display figures drew less than the steps; figures and steps now show the cut and both points,fixed,docs/reviews/cheap-d019-2026-11-12.md#12
+2026-11-12,math-4,d019.md,day,cheap,minutes,Pairs tight; Pair 4 named as the one to leave and in Shorter,fixed,docs/reviews/cheap-d019-2026-11-12.md#13
+2026-11-12,math-4,items.csv,day,cheap,wording,X19 stem names 'rename one'; expert: on the first day of renaming the move is the day's goal,rejected,docs/reviews/cheap-d019-2026-11-12.md#14
+2026-11-12,math-4,items.csv,day,cheap,level,"X19 fractions reused from other rows; expert: Cory's rule holds the given pair, and both pairs are new",rejected,docs/reviews/cheap-d019-2026-11-12.md#15
+2026-11-12,math-4,d019.md,day,cheap,missing,Tenths strip not in materials; expert: the section 3.1 envelope holds one,rejected,docs/reviews/cheap-d019-2026-11-12.md#16
+2026-11-12,math-4,d019.md,day,expert,figure,"First fraction never marked, so 'the point did not move' had no point; Your turn now marks both, K19 steps mark the point first",fixed,docs/reviews/day-019-2026-11-12.md#1
+2026-11-12,math-4,d019.md,day,expert,sequence,Planned question answered on screen before asked; Ask moved before the step,fixed,docs/reviews/day-019-2026-11-12.md#2
+2026-11-12,math-4,errors.csv,process,expert,wording,"Error D's comparing action named no pairs; errors.csv D if_many now names 4/10 and 4/12, 7/10 and 7/12; opener matches",fixed,docs/reviews/day-019-2026-11-12.md#5
+2026-11-12,math-4,items.csv,day,expert,level,Fourths into eighths three times; s03-P19-6v2 2/3 __ 3/6,fixed,docs/reviews/day-019-2026-11-12.md#6
+2026-11-12,math-4,d019.md,day,expert,missing,Readiness item 3 re-asked but not read against R3; R3 seat and a small 3 in the E19 cell,fixed,docs/reviews/day-019-2026-11-12.md#7
+2026-11-12,math-4,d019.md,day,cheap,sequence,Day 19's Tomorrow not kept by day 20 in all three branches; d019 Tomorrow rewritten to day 20,fixed,docs/reviews/cheap-d020-2026-11-12.md#1
+2026-11-12,math-4,d020.md,day,cheap,sequence,"Day 20's Tomorrow partly kept by day 21; rewritten to day 21's D, A and G branches",fixed,docs/reviews/cheap-d020-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,cheap,key,Key printed the register's stock A and D examples on every P20 row; the key now prints each wrongs row's own note,fixed,docs/reviews/cheap-d020-2026-11-12.md#3
+2026-11-12,math-4,d020.md,day,cheap,layout,No room to list multiples; each item now has two multiples lines and a renaming line,fixed,docs/reviews/cheap-d020-2026-11-12.md#4
+2026-11-12,math-4,d020.md,day,cheap,layout,Challenge had no answer space; {work} added,fixed,docs/reviews/cheap-d020-2026-11-12.md#5
+2026-11-12,math-4,d020.md,day,cheap,layout,Fix it box too small; expert: about 0.8 inch holds the two renamings,rejected,docs/reviews/cheap-d020-2026-11-12.md#6
+2026-11-12,math-4,d020.md,day,cheap,wording,Warm-up line said 0 to 2; now 0 to 1,fixed,docs/reviews/cheap-d020-2026-11-12.md#7
+2026-11-12,math-4,d020.md,day,cheap,minutes,On your own tight; Shorter now drops item 5 first,fixed,docs/reviews/cheap-d020-2026-11-12.md#8
+2026-11-12,math-4,d020.md,day,cheap,wording,'Pair 2' against a page numbered 2 to 5; now 'item 2 (5/8 and 4/5)',fixed,docs/reviews/cheap-d020-2026-11-12.md#9
+2026-11-12,math-4,items.csv,day,cheap,wording,X20 names the renaming move; expert: fair on this day,rejected,docs/reviews/cheap-d020-2026-11-12.md#10
+2026-11-12,math-4,items.csv,day,cheap,level,F20-1 and K20-1 reuse taught pairs; expert: allowed and harmless,rejected,docs/reviews/cheap-d020-2026-11-12.md#11
+2026-11-12,math-4,items.csv,day,cheap,sequence,"Both examples let the bigger numbers win; s03-K20-2v2 5/8 and 7/12, where they lose, said aloud",fixed,docs/reviews/cheap-d020-2026-11-12.md#12
+2026-11-12,math-4,items.csv,day,cheap,sequence,"Exit needs a common multiple below the product, no example showed one; K20-2v2 works in twenty-fourths",fixed,docs/reviews/cheap-d020-2026-11-12.md#13
+2026-11-12,math-4,d020.md,day,expert,figure,E19 branches pointed at a board line that cannot show them; D and A branches rewritten with a twelfths line,fixed,docs/reviews/day-020-2026-11-12.md#1
+2026-11-12,math-4,d020.md,day,expert,missing,Benchmark check asked for and never written; each item has 'With 1/2 or 1: ____',fixed,docs/reviews/day-020-2026-11-12.md#4
+2026-11-12,math-4,opener.md,process,expert,missing,"Opener supply list named the number lines sheet; dropped, 'Days 19 to 21 print their lines on the student page' (day 20's 'days 19 and 21' not used: day 19's settled row covers all three)",fixed,docs/reviews/day-020-2026-11-12.md#5
+2026-11-12,math-4,days.csv,plan,cheap,sequence,"Three files disagreed on the D wrong example; day 20 Tomorrow, days.csv by_hand and the opener now say Mia's 3/12 and 3/10",fixed,docs/reviews/cheap-d021-2026-11-12.md#1
+2026-11-12,math-4,d022.md,day,cheap,sequence,Day 22 quoted 4/12 and 4/10; now 3/12 and 3/10,fixed,docs/reviews/cheap-d021-2026-11-12.md#2
+2026-11-12,math-4,d020.md,day,cheap,sequence,"Day 20 Tomorrow promised an A step day 21 lacked; now the fourths line, 3/4 = 15/20",fixed,docs/reviews/cheap-d021-2026-11-12.md#3
+2026-11-12,math-4,d021.md,day,cheap,sequence,"Day 21 Tomorrow promised lines day 22 does not use; now strips and folding, as day 22 does",fixed,docs/reviews/cheap-d021-2026-11-12.md#4
+2026-11-12,math-4,days.csv,plan,cheap,sequence,"days.csv opens said 1/3 or 1/8; now 1/10 or 1/12, then 2/5 and 4/12",fixed,docs/reviews/cheap-d021-2026-11-12.md#5
+2026-11-12,math-4,wrongs.csv,day,cheap,key,C21-1 4/10 row had no code; note says it is not an error from the register,fixed,docs/reviews/cheap-d021-2026-11-12.md#6
+2026-11-12,math-4,items.csv,day,cheap,key,"X21 had no G row; s03-X21v2 adds '(b) <, after 6/9 and 6/10 written' G",fixed,docs/reviews/cheap-d021-2026-11-12.md#7
+2026-11-12,math-4,d021.md,day,cheap,layout,Fix it prints as '3.'; expert: list numbers carry on across a side,rejected,docs/reviews/cheap-d021-2026-11-12.md#8
+2026-11-12,math-4,d021.md,day,cheap,minutes,"Teaching first 5 minutes too short; minutes now 5,5,12,6,20,7,5 with the Ask moved to Two ways",fixed,docs/reviews/cheap-d021-2026-11-12.md#9
+2026-11-12,math-4,items.csv,day,cheap,wording,X21 (b) names the method; expert: the day's goal is that method,rejected,docs/reviews/cheap-d021-2026-11-12.md#10
+2026-11-12,math-4,items.csv,day,cheap,level,"X21 (a) 5/12 reused; expert: a new pair, allowed by the reserve",rejected,docs/reviews/cheap-d021-2026-11-12.md#11
+2026-11-12,math-4,d021.md,day,cheap,layout,Side 2 frame fixed the sign as >; frame moved under pair 1 with a blank sign,fixed,docs/reviews/cheap-d021-2026-11-12.md#12
+2026-11-12,math-4,items.csv,day,cheap,level,"Remedy used pair 3's own numbers; s03-P21-3v2 1/5 __ 2/12, so 1/4 and 3/10 are off the page",fixed,docs/reviews/cheap-d021-2026-11-12.md#13
+2026-11-12,math-4,d021.md,day,expert,missing,"Nobody checked the six pairs; Check: line, answers shown at 14 minutes",fixed,docs/reviews/day-021-2026-11-12.md#1
+2026-11-12,math-4,items.csv,day,expert,level,Fix-it numbers were practice 3's answer; s03-P21-3v2,fixed,docs/reviews/day-021-2026-11-12.md#3
+2026-11-12,math-4,d021.md,day,expert,missing,Teacher told to make strips students hold; envelope strips and 60 cm teacher strips; opener sheet dropped,fixed,docs/reviews/day-021-2026-11-12.md#5
+2026-11-12,math-4,items.csv,day,expert,key,P21-3 and P21-4 keys gave one way; second way added (id kept for P21-4),fixed,docs/reviews/day-021-2026-11-12.md#6
+2026-11-12,math-4,d021.md,day,expert,minutes,"A branch not doable and D branch minutes from nowhere; fourths line A, D names four pairs and takes 2 from Pull it together",fixed,docs/reviews/day-021-2026-11-12.md#7
+2026-11-12,math-4,d021.md,day,expert,wording,"Small repairs: E20 tickets moved to Before class, 'longer' in X21v2, opener quotes the day 21 frame",fixed,docs/reviews/day-021-2026-11-12.md#8
+2026-11-12,math-4,d022.md,day,cheap,sequence,Day 21 Tomorrow and day 22 disagreed (lines vs strips) and materials lacked strips; both fixed,fixed,docs/reviews/cheap-d022-2026-11-12.md#1
+2026-11-12,math-4,d022.md,day,cheap,sequence,Day 22 Tomorrow did not match day 23; now four pairs and six comparisons,fixed,docs/reviews/cheap-d022-2026-11-12.md#2
+2026-11-12,math-4,wrongs.csv,day,cheap,key,"No D rows on P22-4, -6, -7, -8, -10; added (P22-10v2 for the new pair)",fixed,docs/reviews/cheap-d022-2026-11-12.md#3
+2026-11-12,math-4,wrongs.csv,day,cheap,key,X22 (a) D and G both give <; G row '(a) < with 16/24 and 15/24 written' added,fixed,docs/reviews/cheap-d022-2026-11-12.md#4
+2026-11-12,math-4,d022.md,day,cheap,layout,Exit slip one line for three parts; each part now has its own line,fixed,docs/reviews/cheap-d022-2026-11-12.md#5
+2026-11-12,math-4,d022.md,day,cheap,layout,Pair tables had no sign blank; Sign column added,fixed,docs/reviews/cheap-d022-2026-11-12.md#6
+2026-11-12,math-4,d022.md,day,cheap,layout,"Blanks narrow, Two ways box small, challenge had no space; challenge answer line added, Two ways box kept {work}; page room: a taller Two ways box prints a third side",open,docs/reviews/cheap-d022-2026-11-12.md#7
+2026-11-12,math-4,items.csv,day,cheap,wording,'No line.' and 'No line given.' printed in P22-2 and X22 stems; removed,fixed,docs/reviews/cheap-d022-2026-11-12.md#8
+2026-11-12,math-4,d022.md,day,cheap,minutes,"Ten pairs left 2 minutes to mark; sets A 8, B 9, C 11 with a Check: each, fix it 4",fixed,docs/reviews/cheap-d022-2026-11-12.md#9
+2026-11-12,math-4,d022.md,day,cheap,minutes,Teaching first has no slack; note that the quicker-way question may move; teacher page at 899 of 900 words,open,docs/reviews/cheap-d022-2026-11-12.md#10
+2026-11-12,math-4,items.csv,day,cheap,level,"Exit numbers overlap taught rows; (a) settled by the P22-10v2 swap; (b), (c) and the 7/14 candidate rejected by the expert",fixed,docs/reviews/cheap-d022-2026-11-12.md#11
+2026-11-12,math-4,items.csv,day,expert,sequence,Pairs never made the student choose same count; s03-P22-10v2 3/4 __ 6/10,fixed,docs/reviews/day-022-2026-11-12.md#2
+2026-11-12,math-4,wrongs.csv,day,expert,key,"Error J invisible; J rows on P22-12 and X22 (c), watch-for and Tomorrow",fixed,docs/reviews/day-022-2026-11-12.md#3
+2026-11-12,math-4,d022.md,day,expert,sequence,D re-teach showed a wrong example never seen; now 3/12 and 3/10,fixed,docs/reviews/day-022-2026-11-12.md#5
+2026-11-12,math-4,d022.md,day,expert,minutes,Shorter cut the G trap and benchmark check; now drops set C's third and fourth pairs,fixed,docs/reviews/day-022-2026-11-12.md#7
+2026-11-12,math-4,d022.md,day,expert,wording,"Page asked for renamed fractions where none needed; 'same count' allowed, How I know column",fixed,docs/reviews/day-022-2026-11-12.md#8
+2026-11-12,math-4,d022.md,day,expert,missing,Second extension not a row and unkeyed; dropped,fixed,docs/reviews/day-022-2026-11-12.md#9
+2026-11-12,math-4,d022.md,day,expert,missing,Before class warm-up on the board needless; sign cards and strips added to materials,fixed,docs/reviews/day-022-2026-11-12.md#10
+2026-11-12,math-4,d022.md,day,cheap,sequence,Day 22 Tomorrow promised set A and three comparisons; now matches day 23,fixed,docs/reviews/cheap-d023-2026-11-12.md#1
+2026-11-12,math-4,d023.md,day,cheap,sequence,Written tasks handed back 'with one line on each',fixed,docs/reviews/cheap-d023-2026-11-12.md#2
+2026-11-12,math-4,d023.md,day,cheap,wording,'Eight cards on side 1'; now six on side 1 and two on side 2,fixed,docs/reviews/cheap-d023-2026-11-12.md#3
+2026-11-12,math-4,d023.md,day,cheap,layout,Warm-up had no place on the page; added at the top of side 1,fixed,docs/reviews/cheap-d023-2026-11-12.md#6
+2026-11-12,math-4,d023.md,day,cheap,layout,Card rows one line tall; {small} on each,fixed,docs/reviews/cheap-d023-2026-11-12.md#7
+2026-11-12,math-4,d023.md,day,cheap,layout,Card rows unnumbered; numbered 1 to 8,fixed,docs/reviews/cheap-d023-2026-11-12.md#8
+2026-11-12,math-4,d023.md,day,cheap,layout,W23 boxes too small for a line; {tall} then {small},fixed,docs/reviews/cheap-d023-2026-11-12.md#9
+2026-11-12,math-4,d023.md,day,cheap,layout,Example frame printed < on every line; frames now carry a blank sign,fixed,docs/reviews/cheap-d023-2026-11-12.md#10
+2026-11-12,math-4,d023.md,day,cheap,minutes,Stories part said to add to 18; expert: it adds to 20; the wording was clarified under finding 8,rejected,docs/reviews/cheap-d023-2026-11-12.md#12
+2026-11-12,math-4,d023.md,day,cheap,minutes,Eight cards in 25 minutes; 'Not all eight are expected',fixed,docs/reviews/cheap-d023-2026-11-12.md#13
+2026-11-12,math-4,d023.md,day,cheap,wording,Traps named aloud at the start; now 'do not say which',fixed,docs/reviews/cheap-d023-2026-11-12.md#14
+2026-11-12,math-4,items.csv,day,cheap,level,"P23-1 and P23-6 reused taught pairs; s03-P23-1v2 47/100 __ 7/12, s03-P23-6v2 9/8 __ 8/6",fixed,docs/reviews/cheap-d023-2026-11-12.md#15
+2026-11-12,math-4,wrongs.csv,day,cheap,key,"D and G gave the same sign on P23-6, P23-9 and X23; rows now name the written work that separates them",fixed,docs/reviews/cheap-d023-2026-11-12.md#16
+2026-11-12,math-4,d023.md,day,cheap,sequence,W23's one-part-short way not shown on day 23; one-more-way line added,fixed,docs/reviews/cheap-d023-2026-11-12.md#17
+2026-11-12,math-4,d023.md,day,expert,wording,"Trap rule wrong; now 'a trap only when the wholes may not be the same size', ribbons in meters not a trap",fixed,docs/reviews/day-023-2026-11-12.md#1
+2026-11-12,math-4,d023.md,day,expert,layout,"Partner routine left half the page blank and checked only the sign; partner writes the sign, checks the proof",fixed,docs/reviews/day-023-2026-11-12.md#3
+2026-11-12,math-4,d023.md,day,expert,minutes,"Three ways in five minutes with thirteen blanks; frames pre-printed, 1/2 way said not drawn",fixed,docs/reviews/day-023-2026-11-12.md#5
+2026-11-12,math-4,opener.md,process,expert,wording,"Opener and u03-4.md field 1 said every story has the same whole; both now say days 19 to 22, and day 23 mixes in stories where it is not",fixed,docs/reviews/day-023-2026-11-12.md#7
+2026-11-12,math-4,d023.md,day,expert,wording,"Small repairs: stories 10 minutes with the For you note, sign-card cannot-tell, Pull it together pair, exit sketch line",fixed,docs/reviews/day-023-2026-11-12.md#8
+2026-11-12,math-4,s03.md,plan,cheap,missing,"Day 25 cannot be checked: no row, plan or file; its duties are logged as open s03.md rows; day 25 not written; unit 4 has no rows",open,docs/reviews/cheap-d024-2026-11-12.md#1
+2026-11-12,math-4,d024.md,day,cheap,missing,W23's J had no group; D and G group takes 'sixths as bigger pieces',fixed,docs/reviews/cheap-d024-2026-11-12.md#2
+2026-11-12,math-4,d024.md,day,cheap,sequence,Nothing collected the pages; readiness part ends 'Collect the pages last',fixed,docs/reviews/cheap-d024-2026-11-12.md#3
+2026-11-12,math-4,wrongs.csv,day,cheap,key,"E1 C row had no compute and 7/6 no source; now 9/6, F(8+1;6), 0 counted as one",fixed,docs/reviews/cheap-d024-2026-11-12.md#5
+2026-11-12,math-4,items.csv,day,cheap,wording,E6 does not force No; expert: 'Can Leo be sure?' forces it,rejected,docs/reviews/cheap-d024-2026-11-12.md#6
+2026-11-12,math-4,items.csv,day,cheap,wording,"Stray quote marks printed on items 1, 3, 4, 7; removed from every E stem",fixed,docs/reviews/cheap-d024-2026-11-12.md#7
+2026-11-12,math-4,d024.md,day,cheap,layout,"No room for pen fixes; 'Fixes, in pen' box at the foot of side 2",fixed,docs/reviews/cheap-d024-2026-11-12.md#8
+2026-11-12,math-4,d024.md,day,cheap,layout,"Item 6 blank printed twice; stem ends 'finish the sentence below', the page prints the frame once",fixed,docs/reviews/cheap-d024-2026-11-12.md#9
+2026-11-12,math-4,d024.md,day,cheap,minutes,Five-minute mark must hand back day 23 papers; stacked by name in Before class,fixed,docs/reviews/cheap-d024-2026-11-12.md#11
+2026-11-12,math-4,items.csv,day,cheap,level,"Five reuses against taught rows; E1 via P22-5v2, E2 via s03-E2v2 (2/6 and 4/12), E3 via K22-1; E4 and E7 (a) kept (field 10 allows a renamed fraction on the way)",fixed,docs/reviews/cheap-d024-2026-11-12.md#12
+2026-11-12,math-4,d024.md,day,cheap,wording,Item 6 frame gives the answer's shape away; expert: the frame is what part (e) measures,rejected,docs/reviews/cheap-d024-2026-11-12.md#13
+2026-11-12,math-4,items.csv,day,cheap,wording,"Item 7 'show the fractions you renamed' is a cue; expert: it is section 3.4's item, naming the method is fair",rejected,docs/reviews/cheap-d024-2026-11-12.md#14
+2026-11-12,math-4,d024.md,day,cheap,missing,Home view had no fix for item 6 (H); strip fold added,fixed,docs/reviews/cheap-d024-2026-11-12.md#15
+2026-11-12,math-4,wrongs.csv,day,expert,key,"Item 7 error A gave D's signs; A row 'only the bottom renamed' on s03-E7v2, A, C and K group adds item 7 and the cut-one-sixth task",fixed,docs/reviews/day-024-2026-11-12.md#1
+2026-11-12,math-4,d024.md,day,expert,sequence,"Last ten minutes collected pages then read them and gave meets answers; Collect the checks deleted, Tomorrow says look-fors ticked; the slot now gives unit 4's readiness sheet (Cory, 2026-11-12), so the pairs meanwhile is dropped",fixed,docs/reviews/day-024-2026-11-12.md#2
+2026-11-12,math-4,d024.md,day,expert,layout,Item 4's 11 in two groups; group list and student line say which blank,fixed,docs/reviews/day-024-2026-11-12.md#3
+2026-11-12,math-4,d024.md,day,expert,missing,Strips out before an unaided assessment; envelopes stay in desks until the groups,fixed,docs/reviews/day-024-2026-11-12.md#5
+2026-11-12,math-4,items.csv,day,expert,wording,E5 'without renaming both' invited the method it does not credit; 'Use 1/2 ... Do not rename them',fixed,docs/reviews/day-024-2026-11-12.md#7
+2026-11-12,math-4,d024.md,day,expert,missing,"Groups did not fit the register (C, 3/5 left out, H's cannot tell); tasks added",fixed,docs/reviews/day-024-2026-11-12.md#9
+2026-11-12,math-4,d024.md,day,expert,wording,"Small repairs: never the assessment, Yes / No, materials line, item 5 D or G in Tomorrow, cuts; Other rooms now 'The defaults hold'",fixed,docs/reviews/day-024-2026-11-12.md#10
+2026-11-12,math-4,s03.md,plan,expert,missing,"Day 25 duty: hand back items 2 and 5, look-fors ticked, in the first five minutes; day 25 not written",open,docs/reviews/day-024-2026-11-12.md#2
+2026-11-12,math-4,s03.md,plan,expert,missing,"Day 25 duty: item 2 agrees with Rosa (D), two sixths beside four twelfths on the strips; day 25 not written",open,docs/reviews/cheap-d024-2026-11-12.md#1
+2026-11-12,math-4,s03.md,plan,expert,missing,"Day 25 duty: item 5 parts' size alone (J), say each as how many parts, of what size; day 25 not written",open,docs/reviews/cheap-d024-2026-11-12.md#1
+2026-11-12,math-4,s03.md,plan,expert,missing,"Day 25 duty: item 5 D or G, one line from 0 to 1, both points, read the sign aloud; day 25 not written",open,docs/reviews/day-024-2026-11-12.md#10
+2026-11-12,math-4,readiness.md,plan,expert,gate,"Unit 4's readiness check not given; Cory (2026-11-12): write it now; courses/math-4/u04-1/readiness.md from the progression page's four items, given in day 24's last ten minutes",fixed,docs/reviews/day-024-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,writer,layout,Stacked number lines on the student page: the upper line's 0 and 1 labels touched the lower line's end ticks (day 12 pairs); a lower line now starts below them,fixed,
