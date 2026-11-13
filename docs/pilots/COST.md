@@ -112,6 +112,18 @@ Started 2026-11-12. The fifth unit into data, and the first on fractions.
 | Unit 3 expert reads, fifteen days | 2,919,878 (mean 194,700, 176,000 to 221,000) | about 0.12 each, in parallel | 0 | 123 the cheap read missed (50 expert only) | |
 | Unit 3 reads fix pass | 202,122 by the lead agent (109 tool uses), plus its section agents (not measured) | 1.28 (77 min) | 1 (one Desk answer: unit 4 readiness) | 342 logged: 301 fixed, 13 open, 28 rejected | 10 new gates, 3 notes; figure words `then`, `ask=N`, `by=`; u04-1/readiness.md |
 
+## Grade 4 math, unit 2 (number patterns, days 7 to 9)
+
+Started and read 2026-11-12. The sixth unit into data, and the first written one day at a time in main.
+
+| Piece | Tokens | Wall hours | Owner minutes | Defects found, by read | Notes |
+|---|---|---|---|---|---|
+| Plan as data and shared pieces (opener, readiness, record, recording page, family note) | 176,437 by one agent (97 tool uses) | 0.23 (14 min) | 0 | | |
+| Three days, one writer each, in order in main | 582,306 (212,026, 197,133, 173,147) | 0.38 (23 min, one after another) | 0 | writer flags: s02-E6 collided with day 7 (E6v2), the 45 ruling, day 10's missing hand-back | |
+| Unit 2 cheap reads, three days | 338,389 (mean 112,800, 105,000 to 118,000) | about 0.05 each, in parallel | 0 | 37 | |
+| Unit 2 expert reads, three days | 595,725 (mean 198,600, 184,000 to 210,000) | about 0.13 each, in parallel | 0 | 32 the cheap read missed (19 expert only) | |
+| Unit 2 reads fix pass | 265,763 by one agent (203 tool uses) | 0.41 (24 min) | 0 | 70 logged: 59 fixed, 1 open, 10 rejected | 4 new gates, 2 notes; `tiles` figure, error `x`; day 10 hands back items 3 and 5 |
+
 ## Grade 6 ELA, unit 2, five pilot days
 
 Not started. Planning pieces so far (rubric page, approach page, rights list): tokens not measured.

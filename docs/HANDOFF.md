@@ -88,9 +88,8 @@ The pilot unit comes first (grade 4 math unit 11, one section, 11.1: [courses/ma
      continuity pass (b2b67bb8). Still lagging on purpose: ids, folders, CSV columns, `module_id`, the worksheet
      code's `unit`, R2 keys under modules/. Every built grade 4 math day (1 to 6, 72 to 77, 80 to 93) now has its
      `### At home` block (LESSON-DAY.md item 5, writers' brief [agents/DAY-WRITER.md](agents/DAY-WRITER.md)),
-     built as `dNNN-home.html`; `HOME_TODO` in lesson.py is empty, so a day without one fails the check. **Next on
-     the back end:** unit 2 (days 7 to 9) with writer, cheap read, expert read and fix, At home included;
-     units 4 to 8 stay frozen until a teacher reads unit 11; the Community Plot Planner tool (Codex queue) finishes
+     built as `dNNN-home.html`; `HOME_TODO` in lesson.py is empty, so a day without one fails the check. Unit 2 is
+     now done (below). **Next on the back end:** units 4 to 8 stay frozen until a teacher reads unit 11; the Community Plot Planner tool (Codex queue) finishes
      unit 11. Known view quirks: a problem with no heading over it prints stray asterisks in the home view (day 74
      skipped it); day 81's cards label as "Example 2 1, 2"; the gate counts a table question with no number as
      off the student page.
@@ -103,12 +102,19 @@ The pilot unit comes first (grade 4 math unit 11, one section, 11.1: [courses/ma
      parallel writers broke most Tomorrow hand-offs, so unit 2 writes in order or gets a hand-off pass
      (REVIEW-CADENCE.md). **Decided 2026-11-12, card 113 `q-unit4-readiness`:** unit 4's readiness sheet is written
      now (`u04-1/readiness.md`, rows s04-R1 to R4) and day 24's last ten minutes give it; the rest of unit 4 waits.
+   - **Done 2026-11-12: unit 2 (days 7 to 9, section 2.1)** in `courses/math-4/u02-1`: plan as data and shared
+     pieces (a40b62a1), then three writers one at a time in main, each reading the day before (30c198a8, b23fda61,
+     726f47af), then a cheap read and an expert read on every day (`pilots/s02-reads/`, docs/reviews/cheap-d007..009
+     and day-007..009). 70 ledger rows: 59 fixed, 1 open, 10 rejected (e568594c). New items E3v2, E4v2, E6v2, X8v2;
+     day 10 now hands back items 3 and 5. Open: day 9 item 4's drawing box (side 1 is full). In-order writing held
+     inside the unit and broke at the unit seam (day 9 to day 10); expert-only findings rose to about 6 a day, so
+     step 3 is still not earned (REVIEW-CADENCE.md).
    - **Done 2026-11-12: the Review Desk shows the build order.** Course table columns follow it (scope and
      sequence, unit plans, section plans, days written, days read, taught), core is a grouping row, topics moved to
      "Where the tools are", and a day strip shows grade 4 math's 150 days by state (`scripts/course_status.py`).
-   - **For Cory:** about 40 merged worktrees under `.claude/worktrees` (all verified merged, no unique files) need
-     removing by hand: in S:\CurioClass, `git worktree list`, then `git worktree remove --force --force <path>` for
-     each, then `git branch -d` each `worktree-agent-*` branch.
+   - **Worktrees cleared 2026-11-12:** 40 merged worktree folders moved to S:\CurioClass-archive\worktrees-2026-11-12
+     (Cory deletes from there), 57 merged branches deleted. One folder, `.claude/worktrees/agent-a137c140417b1a414`,
+     is held open by a program; move it after a restart.
    - Still owed: the Spanish family note needs a qualified reader; the topic has no Word Wall cards of its own
      (area, perimeter, square unit, formula, length, width exist under other topics), which is the Word Wall
      owner's to add; the plan should say where day 90's two "On your own" items go when day 91's warm-up is the facts

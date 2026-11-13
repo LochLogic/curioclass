@@ -133,3 +133,33 @@ equalities on checks, exits with no room, fewer Check: lines than sets, and othe
 the next day lacks; DAY-WRITER.md now carries "What the expert reads found". For unit 2: write days in order within
 a section (or run a hand-off pass right after the merge), and keep both reads on every day.
 
+
+## Step 2 again: unit 2 (days 7 to 9), read 2026-11-12
+
+Same two reads, three days, the first unit written one day at a time in main, each writer reading the day before.
+
+| | Unit 2 (3 days) |
+|---|---|
+| Cheap read findings | 37 (12.3 a day) |
+| Cheap findings the expert agreed with | 30 of 37 (and 1 in part) |
+| Expert findings the cheap read missed | 32 (10.7 a day) |
+| of which a script could catch | 10 |
+| of which the cheap read should have caught | 3 |
+| of which only an expert could catch | 19 (6.3 a day) |
+| Same kind as an earlier finding | 26 of 32 |
+| Tokens per cheap read | mean 112,800 |
+| Tokens per expert read | mean 198,600 |
+
+**What it shows.** Writing in order worked inside the unit: names, numbers and error letters lined up from day 6 to
+day 9, and the three experts found one slipped condition between days 7 and 8. It broke at the unit boundary
+(day 9 to day 10: the hand-back of items 3 and 5 was promised and missing), which is the same seam a single-day read
+cannot see from one side. Expert-only findings rose to about 6 a day (unit 3: 3.3), so step 3 is not earned. They
+were about measurement, not arithmetic: an exit and an assessment item that never ask for a later step, so day 8's
+goal and error B go unseen (X8v2, E4v2); a reason bar a student passes by restating the rule (day 7); item 6 needing
+multi-digit multiplication taught on day 94; item 5 chained to item 4's answer. Repeats stayed high (81%): the
+display dropping an Ask written without a period, numbers reused from taught lists, keys with closed accept lists.
+
+**What changes next.** The fix pass added 4 gates (the Ask form, an assessment day whose next day never names its
+hand-back, an end item sharing 3 or more numbers with a taught list, and two notes) plus the `tiles` figure and
+error `x`. For the next unit: keep writing in order, and give the first day of each unit the last day of the unit
+before as a required read, since the seam between units is where the hand-off now breaks.
