@@ -784,3 +784,73 @@ date,course,artifact,layer,found_by,kind,summary,status,ref
 2026-11-12,math-4,s03.md,plan,expert,missing,"Day 25 duty: item 5 D or G, one line from 0 to 1, both points, read the sign aloud; day 25 not written",open,docs/reviews/day-024-2026-11-12.md#10
 2026-11-12,math-4,readiness.md,plan,expert,gate,"Unit 4's readiness check not given; Cory (2026-11-12): write it now; courses/math-4/u04-1/readiness.md from the progression page's four items, given in day 24's last ten minutes",fixed,docs/reviews/day-024-2026-11-12.md#2
 2026-11-12,math-4,lesson.py,process,writer,layout,Stacked number lines on the student page: the upper line's 0 and 1 labels touched the lower line's end ticks (day 12 pairs); a lower line now starts below them,fixed,
+2026-11-12,math-4,d007.md,day,expert,key,"Reason bar let the rule through (""it adds 6""); exit, partner check, Check line and Lena Expect now ask what one jump does to the feature; C rows for the rule as the reason",fixed,docs/reviews/day-007-2026-11-12.md#1
+2026-11-12,math-4,items.csv,process,expert,gate,"Why rows keyed with no look-fors; X7v2 teacher judged with look-fors and samples, record E7 one tick a look-for (exitlooks); plan.py notes a keyed exit or end row that asks why",fixed,docs/reviews/day-007-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,expert,display,"""**Ask** (after step 4)."" built no screen; the build reads both forms, the check fails the unpunctuated one, and an after-step Ask under its example goes after that step",fixed,docs/reviews/day-007-2026-11-12.md#3
+2026-11-12,math-4,d007.md,day,expert,sequence,"Lena's Ask came after the screen that answers it; Ask moved above her steps, and the build holds a fix's right working for an Ask later in the part",fixed,docs/reviews/day-007-2026-11-12.md#4
+2026-11-12,math-4,d007.md,process,expert,display,"Warm-up said ""answers on the display"" with none; Check line added, and the gate reads ""answers on the display"" and ""on the screen""",fixed,docs/reviews/day-007-2026-11-12.md#5
+2026-11-12,math-4,d007.md,day,expert,handoff,Items 5 and 6 meets answers had nowhere to be shown; written on the board in Before class (letting a day show an earlier day's judged sample on the display stays for later),fixed,docs/reviews/day-007-2026-11-12.md#6
+2026-11-12,math-4,d007.md,day,expert,materials,"""Under the camera"" on a no-camera day; on the board in d007, d008 and the opener; lesson.py notes the clash",fixed,docs/reviews/day-007-2026-11-12.md#7
+2026-11-12,math-4,lesson.py,process,expert,display,"Feature self-check against one written answer; check screens on feature rows say ""Your feature may be different ...""",fixed,docs/reviews/day-007-2026-11-12.md#8
+2026-11-12,math-4,lesson.py,process,expert,key,Key opened with the equation note on a pattern day; a 4.OA.C.5 day opens with the feature and reason rule,fixed,docs/reviews/day-007-2026-11-12.md#9
+2026-11-12,math-4,items.csv,day,expert,level,"E3 sat inside Example 1's list; s02-E3v2 start 61, add 8; plan.py fails an end list sharing 3 numbers of 10 or more with a taught list",fixed,docs/reviews/day-007-2026-11-12.md#10
+2026-11-12,math-4,d007.md,day,expert,wording,"Small repairs: Ask wording, Theo and Lena stems, doubling past 100 watch line, K7-1 figure at=2, two cuts",fixed,docs/reviews/day-007-2026-11-12.md#11
+2026-11-12,math-4,d007.md,day,cheap,key,Keys reworked and match; no change asked,rejected,docs/reviews/cheap-d007-2026-11-12.md#1
+2026-11-12,math-4,wrongs.csv,day,cheap,error,"P7-2 had no D row for ""odd and even take turns""; row and watch line added",fixed,docs/reviews/cheap-d007-2026-11-12.md#2
+2026-11-12,math-4,wrongs.csv,day,cheap,error,"X7v2 had no row for ""odd and even take turns""; D row added, Tomorrow routes it",fixed,docs/reviews/cheap-d007-2026-11-12.md#3
+2026-11-12,math-4,wrongs.csv,day,cheap,error,"Split error A into wrong start and no start: expert disagreed (register defines A as both); P7-2's 3, 5, 7, 9 coded x",rejected,docs/reviews/cheap-d007-2026-11-12.md#4
+2026-11-12,math-4,d007.md,day,cheap,handoff,Tickets and recording pages never collected; collected at the exit for day 8,fixed,docs/reviews/cheap-d007-2026-11-12.md#5
+2026-11-12,math-4,d007.md,day,cheap,wording,"""The second planned question"" for readiness item 2 did not exist; now the Lena Ask, asked of them first",fixed,docs/reviews/cheap-d007-2026-11-12.md#6
+2026-11-12,math-4,d007.md,day,cheap,handoff,Tomorrow matches day 8; no change asked,rejected,docs/reviews/cheap-d007-2026-11-12.md#7
+2026-11-12,math-4,d007.md,day,cheap,layout,"Warm-up boxes 0.9 in, Fix it 2 two lines, wider challenge blanks",fixed,docs/reviews/cheap-d007-2026-11-12.md#8
+2026-11-12,math-4,d007.md,day,cheap,wording,"Tape 5 now says ""pattern 2 on your recording page""",fixed,docs/reviews/cheap-d007-2026-11-12.md#9
+2026-11-12,math-4,lesson.py,process,cheap,missing,Home Print line missed the recording page; added when the At home block names it,fixed,docs/reviews/cheap-d007-2026-11-12.md#10
+2026-11-12,math-4,d007.md,day,cheap,minutes,"Shorter or longer to drop tape 5: expert disagreed, Shorter already drops it",rejected,docs/reviews/cheap-d007-2026-11-12.md#11
+2026-11-12,math-4,items.csv,day,cheap,level,65 is W7-1's number and the exit's E answer; the read asked no fix,rejected,docs/reviews/cheap-d007-2026-11-12.md#12
+2026-11-12,math-4,d007.md,day,cheap,gate,Repeat-list pass; findings counted above,rejected,docs/reviews/cheap-d007-2026-11-12.md#13
+2026-11-12,math-4,items.csv,day,expert,level,"Exit never asked for a later step; s02-X8v2 steps 1 to 4 and the 10th (36), judged with look-fors, drawing box; Tomorrow and day 9 B group follow",fixed,docs/reviews/day-008-2026-11-12.md#1
+2026-11-12,math-4,d008.md,day,expert,sequence,"Both Asks answered on screen first; K8-1 Ask after step 3, sticks Ask before Fix it 2",fixed,docs/reviews/day-008-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,expert,display,"Ask written ""**Ask** (after step N)."" dropped from the display; both forms read, check fails the old form",fixed,docs/reviews/day-008-2026-11-12.md#3
+2026-11-12,math-4,lesson.py,process,expert,figure,"No shape drawn on a shape day; tiles figure kind added, used on K8-1, F8-2 (sticks), P8-1 (student page) and E4v2",fixed,docs/reviews/day-008-2026-11-12.md#4
+2026-11-12,math-4,d008.md,day,expert,handoff,Day 7's tickets never went back; E7 handed back with its answer by default,fixed,docs/reviews/day-008-2026-11-12.md#5
+2026-11-12,math-4,d008.md,day,expert,missing,"Five rules for many A listed, on days 7 and 8",fixed,docs/reviews/day-008-2026-11-12.md#6
+2026-11-12,math-4,lesson.py,process,expert,display,"Warm-up display opened on the answers; a question screen comes first, and a yes or no warm-up checks ""Does your multiplication show it?""",fixed,docs/reviews/day-008-2026-11-12.md#7
+2026-11-12,math-4,d008.md,day,expert,sequence,Teacher in two places in the warm-up; answers screen at 4 minutes,fixed,docs/reviews/day-008-2026-11-12.md#8
+2026-11-12,math-4,d008.md,day,expert,wording,"Fix it 2 frame asked what went wrong of a right answer; ""Jo is right. What is slow about Jo's way?""",fixed,docs/reviews/day-008-2026-11-12.md#9
+2026-11-12,math-4,opener.md,day,expert,wording,"Opener paper path promised a feature on day 8 tapes; now day 7 feature, day 8 the 10th step (T8 recode not needed while parts are not counted)",fixed,docs/reviews/day-008-2026-11-12.md#10
+2026-11-12,math-4,d008.md,day,expert,handoff,"At home skipped the written task; 3 min written task added, On your own 6 min",fixed,docs/reviews/day-008-2026-11-12.md#11
+2026-11-12,math-4,d008.md,day,cheap,materials,"""You build under the camera"" on a no-camera day; you draw the steps on the board",fixed,docs/reviews/cheap-d008-2026-11-12.md#1
+2026-11-12,math-4,d008.md,day,cheap,handoff,Fix it 1 rewrote eight numbers already in pattern 4; students look at them,fixed,docs/reviews/cheap-d008-2026-11-12.md#2
+2026-11-12,math-4,items.csv,day,cheap,layout,Exit asked to draw with no box; X8v2 gets a drawing box,fixed,docs/reviews/cheap-d008-2026-11-12.md#3
+2026-11-12,math-4,d008.md,day,cheap,layout,Side 2 short lines; full-width written-task lines and a second keep-going line,fixed,docs/reviews/cheap-d008-2026-11-12.md#4
+2026-11-12,math-4,d008.md,day,cheap,layout,Warm-up cells about 0.9 in tall,fixed,docs/reviews/cheap-d008-2026-11-12.md#5
+2026-11-12,math-4,d008.md,day,cheap,minutes,"On your own 9 minutes tight; tapes 12 to 10, On your own 11 (days.csv updated)",fixed,docs/reviews/cheap-d008-2026-11-12.md#6
+2026-11-12,math-4,d008.md,day,cheap,minutes,"Sticks 7 minutes tight; reordered (build, Ask, Fix it 2 as the check), minutes kept",fixed,docs/reviews/cheap-d008-2026-11-12.md#7
+2026-11-12,math-4,items.csv,day,cheap,wording,"W8 stem lists the 3rd, 6th, 9th, 12th: expert disagreed, the positions are the scaffold",rejected,docs/reviews/cheap-d008-2026-11-12.md#8
+2026-11-12,math-4,d008.md,day,cheap,wording,"Frames named the answer; ""Something true of the numbers:"" and a plain ""A faster way:"" line",fixed,docs/reviews/cheap-d008-2026-11-12.md#9
+2026-11-12,math-4,items.csv,day,cheap,level,"X8 shared 9, 15, 21 with T8-1: expert disagreed, the rule is new",rejected,docs/reviews/cheap-d008-2026-11-12.md#10
+2026-11-12,math-4,items.csv,day,expert,level,"Item 4 could not show a later step or error B; s02-E4v2 steps 1 to 4 then step 9 (46), B and x rows, A and B group says step 9",fixed,docs/reviews/day-009-2026-11-12.md#1
+2026-11-12,math-4,items.csv,day,expert,key,"E2 self-marked against a closed list; any true thing accepted, digit features stop at 100",fixed,docs/reviews/day-009-2026-11-12.md#2
+2026-11-12,math-4,wrongs.csv,day,expert,key,"E6v2 needs 126 x 3 before 4.NBT.B.5; slip row (x, not A and B), taller box; item kept",fixed,docs/reviews/day-009-2026-11-12.md#3
+2026-11-12,math-4,items.csv,day,expert,key,E5 judged on the student's own item 4 numbers,fixed,docs/reviews/day-009-2026-11-12.md#4
+2026-11-12,math-4,d009.md,day,expert,sequence,"Item 6 sat in both groups; Groups lead by the marking, ""They triple"" to C and D",fixed,docs/reviews/day-009-2026-11-12.md#5
+2026-11-12,math-4,lesson.py,process,expert,gate,Hand-back gate read practice rows only; an assessment day's judged end rows now need the next day to name day N's assessment,fixed,docs/reviews/day-009-2026-11-12.md#6
+2026-11-12,math-4,lesson.py,process,expert,display,"Group screen printed teacher wording; ""Find your group."", what students match and the first task only",fixed,docs/reviews/day-009-2026-11-12.md#7
+2026-11-12,math-4,items.csv,day,expert,key,"C9-2 key too narrow (adds ending in 0 or 5); widened, C7-1 the same",fixed,docs/reviews/day-009-2026-11-12.md#8
+2026-11-12,math-4,d009.md,day,expert,materials,"Counters unused, squares miscounted, no printer path; 6 squares a student in the A and B group, No printer line",fixed,docs/reviews/day-009-2026-11-12.md#9
+2026-11-12,math-4,lesson.py,process,expert,key,Key printed a colon before a bracketed note and repeated the register name; Tomorrow says day 10 first five minutes,fixed,docs/reviews/day-009-2026-11-12.md#10
+2026-11-12,math-4,d010.md,day,cheap,handoff,Day 10 never handed back items 3 and 5; in day 10's warm-up with meets answers on the board,fixed,docs/reviews/cheap-d009-2026-11-12.md#1
+2026-11-12,math-4,d010.md,day,cheap,handoff,Strips said to be cut in day 9's last minutes; morning work or handed out pre-cut,fixed,docs/reviews/cheap-d009-2026-11-12.md#2
+2026-11-12,math-4,d009.md,day,cheap,sequence,Hands up against the ticket rule; Groups lead by the marking,fixed,docs/reviews/cheap-d009-2026-11-12.md#3
+2026-11-12,math-4,d009.md,day,cheap,materials,Unit 3's record sheet added to the print list and Before class,fixed,docs/reviews/cheap-d009-2026-11-12.md#4
+2026-11-12,math-4,d009.md,day,cheap,handoff,"Check 1 (day 42) cannot be checked: expert disagreed, the scope and sequence sets it in two places",rejected,docs/reviews/cheap-d009-2026-11-12.md#5
+2026-11-12,math-4,wrongs.csv,process,cheap,error,"Named wrong answers with no letter; error x (any other wrong answer, no group) allowed and printed",fixed,docs/reviews/cheap-d009-2026-11-12.md#6
+2026-11-12,math-4,d009.md,day,cheap,layout,"Item 4 box 1.5 in for 4-row drawings; kept at 1.5 in because side 1 is full, E4v2 asks steps 2 and 3 only",open,docs/reviews/cheap-d009-2026-11-12.md#7
+2026-11-12,math-4,d009.md,day,cheap,layout,Short I notice and because lines; full width,fixed,docs/reviews/cheap-d009-2026-11-12.md#8
+2026-11-12,math-4,d009.md,day,cheap,layout,Fixes box doubled,fixed,docs/reviews/cheap-d009-2026-11-12.md#9
+2026-11-12,math-4,readiness.md,day,cheap,layout,Unit 3 readiness check spilled to two sides; one side now,fixed,docs/reviews/cheap-d009-2026-11-12.md#10
+2026-11-12,math-4,lesson.py,process,cheap,layout,Readiness line and strips printed far from their items; R1 and R2 figures print under the items with an answer line,fixed,docs/reviews/cheap-d009-2026-11-12.md#11
+2026-11-12,math-4,d009.md,day,cheap,minutes,Mark 5 minutes for four tasks; written tasks handed back inside the A and B group (expert: agree in part),fixed,docs/reviews/cheap-d009-2026-11-12.md#12
+2026-11-12,math-4,d009.md,day,cheap,wording,"Item 5 frame gives the method: expert disagreed, it is the section frame",rejected,docs/reviews/cheap-d009-2026-11-12.md#13
+2026-11-12,math-4,items.csv,day,cheap,figure,Item 4 had no figure; tiles figure of step 1 on key and display,fixed,docs/reviews/cheap-d009-2026-11-12.md#14
+2026-11-12,math-4,lesson.py,process,writer,display,An after-step Ask written under its example waited for the next example (day 19 too); it now follows its own step,fixed,

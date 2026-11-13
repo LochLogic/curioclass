@@ -591,21 +591,27 @@ s02-R3,"circles 3, 11, 15 and 17",,,,even and odd swapped
 s02-R3,"misses one of 8, 14 and 20, or circles one odd number",,,,even not yet tied to pairs
 s02-E1,"9, 18, 27 and on",9 | 9+9 | 9+18,9 | 18 | 27,A,starts at the number in the rule
 s02-E1,"17, 26, 35 and on",8+9 | 8+2*9 | 8+3*9,17 | 26 | 35,A,leaves out the start
-s02-E1,a slip in adding,,,,
+s02-E1,a slip in adding,,,x,
 s02-E2,"""It goes up by 11""",,,C,
 s02-E2,"""They are all even""",,,D,from 12 and 34
-s02-E3,"""Yes, because 55 and 63 are odd too""",47+8 | 55+8,55 | 63,E,
-s02-E3,"""No, it will be even later""",,,,
-s02-E4,"5, 10, 15 and on",5 | 2*5 | 3*5,5 | 10 | 15,A,leaves out the one square on top
-s02-E4,"draws all six steps and miscounts, or runs out of time",,,B,
+s02-E3v2,"""Yes, because 101 and 109 are odd too""",93+8 | 101+8,101 | 109,E,
+s02-E3v2,"""No, it will be even later""",,,x,
+s02-E4v2,"5, 10, 15, 20; step 9: 45",5 | 2*5 | 3*5 | 4*5 | 9*5,5 | 10 | 15 | 20 | 45,A,the one on top left out
+s02-E4v2,51 for step 9,6+9*5,51,x,"9 jumps counted from step 1, not 8"
+s02-E4v2,all nine steps drawn,,,B,
 s02-E5,"""It adds 5""",,,C,
 s02-E5,a feature with more numbers as the reason,,,E,
-s02-E6v2,"14, 17, 20 and on",14 | 14+3 | 14+2*3,14 | 17 | 20,,"adds, not multiplies"
-s02-E6v2,"14, 42, 70 and on",14 | 14*3 | 42+28,14 | 42 | 70,,"adds, not multiplies: keeps adding the first jump, 28"
+s02-E6v2,"14, 17, 20 and on",14 | 14+3 | 14+2*3,14 | 17 | 20,x,"adds, not multiplies"
+s02-E6v2,"14, 42, 70 and on",14 | 14*3 | 42+28,14 | 42 | 70,x,"adds, not multiplies: keeps adding the first jump, 28"
 s02-E6v2,"42, 126, 378 and on",14*3 | 14*9 | 14*27,42 | 126 | 378,A,leaves out the start
 s02-E6v2,"""They triple""",,,C,
-s02-X8,"3, 6, 9 and on",3 | 2*3 | 3*3,3 | 6 | 9,A,starts at the number in the rule
-s02-X8,all five steps drawn and counted one by one,,,B,
+s02-E6v2,"a slip in multiplying, the rest built on it",,,x,times 3 at every jump is right; mark the slip x and do not send to A and B
+s02-X8v2,"3, 6, 9 and on",3 | 2*3 | 3*3,3 | 6 | 9,A,starts at the number in the rule
+s02-X8v2,30 for the 10th step,10*3,30,A,ten jumps of 3 with no start
+s02-X8v2,39 for the 10th step,9+10*3,39,x,"counts 10 jumps from step 1, not 9"
+s02-X8v2,all ten steps drawn,,,B,
+s02-X8v2,"""It adds 3""",,,C,
+s02-X8v2,"""21 is a multiple of 3 too"", as the reason",18+3,21,E,
 s02-W7-1,"1 × 65 only, or 65 called prime",,,,"stopped before 5; search in order to 8, since 9 × 9 = 81"
 s02-W7-2,Yes,,,,a guess from 74 being even; fence it between 4 × 18 and 4 × 19
 s02-W7-3,No,,,,the 5s not yet tied to ending in 0 or 5; build it from 5 × 10 and 5 × 9
@@ -615,6 +621,7 @@ s02-F7-1,"4, 8, 12, 16",4 | 2*4 | 3*4 | 4*4,4 | 8 | 12 | 16,A,Rosa's working: st
 s02-F7-1,"7, 11, 15, 19",3+4 | 3+2*4 | 3+3*4 | 3+4*4,7 | 11 | 15 | 19,A,leaves out the start
 s02-T7-1,"""It adds 3""",,,C,
 s02-T7-1,"""25 and 28 do it too"", as the reason",22+3 | 25+3,25 | 28,E,
+s02-T7-1,"""Because it adds 3 each time"", as the reason",,,C,the rule given back as the reason
 s02-T7-2,"""It adds 5""",,,C,
 s02-T7-2,"""43 ends in 3 too"", as the reason",38+5,43,E,
 s02-F7-2,"""It adds 3""",,,C,Theo's working
@@ -622,12 +629,16 @@ s02-F7-3,"""13, 16 and 19 do it too""",,,E,Lena's working
 s02-P7-1,"3, 6, 9 and on",3 | 2*3 | 3*3,3 | 6 | 9,A,starts at the number in the rule
 s02-P7-1,"""It adds 3""",,,C,
 s02-P7-1,"""26 and 29 do it too"", as the reason",23+3 | 26+3,26 | 29,E,
-s02-P7-2,"3, 5, 7, 9 and on",3 | 3+2 | 3+2*2 | 3+3*2,3 | 5 | 7 | 9,,"adds 2, not multiplies by 2"
+s02-P7-1,"""Because it adds 3 each time"", as the reason",,,C,the rule given back as the reason
+s02-P7-2,"3, 5, 7, 9 and on",3 | 3+2 | 3+2*2 | 3+3*2,3 | 5 | 7 | 9,x,"adds 2, not multiplies by 2"
 s02-P7-2,"6, 12, 24 and on",3*2 | 3*4 | 3*8,6 | 12 | 24,A,leaves out the start
 s02-P7-2,"""It doubles""",,,C,
+s02-P7-2,"""Odd and even take turns""",,,D,"a feature from two numbers (3, 6)"
 s02-X7v2,6 or 35 first,,,A,
 s02-X7v2,"""It adds 6""",,,C,
 s02-X7v2,"""65 is odd too"", as the reason",59+6,65,E,
+s02-X7v2,"""Because it adds 6 each time"", as the reason",,,C,the rule given back as the reason
+s02-X7v2,"""Odd and even take turns""",,,D,carries tape 1's feature over without checking
 s02-W8-1,"1 × 82 only, or 82 called prime",,,,"stopped before 2; 82 is even, so 2 is a factor"
 s02-W8-2,Yes,,,,a guess; fence it between 3 × 32 and 3 × 33
 s02-W8-3,No,,,,the 6s not yet built past 6 × 10; build it from 6 × 10 and 3 more sixes
@@ -649,8 +660,6 @@ s02-P8-1,"""It adds 4""",,,C,
 s02-P8-1,"""21 and 25 are odd too"", as the reason",17+4 | 21+4,21 | 25,E,
 s02-P8-2,"3rd, 6th, 9th and 12th",,,,"gave the triangles, not the squares"
 s02-P8-2,"2nd, 4th, 6th and on",,,,every other shape: the pattern is three long
-s02-X8,"""It adds 3""",,,C,
-s02-X8,"""24 is a multiple of 3 too"", as the reason",21+3,24,E,
 s09-P72-11,811,573+248-10,811,A,one carry lost
 s09-P72-11,711,573+248-110,711,A,every carry lost
 s09-P72-12v2,464,4+6*10+4*100,464,F,not taught until day 74
@@ -829,7 +838,7 @@ s03-X22,signs turned round,,,G,
 s03-X22,(a) < with 16/24 and 15/24 written,,,G,"right renaming, sign turned round"
 s03-X22,(c) >,,,J,tenths are bigger pieces
 s03-X23,Ben,,,D,"no renaming, or wrong renaming"
-s03-X23,"""cannot tell""",,,,"takes the same-whole rule too far: the trail is one whole; write ct in the E23 cell"
+s03-X23,"""cannot tell""",,,,takes the same-whole rule too far: the trail is one whole; write ct in the E23 cell
 s03-X23,sign turned round,,,G,"right renaming (16/40 and 15/40), sign turned round"
 s03-W12,6/8 is more,,,D,
 s03-W16,"""10/6 is 2 times as big""",,,F,

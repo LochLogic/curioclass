@@ -5,7 +5,7 @@ course: math-4
 unit: 3.1
 stretch: 3
 day: 9
-version: draft 1, not yet taught
+version: draft 2, not yet taught
 credit: ours
 ---
 
@@ -13,18 +13,12 @@ credit: ours
 
 ## Student
 
-Show your work for each one. Use the line and the strips below.
-
-<p style="margin:.3em 0">For item 1:</p>
-<div style="margin:.15in 0"><svg width="7.1in" height="0.73in" viewBox="0 0 700 70" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif" role="img" aria-label="item 1: a number line from 0 to 2, marked 0, 1 and 2"><line x1="10" y1="26" x2="690" y2="26" stroke="#000" stroke-width="2"/><line x1="10.0" y1="12" x2="10.0" y2="40" stroke="#000" stroke-width="3"/><text x="10.0" y="62" font-size="19" text-anchor="middle">0</text><line x1="350.0" y1="12" x2="350.0" y2="40" stroke="#000" stroke-width="3"/><text x="350.0" y="62" font-size="19" text-anchor="middle">1</text><line x1="690.0" y1="12" x2="690.0" y2="40" stroke="#000" stroke-width="3"/><text x="690.0" y="62" font-size="19" text-anchor="middle">2</text></svg></div>
-<p style="margin:.3em 0">For item 2:</p>
-<div style="margin:.05in 0"><svg width="7.1in" height="0.52in" viewBox="0 0 700 50" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif" role="img" aria-label="item 2: top strip cut in halves, one half shaded"><rect x="10.0" y="2" width="340.0" height="46" fill="#bbb" stroke="#000" stroke-width="2"/><rect x="350.0" y="2" width="340.0" height="46" fill="none" stroke="#000" stroke-width="2"/></svg></div>
-<div style="margin:.05in 0"><svg width="7.1in" height="0.52in" viewBox="0 0 700 50" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif" role="img" aria-label="item 2: strip below cut in fourths, none shaded"><rect x="10.0" y="2" width="170.0" height="46" fill="none" stroke="#000" stroke-width="2"/><rect x="180.0" y="2" width="170.0" height="46" fill="none" stroke="#000" stroke-width="2"/><rect x="350.0" y="2" width="170.0" height="46" fill="none" stroke="#000" stroke-width="2"/><rect x="520.0" y="2" width="170.0" height="46" fill="none" stroke="#000" stroke-width="2"/></svg></div>
+Show your work for each one. Items 1 and 2: work on the line and the strips under them.
 
 ## Teacher
 
 The last ten minutes of day 9, after unit 2's end-of-unit assessment and its respond half. Alone, on paper, all
-written; the line and the two strips are printed at the top of the sheet. Read each item aloud once. Mark before
+written; the line and the two strips print under items 1 and 2. Read each item aloud once. Mark before
 day 10 and write each result on the unit 3 record sheet (R1 to R4): a tick, the error letter where the key gives
 one, or x for any other wrong answer. Item 1 needs both points for a tick, and item 4 both fractions.
 

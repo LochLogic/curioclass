@@ -89,6 +89,13 @@ your own day and fix what you find. Cheap reads use this list as their repeat ch
 13. **One letter per wrong answer.** Where two errors (D and A, D and G) give the same sign, the item asks for
     the working that tells them apart, and wrongs.csv has a row for each.
 
+14. **The reason bar.** A "why" is met only when it says what one jump does to the feature; the rule given back
+    ("because it adds 6") is error C. Exits and assessment items that ask why are teacher judged, with look-fors
+    and samples.
+15. **Asks before answers.** Every planned question is `**Ask.**`, and its screen comes before the step or fix that
+    answers it; a prediction ("the 10th step?") is asked before it is shown.
+16. **The exit checks the goal.** If the day's goal is a later step without drawing, the exit asks for one.
+
 ## Gates (run until 0 failures for your day)
 
     python -X utf8 scripts/plan.py check

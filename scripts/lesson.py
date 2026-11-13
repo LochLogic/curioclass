@@ -34,7 +34,7 @@ HOME_TEACH, HOME_CHECK = (30, 40), (40, 50)   # minutes at home: a teaching day;
 HOME_TODO = set()
 # A part: "- **N min. Name.**", the name on one line; its closing "." may be left off, and "?" or "!" is kept.
 HOME_PART = re.compile(r'^- \*\*(\d+) min\.? ([^*\n]+?[?!]?)\.?\*\*(.*?)(?=^- \*\*\d+ min|^\*\*|\Z)', re.M | re.S)
-TALK = re.compile(r'\bpairs?\b|turn-and-talk|whole class|\bthe class\b|\*\*Ask\.\*\*', re.I)
+TALK = re.compile(r'\bpairs?\b|turn-and-talk|whole class|\bthe class\b|\*\*Ask\.?\*\*', re.I)
 HOME_LACKS = re.compile(r'projector|grid paper|tiles|device|string loop|document camera|large tiles', re.I)
 SENTENCE_MAX = 15            # words in one student sentence, grades 3 to 5 (ours, untested)
 BAD_LICENCE = re.compile(r'\bnc\b|noncommercial|non-commercial|sharealike|share-alike|-sa\b|\bnd\b|-nd\b|'
@@ -346,14 +346,36 @@ def check_day(d, items, days):
                 f.append('%s: the written task %s is judged but day %d never hands it back' % (lab, i['item_id'], nxt))
     # a part that promises the answers on the display must build that screen (a Check: line or a partner check)
     for _, bname, btxt in d['blocks']:
-        if (re.search(r'display shows the answers', btxt, re.I) and not re.search(r'^Check(?: \(sort\))?: ', btxt, re.M)
+        if (re.search(r'display shows the answers|answers on the (?:display|screen)', btxt, re.I)
+                and not re.search(r'^Check(?: \(sort\))?: ', btxt, re.M)
                 and not re.search(r'swap and check|swap and compare|partner check|check their own|partners check', btxt, re.I)
-                and not re.search(r'=\s*\?', btxt)):
+                and not re.search(r'=\s*\?', btxt)
+                # a row the student page does not print gets its answers screen anyway (the build's warm-up rule)
+                # and a plain sum ("64 ÷ 8 = ?") gets its check screen (day 81)
+                and not any(r not in REF.findall(d['student']) or any(
+                    re.search(r'=\s*\?\s*$', stem(i)) for i in items if i['item_id'] == r) for r in REF.findall(btxt))):
             f.append('%s: "%s" says the display shows the answers but has no Check: line to build that screen' % (lab, bname))
         # a warm-up asks questions; every question is a row (rule 1), so the warm-up names one
         if (not check_day_kind and bname.lower().startswith('warm-up') and not REF.search(btxt)
                 and not re.search(r'facts check|sheet|count aloud', btxt, re.I)):
             f.append('%s: the warm-up names no [[id]]; its questions must be rows (rule 1)' % lab)
+    # a planned question is written **Ask.**; "**Ask** (after step 4)." built no screen (unit 2 reads, days 7, 8)
+    for m in re.finditer(r'\*\*Ask\*\*', d['teacher']):
+        f.append('%s: write the planned question as "**Ask.**" (the period inside the bold), not "%s"'
+                 % (lab, d['teacher'][m.start():m.end() + 20].split('\n')[0]))
+    # "under the camera" on a day whose materials say there is none (unit 2 reads, day 7; day 1 before it)
+    if re.search(r'no document camera', h.get('materials', ''), re.I) and re.search(
+            r'under the camera', teacher_prose(d), re.I):
+        f.append('NOTE %s: the page says "under the camera", but the materials say no document camera' % lab)
+    # an assessment day's teacher-judged items go back the next day: that day names them (unit 2 reads, day 9
+    # finding 6: the written-task gate read practice rows only, so day 10 passed without items 3 and 5)
+    if check_day_kind and nf:
+        nt = nf.read_text(encoding='utf-8')
+        dn = int(h.get('day', 0) or 0)
+        judged = [i for i in items if i['day'] == h.get('day') and i['check'] == 'end' and i['judged'] == 'teacher']
+        if judged and not re.search(r"\bday\s+%d(?:'s)?\s+(?:end-of-unit\s+)?(?:assessments?|items?)\b" % dn, nt, re.I):
+            f.append('%s: items %s are judged after class, but day %d never hands back "day %d\'s assessment"'
+                     % (lab, ' and '.join(i['n'] for i in judged), dn + 1, dn))
     # list numbers on the student page never repeat inside a side (a restart after a line printed 1, 2, 3 twice)
     for side, body in d['sides']:
         ns = [int(n) for n in re.findall(r'^(\d+)\.\s', body, re.M)]
@@ -868,6 +890,8 @@ def figure(spec, size=1.0):
         return numline(spec, size)
     if spec.split()[0] == 'fstrip':
         return fstrip(spec, size)
+    if spec.split()[0] == 'tiles':
+        return tiles(spec, size)
     return rect(spec, size)
 
 
@@ -1121,6 +1145,40 @@ def rows_fig(spec, size=1.0):
     return ('<svg viewBox="0 0 %.0f %.0f" width="%.0f" style="width:100%%;max-width:4in;height:auto" role="img" '
             'aria-label="%s" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif">%s</svg>') % (
         W, H, W, html.escape(alt), ''.join(out))
+
+
+def tiles(spec, size=1.0):
+    """The steps of a shape pattern side by side, each labelled under it: 'tiles #/# ##/## ###/###' is columns of
+    2; a step's rows run top to bottom, split by /, # a square and . a gap ('tiles # .#./###/.#.' is a plus sign
+    growing). The flag 'sticks' draws each square as four sticks, unfilled (unit 2 reads, day 8: a shape-pattern
+    day drew no shape anywhere). Options with = (at=2) are the display's, not the picture's."""
+    toks = spec.split()[1:]
+    sticks = 'sticks' in toks
+    st = [t.split('/') for t in toks if t != 'sticks' and '=' not in t]
+    d, gap, lab = 30, 50, 34
+    hmax = max(len(g) for g in st)
+    W = sum(max(len(r) for r in g) * d for g in st) + gap * (len(st) + 1)
+    H = hmax * d + lab + 20
+    out, x0 = [], gap
+    for k, g in enumerate(st):
+        w = max(len(r) for r in g)
+        top = 10 + (hmax - len(g)) * d   # every step sits on one floor line
+        for ri, r in enumerate(g):
+            for ci, c in enumerate(r):
+                if c == '#':
+                    out.append('<rect x="%d" y="%d" width="%d" height="%d" %s/>' % (
+                        x0 + ci * d, top + ri * d, d, d, 'fill="none" stroke="#000" stroke-width="5"' if sticks
+                        else 'fill="#ddd" stroke="#000" stroke-width="2"'))
+        out.append('<text x="%d" y="%d" font-size="22" text-anchor="middle">Step %d</text>' % (
+            x0 + w * d / 2, 10 + hmax * d + lab - 6, k + 1))
+        x0 += w * d + gap
+    n = [sum(r.count('#') for r in g) for g in st]
+    alt = 'Steps 1 to %d of the shape pattern: %s %s' % (len(st), ', '.join(map(str, n)), 'squares of sticks'
+                                                           if sticks else 'squares')
+    wid = 'width:100%%;max-width:%.1fin' % min(9, W / 30 * 0.3 * (1 if size >= 1 else 0.8))
+    return ('<svg viewBox="0 0 %d %d" style="%s;height:auto" role="img" aria-label="%s" '
+            'xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif">%s</svg>') % (
+        W, H, wid, html.escape(alt), ''.join(out))
 
 
 PARTS_WORD = {1: 'wholes', 2: 'halves', 3: 'thirds', 4: 'fourths', 5: 'fifths', 6: 'sixths', 7: 'sevenths',
@@ -1617,7 +1675,8 @@ def home_html(d, row, items, warn, foot):
     tot = sum(p[0] for p in home_parts(d))
     kind = 'an assessment day' if row['kind'] == 'Check' else 'a teaching day'
     meta = [('Goal', row['goal']), ('Time', '%d minutes, one parent and one child (%s)' % (tot, kind)),
-            ('Print', 'the student page' + (' and one exit ticket' if exits and row['kind'] != 'Check' else '')
+            ('Print', 'the student page' + (', the recording page' if re.search(r'recording page', home, re.I) else '')
+             + (' and one exit ticket' if exits and row['kind'] != 'Check' else '')
              + '; this page and its answers are for you')]
     last = {'group': None, 'end': 0}
 
@@ -1691,15 +1750,20 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                                                      encoding='utf-8')
     # key: in the order the pages use them, both exit paths
     errname = {e['letter']: err_name(e['error']) for e in errors if e['stretch'] == row['stretch']}
+    errname['x'] = ERR_X
     kr = []
     for r in refs:
         i = byid[r]
         ws, seen = [], set()
         for w in (w for w in wrongs if w['item_id'] == r):
             e = w['error']
-            what = ('error %s' % e) + ('' if e in seen else ', ' + errname.get(e, '').lower()) if e else ''
+            nm = errname.get(e, '').lower() if e and e not in seen else ''
+            what = ('error %s' % e) + (', ' + nm if nm else '') if e else ''
             seen.add(e)
-            tail = (what + (' (%s)' % w['note'] if w['note'] else '')).strip()
+            # a note the register's name beside it already says is dropped; with no letter the note is the meaning,
+            # printed after a colon, not in brackets after one (unit 2 reads, day 9 finding 10)
+            nt = '' if nm and w['note'].strip().lower() in nm else w['note']
+            tail = (what + (' (%s)' % nt if nt and what else nt)).strip()
             ws.append(w['shown'] + (': ' + tail if tail else ''))
         where = ('warm-up' if r in warm else i['check']) + (' %s' % i['n'] if i['check'] == 'end' else '') + (
             ' (%s)' % i['path'] if i.get('path') else '')
@@ -1715,14 +1779,15 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         # the right one
         pics = ''.join('<div style="margin:.2em 0">%s%s</div>' % (
             ('<i>%s</i>' % ('Their picture' if k == 0 else 'The right picture')) if len(figures(i)) == 2 else '',
-            figure(fig_view(x, 'key'), 0.6)) for k, x in enumerate(figures(i)) if x and kind(x) in ('strip',) + FRACTION_FIGS)
+            figure(fig_view(x, 'key'), 0.6)) for k, x in enumerate(figures(i))
+            if x and kind(x) in ('strip', 'tiles') + FRACTION_FIGS)
         kr.append('<tr><td>%s</td><td>%s</td><td>%s</td><td class="q">%s</td><td>%s</td><td>%s</td></tr>%s' % (
             html.escape(where), html.escape(i['item_id']), html.escape(part_of(i)), html.escape(stem(i)), ans,
             html.escape('; '.join(ws)), ('<tr><td colspan="6">%s</td></tr>' % pics) if pics else ''))
     kb = ('<h1>%s: key</h1><p>Each answer is worked out in full. The last column names the wrong answers to expect and the error each one shows.</p>'
           '<p>%s</p>'
           '<table><tr><th>Where</th><th>Id</th><th>Part</th><th>Question</th><th>Answer</th><th>Wrong answers and what '
-          'they mean</th></tr>%s</table>%s' % (html.escape(title), html.escape(accept([byid[r] for r in refs])),
+          'they mean</th></tr>%s</table>%s' % (html.escape(title), html.escape(key_rule([byid[r] for r in refs], warm)),
                                                ''.join(kr), foot))
     put(out / (name + '-key.html'), page(title + ': key', kb, 'key'), encoding='utf-8')
     if 'At home' in d['secs']:
@@ -1740,13 +1805,17 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     # that part names a partner or self check (its own "Check: ..." line, if any, is the sentence); the frames last
     scr, done, asked = [], set(), set()
     fig = lambda i: figure(figures(i)[0]) if len(figures(i)) == 1 else ''
-    tok = re.compile(r'\[\[(steps:)?([A-Za-z0-9-]+)\]\]|\*\*Ask\.\*\* (.+?)(?=\n\s*\n|\Z)', re.S)
+    # "**Ask.**", and "**Ask** (after step 4)." too: the build dropped the second form's screen (unit 2 reads,
+    # days 7 and 8); the check fails it, so the page keeps one form
+    tok = re.compile(r'\[\[(steps:)?([A-Za-z0-9-]+)\]\]|\*\*Ask\.?\*\*\.? ?(.+?)(?=\n\s*\n|\Z)', re.S)
     peer = re.compile(r'swap and check|swap and compare|partner check|check their own|partners check', re.I)
     on_page = set(REF.findall(d['student']))
     last_ex = []
     draws = re.compile(r'\b(draw|drawn|build|snap|sketch|lay|put out)\b', re.I)
 
     pend, held = [], {}   # a fix's right working, waiting for its Ask; Ask screens waiting for a step (after step N)
+    just = {}   # the worked example walked last, while nothing follows it: an "after step N" Ask written under it
+    # goes after its own step N, not the next example's (unit 2 reads, days 7 and 8; day 19 had it on example 2)
 
     def flush():
         scr.extend(h for _, h in pend)
@@ -1852,8 +1921,10 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                     'Any equal name is right. ' if frac else '',
                     'A sign is right if it reads true as a sentence. ' if sign else '',
                     (' Items %s are judged by your teacher.' % ' and '.join(judged)) if judged else '',
-                    ''.join('<li style="list-style:none"><b>%s.</b> %s</li>' % (html.escape(num(i)), html.escape(say(i)))
-                            for i in end)))
+                    ''.join('<li style="list-style:none"><b>%s.</b> %s%s</li>' % (
+                        html.escape(num(i)), html.escape(say(i)), ''.join(
+                            '<div style="max-width:5in">%s</div>' % tiles(x, 0.6) for x in figures(i)
+                            if kind(x) == 'tiles')) for i in end)))
 
     def walk(text, prac):
         for m in tok.finditer(text):
@@ -1869,8 +1940,13 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                     if q not in asked:   # one screen per planned question, however often the page names it
                         asked.add(q)
                         out.append('<div class="screen">%s</div>' % html.escape(q))
-                if after:   # "after step 2": its screen waits for the next worked example's step 2 (day 19 read)
-                    held.setdefault(int(after[1]), []).extend(out)
+                n = int(after[1]) if after else 0
+                if after and just and just['end'] == len(scr) and n <= len(steps(just['row'])):
+                    at = just['start'] + 1 + n
+                    scr[at:at] = out
+                    just['end'] = len(scr)
+                elif after:   # "after step 2": its screen waits for the next worked example's step 2 (day 19 read)
+                    held.setdefault(n, []).extend(out)
                 else:
                     scr.extend(out)
                     flush()   # a fix's right working comes after the class has answered (unit 3 reads)
@@ -1883,13 +1959,20 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                             prac.append(byid[r])
                 continue
             if m[1] and any(p[0] == m[2] for p in pend):   # [[steps:id]] for a fix shown above: its right working
-                flush()
+                # waits for an Ask later in the same part, so the class answers before the screen does (unit 2
+                # reads, day 7: Lena's reason showed before Lena's question)
+                if not re.search(r'\*\*Ask\.?\*\*', text[m.end():]):
+                    flush()
             if m[2] in done or m[2] not in byid:
                 continue
             done.add(m[2])
             i = byid[m[2]]
             flush()
+            start = len(scr)
             scr.extend(screens(i))
+            just.clear()
+            if i['check'] == 'example':
+                just.update(row=i, start=start, end=len(scr))
             if i['check'] in ('practice', 'tool'):
                 prac.append(i)
         flush()
@@ -1916,8 +1999,23 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
             if len(gs) == 1:
                 scr.append('<div class="screen"><p><b>Group.</b> %s</p></div>' % html.escape(gs[0]))
             if len(gs) > 1:   # groups work at once: one screen holds every task (expert, days 6 and 77)
-                scr.append('<div class="screen" style="font-size:16pt"><p><b>Every group.</b></p><ul>%s</ul></div>'
-                           % ''.join('<li>%s</li>' % html.escape(b) for b in gs))
+                # students read it to find their group: the name and what they match, then the first task sentence
+                # only; the teacher's notes stay on the teacher page (unit 2 reads, day 9 finding 7)
+                def seen_by(b):
+                    j, dep = -1, 0
+                    for k, c in enumerate(b):   # the first bracket, matched: "(7, 8, or ... (error G))"
+                        if c == '(':
+                            dep += 1
+                        elif c == ')' and dep:
+                            dep -= 1
+                            if not dep:
+                                j = k
+                                break
+                    head, rest = (b[:j + 1], b[j + 1:].lstrip(' :.')) if j >= 0 else ('', b)
+                    first = re.split(r'(?<=[.!?])\s+', rest)[0]
+                    return (head + ': ' if head else '') + first
+                scr.append('<div class="screen" style="font-size:16pt"><p><b>Find your group.</b></p><ul>%s</ul></div>'
+                           % ''.join('<li>%s</li>' % html.escape(seen_by(b)) for b in gs))
         for btxt in chunks(whole):
           prac = []
           walk(btxt, prac)
@@ -1927,6 +2025,11 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
           tools, prac = [i for i in prac if i['check'] == 'tool'], [i for i in prac if i['check'] != 'tool']
           ct = re.search(r'^Check(?: \(sort\))?: (.+)$', btxt, re.M)
           say_t = html.escape(ct[1].strip() if ct else 'Does yours match? Fix it in pen.')
+          # a row that asks for a feature is checked on the feature's terms, not against one written answer
+          # (unit 2 reads, day 7 finding 8: right noticing crossed out)
+          feat = lambda rs: any(FEAT.search(stem(i)) for i in rs)
+          if feat(tools) and not re.search(r'feature', say_t, re.I):
+              say_t += ' ' + html.escape(FEAT_SAY)
           brief = [i for i in tools if words(stem(i)) <= 12 and len(i['answer']) <= 60]
           if len(brief) < len(tools):   # all share one screen, or each has its own: the page's order is kept (day 2)
               brief = []
@@ -1964,8 +2067,21 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
           rest = [i for i in prac if i not in plain]
           cm = re.search(r'^Check(?: \((sort)\))?: (.+)$', btxt, re.M)
           if rest and (cm or peer.search(whole)):
-              say = cm[2].strip() if cm else ('Put each answer back in its equation. Does it give the number in the '
-                                             'question? If not, put a question mark.')
+              # the equation line only where there is an equation; a yes or no about multiples reads its
+              # multiplication (unit 2 reads, day 8 finding 7)
+              say = cm[2].strip() if cm else (
+                  'Does your multiplication show it? If not, put a question mark.' if all(
+                      re.search(r'multiple|factor', stem(i), re.I) for i in rest) else
+                  'Put each answer back in its equation. Does it give the number in the question? If not, put a '
+                  'question mark.' if any('=' in stem(i) + i['answer'] for i in rest) else
+                  'Does your working show it? If not, put a question mark.')
+              if feat(rest) and 'feature' not in say.lower():
+                  say += ' ' + FEAT_SAY
+              # a warm-up's questions get their own screen first, so the display put up before class does not
+              # open on the answers (unit 2 reads, day 8 finding 7)
+              if bname.lower().startswith('warm-up') and not any(i in short or i in plain for i in rest):
+                  scr.append('<div class="screen"><ol>%s</ol></div>' % ''.join(
+                      '<li>%s</li>' % stacked(stem(i)) for i in rest))
               # each row's answer, whatever its form; "Check (sort):" shows only its first part, the kind, so a sort
               # checked now does not give away the solving that comes later
               ans = lambda i: i['answer'].split(';')[0].strip() if cm and cm[1] else i['answer']
@@ -2021,7 +2137,26 @@ def accept(rows):
     if any(re.search(r'\b(?:estimate|about)\b', i['answer'], re.I) for i in rows):
         return 'Any close estimate is right: it only has to catch a big mistake.'
     return ''
+FEATURE_RULE = ('A feature is right if it is true of every number and is not the rule. A reason says what one jump '
+                'does to the feature; more numbers are not a reason.')
+
+
+def key_rule(rows, warm=()):
+    """The key's opening line. On a number-pattern day (4.OA.C.5 taught) how to mark a feature and a reason, with
+    the equal-forms or other rule only if a taught row of another standard calls for it: the warm-up and the
+    patterns' own sums do not (unit 2 reads, day 7: the equation note printed from the warm-up's 4 × 18 = 72).
+    Any other day keeps accept() on all its rows."""
+    if not any(i['code'] == '4.OA.C.5' and i['check'] != 'end' for i in rows):
+        return accept(rows)
+    rest = [i for i in rows if i['item_id'] not in warm and i['code'] != '4.OA.C.5']
+    return ' '.join(x for x in (FEATURE_RULE, accept(rest)) if x)
+
+
 LETTER = re.compile(r'(?<![A-Za-z])[a-z](?![A-Za-z])\s*[=×÷+−-]|[=×÷+−-]\s*[a-z](?![A-Za-z])')   # n × 9, = n
+
+
+# error x: any other wrong answer, a slip or miscount that sends a student to no group (unit 2 reads)
+ERR_X = 'Any other wrong answer: no group'
 
 
 def err_name(text):
@@ -2036,6 +2171,8 @@ def err_name(text):
 def cap1(s):
     """The first letter up: a fix's working with its "Right working:" label stripped starts a sentence."""
     return s[:1].upper() + s[1:]
+FEAT = re.compile(r'\b(?:did not say|did not tell|notice)\b', re.I)
+FEAT_SAY = 'Your feature may be different. Is it true of every number? Is it the rule? Fix only those.'
 DRAWS = re.compile(r'\b(draw|sketch|strip picture|strips)\b', re.I)
 
 
@@ -2102,7 +2239,10 @@ def slip_item(k, i):
     out[0] = out[0].replace('<p>', '<p>%d. ' % (k + 1), 1)
     at = [n for n, (kd, _) in enumerate(ps) if kd == 'p'] or [0]
     out[at[0]] += pic
-    out[at[-1]] += box
+    # a drawing box goes under the sentence that asks for the drawing (unit 2 reads, day 8: "Draw steps 2 and 3"
+    # had its box at the foot of the slip, after the lines for the reason)
+    dr = [n for n, (kd, x) in enumerate(ps) if kd == 'p' and DRAWS.search(x)]
+    out[(dr or at)[0] if dr else at[-1]] += box
     return ''.join(out)
 
 
@@ -2302,10 +2442,14 @@ def build_piece(p, items, wrongs, errors):
     out.mkdir(parents=True, exist_ok=True)
     name, kind, title = p['path'].stem, h['piece'], p['title']
     body = re.sub(r'^# .+\n', '', p['body'], count=1, flags=re.M)
+    # a blank, "__", is a line to write on, never markdown's bold: "It must keep going because __." read as
+    # "__ ... __" in bold across a sentence (unit 3 openers), as md() already does for a day page
     mdh = lambda t: markdown.markdown(t, extensions=['tables'])
-    if kind in ('opener', 'family'):
+    blanks = lambda t: re.sub(r'_{2,}', lambda m: '<span class="blank" style="width:%.1fem"></span>'
+                              % (len(m[0]) * 0.45 if len(m[0]) > 2 else 2.5), t)
+    if kind in ('opener', 'family'):   # prose for the teacher or family: a blank is never bold (sheets keep theirs)
         put(out / (name + '.html'), page(title, '<h1>%s</h1>%s%s' % (
-            html.escape(title), mdh(body), unit_foot(h, course, name)), 'teacher'), encoding='utf-8')
+            html.escape(title), mdh(blanks(body)), unit_foot(h, course, name)), 'teacher'), encoding='utf-8')
         return out
     if kind == 'blank':   # a student sheet printed as written (its markup may lay out boxes), with the foot line
         put(out / (name + '-student.html'), page(title, '<h1>%s</h1>%s%s' % (
@@ -2346,7 +2490,13 @@ def build_piece(p, items, wrongs, errors):
         # one column for each look-for on its row
         byid = {i['item_id']: i for i in items}
         wts = [byid[x.strip()] for x in h.get('written', '').split(';') if x.strip() in byid]
-        mid = [((int(d), 0), ('E%s (%s)' % (d, ', '.join(ex(d))) if ex(d) else 'E%s' % d, 1))
+        # a teacher-judged exit on a day the header names ("exitlooks: 7") takes one tick a look-for, like a written
+        # task (unit 2 reads, day 7 finding 2); other sheets keep one tick for the ticket
+        xl = {x.strip() for x in h.get('exitlooks', '').split(';') if x.strip()}
+        xj = lambda d: [i for i in items if i['stretch'] == st and i['check'] == 'exit' and i['day'] == d
+                        and i['judged'] == 'teacher' and steps(i) and d in xl]
+        mid = [((int(d), 0), ('E%s (%s)' % (d, ', '.join(ex(d))) if ex(d) else 'E%s' % d,
+                              max([len(steps(i)) for i in xj(d)] or [1])))
                for d in {i['day'] for i in items if i['stretch'] == st and i['check'] == 'exit'}]
         mid += [((int(w['day']), 1), ('W%s (%s)' % (w['day'], w['part']) if w['part'] else 'W%s' % w['day'],
                                       max(1, len(steps(w))))) for w in wts]
@@ -2359,6 +2509,10 @@ def build_piece(p, items, wrongs, errors):
         cols += [('End %s (%s)' % (i['n'], i['part']) if i['part'] else 'End %s' % i['n'], looks.get(i['n'], 1)) for i in ends]
         lf = ''.join('<p><b>W%s look-fors:</b> %s</p>' % (w['day'], '; '.join('%d. %s' % (k + 1, html.escape(s))
                      for k, s in enumerate(steps(w)))) for w in wts if steps(w))
+        lf = ''.join('<p><b>E%s look-fors:</b> %s</p>' % (i['day'], '; '.join('%d. %s' % (k + 1, html.escape(s))
+                     for k, s in enumerate(steps(i)))) for d in sorted({i['day'] for i in items if i['stretch'] == st
+                                                                      and i['check'] == 'exit'}, key=int)
+                     for i in xj(d)) + lf
         lf += ''.join('<p><b>End %s look-fors:</b> %s</p>' % (i['n'], '; '.join('%d. %s' % (k + 1, html.escape(s))
                       for k, s in enumerate(steps(i)))) for i in ends if i['judged'] == 'teacher' and steps(i))
         hd = '<tr><th>Student</th>%s</tr>' % ''.join('<th colspan="%d">%s</th>' % (n, html.escape(c)) for c, n in cols)
@@ -2388,6 +2542,9 @@ def build_piece(p, items, wrongs, errors):
             return '<table class="facts"><tr>%s</tr></table>' % ''.join(
                 '<td style="border:0;width:20%%">%s = ____</td>%s' % (x, '</tr><tr>' if k % 5 == 4 else '')
                 for k, x in enumerate(fs))
+        if i.get('figure') and i['figure'].split()[0] in FRACTION_FIGS:
+            # the line or strips under the item are its work space (unit 2 reads, cheap day 9)
+            return '<p>Answer: %s</p>' % ('_' * 30)
         if h.get('room') == 'line':   # worked on grid paper: the answer line only (s09 expert, day 77)
             return '<p>Answer: %s</p>' % ('_' * 30)
         if h.get('room') == 'tall':   # a whole search: a tall box and a full-width answer line (day 3 read)
@@ -2403,6 +2560,7 @@ def build_piece(p, items, wrongs, errors):
     put(out / (name + '-student.html'), page(title, sb, 'student'), encoding='utf-8')
     put(out / (name + '-student-large.html'), page(title + ', large print', sb, 'student large'), encoding='utf-8')
     errname = {e['letter']: err_name(e['error']) for e in errors if e['stretch'] == h.get('stretch')}
+    errname['x'] = ERR_X
     tail = lambda w: ((('error %s, %s' % (w['error'], errname.get(w['error'], '').lower())) if w['error'] else '')
                       + (' (%s)' % w['note'] if w['note'] else '')).strip()
     wr = lambda i: '; '.join(w['shown'] + (': ' + tail(w) if tail(w) else '')

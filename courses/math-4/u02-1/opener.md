@@ -36,7 +36,7 @@ and 9 more threes, 31. Drawing all ten is error B.
 
 ## Dots, squares and the list
 
-- **Day 7.** Dot pairs under the camera, then on paper: each term drawn as pairs and one left over, tied that day
+- **Day 7.** Dot pairs on the board, then on paper: each term drawn as pairs and one left over, tied that day
   to the sentence "odd plus even is odd". The list is numbered, and each jump is drawn as an arrow between
   neighbours.
 - **Day 8.** Paper squares and sticks in pairs: build steps 1 to 3, write each count under its step, then find
@@ -45,8 +45,8 @@ and 9 more threes, 31. Drawing all ten is error B.
 **The tool minutes, on paper.** When it exists: Rule Machine, number tapes 1 and 5 (day 7) and the shape tapes
 (day 8). Until then, write the tape on the board: day 7, "start at 1, add 3" and "start at 3, add 5"; day 8,
 two of "start at 3 tiles, add 2", "start at 1 tile, add 3", "start at 4 tiles, add 4" and "start at 2 tiles, add 5".
-Give three terms or three steps. Students write the next five in a frame on the recording page, mark one feature
-and write why. Then show the full list; each checks their own.
+Give three terms or three steps. Students write the next five in a frame on the recording page; day 7, mark one
+feature and write why; day 8, find the 10th step. Then show the full list; each checks their own.
 
 ## Why this model
 

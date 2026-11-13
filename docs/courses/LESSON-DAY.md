@@ -289,6 +289,19 @@ day); challenges whose one fraction matches; notes for a comparing section's reg
 item has a wrong row for, and one shown value under two letters on a check item. A fraction rule's
 multiplications are not area facts, and the "same answer" note skips answers that are only True or False.
 
+Added from the unit 2 reads (2026-11-12). Gates: a bold `**Ask**` not written `**Ask.**` (the build now reads both,
+and holds a fix's right working until an Ask later in the same part); an assessment day with teacher-judged
+items when the next day's file never names "day N's assessment" or "day N's items"; the answers-on-display gate
+also reads "answers on the display" and "the answers on the screen"; notes for "under the camera" on a day with
+no document camera. `plan.py check` fails an end item whose stem list shares three or more numbers (10 or more)
+with one taught list, and notes an exit or end row that asks why or to explain but is keyed, not judged. The
+build: a `tiles` figure kind (`tiles #/# ##/##`, rows by `/`, `.` a gap, `sticks` for outlines); a key that opens
+with the feature and reason rule on a 4.OA.C.5 day; a check screen that says "Your feature may be different" when
+rows ask for a feature; a warm-up question screen before its check; a group screen headed "Find your group."
+that shows only what students match and the first task; a record header `exitlooks: 7;8` that gives a judged
+exit one tick a look-for; error `x` (any other wrong answer, no group) in wrongs.csv; a line or strip figure on a
+check piece prints under its item, with an answer line in place of the work box.
+
 **How days are read.** Every day by the gates; a sample of days per section by the expert; the whole of the first
 section in each course by a teacher, in a taught run.
 

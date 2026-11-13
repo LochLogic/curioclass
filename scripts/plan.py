@@ -398,6 +398,11 @@ def check(course):
             fails.append('%s: judged by the teacher but has no look-fors in its steps cell' % i['item_id'])
         if i['judged'] == 'teacher' and not i.get('samples', '').strip():
             fails.append('%s: judged by the teacher but has no samples cell (meets | partly | not)' % i['item_id'])
+        # an exit or assessment item that asks why, keyed with no look-fors, is marked by whatever the teacher thinks
+        # a reason is (unit 2 reads, day 7 finding 2)
+        if i['check'] in ('exit', 'end') and i['judged'] == 'key' and re.search(r'\b(?:why|explain)\b', i['stem'], re.I):
+            notes.append('%s: asks why but is keyed; judge it by the teacher with look-fors and samples, or rule '
+                         'that the key holds it' % i['item_id'])
         # plan words printed to students (unit 3 reads, days 23 and 24): a condition for the page ("No drawing.",
         # "No line given.") belongs in the teacher page or a column, and student text is not wrapped in quotes
         if DIRECTION.match(i['stem']):
@@ -429,7 +434,8 @@ def check(course):
             check_key(lab, w['compute'], w['value'], fails)
         it = next((i for i in items if i['item_id'] == w['item_id']), None)
         st = it['stretch'] if it else None
-        if w['error'] and (st, w['error']) not in letters:
+        # x marks any other wrong answer: a slip or a miscount that sorts to no group (unit 2 reads, days 8 and 9)
+        if w['error'] and w['error'] != 'x' and (st, w['error']) not in letters:
             fails.append(lab + ': error letter %s is not in the error register' % w['error'])
         # a "left to right" error's wrong answer is what the item's expression gives worked strictly left to right
         # (or a first step of that); expert, day 88: Ravi's 175 was not left to right at all
@@ -485,6 +491,20 @@ def check(course):
             for b, nb in asked[k + 1:]:
                 if na == nb:
                     fails.append('%s and %s use the same numbers: %s' % (a, b, ', '.join(sorted(na))))
+        # 3. the given list of an end item does not sit inside a taught list: three or more of its numbers among one
+        # taught row's answers (unit 2 reads, day 7 finding 10: 15, 23, 31 were terms of the worked example's list)
+        # (a list is three or more numbers in a row, "15, 23, 31"; one- and two-digit search lists like 1, 2, 3 are
+        # every unit's small numbers and do not count)
+        for i in end:
+            given = {x for run in re.findall(r'\d+(?:, \d+){2,}', i['stem']) for x in run.split(', ')
+                     if int(x) >= 10}
+            for x in items:
+                if x['stretch'] == s and x['check'] in LESSON_KINDS:
+                    vals = {v.strip() for v in split(x['value']) if v.strip() not in ('True', 'False')}
+                    inside = given & vals
+                    if len(inside) >= 3:
+                        fails.append('%s gives %s, which sit inside the taught list of %s'
+                                     % (i['item_id'], ', '.join(sorted(inside, key=lambda v: float(v) if v.replace('.', '').isdigit() else 0)), x['item_id']))
         # 3a. a fact turned round: a check or exit item that shares a taught row's multiplication or division fact
         # (a, b, a x b from the compute cells, any order) and prints that row's answer as a given number fails, so a
         # taught answer reused as a factor is caught (expert, day 88: 63 = 7 x 9 was day 87's 63 / 9 = 7; day 85:
@@ -565,7 +585,7 @@ def check(course):
         for i in end + [x for x in items if x['stretch'] == s and x['check'] == 'exit']:
             seen = {}
             for w in wrongs:
-                if w['item_id'] == i['item_id'] and w['error'] and not re.search(
+                if w['item_id'] == i['item_id'] and w['error'] not in ('', 'x') and not re.search(
                         r'\([a-h]\)|\((?:i|ii|iii|iv)\)|\b(?:first|second|third|fourth|top|bottom)\b', w['shown'], re.I):
                     for v in re.split(r',\s+|\s+or\s+', w['shown'].strip()):
                         if re.fullmatch(r'[\d/,. ]+', v):
