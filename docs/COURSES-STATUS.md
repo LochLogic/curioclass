@@ -23,9 +23,9 @@ No course has lessons, print, checks with keys or teacher pages yet. That is lay
 |---|---|---|---|---|---|---|
 | Math | 15 | 12 | 1 | 1 | 144 | 112 / 18 / 14 |
 | English Language Arts | 13 | 13 | 1 | 0 | 113 | 105 / 6 / 4 |
-| Science | 14 | 11 | 1 | 0 | 110 | 77 / 24 / 9 |
+| Science | 14 | 12 | 1 | 0 | 110 | 77 / 24 / 9 |
 | Social Studies | 16 | 15 | 0 | 0 | 131 | 122 / 4 / 5 |
-| **The four core subjects** | **58** | **51** | **3** | **1** | **498** | **416 / 52 / 32** |
+| **The four core subjects** | **58** | **52** | **3** | **1** | **498** | **416 / 52 / 32** |
 | Arts and Music | 20 | 8 | 0 | 0 | 72 | 0 / 58 / 14 |
 | Health and PE | 8 | 8 | 0 | 0 | 31 | 15 / 8 / 8 |
 | Computer Science | 4 | 0 | 0 | 0 | 66 | 84 / 23 / 8 |
@@ -34,7 +34,7 @@ No course has lessons, print, checks with keys or teacher pages yet. That is lay
 | Social and Emotional Learning | 4 | 0 | 0 | 0 | 10 | 2 / 0 / 8 |
 | English Language Development | 4 | 0 | 0 | 0 | 21 | 15 / 1 / 5 |
 | Library and Research Skills | 4 | 0 | 0 | 0 | 13 | 7 / 4 / 2 |
-| **All courses** | **107** | **68** | **3** | **1** | **750** | **569 / 149 / 83** |
+| **All courses** | **107** | **69** | **3** | **1** | **750** | **569 / 149 / 83** |
 
 Tool counts here leave out tools that sit on shared topics (last table). "Spec" includes a few that are still ideas.
 
@@ -92,7 +92,7 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 | Biology | yes | no | shared page only | no | no | no | 9 | 5 / 4 / 0 |
 | Earth and Space Science |  | no | shared page only | no | no | no | 6 | 5 / 1 / 0 |
 | Chemistry | yes | no | shared page only | no | no | no | 9 | 5 / 3 / 1 |
-| Physics |  | no | shared page only | no | no | no | 9 | 5 / 1 / 3 |
+| Physics | yes | no | shared page only | no | no | no | 9 | 5 / 1 / 3 |
 | Environmental Science |  | no | shared page only | no | no | no | 5 | 1 / 4 / 0 |
 
 ## Social Studies (16 courses)

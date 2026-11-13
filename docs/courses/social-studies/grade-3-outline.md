@@ -54,7 +54,10 @@ Every unit runs the C3 inquiry arc at grade 3 depth (a question, sources, a clai
 Read 2026-11-13 to fill the year, read only (cited by name; nothing copied): California (History-Social Science
 Standards, grade 3), New York (Framework, grade 3), Texas (TEKS, grade 3), Colorado (2022 standards, grade 3) and
 Florida (2023 standards, grade 3). Virginia, Michigan and Tennessee did not load for automated reading and were
-not worked around. What the five share and the anchor's grade 3 lacks or teaches thinly:
+not worked around. Tennessee was read later the same day in a normal browser: its 2024 standards (in classrooms
+2027-28) make grade 3 a US history year, from Indigenous peoples and European exploration through the colonies,
+independence and the Constitution to westward expansion. Our units 4 to 6 cover the first part of that in brief;
+grade 5 carries the rest. What the five share and the anchor's grade 3 lacks or teaches thinly:
 
 - **Community economics** in all five: producers and consumers, goods and services, scarcity, money, saving. Now
   unit 3.

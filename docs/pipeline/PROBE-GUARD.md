@@ -3,6 +3,15 @@
 Written 2026-11-13 for docs/PRODUCTION-PATH.md P4, before any plan is written, so no result is judged by a line
 drawn after seeing it. Shown to Cory on the Desk (card q-probe-guard) before the first probe runs.
 
+## In short
+
+After a subject's units are planned, write a few real days from them and count how often a problem on a day had
+to be fixed in the unit plan or above. A quarter is where the old grade 4 math plan stood. A fifth or less means
+the plans are good; more than a third means fix the plans before going on. Two smaller checks ask whether the same
+fix is needed in many units and whether the unit template itself must change. When: the probe runs after each
+subject's units are planned (social studies first, after baseline 1 and before baseline 2); the guard runs once
+every subject's units are planned, before full writing.
+
 ## What is measured
 
 The **probe** (PRODUCTION-PATH step 4, and each subject in step 5) writes one section, 3 to 5 days, from a subject's

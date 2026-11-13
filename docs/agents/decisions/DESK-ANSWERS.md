@@ -890,3 +890,19 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    in 11 and 12, Government and Economics as half years in 11 and 12. Core social studies goes from 13 courses to 15.
 2. **Grade 3 draws on other states' grade 3 standards** wherever they make the year better (read only, our own
    words), on top of the Massachusetts skills kept in general form and C3.
+
+
+## 2026-11-13: cards q-probe-guard, q-ss-partial-bases, q-hs-science-core (Cory, on the Desk)
+
+- **q-probe-guard:** "this seems overly complex but i think i agree. these only happen after unit writing but
+  before baseline 1?" The lines stand (docs/pipeline/PROBE-GUARD.md, now with a short version at the top). On the
+  timing: no. Baseline 1 comes first, after the course frames (step 2). The probe runs once a subject's units are
+  planned (social studies first, step 4, before baseline 2), and the guard runs once every subject's units are
+  planned, before full writing (step 7). Both write a few days from unit plans; neither writes full units.
+- **q-ss-partial-bases:** (1) the UK Open Government Licence v3.0 joins the base-text bar, with each Oak item
+  checked for third-party material and Oak named only in the credit line. (2) On the OpenStax line about AI:
+  "these are not being used to train AI. AI isnt "taking them in" i say we are fully fine to use them under that
+  clause." The retired CC BY OpenStax books (American Government 3e, Economics 2e, Psychology 1e) are partial base
+  texts; the current CC BY-NC-SA editions stay reference.
+- **q-hs-science-core:** yes. Physics is core; the Earth and space standards are folded into Biology, Chemistry and
+  Physics; Earth and Space Science and Environmental Science stay electives. data/courses.csv updated.

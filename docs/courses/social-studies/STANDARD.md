@@ -81,7 +81,7 @@ or teaches thinly is added inside the year's days, with its source recorded.
 | Check set member | Why | Edition | Reuse |
 |---|---|---|---|
 | California | Rated A- in civics and US history (Fordham 2021); fullest grade-by-grade content | Standards 1998, framework 2016 | Read only; ids and our own words if ever cited (CDE needs permission to reproduce) |
-| Tennessee | Rated A-; newest revision; has economics, government and psychology standards | 2024 revision (in classrooms 2027-28) | Read only; terms not confirmed |
+| Tennessee | Rated A-; newest revision; has economics, government and psychology standards | 2024 revision (in classrooms 2027-28) | Read only; the 2024 page, site policies and PDF state no reuse terms (read 2026-11-13), so ids and our own words only |
 | New York | A- in US history; its high school order matches the common national pattern | Framework 2014 (K-8 revised 2016, 9-12 2017) | Read only; NYSED terms allow educational use with credit, not commercial use. On disk: S:\CurioClass-sources\reference-only-do-not-copy\new-york-ss-toolkit |
 | The college-level course frameworks (grades 9 to 12 only) | The working high mark for high school content | Current editions | Read only; never named in student, teacher or family copy |
 | Educating for American Democracy Roadmap | National history and civics guide built by about 300 scholars | 2021 | Read only |

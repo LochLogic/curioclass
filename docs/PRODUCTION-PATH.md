@@ -28,7 +28,7 @@ same kind of model that wrote them.
    layers set the order: foundation, standards, approach, **progressions** (layer 4: what each grade owns, assumes
    and hands on, per subject, across all its grades), each course's frame and scope and sequence (with its map
    against the base text, where there is one), then units. Progressions and course frames are built and reviewed
-   for all four core subjects together (math, ELA, science, social studies: 56 courses); scope and sequence and
+   for all four core subjects together (math, ELA, science, social studies: 58 courses since the 2026-11-13 social studies redraw, 52 of them core); scope and sequence and
    units then go one subject at a time, each reviewed from its progression down. Sections, days, lessons and
    tools come only after every core subject's units are planned and reviewed. This replaces BASELINE rule 25
    ("prove at the bottom before planning wider"; Cory, 2026-11-13). Cory's reasoning, in chat: well-made units in a sound
@@ -149,7 +149,7 @@ math progression page.
     and own words, or mark psychology (an elective, not flagged core) for after the core.
   No social studies progression starts before P1a to P1d are done.
   **State 2026-11-13: all five done (P1b on Cory's yes, Desk card q-ss-course-list).** All
-  five are recorded in docs/courses/social-studies/STANDARD.md (anchor file data/standards/ma-hss-2018.txt, 991 ids
+  five are recorded in docs/courses/social-studies/STANDARD.md (anchor file data/standards/ma-hss-2018.txt, 997 ids
   with our own words, checked by scripts/standards.py; check set California, Tennessee and New York; grade 3 outline
   docs/courses/social-studies/grade-3-outline.md; psychology after the core). Tasks set aside until a trigger are
   in data/plans/later.csv, shown on the Desk under the plan flow.
@@ -225,7 +225,7 @@ A course frame says what the course is: its grades, the standards and progressio
 unit list with a reason for each unit, and, where there is a base text, the source map (data/plans/<course>/source-map.csv: every base lesson placed in
 one of our units, scripted from the source's free pages, then judged for unit edges and day counts; grade 4 math's
 table of 149 IM lessons is already scripted, kept outside the repo in the source store). A course frame is the course-level
-summary; its scope and sequence (step 3) then sets every day in order. The 56 core courses get one each. The three scopes and sequences on
+summary; its scope and sequence (step 3) then sets every day in order. The 58 courses of the four core subjects get one each. The three scopes and sequences on
 file are read as input against the progressions, not assumed right.
 
 Then **baseline 1**, a whole-structure review:
@@ -267,7 +267,7 @@ they exist. The grade 4 source map resumes here.
 
 ### Step 6. The final review: every subject, every course
 
-One cold read from the progressions down across all 56 core courses: continuity through the grades, the
+One cold read from the progressions down across all 58 courses of the four core subjects: continuity through the grades, the
 cross-subject column, frames and units against their layers. Then a Codex read of a sample and a human read where
 people are found. This is the last check before days.
 
@@ -355,7 +355,7 @@ development with ELA; health with science), the cross_subject column notes it fo
 - Whether planning every unit before writing leaves few enough problems below (the probe and the guard measure it;
   section 2's table suggests planning can reach about 9 of 26 day-level problems, not the 11 in the day itself).
 - The real cost of planning a subject (social studies measures it first). Rough guesses only so far: 6 to 8 million
-  tokens for the progressions; units for 56 courses not yet sized.
+  tokens for the progressions; units for 58 courses not yet sized.
 - How long the whole planning phase takes, so how long no new days go live. Cory accepted this (2026-11-13).
 - Whether a base text helps in ELA and science as it did in math (step 5 tells).
 - How well the expert reads outside math (P5d measures it); whether its findings match a teacher's and a content

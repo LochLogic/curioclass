@@ -10,7 +10,8 @@ whole store is catalogued in `S:\CurioClass-sources\_catalog\` (`CATALOG.csv`, `
 
 ## The two kinds
 
-- **Base text** (top level of the store): CC BY 4.0. We may adapt it into our days, in our voice and format, with a
+- **Base text** (top level of the store): CC BY 4.0, public domain, or the UK Open Government Licence v3.0 (added by
+  Cory 2026-11-13). We may adapt it into our days, in our voice and format, with a
   credit line on the day. Its name and logo are trademarks and are never used except inside the credit line.
 - **Reference** (`reference-only-do-not-copy\`): non-commercial, share-alike, no-derivatives or unclear. For checking
   ideas, order, models and pacing only. Never copy its problems, wording or images into a Curio Class page.
@@ -39,9 +40,11 @@ this bar, so every social studies course is our own. Partial bases, none loaded 
   1500 to 1800 in world-hist-hs. Read its copyright page and image credits before adapting.
 - Washington OSPI, Since Time Immemorial (CC BY 4.0): a tribal sovereignty strand in grades 4, 5, 8 and high school,
   after the sensitivity review; OSPI asks that adaptations keep its content design.
-- Waiting on Cory (Desk card q-ss-partial-bases): Oak National Academy ancient civilisations units (UK Open
-  Government Licence v3.0) for grades 6 and 7, and the OpenStax CC BY books whose prefaces bar taking them into
-  AI (American Government 3e, Economics 2e, Psychology 1e).
+- Oak National Academy ancient civilisations units (UK Open Government Licence v3.0, accepted by Cory 2026-11-13):
+  grades 6 and 7. Each item checked for third-party images or text, which that licence does not cover.
+- OpenStax retired CC BY editions, American Government 3e, Economics 2e and Psychology 1e: government, economics and
+  psychology. Cory 2026-11-13: their preface line on training and taking books into AI does not cover our use (we
+  adapt the text into our own days; we train no model). The current OpenStax editions are CC BY-NC-SA: reference.
 
 ## Our own (no base text)
 

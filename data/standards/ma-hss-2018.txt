@@ -4,7 +4,7 @@
 # level: MA.<framework topic code>.<standard number><letter>; topic and sub-topic heading lines too (MA.6.T3b); repeated high school codes take a section prefix: MA.GOV, MA.ECON, MA.PFL, MA.NML
 # copyright: the framework permits copying for non-commercial educational use with credit. Credit: Massachusetts Department of Elementary and Secondary Education. This file holds ids and Curio Class's own words only, never the framework's sentences.
 # note: content standards K to 12 only. Not loaded: pre-kindergarten, the practice standards (C3 carries skills), the literacy standards (CCSS ELA file covers them).
-# note: some source standards were garbled by PDF extraction (two-column fragments, spliced footnotes); USII.T2.4a to e pair items as extracted and need a reread before a unit cites them.
+# note: some source standards were garbled by PDF extraction (two-column fragments, spliced footnotes); USII.T2.4 reread against the PDF 2026-11-13 (11 single options, a to k).
 MA.K.T1	Kindergarten civics: being a good citizen in the classroom
 MA.K.T1.1	Follow rules and expectations with little reminding, and with help ask and answer questions about why rules exist.
 MA.K.T1.2	Take on jobs at school and home, follow through on them, and be helpful and respectful to others.
@@ -553,12 +553,18 @@ MA.USII.T2.1i	Study the growing visibility of same-sex relationships, especially
 MA.USII.T2.1j	Study the Bread and Roses Strike in Lawrence, the Boston police strike, and the Massachusetts trials and execution of Sacco and Vanzetti.
 MA.USII.T2.2	Describe the causes and effects of the worldwide Great Depression of the 1930s and compare competing economic theories that explain it, such as Keynesianism and monetarism.
 MA.USII.T2.3	Gather and analyze primary sources to create a report on how Americans responded to the Great Depression.
-MA.USII.T2.4	Use primary sources to analyze key policies, institutions, trends and personalities of the Depression era, such as Hoover, Franklin and Eleanor Roosevelt, Frances Perkins, and Huey Long, through a case study of one topic.
-MA.USII.T2.4a	Case study option: the Federal Deposit Insurance Corporation and the Works Progress Administration.
-MA.USII.T2.4b	Case study option: the Securities and Exchange Commission and the American Federation of Labor.
-MA.USII.T2.4c	Case study option: the Tennessee Valley Authority and the Congress of Industrial Organizations.
-MA.USII.T2.4d	Case study option: the Social Security Act and the American Communist Party.
-MA.USII.T2.4e	Case study option: the National Labor Relations Act, and the America First movement and antisemitism in the U.S.
+MA.USII.T2.4	Use primary sources to analyze key policies, institutions, trends and personalities of the Depression era, such as Hoover, Franklin and Eleanor Roosevelt, Frances Perkins, Huey Long, Charles Coughlin and Charles Lindbergh, through a case study of one topic.
+MA.USII.T2.4a	Case study option: the Federal Deposit Insurance Corporation.
+MA.USII.T2.4b	Case study option: the Securities and Exchange Commission.
+MA.USII.T2.4c	Case study option: the Tennessee Valley Authority.
+MA.USII.T2.4d	Case study option: the Social Security Act.
+MA.USII.T2.4e	Case study option: the National Labor Relations Act.
+MA.USII.T2.4f	Case study option: the Works Progress Administration.
+MA.USII.T2.4g	Case study option: the Fair Labor Standards Act.
+MA.USII.T2.4h	Case study option: the American Federation of Labor.
+MA.USII.T2.4i	Case study option: the Congress of Industrial Organizations.
+MA.USII.T2.4j	Case study option: the American Communist Party.
+MA.USII.T2.4k	Case study option: the America First movement and antisemitism in the U.S..
 MA.USII.T2.5	Evaluate how well the New Deal programs of the 1930s worked and how society responded to them.
 MA.USII.T3	Defending democracy: responses to fascism and communism
 MA.USII.T3.1	Build an argument about how effective American isolationism was and how it shaped U.S. foreign policy.
