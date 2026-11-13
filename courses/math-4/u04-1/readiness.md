@@ -19,9 +19,9 @@ Show your work for each one.
 
 The last ten minutes of day 24, after unit 3's end-of-unit assessment and its respond half. Alone, on paper, all
 written; no strips. Read each item aloud once. Mark before day 25: a tick, the sign below where it shows, or x for
-any other wrong answer. Item 1 needs all three for a tick; item 4 needs eight of ten. Keep the marked sheets for
-unit 4's record sheet and opener, which are planned with unit 4; the four items are the ones the grade 3 to 5
-progression names for unit 4.
+any other wrong answer. Item 1 needs all three for a tick; item 4 needs eight of ten. Enter the marks on unit 4's
+record sheet (record.md, columns R1 to R4); section 4.1's opener has the reteach. The four items are the ones
+the grade 3 to 5 progression names for unit 4.
 
 - **Item 1, counting on by fourths, past 1.** The signs: 4/5, 5/6, 6/7 (both numbers counted up, the start of
   adding tops and adding bottoms); stopping at 4/4 (a fraction thought to end at one whole).

@@ -265,7 +265,9 @@ Not a gap: the 30 by 20 lot. The tool states 600 and never asks for it; keep it 
 
 ## Recipe Scaler
 
-- **Mark.** Key on days 26, 33 and 35; light on days 30, 36 and 37 (the plans' own). Spec only.
+- **Mark.** Key on days 26 and 35; light on days 30, 33, 36 and 37 (the plans' own; day 33 moved to light by
+  the expert read, docs/reviews/plan-s04-2026-11-12.md). Spec only. Ask 1 is the precondition for every tool
+  day: until it is built, each tool day's paper path is written in full.
 - **Verdict.** Partly fits. Every part of 4.NF.B.3 is in it with feedback on each try, but it runs as one 35 to
   45 minute sitting in a fixed order, and its picture is a cup, not the number line unit 4 carries.
 - **Spec.** tools/recipe-scaler/spec.md.
@@ -284,11 +286,12 @@ Days 25, 27 to 29, 31, 32 and 34 run on paper.
 Asks, from [s04](s04.md) field 8 and the four section plans:
 
 1. Each part opens by itself, from the header, whether or not the earlier parts are done. Unit 4 uses six
-   parts on six days. (s04; all four section plans.)
+   parts on six days. The precondition for every tool day. (s04; all four section plans.)
 2. A number line under the cup in the building and pantry rounds, from 0 to 5, so the cup's fill and the
    unit's carried line show one amount. (s04; u04-1; u04-3.)
 3. The pantry and double-batch rounds ask for the way: the child picks "as fractions" or "wholes and parts",
-   and a "the other way" button redoes the same sum, so both of the standard's ways are met. (u04-3.)
+   and a "the other way" button redoes the same sum, so both of the standard's ways are met. Day 33 becomes
+   key only once this is built. (u04-3.)
 4. Pantry rounds where the parts are too few, so a whole must be broken, are at least half the take-aways;
    the spec has three of six. (u04-3.)
 5. "On your own" is scored by the unit's seven parts (s04 field 2), not the five codes: 4.NF.B.3b's decompose
@@ -296,8 +299,8 @@ Asks, from [s04](s04.md) field 8 and the four section plans:
 6. Kitchen stories with the unknown at the start (one of eight) and compare stories with "fewer" (none). (u04-4.)
 7. A different-wholes story among the kitchen stories, beside the mug and pan rounds. (u04-4.)
 8. Its rounds, stories and "on your own" items must keep out of the plan's checks: the plan's side was chosen
-   so (s04 field 5). Recheck if the spec changes, and enter its items as rows when the plan-data job runs.
-   (s04.)
+   so (s04 field 5). Recheck if the spec changes. Done 2026-11-12: its items are rows in data/plans/math-4/items.csv
+   (s04-T26-1 to s04-T37-10), and the gate holds the checks against them. (s04.)
 
 ## Earlier-grade tools named for reteach
 

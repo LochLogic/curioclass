@@ -55,7 +55,7 @@
 ### Unit 5. Line Plots (days 39 to 41; 4.MD.B.4)
 
 - **Grade 3 hands it (Strong):** measuring to halves and fourths of an inch and plotting on a line plot (3.MD.B.4); the number line as a measurement model (2.MD.B.6).
-- **Readiness.** (1) W: reads three lengths off a pictured ruler to the nearest quarter inch (3.MD.B.4). (2) W: reads a line plot: how many, most common (3.MD.B.4). (3) W, this year: finds 5/8 + 2/8 and 7/8 − 3/8 (4.NF.B.3, unit 4). (4) W, this year: writes 1/2 and 3/4 as eighths (4.NF.A.1, unit 3).
+- **Readiness.** (1) W: reads three lengths off a pictured ruler to the nearest quarter inch (3.MD.B.4). (2) W: reads a line plot: how many, most common (3.MD.B.4). (3) W, this year: finds 3/8 + 6/8 and 15/8 − 2/8 (4.NF.B.3, unit 4). (4) W, this year: writes 1/2 and 3/4 as eighths (4.NF.A.1, unit 3).
 - **Grade 5 needs from it:** the same plots for all fraction operations (5.MD.B.2); the number line, as in unit 3.
 - **Limits:** scale in halves, fourths, eighths. Adding and subtracting only. Where a problem mixes them, label the scale in eighths (Prog. p. 89 (83)).
 - **Hard here:** the scale is a number line, so the tick-mark error from unit 3 returns.

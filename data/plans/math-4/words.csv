@@ -7,3 +7,5 @@ pattern,use,reason
 \bleast common (?:denominator|multiple)\b,a common denominator,no least common denominator is asked (s03 limits; Prog. p. 150 (144))
 \b(?:find|guess|work out|figure out) (?:the|a|its) rule\b,the rule is always given,"grade 4 never asks students to find the rule (s02 limits; Progressions, OA, p. 31)"
 \bfeatures?\b,"something you notice, or something true about the numbers","""feature"" is hard for a nine-year-old (s02 U9)"
+\btimes the bottom\b,"a mixed number written as a sum first, 2 + 3/4 = 4/4 + 4/4 + 3/4","no ""times the bottom, add the top"" rule (s04 limits; Prog. p. 151 (145))"
+\bnot regrouped\b,"a right sum, not yet written as a mixed number","the sum is right; renaming is measured apart (expert, s04 read, finding 5)"

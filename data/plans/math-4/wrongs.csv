@@ -1072,3 +1072,60 @@ s04-R1,"4/5, 5/6, 6/7",,,,counts both numbers up
 s04-R1,stops at 4/4,,,,stops at one whole
 s04-R2,2/4,,,,writes the whole number on top
 s04-R3,3/4,,,,adds the same number to both (unit 3 error B)
+s04-E1,"five 1/5s, stopping at 1",,,B,
+s04-E1,five 1/8s,,,,top and bottom read the other way
+s04-E1,"eight 1/5s with ""= 8/40""",,,A,
+s04-E2,5/6 + 6/6,,,A,the bottom split too
+s04-E2,5/12 + 6/12 then 6/12 + 5/12,,,D,
+s04-E2,a sum that makes 10/12,,,x,a miscount
+s04-E3,Ana,,,C,
+s04-E3,"""Tam"", with no drawing or reason",,,,look-for 1 only
+s04-E4,(i) 15/24,F(7+8;12+12),15/24,A,
+s04-E4,(ii) 3/0 or 3/20,,,A,
+s04-E4,(ii) 13/10,F(8;10)+F(5;10),13/10,x,"joined, not separated"
+s04-E5,Right,,,E,
+s04-E6,(i) 5,3+2,5,C,
+s04-E6,(i) 9,,,x,the 2/3 dropped
+s04-E6,(ii) 3 6/5 or 6 3/23,,,x,"the numbers placed, not counted"
+s04-E7,5 15/24,,,A,
+s04-E7,5 3/12,,,G,
+s04-E8,3 5/10,,,F,
+s04-E8,2 5/0,,,A,
+s04-E9,2 4/12,,,F,
+s04-E9,10 6/12,F(53;12)+F(73;12),10 6/12,H,added the two heights
+s04-E10,22/30,,,A,
+s04-E10,2 km,,,,the leftover tenths dropped
+s04-X25,five 1/5s,,,B,
+s04-X25,"""less, it is a fraction""",,,B,
+s04-X25,five 1/6s,,,,top and bottom read the other way
+s04-X25,1/5 + ... = 6/30,,,A,
+s04-X26,3/6 + 4/6,,,A,
+s04-X26,the same two parts swapped,,,D,
+s04-X27,5/10,F(2+3;10),5/10,C,
+s04-X27,13/10,,,x,one whole counted
+s04-X28,(a) 3/0 or (c) 7/0,,,A,
+s04-X28,(b) 1/6 or 3/6,,,C,1 not seen as 6/6
+s04-X29,9/12,F(4+5;6+6),9/12,A,
+s04-X29,10/6,,,x,hops counted by tick marks from the mark at 0
+s04-X30,(a) 7/0,,,A,
+s04-X30,(a) 11/5,F(9;5)+F(2;5),11/5,x,"joined, not separated"
+s04-X30,(b) yes,,,E,
+s04-X31,6/5,F(4;5)+F(2;5),6/5,H,
+s04-X31,2/0,,,A,
+s04-X32,(a) 8,1+7,8,C,
+s04-X32,(a) 7,,,x,the whole dropped
+s04-X32,(b) 4/5,,,x,the wholes dropped
+s04-X32,(b) 1 9/5,,,x,one whole taken out only
+s04-X33,3 9/12,,,A,
+s04-X33,3 3/6,,,G,
+s04-X33,two ways that do not agree,,,x,a slip in one way: find it on the line
+s04-X34,2 4/6,,,F,
+s04-X34,2 4/0,,,A,
+s04-X35,(a) 2 1/10,,,F,the whole not broken
+s04-X35,(b) 5 16/24,,,A,
+s04-X35,(b) 5 4/12,,,G,
+s04-X36,2 3/10,,,F,
+s04-X36,4 5/10,F(31;10)+F(14;10),4 5/10,H,
+s04-X37a,(a) 3/8,F(26;8)-F(23;8),3/8,H,"""cut off"" read as subtract"
+s04-X37a,(a) 5 9/16,,,A,
+s04-X37b,(b) yes,,,E,

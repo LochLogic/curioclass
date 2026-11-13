@@ -854,3 +854,12 @@ date,course,artifact,layer,found_by,kind,summary,status,ref
 2026-11-12,math-4,d009.md,day,cheap,wording,"Item 5 frame gives the method: expert disagreed, it is the section frame",rejected,docs/reviews/cheap-d009-2026-11-12.md#13
 2026-11-12,math-4,items.csv,day,cheap,figure,Item 4 had no figure; tiles figure of step 1 on key and display,fixed,docs/reviews/cheap-d009-2026-11-12.md#14
 2026-11-12,math-4,lesson.py,process,writer,display,An after-step Ask written under its example waited for the next example (day 19 too); it now follows its own step,fixed,
+2026-11-12,math-4,s04.md,process,expert,gate,"plan.py check had not read unit 4; unit 4 put into data (parts, days 25 to 38, items, wrongs, errors) and every reported collision fixed",fixed,docs/reviews/plan-s04-2026-11-12.md#1
+2026-11-12,math-4,s04.md,plan,expert,key,"Five check numbers collided with taught numbers; check numbers changed, readiness item 3 for unit 5 moved to 3/8 + 6/8 and 15/8 - 2/8",fixed,docs/reviews/plan-s04-2026-11-12.md#2
+2026-11-12,math-4,s04.md,plan,expert,coverage,"Exits E27 and E33 did not check their day's goal; E27 asks for strips, E33 asks for one way then a check the other way",fixed,docs/reviews/plan-s04-2026-11-12.md#3
+2026-11-12,math-4,s04.md,plan,expert,minutes,"Days 25, 26, 33 and 36 had no room for opener or exit; teaching and by-hand minutes cut, day 36 exit 7 min",fixed,docs/reviews/plan-s04-2026-11-12.md#4
+2026-11-12,math-4,s04.md,plan,expert,key,"Unregrouped sums (5 15/12) unmarked and two wrong answers mis-tagged; 5 15/12 is a right sum not yet a mixed number, to group G; tags fixed",fixed,docs/reviews/plan-s04-2026-11-12.md#5
+2026-11-12,math-4,s04.md,plan,expert,materials,"Recipe Scaler key mark on day 33 did not hold; day 33 now light, ask 1 named as the precondition for every tool day",fixed,docs/reviews/plan-s04-2026-11-12.md#6
+2026-11-12,math-4,s04.md,plan,expert,error,"Errors B, C, D and G all from memory; B and C now cite the IES guide, D is our key rule, G stays our own reading",fixed,docs/reviews/plan-s04-2026-11-12.md#7
+2026-11-12,math-4,s04.md,plan,expert,sequence,"Day balance 7, 3, 3, 1 against the scope and sequence's 6, 4, 3, 1; spine row set to 7, 3, 3, 1",fixed,docs/reviews/plan-s04-2026-11-12.md#8
+2026-11-12,math-4,s04.md,process,expert,handoff,"Hand-on to unit 5 not ready: readiness sheet missing and day 39 hand-back of 4.1c unplanned; both carried to unit 5's plan, sheet written with unit 5's plan (lead's ruling)",open,docs/reviews/plan-s04-2026-11-12.md#9
