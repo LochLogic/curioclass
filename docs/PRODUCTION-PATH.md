@@ -6,8 +6,9 @@ last, free, and it would stand up to a state adoption review) and the bar (quali
 Changes to existing work are allowed where they teach better.
 
 **How this was checked.** Draft 1 was read by a fresh agent that recomputed every number from the sources and
-attacked the logic. Its verdict was "not sound as is; sound with changes". Every change it asked for is in this
-draft; what it corrected is listed in section 7, so nothing was quietly folded in.
+attacked the logic ("not sound as is; sound with changes"). Draft 2 took its changes and was checked again by the
+same reader, which asked for four more small fixes; draft 3 (this one) has them. What the checks corrected is listed
+in section 7, so nothing was quietly folded in.
 
 Evidence, all in the repo: docs/reviews/pipeline-audit-2026-11-13.md, the eight unit 4 reads (cheap-d025 to d028,
 day-025 to day-028), the two reliability reads (reliability-u04-d025-028, reliability-u02-d007-009),
@@ -37,13 +38,13 @@ days, all judged by the same kind of model that wrote them.
    math keeps its approved order if it does not harm learning, so its four known order conflicts get that check
    (step 2).
 5. **Every day keeps both reads; each section ends with a set read.** The expert read still catches problems the
-   cheap read misses on every day, so it stays. The fresh set read across a section's days found the fix-pass
-   regressions and the seam problems the per-day reads had missed, at a third to two fifths of the cost of a per-day expert read, so
+   cheap read misses on every day, so it stays. The fresh set read across a section's days found fix-pass
+   regressions and seam problems the per-day reads had missed, at about 30 to 40 percent of the cost of a per-day expert read, so
    it becomes the last check of every section. Fix passes made 3 of the 12 and 6 of the 13 problems left at the
    end, so every fix brief now says: re-read the paragraph, the seam and the built screens you changed.
-6. **People and a second kind of reader are scheduled, not assumed.** Every reliability number here is the model
-   judging itself. A grade 3 to 5 teacher, the math content reviewer FOUNDATION requires, and a reader of a
-   different model kind are steps with a place in the order (step 7).
+6. **People and a second kind of reader are required, with a trigger each.** Every reliability number here is the
+   model judging itself. A grade 3 to 5 teacher, the math content reviewer FOUNDATION requires, and a reader of a
+   different model kind each have a point in the order (step 7); who and when is Cory's (question 3).
 
 ## 2. What the measurements say
 
@@ -122,7 +123,7 @@ be judged again.
   instead of restating them.
 - **A minutes-and-branches check**: a timed part that names more reteach branches than its minutes allow gets a
   NOTE (the one unit 4 major).
-- **Backfill now for the 44 written grade 4 days**: the hand-back and materials CSVs scripted from existing
+- **Backfill now for the 48 written grade 4 days**: the hand-back and materials CSVs scripted from existing
   Tomorrow lines and Before class sections, so the open hand-ons (days 29, 42, 78, 79, 94) are on record.
 - **Source map** (data/plans/<course>/source-map.csv), one row per base lesson: source id, standards and goals
   (scripted from IM's prep files), our unit and days, keep / split / merge / cut / ours, leans to cut, and for
@@ -137,10 +138,11 @@ be judged again.
 Sections 2 to 4 (days 29 to 38) were planned before the source. Writing them now would repeat the day-by-day
 reconciliation this path is meant to end. So: build unit 4's source map and cross-day CSVs, re-plan u04-2 to u04-4
 from them, then write, read and fix. This is the plan-time test, on the hardest fit in grade 4, with two
-comparisons already in hand: days 25 to 28 (written the old way) and days 36 to 38 (no IM lesson). Measure the
+comparisons already in hand: days 25 to 28 (written the old way; only their "missed" counts compare, and their
+content differs) and days 36 to 38 (no IM lesson). Measure the
 writer's conflict list, the share of each day taken from the source, planning tokens, and missed and expert-only
-findings per day. It replaces the separate unit 8 test, which was chosen for having no order conflict and so could
-not tell a good method from an easy unit. Unit 8 can follow as a confirmation if unit 4 is unclear.
+findings per day. It would stand in for the approved unit 8 test, which was chosen for having no order conflict and
+so could not tell a good method from an easy unit; whether to keep unit 8 as well is part of question 1.
 
 ### Step 4. Rebuild check on the older days (now, cheap)
 
@@ -149,10 +151,13 @@ check across them (pages, slips, display order). Their full finishing pass waits
 
 ### Step 5. The ELA and science pilots, then other courses (order per card q-plan-after-11-1)
 
-Grade 4 math stays the main thread. The grade 6 ELA and science five-day pilots run alongside it once 11.1 has its
-teacher read (question 2), and they test the PDF and multi-day-lesson paths (EL, OpenSciEd) before any batch of
-those courses is framed. Science 6 to 8 is framed on OpenSciEd's order after its loss check. No other math course is
-framed until the pilots are in, as the card says.
+Grade 4 math stays the main thread. The grade 6 ELA pilot (unit 2, five days, our own on public-domain texts) and
+the grade 4 science pilot run alongside it once 11.1 has its teacher read (question 2). They measure cost and
+quality in ELA and science, but neither uses a base text, so they do not test the EL or OpenSciEd paths. Those need
+the two small trials INTEGRATION-PLAN proposed (an EL grade 4 lesson set on a public-domain text; one OpenSciEd 6.1
+lesson run through to days); EL and OpenSciEd courses are not framed until those trials are read (Cory's call when
+the pilots are under way). Science 6 to 8 is framed on OpenSciEd's order after its loss check. No other math
+course is framed until the pilots are in, as the card says.
 
 ### Step 6. The review cadence
 
@@ -162,16 +167,16 @@ cheap check of a fix pass, and log what each finds. REVIEW-CADENCE step 3 is unc
 checks only when no process finding repeats from an earlier unit (19 of 26 repeated in unit 4) and expert-only
 findings are about one a day, and a qualified teacher still reads a sample. Expert-only has not trended down
 across six units, so plan as if the expert read stays on every day: about 650,000 tokens a fully read day (an
-estimate including the set read), which across about 13,300 days is about 8.6 billion, a floor rather than a
-ceiling. The day counts for 49 courses are assumed.
+estimate including the set read), which across about 13,300 days is about 8.6 billion, a floor for the assumed day counts (it leaves out unit-level pieces, planning, tooling and re-reads). The day counts for 49 courses are assumed.
 
 ### Step 7. People and a second reader
 
-- **11.1 teacher read**: a grade 3 to 5 teacher reads the 11.1 pack and marks which expert findings are real. That
+- **11.1 teacher read** (trigger: before any grade 4 unit is called finished): a grade 3 to 5 teacher reads the 11.1 pack and marks which expert findings are real. That
   calibrates every expert number in this file.
-- **A reader of a different model kind** (Codex is already in the project) reads one section cold against the
-  same brief; compare its findings with the expert's. Cheap, and the only check on a shared blind spot available
-  before people are found.
+- **A reader of a different model kind** (trigger: unit 4 section 2, once written): Codex reads it cold against the
+  same brief; compare its findings with the expert's. It is the only check on a shared blind spot available before
+  people are found. It runs through the Codex queue Cory pastes himself, so it costs his time (question 3); Pro
+  ends 2026-11-30.
 - **Before grade 4 math is called finished** (FOUNDATION 7.3): a math content reviewer on every item and key of
   the course's checks; the pilot unit's taught run and three timed students. Cory finds the people; nothing is sent
   or spent without his yes.
@@ -185,9 +190,10 @@ Before it is called finished, beyond the days:
   units 6 to 8) checked as one assessment plan against the standards;
 - a course-level pass on coherence: every unit's reason and what it hands the next, unit-boundary seams, focus on
   the major work of the grade;
-- a set read per section over the 44 older days with the re-read rule, about 2.3 to 3.5 million tokens (days 7 to
-  9 are done);
-- key tools live and verified, or their paper paths standing alone;
+- a set read per section over the 41 older days still unread this way, with the re-read rule: about 2.3 to 3.2
+  million tokens, plus fixes;
+- key tools live and verified, print covering the rest (FOUNDATION 6.3); tools stay held until the frame is built,
+  and when grade 4's frame counts as built is Cory's (question 3);
 - English learner supports on teacher pages; claims checked against the ledger;
 - the whole-course cold read against RUBRIC-MATH-K8 and the rest of ROADMAP's "What a finished course holds".
 
@@ -207,16 +213,24 @@ Before it is called finished, beyond the days:
 - Whether a set read can replace any per-day read (step 6).
 - Whether the expert's findings match a teacher's (step 7).
 - The real cost of planning (step 3 measures it).
-- Whether a base text helps in ELA and science as it did in math (step 5).
+- Whether a base text helps in ELA and science as it did in math (only the two small trials in step 5 can say).
 
 ## 6. For Cory
 
-1. **Unit 4, sections 2 to 4.** The go rule was mixed (writer and rights passed; the expert criterion could not be
-   measured, and like-for-like findings were the lowest yet). Recommended: re-plan sections 2 to 4 from a source
-   map first, then write (step 3). The alternative is to write days 29 to 38 now from the existing plans.
-2. **Does the expert stand-in count as 11.1's teacher read** for starting the ELA and science pilots (card
-   q-plan-after-11-1)? Recommended: no; the pilots wait for a real teacher's read, and meanwhile the different-model
-   read (step 7) runs. The alternative is to start the pilots now on the expert's read.
+1. **Unit 4, sections 2 to 4, and the unit 8 test.** The go rule was mixed: writer and rights passed; the expert
+   criterion could not be measured, and like-for-like findings were the lowest yet. Recommended: re-plan sections 2
+   to 4 from a source map first, then write (step 3), and drop the separate unit 8 test you approved, since unit 4
+   is the harder and more telling case; keep unit 8 only if unit 4's result is unclear. Alternatives: write days 29
+   to 38 now from the existing plans; or re-plan and also run unit 8.
+2. **What starts the ELA and science pilots** (card q-plan-after-11-1 says "once 11.1 has its teacher read"). Your
+   mom, a grade 2 teacher, looked at unit 11, which you judged enough to lift the planning freeze; on 2026-11-13 you
+   made the expert the teacher reader for now; no grade 3 to 5 teacher is named yet, so waiting has no end date.
+   Recommended (middle): start the pilots now on the expert stand-in, and call nothing finished (11.1 or either
+   pilot) without a grade 3 to 5 teacher's read. Alternatives: wait for that teacher; or count the stand-in fully.
+3. **People and timing** (FOUNDATION 7.5): who and when for the grade 3 to 5 teacher and the math content reviewer;
+   whether you will paste the Codex different-model read into your queue (unit 4 section 2, before 2026-11-30); and
+   when grade 4's frame counts as built, which unholds its key tools. Recommended for the last: when step 2's CSVs
+   and source map exist for grade 4 and unit 4 is re-planned.
 
 ## 7. What the independent check corrected (from draft 1)
 
@@ -241,3 +255,13 @@ Before it is called finished, beyond the days:
 10. Draft 1 called the builder pass a once-only cost (every unit has needed one), said no read found grade 4's order
     harming learning (none was asked), and dropped REVIEW-CADENCE's no-repeat condition and teacher sample, and the
     token-definition caveat. All corrected.
+11. Round 2: draft 2 said the pilots test the EL and OpenSciEd paths; neither uses a base text (grade 6 ELA is
+    our own on public-domain texts; grade 4 science uses OpenSciEd elementary as reference only). The two small
+    trials are now named and gate those frames.
+12. Round 2: draft 2 let a key tool be replaced by its paper path in a finished course, lowering FOUNDATION 6.3's
+    bar without Cory. Removed.
+13. Round 2: draft 2 dropped the unit 8 test Cory approved without asking, called people "scheduled" with no
+    triggers, and put question 2 without the context that points the other way. Now asked, triggered and fairly
+    framed, with a third question on people.
+14. Round 2: the finishing read for older days is 41 days, about 2.3 to 3.2 million (draft 2 had 2.3 to 3.5, an
+    arithmetic slip carried from the first check); the set read is about 30 to 40 percent of a per-day expert read.
