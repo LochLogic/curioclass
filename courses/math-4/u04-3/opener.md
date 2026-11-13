@@ -23,7 +23,7 @@ parts.
 **Way 1, all as fractions.** Rename each mixed number as a fraction, add or take away the counts, rename back.
 
 **Way 2, wholes and parts.** Add the wholes, add the parts, in any order (the commutative and associative
-properties). When the parts pass 1, b/b of them make a new whole: 1 3/4 + 1 3/4 = 2 6/4 = 2 + 4/4 + 2/4 = 3 2/4.
+properties). When the parts pass 1, b/b of them make a new whole: 2 3/4 + 1 3/4 = 3 6/4 = 3 + 4/4 + 2/4 = 4 2/4.
 When the parts are too few to take away, break one whole into b/b: 4 1/3 − 1 2/3 becomes 3 4/3 − 1 2/3 = 2 2/3.
 
 **Two ways, one answer.** On day 33, 1 3/5 + 3 4/5 is done both ways side by side; both give 5 2/5. They must,
@@ -34,13 +34,16 @@ right sum, not yet written as a mixed number: it gets a tick, and the student jo
 
 ## The line and the strips
 
-- **Day 32.** The line from 0 to 5 (lines 7 to 12 of section 4.1's pages): wholes counted first, then parts.
-  Whole strips with their parts.
+- **Day 32.** The line from 0 to 5, printed on the student page: wholes counted first, then parts. Whole
+  strips and pieces from the envelope, pairs pooling pieces. A fraction past 1 is written as a whole number and
+  parts more than one way, until no whole is left in the parts, and then named a mixed number.
 - **Day 33.** Both ways in two columns; hops past a whole tied to the new whole written down (error G). Recipe
   Scaler's double batch and test bake (light, practise with feedback, 15 min): it shows one way at a time, so the
   side by side stays on paper.
-- **Day 34.** A whole strip broken into its parts on the table, tied to the written renaming (error F).
-- **Day 35.** Withdrawn: a sketch only. Recipe Scaler's pantry rounds (key, practise with feedback, 20 min),
+- **Day 34.** A whole number minus a fraction first (5 − 3/8), then a whole strip broken into its parts on the
+  table, tied to the renaming written in one line, 5 1/4 = 4 + 1 + 1/4 = 4 + 5/4 (error F).
+- **Day 35.** Each difference sorted before it is worked: does it need a whole broken? Withdrawn: a sketch
+  only. Recipe Scaler's pantry rounds (key, practise with feedback, 20 min),
   every take-away checked by adding back; where the tool cannot run, the day page's paper path covers the same
   rounds.
 
@@ -57,13 +60,14 @@ them. Two columns on one page make the reason for "the same answer" visible.
 | A | Add the tops and the bottoms inside a mixed number | A fraction read as two whole numbers | Say the parts in words; the part size stays |
 | C | Put the whole number on top: 3 2/5 = 5/5 | A whole not yet seen as n parts | Write each whole as 5/5 first, then count fifths |
 | F | Take the smaller from the larger in each place: 4 1/3 − 1 2/3 = 3 1/3 | A one not broken into parts | Break a whole strip on the table; write the new name before subtracting; check by adding |
-| G | Drop the new whole: 1 3/4 + 1 3/4 = 2 2/4 | Regrouping done as a step without the reason | Hop the parts past a whole on the line: 4/4 lands on the next whole number |
+| G | Drop the new whole: 3 6/10 + 1 8/10 = 4 4/10 | Regrouping done as a step without the reason | Hop the parts past a whole on the line: 4/4 lands on the next whole number |
 
 Wrong examples: C again on day 32, G on day 33, F on day 34. A returns wherever a part is added.
 
 ## Supplies for the section
 
-- Per student: three whole strips, folded into the day's parts; the number line pages (lines 7 to 12); a pencil.
+- Per student: the envelope from section 4.1, its whole strips and pieces (days 32 and 34); a pencil. The lines
+  to 5 are on each day's student page.
 - Per class: the projector; a board split into two columns.
 - A room with nothing: whole strips cut from paper and folded; lines ruled to 5.
 
@@ -80,5 +84,6 @@ Exits on days 32 to 35, on paper; day 34's written task, judged with look-fors a
 
 ## Credit
 
-Ours. Informed by, not adapted from: the Progressions for the Common Core State Standards, Number and Operations,
+Ours. Days 32 to 35 are adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 to 12,
+CC BY 4.0, https://creativecommons.org/licenses/by/4.0/; each day carries its own credit. Informed by, not adapted from: the Progressions for the Common Core State Standards, Number and Operations,
 Fractions, 3 to 5. Error G is from our own experience, not a source.

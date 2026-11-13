@@ -300,7 +300,9 @@ Asks, from [s04](s04.md) field 8 and the four section plans:
 7. A different-wholes story among the kitchen stories, beside the mug and pan rounds. (u04-4.)
 8. Its rounds, stories and "on your own" items must keep out of the plan's checks: the plan's side was chosen
    so (s04 field 5). Recheck if the spec changes. Done 2026-11-12: its items are rows in data/plans/math-4/items.csv
-   (s04-T26-1 to s04-T37-10), and the gate holds the checks against them. (s04.)
+   (s04-T26-1 to s04-T37-10), and the gate holds the checks against them. (s04.) The building rounds past
+   sugar (honey, flour, buttermilk, yogurt) are not used by this course: day 26 stops at sugar, day 27 teaches
+   the wholes on paper, and their rows were dropped in the 2026-11-13 re-plan.
 
 ## Earlier-grade tools named for reteach
 

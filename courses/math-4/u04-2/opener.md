@@ -19,8 +19,10 @@ no mixed numbers yet.
 eighths. The tops add because they are counts; the bottom stays because it is the size of each part. On a line in
 eighths this is a hop of two parts, then a hop of three: the student draws the hops, says the sum, then writes it.
 
-**Separating takes a count away.** 11/8 − 4/8 is eleven eighths with four taken away: seven eighths, as hops back
-on the line. Adding and subtracting undo each other, so every difference is checked by adding: 7/8 + 4/8 = 11/8.
+**Separating takes a count away.** 9/8 − 4/8 is nine eighths with four taken away: five eighths, as hops back
+on the line. The same difference can be found by counting up from 4/8 to 9/8: five hops. Taking 1 away from 17/12
+is taking 12/12 away. Adding and subtracting undo each other, so every difference is checked by adding:
+5/8 + 4/8 = 9/8.
 
 **Only parts of one whole.** Half a small cup and half a big cup are not "one cup": the halves are different
 sizes. Two strips of different lengths, each in fourths, laid together show it. Fractions are added only when they
@@ -36,12 +38,14 @@ right. No mixed-number subtraction yet (section 4.3).
 
 - **Day 29.** A line in the day's part size; hops drawn first, then the equation. The day the line is tied to
   adding.
-- **Day 30.** Hops back for subtracting, each checked by adding. Two paper strips of different lengths for the
-  same-whole talk. Recipe Scaler's mug and pan rounds (light, show why, 5 min) where the class has devices; the two
+- **Day 30.** Hops back, and counting up, for subtracting, each checked by adding. Two strips of different
+  lengths for the same-whole talk, made from the envelope: a blank whole strip, and a second blank strip cut to
+  half its length. The short strip goes back in the envelope; it returns on days 31 and 37. Recipe Scaler's mug and pan rounds (light, show why, 5 min) where the class has devices; the two
   strips carry it otherwise.
 - **Day 31.** Stories: the tape diagram enters, drawn by the student. The line is drawn by hand from today.
 
-Use the number line pages from section 4.1 (lines 1 to 6, from 0 to 2).
+Each day's student page prints its own lines in the day's part size. Section 4.1's line pages have no eighths
+and are already marked, so they stay in the folder.
 
 ## Why this model
 
@@ -65,7 +69,8 @@ solved.
 
 ## Supplies for the section
 
-- Per student: the number line pages; two paper strips of different lengths (day 30); a pencil.
+- Per student: the envelope of pieces from section 4.1, for its blank strips (day 30) and the short strip (day
+  31); a pencil. The lines are on the student page.
 - Per class: the projector for the display pages; a board line in eighths.
 - A room with nothing: lines ruled by hand; two strips cut from scrap paper.
 
@@ -81,5 +86,6 @@ Exits on days 29 to 31, on paper; day 30's written task, judged with look-fors a
 
 ## Credit
 
-Ours. Informed by, not adapted from: the Progressions for the Common Core State Standards, Number and Operations,
+Ours. Days 29 and 30 are adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 9,
+CC BY 4.0, https://creativecommons.org/licenses/by/4.0/; each day carries its own credit. Informed by, not adapted from: the Progressions for the Common Core State Standards, Number and Operations,
 Fractions, 3 to 5.

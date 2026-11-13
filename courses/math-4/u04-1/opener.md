@@ -46,8 +46,9 @@ rule: a whole is written as a sum of parts first.
 - **Day 28.** Pieces withdrawn: a quick sketch only, to settle a partner disagreement. Short keyed sets.
 
 The number line pages (number-lines.md): lines 1 to 6 from 0 to 2, blank and in fifths, sixths, tenths and
-twelfths; lines 7 to 12 from 0 to 5, for section 4.3. Print both sides, one a student, for day 25; keep it for the
-unit.
+twelfths; lines 7 to 12 from 0 to 5. Print both sides, one a student, for day 25; it serves days 25 to 27 and
+stays in the folder. From day 29 each day's student page prints its own lines (eighths are needed, and these lines
+are marked by then). Keep the envelope to day 38: its blank strips and whole strips come back on days 30 to 37.
 
 ## Why this model
 

@@ -35,7 +35,7 @@ from_day,to_day,what,where,minutes,error,note
 25,26,s04-X25,Readiness gaps and day 25's tickets,5,,"errors B and A, and five 1/6s"
 26,27,s04-X26v2,Day 26's tickets,3,,"errors A and D, and 6/12 or 8/12"
 27,28,s04-X27 s04-W27,Day 27's tickets and written task,3,C,13/10 sketches with a partner; Lee's sums back
-28,29,s04-X28,opening,,C,"if many, day 29 opens with 1 = 5/10 + __; day 29 is being re-planned"
+28,29,s04-X28,opening,3,C,"if many, 1 = 5/10 + __ answered 6/10 beside 1 = 10/10 counted up; otherwise one student reads a missing part in words"
 28,29,s04-X28,teaching,,A,"3/0 or 7/0 met in day 29's teaching"
 28,30,s04-X28,teaching,,,"13/6 or 19/100: day 30's check by adding meets it again"
 71,73,s09-R1v2 s09-R2,"Readiness reteach, or E72 back",,,"readiness items 1 and 2; whole class when many missed both"
@@ -70,3 +70,16 @@ from_day,to_day,what,where,minutes,error,note
 92,93,s11-X92 s11-P92-9,Respond,,,"written tasks at the door; look-for 1 or 4 missed joins the item 7 group"
 92,94,s11-X92,opening,5,,"a length of 7 joins end item 5's group; day 94 is not written"
 93,94,s11-E5 s11-E6,opening,,,"teacher-judged; the length of 9 group; back on day 94 when unit 12's readiness check takes day 93's last ten minutes"
+29,30,s04-X29,opening,3,A,if many: the sum said in words beside its hops; 10/6 (the tick at 0 counted as a hop): hops counted aloud from 0
+30,31,s04-X30,opening,3,E,if many said Pat is right: the short strip and a whole strip laid together; a 0 on the bottom (A): the difference said in words
+30,31,s04-W30,opening,3,,"written task: look-fors read, one answer that meets them shown"
+31,32,s04-X31,opening,3,H,"if many added: the ticket's tape drawn again, the box on the difference"
+32,33,s04-X32,opening,3,C,"if many: C's wrong example again, the whole written as a sum first"
+33,34,s04-X33,opening,3,G,if many: the sum hopped past the whole on the line; a sum left past 1 keeps its tick and is renamed together
+34,35,s04-X34,opening,3,F,if many: F's wrong example again with a whole strip broken on the table
+34,35,s04-W34,opening,3,,"written task: look-fors read, one answer that meets them shown"
+35,36,s04-X35,opening,3,F,"and G: a whole broken into tenths on a strip, or the parts hopped past a whole"
+36,37,s04-X36,opening,3,H,"if many added: the ticket's tape drawn again, the box on the part still to walk"
+36,37,s04-W36,opening,3,,"written task, moved from day 37 so it can come back before the assessment"
+37,38,s04-X37a s04-X37b,groups by error,,,no minutes: read the night of day 37; H and E students join those groups in the respond half
+38,39,s04-E3,opening,5,,"item 4.1c, look-fors ticked, in day 39's first five minutes (s04 field 10)"

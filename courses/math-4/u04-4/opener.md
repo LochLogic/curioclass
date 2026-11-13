@@ -33,7 +33,7 @@ standard does not ask for two steps.
 
 - **Day 36.** The tape diagram, drawn by the student, with a box for the unknown, before any equation. Recipe
   Scaler's kitchen stories (light, practise with feedback, 15 min); paper stories carry other settings. The exit
-  takes 7 minutes: a tape, an equation and a solve.
+  takes 7 minutes: a tape, an equation and a solve. The written task: a story for 2 5/8 − 1 6/8 = □.
 - **Day 37.** Tapes drawn roughly now. Recipe Scaler's "on your own" (light, check unaided, 10 min), read beside
   the day's exits; where the tool cannot run, the paper copy of its items, marked by the teacher.
 - **Day 38.** The end-of-unit assessment, 30 min; the respond half, 20 min; unit 5's readiness check, 10 min
@@ -52,7 +52,7 @@ light practice; its stories are all in one kitchen.
 
 | | What students do | What it shows | What to do when many do it |
 |---|---|---|---|
-| E | Join parts of two different wholes: "Ana ate 2/6 of her sandwich and Ben ate 3/6 of his, so they ate 5/6 of a sandwich" | A fraction read as an amount of stuff | Lay two strips of different length together; ask "sixths of what?" |
+| E | Join parts of two different wholes: "Ana ate 2/8 of her sandwich and Ben ate 5/8 of his, so they ate 7/8 of a sandwich" | A fraction read as an amount of stuff | Lay the short strip and a whole strip together; ask "eighths of what?" |
 | F | Take the smaller from the larger in each place | A one not broken into parts | Break a whole strip; check by adding |
 | H | Add on a "how much more" or a "how much longer" | The operation picked from a word | Draw the tape first, box the unknown, then write the equation |
 
@@ -67,7 +67,8 @@ G. A student who missed nothing takes the extension.
 
 ## Supplies for the section
 
-- Per student: story sheets; blank bars for tapes where a student needs them; a pencil.
+- Per student: story sheets; blank bars for tapes where a student needs them; the envelope's short strip and a
+  whole strip (day 37, and day 38's group E); a pencil.
 - Per class: the projector; the keys; day 37's paper copy of the "on your own" items.
 - A room with nothing: tapes drawn by hand; stories read aloud.
 
@@ -78,7 +79,7 @@ I know is __. The box is __."
 
 ## How the unit is checked
 
-Exits on days 36 and 37, on paper; day 37's written task, judged with look-fors and handed back on day 38; items
+Exits on days 36 and 37, on paper; day 36's written task, judged with look-fors and handed back on day 37; items
 4.4a and 4.4b on the end-of-unit assessment, day 38. All of it goes on the unit's record sheet (u04-1/record.md).
 
 ## Credit
