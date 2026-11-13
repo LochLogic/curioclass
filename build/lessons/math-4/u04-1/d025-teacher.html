@@ -1,0 +1,120 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 25: A fraction as a sum of pieces: teacher page</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="teacher"><h1>Day 25: A fraction as a sum of pieces</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>25, section 4.1, understanding day</td></tr><tr><td>Goal</td><td>I can write a fraction as a sum of unit fractions, past 1 too</td></tr><tr><td>Standard parts</td><td>4.NF.B.3 (a) a fraction a/b, a &gt; 1 too, as a sum of unit fractions 1/b; 4.NF.B.3b (c) a fraction into a sum with the same denominator in more than one way, each recorded by an equation, past 1 too (on a branch or Longer only)</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, an envelope of unit-fraction pieces (the thirds, fourths, fifths, sixths and tenths strips of unit 3&#x27;s strip sheet, cut into single pieces), the number line pages, a pencil and a pen; their day 24 assessment, items 2 and 5 ticked (held by you); per class, the document camera (or the board, to draw the pieces) and the projector with the display page</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; strip sheet from unit 3, 1 per student, for the piece envelopes; number line pages, 1 per student, both sides, kept for the unit; exit ticket, 1 per student; the key, 1 for the teacher; the family note, 1 per student, to go home</td></tr><tr><td>At home</td><td>the At home view, d025-home.html, 35 minutes with one child</td></tr><tr><td>Leans on</td><td>courses/math-4/u04-1/opener.md; courses/math-4/u03-1/strip-sheet.md; courses/math-4/u04-1/number-lines.md; courses/math-4/u04-1/record.md; courses/math-4/u04-1/family.md</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 7, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</td></tr></table><h3>Before class</h3>
+<p>Print the student page, line pages, tickets, key and family note. Students cut the strip sheet's thirds to
+tenths strips into single pieces, one envelope each, as morning work (or hand out pre-cut). Have day 24's
+assessments and the marked readiness checks beside you. Put the display page on the projector.</p>
+<h3>The day</h3>
+<h4>5 min. Warm-up: count by halves</h4>
+<p>Whole class, aloud. Count together by halves from one half to eight halves (Count by halves from 1/2 to 8/2. Write the counts that are whole numbers. <strong>[2/2 = 1, 4/2 = 2, 6/2 = 3, 8/2 = 4]</strong>); write each count on
+the board as it is said. Then, alone, students write the counts that are whole numbers.</p>
+<p><strong>Ask.</strong> "Which counts are whole numbers? Why every second one?" Expect: 2/2, 4/2, 6/2, 8/2 are 1, 2, 3, 4; two
+halves make each new whole. Then: "Did the count stop at 1?" Expect: no, it went on to 8/2.</p>
+<p>The facts within 20 start on day 26, with the readiness small group.</p>
+<h4>5 min. Day 24's items 2 and 5 back</h4>
+<p>Alone, in pen. Hand back day 24's assessments, look-fors ticked; students fix items 2 and 5 beside the first
+try. Agreed with Rosa (unit 3's D): lay two sixths beside four twelfths from the envelope. Part size alone (unit
+3's J): say each as "how many parts, of what size". Item 5 with unit 3's D or G: one line from 0 to 1, both
+points, read the sign aloud.</p>
+<h4>15 min. Teaching first: two worked examples</h4>
+<p>Whole class. You lay pieces under the camera; students lay their own and fill the frames on side 1. Read every
+fraction as words: "three fifths", never "three over five".</p>
+<p><strong>Example 1</strong> (Lay fifth-pieces in a row to make 3/5. Write 3/5 as a sum of unit fractions. <strong>[1/5 + 1/5 + 1/5 = 3/5]</strong>). </p>
+<ol>
+<li>A fifth-piece is one of 5 equal parts of a whole strip. Its name is 1/5, one fifth.</li>
+<li>Lay one piece. Write 1/5. Say: one fifth.</li>
+<li>Lay a second piece touching it. Write + 1/5. Say: two fifths.</li>
+<li>Lay a third piece. Write + 1/5. Say: three fifths.</li>
+<li>Three pieces, each of size one fifth: 1/5 + 1/5 + 1/5 = 3/5.</li>
+<li>The bottom number names the size of each piece. The top number counts the pieces. Laying pieces together does not change their size, so the bottom stays 5.</li>
+</ol>
+<p><strong>Ask.</strong> After step 4: "How many pieces, and how big is each one?" Expect: three, each one fifth.</p>
+<p><strong>Example 2</strong> (Lay fourth-pieces along a line from 0 to 2. Stop at 7/4. Write 7/4 as a sum of unit fractions. <strong>[1/4 + 1/4 + 1/4 + 1/4 + 1/4 + 1/4 + 1/4 = 7/4; 7/4 is more than 1]</strong>). Pairs pool their fourth-pieces: one envelope holds only four. </p>
+<ol>
+<li>Each piece is one fourth, 1/4. Lay the first piece from 0. Say: one fourth.</li>
+<li>Lay pieces end to end: two fourths, three fourths, four fourths. Four fourths reach 1.</li>
+<li>The count does not stop at 1. Keep going: five fourths, six fourths, seven fourths. Stop at 7/4.</li>
+<li>Write one 1/4 for each piece: 1/4 + 1/4 + 1/4 + 1/4 + 1/4 + 1/4 + 1/4 = 7/4.</li>
+<li>Is 7/4 more or less than 1? More. Four fourths make 1, and there are 3 fourths more.</li>
+</ol>
+<p><strong>Ask.</strong> After step 4: "Is 7/4 more or less than 1? How do you know?" Expect: more; four fourths make 1, and
+three more are past it.</p>
+<p>Seat students who stopped at 4/4 on readiness item 1 where they see the camera.</p>
+<h4>14 min. Board paths</h4>
+<p>Pairs, pieces pooled. "Board paths", side 2 (Path 1 is 4/6 meter long. Each board is 1/6 meter. Write the path as a sum of boards. Is it more or less than 1 meter? <strong>[1/6 + 1/6 + 1/6 + 1/6 = 4/6; less than 1 meter: six sixths make 1, and there are only 4]</strong>, Path 2 is 5/3 meters long. Each board is 1/3 meter. Write the path as a sum of boards. Is it more or less than 1 meter? <strong>[1/3 + 1/3 + 1/3 + 1/3 + 1/3 = 5/3; more than 1 meter: three thirds make 1, and there are 2 thirds more]</strong>, Path 3 is 7/6 meters long. Each board is 1/6 meter. Write the path as a sum of boards. Is it more or less than 1 meter? <strong>[1/6 + 1/6 + 1/6 + 1/6 + 1/6 + 1/6 + 1/6 = 7/6; more than 1 meter: six sixths make 1, and there is 1 sixth more]</strong>). For each path,
+students lay one piece a board, write one unit fraction a piece, then answer more or less than 1 with a reason.
+Then they mark where the path ends on the line page: line 3 (sixths) for paths 1 and 3; line 1 for path 2, after
+marking thirds by eye, two marks in each whole.</p>
+<p>Watch for a sum with the bottoms added (5/15 on path 2: error A) and a count that stops at 6/6 on path 3 (error
+B). Ask as you walk: "How does your row of pieces show the sum? Where is 1 on your row?"</p>
+<h4>8 min. Fix it: two wrong answers</h4>
+<p>Pairs, two minutes each to say what went wrong, then the class. "Fix it", side 2 (Bo laid 4 tenth-pieces in a row. He wrote 1/10 + 1/10 + 1/10 + 1/10 = 4/40. <strong>[4/10. Each piece is a tenth, and laying pieces together does not change their size. Bo added the bottoms too]</strong>,
+Ada counted third-pieces: 1/3, 2/3, 3/3. She says there is no 4/3, because 3/3 is all of it. <strong>[There is a 4/3: 1/3 + 1/3 + 1/3 + 1/3 = 4/3. The count goes on past 1]</strong>). The display shows each wrong picture beside the right one.</p>
+<p><strong>Ask.</strong> "Bo's row is 4 tenth-pieces. Is 4/40 that long?" Expect: no; 4/40 is 4 tiny parts. </p>
+<ol>
+<li>Bo's working: 1/10 + 1/10 + 1/10 + 1/10 = 4/40. He added the tops to get 4 and the bottoms to get 40.</li>
+<li>Right working: each piece is one tenth. Four pieces of size one tenth are four tenths: 1/10 + 1/10 + 1/10 + 1/10 = 4/10.</li>
+<li>4/40 is 4 parts of a whole cut into 40: far shorter than Bo's row of 4 tenth-pieces. The size of the pieces did not change, so the bottom stays 10.</li>
+</ol>
+<p><strong>Ask.</strong> "Ada says 3/3 is all of it. Lay a fourth third-piece. Where does it end?" Expect: past 1, at 4/3.</p>
+<ol>
+<li>Ada's working: 1/3, 2/3, 3/3, then stop. She takes 3/3, one whole, as the end of the numbers.</li>
+<li>Right working: lay a fourth third-piece after the first three. It ends past 1. The count is four thirds: 1/3 + 1/3 + 1/3 + 1/3 = 4/3.</li>
+<li>1 is one point on the line, not its end. The count goes on past 1, and past 2 too.</li>
+</ol>
+<p>If many still add the bottoms: say each sum in words, "four tenths", and lay the row again. If many still stop at
+1: lay third-pieces along line 1 past 1 and keep counting aloud.</p>
+<h4>6 min. Pull it together</h4>
+<p>Whole class.</p>
+<p><strong>Ask.</strong> "Five thirds, path 2: how many pieces, and how big is each one?" Expect: five pieces, each one third; it
+is past 1 because three thirds make 1. Take "five pieces" first, then the size.</p>
+<p><strong>Ask.</strong> "In 5/3, which number tells the size of a piece, and which counts them?" Expect: the 3 names the size,
+thirds; the 5 counts the pieces.</p>
+<h4>7 min. Exit ticket</h4>
+<p>Alone, on paper (Write 6/5 as a sum of unit fractions. Is 6/5 more or less than 1? How do you know? <strong>[1/5 + 1/5 + 1/5 + 1/5 + 1/5 + 1/5 = 6/5; more: five fifths make 1, and there is one fifth more]</strong>). Read it aloud once. Pieces stay in the envelope. A tick needs the sum and "more"
+with a reason. Record under E25 on the record sheet. Send the family note home.</p>
+<h3>Other rooms</h3>
+<ul>
+<li><strong>No strip sheet.</strong> Students fold scrap strips of one length into thirds, fourths, fifths and sixths and cut
+  them; tenths: rule a 10 inch strip every inch.</li>
+<li><strong>No printer.</strong> Write the three paths and the two fixes on the board; students answer in notebooks and draw a
+  line from 0 to 2 by hand.</li>
+</ul>
+<h3>Shorter or longer</h3>
+<p>Shorter: drop path 1 and the challenge. Never drop the fixes, path 3 or the exit. Longer: the challenge
+(Ren also has long boards. Each is 3/6 meter. Make a 7/6 meter path with long and short boards. Write the sum. <strong>[3/6 + 3/6 + 1/6 = 7/6, or 3/6 + 1/6 + 1/6 + 1/6 + 1/6 = 7/6]</strong>). Then: how many different paths can Ren make from the two kinds of boards? A new order is not a new
+way. The search ends at three: no, one or two long boards, since three would pass 7/6.</p>
+<h3>Words and supports</h3>
+<p>Word Wall cards: unit fraction, sum, equation, whole, each on a labelled piece. Frame, to take or leave: "<span class="blank" style="width:0.9em"></span> is
+<span class="blank" style="width:0.9em"></span> pieces of size <span class="blank" style="width:0.9em"></span>, so <span class="blank" style="width:0.9em"></span> = <span class="blank" style="width:0.9em"></span> + <span class="blank" style="width:0.9em"></span> + ..." Access: wide pre-cut pieces; a helper lays pieces as the student
+points.</p>
+<h3>Tomorrow</h3>
+<p>On the ticket, five 1/5s or "less, it is a fraction" (error B): day 26 shows "There is no 4/3: 3/3 is all of it"
+beside third-pieces counted past 1 on a line to 2, in its first five minutes. A sum = 6/30 (error A): day 26
+shows "1/10 + 1/10 + 1/10 + 1/10 = 4/40" beside the four tenth-pieces. Five 1/6s (top and bottom read the other way): in
+the same minutes, those students read 6/5 aloud as "six fifths" and lay six fifth-pieces with a partner. Readiness gaps go to day 26's warm-up and first five minutes, as
+the section opener says. Pieces stay in envelopes for day 26's rings.</p>
+<h3>Credit</h3>
+<p>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 7, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.
+Changed: the warm-up counts by halves; the measuring story became board paths with our numbers, pieces and line; the product link was cut.</p><div class="foot">Curio Class, grade 4 math, day 25, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org<br>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 7, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</div></body></html>

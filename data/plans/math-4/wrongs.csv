@@ -1129,3 +1129,8 @@ s04-X36,4 5/10,F(31;10)+F(14;10),4 5/10,H,
 s04-X37a,(a) 3/8,F(26;8)-F(23;8),3/8,H,"""cut off"" read as subtract"
 s04-X37a,(a) 5 9/16,,,A,
 s04-X37b,(b) yes,,,E,
+s04-F25-1,4/40,1+1+1+1 | 10+10+10+10,4 | 40,A,the wrong answer shown
+s04-F25-2,there is no 4/3,,,B,the wrong answer shown
+s04-P25-2,1/3 + 1/3 + 1/3 + 1/3 + 1/3 = 5/15,1+1+1+1+1 | 3+3+3+3+3,5 | 15,A,
+s04-P25-3,"six 1/6s, stopping at 1",F(1;6)*6,1,B,
+s04-P25-3,less than 1 meter,,,B,
