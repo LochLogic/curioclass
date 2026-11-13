@@ -54,22 +54,15 @@ Never base texts, even though they share the name:
 
 ## Credit lines
 
-Long form (teacher page, one per source lesson used):
+One short line per adapted day, in its `credit` header (printed once in the foot) and repeated as the one line of
+the teacher page's Credit section. Nothing on rows, no second line (Cory 2026-11-13: minimal and clean; LESSON-DAY
+rule 4 holds the form):
 
-> Adapted from IM(R) K-12 Math, grade 4, unit 3, lesson 7, (c) 2019-2021 Illustrative Mathematics, [lesson link],
-> licensed under CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class: [one line on what
-> changed].
+> Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 7, CC BY 4.0,
+> https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.
 
-> Adapted from OpenSciEd Unit [X.Y], [lesson N] (openscied.org), CC BY 4.0, https://creativecommons.org/licenses/by/4.0/.
-> Changed by Curio Class: [one line].
-
-> Adapted from EL Education K-5 Language Arts Curriculum (2017), grade [G], module [M], unit [U], lesson [L],
-> CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class: [one line].
-
-Short form (student pages, tickets, foot lines): "Based on [source] by [owner], CC BY 4.0. Changed by Curio Class. Full
-credit on the teacher page."
-
-No wording that implies endorsement or a relationship with any source.
+The same shape for "OpenSciEd Unit X.Y, lesson N" and "EL Education K-5 Language Arts Curriculum (2017), grade G,
+module M, unit U, lesson L". No wording that implies endorsement.
 
 ## Never carried over from a base text
 

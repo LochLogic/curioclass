@@ -51,8 +51,8 @@ If your job brief names base-text lessons (docs/sources/BASE-TEXTS.md), read tho
 lesson supplies moves. Keep its task ideas, the order of moves and the planned questions where they serve our
 goal. Write everything in our voice and format, with new names, contexts and numbers. Cut any lean on lessons
 our year has not taught yet. Fit our minutes. Take no photos, slides, links, routine labels or character names.
-Credit: the short form in LESSON-DAY rule 4, once in the header and once in the Credit section, with one line
-on what changed. Say in your report which parts came from the lesson and which are ours.
+Credit: the short form in LESSON-DAY rule 4, once in the header and the same one line in the Credit section;
+nothing more (no "Changed:" line). Say in your report which parts came from the lesson and which are ours.
 
 ## The At home block
 
