@@ -131,3 +131,27 @@ Not started. Planning pieces so far (rubric page, approach page, rights list): t
 ## Science pilot
 
 Not started.
+
+## Grade 4 math, unit 4 section 1, the base-text test (days 25 to 28)
+
+Run 2026-11-13. Days written with Illustrative Mathematics grade 4 unit 3 lessons 7, 8, 10 and 12 as their base
+text, one writer each, in order in main. Reads and reliability files in docs/reviews/ (-2026-11-13).
+
+| Piece | Tokens | Defects found, by read | Notes |
+|---|---|---|---|
+| Four days, one writer each | 803,978 (210,942 / 240,229 / 192,161 / 160,646; mean 201,000) | | Unit 2 mean 194,100, unit 3 180,700: +3.6% on unit 2, +11% on unit 3, inside the plus or minus 20% day-to-day spread |
+| Cheap reads, four days | 466,134 (mean 116,500) | 41 (9 / 11 / 9 / 12) | |
+| Expert reads, four days | 760,719 (mean 190,200) | 26 the cheap read missed (7 / 7 / 7 / 5), all tagged expert-only; day 17, process 9 | Per day 6.5 missed; unit 2 10.7 (6.3 expert-only), unit 3 8.2 (3.3 expert-only) |
+| Fix pass, days | 256,951 (89 tool uses) | 65 logged: 58 fixed, 7 open (builder items, then fixed by the builder pass) | |
+| Builder pass (lesson.py) | 263,597 (98 tool uses) | display order, warm-up screens, fstrip grp=, ticket-fit check, fraction blanks, unwritten-Tomorrow note | Course-wide; once, not a day cost. Ticket check found day 8 and five others that had always overflowed |
+| Reliability read, days 25 to 28 (set) | 224,189 (47 tool uses) | 12 residual: 0 blocker, 1 major, 11 minor; 3 fix-pass regressions; 0 in source-adapted parts | All four days teachable tomorrow with no prep |
+| Control reliability read, days 7 to 9 (set) | 235,914 (45 tool uses) | 13 residual: 0 blocker, 2 major, 11 minor; 6 fix-pass regressions | Same brief. All three days teachable tomorrow with no prep |
+
+Note on the expert column: unit 4's expert reads tagged every missed finding as expert-only (CATCH expert); earlier
+units split "missed" from "expert only". Compare like with like: missed per day 6.5 against 10.7 and 8.2.
+
+**For estimates.** A base-text day costs what a no-source day costs: writer about 200,000, cheap read about 117,000,
+expert read about 190,000, its share of a fix pass about 64,000; about 570,000 per fully read and fixed day, against
+about 540,000 in unit 3. The set reliability read costs about 56,000 a day. The go rule (writer within 10% of unit 2,
+expert-only at 3 a day or fewer, no rights finding): writer passed, rights passed (one wording echo, fixed), expert
+findings did not fall. A base text is a quality lever, not a cost lever, as the pipeline audit predicted.
