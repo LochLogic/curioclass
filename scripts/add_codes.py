@@ -21,6 +21,17 @@ def slug(s):
     return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')
 
 
+def kept_ids():
+    """computed module id -> the id it keeps (data/modules/kept-ids.csv: a moved module keeps its first id)."""
+    p = DATA / 'modules' / 'kept-ids.csv'
+    if not p.exists():
+        return {}
+    return dict(l.strip().split(',') for l in p.read_text(encoding='utf-8').splitlines() if l.strip() and not l.startswith('#'))
+
+
+KEPT = kept_ids()
+
+
 def subjects():
     import csv
     with open(DATA / 'courses.csv', newline='', encoding='utf-8') as f:
@@ -58,6 +69,7 @@ def main():
                 continue
             grade, course, title = parts[0].strip(), parts[1].strip(), parts[3].strip()
             mid = f'{course_subject.get(course, "?")}-{grade}-{slug(title)}'
+            mid = KEPT.get(mid, mid)
             if mid not in plan:
                 continue
             done.add(mid)

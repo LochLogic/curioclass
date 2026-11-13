@@ -18,17 +18,25 @@ anchor's grade 3 carries two kinds of content:
    This content is **kept**, taught through several places, so the K to 12 progression stays whole: grade 4
    (4.T3, exploration) and grade 5 (5.T1 and 5.T2, colonies and the Revolution) assume it.
 
-## Units (about seven; day counts set by the course frame)
+## Units (seven; day counts set by the course frame)
+
+Revised 2026-11-13 after reading five states' grade 3 standards (section "What other states teach at grade 3"
+below). Changes from the first draft: a community economics unit added, first meetings and early colonies merged,
+the Revolution's events left to grade 5, and unit 7 widened.
 
 | # | Unit | What students learn | Anchor standards, in general form | C3 (3-5) |
 |---|---|---|---|---|
-| 1 | Where we live | Read and make maps of their own town, state and region: directions, scale, legend, landforms and waters; find their state among the fifty | 3.T1.1, 3.T2.1, 3.T2.2 (own town, state and region in place of Massachusetts and New England) | D2.Geo.1, 2, 3 |
-| 2 | Who decides here | Why groups, schools, towns and states have governments; city and town forms; how people take part (voting, meetings, volunteering, taxes for services); every state has its own constitution | 3.T1.3a to f, 3.T6.5 (any state's constitution; Massachusetts's 1780 constitution as one example, the oldest still in use) | D2.Civ.1, 2, 3, 6, 10 |
-| 3 | The first peoples of our land | The Native nation or nations of the student's region, past and present: names, homelands, how the land shaped where people lived, contributions, and that these nations govern themselves today | 3.T2.3a to d (own region); worked examples from five regions, chosen with each nation's own published materials | D2.His.2, 3; D2.Geo.4, 6 |
-| 4 | First meetings | Why Europeans crossed the Atlantic; first meetings with Native nations on more than one coast; reading an early map against a modern one | 3.T3.1 to 3 (cases: the Northeast coast, Spanish Florida, the Southwest) | D2.His.1, 4; D2.Geo.7 |
-| 5 | Starting a colony | Compare two or three early colonies and their Native neighbors (for example Plymouth and the Wampanoag, Jamestown and the Powhatan, St. Augustine and the Timucua): why people came, how they governed themselves (the Mayflower Compact), daily life from artifacts, slavery legal in every colony, trade by sea | 3.T4.1a to c, 3.T5.1 to 5 in general form | D2.His.2, 3, 12; D2.Eco.1, 2 |
-| 6 | Toward independence | How the Revolution began (events in the 1770s and the people in them), what the Declaration says about rights, why a new nation wrote a plan of government | 3.T6.2 to 4 | D2.Civ.3, 5; D2.His.1 |
-| 7 | How our community changed | A local history project: interviews with family and neighbors, old photos and maps, who has lived here over time, ending in a class contribution to the community (informed action) | 3.T1.2 (own town), 3.T6.1 (a historical map of the student's own state) | D1, D3, D4 (inquiry arc) |
+| 1 | Where we live | Globe and map; continents and oceans; equator and prime meridian; a map grid; directions, scale, legend, landforms and waters; their own town, state and US region, found among the fifty states; how people have changed the land around them. An early map of the place set beside a modern one | 3.T1.1, 3.T2.1, 3.T2.2 (own town, state and region in place of Massachusetts and New England) | D2.Geo.1, 2, 3, 4 |
+| 2 | Who decides here | Why groups, schools, towns and states have governments; the three levels (local, state, national) and who leads each; city and town forms; how services are paid for; rights that come with responsibilities; how people take part (voting, meetings, volunteering); disagreeing respectfully, ending in a class vote on a real class question; every state has its own constitution | 3.T1.3a to f, 3.T6.5 (any state's constitution; Massachusetts's 1780 constitution as one example, the oldest still in use) | D2.Civ.1, 2, 3, 6, 7, 9, 10 |
+| 3 | Making a living here | How people in the community earn and spend: goods and services, producers and consumers, scarcity and choices, money and barter, what is made here and what comes from far away, a simple savings plan. One comparison with a community in another country | Not in the anchor's grade 3; taught in all five states read | D2.Eco.1, 2, 3, 7, 14 |
+| 4 | The first peoples of our land | The Native nation or nations of the student's region, past and present: names, homelands, how the land shaped where people lived, contributions, and that these nations govern themselves today | 3.T2.3a to d (own region); worked examples from five regions, chosen with each nation's own published materials | D2.His.2, 3; D2.Geo.4, 6 |
+| 5 | First meetings and early colonies | Why Europeans crossed the Atlantic; first meetings with Native nations on more than one coast; two or three early colonies and their Native neighbors (for example Plymouth and the Wampanoag, Jamestown and the Powhatan, St. Augustine and the Timucua): why people came, slavery legal in every colony, trade by sea. Self-government (the Mayflower Compact) and daily life from artifacts as short cases | 3.T3.1 to 3, 3.T4.1a to c, 3.T5.1 to 5 in general form | D2.His.1, 2, 3, 4, 12; D2.Geo.7 |
+| 6 | Founding ideas | What the Declaration says about rights; what a constitution is for; government by consent of the governed; national symbols, songs and patriotic holidays and what they stand for. The events of the Revolution are left to grade 5 (5.T2) | 3.T6.3, 3.T6.4 | D2.Civ.3, 5, 8 |
+| 7 | How our community changed | A local history project: who has lived here over time, newcomers and why people move, local celebrations and traditions, interviews with family and neighbors, old photos and maps; each student writes one short biography of a person who shaped the community; ending in a class contribution to the community (informed action) | 3.T1.2 (own town), 3.T6.1 (a historical map of the student's own state) | D1, D3, D4 (inquiry arc); D2.His.2 |
+
+**Threads through the year:** a biography in most units (people who made a difference, men and women from many
+backgrounds, local and national); a timeline in every history unit, read in years, decades and centuries; and a
+standing routine for telling a primary source from a secondary one.
 
 Every unit runs the C3 inquiry arc at grade 3 depth (a question, sources, a claim with evidence, sharing it).
 
@@ -40,6 +48,23 @@ Every unit runs the C3 inquiry arc at grade 3 depth (a question, sources, a clai
   carries every example (rubric row C12).
 - The teacher guide links each state's own standards page and its official state and tribal websites, so a
   school can add its state's required facts. Curio Class does not claim to meet any one state's grade 3 standards.
+
+## What other states teach at grade 3
+
+Read 2026-11-13 to fill the year, read only (cited by name; nothing copied): California (History-Social Science
+Standards, grade 3), New York (Framework, grade 3), Texas (TEKS, grade 3), Colorado (2022 standards, grade 3) and
+Florida (2023 standards, grade 3). Virginia, Michigan and Tennessee did not load for automated reading and were
+not worked around. What the five share and the anchor's grade 3 lacks or teaches thinly:
+
+- **Community economics** in all five: producers and consumers, goods and services, scarcity, money, saving. Now
+  unit 3.
+- **Geography beyond the home state** in all five: continents and oceans, globe and map, grid, US regions, people
+  changing the land. Now in unit 1.
+- **Levels of government, paying for services, rights with responsibilities** in four of five. Now in unit 2.
+- **Symbols, holidays and founding ideas** (Florida, Texas, California): now unit 6, which drops the Revolution's
+  events because grade 5 teaches them in full.
+- **Biographies and timelines** in four of five, and **primary versus secondary sources** in three: now threads.
+- **Newcomers and comparing a world community** (New York, Colorado, California): in units 7 and 3.
 
 ## Values rule notes for this year
 
@@ -62,6 +87,8 @@ Every unit runs the C3 inquiry arc at grade 3 depth (a question, sources, a clai
 
 ## Open for the frame and the expert read
 
-- Seven units or six (units 4 and 5 could merge if the frame's day count is tight).
-- Which five regions and nations carry the worked examples in unit 3, settled with each nation's own materials.
-- How much of unit 6 to leave to grade 5 (5.T2 teaches the Revolution in full).
+- Which five regions and nations carry the worked examples in unit 4, settled with each nation's own materials.
+- Which world community unit 3 compares with, chosen so it is not the same country every year of the elementary
+  course.
+- Settled 2026-11-13: seven units, with first meetings and early colonies merged; the Revolution's events left to
+  grade 5.

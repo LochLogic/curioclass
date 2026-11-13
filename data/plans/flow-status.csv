@@ -1,7 +1,7 @@
 node,state,date,note
 P3,done,2026-11-13,BASELINE rule 25 replaced by the build order
 P1a,done,2026-11-13,Massachusetts 2018 anchor loaded: data/standards/ma-hss-2018.txt (991 ids and our own words)
-P1b,active,2026-11-13,Course list redrawn; waits on Cory's yes (Desk card q-ss-course-list)
+P1b,done,2026-11-13,"Course list redrawn to Massachusetts order (data/courses.csv); 46 topics and 153 worksheets moved, module ids kept"
 P1c,done,2026-11-13,"Check set: California, Tennessee, New York plus national references (STANDARD.md section 3)"
 P1d,done,2026-11-13,Grade 3 own year drafted: docs/courses/social-studies/grade-3-outline.md
 P1e,done,2026-11-13,Psychology after the core; APA file loaded by hand when its turn comes

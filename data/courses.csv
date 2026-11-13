@@ -14,14 +14,16 @@ biology,science,Biology,9-10,9,y,
 chemistry,science,Chemistry,10-11,10,y,
 physics,science,Physics,11-12,11,n,
 environmental,science,Environmental Science,11-12,12,n,
-ss-k5,social-studies,Elementary Social Studies,k-5,,y,Expanding horizons sequence
-world-geo-6,social-studies,World Geography and Ancient Civilizations,6,6,y,
-world-hist-7,social-studies,World History (Medieval to Early Modern),7,7,y,
-us-hist-8,social-studies,US History to 1877,8,8,y,
-world-hist-hs,social-studies,World History,9-10,10,y,
-us-hist-hs,social-studies,US History since 1877,11,11,y,
-government,social-studies,US Government and Civics,12,12,y,
-economics,social-studies,Economics,12,12,y,Often one semester with Government
+ss-k5,social-studies,Elementary Social Studies,k-5,,y,Massachusetts 2018 order; grade 3 is Curio Class's own year (docs/courses/social-studies/STANDARD.md)
+world-geo-6,social-studies,World Geography and Ancient Civilizations I,6,6,y,
+world-hist-7,social-studies,World Geography and Ancient Civilizations II,7,7,y,Course id kept from the old list
+us-hist-8,social-studies,Civics: Government and Civic Life,8,8,y,Course id kept from the old list; state and local government taught as the student's own state
+world-hist-hs,social-studies,World History I,9,9,y,About 500 to 1800
+world-hist-2,social-studies,World History II,10,10,y,About 1800 to today
+us-hist-1,social-studies,US History I,11,11,y,1763 to World War I
+us-hist-hs,social-studies,US History II,12,12,y,The 1920s to today; course id kept from the old list
+government,social-studies,US Government and Politics,11-12,12,y,Half year
+economics,social-studies,Economics,11-12,12,y,"Half year, with personal finance"
 psychology,social-studies,Psychology,11-12,12,n,
 visual-arts,arts,Visual Arts,k-12,,y,
 music,arts,Music,k-12,,y,

@@ -26,6 +26,17 @@ def slug(s):
     return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')
 
 
+def kept_ids():
+    """computed module id -> the id it keeps (data/modules/kept-ids.csv: a moved module keeps its first id)."""
+    p = DATA / 'modules' / 'kept-ids.csv'
+    if not p.exists():
+        return {}
+    return dict(l.strip().split(',') for l in p.read_text(encoding='utf-8').splitlines() if l.strip() and not l.startswith('#'))
+
+
+KEPT = kept_ids()
+
+
 def read_csv(name):
     with open(DATA / name, newline='', encoding='utf-8') as f:
         return list(csv.DictReader(f))
@@ -70,6 +81,7 @@ for path in sorted((DATA / 'modules').glob('*.txt')):
         standards = ';'.join(codes)
         subject = courses[course]['subject']
         mid = f'{subject}-{grade}-{slug(title)}'
+        mid = KEPT.get(mid, mid)
         if mid in seen:
             errors.append(f'{where}: duplicate module id {mid}')
         seen.add(mid)

@@ -71,6 +71,13 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 39 | Homes That Fit the Weather | Organizer | Cultures Around the World | Compare a stilt house in Thailand with an adobe house in New Mexico, drawing and circling how each fits its weather. |
 | 40 | Games Kids Play: Same and Different | Organizer | Cultures Around the World | Listen to how ampe (Ghana), loteria (Mexico) and kho kho (India) are played, then mark what is the same and different on a chart. |
 | 42 | Grade 1 Big Review | Review | Cultures Around the World | Answer one picture question per module: a map key, a timeline, an old object, a good or service, and a tradition. |
+| 43 | Who Leads Our Town? | Read and respond | Community Helpers and Government | Read a one-page story about a mayor, town council and police chief, then answer 5 questions about who does each job. |
+| 44 | Town Services Map | Map | Community Helpers and Government | Find the fire station, library, water plant and park on a town map, and write which service each gives the community. |
+| 45 | Council Meeting: New Crosswalk | Apply | Community Helpers and Government | Read 3 neighbors' ideas about a busy street, list a good point for each, then vote and explain the council's best choice. |
+| 46 | Community Government Check | Review | Community Helpers and Government | Match 4 leaders to their jobs, name 2 services taxes pay for, and explain one way a town makes a decision. |
+| 47 | Ruby Bridges Walks to School | Source analysis | Heroes and Changemakers | Study the 1960 photo of Ruby Bridges walking with federal marshals and answer 4 questions about what is happening and why it mattered. |
+| 48 | Changemaker Timeline | Timeline | Heroes and Changemakers | Place 6 changemakers, from Benjamin Franklin to Malala Yousafzai, on a timeline using their key years. |
+| 49 | Small Acts, Big Changes | Writing frame | Heroes and Changemakers | Write a 4-sentence paragraph about one changemaker using starters: who, the problem, what they did, why it matters. |
 
 ## ss-2: Grade 2 Social Studies
 
@@ -79,10 +86,6 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 1 | Fact or Opinion? Ice Cream Edition | Practice | How Do You Know? | Read 10 short sentences about an ice cream shop and stamp each F for fact or O for opinion, then fix one opinion into a fact. |
 | 3 | Ask the Source | Source analysis | How Do You Know? | Look at a weather chart, a photo and a note from a friend about the same snow day and circle which one best answers 3 questions. |
 | 4 | Show Your Evidence Frame | Writing frame | How Do You Know? | Finish 3 sentence frames ("I think ___ because the picture shows ___") about a photo of a crowded farmers market. |
-| 5 | Who Leads Our Town? | Read and respond | Community Helpers and Government | Read a one-page story about a mayor, town council and police chief, then answer 5 questions about who does each job. |
-| 6 | Town Services Map | Map | Community Helpers and Government | Find the fire station, library, water plant and park on a town map, and write which service each gives the community. |
-| 8 | Council Meeting: New Crosswalk | Apply | Community Helpers and Government | Read 3 neighbors' ideas about a busy street, list a good point for each, then vote and explain the council's best choice. |
-| 10 | Community Government Check | Review | Community Helpers and Government | Match 4 leaders to their jobs, name 2 services taxes pay for, and explain one way a town makes a decision. |
 | 11 | City, Suburb or Country? | Organizer | Urban, Suburban and Rural | Sort 9 picture cards (tall buildings, big yards, tractors, subway) into urban, suburban and rural columns. |
 | 13 | Why Here? River Town Map | Map | Urban, Suburban and Rural | Look at a map with a river, hills and a road, and circle the best spot for a town, giving 2 reasons. |
 | 14 | How Many People? Community Bar Graph | Data and graphs | Urban, Suburban and Rural | Read a bar graph of the populations of 3 sample communities and answer 5 questions about which is biggest and by how much. |
@@ -101,12 +104,13 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 32 | Pen Pal Letter From Peru | Read and respond | Pen Pal Parcels | Read a pen pal letter about a potato farm in Peru and answer 5 questions about the place and how its potatoes travel. |
 | 33 | A Banana's Long Trip | Diagram | Pen Pal Parcels | Complete a flow map of how a banana gets from a farm in Ecuador to a grocery store, labeling 5 steps. |
 | 35 | Money and Places Check | Review | Pen Pal Parcels | Answer 8 mixed questions on saving, scarcity, trade and where products come from. |
-| 37 | Ruby Bridges Walks to School | Source analysis | Heroes and Changemakers | Study the 1960 photo of Ruby Bridges walking with federal marshals and answer 4 questions about what is happening and why it mattered. |
-| 38 | Changemaker Timeline | Timeline | Heroes and Changemakers | Place 6 changemakers, from Benjamin Franklin to Malala Yousafzai, on a timeline using their key years. |
-| 40 | Small Acts, Big Changes | Writing frame | Heroes and Changemakers | Write a 4-sentence paragraph about one changemaker using starters: who, the problem, what they did, why it matters. |
 | 41 | Two Riders, Two Stories | Source analysis | The Last Carousel Ride | Read two short accounts of a town carousel's last day, one by a rider and one by its owner, and circle what each noticed. |
 | 42 | Why Did They Tell It Differently? | Organizer | The Last Carousel Ride | Fill a two-column chart on who told each carousel story, what they cared about, and one reason their accounts differ. |
 | 44 | Grade 2 Year Review | Review | The Last Carousel Ride | Answer one question per module, from fact and opinion to trade, resources and comparing two accounts. |
+| 45 | Hot and Cold Communities | Organizer | Communities Around the World | Compare daily life in Nuuk, Greenland and Lagos, Nigeria on a chart: weather, homes, clothes, food and travel. |
+| 46 | A School Day in Tokyo | Read and respond | Communities Around the World | Read a passage about a school day in Tokyo, including students cleaning their classrooms, and compare it to a US school day. |
+| 47 | Community World Map | Map | Communities Around the World | Locate and label 6 world communities on a map, then add one fact about how each adapts to its climate. |
+| 48 | Grade 3 Year Review | Review | Communities Around the World | Answer 12 mixed questions spanning maps, local history, government, business and world communities. |
 
 ## ss-3: Grade 3 Social Studies
 
@@ -142,10 +146,19 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 36 | Costs and Benefits of a Snack Sale | Organizer | Ripple Street | List the costs and benefits of a class snack sale on a T-chart and decide if it is worth doing. |
 | 37 | Ripple Effects on One Street | Diagram | Ripple Street | Trace how a new bakery affects 5 neighbors on one street, drawing ripples for good and bad effects. |
 | 39 | Ripple Street Choices | Apply | Ripple Street | Decide whether a town should close one street for a weekend market, weighing benefits and costs for 4 groups. |
-| 40 | Hot and Cold Communities | Organizer | Communities Around the World | Compare daily life in Nuuk, Greenland and Lagos, Nigeria on a chart: weather, homes, clothes, food and travel. |
-| 42 | A School Day in Tokyo | Read and respond | Communities Around the World | Read a passage about a school day in Tokyo, including students cleaning their classrooms, and compare it to a US school day. |
-| 43 | Community World Map | Map | Communities Around the World | Locate and label 6 world communities on a map, then add one fact about how each adapts to its climate. |
-| 45 | Grade 3 Year Review | Review | Communities Around the World | Answer 12 mixed questions spanning maps, local history, government, business and world communities. |
+| 40 | Native Nations of Our State | Map | State History | Label the homelands of Native nations on a state map, then list one way each nation lives in the state today. |
+| 41 | State History Timeline | Timeline | State History | Place 10 events, from Native homelands to statehood and the present, on a scaled timeline for a sample state. |
+| 42 | Treaty Map Before and After | Source analysis | State History | Compare two historic maps of Native lands before and after a treaty, listing what changed and whose land it was. |
+| 43 | Why Settlers Came, Why Some Were Forced | Organizer | State History | Sort 8 reasons people moved into a state (land, gold, railroad jobs, enslavement, removal) into chosen and forced migration, with examples. |
+| 44 | State History Checkpoint | Review | State History | Answer 10 questions on Native nations, settlement, statehood and key state events. |
+| 45 | How a State Bill Becomes Law | Timeline | State Government | Order 8 steps of a state bill on bike helmets, from idea to governor's signature, and mark where citizens can speak. |
+| 46 | Reading a State Constitution | Source analysis | State Government | Read 3 short excerpts from a state constitution's preamble and declaration of rights, and restate each in plain words. |
+| 47 | Local, State or Federal? | Organizer | State Government | Sort 12 services (driver's licenses, mail, trash pickup, state parks, passports) by which level of government provides them. |
+| 48 | Write to a State Legislator | Writing frame | State Government | Draft a letter to a state legislator about a statewide issue, with the problem, a proposed law and 2 reasons. |
+| 49 | Top State Products Graph | Data and graphs | State Economy and Resources | Make a bar graph of a sample state's top 5 products by value and answer 4 questions about the state economy. |
+| 50 | Natural, Human and Capital Resources | Organizer | State Economy and Resources | Sort 12 resources used by a dairy farm and a cheese factory into natural, human and capital resources. |
+| 51 | What We Sell, What We Buy | Diagram | State Economy and Resources | Draw trade arrows on a US map showing 4 goods a state sells to other states and 4 it buys. |
+| 52 | Economy Checkpoint | Review | State Economy and Resources | Answer 8 questions on resources, products and trade between states. |
 
 ## ss-4: Grade 4 Social Studies
 
@@ -154,25 +167,12 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 1 | Climb the Inquiry Ladder | Organizer | Inquiry Ladder | Break the compelling question "Why did people come to our state?" into 4 supporting questions, from easiest rung to hardest. |
 | 3 | Which Source Answers Which Rung? | Source analysis | Inquiry Ladder | Match 5 short sources (a census table, a diary line, a map, a photo, a law) to the supporting question each could answer. |
 | 4 | Inquiry Plan for the State Project | Planner | Inquiry Ladder | Plan a state history inquiry: compelling question, 3 supporting questions, a source type for each, and how to share findings. |
-| 5 | Native Nations of Our State | Map | State History | Label the homelands of Native nations on a state map, then list one way each nation lives in the state today. |
-| 6 | State History Timeline | Timeline | State History | Place 10 events, from Native homelands to statehood and the present, on a scaled timeline for a sample state. |
-| 7 | Treaty Map Before and After | Source analysis | State History | Compare two historic maps of Native lands before and after a treaty, listing what changed and whose land it was. |
-| 8 | Why Settlers Came, Why Some Were Forced | Organizer | State History | Sort 8 reasons people moved into a state (land, gold, railroad jobs, enslavement, removal) into chosen and forced migration, with examples. |
-| 10 | State History Checkpoint | Review | State History | Answer 10 questions on Native nations, settlement, statehood and key state events. |
 | 11 | Who Was It Made For? | Source analysis | Made for Whom? | Read a 1870s railroad poster inviting settlers west and name its audience, purpose and what it leaves out. |
 | 12 | Same Event, Different Audience | Organizer | Made for Whom? | Compare a newspaper report and a private letter about the same flood, charting author, audience, purpose and tone. |
 | 14 | Write It Two Ways | Writing frame | Made for Whom? | Describe a town fair twice in short paragraphs, once as an ad for visitors and once as a council report. |
 | 15 | Five Regions Color by Code Map | Puzzle | US Regions and States | Color by code on a US map outline: answer a clue about each numbered state, and the answer's region picks its color from the key. |
 | 18 | Region Climate Data | Data and graphs | US Regions and States | Compare average temperature and rainfall tables for 5 regional cities and explain which region each describes. |
 | 20 | Regions Checkpoint | Review | US Regions and States | Locate 8 states, name their regions and match 4 landforms to the right region. |
-| 22 | How a State Bill Becomes Law | Timeline | State Government | Order 8 steps of a state bill on bike helmets, from idea to governor's signature, and mark where citizens can speak. |
-| 23 | Reading a State Constitution | Source analysis | State Government | Read 3 short excerpts from a state constitution's preamble and declaration of rights, and restate each in plain words. |
-| 24 | Local, State or Federal? | Organizer | State Government | Sort 12 services (driver's licenses, mail, trash pickup, state parks, passports) by which level of government provides them. |
-| 25 | Write to a State Legislator | Writing frame | State Government | Draft a letter to a state legislator about a statewide issue, with the problem, a proposed law and 2 reasons. |
-| 27 | Top State Products Graph | Data and graphs | State Economy and Resources | Make a bar graph of a sample state's top 5 products by value and answer 4 questions about the state economy. |
-| 28 | Natural, Human and Capital Resources | Organizer | State Economy and Resources | Sort 12 resources used by a dairy farm and a cheese factory into natural, human and capital resources. |
-| 29 | What We Sell, What We Buy | Diagram | State Economy and Resources | Draw trade arrows on a US map showing 4 goods a state sells to other states and 4 it buys. |
-| 30 | Economy Checkpoint | Review | State Economy and Resources | Answer 8 questions on resources, products and trade between states. |
 | 31 | Adapt, Modify, Depend | Organizer | Human-Environment Interaction | Sort 9 examples (irrigation, warm clothes, fishing, dams) into adapting to, changing or depending on the environment. |
 | 32 | The Dust Bowl Through Photos | Source analysis | Human-Environment Interaction | Study 2 Farm Security Administration photos of the 1930s Dust Bowl and explain how farming choices and drought caused it. |
 | 33 | Building a Dam: Who Gains, Who Loses? | Apply | Human-Environment Interaction | Weigh a proposed river dam's effects on farmers, fish, a Native nation's fishing rights and a nearby city, then recommend a choice. |
@@ -185,6 +185,11 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 44 | Bike Fund: Save, Invest or Spend? | Apply | Bike Fund Chances | Help a character reach a 200 dollar bike goal by comparing a piggy bank, a savings account and a risky stock in a table. |
 | 46 | Protect What You Have | Practice | Bike Fund Chances | Match 6 risks (stolen bike, lost phone, broken window) to ways to protect against them, such as a lock or insurance. |
 | 47 | Grade 4 Year Review | Review | Bike Fund Chances | Answer 12 mixed questions on inquiry, state history, regions, government, the state economy and money choices. |
+| 48 | Environment Shapes Life | Organizer | Indigenous Peoples of North America | Complete a chart for 5 regions showing how each nation's food, homes and clothing came from its environment. |
+| 49 | The Hiawatha Belt | Source analysis | Indigenous Peoples of North America | Study a drawing of the Haudenosaunee Hiawatha wampum belt and explain how its symbols record the union of five nations. |
+| 50 | Cahokia: A City on the Mississippi | Read and respond | Indigenous Peoples of North America | Read about Cahokia around 1100 CE and answer 6 questions on its mounds, trade and population compared with London at the time. |
+| 51 | Great Law of Peace and the Constitution | Organizer | Indigenous Peoples of North America | Compare 4 features of the Haudenosaunee Confederacy with US government ideas in a two-column chart, noting where historians debate the influence. |
+| 52 | Nations Today | Read and respond | Indigenous Peoples of North America | Read short profiles of the Cherokee Nation, Navajo Nation and Lummi Nation today and list each one's government, language work and a current project. |
 
 ## ss-5: Grade 5 Social Studies
 
@@ -192,11 +197,6 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 |---|---|---|---|---|
 | 1 | Source Scout Field Guide | Organizer | Source Scout | Sort 10 sources (a diary, a textbook, an encyclopedia entry, a photo, a blog) into primary and secondary, noting one strength of each. |
 | 2 | Which Source Fits the Question? | Apply | Source Scout | For 4 research questions about the colonies, pick the best of 3 sources each and explain the choice in a sentence. |
-| 6 | Environment Shapes Life | Organizer | Indigenous Peoples of North America | Complete a chart for 5 regions showing how each nation's food, homes and clothing came from its environment. |
-| 7 | The Hiawatha Belt | Source analysis | Indigenous Peoples of North America | Study a drawing of the Haudenosaunee Hiawatha wampum belt and explain how its symbols record the union of five nations. |
-| 8 | Cahokia: A City on the Mississippi | Read and respond | Indigenous Peoples of North America | Read about Cahokia around 1100 CE and answer 6 questions on its mounds, trade and population compared with London at the time. |
-| 9 | Great Law of Peace and the Constitution | Organizer | Indigenous Peoples of North America | Compare 4 features of the Haudenosaunee Confederacy with US government ideas in a two-column chart, noting where historians debate the influence. |
-| 10 | Nations Today | Read and respond | Indigenous Peoples of North America | Read short profiles of the Cherokee Nation, Navajo Nation and Lummi Nation today and list each one's government, language work and a current project. |
 | 12 | Columbus's Journal, October 1492 | Source analysis | Exploration and Colonization | Read Columbus's journal entry describing the Taino and answer questions about what he noticed, what he wanted and whose view is missing. |
 | 13 | The Columbian Exchange | Diagram | Exploration and Colonization | Draw arrows on a world map moving 12 plants, animals and diseases between the Americas, Europe and Africa, and mark one effect of each. |
 | 17 | Colonial Regions Economy Chart | Organizer | Colonial Economies | Fill a chart for New England, Middle and Southern colonies: climate, land, main crops or industries and labor. |
@@ -223,7 +223,7 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 46 | Follow the Cocoa | Map | Cocoa Chain | Trace cocoa from farms in Cote d'Ivoire and Ghana to factories and stores, labeling 5 steps and the countries involved. |
 | 49 | Grade 5 Year Review | Review | Cocoa Chain | Answer 12 mixed questions across Native nations, colonies, the Revolution, the Constitution, interest and trade. |
 
-## world-geo-6: World Geography and Ancient Civilizations
+## world-geo-6: World Geography and Ancient Civilizations I
 
 | # | Worksheet | Type | Module | Students |
 |---|---|---|---|---|
@@ -240,17 +240,6 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 16 | The Rosetta Stone Puzzle | Puzzle | Mesopotamia and Egypt | Decode 6 cartouche names using a simplified hieroglyph key, the same way Champollion used names on the Rosetta Stone. |
 | 17 | Read a Real Museum Label | Critique | Museum Label Writer | Evaluate 3 museum labels for ancient artifacts on clarity, accuracy and audience, scoring each on a short rubric. |
 | 18 | Label an Ancient Artifact | Writing frame | Museum Label Writer | Write a 60-word museum label for a pictured Sumerian object: what it is, where and when it was made, why it matters. |
-| 20 | Mohenjo-daro City Plan | Map | Ancient India and China | Study a plan of Mohenjo-daro's grid streets, drains and Great Bath and list 4 things it suggests about Indus planning. |
-| 22 | Belief Systems Compare | Organizer | Ancient India and China | Compare Hinduism, Buddhism and Confucianism on origin, key teachings and how each guided daily life. |
-| 23 | China's Dynasties Timeline | Timeline | Ancient India and China | Place the Shang, Zhou, Qin and Han dynasties on a timeline with 2 achievements each and the Mandate of Heaven cycle. |
-| 24 | Silk Road Trade Map | Map | Ancient India and China | Trace Silk Road routes from Chang'an to the Mediterranean, mark 6 goods and ideas that moved, and explain one exchange. |
-| 25 | Greek City-States Map | Map | Ancient Greece | Label Athens, Sparta, Corinth and Troy, mountains and seas on a map, and explain how geography made separate city-states. |
-| 26 | Athens and Sparta Compare | Organizer | Ancient Greece | Compare Athens and Sparta on government, education, women's roles and military in a chart, then answer which lasted longer. |
-| 27 | Pericles' Funeral Oration | Source analysis | Ancient Greece | Read an excerpt from Pericles' Funeral Oration in Thucydides and list what he praises about Athenian democracy and who was excluded. |
-| 30 | Roman Republic Government | Diagram | Ancient Rome | Complete a diagram of consuls, Senate and assemblies with powers and checks, and compare it to US branches. |
-| 31 | The Twelve Tables | Source analysis | Ancient Rome | Read 6 laws from the Twelve Tables and explain why writing laws down mattered to plebeians. |
-| 33 | Pliny Watches Vesuvius | Source analysis | Ancient Rome | Read Pliny the Younger's letter on the eruption of Vesuvius and separate what he saw from what he was told. |
-| 34 | Ancient World Task-Card Strips | Review | Ancient Rome | Task-card strips: cut apart 12 strips, one skill per civilization (read a map, date a dynasty, restate a law), and solve each. |
 | 35 | Population Pyramids | Data and graphs | World Regions Today | Compare population pyramids for Niger, Japan and the US and explain what each shape predicts about schools and jobs. |
 | 37 | Development Data Compare | Data and graphs | World Regions Today | Read a table of GDP per person, life expectancy and literacy for 6 countries and rank them, explaining what the data misses. |
 | 38 | Culture Diffusion Web | Organizer | World Regions Today | Trace how 4 cultural items (a food, a sport, a music style, a language) spread across regions and why. |
@@ -261,51 +250,44 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 46 | Exchange at the Border | Practice | Border Trade Post | Convert prices for 6 goods between two currencies using an exchange rate, then decide where each is cheaper. |
 | 47 | Who Gains From a Tariff? | Apply | Border Trade Post | Trace a 20 percent tariff on imported bikes through buyers, local makers, foreign makers and the government, noting gains and losses. |
 | 48 | World Geography Year Review | Review | Border Trade Post | Answer 15 mixed questions on geography skills, ancient civilizations, world regions and economic choices. |
+| 49 | Mansa Musa on the Catalan Atlas | Source analysis | Medieval Africa | Analyze the 1375 Catalan Atlas image of Mansa Musa and explain what Europeans knew and believed about Mali. |
+| 50 | Cairo Gazette, 1324: Front Page | Writing frame | Medieval Africa | Newspaper front page: write a headline, lead story and map box on Mansa Musa's visit to Cairo, using al-Umari's account as evidence. |
+| 51 | Ibn Battuta in Mali | Source analysis | Medieval Africa | Read Ibn Battuta's 1352 account of Mali and sort his observations into praise, criticism and description. |
+| 52 | Maya, Aztec, Inca Map | Map | Civilizations of the Americas | Label the three civilizations and their capitals, and compare their landforms: rainforest, highland valley and mountains. |
+| 53 | Tenochtitlan From Above | Source analysis | Civilizations of the Americas | Study the 1524 Nuremberg map of Tenochtitlan and Bernal Diaz's description, listing causeways, chinampas and markets. |
+| 54 | Reading a Khipu | Puzzle | Civilizations of the Americas | Decode 6 simplified khipu cords using the Inca knot system for ones, tens and hundreds, then record a storehouse inventory. |
+| 55 | Three Civilizations Compare | Organizer | Civilizations of the Americas | Compare Maya, Aztec and Inca on government, farming, religion, achievements and how each empire ended. |
+| 56 | Medieval World Checkpoint | Review | Civilizations of the Americas | Answer 15 mixed questions on Africa, Asia, Europe and the Americas in the medieval era. |
 
-## world-hist-7: World History (Medieval to Early Modern)
+## world-hist-7: World Geography and Ancient Civilizations II
 
 | # | Worksheet | Type | Module | Students |
 |---|---|---|---|---|
 | 1 | One Question, Many Experts | Organizer | Panel of Experts | Show how a historian, geographer, economist and political scientist would each study "Why did Rome fall?" in a four-panel chart. |
 | 3 | Where the Experts Agree | Read and respond | Panel of Experts | Read 4 short expert statements on why the Black Death spread and mark where they agree, add detail or disagree. |
-| 4 | Why Did the Western Empire Fall? | Organizer | Fall of Rome and the Byzantine Empire | Sort 10 causes (invasions, inflation, split empire, plague) into political, economic, military and social, then rank the top three. |
-| 6 | Procopius on Justinian and Theodora | Source analysis | Fall of Rome and the Byzantine Empire | Compare Procopius's praise in Buildings with his attacks in the Secret History and decide what each reveals about his purpose. |
-| 9 | Five Pillars and Daily Life | Read and respond | Islamic Civilizations | Read a short passage on the Five Pillars of Islam and answer 5 questions on how each shaped community life and travel. |
-| 11 | Al-Idrisi's World Map | Source analysis | Islamic Civilizations | Study al-Idrisi's 1154 world map, find 4 known places, and explain why south is at the top and what it shows about knowledge then. |
-| 12 | Islamic Civilizations Checkpoint | Review | Islamic Civilizations | Answer 10 questions on Byzantium, the rise of Islam, the caliphates and the golden age. |
-| 14 | Mansa Musa on the Catalan Atlas | Source analysis | Medieval Africa | Analyze the 1375 Catalan Atlas image of Mansa Musa and explain what Europeans knew and believed about Mali. |
-| 15 | Cairo Gazette, 1324: Front Page | Writing frame | Medieval Africa | Newspaper front page: write a headline, lead story and map box on Mansa Musa's visit to Cairo, using al-Umari's account as evidence. |
-| 16 | Ibn Battuta in Mali | Source analysis | Medieval Africa | Read Ibn Battuta's 1352 account of Mali and sort his observations into praise, criticism and description. |
 | 18 | Tang and Song Invention Trading Cards | Organizer | Medieval Asia | Trading cards: fill 6 cards (printing, gunpowder, compass, paper money, porcelain, canal locks) with date, use, how it spread and impact. |
 | 19 | Mongol Empire Map | Map | Medieval Asia | Shade the Mongol Empire at its height, mark the four khanates, and trace Marco Polo's route across it. |
 | 20 | Mongols: Destroyers or Connectors? | Source analysis | Medieval Asia | Compare a Persian chronicle of a Mongol siege with an account of the Pax Mongolica trade and weigh both views. |
-| 23 | Feudal Obligations Web | Diagram | Medieval Europe | Draw the web of obligations between king, lords, knights and peasants, labeling what each gave and received. |
-| 24 | Pope Urban II Calls a Crusade | Source analysis | Medieval Europe | Read Fulcher of Chartres's account of Urban II's 1095 speech and compare it with Usama ibn Munqidh's view of the Crusaders. |
-| 25 | Black Death Spread Map | Map | Medieval Europe | Shade the spread of plague from 1346 to 1353 using dated cities, then connect the path to trade routes. |
-| 27 | Plague Deaths Data | Data and graphs | Medieval Europe | Graph population estimates for Europe from 1300 to 1500 and explain how labor shortages changed wages and serfdom. |
 | 28 | Who Made This? Clue Hunt | Source analysis | Unlabeled Archive | Examine an unlabeled medieval charter image for clues to its author, date, place and audience, then justify a best guess. |
 | 30 | Archive Catalog Card | Writing frame | Unlabeled Archive | Write a catalog record for a mystery source: likely creator, date, audience, purpose and your confidence level with reasons. |
-| 31 | Maya, Aztec, Inca Map | Map | Civilizations of the Americas | Label the three civilizations and their capitals, and compare their landforms: rainforest, highland valley and mountains. |
-| 32 | Tenochtitlan From Above | Source analysis | Civilizations of the Americas | Study the 1524 Nuremberg map of Tenochtitlan and Bernal Diaz's description, listing causeways, chinampas and markets. |
-| 33 | Reading a Khipu | Puzzle | Civilizations of the Americas | Decode 6 simplified khipu cords using the Inca knot system for ones, tens and hundreds, then record a storehouse inventory. |
-| 35 | Three Civilizations Compare | Organizer | Civilizations of the Americas | Compare Maya, Aztec and Inca on government, farming, religion, achievements and how each empire ended. |
-| 36 | Medieval World Checkpoint | Review | Civilizations of the Americas | Answer 15 mixed questions on Africa, Asia, Europe and the Americas in the medieval era. |
-| 37 | Renaissance Art Look Closely | Source analysis | Renaissance and Reformation | Analyze Raphael's School of Athens for perspective, classical figures and humanist ideas using guiding questions. |
-| 39 | Luther's Ninety-Five Theses | Source analysis | Renaissance and Reformation | Read 6 of Luther's Ninety-Five Theses and explain his complaints about indulgences and why printing spread them fast. |
-| 41 | Galileo's Letter | Source analysis | Renaissance and Reformation | Read an excerpt from Galileo's 1615 letter to the Grand Duchess Christina and explain his argument about science and scripture. |
-| 43 | Zheng He and Columbus Compare | Organizer | Age of Exploration | Compare Zheng He's voyages and Columbus's on fleet size, goals, routes and results using a data table. |
-| 44 | Afonso of Kongo Writes to Portugal | Source analysis | Age of Exploration | Read King Afonso I of Kongo's 1526 letters to Portugal's king protesting the slave trade and explain his demands and power. |
-| 46 | Global Exchange Consequences | Organizer | Age of Exploration | Chart effects of exploration on the Americas, Africa, Europe and Asia: population, trade, food and power. |
 | 47 | Two Historians on Columbus | Source analysis | Historians Disagree | Compare two short secondary passages with opposite views of Columbus's legacy and identify each one's evidence and assumptions. |
 | 49 | Write Where Historians Split | Writing frame | Historians Disagree | Write a paragraph explaining where two historians disagree on the Mongol Empire, why, and which argument is better supported. |
+| 50 | Mohenjo-daro City Plan | Map | Ancient India and China | Study a plan of Mohenjo-daro's grid streets, drains and Great Bath and list 4 things it suggests about Indus planning. |
+| 51 | Belief Systems Compare | Organizer | Ancient India and China | Compare Hinduism, Buddhism and Confucianism on origin, key teachings and how each guided daily life. |
+| 52 | China's Dynasties Timeline | Timeline | Ancient India and China | Place the Shang, Zhou, Qin and Han dynasties on a timeline with 2 achievements each and the Mandate of Heaven cycle. |
+| 53 | Silk Road Trade Map | Map | Ancient India and China | Trace Silk Road routes from Chang'an to the Mediterranean, mark 6 goods and ideas that moved, and explain one exchange. |
+| 54 | Greek City-States Map | Map | Ancient Greece | Label Athens, Sparta, Corinth and Troy, mountains and seas on a map, and explain how geography made separate city-states. |
+| 55 | Athens and Sparta Compare | Organizer | Ancient Greece | Compare Athens and Sparta on government, education, women's roles and military in a chart, then answer which lasted longer. |
+| 56 | Pericles' Funeral Oration | Source analysis | Ancient Greece | Read an excerpt from Pericles' Funeral Oration in Thucydides and list what he praises about Athenian democracy and who was excluded. |
+| 57 | Roman Republic Government | Diagram | Ancient Rome | Complete a diagram of consuls, Senate and assemblies with powers and checks, and compare it to US branches. |
+| 58 | The Twelve Tables | Source analysis | Ancient Rome | Read 6 laws from the Twelve Tables and explain why writing laws down mattered to plebeians. |
+| 59 | Pliny Watches Vesuvius | Source analysis | Ancient Rome | Read Pliny the Younger's letter on the eruption of Vesuvius and separate what he saw from what he was told. |
+| 60 | Ancient World Task-Card Strips | Review | Ancient Rome | Task-card strips: cut apart 12 strips, one skill per civilization (read a map, date a dynasty, restate a law), and solve each. |
 
-## us-hist-8: US History to 1877
+## us-hist-8: Civics: Government and Civic Life
 
 | # | Worksheet | Type | Module | Students |
 |---|---|---|---|---|
-| 1 | After the French and Indian War | Map | Road to Revolution | Compare North America maps from 1754 and 1763, then explain the Proclamation Line and why colonists and Native nations reacted. |
-| 3 | Common Sense Close Read | Source analysis | Road to Revolution | Read 3 passages from Thomas Paine's Common Sense and identify his claims, his evidence and why the pamphlet sold so widely. |
-| 4 | Loyalist, Patriot or Neutral? | Source analysis | Road to Revolution | Read 5 short 1775 to 1776 documents, including Dunmore's Proclamation, and sort each author's stance with the reasons they give. |
 | 6 | Articles of Confederation Report Card | Organizer | Creating the Constitution | Grade the Articles on taxes, trade, defense and Shays' Rebellion with evidence for each grade. |
 | 7 | Compromises at the Convention | Organizer | Creating the Constitution | Chart the Great Compromise, the Three-Fifths Compromise and the slave trade clause: each side's position, the deal, and who was left out. |
 | 8 | Federalist 10 and Brutus I | Source analysis | Creating the Constitution | Compare excerpts of Madison's Federalist 10 and the Anti-Federalist Brutus I on whether a large republic can protect liberty. |
@@ -313,113 +295,141 @@ Covers Kindergarten through Grade 5 Social Studies by grade, the three middle sc
 | 12 | How Groups Decide | Organizer | Motion on the Floor | Compare majority vote, consensus, ranked choice and a leader deciding on speed, fairness and buy-in, using a class trip scenario. |
 | 13 | A Day Shaped by Institutions | Diagram | Shaping Our Week | Map a sample student's week and label where government, companies, unions and nonprofits shape each part, from bus routes to food labels. |
 | 14 | Who Provides It? | Organizer | Shaping Our Week | Sort 12 services (libraries, overtime pay, food banks, phone plans) by government, business, union or nonprofit, explaining 3 choices. |
-| 15 | Letters to the Editor, 1791 | Writing frame | The Early Republic | Letters to the editor: write one letter as a Hamiltonian and one as a Jeffersonian on the national bank, each quoting the real leader. |
-| 17 | Marbury v. Madison Case Brief | Writing frame | The Early Republic | Complete a case brief for Marbury v. Madison: facts, question, decision, reasoning and why judicial review matters. |
 | 19 | Who Can Act on This? | Apply | Levers of Power | For 4 problems (a dangerous intersection, a school dress code, a national park closing), name who decides and 2 ways citizens can act. |
 | 20 | Levers at Every Level | Organizer | Levers of Power | Fill a chart of citizen tools (vote, testify, petition, run, organize) at local, state and national levels with one historic example each. |
-| 22 | Cherokee Memorial of 1830 | Source analysis | Westward Expansion | Read the 1830 Cherokee memorial to Congress and identify the legal and moral arguments the Cherokee made against removal. |
-| 24 | American Progress, 1872 | Source analysis | Westward Expansion | Analyze John Gast's painting American Progress: list its symbols, its message about expansion, and who is pushed aside. |
-| 25 | The Mexican-American War | Map | Westward Expansion | Shade land transferred in the Treaty of Guadalupe Hidalgo and read Article 8 on the rights of Mexican citizens who stayed. |
-| 26 | Lowell Mill Workers | Source analysis | Reform and the Industrial North | Read a letter from a Lowell mill worker and a mill rule sheet and describe hours, pay and how workers organized. |
-| 28 | Declaration of Sentiments | Source analysis | Reform and the Industrial North | Compare the 1848 Declaration of Sentiments with the Declaration of Independence line by line and explain its strategy. |
-| 29 | Reform Convention Program | Organizer | Reform and the Industrial North | Event program: build a program for an 1840s reform convention with 5 speaker bios, goals, a real quotation and results for each. |
-| 30 | Cotton and Slavery Data | Data and graphs | Slavery and Sectionalism | Graph cotton production and the enslaved population from 1800 to 1860 and explain how the cotton gin tied them together. |
-| 31 | What to the Slave Is the Fourth of July? | Source analysis | Slavery and Sectionalism | Read excerpts of Frederick Douglass's 1852 speech and analyze his audience, his use of the nation's founding ideals and his tone. |
-| 32 | Harriet Jacobs in Her Own Words | Source analysis | Slavery and Sectionalism | Read an excerpt from Incidents in the Life of a Slave Girl and identify how Jacobs resisted and why she wrote for Northern women. |
-| 33 | Resistance and Freedom-Seeking | Organizer | Slavery and Sectionalism | Chart forms of resistance by enslaved people (keeping families and culture, work slowdowns, escape, revolt, lawsuits) with a documented example each. |
 | 35 | Pin Up the Evidence | Organizer | Evidence Corkboard | Pin 8 evidence cards to a corkboard chart for the claim "Slavery caused the Civil War," marking strong, weak and contradicting cards. |
 | 37 | Build the Argument | Writing frame | Evidence Corkboard | Write a claim, 3 evidence paragraphs with citations and one counterclaim answered, using the corkboard as a plan. |
-| 38 | Secession in Their Own Words | Source analysis | The Civil War | Read Mississippi's and South Carolina's 1860 to 1861 secession declarations and identify the reasons they state. |
-| 41 | The Emancipation Proclamation | Source analysis | The Civil War | Read the Emancipation Proclamation and decide who it freed, who it did not, and how Black soldiers changed the war. |
-| 42 | Gettysburg Address Word by Word | Source analysis | The Civil War | Annotate the Gettysburg Address for its three time frames, its link to the Declaration and its meaning of "new birth of freedom." |
-| 43 | Civil War Checkpoint | Review | The Civil War | Answer 15 mixed questions on expansion, reform, sectionalism and the Civil War. |
-| 44 | Three Amendments, Three Promises | Organizer | Reconstruction | Chart the 13th, 14th and 15th Amendments: what each says, why it passed, and how it was later weakened or enforced. |
-| 45 | Jourdon Anderson Writes Back | Source analysis | Reconstruction | Read Jourdon Anderson's 1865 letter to his former enslaver and analyze how he uses wages, dignity and humor to make demands. |
-| 46 | Black Officeholders in Reconstruction | Data and graphs | Reconstruction | Read data on Black officeholders by state from 1867 to 1877 and profile Hiram Revels and Robert Smalls in short entries. |
 | 49 | Voices in the Suffrage Debate | Source analysis | Voices on the Vote | Compare 4 voices on who should vote, from the 1821 New York convention to Frederick Douglass and Elizabeth Cady Stanton in 1869. |
 | 50 | US History to 1877 Year Review | Review | Voices on the Vote | Answer 15 mixed questions from the Revolution to the end of Reconstruction, including one short evidence-based response. |
 
-## world-hist-hs: World History
+## world-hist-hs: World History I
+
+| # | Worksheet | Type | Module | Students |
+|---|---|---|---|---|
+| 6 | John Snow's Cholera Map | Map | Layers and Scales | Study John Snow's 1854 dot map of cholera deaths in London and explain how its pattern pointed to the Broad Street pump. |
+| 8 | Build a Thematic Map | Map | Layers and Scales | Turn a data table of 1900 railroad mileage by country into a choropleth map with a clear key, then write 2 pattern statements. |
+| 9 | Why Did the Western Empire Fall? | Organizer | Fall of Rome and the Byzantine Empire | Sort 10 causes (invasions, inflation, split empire, plague) into political, economic, military and social, then rank the top three. |
+| 10 | Procopius on Justinian and Theodora | Source analysis | Fall of Rome and the Byzantine Empire | Compare Procopius's praise in Buildings with his attacks in the Secret History and decide what each reveals about his purpose. |
+| 11 | Five Pillars and Daily Life | Read and respond | Islamic Civilizations | Read a short passage on the Five Pillars of Islam and answer 5 questions on how each shaped community life and travel. |
+| 12 | Al-Idrisi's World Map | Source analysis | Islamic Civilizations | Study al-Idrisi's 1154 world map, find 4 known places, and explain why south is at the top and what it shows about knowledge then. |
+| 13 | Islamic Civilizations Checkpoint | Review | Islamic Civilizations | Answer 10 questions on Byzantium, the rise of Islam, the caliphates and the golden age. |
+| 14 | Feudal Obligations Web | Diagram | Medieval Europe | Draw the web of obligations between king, lords, knights and peasants, labeling what each gave and received. |
+| 15 | Pope Urban II Calls a Crusade | Source analysis | Medieval Europe | Read Fulcher of Chartres's account of Urban II's 1095 speech and compare it with Usama ibn Munqidh's view of the Crusaders. |
+| 16 | Black Death Spread Map | Map | Medieval Europe | Shade the spread of plague from 1346 to 1353 using dated cities, then connect the path to trade routes. |
+| 17 | Plague Deaths Data | Data and graphs | Medieval Europe | Graph population estimates for Europe from 1300 to 1500 and explain how labor shortages changed wages and serfdom. |
+| 18 | Renaissance Art Look Closely | Source analysis | Renaissance and Reformation | Analyze Raphael's School of Athens for perspective, classical figures and humanist ideas using guiding questions. |
+| 19 | Luther's Ninety-Five Theses | Source analysis | Renaissance and Reformation | Read 6 of Luther's Ninety-Five Theses and explain his complaints about indulgences and why printing spread them fast. |
+| 20 | Galileo's Letter | Source analysis | Renaissance and Reformation | Read an excerpt from Galileo's 1615 letter to the Grand Duchess Christina and explain his argument about science and scripture. |
+| 21 | Zheng He and Columbus Compare | Organizer | Age of Exploration | Compare Zheng He's voyages and Columbus's on fleet size, goals, routes and results using a data table. |
+| 22 | Afonso of Kongo Writes to Portugal | Source analysis | Age of Exploration | Read King Afonso I of Kongo's 1526 letters to Portugal's king protesting the slave trade and explain his demands and power. |
+| 23 | Global Exchange Consequences | Organizer | Age of Exploration | Chart effects of exploration on the Americas, Africa, Europe and Asia: population, trade, food and power. |
+
+## world-hist-2: World History II
 
 | # | Worksheet | Type | Module | Students |
 |---|---|---|---|---|
 | 1 | From Copernicus to Newton | Timeline | Revolutions and Enlightenment | Sequence 10 discoveries of the Scientific Revolution and explain how each challenged an older authority. |
 | 2 | Locke, Montesquieu, Rousseau | Source analysis | Revolutions and Enlightenment | Read short excerpts from Locke's Second Treatise, Montesquieu's Spirit of the Laws and Rousseau's Social Contract and chart each thinker's view of power. |
-| 4 | Haiti's Revolution in Its Own Words | Source analysis | Revolutions and Enlightenment | Read letters of Toussaint Louverture and the 1804 Haitian Declaration of Independence and explain how they extended revolutionary ideals. |
-| 5 | Atlantic Revolutions Compare | Organizer | Revolutions and Enlightenment | Compare the American, French, Haitian and Latin American revolutions on causes, leaders, who gained rights and outcomes. |
-| 6 | John Snow's Cholera Map | Map | Layers and Scales | Study John Snow's 1854 dot map of cholera deaths in London and explain how its pattern pointed to the Broad Street pump. |
-| 8 | Build a Thematic Map | Map | Layers and Scales | Turn a data table of 1900 railroad mileage by country into a choropleth map with a clear key, then write 2 pattern statements. |
-| 9 | Sadler Committee Testimony | Source analysis | Industrial Revolution | Read 1832 Sadler Committee testimony from child mill workers and identify working conditions and how the evidence drove the Factory Acts. |
-| 11 | Industrialization Goes Global | Map | Industrial Revolution | Map where raw cotton, rubber and coal came from in 1880 and where factories used them, then explain the global division of labor. |
-| 12 | Capitalism, Socialism, Reform | Organizer | Industrial Revolution | Compare Adam Smith, Karl Marx and labor reformers on who should own industry and how workers should be protected. |
-| 14 | The White Man's Burden and Its Critics | Source analysis | Imperialism | Compare Kipling's 1899 poem with H. T. Johnson's "The Black Man's Burden" and identify each author's argument and audience. |
-| 16 | Resisting Empire | Organizer | Imperialism | Chart 5 resistance movements (Adwa, the 1857 Indian Rebellion, Yaa Asantewaa, the Boxers, Maji Maji) with leaders, methods and outcomes. |
-| 18 | MAIN Causes of War | Organizer | World War I | Sort 12 pre-1914 events into militarism, alliances, imperialism and nationalism, then argue which mattered most. |
-| 19 | Dulce et Decorum Est | Source analysis | World War I | Analyze Wilfred Owen's poem as a source on trench warfare and compare it with a 1915 recruitment poster. |
-| 20 | The Armenian Genocide in the Record | Source analysis | World War I | Read excerpts from US Ambassador Henry Morgenthau's reports and a survivor's testimony and explain what each documents about the 1915 genocide. |
-| 23 | Totalitarian States Compare | Organizer | Between the Wars | Compare Mussolini's Italy, Stalin's Soviet Union and Hitler's Germany on ideology, control of media, terror and economy. |
-| 24 | Reading Propaganda Posters | Source analysis | Between the Wars | Analyze 3 1930s state propaganda posters for symbols, audience and techniques, without reproducing their claims as fact. |
-| 25 | The Great Depression Worldwide | Data and graphs | Between the Wars | Read unemployment and trade data for 5 countries from 1929 to 1933 and explain how the crash spread. |
-| 27 | From Laws to Genocide | Timeline | World War II and the Holocaust | Sequence 12 steps from the 1933 boycott and Nuremberg Laws to the death camps, noting the choices of perpetrators and bystanders. |
-| 28 | The Oneg Shabbat Archive | Source analysis | World War II and the Holocaust | Read about Emanuel Ringelblum's secret Warsaw Ghetto archive and one document from it, and explain why Jews risked their lives to record history. |
-| 29 | Resistance and Rescue | Organizer | World War II and the Holocaust | Chart forms of Jewish resistance and non-Jewish rescue (the Warsaw Ghetto Uprising, Bielski partisans, Le Chambon, the Danish rescue) with evidence. |
-| 30 | Wartime Deaths Data | Data and graphs | World War II and the Holocaust | Compare military and civilian deaths by country in World War II and explain what the numbers show and what they cannot. |
-| 31 | Iron Curtain Speech | Source analysis | The Cold War | Read excerpts of Churchill's 1946 Iron Curtain speech and a Soviet response and compare how each frames the other. |
-| 33 | Kennedy and Khrushchev Letters | Source analysis | The Cold War | Read excerpts from the October 1962 Kennedy-Khrushchev letters and trace how the two leaders stepped back from nuclear war. |
-| 35 | Gandhi's Salt March Letter | Source analysis | Decolonization and Independence | Read Gandhi's 1930 letter to Lord Irwin and explain how he framed nonviolent civil disobedience as a strategy. |
-| 38 | Partition of India | Read and respond | Decolonization and Independence | Read a secondary account and refugee testimonies of the 1947 Partition and explain its causes and human cost. |
-| 39 | Twentieth Century Checkpoint | Review | Decolonization and Independence | Answer 15 mixed questions from World War I to decolonization, including one document-based short answer. |
-| 40 | Following a T-Shirt | Diagram | Globalization Today | Trace a cotton T-shirt's supply chain across 5 countries, labeling raw materials, labor, shipping and retail. |
-| 42 | Winners and Losers of Globalization | Organizer | Globalization Today | Sort evidence about 6 groups (factory workers in two countries, consumers, farmers) into gains and losses. |
-| 43 | Drought and the Sahel | Read and respond | Climate on the Move | Read about drought and migration in the Sahel and answer questions on how climate stress affects farming and movement. |
-| 44 | Climate Migration Map | Map | Climate on the Move | Map projected sea-level rise areas in Bangladesh and coastal megacities and identify where people may move. |
-| 46 | Spot the Broken Claim | Critique | Claim Repair Shop | Diagnose 6 weak historical claims (overgeneralized, no evidence, wrong cause) and label what is broken in each. |
-| 47 | Repair and Rebuild | Writing frame | Claim Repair Shop | Revise a flawed paragraph on the causes of World War I, adding a precise claim, evidence and reasoning. |
-| 48 | World History Year Review | Review | Claim Repair Shop | Answer 15 mixed questions across the course and write one evidence-based paragraph linking two eras. |
+| 3 | Haiti's Revolution in Its Own Words | Source analysis | Revolutions and Enlightenment | Read letters of Toussaint Louverture and the 1804 Haitian Declaration of Independence and explain how they extended revolutionary ideals. |
+| 4 | Atlantic Revolutions Compare | Organizer | Revolutions and Enlightenment | Compare the American, French, Haitian and Latin American revolutions on causes, leaders, who gained rights and outcomes. |
+| 5 | Sadler Committee Testimony | Source analysis | Industrial Revolution | Read 1832 Sadler Committee testimony from child mill workers and identify working conditions and how the evidence drove the Factory Acts. |
+| 6 | Industrialization Goes Global | Map | Industrial Revolution | Map where raw cotton, rubber and coal came from in 1880 and where factories used them, then explain the global division of labor. |
+| 7 | Capitalism, Socialism, Reform | Organizer | Industrial Revolution | Compare Adam Smith, Karl Marx and labor reformers on who should own industry and how workers should be protected. |
+| 8 | The White Man's Burden and Its Critics | Source analysis | Imperialism | Compare Kipling's 1899 poem with H. T. Johnson's "The Black Man's Burden" and identify each author's argument and audience. |
+| 9 | Resisting Empire | Organizer | Imperialism | Chart 5 resistance movements (Adwa, the 1857 Indian Rebellion, Yaa Asantewaa, the Boxers, Maji Maji) with leaders, methods and outcomes. |
+| 10 | MAIN Causes of War | Organizer | World War I | Sort 12 pre-1914 events into militarism, alliances, imperialism and nationalism, then argue which mattered most. |
+| 11 | Dulce et Decorum Est | Source analysis | World War I | Analyze Wilfred Owen's poem as a source on trench warfare and compare it with a 1915 recruitment poster. |
+| 12 | The Armenian Genocide in the Record | Source analysis | World War I | Read excerpts from US Ambassador Henry Morgenthau's reports and a survivor's testimony and explain what each documents about the 1915 genocide. |
+| 13 | Totalitarian States Compare | Organizer | Between the Wars | Compare Mussolini's Italy, Stalin's Soviet Union and Hitler's Germany on ideology, control of media, terror and economy. |
+| 14 | Reading Propaganda Posters | Source analysis | Between the Wars | Analyze 3 1930s state propaganda posters for symbols, audience and techniques, without reproducing their claims as fact. |
+| 15 | The Great Depression Worldwide | Data and graphs | Between the Wars | Read unemployment and trade data for 5 countries from 1929 to 1933 and explain how the crash spread. |
+| 16 | From Laws to Genocide | Timeline | World War II and the Holocaust | Sequence 12 steps from the 1933 boycott and Nuremberg Laws to the death camps, noting the choices of perpetrators and bystanders. |
+| 17 | The Oneg Shabbat Archive | Source analysis | World War II and the Holocaust | Read about Emanuel Ringelblum's secret Warsaw Ghetto archive and one document from it, and explain why Jews risked their lives to record history. |
+| 18 | Resistance and Rescue | Organizer | World War II and the Holocaust | Chart forms of Jewish resistance and non-Jewish rescue (the Warsaw Ghetto Uprising, Bielski partisans, Le Chambon, the Danish rescue) with evidence. |
+| 19 | Wartime Deaths Data | Data and graphs | World War II and the Holocaust | Compare military and civilian deaths by country in World War II and explain what the numbers show and what they cannot. |
+| 20 | Iron Curtain Speech | Source analysis | The Cold War | Read excerpts of Churchill's 1946 Iron Curtain speech and a Soviet response and compare how each frames the other. |
+| 21 | Kennedy and Khrushchev Letters | Source analysis | The Cold War | Read excerpts from the October 1962 Kennedy-Khrushchev letters and trace how the two leaders stepped back from nuclear war. |
+| 22 | Gandhi's Salt March Letter | Source analysis | Decolonization and Independence | Read Gandhi's 1930 letter to Lord Irwin and explain how he framed nonviolent civil disobedience as a strategy. |
+| 23 | Partition of India | Read and respond | Decolonization and Independence | Read a secondary account and refugee testimonies of the 1947 Partition and explain its causes and human cost. |
+| 24 | Twentieth Century Checkpoint | Review | Decolonization and Independence | Answer 15 mixed questions from World War I to decolonization, including one document-based short answer. |
+| 25 | Following a T-Shirt | Diagram | Globalization Today | Trace a cotton T-shirt's supply chain across 5 countries, labeling raw materials, labor, shipping and retail. |
+| 26 | Winners and Losers of Globalization | Organizer | Globalization Today | Sort evidence about 6 groups (factory workers in two countries, consumers, farmers) into gains and losses. |
+| 27 | Drought and the Sahel | Read and respond | Climate on the Move | Read about drought and migration in the Sahel and answer questions on how climate stress affects farming and movement. |
+| 28 | Climate Migration Map | Map | Climate on the Move | Map projected sea-level rise areas in Bangladesh and coastal megacities and identify where people may move. |
+| 29 | Spot the Broken Claim | Critique | Claim Repair Shop | Diagnose 6 weak historical claims (overgeneralized, no evidence, wrong cause) and label what is broken in each. |
+| 30 | Repair and Rebuild | Writing frame | Claim Repair Shop | Revise a flawed paragraph on the causes of World War I, adding a precise claim, evidence and reasoning. |
+| 31 | World History Year Review | Review | Claim Repair Shop | Answer 15 mixed questions across the course and write one evidence-based paragraph linking two eras. |
 
-## us-hist-hs: US History since 1877
+## us-hist-1: US History I
 
 | # | Worksheet | Type | Module | Students |
 |---|---|---|---|---|
-| 1 | Carnegie's Gospel of Wealth | Source analysis | Industrialization and the Gilded Age | Read excerpts of Andrew Carnegie's 1889 "Wealth" and a labor newspaper reply, then compare their views of the rich's duties. |
-| 2 | Horizontal and Vertical Integration | Diagram | Industrialization and the Gilded Age | Diagram how Standard Oil and Carnegie Steel grew, labeling horizontal and vertical integration with real examples. |
-| 3 | Strikes of the Gilded Age | Organizer | Industrialization and the Gilded Age | Chart the 1877 railroad strike, Haymarket, Homestead and Pullman: causes, workers' demands, government response and outcome. |
-| 4 | How the Other Half Lives | Source analysis | Industrialization and the Gilded Age | Analyze 2 Jacob Riis tenement photographs and a passage of his text, weighing his reform purpose against his biases about immigrants. |
-| 6 | Who Is Missing From This Archive? | Source analysis | Missing Voices Archive | Inventory a sample Gilded Age factory town archive (company records, newspapers, photos) and list whose voices are absent and why. |
-| 8 | Writing History With Gaps | Writing frame | Missing Voices Archive | Write a paragraph about mill workers' lives that makes a claim the evidence supports and names one thing the archive cannot tell. |
-| 10 | Ida B. Wells, Investigator | Source analysis | The Progressive Era | Read excerpts from Ida B. Wells's Southern Horrors and analyze how she used data and newspaper records to challenge lynching myths. |
-| 11 | Progressive Amendments | Organizer | The Progressive Era | Chart the 16th, 17th, 18th and 19th Amendments with the problem each addressed, who pushed it and its effect. |
-| 12 | Triangle Fire to Labor Law | Timeline | The Progressive Era | Sequence 8 events from the 1911 Triangle Shirtwaist Factory fire to New York's new safety laws, citing the workers who organized. |
-| 13 | Debating Empire, 1898 to 1902 | Source analysis | The US as a World Power | Compare Albert Beveridge's "March of the Flag" with the Anti-Imperialist League platform on annexing the Philippines. |
-| 15 | The Zimmermann Telegram | Source analysis | The US as a World Power | Read the 1917 Zimmermann telegram and explain how it and submarine warfare moved the US toward war. |
-| 17 | Harlem Renaissance Voices | Source analysis | Roaring Twenties and the Great Depression | Analyze a Langston Hughes poem and a Jacob Lawrence Migration Series panel for what they say about the Great Migration. |
-| 18 | Buying on Margin | Apply | Roaring Twenties and the Great Depression | Calculate gains and losses for 4 investors who bought stock on 10 percent margin before and after the 1929 crash. |
-| 20 | Migrant Mother, Read Closely | Source analysis | Roaring Twenties and the Great Depression | Analyze Dorothea Lange's 1936 Migrant Mother photo and the story of Florence Owens Thompson, including what Lange left out. |
-| 21 | Alphabet Agency Secret Code | Puzzle | Roaring Twenties and the Great Depression | Secret code: match 10 New Deal agencies to their purpose and relief, recovery or reform; answer letters spell a Roosevelt phrase. |
-| 22 | Executive Order 9066 | Source analysis | World War II and the Home Front | Read Executive Order 9066 and Fred Korematsu's statements and explain how the order was applied and later judged. |
-| 23 | Double V Campaign | Source analysis | World War II and the Home Front | Analyze the 1942 Pittsburgh Courier Double V campaign and explain how Black Americans linked victory abroad with rights at home. |
-| 24 | Mobilizing the Home Front | Data and graphs | World War II and the Home Front | Read data on women in the workforce, war production and rationing from 1940 to 1945 and write 3 claims. |
-| 25 | Ending the War in the Pacific | Organizer | World War II and the Home Front | Weigh arguments for and against using the atomic bomb using 4 short documents, including Truman's statement and Hiroshima survivor testimony. |
-| 26 | Reading a Redlining Map | Map | Suburb Boom | Analyze a 1930s HOLC map and area description for one city and explain how grades affected who could get home loans. |
-| 28 | Suburbs by the Numbers | Data and graphs | Suburb Boom | Graph suburban and city populations from 1940 to 1980 and connect the trend to the GI Bill, FHA loans and deed restrictions. |
-| 29 | Brown v. Board and Mendez | Source analysis | Civil Rights Movement | Compare the reasoning in Mendez v. Westminster (1947) and Brown v. Board (1954) on school segregation. |
-| 30 | Letter From Birmingham Jail | Source analysis | Civil Rights Movement | Annotate excerpts from Dr. King's 1963 letter for his response to critics, his definition of just laws and his appeals. |
-| 31 | Movement Strategies Compare | Organizer | Civil Rights Movement | Compare the strategies of the NAACP, SNCC, the Nation of Islam and the Black Panthers on goals, methods and results. |
-| 32 | Many Movements | Organizer | Civil Rights Movement | Chart the Delano grape strike, the 1977 Section 504 sit-in, the American Indian Movement and women's movement campaigns with leaders, tactics and wins. |
-| 33 | Voting Rights Act Data | Data and graphs | Civil Rights Movement | Graph Black voter registration in Mississippi and Alabama before and after the 1965 Voting Rights Act and explain the change. |
-| 35 | Containment Documents | Source analysis | Cold War America | Compare the Truman Doctrine speech and NSC-68 and explain how containment grew from aid to military buildup. |
-| 36 | The Space Race | Timeline | Cold War America | Sequence 10 events from Sputnik to Apollo 11, marking each Soviet and US first and the Cold War stakes. |
-| 37 | Gulf of Tonkin and the Pentagon Papers | Source analysis | Cold War America | Compare the 1964 Gulf of Tonkin Resolution with Pentagon Papers excerpts and explain the credibility gap. |
-| 39 | Twentieth Century Checkpoint | Review | Cold War America | Answer 15 mixed questions from the Gilded Age through the Cold War, including one document-based response. |
-| 40 | Trace the Documentary's Sources | Organizer | Behind the Documentary | Trace 5 claims from a short documentary transcript on the Dust Bowl back to the primary sources it uses. |
-| 41 | What the Film Left Out | Critique | Behind the Documentary | Evaluate a documentary script excerpt for music, editing and narrator choices that shape the argument, and suggest one missing perspective. |
-| 42 | Review the Documentary | Writing frame | Behind the Documentary | Write a 300-word review judging a documentary's argument, its use of sources and its fairness. |
-| 43 | The 1980s Economy | Data and graphs | Modern America | Graph inflation, unemployment and tax rates from 1978 to 1990 and evaluate arguments about Reagan-era economic policy. |
-| 44 | The 9/11 Commission Report | Source analysis | Modern America | Read excerpts of the 9/11 Commission Report's findings and explain its main conclusions about intelligence failures. |
-| 45 | Technology Changes Everything | Organizer | Modern America | Chart how the personal computer, internet and smartphones changed work, communication and politics from 1980 to today. |
-| 46 | Modern America Timeline and Review | Review | Modern America | Sequence 10 events from 1980 to today and answer 8 questions on politics, the economy and society. |
+| 1 | After the French and Indian War | Map | Road to Revolution | Compare North America maps from 1754 and 1763, then explain the Proclamation Line and why colonists and Native nations reacted. |
+| 2 | Common Sense Close Read | Source analysis | Road to Revolution | Read 3 passages from Thomas Paine's Common Sense and identify his claims, his evidence and why the pamphlet sold so widely. |
+| 3 | Loyalist, Patriot or Neutral? | Source analysis | Road to Revolution | Read 5 short 1775 to 1776 documents, including Dunmore's Proclamation, and sort each author's stance with the reasons they give. |
+| 4 | Letters to the Editor, 1791 | Writing frame | The Early Republic | Letters to the editor: write one letter as a Hamiltonian and one as a Jeffersonian on the national bank, each quoting the real leader. |
+| 5 | Marbury v. Madison Case Brief | Writing frame | The Early Republic | Complete a case brief for Marbury v. Madison: facts, question, decision, reasoning and why judicial review matters. |
+| 6 | Cherokee Memorial of 1830 | Source analysis | Westward Expansion | Read the 1830 Cherokee memorial to Congress and identify the legal and moral arguments the Cherokee made against removal. |
+| 7 | American Progress, 1872 | Source analysis | Westward Expansion | Analyze John Gast's painting American Progress: list its symbols, its message about expansion, and who is pushed aside. |
+| 8 | The Mexican-American War | Map | Westward Expansion | Shade land transferred in the Treaty of Guadalupe Hidalgo and read Article 8 on the rights of Mexican citizens who stayed. |
+| 9 | Lowell Mill Workers | Source analysis | Reform and the Industrial North | Read a letter from a Lowell mill worker and a mill rule sheet and describe hours, pay and how workers organized. |
+| 10 | Declaration of Sentiments | Source analysis | Reform and the Industrial North | Compare the 1848 Declaration of Sentiments with the Declaration of Independence line by line and explain its strategy. |
+| 11 | Reform Convention Program | Organizer | Reform and the Industrial North | Event program: build a program for an 1840s reform convention with 5 speaker bios, goals, a real quotation and results for each. |
+| 12 | Cotton and Slavery Data | Data and graphs | Slavery and Sectionalism | Graph cotton production and the enslaved population from 1800 to 1860 and explain how the cotton gin tied them together. |
+| 13 | What to the Slave Is the Fourth of July? | Source analysis | Slavery and Sectionalism | Read excerpts of Frederick Douglass's 1852 speech and analyze his audience, his use of the nation's founding ideals and his tone. |
+| 14 | Harriet Jacobs in Her Own Words | Source analysis | Slavery and Sectionalism | Read an excerpt from Incidents in the Life of a Slave Girl and identify how Jacobs resisted and why she wrote for Northern women. |
+| 15 | Resistance and Freedom-Seeking | Organizer | Slavery and Sectionalism | Chart forms of resistance by enslaved people (keeping families and culture, work slowdowns, escape, revolt, lawsuits) with a documented example each. |
+| 16 | Secession in Their Own Words | Source analysis | The Civil War | Read Mississippi's and South Carolina's 1860 to 1861 secession declarations and identify the reasons they state. |
+| 17 | The Emancipation Proclamation | Source analysis | The Civil War | Read the Emancipation Proclamation and decide who it freed, who it did not, and how Black soldiers changed the war. |
+| 18 | Gettysburg Address Word by Word | Source analysis | The Civil War | Annotate the Gettysburg Address for its three time frames, its link to the Declaration and its meaning of "new birth of freedom." |
+| 19 | Civil War Checkpoint | Review | The Civil War | Answer 15 mixed questions on expansion, reform, sectionalism and the Civil War. |
+| 20 | Three Amendments, Three Promises | Organizer | Reconstruction | Chart the 13th, 14th and 15th Amendments: what each says, why it passed, and how it was later weakened or enforced. |
+| 21 | Jourdon Anderson Writes Back | Source analysis | Reconstruction | Read Jourdon Anderson's 1865 letter to his former enslaver and analyze how he uses wages, dignity and humor to make demands. |
+| 22 | Black Officeholders in Reconstruction | Data and graphs | Reconstruction | Read data on Black officeholders by state from 1867 to 1877 and profile Hiram Revels and Robert Smalls in short entries. |
+| 23 | Carnegie's Gospel of Wealth | Source analysis | Industrialization and the Gilded Age | Read excerpts of Andrew Carnegie's 1889 "Wealth" and a labor newspaper reply, then compare their views of the rich's duties. |
+| 24 | Horizontal and Vertical Integration | Diagram | Industrialization and the Gilded Age | Diagram how Standard Oil and Carnegie Steel grew, labeling horizontal and vertical integration with real examples. |
+| 25 | Strikes of the Gilded Age | Organizer | Industrialization and the Gilded Age | Chart the 1877 railroad strike, Haymarket, Homestead and Pullman: causes, workers' demands, government response and outcome. |
+| 26 | How the Other Half Lives | Source analysis | Industrialization and the Gilded Age | Analyze 2 Jacob Riis tenement photographs and a passage of his text, weighing his reform purpose against his biases about immigrants. |
+| 27 | Ida B. Wells, Investigator | Source analysis | The Progressive Era | Read excerpts from Ida B. Wells's Southern Horrors and analyze how she used data and newspaper records to challenge lynching myths. |
+| 28 | Progressive Amendments | Organizer | The Progressive Era | Chart the 16th, 17th, 18th and 19th Amendments with the problem each addressed, who pushed it and its effect. |
+| 29 | Triangle Fire to Labor Law | Timeline | The Progressive Era | Sequence 8 events from the 1911 Triangle Shirtwaist Factory fire to New York's new safety laws, citing the workers who organized. |
+| 30 | Debating Empire, 1898 to 1902 | Source analysis | The US as a World Power | Compare Albert Beveridge's "March of the Flag" with the Anti-Imperialist League platform on annexing the Philippines. |
+| 31 | The Zimmermann Telegram | Source analysis | The US as a World Power | Read the 1917 Zimmermann telegram and explain how it and submarine warfare moved the US toward war. |
 
-## government: US Government and Civics
+## us-hist-hs: US History II
+
+| # | Worksheet | Type | Module | Students |
+|---|---|---|---|---|
+| 1 | Who Is Missing From This Archive? | Source analysis | Missing Voices Archive | Inventory a sample Gilded Age factory town archive (company records, newspapers, photos) and list whose voices are absent and why. |
+| 2 | Writing History With Gaps | Writing frame | Missing Voices Archive | Write a paragraph about mill workers' lives that makes a claim the evidence supports and names one thing the archive cannot tell. |
+| 3 | Harlem Renaissance Voices | Source analysis | Roaring Twenties and the Great Depression | Analyze a Langston Hughes poem and a Jacob Lawrence Migration Series panel for what they say about the Great Migration. |
+| 4 | Buying on Margin | Apply | Roaring Twenties and the Great Depression | Calculate gains and losses for 4 investors who bought stock on 10 percent margin before and after the 1929 crash. |
+| 5 | Migrant Mother, Read Closely | Source analysis | Roaring Twenties and the Great Depression | Analyze Dorothea Lange's 1936 Migrant Mother photo and the story of Florence Owens Thompson, including what Lange left out. |
+| 6 | Alphabet Agency Secret Code | Puzzle | Roaring Twenties and the Great Depression | Secret code: match 10 New Deal agencies to their purpose and relief, recovery or reform; answer letters spell a Roosevelt phrase. |
+| 7 | Executive Order 9066 | Source analysis | World War II and the Home Front | Read Executive Order 9066 and Fred Korematsu's statements and explain how the order was applied and later judged. |
+| 8 | Double V Campaign | Source analysis | World War II and the Home Front | Analyze the 1942 Pittsburgh Courier Double V campaign and explain how Black Americans linked victory abroad with rights at home. |
+| 9 | Mobilizing the Home Front | Data and graphs | World War II and the Home Front | Read data on women in the workforce, war production and rationing from 1940 to 1945 and write 3 claims. |
+| 10 | Ending the War in the Pacific | Organizer | World War II and the Home Front | Weigh arguments for and against using the atomic bomb using 4 short documents, including Truman's statement and Hiroshima survivor testimony. |
+| 11 | Reading a Redlining Map | Map | Suburb Boom | Analyze a 1930s HOLC map and area description for one city and explain how grades affected who could get home loans. |
+| 12 | Suburbs by the Numbers | Data and graphs | Suburb Boom | Graph suburban and city populations from 1940 to 1980 and connect the trend to the GI Bill, FHA loans and deed restrictions. |
+| 13 | Brown v. Board and Mendez | Source analysis | Civil Rights Movement | Compare the reasoning in Mendez v. Westminster (1947) and Brown v. Board (1954) on school segregation. |
+| 14 | Letter From Birmingham Jail | Source analysis | Civil Rights Movement | Annotate excerpts from Dr. King's 1963 letter for his response to critics, his definition of just laws and his appeals. |
+| 15 | Movement Strategies Compare | Organizer | Civil Rights Movement | Compare the strategies of the NAACP, SNCC, the Nation of Islam and the Black Panthers on goals, methods and results. |
+| 16 | Many Movements | Organizer | Civil Rights Movement | Chart the Delano grape strike, the 1977 Section 504 sit-in, the American Indian Movement and women's movement campaigns with leaders, tactics and wins. |
+| 17 | Voting Rights Act Data | Data and graphs | Civil Rights Movement | Graph Black voter registration in Mississippi and Alabama before and after the 1965 Voting Rights Act and explain the change. |
+| 18 | Containment Documents | Source analysis | Cold War America | Compare the Truman Doctrine speech and NSC-68 and explain how containment grew from aid to military buildup. |
+| 19 | The Space Race | Timeline | Cold War America | Sequence 10 events from Sputnik to Apollo 11, marking each Soviet and US first and the Cold War stakes. |
+| 20 | Gulf of Tonkin and the Pentagon Papers | Source analysis | Cold War America | Compare the 1964 Gulf of Tonkin Resolution with Pentagon Papers excerpts and explain the credibility gap. |
+| 21 | Twentieth Century Checkpoint | Review | Cold War America | Answer 15 mixed questions from the Gilded Age through the Cold War, including one document-based response. |
+| 22 | Trace the Documentary's Sources | Organizer | Behind the Documentary | Trace 5 claims from a short documentary transcript on the Dust Bowl back to the primary sources it uses. |
+| 23 | What the Film Left Out | Critique | Behind the Documentary | Evaluate a documentary script excerpt for music, editing and narrator choices that shape the argument, and suggest one missing perspective. |
+| 24 | Review the Documentary | Writing frame | Behind the Documentary | Write a 300-word review judging a documentary's argument, its use of sources and its fairness. |
+| 25 | The 1980s Economy | Data and graphs | Modern America | Graph inflation, unemployment and tax rates from 1978 to 1990 and evaluate arguments about Reagan-era economic policy. |
+| 26 | The 9/11 Commission Report | Source analysis | Modern America | Read excerpts of the 9/11 Commission Report's findings and explain its main conclusions about intelligence failures. |
+| 27 | Technology Changes Everything | Organizer | Modern America | Chart how the personal computer, internet and smartphones changed work, communication and politics from 1980 to today. |
+| 28 | Modern America Timeline and Review | Review | Modern America | Sequence 10 events from 1980 to today and answer 8 questions on politics, the economy and society. |
+
+## government: US Government and Politics
 
 | # | Worksheet | Type | Module | Students |
 |---|---|---|---|---|

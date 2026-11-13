@@ -16,7 +16,9 @@ of PRODUCTION-PATH (people, how to spend Codex Pro before 2026-11-30, whether th
 standard stands, a spending ceiling). Everything below this block is from before that change: where it speaks of
 the pilot unit first, the ELA and science pilots, or one unit ahead, PRODUCTION-PATH wins.
 
-**Pre-work P1, 2026-11-13 (later):** P1a, P1c, P1d and P1e done, P1b on the Desk (card q-ss-course-list); see
+**Pre-work P1, 2026-11-13 (later):** all five done. P1b (Cory's yes on q-ss-course-list): data/courses.csv in Massachusetts order, 46 topics and
+153 worksheets moved, module ids kept by data/modules/kept-ids.csv (read by build_db.py and add_codes.py);
+data/modules/math.txt resynced to the 2026-11-11 codes that had been written only into modules.csv. See
 [courses/social-studies/STANDARD.md](courses/social-studies/STANDARD.md). The Desk's plan flow is built by
 `python -X utf8 scripts/plan_flow.py <out.json>` and posted to Desk doc `stats/plan`; node states live in
 data/plans/flow-status.csv. **Saved for later:** anything set aside until a trigger (a file Cory saves by hand,

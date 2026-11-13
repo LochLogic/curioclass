@@ -879,3 +879,14 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    and by Codex. FOUNDATION 7.3 still applies: nothing is called finished without qualified people.
 3. **Codex is used freely** (its weekly budget resets; large use is open when needed).
 4. **No spending ceiling.** Judicious and efficient with tokens, never at the cost of quality.
+
+## 2026-11-13: card q-ss-course-list, the social studies course list (Cory, in chat)
+
+> yes to the dashboard question, go with your recommendation. [...] when we fill in grade 3, can we use other
+> states standards to help fill in that year? if so, lets do that. whatever makes the curriculum the best.
+
+1. **The course list is redrawn to Massachusetts 2018 order** as in docs/courses/social-studies/STANDARD.md
+   section 2, with the lead's pick for high school: World History I and II in grades 9 and 10, US History I and II
+   in 11 and 12, Government and Economics as half years in 11 and 12. Core social studies goes from 13 courses to 15.
+2. **Grade 3 draws on other states' grade 3 standards** wherever they make the year better (read only, our own
+   words), on top of the Massachusetts skills kept in general form and C3.

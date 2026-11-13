@@ -9,7 +9,7 @@ docs/reviews/social-studies-content-standard-2026-11-12.md.
 | Piece | State | Where |
 |---|---|---|
 | P1a. Load the anchor | Done | data/standards/ma-hss-2018.txt (ids and our own words), checked by scripts/standards.py |
-| P1b. Redraw the course list | Waiting for Cory's yes (Desk card q-ss-course-list) | Section 2 below; data/courses.csv changes only after the yes |
+| P1b. Redraw the course list | Done 2026-11-13 (Cory's yes on Desk card q-ss-course-list, with the lead's high school pick) | Section 2 below; data/courses.csv |
 | P1c. Name the check states | Done (the lead names them, per PRODUCTION-PATH) | Section 3 |
 | P1d. Design the replaced year | Draft done, read in its turn | docs/courses/social-studies/grade-3-outline.md |
 | P1e. Psychology and electives | Done: psychology after the core | Section 4 |
@@ -30,9 +30,9 @@ docs/reviews/social-studies-content-standard-2026-11-12.md.
 - Massachusetts's own Investigating History units (grades 3 to 7) are CC BY-NC: reference only, never adapted.
   Copies of both are in S:\CurioClass-sources\reference-only-do-not-copy\massachusetts-hss-2018\.
 
-## 2. The course list, redrawn to Massachusetts's order (P1b, for Cory's yes)
+## 2. The course list, redrawn to Massachusetts's order (P1b, done)
 
-Today's list (data/courses.csv) is California's order. Under the anchor it becomes the list below. The elementary
+The old list was California's order. Under the anchor it became the list below (in data/courses.csv since 2026-11-13). The elementary
 course stays one row by grade (`ss-k5`), as now.
 
 | Grade | Course (proposed title) | Massachusetts source | Core | Change from today | Today's course id |
@@ -44,12 +44,12 @@ course stays one row by grade (`ss-k5`), as now.
 | 4 | Grade 4: North America, Its Land and Peoples | 4.T1 to 4.T4e | yes | Was state history and government | ss-k5 |
 | 5 | Grade 5: The United States to the Civil War, and the Fight for Civil Rights | 5.T1 to 5.T5 | yes | Grows past the Constitution | ss-k5 |
 | 6 | World Geography and Ancient Civilizations I | 6.T1 to 6.T5c | yes | Becomes the first of two years | world-geo-6 (kept) |
-| 7 | World Geography and Ancient Civilizations II | 7.T1 to 7.T4c | yes | Was medieval to early modern | world-hist-7 (becomes world-geo-7) |
-| 8 | Civics: Government and Civic Life | 8.T1 to 8.T7 (8.T6, Massachusetts government, taught as "your state") | yes | Was US history to 1877 | us-hist-8 (becomes civics-8) |
-| 9 | World History I (about 600 to 1800) | WHI.T1 to WHI.T6 | yes | New course | world-hist-hs (split) |
-| 10 | World History II (about 1800 to today) | WHII.T1 to WHII.T7 | yes | New course | world-hist-hs (split) |
-| 11 | US History I (1763 to World War I) | USI.T1 to USI.T7 | yes | New course | us-hist-hs (split) |
-| 12 | US History II (the 1920s to today) | USII.T1 to USII.T5 | yes | New course | us-hist-hs (split) |
+| 7 | World Geography and Ancient Civilizations II | 7.T1 to 7.T4c | yes | Was medieval to early modern | world-hist-7 (id kept) |
+| 8 | Civics: Government and Civic Life | 8.T1 to 8.T7 (8.T6, Massachusetts government, taught as "your state") | yes | Was US history to 1877 | us-hist-8 (id kept) |
+| 9 | World History I (about 500 to 1800) | WHI.T1 to WHI.T6 | yes | New course | world-hist-hs (id kept) |
+| 10 | World History II (about 1800 to today) | WHII.T1 to WHII.T7 | yes | New course | world-hist-2 (new) |
+| 11 | US History I (1763 to World War I) | USI.T1 to USI.T7 | yes | New course | us-hist-1 (new) |
+| 12 | US History II (the 1920s to today) | USII.T1 to USII.T5 | yes | New course | us-hist-hs (id kept) |
 | 11 to 12 | US Government and Politics (half year) | GOV.T1 to GOV.T5 | yes | Little change | government (kept) |
 | 11 to 12 | Economics (half year), with personal finance | ECON.T1 to ECON.T7, PFL.T1 to PFL.T4 | yes | Adds the personal finance standards | economics (kept) |
 | 11 to 12 | Psychology | APA, after the core (section 4) | no | None | psychology (kept) |
@@ -58,14 +58,20 @@ course stays one row by grade (`ss-k5`), as now.
   high school courses' unit plans.
 - Core social studies courses go from 13 to 15 (World History and US History each become two). The Desk's plan
   flow counts them from data/courses.csv, so it grows when the list changes.
-- The high school grades are the lead's pick, for Cory to set. Massachusetts fixes no high school grade. Pick:
-  World History I and II in 9 and 10, so world history runs on from grade 7 (which ends about 600) without a
+- The high school grades were the lead's pick, which Cory took (2026-11-13). Massachusetts fixes no high school grade. Pick:
+  World History I and II in 9 and 10, so world history runs on from grade 7 (which ends about 500) without a
   gap; US History I and II in 11 and 12, the most common place for US history; Government and Economics as half
   years for grades 11 and 12. Alternative: US History I and II in 9 and 10 (the framework says US History I
   builds on grade 8 civics) and world history in 11 and 12. Either way the content is the same.
-- After the yes: data/courses.csv is redrawn, docs/COURSES-STATUS.md rebuilt, and the 47 social studies topics
-  in the courses that change (us-hist-8 13, world-hist-hs 12, world-hist-7 11, us-hist-hs 11), plus the grade 3,
-  4 and 5 topics, are retagged in place (ECOSYSTEM rule: rewrite in place, split only for two unrelated topics).
+- Done after the yes (2026-11-13): data/courses.csv redrawn with every old course id kept (URLs and closet keys
+  use them) and two new ids, world-hist-2 and us-hist-1. 46 topics moved to the course and grade where their
+  content now sits, rewritten in place, and their D-code grade bands relabelled. Each moved topic keeps its first
+  module id (data/modules/kept-ids.csv, read by scripts/build_db.py and scripts/add_codes.py), because word walls,
+  media and tool files point at those ids. The 153 worksheets of the moved topics moved with them to new row
+  numbers at the end of their new unit (docs/worksheets/social-studies.md; generated.csv follows).
+- Some redrawn courses are thin until their scope and sequence is written (us-hist-8 civics 13 worksheets,
+  world-hist-hs 17, us-hist-hs 28; grade 2, 4 and 5 topics also need new ones). scripts/check_worksheets.py
+  prints these as notes, not problems. Saved for later as L8.
 
 ## 3. The check set (P1c)
 
