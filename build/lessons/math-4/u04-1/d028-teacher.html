@@ -1,0 +1,120 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 28: The missing part: teacher page</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="teacher"><h1>Day 28: The missing part</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>28, section 4.1, fluency day</td></tr><tr><td>Goal</td><td>I can find the missing part of a sum quickly, without pieces</td></tr><tr><td>Standard parts</td><td>4.NF.A.1 (a) two fractions are equivalent, by using visual fraction models; 4.NF.B.3b (c) a fraction into a sum with the same denominator in more than one way, each recorded by an equation, past 1 too</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, a pencil and a pen (pieces stay put away; sketches only); per class, the projector with the display page, and the board</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit ticket, 1 per student; the key, 1 for the teacher</td></tr><tr><td>At home</td><td>the At home view, d028-home.html, 35 minutes with one child</td></tr><tr><td>Leans on</td><td>courses/math-4/u04-1/opener.md; courses/math-4/u04-1/record.md</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 12, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</td></tr></table><h3>Before class</h3>
+<p>Print the student page, tickets and key. Have day 27's tickets and Lee's sums beside you, look-fors ticked, and
+the facts group's names. Envelopes of pieces stay in the cupboard today.</p>
+<h3>The day</h3>
+<h4>5 min. Warm-up: equal names</h4>
+<p>Whole class, in their heads (Fill in each blank. (a) 1/2 = <span class="blank" style="width:0.9em"></span>/8 (b) 3/4 = <span class="blank" style="width:0.9em"></span>/12 (c) 2/5 = 4/<span class="blank" style="width:0.9em"></span> <strong>[(a) 4, so 1/2 = 4/8 (b) 9, so 3/4 = 9/12 (c) 10, so 2/5 = 4/10]</strong>). Show one blank at a time; hands up when ready; write each answer.
+The facts group (readiness item 4) does Find each: 6 + 8, 15 − 7, 9 + 4, 12 − 5, 7 + 7, 11 − 6 <strong>[14, 8, 13, 7, 14, 5]</strong> alone first, then joins for (c).</p>
+<p><strong>Ask.</strong> After (a): "Is 4/8 a new number, or a new name for 1/2?" Expect: a new name; both sit at the same point
+on the line.</p>
+<h4>3 min. Day 27's tickets and written task</h4>
+<p>Hand back Lee's sums (day 27's written task), look-fors ticked. Whole class for what more than a third showed; otherwise the students named, at your
+table, while the rest read side 1.</p>
+<ul>
+<li><strong>If day 27's tickets showed many C</strong> (5/10, the 2 and the 3 put on top): write "3 1/4 = 4/4: the 3 goes on
+  top" beside a sketch of three whole strips in fourths and one fourth more, 4/4 + 4/4 + 4/4 + 1/4 = 13/4. Ask
+  how many strips 4/4 fills. A "yes" on Lee's sum is the same error: those students look at this sketch too.</li>
+<li><strong>13/10 (one whole counted):</strong> those students sketch two whole strips in tenths with a partner and count.</li>
+</ul>
+<h4>8 min. Teaching first: count up from the part you have</h4>
+<p>Whole class; students fill the frames on side 1. No pieces: say the parts in words.</p>
+<p><strong>Example 1</strong> (Fill in the blank: 10/8 = 3/8 + <span class="blank" style="width:0.9em"></span> <strong>[7/8, since 3/8 + 7/8 = 10/8]</strong>).</p>
+<p><strong>Ask.</strong> "Before we count: what size will the missing part be?" Expect: eighths; every part in the sum is an
+eighth, so joining them cannot make another size.</p>
+<ol>
+<li>First step: look at the bottoms. Every part is an eighth, so the missing part is eighths too.</li>
+<li>Count up from 3 eighths to 10 eighths: 4, 5, 6, 7, 8, 9, 10. That is 7 more.</li>
+<li>So the missing part is 7/8.</li>
+<li>Check by joining: 3/8 + 7/8 = 10/8. True.</li>
+</ol>
+<p><strong>Example 2</strong> (Fill in the blank: 1 = 4/12 + <span class="blank" style="width:0.9em"></span> <strong>[8/12, since 1 = 12/12 and 4/12 + 8/12 = 12/12]</strong>).</p>
+<p><strong>Ask.</strong> "What is the first step here, and why?" Expect: write 1 as twelfths, 12/12, so all three numbers count
+the same parts. Take "count up from 4" and ask: count up to what?</p>
+<ol>
+<li>First step: the other part is twelfths, so write 1 as twelfths. A whole cut in 12 equal parts has 12 of them: 1 = 12/12.</li>
+<li>Now it reads 12/12 = 4/12 + <span class="blank" style="width:0.9em"></span>.</li>
+<li>Count up from 4 twelfths to 12 twelfths: 8 more. The missing part is 8/12.</li>
+<li>Check by joining: 4/12 + 8/12 = 12/12, one whole. True.</li>
+</ol>
+<h4>6 min. Fix it: Max and Kit</h4>
+<p>Pairs, two minutes, then the class. "Fix it", side 1 (Max filled in 11/10 = 4/10 + <span class="blank" style="width:0.9em"></span>. Max wrote 7/0: 11 take away 4 is 7, and 10 take away 10 is 0. <strong>[7/10. Every part is a tenth, so count up from 4 tenths to 11 tenths: 7 more]</strong>, Kit filled in 1 = 3/8 + <span class="blank" style="width:0.9em"></span>. Kit wrote 4/8: the 1 goes on top with the 3. <strong>[5/8. The 1 is a whole, 8/8, so count up from 3 eighths to 8 eighths: 5 more]</strong>).</p>
+<p><strong>Ask.</strong> "Max wrote 7/0. How big is one zeroth?" Expect: there is no such part; the parts are tenths, so the
+missing part is tenths. </p>
+<ol>
+<li>Max's working: 11 − 4 = 7 on top, 10 − 10 = 0 on the bottom, so 7/0.</li>
+<li>Right working: every part is a tenth, so the missing part is tenths too. The bottom stays 10.</li>
+<li>Count up from 4 tenths to 11 tenths: 7 more. The missing part is 7/10.</li>
+<li>Check by joining: 4/10 + 7/10 = 11/10. Max's 7/0 names no size of part at all.</li>
+</ol>
+<p><strong>Ask.</strong> "Kit's 1 went on top. What is 1 in eighths?" Expect: 8/8, so count from 3 to 8. </p>
+<ol>
+<li>Kit's working: 1 + 3 = 4 on top, so 4/8.</li>
+<li>Right working: the 1 is one whole. In eighths, 1 = 8/8.</li>
+<li>Count up from 3 eighths to 8 eighths: 5 more. The missing part is 5/8.</li>
+<li>Check by joining: 3/8 + 5/8 = 8/8, one whole. Kit's 3/8 + 4/8 is only 7/8.</li>
+</ol>
+<p>If many still take the bottoms away: say the sum in words, "four tenths and how many tenths make eleven
+tenths?" If many put the 1 on top: write the 1 as a fraction first, every time, before counting.</p>
+<h4>18 min. Make it true</h4>
+<p>Alone, then pairs. "Make it true": set A on side 1 ((a) 5/6 = 1/6 + <span class="blank" style="width:0.9em"></span> (b) <span class="blank" style="width:0.9em"></span> + 1/5 = 4/5 (c) 57/100 = 20/100 + <span class="blank" style="width:0.9em"></span> (d) 13/8 = 5/8 + <span class="blank" style="width:0.9em"></span> <strong>[(a) 4/6 (b) 3/5 (c) 37/100 (d) 8/8, which is 1]</strong>), then set B on side 2 ((a) 1 = 3/4 + <span class="blank" style="width:0.9em"></span> (b) 1 = <span class="blank" style="width:0.9em"></span> + 7/10 (c) 2 = 5/3 + <span class="blank" style="width:0.9em"></span> (d) 1 = 30/100 + <span class="blank" style="width:0.9em"></span> <strong>[(a) 1/4 (b) 3/10 (c) 1/3, since 2 = 6/3 (d) 70/100]</strong>). Under set B each
+student writes the first step for (c) in a sentence. Then partners compare: did you start the same way? Where
+answers differ, each sketches a strip for that one and settles it; a sketch box is on side 2. Then the display
+shows both keys.</p>
+<p>Check: Is the bottom of each missing part the same as the others? Does your part and the given part join to
+make the whole?</p>
+<p>Watch for a 0 on the bottom, such as 4/0 or 3/0 on set A (error A), and 4/4 on set B (a), the 1 put on top with the 3 (error C). Ask as
+you walk: "How many fourths fill one whole?" For A (d), 8/8 and 1 are both right. For B (c), 2 is 6/3 first.</p>
+<p>If many miss set B: write 1 = 4/4, 1 = 10/10, 2 = 6/3 on the board and have them say each aloud.</p>
+<h4>8 min. True or false</h4>
+<p>Pairs (True or false? (a) 1 = 5/8 + 3/8 (b) 4/6 + 2/6 = 6/12 (c) 7/5 = 3/5 + 3/5 (d) 1 = 6/10 + 4/10 (e) 2 = 4/3 + 2/3 (f) 9/12 = 5/12 + 3/12 <strong>[(a) true (b) false: 4/6 + 2/6 = 6/6, which is 1 (c) false: 3/5 + 3/5 = 6/5 (d) true (e) true: 6/3 = 2 (f) false: 5/12 + 3/12 = 8/12]</strong>). Sort each sum without working every one out. Then the class.</p>
+<p><strong>Ask.</strong> "Which could you tell at a glance? How?" Expect: (b), the bottom changed to twelfths, but sixths
+joined stay sixths; (a) and (d), the tops add to the bottom, so the sum is one whole.</p>
+<p>Check: (a) true, (b) false, (c) false, (d) true, (e) true, (f) false. Fix any in pen.</p>
+<h4>5 min. Pull it together</h4>
+<p>Whole class.</p>
+<p><strong>Ask.</strong> "When the whole was 1, what did you do first? Did your partner start the same way?" Expect: wrote 1 as
+the same parts as the other number, 1 = 4/4 or 1 = 10/10. Some counted up, some thought of a fact: both work.</p>
+<h4>7 min. Exit ticket</h4>
+<p>Alone, on paper (Fill in each blank. (a) 8/6 = 5/6 + <span class="blank" style="width:0.9em"></span> (b) 1 = 2/6 + <span class="blank" style="width:0.9em"></span> (c) 13/100 = 6/100 + <span class="blank" style="width:0.9em"></span> <strong>[(a) 3/6 (b) 4/6 (c) 7/100]</strong>). Read it aloud once. No pieces; a sketch is allowed. Record under E28.</p>
+<h3>Other rooms</h3>
+<ul>
+<li><strong>No printer.</strong> The examples, the fixes, both sets and the sort on the board; notebooks; the sketch in the
+  margin.</li>
+<li><strong>No projector.</strong> Write each step on the board as you say it; read the keys aloud for the partner check.</li>
+</ul>
+<h3>Shorter or longer</h3>
+<p>Shorter: drop True or false (e) and (f) and the Pull it together Ask; never the fixes, set B or the exit.
+Longer: the challenge (Fill in with eighths: 1 = 1/8 + <span class="blank" style="width:0.9em"></span> + <span class="blank" style="width:0.9em"></span>. Find every way. How do you know you have them all? <strong>[1/8 + 1/8 + 6/8, 1/8 + 2/8 + 5/8 and 1/8 + 3/8 + 4/8. The two blanks make 7/8. The smaller blank can be 1/8, 2/8 or 3/8; past that the same parts come back in a new order]</strong>). The search ends: the two blanks make 7/8, the smaller one can only be
+1/8, 2/8 or 3/8, and past that the same parts come back in a new order (error D).</p>
+<h3>Words and supports</h3>
+<p>Word Wall cards: sum, whole, missing part. Frame, on side 2: "My first step for (c): <span class="blank" style="width:1.8em"></span>." Say it as "I wrote <span class="blank" style="width:0.9em"></span> as <span class="blank" style="width:0.9em"></span> because <span class="blank" style="width:0.9em"></span>."
+Access: a student may sketch every item; a helper may write the sentence as the student says it.</p>
+<h3>Tomorrow</h3>
+<p>On the ticket, 3/0 or 7/0 (error A, the bottoms taken away too): if many, day 29 opens with A's wrong example.
+On (b), 1/6 or 3/6 (error C, 1 not seen as 6/6): if many, day 29 opens with C's wrong example instead. Section
+4.1 ends today; day 29 brings the line back for adding.</p>
+<h3>Credit</h3>
+<p>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 12, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</p><div class="foot">Curio Class, grade 4 math, day 28, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org<br>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 12, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</div></body></html>
