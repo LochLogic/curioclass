@@ -839,3 +839,12 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    kept outside the repo for when mapping resumes.
 2. All new math planning and writing waits until the master plan (docs/PRODUCTION-PATH.md) is settled. Fixes to
    written days may still run (except days 25 to 28).
+
+## 2026-11-13: a progression layer above the course (Cory, in chat, PRODUCTION-PATH question 4)
+
+> yes i agree with a progression layer.
+
+1. Step 0 of docs/PRODUCTION-PATH.md is approved: a progression per subject, all its grades, kept as data with
+   gates (data/progressions/<subject>.csv), above the course level.
+2. Cory then proposed an order for the whole build (progressions for the four core subjects, then courses, then
+   baselines with social studies first and math last). It is being assessed; nothing is built until he settles it.
