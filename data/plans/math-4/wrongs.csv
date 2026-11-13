@@ -583,6 +583,32 @@ s01-C5-1,"""yes"", with an odd multiple such as 21",3*7,21,F,
 s01-T5-1,21 or 27 in Prime,,,F,
 s01-T5-5,1 in Prime,,,G,
 s01-T5-7,45 or 49 picked,,,F,
+s02-R1,"19, 20, 21, 22",18+1 | 18+2 | 18+3 | 18+4,19 | 20 | 21 | 22,,counts on by ones; skip counting by 6 is not yet secure
+s02-R1,"one jump of 6 slipped, the rest built on it",,,,"a slip, not a gap: count back by 6 to check"
+s02-R2,"Yes, because 12, 20 and 28 are even",,,E,"examples, not a reason"
+s02-R2,"No, or no answer",,,,4 times a number not yet seen as pairs
+s02-R3,"circles 3, 11, 15 and 17",,,,even and odd swapped
+s02-R3,"misses one of 8, 14 and 20, or circles one odd number",,,,even not yet tied to pairs
+s02-E1,"9, 18, 27 and on",9 | 9+9 | 9+18,9 | 18 | 27,A,starts at the number in the rule
+s02-E1,"17, 26, 35 and on",8+9 | 8+2*9 | 8+3*9,17 | 26 | 35,A,leaves out the start
+s02-E1,a slip in adding,,,,
+s02-E2,"""It goes up by 11""",,,C,
+s02-E2,"""They are all even""",,,D,from 12 and 34
+s02-E3,"""Yes, because 55 and 63 are odd too""",47+8 | 55+8,55 | 63,E,
+s02-E3,"""No, it will be even later""",,,,
+s02-E4,"5, 10, 15 and on",5 | 2*5 | 3*5,5 | 10 | 15,A,leaves out the one square on top
+s02-E4,"draws all six steps and miscounts, or runs out of time",,,B,
+s02-E5,"""It adds 5""",,,C,
+s02-E5,a feature with more numbers as the reason,,,E,
+s02-E6,"4, 7, 10 and on",4 | 4+3 | 4+2*3,4 | 7 | 10,,"adds, not multiplies"
+s02-E6,"4, 12, 20 and on",4 | 4*3 | 12+8,4 | 12 | 20,,"adds, not multiplies"
+s02-E6,"12, 36, 108 and on",4*3 | 4*9 | 4*27,12 | 36 | 108,A,leaves out the start
+s02-E6,"""They triple""",,,C,
+s02-X7,6 or 19 first,,,A,
+s02-X7,"""It adds 6""",,,C,
+s02-X7,"""49 is odd too"", as the reason",43+6,49,E,
+s02-X8,"3, 6, 9 and on",3 | 2*3 | 3*3,3 | 6 | 9,A,starts at the number in the rule
+s02-X8,all five steps drawn and counted one by one,,,B,
 s09-P72-11,811,573+248-10,811,A,one carry lost
 s09-P72-11,711,573+248-110,711,A,every carry lost
 s09-P72-12v2,464,4+6*10+4*100,464,F,not taught until day 74

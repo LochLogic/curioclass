@@ -60,7 +60,6 @@ print pages. Four optional item columns serve lesson days (draft 2 of the templa
 or `paper`), `figure` (a labelled shape for the display, `rect w=7 l=? A=63 u=ft`; a tape picture `strip`, a number line
 `line to=2 d=4 pt=7/4 / d=8` or a fraction strip `fstrip 1/2 2/4 4/8`, written out in docs/courses/LESSON-DAY.md), `steps` (worked steps split
 by `|`) and `source` (the credit of an adapted item; CC BY, CC0 or public domain with a link, or the gate fails).
-Units 1, 3, 9 and 10 are in data too (unit 3 on 2026-11-12); unit 2 is still prose only, apart from its
-readiness rows;
-each moves into data when it is next opened. 
+Units 1, 2, 3, 9 and 10 are in data too (units 2 and 3 on 2026-11-12); a unit still in prose only moves
+into data when it is next opened. 
 ELA will add `texts.csv`, `questions.csv` and `words.csv` per course (Cory's yes, 2026-11-12); not built yet, and the columns are fixed when the first ELA pilot plan is written.
