@@ -699,3 +699,11 @@ found. Cory: "the draft pages look great! lets take the next step in solidifying
    day kind `Use` becomes Application, topic pages move from /modules/ to /topics/ with redirects (the `module_id`
    code name lags, as the glossary records), the tool role "lesson" becomes "teach". The Review Desk follows the
    same words. Entries above this one are history and keep the words of their day.
+
+## 2026-11-12: unit 4 readiness sheet (Cory, on the Desk; card 113 q-unit4-readiness, pick accepted)
+
+> Yes. Write unit 4's readiness sheet now from the four chosen items (about one short sheet), and day 24's last 10
+> minutes use it instead of rereading items 2 and 5. The rest of unit 4 waits for its turn.
+
+Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readiness.md`, rows s04-R1 to R4.
+

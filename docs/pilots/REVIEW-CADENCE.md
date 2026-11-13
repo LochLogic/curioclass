@@ -103,3 +103,33 @@ equal to reserved numbers, and every registered error must have an exit or end w
 above will go into the next day writers' brief as checks the writer runs on their own day ("rework the exit with only what
 the examples showed"; "does each item give a different wrong answer for each error it targets"). Next unit: measure
 whether those fall.
+
+## Step 2 again: unit 3 (days 10 to 24), read 2026-11-12
+
+Same two reads as units 1 and 9, fifteen days, the first fraction unit and the first written with fifteen writers in parallel.
+
+| | Unit 3 (15 days) |
+|---|---|
+| Cheap read findings | 223 (14.9 a day) |
+| Cheap findings the expert agreed with | 183 of 223 |
+| Expert findings the cheap read missed | 123 (8.2 a day) |
+| of which a script could catch | 30 |
+| of which the cheap read should have caught | 43 |
+| of which only an expert could catch | 50 (3.3 a day) |
+| Same kind as an earlier finding | 86 of 123 |
+| Tokens per cheap read | mean 117,700 |
+| Tokens per expert read | mean 194,700 |
+
+**What it shows.** Expert-only findings held at about 3 a day (unit 9: 3.0), so step 3 is still not earned. They
+were again mostly teaching sense, several of them mathematics: a rule that is false in general ("grouped names that
+differ are not equal", day 16), a trap rule that fires on the day's own story (day 23), worked examples that fit a
+wrong shortcut (days 13, 18, 20), students never making the cut the day is about (days 10, 12), lines printed at half
+the strips' scale (day 11). Repeats rose to 70% (86 of 123): the self-checks added after unit 9 did not reach parallel
+writers well enough. The new failure is between days: fifteen writers at once broke nearly every "Tomorrow" hand-off,
+which no single-day read can prevent.
+
+**What changes next.** The fix pass added 10 gates (stems with page directions or quoted student text, taught
+equalities on checks, exits with no room, fewer Check: lines than sets, and others) and notes for Tomorrow fractions
+the next day lacks; DAY-WRITER.md now carries "What the expert reads found". For unit 2: write days in order within
+a section (or run a hand-off pass right after the merge), and keep both reads on every day.
+

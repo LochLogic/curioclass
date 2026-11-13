@@ -105,6 +105,12 @@ Started 2026-11-12. The fifth unit into data, and the first on fractions.
 | Piece | Tokens | Wall hours | Owner minutes | Defects found, by read | Notes |
 |---|---|---|---|---|---|
 | Plan as data (s03.md and u03 files into the CSVs) | about 150,000 by one agent (estimate; 36 tool uses) | 0.25 (about 15 min) | 0 | 0 by the script after; 3 no-reuse false positives on the way, fixed in plan.py | Prose plan existed. 7 parts, 15 days, 30 items (4 readiness, 7 unit assessment, 14 exits, 5 written tasks), 66 wrong answers, 11 errors, 3 word rules. plan.py reads a fraction as one number and holds a fraction item against each clause of a day row |
+| Fifteen days, one writer each in a worktree | 2,710,000 (mean 180,700, 143,000 to 207,000) | in parallel | 0 | writer flags: the hundredths clash, five plan points for the expert | |
+| Unit 3 shared pieces (four openers, readiness, record, strip sheet, number lines, family note) | 231,000 by one agent | | 0 | | |
+| Merge fix (shared stem, hand-offs, word caps, `line` and `fstrip` figure kinds) | 156,000 by one agent | | 0 | | Inline SVG replaced by data figures in about 55 rows |
+| Unit 3 cheap reads, fifteen days | 1,764,981 (mean 117,700, 99,000 to 158,000) | about 0.05 each, in parallel | 0 | 223 | |
+| Unit 3 expert reads, fifteen days | 2,919,878 (mean 194,700, 176,000 to 221,000) | about 0.12 each, in parallel | 0 | 123 the cheap read missed (50 expert only) | |
+| Unit 3 reads fix pass | 202,122 by the lead agent (109 tool uses), plus its section agents (not measured) | 1.28 (77 min) | 1 (one Desk answer: unit 4 readiness) | 342 logged: 301 fixed, 13 open, 28 rejected | 10 new gates, 3 notes; figure words `then`, `ask=N`, `by=`; u04-1/readiness.md |
 
 ## Grade 6 ELA, unit 2, five pilot days
 
