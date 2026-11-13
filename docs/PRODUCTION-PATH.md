@@ -138,6 +138,9 @@ be judged again.
 
 ### Step 3. Unit 4 sections 2 to 4: re-plan from the source map, then write (Cory's go, 2026-11-13)
 
+**Held 2026-11-13 (Cory):** the re-plan is done and expert-read; writing waits for grade 4's course-level source map
+and its expert read (unit edges and day counts), so the course level is settled before the unit.
+
 Sections 2 to 4 (days 29 to 38) were planned before the source. Writing them now would repeat the day-by-day
 reconciliation this path is meant to end. So: build unit 4's source map and cross-day CSVs, re-plan u04-2 to u04-4
 from them, then write, read and fix. This is the plan-time test, on the hardest fit in grade 4, with two

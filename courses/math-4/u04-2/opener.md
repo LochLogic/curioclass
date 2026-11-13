@@ -39,8 +39,8 @@ right. No mixed-number subtraction yet (section 4.3).
 - **Day 29.** A line in the day's part size; hops drawn first, then the equation. The day the line is tied to
   adding.
 - **Day 30.** Hops back, and counting up, for subtracting, each checked by adding. Two strips of different
-  lengths for the same-whole talk, made from the envelope: a blank whole strip, and a second blank strip cut to
-  half its length. The short strip goes back in the envelope; it returns on days 31 and 37. Recipe Scaler's mug and pan rounds (light, show why, 5 min) where the class has devices; the two
+  lengths for the same-whole talk, made from the envelope: a blank whole strip, and a second blank strip folded
+  in half and cut on the fold. Both halves go back in the envelope; the short strip returns on days 31 and 37. Recipe Scaler's mug and pan rounds (light, show why, 5 min) where the class has devices; the two
   strips carry it otherwise.
 - **Day 31.** Stories: the tape diagram enters, drawn by the student. The line is drawn by hand from today.
 

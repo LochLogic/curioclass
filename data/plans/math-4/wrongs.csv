@@ -1117,9 +1117,11 @@ s04-X32,(a) 8,1+7,8,C,
 s04-X32,(a) 7,,,x,the whole dropped
 s04-X32,(b) 4/5,,,x,the wholes dropped
 s04-X32,(b) 1 9/5,,,x,one whole taken out only
-s04-X33,3 9/12,,,A,
-s04-X33,3 3/6,,,G,
-s04-X33,two ways that do not agree,,,x,a slip in one way: find it on the line
+s04-X33,(a) 3 9/12,,,A,
+s04-X33,(a) 3 3/6,,,G,
+s04-X33,(a) two ways that do not agree,,,x,a slip in one way: find it on the line
+s04-X33,(b) 2 4/0,,,A,
+s04-X33,(b) 6 10/12,F(55;12)+F(27;12),6 10/12,x,"added, not separated"
 s04-X34,2 4/6,,,F,
 s04-X34,2 4/0,,,A,
 s04-X35,(a) 2 1/10,,,F,the whole not broken

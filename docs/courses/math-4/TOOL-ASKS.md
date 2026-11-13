@@ -287,7 +287,7 @@ Asks, from [s04](s04.md) field 8 and the four section plans:
 
 1. Each part opens by itself, from the header, whether or not the earlier parts are done. Unit 4 uses six
    parts on six days. The precondition for every tool day. (s04; all four section plans.)
-2. A number line under the cup in the building and pantry rounds, from 0 to 5, so the cup's fill and the
+2. A number line under the cup in the building and pantry rounds, from 0 to 6, so the cup's fill and the
    unit's carried line show one amount. (s04; u04-1; u04-3.)
 3. The pantry and double-batch rounds ask for the way: the child picks "as fractions" or "wholes and parts",
    and a "the other way" button redoes the same sum, so both of the standard's ways are met. Day 33 becomes

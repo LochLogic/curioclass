@@ -808,3 +808,14 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    download, no work-around.
 2. Our exits and assessments stay our own, as they always were. The math content reviewer (PRODUCTION-PATH step 7)
    is the outside check on them.
+
+## 2026-11-13: days 29 to 38 held for the grade 4 course map (Cory, in chat)
+
+> Yes, pause those days.
+
+1. Days 29 to 38 are not written until grade 4's course-level source map exists (every IM grade 4 lesson mapped to
+   our units) and an expert has read it for unit edges and day counts. Top-down means the course level is settled
+   before a unit is: the unit 4 re-plan held 10 days only so later day numbers would not shift, which let existing
+   work set a limit the plan should decide.
+2. If the map leaves unit 4's edges and day count standing, the days are written on the re-plan as fixed. If it
+   moves them, unit 4 is re-planned again first.

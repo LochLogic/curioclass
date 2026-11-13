@@ -34,23 +34,24 @@ right sum, not yet written as a mixed number: it gets a tick, and the student jo
 
 ## The line and the strips
 
-- **Day 32.** The line from 0 to 5, printed on the student page: wholes counted first, then parts. Whole
+- **Day 32.** The line from 0 to 6, printed on the student page: wholes counted first, then parts. Whole
   strips and pieces from the envelope, pairs pooling pieces. A fraction past 1 is written as a whole number and
   parts more than one way, until no whole is left in the parts, and then named a mixed number.
 - **Day 33.** Both ways in two columns; hops past a whole tied to the new whole written down (error G). Recipe
-  Scaler's double batch and test bake (light, practise with feedback, 15 min): it shows one way at a time, so the
+  Scaler's double batch and test bake (light, practise with feedback, 10 min): it shows one way at a time, so the
   side by side stays on paper.
 - **Day 34.** A whole number minus a fraction first (5 − 3/8), then a whole strip broken into its parts on the
-  table, tied to the renaming written in one line, 5 1/4 = 4 + 1 + 1/4 = 4 + 5/4 (error F).
-- **Day 35.** Each difference sorted before it is worked: does it need a whole broken? Withdrawn: a sketch
-  only. Recipe Scaler's pantry rounds (key, practise with feedback, 20 min),
+  table, tied to the renaming written in one line, 5 1/4 = 4 + 1 + 1/4 = 4 + 4/4 + 1/4 = 4 + 5/4 (error F): the 1 = 4/4 step is
+  the reason, day 27's b/b.
+- **Day 35.** Eight cards, six differences and two sums, sorted before they are worked: is a whole broken or
+  made? Withdrawn: a sketch only; for E34's hand-back the teacher breaks one strip under the camera. Recipe Scaler's pantry rounds (key, practise with feedback, 20 min),
   every take-away checked by adding back; where the tool cannot run, the day page's paper path covers the same
   rounds.
 
 ## Why this model
 
 Whole strips make "one whole" a thing that can be broken or built, so regrouping is a move on the table before it
-is a step on paper. The line to 5 keeps every mixed number a point, which is how unit 5's line plots will use
+is a step on paper. The line to 6 keeps every mixed number a point, which is how unit 5's line plots will use
 them. Two columns on one page make the reason for "the same answer" visible.
 
 ## The errors to expect, in plain words
@@ -67,9 +68,9 @@ Wrong examples: C again on day 32, G on day 33, F on day 34. A returns wherever 
 ## Supplies for the section
 
 - Per student: the envelope from section 4.1, its whole strips and pieces (days 32 and 34); a pencil. The lines
-  to 5 are on each day's student page.
+  to 6 are on each day's student page.
 - Per class: the projector; a board split into two columns.
-- A room with nothing: whole strips cut from paper and folded; lines ruled to 5.
+- A room with nothing: whole strips cut from paper and folded; lines ruled to 6.
 
 ## Words
 

@@ -545,6 +545,27 @@ def cross_day(course, days, items, units, fails, notes):
                 if m['material'].lower() not in said.lower():
                     fails.append('%s: day %d is listed, but its materials, print line and Before class never name it'
                                  % (lab, n))
+    # and the reverse: a written day that names a material must be in that material's used_days, so a row cannot
+    # skip the very days that would fail (s04 re-plan read, finding 3). Longer names are matched first and masked,
+    # so "envelope" does not also match inside "envelope of unit-fraction pieces".
+    usedby = {}
+    for m in rows(course, 'materials'):
+        usedby.setdefault(m['material'].strip().lower(), set()).update(day_list(m['used_days']) or [])
+    pats = [(nm, re.compile(r'(?<![\w-])' + re.escape(nm) + r'(?![\w-])'))
+            for nm in sorted(usedby, key=len, reverse=True) if nm]
+    for n in sorted(set(known) | set(range(1, last + 1))):
+        d = parse(n)
+        if d is None:
+            continue
+        said = ' '.join([d['head'].get('materials', ''), d['head'].get('print', ''),
+                         d['secs'].get('Before class', '')]).lower()
+        for nm, pat in pats:
+            if pat.search(said):
+                # a short name is also the shorthand of any longer material that contains it ("the envelope")
+                if not any(n in usedby[o] for o in usedby if o == nm or re.search(pat, o)):
+                    fails.append('materials.csv: day %d names "%s" in its materials, print line or Before class, '
+                                 'but no row for it lists day %d in used_days' % (n, nm, n))
+                said = pat.sub(' ', said)
 
     # reserved worked examples: no item of an earlier day gives the same set of numbers
     for k, r in enumerate(rows(course, 'reserved'), 2):

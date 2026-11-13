@@ -34,7 +34,8 @@ standard does not ask for two steps.
 - **Day 36.** The tape diagram, drawn by the student, with a box for the unknown, before any equation. Recipe
   Scaler's kitchen stories (light, practise with feedback, 15 min); paper stories carry other settings. The exit
   takes 7 minutes: a tape, an equation and a solve. The written task: a story for 2 5/8 − 1 6/8 = □.
-- **Day 37.** Tapes drawn roughly now. Recipe Scaler's "on your own" (light, check unaided, 10 min), read beside
+- **Day 37.** Tapes drawn roughly now. The short strip and a whole strip are folded once more, into eighths
+  (1 min), for E's second wrong example. Recipe Scaler's "on your own" (light, check unaided, 10 min), read beside
   the day's exits; where the tool cannot run, the paper copy of its items, marked by the teacher.
 - **Day 38.** The end-of-unit assessment, 30 min; the respond half, 20 min; unit 5's readiness check, 10 min
   (courses/math-4/u05-1/readiness.md, written with unit 5's plan).
@@ -63,7 +64,7 @@ Wrong examples: H on day 36 (Kai's and Lu's poles), E again on day 37.
 Mark, 5 minutes: every item but 4.1c against the key, each wrong answer matched to its letter. Item 4.1c is read
 after class and handed back in day 39's first five minutes, unit 5's first day. Groups, 15 minutes: by error
 letter, A and G first, since unit 5 adds eighths on its first day. A student who wrote 5 15/12 on 4.3b joins group
-G. A student who missed nothing takes the extension.
+G, which sketches a line from 5 to 7 in the item's part size (nothing printed). A student who missed nothing takes the extension.
 
 ## Supplies for the section
 

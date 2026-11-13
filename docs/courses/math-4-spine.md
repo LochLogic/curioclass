@@ -140,7 +140,7 @@ out of fluency, otherwise out of understanding, until each unit's plan marks its
 | 1 | Factors and Multiples | 7, 8 | 4 | 1 | 0 | 1 | Whole numbers 1 to 100 only; "a multiple of" is tested against one-digit numbers |
 | 2 | Number Patterns | 3, 8 | 2 | 0 | 0 | 1 | Explaining is informal; no rule written with a variable. Pattern terms stay under 1,000, and no question goes further than the 10th step (decided 2026-11-11) |
 | 3 | Equivalent Fractions and Comparing | 3, 7 | 10 | 3 | 1 | 1 | Denominators 2, 3, 4, 5, 6, 8, 10, 12 and 100 only |
-| 4 | Adding and Subtracting Fractions | 1, 2 | 7 | 3 | 3 | 1 | Like denominators only, from the same list; no general adding of unlike fractions (grade 5) |
+| 4 | Adding and Subtracting Fractions | 1, 2 | 8 | 2 | 3 | 1 | Like denominators only, from the same list; no general adding of unlike fractions (grade 5) |
 | 5 | Line Plots | 4, 6 | 1 | 0 | 1 | 1 | Measurements in halves, quarters and eighths of a unit |
 | 6 | Multiplying a Fraction by a Whole Number | 4, 8 | 4 | 2 | 1 | 1 | A whole number times a fraction only; fraction times fraction is grade 5; same denominator list |
 | 7 | Decimals | 6, 7 | 6 | 2 | 1 | 1 | Tenths and hundredths only; the one unlike addition is tenths plus hundredths; no adding or multiplying in decimal notation (grade 5). The decimals rule: decimals may be read, written, compared, placed and renamed; every calculation is done on whole numbers in the smaller unit or on fractions with denominators 10 and 100; a task that can only be done by computing in decimal notation is grade 5 |
@@ -155,9 +155,9 @@ out of fluency, otherwise out of understanding, until each unit's plan marks its
 | 16 | Lines and Angles | 5, 6 | 5 | 5 | 1 | 1 | Whole-number degrees |
 | 17 | Shapes and Symmetry | 3, 7 | 3 | 0 | 0 | 1 | Flat figures; line symmetry only |
 | 18 | The Year Together | 1 | mixed | mixed | mixed | 0 | The limits above |
-| | **Total, units 1 to 17** | all eight | 66 | 36 | 22 | 17 | |
+| | **Total, units 1 to 17** | all eight | 67 | 35 | 22 | 17 | |
 
-66 + 36 + 22 + 17 = 141, the days in units 1 to 17 (totals re-added 2026-11-11 from the columns as they stand; the old row predated the check column). No strand is missing where a standard calls for it: 4.NBT.B.4
+67 + 35 + 22 + 17 = 141, the days in units 1 to 17 (unit 4's day 34 moved from F to U 2026-11-13; totals re-added 2026-11-11 from the columns as they stand; the old row predated the check column). No strand is missing where a standard calls for it: 4.NBT.B.4
 (fluency by name) has its fluency days in unit 9 plus the daily warm-up, and the two application standards with the most in
 them, 4.OA.A.3 and 4.MD.A.2, have application days in their own units (the day counts that stood in this
 sentence were taken out on 2026-11-11: the check column changed them; read the rows).
