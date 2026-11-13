@@ -14,17 +14,18 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
 .frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
-.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.slip { border: 1px dashed #000; height: 4.75in; width: 48%; display: inline-block; box-sizing: border-box; padding: .18in; margin: 0 1% .15in 0; vertical-align: top; font-size: 12pt; line-height: 1.3; overflow: hidden; } .slip p { margin: .22em 0; } .slip .foot { font-size: 7pt; line-height: 1.25; margin-top: .3em; padding-top: .2em; }
 .screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.0in; } .slip .sketch.tall { height: 1.1in; } .slip .fig svg { max-height: 1.2in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
-</style></head><body class="teacher"><h1>Day 26: One amount, more than one way</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>26, section 4.1, understanding day</td></tr><tr><td>Goal</td><td>I can take a fraction apart in more than one way and write each way</td></tr><tr><td>Standard parts</td><td>4.NF.B.3 (a) a fraction a/b, a &gt; 1 too, as a sum of unit fractions 1/b; 4.NF.B.3b (c) a fraction into a sum with the same denominator in more than one way, each recorded by an equation, past 1 too; 4.NF.B.3b (d) a decomposition, with a visual fraction model</td></tr><tr><td>Tool</td><td>Recipe Scaler (key), 20 min</td></tr><tr><td>Materials</td><td>per student, the envelope of unit-fraction pieces from day 25, with eighth-pieces and twelfth-pieces added today, the number line pages, a pencil and a pen; per class, the document camera (or the board, to draw the pieces) and the projector with the display page; when it exists, a device for each student with Recipe Scaler open in Party kitchen</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; strip sheet from unit 3, 1 per student, for the eighths and twelfths strips; exit ticket, 1 per student; the key, 1 for the teacher</td></tr><tr><td>At home</td><td>the At home view, d026-home.html, 34 minutes with one child</td></tr><tr><td>Leans on</td><td>courses/math-4/u04-1/opener.md; courses/math-4/u03-1/strip-sheet.md; courses/math-4/u04-1/number-lines.md; courses/math-4/u04-1/record.md</td></tr><tr><td>Uses when it exists</td><td>tools/recipe-scaler/recipe-scaler.html</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 7, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</td></tr></table><h3>Before class</h3>
-<p>Print the student page, strip sheets, tickets and key. Students cut the eighths and twelfths strips into pieces for
-the day 25 envelope, as morning work (or hand out pre-cut). Have day 25's tickets and the readiness marks (R1 to
-R4) beside you.</p>
+.blank.fblank { width: .8in; height: 1.6em; }   /* a line holding one stands about 2em: room for a stacked fraction */
+</style></head><body class="teacher"><h1>Day 26: One amount, more than one way</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>26, section 4.1, understanding day</td></tr><tr><td>Goal</td><td>I can take a fraction apart in more than one way and write each way</td></tr><tr><td>Standard parts</td><td>4.NF.B.3 (a) a fraction a/b, a &gt; 1 too, as a sum of unit fractions 1/b; 4.NF.B.3b (c) a fraction into a sum with the same denominator in more than one way, each recorded by an equation, past 1 too; 4.NF.B.3b (d) a decomposition, with a visual fraction model</td></tr><tr><td>Tool</td><td>Recipe Scaler (key), 20 min</td></tr><tr><td>Materials</td><td>per student, the envelope of unit-fraction pieces from day 25, with its eighths and twelfths strips cut into pieces today, the number line pages, a pencil and a pen; per class, the document camera (or the board, to draw the pieces) and the projector with the display page; when it exists, a device for each student with Recipe Scaler open in Party kitchen</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit ticket, 1 per student; the key, 1 for the teacher</td></tr><tr><td>At home</td><td>the At home view, d026-home.html, 34 minutes with one child</td></tr><tr><td>Leans on</td><td>courses/math-4/u04-1/opener.md; courses/math-4/u03-1/strip-sheet.md; courses/math-4/u04-1/number-lines.md; courses/math-4/u04-1/record.md</td></tr><tr><td>Uses when it exists</td><td>tools/recipe-scaler/recipe-scaler.html</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 7, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</td></tr></table><h3>Before class</h3>
+<p>Print the student page, tickets and key. As morning work, students cut the envelope's eighths and twelfths strips
+into single pieces (or hand out pre-cut); the whole and blank strips stay uncut for day 27. Have day 25's tickets
+and the readiness marks (R1 to R4) beside you.</p>
 <h3>The day</h3>
 <h4>5 min. Warm-up: facts within 20</h4>
 <p>Alone (Find each: 9 + 6, 14 − 8, 8 + 6, 16 − 9, 4 + 9, 11 − 3 <strong>[15, 6, 14, 7, 13, 8]</strong>). Students who missed readiness item 4 sit with you and say how they found each fact ("9 and
@@ -35,19 +36,21 @@ R4) beside you.</p>
 their envelopes, thirds to twelfths.</p>
 <ul>
 <li><strong>If day 25's tickets showed many B</strong> (five 1/5s, or "less, it is a fraction"), or readiness item 1: show "There
-  is no 4/3: 3/3 is all of it" beside third-pieces counted aloud past 1 on line 1, thirds marked by eye.</li>
-<li><strong>If many A</strong> (a sum = 6/30): show "1/10 + 1/10 + 1/10 + 1/10 = 4/40" beside four tenth-pieces, said as "four
-  tenths".</li>
+  is no 6/4: 4/4 is all of it" beside fourth-pieces, pairs pooled, counted aloud in a row past a whole strip to six
+  fourths; then mark 6/4 on line 1, fourths by eye.</li>
+<li><strong>If many A</strong> (a sum = 6/30): show "1/5 + 1/5 + 1/5 = 3/15" beside three fifth-pieces, said as "three
+  fifths".</li>
 <li><strong>Five 1/6s:</strong> those students read 6/5 aloud as "six fifths" and lay six fifth-pieces with a partner.</li>
-<li><strong>Readiness item 2:</strong> four fourth-pieces under each of two whole strips, counted. <strong>Item 3:</strong> unit 3's fold,
+<li><strong>Readiness item 2:</strong> pairs pool fourth-pieces and lay four under each of their two whole strips, counting
+  eight fourths. <strong>Item 3:</strong> unit 3's fold,
   one third into two sixths.</li>
 </ul>
 <h4>5 min. Teaching first: one amount, ringed two ways</h4>
-<p>Whole class. You lay pieces under the camera; students lay theirs and ring Example 1's two strips. Read every
-fraction as words.</p>
+<p>Whole class. You lay pieces under the camera; students lay theirs in a row and ring Example 1's two strips. No
+camera: draw the rings on the board strip as you say each step.</p>
 <p><strong>Example 1</strong> (Make 5/6 with sixth-pieces. Group the pieces two different ways. Write an equation for each way. <strong>[2/6 + 3/6 = 5/6 and 1/6 + 1/6 + 3/6 = 5/6]</strong>). </p>
 <ol>
-<li>Lay five sixth-pieces end to end on line 3, from 0. Say: one sixth, two sixths, up to five sixths.</li>
+<li>Lay five sixth-pieces end to end in a row on the desk. Say: one sixth, two sixths, up to five sixths.</li>
 <li>Push the pieces into two groups: 2 pieces, then 3 pieces. On the first strip, ring 2 parts, then 3 parts. Two sixths and three sixths: 2/6 + 3/6 = 5/6.</li>
 <li>Slide the pieces back together. Group them again: 1 piece, 1 piece, 3 pieces. Ring them on the second strip: 1/6 + 1/6 + 3/6 = 5/6.</li>
 <li>Both ways use the same five sixth-pieces. Grouping adds no piece, takes none away and does not change their size. So each way makes 5/6, and every bottom stays 6.</li>
@@ -55,17 +58,17 @@ fraction as words.</p>
 <p><strong>Ask.</strong> After step 3: "Is 2/6 + 3/6 the same way as 1/6 + 1/6 + 3/6? How do you know?" Expect: no; the rings
 hold 2 and 3 pieces, then 1, 1 and 3.</p>
 <h4>20 min. Recipe Scaler: building rounds, or the same on paper</h4>
-<p>When it exists and its building rounds open by themselves: alone, Party kitchen, Building, from Grandpa Lou's
-round (Lou's model: oil, 2/4 cup, with the 1/4 cup scoop. <strong>[1/4 + 1/4 = 2/4]</strong>); each second way needs its "because" sentence. <strong>Stop at 20 minutes.</strong></p>
-<p>Until then, on paper. Alone, 15 minutes: "Building rounds", side 1 (Building: milk, 3/4 cup, with the 1/4 cup scoop. Write it as a sum of unit fractions, then a second way. <strong>[1/4 + 1/4 + 1/4 = 3/4; a second way: 1/4 + 2/4]</strong>, Building: cornmeal, 2/3 cup, with the 1/3 cup scoop. Write it as a sum of unit fractions. <strong>[1/3 + 1/3 = 2/3]</strong>, Building: butter, 3/8 cup, with the 1/8 cup scoop. Write it as a sum of unit fractions, then a second way. <strong>[1/8 + 1/8 + 1/8 = 3/8; a second way: 1/8 + 2/8]</strong>,
-Building: sugar, 6/8 cup, with the 1/8 cup scoop. Write it as a sum of unit fractions, then a second way. <strong>[1/8 six times = 6/8; a second way: 3/8 + 3/8, 2/8 + 4/8 or 1/8 + 5/8]</strong>), one piece a scoop. Lay the pieces, write the unit fractions, then ring a second way and write it.
-Then 5 minutes, partners swap pages.</p>
+<p>When it exists and its building rounds open by themselves: alone, Party kitchen, Building, from Lou's model
+(Lou's model: oil, 2/4 cup, with the 1/4 cup scoop. <strong>[1/4 + 1/4 = 2/4]</strong>) through the sugar round; each second way needs its "because" sentence. <strong>Stop after sugar, or at 20
+minutes.</strong> Honey is the fix's 5/8; flour, buttermilk and yogurt are day 27's wholes.</p>
+<p>Until then, on paper (skip the Lou's model screen). Alone, 15 minutes: "Building rounds", sides 1 and 2 (Building: milk, 3/4 cup, with the 1/4 cup scoop. Write it as a sum of unit fractions, then a second way. <strong>[1/4 + 1/4 + 1/4 = 3/4; a second way: 1/4 + 2/4]</strong>,
+Building: cornmeal, 2/3 cup, with the 1/3 cup scoop. Write it as a sum of unit fractions. <strong>[1/3 + 1/3 = 2/3]</strong>, Building: butter, 3/8 cup, with the 1/8 cup scoop. Write it as a sum of unit fractions, then a second way. <strong>[1/8 + 1/8 + 1/8 = 3/8; a second way: 1/8 + 2/8; both ways use the same three eighth-pieces, only ringed in new groups, so none is added or lost]</strong>, Building: sugar, 6/8 cup, with the 1/8 cup scoop. Write it as a sum of unit fractions, then a second way. <strong>[1/8 + 1/8 + 1/8 + 1/8 + 1/8 + 1/8 = 6/8; a second way: 3/8 + 3/8, 2/8 + 4/8 or 1/8 + 5/8, or three parts such as 2/8 + 2/8 + 2/8]</strong>), one piece a scoop. Lay the pieces, write the unit fractions; then say
+you had a bigger scoop too: ring the pieces a new way and write it. Then 5 minutes, partners swap pages.</p>
 <p>Check: Do both ways make the same amount? Are the rings a new set of sizes?</p>
 <p>Watch for a second way that is the first written again (error D) and two fourth-pieces written 2/8 (error
-A). Ask as you walk: "How many pieces in each ring?" Cornmeal has no second way: it waits for the end. Rounds 5 and 7 to 9 wait for
-the tool: 5/8 is the fix, and wholes are day 27's.</p>
+A). Ask as you walk: "How many pieces in each ring?" Cornmeal has no second way: it waits for the end.</p>
 <h4>4 min. Fix it: a new order</h4>
-<p>Pairs, one minute, then the class. "Fix it", side 2 (Kai wrote 5/8 two ways: 2/8 + 3/8 = 5/8 and 3/8 + 2/8 = 5/8. <strong>[Not two ways: 3/8 + 2/8 is the same parts in a new order. A second way: 1/8 + 4/8 = 5/8, or 1/8 + 1/8 + 3/8 = 5/8]</strong>).</p>
+<p>Pairs, one minute, then the class. "Fix it", side 2 (Kai says these are two different ways to make 5/8: 2/8 + 3/8 = 5/8 and 3/8 + 2/8 = 5/8. <strong>[Not two ways: 3/8 + 2/8 is the same parts in a new order. A second way: 1/8 + 4/8 = 5/8, or 1/8 + 1/8 + 3/8 = 5/8]</strong>).</p>
 <p><strong>Ask.</strong> "Is 3/8 + 2/8 a new way if you already wrote 2/8 + 3/8?" Expect: no; the same two rings, 2 pieces and
 3, in a new order. </p>
 <ol>
@@ -75,8 +78,8 @@ the tool: 5/8 is the fix, and wholes are day 27's.</p>
 </ol>
 <p>If many still count a swap: ring five eighth-pieces under the camera in sizes not used yet.</p>
 <h4>10 min. Three ways each, on the line</h4>
-<p>Alone, pieces on the line page. "Three ways", side 2 (Make 6/10 with tenth-pieces on line 4. Write it three different ways. Shade the strip and ring one way. <strong>[Any three different sums of tenths that make 6/10, such as 1/10 + 5/10, 2/10 + 4/10 and 1/10 + 2/10 + 3/10, with 6 parts shaded and ringed for one way]</strong>, Make 9/12 with twelfth-pieces on line 5. Write it with four parts, then three, then two. <strong>[Any sums of twelfths that make 9/12, such as 1/12 + 2/12 + 3/12 + 3/12, 2/12 + 3/12 + 4/12 and 4/12 + 5/12]</strong>): 6/10 on line 4, then the
-strip; 9/12 on line 5. Every way is an equation.</p>
+<p>Alone, pieces in a row on the desk. "Three ways", side 2 (Make 6/10 with tenth-pieces. Write it three ways. Shade the strip and ring one way. <strong>[Any three different sums of tenths that make 6/10, such as 1/10 + 5/10, 2/10 + 4/10 and 1/10 + 2/10 + 3/10, with 6 parts shaded and ringed for one way]</strong>, Make 9/12 with twelfth-pieces. Write it in four parts, then three, then two. <strong>[Any sums of twelfths that make 9/12, such as 1/12 + 2/12 + 3/12 + 3/12, 2/12 + 3/12 + 4/12 and 4/12 + 5/12]</strong>): 6/10, its end marked
+on line 4, then the strip; 9/12, its end on line 5. Every way is an equation.</p>
 <p>Watch for 2/5 + 4/5 for 6/10 (error A) and a two-part way that swaps the first (error D). Ask: "What size is
 each piece in this ring?" If many split the bottom: say each ring in words, "two tenths"; the pieces are still
 tenths.</p>
@@ -87,7 +90,7 @@ piece, and a smaller piece is not a tenth. 2/10 has one way; from 3/10 up there 
 <p><strong>Ask.</strong> "Why does each of your ways make 6/10?" Expect: each groups the same six tenth-pieces; grouping adds
 none, takes none away and does not change their size. Take "the tops add to 6", then ask why the bottom stays 10.</p>
 <h4>7 min. Exit ticket</h4>
-<p>Alone, on paper (Write 7/12 as a sum of twelfths in two different ways. Shade a strip for one of them. <strong>[Any two different sums that make 7/12, such as 3/12 + 4/12 and 1/12 + 1/12 + 5/12, with a strip of 12 parts, 7 shaded and grouped]</strong>). Read it aloud once. Pieces stay in the envelope. A tick needs two different sums
+<p>Alone, on paper (Write 7/12 as a sum of twelfths in two different ways. Shade the strip and ring one of your ways. <strong>[Any two different sums that make 7/12, such as 3/12 + 4/12 and 1/12 + 1/12 + 5/12, with a strip of 12 parts, 7 shaded and grouped]</strong>). Pieces stay in the envelope. A tick needs two different sums
 that make 7/12 and a strip with 7 parts shaded and ringed. Record under E26.</p>
 <h3>Other rooms</h3>
 <ul>
@@ -108,5 +111,4 @@ beside its pieces. The same two parts swapped (error D): day 27 opens on D's wro
 sizes. A sum making 6/12 or 8/12: those students recount with twelfth-pieces and a partner. Pieces stay in
 envelopes; day 27 lays whole strips under them.</p>
 <h3>Credit</h3>
-<p>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 7, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.
-Changed: our amounts, pieces, rings and lines; the product comparison cut.</p><div class="foot">Curio Class, grade 4 math, day 26, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org<br>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 7, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</div></body></html>
+<p>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 7, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</p><div class="foot">Curio Class, grade 4 math, day 26, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org<br>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 7, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</div></body></html>

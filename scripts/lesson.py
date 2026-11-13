@@ -327,6 +327,11 @@ def check_day(d, items, days):
             r'\bday %d\b' % (nxt - 1), nf.read_text(encoding='utf-8'), re.I):
         f.append('%s: "Tomorrow" sends work to day %d, but %s never names day %d'
                  % (lab, nxt, nf.relative_to(ROOT).as_posix(), nxt - 1))
+    # a hand-off to a day not written yet cannot be checked here; its writer must read this Tomorrow (expert, day 28)
+    for n in sorted({int(x) for x in re.findall(r'\bday (\d+)\b', tm, re.I)}):
+        if n > nxt - 1 and not any(d['path'].parent.parent.glob('u*/d%03d.md' % n)):
+            f.append('NOTE %s: Tomorrow sends work to day %d, which is not written yet; its writer must pick it up'
+                     % (lab, n))
     if nf and re.search(r'\bday %d\b' % nxt, tm, re.I):
         nt = nf.read_text(encoding='utf-8')
         # each error letter "Tomorrow" sends must be picked up by name in the next day (expert, day 81 and 82)
@@ -502,6 +507,8 @@ def check_day(d, items, days):
                         vs = spec if ex else fig_view(spec, 'student')   # 'then' lines are not printed for it
                         fv = line_numbers(vs) if kind(spec) == 'line' else fstrip_numbers(vs)
                         figure(spec)
+                        if kind(spec) == 'fstrip':
+                            fstrip_groups(fig_view(spec, 'key'), True)
                     except (ValueError, ZeroDivisionError) as e:
                         f.append('%s: %s figure: %s' % (lab, r, e)); continue
                 else:
@@ -686,7 +693,7 @@ def check_reads3(d, items, row, lab, nf):
     # day 21 read: an exit with no room to write
     for k, i in enumerate(x for x in items if x['day'] == h.get('day') and x['check'] == 'exit'
                           and x.get('path', '') in ('', 'paper')):
-        if row['kind'] != 'Check' and not re.search(r'class="blank"|_{4,}|class="sketch|<table', slip_item(k, i)):
+        if row['kind'] != 'Check' and not re.search(r'class="blank|_{4,}|class="sketch|<table', slip_item(k, i)):
             f.append('%s: exit %s leaves no room to write on the ticket' % (lab, i['item_id']))
     # notes: a fraction Tomorrow sends that the next day never names; the papers the day names
     tm = d['secs'].get('Tomorrow', '')
@@ -798,13 +805,14 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
 .frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
-.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.slip { border: 1px dashed #000; height: 4.75in; width: 48%; display: inline-block; box-sizing: border-box; padding: .18in; margin: 0 1% .15in 0; vertical-align: top; font-size: 12pt; line-height: 1.3; overflow: hidden; } .slip p { margin: .22em 0; } .slip .foot { font-size: 7pt; line-height: 1.25; margin-top: .3em; padding-top: .2em; }
 .screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.0in; } .slip .sketch.tall { height: 1.1in; } .slip .fig svg { max-height: 1.2in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+.blank.fblank { width: .8in; height: 1.6em; }   /* a line holding one stands about 2em: room for a stacked fraction */
 """
 
 
@@ -875,6 +883,24 @@ def part_lines(s):
     return re.sub(r'(?<=\S)\s+\(([a-h])\)\s', r'<br>(\1) ', s)
 
 
+FBLANK = '<span class="blank fblank"></span>'
+
+
+def frac_blanks(s, i, other=None):
+    """A stem blank that stands for a fraction answer (beside =, + or −, in a row whose answer is a fraction) gets
+    room to write a stacked fraction: 0.8 in wide on a taller line (expert, day 28). Other blanks are left to
+    other(m), or kept as written."""
+    # a worked example's or a fix's blank is not the student's to fill (the frames are); only answered rows widen
+    if not re.search(r'\d/\d', i.get('answer', '')) or i.get('check') in ('example', 'fix'):
+        return re.sub(r'_{2,}', other, s) if other else s
+    def one(m):
+        a, b = s[max(0, m.start() - 3):m.start()], s[m.end():m.end() + 3]
+        if '/' not in a[-1:] + b[:1] and (re.search(r'[=+−-]\s*$', a) or re.match(r'\s*[=+−-]', b)):
+            return FBLANK
+        return other(m) if other else m[0]
+    return re.sub(r'_{2,}', one, s)
+
+
 def md(text, items, teacher=False):
     """Day-file markdown to HTML. [[id]] prints the question, upright (and on the teacher page its answer; on a
     student page its fractions stacked); [[steps:id]] prints the worked steps from the row, the same cell the
@@ -886,7 +912,7 @@ def md(text, items, teacher=False):
         if not i:
             return m[0]
         if not teacher:
-            return part_lines(stacked(stem(i)))
+            return part_lines(frac_blanks(stacked(stem(i)), i))
         return stem(i) + (' **[%s]**' % i['answer'] if i['answer'] else '')
 
     def sub_steps(m):
@@ -959,7 +985,9 @@ def figures(i):
     cell = (i.get('figure') or '').strip()
     if not cell:
         return []
-    return [x.strip() for x in cell.split('|')] if '|' in cell else [cell]
+    # an fstrip's grp=2,3|1,1,3 keeps its | (one group list a strip); only a | between figures splits the cell
+    cell = re.sub(r'\bgrp=\S*', lambda m: m[0].replace('|', '\0'), cell)
+    return [x.strip().replace('\0', '|') for x in cell.split('|')] if '|' in cell else [cell.replace('\0', '|')]
 
 
 def figure(spec, size=1.0):
@@ -1433,7 +1461,7 @@ def fstrip_bars(spec):
     """'fstrip 2/3 Lu:4/6=?' as [(name, k, n, blank)]: each a whole cut into n equal parts, k shaded."""
     bars = []
     for tok in spec.split()[1:]:
-        if tok in ('unit', 'lab=none', 'then') or re.match(r'(?:ask|by)=', tok):
+        if tok in ('unit', 'lab=none', 'then') or re.match(r'(?:ask|by|grp)=', tok):
             continue
         m = FSTRIP.match(tok)
         if not m or int(m['n']) < 1:
@@ -1444,12 +1472,48 @@ def fstrip_bars(spec):
     return bars
 
 
+def fstrip_groups(spec, strict=False):
+    """'grp=2,3|1,1,3': for each strip in order, the runs of parts a bracket groups ('-' or nothing for a strip with
+    none). Each run is a count of parts from the left; the runs of one strip may not pass its parts. A view that
+    drops strips (the student page's ask=) drops their lists; strict (the full cell) fails a list with no strip."""
+    m = re.search(r'(?:^|\s)grp=(\S*)', spec)
+    if not m:
+        return []
+    bars = fstrip_bars(spec)
+    out = []
+    for k, g in enumerate(m[1].split('|')):
+        if g in ('', '-'):
+            out.append([]); continue
+        if not re.fullmatch(r'\d+(?:,\d+)*', g) or '0' in g.split(','):
+            raise ValueError('fraction strip grp= is runs of parts, one list a strip split by |, as grp=2,3|1,1,3')
+        runs = [int(x) for x in g.split(',')]
+        if k < len(bars):
+            _, kk, n, _ = bars[k]
+            if sum(runs) > max(-(-kk // n), 1) * n:
+                raise ValueError('fraction strip grp= groups %d parts on a strip of %d' % (
+                    sum(runs), max(-(-kk // n), 1) * n))
+        out.append(runs)
+    if strict and len(out) > len(bars):
+        raise ValueError('fraction strip grp= has %d group lists for %d strips' % (len(out), len(bars)))
+    return out
+
+
 def fstrip_numbers(spec):
-    """The fractions a strip figure names (not a blank one, not an unshaded 0/n), for the figure-and-stem gate."""
-    return ['%d/%d' % (k, n) for _, k, n, b in fstrip_bars(spec) if not b and k]
+    """The fractions a strip figure names (not a blank one, not an unshaded 0/n), and the label under each group
+    (grp=), for the figure-and-stem gate."""
+    bars = fstrip_bars(spec)
+    return (['%d/%d' % (k, n) for _, k, n, b in bars if not b and k] +
+            ['%d/%d' % (g, bars[k][2]) for k, runs in enumerate(fstrip_groups(spec)[:len(bars)]) for g in runs])
 
 
-FIG_OPTS = {'line': ('to', 'scale', 'ask', 'by', 'names'), 'fstrip': ('unit', 'lab', 'ask', 'by')}
+# Options a line or fstrip figure cell takes beside its lines or strips (fig_parts reads them):
+#   line:   to=N (the range from 0), scale=, ask=N (lines the student page prints), by=-,1,* (lines a display screen
+#           shows), names (each line's parts word at the left)
+#   fstrip: unit (1/n in each part), lab=none (nothing at the left), ask=N, by=, and grp=2,3|1,1,3: one group list a
+#           strip, split by | ('-' or nothing for a strip with none); each number is a run of parts from the left,
+#           bracketed under the strip with its fraction (2 parts of eighths: 2/8). The student page prints grp= too,
+#           so a strip whose grouping is the answer keeps it on a 'then' strip or leaves grp= off.
+FIG_OPTS = {'line': ('to', 'scale', 'ask', 'by', 'names'), 'fstrip': ('unit', 'lab', 'ask', 'by', 'grp')}
 
 
 def fig_parts(spec):
@@ -1524,8 +1588,10 @@ def fstrip(spec, size=1.0, upto=None, span=780):
     k/n is a whole cut into n equal parts with the first k shaded; past n (7/4) a second whole follows, its edge
     drawn heavy. 'Lu:1/6' writes the name at the left instead of the fraction; '2/6=?' leaves an empty box there
     for the student; 'lab=none' writes nothing at the left; 'unit' writes 1/n in each part wide enough to hold it.
-    upto=n draws only the first n strips (the display, a step at a time)."""
+    'grp=2,3|1,1,3' brackets runs of parts under each strip with their fractions (FIG_OPTS). upto=n draws only the
+    first n strips (the display, a step at a time)."""
     bars = fstrip_bars(spec)
+    groups = fstrip_groups(spec)
     flags = set(spec.split()[1:])
     fs, ffs, bh, gap = FIG_FS, 26, 58, 20
     wholes = max(-(-k // n) for _, k, n, _ in bars) or 1
@@ -1569,12 +1635,27 @@ def fstrip(spec, size=1.0, upto=None, span=780):
             else:
                 sv, _ = sfrac(x0 - 18 - 20, y + bh / 2 + ffs, '%d/%d' % (k, n), ffs)
                 out.append(sv)
+        runs = groups[bi] if bi < len(groups) else []
+        j0, yb = 0, y + bh + 6
+        for g in runs:   # grp=: a square bracket under each run of parts, its fraction under the middle tick
+            xa, xb = x0 + j0 * w + 5, x0 + (j0 + g) * w - 5
+            mid = (xa + xb) / 2
+            out.append('<path d="M%.1f %.0f L%.1f %.0f L%.1f %.0f L%.1f %.0f M%.1f %.0f L%.1f %.0f" fill="none" '
+                       'stroke="#000" stroke-width="2.5"/>' % (xa, yb, xa, yb + 12, xb, yb + 12, xb, yb,
+                                                               mid, yb + 12, mid, yb + 18))
+            sv, _ = sfrac(mid, yb + 22 + ffs * 2.07, '%d/%d' % (g, n), ffs)
+            out.append(sv)
+            j0 += g
+        if runs:
+            y += 22 + ffs * 2.4 + 6
         y += bh + gap
     if upto is not None and upto < len(bars):
         out = out[:hidden]
     W, H = x0 + L * wholes + 10, y - gap + 8
     alt = ('Fraction strips of one length, one under the other: ' if len(bars) > 1 else 'A fraction strip: ') + '; '.join(
-        '%s%d of %d equal parts shaded' % ((nm + ', ') if nm else '', k, n) for nm, k, n, _ in bars)
+        '%s%d of %d equal parts shaded%s' % ((nm + ', ') if nm else '', k, n, (', grouped as ' + ' and '.join(
+            '%d/%d' % (g, n) for g in groups[bi])) if bi < len(groups) and groups[bi] else '')
+        for bi, (nm, k, n, _) in enumerate(bars))
     return ('<svg viewBox="0 0 %.0f %.0f" width="%.0f" style="%s" role="img" aria-label="%s" '
             'xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif">%s</svg>') % (
         W, H, W, fig_style(W, H, size), html.escape(alt), ''.join(out))
@@ -1682,6 +1763,38 @@ def cols_state(spec, k):
     f, _ = fig_fields(spec)
     by = f.get('by', '').split(',') if f.get('by') else []
     return by[k] if k < len(by) else '*'
+
+
+def slip_html(h, ex, foot):
+    """One exit ticket: a quarter of a sheet, four printed to a page."""
+    return '<div class="slip"><p>Name ______________ Day %s</p>%s%s</div>' % (h['day'], ''.join(
+        slip_item(k, i) for k, i in enumerate(ex)), foot)
+
+
+SLIP_W, SLIP_H = 3.504, 4.75   # inches: a slip is 48% of the 7.3 in page and 4.75 in tall (CSS .slip), two rows a page
+
+
+def slip_fits(d, course, items):
+    """Print the day's exit ticket alone on a page the size of the slip, its height let go: more than one page
+    means its content runs past the quarter page, where .slip's overflow hides it (expert, day 27: a sketch box
+    pushed the credit line off). None when there is no paper ticket or no Chrome; else (fits, note)."""
+    h = d['head']
+    byid = {i['item_id']: i for i in items}
+    ex = [i for i in items if i['day'] == h.get('day') and i['check'] == 'exit' and i.get('path', '') in ('', 'paper')]
+    if not ex or not CHROME.exists():
+        return None
+    refs = {r for r in REF.findall(d['teacher'] + d['student']) + STEPS.findall(d['teacher']) if r in byid}
+    credits = sorted({byid[r]['source'] for r in refs if byid[r].get('source')})
+    foot = foot_line(h, course, ([h['credit']] if h['credit'].lower() != 'ours' else []) + credits)
+    import tempfile
+    tmp = Path(tempfile.gettempdir()) / ('curio-%s-%s-exit.html' % (course, d['path'].stem))
+    css = ('<style>@page { size: %.3fin %.2fin; margin: 0; } body { max-width: none; } .slip { width: 100%% '
+           '!important; height: auto !important; margin: 0 !important; overflow: visible !important; }</style>'
+           % (SLIP_W, SLIP_H + 0.02))
+    put(tmp, page('check', css + slip_html(h, ex, foot), 'student'))
+    note = print_sides(tmp)
+    m = re.match(r'(\d+) side', note)
+    return (int(m[1]) == 1, note) if m else None
 
 
 def foot_line(h, course, credits=()):
@@ -1884,8 +1997,7 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     # exit ticket, four to a sheet: the paper path only
     ex = [i for i in mine if i['check'] == 'exit' and i.get('path', '') in ('', 'paper')]
     if ex and row['kind'] != 'Check':
-        one = '<div class="slip"><p>Name ______________ Day %s</p>%s%s</div>' % (h['day'], ''.join(
-            slip_item(k, i) for k, i in enumerate(ex)), foot)
+        one = slip_html(h, ex, foot)
         put(out / (name + '-exit.html'), page(title + ': exit tickets', one * 4, 'student'), encoding='utf-8')
     # display, in the order the teacher page runs: part by part, each [[id]], [[steps:id]] and **Ask.** where it
     # first appears (a worked example with its figure, then its steps one screen at a time; a fix with the wrong
@@ -1941,42 +2053,58 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         svg = grow[0](spec, 1.0, upto) if grow else figure(spec)
         return svg if k < 2 else '<div style="max-width:60%%">%s</div>' % svg
 
+    def ex_plan(i):
+        st = steps(i)
+        first = next((k for k, s in enumerate(st) if draws.search(s)), 0)
+        at = re.search(r'\bat=(\d+)', figures(i)[0]) if len(figures(i)) == 1 else None
+        if at:   # 'rows 12/5 at=4': the picture is the answer, held back until the step that shows it
+            first = int(at[1]) - 1
+        col = len(figures(i)) == 1 and figures(i)[0].startswith('cols')
+        cnt = fig_counts(figures(i)[0], st, True) if len(figures(i)) == 1 else None
+        return st, first, col, cnt
+
+    def ex_question(i):
+        st, first, col, cnt = ex_plan(i)
+        qf = staged_fig(i, cnt[0]) if cnt is not None else (
+            fig(i) if first == 0 and not col and not draws.search(st[0] if st else '') else '')
+        return ['<div class="screen"><p>%s</p>%s</div>' % (stacked(stem(i)), qf)]
+
+    def fix_screens(i):
+        """A fix's two screens: the problem with their working, then both side by side with the right working."""
+        st, fs = steps(i) + ['', ''], figures(i)
+        two = [figure(x) if x else '' for x in fs] if len(fs) == 2 else ['', '']
+        theirs = '<div><b>Their working</b>%s<p>%s</p></div>' % (
+            two[0], html.escape(cap1(re.sub(r'^.*?working: ', '', st[0]))))
+        right = ''.join('<p>%s</p>' % html.escape(cap1(re.sub(r'^.*?working: ', '', x))) for x in st[1:] if x)
+        return ('<div class="screen"><p>%s</p>%s<div class="pair">%s</div></div>' % (stacked(stem(i)), fig(i), theirs),
+                '<div class="screen"><p>%s</p>%s<div class="pair">%s<div><b>The right working</b>%s%s</div></div></div>'
+                % (stacked(stem(i)), fig(i), theirs, two[1], right))
+
+    def ex_steps(i):
+        st, first, col, cnt = ex_plan(i)
+        o = []
+        for k in range(len(st)):
+            # a step that lays this example beside an earlier one shows that one's picture too
+            other = (''.join(figure(figures(e)[0]) for e in last_ex[-1:] if len(figures(e)) == 1)
+                     if re.search(r'\bbeside the\b', st[k], re.I) else '')
+            o.append('<div class="screen">%s%s<ol>%s</ol></div>' % (other, step_fig(i, k, first, len(st)), ''.join(
+                '<li%s>%s</li>' % (' class="now"' if j == k else '', html.escape(s)) for j, s in enumerate(st[:k + 1]))))
+            # an Ask written "after step N" before this example's steps gets its screen there (day 19 read)
+            o.extend(held.pop(k + 1, []))
+        for k in sorted(held):   # a step number past the last: after the last step
+            o.extend(held.pop(k))
+        last_ex.append(i)
+        return o
+
     def screens(i):
         if i['check'] == 'example':
-            st = steps(i)
-            first = next((k for k, s in enumerate(st) if draws.search(s)), 0)
-            at = re.search(r'\bat=(\d+)', figures(i)[0]) if len(figures(i)) == 1 else None
-            if at:   # 'rows 12/5 at=4': the picture is the answer, held back until the step that shows it
-                first = int(at[1]) - 1
-            col = len(figures(i)) == 1 and figures(i)[0].startswith('cols')
-            cnt = fig_counts(figures(i)[0], st, True) if len(figures(i)) == 1 else None
-            qf = staged_fig(i, cnt[0]) if cnt is not None else (
-                fig(i) if first == 0 and not col and not draws.search(st[0] if st else '') else '')
-            o = ['<div class="screen"><p>%s</p>%s</div>' % (stacked(stem(i)), qf)]
-            for k in range(len(st)):
-                # a step that lays this example beside an earlier one shows that one's picture too
-                other = (''.join(figure(figures(e)[0]) for e in last_ex[-1:] if len(figures(e)) == 1)
-                         if re.search(r'\bbeside the\b', st[k], re.I) else '')
-                o.append('<div class="screen">%s%s<ol>%s</ol></div>' % (other, step_fig(i, k, first, len(st)), ''.join(
-                    '<li%s>%s</li>' % (' class="now"' if j == k else '', html.escape(s)) for j, s in enumerate(st[:k + 1]))))
-                # an Ask written "after step N" before this example's steps gets its screen there (day 19 read)
-                o.extend(held.pop(k + 1, []))
-            for k in sorted(held):   # a step number past the last: after the last step
-                o.extend(held.pop(k))
-            last_ex.append(i)
-            return o
+            return ex_question(i) + ex_steps(i)
         if i['check'] == 'fix':   # one figure is the problem's, above both; two are their picture and the right one
             # two screens (unit 3 reads, days 12, 16, 17, 18): the problem with their working, while the class
             # talks; then both side by side, the right working in full, after the part's Ask
-            st, fs = steps(i) + ['', ''], figures(i)
-            two = [figure(x) if x else '' for x in fs] if len(fs) == 2 else ['', '']
-            theirs = '<div><b>Their working</b>%s<p>%s</p></div>' % (
-                two[0], html.escape(cap1(re.sub(r'^.*?working: ', '', st[0]))))
-            right = ''.join('<p>%s</p>' % html.escape(cap1(re.sub(r'^.*?working: ', '', x))) for x in st[1:] if x)
-            pend.append((i['item_id'], '<div class="screen"><p>%s</p>%s<div class="pair">%s<div><b>The right working'
-                         '</b>%s%s</div></div></div>' % (stacked(stem(i)), fig(i), theirs, two[1], right)))
-            return ['<div class="screen"><p>%s</p>%s<div class="pair">%s</div></div>' % (stacked(stem(i)), fig(i),
-                                                                                          theirs)]
+            q, right = fix_screens(i)
+            pend.append((i['item_id'], right))
+            return [q]
         if i['check'] == 'challenge':
             return ['<div class="screen"><p><b>Challenge.</b> %s</p></div>' % stacked(stem(i))]
         return []
@@ -2014,9 +2142,99 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                             '<div style="max-width:5in">%s</div>' % tiles(x, 0.6) for x in figures(i)
                             if kind(x) == 'tiles')) for i in end)))
 
-    def walk(text, prac):
+    # A worked example or a fix whose [[steps:id]] stands in The day shows its question where it is named and its
+    # steps (a fix: the right working) at the [[steps:id]] token, so an Ask written between them comes before the
+    # screens that answer it (unit 4 reads, days 25, 27, 28). Two named together ("([[F1]], [[F2]])") show one at a
+    # time: the second's question waits until the first's steps are shown.
+    steps_at = set(STEPS.findall(d['secs'].get('The day', '')))
+    line = []   # [row, question shown] in the order named, each waiting for its [[steps:id]]
+
+    def show_next():
+        if line and not line[0][1]:
+            i = line[0][0]
+            scr.extend(ex_question(i) if i['check'] == 'example' else [fix_screens(i)[0]])
+            line[0][1] = True
+
+    def resolve(r):
+        k = next((k for k, x in enumerate(line) if x[0]['item_id'] == r), None)
+        if k is None:
+            return False
+        i, shown = line.pop(k)
+        if not shown:
+            scr.extend(ex_question(i) if i['check'] == 'example' else [fix_screens(i)[0]])
+        start = len(scr) - 1
+        if i['check'] == 'example':
+            scr.extend(ex_steps(i))
+            just.clear()
+            just.update(row=i, start=start, end=len(scr))
+        else:
+            scr.append(fix_screens(i)[1])
+            just.clear()
+        if line and not line[0][1]:
+            show_next()
+            just.clear()
+        return True
+
+    def show(i, prac, seg='', gap=()):
+        """A row named in the teacher's prose: its screens, or (a worked example or a fix with a [[steps:id]] in The
+        day) its question now and its steps at the token."""
+        r = i['item_id']
+        done.add(r)
+        if r in gap:
+            wpend.append((i, seg))
+            return
+        flush_warm()
+        flush()
+        if i['check'] in ('example', 'fix') and r in steps_at:
+            line.append([i, False])
+            show_next()
+            just.clear()
+            return
+        start = len(scr)
+        scr.extend(screens(i))
+        just.clear()
+        if i['check'] == 'example':
+            just.update(row=i, start=start, end=len(scr))
+        if i['check'] in ('practice', 'tool'):
+            prac.append(i)
+
+    wpend = []   # warm-up rows waiting for their screens: (row, the sentence that names it)
+
+    def flush_warm():
+        """Warm-up rows the display had no screen for (on the student page, no Check: line): their questions, one
+        part a screen for a row the prose shows "one at a time", the rest on one screen; then one answers screen,
+        before any Ask after them (expert, day 28)."""
+        if not wpend:
+            return
+        o, together = [], []
+        for i, seg in wpend:
+            s = stem(i)
+            if not re.search(r'\bone (?:\w+ )?at a time\b', seg, re.I):
+                together.append(i)
+                continue
+            ps = re.split(r'\s+(?=\([a-h]\)\s)', s.strip())
+            lead, ps = (ps[0], ps[1:]) if len(ps) > 1 and not re.match(r'\([a-h]\)\s', ps[0]) else ('', ps)
+            if len(ps) < 2:   # "Find each: 9 + 6, 14 − 8, ...": the list after the colon
+                lm = re.match(r'(.*?:)\s*(.+)$', s)
+                lead, ps = (lm[1], [x.strip() for x in lm[2].split(',') if x.strip()]) if lm else ('', [s])
+            o += ['<div class="screen">%s<p>%s</p></div>' % (
+                '<p style="font-size:.6em">%s</p>' % stacked(lead) if lead else '', stacked(p)) for p in ps]
+        if len(together) == 1:
+            o.append('<div class="screen"><p>%s</p></div>' % part_lines(stacked(stem(together[0]))))
+        elif together:
+            o.append('<div class="screen"><ol>%s</ol></div>' % ''.join(
+                '<li>%s</li>' % part_lines(stacked(stem(i))) for i in together))
+        o.append('<div class="screen"><p><b>Answers.</b></p><ol>%s</ol></div>' % ''.join(
+            '<li>%s<br><b>%s</b></li>' % (part_lines(stacked(stem(i))), part_lines(stacked(i['answer'])))
+            for i, _ in wpend))
+        scr.extend(o)
+        wpend.clear()
+        just.clear()
+
+    def walk(text, prac, gap=()):
         for m in tok.finditer(text):
             if m[3]:
+                flush_warm()
                 # every quoted question in the Ask paragraph is a screen (a "Then:" question too); answers
                 # ("Expect: ...") are quoted without a question mark and stay off the screen
                 qs = [q for q in re.findall(r'"([^"]+)"', m[3]) if q.rstrip().endswith('?')] or \
@@ -2033,18 +2251,24 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                     at = just['start'] + 1 + n
                     scr[at:at] = out
                     just['end'] = len(scr)
+                elif after and (line and line[0][0]['check'] == 'fix' or pend):
+                    # "after step 1" on a fix: its first step, their working, is on the screen now (day 25)
+                    scr.extend(out)
+                    flush()
                 elif after:   # "after step 2": its screen waits for the next worked example's step 2 (day 19 read)
                     held.setdefault(n, []).extend(out)
                 else:
                     scr.extend(out)
                     flush()   # a fix's right working comes after the class has answered (unit 3 reads)
-                for r in REF.findall(m[3]):   # a row named inside the Ask paragraph is still walked
-                    if r not in done and r in byid:
-                        done.add(r)
-                        flush()
-                        scr.extend(screens(byid[r]))
-                        if byid[r]['check'] in ('practice', 'tool'):
-                            prac.append(byid[r])
+                # a row named inside the Ask paragraph is still walked; a [[steps:id]] there shows its steps after
+                # the Ask (day 28: "**Ask.** ... Expect: ... [[steps:s04-F28-1]]")
+                for mm in re.finditer(r'\[\[(steps:)?([A-Za-z0-9-]+)\]\]', m[3]):
+                    if mm[1]:
+                        resolve(mm[2])
+                    elif mm[2] not in done and mm[2] in byid:
+                        show(byid[mm[2]], prac)
+                continue
+            if m[1] and resolve(m[2]):
                 continue
             if m[1] and any(p[0] == m[2] for p in pend):   # [[steps:id]] for a fix shown above: its right working
                 # waits for an Ask later in the same part, so the class answers before the screen does (unit 2
@@ -2053,16 +2277,16 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                     flush()
             if m[2] in done or m[2] not in byid:
                 continue
-            done.add(m[2])
-            i = byid[m[2]]
-            flush()
-            start = len(scr)
-            scr.extend(screens(i))
-            just.clear()
-            if i['check'] == 'example':
-                just.update(row=i, start=start, end=len(scr))
-            if i['check'] in ('practice', 'tool'):
-                prac.append(i)
+            seg = ''
+            if m[2] in gap:   # the sentence that names the row, up to the next row named or the paragraph's end
+                st0 = max([e.end() for e in re.finditer(r'[.?!]\s', text[:m.start()])] + [0])
+                nx = REF.search(text, m.end())
+                pe = text.find('\n\n', m.end())
+                seg = text[st0:min(x for x in (nx.start() if nx else len(text), pe if pe >= 0 else len(text)))]
+            if m[1] and m[2] in steps_at and byid[m[2]]['check'] in ('example', 'fix'):
+                steps_at.discard(m[2])   # [[steps:id]] before the row is named: all its screens here, as before
+            show(byid[m[2]], prac, seg, gap)
+        flush_warm()
         flush()
 
     def chunks(btxt):
@@ -2106,7 +2330,13 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                            % ''.join('<li>%s</li>' % html.escape(seen_by(b)) for b in gs))
         for btxt in chunks(whole):
           prac = []
-          walk(btxt, prac)
+          # a warm-up row on the student page with no Check: line and no partner check had no screen at all
+          # (expert, day 28): it gets its question and answers where it is named
+          gap = set() if end or not bname.lower().startswith('warm-up') or re.search(
+              r'^Check(?: \(sort\))?: ', btxt, re.M) or peer.search(whole) else {
+              r for r in REF.findall(btxt) if r in byid and r in on_page and byid[r]['check'] == 'practice'
+              and not re.search(r'=\s*\?\s*$', stem(byid[r]))}
+          walk(btxt, prac, gap)
           # tool rows (the paper path of a tool part) get a question screen, then their check screens, so the
           # answers never show before students predict (expert, day 4): a long row (a story, a whole table) its own
           # pair of screens; short rows with short answers (a table's lines, day 83) share one of each
@@ -2181,6 +2411,8 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
               if left:
                   scr.append('<div class="screen"><p><b>Answers.</b></p><ol>%s</ol></div>' % ''.join(
                       '<li>%s<br><b>%s</b></li>' % (stacked(stem(i)), html.escape(i['answer'])) for i in left))
+    while line:   # a [[steps:id]] the walk never reached (it should not happen): its steps after the day's parts
+        resolve(line[0][0]['item_id'])
     # anything named outside the parts of the day (Longer, Tomorrow); the day's own parts are walked above
     walk('\n'.join(v for k, v in d['secs'].items() if k not in ('The day', 'At home')), [])
     for k in sorted(held):   # an "after step N" Ask with no worked example after it keeps its screen
@@ -2271,7 +2503,7 @@ def slip_item(k, i):
     sents = re.split(r'(?<=[.?!])\s+', stem(i))
     ask = [s for s in sents if '__' not in s]
     frames = [s for s in sents if '__' in s]
-    blank = lambda s: re.sub(r'_{2,}', '<span class="blank" style="width:5em"></span>', stacked(s))
+    blank = lambda s: frac_blanks(stacked(s), i, lambda m: '<span class="blank" style="width:5em"></span>')
     # a full search ("Find all the factor pairs") is marked on its working, so it gets a work box and one answer
     # line (expert, day 3); asked with "how do you know", the box holds the pairs and the lines the reason (day 2)
     search = re.search(r'\ball the factor pairs\b|\bevery factor\b', stem(i), re.I)
@@ -2696,6 +2928,11 @@ def main(a):
             side_note = print_sides(tmp)
             if 'FAIL' in side_note:
                 fails.append('%s: the student page prints to more than two sides' % lab)
+        drow = next((x for x in days if x['day'] == d['head'].get('day')), None)
+        fit = slip_fits(d, c, items) if drow and drow['kind'] != 'Check' else None
+        if fit and not fit[0]:
+            fails.append('%s: the exit ticket runs past its quarter page (%s at %.2f by %.2f in), so its foot is cut '
+                         'off; shorten it or give its box less room' % (lab, fit[1].split(' FAIL')[0], SLIP_W, SLIP_H))
         hp = home_parts(d)
         print('%s: teacher %d words, student %d words (%d frame, %d questions), %d min, %s, %s, %d failure(s)' % (
             lab, words(teacher_prose(d)), words(d['student']) + stem_words(d, byid), words(d['student']),

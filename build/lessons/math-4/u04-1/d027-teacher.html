@@ -14,19 +14,20 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
 .frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
-.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.slip { border: 1px dashed #000; height: 4.75in; width: 48%; display: inline-block; box-sizing: border-box; padding: .18in; margin: 0 1% .15in 0; vertical-align: top; font-size: 12pt; line-height: 1.3; overflow: hidden; } .slip p { margin: .22em 0; } .slip .foot { font-size: 7pt; line-height: 1.25; margin-top: .3em; padding-top: .2em; }
 .screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.0in; } .slip .sketch.tall { height: 1.1in; } .slip .fig svg { max-height: 1.2in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
-</style></head><body class="teacher"><h1>Day 27: Wholes are parts too</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>27, section 4.1, understanding day</td></tr><tr><td>Goal</td><td>I can take apart a fraction bigger than 1 using wholes, and show why it is right</td></tr><tr><td>Standard parts</td><td>4.NF.B.3 (a) a fraction a/b, a &gt; 1 too, as a sum of unit fractions 1/b; 4.NF.B.3b (c) a fraction into a sum with the same denominator in more than one way, each recorded by an equation, past 1 too; 4.NF.B.3b (d) a decomposition, with a visual fraction model</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, the envelope of unit-fraction pieces (thirds to twelfths), three blank whole strips cut from day 26&#x27;s strip sheet, the number line pages, a pencil and a pen; per class, the document camera (or the board, to draw the pieces) and the projector with the display page</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit ticket, 1 per student; the key, 1 for the teacher</td></tr><tr><td>At home</td><td>the At home view, d027-home.html, 35 minutes with one child</td></tr><tr><td>Leans on</td><td>courses/math-4/u04-1/opener.md; courses/math-4/u03-1/strip-sheet.md; courses/math-4/u04-1/number-lines.md; courses/math-4/u04-1/record.md</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</td></tr></table><h3>Before class</h3>
-<p>Print the student page, tickets and key. Students cut three blank whole strips from day 26's strip sheet as
-morning work (or hand out pre-cut). Have day 26's tickets and the facts group's names beside you.</p>
+.blank.fblank { width: .8in; height: 1.6em; }   /* a line holding one stands about 2em: room for a stacked fraction */
+</style></head><body class="teacher"><h1>Day 27: Wholes are parts too</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>27, section 4.1, understanding day</td></tr><tr><td>Goal</td><td>I can take apart a fraction bigger than 1 using wholes, and show why it is right</td></tr><tr><td>Standard parts</td><td>4.NF.B.3 (a) a fraction a/b, a &gt; 1 too, as a sum of unit fractions 1/b; 4.NF.B.3b (c) a fraction into a sum with the same denominator in more than one way, each recorded by an equation, past 1 too; 4.NF.B.3b (d) a decomposition, with a visual fraction model</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, the envelope of unit-fraction pieces (thirds to twelfths), three blank whole strips from the envelope (day 25&#x27;s sheet, kept uncut), the number line pages, a pencil and a pen; per class, the document camera (or the board, to draw the pieces) and the projector with the display page</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit ticket, 1 per student; the key, 1 for the teacher</td></tr><tr><td>At home</td><td>the At home view, d027-home.html, 35 minutes with one child</td></tr><tr><td>Leans on</td><td>courses/math-4/u04-1/opener.md; courses/math-4/u03-1/strip-sheet.md; courses/math-4/u04-1/number-lines.md; courses/math-4/u04-1/record.md</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</td></tr></table><h3>Before class</h3>
+<p>Print the student page, tickets and key. Students take three blank whole strips from the envelope. Have day 26's
+tickets and the facts group's names beside you.</p>
 <h3>The day</h3>
 <h4>5 min. Warm-up: groups of twelfths</h4>
-<p>Whole class, in their heads (Find each in your head. (a) 3/12 + 3/12 (b) 3/12 + 3/12 + 3/12 + 3/12 (c) 6/12 + 6/12 + 6/12 <strong>[(a) 6/12 (b) 12/12, which is 1 (c) 18/12, which is 1 and 6/12 more]</strong>). Show one sum at a time; hands up when ready; write each answer
+<p>Whole class, in their heads (Find each in your head. (a) 3/12 + 3/12 (b) 3/12 + 3/12 + 3/12 + 3/12 (c) 6/12 + 6/12 + 6/12 <strong>[(a) 6/12 (b) 12/12, which is 1 (c) 18/12, which is 1 and 6/12 more]</strong>). Write one sum at a time on the board; hands up when ready; write each answer
 and one student's way on the board. The facts group (readiness item 4) does Find each: 7 + 5, 16 − 8, 8 + 9, 14 − 6, 5 + 9, 13 − 4 <strong>[12, 8, 17, 8, 14, 9]</strong> alone first, then
 joins for (c).</p>
 <p><strong>Ask.</strong> After (c): "Which sums made a whole? How do you know?" Expect: (b), 12/12, twelve twelfths cover one
@@ -35,15 +36,16 @@ strip; (c), 18/12 is one whole, 12/12, and 6/12 more.</p>
 <p>Whole class for what more than a third showed; otherwise the students named, at your table, while the rest lay
 out their whole strips and sixth-pieces.</p>
 <ul>
-<li><strong>If day 26's tickets showed many A</strong> (3/6 + 4/6 for 7/12): write "2/10 + 3/10 = 5/20" beside two and three
-  tenth-pieces; the class says it in words, "two tenths and three tenths is five tenths".</li>
+<li><strong>If day 26's tickets showed many A</strong> (3/6 + 4/6 for 7/12): lay seven twelfth-pieces, ring 3 and 4, and write
+  "7/12 = 3/6 + 4/6?" beside them. The class says each ring: "three twelfths and four twelfths". The rings hold
+  twelfths, so the bottom stays 12.</li>
 <li><strong>If many D</strong> (the same two parts swapped): show "4/10 + 3/10 and 3/10 + 4/10" beside seven tenth-pieces
   ringed 1, 2 and 4: a new way needs new ring sizes.</li>
 <li><strong>A sum making 6/12 or 8/12:</strong> those students recount seven twelfth-pieces with a partner.</li>
 </ul>
 <h4>15 min. Teaching first: whole strips under the pieces</h4>
-<p>Whole class. You lay strips and pieces under the camera; students lay theirs and fill the frames on side 1.
-Read every fraction as words.</p>
+<p>Whole class. You lay strips and pieces under the camera; students lay theirs and fill the frames on side 1. Pairs
+pool pieces for the 6/5 test and Example 3; threes for Example 2. Read every fraction as words.</p>
 <p><strong>Example 1</strong> (Lay sixth-pieces on a whole strip until it is covered. Write 1 as sixths. <strong>[1/6 + 1/6 + 1/6 + 1/6 + 1/6 + 1/6 = 6/6, so 1 = 6/6]</strong>). </p>
 <ol>
 <li>Lay a whole strip on the table. It is one whole, 1.</li>
@@ -60,10 +62,10 @@ end: 6/5 is more than 1.</p>
 <li>Lay two whole strips end to end. Cover each with six sixth-pieces. Each whole is 6/6.</li>
 <li>Lay one more sixth-piece past the second strip. Write one whole at a time: 6/6 + 6/6 + 1/6.</li>
 <li>Count the sixths: 6 and 6 is 12, and 1 more is 13. So 2 1/6 = 13/6. The bottom stays 6: every piece is a sixth.</li>
-<li>Slide the pieces onto line 9, from 0. Six reach 1, six more reach 2, and the last one stops at 13/6, past 2.</li>
+<li>On line 9, count sixths from 0 and mark the end: six reach 1, six more reach 2, and 13/6 is one more, past 2.</li>
 </ol>
-<p><strong>Ask.</strong> After step 4: "Before we slide them onto line 9: where will 1 be? Where will 2 be?" Expect: 1 at six
-sixths from 0; 2 at twelve sixths. Each space on the line is one sixth.</p>
+<p><strong>Ask.</strong> After step 4: "On line 9, how many sixths from 0 to 1? From 0 to 2?" Expect: six; twelve. Each space is
+one sixth, so 13/6 is one space past 2.</p>
 <p><strong>Example 3</strong> (Make 10/6 with sixth-pieces. Fill a whole strip first. Write 10/6 as a whole and sixths. <strong>[6/6 + 4/6 = 10/6, so 10/6 = 1 + 4/6, one and four sixths]</strong>). This one starts from the fraction. </p>
 <ol>
 <li>Lay ten sixth-pieces in a row. Count: one sixth, up to ten sixths.</li>
@@ -86,11 +88,11 @@ more. </p>
 <p>If many still put the whole number on top: write the whole as a sum first, 2 = 1 + 1 = 3/3 + 3/3, lay a whole
 strip of thirds for each 1, then count the thirds.</p>
 <h4>12 min. Wholes and parts, then the line</h4>
-<p>Alone. "Wholes and parts", side 2 (Lay fourth-pieces on a whole strip, then 3 more. Write 1 3/4 as a sum that uses 4/4 for the whole. Then write it as one fraction. <strong>[4/4 + 3/4 = 7/4]</strong>, Write 2 2/6 as a sum that uses 6/6 for each whole. Then write it as one fraction. Mark it on line 9. <strong>[6/6 + 6/6 + 2/6 = 14/6, marked past 2 on line 9]</strong>, On line 7, mark the halves by eye. Write 3 1/2 as a sum that uses 2/2 for each whole. Then write it as one fraction. <strong>[2/2 + 2/2 + 2/2 + 1/2 = 7/2]</strong>, (a) Write 10/4 as one whole and some fourths. (b) Write 10/4 as two wholes and some fourths. <strong>[(a) 10/4 = 4/4 + 6/4, or 1 + 6/4 (b) 10/4 = 4/4 + 4/4 + 2/4, or 2 + 2/4]</strong>). Question 1
-with pieces on a whole strip; question 2 with strips, then on line 9; question 3 on line 7 only, halves marked
-by eye; question 4 from the fraction.</p>
+<p>Alone. "Wholes and parts", side 2 (Lay fourth-pieces on a whole strip, then 3 more. Write 1 3/4 as a sum that uses 4/4 for the whole. Then write it as one fraction. <strong>[4/4 + 3/4 = 7/4]</strong>, Write 2 2/6 as a sum that uses 6/6 for each whole. Then write it as one fraction. Mark it on line 9. <strong>[6/6 + 6/6 + 2/6 = 14/6, marked past 2 on line 9]</strong>, On line 7, mark the halves by eye. Write 3 1/2 as a sum that uses 2/2 for each whole. Then write it as one fraction. <strong>[2/2 + 2/2 + 2/2 + 1/2 = 7/2]</strong>, (a) Write 10/4 as one whole and some fourths. (b) Write 10/4 as two wholes and some fourths. <strong>[(a) 10/4 = 4/4 + 6/4, or 1 + 6/4 (b) 10/4 = 4/4 + 4/4 + 2/4, or 2 + 2/4. Parts in any order; (b) also accepts 8/4 + 2/4]</strong>). Question 2
+with pieces on a whole strip, in pairs; question 3 with strips, in threes, then on line 9; question 4 on line 7
+only, halves marked by eye; question 5 from the fraction.</p>
 <p>Watch for 2 2/6 written 4/6 (error C), a sum with one 6/6 where two are needed (one whole counted), and a
-bottom that grows (error A). Ask as you walk: "How many sixths fill one whole?" For 4 (a), 1 + 6/4 is right: a
+bottom that grows (error A). Ask as you walk: "How many sixths fill one whole?" For 5 (a), 1 + 6/4 is right: a
 true sum whose parts still hold a whole's worth.</p>
 <p>If many miss 3 1/2 on the line: count halves aloud from 0, two to each whole, then write 2/2 under each 1.</p>
 <h4>8 min. Written task: Lee's sum</h4>
@@ -101,10 +103,12 @@ Collect; judge after class with the three look-fors and record under W27, one ti
 <p><strong>Ask.</strong> "10/4 had two right answers, 1 + 6/4 and 2 + 2/4. Which fills every whole it can? How do you know?"
 Expect: 2 + 2/4; 6/4 still holds four fourths, a whole, and 2/4 cannot fill one.</p>
 <p><strong>Ask.</strong> "Why does the bottom stay 6 when a whole is written as 6/6?" Expect: the whole is cut into sixths, so
-we count sixth-pieces; counting does not change their size.</p>
+we count sixth-pieces; counting does not change their size. Sketch a strip in tenths, parts roughly equal, and
+write 10/10 on it: the exit's strips are drawn this way.</p>
 <h4>7 min. Exit ticket</h4>
 <p>Alone, on paper (Write 2 3/10 as a sum that uses 10/10 for each whole. Then write it as one fraction. Draw strips to show it. <strong>[10/10 + 10/10 + 3/10 = 23/10, with two whole strips in tenths and 3 tenths more]</strong>). Read it aloud once. Pieces stay in the envelope; strips are drawn. A tick needs
-10/10 + 10/10 + 3/10, then 23/10, and two whole strips in tenths with 3 tenths more. Record under E27.</p>
+10/10 + 10/10 + 3/10, then 23/10, and two whole strips in tenths with 3 tenths more; roughly equal tenths, or a
+strip labelled 10/10, counts. Record under E27.</p>
 <h3>Other rooms</h3>
 <ul>
 <li><strong>No blank whole strips.</strong> Cut scrap paper to the length of six sixth-pieces laid end to end; check it
@@ -113,8 +117,8 @@ we count sixth-pieces; counting does not change their size.</p>
   ruled by hand, sixths and halves marked by eye.</li>
 </ul>
 <h3>Shorter or longer</h3>
-<p>Shorter: drop question 3 and the second Ask in Pull it together; never the fix, question 2, Lee's sum or the
-exit. Longer: the challenge (Write 9/4 as wholes and fourths in every way you can. How do you know you have them all? <strong>[4/4 + 5/4 (1 + 5/4) and 4/4 + 4/4 + 1/4 (2 + 1/4). Each whole uses 4 fourths; a third whole needs 12/4, more than 9/4, so 2 wholes is the most]</strong>). The search ends: each whole uses 4 fourths, and a third whole
+<p>Shorter: drop question 4 and the second Ask in Pull it together; never the fix, question 3, Lee's sum or the
+exit. Longer: the challenge (Write 9/4 as a whole number and fourths, like 1 + <span class="blank" style="width:0.9em"></span>, in every way you can. How do you know you have them all? <strong>[1 + 5/4 (4/4 + 5/4) and 2 + 1/4 (4/4 + 4/4 + 1/4). Each whole uses 4 fourths; a third whole needs 12/4, more than 9/4, so 2 wholes is the most]</strong>). The search ends: each whole uses 4 fourths, and a third whole
 needs 12/4, more than 9/4.</p>
 <h3>Words and supports</h3>
 <p>Word Wall cards: whole, sum, equation, unit fraction. Frame, to take or leave, on side 1: "One whole is <span class="blank" style="width:0.9em"></span>
@@ -122,9 +126,8 @@ pieces of size <span class="blank" style="width:0.9em"></span>, so 1 = <span cla
 pieces as the student points.</p>
 <h3>Tomorrow</h3>
 <p>On the ticket, 5/10 (error C, the 2 and the 3 put on top): day 28 opens with C's wrong example, three
-minutes. 13/10 (one whole counted): those students lay two whole strips in tenths with a partner. Lee's sums
+minutes. 13/10 (one whole counted): those students sketch two whole strips in tenths with a partner and count. Lee's sums
 go back in day 28's first minutes, look-fors ticked; a "yes" there is C too. Pieces are put away after today:
 day 28 sketches only.</p>
 <h3>Credit</h3>
-<p>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.
-Changed: whole strips under pieces before the line, our amounts, products and the word for wholes and parts cut.</p><div class="foot">Curio Class, grade 4 math, day 27, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org<br>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</div></body></html>
+<p>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</p><div class="foot">Curio Class, grade 4 math, day 27, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org<br>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</div></body></html>

@@ -20,8 +20,9 @@ them. So 3/5 is three pieces of size one fifth: 1/5 + 1/5 + 1/5 = 3/5. The size 
 laid together, which is why the bottom number stays 5. Students say it in words before they write it: "three
 fifths is three pieces of one fifth".
 
-**Past one whole.** The count does not stop at 1. Lay fourth-pieces along a line from 0 to 2: after four fourths
-the line reaches 1, and the fifth piece lands past it, at 5/4. A fraction past 1 is the same kind of count.
+**Past one whole.** The count does not stop at 1. Lay fourth-pieces in a row: four fourths are one whole strip
+long, and the fifth piece runs past it, at 5/4. A fraction past 1 is the same kind of count. The pieces are longer
+than the spaces on the line pages, so pieces lie in a row on the desk and the line is only to count and mark the end.
 
 **More than one way.** Any grouping of the pieces is a sum that makes the fraction: 5/8 = 1/8 + 4/8 = 1/8 + 1/8 +
 3/8. The same parts in a new order are not a new way (our key rule, error D): 2/8 + 3/8 and 3/8 + 2/8 are one way.
@@ -36,11 +37,12 @@ rule: a whole is written as a sum of parts first.
 ## The pieces and the line
 
 - **Day 25.** Unit-fraction pieces from unit 3's strip sheet, one addend a piece, laid down as the sum is written.
-  Then fourth-pieces on a line from 0 to 2, counted past 1.
-- **Day 26.** Pieces and rings: one amount ringed two ways. Recipe Scaler's building rounds (key, show why, 20
-  min) where the class has devices and the tool's parts open one at a time; otherwise the same eight amounts with
-  pieces and rings, as the day page writes them.
-- **Day 27.** Whole strips laid under the pieces: 1 = 6/6, then wholes and parts as one sum.
+  Then fourth-pieces in a row, counted past 1, the end marked on a line from 0 to 2. The whole, eighths, twelfths
+  and blank strips go in the envelope uncut.
+- **Day 26.** The eighths and twelfths strips cut into pieces. Pieces and rings: one amount ringed two ways.
+  Recipe Scaler's building rounds, Lou's model to sugar (key, show why, 20 min) where the class has devices and
+  the tool's parts open one at a time; otherwise the four building amounts on paper with pieces and rings.
+- **Day 27.** Blank whole strips from the envelope laid under the pieces: 1 = 6/6, then wholes and parts as one sum.
 - **Day 28.** Pieces withdrawn: a quick sketch only, to settle a partner disagreement. Short keyed sets.
 
 The number line pages (number-lines.md): lines 1 to 6 from 0 to 2, blank and in fifths, sixths, tenths and
@@ -59,7 +61,7 @@ second ways; it fits day 26 as a key tool, but its picture is a cup, so the line
 | | What students do | What it shows | What to do when many do it |
 |---|---|---|---|
 | A | Add the tops and add the bottoms: 1/5 + 1/5 + 1/5 = 3/15 | A fraction read as two whole numbers | Say the sum in words: three fifths; the part size does not change |
-| B | Stop at one whole: "there is no 6/4" | The whole taken as the end of the number | Lay the pieces on a line from 0 to 2 and keep counting past 1 |
+| B | Stop at one whole: "there is no 6/4" | The whole taken as the end of the number | Lay the pieces in a row past a whole strip and keep counting; mark the end on a line from 0 to 2 |
 | C | Put the whole number on top: 2 1/3 = 3/3 | A whole not yet seen as n parts | Write the whole as a sum first, 2 = 3/3 + 3/3, then count thirds |
 | D | Swap the order and call it a new way | One split, not two | Ring the pieces in groups of a size not used yet |
 
@@ -71,17 +73,19 @@ The readiness check (readiness.md) is given in the last ten minutes of day 24 an
 first five minutes go to unit 3's judged items, so the reteach is day 26's warm-up and first five minutes: for the
 whole class if more than a third missed an item, otherwise for the students who missed it.
 
-1. **Item 1, counting on past 1.** Lay fourth-pieces along a line from 0 to 2, saying "one fourth, two fourths,
-   ... five fourths". The count does not stop at 1.
-2. **Item 2, a whole number as fourths.** Lay four fourth-pieces under each of two whole strips and count them.
+1. **Item 1, counting on past 1.** Pairs pool their fourth-pieces and lay them in a row past a whole strip,
+   saying "one fourth, two fourths, ... five fourths", then mark 5/4 on a line from 0 to 2. The count does not
+   stop at 1.
+2. **Item 2, a whole number as fourths.** Pairs pool their fourth-pieces and lay four under each of their two
+   whole strips, counting eight fourths.
 3. **Item 3, an equal name.** Unit 3's fold: one third folded into two sixths. The unit 3 record sheet names who.
 4. **Item 4, facts within 20.** A small group only, whatever the count: facts in the warm-ups of days 26 to 31
    and a facts sheet at home. The class keeps the lesson.
 
 ## Supplies for the section
 
-- Per student: unit-fraction pieces cut from unit 3's strip sheet (thirds to twelfths) in an envelope; three whole
-  strips (day 27); the number line pages; a pencil.
+- Per student: unit-fraction pieces cut from unit 3's strip sheet (thirds to twelfths) in an envelope, with the
+  whole and blank strips kept uncut (day 27); the number line pages; a pencil and a pen.
 - Per class: the projector for the display pages; pieces under the camera, or drawn on the board.
 - A room with nothing: pieces cut from scrap strips, all one length; lines ruled by hand.
 

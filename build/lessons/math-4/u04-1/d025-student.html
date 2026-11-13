@@ -14,13 +14,14 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
 .frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
-.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.slip { border: 1px dashed #000; height: 4.75in; width: 48%; display: inline-block; box-sizing: border-box; padding: .18in; margin: 0 1% .15in 0; vertical-align: top; font-size: 12pt; line-height: 1.3; overflow: hidden; } .slip p { margin: .22em 0; } .slip .foot { font-size: 7pt; line-height: 1.25; margin-top: .3em; padding-top: .2em; }
 .screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.0in; } .slip .sketch.tall { height: 1.1in; } .slip .fig svg { max-height: 1.2in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+.blank.fblank { width: .8in; height: 1.6em; }   /* a line holding one stands about 2em: room for a stacked fraction */
 </style></head><body class="student"><h1>Day 25: A fraction as a sum of pieces</h1><div class="side"><p>Name ______________________ Date __________</p><p><strong>I can write a fraction as a sum of unit fractions, past 1 too.</strong></p>
 <p><strong>Warm-up.</strong> Count by halves from <span class="frac"><span>1</span><span>2</span></span> to <span class="frac"><span>8</span><span>2</span></span>. Write the counts that are whole numbers.</p>
 <p>Whole numbers: <span class="blank" style="width:15.3em"></span></p>
@@ -28,7 +29,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 <div class="fig" style="margin:.2em 0"><svg viewBox="0 0 886 72" width="886" style="display:block;width:4.51in;max-width:100%;height:auto" role="img" aria-label="A fraction strip: 3 of 5 equal parts shaded" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><rect x="96.0" y="6" width="156.0" height="58" fill="#bbb" stroke="#000" stroke-width="2.5"/><text x="174" y="28" text-anchor="middle" font-size="22">1</text><line x1="165" y1="35" x2="183" y2="35" stroke="#000" stroke-width="2"/><text x="174" y="57" text-anchor="middle" font-size="22">5</text><rect x="252.0" y="6" width="156.0" height="58" fill="#bbb" stroke="#000" stroke-width="2.5"/><text x="330" y="28" text-anchor="middle" font-size="22">1</text><line x1="321" y1="35" x2="339" y2="35" stroke="#000" stroke-width="2"/><text x="330" y="57" text-anchor="middle" font-size="22">5</text><rect x="408.0" y="6" width="156.0" height="58" fill="#bbb" stroke="#000" stroke-width="2.5"/><text x="486" y="28" text-anchor="middle" font-size="22">1</text><line x1="477" y1="35" x2="495" y2="35" stroke="#000" stroke-width="2"/><text x="486" y="57" text-anchor="middle" font-size="22">5</text><rect x="564.0" y="6" width="156.0" height="58" fill="#fff" stroke="#000" stroke-width="2.5"/><text x="642" y="28" text-anchor="middle" font-size="22">1</text><line x1="633" y1="35" x2="651" y2="35" stroke="#000" stroke-width="2"/><text x="642" y="57" text-anchor="middle" font-size="22">5</text><rect x="720.0" y="6" width="156.0" height="58" fill="#fff" stroke="#000" stroke-width="2.5"/><text x="798" y="28" text-anchor="middle" font-size="22">1</text><line x1="789" y1="35" x2="807" y2="35" stroke="#000" stroke-width="2"/><text x="798" y="57" text-anchor="middle" font-size="22">5</text><line x1="876.0" y1="3" x2="876.0" y2="67" stroke="#000" stroke-width="6"/><line x1="96.0" y1="3" x2="96.0" y2="67" stroke="#000" stroke-width="6"/><text x="58" y="27" text-anchor="middle" font-size="26">3</text><line x1="48" y1="34" x2="68" y2="34" stroke="#000" stroke-width="2"/><text x="58" y="61" text-anchor="middle" font-size="26">5</text></svg></div>
 
 <p>1/5 + <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> = <span class="blank" style="width:1.8em"></span>    3/5 is <span class="blank" style="width:1.8em"></span> pieces of size <span class="blank" style="width:1.8em"></span>.</p>
-<p><strong>Example 2.</strong> Lay fourth-pieces along a line from 0 to 2. Stop at <span class="frac"><span>7</span><span>4</span></span>. Write <span class="frac"><span>7</span><span>4</span></span> as a sum of unit fractions.</p>
+<p><strong>Example 2.</strong> Lay fourth-pieces in a row, then mark <span class="frac"><span>7</span><span>4</span></span> on the line from 0 to 2. Write <span class="frac"><span>7</span><span>4</span></span> as a sum of unit fractions.</p>
 <div class="fig" style="margin:.2em 0"><svg viewBox="0 0 976 76" width="976" style="display:block;width:4.97in;max-width:100%;height:auto" role="img" aria-label="A number line from 0 to 2: in fourths" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><line x1="28" y1="20" x2="932" y2="20" stroke="#000" stroke-width="3"/><line x1="30.0" y1="2" x2="30.0" y2="38" stroke="#000" stroke-width="3"/><line x1="142.5" y1="7" x2="142.5" y2="33" stroke="#000" stroke-width="2"/><line x1="255.0" y1="7" x2="255.0" y2="33" stroke="#000" stroke-width="2"/><line x1="367.5" y1="7" x2="367.5" y2="33" stroke="#000" stroke-width="2"/><line x1="480.0" y1="2" x2="480.0" y2="38" stroke="#000" stroke-width="3"/><line x1="592.5" y1="7" x2="592.5" y2="33" stroke="#000" stroke-width="2"/><line x1="705.0" y1="7" x2="705.0" y2="33" stroke="#000" stroke-width="2"/><line x1="817.5" y1="7" x2="817.5" y2="33" stroke="#000" stroke-width="2"/><line x1="930.0" y1="2" x2="930.0" y2="38" stroke="#000" stroke-width="3"/><text x="30" y="72" text-anchor="middle" font-size="38">0</text><text x="480" y="72" text-anchor="middle" font-size="38">1</text><text x="930" y="72" text-anchor="middle" font-size="38">2</text></svg></div>
 
 <p><span class="blank" style="width:20.7em"></span> = 7/4</p>
@@ -37,17 +38,20 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 <ol>
 <li>
 <p>Path 1 is <span class="frac"><span>4</span><span>6</span></span> meter long. Each board is <span class="frac"><span>1</span><span>6</span></span> meter. Write the path as a sum of boards. Is it more or less than 1 meter?</p>
-<p>Sum: <span class="blank" style="width:14.4em"></span>  More / less, because <span class="blank" style="width:9.9em"></span></p>
+<p>Sum: <span class="blank" style="width:31.5em"></span></p>
+<p>More / less, because <span class="blank" style="width:24.3em"></span></p>
 </li>
 <li>
 <p>Path 2 is <span class="frac"><span>5</span><span>3</span></span> meters long. Each board is <span class="frac"><span>1</span><span>3</span></span> meter. Write the path as a sum of boards. Is it more or less than 1 meter?</p>
-<p>Sum: <span class="blank" style="width:14.4em"></span>  More / less, because <span class="blank" style="width:9.9em"></span></p>
+<p>Sum: <span class="blank" style="width:31.5em"></span></p>
+<p>More / less, because <span class="blank" style="width:24.3em"></span></p>
 </li>
 </ol><div class="foot">Curio Class, grade 4 math, day 25, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org<br>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lesson 7, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</div></div><div class="side"><p><strong>Board paths.</strong></p>
 <ol start="3">
 <li>
 <p>Path 3 is <span class="frac"><span>7</span><span>6</span></span> meters long. Each board is <span class="frac"><span>1</span><span>6</span></span> meter. Write the path as a sum of boards. Is it more or less than 1 meter?</p>
-<p>Sum: <span class="blank" style="width:14.4em"></span>  More / less, because <span class="blank" style="width:9.9em"></span></p>
+<p>Sum: <span class="blank" style="width:31.5em"></span></p>
+<p>More / less, because <span class="blank" style="width:24.3em"></span></p>
 </li>
 </ol>
 <p><strong>Fix it.</strong> Each answer is wrong. Say what went wrong. Then do it right.</p>
