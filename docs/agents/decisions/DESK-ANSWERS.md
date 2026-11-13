@@ -777,3 +777,14 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    experiments no classroom could run (large reactions, ecosystem models and the like). Each is a tool build through
    the normal tool pipeline; tools stay held until the frame is built (card q-plan-after-11-1), so simulations are
    listed per unit now and built later.
+
+## 2026-11-13: pipeline audit questions (docs/reviews/pipeline-audit-2026-11-13.md, section 8)
+
+1. Course order: no preference; do what is pedagogically best. Where a base text exists, its order is the default
+   frame only when the loss check finds it at least as good for learning.
+2. Grade 4 math: same answer. Keeping the approved order is fine if it does not harm learning.
+3. Teacher reader: not yet answered.
+4. Budget for the control reliability read and the unit 8 base-text-first test: approved. Keep it small, but quality
+   comes first.
+5. Login-gated IM material (cool-downs, teacher guides, assessments): take it. Cory signs in himself in Chrome; the
+   lead downloads under his session. Same light-rigor credit rule.

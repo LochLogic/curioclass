@@ -106,3 +106,10 @@ Option list (from the analyses):
 2. **Go-ahead** for the pipeline changes in section 3 and stage 1 of the unit 4 adaptation test.
 3. Still open from before: whether math units 12 to 18 and the check days are queued now. Days 25 to 38 stay held
    until the test.
+
+## 6. Audit answers (Cory 2026-11-13)
+
+Order follows what teaches best: a base text's order is the default frame where the loss check finds it no worse;
+grade 4 math keeps its order unless it harms learning. The control reliability read and the unit 8 base-text-first
+test are approved, kept small, quality first. IM's login-gated files are to be pulled under Cory's own sign-in. The
+teacher reader question stays open. Details: docs/agents/decisions/DESK-ANSWERS.md.
