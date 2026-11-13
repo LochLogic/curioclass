@@ -628,6 +628,29 @@ s02-P7-2,"""It doubles""",,,C,
 s02-X7v2,6 or 35 first,,,A,
 s02-X7v2,"""It adds 6""",,,C,
 s02-X7v2,"""65 is odd too"", as the reason",59+6,65,E,
+s02-W8-1,"1 × 82 only, or 82 called prime",,,,"stopped before 2; 82 is even, so 2 is a factor"
+s02-W8-2,Yes,,,,a guess; fence it between 3 × 32 and 3 × 33
+s02-W8-3,No,,,,the 6s not yet built past 6 × 10; build it from 6 × 10 and 3 more sixes
+s02-F8-1,"""Odd and even take turns""",,,D,Kai's working: a feature from two numbers
+s02-K8-1,22,2+10*2,22,,"counts 10 jumps from step 1, not 9"
+s02-K8-1,every step drawn to the 10th,,,B,
+s02-T8-1,20,10*2,20,A,"10 jumps of 2: starts at the number in the rule, not at 3"
+s02-T8-1,23,3+10*2,23,,"counts 10 jumps from step 1, not 9"
+s02-T8-2,50,10*5,50,A,"10 jumps of 5: starts at the number in the rule, not at 2"
+s02-T8-2,52,2+10*5,52,,"counts 10 jumps from step 1, not 9"
+s02-F8-2,drew all ten squares and counted 31,,,B,Jo's working
+s02-F8-2,30,10*3,30,A,10 jumps of 3: leaves out the 4 sticks of step 1
+s02-F8-2,34,4+10*3,34,,"counts 10 jumps from step 1, not 9"
+s02-F8-2,40,10*4,40,,every square given 4 sticks; the shared side counted twice
+s02-P8-1,40,10*4,40,A,10 jumps of 4: leaves out the 1 square of step 1
+s02-P8-1,41,1+10*4,41,,"counts 10 jumps from step 1, not 9"
+s02-P8-1,every step drawn to the 10th,,,B,
+s02-P8-1,"""It adds 4""",,,C,
+s02-P8-1,"""21 and 25 are odd too"", as the reason",17+4 | 21+4,21 | 25,E,
+s02-P8-2,"3rd, 6th, 9th and 12th",,,,"gave the triangles, not the squares"
+s02-P8-2,"2nd, 4th, 6th and on",,,,every other shape: the pattern is three long
+s02-X8,"""It adds 3""",,,C,
+s02-X8,"""24 is a multiple of 3 too"", as the reason",21+3,24,E,
 s09-P72-11,811,573+248-10,811,A,one carry lost
 s09-P72-11,711,573+248-110,711,A,every carry lost
 s09-P72-12v2,464,4+6*10+4*100,464,F,not taught until day 74
