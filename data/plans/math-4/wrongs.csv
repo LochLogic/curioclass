@@ -600,10 +600,10 @@ s02-E4,"5, 10, 15 and on",5 | 2*5 | 3*5,5 | 10 | 15,A,leaves out the one square 
 s02-E4,"draws all six steps and miscounts, or runs out of time",,,B,
 s02-E5,"""It adds 5""",,,C,
 s02-E5,a feature with more numbers as the reason,,,E,
-s02-E6,"4, 7, 10 and on",4 | 4+3 | 4+2*3,4 | 7 | 10,,"adds, not multiplies"
-s02-E6,"4, 12, 20 and on",4 | 4*3 | 12+8,4 | 12 | 20,,"adds, not multiplies"
-s02-E6,"12, 36, 108 and on",4*3 | 4*9 | 4*27,12 | 36 | 108,A,leaves out the start
-s02-E6,"""They triple""",,,C,
+s02-E6v2,"14, 17, 20 and on",14 | 14+3 | 14+2*3,14 | 17 | 20,,"adds, not multiplies"
+s02-E6v2,"14, 42, 70 and on",14 | 14*3 | 42+28,14 | 42 | 70,,"adds, not multiplies: keeps adding the first jump, 28"
+s02-E6v2,"42, 126, 378 and on",14*3 | 14*9 | 14*27,42 | 126 | 378,A,leaves out the start
+s02-E6v2,"""They triple""",,,C,
 s02-X8,"3, 6, 9 and on",3 | 2*3 | 3*3,3 | 6 | 9,A,starts at the number in the rule
 s02-X8,all five steps drawn and counted one by one,,,B,
 s02-W7-1,"1 × 65 only, or 65 called prime",,,,"stopped before 5; search in order to 8, since 9 × 9 = 81"
