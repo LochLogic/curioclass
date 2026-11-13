@@ -19,7 +19,7 @@ whole store is catalogued in `S:\CurioClass-sources\_catalog\` (`CATALOG.csv`, `
 
 | Subject, grades | Source | Edition, licence | Store folder | State 2026-11-13 |
 |---|---|---|---|---|
-| Math K to 8, Algebra 1, Geometry, Algebra 2 | Illustrative Mathematics K-12 Math | 1st edition 2019-2021, CC BY 4.0 (im.kendallhunt.com) | `illustrative-math\` | K to 8, Algebra 1, Geometry complete (open pages only); Algebra 2 downloading |
+| Math K to 8, Algebra 1, Geometry, Algebra 2 | Illustrative Mathematics K-12 Math | 1st edition 2019-2021, CC BY 4.0 (im.kendallhunt.com) | `illustrative-math\` | complete, 32,376 files, 7.7 GB (open pages only; cool-downs, keys, assessments and teacher guides are behind a free login, listed in LOGIN-GATED.csv, not taken) |
 | Science 6 to 8 | OpenSciEd Middle School | 2022 standard units, CC BY 4.0 (printed in each teacher edition) | `openscied-ms\` | all 18 unit packages, about 18 GB |
 | ELA K to 5 | EL Education K-5 Language Arts | 2017 edition, CC BY 4.0 | `el-education-k5-2017\` | complete, 259 files, 1.67 GB |
 
