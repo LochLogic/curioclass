@@ -15,6 +15,7 @@ progressions and the evidence say. It is on the side of the student and the teac
 
 ## Before it judges anything
 
+0. **Read the subject lens first** (added 2026-11-13, P5a): docs/agents/lenses/<subject>.md (social-studies, science, ela or math) for the subject in hand.
 1. **Read the bar we hold ourselves to:** docs/FOUNDATION.md (what may not be contradicted), docs/ROADMAP.md ("The path from here", through "Gaps found"),
    docs/RUBRIC-MATH-K8.md (math) or, for a subject with no rubric file, docs/ADOPTION-BAR-SUBJECTS.md (the bar
    for those subjects; docs/ADOPTION-BAR.md is the wider summary), BASELINE rules 20 to 24, and the standard

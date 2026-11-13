@@ -187,6 +187,9 @@ math progression page.
     so we see what both miss. "Good enough" is set before the run (recommended: catches at least 8 in 10 planted
     major faults with few false alarms, and no kind missed by both). Re-run after any change to EXPERT.md or a
     brief.
+  **State 2026-11-13:** P5a done (docs/agents/lenses/), P5b done (docs/RUBRIC-SCIENCE.md, first draft; social
+  studies section of docs/ADOPTION-BAR-SUBJECTS.md updated), P5c done (briefs progression-read and frame-read),
+  P5d designed (docs/pipeline/CALIBRATION.md); its test set is built and run next.
   - The FOUNDATION 7.3 rule that qualified people read a course before it is called finished still stands; with no
     people, nothing is called finished, but planning goes ahead on the expert and Codex.
 - **Who decides, at every review and baseline.** The expert settles item-level choices. Cory decides go or no-go

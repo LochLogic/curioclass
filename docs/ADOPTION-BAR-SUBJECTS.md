@@ -81,8 +81,9 @@ a future area of growth, not a closed door.
 **Where the instruments conflict on values.** Oklahoma's arts rubric checks materials against state law. Maryland,
 the federal health tool and the SEL registry ask for equity content in terms that pull the other way. No stance
 passes all of them. C12 follows FOUNDATION promise 7, a middle line, and Curio Class does not claim to satisfy any
-state's values criteria. Said once here, so it is not re-opened per course. Cory leans to a "high watermark" rule
-here, which is not yet worked out (see "Still open with Cory", b). Until it is, FOUNDATION's promises still bind.
+state's values criteria. Said once here, so it is not re-opened per course. Cory's values rule (2026-11-12) now
+settles these conflicts in order: the higher court, then the evidence, then dignity and openness, then the age of
+the student (see "Still open with Cory", b, and social studies item 11). FOUNDATION's promises still bind.
 
 **Acceptability is local.** A national site cannot settle what suits each community, so each course page says what
 a school may leave out. For health this is decided: all sensitive topics are carried, and each sensitive unit can
@@ -95,38 +96,109 @@ titles, links, licences and how much was read are in the sources table. "Fails i
 
 ### 1. Social studies
 
-Fourteen courses, kindergarten to grade 12, including the named high school courses.
+Sixteen courses, kindergarten to grade 12, in Massachusetts's course order (redrawn 2026-11-13, Desk card
+q-ss-course-list): one course per grade from kindergarten to grade 5 (one row, `ss-k5`), World Geography and
+Ancient Civilizations I and II (6, 7), Civics (8), World History I and II (9, 10), US History I and II (11, 12),
+US Government and Politics and Economics with personal finance (half years, 11 to 12). Fifteen are core.
+Psychology is not core and waits for the after-the-core stage. The list is data/courses.csv; the reasons are in
+docs/courses/social-studies/STANDARD.md, section 2.
 
 **Rests on.** EdReports and AIR criteria (2024) and Louisiana's tool (2026-27), read in full by the writer;
-Maryland's rubric (2025), read in full by the expert; Massachusetts read in part.
+Maryland's rubric (2025), read in full by the expert; Massachusetts read in part. The standard: Cory's option (d)
+(DESK-ANSWERS 2026-11-12 and 2026-11-13; paper: docs/reviews/social-studies-content-standard-2026-11-12.md), made
+usable in docs/courses/social-studies/STANDARD.md. **No base text** (pre-work P2,
+docs/reviews/social-studies-open-material-2026-11-13.md): every complete open program is NonCommercial, ShareAlike
+or all rights reserved, so every social studies day is Curio Class's own, written with references.
 
-1. [I] Inquiry and knowledge together: units are framed by questions and big ideas, and content is taught directly
-   and in order so facts, ideas and words pile up. History runs in time order unless the scope and sequence gives a reason.
-2. [I] Students work with real sources, primary and secondary, at a reading level right for the grade. Each source
-   has a stated difficulty and a reason for its place in the year.
-3. [I] Where an event has more than one account, the sources carry more than one.
+Items 1 to 8 come from the instruments. Items 9 to 14 come from the decisions on the standard. Each says the
+layer it is read at: scope and sequence (S), unit plan and section plan (U), day (D).
+
+1. [I] **The inquiry arc with knowledge.** Each unit is framed by a compelling question, with supporting questions
+   for its sections, and runs the C3 arc: ask and plan, use the tools of civics, economics, geography and
+   history, weigh sources and use evidence, then state a conclusion and act on it. Content is taught directly and
+   in order inside the arc, so facts, ideas and words pile up. History runs in time order unless the scope and
+   sequence gives a reason. (S, U)
+2. [I] **Real sources at the right level.** Students work with primary and secondary sources at a reading level
+   right for the grade. Each source has a stated difficulty, a reason for its place in the year, and a rights
+   line. (U, D)
+3. [I] Where an event has more than one account, the sources carry more than one. (U)
 4. [I] The discipline's skills are taught, not assumed: who made a source and why, its setting, checking one source
    against another, order in time, cause and effect, reading a map or data table, weighing cost against benefit.
-5. [I] Students write and talk from evidence: claim, evidence, reasoning, and the other side's claim. Writing is
-   taught directly. Short research tasks recur.
-6. [I] Subject words are taught and used.
-7. [I] Checks test knowledge and skills together and include a task done from sources.
-8. [I, in two of three instruments] Students apply what they concluded to a real problem near them. Maryland puts
-   this in the category that must be met; Louisiana does not ask it. How often (decided 2026-11-11): once a year
-   per course, and up to three times a year if the evidence shows a need for more.
+   (U, D)
+5. [I] **Claims from evidence.** Students write and talk from evidence: claim, evidence, reasoning, and the other
+   side's claim. Writing is taught directly. Short research tasks recur. (U, D)
+6. [I] Subject words are taught and used. (U, D)
+7. [I] Checks test knowledge and skills together. Every end-of-unit assessment includes a task done from sources
+   the student has not seen; exit tickets ask for a skill used on content, not a fact alone. (U, D)
+8. [I, in two of three instruments] **Informed action.** Students apply what they concluded to a real problem near
+   them. Maryland puts this in the category that must be met; Louisiana does not ask it. How often (decided
+   2026-11-11): once a year per course, and up to three times a year if the evidence shows a need for more. The
+   action is one a student can take safely at that age, and the course never tells a student which side to
+   take. (S, U)
+9. [S] **Content against the anchor.** Each unit cites the Massachusetts 2018 codes it teaches
+   (data/standards/ma-hss-2018.txt), and every anchor standard of the course is taught in full (C1). Skills cite
+   C3 (data/standards/c3-indicators.txt). Grade 3 cites Curio Class's own year in place of the anchor's (item 13).
+   News and media literacy is placed: grade 8 carries 8.T7, the high school courses carry NML.T1 to T5. (S, U)
+10. [O] **The check states.** Each unit plan is compared with California, Tennessee and New York, and for grades 9
+    to 12 with the college-level course frameworks; the Educating for American Democracy Roadmap, the economics
+    content standards (CEE 2010) and Geography for Life (2012) are references. Anything a strong set treats as
+    essential that the anchor leaves out or teaches thinly is added inside the year's days, with its source
+    written down. One comparison table per unit. Additions never push the year past its stated days (C1, C2).
+    Check-set names never appear in student, teacher or family copy. (U)
+11. [O] **The values rule** (Cory, 2026-11-12), in order: (a) where a court has ruled, side with the higher
+    court; (b) facts and backed sources decide claims, the discipline's evidence first; (c) people are taught
+    with dignity, respect, kindness and openness, and we do not hide humanity: LGBTQ people appear where history
+    includes them; (d) grade level and life experience set how and when a subject is taught. Where scholarly
+    bodies split on a claim, rule (b) is applied by a named reader of the discipline, not by a vote of
+    organisations. (U, D)
+12. [O] **Sensitive topics told plainly and at the right age.** Hard history (slavery, the removal and treatment of
+    Native nations, genocide and the Holocaust, war, segregation and the fight for civil rights) is taught with
+    its facts and its human cost, never softened until false (C12). Native nations are named by their own names
+    and shown in the present as well as the past. The section plan names each sensitive topic and gives the
+    teacher a note on how to handle it; the fresh-agent sensitivity read covers every unit. (U, D)
+13. [O] **The own-state method.** No state's own history is taught as if it were every student's. The anchor's
+    Massachusetts year (grade 3) is replaced by Curio Class's own year, Communities Then and Now
+    (docs/courses/social-studies/grade-3-outline.md), held to the same reads. Where the anchor teaches its own
+    state's government (8.T6), the course teaches "your state" as a method: its founding, government, peoples,
+    land and economy, with worked examples from several states and a link to each state's own standards. (S, U, D)
+14. [O] **Our own days, from open pieces.** With no base text, days are written by Curio Class. Open pieces (CC BY
+    or public domain, per docs/sources/BASE-TEXTS.md) may be adapted with a credit line; NonCommercial material
+    (Massachusetts's Investigating History units, the New York toolkit and others) is reference only and is never
+    copied. (D)
 
-**Fails if:** coverage without depth; sources are textbook summaries only; one telling of a contested event;
-questions answerable without the sources; skills practised on content the course does not teach.
+**Fails if** (by item):
 
-**Unsupported.** Content is left to states. Economics, geography and psychology have no rubric of their own.
-Maryland's value-laden items are left out on purpose (see the values paragraph).
+- 1: coverage without depth; a unit has no compelling question, or its question is answered without the unit's
+  content; skills practised on content the course does not teach.
+- 2, 3: sources are textbook summaries only; a source has no stated difficulty or reason; one telling of a
+  contested event.
+- 5, 7: questions or end-of-unit tasks answerable without the sources; no task from an unseen source.
+- 8: a course has no informed action in its year; the action tells the student what to think, or is unsafe for
+  the age.
+- 9: a unit cites no anchor codes; an anchor standard of the course has no lesson and no check item.
+- 10: a unit plan has no comparison table; an addition has no source; additions push the year past its days.
+- 11: a claim rests on no backed source; a ruling of a higher court is contradicted; a group is left out of a
+  history that includes it.
+- 12: a hard fact is softened until it is false; content is taught below or above the age set by rule (d); a
+  sensitive topic has no teacher note; no sensitivity read on record.
+- 13: Massachusetts-specific content is taught as if it were every student's; a "your state" day has examples
+  from one state only, or no link to the student's own state standards.
+- 14: a day carries wording, tasks or images from reference-only material; an adapted day has no credit.
 
-**Standards.** data/standards/c3-indicators.txt (2013) is skills only. No content standard is loaded, and
-psychology cites a standard with no file. Which content standard the courses teach is still open with Cory (see
-"Still open with Cory", a). No social studies scope and sequence starts before it is settled.
+**Unsupported.** Economics and geography have no rubric of their own; they are read against the CEE content
+standards (2010) and Geography for Life (2012) as references. Psychology's standard is the APA high school
+standards (2022 revision), loaded by hand when psychology's turn comes (apa.org blocks automated reading).
+Maryland's value-laden items are left out on purpose; the values rule (item 11) governs instead.
 
-**Scope and sequence states:** the content standard and each unit's question. **Section plan fills:** the source list
-with reasons. **Confidence:** likely.
+**Standards.** data/standards/c3-indicators.txt (2013) for skills; data/standards/ma-hss-2018.txt (Massachusetts
+2018, ids and our own words, credit in the header) for content. Not loaded: the framework's practice standards
+(C3 carries the skills) and its literacy standards (the CCSS ELA file covers them). The C3 edition is still to be
+confirmed at the publisher.
+
+**Scope and sequence states:** the anchor codes and C3 indicators per unit, each unit's compelling question,
+where informed action falls, and where the own-state method is used. **Unit plan fills:** the comparison table
+with the check states and every addition's source. **Section plan fills:** the source list with difficulty,
+reasons and rights; the sensitive topics and their teacher notes. **Confidence:** likely.
 
 ### 2. Arts: visual arts, music, theater, dance, media arts
 
@@ -432,7 +504,7 @@ every row but social studies waits behind the core work unless it is complementa
 | Subject | Owed before a scope and sequence | Who |
 |---|---|---|
 | All ten active subjects | An approach page per subject (layer 3) that fills the section plan's subject slots: the kinds of day and the form of daily evidence | Agent drafts, Cory's yes |
-| Social studies (14) | Work up the three content standard options and bring them back to Cory (still open, a); then load what he chooses. No scope and sequence starts before that. Load the psychology standard's current edition or drop its tags. Say what economics and geography stand on. Confirm the C3 edition at the publisher. Plan informed action once a year per course, up to three times if the evidence shows a need | Agent works up, Cory decides, then agent |
+| Social studies (16) | Done 2026-11-13: the standard chosen (option d) and loaded (data/standards/ma-hss-2018.txt), the course list redrawn, the check states named, economics and geography references named (STANDARD.md). Still owed: confirm the C3 edition at the publisher; load the psychology standard (APA 2022) by hand when psychology's turn comes; plan informed action once a year per course, up to three times if the evidence shows a need | Agent |
 | AP and psychology topics (26), in whichever subject they sit | These have no standards file. Mark them now as not yet standards-checked. **Do not lose this note (Cory): the course framework is loaded when that course's scope and sequence is written** | Agent |
 | Arts (20) | A written rule placing each grade's standards, and the three high school levels, in a band year. Read the reuse terms. Watch the national revision twice a year | Agent |
 | Health (4) | Read one topic module; write the band coverage map; write the 2007 to 2024 note; fix the file header to "SHAPE America, 2024". Keep the 2024 standards and write the mapping to the older-keyed review tool (decided, card q-standards-currency). Carry all sensitive topics, each sensitive unit able to be left out without breaking the course (decided). One paid specialist read per band, as proposed; confirm the cost with Cory before any spend | Agent, then Cory for the cost |
@@ -483,7 +555,15 @@ topics.
 
 ## Still open with Cory
 
-Both are to be worked up together and brought back to him on the Review Desk. Neither has a recommendation yet.
+**Both are now settled** (DESK-ANSWERS 2026-11-12 and 2026-11-13). The text below is kept as the record of the
+question.
+
+- **(a), settled:** option (d). C3 for skills, Massachusetts 2018 as the content anchor in Massachusetts's course
+  order, checked unit by unit against California, Tennessee and New York, with Curio Class's own year in place of
+  the anchor's own-state year. Made usable in docs/courses/social-studies/STANDARD.md; applied in social studies
+  items 9, 10 and 13.
+- **(b), settled:** the values rule, in order: the higher court, then facts and backed sources, then dignity,
+  respect and openness, then grade level and life experience. Applied in social studies item 11.
 
 **(a) Which content standard does social studies teach?** Cory's words: "1 needs a better option. this may
 require a unification of content standards or possibly a "high watermark" method." He did not accept one state's
