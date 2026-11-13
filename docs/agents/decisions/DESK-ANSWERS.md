@@ -748,3 +748,16 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    Note from the lead session: of the paper's cases, only Oklahoma was a court ruling, and it was on procedure
    (open meetings), not content; Florida's African American history strand was disputed by scholarly bodies,
    not courts. Those cases fall to rule b.
+
+## 2026-11-12: science and ELA base texts (Cory, in chat)
+
+> yes use both and begin downloading and storing all the needed data to build on
+
+1. **Science 6 to 8:** OpenSciEd Middle School (CC BY 4.0) is the base text. K to 5 and high school: reference
+   only (OpenSciEd Elementary and high school are NC), Curio Class writes its own; NASA, USGS, NOAA and pre-2026-03-29
+   PhET simulations are free extras.
+2. **ELA K to 5:** EL Education K-5, 2017 edition (CC BY 4.0) is the base text, its trade books replaced with our
+   own texts. Never mix in the 2025 edition or Skills Block 2024 (CC BY-NC). ELA 6 to 12: our own, on public-domain
+   texts; everything else reference only. CommonLit is not used at all (its terms bar AI tools).
+3. Copies are stored outside the repo in S:\CurioClass-sources\ (README there); the repo record is
+   docs/sources/BASE-TEXTS.md.

@@ -157,7 +157,7 @@ start-of-year check and unit 4's readiness items (Sara's piece 4; the readiness 
   ELA and science open material checked 2026-11-12 (docs/reviews/ela-open-material-2026-11-12.md,
   docs/reviews/science-open-material-2026-11-12.md). CC BY bases found: OpenSciEd Middle School (science 6 to 8),
   EL Education K-5 2017 edition (ELA, its own texts excluded; do not mix with the NC 2025 edition). Everything
-  else is reference only or written by us. Cory has not chosen yet.
+  else is reference only or written by us. Cory chose both bases 2026-11-12; copies go to S:\CurioClass-sources\.
 
 ## Decided 2026-11-12: card q-ela-piece-2 (ELA)
 
