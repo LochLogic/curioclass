@@ -7,8 +7,10 @@ Changes to existing work are allowed where they teach better.
 
 **How this was checked.** Draft 1 was read by a fresh agent that recomputed every number from the sources and
 attacked the logic ("not sound as is; sound with changes"). Draft 2 took its changes and was checked again by the
-same reader, which asked for four more small fixes; draft 3 (this one) has them. What the checks corrected is listed
-in section 7, so nothing was quietly folded in.
+same reader, which asked for four more small fixes; draft 3 had them. Draft 4 (this one, later on 2026-11-13) adds
+Cory's decisions since: unit 4 re-planned and held, the IM login dropped, all math mapped at the course level first,
+then all planning paused until this page is settled. It also adds the layer above the course (answer 1 and step 0).
+What the checks corrected is listed in section 7, so nothing was quietly folded in.
 
 Evidence, all in the repo: docs/reviews/pipeline-audit-2026-11-13.md, the eight unit 4 reads (cheap-d025 to d028,
 day-025 to day-028), the two reliability reads (reliability-u04-d025-028, reliability-u02-d007-009),
@@ -18,11 +20,15 @@ days, all judged by the same kind of model that wrote them.
 
 ## 1. The answer
 
-1. **Plan from the widest scope down; write, read and finish one course at a time.** A course is framed first
-   (scope and sequence, unit assessments, error register, course-level checks), then units, sections and day rows,
-   then days in order. This is the audit's hybrid: our frame first, a base text read at planning time, never
-   reconciled day by day against a plan that did not know it. (Likely: the direction is well supported; how much it
-   saves is not yet measured.)
+1. **Plan from the widest scope down; write, read and finish one course at a time.** ROADMAP's layers set the
+   order: foundation, standards, approach, then **progressions** (layer 4: what each grade inherits and hands on, per
+   subject, across all its grades), then each course's scope and sequence with its map against the base text, then
+   units, sections and day rows, then days in order. A level is settled before the one under it, and corrected by
+   what is built on it. Unit and section plans stay one unit ahead of the writing (BASELINE rule 25), because each
+   written unit changes the next plan. This is the audit's hybrid: our frame first, a base text read at planning
+   time, never reconciled day by day against a plan that did not know it. (Likely: the direction is well supported;
+   how much it saves is not yet measured.) Layer 4 is the level that keeps courses continuous through the grades,
+   and it is the thinnest today: one page, math grades 3 to 5 (step 0).
 2. **What crosses days goes into data, with gates, not into prose.** Some problems only show across days: a
    hand-back that answers the wrong form of an error, a worked example spent before its day, a tool round run a day
    early, materials a later day needs. Five to seven of the 26 problems only the expert read caught on the unit 4
@@ -108,13 +114,39 @@ counts 7, three of them materials.
 
 ## 3. The path, step by step
 
-### Step 1. Close the unit 4 test (now, running)
+### Step 0. The layer above the course: progressions, subject by subject (proposed 2026-11-13; question 4)
 
-The 25 reliability fixes (both sets) are being applied with the re-read rule, then a cheap check of what changed.
-Restore the expert brief's split between "missed by the cheap read" and "expert only", so REVIEW-CADENCE step 3 can
+Today only grades 3 to 5 math have a progression page, and data/sequence.csv has open errors from the science
+review. A course map can only be checked against its neighbours if the neighbours exist, so before any more course
+maps:
+
+- **One progression per subject, all its grades** (math K to 12 first): the strands (for math: counting and place
+  value, operations, fractions to ratios to functions, measurement and data, geometry, statistics), what each grade
+  owns, what it assumes from the grade before (its first readiness checks) and what the next grade assumes from it,
+  the models carried across grades (number line, tape diagram, area model) with where each enters and leaves, and
+  the words a student meets at each grade.
+- **As data, with gates**, like the cross-day files: a handoff row per strand and grade. plan.py checks that a
+  course's readiness items name skills the grade before owns, that no standard is owned by no grade or by two, and
+  that a carried model is introduced before a course leans on it.
+- **Across subjects, where they meet**: a science or social studies course may not lean on math or reading a
+  student has not been taught yet (graphs in grade 6 science against grade 6 math; reading level against ELA).
+  This is a column in the same data, filled when those courses are mapped.
+- Built from the standards and the progressions documents, with the base texts' own sequences (IM K to 12) as
+  evidence; read cold by the expert; Cory settles anything that changes what a grade teaches.
+
+Then the course maps: every IM lesson of each math course placed in one of our units, scripted from IM's free
+pages (grade 4's table of 149 lessons is already scripted and kept in the source store), judged for unit edges and
+day counts against the progression, read by the expert. Order: grade 4 with grades 3 and 5, then the rest of K to
+8, then high school. Scope and sequence changes come to Cory. Paused 2026-11-13 until this page is settled.
+
+### Step 1. Close the unit 4 test (done 2026-11-13, one item left)
+
+The 25 reliability fixes are in, with the re-read rule: the cheap re-read of that fix pass found a builder
+regression (nine class questions dropped from the screens on days nobody had re-read), fixed the same day. Left:
+restore the expert brief's split between "missed by the cheap read" and "expert only", so REVIEW-CADENCE step 3 can
 be judged again.
 
-### Step 2. Build the cross-day data and the source map (small, once per course)
+### Step 2. Build the cross-day data and the source map (small, once per course; built for grade 4 2026-11-13)
 
 - **Cross-day CSVs** in data/plans/<course>/: materials by day; hand-backs (from day, to day, what, error and its
   form, minutes); tool rounds by day; reserved worked examples (an example and the day it belongs to). plan.py and
@@ -131,6 +163,8 @@ be judged again.
   column, which stays unbuilt as recorded.
 - **IM-TO-DAY card** (docs/sources/): how an IM lesson's parts become ours (launch and explore become teaching first
   for grades 2 to 5; what to cut). Decided once.
+- **Done 2026-11-13:** the four cross-day files with gates (hand-backs, materials with a reverse check, reserved
+  examples, source map), backfilled for 48 days, and the minutes-and-branches note.
 - **IM's login-gated files: not taken** (2026-11-13). IM's sign-in asks for proof of being an educator, which Cory
   does not have. Nothing is lost that a plan needs: exits and assessments were always ours, written first and held
   by the gates; what is missed is a comparison with IM's cool-downs, assessments and practice answers, and the math
@@ -138,8 +172,12 @@ be judged again.
 
 ### Step 3. Unit 4 sections 2 to 4: re-plan from the source map, then write (Cory's go, 2026-11-13)
 
-**Held 2026-11-13 (Cory):** the re-plan is done and expert-read; writing waits for grade 4's course-level source map
-and its expert read (unit edges and day counts), so the course level is settled before the unit.
+**Done and held (2026-11-13).** The source map, cross-day files and re-plan of days 29 to 38 are in, read by the
+expert (13 findings, 11 across days, all applied) and re-read (7 small items, logged for when unit 4 resumes).
+Writing is held (Cory) until grade 4's course map and its progression neighbours are read, so the course level
+is settled before the unit; days 25 to 28 hold their fixes until then too. The expert's cross-day count at plan
+time was 11 across 10 planned days; the test is the count the day reads find once days 29 to 38 are written,
+against 7 across days 25 to 28.
 
 Sections 2 to 4 (days 29 to 38) were planned before the source. Writing them now would repeat the day-by-day
 reconciliation this path is meant to end. So: build unit 4's source map and cross-day CSVs, re-plan u04-2 to u04-4
@@ -150,10 +188,11 @@ writer's conflict list, the share of each day taken from the source, planning to
 findings per day. It would stand in for the approved unit 8 test, which was chosen for having no order conflict and
 so could not tell a good method from an easy unit; whether to keep unit 8 as well is part of question 1.
 
-### Step 4. Rebuild check on the older days (now, cheap)
+### Step 4. Rebuild check on the older days (cheap; fixes to written days may run during the pause)
 
 The builder pass changed how all 44 earlier days render. Rebuild, run the gates, and run one cheap print-and-screen
-check across them (pages, slips, display order). Their full finishing pass waits for step 8.
+check across them (pages, slips, display order), and fix the seven cross-day slips the backfill logged in
+defects.csv. Days 25 to 28 wait for the grade 4 course map. Their full finishing pass waits for step 8.
 
 ### Step 5. The ELA and science pilots, then other courses (order per card q-plan-after-11-1)
 
@@ -163,7 +202,9 @@ quality in ELA and science, but neither uses a base text, so they do not test th
 the two small trials INTEGRATION-PLAN proposed (an EL grade 4 lesson set on a public-domain text; one OpenSciEd 6.1
 lesson run through to days); EL and OpenSciEd courses are not framed until those trials are read (Cory's call when
 the pilots are under way). Science 6 to 8 is framed on OpenSciEd's order after its loss check. No other math
-course is framed until the pilots are in, as the card says.
+course is framed until the pilots are in, as the card says; the course maps of step 0 are not framing (they place a
+base text's lessons and test unit edges; nothing is planned or written from them until a course opens). Whether
+ELA and science build their progression (step 0) before their pilots is question 4.
 
 ### Step 6. The review cadence
 
@@ -179,8 +220,9 @@ estimate including the set read), which across about 13,300 days is about 8.6 bi
 
 - **11.1 teacher read** (trigger: before any grade 4 unit is called finished): a grade 3 to 5 teacher reads the 11.1 pack and marks which expert findings are real. That
   calibrates every expert number in this file.
-- **A reader of a different model kind** (trigger: unit 4 section 2, once written): Codex reads it cold against the
-  same brief; compare its findings with the expert's. It is the only check on a shared blind spot available before
+- **A reader of a different model kind** (trigger: the first section written after the pause; until then, the
+  unit 4 re-plan or days 25 to 28 can stand in, so the read is not lost before 2026-11-30): Codex reads it cold
+  against the same brief; compare its findings with the expert's. It is the only check on a shared blind spot available before
   people are found. It runs through the Codex queue Cory pastes himself, so it costs his time (question 3); Pro
   ends 2026-11-30.
 - **Before grade 4 math is called finished** (FOUNDATION 7.3): a math content reviewer on every item and key of
@@ -207,7 +249,9 @@ Before it is called finished, beyond the days:
 
 - New CSVs and gates (step 2); prose plans point at them. The fix brief gains the re-read rule. The expert brief
   restores the missed / expert-only split.
-- Unit 4 sections 2 to 4 are re-planned before their days are written (if Cory says go).
+- Unit 4 sections 2 to 4 are re-planned (done) and held until grade 4's course map is read.
+- All new math planning and writing is paused until this page is settled (Cory, 2026-11-13); then step 0 comes
+  before more course maps and days.
 - The 44 written days get a rebuild check now and a finishing pass before the course is called finished.
 - Unchanged: grade 4's order (now with its loss check), light credit, science 6 to 8 on OpenSciEd's order after its
   loss check, substitutes then no-kit, our own tools as simulations once tools are unheld, the expert as stand-in
@@ -215,7 +259,10 @@ Before it is called finished, beyond the days:
 
 ## 5. What is not known yet
 
-- Whether planning from the source map cuts the problems the expert finds (step 3).
+- Whether planning from the source map cuts the problems the expert finds in the written days (step 3; the
+  plan-time read found 11 cross-day items across 10 planned days, all fixed before writing).
+- Whether the course maps move any grade 4 unit's edges or day count (step 0; a rough script count puts IM's
+  lessons on 4.NF.B.3 at 5 to 8 against our 14 days, not yet judged).
 - Whether a set read can replace any per-day read (step 6).
 - Whether the expert's findings match a teacher's (step 7).
 - The real cost of planning (step 3 measures it).
@@ -234,11 +281,20 @@ Before it is called finished, beyond the days:
    Recommended (middle): start the pilots now on the expert stand-in, and call nothing finished (11.1 or either
    pilot) without a grade 3 to 5 teacher's read. Alternatives: wait for that teacher; or count the stand-in fully.
 3. **People and timing** (FOUNDATION 7.5): who and when for the grade 3 to 5 teacher and the math content reviewer;
-   whether you will paste the Codex different-model read into your queue (unit 4 section 2, before 2026-11-30); and
-   when grade 4's frame counts as built, which unholds its key tools. Recommended for the last: when step 2's CSVs
-   and source map exist for grade 4 and unit 4 is re-planned.
+   whether you will paste the Codex different-model read into your queue before 2026-11-30 (on the unit 4 re-plan
+   or days 25 to 28, since no new section will be written by then); and when grade 4's frame counts as built,
+   which unholds its key tools. Recommended for the last: when grade 4's progression neighbours and course map are
+   read (step 0) and unit 4's re-plan stands against them.
+4. **The layer above the course (step 0).** You asked whether something above the course should keep continuity
+   across courses and through the grades. ROADMAP already names it, layer 4, progressions, but it exists for math
+   grades 3 to 5 only. Recommended: build it as data with gates for math K to 12 before the course maps resume, and
+   for ELA and science before their pilots start (it is what their pilots' first readiness checks hand off from).
+   Alternatives: math only now, the others when they open; or skip the data and keep prose progression pages.
 
 ## 7. What the independent check corrected (from draft 1)
+
+Draft 4 adds Cory's decisions of 2026-11-13 (DESK-ANSWERS) and step 0; it is checked again before it goes to him.
+
 
 1. Draft 1 said ten of 26 problems were decided above the day and "a day writer cannot see those". Reclassified: 7
    cross days (3 of them materials, 2 of which the writer could see), 2 are stale plan text, and one I had called above the day
