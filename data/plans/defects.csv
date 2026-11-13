@@ -980,3 +980,9 @@ date,course,artifact,layer,found_by,kind,summary,status,ref
 2026-11-13,math-4,days.csv,plan,expert,sequence,11. The facts group missed the warm-ups that launch days 29 and 30; it now joins them and does its facts on the take-home sheet,fixed,docs/reviews/plan-s04-replan-2026-11-13.md
 2026-11-13,math-4,source-map.csv,plan,expert,source,"12. Lesson 9 rows understated the split and lessons 15 to 18 and 20 had no row; lesson 9 items 1 to 3 on day 30, items from 1 5/8 on day 34; rows added for 15 (cut), 16 to 18 (unit 7), 20 (cut)",fixed,docs/reviews/plan-s04-replan-2026-11-13.md
 2026-11-13,math-4,s04.md,plan,expert,fields,"13. s04.md prose was 2,178 words against the 1,250 cap; restated files and history cut to 1,119",fixed,docs/reviews/plan-s04-replan-2026-11-13.md
+2026-11-13,math-4,TOOL-ASKS.md,plan,cheap,minutes,Day 33 tool row still says 15 min; days.csv says 10,open,"re-read 887f9c43, 2026-11-13"
+2026-11-13,math-4,days.csv,plan,cheap,materials,"Day 35's E34 hand-back breaks a strip under the camera, but day 35 holds no strip and no row lists day 35",open,"re-read 887f9c43, 2026-11-13"
+2026-11-13,math-4,days.csv,plan,cheap,minutes,"Day 29 opens text reads as 13 + 1 min; write 13 min, 1 of them on error A",open,"re-read 887f9c43, 2026-11-13"
+2026-11-13,math-4,plan.py,process,cheap,gate,X30/X37b 'asks why but is keyed' note persists; the expert's ruling is not recorded in tooling,open,"re-read 887f9c43, 2026-11-13"
+2026-11-13,math-4,plan.py,process,cheap,gate,Reverse materials gate shorthand passes a day listed only in a longer row (day 26 'the envelope'); scans only head lines,open,"re-read 887f9c43, 2026-11-13"
+2026-11-13,math-4,d024.md,day,cheap,materials,"Record sheet 'kept to day 38', 1 copy; record.md says to day 39 and 2 for a class over 24",open,"re-read 887f9c43, 2026-11-13"
