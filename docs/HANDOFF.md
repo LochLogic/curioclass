@@ -144,6 +144,14 @@ The pilot unit comes first (grade 4 math unit 11, one section, 11.1: [courses/ma
 **Frozen until the pilot is read:** new scopes and sequences, unit plans, section plans and specs. One exception: the grade 4
 start-of-year check and unit 4's readiness items (Sara's piece 4; the readiness sheet was written 2026-11-12, card 113).
 
+## Done 2026-11-13: sources downloaded, catalogued, integration planned
+
+All base texts are in `S:\CurioClass-sources\` (IM math K to Algebra 2, OpenSciEd middle school 18 units, EL K-5
+2017), plus the references. The record is [sources/BASE-TEXTS.md](sources/BASE-TEXTS.md); the plan is
+[sources/INTEGRATION-PLAN.md](sources/INTEGRATION-PLAN.md). Waiting on Cory (its section 5): the grades 6 to 8
+science order, the science equipment default, and the go-ahead for the pipeline changes and stage 1 of the unit 4
+adaptation test (days 25 to 28 against IM grade 4 unit 3 lessons 7 to 12).
+
 ## Decided 2026-11-12: math base text, social studies anchor (DESK-ANSWERS)
 
 - **Math adapts Illustrative Mathematics (CC BY 4.0)** into Curio Class days; Eureka Math is a reference for ideas
