@@ -87,8 +87,8 @@ The end-of-unit assessment, 30 minutes, unaided; a sketched line is allowed. The
 marking against the key, each wrong answer with its error letter, then 15 minutes in groups by letter, each doing
 its "if many" action from the opener that owns it (A to D and K, section 3.1; E and F, 3.2; H, I and J, 3.3; G,
 and D on a comparing item, this one). The E23 tickets and written tasks go back when pencils go down, and their
-errors join the groups. The last ten minutes are unit 4's readiness check (until it exists, pairs read items 2 and 5). Items 3.1b and 3.3a are judged after
-class and answered in day 25's first five minutes.
+errors join the groups. The last ten minutes are unit 4's readiness check. Items 3.1b and 3.3a are judged after
+class and answered in day 25's second five minutes, after the warm-up.
 
 ## Supplies for the section
 

@@ -9,7 +9,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
 .q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
 .student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
-.student table.wide td:first-child { width: 27%; }
+.student table.wide td:first-child { width: 27%; } .student table.even { table-layout: fixed; }
 .student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
 .student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
@@ -43,7 +43,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 <p><div class="sketch"></div></p>
 </li>
 </ol><div class="foot">Curio Class, grade 4 math, day 17, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div><div class="side"><p><strong>Sort.</strong> Sort each fraction: less than <span class="frac"><span>1</span><span>2</span></span>, equal to <span class="frac"><span>1</span><span>2</span></span>, or more than <span class="frac"><span>1</span><span>2</span></span>. <span class="frac"><span>1</span><span>10</span></span>, <span class="frac"><span>2</span><span>12</span></span>, <span class="frac"><span>30</span><span>100</span></span>, <span class="frac"><span>4</span><span>8</span></span>, <span class="frac"><span>3</span><span>6</span></span>, <span class="frac"><span>7</span><span>12</span></span>, <span class="frac"><span>70</span><span>100</span></span>, <span class="frac"><span>6</span><span>8</span></span>, <span class="frac"><span>7</span><span>5</span></span>, <span class="frac"><span>3</span><span>3</span></span> Write each fraction in its column.</p>
-<table class="wide">
+<table class="even">
 <thead>
 <tr>
 <th>Less than 1/2</th>

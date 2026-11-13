@@ -9,7 +9,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
 .q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
 .student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
-.student table.wide td:first-child { width: 27%; }
+.student table.wide td:first-child { width: 27%; } .student table.even { table-layout: fixed; }
 .student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
 .student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
@@ -38,7 +38,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 <li>Tia has 49 beads. Max has 7 beads. How many more beads does Tia have than Max?</li>
 <li>Kim picked 45 apples. Gus picked 5 apples. Kim picked how many times as many apples as Gus?</li>
 </ol>
-<table class="narrow">
+<table class="even">
 <thead>
 <tr>
 <th>Times as many: card numbers</th>

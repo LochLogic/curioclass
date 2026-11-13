@@ -9,7 +9,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
 .q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
 .student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
-.student table.wide td:first-child { width: 27%; }
+.student table.wide td:first-child { width: 27%; } .student table.even { table-layout: fixed; }
 .student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
 .student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
@@ -22,7 +22,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.0in; } .slip .sketch.tall { height: 1.1in; } .slip .fig svg { max-height: 1.2in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
 .blank.fblank { width: .8in; height: 1.6em; }   /* a line holding one stands about 2em: room for a stacked fraction */
-</style></head><body class="teacher"><h1>Day 27: Wholes are parts too</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>27, section 4.1, understanding day</td></tr><tr><td>Goal</td><td>I can take apart a fraction bigger than 1 using wholes, and show why it is right</td></tr><tr><td>Standard parts</td><td>4.NF.B.3 (a) a fraction a/b, a &gt; 1 too, as a sum of unit fractions 1/b; 4.NF.B.3b (c) a fraction into a sum with the same denominator in more than one way, each recorded by an equation, past 1 too; 4.NF.B.3b (d) a decomposition, with a visual fraction model</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, the envelope of unit-fraction pieces (thirds to twelfths), three blank whole strips from the envelope (day 25&#x27;s sheet, kept uncut), the number line pages, a pencil and a pen; per class, the document camera (or the board, to draw the pieces) and the projector with the display page</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit ticket, 1 per student; the key, 1 for the teacher</td></tr><tr><td>At home</td><td>the At home view, d027-home.html, 35 minutes with one child</td></tr><tr><td>Leans on</td><td>courses/math-4/u04-1/opener.md; courses/math-4/u03-1/strip-sheet.md; courses/math-4/u04-1/number-lines.md; courses/math-4/u04-1/record.md</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</td></tr></table><h3>Before class</h3>
+</style></head><body class="teacher"><h1>Day 27: Wholes are parts too</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>27, section 4.1, understanding day</td></tr><tr><td>Goal</td><td>I can take apart a fraction bigger than 1 using wholes, and show why it is right</td></tr><tr><td>Standard parts</td><td>4.NF.B.3 (a) a fraction a/b, a &gt; 1 too, as a sum of unit fractions 1/b; 4.NF.B.3b (c) a fraction into a sum with the same denominator in more than one way, each recorded by an equation, past 1 too; 4.NF.B.3b (d) a decomposition, with a visual fraction model</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, the envelope of unit-fraction pieces (thirds to twelfths), three blank whole strips from the envelope (day 25&#x27;s sheet, kept uncut), the number line pages, a pencil and a pen; per class, the document camera (or the board, to draw the pieces) and the projector with the display page</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit ticket, 1 per student; the key, 1 for the teacher</td></tr><tr><td>At home</td><td>the At home view, d027-home.html, 35 minutes with one child</td></tr><tr><td>Leans on</td><td>courses/math-4/u04-1/opener.md; courses/math-4/u03-1/strip-sheet.md; courses/math-4/u04-1/number-lines.md; courses/math-4/u04-1/record.md</td></tr><tr><td>Version</td><td>draft 1, not yet taught</td></tr><tr><td>Credit</td><td>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</td></tr></table><h3>Before class</h3>
 <p>Print the student page, tickets and key. Students take three blank whole strips from the envelope. Have day 26's
 tickets and the facts group's names beside you.</p>
 <h3>The day</h3>
@@ -56,6 +56,7 @@ pool pieces for the 6/5 test and Example 3; threes for Example 2. Read every fra
 <p><strong>Ask.</strong> "Why can we write 1 as 6/6 but not as 6/5?" Students lay six fifth-pieces on a whole strip to test it.
 Expect: six sixths cover the strip exactly; five fifths already cover it, so the sixth fifth-piece runs past the
 end: 6/5 is more than 1.</p>
+<p>Readiness item 2 (2 written 2/4): those students, pairs pooled, cover a second strip: 2 = 12/6.</p>
 <p><strong>Example 2</strong> (Write 2 1/6 as a sum that uses 6/6 for each whole. Then write it as one fraction. <strong>[6/6 + 6/6 + 1/6 = 13/6, so 2 1/6 = 13/6]</strong>). </p>
 <ol>
 <li>2 1/6 is 2 wholes and 1 sixth more.</li>
@@ -111,8 +112,7 @@ write 10/10 on it: the exit's strips are drawn this way.</p>
 strip labelled 10/10, counts. Record under E27.</p>
 <h3>Other rooms</h3>
 <ul>
-<li><strong>No blank whole strips.</strong> Cut scrap paper to the length of six sixth-pieces laid end to end; check it
-  against the twelfths too.</li>
+<li><strong>No blank whole strips.</strong> Cut scrap paper to the length of six sixth-pieces laid end to end.</li>
 <li><strong>No printer.</strong> The examples, the fix and the four questions on the board; notebooks; lines from 0 to 5
   ruled by hand, sixths and halves marked by eye.</li>
 </ul>
@@ -130,4 +130,4 @@ minutes. 13/10 (one whole counted): those students sketch two whole strips in te
 go back in day 28's first minutes, look-fors ticked; a "yes" there is C too. Pieces are put away after today:
 day 28 sketches only.</p>
 <h3>Credit</h3>
-<p>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</p><div class="foot">Curio Class, grade 4 math, day 27, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org<br>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</div></body></html>
+<p>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</p><div class="foot">Curio Class, grade 4 math, day 27, version draft 1, not yet taught, CC BY 4.0, curioclass.org<br>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</div></body></html>

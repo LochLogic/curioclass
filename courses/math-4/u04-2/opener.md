@@ -56,10 +56,11 @@ that is light help for day 30 only.
 | | What students do | What it shows | What to do when many do it |
 |---|---|---|---|
 | A | Add the tops and add the bottoms: 2/8 + 3/8 = 5/16 | A fraction read as two whole numbers | Say the sum in words; hop it on one line |
+| C | Put the whole number on top: 1 = 5/10 + __ answered 6/10 | A whole not yet seen as n parts | Write 1 as 10/10 first, then count up from 5 tenths |
 | E | Add parts of different wholes: "1/4 of a short ribbon and 2/4 of a long ribbon make 3/4" | A fraction read as an amount of stuff, not a part of one whole | Lay the two strips together; ask "fourths of what?" |
 | H | Use the story's numbers without reading what is asked | The operation picked from a word or from habit | Draw the tape first, box the unknown, then write the equation |
 
-Wrong examples: A again on day 29, E on day 30. H is shown in full on day 36; here a story is drawn before it is
+Wrong examples: A again on day 29, and C there too if many missed E28; E on day 30. H is shown in full on day 36; here a story is drawn before it is
 solved.
 
 ## Supplies for the section

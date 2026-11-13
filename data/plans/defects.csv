@@ -929,3 +929,28 @@ date,course,artifact,layer,found_by,kind,summary,status,ref
 2026-11-13,math-4,lesson.py,process,expert,layout,"Fraction answers had no room; builder blank sizes, left to the lesson.py pass (days 26 to 28 rebalanced to keep two sides)",fixed,docs/reviews/day-028-2026-11-13.md#4
 2026-11-13,math-4,d028.md,day,expert,sequence,Hand-back C example spent day 32's worked pair; now 3 1/5 = 4/5 beside 16/5,fixed,docs/reviews/day-028-2026-11-13.md#5
 2026-11-13,math-4,lesson.py,process,expert,layout,"New ticket-fit check: day 8 exit ran past its quarter page (hidden by the old CSS); s02-X8v2 stem tightened, same numbers and asks",fixed,docs/reviews/day-027-2026-11-13.md#3
+2026-11-13,math-4,d026.md,day,expert,minutes,"Readiness part held five branches; whole class for at most two, B first; item 2 moved to day 27 Example 1 (sixths, 2 = 12/6, not fourths); item 3 at your table",fixed,docs/reviews/reliability-u04-d025-028-2026-11-13.md#1
+2026-11-13,math-4,d024.md,day,expert,handoff,"Tomorrow said day 25 first five minutes hand 2 and 5 back; now second five minutes, after the warm-up (opener, days.csv, s03/s04 too)",fixed,docs/reviews/reliability-u04-d025-028-2026-11-13.md#2
+2026-11-13,math-4,d025.md,day,expert,wording,Board paths named side 2 only; now sides 1 and 2,fixed,docs/reviews/reliability-u04-d025-028-2026-11-13.md#3
+2026-11-13,math-4,d025.md,day,expert,layout,Words and supports frame did not print; now names the Example 1 line,fixed,docs/reviews/reliability-u04-d025-028-2026-11-13.md#4
+2026-11-13,math-4,d026.md,day,expert,wording,"Tool order passed honey; now milk, cornmeal, butter, then sugar; skip honey",fixed,docs/reviews/reliability-u04-d025-028-2026-11-13.md#5
+2026-11-13,math-4,d026.md,day,expert,layout,"Facts warm-ups and P28-3 had no answer room; answer lines on W26-1, W27-2, W28-2 and a blank after each P28-3 part",fixed,docs/reviews/reliability-u04-d025-028-2026-11-13.md#6
+2026-11-13,math-4,lesson.py,process,expert,display,Warm-up answers screen came before its Ask; Ask screens now first unless the Ask says after the answers,fixed,docs/reviews/reliability-u04-d025-028-2026-11-13.md#7
+2026-11-13,math-4,lesson.py,process,expert,display,Wrapped Check line cut on the display; d028 Check on one line and the build joins wrapped Check lines,fixed,docs/reviews/reliability-u04-d025-028-2026-11-13.md#8
+2026-11-13,math-4,d028.md,day,expert,key,Count-by-tens Watch-for fit A (c) only; A (c) and B (d) each given,fixed,docs/reviews/reliability-u04-d025-028-2026-11-13.md#9
+2026-11-13,math-4,d028.md,day,expert,handoff,"Tomorrow did not hand on 13/6 or 19/100; read the blank aloud, check by joining, day 30 meets it",fixed,docs/reviews/reliability-u04-d025-028-2026-11-13.md#10
+2026-11-13,math-4,days.csv,plan,expert,minutes,"Row 29 gave no minutes to the C opening; opens 3 min from by hand, C row added to the u04-2 opener table",fixed,docs/reviews/reliability-u04-d025-028-2026-11-13.md#11
+2026-11-13,math-4,d025.md,day,expert,fields,"Headers on days 25 to 28 said not ready; now draft 1, not yet taught",fixed,docs/reviews/reliability-u04-d025-028-2026-11-13.md#12
+2026-11-13,math-4,d007.md,day,expert,key,Board meets answers for day 6 were cut; full meets samples on the board,fixed,docs/reviews/reliability-u02-d007-009-2026-11-13.md#1
+2026-11-13,math-4,lesson.py,process,expert,display,"Quoted teacher follow-up became its own screen; only the first quoted question after Ask is a screen, d007 follow-up unquoted",fixed,docs/reviews/reliability-u02-d007-009-2026-11-13.md#2
+2026-11-13,math-4,items.csv,day,expert,key,"E7 key took the ones-digit feature with no reason; answer says it meets look-for 2, ask the odd reason for look-for 3",fixed,docs/reviews/reliability-u02-d007-009-2026-11-13.md#3
+2026-11-13,math-4,lesson.py,process,expert,layout,Empty frame tables printed uneven columns; frame tables now fixed equal columns,fixed,docs/reviews/reliability-u02-d007-009-2026-11-13.md#4
+2026-11-13,math-4,d008.md,day,expert,display,Two fragment screens; quoted follow-up rule plus the frame joined onto one line,fixed,docs/reviews/reliability-u02-d007-009-2026-11-13.md#5
+2026-11-13,math-4,d008.md,day,expert,handoff,Day 7 recording pages never handed back; Before class hands them back with the warm-up,fixed,docs/reviews/reliability-u02-d007-009-2026-11-13.md#6
+2026-11-13,math-4,d008.md,day,expert,handoff,"Readiness branch never returned E7 tickets; back at the exit, one-jump-of-6 dot pairs in Fix it 1",fixed,docs/reviews/reliability-u02-d007-009-2026-11-13.md#7
+2026-11-13,math-4,d008.md,day,expert,missing,On your own had no feedback; answers shown at 9 minutes with a Check line,fixed,docs/reviews/reliability-u02-d007-009-2026-11-13.md#8
+2026-11-13,math-4,lesson.py,process,expert,gate,"X8v2 last sentence 16 words and the gate skipped paper exits; stem split in two, gate reads paper exit rows",fixed,docs/reviews/reliability-u02-d007-009-2026-11-13.md#9
+2026-11-13,math-4,d009.md,day,expert,handoff,Day 8 written task and E8 tickets did not come back; every student gets both when Groups start,fixed,docs/reviews/reliability-u02-d007-009-2026-11-13.md#10
+2026-11-13,math-4,d009.md,day,expert,error,"Groups sent a multiplying slip on 6 to A and B; now joins the challenges, bullet and screen",fixed,docs/reviews/reliability-u02-d007-009-2026-11-13.md#11
+2026-11-13,math-4,d010.md,day,expert,minutes,"Day 10 first five minutes held a four-item warm-up plus the hand-back; warm-up now W10-2 and W10-4, W10-1 and W10-3 removed",fixed,docs/reviews/reliability-u02-d007-009-2026-11-13.md#12
+2026-11-13,math-4,items.csv,day,expert,level,C9-2 was C7-1 with new digits; dropped (an add-8 version repeated C9-1),fixed,docs/reviews/reliability-u02-d007-009-2026-11-13.md#13

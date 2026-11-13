@@ -64,11 +64,22 @@ def parse(path):
     teacher = teacher.split('\n## Teacher page\n', 1)[-1]
     title = re.search(r'^# (.+)$', body, re.M)
     secs = dict(re.findall(r'^### (.+?)\n(.*?)(?=^### |\Z)', teacher, re.M | re.S))
-    blocks = [(int(a), b.strip(), c) for a, b, c in
+    blocks = [(int(a), b.strip(), join_checks(c)) for a, b, c in
               re.findall(r'^#### (\d+) min\. (.+?)\n(.*?)(?=^#### |^### |\Z)', secs.get('The day', ''), re.M | re.S)]
     sides = re.findall(r'^### (Side \d)\n(.*?)(?=^### |\Z)', student, re.M | re.S)
     return dict(path=path, head=head, title=title[1] if title else '', teacher=teacher, student=student,
                 order=re.findall(r'^### (.+)$', teacher, re.M), secs=secs, blocks=blocks, sides=sides)
+
+
+def join_checks(text):
+    """A "Check:" line wrapped onto the next source line is one sentence: the display cut it at the line's end
+    ("... join to", unit 4 reliability read #8), so the part's text joins it before anything reads it."""
+    wrap = re.compile(r'(?m)^(Check(?: \(sort\))?: .*?)[ \t]*\n(?![ \t]*(?:$|[-#|*>]|\d+\.\s))[ \t]*(.+)$')
+    while True:
+        t = wrap.sub(r'\1 \2', text, count=1)
+        if t == text:
+            return t
+        text = t
 
 
 def words(md):
@@ -427,7 +438,11 @@ def check_day(d, items, days):
         f.append('%s: student page is %d words a student reads (frame and questions); the cap is %d' % (lab, sw, scap))
     g = grade(h.get('course', ''))
     if g is not None and 3 <= g <= 5:
-        for r in sorted(set(REF.findall(d['student']))):
+        # the paper exit ticket is read by the student too, though the student page does not print it (unit 2
+        # reliability read #9: an exit sentence of 16 words passed)
+        slips = [i['item_id'] for i in items if i['check'] == 'exit' and i.get('day') == h.get('day')
+                 and i.get('path', '') in ('', 'paper')]
+        for r in sorted(set(REF.findall(d['student'])) | set(slips)):
             for s in sentences(stem(byid[r]) if r in byid else ''):
                 if words(s) > SENTENCE_MAX:
                     f.append('%s: a sentence in %s is %d words; grades 3 to 5 keep to %d' % (lab, r, words(s), SENTENCE_MAX))
@@ -800,7 +815,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
 .q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
 .student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
-.student table.wide td:first-child { width: 27%; }
+.student table.wide td:first-child { width: 27%; } .student table.even { table-layout: fixed; }
 .student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
 .student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
@@ -859,6 +874,12 @@ def tables(h):
         n = len(re.findall(r'<th', tb.split('</tr>', 1)[0]))
         head = tb.split('</tr>', 1)[0]
         kind = 'sets' if '✓' in head or '>Write it' in head else ('narrow' if n <= 3 else 'wide')   # a set table: item, write it, tick
+        # a frame to write in (two or more columns, no words in any body cell: blank, or a work box) prints equal
+        # columns: the "1st" of "1st ... 8th" printed twice as wide as the rest (unit 2 reliability read #4)
+        cols = len(re.findall(r'<t[dh][ >]', tb.split('</tr>', 1)[0]))
+        body = re.findall(r'<td[^>]*>(.*?)</td>', tb, re.S)
+        if kind != 'sets' and cols >= 2 and body and not any(re.sub(r'<.*?>', '', c).strip() for c in body):
+            kind = 'even'
         tb = tb.replace('<table>', '<table class="%s">' % kind, 1)
         hd = re.search(r'<thead>\s*<tr>(.*?)</tr>\s*</thead>', tb, re.S)
         cells = [re.sub(r'<.*?>', '', c).strip() for c in re.findall(r'<th[^>]*>(.*?)</th>', hd[1], re.S)] if hd else []
@@ -2200,12 +2221,13 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
 
     wpend = []   # warm-up rows waiting for their screens: (row, the sentence that names it)
 
-    def flush_warm():
+    def flush_warm(hold=False):
         """Warm-up rows the display had no screen for (on the student page, no Check: line): their questions, one
-        part a screen for a row the prose shows "one at a time", the rest on one screen; then one answers screen,
-        before any Ask after them (expert, day 28)."""
+        part a screen for a row the prose shows "one at a time", the rest on one screen; then one answers screen.
+        With hold (an Ask follows), the answers screen is returned, to show after the Ask's screens (unit 4
+        reliability read #7)."""
         if not wpend:
-            return
+            return []
         o, together = [], []
         for i, seg in wpend:
             s = stem(i)
@@ -2227,18 +2249,23 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         o.append('<div class="screen"><p><b>Answers.</b></p><ol>%s</ol></div>' % ''.join(
             '<li>%s<br><b>%s</b></li>' % (part_lines(stacked(stem(i))), part_lines(stacked(i['answer'])))
             for i, _ in wpend))
+        ans = [o.pop()] if hold else []
         scr.extend(o)
         wpend.clear()
         just.clear()
+        return ans
 
     def walk(text, prac, gap=()):
         for m in tok.finditer(text):
             if m[3]:
-                flush_warm()
-                # every quoted question in the Ask paragraph is a screen (a "Then:" question too); answers
-                # ("Expect: ...") are quoted without a question mark and stay off the screen
-                qs = [q for q in re.findall(r'"([^"]+)"', m[3]) if q.rstrip().endswith('?')] or \
-                    re.findall(r'"([^"]+)"', m[3])[:1]
+                # a warm-up's Ask comes before its answers screen, unless the Ask says "after the answers" (unit 4
+                # reliability read #7: the answers showed before the class was asked)
+                wans = flush_warm(hold=not re.search(r'\bafter the answers\b', m[3], re.I))
+                # only the first quoted question after **Ask.** is a screen: a follow-up the teacher may ask, or
+                # an "if many" line, quoted later in the paragraph is the teacher's, not the class's (unit 2
+                # reliability read #2, #5); answers ("Expect: ...") are quoted without a question mark
+                qs = ([q for q in re.findall(r'"([^"]+)"', m[3]) if q.rstrip().endswith('?')] or
+                      re.findall(r'"([^"]+)"', m[3]))[:1]
                 after = re.search(r'\bafter step (\d+)\b', m[3], re.I)
                 out = []
                 for q in qs:
@@ -2260,6 +2287,7 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                 else:
                     scr.extend(out)
                     flush()   # a fix's right working comes after the class has answered (unit 3 reads)
+                scr.extend(wans)
                 # a row named inside the Ask paragraph is still walked; a [[steps:id]] there shows its steps after
                 # the Ask (day 28: "**Ask.** ... Expect: ... [[steps:s04-F28-1]]")
                 for mm in re.finditer(r'\[\[(steps:)?([A-Za-z0-9-]+)\]\]', m[3]):

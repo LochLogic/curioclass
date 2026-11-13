@@ -9,7 +9,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
 .q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
 .student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
-.student table.wide td:first-child { width: 27%; }
+.student table.wide td:first-child { width: 27%; } .student table.even { table-layout: fixed; }
 .student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
 .student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
@@ -23,10 +23,10 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
 .blank.fblank { width: .8in; height: 1.6em; }   /* a line holding one stands about 2em: room for a stacked fraction */
 </style></head><body class="teacher"><h1>Day 7: Follow the rule, then notice more</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>7, section 2.1, understanding day</td></tr><tr><td>Goal</td><td>I can follow a rule to make a number pattern, notice something the rule did not say, and say why it keeps going</td></tr><tr><td>Standard parts</td><td>4.OA.B.4 (a) all factor pairs for a whole number in the range 1 to 100; 4.OA.B.4 (c) whether a whole number in the range 1 to 100 is a multiple of a given one-digit number; 4.OA.C.5 (a) a number pattern that follows a given rule; 4.OA.C.5 (c) features of the pattern that were not in the rule itself; 4.OA.C.5 (d) informally why a feature will keep going (the standard&#x27;s own example: &quot;explain informally why the numbers will continue to alternate&quot;)</td></tr><tr><td>Tool</td><td>Rule Machine (light), 10 min</td></tr><tr><td>Materials</td><td>per pair, about 30 counters (or dots drawn in pairs); per student, the recording page, a pencil and a pen, and their day 6 assessment with items 5 and 6 marked; the 9 by 9 table for students below the facts mark, kept out in the warm-up; per class, unit 2&#x27;s record sheet with the readiness results, the projector with the display page, and a board (no document camera: draw the dots on the board; no counters: dots in pairs)</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; the recording page, 1 per student, both sides (kept for day 8); exit ticket, 1 per student; the key, 1 for the teacher; the family note, 1 per student, to go home</td></tr><tr><td>At home</td><td>the At home view, d007-home.html, 38 minutes with one child</td></tr><tr><td>Leans on</td><td>courses/math-4/u02-1/opener.md; courses/math-4/u02-1/record.md; courses/math-4/u02-1/readiness.md; courses/math-4/u02-1/recording-page.md; courses/math-4/u02-1/family.md; courses/math-4/u01-1/table-9x9.md</td></tr><tr><td>Uses when it exists</td><td>tools/rule-machine/rule-machine.html</td></tr><tr><td>Version</td><td>draft 2, not ready, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
-<p>Print everything on the print list. Put the display page on the projector. Write the two tapes on a covered part
-of the board: "Start at 1. Add 3. 1, 4, 7" and "Start at 3. Add 5. 3, 8, 13". Beside them, covered, day 6's two
-"meets" answers: "99 = 9 × 11, so 99 is not prime" and "Maya may stop: 7 goes with 5, and she has 5 × 7". Have
-the readiness results and day 6's marked assessments beside you.</p>
+<p>Write the two tapes on a covered part of the board: "Start at 1. Add 3. 1, 4, 7" and "Start at 3. Add 5. 3, 8,
+13". Beside them, covered, day 6's two "meets" answers: "Ana is wrong. 9 × 11 = 99, so 99 has another
+factor pair. A prime has exactly two factors, 1 and itself." and "Yes. 7 goes with 5 and she already has 5 × 7.
+After that the pairs just turn around." Have the readiness results and day 6's marked assessments beside you.</p>
 <h3>The day</h3>
 <h4>5 min. Warm-up: factor pairs and multiples</h4>
 <p>Alone: Find all the factor pairs of 65. <strong>[1 × 65, 5 × 13]</strong>, Is 74 a multiple of 4? Show how you know. <strong>[No: 4 × 18 = 72 and 4 × 19 = 76, so 74 falls between them]</strong>, Is 95 a multiple of 5? Show how you know. <strong>[Yes: 5 × 19 = 95 (5 × 20 = 100, and 5 less is 95)]</strong>. At 4 minutes, show the answers.</p>
@@ -79,7 +79,7 @@ the class.</p>
 true of the numbers themselves.</p>
 <p>For Lena: <strong>Ask.</strong> "Lena showed me three more numbers. How do you know about the ones she has not written?"
 Expect: "a jump of 3 is a pair and one more, so it turns odd to even"; "every jump adds 3" alone is the rule: ask
-"and what does that do to the one left over?" If many give numbers: dot pairs for one jump, then finish "It must
+what that does to the one left over. If many give numbers: dot pairs for one jump, then finish "It must
 keep going because <span class="blank" style="width:0.9em"></span>" together.</p>
 <ol>
 <li>Lena's working: 13, 16 and 19 take turns, so it keeps going. Three more numbers say nothing about the ones not written yet.</li>
@@ -93,7 +93,7 @@ itself: 96 + 96. "Take turns" on pattern 4, from 3 and 6 alone, is error D: ask 
 what one jump does to the feature?" A reason that is only more numbers, or the rule, gets a question mark.</p>
 <p>Check: Does the reason say what one jump does to the feature?</p>
 <h4>5 min. Exit ticket</h4>
-<p>Alone, on paper (Start at 29. The rule is add 6. Write the first six numbers. Write one thing you notice that the rule did not say. Why will it stay true for every number? <strong>[29, 35, 41, 47, 53, 59. All odd: an odd number plus 6 is odd. "The ones digits go 9, 5, 1, 7, 3" is also right]</strong>). Read it aloud once. A tick needs the six numbers, a feature that is not the rule,
+<p>Alone, on paper (Start at 29. The rule is add 6. Write the first six numbers. Write one thing you notice that the rule did not say. Why will it stay true for every number? <strong>[29, 35, 41, 47, 53, 59. All odd: an odd number plus 6 is odd. "The ones digits go 9, 5, 1, 7, 3" meets look-for 2; for look-for 3, ask why every number is odd]</strong>). Read it aloud once. A tick needs the six numbers, a feature that is not the rule,
 and a reason that says what one jump of 6 does to that feature. Collect the tickets and the recording pages; both
 come back on day 8. Record under E7. Send the family note home.</p>
 <h3>Other rooms</h3>
