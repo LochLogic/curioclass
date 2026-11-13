@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 27: Wholes are parts too: student page</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="student"><h1>Day 27: Wholes are parts too</h1><div class="side"><p>Name ______________________ Date __________</p><p><strong>I can take apart a fraction bigger than 1 using wholes, and show why it is right.</strong></p>
+<p><strong>Warm-up.</strong> Find each in your head.<br>(a) <span class="frac"><span>3</span><span>12</span></span> + <span class="frac"><span>3</span><span>12</span></span><br>(b) <span class="frac"><span>3</span><span>12</span></span> + <span class="frac"><span>3</span><span>12</span></span> + <span class="frac"><span>3</span><span>12</span></span> + <span class="frac"><span>3</span><span>12</span></span><br>(c) <span class="frac"><span>6</span><span>12</span></span> + <span class="frac"><span>6</span><span>12</span></span> + <span class="frac"><span>6</span><span>12</span></span></p>
+<p><strong>Facts group.</strong> Find each: 7 + 5, 16 − 8, 8 + 9, 14 − 6, 5 + 9, 13 − 4</p>
+<p><strong>Example 1.</strong> Lay sixth-pieces on a whole strip until it is covered. Write 1 as sixths.</p>
+<p>One whole is <span class="blank" style="width:1.8em"></span> pieces of size <span class="blank" style="width:1.8em"></span>, so 1 = <span class="blank" style="width:1.8em"></span>.</p>
+<p><strong>Example 2.</strong> Write 2<span class="frac"><span>1</span><span>6</span></span> as a sum that uses <span class="frac"><span>6</span><span>6</span></span> for each whole. Then write it as one fraction.</p>
+<p>2 1/6 = <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> = <span class="blank" style="width:1.8em"></span></p>
+<p><strong>Example 3.</strong> Make <span class="frac"><span>10</span><span>6</span></span> with sixth-pieces. Fill a whole strip first. Write <span class="frac"><span>10</span><span>6</span></span> as a whole and sixths.</p>
+<p>10/6 = <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> = 1 + <span class="blank" style="width:1.8em"></span></p>
+<p><strong>Fix it.</strong> The answer is wrong. Say what went wrong. Then do it right.</p>
+<ol>
+<li>
+<p>Jo wrote 2<span class="frac"><span>1</span><span>3</span></span> as one fraction. Jo put the 2 and the 1 on top: 2<span class="frac"><span>1</span><span>3</span></span> = <span class="frac"><span>3</span><span>3</span></span>.</p>
+<p>What went wrong: <span class="blank" style="width:24.3em"></span></p>
+<p>2 1/3 = <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> + <span class="blank" style="width:1.8em"></span> = <span class="blank" style="width:1.8em"></span></p>
+</li>
+</ol><div class="foot">Curio Class, grade 4 math, day 27, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org<br>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</div></div><div class="side"><p><strong>Wholes and parts.</strong></p>
+<ol start="2">
+<li>
+<p>Lay fourth-pieces on a whole strip, then 3 more. Write 1<span class="frac"><span>3</span><span>4</span></span> as a sum that uses <span class="frac"><span>4</span><span>4</span></span> for the whole. Then write it as one fraction.</p>
+<p>Sum: <span class="blank" style="width:9.9em"></span>  One fraction: <span class="blank" style="width:3.6em"></span></p>
+</li>
+<li>
+<p>Write 2<span class="frac"><span>2</span><span>6</span></span> as a sum that uses <span class="frac"><span>6</span><span>6</span></span> for each whole. Then write it as one fraction. Mark it on line 9.</p>
+<p>Sum: <span class="blank" style="width:9.9em"></span>  One fraction: <span class="blank" style="width:3.6em"></span></p>
+</li>
+<li>
+<p>On line 7, mark the halves by eye. Write 3<span class="frac"><span>1</span><span>2</span></span> as a sum that uses <span class="frac"><span>2</span><span>2</span></span> for each whole. Then write it as one fraction.</p>
+<p>Sum: <span class="blank" style="width:9.9em"></span>  One fraction: <span class="blank" style="width:3.6em"></span></p>
+</li>
+<li>
+<p>(a) Write <span class="frac"><span>10</span><span>4</span></span> as one whole and some fourths.<br>(b) Write <span class="frac"><span>10</span><span>4</span></span> as two wholes and some fourths.</p>
+<p>(a) 10/4 = <span class="blank" style="width:7.2em"></span>  (b) 10/4 = <span class="blank" style="width:7.2em"></span></p>
+</li>
+</ol>
+<p><strong>Lee's sum.</strong> Lee says 1<span class="frac"><span>2</span><span>4</span></span> = <span class="frac"><span>1</span><span>4</span></span> + <span class="frac"><span>2</span><span>4</span></span>. Is Lee right? Show with a drawing.</p>
+<div class="sketch"></div>
+
+<p><span class="blank" style="width:31.5em"></span></p>
+<p><strong>Challenge.</strong> Write <span class="frac"><span>9</span><span>4</span></span> as wholes and fourths in every way you can. How do you know you have them all?</p>
+<p><span class="blank" style="width:31.5em"></span></p><div class="foot">Curio Class, grade 4 math, day 27, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org<br>Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 8 and 10, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.</div></div></body></html>

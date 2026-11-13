@@ -84,7 +84,11 @@ Option list (from the analyses):
    a time, cheap and expert reads, then go or no-go. Stage 2: days 29 to 38. Days 36 to 38 have no IM lesson and stay
    ours, which gives an in-unit control.
    Go rule: writer tokens within 10 percent of unit 2 (194,000 per day); expert-only findings 3 per day or fewer;
-   no rights finding from the expert read. Tokens up but findings down: Cory's call.
+   no rights finding from the expert read.
+   **Reliability review (Cory, 2026-11-13).** After the fix pass, a fresh expert who has seen none of the earlier
+   reads reads days 25 to 28 as a set, as a teacher would teach them, and counts what is still wrong. That residual
+   (per day, by severity) is the number that says how reliable the finished pipeline is, and it is the planning
+   data point for every later unit. Tokens up but findings down: Cory's call.
 2. **If go:** the remaining grade 4 math units take IM through the same pipeline. The day-to-lesson map is in
    analysis-math.md section 1. Order differences to plan around: IM multiplies fractions by whole numbers before
    adding them (cut those links); area and perimeter is spread over four IM places (unit 11 draws on all four).
