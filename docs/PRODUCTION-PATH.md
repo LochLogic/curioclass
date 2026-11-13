@@ -190,7 +190,7 @@ math progression page.
   **State 2026-11-13:** P5a done (docs/agents/lenses/), P5b done (docs/RUBRIC-SCIENCE.md, first draft; social
   studies section of docs/ADOPTION-BAR-SUBJECTS.md updated), P5c done (briefs progression-read and frame-read),
   P5d run 1 done (docs/reviews/calibration-2026-11-13.md): the expert passes the line (18 of 18 planted majors);
-  Codex's half waits on Cory pasting the six prompts.
+  Codex passes too; EXPERT.md gains a leniency and a severity rule; re-run is later.csv L10.
   - The FOUNDATION 7.3 rule that qualified people read a course before it is called finished still stands; with no
     people, nothing is called finished, but planning goes ahead on the expert and Codex.
 - **Who decides, at every review and baseline.** The expert settles item-level choices. Cory decides go or no-go

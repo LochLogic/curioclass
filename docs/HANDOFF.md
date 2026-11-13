@@ -27,9 +27,10 @@ the plan flow. Add a row whenever work is parked; mark it done rather than delet
 
 **Pre-work P2 to P5, 2026-11-13 (latest):** P2 to P5c done; Physics is core (58 courses, 52 core). P5d run 1: the
 expert passed calibration ([reviews/calibration-2026-11-13.md](reviews/calibration-2026-11-13.md), 18 of 18
-planted majors; Desk card q-calibration-1). Codex's half waits on Cory pasting
-`S:\CurioClass-sources\_calibration\prompts\CODEX-PASTE.md` (six new chats; returns land in `_calibration\returns\`).
-Saved for later: L9 (download the social studies partial bases) waits on Cory's yes; L7 is Cory's; the rest wait on
+planted majors; Desk card q-calibration-1). Codex passed too (18 of 18, no false alarms, but it under-ranks
+severity); both lean lenient, so EXPERT.md gained two rules and a re-run with fresh plantings is later.csv L10.
+Saved for later: L9's four books are in the source store (OpenStax retired CC BY editions x3, ETSU); its
+collections come per course; L7 is Cory's; the rest wait on
 their triggers. Next: progressions for the four core subjects.
 
 [ROADMAP.md](ROADMAP.md) holds the order of work only. Its history is in `docs/archive/`. If another page

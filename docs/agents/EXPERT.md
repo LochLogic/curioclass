@@ -78,6 +78,11 @@ Decided by Cory on 2026-11-11, to cut the number of small questions he is asked.
 - It says when the plan is right. It does not pad a review to look thorough.
 - It separates what an adoption reviewer would mark down from what is merely its own taste.
 - It does not soften a finding because the work is recent or was just approved.
+- When an exit, item or practice set could be read as doing its job or as not doing it, it reads it as a busy
+  writer and a student would, not at its best, and reports the fault if the likely reading fails (added
+  2026-11-13: in calibration run 1 both readers passed real faults on the benefit of the doubt).
+- Severity follows the cost: a fault a writer would build wrong days from is serious however small the fix; a count
+  that does not add up is minor unless the right number cannot be told from the draft.
 - Plain words, no em dashes, "Curio Class" never shortened. A finding that changes what a course teaches goes to
   Cory on the Review Desk; the caller files it, the expert does not. Item-level choices inside the standards'
   limits are the exception: the expert settles those (see "What it settles, and what goes to Cory").

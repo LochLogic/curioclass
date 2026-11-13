@@ -16,7 +16,7 @@ from findings on the draft as built. **Codex's half is pending:** Cory pastes th
 | No fault kind missed in all its plantings | Every kind caught every time | Yes |
 | Top finding is a planted major in at least 3 of the 4 pieces | Progression (math) yes, unit plan yes, science yes; frame no (its top finding was the planted minor, a day count) | Yes, 3 of 4 |
 
-**Verdict: the expert reader passes for progressions, frames, scopes and sequences and units**, with two notes
+**Verdict: the expert reader passes for progressions, frames, scopes and sequences and units** (and Codex passes too: see its half at the end), with two notes
 below (severity of count errors, and leniency on real past findings). Its reads can be trusted alone once Codex's
 half is scored; if Codex falls under the line, Codex is not used alone for that layer, and the expert's pass stands.
 
@@ -88,8 +88,35 @@ the planted set did not show it because plantings are clean.
   test cannot include nitrogen.
 - Social studies: MA.4.T3's conquest must reach the notes, with a teacher note.
 
-## Codex half
+## Codex half (scored 2026-11-13)
 
-Pending. Prompts: `S:\CurioClass-sources\_calibration\prompts\CODEX-PASTE.md` (six, one per new chat). Each
-writes to `_calibration\returns\codex-<piece>.md`. Codex reads with the README fix in place, so its false-alarm
-count is not comparable one to one with the expert's raw 4; compare with the corrected 1.
+Codex read the same six pieces with the same prompts, plus the README fix, one new chat each (Cory pasted them);
+reports in `S:\CurioClass-sources\_calibration\returns\`. It cited outside sources by link on most findings.
+
+| Line | Codex | Met? |
+|---|---|---|
+| Planted majors caught (15 of 18) | **18 of 18**, but 4 rated minor (P2, P3, P14, P17), and P10 only inside another finding (the "same whole" one, finding 3) | Yes |
+| False major alarms (at most 3) | **0** | Yes |
+| Rejected claims judged false (3 of 4) | **4 of 4** | Yes |
+| No kind missed in all plantings | Every kind caught | Yes |
+| Top finding a planted major (3 of 4 pieces) | Progressions yes (math P1, social studies P6), frame yes (P8), unit plan yes (P12); science no (led with an unplanted lab safety fault, a real one) | Yes, 3 of 4 |
+
+**Verdict: Codex also passes.** Compared with the expert:
+
+- **Severity:** Codex under-ranks. It called the grade 3 double number line and the skipped equivalence handoff
+  minor, and on P14 it found the contradiction but proposed keeping 4.NF.B.4a in unit 4 (the wrong way round; the
+  plan's own "leads to" says unit 6). The expert ranked every planting major but over-ranked two count slips.
+- **False alarms:** none from Codex; its unplanted majors were all real or defensible (the French and Indian War's
+  causes missing from ss5-revolution-causes; the unit plan's "same bed" wording, where the standard means the same
+  reference whole and two equal-sized wholes may share a unit; the science lesson 2 inference that closed-system
+  mass rules out trapped gas; a sealed-bottle pressure hazard; MS-PS1-1's extended structures, also found by the
+  expert).
+- **Claims:** rejected 4 of 4; real 2 of 6 (missed 1, 5, 7, 10). More lenient than the expert, the same lean.
+- **Coverage across both readers:** no kind and no planting missed by both.
+
+**What follows.** Both readers can read alone for every layer. They are best used together on progressions and
+frames (the baselines), where they caught different unplanted faults. Both pass real faults on the benefit of the
+doubt, so EXPERT.md gains two rules (2026-11-13): read an exit or set the way a busy writer and a student would, and
+severity follows the cost to a writer (a count slip is minor unless the right number cannot be told). That changes
+EXPERT.md, so CALIBRATION.md asks for a re-run with fresh plantings: later.csv L10, at the next brief or lens change
+or before baseline 1, whichever comes first.
