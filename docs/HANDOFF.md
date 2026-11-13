@@ -25,6 +25,13 @@ data/plans/flow-status.csv. **Saved for later:** anything set aside until a trig
 a reread before a unit cites something) gets a row in data/plans/later.csv; it shows on the Desk's Dashboard under
 the plan flow. Add a row whenever work is parked; mark it done rather than deleting it.
 
+**Pre-work P2 to P5, 2026-11-13 (latest):** P2 to P5c done; Physics is core (58 courses, 52 core). P5d run 1: the
+expert passed calibration ([reviews/calibration-2026-11-13.md](reviews/calibration-2026-11-13.md), 18 of 18
+planted majors; Desk card q-calibration-1). Codex's half waits on Cory pasting
+`S:\CurioClass-sources\_calibration\prompts\CODEX-PASTE.md` (six new chats; returns land in `_calibration\returns\`).
+Saved for later: L9 (download the social studies partial bases) waits on Cory's yes; L7 is Cory's; the rest wait on
+their triggers. Next: progressions for the four core subjects.
+
 [ROADMAP.md](ROADMAP.md) holds the order of work only. Its history is in `docs/archive/`. If another page
 disagrees with this one, the other page is stale: check the date, fix it, and say so.
 
