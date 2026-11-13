@@ -830,3 +830,12 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
 3. Fixes to written days keep running, except days 25 to 28 (unit 4), held until the grade 4 map is read.
 4. All other math day writing is paused. The ELA and science pilots are not affected by this; when they start, the
    same top-down rule is settled for them.
+
+## 2026-11-13: course mapping paused too (Cory, in chat)
+
+> Actually, pause the mapping as well. We need the master plan to finish being settled.
+
+1. The grade 4 course map was stopped before it wrote anything. The scripted table of IM's 149 grade 4 lessons is
+   kept outside the repo for when mapping resumes.
+2. All new math planning and writing waits until the master plan (docs/PRODUCTION-PATH.md) is settled. Fixes to
+   written days may still run (except days 25 to 28).
