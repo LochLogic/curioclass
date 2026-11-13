@@ -960,3 +960,10 @@ date,course,artifact,layer,found_by,kind,summary,status,ref
 2026-11-13,math-4,items.csv,day,expert,key,"X7v2 answer asked why every number is odd, not look-for 3; now asks what one jump of 6 does to the ones digit (s02.md regenerated)",fixed,re-read a6252157 #4
 2026-11-13,math-4,opener.md,section,expert,handoff,"u04-1 opener said whole class if more than a third missed any item; now matches d026 (at most two branches, B first; items 3 and 4 to named students; item 2 on day 27)",fixed,re-read a6252157 #5
 2026-11-13,math-4,d028.md,day,expert,wording,"Count-by-tens line read as 50 plus 7 makes 37; now 20/100 to 50/100 is 30/100, then 7 more: 37/100",fixed,re-read a6252157 #6
+2026-11-13,math-4,d005.md,day,script,sequence,"Print says the 9 by 9 table is kept to day 6, but day 6 never names it",open,cross-day backfill 2026-11-13
+2026-11-13,math-4,d009.md,day,script,materials,"Unit 2's record sheet is marked on day 6's night and used on days 7 and 8, but only day 9's print line prints it",open,cross-day backfill 2026-11-13
+2026-11-13,math-4,s03.md,day,script,materials,"Unit 3's record sheet is printed three times (days 9, 16 and 24)",open,cross-day backfill 2026-11-13
+2026-11-13,math-4,d022.md,day,script,materials,"Days 22 and 23 use sign cards from day 19, but day 19's materials name only three scraps of card",open,cross-day backfill 2026-11-13
+2026-11-13,math-4,d074.md,day,script,wording,Prints 'the columns sheet' where the other days say 'column sheet',open,cross-day backfill 2026-11-13
+2026-11-13,math-4,d093.md,day,script,materials,Reprints unit 11's record sheet,open,cross-day backfill 2026-11-13
+2026-11-13,math-4,d092.md,day,script,sequence,Day 91's Tomorrow routes A and E differently from where day 92 places them (minor drift; day 92 self-consistent),open,cross-day backfill 2026-11-13

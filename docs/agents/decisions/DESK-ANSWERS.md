@@ -797,3 +797,14 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    their days are written, then written, read and fixed (PRODUCTION-PATH step 3).
 2. The separate unit 8 base-text-first test is dropped; unit 4 is the harder case. Unit 8 comes back only if unit
    4's result is unclear.
+
+## 2026-11-13: IM login-gated material withdrawn (Cory, in chat)
+
+> i dont think ill get the IM login. it wants to verify that im an educator and i dont have that credential. can we
+> proceed without it?
+
+1. Answer 5 of the pipeline audit questions above is withdrawn. Curio Class uses only IM's free public pages (lesson,
+   prep, student task PDFs, blackline masters, unit practice problems without solutions). No account, no gated
+   download, no work-around.
+2. Our exits and assessments stay our own, as they always were. The math content reviewer (PRODUCTION-PATH step 7)
+   is the outside check on them.

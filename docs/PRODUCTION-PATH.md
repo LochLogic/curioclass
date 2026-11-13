@@ -131,7 +131,10 @@ be judged again.
   column, which stays unbuilt as recorded.
 - **IM-TO-DAY card** (docs/sources/): how an IM lesson's parts become ours (launch and explore become teaching first
   for grades 2 to 5; what to cut). Decided once.
-- **IM's login-gated files** once Cory signs in: cool-downs and assessments feed the source map and exit design.
+- **IM's login-gated files: not taken** (2026-11-13). IM's sign-in asks for proof of being an educator, which Cory
+  does not have. Nothing is lost that a plan needs: exits and assessments were always ours, written first and held
+  by the gates; what is missed is a comparison with IM's cool-downs, assessments and practice answers, and the math
+  content reviewer (step 7) is the check that stands in for it.
 
 ### Step 3. Unit 4 sections 2 to 4: re-plan from the source map, then write (Cory's go, 2026-11-13)
 
