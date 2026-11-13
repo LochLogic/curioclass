@@ -848,3 +848,18 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    gates (data/progressions/<subject>.csv), above the course level.
 2. Cory then proposed an order for the whole build (progressions for the four core subjects, then courses, then
    baselines with social studies first and math last). It is being assessed; nothing is built until he settles it.
+
+## 2026-11-13: the build order for the core subjects (Cory, in chat, after two rounds of assessment)
+
+1. Pre-work, settled before the plan starts: the social studies content standard (unified set or "high
+   watermark"); a scout for an openly licensed social studies base text (if none fits, social studies stays the
+   clean-slate subject and science goes second); BASELINE rule 25 replaced by this order.
+2. Progressions for the four core subjects, then a review. Course framing for all four, then a review,
+   a whole-structure check and a website design check: baseline 1.
+3. Social studies first: scope and sequence, review, units, review, a probe (a few days written to test the unit
+   template), then a full review from the progressions down: baseline 2.
+4. The same cycle for the other subjects, math last (science second if social studies has no base text).
+   A final all-subject, all-course review.
+5. Then sections, days and lessons, starting with a guard: a few entries written below the full unit level, with
+   "on" and "off" defined beforehand. Then tools are unlocked.
+6. The 49 non-core courses come after the core subjects.
