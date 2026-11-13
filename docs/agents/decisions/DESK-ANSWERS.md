@@ -722,3 +722,29 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    Massachusetts's course order (about 8 of 14 course outlines redrawn), checked unit by unit against a named few,
    every addition recorded. Paper: docs/reviews/social-studies-content-standard-2026-11-12.md. Not yet decided:
    the "your state" plan for state study and the values order (both in that paper).
+
+## 2026-11-12: framework, state study and the values rule (Cory, in chat)
+
+> would this change our foundational framework or would we mold the curriculum we find to fit our site? for the
+> two social studies points, i think we should skip the individual state content and replace it. we can build our
+> own filler and borrow or reference to make it solid. for the values question, the first two examples show that
+> higher courts disagreed, we will always side with the higher court. in the case of the LGBTQ history, we always
+> side with human kindness and openness. we do not hide humanity, we teach with dignity and respect using facts and
+> backed sources. we do take grade level and life experience into consideration though. Gay sex isnt a 2nd grade
+> topic.
+
+1. **Framework:** we mold what we find to fit Curio Class. FOUNDATION section 1 now names a "base text": an open
+   program with terms as open as ours (CC BY or public domain), adapted into our days and voice with credit.
+   NC or SA programs stay evidence only.
+2. **State study:** the anchor's own-state content (Massachusetts grade 3) is not taught. Curio Class writes its
+   own replacement for that year, borrowing from and referencing open sources, held to the same reads.
+3. **Values rule,** in order:
+   a. Where a court has ruled, side with the higher court.
+   b. Facts and backed sources decide claims (the discipline's evidence first).
+   c. People are taught with dignity, respect, kindness and openness; we do not hide humanity. LGBTQ people
+      appear where history includes them.
+   d. Grade level and life experience set how and when: the subject is taught at the depth suited to the age
+      (for example, sexual content is not a grade 2 topic).
+   Note from the lead session: of the paper's cases, only Oklahoma was a court ruling, and it was on procedure
+   (open meetings), not content; Florida's African American history strand was disputed by scholarly bodies,
+   not courts. Those cases fall to rule b.

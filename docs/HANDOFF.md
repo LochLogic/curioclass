@@ -150,8 +150,11 @@ start-of-year check and unit 4's readiness items (Sara's piece 4; the readiness 
   and sequence only (its NC-SA terms would change our CC BY licence). Days 25 to 38 are held off the writer until
   an adapted unit 4 is tested against units 2 and 3 (same reads, quality and tokens).
 - **Social studies: option (d) on Massachusetts, in its course order.** About 8 of 14 course outlines get redrawn
-  (docs/reviews/social-studies-content-standard-2026-11-12.md). Still open for Cory: state study as "your state",
-  and the values order.
+  (docs/reviews/social-studies-content-standard-2026-11-12.md). State study: the anchor's own-state year is
+  replaced with Curio Class's own content. Values rule: higher court, then facts and backed sources, then dignity
+  and openness (we do not hide humanity), set to grade level (DESK-ANSWERS).
+- **FOUNDATION section 1** now allows a "base text" (CC BY or public domain open program, adapted with credit).
+  ELA and science open material is being checked in depth (reports to come).
 
 ## Decided 2026-11-12: card q-ela-piece-2 (ELA)
 

@@ -19,9 +19,12 @@ Depth comes first: one course is finished before the next is started (ROADMAP, "
 on purpose (2026-11-11): the first pilot unit in each of math, English language arts and science is built early,
 with the rubric file and approach page each needs, so the cost of a unit is known in three subjects.
 
-**We own the full course** (Cory, 2026-11-11). Curio Class writes its own courses. Well-reviewed open courses are
-used as evidence for order, time and anchors, and a lesson may be adapted where its licence allows and the credit
-is given. We do not stitch two programs together: each hangs together through its own routines and pictures, and a
+**We own the full course** (Cory, 2026-11-11; base texts added 2026-11-12). Curio Class owns every course: its
+shape, tone, format, gates and reads. Where a well-reviewed open program carries a licence as open as ours (CC BY
+or public domain), it can be the course's **base text**: adapted into Curio Class days, molded to our needs and
+voice, with a credit line that says it was changed (math: Illustrative Mathematics). Programs under non-commercial
+or share-alike terms are evidence only, for order, time, models and anchors, never their wording or problems,
+so every page stays CC BY 4.0. We do not stitch two programs together: each hangs together through its own routines and pictures, and a
 mix is weaker than either. A tool built to a clear job in our unit will also fit the same lesson in a course a
 teacher already uses, and that is welcome, but it is not the plan.
 
