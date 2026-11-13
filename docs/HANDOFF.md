@@ -16,6 +16,13 @@ of PRODUCTION-PATH (people, how to spend Codex Pro before 2026-11-30, whether th
 standard stands, a spending ceiling). Everything below this block is from before that change: where it speaks of
 the pilot unit first, the ELA and science pilots, or one unit ahead, PRODUCTION-PATH wins.
 
+**Pre-work P1, 2026-11-13 (later):** P1a, P1c, P1d and P1e done, P1b on the Desk (card q-ss-course-list); see
+[courses/social-studies/STANDARD.md](courses/social-studies/STANDARD.md). The Desk's plan flow is built by
+`python -X utf8 scripts/plan_flow.py <out.json>` and posted to Desk doc `stats/plan`; node states live in
+data/plans/flow-status.csv. **Saved for later:** anything set aside until a trigger (a file Cory saves by hand,
+a reread before a unit cites something) gets a row in data/plans/later.csv; it shows on the Desk's Dashboard under
+the plan flow. Add a row whenever work is parked; mark it done rather than deleting it.
+
 [ROADMAP.md](ROADMAP.md) holds the order of work only. Its history is in `docs/archive/`. If another page
 disagrees with this one, the other page is stale: check the date, fix it, and say so.
 
@@ -256,7 +263,7 @@ What was done, with nothing deleted that was not first saved:
   ([reviews/DIGEST.md](reviews/DIGEST.md), started 2026-11-12: copy each report's "Settled by the expert" table
   into it).
 - The Review Desk is https://claude.ai/artifact/SVXBzgyS941dyqmEzQHgNC. A question card has status `question`,
-  then `answered`. Cory answers in a comment on the card. Next free card order: 109. Sara's session cannot open the Desk; the main session places her cards. After changes, refresh the
+  then `answered`. Cory answers in a comment on the card. Next free card order: 110. Sara's session cannot open the Desk; the main session places her cards. After changes, refresh the
   Dashboard with `python -X utf8 scripts/course_status.py <out.json>` (Desk doc `stats/courses`) and the Roadmap
   tab with `python -X utf8 scripts/desk_roadmap.py <out.json>` (Desk doc `stats/roadmap`).
 - Core subjects first (BASELINE rule 24, a soft goal): see "The order after the pilot".

@@ -152,7 +152,14 @@ def strip_cells(o):
     if isinstance(o, list): return [strip_cells(v) for v in o]
     return o
 
-out = dict(at=datetime.datetime.now().isoformat(timespec='minutes'), bands=bands,
+# saved for later: data/plans/later.csv (id, state open/done, added, who, title, when, detail). Anything the work
+# sets aside until a trigger (a file Cory saves by hand, a reread before a unit cites something) gets a row here.
+later = []
+p = os.path.join(ROOT, 'data', 'plans', 'later.csv')
+if os.path.exists(p):
+    later = [dict(r) for r in csv.DictReader(io.open(p, encoding='utf-8'))]
+
+out = dict(at=datetime.datetime.now().isoformat(timespec='minutes'), bands=bands, later=later,
            note='From docs/PRODUCTION-PATH.md (draft 5). Day and unit counts marked "about" are estimates until each course frame sets them.')
 io.open(sys.argv[1], 'w', encoding='utf-8').write(json.dumps(strip_cells(out), separators=(',', ':')))
 cnt = {}

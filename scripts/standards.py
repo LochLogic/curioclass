@@ -83,6 +83,10 @@ def c3(code):
     return code in C3_IDS
 
 
+# --- Massachusetts History and Social Science Framework 2018 (the social studies content anchor): ids and our own words
+MA_IDS = {l.split('	')[0].strip() for l in (DATA / 'ma-hss-2018.txt').read_text(encoding='utf-8').splitlines()
+          if l.strip() and not l.startswith('#')}
+
 # --- CSTA 2026 PK-12 CS Standards (csteachers.org, released July 2026)
 # Lines starting with # are the file header. The 135 high school Specialty ids are valid codes too (2026-11-11).
 CSTA = {l.strip() for f in ('csta-2026-ids.txt', 'csta-2026-specialty-ids.txt')
@@ -118,6 +122,8 @@ def validate(code):
         return 'C3'
     if code in CSTA:
         return 'CSTA-2026'
+    if code in MA_IDS:
+        return 'MA-HSS-2018'
     for name, rx in CLOSED.items():
         if rx.fullmatch(code):
             return name

@@ -148,6 +148,11 @@ math progression page.
   - **P1e. Psychology and electives.** The APA high school psychology standards are cited but not loaded; load ids
     and own words, or mark psychology (an elective, not flagged core) for after the core.
   No social studies progression starts before P1a to P1d are done.
+  **State 2026-11-13: P1a, P1c, P1d and P1e done; P1b waits on Cory's yes (Desk card q-ss-course-list).** All
+  five are recorded in docs/courses/social-studies/STANDARD.md (anchor file data/standards/ma-hss-2018.txt, 991 ids
+  with our own words, checked by scripts/standards.py; check set California, Tennessee and New York; grade 3 outline
+  docs/courses/social-studies/grade-3-outline.md; psychology after the core). Tasks set aside until a trigger are
+  in data/plans/later.csv, shown on the Desk under the plan flow.
 - **P2. A social studies base text.** Scout for an openly licensed social studies curriculum whose licence lets us
   adapt it (some open material bars commercial use; each licence gets a verdict, light rigor). If one fits, it is
   loaded to the source store and used like IM. If none fits, social studies stays the clean-slate subject, and
@@ -353,7 +358,7 @@ development with ELA; health with science), the cross_subject column notes it fo
 
 ## 6. For Cory
 
-1. **The redrawn social studies course list** (P1b): one table for your yes, when it is ready.
+1. **The redrawn social studies course list** (P1b): on the Desk as card q-ss-course-list (2026-11-13).
 2. **Science or ELA second**, only if P2 finds a social studies base text (otherwise science is second). Can wait
    until P2 reports.
 3. **The probe and guard thresholds** (P4) and the expert's "good enough" line (P5d): shown to you before they are
