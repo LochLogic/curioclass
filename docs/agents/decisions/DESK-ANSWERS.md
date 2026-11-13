@@ -761,3 +761,19 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    texts; everything else reference only. CommonLit is not used at all (its terms bar AI tools).
 3. Copies are stored outside the repo in S:\CurioClass-sources\ (README there); the repo record is
    docs/sources/BASE-TEXTS.md.
+
+## 2026-11-13: science 6 to 8 order and equipment (Cory, in chat)
+
+> I think we should lean towards redrawing our science order to match theirs as long as we don't lose overall
+> quality. For science equipment, I think all three are possible. ... substitutes where possible and the no kit
+> otherwise ... Can we use [our online tools] to fill in our own simulations? ... It could also show bigger
+> experiments that could never be done in class like large reactions, ecosystem models, etc.
+
+1. **Order:** grades 6 to 8 science are redrawn to OpenSciEd's 18 units, on the condition that overall quality holds.
+   Before the redraw lands, a short check lists anything our current order teaches better or that the redraw would
+   lose (topics, standards coverage, grade fit), and each loss is either kept inside a unit or brought to Cory.
+2. **Equipment:** household substitutes wherever safe; a no-kit data path otherwise. All three paths are allowed.
+3. **Simulations:** Curio Class's own online tools may serve as simulations, both as a no-kit path and for
+   experiments no classroom could run (large reactions, ecosystem models and the like). Each is a tool build through
+   the normal tool pipeline; tools stay held until the frame is built (card q-plan-after-11-1), so simulations are
+   listed per unit now and built later.

@@ -87,13 +87,10 @@ Per subject:
 
 ## 5. For Cory
 
-1. **Grades 6 to 8 science order.** Our current order (data/sequence.csv) puts topics in different grades from
-   OpenSciEd (space in our 6 is their 8.4; signals in our 8 is their 6.5). FOUNDATION forbids stitching programs, so
-   using the base well means redrawing grades 6 to 8 to OpenSciEd's 18 units (168, 170, 177 days of 45 minutes).
-   Pick: redraw to OpenSciEd (recommended), or keep our order and use OpenSciEd lesson by lesson.
-2. **Science equipment.** Every OpenSciEd unit assumes a kit (microscopes, magnets, flames, chemicals). Pick one
-   default for a free site: household substitutes per item; a no-kit data path (often federal data) beside each
-   hands-on day; or our own simulations. Recommended: household substitutes where safe, no-kit data path otherwise.
-3. **Go-ahead** for the pipeline changes in section 3 and stage 1 of the unit 4 adaptation test.
-4. Still open from before: whether math units 12 to 18 and the check days are queued now. Days 25 to 38 stay held
+1. **Decided 2026-11-13 (DESK-ANSWERS):** grades 6 to 8 science are redrawn to OpenSciEd's 18 units, as long as
+   overall quality holds (a loss check comes first). Equipment: household substitutes where safe, a no-kit data path
+   otherwise, and our own online tools as simulations, including experiments no classroom could run. Simulations are
+   listed per unit now and built when tools are unheld.
+2. **Go-ahead** for the pipeline changes in section 3 and stage 1 of the unit 4 adaptation test.
+3. Still open from before: whether math units 12 to 18 and the check days are queued now. Days 25 to 38 stay held
    until the test.

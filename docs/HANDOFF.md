@@ -148,8 +148,9 @@ start-of-year check and unit 4's readiness items (Sara's piece 4; the readiness 
 
 All base texts are in `S:\CurioClass-sources\` (IM math K to Algebra 2, OpenSciEd middle school 18 units, EL K-5
 2017), plus the references. The record is [sources/BASE-TEXTS.md](sources/BASE-TEXTS.md); the plan is
-[sources/INTEGRATION-PLAN.md](sources/INTEGRATION-PLAN.md). Waiting on Cory (its section 5): the grades 6 to 8
-science order, the science equipment default, and the go-ahead for the pipeline changes and stage 1 of the unit 4
+[sources/INTEGRATION-PLAN.md](sources/INTEGRATION-PLAN.md). Decided 2026-11-13: science 6 to 8 redrawn to OpenSciEd
+(quality check first), equipment = substitutes, no-kit data, our own tools as simulations (DESK-ANSWERS). Waiting on
+Cory: the go-ahead for the pipeline changes and stage 1 of the unit 4
 adaptation test (days 25 to 28 against IM grade 4 unit 3 lessons 7 to 12).
 
 ## Decided 2026-11-12: math base text, social studies anchor (DESK-ANSWERS)
