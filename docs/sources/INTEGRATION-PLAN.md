@@ -116,4 +116,5 @@ expert agent stands in as the teacher reader for now. Details: docs/agents/decis
 
 Next (Cory 2026-11-13): once the unit 4 reliability review is in, fold it into the pipeline audit and write one firm
 "best path forward", judged against the end goal and Cory's quality bar. Changes to existing work are expected where
-they teach better; they deserve thought but are never a deal breaker.
+they teach better; they deserve thought but are never a deal breaker. Before it goes to Cory, a fresh agent checks it
+ against the evidence (claims, numbers, logic); it is the foundation of the project.
