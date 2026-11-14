@@ -107,8 +107,9 @@ for n in ORDER:
     stage(f'cycle:{s}', SHORT.get(n, n), 'Each course gets its scope and sequence (the units in order), then a plan for every unit, each reviewed. A probe then writes a few real days to test the plans.', [
         dict(title='Scope and sequence', nodes=[N(f'ss:{slug(c["title"])}', c['title'], 'e' if c.get('days_total') else '.') for c in cs]
              + [N(f'ss-review:{s}', 'Review')]),
-        dict(title='Probe', nodes=[N(f'units-review:{s}', 'Units review'), N(f'probe:{s}', 'Probe: a few days written and read')]),
-    ] + [dict(title='Unit plans', group=True, rows=unit_lanes)])
+        dict(title='Unit plans', group=True, rows=unit_lanes),
+        dict(title='Review and probe', nodes=[N(f'units-review:{s}', 'Units review'), N(f'probe:{s}', 'Probe: a few days written and read')]),
+    ])
     mile(*MILE[n])
 mile('final', 'Final review', 'Every core course is reviewed from the progressions down. Codex reads a sample as a second check.')
 

@@ -46,7 +46,9 @@ Cleanup pass done (docs/reviews/baseline-1-cleanup-2026-11-14.md): `frame.py cal
 
 **Course pages (Desk card q-baseline-1, answered):** the design changes are in docs/SITE-DESIGN.md; scripts/course_pages.py builds hidden course and unit pages for all 52 core courses from the frames (`SHOWN = False`; report docs/reviews/site-course-pages-2026-11-14.md). Before showing them: later.csv L19. The whole-site build currently stops on other data errors: later.csv L20. Government unit 9 outside contact settled as an optional step.
 
-**PAUSED after baseline 1 (Cory, 2026-11-14: "I do want to pause after the baseline 1 is completed fully").** Do not start step 3 until Cory says.
+**Pause lifted for social studies (Cory, 2026-11-14: "Social studies is overall our test bed. Let's go ahead and do the whole scope and sequence section together and follow the chart on the dashboard").** All 15 social studies scopes and sequences run together, then review, unit plans, units review and the probe, to baseline 2. ELA, science and math stay paused at step 2.
+
+**Where it stands (2026-11-14, paused at 96% of the usage window):** all 15 social studies scopes and sequences are written (docs/courses/<course>/scope-and-sequence.md, data/plans/<course>/days.csv), every one passes sequence.py; writer notes and For the lead items are inside each scope-and-sequence.md. Codex reads were started for the nine K to 8 courses (docs/reviews/sequence-<course>-codex-2026-11-14.md). **Resume:** expert reads (sequence-read.md) of all 15, one agent per band; Codex reads of the six 9 to 12 courses and any K to 8 Codex read that did not land; then one fix pass that settles once, for all 15, readiness check versus retrieval task (sequence-write rule 2 against the frames' Seams wording) and makes frame.py calendar read days.csv school_day and held look-back days; then unit plans, units review, probe, baseline 2.
 
 **Next: PRODUCTION-PATH step 3, social studies scopes and sequences first**, with sequence-write.md; ELA 6 rights
 list redo is later.csv L14. Files needing deletion move to S:\CurioClass-archive\<what>-<date>\ (Cory, 2026-11-14).
