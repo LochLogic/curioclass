@@ -20,6 +20,8 @@ Settled by the expert reads (2026-11-14, apply in every unit you write):
 - Cite documents exactly (article and section numbers, census versus city estimates); check each citation against the source.
 - Where 2025 or 2026 events change what a unit teaches (rulings, laws, agency changes, elections), give the teacher a dated background line ("As of November 2026: ...") with its official source, so the plan can be updated as events move.
 - A reteach station never takes over a day's teaching or product time: it runs inside a set number of minutes the day already has.
+- A source withheld for an assessment is never used on a teaching day; check every day's note and exit before you finish. Every unit keeps a daily exit table.
+- Do not label a person by identity unless their own words or a reliable source do.
 
 Known: the Tennessee standards site blocks fetching; use docs/courses/social-studies/STANDARD.md for that comparison and do not retry it.
 

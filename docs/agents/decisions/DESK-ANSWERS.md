@@ -1033,3 +1033,11 @@ course, grade 4 math included.
    every day, Claude reads deeply on a sample and on flags), replacing the step 8 plan of a full Claude read on every
    day. Its test waits until the unit plans are done or nearly done, so the lessons and findings from unit
    development shape the test first.
+
+## 2026-11-14: science standards base, NGSS over Massachusetts STE (Cory, in chat)
+
+Cory prefers NGSS over the Massachusetts 2016 STE framework, with the better teaching outcome as the tiebreak. Lead
+reading: NGSS stays the base for every science course. The 23 codes Massachusetts leaves out stay taught, the
+crosscutting concepts stay in the standards, and NGSS wording governs. Massachusetts becomes a crosswalk only: a
+plan may note where Massachusetts folds, splits or regrades a code, and never drops an NGSS code to match it.
+Source: docs/reviews/science-data-gaps-2026-11-14.md (Massachusetts codes).

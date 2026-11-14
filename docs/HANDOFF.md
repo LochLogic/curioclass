@@ -3,6 +3,28 @@
 **This is the single page that says where the work stands and what to do next. Last updated 2026-11-14, after
 baseline 1 (top block); older blocks below are kept as written. Course words were renamed 2026-11-12 ([GLOSSARY.md](GLOSSARY.md)). Everything here is pushed to `spec/sara` and `main`.**
 
+## 2026-11-14 evening: social studies unit plans, PAUSE POINT (usage limit), latest
+
+**Workflow** (DESK-ANSWERS 2026-11-14): scripts/unit_skeleton.py, then Codex writes by script
+(scripts/codex_units.py with docs/pipeline/briefs/plan-codex.md), gate scripts/unitplan.py, then a Claude expert read
+per course, a Codex read per course, a Claude fix pass, one structure pass, then probe and baseline 2.
+
+**Written and gated (committed):** kindergarten, grades 1 to 5, US Government, Economics, US History I, Civics, World
+History I, WGAC II. **Still being written by Codex at pause** (driver logs in the session scratchpad, rerun
+`python -X utf8 scripts/codex_units.py <course> tries=3`; it skips units that pass): WGAC I, World History II,
+US History II.
+
+**Expert reads done:** K, grades 1 to 5, US Government, Economics (docs/reviews/plan-<course>-2026-11-14.md). **Running
+at pause:** US History I, Civics, World History I, WGAC II; if a report is missing or ends early, rerun from the
+template (expert read prompt: read the K and grade 1, 3, 4 reports' "Settled by the expert" tables, same report
+shape). **Not started:** WGAC I, World History II, US History II reads; every Codex read (scripts/codex_read.py,
+report plan-<course>-codex-2026-11-14.md); fix passes; structure pass.
+
+**Also open:** a wiring agent was adding the new data (math focus, ngss-pe-dimensions, ela-texts, safety lines, the
+unit 1 start-of-year fix) to scripts/unit_skeleton.py and scripts/unitplan.py, working in scripts/_wip_*.py; check
+its state before using them. Science base is NGSS (DESK-ANSWERS 2026-11-14); add that to
+docs/pipeline/briefs/plan-codex-science.md in the structure pass.
+
 ## 2026-11-14: course frames (PRODUCTION-PATH step 2), latest
 
 **Social studies frames: all 15 done.** Written by band, read cold by the expert and Codex, then fixed one band at
