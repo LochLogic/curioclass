@@ -79,7 +79,7 @@ dates for all 105 courses. Do this first. It is short.**
 
 ### 2. English language arts: rubric file, approach page, and the rights list
 
-**Waiting on it: the first ELA pilot (five days of grade 6, unit 2), which runs as soon as the math pilot has
+**Waiting on it: the first ELA pilot (five days of grade 6, early in frame unit 1 since the 2026-11-14 reconcile, docs/reviews/frame-english-language-arts-grade-6-reconcile-2026-11-14.md), which runs as soon as the math pilot has
 been read, and behind it all 13 ELA courses. The rights work has the longest wait of anything here, so it starts
 now.**
 

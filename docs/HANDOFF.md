@@ -1,7 +1,7 @@
 # Handoff: the one current-state page
 
-**This is the single page that says where the work stands and what to do next. Last updated 2026-11-12, after
-section 11.1 was built (all but its tool) and the course words were renamed ([GLOSSARY.md](GLOSSARY.md)). Everything here is pushed to `spec/sara` and `main`.**
+**This is the single page that says where the work stands and what to do next. Last updated 2026-11-14, after the
+course frames (top block); older blocks below are kept as written. Course words were renamed 2026-11-12 ([GLOSSARY.md](GLOSSARY.md)). Everything here is pushed to `spec/sara` and `main`.**
 
 ## 2026-11-14: course frames (PRODUCTION-PATH step 2), latest
 
@@ -11,13 +11,30 @@ scripts/frame.py (inside plan.py check); totals data/plans/frames.csv; fix repor
 docs/reviews/frame-<band>-fixes-2026-11-13.md (bands k-2, 3-5, 6-8, 9-11, 12); settled choices in DIGEST.md.
 Cory's calls on Desk card q-ss-frames-1. Lead items outside the fixers' files: docs/reviews/frame-ss-lead-items-2026-11-14.md.
 
-**ELA, science and math frames: being written blind** (Cory, 2026-11-14: "plan is good, please do it"). The writer
-brief (docs/pipeline/briefs/frame-write.md) gained 15 lessons from the social studies reads and a unit-level
-"## Source map" section for base texts; the gate knows all 52 core courses. Writers did not open the earlier
-grade 4 math, grade 4 science or grade 6 ELA planning. Order per band: write, expert and Codex reads
-(docs/reviews/frame-<course>-2026-11-14.md and -codex-), one fix pass per band in order within each subject (the
-three subjects run side by side, each has its own progression file), then a frame reconcile against the earlier
-planning (brief to write, modelled on docs/pipeline/briefs/progression-reconcile.md), then baseline 1.
+**ELA, science and math frames: all 37 done** (Cory, 2026-11-14: "plan is good, please do it"). Written blind with
+the 15 social studies lessons in docs/pipeline/briefs/frame-write.md; read cold by the expert
+(docs/reviews/frame-<course>-2026-11-14.md) and Codex (-codex-, or -codex-rerun- where the first Codex read was
+blocked by a gate on another file; scripts/codex_read.py now tells Codex to read on with frame.py check); fixed one
+band at a time within each subject (docs/reviews/frame-<subject>-<band>-fixes-2026-11-14.md; Codex reruns applied
+in appended sections). Settled choices in DIGEST.md. Cross-subject notes applied in
+docs/reviews/frame-cross-subject-2026-11-14.md (non-ELA pass, then an ELA pass).
+
+**Reconciled with the earlier planning** (brief docs/pipeline/briefs/frame-reconcile.md):
+math grade 4 (27 differences, 8 old wins all on a source; about 40 of 48 built days fit with edits, the 6
+end-of-unit check days need rewriting), science grade 4 (32, 18 old wins, 12 on a source) and ELA grade 6 (27, 7
+old wins, 4 on a source). The old work did not steer. Rework lists for old files are in each
+frame-<course>-reconcile-2026-11-14.md; nothing old was edited (math 4 rework waits for its scope and sequence).
+
+Cory's calls on Desk card q-frames-ela-sci-math-1 (eight questions with picks).
+
+Open for the lead (not Cory's): the course id mismatch (frame slugs such as math-grade-4 and algebra-i against
+data/courses.csv ids such as math-k8 and algebra-1; recommendation in frame-cross-subject-2026-11-14.md); HANDOFF and
+the ELA 6 rights list (docs/courses/ela-6/RIGHTS.md) needs redoing for the frame's outside texts.
+
+**Baseline 1: running** (brief docs/pipeline/briefs/baseline-1.md). Expert reads by part: a subject column each
+(math, science, social studies, ELA), structure (layers, gates, words, the grade as a whole) and the website check;
+reports docs/reviews/baseline-1-<part>-2026-11-14.md; then a Codex read of a sample, a fix pass, and a Desk card if
+anything is Cory's.
 
 ## 2026-11-13: read this before anything below
 
@@ -192,7 +209,7 @@ The pilot unit comes first (grade 4 math unit 11, one section, 11.1: [courses/ma
      at the door (day 92 agent); figure cells cannot label mixed numbers yet (day 91 used 6¾).
 5. **People.** Cory is arranging a grade 3 to 5 teacher, one taught run and three timed students
    ([pilots/README.md](pilots/README.md)). Their notes change the templates.
-6. **After the pilot is read:** fix the templates, then the first ELA pilot (grade 6, unit 2, five days) and
+6. **After the pilot is read:** fix the templates, then the first ELA pilot (grade 6, early in frame unit 1 on the novella's opening chapters, per docs/reviews/frame-english-language-arts-grade-6-reconcile-2026-11-14.md) and
    the first science pilot. ELA is nearly ready to plan: its rubric page, approach page and rights list exist
    (see "Where things stand"). Science has none of the three yet (Sara's piece 3).
 
