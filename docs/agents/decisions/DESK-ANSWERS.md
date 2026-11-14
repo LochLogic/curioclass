@@ -924,3 +924,16 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
   Srebrenica second; C3 economics inside grade 3 to 8 history units with a named activity; the added grade 4 and 5
   hard history with teacher notes; Native nations as present-day governments in grade 8; economics in both US
   History II, as a review toolkit, and Economics).
+
+## 2026-11-13: card q-ela-progression-1 (Cory, on the Desk)
+
+- **The dash (L.6.2a, L.8.2a):** taught, as picked. A dash appears only inside the exercise sentences students
+  punctuate and the texts they read; all Curio Class prose stays free of em dashes.
+- **Long texts in grades 9 to 12:** "i would really like more recognizable and recent literature. lets figure out
+  how to do that without messing with the standards." The standards name few texts (Shakespeare, foundational
+  American works, the founding documents) and those stay. Every other anchor text in grades 9 to 12 is picked for
+  being recognizable and as recent as the licence allows: the 20th-century works now in the US public domain
+  (published 1930 or earlier, one more year each January, for example The Great Gatsby, Mrs Dalloway, Passing, A
+  Farewell to Arms, The Weary Blues), recent open-licence texts, and short quoted excerpts of well-known recent
+  books inside Curio Class's own lessons. No student is sent to a library or a paid copy. The ELA 9 to 12 course
+  frames (step 2) run a text search to this rule and say which pick each year anchors on.

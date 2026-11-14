@@ -63,7 +63,7 @@ def stage(id_, title, sub, lanes): bands.append(dict(type='stage', id=id_, title
 def mile(id_, title, sub): bands.append(dict(type='milestone', id=id_, title=title, sub=sub, s=st(id_)))
 def N(id_, label, default='.'): return [id_, label, st(id_, default)]
 
-stage('pre', 'Pre-work', 'Make the social studies standard usable, scout a base text, set the measures, make the expert reader good enough', [
+stage('pre', 'Pre-work', 'Groundwork before any course is planned. Make the social studies standard usable, pick a base text, set the measures, and prove the expert reader is good enough.', [
     dict(title='Social studies standard', nodes=[N('P1a', 'Load the Massachusetts standards'), N('P1b', 'Redraw the course list'),
          N('P1c', 'Name the check states'), N('P1d', 'Design the replaced state-study year'), N('P1e', 'Psychology and electives')]),
     dict(title='Base text and rules', nodes=[N('P2', 'Scout a social studies base text'), N('P3', 'Replace rule 25'),
@@ -74,21 +74,21 @@ stage('pre', 'Pre-work', 'Make the social studies standard usable, scout a base 
 
 def prog_default(name, g):
     return 'e' if name == 'Math' and g in ('3', '4', '5') else '.'
-stage('prog', 'Progressions', 'What each grade owns, assumes and hands on, per subject, K to 12; then one review across all four', [
+stage('prog', 'Progressions', 'For each subject, what every grade owns, assumes from the grade before and hands on to the next, K to 12. Each subject is written, read twice and fixed; then one read checks all four together.', [
     dict(title=SHORT.get(n, n), nodes=[N(f'prog:{slug(n)}:{g}', f'{SHORT.get(n, n)}, grade {g}', prog_default(n, g)) for g in GRADES]
          + [N(f'prog-review:{slug(n)}', f'{SHORT.get(n, n)}: expert read')]) for n in ORDER
 ] + [dict(title='Across subjects', nodes=[N('prog-review:all', 'One read across all four')])])
 
 def frame_default(c): return 'e' if c.get('days_total') else '.'
-stage('frames', 'Course frames', 'Grades, standards and skills owned, day total, unit list, source map: one per core course', [
+stage('frames', 'Course frames', 'One page per core course: its grades, the standards and skills it owns, its number of days, its unit list and a map of the base text. Three checks then review the whole structure and the website.', [
     dict(title=SHORT.get(n, n), nodes=[N(f'frame:{slug(c["title"])}', c['title'], frame_default(c)) for c in core(n)]) for n in ORDER
 ] + [dict(title='Checks', nodes=[N('b1:review', 'Whole-structure review'), N('b1:site', 'Website design check'), N('b1:codex', 'Codex read')])])
-mile('baseline1', 'Baseline 1', 'Every progression and course frame reviewed; the site checked against the hierarchy')
+mile('baseline1', 'Baseline 1', 'Every progression and course frame has been reviewed. The website matches the plan from subject down to course.')
 
-MILE = {'Social Studies': ('baseline2', 'Baseline 2', 'Social studies reviewed from the progression down, probe read, template fixed once'),
-        'Science': ('m-science', 'Science reviewed', 'From the progression down, probe read'),
-        'English Language Arts': ('m-ela', 'ELA reviewed', 'From the progression down, probe read'),
-        'Math': ('m-math', 'Math reviewed', 'Old work converted, from the progression down, probe read')}
+MILE = {'Social Studies': ('baseline2', 'Baseline 2', 'Social studies is reviewed from the progression down and its probe is read. Any fix to the day template is made here once, for every subject.'),
+        'Science': ('m-science', 'Science reviewed', 'Science is reviewed from the progression down and its probe is read.'),
+        'English Language Arts': ('m-ela', 'ELA reviewed', 'ELA is reviewed from the progression down and its probe is read.'),
+        'Math': ('m-math', 'Math reviewed', 'The older math work is converted to the new plan. Then math is reviewed from the progression down and its probe is read.')}
 for n in ORDER:
     s, cs = slug(n), core(n)
     unit_lanes = []
@@ -97,15 +97,15 @@ for n in ORDER:
         have = c.get('units') or 0
         cells = ''.join(st(f'unit:{k}:{i + 1}', 'e' if i < have else '.') for i in range(tot))
         unit_lanes.append(dict(title=c['title'], est=est, cells=cells))
-    stage(f'cycle:{s}', SHORT.get(n, n), 'Scope and sequence for every course, review, unit plans, review, probe', [
+    stage(f'cycle:{s}', SHORT.get(n, n), 'Each course gets its scope and sequence (the units in order), then a plan for every unit, each reviewed. A probe then writes a few real days to test the plans.', [
         dict(title='Scope and sequence', nodes=[N(f'ss:{slug(c["title"])}', c['title'], 'e' if c.get('days_total') else '.') for c in cs]
              + [N(f'ss-review:{s}', 'Review')]),
         dict(title='Probe', nodes=[N(f'units-review:{s}', 'Units review'), N(f'probe:{s}', 'Probe: a few days written and read')]),
     ] + [dict(title='Unit plans', group=True, rows=unit_lanes)])
     mile(*MILE[n])
-mile('final', 'Final review', 'Every core subject and course, from the progressions down; Codex reads a sample')
+mile('final', 'Final review', 'Every core course is reviewed from the progressions down. Codex reads a sample as a second check.')
 
-stage('guard', 'The guard', 'A few days in each subject written from the unit plans and measured before full writing', [
+stage('guard', 'The guard', 'A few days in each subject are written from the unit plans and measured. Full writing starts only once they pass.', [
     dict(title='Guard', nodes=[N(f'guard:{slug(n)}', SHORT.get(n, n)) for n in ORDER])])
 
 rows = []
@@ -123,18 +123,18 @@ for n in ORDER:
         cells = ''.join(led.get(f'day:{slug(c["title"])}:{i + 1}', ch) for i, ch in enumerate(cells))
         rows.append(dict(title=c['title'], group=SHORT.get(n, n), est=est, cells=cells))
 bands.append(dict(type='rows', id='days', title='Sections, days and lessons',
-                  sub='Every teaching day of every core course, each read by the cheap and expert readers; courses finished whole', rows=rows))
+                  sub='Every teaching day of every core course, written and then read by the cheap and expert readers. Courses are finished whole, not a few days at a time.', rows=rows))
 
 tool_rows = []
 for n in ORDER:
     r = summ[n]
     total, live = (r.get('spec') or 0) + (r.get('built') or 0) + (r.get('live') or 0), r.get('live') or 0
     tool_rows.append(dict(title=SHORT.get(n, n), group='Tools', cells='e' * live + '.' * (total - live)))
-bands.append(dict(type='rows', id='tools', title='Tools', sub='Built or rebuilt for the sections that name them, live and verified. Tools live today stay on the shelf until a section names them', rows=tool_rows, dots=True))
+bands.append(dict(type='rows', id='tools', title='Tools', sub='Interactive tools, built or rebuilt only for the sections that call for them, then checked live. Tools live today wait on the shelf until a section names them.', rows=tool_rows, dots=True))
 
 after = [dict(title=s['name'], nodes=[[f'after:{slug(c["title"])}', c['title'], '.'] for c in s['courses']])
          for s in CS['subjects'] if s['name'] not in ORDER]
-bands.append(dict(type='stage', id='after', title='After the core', sub='The other 49 courses, once the core subjects are done', lanes=after, faint=True))
+bands.append(dict(type='stage', id='after', title='After the core', sub='The other 49 courses, such as the arts, health and computer science. They start once the four core subjects are done.', lanes=after, faint=True))
 
 def rle(cs):
     out, i = [], 0

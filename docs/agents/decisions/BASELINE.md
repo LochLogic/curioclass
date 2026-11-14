@@ -123,6 +123,9 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     a qualified ELA teacher, plus recent public-domain government nonfiction; a deeper search for fitting open
     texts is allowed. Older Reading Room texts appear there only as a paired or optional read. Grades 9 to 12 may
     anchor on Reading Room texts. The Reading Room itself stays an independent-reading shelf.
+    Grades 9 to 12 favour recognizable and recent literature (2026-11-13, card `q-ela-progression-1`): beyond the
+    texts the standards name, anchors come from the newest public-domain works (published 1930 or earlier now, one more year each January),
+    recent open texts, and short excerpts of well-known recent books; never a library or paid copy.
 
 ## One tool Cory reviews personally
 
