@@ -57,5 +57,10 @@ git. Check your own work with a short script in the scratchpad before finishing 
 in-band handoffs, models rule, no blank notes). Anything that would change what a grade teaches beyond what the
 subject's decisions already settle: do not decide it; list it under "For the lead" with your pick.
 
+Stale notes: a note that waits on other work starts `Pending(<file>, <file>#<text> or <plan node>):` so
+scripts/stale.py can tell when it lands; any other work-status wording ("not yet placed", "until it is added")
+fails the gate. When your work lands something a note waits on, run `python -X utf8 scripts/stale.py check`
+and rewrite each STALE note to say what is now true.
+
 Final message, short: rows per grade, coverage result, new model names, the "For the lead" list, what you were
 unsure of.

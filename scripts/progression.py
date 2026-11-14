@@ -30,6 +30,7 @@ leaning row's grade, meaning the named skill id's grade, or for a code the earli
 subject that owns it or ~ contributes to it (high school by course grade: 9 Biology and Algebra I, 10 Chemistry and
 Geometry, 11 Physics and Algebra II). A forward lean FAILs unless the row's notes carry an explicit
 "Just in time:" teach that names the same id or code; then it is a note.
+Stale notes (added 2026-11-13): scripts/stale.py runs on every progression; see its docstring.
 note (exit 0): a handoff that skips one or more grades; a C3 indicator named in more than one grade (depth must
 differ, and the notes must say how); a C3 indicator of a grade band named by no grade in that band; grade row counts.
 """
@@ -308,6 +309,8 @@ def check(subject):
                 notes.append('%s cross_subject %r: %s progression not written yet, check the id then' % (sid, x, subj))
             else:
                 fails.append('%s cross_subject %r: not a %s standard code or skill id' % (sid, x, subj))
+    import stale  # stale-note catch: Pending(...) markers that have landed, unmarked work-status wording
+    fails += stale.check_file(os.path.join(ROOT, 'data', 'progressions', subject + '.csv'))
     counts = {}
     for sid in by_id:
         counts[grade_of[sid]] = counts.get(grade_of[sid], 0) + 1

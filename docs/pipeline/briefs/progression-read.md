@@ -28,6 +28,9 @@ The data you must check, row by row where it says so:
 - **The lens checklist** for the progression layer: work through it and mark each line met, missed or not
   applicable.
 
+- **Stale notes.** Run `python -X utf8 scripts/stale.py check`; it catches marked ones. Look for the rest: any
+  note, plan note or review result that says something is not yet done, placed, written or decided when the
+  repository shows it is. Each is a finding (LAYER process, the fix is the rewritten note).
 Write docs/reviews/progression-{subject}-{date}.md: what you read (files, row counts); a verdict (2 to 4
 sentences); findings, most serious first, each with the skill ids, what is wrong, why it matters and the exact fix
 (a row edit where possible); a table "Settled by the expert" for choices you decide; a short list "For Cory"

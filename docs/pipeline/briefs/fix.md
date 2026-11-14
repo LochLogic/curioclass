@@ -20,6 +20,11 @@ use the newest dates. Model your work on the unit 2 fix pass (commit e568594c).
    `python -X utf8 scripts/lesson.py check`, `python -X utf8 scripts/plan.py tables {course}`, then
    `python -X utf8 scripts/lesson.py build --pdf`, and look at the unit's student PDFs, displays and exit slips.
 
+Stale notes: a note that waits on other work starts `Pending(<file>, <file>#<text> or <plan node>):` so
+scripts/stale.py can tell when it lands; any other work-status wording ("not yet placed", "until it is added")
+fails the gate. When your work lands something a note waits on, run `python -X utf8 scripts/stale.py check`
+and rewrite each STALE note to say what is now true.
+
 Keep teacher prose under the word caps; pay for additions with cuts. Do not commit or push; `turn.py end` does it.
 Last message (under 300 words): findings fixed / open / rejected (with why), new gates, process changes, anything
 for Cory.

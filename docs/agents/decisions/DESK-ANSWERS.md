@@ -937,3 +937,10 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
   Farewell to Arms, The Weary Blues), recent open-licence texts, and short quoted excerpts of well-known recent
   books inside Curio Class's own lessons. No student is sent to a library or a paid copy. The ELA 9 to 12 course
   frames (step 2) run a text search to this rule and say which pick each year anchors on.
+
+## 2026-11-13: card q-cross-progression-1 (Cory, on the Desk)
+
+- **ELA grade 5 unit 4 topic:** yes, as picked. Unit 4 becomes water (how much of Earth's water is usable and how
+  communities share it), read beside grade 5 science's water and resources rows (s5-water-distribution,
+  s5-protect-resources). The reading and writing standards are unchanged; only the topic moves off the base text's
+  disaster module. Nine grade 5 rows and e6-reading-range updated in data/progressions/ela.csv.

@@ -26,6 +26,9 @@ The data you must check:
   first.
 - **The lens checklist** for the course frame layer: each line met, missed or not applicable.
 
+- **Stale notes.** Run `python -X utf8 scripts/stale.py check`; it catches marked ones. Look for the rest: any
+  note, plan note or review result that says something is not yet done, placed, written or decided when the
+  repository shows it is. Each is a finding (LAYER process, the fix is the rewritten note).
 Write docs/reviews/frame-{course}-{date}.md: what you read; a verdict (2 to 4 sentences); findings, most serious
 first, each with what is wrong, why it matters and the exact fix; a table "Settled by the expert"; a short list
 "For Cory" (scope, money, people or audience only). Tag each finding LAYER (frame, progression, standard, base text

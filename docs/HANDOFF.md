@@ -25,6 +25,14 @@ data/plans/flow-status.csv. Clicking a step on the Dashboard opens a bubble: wha
 a reread before a unit cites something) gets a row in data/plans/later.csv; it shows on the Desk's Dashboard under
 the plan flow. Add a row whenever work is parked; mark it done rather than deleting it.
 
+**Stale notes (Cory, 2026-11-13: expect them often, be good at catching them):** a note that waits on other
+work starts `Pending(<file>, <file>#<text> or <plan node>):`. scripts/stale.py fails a marker whose work has landed
+and any unmarked work-status wording; it runs inside the progression gate and on its own (`python -X utf8
+scripts/stale.py check [files]`, default: the four progressions and course frames). Every read brief now checks for
+the stale notes the script cannot see; every write and fix brief resolves markers its work lands. When a layer
+lands (a frame, a standards file, a review), run it and rewrite what it flags. Also check data/plans/later.csv:
+a row whose trigger has passed is marked done or acted on.
+
 **Pre-work P2 to P5, 2026-11-13 (latest):** P2 to P5c done; Physics is core (58 courses, 52 core). P5d run 1: the
 expert passed calibration ([reviews/calibration-2026-11-13.md](reviews/calibration-2026-11-13.md), 18 of 18
 planted majors; Desk card q-calibration-1). Codex passed too (18 of 18, no false alarms, but it under-ranks
