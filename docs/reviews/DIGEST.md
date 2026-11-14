@@ -10,6 +10,211 @@ heading, and say how many findings went to Cory instead.
 
 ## Week of 2026-11-09
 
+### ELA, science and math course frames, written blind (expert and Codex reads, fix passes by band). Reports: frame-<course>-2026-11-14.md, frame-<course>-codex(-rerun)-2026-11-14.md, frame-<subject>-<band>-fixes-2026-11-14.md
+
+To Cory: one Desk card, q-frames-ela-sci-math-1. Bands still in their fix pass are added as they land.
+
+**Science, Kindergarten to grade 2** (frame-science-k-2-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Weather chart starts week 1 as a two-minute routine; unit 2 compares September and October | K | Two months of data by the unit's end |
+| K-ESS3-1's human case is the class's own town and its water source | K | The standard names humans; social studies grades 1 and 2 review it |
+| Unit 4 opens on fall photographs; unit 5 compares sun and shade slides on any sunny day | K | Anchors visible in winter; relative-only boundary |
+| sk-living-needs extends, not introduces, the patterns model | K | sk-weather-watch introduces it earlier in the year |
+| Daylight observed at about 5:30 pm by family reports beside a monthly day strip | 1 | Going-home time is light all year at most schools |
+| Unit 3 anchor: seedlings under a parent tree; the plant comparison is required | 1 | 1-LS3-1 is young against parents, plants and animals both |
+| Plants respond too: a shoot turning toward the light, observed | 1 | 1-LS1-1's core idea includes plant responses |
+| Light test: three groups (all, some, none), then "sends it a new way?" | 1 | Keeps 1.MD.C.4's three groups and all four materials |
+| Robin nest and white-tailed deer doe and fawn as unit 7's two sources | 1 | A bird and a mammal in public-domain federal media |
+| Unit 3 adds cause and effect; unit 4 develops energy and matter | 2 | Each expectation's own crosscutting concept |
+| Habitat inventories compare which kinds as well as how many | 2 | 2-LS4-1 compares the kinds in each habitat |
+| Water and ice classified at two temperatures in unit 3 | 2 | PS1.A: matter can be solid or liquid depending on temperature |
+| A supported source choice before the water chart | 2 | 2-ESS2-3's obtaining practice includes useful sources |
+| Burrs gathered in fall for the spring unit; hook-and-loop stand-in | 2 | The anchor exists in spring |
+| Two third-lesson weeks in weeks 1 to 4 | 2 | Unit 1 done before social studies grade 2's week 6 |
+| Every unit ends with an individual task on an unseen case, inside its days | K, 1, 2 | Transfer at the end (science lens) |
+| The year named "about 36 weeks, of which about N carry science lessons here" | K, 1, 2 | One year, stated one way |
+
+**Science, Grades 3 to 5** (frame-science-3-5-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Arctic case: polar bear, wood frog, rainforest tree frog; judged from needs and conditions | 3 | The old "no frog" claim was false; ELA has just taught frogs |
+| Unit 3 anchor adds the hydrangea; the class test varies crowding | 3 | Grade 2 already solved the dark-shelf plant |
+| Planting day science day 18; fast-cycling plants; photograph fallback | 3 | The life cycle watched inside unit 3 |
+| Electromagnet as a teacher demonstration only | 3 | 3-PS2-3's example inside the no-circuits boundary |
+| Changed user need changes the latch's criteria | 3 | 3-5-ETS1-1's needs-and-wants element |
+| Hunting data as counts out of 10; no temperature below zero graphed | 3 | No percent or negatives before grade 6 |
+| Warmed stream and spreading plant as 3-LS4-4 cases; a sourced bird mates case | 3 | Every clarification kind has a case |
+| Sound on a slinky pushed along its length | 4 | Sound is not a sideways wave |
+| Amplitude and the floating object compared and explained | 4 | 4-PS4-1 relates wave properties to motion |
+| Codes: research, sharing, two-condition test, compared on data | 4 | 3-5-ETS1-2 in full |
+| Required internal plant case and flower dissection; one plant and one animal argument | 4 | 4-LS1-1's plant half in full |
+| State energy data "of every 10"; water in equal cupfuls | 4 | No percent; millilitres arrive in math unit 6 |
+| Canyon anchor leads with the river and matching walls | 4 | Shells were grade 3's puzzle |
+| Ice-map review in unit 5 | 4 | Grade 5's water handoff has a home |
+| Dry-soil pots from week 1 | 5 | Wet soil weight hides the result |
+| Air evidence beside the soil evidence; the willow history's correction told | 5 | 5-LS1-1 needs air as a source |
+| Ecosystem exchanges, several species, rabbits in Australia | 5 | 5-LS2-1's relationships in full |
+| Fresh water as its own 100: 69, 30, 1 | 5 | 5-ESS2-2's fresh-water shares with whole numbers |
+| Star distance as light travel time and a scale model | 5 | Powers of ten arrive in math unit 8 |
+| Small-amount balloon test, open bottle as comparison, differences investigated | 5 | Buoyancy kept under the gram |
+| Shadow at the same sun time each month | 5 | Removes the clock-change jump |
+| Unit 3 investigation recorded with three trials | 5 | 5-PS1-4's investigation practice |
+| Grade 6 retrieves grade 5 shadow patterns; sun angle by latitude is new in grade 6 | 5, 6 | One thread, one depth |
+| Math calendars cite the Curio Class math frames' units | 3, 4, 5 | The frames exist |
+| The year named "about 36 weeks, of which about 30 carry science lessons here" | 3, 4, 5 | One year stated one way, as K to 2 |
+| Every simulation has a paper path and needs no student account | 3, 4, 5 | Lesson 14 |
+
+**Science, High school** (frame-science-hs-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Four days moved from units 1, 2 and 4 to units 9 and 7; bio-group-behavior three days | Biology | Design cycle and four-expectation units were short |
+| HS-LS2-6 modest and extreme change; HS-LS1-6 revised on dry-mass evidence | Biology | Standards in full |
+| Unit 5 teaches the step rule before Algebra I's exponential unit | Biology | Each thread starts where it is first used |
+| Unit 8 anchor: red sandstones on land, not banded rocks | Biology | Banded iron formations are often older |
+| Unit 6 anchor kept with the masking gene and the 9:3:4 litter | Biology | Answerable inside HS-LS3-3 |
+| Food-grade dry beans; sealed seed bags; medical-reason recording role | Biology | Safety (S5) |
+| Food-web reactivation carried by bio-energy-pyramids | Biology | First row to use the model |
+| Unit 5 reactions: iron hand warmer and baking soda with vinegar; packs a physical change | Chemistry | HS-PS1-4 needs real reactions |
+| HS-PS3-1 on a calorimeter cup, mixing water, a warming pond; Earth's budget as review use in unit 9 | Chemistry | The row's proficiency case |
+| HS-ESS2-4 to millions of years; HS-ESS3-6 marine effects, published results only; wet and dry melting data | Chemistry | Standards in full |
+| Eye protection, copper disposal and steel-wool gloves as course rules | Chemistry | Safety (S5) |
+| Unit 8 anchor: a fingertip uranium pellet against a tonne of coal | Chemistry | Accurate and real |
+| Crust ages both patterns; interior from three evidence kinds; body sizes; Sun's slow variations; charged plates | Physics | Standards in full |
+| Kepler's third law as T squared = a cubed, roots by calculator | Physics | No math ahead of Algebra II |
+| Alkaline 1.5-volt cells only | Physics | A shorted lithium or rechargeable cell can burn |
+| Same-course order (wave unit before interior unit) recorded in notes, not assumes | Physics | assumes lists earlier grades only |
+
+**Math, Kindergarten to grade 2** (frame-math-k-2-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Ten-frame introduced in unit 2; K.4 adapted to use it, K.5.10 becomes the full 10-frame and missing to 10 | K | No second introduction; the rows use it in unit 4 |
+| Unit 3's two added lessons: several attributes of one object, then the endpoint error | K | The base text has two length activities, not none; K.MD.A.1 in full |
+| Position-word lesson K.3.13 first in unit 3, all six words | K | Social studies uses them about week 11 |
+| K.G.B.4 begins with flat shapes in unit 3, owned in unit 7 | K | Thread starts where the base lessons use it |
+| mk-one-to-one hands on to m1-count-to-120 | K, 1 | Both ends of the counting thread |
+| EK-ALG-ML-02 off the math sort module | K | Math is the Common Core |
+| Major work figures are a provisional allocation until unit plans give minutes | K, 1, 2 | Day and tag counts are not time counts |
+| One assessment day a unit, with the evidence plan named in each unit plan; an extra day goes to Cory | K, 1, 2 | Own one-period assessments; one-to-one evidence in center days |
+| Tape diagram taught by adapting grade 1 lessons 6.12 to 6.15, 8.6 as review; grade 2 builds it again from the bar graph | 1, 2 | Grade 1's base text names none |
+| SL.1.2 lean points at e1-key-details; daylight data is a later science use | 1 | Matches what the standards ask |
+| Grade 2 cuts made for the day budget; 2.3.17 kept, the estimating lesson dropped; six Curio Class lessons | 2 | Every cut day practises major work; estimating is in four base lessons |
+| 1.G.A.3 and 2.G.A.3 written in full | 1, 2 | Standards in full |
+
+**Math, Grades 3 to 5** (frame-math-3-5-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Addition-table patterns begin in unit 3 (base 3.2, 3.5); unit 4 finishes 3.OA.D.9 | 3 | Where the base text teaches them |
+| Rounding includes three-digit numbers to the ten, taught and checked | 3 | 3.NBT.A.1 in full |
+| Facts practice starts in unit 1 with understood facts; unit 4 owns the strategies | 3 | Spaced practice all year; the row names units 1 and 3 |
+| Unit 7 carries MP2 (base 6.12); grade 5 unit 1 carries MP5; all eight practices placed in each grade | 3, 5 | Every practice has a home |
+| Merge rule: one warm-up, the first lesson's main activity short, the second's activities, about 45 minutes, one synthesis; dropped activities named in the day-level map | 3, 4, 5 | Two 60-minute lessons in one day |
+| Warm-up routines from the last base unit: decision "cut" | 3, 4, 5 | "split" means a unit split |
+| Science and social studies bridges quoted from their frames; the supply tables say those frames are written | 3, 4, 5 | One bridge per need; no math ahead of math |
+| Grade 4: 7.14 and 7.15 a day each; 2.1 and 2.2 one readiness day (unit 2 17 days, unit 9 22) | 4 | 4.MD.C.7 in full; the merged pair reviews grade 3 |
+| Grade 4 major work: about 63 percent strictly, about 81 by the guide's rule | 4 | The guide counts supporting work tied to major work |
+| Money as cents in hundredths (base 3.18) and dollars-and-cents problems added to base 5.10 and 5.13; m2-money hands on to m4-decimal-notation | 4 | 4.MD.A.2 names money; the base text has none in its unit 5 |
+| Conversions by 12 and 16 before unit 7 by facts, repeated addition and break-apart | 4 | Base 5.11 is kept |
+| Base 9.7's country cost tables replaced with school-item prices | 4 | The frame's money-context rule |
+| Brackets in base 1.10, braces in base 2.13, one check 1 item each, never nested | 5 | 5.OA.A.1 in full within the Progressions' no-nesting limit |
+| Grade 5 major work by units 8 of 10 | 5 | Unit 8 is about half supporting |
+| Coordinate plane stays in unit 10; no fallback | 5 | Science bridges with bar graphs |
+| Check-set pointers follow the rows' notes (compiled Progressions, PDF (printed)) | 5 | One edition, one convention |
+| A qualified math content reviewer reads every check item and key before a course is finished | 3, 4, 5 | FOUNDATION 7.3 |
+| Inclusive trapezoid definition, grades 3 to 5 | 3, 4, 5 | The base text's own, named in grade 5 lesson 7.5 |
+
+**Math, High school** (frame-math-hs-fixes-2026-11-14.md)
+
+| Choice | Reason | File |
+|---|---|---|
+| F-IF.C.9 owned by Algebra I, taught in full there (Alg1.6.14 to 7.23), revisited in Algebra II (Alg2.2.10, 4.15, 6.17), one year-end item | The base text's alignments; finishes the standard with no day change | algebra-i and algebra-ii frames; math.csv |
+| F-LE.A.3 finished in Algebra I unit 6 on base lesson 4, power activity after it | Quadratics are taught in unit 6 | algebra-i frame; math.csv |
+| National debt prompt kept as version 3, no policy question | Only version 1's last question raised the values issue | algebra-i frame |
+| A-CED.A.1: rational case unit 2, exponential case finished unit 4 | Where the base text creates each kind of equation | algebra-ii frame; math.csv |
+| Midsegment in Geometry unit 3 (Geo.3.5), medians in unit 6 | Where the base text proves them | geometry frame; math.csv |
+| S-CP.B.8 kept in full, unit 8 only; F-IF.C.7d kept, unit 2 only | No extra day; (+) codes off the year-end checks | geometry and algebra-ii frames |
+| Focus reported on teaching days, per course and series, tagged list flagged as unchecked | Row shares did not measure time | all three frames |
+| Credit lines in the BASE-TEXTS.md form | One source policy | all three frames |
+
+**ELA, Kindergarten to grade 2** (frame-ela-k-2-fixes-2026-11-14.md)
+
+| Choice | Reason | File |
+|---|---|---|
+| The 2017 K-2 Skills Block is CC BY 4.0 and the foundations base; only the 2024 edition is CC BY-NC, never used | EL terms excerpt; printed lines in the held files | K, 1, 2 frames |
+| 2017 Skills Block decodables adapted where pictures are cleared, gaps written new | CC BY 4.0; aligned to the cycles | K, 1, 2 frames; ek-emergent-reader |
+| W.K.1 (ek-opinion) in kindergarten unit 1, introducing claim-evidence-reasoning | Base text teaches and checks it in module 1 | K frame; ela.csv |
+| paragraph-frame introduced by e1-informative, used by e1-opinion | Unit order | grade 1 frame; ela.csv |
+| Foundations rows sit where their thread opens, later units name them continued with cycles, checks only on taught patterns; one Skills Block module per unit | Cycle overviews read | K, 1, 2 frames |
+| Performance tasks named as EL names them, kept | Curriculum maps | K, 1, 2 frames |
+| Grade 2 unit 3 keeps the written informative paragraph and adds a recorded pollinator story with drawings | W.2.7, SL.2.4, SL.2.5 in full; grade 3 seam | grade 2 frame; e2-tell-and-record |
+| RL/RI.2.10 at the full grades 2 to 3 band, independent and supported kept apart | Standard wording | grade 2 frame |
+| W.K.6, W.1.6, W.2.6 with at least two kinds of tool across the year | "a variety of digital tools" | K, 1, 2 frames; ela.csv |
+| Grade 1 long text read in module 4 unit 1's lessons in place of its two trade books | Days by load | grade 1 frame |
+| Cross-subject tables match the rows' leans; unmatched leans become topic connections | ela.csv | K, 1, 2 frames |
+
+**ELA, Grades 6 to 8** (frame-ela-6-8-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Older primary sources paired, standards taught first on modern anchors | ELA 6, 7, 8 | Rule 29; the band exception is Cory's |
+| Unit 2 question on Hammurabi's self-portrait; prompt on posting a town's rules | ELA 6 | Distinct from social studies 6 unit 4's justice claim |
+| Novella: a family that stays and chooses, not one that moves | ELA 6 | Grade 5 unit 1 had the start-over premise |
+| Heroes decision carried by unit 1: a present-day hero, Yu the Great retold as the pair | ELA 6 | Cory 2026-11-12; Gilgamesh is social studies 6's |
+| RI.6.9 on the Cline profile and the Weather Service's 1900 page, Cline's report third | ELA 6 | Rule 29 |
+| Second research project in the last unit | ELA 6, 7, 8 | Rows ask for two or three |
+| In-class reading 15 minutes twice a week; choice books from the Reading Room shelf | ELA 6, 7, 8 | Conferences need class time; a free source |
+| Readiness tasks named per unit | ELA 6, 7, 8 | Lesson 5 |
+| One more one-sitting narrative; 3, 3, 3 by pieces | ELA 6, 7, 8 | Narrative share |
+| Klamath for the Elwha; Karuk and Yurok readers | ELA 7 | Biology unit 9 has the Elwha |
+| Keats's Chapman's Homer sonnet for Sonnet 18 | ELA 7 | Grade 9 reads Sonnet 18 |
+| Course-made film scene for RL.7.7, in unit 4 and again in unit 5 | ELA 7 | Film techniques; the owning unit first |
+| Athens only; e6, e7, e8 reading-range rows aligned | ELA 7 | Expert settled; all ends match |
+| Check 2 after unit 4 | ELA 7 | Even spacing |
+| Drought maps from the federal drought information system | ELA 7 | Rights |
+| 1896 marathon feature; legend taught as legend | ELA 7 | Question answerable from the unit |
+| Nasreddin Hodja (Barnham) for Anansi | ELA 8 | Grade 4 reads Anansi |
+| 4 days from unit 5 to unit 2 | ELA 8 | Load |
+| Unseen independent reads in unit 5 and check 3 | ELA 8 | RL.8.10, RI.8.10 |
+| Declaration read for word choice and response | ELA 8 | Grade 9 owns rhetoric |
+| Unit 1 narrative a grade 7 review sample | ELA 8 | W.8.3 owned in unit 4 |
+| Media work after civics unit 9 (about day 145) | ELA 8 | Same-year availability |
+| Seneca Falls "(grade 10)" | ELA 8 | Grade 12 reads Walker's Appeal |
+
+**ELA, Grades 11 and 12** (frame-ela-11-12-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Wheatley's 'On Being Brought from Africa to America' and Occom's 'A Short Narrative of My Life' in unit 3, compared in unit 6 | ELA 11 | RL.11-12.9's eighteenth century had no literary text |
+| Apess's 'An Indian's Looking-Glass for the White Man' (excerpt) as unit 3's Native answer | ELA 11 | A named Native-authored text beside the Declaration |
+| Sui Sin Far's 'Leaves from the Mental Portfolio of an Eurasian' beside Riis's Chinatown chapter | ELA 11 | An insider account in the source set |
+| Shelf: Mrs. Spring Fragrance and The Squatter and the Don in, The Age of Innocence to grade 12 only | ELA 11 | Wider authorship, no shelf repeat |
+| Shared research weeks 12 to 15 with one milestone calendar; check 1 after the research unit | ELA 11 | History's settled window, unbroken |
+| Unit 4 23 days, unit 7 10, unit 1 16, unit 3 21, unit 5 14, unit 6 21 | ELA 11 | Days by load; Douglass out of history's weeks 20 to 22 |
+| Narrative due end of week 30 | ELA 11 | History's last week clear |
+| Final grade 11 check scaffolded at the high end; independence an extension | ELA 11 | The standard's grade 11 line |
+| Unit 9 "Inside the marriage, 1892 to 1916", Franklin and Twain a satire pair | ELA 11 | A topic, not a skill |
+| Slurs left out with an omission mark and an editor's note; editions otherwise complete | ELA 11, 12 | BASELINE rule 6, US History I's wording |
+| Free references: Webster's 1828, an etymology dictionary, Fowler 1926, the style sheet and GPO manual; Onions and Schmidt for Hamlet | ELA 11, 12 | No paid copy, no account |
+| W.11-12.6 and SL.11-12.5 on a shared device; paper path leaves the digital part recorded unfinished | ELA 11, 12 | The grade 10 wording |
+| Seminar roles chosen from a named set or made; grade 12 groups set goal, deadline and roles | ELA 11, 12 | No step back from grade 10 |
+| Twain's 'Two Views of the Mississippi' and Addams's Hull-House chapter 4 for unit 1 | ELA 12 | Keller and Hurston are grade 9's |
+| 'I, Too' for 'The Negro Speaks of Rivers'; Four Freedoms dropped | ELA 12 | Grade 5 and grade 10 repeats |
+| Walker's Appeal against the Declaration | ELA 12 | Grade 10 reads Seneca Falls |
+| Trifles retrieved beside Hamlet, the lesson supplying both versions | ELA 12 | RL.11-12.7 in full without a second American play |
+| Hamlet versions: the 1921 film, the full-cast audio, a live class staging | ELA 12 | No Curio Class recording needed |
+| Unit 1 15 days, unit 8 36; Pride and Prejudice chapters at home; Du Bois chapters 1 and 3 | ELA 12 | Days by load |
+| Senior research milestones and cut order with US History II | ELA 12 | History asked for them |
+| Housing set from government works and two original pieces; Reagan's Challenger address | ELA 12 | No paid copy; effective rhetoric, balanced |
+| Speech evidence judged (SL.11-12.3) | ELA 12 | The standard in full |
+| Court-opinion structure taught on Tinker in unit 7 | ELA 12 | The structure row's second text |
+| Unit 3 "Money, marriage and class" | ELA 12 | A topic, not a mode |
+| Cogewea on the shelf; Sugimoto, Mena and Cogewea in unit 4's choice set | ELA 12 | Native, Asian American and Mexican American authors in a unit |
+| Jewish community reader for unit 4 | ELA 12 | Gatsby's Wolfsheim |
 ### Social studies course frames, all 15 (expert and Codex reads, five fix passes). Reports: frame-<course>-2026-11-13.md, frame-<course>-codex-2026-11-13.md, frame-<band>-fixes-2026-11-13.md
 
 To Cory: one Desk card, q-ss-frames-1 (time a day, community and qualified readers, K to 2 devices, the grade 12 timetable, a Personal Finance half year, the RH and WHST standards, the Since Time Immemorial courtesy request).
