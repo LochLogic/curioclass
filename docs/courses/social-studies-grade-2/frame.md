@@ -13,7 +13,10 @@ Course id ss-k5, grade 2. Draft frame, 2026-11-13; the scope and sequence sets t
   (one after each check). Social studies shares the grade 2 day with reading and math, so the course assumes
   three lessons a week of 30 to 40 minutes (about 90 to 120 minutes a week) across 32 teaching weeks, not the
   full-year yardstick of 160. Grade 2 has 18 rows, fewer than grade 1, but heavier ones (a map made to four
-  parts, the year's action cycle, interviews, a research report), so it keeps grade 1's days.
+  parts, the year's action cycle, interviews, a research report), so it keeps grade 1's days. Each unit's days
+  include its end-of-unit assessment, in grade 2 a short task done from a source not seen before plus the
+  teacher's observation over the unit's last lessons, and one respond lesson after it; a unit that assumes a grade
+  1 row opens with a short readiness check inside its days.
 - **Standard.** Content: Massachusetts 2018 grade 2, MA.2.T1 to MA.2.T5, every standard owned by a row and placed
   below, with one planned split: Massachusetts prints grade 1 T4 and grade 2 T5 as one economics topic, and Curio
   Class teaches it once (data/progressions/social-studies-excluded.csv). Grade 2 teaches resources, people as a
@@ -33,7 +36,7 @@ Course id ss-k5, grade 2. Draft frame, 2026-11-13; the scope and sequence sets t
   visit.
 - **Reading level.** Grade 2 students read short texts on their own with support. Sources are short (a captioned
   photograph, a labeled map, a few sentences of a memory), read together first; each has a stated difficulty in
-  the section plan. From unit 1 every source gets the three sourcing questions (who made it, when, where).
+  the section plan. From unit 1 every source gets the sourcing questions at grade 2 depth (who made it, when, where).
 - **The inquiry arc.** Every unit opens with a compelling question and supporting questions the class writes
   together (grade 1's skill); from unit 2 every closing claim names the source its reason came from
   (ss2-claim-sources). Unit 7 runs the whole arc as each student's own short research report.
@@ -41,6 +44,17 @@ Course id ss-k5, grade 2. Draft frame, 2026-11-13; the scope and sequence sets t
   and recover from a storm or flood, the class chooses one way to help its own school get ready, checks it against
   the town's or state's published advice, decides by a fair vote, carries it out through the school and talks
   about what happened. The class chooses; the course never picks the cause.
+- **Paper path.** Every map, source set and task is printed, including each country's source set in unit 7; no
+  day needs a device, an internet connection or a student account.
+- **Sensitivity reads.** Every unit gets the fresh sensitivity agent's read (docs/pipeline/briefs/sensitivity-read.md)
+  at the unit plan and again at the days; no outside human reader is planned (Cory, 2026-11-14). The agent studies
+  first: unit 5, the Cherokee Nation's and the Eastern Band of Cherokee Indians' own pages on removal and on the
+  nations today, a published framework for teaching slavery in the early grades with scholarship by Black
+  historians, scholarship by Chinese American historians on Angel Island and the exclusion law, a refugee agency's
+  teaching guidance, and an immigration style guide; unit 6, guidance for schools on immigrant families and on
+  family structures (adoption, foster care); unit 3, a public health body's guidance on talking with children
+  about disasters; unit 7, each menu country's own government pages and a style guide on avoiding stereotypes of
+  places and peoples. Units 1, 2 and 4: maps, climate and borders, read for accuracy and fairness.
 - **Own-state method.** Where the anchor names Massachusetts (MA.2.T3.3, when families came to the state), the
   course asks when families came to this town or state, and the student's own region is used beside the
   countries studied (ss2-resources-industries).
@@ -133,17 +147,10 @@ class chooses its problem afresh and builds on grade 2's work only if it chooses
 
 ## Course-level checks
 
-- **After unit 3 (1 day, mid-year).** On a map not seen before: name what the title, key, compass rose and scale
-  tell; find two continents and two oceans; answer who made the map and when from the map itself; write a claim
-  about how people live with the land in a pictured place, with a reason that names the source.
-- **1 respond day after the mid-year check.** Re-teach in small groups what the check shows, most often scale and
-  naming the source in a claim, ending with a brief fresh task to see that the re-teaching took.
-- **After unit 7 (2 days, end of year).** Day one: two short accounts not seen before of one event (a town flood,
-  a ship's arrival): what both say, where they differ, whether each teller had their own way of knowing. Day two:
-  from a short source set not seen before about a place, give a cause-effect chain for one move and a claim with
-  two facts from named sources.
-- **1 respond day after the end-of-year check.** Targeted re-teaching of what the check shows, with a brief fresh
-  task; the record then goes on to the grade 3 teacher.
+| Check | After unit | Check days | Respond days | What it checks |
+|---|---|---|---|---|
+| 1, mid-year | 3 | 1 | 1 | On a map not seen before: name what the title, key, compass rose and scale tell; find two continents and two oceans; answer who made the map and when from the map itself; write a claim about how people live with the land in a pictured place, with a reason that names the source. The respond day re-teaches in small groups what the check shows, most often scale and naming the source in a claim, ending with a brief fresh task to see that the re-teaching took |
+| 2, year-end | 7 | 2 | 1 | Day one: two short accounts not seen before of one event (a town flood, a ship's arrival): what both say, where they differ, whether each teller had their own way of knowing. Day two: from a short source set not seen before about a place, give a cause-effect chain for one move and a claim with two facts from named sources. The respond day re-teaches what the check shows, with a brief fresh task; the record then goes on to the grade 3 teacher |
 
 ## Cross-subject
 
@@ -181,9 +188,4 @@ Mathematics, grade 2: no grade 2 row leans on same-year math.
 
 ## For the lead
 
-1. **Time a week.** The frame assumes three lessons a week of 30 to 40 minutes (96 days). Pick: keep it.
-2. **The math lean on ss2-map-parts and ss2-make-map** is math:1.MD.A.2 (changed 2026-11-13 in the frame fix
-   pass), matching the rows' repeated whole units.
-3. **Storm readiness and grade 3's local problem.** Settled in the grade 3 frame (unit 7): the class chooses its
-   problem afresh.
-4. **data/plans/frames.csv** agrees with this frame: 7 units, 96 days; the frame gate passes (2026-11-13).
+None open.
