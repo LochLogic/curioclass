@@ -986,3 +986,10 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    York's Next Generation 11 to 12 standards, as the check set only).
 8. **Smaller calls:** yes to all three (ELA 10 and World History II share one research product; grade 9's long text
    as planned; K to 2 may assume one shared classroom device, always with a paper path).
+
+## 2026-11-14: card q-baseline-1, question 2 (Cory, in chat, before the card showed)
+
+2. **Course pages:** "I think I want all units to go forward, not just grade 4 math." Course and unit pages are built for all 52
+   core courses from the frames, not grade 4 math first. They stay hidden from the live site until Cory says (the site is
+   not launched). Questions 1 and 3 wait on the Desk.
+
