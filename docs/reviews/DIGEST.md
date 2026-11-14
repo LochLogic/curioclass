@@ -67,6 +67,21 @@ To Cory: one Desk card, q-frames-ela-sci-math-1. Bands still in their fix pass a
 | The year named "about 36 weeks, of which about 30 carry science lessons here" | 3, 4, 5 | One year stated one way, as K to 2 |
 | Every simulation has a paper path and needs no student account | 3, 4, 5 | Lesson 14 |
 
+**Science, Grades 6 to 8** (frame-science-6-8-fixes-2026-11-14.md)
+
+| Choice | Reason | Where |
+|---|---|---|
+| Grade 6 unit 3 38 days, unit 6 23 | Unit 6 was the one unit under base time | science-grade-6 frame |
+| Grade 6 margins stated per unit (+40 to +75 minutes) | The year surplus is not a surplus in every unit | science-grade-6 frame |
+| Grade 7 and 8 held at 160 by named condensations, each keeping its evidence | Additions and reteaches exceed the 0.9 scaling; the year yardstick holds | science-grade-7 and -8 frames, source map |
+| Grade 8 reteaches are whole lessons, one per unit with readiness checks | Row contract; storyline lessons are whole-class (expert settled) | science-grade-8 frame |
+| The base laser-and-mirror viewers replaced by supplied observations unless the safety read sets a controlled apparatus | Reflected beams are a hazard; a mirror apparatus cannot avoid shiny surfaces | science-grade-8 frame; s8-wave-amplitude-energy |
+| Grade 7 flame tests, peroxide, heating and electrolysis teacher-only under protocols; student mixing only the bath-bomb ingredients | Open flame, hot water and gases with 12-year-olds | science-grade-7 frame; s7-reactions-atoms |
+| Static charge and gravitational stored energy both in unit 3 of grade 8 | Base 8.3 is magnetic only; keeps MS-PS2-4's start in unit 3 | science-grade-8 frame; three s8 rows |
+| MS-PS4-2: grade 6 ray model and grade 8 sound contribute; s8-earth-sun-moon owns with a wave model of light | Ownership already moved; notes now say so | frames; three rows |
+| Boiling point listed as a permitted property, not a required one | Both reads: PE boundary lists permitted properties | science-grade-7 frame |
+| Rock-cycle and plate models rest in grade 8; Biology unit 8 picks the plate model up | The base has no grade 8 Earth-materials unit | grade 7 and 8 frames; s7-resource-distribution |
+
 **Science, High school** (frame-science-hs-fixes-2026-11-14.md)
 
 | Choice | Course | Reason |
@@ -127,6 +142,24 @@ To Cory: one Desk card, q-frames-ela-sci-math-1. Bands still in their fix pass a
 | Check-set pointers follow the rows' notes (compiled Progressions, PDF (printed)) | 5 | One edition, one convention |
 | A qualified math content reviewer reads every check item and key before a course is finished | 3, 4, 5 | FOUNDATION 7.3 |
 | Inclusive trapezoid definition, grades 3 to 5 | 3, 4, 5 | The base text's own, named in grade 5 lesson 7.5 |
+
+**Math, Grades 6 to 8** (frame-math-6-8-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| 6.1.19 Designing a Tent kept; 6.8.1 and 6.8.2 merged to fund it (unit 1 18 days, unit 8 16) | 6 | Not optional in IM; the unit's only application and MP4 day |
+| A unit with 3 Curio Class days: mid-unit check whose respond work runs in the next two openings, assessment, respond day (grade 6 units 3, 4, 7; grade 8 unit 4) | 6, 8 | A respond step after each check without taking a base day |
+| Major work counted the guide's way (connected supporting work counts), strict count beside it; no days moved for the strict unit count | 6, 7, 8 | Evidence guide indicator 1e |
+| Grade 6 units 7 and 8 keep IM's order; the reason is science's own histogram bridge, not "ends on major work" | 6 | Unit 8 is additional work |
+| m6-long-division: no four-digit, two-digit ceiling in grade 6 | 6 | 6.NS.B.2 sets none; that limit is 5.NBT.B.6 |
+| Substitution from a set into equations and simple inequalities in unit 6; unknown against variable over a set | 6 | 6.EE.B.5 and 6.EE.B.6 in full |
+| 7.NS.A.2d begun on IM 7.4.5 in unit 4, finished on a Curio Class day in unit 5 (ownership unchanged) | 7 | Where the base text teaches it |
+| 7.G.A.2 "with technology" done by students at the controls, taking turns on a shared device | 7 | A demonstration is not the student performance |
+| 7.8.19 cut (not optional), 7.8.18 a day alone; merges carry named selections | 7 | 95 minutes of activity do not fit one day |
+| Protractor readiness in grade 7 unit 1 before IM 7.1.4; m7-scale-drawings assumes m4-protractor | 7 | A thread starts where it is first used |
+| Grade 8 data unit stays fourth; 8.6.1 to 5 and 8 adapted to unit 3's language, cumulative practice replaced | 8 | Science 8 needs scatter plots by day 78; functions come in unit 6 |
+| Exterior-angle activity added to 8.1.16; 8.8.10's estimate kept for 8.NS.A.2 | 8 | Standards in full |
+| m8-scientific-notation keeps no outgoing link; the thread ends in core math, Chemistry retrieves it | 8 | N-Q.A.3 is owned and is not a receiving skill for it |
 
 **Math, High school** (frame-math-hs-fixes-2026-11-14.md)
 
