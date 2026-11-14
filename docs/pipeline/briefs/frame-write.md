@@ -80,8 +80,8 @@ and Cross-subject ids, and outside-reader wording (baseline 1 structure fixes, 2
 3. **The time a day is stated** (minutes per lesson, lessons a week), and why the day total fits it.
 4. **Standards in full.** Every lettered part and every clarification a standard names is taught somewhere, and the
    unit that teaches it says so. A standard is never quietly narrowed to its headline.
-5. **Each thread starts where it is first used.** A readiness check on an earlier grade's skill sits in the first
-   unit that needs it; a model is introduced before any unit uses it.
+5. **Each thread starts where it is first used.** A readiness check or retrieval task (lesson 16) on an earlier
+   grade's skill sits in the first unit that needs it; a model is introduced before any unit uses it.
 6. **"First" claims are checked against the grade before** ("the first full sourcing step", "introduces"). One
    thread keeps one wording across grades.
 7. **Both ends of every handoff.** Where the frame needs a link the progression lacks, write it under "For the
@@ -102,9 +102,10 @@ and Cross-subject ids, and outside-reader wording (baseline 1 structure fixes, 2
 14. **A paper path** beside any electronic tool, and no student account: a "Paper path." bullet in The course in brief.
 15. **No status lines about other files.** Stale wording in shared docs goes under "For the lead" with the
     replacement text.
-16. **Readiness by idle time.** A skill the unit assumes that has been idle two or more grades (no row used it in
-    that time) gets a readiness check on the unit's first day; one used the year before opens as a retrieval task
-    inside a day, not a check (added 2026-11-14, as the science frames applied it).
+16. **Readiness or retrieval.** A row used the year before, or earlier the same year, opens as a retrieval task
+    inside a day; every other earlier-grade row the unit assumes (last used two or more grades back) opens the unit
+    with a readiness check on its first day (added 2026-11-14, as the science frames applied it; these words settled
+    2026-11-14 for all 15 social studies courses, the same as sequence-write.md rule 2).
 
 ## Rules
 - The progression rows are the contract: place every owned row, change none. If a row is wrong, list it under "For

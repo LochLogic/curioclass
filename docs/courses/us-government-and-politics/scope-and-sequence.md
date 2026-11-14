@@ -21,7 +21,7 @@ Settled rule 1: a row used the year before, or earlier this year, opens as a ret
 | 5 | Day 38: ss8-state-rights-documents, wh2-wwii-consequences; reteach station day 39 | Day 43: ss8-press-freedom (US History I) |
 | 6 | Day 47: ss8-elections-parties; reteach station day 48 | Day 47: ss8-interest-groups-policy (checked day 1) |
 | 7 | Day 56: wh2-middle-east-since-1980; reteach station day 58 | Day 59: the postwar order (checked day 38) and the Security Council procedure (day 33) |
-| 8 | Day 64: ss8-election-info; reteach station day 65 | Day 65: ss8-interest-groups-policy; day 67: ss8-news-literacy (US History I) |
+| 8 | none | Day 64: ss8-election-info (kept in use through grade 11); day 65: ss8-interest-groups-policy; day 67: ss8-news-literacy (US History I) |
 | 9 | none; day 73 confirms each team's readiness | Inside days 74 and 77: civic action and global problems, kept in use through grade 11 |
 
 ## Unit 1. Why government, and what kind? (days 1 to 6, weeks 1 to 2)
@@ -91,7 +91,7 @@ Arc: how nations deal with each other and why they clash, then the foreign affai
 
 Arc: one past and one current policy debate, then the two compared by intended and unintended results, a current local issue chosen by each team with the body that decides it and the date of its next public meeting, the coverage taken apart, information gathered and synthesized (searches, an interview, a peer survey or an information request to the named office sent through an adult), and a factual report and an editorial, each with a captioned visual. The team's issue carries into unit 9; the information request sent on day 68 and the meeting found on day 66 come back on days 77 and 80.
 
-- Readiness: day 64 on ss8-election-info, reteach station day 65; day 67 retrieves news reading from US History I.
+- Readiness: none. Day 64 retrieves judging election information (kept in use through grade 11), day 65 civic groups and day 67 news reading from US History I.
 - Digital and paper routes: the digital route runs a student-directed search with an organized source record and synthesis on day 68 and a digital visual on a shared device on day 69. The paper route uses printed clippings and a drawn visual; on it NML.T5.1 and T5.3 are met in part, said plainly to the teacher, in the same way as T5.4 and T5.5 in unit 9.
 - End-of-unit assessment, day 70: an unseen past policy and its record for T4.6 (all lettered parts as options), T4.7, NML.T4.4 and D2.Civ.13, with day 65's comparison, the day 68 source record and synthesis (NML.T5.1), the day 69 report and editorial (NML.T5.2) and the visuals (NML.T5.3) scored on the course rubric, not retaken. Respond day 71.
 - Candidate: the policy process stages, kept inside T4.7 on day 66, 0 added days.

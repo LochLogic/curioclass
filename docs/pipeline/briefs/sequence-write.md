@@ -24,7 +24,8 @@ studies goes first; the other subjects follow in step 5.
   draft), then per unit a short section: the unit's days on the calendar (course days and weeks), its arc in a few
   sentences, why the days fall in this order, the readiness, mid-unit and end-of-unit assessment days and what each
   covers, and each "Candidate:" check-set cell settled (kept with its day cost inside the unit's days, or dropped
-  with the reason). Then the course-level checks, with their weeks. Prose for judgment only; the days live in the CSV.
+  with the reason). Then the course-level checks, with their weeks, and a "Shorter path" section (rule 10). Prose
+  for judgment only; the days live in the CSV.
 - `data/plans/{course}/days.csv`, one row per course day, columns in this order:
   `day,stretch,unit,kind,goal,skills,codes,assess,school_day,note`
   - **day**: 1 to the frame's total, in order, none skipped.
@@ -51,10 +52,17 @@ studies goes first; the other subjects follow in step 5.
 2. **Every unit closes with an end-of-unit assessment inside its days** (K to 2: an observation task over the unit's
    last lessons may stand for it), and the plan names its response time once: in the same day or on a respond day.
    **A unit over 25 days also holds a mid-unit assessment** inside its days (where a base text has its own, use it).
-   **A readiness check opens a unit where it assumes an earlier grade's row idle two or more grades**, on the unit's
-   first day; a row used the year before opens as a retrieval task inside a day (frame-write lesson 16).
+   **Readiness or retrieval** (settled 2026-11-14 for all 15 social studies courses; frame-write lesson 16 uses the
+   same words): a row used the year before, or earlier the same year, opens as a retrieval task inside a day; every
+   other earlier-grade row the unit assumes (last used two or more grades back) opens the unit with a readiness check
+   on its first day.
+   **Each part of each code:** every observation, end-of-unit and check task asks about each part of each code it
+   lists (a short prompt per part; no day added); a product or an observed performance may stand for a code where
+   the day says so.
 3. **Course-level checks** come from the frame's Course-level checks table: `C` days after the unit it names, each
-   followed by at least one respond day, review days where the table has them.
+   followed by at least one respond day, review days where the table has them. **A course-level check right after a
+   unit's end-of-unit assessment draws its items for that unit's skills from earlier units**, so it does not repeat
+   the assessment just given; the scope and sequence and the day's goal say so.
 4. **The calendar and the stagger rule** (docs/courses/CALENDAR.md): place the course-level checks on the target
    weeks given there. K to 5: no week holds two subjects' check days. K to 2: the ELA and math one-to-one checks are
    at least five school days apart. 6 to 8: no school day holds two subjects' mid-year checks. If a target week
@@ -71,13 +79,17 @@ studies goes first; the other subjects follow in step 5.
    name a unit before its sections exist.
 9. **Sensitivity:** a day with content the frame flags names it in the note column; the sensitivity agent's read
    (docs/pipeline/briefs/sensitivity-read.md) comes with the unit plan.
-10. No em dashes; "Curio Class" in full; no company names. Edit only your files. No git.
+10. **A shorter path.** The scope and sequence has a short "Shorter path" section (FOUNDATION section 5, adoption
+    bar C2): how the days hold on a shorter period, and a year about 10 days short, by named fold-in days (days whose
+    work folds into a neighbour, nothing assessed and no owned part cut).
+11. No em dashes; "Curio Class" in full; no company names. Edit only your files. No git.
 
 ## The gate
 Run `python -X utf8 scripts/sequence.py check {course}` (also run by `python -X utf8 scripts/plan.py check`): days
 numbered in order, the frame's total and each unit's days, `stretch` in 1 to the unit count or `C`, the five kinds,
 an end-of-unit assessment per unit, a mid-unit assessment in units over 25 days, a respond day after each
-course-level check, every owned skill placed, every owned code placed (a note), the .md file present. Then run
+course-level check, every owned skill placed, every owned code placed (a note), the .md file present, not empty, with
+its title and a section per unit, and a "Shorter path" section (a note). Then run
 `python -X utf8 scripts/frame.py calendar` and say in your last message whether your course breaks the stagger rule.
 
 Final message, short: units and days, the check weeks, the gate result, the Candidate cells settled, the "For the

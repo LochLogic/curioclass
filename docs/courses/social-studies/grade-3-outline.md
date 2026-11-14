@@ -92,9 +92,10 @@ grade 5 carries the rest. What the five share and the anchor's grade 3 lacks or 
 
 ## Settled by the frame and the expert read
 
-- Unit 4's worked examples: grade 4's five regions, each with a named nation (Mashpee Wampanoag, Cherokee,
+- Unit 4's worked examples: grade 4's five regions, each with a named nation (Penobscot, Cherokee,
   Menominee, Navajo, Makah), each confirmed with the nation's own materials in the unit plan (settled 2026-11-13,
-  docs/reviews/frame-3-5-fixes-2026-11-13.md).
+  docs/reviews/frame-3-5-fixes-2026-11-13.md; the Northeast case became the Penobscot Nation in the 2026-11-14
+  baseline fix, as the grade 3 frame and day 77 have it, docs/reviews/sequence-3-5-fixes-2026-11-14.md).
 - Unit 3's world community: Ghana (settled 2026-11-13, same report).
 - Settled 2026-11-13: seven units, with first meetings and early colonies merged; the Revolution's events left to
   grade 5.

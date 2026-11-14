@@ -47,7 +47,7 @@ docs/courses/UNIT-PLAN.md (the section and unit plan template) and docs/courses/
 | **warm-up** | The first minutes of a day (a grammar warm-up in ELA) | opener (that is the section's teacher page), opening, grammar opener | `days.csv` `opens`, `opens_min` |
 | **goal** (on screen and paper: the "I can" line) | What the day is for, in student words | objective, target | `days.csv` `goal` |
 | **section opener** | The teacher page for a section: the content at an adult's level, why this model, the common errors, the supply list | unit opener, unit overview, intro | `opener.md` in each section folder |
-| **readiness check** | The short set of items given before a unit opens, on what it builds on from an earlier grade | pre-test, diagnostic, pre-assessment | `items.csv` `check` = `readiness`; `readiness.md`; `days.csv` `assess` = `readiness` |
+| **readiness check** | The short set of items on a unit's first day, on what it builds on from an earlier grade row last used two or more grades back (a row used the year before, or earlier the same year, gets a retrieval task instead; sequence-write.md rule 2). Grade 4 math gives it before the unit opens until its scope and sequence is rewritten | pre-test, diagnostic, pre-assessment | `items.csv` `check` = `readiness`; `readiness.md`; `days.csv` `assess` = `readiness` |
 | **readiness day** | The day that holds a readiness check | | |
 | **retrieval task** | A short look back inside a day at something taught before; not a check and not marked | readiness check, opening retrieval task | |
 | **facts check** | The multiplication facts check of grade 4 math, given in days 1 to 6 and before day 94 | fluency test, timed test | `facts-check-N.md` |

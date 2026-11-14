@@ -320,15 +320,67 @@ def calendar(slug):
     return out
 
 
+def days_calendar(slug, f):
+    """The calendar read from a written scope and sequence (added 2026-11-14): [(kind, n, label, first course day,
+    last course day, first school day, last school day)] from data/plans/<slug>/days.csv, each day on its school_day
+    where filled (CALENDAR.md: that column wins) and on the even spread otherwise. Days run in school-day order, and a
+    unit or check run is cut wherever another day falls between, so a held day (a look-back taught weeks later, an
+    on-the-day lesson) shows on its own week. None when the course has no usable days.csv or its check runs do not
+    match the frame's Course-level checks table; the caller then falls back to the frame."""
+    p = os.path.join(ROOT, 'data', 'plans', slug, 'days.csv')
+    base = calendar(slug)
+    if not base or not os.path.exists(p):
+        return None
+    with open(p, encoding='utf-8') as fh:
+        rs = list(csv.DictReader(fh))
+    if not rs or not {'day', 'stretch', 'kind'} <= set(rs[0]):
+        return None
+    labels = {n: q for kind, n, q, _, _ in base if kind == 'unit'}
+    days = []
+    for r in rs:
+        d, st = (r.get('day') or '').strip(), (r.get('stretch') or '').strip().upper()
+        if not d.isdigit() or not (st.isdigit() or st == 'C'):
+            return None
+        sd = (r.get('school_day') or '').strip()
+        sd = int(sd) if sd.isdigit() else school_day(slug, f, int(d))
+        k = (r.get('kind') or '').strip().lower()
+        kind = 'unit' if st != 'C' else ('check' if k == 'check' else 'respond' if k == 'respond' else 'review')
+        days.append((sd, int(d), kind, st))
+    days.sort()
+    segs = []
+    for sd, d, kind, st in days:
+        if segs and segs[-1][0] == kind and segs[-1][1] == st:
+            segs[-1][2].append(d)
+            segs[-1][3].append(sd)
+        else:
+            segs.append((kind, st, [d], [sd]))
+    out, group, unit, prev = [], -1, None, 'unit'
+    for kind, st, ds, sds in segs:
+        if kind == 'unit':
+            unit = int(st)
+            out.append(('unit', unit, labels.get(unit, ''), min(ds), max(ds), min(sds), max(sds)))
+        else:
+            if prev == 'unit' or (prev == 'respond' and kind != 'respond'):
+                group += 1   # a new course-level check: after a unit, or a review or check day after a respond day
+            label = f['checks'][group]['label'] if group < len(f['checks']) else ''
+            out.append((kind, unit, label, min(ds), max(ds), min(sds), max(sds)))
+        prev = kind
+    if group + 1 != len(f['checks']):
+        return None
+    return out
+
+
 def calendar_rows():
+    """Every course's units and checks on the school calendar: from its days.csv once a scope and sequence is written
+    (days_calendar), else from its frame's unit days and Course-level checks table, spread evenly."""
     out = []
     for s in found():
         f = parse(s)
-        cal = calendar(s)
-        if not cal:
-            continue
-        for kind, n, label, a, b in cal:
-            sa, sb = school_day(s, f, a), school_day(s, f, b)
+        cal = days_calendar(s, f)
+        if cal is None:
+            cal = [(kind, n, label, a, b, school_day(s, f, a), school_day(s, f, b))
+                   for kind, n, label, a, b in (calendar(s) or [])]
+        for kind, n, label, a, b, sa, sb in cal:
             out.append(dict(course=s, grade=COURSE_META.get(s, ('', ''))[1], subject=COURSE_ROWS[s][0], kind=kind,
                             unit=n, label=label[:80], first_day=a, last_day=b, first_school_day=sa,
                             last_school_day=sb, first_week=week(sa), last_week=week(sb)))
@@ -390,15 +442,17 @@ def citations(slug, cal_rows):
     for m in CITE.finditer(parse(slug)['text']):
         subj = SUBJ_WORDS[m.group(1).lower()]
         g = m.group(2).upper()
-        r = next((x for x in cal_rows if x['subject'] == subj and x['grade'] == g and x['kind'] == 'unit'
-                  and x['unit'] == int(m.group(3)) and COURSE_META.get(x['course'], ('', ''))[1] == g
-                  and x['course'] != slug and not x['course'] in TERM), None)
+        rs = [x for x in cal_rows if x['subject'] == subj and x['grade'] == g and x['kind'] == 'unit'
+              and x['unit'] == int(m.group(3)) and COURSE_META.get(x['course'], ('', ''))[1] == g
+              and x['course'] != slug and not x['course'] in TERM]
+        rs = [x for x in rs if x['course'] == rs[0]['course']]   # one course; a unit may sit in several runs
         rng = re.search(r'(\d+)\s+to\s+(\d+)', m.group(4))
-        if not r or not rng:
+        if not rs or not rng:
             continue
         a, b = int(rng.group(1)), int(rng.group(2))
         school = 'school' in m.group(4)
-        lo, hi = (r['first_school_day'], r['last_school_day']) if school else (r['first_day'], r['last_day'])
+        lo = min(x['first_school_day'] if school else x['first_day'] for x in rs)
+        hi = max(x['last_school_day'] if school else x['last_day'] for x in rs)
         if a < lo - 3 or b > hi + 3:
             notes.append('%s: cites %s grade %s unit %s at %s days %d to %d; the calendar has %d to %d' % (
                 slug, m.group(1), g, m.group(3), 'school' if school else 'course', a, b, lo, hi))

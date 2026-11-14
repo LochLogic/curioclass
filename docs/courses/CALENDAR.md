@@ -26,7 +26,7 @@ A frame counts course days. Only the calendar turns them into school days and we
 | US Government and Politics | Every school day, fall half | 16, school days 1 to 80 |
 | Economics | Every school day, spring half | 16, school days 81 to 160 |
 
-A course with D course days spread over W weeks puts course day n on school day `start + ceil(n x 5W / D)`, so its days fall evenly across its weeks. Once a scope and sequence is written, its `data/plans/<course>/days.csv` may give each day a `school_day` column, and that column wins.
+A course with D course days spread over W weeks puts course day n on school day `start + ceil(n x 5W / D)`, so its days fall evenly across its weeks. Once a scope and sequence is written, its `data/plans/<course>/days.csv` may give each day a `school_day` column, and that column wins. From 2026-11-14 `scripts/frame.py` builds that course's rows of `data/plans/calendar.csv` from its days.csv (`days_calendar`): each day on its `school_day` where filled and on the even spread otherwise, a unit's or a check's days cut into separate rows wherever another day falls between, so a held day (a look-back taught weeks later, an on-the-day holiday lesson) shows in its own week. A course with no days.csv, or one whose check days do not match its frame's Course-level checks table, is still read from its frame.
 
 ## Course-level checks across a grade (the stagger rule)
 
@@ -54,7 +54,7 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | 5 | 17, 32 | 11, 22, 31 | 10, 21, 30 | 16, 29 |
 | 6 | 12, 22, 32 | 16, 24, 32 | 18, 32 | 15, 23, 32 |
 | 7 | 12, 22, 32 | 9, 24, 32 | 14, 32 | 13, 24, 32 |
-| 8 | 18, 25 to 26, 32 | 14, 24, 32 | 16, 32 | 10, 20, 29 to 30 |
+| 8 | 18, 25 to 26, 32 | 14, 24, 32 | 15, 32 | 10, 20, 29 to 30 |
 
 ## Read from the frames
 

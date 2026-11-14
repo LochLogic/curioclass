@@ -43,8 +43,9 @@ respect, kindness and openness; we do not hide humanity, and LGBTQ people appear
 
 **Sensitive and hard history.** BASELINE rule 5: facts stay plain, with the human side; a hard fact is never
 softened until it is false. Rule 8: teacher notes name where the standards touch a sensitive topic. Native and
-hard-history content in a course needs a qualified person's read (FOUNDATION section 7) and a fresh-agent
-sensitivity read (REFINE.md). The grade 3 outline shows the pattern: Native nations in the present tense as well
+hard-history content in a course needs the sensitivity agent's read, a fresh agent that studies the community's own
+published voice first (FOUNDATION section 7, item 3, as changed 2026-11-14; docs/pipeline/briefs/sensitivity-read.md;
+REFINE.md). The grade 3 outline shows the pattern: Native nations in the present tense as well
 as the past, from their own materials, sacred or restricted knowledge left out; slavery named plainly, with
 resistance and lives built; contested origin stories taught from the record and from the people concerned today.
 No role play or simulation that puts a child in a victim's or perpetrator's place.
@@ -88,7 +89,7 @@ No role play or simulation that puts a child in a victim's or perpetrator's plac
 
 The scored bar and pass rule (ADOPTION-BAR-SUBJECTS.md, the P5b rubric). Coverage arithmetic, day counts and id
 checks (plan.py check). Whether a source may be adapted (BASE-TEXTS.md, the source's own terms). Final accuracy of
-Native and hard-history content (the sensitivity read and the qualified person). Psychology (after the core).
+Native and hard-history content (the sensitivity agent's read, FOUNDATION section 7). Psychology (after the core).
 
 ## Sources, read into our own words
 

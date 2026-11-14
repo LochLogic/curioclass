@@ -10,6 +10,148 @@ heading, and say how many findings went to Cory instead.
 
 ## Week of 2026-11-09
 
+### Social studies scopes and sequences, all 15 (expert and Codex reads, five fix passes, structure pass). Reports: sequence-<course>-2026-11-14.md, sequence-<course>-codex-2026-11-14.md, sequence-<band>-fixes-2026-11-14.md, sequence-structure-fixes-2026-11-14.md
+
+To Cory: one item, from the grade 12 fix pass (US Government's paper route for NML.T5.1 and T5.3: confirm, or require a short shared-device step); the other four passes sent none.
+
+The lead's settled calls for all 15 courses, in every band: (1) a row used the year before, or earlier the same year, opens as a retrieval task; any other earlier-grade row opens its unit with a readiness check on its first day; (2) held days stay where days.csv has them and the calendar shows them; (3) a course-level check right after an end-of-unit assessment draws that unit's skills from earlier units; (4) every observation, end-of-unit and check task asks each part of each code it lists.
+
+**Kindergarten to grade 2** (sequence-k-2-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Day 45: stripes from the 1777 flag law, a star per state since 1818, fifty today | K | The record behind the "record says" sort |
+| Observation and check days ask every part of every listed code (days 9, 18, 29, 31, 32, 39, 50, 60, 62, 63) | K | Settled call 4; both reads |
+| Time words split: day 34 the school day's words, day 35 the rest | K | Kindergarten word load |
+| Day 44: four holidays in full, Independence Day and Memorial Day as picture cards | K | Lesson load (two, not three, remain) |
+| Day 5 models "I think we need this rule, because ..." | K | A practice meeting before the observation |
+| Day 42 in the Veterans Day week, Thanksgiving met as coming soon; holiday school days are positions a school moves to its local week | K | The two dates never share a week; positions are not dates |
+| Day 1 and day 9: why the question matters to the child | K | D1.1 in full |
+| Day 53 and 60: a worker's knowledge, skills and tools | K | D2.Eco.3 in full |
+| Day 14 takes the action's first step; day 17 a before-and-after chart | K | The action is done, not only planned |
+| 20-minute route over the same 64 lessons | K | Shorter path, nothing assessed cut |
+| Checks: items for units 3 and 6 use units 1, 2 and 4 content | K | Settled call 3 |
+| Frame: 30 teaching weeks; cross-subject intro current | K | Stale lines |
+| Unit 7 reordered: action day 74, look back day 78 | 1 | Six school days for the action to show |
+| Day 24 Dolores Huerta, day 25 Wilma Mankiller | 1 | Exemplar fit for "a good leader" and time order |
+| Observation and check days ask every part (days 9, 18, 30, 40, 42, 54, 67, 79, 92, 94, 95) | 1 | Settled call 4; both reads |
+| D4.1.K-2 (review) on the claim days 28, 29, 38, 39, 42, 43, 53, 78, 91, 95, 96 | 1 | The code matches the argument skill |
+| Day 32 compares agreement and voting; day 34 elects a leader for a pretend job from two made-up candidates; day 73 is a secret-ballot vote | 1 | An election chooses a leader; no child loses a public vote |
+| Days 87 and 88 compare (two shops, two saving reasons) | 1 | MA.1.T4.8 and T4.9 verbs |
+| Check 2 adds unit 7 (a town's problem, a class's help) | 1 | Year-end record covers unit 7 |
+| Checks: items for units 4 and 8 use unit 1's garden team and unit 7's decision | 1 | Settled call 3 |
+| Schedule wording: three a week, four in weeks 11, 21, 31 | 1 | The 96 days and the week 31 check need it |
+| Frame Days bullet: retrieval task | 1 | Settled call 1 |
+| End-of-unit and check days ask every part (days 15, 28, 44, 46, 56, 70, 80, 92, 95) | 2 | Settled call 4; both reads |
+| Refugees today move from day 61 to day 62 | 2 | One forced move a lesson for seven-year-olds |
+| Check 1 claim on a unit 2 region; check 2 on a place from units 2 to 6, with a product label and a newcomer memory | 2 | Settled call 3; units 4 and 6 reach the record |
+| Angel Island: weeks, months, for some up to two years | 2 | The plain record |
+| Unit 1 question "Which map shows the world best, and best for what?" | 2 | More than one defensible answer |
+| Day 40 services, day 30 settlement reasons, days 90 to 92 digital version on the shared device | 2 | D2.Eco.4, MA.2.T2.4, D4.3 in full; standing device call |
+| Writing bridge until a child shows the claim without it | 2 | ELA's W.2.1 comes at week 24 |
+| Candidate wording: Tennessee 2.01, 2.02, 2.04 and California 2.4.1 "inform", not "met" | 2 | No false coverage claim |
+| 30-minute core path | 2 | Shorter path, nothing owned cut |
+| Frame: retrieval task, 31 weeks, opening points to the days | 2 | Stale lines |
+
+**Grades 3 to 5** (sequence-3-5-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Check day codes: Every owned code and lettered part on its unit's assessment day, a prompt per part; product codes by unit rubric | 3, 4, 5 | Lead call 4; both reads found assessment days covering only part of each unit |
+| Course-level checks after an assessment: Items for that unit's skills on earlier units' content, said in the S&S and frame | 3, 4, 5 | Lead call 3 |
+| Shorter path: Compressible days on the 40-minute daily block (grade 3: 20, grade 4: 14, grade 5: 9), following Cory's grade 3 call; no question to Cory | 3, 4, 5 | Codex reads; Cory's grade 3 call (40-minute daily block) extended, so no new question |
+| Unit 5 order: Expert swap into founding order, over Codex's keep-and-explain | 3 | Time order for the unit that introduces the timeline; no day cost; reads disagreed |
+| Readiness: Readiness for grade 1 rows idle across grade 2; retrieval for grade 2 rows | 3 | Lead call 1 |
+| Day 28: National and state branches; local and tribal governments from their own descriptions | 3 | No three-branch template laid on tribal government (Codex 4) |
+| Day 142: Two days (Gold Rush and Chinese Americans; Japanese Americans); old review day 158 dropped | 4 | Day 142 carried four topics |
+| Unit 5 end: Choice, force and the division 92 to 94; Alaska, Hawaii, Puerto Rico 95 to 97; map 98 | 4 | The unit ended on the division after 1898 (expert 4) |
+| Readiness: Retrieval only; frame Days bullet corrected | 4 | Lead call 1 |
+| Unit 3 order: Stamp Act Congress 32, sourcing 33, King Street 34, weigh 35; day 30 named as the first-pass overview | 5 | Time order in the detailed pass, at no cost |
+| Unit 7 order: Mashpee 102, Trail of Tears 103 | 5 | Time order: 1833 before 1838 |
+| Readiness: Days 15, 44, 60, 147 stay readiness checks; frame corrected; progression to the structure pass | 5 | Lead call 1 |
+| Unit 6 economics: Both productivity indicators on day 90; day 92 separates internal costs from spillovers; short and long term carried to day 95 | 5 | D2.Eco.6 and D2.Eco.13 in full (Codex 2) |
+| Unit 2 freedom routes: Legal-status wording; Prince Hall's petitions kept apart from the court cases | 5 | Accurate legal status and case wording (Codex 4) |
+
+**Grades 6 to 8** (sequence-6-8-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Every end-of-unit assessment and check names a prompt per part of each listed code, or the product or observed performance that stands for it | All three | Lead rule 4 |
+| Each check's items for the skill just assessed draw content from earlier units, and the scope and sequence says so | All three | Lead rule 3 |
+| A "Shorter path" section: a 45-minute route and an about-150-day route of fold-in days | All three | FOUNDATION section 5, adoption bar C2 |
+| Retrieval on money on day 78; no readiness check in the course | 6 | Lead rule 1: every assumed row was used in grade 5 |
+| Unit 11: day 147 the Maya, day 148 the Andean societies, report on 149 to 153, hand-in and sharing on 154 | 6 | One day was the whole shared base for the report |
+| Day 125 adds Islam on the Swahili coast (MA.6.T4b.1) | 6 | The code's second half was on no day |
+| Day 121 keeps its readiness check | 7 | ss5-constitution is unused in grade 6 (lead clarification) |
+| Unit 9: one day per war, eight research days kept, models on days 107 and 110 | 7 | Ranking needs the causes taught; the frame's "about 8" |
+| Unit 6: four geography days and four peoples days (Wairau Bar, iwi and hapu) | 7 | MA.7.T3b.1 for both peoples |
+| Day 92 compares three procedures | 7 | D2.Civ.9 comparison |
+| Retrieval on days 1, 20, 31 and 100; readiness on 16 (without ss5-constitution) and 77 | 8 | Lead rule 1 |
+| Unit 7 at about 5/3/4/6 (T6.7 on day 100, question on day 111, spillovers on their own day 113) | 8 | Day 113 was overloaded; the question needs its evidence day |
+| Unit 10: assess 154, respond 155, build 156, rehearse 157, present 158 (157 if booked), with the deliberation and presentation counted in the assessment | 8 | Feedback before the product; performance evidence for D2.Civ.7, D4.3, D4.8 |
+| Court research compares two decisions over time in each area | 8 | MA.8.T5.6 "over time" |
+| The civic proposal is one shared class product | 8 | Overlaps with ELA 8's unit 5 |
+
+**Grades 9 to 11 (World History I, World History II, US History I)** (sequence-9-11-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Readiness check for every earlier-grade row last used two or more grades back; retrieval for the year before or earlier this year | All three | Settled rule 1 |
+| End-of-unit and check goals name each part of each listed code; sustained products are named components | All three | Settled rule 4; Codex read 1 to 3 |
+| Each check draws content for the just-assessed unit's skills from earlier units | All three | Settled rule 3 |
+| Shorter path: a 45-minute route and about 154 or 155 days, folding days whose codes are taught elsewhere | All three | Adoption bar C2 |
+| ss7-comparing-societies opens as retrieval | World History I | Kept in use in grade 8 by ss8-amendments-civil-war |
+| Champa rice stays in T4.3 | World History I | MA.WHI.T4.3 names Asia |
+| Unit 10 argument handed in day 153 (week 31); day 154 scores it, no new argument | World History I | ELA 9's week 30; rule 3 |
+| Day 108 readiness on the grade 5 and 8 civil rights rows | World History II | Rule 1 |
+| Populism (day 130) and China (day 131) each get a day | World History II | Two power standards |
+| The two-scale map tested once, day 41, on unit 1 and 2 content | World History II | Rule 3 |
+| Essay 2 order: draft 1, assessment, respond, draft 2, draft 3 (days 88 to 92) | US History I | Feedback needs time |
+| Red Summer on day 135 | US History I | A home inside the course's dates |
+| Day 94's cause against trigger argument on independence, not on why war came | US History I | Rule 3; essay 1 argued why war came |
+| NML.T4.1 and T4.2 tested once, day 158; day 154 tests T1.5 and T4.3 | US History I | Rule 3, expert 4 with Codex 1 |
+| The action is taken on day 137 and looked back on day 160; in a Government year, days 136 and 137 evaluate Government's action | US History I | Bar item 8 |
+
+**Grade 12 (Economics, US Government and Politics, US History II)** (sequence-12-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Rule 1 read by data grade 12: grade 11 rows and maintained skills are the year before; Government (fall) and Economics (spring) count as earlier the same year in the grade 12 timetable | All three | Lead's rule 1 and the timetable Cory picked |
+| One readiness check on ss8-public-budget (day 1), retrieval in units 4, 8 and 9 | Economics | Rule 1 |
+| Day 45 readiness check on ss7-roman-economy, short items, no reteach | Economics | Rule 1 over the expert read |
+| Unit 9 reordered; paying for college at 0 days inside days 72 and 76; services matrix on day 76 | Economics | Load; both reads combined |
+| Money supply part of D2.Eco.10 on days 49 and 50 | Economics | Taught before assessed |
+| Writing thread on days 5, 16, 30, 49, 63, 75 | Economics | Writing grows in demand |
+| Checks on days 35 and 79 draw unit 4 and unit 9 skills from earlier content | Economics | Rule 3 |
+| Day 2 forms and ideologies, day 3 theories and participation data | US Government | Day 2 held two lessons |
+| Meeting date day 66, information request day 68, written comment day 77, look back on both day 80 | US Government | Response window for the look back |
+| Four-level procedure comparison in day 33's hearing; day 31 keeps T2.10c and d; day 59 retrieves the card | US Government | Codex over expert |
+| Day 70 scores the day 68 and 69 products for NML.T5.1 to T5.3 | US Government | Production standards need production evidence |
+| Outside expert optional everywhere; paper route meets NML.T5.1, T5.3 (and T5.4, T5.5) in part, said plainly | US Government | Cory's 2026-11-14 call extended (confirmation below) |
+| Founding rows a retrieval task on day 7 with briefs on day 9; civil rights laws a readiness check | US Government | Rule 1 |
+| Checks on days 36 and 72 draw unit 4 and unit 8 skills from earlier content | US Government | Rule 3 |
+| Readiness checks on units 1, 3, 4, 5, 6, 8, 9 and 11's first days; unit 7 retrieval | US History II | Rule 1 |
+| ELA 12 draft kept about day 145; counterclaim sources added on days 132 and 143; days 149 and 150 work inside the ELA draft | US History II | Closes the split without moving the ELA milestone |
+| Unit 9 three survey days, depth 117 to 119, presentation and comparison 120 | US History II | Load; Codex over expert |
+| Day 32 an orientation menu with Lindbergh; bank runs day 26; deposit insurance day 36 | US History II | Day 32 overloaded; the standard names Lindbergh |
+| Action planned and taken day 157, argument handed in day 158 | US History II | Look back gets three days |
+| Economics references: sections 19.1, 21.1, 22.1, chapters 27, 28, 30.4, chapter 25 plus a separate monetary source | US History II | Chapter 26 is neoclassical, not monetarist |
+| Day 84 is the week 17 mid-year checkpoint after unit 6; the fall half ends on day 80 inside unit 6 | US History II | CALENDAR's halves |
+| Checks on days 40, 84 and 146 draw the preceding unit's skills from earlier content | US History II | Rule 3 |
+
+**Structure pass** (sequence-structure-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| MA.6.T2.3's Paleolithic start written as 2.6 million years ago (the fix report proposed 2.5) | 6 | The framework PDF, printed page 86, says c. 2.6 million; day 6 and the progression's timeline row follow |
+| MA.6.T4b.1 widened to Axum's role in Ethiopia's Christianity and East African societies' role in spreading Islam to South Asia | 6 | Framework printed page 92, checked as the fix report asked |
+| MA.WHI.T3.7 says power struggles within the Church (not "and with kings"); the progression row keeps kings for the investiture struggle | 9 | The framework names the struggles within the church, page 144 |
+| wh2-social-movements assumes ss5-civil-rights-movements and ss8-civil-rights-laws, and both hand on to it | 10 | Day 108's readiness check already uses them; the progression gate needs the handoff both ways |
+| STANDARD.md takes the grades 9 to 11 wording for the literacy status (loaded, listed as also met, placed per course), over the grade 12 report's plain deletion | All | Says where the codes are, not only that they are no longer missing |
+| CALENDAR.md grade 8 science target week 15, not 16 | 8 (science) | The data put the check on day 75 (week 15) with no stagger break; moving the science check would reopen a finished frame |
+| Fifteen new topic pages in data/modules.csv (10 World History I, 2 World History II, 3 US History II), each with C3 codes; worksheets stay open on later.csv L8 | 9, 10, 12 | The scopes and sequences name them (L8) |
+| A missing "Shorter path" section is a gate note, not a failure; grades K to 5 hold their short routes in other forms, grade 1 has none | K to 5 | The rule is new today; the gate should not fail six finished courses for it |
+
 ### ELA, science and math course frames, written blind (expert and Codex reads, fix passes by band). Reports: frame-<course>-2026-11-14.md, frame-<course>-codex(-rerun)-2026-11-14.md, frame-<subject>-<band>-fixes-2026-11-14.md
 
 To Cory: one Desk card, q-frames-ela-sci-math-1. Bands still in their fix pass are added as they land.

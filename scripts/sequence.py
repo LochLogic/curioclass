@@ -39,6 +39,25 @@ def stage(course):
     return 'plan' if (rows(course, 'parts') or rows(course, 'items')) else 'scope'
 
 
+def md_fails(md, slug, nunits):
+    """The scope and sequence page holds its title and a section per unit (added 2026-11-14: three pages were
+    committed empty that day and the gate passed them)."""
+    t = md.read_text(encoding='utf-8')
+    if not t.strip():
+        return ['docs/courses/%s/scope-and-sequence.md is empty' % slug]
+    out = []
+    if not re.search(r'^#\s+Scope and sequence\b', t, re.M | re.I):
+        out.append('docs/courses/%s/scope-and-sequence.md has no "# Scope and sequence: <title>" line' % slug)
+    have = {int(m.group(1)) for m in re.finditer(r'^#{2,4}\s+Units?\s+(\d+)\b', t, re.M | re.I)}
+    if not have:
+        out.append('docs/courses/%s/scope-and-sequence.md has no unit sections ("## Unit 1. ...")' % slug)
+    elif nunits:
+        miss = [str(n) for n in range(1, nunits + 1) if n not in have]
+        if miss:
+            out.append('docs/courses/%s/scope-and-sequence.md has no section for unit(s) %s' % (slug, ', '.join(miss)))
+    return out
+
+
 def check(course):
     fails, notes = [], []
     slug = frame.LEGACY.get(course, course)
@@ -46,8 +65,14 @@ def check(course):
     if slug not in frame.found():
         return ['no frame docs/courses/%s/frame.md for this scope and sequence' % slug], notes
     f = frame.parse(slug)
-    if not (DOCS / slug / 'scope-and-sequence.md').exists():
+    md = DOCS / slug / 'scope-and-sequence.md'
+    if not md.exists():
         fails.append('no docs/courses/%s/scope-and-sequence.md' % slug)
+    else:
+        fails += md_fails(md, slug, f.get('units') or 0)
+        if not re.search(r'^#+\s*Shorter path', md.read_text(encoding='utf-8'), re.M | re.I):
+            notes.append('scope-and-sequence.md has no "Shorter path" section (sequence-write.md rule 10, '
+                         'added 2026-11-14)')
     if not days:
         return fails + ['days.csv has no rows'], notes
     miss = [c for c in NEED if c not in days[0]]

@@ -19,7 +19,9 @@ change, and its last day's goal is where yours starts.
 
 Every goal names the item that shows it: each day's exit and each end-of-unit assessment item, and which part of
 the standard each covers (rule 19: the whole standard). The end-of-unit assessment sits inside the unit's days, and
-the plan names its response time once (the same day or a later respond day). No number fact or list on an exit or
+the plan names its response time once (the same day or a later respond day). A readiness check, where the scope
+and sequence reserves one (assess = readiness), sits on the unit's first day; rows used the year before or earlier
+the same year open as a retrieval task inside a day instead (sequence-write.md rule 2). No number fact or list on an exit or
 assessment item may come from a taught row. Anything that is a question of scope, money, people or audience goes to
 Cory in your report; everything else you decide.
 

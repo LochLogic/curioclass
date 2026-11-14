@@ -1,14 +1,16 @@
 # Course frame: US History II (the 1920s to today)
 
-Course `us-history-ii` (catalogue id `us-hist-hs`), grade 12, draft frame (2026-11-13). The scope and sequence sets the days later.
+Course `us-history-ii` (catalogue id `us-hist-hs`), grade 12, draft frame (2026-11-13). The days are set in docs/courses/us-history-ii/scope-and-sequence.md and data/plans/us-history-ii/days.csv.
 
 ## The course in brief
 
 - **Units.** 12, in time order from the 1920s to today, opened by an economics toolkit and closed by a researched argument.
 - **Days.** 160 course days (a full year): 154 in units and 6 for three course-level checks, each an assessment day and a
   respond day. One lesson of about 50 minutes a day, five a week, across 32 weeks. Each unit's days include its
-  end-of-unit assessment and one respond day (a unit over 25 days also holds a mid-unit assessment); a unit that assumes
-  an earlier grade's row opens with a readiness check (its opening retrieval task) inside its days.
+  end-of-unit assessment and one respond day (a unit over 25 days also holds a mid-unit assessment); a row used the year
+  before or earlier this year opens as a retrieval task inside a day, and a row last used two or more grades back opens
+  its unit with a readiness check on the first day, with a reteach station for students it flags (units 1, 3 to 6, 8, 9
+  and 11; the table is in the scope and sequence).
 - **Senior calendar.** Grade 12 may end early. The capstone question is chosen on unit 9's respond day (about day 123)
   from the exit-routine notes, and units 10 and 11 each give part of one day to the student's source set. Unit 12 then
   needs 10 days at most: a school that ends seniors early keeps unit 12's audience and action and cuts unit 11's
@@ -31,8 +33,10 @@ Course `us-history-ii` (catalogue id `us-hist-hs`), grade 12, draft frame (2026-
   Act), unit 6 (its unit 4, termination and relocation), unit 9 (its unit 5, Indian civil rights and
   self-determination) and unit 11 (its unit 6, nation-building and self-determination today), each after the
   sensitivity read and as the Since Time Immemorial bullet below says; the retired CC BY Principles of Economics 2e
-  (store folder `openstax-retired-ccby\`, chapters 2, 3, 17 and 27) for unit 1, and its chapters 25 and 26 (the
-  Keynesian and neoclassical perspectives) for unit 3's comparison of two accounts of the Depression. No lesson-by-lesson source map: the
+  (store folder `openstax-retired-ccby\`, chapters 2, 3, 17, 27 and 28 and sections 19.1, 21.1, 22.1 and 30.4) for unit 1,
+  and its chapter 25 (the Keynesian perspective) for unit 3's comparison of two accounts of the Depression, the monetary
+  account sourced separately (the Federal Reserve's dated history of the Great Depression); chapter 26 (the neoclassical
+  perspective) only as named further context. No lesson-by-lesson source map: the
   unit plan says which pieces it adapts, each with a one-line credit on the day.
 - **Inquiry arc.** Every unit runs on its compelling question, with supporting questions per section, primary sources
   sourced (who, when, for whom, why) before use, and an end-of-unit task done from sources the student has not seen.
@@ -84,7 +88,7 @@ Course `us-history-ii` (catalogue id `us-hist-hs`), grade 12, draft frame (2026-
 
 | Period | Fall half (days 1 to 80) | Spring half (days 81 to 160) |
 |---|---|---|
-| US History II | Units 1 to 6 and two course-level checks (the second, days 84 and 85, closes the fall half) | Units 7 to 12, the third course-level check, capstone at the end |
+| US History II | Units 1 to 5, course-level check 1 and unit 6 to day 80 | The rest of unit 6 (days 81 to 83), the mid-year checkpoint (days 84 and 85, week 17), units 7 to 12, the third course-level check, capstone at the end |
 | Second social studies period (suggested) | US Government and Politics (80 days), ending in its local action | Economics (80 days), after this course's unit 1 toolkit |
 
   The suggested order keeps Government's action (its unit 9) away from this course's capstone and lets Economics
@@ -97,27 +101,27 @@ Picked up from US History I (grade 11), with World History II (grade 10) and Civ
 
 | From (row, grade) | What it hands on | Where this course picks it up |
 |---|---|---|
-| ss8-public-budget (8) | opportunity cost, budget, supply and demand in a public budget; interest on borrowing and investing; a public-data panel (employment, unemployment, inflation, output, income, growth) | Unit 1, us2-econ-toolkit: opens with a short retrieval task, which may use the interest and the data panel |
+| ss8-public-budget (8) | opportunity cost, budget, supply and demand in a public budget; interest on borrowing and investing; a public-data panel (employment, unemployment, inflation, output, income, growth) | Unit 1, us2-econ-toolkit: opens with a readiness check on day 1 (last used in grade 8), which may use the interest and the data panel; reteach station day 2 |
 | us1-industrialization (11) | cause-effect chains in the industrial economy, supply and demand | Unit 1, us2-economy-government (panics, the Fed's origin in 1913) |
 | us1-jim-crow (11) | segregation law and its effects | Unit 2 (us2-twenties-culture) and unit 7 (us2-civil-rights-movement) |
 | us1-wwi (11) | World War I at home and abroad; US History I ends about 1920 | Unit 2 (both rows) and unit 4 (us2-isolation-fascism) |
 | us1-immigration (11) | immigration of 1880 to 1920 | Unit 2 (us2-twenties-tensions: the 1924 quotas), unit 5 (us2-homefront), unit 11 (us2-recent-trends: then and now) |
 | us1-research-inquiry (11) | the research cycle, sourcing | Unit 3 (us2-depression's primary source report) and unit 12 |
-| wh2-great-depression (10) | the Depression worldwide | Unit 3, us2-depression: content revisited, opens with retrieval |
+| wh2-great-depression (10) | the Depression worldwide | Unit 3, us2-depression: content revisited, opens with a readiness check on day 26 (last used in grade 10) |
 | us1-progressivism (11) | reform by law and regulation | Unit 3, us2-new-deal |
-| wh2-totalitarian-regimes, wh2-road-to-war (10) | fascism, Nazism, the road to war | Unit 4, us2-isolation-fascism: revisited at US depth |
-| wh2-wwii-war-and-diplomacy (10) | the war's course and conferences | Unit 4, us2-wwii-war |
-| wh2-holocaust (10) | the Holocaust | Unit 4, us2-holocaust-response: the US and Allied response |
-| wh2-atomic-bombs (10) | the decision and its human cost | Unit 5, us2-atomic-bomb: interpretations |
+| wh2-totalitarian-regimes, wh2-road-to-war (10) | fascism, Nazism, the road to war | Unit 4, us2-isolation-fascism: revisited at US depth; one readiness check on day 42 covers unit 4's four grade 10 rows |
+| wh2-wwii-war-and-diplomacy (10) | the war's course and conferences | Unit 4, us2-wwii-war: readiness items in day 42's check |
+| wh2-holocaust (10) | the Holocaust | Unit 4, us2-holocaust-response: the US and Allied response; readiness items in day 42's check |
+| wh2-atomic-bombs (10) | the decision and its human cost | Unit 5, us2-atomic-bomb: interpretations; readiness check on day 57 (last used in grade 10) |
 | us1-women-work-suffrage (11) | women's work and the vote | Unit 5, us2-homefront |
-| wh2-cold-war-blocs (10) | the two blocs | Unit 6, us2-cold-war-origins |
-| wh2-industrial-cities (10) | how industry reshaped cities (D2.Geo.8) | Unit 6, us2-postwar-domestic: highways and housing policy reshape city and suburb |
+| wh2-cold-war-blocs (10) | the two blocs | Unit 6, us2-cold-war-origins: readiness check on day 67 (last used in grade 10) |
+| wh2-industrial-cities (10) | how industry reshaped cities (D2.Geo.8) | Unit 6, us2-postwar-domestic: highways and housing policy reshape city and suburb; retrieval (US History I used it) |
 | us1-civil-rights-1900s (11) | early civil rights organizing | Unit 7, us2-civil-rights-movement |
-| us1-reconstruction (11), ss8-civil-rights-laws (8) | the Reconstruction amendments; civil rights law | Unit 7, us2-civil-rights-laws |
-| wh2-cold-war-world (10) | the Cold War in Asia | Unit 8, us2-vietnam |
-| us1-reform-movements, us1-native-west (11), ss8-protest-change (8), wh2-decolonization (10) | how movements form; Native nations' history; decolonization | Unit 9, us2-social-movements |
-| wh2-soviet-collapse (10) | the Soviet collapse | Unit 10, us2-cold-war-end: internal and external causes weighed |
-| wh2-terrorism (10) | terrorism in the world since 1990 | Unit 11, us2-terrorism-response |
+| us1-reconstruction (11), ss8-civil-rights-laws (8) | the Reconstruction amendments; civil rights law | Unit 7, us2-civil-rights-laws: retrieval tasks (Government's unit 2 checked ss8-civil-rights-laws this fall) |
+| wh2-cold-war-world (10) | the Cold War in Asia | Unit 8, us2-vietnam: readiness check on day 103 (last used in grade 10) |
+| us1-reform-movements, us1-native-west (11), ss8-protest-change (8), wh2-decolonization (10) | how movements form; Native nations' history; decolonization | Unit 9, us2-social-movements: readiness check on day 114 (ss8-protest-change, wh2-decolonization); the US History I rows retrieved |
+| wh2-soviet-collapse (10) | the Soviet collapse | Unit 10, us2-cold-war-end: internal and external causes weighed; retrieval (Economics' day 1 checked it this spring) |
+| wh2-terrorism (10) | terrorism in the world since 1990 | Unit 11, us2-terrorism-response: readiness check on unit 11's first day (day 135) |
 | us1-argument-writing (11) | the sourced argument with counterclaim | Unit 12, us2-research-paper |
 
 Handed on: US History II is the last history course in the subject, so its threads end here. Where they end:
@@ -136,7 +140,7 @@ last use.
 
 | Model | Where it comes from | First used here | Used again in |
 |---|---|---|---|
-| opportunity-cost | grade 1 (ss1-choices), kept through ss8-public-budget | Unit 1 (us2-econ-toolkit), retrieval task | Units 3, 10 and 11 as review in the text |
+| opportunity-cost | grade 1 (ss1-choices), kept through ss8-public-budget | Unit 1 (us2-econ-toolkit), inside day 1's readiness check | Units 3, 10 and 11 as review in the text |
 | supply-demand | grade 7 (ss7-silk-road-trade), formal in grades 8 to 10 | Unit 1 (us2-econ-toolkit), the simple graph reviewed | Units 3, 6 and 10 as review in the text |
 | cause-effect-chain | grade 2 (ss2-why-people-move) | Unit 1 (us2-economy-government: event to prices and jobs) | Units 3, 4, 5, 6, 7, 9, 10 |
 | source-sourcing | grade 2 (ss2-source-maker) | Unit 2 | Units 3, 4, 6, 7, 8, 9 |
@@ -163,7 +167,7 @@ last use.
 | 9 | Movements for rights since the 1960s. What makes a social movement succeed? | 10 | us2-social-movements | MA.USII.T4.8 | Practised: D2.Civ.14.9-12 (owned grade 10), D2.His.5.9-12 | The civil rights laws, the 1977 sit-ins, the ADA, Stonewall and Obergefell were met in grades 5 and 8 and in World History II unit 8; this unit adds each movement's causes, tactics and opponents from its own sources and the comparison across movements. One movement studied in depth for its causes, course, tactics and opponents, the rest surveyed: women's rights (MA.USII.T4.8a: Title IX, the ERA, Roe in 1973 and Dobbs in 2022, O'Connor); LGBTQ civil rights (MA.USII.T4.8b: Stonewall, Gay Pride, AIDS activism, Goodridge 2003, Obergefell 2015); disability rights (MA.USII.T4.8c: the 1977 sit-ins, the 1975 education law, the ADA and IDEA); the environment (MA.USII.T4.8d: Silent Spring, the clean air and water laws); farmworkers and workers' rights (MA.USII.T4.8e: Chavez, Huerta); Native nations' rights and sovereignty (MA.USII.T4.8f: the Indian Civil Rights Act, Alcatraz, AIM, Wounded Knee 1973, self-determination laws). The movement studied in depth carries every item its option names, opponents included (for women's rights, feminist writers, the birth control pill and NOW; for disability rights, deinstitutionalization and independent living; for the environment, wetlands protection; for workers, protection against discrimination and harassment; for Native nations, efforts to preserve their cultures) | After unit 7, so other movements are compared with the civil rights movement's tactics and laws. One unit so the comparison is the point | Candidate: the Chicano and Asian American movements added to the survey. From California grade 11 (11.10) and New York 11.10 | Roe and Dobbs stated as the Court decided them (values rule a). LGBTQ history under values rule c, at a grade 12 level. Native nations in the present tense, with Since Time Immemorial's unit 5, flagged for the sensitivity read. Students' own views stay theirs |
 | 10 | Liberals, conservatives and the end of the Cold War, about 1968 to 1991. Why did American politics and the Cold War both change so much between 1968 and 1991? | 11 | us2-liberal-conservative; us2-cold-war-end | MA.USII.T5.2; MA.USII.T5.3; MA.USII.T5.4 | Practised: D2.His.4.9-12, D2.His.14.9-12 | Two traditions from their own sources: mid-century liberalism (the New Deal legacy, unions, welfare programs, regulation) and the conservative movement that elected Reagan (tax cuts, anti-communism, deregulation, the 1981 air traffic controllers' strike), each explained in terms its supporters accept and then weighed by results. How the Cold War ended: failing communist economies, Solidarity, US policy, arms control, the Berlin Wall (1989), the Soviet collapse (1991), internal and external causes weighed; the flashpoint map of unit 6 completed (Afghanistan, Central America) | Time order. Unit 1's toolkit returns for 1970s inflation and the policy turn. Grade 10's Soviet collapse opens with retrieval | Candidate: the 1970s: stagflation, the oil shocks, the Iran hostage crisis, Carter's presidency. From New York 11.10 and the college-level framework (periods 8 and 9) | Present-day party feeling: both traditions get equal sources and their own words; the course takes no side |
 | 11 | The United States since 1990. How well has the United States met the challenges of a connected world? | 11 | us2-recent-trends; us2-terrorism-response | MA.USII.T5.5; MA.USII.T5.6 | Practised: D2.His.2.9-12, D2.Geo.11.9-12 | The computer and internet revolution, the human genome, Asian and Latin American immigration after 1965 compared with 1880 to 1920. The September 11 attacks, met in World History II unit 10 (terrorism in the world since 1990); this unit adds the statute and court record (the 2001 Patriot Act and its renewals, the 2015 Freedom Act, Hamdi v. Rumsfeld in 2004 and Boumediene v. Bush in 2008). Homeland Security, the surveillance laws and the debate over them, the wars in Afghanistan (2001 to 2021) and Iraq (2003 to 2011), judged against stated goals. Part of one day goes to each student's capstone source set | Reaches the present, and gives the capstone its most recent material | Candidate, in order of keeping: the 2008 financial crisis (one day; unit 1 returns) and Native nations' self-government today (one day; Since Time Immemorial unit 6); the 1991 Gulf War folded into T5.6's opening as the first post-Cold War use of force; the presidential elections since 1992, the Affordable Care Act and the COVID-19 pandemic as one survey day on a timeline, the first cut in a short senior year. From New York 11.11 and the college-level framework (period 9) | Some students' families served or were harmed: no one is asked to share. The backlash against Muslim Americans named plainly. Recent events only from backed sources with dates, more than one party's sources |
-| 12 | Capstone: a researched argument. What question from the past century still needs an answer, and what do the sources say? | 13 | us2-research-paper | D4.3.9-12; D4.4.9-12; D4.5.9-12 | Owned: D4.3.9-12, D4.4.9-12, D4.5.9-12. Practised: D1.1 to D1.5.9-12, D3.1 to D3.4.9-12, D2.His.16.9-12 | A researched argument on a student-chosen question from the 1920s to today: the student confirms or refines the question chosen on unit 9's respond day, completes the source set begun in units 10 and 11, and answers the strongest counterclaim (choosing the question, building the source set and the counterclaim are retrieved from grades 10 and 11; grade 12 adds an outside audience and two contrasting forms, judged against D4.3 to D4.5). The findings are adapted into two forms (the paper or a print briefing, and a talk or an offline digital presentation such as a short documentary or website) for at least two contrasting audiences, one beyond the classroom (D4.3). A structured peer critique of one argument's claims and evidence for credibility (D4.4), and a separate critique of one historical explanation's reasoning, sequence and supporting detail (D4.5); revision after feedback. The year's informed action follows from it, by the student's choice. Alone, without ELA 12: a 1,500 to 2,000 word argument (or a documentary or site of equal weight) from at least six sources, three of them primary | Last, so every period of the course is open to it. Each unit's exit routine has students note one open question; the question is chosen from those notes on unit 9's respond day, so this unit is synthesis, critique, revision, presentation and action, and can run in 10 days in a short senior year. Shared brief with ELA 12 below | Candidate: none beyond the anchor and C3; the comparison table checks the research expectations of the college-level framework | The student's chosen topic may be hard history: the teacher approves the question and the source set with the sensitive-topic notes of its unit. Outside contact goes through the school. Action is the student's choice, never a cause the course picks |
+| 12 | Capstone: a researched argument. What question from the past century still needs an answer, and what do the sources say? | 13 | us2-research-paper | D4.3.9-12; D4.4.9-12; D4.5.9-12 | Owned: D4.3.9-12, D4.4.9-12, D4.5.9-12. Practised: D1.1 to D1.5.9-12, D3.1 to D3.4.9-12, D2.His.16.9-12 | A researched argument on a student-chosen question from the 1920s to today: the student confirms or refines the question chosen on unit 9's respond day, completes the source set begun in units 10 and 11, and answers the strongest counterclaim (choosing the question, building the source set and the counterclaim are retrieved from grades 10 and 11; grade 12 adds an outside audience and two contrasting forms, judged against D4.3 to D4.5). The findings are adapted into two forms (the paper or a print briefing, and a talk or an offline digital presentation such as a short documentary or website) for at least two contrasting audiences, one beyond the classroom (D4.3). A structured peer critique of one argument's claims and evidence for credibility (D4.4), and a separate critique of one historical explanation's reasoning, sequence and supporting detail (D4.5); revision after feedback. The year's informed action follows from it, by the student's choice; no visible change is needed for the action to count. The end-of-unit assessment is a critique of an unseen historical explanation (D4.5) beside the capstone. Alone, without ELA 12: a 1,500 to 2,000 word argument (or a documentary or site of equal weight) from at least six sources, three of them primary | Last, so every period of the course is open to it. Each unit's exit routine has students note one open question; the question is chosen from those notes on unit 9's respond day, so this unit is synthesis, critique, revision, presentation and action, and can run in 10 days in a short senior year. Shared brief with ELA 12 below | Candidate: none beyond the anchor and C3; the comparison table checks the research expectations of the college-level framework | The student's chosen topic may be hard history: the teacher approves the question and the source set with the sensitive-topic notes of its unit. Outside contact goes through the school. Action is the student's choice, never a cause the course picks |
 
 **Shared research brief with ELA 12** (us2-research-paper and e12-research, cross-read finding 8). Where a school teaches
 both, one project serves both: one question and one source set; ELA 12 owns the writing (W.11-12.7 and W.11-12.8, about
@@ -173,16 +177,20 @@ unit 8 runs days 125 to 160, with its milestones in that unit (source list day 1
 147, talks days 150 to 156, paper day 158) and the same cut order; ELA requires at least three primary sources among
 eight. The shared question is chosen on this course's unit 9 respond day (about day 123), just before ELA's unit 8
 opens, and the source requirements agreed then; units 10 and 11 add to the source set; unit 12's 13 days are the
-historical synthesis, critique, revision, presentation and action. Each course still teaches the whole cycle for a
+historical synthesis, critique, revision, presentation and action. Paired, units 10 and 11's exit routines each add one
+source that argues against the claim, so the ELA draft answers it, and history's days 149 and 150 corroborate and
+answer the counterclaim inside that draft (no second draft); days 154 to 156 adapt the talk ELA rehearsed. A short
+senior year keeps history's two forms for two audiences, both critiques, the assessment, the respond day and the action
+(the scope and sequence gives the paired schedule). Each course still teaches the whole cycle for a
 school that uses it alone (the standalone product is in unit 12's row).
 
 ## Course-level checks
 
 | Check | After unit | Check days | Respond days | What it checks |
 |---|---|---|---|---|
-| 1 | 3 | 1 | 1 | Units 1 to 3: a task from unseen sources on the 1920s and 1930s (a claim on cause and effect, with the unit 1 chain used on a real event), plus a short knowledge section. The respond day reteaches the two weakest items and extends the rest |
-| 2, mid-year (days 84 and 85, the semester line) | 6 | 1 | 1 | Units 1 to 6, weighted to 4 to 6: an unseen document set on the war or postwar years and a sourced argument that answers a counterclaim (required in every argument from unit 2) |
-| 3, year-end | 11 | 1 | 1 | The whole year's knowledge, and a continuity-and-change essay across at least two units from unseen sources. The respond day reviews each student's capstone question and source set |
+| 1 | 3 | 1 | 1 | Units 1 to 3: a task from unseen sources (a claim on cause and effect, with the unit 1 chain used on a real event), plus a short knowledge section. It follows unit 3's assessment, so unit 3's skills are asked on units 1 and 2 content. The respond day reteaches the two weakest items and extends the rest |
+| 2, mid-year (days 84 and 85, week 17, after unit 6) | 6 | 1 | 1 | Units 1 to 6, weighted to 4 to 6: an unseen document set and a sourced argument that answers a counterclaim (required in every argument from unit 2). It follows unit 6's assessment, so unit 6's skills are asked on units 4 and 5 content |
+| 3, year-end | 11 | 1 | 1 | The whole year's knowledge, and a continuity-and-change essay across at least two units from unseen sources. It follows unit 11's assessment, so unit 11's skills are asked on units 1 to 10 content. The respond day reviews each student's capstone question and source set |
 
 ## Cross-subject
 

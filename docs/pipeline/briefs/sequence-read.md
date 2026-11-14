@@ -11,15 +11,24 @@ counts, kinds, an assessment per unit, respond days, owned skills placed), so sp
 The data you must check:
 - **Order inside each unit:** each day builds on the days before it; nothing is used before it is taught; the arc
   reaches the unit's compelling question or performance task.
-- **Assessments:** the end-of-unit assessment covers every part of every standard the unit teaches; mid-unit
-  assessments sit where a unit over 25 days needs one; readiness days sit in the first unit that assumes an earlier
-  grade's row; response time is counted once.
+- **Assessments:** the end-of-unit assessment covers every part of every standard the unit teaches; every
+  observation, end-of-unit and check task asks about each part of each code it lists (a prompt per part, or a product
+  or observed performance the day names); mid-unit assessments sit where a unit over 25 days needs one; response time
+  is counted once.
+- **Readiness or retrieval** (sequence-write rule 2): a row used the year before, or earlier the same year, opens as a
+  retrieval task inside a day; every other earlier-grade row the unit assumes (last used two or more grades back)
+  opens the unit with a readiness check on its first day. Check each assumed row's last use in the progression, and
+  name any unit that checks a year-before row or retrieves an older one.
+- **Checks that do not repeat:** a course-level check right after a unit's end-of-unit assessment draws its items for
+  that unit's skills from earlier units' content, and the scope and sequence says so.
 - **Standards in full:** every lettered part of every owned code is carried by a day, not only named.
 - **Days by load:** days follow what each part of a unit owns; a run of days far over or under its load is named
   with the counts.
 - **The calendar:** the course-level checks sit on CALENDAR.md's target weeks, or the write-up says why not; each
   same-year lean meets the other subject's days in data/plans/calendar.csv, or the day carries its bridge.
 - **Candidate cells:** each is settled, with its day cost inside the unit or the reason it was dropped.
+- **Shorter path:** the scope and sequence has a "Shorter path" section: a shorter period, and a year about 10 days
+  short by named fold-in days, with nothing assessed and no owned part cut.
 - **Source map** (base-text courses only): every base lesson placed or cut with a reason; the base text's own order
   kept unless a reason is given.
 - **The lens checklist** for the scope and sequence layer: each line met, missed or not applicable.

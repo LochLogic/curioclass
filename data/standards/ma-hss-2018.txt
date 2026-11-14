@@ -3,9 +3,10 @@
 # fetched: 2026-11-12
 # level: MA.<framework topic code>.<standard number><letter>; topic and sub-topic heading lines too (MA.6.T3b); repeated high school codes take a section prefix: MA.GOV, MA.ECON, MA.PFL, MA.NML
 # copyright: the framework permits copying for non-commercial educational use with credit. Credit: Massachusetts Department of Elementary and Secondary Education. This file holds ids and Curio Class's own words only, never the framework's sentences.
-# note: content standards K to 12 only. Not loaded: pre-kindergarten, the practice standards (C3 carries skills), the history and social studies literacy standards (RH and WHST are not in the ELA records; loading them is open, see docs/courses/social-studies/STANDARD.md).
+# note: content standards K to 12 only. Not loaded: pre-kindergarten, the practice standards (C3 carries skills), the history and social studies literacy standards (RH and WHST are loaded on their own in data/standards/ccss-literacy-6-12.txt, see docs/courses/social-studies/STANDARD.md).
 # note: 2026-11-13 frame reads widened MA.K.T2.2, MA.K.T3.3b, MA.1.T3.2c, MA.2.T4.2, MA.3.T6.4 and MA.4.T1.2 to carry their clarifications.
 # note: 2026-11-14 lead items widened MA.7.T4b.3 (parts 3a and 3b became 3a to 3e), MA.7.T1b.2d, MA.8.T3.2, MA.8.T3.4, MA.USII.T1.2, MA.GOV.T1.6, MA.WHI.T3.9, MA.WHII.T3.2 (parts 3.2c and 3.2d added), MA.WHII.T5.5 and MA.WHII.T6.2, each checked against the framework PDF (pages 97, 101, 106, 107, 130, 144, 152, 158, 160, 163).
+# note: 2026-11-14 sequence fixes widened MA.2.T2.4, MA.6.T4b.1, MA.8.T2.1, MA.USI.T3.3, MA.USI.T4.2e, MA.WHI.T3.7 and MA.WHI.T5.1, and corrected MA.6.T2.3's date (2.6 million years), each checked against the framework PDF (pages 92, 86, 105 to 106, 123, 124, 144, 146).
 # note: some source standards were garbled by PDF extraction (two-column fragments, spliced footnotes); USII.T2.4 reread against the PDF 2026-11-13 (11 single options, a to k).
 MA.K.T1	Kindergarten civics: being a good citizen in the classroom
 MA.K.T1.1	Follow rules and expectations with little reminding, and with help ask and answer questions about why rules exist.
@@ -75,7 +76,7 @@ MA.2.T2	Grade 2 geography: how the Earth shapes people's lives
 MA.2.T2.1	Locate all the continents and some major physical features on each one on a world map and a globe.
 MA.2.T2.2	Locate the world's oceans on a map and globe, and explain why oceans matter and help make the world livable.
 MA.2.T2.3	Explain how the location of landforms and bodies of water shapes climate, weather, and vegetation for living.
-MA.2.T2.4	Explain and describe how people interact with the physical environment.
+MA.2.T2.4	Explain and describe how people interact with the physical environment, including why people settle near particular bodies of water and landforms.
 MA.2.T3	Grade 2 history: migrations and cultures
 MA.2.T3.1	Investigate why people move to new places around the world, recognizing that some migration is chosen and some is forced.
 MA.2.T3.2	Give examples of why the United States is called "a nation of immigrants."
@@ -246,7 +247,7 @@ MA.6.T1.3	Give examples of how archaeologists, historians, geographers, economis
 MA.6.T2	Grade 6: human origins, the Paleolithic and Neolithic Eras
 MA.6.T2.1	Describe the large climate and environmental changes that shaped the Earth and eventually allowed human life to grow.
 MA.6.T2.2	Identify sites showing the origins of modern humans, explain theories of how groups spread from Africa to other continents, and show how new research changes dating of migrations.
-MA.6.T2.3	Explain that the Paleolithic Era is the earliest period of human history, about 2. million to 11,700 years ago, marked by stone tools, fire, hunting and gathering, and later cave painting and sculpture.
+MA.6.T2.3	Explain that the Paleolithic Era is the earliest period of human history, about 2.6 million to 11,700 years ago, marked by stone tools, fire, hunting and gathering, and later cave painting and sculpture.
 MA.6.T2.4	Explain that the Neolithic Era began about 10,000 years ago and saw the invention of farming, animal domestication, and metalworking, and the first complex societies.
 MA.6.T2.5	Explain how farming societies differ, with some settling permanently, some nomadic with livestock, and some farming land temporarily before moving on.
 MA.6.T2.6	Explain that scholars have long tried to define what makes a complex society ("civilization"), and that, although debated, many point to these characteristics.
@@ -307,7 +308,7 @@ MA.6.T4a.1	Locate Africa, its surrounding oceans and the Mediterranean on a worl
 MA.6.T4a.2	Read a political map to tell countries, capitals and cities apart and describe their absolute location (coordinates) and relative location, using maps to add to text.
 MA.6.T4a.3	Explain how location, landforms, climate (including drought and desertification) and natural resources shaped settlement, population size and economies in the region.
 MA.6.T4b	Selected Sub-Saharan African states and societies, about 100 to 1000 CE
-MA.6.T4b.1	Identify where the Kingdom of Axum was, what made it wealthy and important, and how it and other East African societies affected the spread of Christianity and Islam.
+MA.6.T4b.1	Identify where the Kingdom of Axum was, what made it wealthy and important, and its role in Ethiopia's adoption of Christianity, and explain how East African societies helped spread Islam across the Indian Ocean to South Asia.
 MA.6.T4b.2	Explain how Swahili coastal societies linked inland Africa to Indian Ocean trade routes reaching South Asia and China, and name key goods traded.
 MA.6.T4b.3	Identify the locations, sources of wealth and importance of West African cities and empires, including Timbuktu and ancient Ghana.
 MA.6.T4b.4	Explain these societies' key role in trans-Saharan trade, the spread of Islam and trade in gold, ivory and enslaved people, and their contributions to the modern world.
@@ -405,7 +406,7 @@ MA.8.T1.3	Explain how Enlightenment thinkers like John Locke and Montesquieu inf
 MA.8.T1.4	Explain how British ideas and practices, such as the Magna Carta, habeas corpus and colonial legislatures, shaped American colonists and their political institutions.
 MA.8.T1.5	Analyze the evidence for the argument that Native Peoples' governments, such as the Iroquois Confederacy, influenced United States principles of government.
 MA.8.T2	Development of the United States government
-MA.8.T2.1	Use knowledge of the Revolutionary period to explain what led colonists to declare independence and the Declaration's key ideas on equality, natural rights and limited, representative government.
+MA.8.T2.1	Use knowledge of the Revolutionary period to explain what led colonists to declare independence and the Declaration's key ideas on equality, natural rights, the rule of law, the common good, the purpose of government and limited, representative government.
 MA.8.T2.2	Analyze the weaknesses of the national government under the Articles of Confederation and the events, such as Shays' Rebellion, that led to the Constitutional Convention.
 MA.8.T2.3	Identify the leaders of the Constitutional Convention and analyze the major issues they debated, such as power, individual rights, state representation and slavery, and how they were settled.
 MA.8.T2.4	Compare the Federalist and Anti-Federalist arguments over ratifying the Constitution, such as federalism, checks and balances and limited government.
@@ -482,7 +483,7 @@ MA.USI.T3.2b	The cotton gin's effect on Southern agriculture and slavery, and th
 MA.USI.T3.2c	The causes and effects of immigration from Northern Europe in the 1840s and 1850s, including the Irish famine and U.S. industrial growth.
 MA.USI.T3.2d	The rise of a business class of merchants and manufacturers.
 MA.USI.T3.2e	Women as the main workforce in New England textile mills and their activism for better working conditions.
-MA.USI.T3.3	Describe slavery's role in the industrial North and agricultural South, explain why it grew rapidly after 1800, and analyze how banks and insurers profited from it.
+MA.USI.T3.3	Describe slavery's role in the industrial North and agricultural South, explain why it grew rapidly after 1800 in the Southern states, the Caribbean islands and South America, and analyze how banks and insurers profited from it.
 MA.USI.T3.4	Research primary sources to analyze one aspect of slave life and resistance, such as the Stono Rebellion, Haitian Revolution, Nat Turner's rebellion or the Underground Railroad.
 MA.USI.T4	Social, political and religious change
 MA.USI.T4.1	Describe religious and social trends that shaped America in the 18th and 19th centuries, such as the Great Awakenings, Republican Motherhood and anti-Catholic nativism.
@@ -491,7 +492,7 @@ MA.USI.T4.2a	The abolitionist movement, why individuals like Frederick Douglass 
 MA.USI.T4.2b	The women's rights and suffrage movements, their ties to abolitionism and wider educational opportunities for women, including the 1848 Seneca Falls Convention.
 MA.USI.T4.2c	Horace Mann's campaign for free public schooling, rising literacy and the growth of newspaper and magazine publishing.
 MA.USI.T4.2d	Efforts to support people with disabilities, such as new schools for students with cognitive, hearing or vision disabilities, and asylums for people with mental illness.
-MA.USI.T4.2e	The Transcendentalist movement, including Emerson, Thoreau and Fuller, and its themes of liberty, nature, self-reliance and civil disobedience.
+MA.USI.T4.2e	The Transcendentalist movement, including Emerson, Thoreau and Fuller, and its themes of liberty, nature, self-reliance, civil disobedience, materialism and abolitionism.
 MA.USI.T5	The Civil War and Reconstruction: causes and consequences
 MA.USI.T5.1	Describe how expansion into the Midwest raised the importance of sectional politics and shifted the balance of power in the federal government.
 MA.USI.T5.2	Analyze the policies and events that led to the Civil War and how they connect, such as the Missouri Compromise, Compromise of 1850, Kansas-Nebraska Act and Dred Scott decision.
@@ -662,7 +663,7 @@ MA.WHI.T3.3	Describe the goods traded in all directions along the Silk Roads lin
 MA.WHI.T3.4	Explain how travelers' accounts and maps added to knowledge of the world.
 MA.WHI.T3.5	Explain how common it was across Europe, Africa, Asia, and the Americas to enslave war captives and to buy and sell slaves from the 5th to the 18th centuries.
 MA.WHI.T3.6	Describe coexistence, tolerance, and trade between Arab and Christian kingdoms from the 8th to the early 10th century.
-MA.WHI.T3.7	Explain the Catholic Church's growing wealth and power struggles in the 11th century, the rise of feudalism, knighthood and chivalry, and the emergence of rights in England.
+MA.WHI.T3.7	Explain the Catholic Church's growing wealth and the power struggles within it in the 11th century, the rise of feudalism, knighthood and chivalry, and the emergence of rights in England.
 MA.WHI.T3.8	Evaluate the causes, course, and results of the European Crusades in the Mediterranean from the 11th to 13th centuries.
 MA.WHI.T3.9	Explain the global effects of disease, focusing on how the Bubonic plague spread along Eurasian and African trade routes and drove up death rates in Europe, Africa, and Asia, in repeated outbreaks into the 15th century.
 MA.WHI.T4	Philosophy, the arts, science and technology, 1200 to 1700
@@ -679,7 +680,7 @@ MA.WHI.T4.8	Identify how the Reformation and Counter-Reformation shifted politic
 MA.WHI.T4.9	Explain the rise of a wealthy Protestant middle class in 17th-century Northern Europe, its global trade, and its support for the arts and sciences.
 MA.WHI.T4.10	Summarize how the scientific method and tools like the telescope and microscope produced new theories of the universe, describe two Scientific Revolution figures, and explain how better ships aided European exploration.
 MA.WHI.T5	Global exploration, conquest, and colonization, 1492 to 1800
-MA.WHI.T5.1	Describe the expulsion of Jews and Muslims from Iberia after 1492, the rise of Spain and Portugal, the Spanish Inquisition, and Spanish expeditions to conquer and convert the Americas and the Philippines.
+MA.WHI.T5.1	Describe the expulsion of Jews and Muslims from Iberia after 1492, the rise of Spain and Portugal (with Portugal's conflicts with Muslim states), the Spanish Inquisition, and Spanish expeditions to conquer and convert the Americas and the Philippines.
 MA.WHI.T5.2	Explain why European nations wanted a sea route to Asia.
 MA.WHI.T5.3	Identify the major economic, political, population, and social effects of European colonization in the Americas and Caribbean, including the Columbian Exchange, the impact of missionaries, and the growth of the transatlantic slave trade.
 MA.WHI.T5.4	Map the 17th-century Ottoman, Chinese, Portuguese, Dutch, Spanish, and British Empires, and report on an account of travel, trade, or diplomacy from that century.

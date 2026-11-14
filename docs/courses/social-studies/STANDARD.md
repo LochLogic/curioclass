@@ -22,9 +22,10 @@ docs/reviews/social-studies-content-standard-2026-11-12.md.
   repeat across sections, a section prefix: `MA.GOV.T3.1` (Government and Politics), `MA.ECON.T2.4` (Economics),
   `MA.PFL.T1.2` (Personal Financial Literacy), `MA.NML.T4.1` (News/Media Literacy).
 - Topic and sub-topic headings have lines of their own (`MA.6.T3b`), so a course frame can cite a topic.
-- Not loaded: pre-kindergarten; the seven practice standards (C3 carries the skills); the literacy standards.
-  The grades 6 to 12 reading and writing standards for history and social studies (RH, WHST) are not in the ELA
-  records either; whether to load them and how to place them across the courses is on the Desk (2026-11-14).
+- Not loaded: pre-kindergarten; the seven practice standards (C3 carries the skills).
+- The grades 6 to 12 literacy standards (RH, RST, WHST) were loaded on 2026-11-14 in
+  data/standards/ccss-literacy-6-12.txt; each grade 6 to 12 social studies frame lists its RH and WHST codes as also
+  met, placed per course.
 - Terms: the framework permits copying any part for non-commercial educational purposes with credit to the
   Massachusetts Department of Elementary and Secondary Education. Curio Class pages are CC BY, so the file stores
   ids and our own words, never the framework's sentences, as with CCSS. Credit is in the file header.

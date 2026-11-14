@@ -427,3 +427,37 @@ the "For the lead" lists are in the five frame fix reports). Reference only unle
   Both public domain; read for the unit's citizenship comparison.
 - World History II: the Holocaust Museum's Mussolini entry,
   https://encyclopedia.ushmm.org/content/en/article/benito-mussolini-1 (chronology only).
+
+## Social studies scope and sequence reads, 2026-11-14
+
+Sources the expert and Codex readers of the social studies scopes and sequences opened (reports in
+docs/reviews/sequence-*-2026-11-14.md; filed from the five sequence fix reports). Reference only unless a licence says
+otherwise; nothing was copied.
+
+- Massachusetts framework, 2018 (above): printed pages 86, 92, 105 to 106, 123, 124, 144 and 146 reread on 2026-11-14
+  for the MA.6.T2.3, MA.6.T4b.1, MA.8.T2.1, MA.USI.T3.3, MA.USI.T4.2e, MA.WHI.T3.7 and MA.WHI.T5.1 own-word lines
+  (the Paleolithic start is c. 2.6 million years ago, not 2.5).
+- Grades 3 to 5: California History-Social Science standards PDF,
+  https://www.cde.ca.gov/be/st/ss/documents/histsocscistnd.pdf ; New York grade 5 Complex Societies inquiry,
+  https://c3teachers.org/wp-content/uploads/2024/04/NewYork_5_Complex_Societies.pdf ; Massachusetts Investigating
+  History grade 4 and grade 5 course overviews (above), their guidebook assessment section; National Park Service, St.
+  Augustine town plan, https://www.nps.gov/places/st-augustine-town-plan-historic-district-st-augustine-florida.htm ;
+  one municipal government page (a Massachusetts town's governance page) as a local-structure example.
+- Economics: OpenStax Principles of Economics 2e (CC BY), section 33.1,
+  https://openstax.org/books/principles-economics-2e/pages/33-1-absolute-and-comparative-advantage , and section 9.2,
+  https://openstax.org/books/principles-economics-2e/pages/9-2-how-a-profit-maximizing-monopoly-chooses-output-and-price ;
+  the Council for Economic Education national content standards in K to 12 economics, third edition (2025),
+  https://www.councilforeconed.org/wp-content/uploads/National-Content-Standards-in-K%E2%80%9312-Economics-3rd-Edition.pdf
+  (publication details, introduction and crosswalk read; the 2010 edition above stays the reference for marginal
+  reasoning until the new one is read in full).
+- US History II: OpenStax Principles of Economics 2e sections now used as references, 19.1 (for example
+  https://openstax.org/books/principles-economics-2e/pages/19-1-measuring-the-size-of-the-economy-gross-domestic-product ),
+  21.1, 22.1, chapters 27 and 28, 30.4 and chapter 25, with a separate monetary source (chapter 26 is the neoclassical
+  account, not the monetarist one); the Federal Reserve history essay on the Great Depression,
+  https://www.federalreservehistory.org/essays/great-depression ; the National Archives New Deal lesson,
+  https://www.archives.gov/legislative/resources/education/new-deal (its stated activity times are its own, not a
+  measured minimum for our lessons).
+- Washington Since Time Immemorial, high school: the live index returned 403, but the direct guide PDFs open, for
+  example https://ospi.k12.wa.us/sites/default/files/2023-10/us-hs-unit4-level1.pdf (termination and relocation). That
+  guide's role play is replaced with document analysis in US History II (social studies lens: no role play of
+  oppression).
