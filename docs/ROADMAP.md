@@ -92,8 +92,10 @@ come first (next section). No spec is fixed and nothing is built for them now. W
 2026-11-11: the computer science Specialty standard ids were loaded, health and PE mappings were made, and a bar
 page was written for subjects with no rubric file (docs/ADOPTION-BAR-SUBJECTS.md, second draft). World languages,
 ASL among them, are shelved. Science and social studies are core subjects: the grade 4 science scope and sequence is a draft
-and the science pilot unit runs right after 11.1 is read; social studies waits on its content standard, which is
-open and Cory's to decide.
+and the science pilot unit runs right after 11.1 is read; social studies uses C3 skills and the Massachusetts 2018
+content anchor (docs/courses/social-studies/STANDARD.md); its planning follows docs/PRODUCTION-PATH.md. Superseded 2026-11-13:
+Cory chose the social studies standard method; it is recorded in docs/courses/social-studies/STANDARD.md. Production
+order follows docs/PRODUCTION-PATH.md.
 
 ### The layers (added 2026-11-11, Cory)
 
@@ -111,11 +113,11 @@ fifth of the year).
 |---|---|---|---|
 | 1. Foundation | What Curio Class is for, who it serves, the promises, the bar, what we assume about the room, what a tool is for | docs/FOUNDATION.md | Gathered into one file 2026-11-11. Two open questions listed there |
 | 2. Standards | What must be learned. Not ours to change | data/standards/ | Math and ELA texts wired. Science and the rest filed, wired when their courses open. Footnoted limits for math still to add |
-| 3. Approach to teaching | How students learn here and why, with its sources. A short shared core for every subject, then one page per subject | docs/APPROACH.md, docs/APPROACH-MATH.md; evidence detail and source access in docs/APPROACH-SOURCES.md | **Second draft 2026-11-11**, revised once after the expert's cold read (docs/reviews/approach-2026-11-11.md). Cory settled the three decisions on Desk card q-approach the same day (teach first by default in grades 2 to 5, no countdown timer in any tool, SPEC.md rule renamed) and said to go forward without library access. Waiting on Cory: his read of the pages. Science and ELA pages when those courses open |
+| 3. Approach to teaching | How students learn here and why, with its sources. A short shared core for every subject, then one page per subject | docs/APPROACH.md, docs/APPROACH-MATH.md; evidence detail and source access in docs/APPROACH-SOURCES.md | **Second draft 2026-11-11**, revised once after the expert's cold read (docs/reviews/approach-2026-11-11.md). Cory settled the three decisions on Desk card q-approach the same day (teach first by default in grades 2 to 5, no countdown timer in any tool, SPEC.md rule renamed) and said to go forward without library access. Waiting on Cory: his read of the pages. The English language arts page exists (docs/APPROACH-ELA.md); science and social studies pages are still to be written |
 | 4. Progressions | What each grade inherits and hands on, per subject | data/sequence.csv, the scope and sequence's builds-on columns, a progression page per subject (first: docs/courses/math-3-5-progression.md) | Grades 3 to 5 math: second draft 2026-11-11 after the expert's cold read (docs/reviews/math-3-5-progression-2026-11-11.md); scope and sequence pointers and 15 sequence.csv links corrected; Cory said yes to its four points the same day (Desk card q-progression-math-4), now in the scope and sequence. The science review found errors in sequence.csv, still open |
 | 5. Course scope and sequence | Every teaching day of a year, in order, with the reason | docs/courses/ | Grade 4 math: approved by Cory 2026-11-11, revised since; status draft in docs/COURSES-STATUS.md until the pilot is read. Grade 4 science and grade 6 ELA: revised drafts. More scopes and sequences wait until the pilot is read |
 | 6. Unit and section plan | The contract for each unit and section: the checks written first, what each day is for, where a tool is used and for what job | docs/courses/UNIT-PLAN.md (the fields, rules and blank copies); docs/courses/<course>/sNN.md (unit plan) and uNN-N.md (section plan); rows in data/units.csv | **Fields fixed 2026-11-11** after three trial plans and the expert's cold read (docs/reviews/unit-plans-2026-11-11.md); Cory said yes (Desk card q-section-plans). Grade 4 math: units 1, 2, 3, 9, 10 and 11 are planned, 13 of 43 sections (one expert read of units 1 to 3, docs/reviews/unit-plans-4d-2026-11-11.md). Desk card q-plans-4d-1 is answered and applied. Planning is frozen at these six until pilot unit 11 has been read; the one exception is the start-of-year check and unit 4's readiness items |
-| 7. Lessons, tools, print, checks | What students and teachers touch | The shelves and tools; the lesson-day template docs/courses/LESSON-DAY.md (to be written before the pilot is built) | Building paused, except pilot unit 11 and its key tool, which are built now (step 4f) |
+| 7. Lessons, tools, print, checks | What students and teachers touch | The shelves and tools; the lesson-day template docs/courses/LESSON-DAY.md | Building paused, except pilot unit 11 and its key tool, which are built now (step 4f) |
 
 Running through every layer: the assessment system, and the supports for English learners, access, teachers and
 families ("What a finished course holds").
@@ -525,7 +527,7 @@ each rung is.
 2. **Sections**, on the section plan model (docs/courses/UNIT-PLAN.md): a unit plan and a section plan with fixed
    fields, the checks written first, each day given its job, print as a full path, and tools marked key or
    light. A section is 1 to 5 days (section 3.4 of grade 4 math, six days, is the named exception). A section's lessons
-   are written to the lesson-day template (docs/courses/LESSON-DAY.md, to be written before the pilot is built).
+   are written to the lesson-day template (docs/courses/LESSON-DAY.md, approved by Cory 2026-11-12).
    **Pilot:** one unit, grade 4 math pilot unit 11 (one section, 11.1), area and perimeter (docs/courses/math-4/s11.md), built now. The
    ELA pilot (a five-day slice of grade 6, unit 2) and the science pilot (one section with real materials) come
    next, right after 11.1 is read.

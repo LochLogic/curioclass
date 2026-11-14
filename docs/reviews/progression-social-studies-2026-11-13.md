@@ -241,7 +241,7 @@ ss3-first-nations-region (grade 3). Keep it, because it is the right word and gr
 - The chronology handoffs, and every skip reason tied to the Massachusetts course order.
 - Hard history taught plainly from grade 3. The seceding states' own words are used against the "not about slavery"
   claim (values rule b), and Giza's paid builders are taught while slavery in Egypt is still named.
-- Native nations in the present tense at grades 3, 4, 8 (tribal sovereignty), 9 (Taino descendants) and 12
+- Native nations in the present tense at grades 3, 4, 8 (tribal sovereignty; true from 2026-11-13, frame-6-8-fixes: ss8-federal-state-powers), 9 (Taino descendants) and 12
   (gov-federalism's third sovereign).
 - Informed action as the students' evidence-based choice, never a cause picked by the course, once a year.
 - The grade 3 rewrite that teaches Massachusetts standards in general form.

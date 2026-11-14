@@ -52,7 +52,8 @@ with it it prints a note.
 ## Not done, and why
 
 - Expert finding 7 (ELA grade 5 unit 4 topic, and the e5-research and e6-reading-range edits that follow from it):
-  left for Cory, as the brief says.
+  left for Cory, as the brief says. Subsequently resolved: Cory approved water for grade 5 ELA unit 4 on
+  2026-11-13; the progression now carries the water topic, its research and its grade 6 handoff.
 - No fix moved a standard between grades; none needed to.
 - Notes keep their mixed UK spelling outside the rows I edited (the expert left them, as they are not student-facing).
 - Repair outside the findings: math.csv row m6-negative-numbers had an unquoted comma inside its cross_subject reason

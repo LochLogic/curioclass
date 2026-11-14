@@ -45,6 +45,17 @@ COURSE_ROWS = {
 }
 for _g in range(1, 6):
     COURSE_ROWS['social-studies-grade-%d' % _g] = ('social-studies', _grade(str(_g)))
+# ELA, science and math (added 2026-11-14)
+for _subj, _name, _top in (('ela', 'english-language-arts', 12), ('science', 'science', 8), ('math', 'math', 8)):
+    COURSE_ROWS['%s-kindergarten' % _name] = (_subj, _grade('K'))
+    for _g in range(1, _top + 1):
+        COURSE_ROWS['%s-grade-%d' % (_name, _g)] = (_subj, _grade(str(_g)))
+COURSE_ROWS.update({
+    'biology': ('science', _prefix('bio-')), 'chemistry': ('science', _prefix('chem-')),
+    'physics': ('science', _prefix('phys-')),
+    'algebra-i': ('math', _prefix('alg1-')), 'geometry': ('math', _prefix('geo-')),
+    'algebra-ii': ('math', _prefix('alg2-')),
+})
 
 SECTIONS = ['The course in brief', 'Seams', 'Models carried', 'Units', 'Course-level checks', 'Cross-subject']
 _rows = {}

@@ -314,7 +314,7 @@ Step 2 must handle the following. These are not additional progression findings.
 
 None newly required by these proposed repairs. They clarify prerequisites, representations and reinforcement within existing grades.
 
-The previously recorded Government and Economics placement question remains a scope decision for Cory; this report does not settle it.
+The previously recorded Government and Economics placement question remains a scope decision for Cory; this report does not settle it. (Resolved since by Desk card q-ss-progression-1, 2026-11-13: Government and Economics may be taken in grade 11 or 12; rows stay stored at grade 12.)
 
 ## What I could not judge
 

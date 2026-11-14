@@ -3,7 +3,9 @@
 # fetched: 2026-11-12
 # level: MA.<framework topic code>.<standard number><letter>; topic and sub-topic heading lines too (MA.6.T3b); repeated high school codes take a section prefix: MA.GOV, MA.ECON, MA.PFL, MA.NML
 # copyright: the framework permits copying for non-commercial educational use with credit. Credit: Massachusetts Department of Elementary and Secondary Education. This file holds ids and Curio Class's own words only, never the framework's sentences.
-# note: content standards K to 12 only. Not loaded: pre-kindergarten, the practice standards (C3 carries skills), the literacy standards (CCSS ELA file covers them).
+# note: content standards K to 12 only. Not loaded: pre-kindergarten, the practice standards (C3 carries skills), the history and social studies literacy standards (RH and WHST are not in the ELA records; loading them is open, see docs/courses/social-studies/STANDARD.md).
+# note: 2026-11-13 frame reads widened MA.K.T2.2, MA.K.T3.3b, MA.1.T3.2c, MA.2.T4.2, MA.3.T6.4 and MA.4.T1.2 to carry their clarifications.
+# note: 2026-11-14 lead items widened MA.7.T4b.3 (parts 3a and 3b became 3a to 3e), MA.7.T1b.2d, MA.8.T3.2, MA.8.T3.4, MA.USII.T1.2, MA.GOV.T1.6, MA.WHI.T3.9, MA.WHII.T3.2 (parts 3.2c and 3.2d added), MA.WHII.T5.5 and MA.WHII.T6.2, each checked against the framework PDF (pages 97, 101, 106, 107, 130, 144, 152, 158, 160, 163).
 # note: some source standards were garbled by PDF extraction (two-column fragments, spliced footnotes); USII.T2.4 reread against the PDF 2026-11-13 (11 single options, a to k).
 MA.K.T1	Kindergarten civics: being a good citizen in the classroom
 MA.K.T1.1	Follow rules and expectations with little reminding, and with help ask and answer questions about why rules exist.
@@ -16,7 +18,7 @@ MA.K.T1.4c	Explain why "The Star-Spangled Banner" is the national anthem.
 MA.K.T1.4d	Explain what the words of the "Pledge of Allegiance" mean.
 MA.K.T2	Kindergarten geography: how places connect
 MA.K.T2.1	Describe where people, objects, and places are using position words such as near, far, left, right, behind, and between.
-MA.K.T2.2	With help, explain how maps and globes are alike and different.
+MA.K.T2.2	With help, explain how maps and globes are alike and different, including maps of the world designed in different ways.
 MA.K.T2.3	Name the parts of an address: street name and number, city or town, state (Massachusetts), and country (United States).
 MA.K.T2.4	With help, find the school's city or town on a state map and the school itself on a street map of that town.
 MA.K.T2.5	Use maps, photographs, or drawings to show and explain where important places are near home or school and how they relate.
@@ -26,7 +28,7 @@ MA.K.T3.1	Describe how civic holidays honor important events or people in histor
 MA.K.T3.2	Compare and contrast the traditions and celebrations of people from different cultural backgrounds.
 MA.K.T3.3	Put events from personal life, nature, and texts in time order using words about sequence and time.
 MA.K.T3.3a	Use sequence words such as first, next, and last to order actions.
-MA.K.T3.3b	Use time words such as now, then, long ago, before, after, today, tomorrow, and yesterday to place events in time.
+MA.K.T3.3b	Use time words such as now, then, long ago, before, after, today, tomorrow, yesterday, morning, afternoon, night, last or next week, month, and year to place events in time.
 MA.K.T4	Kindergarten economics: work and buying and selling
 MA.K.T4.1	With help, describe things people do when they work inside and outside the home, using experience and texts.
 MA.K.T4.2	With help, ask and answer questions about buying, selling, and trading, and explain how people choose among things they need and want.
@@ -53,7 +55,7 @@ MA.1.T3.1	Use evidence to explain how people in the United States are united, su
 MA.1.T3.2	Explain the meaning of symbols, phrases, and songs that show pride in belonging to the United States.
 MA.1.T3.2a	Explain the meaning of national symbols such as the flag, the bald eagle, the White House, and the Statue of Liberty.
 MA.1.T3.2b	Explain the meaning of national words and mottoes, such as "E pluribus unum" ("Out of Many, One") and the "Pledge of Allegiance."
-MA.1.T3.2c	Recognize the tunes and words of patriotic songs such as "America the Beautiful" and "The Star-Spangled Banner."
+MA.1.T3.2c	Recognize the tunes and words of patriotic songs such as "America the Beautiful" and "The Star-Spangled Banner," and explain what they mean.
 MA.1.T3.3	Record patterns in seasonal events or personal experiences using a calendar and words and verb tenses about past, present, and future.
 MA.1.T4	Grade 1 economics: resources and choices
 MA.1.T4.1	Explain how natural resources in a place connect to local industries and jobs such as fishing, farming, or mining.
@@ -81,7 +83,7 @@ MA.2.T3.3	Interview family, neighbors, friends, or school staff to learn where t
 MA.2.T3.4	Identify what people bring when they move, the effects of migration, and the elements that define a culture, and explain how all of a community's people enrich it.
 MA.2.T4	Grade 2 civics and geography: countries and governments
 MA.2.T4.1	Tell physical geography from political geography, such as Africa as a continent that holds many independent countries.
-MA.2.T4.2	Explain the characteristics of a country.
+MA.2.T4.2	Explain the characteristics of a country: its people, land and borders, history, culture, languages, and type of government, and the purposes of government.
 MA.2.T4.3	Gather information and present a short research report on the physical features, resources, and people of a country outside the United States.
 MA.2.T5	Grade 2 economics: resources and choices
 MA.2.T5.1	Explain how natural resources in a place connect to local industries and jobs such as fishing, farming, or mining.
@@ -127,11 +129,11 @@ MA.3.T6	Grade 3: Massachusetts in the 1700s and the American Revolution
 MA.3.T6.1	Use a historical map to explain how far the Province of Massachusetts extended, and explain why its towns and cities grew in the 1700s.
 MA.3.T6.2	Analyze how events, places, and people in Massachusetts in the early 1770s led to the start of the American Revolution, using maps, paintings, and texts.
 MA.3.T6.3	Analyze how colonists' sense of injustice led them to declare independence, and what the Declaration of Independence shows about its writers' beliefs.
-MA.3.T6.4	Explain that the new nation wrote the Constitution as a plan of government, that the Bill of Rights spells out citizens' rights, and that full citizenship was then limited to white male property owners over 21.
+MA.3.T6.4	Explain that the new nation wrote the Constitution as a plan of government, that the Bill of Rights spells out citizens' rights, and that full citizenship was then limited, with voting set by each state and in most states held by white male property owners over 21 (New Jersey's voters included some women and free Black men until 1807).
 MA.3.T6.5	Explain that states have governments too, and that the 1780 Massachusetts Constitution, mainly written by John Adams, is the oldest working constitution in the world and grants basic rights.
 MA.4.T1	Grade 4: North America geography and map skills
 MA.4.T1.1	Use a physical map of North America with directions, scale, key, and title to locate major rivers, lakes, oceans, mountains, deserts, and other physical features.
-MA.4.T1.2	Locate Canada and its provinces, Mexico and its states, the Caribbean nations, and the United States on a political map, and explain terms like continent, country, state, province, and county.
+MA.4.T1.2	Locate Canada and its provinces, Mexico and its states, the Caribbean nations, and the United States on a political map, and explain terms like continent, country, nation, state, province, county, and city.
 MA.4.T1.3	Research Canada or Mexico using maps, atlases, digital sources, and articles, then present on topics such as its people, languages, government, cities, environment, and industries.
 MA.4.T2	Grade 4: ancient civilizations of North America
 MA.4.T2.1	Evaluate competing theories about how people first reached North America, such as a land bridge or a sea route, and the evidence dating early populations to about 15,000 years ago.
@@ -332,7 +334,7 @@ MA.7.T1b.2	Describe key economic, political and religious developments in Indian
 MA.7.T1b.2a	The origins of Indian society in the Indus Valley, about 3000 to 1300 BCE.
 MA.7.T1b.2b	How Hinduism developed and its central principles.
 MA.7.T1b.2c	The teachings of Gautama Buddha in India in the 6th to 4th centuries BCE.
-MA.7.T1b.2d	The Mauryan Empire and Ashoka's embrace of Buddhist teachings and nonviolence, and the Gupta Empire.
+MA.7.T1b.2d	The Mauryan Empire, with Ashoka's turn to Buddhist moral teaching and nonviolence and his backing of Buddhist missionaries, and the Gupta Empire's achievements, including its Sanskrit literature and its art.
 MA.7.T1b.2e	How the caste system developed in India.
 MA.7.T1b.2f	Achievements in art, architecture, technology, astronomy and mathematics.
 MA.7.T1b.2g	How geography made the Silk Road routes workable and profitable, and how they connected Asia to Africa, Europe and China.
@@ -370,8 +372,11 @@ MA.7.T4b	Ancient and Classical Greece, about 1200 to 300 BCE
 MA.7.T4b.1	Locate Greece on a historical map of the Mediterranean and trace how far its influence reached from about 1200 to 300 BCE.
 MA.7.T4b.2	Explain how the locations of Athens, Corinth, Sparta and other city-states supported sea trade, Mediterranean colonies and the spread of their culture.
 MA.7.T4b.3	Explain the democratic political ideas that developed in ancient Greece.
-MA.7.T4b.3a	The polis or city-state, and legislative bodies.
-MA.7.T4b.3b	Civic participation and voting, writing constitutions, rights and the rule of law.
+MA.7.T4b.3a	The polis: the city-state as a self-governing community.
+MA.7.T4b.3b	Taking part as a citizen, and who held the right to vote.
+MA.7.T4b.3c	Assemblies and councils that made laws.
+MA.7.T4b.3d	Writing down a constitution.
+MA.7.T4b.3e	The rule of law.
 MA.7.T4b.4	Compare life in Athens and Sparta, including the roles and status of women and enslaved people.
 MA.7.T4b.5	Analyze the causes and results of the Persian Wars, the Peloponnesian Wars and Alexander the Great's conquests in Asia.
 MA.7.T4b.6	Give examples of Greek gods, goddesses, heroes and events, and explain why mythological terms like Pandora's box and Herculean persist in modern languages.
@@ -407,9 +412,9 @@ MA.8.T2.4	Compare the Federalist and Anti-Federalist arguments over ratifying th
 MA.8.T2.5	Summarize the Preamble, each article of the Constitution and the Bill of Rights, and explain why the Bill of Rights was added in 1791.
 MA.8.T3	Institutions of United States government
 MA.8.T3.1	Distinguish the three branches of government: Congress as legislative, the President and executive agencies as executive, and the Supreme Court and lower federal courts as judicial.
-MA.8.T3.2	Examine how the three branches relate through checks and balances, including Congress's powers and limits, the roles of parties and leaders, and its checks on the other branches.
+MA.8.T3.2	Examine how the three branches relate through checks and balances, including Congress's powers and limits, the roles of parties and leaders, and its checks on the other branches; how a bill moves through committees, hearings and votes; and how the executive branch is built (the President's powers and limits, the Cabinet, departments and agencies, and the armed services).
 MA.8.T3.3	Describe the roles of each branch of government.
-MA.8.T3.4	Explain how legislative and executive officials are elected and how judicial and executive officials are nominated and confirmed.
+MA.8.T3.4	Explain how legislative and executive officials are elected and how judicial and executive officials are nominated and confirmed, including each office's term and the constitutional limit on presidential terms.
 MA.8.T3.5	Describe the role of political parties in state and national elections.
 MA.8.T4	Rights and responsibilities of citizens
 MA.8.T4.1	Explain the different ways a person becomes a United States citizen.
@@ -524,7 +529,7 @@ MA.USI.T7.7	Analyze the U.S. role in supporting the Allies and in fighting World
 MA.USI.T7.8	Explain the course and importance of Woodrow Wilson's wartime diplomacy, including the Fourteen Points, the League of Nations, and the failure of the Versailles Treaty, perhaps through a classroom debate on joining the League.
 MA.USII.T1	The role of economics in modern United States history
 MA.USII.T1.1	Describe how limited resources force people to make choices, gaining some things while giving up others.
-MA.USII.T1.2	Explain that economic policy can aim at goals like freedom, efficiency, security, growth, stable prices and full employment, and that economic systems stress different goals.
+MA.USII.T1.2	Explain that economic policy can aim at goals like freedom, efficiency, equity, security, growth, stable prices and full employment, and that economic systems stress different goals.
 MA.USII.T1.3	Define supply and demand and explain how supply, demand, prices, and profits shape what gets produced and distributed in a market economy.
 MA.USII.T1.3a	Explain how profit rewards entrepreneurs for accepting the risk that a business will fail.
 MA.USII.T1.3b	Identify what changes market supply and demand and how those changes move prices and quantities of goods and services.
@@ -659,7 +664,7 @@ MA.WHI.T3.5	Explain how common it was across Europe, Africa, Asia, and the Ameri
 MA.WHI.T3.6	Describe coexistence, tolerance, and trade between Arab and Christian kingdoms from the 8th to the early 10th century.
 MA.WHI.T3.7	Explain the Catholic Church's growing wealth and power struggles in the 11th century, the rise of feudalism, knighthood and chivalry, and the emergence of rights in England.
 MA.WHI.T3.8	Evaluate the causes, course, and results of the European Crusades in the Mediterranean from the 11th to 13th centuries.
-MA.WHI.T3.9	Explain the global effects of disease, focusing on how the Bubonic plague spread along Eurasian and African trade routes and drove up death rates in Europe, Africa, and Asia.
+MA.WHI.T3.9	Explain the global effects of disease, focusing on how the Bubonic plague spread along Eurasian and African trade routes and drove up death rates in Europe, Africa, and Asia, in repeated outbreaks into the 15th century.
 MA.WHI.T4	Philosophy, the arts, science and technology, 1200 to 1700
 MA.WHI.T4.1	Explain how classical learning survived into the medieval world.
 MA.WHI.T4.1a	Explain how Islamic scholars and Christian monasteries preserved and copied Greek, Roman, and Arabic texts after Rome's collapse.
@@ -711,6 +716,8 @@ MA.WHII.T3.1	Locate on a map the places outside Europe that European countries c
 MA.WHII.T3.2	Describe the causes of European global imperialism in the 19th century.
 MA.WHII.T3.2a	Describe the competition among European powers since the 15th century for wealth, resources, and strategic advantage.
 MA.WHII.T3.2b	Explain the importance of slavery and the capital it generated to the Industrial Revolution, and how European traders made the slave trade profitable.
+MA.WHII.T3.2c	Explain how the Spanish and Portuguese empires in the Americas joined political, religious and economic goals, including missionary conversion of Indigenous peoples, the spread of their languages and imposed European government.
+MA.WHII.T3.2d	Explain how European race theories of the 18th and 19th centuries, Social Darwinism among them, were presented as science and used to justify colonialism and slavery.
 MA.WHII.T3.3	Analyze the impact of Western imperialism in Asia, Africa, and Latin America.
 MA.WHII.T3.4	Analyze how colonial encounters and trade changed the culture of Western nations, using examples.
 MA.WHII.T3.4a	Example: Asian furniture, porcelain, and cloth made for export.
@@ -774,7 +781,7 @@ MA.WHII.T5.3f	Explain the Cuban Revolution and the Cuban Missile Crisis.
 MA.WHII.T5.3g	Describe the nuclear arms race and arms control agreements such as the ABM and SALT treaties.
 MA.WHII.T5.3h	Explain detente and the diplomatic efforts between the Soviet Union and the West.
 MA.WHII.T5.4	Analyze major events in China after 1945, from the civil war and Communist victory through Mao's upheavals, the 1989 Tiananmen protests, and Deng Xiaoping's reforms.
-MA.WHII.T5.5	Analyze the goals of nationalist movements across the developing world and evaluate how one movement and its leader achieved independence.
+MA.WHII.T5.5	Analyze the goals of nationalist movements across Asia, Africa, the Middle East, and Central and South America, and evaluate how one movement and its leader achieved decolonization and independence after 1950.
 MA.WHII.T5.6	Explain how apartheid in South Africa was defended and resisted from 1948 to 1991, and how the ANC, Nelson Mandela, and the UN helped end it.
 MA.WHII.T5.7	Explain the background to the founding of Israel in 1948 and the wars and political conflicts that followed.
 MA.WHII.T5.7a	Describe the growth of Zionism and Jewish immigration from Eastern Europe to Palestine in the 19th and early 20th centuries.
@@ -803,7 +810,7 @@ MA.WHII.T5.11k	Explain Jane Goodall's study of primates and ecology and its impa
 MA.WHII.T5.12	Analyze how late 20th century social and intellectual movements, such as feminism, LGBTQ rights, and environmentalism, changed assumptions about race, class, gender, religion, and nature.
 MA.WHII.T6	The era of globalization, 1991 to the present
 MA.WHII.T6.1	Analyze why globalization developed and explain its consequences for workers in richer and poorer countries.
-MA.WHII.T6.2	Analyze major forces in the Middle East since 1980, such as Islamism, rivalry between Saudi Arabia and Iran, the Iranian Revolution, the Gulf and Iraq wars, Arab uprisings, and ISIS.
+MA.WHII.T6.2	Analyze major forces in the Middle East since 1980, including Islamism, the large youth population, rivalry between Saudi Arabia and Iran, Kurdish struggles for autonomy, political challenges in the oil-rich Gulf states, the Iranian Revolution, the Gulf and Iraq wars, Arab uprisings, and ISIS.
 MA.WHII.T6.3	Explain the role and strength of populist political movements in European parties in the early 21st century.
 MA.WHII.T6.4	Analyze China's growing political and economic power and its increasing role in world affairs.
 MA.WHII.T6.5	Evaluate how well international efforts have addressed global problems.
@@ -828,7 +835,7 @@ MA.GOV.T1.2	Describe why governments exist and what they do.
 MA.GOV.T1.3	Define and give examples of forms of government, including direct democracy, representative democracy, republic, monarchy, oligarchy, and autocracy.
 MA.GOV.T1.4	Analyze theories related to the Constitution, such as democratic government, republicanism, pluralism, and elitism.
 MA.GOV.T1.5	Analyze views on why citizens join voluntary civic associations, such as Tocqueville's in Democracy in America, and compare them with modern writers.
-MA.GOV.T1.6	Use U.S. and Massachusetts founding documents to interpret central ideas such as popular sovereignty, federalism, individual rights, the social contract, and natural rights.
+MA.GOV.T1.6	Use U.S. and Massachusetts founding documents to interpret central ideas such as popular sovereignty, constitutionalism, republicanism, federalism, individual rights, the social contract, and natural rights.
 MA.GOV.T1.7	Compare the ideas about government held by Federalists and Anti-Federalists in the debate over ratifying the Constitution.
 MA.GOV.T1.8	Research and present how democratic principles appear in founding-era documents and how later core documents changed views of them, citing evidence and historical context.
 MA.GOV.T1.9	Explain past and present efforts to close the gap between America's founding ideals and its actual political and civic life.

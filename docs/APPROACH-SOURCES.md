@@ -361,3 +361,69 @@ Access notes:
   browser user agent works. Nobody listened to a recording.
 - **Core Knowledge, Ancient Greece and Rome (grade 6 history reader).** The back cover (PDF page 154) prints
   "960L", a level stated by the publisher.
+
+## Social studies frame reads, 2026-11-13
+
+Sources the expert and Codex readers of the social studies course frames opened (reports in docs/reviews/frame-*-2026-11-13.md;
+the "For the lead" lists are in the five frame fix reports). Reference only unless a licence says otherwise; nothing was copied.
+
+- Massachusetts History and Social Science Framework, 2018, official PDF: https://www.doe.mass.edu/frameworks/hss/2018-12.pdf
+  (copy on disk under S:\CurioClass-sources\reference-only-do-not-copy\massachusetts-hss-2018\). Opened page by page for
+  each grade's standards and clarifications (for example kindergarten printed pages 32 to 35; pages 97, 101, 106, 107,
+  130 and 163 for the 2026-11-14 paraphrase checks).
+- C3 Framework, NCSS, 2013, revised June 2017 PDF: https://www.socialstudies.org/sites/default/files/c3/c3-framework-for-social-studies-rev0617.pdf
+  (the older address .../c3/C3-Framework-for-Social-Studies.pdf also served). The PDF loads even when the landing page is
+  blocked. Read for the owned indicators' wording and band depth, not cover to cover.
+- Grade 3: the Constitution transcript, https://www.archives.gov/founding-docs/constitution-transcript (voting
+  qualifications left to the states); New Jersey's own history of its early voters,
+  https://www.nj.gov/state/historical/assets/pdf/it-happened-here/ihhnj-er-petticoat-politicians.pdf (the founding-era
+  exception). The five nations' own pages, opened as starting points for the worked cases only:
+  https://mashpeewampanoagtribe-nsn.gov/timeline ; https://www.cherokee.gov/about-the-nation/history/ ;
+  https://www.menominee-nsn.gov/culturepages/briefhistory ; https://www.navajo-nsn.gov/History ;
+  https://makah.com/makah-tribal-info/ . The Acoma site did not open.
+- Grade 5: National Park Service, the arrival of the first Africans in 1619,
+  https://www.nps.gov/articles/000/arrival-of-the-first-africans-in-1619.htm ; the national African American history
+  museum's colonial slave laws page, https://www.searchablemuseum.com/colonial-slave-laws/ . Used for the
+  unit 2 facts.
+- Massachusetts Investigating History (reference only): curriculum index https://www.doe.mass.edu/investigatinghistory/curriculum/ ;
+  grade 3 unit 2 page (.../curriculum/units.aspx?grade=3&unit=2); grade 4 and grade 5 overviews, June 2026
+  (.../curriculum/g4-course-overview.pdf, .../g5-course-overview.pdf; the grade 5 year-at-a-glance says 97 lessons but
+  lists 101, so its total is not a pacing benchmark); grade 6 and grade 7 guidebooks (.../g6-course-guidebook.pdf,
+  .../g7-course-guidebook.pdf) and the grade 6 regional unit route (.../units.aspx?grade=6&unit=2). Sequence and pacing
+  compared; no lesson read in full. An older Investigating History route failed.
+- Oak National Academy: the current route is /programmes/, for example
+  https://www.thenational.academy/teachers/programmes/history-primary/units (unit structure inspected), and one lesson,
+  https://www.thenational.academy/teachers/lessons/comparing-the-earliest-civilisations (limited inspection; does not
+  show grade 6 sufficiency).
+- Educating for American Democracy Roadmap: https://www.educatingforamericandemocracy.org/the-roadmap/ . Read for its
+  inquiry and civic participation framing (grade 8 and Government), not every theme.
+- Washington Since Time Immemorial: middle school index
+  https://ospi.k12.wa.us/student-success/resources-subject-area/time-immemorial-tribal-sovereignty-washington-state/middle-school-curriculum
+  (treaty unit listing confirmed; single unit pages failed); high school units 1 and 2 pages returned 403 live, so the
+  stored guides in S:\CurioClass-sources\since-time-immemorial\ were used.
+- Comparison states: Tennessee 2024 standards,
+  https://www.tn.gov/content/dam/tn/stateboardofeducation/documents/standards/social-studies-2022-2023/TN%20Academic%20Standards%20for%20Social%20Studies%206.24.pdf
+  (7.38, the Hundred Years' War and Joan of Arc, verified) and its crosswalk (same folder, TN%20Social%20Studies%20Standards%20Crosswalk%206.24.pdf,
+  new-standard column used for K to 2); the Tennessee standards-review page returned 403. New York 9 to 12 framework with
+  2017 updates, https://www.nysed.gov/sites/default/files/programs/standards-instruction/framework-9-12-with-2017-updates.pdf
+  (works; trade networks and medieval history compared). The New York K to 8 PDF (.../curriculum-instruction/ss-framework-k-8a2.pdf)
+  and the older 9 to 12 address (.../curriculum-instruction/ss-framework-9-12.pdf) failed or timed out for some readers.
+- College-level frameworks, effective fall 2026 (reference only): world history,
+  https://apcentral.collegeboard.org/media/pdf/ap-world-history-modern-course-and-exam-description.pdf (topic 1.3,
+  Srivijaya; targeted checks only); US government,
+  https://apcentral.collegeboard.org/media/pdf/ap-us-government-and-politics-course-and-exam-description.pdf and its
+  corrections document, .../ap-us-government-and-politics-course-and-exam-description-clarifications.pdf (compared with
+  the Government frame).
+- Economics: CEE Voluntary National Content Standards, 2010,
+  https://www.councilforeconed.org/wp-content/uploads/2012/03/voluntary-national-content-standards-2010.pdf (marginal
+  reasoning); National Standards for Personal Financial Education, 2021,
+  https://files.consumerfinance.gov/f/documents/2021_Natl_Standards_Downloadable_final.pdf (finance domains compared);
+  the federal agency's insurance activity, https://www.consumerfinance.gov/documents/7247/cfpb_building_block_activities_exploring-types-of-insurance_guide.pdf
+  (public domain; high school band, stated 45 to 60 minutes, not a measured minimum for our lessons). The Next Gen
+  Personal Finance state policy tracker (ngpf.org) was cited for the count of states requiring personal finance; not opened.
+- Civic Online Reasoning, https://cor.inquirygroup.org/ : the curriculum overview only, not the lesson collection.
+- US History I: Yick Wo v. Hopkins, https://www.govinfo.gov/content/pkg/USREPORTS-118/pdf/USREPORTS-118-356.pdf ; the
+  Indian Citizenship Act, 1924, https://www.archives.gov/files/historical-docs/doc-content/images/indian-citizenship-act-1924.pdf .
+  Both public domain; read for the unit's citizenship comparison.
+- World History II: the Holocaust Museum's Mussolini entry,
+  https://encyclopedia.ushmm.org/content/en/article/benito-mussolini-1 (chronology only).

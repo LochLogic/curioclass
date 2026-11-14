@@ -2,8 +2,8 @@
 
 This page says how Curio Class teaches, in every subject, and why. It is layer 3 of a course: it is built on
 [FOUNDATION.md](FOUNDATION.md) and on the standards, and every scope and sequence and section plan is built on it. Each subject
-adds its own page, which says how the subject carries out each principle. The first is
-[APPROACH-MATH.md](APPROACH-MATH.md); science and English language arts follow when those courses open.
+adds its own page, which says how the subject carries out each principle. Mathematics and English language arts have pages,
+[APPROACH-MATH.md](APPROACH-MATH.md) and [APPROACH-ELA.md](APPROACH-ELA.md); science and social studies pages are still to be written.
 
 Two honest notes. Nothing in Curio Class has been tried with children yet, so this page makes no claim about
 results; it explains choices, and its rules are rules for section plans, not descriptions of lessons that exist.

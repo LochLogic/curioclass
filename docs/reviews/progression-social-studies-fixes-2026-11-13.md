@@ -35,11 +35,11 @@ Gate after the fixes: `scripts/progression.py check social-studies` 384 rows, 0 
 
 ## Skipped, needs Cory
 
-- **Codex 3:** whether Government and Economics stay at grade 12 or a course moves to grade 11. This is reserved. Those rows were left at grade 12, and the links added to them point back from grades 8 and 10.
+- **Codex 3:** whether Government and Economics stay at grade 12 or a course moves to grade 11. This is reserved (answered since: DESK-ANSWERS 2026-11-13, Desk card q-ss-progression-1). Those rows were left at grade 12, and the links added to them point back from grades 8 and 10.
 - **Expert 10 and Codex pace:** time budgets and strand pacing. These are reserved; nothing changed.
 - **The eight writer questions:** the rows are kept as drafted.
 - **ss5-war-of-1812 to ss5-native-sovereignty-removal (expert 3):** both rows are in grade 5, and the gate allows only cross-grade links in `assumes`. The link is kept in words in both rows. It could become a real link only if one row moved grade, which is not allowed.
 - **Codex 7, adding a model audit to the checker:** scripts were out of scope for this pass. The checker already notes continuity gaps.
-- **Codex 6, checking that each cross-subject code is really taught in the other subject's progression:** this waits on those progressions. Only the code-to-task match was fixed here.
+- **Codex 6, checking that each cross-subject code is really taught in the other subject's progression:** only the code-to-task match was fixed here. Later addressed by the cross-subject progression reads and progression-cross-fixes-2026-11-13.md. Within-year availability sits with the course frames.
 - **Codex 1, adding own-word descriptions of the C3 indicators to the standards record:** only the two progression CSVs could be edited. The descriptions now live in the row notes.
 - **Facts the day writers should check:** the 33 CE Roman credit crisis (ss7-roman-economy) and the postwar deflation in Massachusetts (ss5-independence-war). Both are marked in the notes.

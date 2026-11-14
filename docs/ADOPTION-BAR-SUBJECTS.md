@@ -192,8 +192,9 @@ Maryland's value-laden items are left out on purpose; the values rule (item 11) 
 
 **Standards.** data/standards/c3-indicators.txt (2013) for skills; data/standards/ma-hss-2018.txt (Massachusetts
 2018, ids and our own words, credit in the header) for content. Not loaded: the framework's practice standards
-(C3 carries the skills) and its literacy standards (the CCSS ELA file covers them). The C3 edition is still to be
-confirmed at the publisher.
+(C3 carries the skills) and its literacy standards (the history and social studies reading and writing standards, RH and WHST, are not
+in the ELA records; loading them is open, see docs/courses/social-studies/STANDARD.md). C3 publisher source confirmed:
+NCSS, 2013; the revised 2017 PDF was read.
 
 **Scope and sequence states:** the anchor codes and C3 indicators per unit, each unit's compelling question,
 where informed action falls, and where the own-state method is used. **Unit plan fills:** the comparison table
@@ -504,7 +505,7 @@ every row but social studies waits behind the core work unless it is complementa
 | Subject | Owed before a scope and sequence | Who |
 |---|---|---|
 | All ten active subjects | An approach page per subject (layer 3) that fills the section plan's subject slots: the kinds of day and the form of daily evidence | Agent drafts, Cory's yes |
-| Social studies (16) | Done 2026-11-13: the standard chosen (option d) and loaded (data/standards/ma-hss-2018.txt), the course list redrawn, the check states named, economics and geography references named (STANDARD.md). Still owed: confirm the C3 edition at the publisher; load the psychology standard (APA 2022) by hand when psychology's turn comes; plan informed action once a year per course, up to three times if the evidence shows a need | Agent |
+| Social studies (16) | Done 2026-11-13: the standard chosen (option d) and loaded (data/standards/ma-hss-2018.txt), the course list redrawn, the check states named, economics and geography references named (STANDARD.md). Edition confirmed: C3 Framework, 2013, June 2017 revised PDF, matching data/standards/c3-indicators.txt. Still owed: load the psychology standard (APA 2022) by hand when psychology's turn comes; plan informed action once a year per course, up to three times if the evidence shows a need | Agent |
 | AP and psychology topics (26), in whichever subject they sit | These have no standards file. Mark them now as not yet standards-checked. **Do not lose this note (Cory): the course framework is loaded when that course's scope and sequence is written** | Agent |
 | Arts (20) | A written rule placing each grade's standards, and the three high school levels, in a band year. Read the reuse terms. Watch the national revision twice a year | Agent |
 | Health (4) | Read one topic module; write the band coverage map; write the 2007 to 2024 note; fix the file header to "SHAPE America, 2024". Keep the 2024 standards and write the mapping to the older-keyed review tool (decided, card q-standards-currency). Carry all sensitive topics, each sensitive unit able to be left out without breaking the course (decided). One paid specialist read per band, as proposed; confirm the cost with Cory before any spend | Agent, then Cory for the cost |
@@ -525,7 +526,7 @@ American Sign Language, which may mean people on camera. Splitting into levels w
 ## Decided, Cory, 2026-11-11 (Desk card q-bar-subjects)
 
 The numbers are those of the eleven choices the second draft put to him. His words are quoted exactly from
-[HANDOFF.md](HANDOFF.md). Choices 1 and 5 are not settled and are under "Still open with Cory".
+[HANDOFF.md](HANDOFF.md). Choices 1 and 5 were settled in DESK-ANSWERS on 2026-11-12 and 2026-11-13; their decisions and the earlier questions are recorded below.
 
 2. **World languages.** "2 shelf foreign languages for a later pass (ASL included)." Spanish and American Sign
    Language are shelved. No scopes and sequences, no standards loading and no video planning for them now. Part 6 is kept.

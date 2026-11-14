@@ -25,7 +25,9 @@ Nothing in the repo was changed except this file. The bar is BASE-TEXTS.md: CC B
   education activities (public domain), DocsTeach activities (CC0) and National Archives documents, NPS Teaching with
   Historic Places (public domain), and Oak National Academy's history and geography (Open Government Licence v3.0,
   attribution-only, but not one of the three licences BASE-TEXTS.md names).
-- **Subject order:** social studies has no base text, so by the plan **science goes second**.
+- **Subject order:** social studies has no base text, so by the plan **science goes second**. Update, 2026-11-14: the production
+  order is governed by docs/PRODUCTION-PATH.md, with social studies first; science is second there because this read
+  found no whole-course base text (P2).
 
 ## Candidates
 
@@ -156,7 +158,8 @@ units, OER Commons collections (OER Commons returned 403: not read, blocked).
 - **No social studies course gets a full base text.** All eleven stay "our own", with the C3 skills and the
   Massachusetts 2018 anchor as BASE-TEXTS.md already says.
 - **One clean partial base:** CFPB activities (public domain) for the personal finance half of economics.
-- **Partial bases worth a decision by Cory:**
+- **Partial bases worth a decision by Cory:** (Settled 2026-11-13: Cory accepted OGL v3.0 and the retired CC BY
+  editions as partial bases; BASE-TEXTS.md governs use, with item-level rights checks.)
   1. ETSU World History Since 1500 (CC BY 4.0) for world-hist-2 and late world-hist-hs. Clean licence; college
      level. Recommended.
   2. Since Time Immemorial (CC BY 4.0) for the tribal sovereignty strand in grades 4, 5, 8 and 11 to 12, after a
@@ -168,16 +171,18 @@ units, OER Commons collections (OER Commons returned 403: not read, blocked).
 - **Assets for every course:** DocsTeach (CC0 activities), National Archives, Library of Congress and NPS items, US
   Courts activities, each checked item by item.
 - **Subject order:** social studies has no base text, so by the plan **science goes second**. None of the partial
-  bases is big enough to change that.
+  bases is big enough to change that. Update, 2026-11-14: the production
+  order is governed by docs/PRODUCTION-PATH.md, with social studies first; science is second there because this read
+  found no whole-course base text (P2).
 
 ## Open items
 
-- Cory: accept or reject OGL v3.0 as a base licence; decide on the OpenStax AI clause.
+- Closed 2026-11-13: Cory accepted OGL v3.0 and the recorded use of the retired CC BY editions; see docs/sources/BASE-TEXTS.md. Item-level rights checks remain.
 - Read the ETSU book's own copyright page and image credits before adapting (licence read on the repository page only).
-- Open Oak KS3 history and geography unit lists and one lesson's licence footer.
-- Confirm the US Courts reuse terms (website policies page returned 404).
-- Retry c3teachers.org and the Library of Congress teachers pages later (timed out; 403).
-- Check LibreTexts K12, Louisiana and other state social studies units, Facing History, Bill of Rights Institute.
+- Open Oak KS3 history and geography unit lists and one lesson's licence footer. Completed in the later addendum: unit lists and a sample licence footer read. Select and check individual lessons when needed.
+- Confirm the US Courts reuse terms (website policies page returned 404). Answered in the later addendum: no stated terms; federal works rest on 17 U.S.C. 105.
+- Retry c3teachers.org and the Library of Congress teachers pages later (timed out; 403). Access recovered in the later addendum. Retain its separate reuse limits and item-level rights checks.
+- Check LibreTexts K12, Louisiana and other state social studies units, Facing History, Bill of Rights Institute. LibreTexts K12 and Louisiana checked and retained as reference only. Facing History and the Bill of Rights Institute remain unread; consult when a unit needs them.
 - Watch Utah HB 488 (open social studies material for Utah).
 
 ## Sources (read 2026-11-13 unless marked)
@@ -222,8 +227,8 @@ Read in Chrome; nothing downloaded.
 | US Courts educational resources | No reuse terms on the educational resources page or the Privacy and Security Policy page (the old website policies page is gone). | Federal government works are public domain by statute (17 U.S.C. 105), so US Courts' own activities and scripts may be adapted with a credit line; photos and outside items inside them are checked one by one. Rests on the statute, not a stated policy. |
 | LibreTexts K12 (social studies shelves) | Three books: Economics, Geography (eleven regional units) and United States Government, each "shared under a CK-12 license", built from El Paso ISD CK-12 FlexBooks. | Reference only: the CK-12 licence is noncommercial. |
 | Louisiana (Bayou Bridges, K to 8) | Built by the Core Knowledge Foundation with the Louisiana Department of Education; Core Knowledge terms: free to adapt and share with attribution, selling prohibited (its Creative Commons licence is noncommercial); images in the PDFs may not be extracted. | Reference only, like Core Knowledge history and geography. |
-| Since Time Immemorial unit files | They live on one OSPI page per unit (the main page links only standards). 17 unit pages: K to 3 pathways 1 to 3 (24 PDFs, 4.9 MB); grade 5 US history units 1 to 3 (42 files, 95.5 MB); middle school unit 1C, Medicine Creek Treaty (16 PDFs, 4.1 MB); high school US history units 1 to 6 (73 PDFs, 163 MB); Contemporary World Problems units 1 to 4 (39 PDFs, 125 MB). About 194 files, 392 MB, some in Spanish too. | Ready to load on Cory's yes (CC BY 4.0, read earlier). The grade 4 Washington state units are left out (a state study). |
-| CFPB youth financial education | 135 activities across 14 listing pages, about three PDFs each (guide, worksheet, handout); three sampled are 84 to 156 KB. About 400 PDFs, roughly 50 MB. | Ready to load on Cory's yes (public domain). |
+| Since Time Immemorial unit files | They live on one OSPI page per unit (the main page links only standards). 17 unit pages: K to 3 pathways 1 to 3 (24 PDFs, 4.9 MB); grade 5 US history units 1 to 3 (42 files, 95.5 MB); middle school unit 1C, Medicine Creek Treaty (16 PDFs, 4.1 MB); high school US history units 1 to 6 (73 PDFs, 163 MB); Contemporary World Problems units 1 to 4 (39 PDFs, 125 MB). Some in Spanish too. | Loaded 2026-11-13: 117 unique files, 77 MB (the earlier 194 files and 392 MB counted shared files more than once); CC BY 4.0; see docs/sources/BASE-TEXTS.md. The grade 4 Washington state units are left out (a state study). |
+| CFPB youth financial education | 135 activities across 14 listing pages, about three PDFs each (guide, worksheet, handout); three sampled are 84 to 156 KB. | Loaded 2026-11-13: 134 of 135 activities, 262 PDFs, 83 MB (one activity page is gone); see docs/sources/BASE-TEXTS.md. |
 | Oak National Academy KS3 | History years 7 to 9: 40 units (medieval Islamic worlds, Mali, the Silk Road, conquest of the Americas, transatlantic slavery, the Mughal Empire, the Enlightenment, the French, Haitian, Industrial and Russian revolutions, both world wars, the Holocaust, decolonisation, and many British topics). Geography years 7 to 9: 20 units (weather and climate, population, biomes, India, China, globalisation, tectonic hazards, development, cities, the DRC, Nigeria, rivers, resources, the Middle East, glaciers, Russia, the Anthropocene). Lesson footer read (a KS3 geography lesson): "licensed on Open Government Licence version 3.0 ... except where otherwise stated". | Partial base for world history and geography units, unit by unit (OGL v3.0, accepted 2026-11-13). No bulk download; lessons are taken per unit when a course needs them. |
 
 Not read: Facing History and the Bill of Rights Institute (expected noncommercial or all rights reserved; read only if a unit needs them).

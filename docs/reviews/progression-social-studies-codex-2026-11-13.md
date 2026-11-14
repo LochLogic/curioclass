@@ -70,7 +70,7 @@ That check reported repeated C3 indicators, skipped-grade handoffs and grade cou
 
 The ten exclusions are explicit: nine dispose of the shared grade 1 and 2 economics topic, and one moves the grade 3 Revolution-events content to grade 5. Their educational acceptability is addressed under “For Cory.”
 
-There is **no adopted whole-course social studies base text** whose sequence must be preserved. The candidate partial bases are not yet loaded. Base-text ordering is therefore not applicable to this file; the Massachusetts content order is the relevant sequence check.
+There is **no adopted whole-course social studies base text** whose sequence must be preserved. At the time of this read, candidate partial bases had not been loaded; later loading is recorded in docs/sources/BASE-TEXTS.md. Base-text ordering is therefore not applicable to this file; the Massachusetts content order is the relevant sequence check.
 
 ## Findings, most serious first
 
@@ -252,6 +252,8 @@ Do not repair the graph by teaching US history every year or by inserting empty 
 **Confidence:** firm on the examples below; unresolved on actual cross-subject scheduling
 
 All **146 references** pass identifier checking. However, the other subject progression files are absent, so these references cannot yet identify a verified owning skill and its teaching position.
+
+Update, 2026-11-13: the other three progression files now exist. Subsequent cross-subject reviews and their fix report address ownership and readiness; teaching order within a year remains a frame check.
 
 Specific repairs are already possible:
 
@@ -449,7 +451,7 @@ The treatment of testimony, human lives and simulations is consistent with the [
 ## What I could not judge
 
 - A complete `plan.py check` result, because of the missing dependency.
-- Actual cross-subject ownership and within-year availability until the other progressions exist.
+- Actual cross-subject ownership and within-year availability until the other progressions exist. (Resolved in progression-cross-fixes-2026-11-13.md: the other progressions exist and cross-subject ownership checks were applied. Within-year availability still needs the course frames.)
 - Daily reading load, source accessibility, assessment depth or teaching time.
 - Final historical accuracy and sensitivity of excerpts not yet selected.
 - A whole-course comparison with candidate partial bases that have not been adopted.

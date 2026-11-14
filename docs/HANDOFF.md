@@ -3,6 +3,22 @@
 **This is the single page that says where the work stands and what to do next. Last updated 2026-11-12, after
 section 11.1 was built (all but its tool) and the course words were renamed ([GLOSSARY.md](GLOSSARY.md)). Everything here is pushed to `spec/sara` and `main`.**
 
+## 2026-11-14: course frames (PRODUCTION-PATH step 2), latest
+
+**Social studies frames: all 15 done.** Written by band, read cold by the expert and Codex, then fixed one band at
+a time (each fix pass edits data/progressions/social-studies.csv). Frames: docs/courses/<course>/frame.md; gate
+scripts/frame.py (inside plan.py check); totals data/plans/frames.csv; fix reports
+docs/reviews/frame-<band>-fixes-2026-11-13.md (bands k-2, 3-5, 6-8, 9-11, 12); settled choices in DIGEST.md.
+Cory's calls on Desk card q-ss-frames-1. Lead items outside the fixers' files: docs/reviews/frame-ss-lead-items-2026-11-14.md.
+
+**ELA, science and math frames: being written blind** (Cory, 2026-11-14: "plan is good, please do it"). The writer
+brief (docs/pipeline/briefs/frame-write.md) gained 15 lessons from the social studies reads and a unit-level
+"## Source map" section for base texts; the gate knows all 52 core courses. Writers did not open the earlier
+grade 4 math, grade 4 science or grade 6 ELA planning. Order per band: write, expert and Codex reads
+(docs/reviews/frame-<course>-2026-11-14.md and -codex-), one fix pass per band in order within each subject (the
+three subjects run side by side, each has its own progression file), then a frame reconcile against the earlier
+planning (brief to write, modelled on docs/pipeline/briefs/progression-reconcile.md), then baseline 1.
+
 ## 2026-11-13: read this before anything below
 
 **The plan is [PRODUCTION-PATH.md](PRODUCTION-PATH.md), draft 5.** Cory set a new build order on 2026-11-13
@@ -42,9 +58,9 @@ collections come per course; L7 is Cory's; the rest wait on
 their triggers. Cory 2026-11-13: both readers are trusted (q-calibration-1 answered); Codex reads run by script
 (scripts/codex_read.py), no clicks.
 
-**Step 1 closed: the read across all four, 2026-11-13 (latest).** Expert (10 findings) and Codex (7) read the four progressions together; one fix pass applied all but one (docs/reviews/progression-cross-*2026-11-13.md). About 95 percent of the 487 cross-subject links were already timed right; 7 forward links repointed, a dozen grade 6 and 8 rows now name the earlier math they use (with a worked-example bridge when the math comes later the same year), 29 high school science rows name their real math, claim-evidence-reasoning is one name across subjects. The gate now fails a cross-subject link to a skill taught in a later grade unless the row's notes carry "Just in time:". Open for Cory: Desk card q-cross-progression-1 (ELA grade 5 unit 4 topic: water instead of disasters). The report's "For the course frames" lists (both readers) are step 2 inputs. Next: step 2, course frames.
+**Step 1 closed: the read across all four, 2026-11-13 (latest).** Expert (10 findings) and Codex (7) read the four progressions together; one fix pass applied all but one (docs/reviews/progression-cross-*2026-11-13.md). About 95 percent of the 487 cross-subject links were already timed right; 7 forward links repointed, a dozen grade 6 and 8 rows now name the earlier math they use (with a worked-example bridge when the math comes later the same year), 29 high school science rows name their real math, claim-evidence-reasoning is one name across subjects. The gate now fails a cross-subject link to a skill taught in a later grade unless the row's notes carry "Just in time:". Cory answered Desk card q-cross-progression-1: ELA grade 5 unit 4 is water. The report's "For the course frames" lists (both readers) are step 2 inputs. Next: step 2, course frames.
 
-**Step 1, all four progressions done, 2026-11-13.** ELA: 374 rows K to 12 (data/progressions/ela.csv), all 455 grade-level Common Core codes owned once (9-10 codes owned in grade 10, 11-12 in grade 12, started with ~ the year before). Reconcile: 18 differences, old work won 8 (5 sourced), no pull. Open for Cory: Desk card q-ela-progression-1 (how the dash is taught; one long text a year from outside the British and American tradition in grades 9 to 12). Math: 305 rows K to 11 (data/progressions/math.csv), high school owned in Algebra I (9), Geometry (10), Algebra II (11); 53 (+) codes deferred to the electives (math-excluded.csv). Reconcile: 43 differences, old work won 28, all on a named source, so real but earned; F-IF.C.8 moved to Algebra II on the base text's tags. The gate now counts a parent covered by its lettered parts, never hides a (+) part behind an owned parent, and fails a cross-subject lean to an unowned code. Nothing for Cory from math. Reviews: docs/reviews/progression-{ela,math}-*2026-11-13.md; settled items in docs/reviews/DIGEST.md. Left for the course frames: accelerated path (Algebra I in grade 8), major-work share by days, text picks. 
+**Step 1, all four progressions done, 2026-11-13.** ELA: 374 rows K to 12 (data/progressions/ela.csv), all 455 grade-level Common Core codes owned once (9-10 codes owned in grade 10, 11-12 in grade 12, started with ~ the year before). Reconcile: 18 differences, old work won 8 (5 sourced), no pull. Cory answered Desk card q-ela-progression-1 (DESK-ANSWERS 2026-11-13: the dash is taught; recognizable and recent texts in grades 9 to 12). Math: 305 rows K to 11 (data/progressions/math.csv), high school owned in Algebra I (9), Geometry (10), Algebra II (11); 53 (+) codes deferred to the electives (math-excluded.csv). Reconcile: 43 differences, old work won 28, all on a named source, so real but earned; F-IF.C.8 moved to Algebra II on the base text's tags. The gate now counts a parent covered by its lettered parts, never hides a (+) part behind an owned parent, and fails a cross-subject lean to an unowned code. Nothing for Cory from math. Reviews: docs/reviews/progression-{ela,math}-*2026-11-13.md; settled items in docs/reviews/DIGEST.md. Left for the course frames: accelerated path (Algebra I in grade 8), major-work share by days, text picks. 
 
 **Step 1, science progression, 2026-11-13:** done, the first subject written blind then reconciled.
 198 rows K to 11 (data/progressions/science.csv), all 208 NGSS PEs owned once; no grade 12 core course. Reconcile
@@ -54,8 +70,7 @@ applies a standard another row owns). Nothing for Cory.
 
 **Step 1, social studies progression, 2026-11-13:** done. 384 rows K to 12
 (data/progressions/social-studies.csv), gate scripts/progression.py inside plan.py check, expert and Codex reads
-and a fix pass (docs/reviews/progression-social-studies-*2026-11-13.md). Open for Cory: Desk card
-q-ss-progression-1 (Government and Economics grade placement; the writers' eight calls). Next: the science, ELA and
+and a fix pass (docs/reviews/progression-social-studies-*2026-11-13.md). Cory answered Desk card q-ss-progression-1 (DESK-ANSWERS 2026-11-13: Government and Economics open to grade 11 or 12; the writers' eight calls kept). Next: the science, ELA and
 math progressions the same way (PRODUCTION-PATH step 1), then the read across all four.
 
 [ROADMAP.md](ROADMAP.md) holds the order of work only. Its history is in `docs/archive/`. If another page

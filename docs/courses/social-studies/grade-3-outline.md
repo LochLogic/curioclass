@@ -24,6 +24,8 @@ Revised 2026-11-13 after reading five states' grade 3 standards (section "What o
 below). Changes from the first draft: a community economics unit added, first meetings and early colonies merged,
 the Revolution's events left to grade 5, and unit 7 widened.
 
+Superseded for codes, days and placement by docs/courses/social-studies-grade-3/frame.md.
+
 | # | Unit | What students learn | Anchor standards, in general form | C3 (3-5) |
 |---|---|---|---|---|
 | 1 | Where we live | Globe and map; continents and oceans; equator and prime meridian; a map grid; directions, scale, legend, landforms and waters; their own town, state and US region, found among the fifty states; how people have changed the land around them. An early map of the place set beside a modern one | 3.T1.1, 3.T2.1, 3.T2.2 (own town, state and region in place of Massachusetts and New England) | D2.Geo.1, 2, 3, 4 |
@@ -88,10 +90,11 @@ grade 5 carries the rest. What the five share and the anchor's grade 3 lacks or 
   grade 3 inquiries (CC BY-NC-SA); Smithsonian National Museum of the American Indian education pages (terms per
   item).
 
-## Open for the frame and the expert read
+## Settled by the frame and the expert read
 
-- Which five regions and nations carry the worked examples in unit 4, settled with each nation's own materials.
-- Which world community unit 3 compares with, chosen so it is not the same country every year of the elementary
-  course.
+- Unit 4's worked examples: grade 4's five regions, each with a named nation (Mashpee Wampanoag, Cherokee,
+  Menominee, Navajo, Makah), each confirmed with the nation's own materials in the unit plan (settled 2026-11-13,
+  docs/reviews/frame-3-5-fixes-2026-11-13.md).
+- Unit 3's world community: Ghana (settled 2026-11-13, same report).
 - Settled 2026-11-13: seven units, with first meetings and early colonies merged; the Revolution's events left to
   grade 5.

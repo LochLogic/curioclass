@@ -10,6 +10,123 @@ heading, and say how many findings went to Cory instead.
 
 ## Week of 2026-11-09
 
+### Social studies course frames, all 15 (expert and Codex reads, five fix passes). Reports: frame-<course>-2026-11-13.md, frame-<course>-codex-2026-11-13.md, frame-<band>-fixes-2026-11-13.md
+
+To Cory: one Desk card, q-ss-frames-1 (time a day, community and qualified readers, K to 2 devices, the grade 12 timetable, a Personal Finance half year, the RH and WHST standards, the Since Time Immemorial courtesy request).
+
+**Kindergarten to grade 2** (frame-k-2-fixes-2026-11-13.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Three on-the-day holiday lessons from unit 5's 11 days; the block placed by prerequisites, dates left to the scope and sequence | K | Careful notes arrive on the day; no false calendar promise |
+| Kindergarten informed action is a real classroom problem with a look back | K | Adoption bar item 8 asks for a real problem |
+| Class store tokens worth one, prices 1 to 5 | K | No coin values in kindergarten math |
+| Unit 4 question "Which change from long ago made the biggest difference to everyday work?" | K | Keeps the claim inside the evidence studied |
+| One respond day after each course check | K, 1, 2 | A cumulative check is followed by response; totals unchanged |
+| Check-set cells are "Candidate: ..." until the unit plan checks them | K, 1, 2 | The plans do not exist yet |
+| ss1-group-roles hands on to ss3-taking-part, dormant with a readiness check | 1, 3 | Closes the orphan civics thread |
+| Grade 1 symbols explained for meaning with evidence, flag and eagle included | 1 | MA.1.T3.2 in full |
+| Grade 1 flyers whole dollars within 20 | 1 | No money until grade 2 math |
+| Grade 2 country menu of about 16, Ghana, Canada and Mexico off | 2 | Buildable source sets; avoids grade 3 and 4 picks |
+| D2.Geo.10: physical change in one region, a main street in a town of another, each at two dates | 2 | Both halves of the indicator, in more than one region |
+| Map-scale lean math:1.MD.A.2 | 2 | Matches repeated whole units |
+| Unit 6 question "When people move to a new place, do they change the place more, or does the place change them more?" | 2 | Needs a conclusion from the unit's evidence |
+
+**Grades 3 to 5** (frame-3-5-fixes-2026-11-13.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| ss3-state-constitution stays in unit 2, after a taught definition of a constitution; unit 6 completes D2.Civ.5 | 3 | The levels just taught are the frame a state constitution sets up |
+| Unit 3's country is a present-day market town in Ghana | 3 | No earlier grade fixes a country; Canada and Mexico are grade 4's |
+| Unit 4's regions are grade 4's five; worked cases Mashpee Wampanoag, Cherokee, Menominee, Navajo, Makah | 3 | Grade 4 builds on the same regions; closes later.csv L5 |
+| Unit 5 leader pairs per colony; the 1622 Powhatan war as the conflict case; Winthrop dropped | 3 | Own-place rotation; grade 5 teaches the New England wars |
+| Unit 5 question "Could the colonists and the Native nations have shared the land?" | 3 | Does not turn land loss into a question of room |
+| Barnette cited beside "no student performs a patriotic act" | 3 | Values rule a |
+| Timeline thread from unit 5 on; biography readiness check in unit 1 | 3 | Each thread starts where it is first used |
+| Interest rate shown as dollars a year per $100, no percent | 3 | D2.Eco.10 without percent math |
+| Unit 3 reads a given timeline in thousands of years | 4 | To-scale timeline is unit 4's, deep time grade 6's |
+| The Navajo Long Walk (1864) is the Southwest's forced-movement case | 4 | MA.4.T4d.5 movements; the nation's own materials |
+| Unit 5 adds Alaska (1867), Hawaii (1893 and 1898) and Puerto Rico (1898) with their peoples | 4 | The gains MA.4.T4.2 lists; values rule c |
+| Northeast region map plus four state maps | 4 | MA.4.T4a.2 asks a region map |
+| Coronado is the Spanish entrada, paired with Cartier's third voyage | 4 | One explicit comparison of events at the same time |
+| A technological catastrophe beside natural ones, for example the Johnstown Flood | 4 | D2.Geo.9 names technological events |
+| Amendment process taught in unit 5 | 5 | Units 8 and 9 use it |
+| Unit 9 16 days, unit 10 14 | 5 | Unit 9 is the content unit 10's research rests on |
+| Slavery's origins in unit 2: 1619 as the first recorded in Virginia, the 1660s laws | 5 | MA.5.T1.5 in full, without a false start date |
+| ss3-money-saving hands on to ss5-independence-war | 3, 5 | D2.Eco.11 needs money and price |
+| ss3-founding-ideas hands on to ss4-states-and-statehood | 3, 4 | MA.4.T4a.3 needs the founding ideas |
+| branches-of-government introduced in grade 3, carried by ss4-national-capital | 3, 4 | Grade 3 names the three parts first |
+
+**Grades 6 to 8** (frame-6-8-fixes-2026-11-13.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Every unit gets the fresh-agent sensitivity read; community readers named per unit | 6, 7, 8 | Bar item 12 and FOUNDATION section 7 |
+| Unit days 10, 15, 14, 16, 15, 10, 15, 14, 14, 11, 14 | 6 | Units 7 and 8 were short for what they own |
+| Unit 1 order: fields, timeline, climate (3, 4, 3), Beringia as the worked case | 6 | Who spread before how climate let them |
+| Unit 8: connections 5 days, research 9 | 6 | MA.6.T3g.1 needs a sourced chain |
+| Catalhoyuk is the worked Neolithic town | 6 | Inside MA.6.T2.4; open images |
+| Grade 5's sourcing in use from unit 1; Hammurabi the first full sourcing step on an ancient source | 5, 6 | Keeps the grade 5 handoff |
+| Course check 3 asks a limitation of the evidence, not a counterpoint | 6 | The opposing claim is grade 7's |
+| Grade 6 research: Maya or early Andean (Moche, Nazca); Inca an extension | 6, 9 | MA.6.T5c.1 names Maya and Moche; the Inca is grade 9's |
+| Electronic map with no account and a paper path | 6 | FOUNDATION promises; C14 and C15 |
+| The Han taught in unit 4 inside MA.7.T2b.2f; technologies dated | 7 | 2f is a Han story; gunpowder is Tang |
+| Persian Empire opener placed in unit 9 | 7 | MA.7.T4b.5's causes need Persia |
+| claim-evidence-reasoning from unit 1 | 7 | Claims are written from unit 1 |
+| Look-back held to the start of unit 10 | 7 | About four weeks after the action |
+| ss7-rome-fall hands on to ss8-haudenosaunee-influence | 7, 8 | The counterclaim seam in the data |
+| Unit 11 teaches percent itself if math 7 is later | 7 | Same-year lean with no frame yet |
+| Tribal nations as governments in ss8-federal-state-powers, unit 7, one worked example | 8, 12 | Cory's call 7; gov-federalism builds on it |
+| Unit 7 split 5, 3, 6, 6 | 8 | Protects the economics row |
+| Federalist No. 51 and Brutus No. 1 placed in unit 2 | 8 | MA.8.T2.4 compares both sides |
+| Action audience booked by about day 130, presentation by about day 157 | 8 | The look-back needs an answer |
+| The two moves from the anchor's order stand | 8 | Each has a reason that holds |
+| Compelling questions: grade 6 units 1, 3, 7, 11; grade 7 units 3, 5; grade 8 units 1, 9 | 6, 7, 8 | Each answered only from the unit's content |
+
+**Grades 9 to 11** (frame-9-11-fixes-2026-11-13.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| MA.WHI.T3.2's map-and-explain task in unit 3, on a unit 3 option | World History I | The parent code is owned there |
+| Writing steps: counterclaim paragraphs in units 1 and 3, one-to-two page claim in unit 6, full argument in unit 10 | World History I | Writing builds; keeps grade 8's counterclaim |
+| Unit 6 "about 750 to 1400", Umayyad Cordoba the T3.6 core case; plague waves through the 1400s inside the row | World History I | T3.6 names the 8th to early 10th century |
+| Cotton textile technologies as a production sequence in unit 5's days | World History I | T4.4 names the technologies |
+| wh1-sources-of-the-past hands on to us1-research-inquiry; wh1-graphic-displays to wh2-imperialism-causes | 9, 10, 11 | Both ends of each handoff |
+| Unit days 15, 11, 13, 16, 14, 16, 15, 14, 12, 11, 13 | World History II | Lead's decision: units 8 and 10 were short |
+| Convention first taught in unit 10, with an 11-day budget | World History II | No earlier unit teaches it |
+| Dated routes to dictatorship; Britain the surviving democracy | World History II | Mussolini predates the Depression |
+| One Cold War development per student across both rows | World History II | The progression's contract |
+| T3.2c and d, T5.5's Americas and T6.2's added forces taught | World History II | Official text in full |
+| The empire report is the third argument; the League debate one day | US History I | Three products did not fit 16 days |
+| 14th Amendment compared across Native Peoples and Asian and European immigrants, Yick Wo added | US History I | T6.5 in full; citizenship is not voting |
+| D4.2 explanation as a companion section in unit 5 | US History I | D4.2 in full without another essay |
+| The Declaration's phrase analysed, not printed or spoken | US History I | Rule 6 |
+| Huckleberry Finn by excerpt and reception | US History I | "Such as"; rule 6 |
+| Shared ELA 11 research in weeks 12 to 15 | US History I | e11-research is four weeks |
+| Since Time Immemorial: Level 1 constitutional case (unit 2), Level 2 allotment (unit 6) | US History I | Bounded commitments the units can hold |
+| Teacher or parent as the action intermediary, contact optional | 9, 10, 11 | A student at home has a route |
+| A source map for a partial base comes with the scope and sequence, not the frame | World History II, US History I | frame-write.md; no base text |
+
+**Grade 12** (frame-12-fixes-2026-11-13.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Capstone question chosen on unit 9's respond day (about day 123); unit 12 can run in 10 days | US History II | Senior years end early; matches ELA 12's eight weeks |
+| Unit days 12, 13, 14, 15, 10, 17, 17, 11, 10, 11, 11, 13 | US History II | Unit 11 could not hold its additions |
+| Second check after unit 6, at the semester line | US History II | A cumulative check where schools grade |
+| D4.3 two forms for two audiences; D4.4 and D4.5 critiques apart | US History II | Full indicators that fit the days |
+| One running flashpoint map; Keyes and Milliken North and West, Swann Southern | US History II | Flashpoints come after unit 6; Charlotte is Southern |
+| Unit 8 runs 1954 to 1975 with the choices-and-consequences question | US History II | T3.12 names Eisenhower; no false choice |
+| gov-policy-news assumes ss8-news-literacy | Government, 8 | The grade 8 row that teaches lateral reading |
+| Combined readiness check for two dormant rows | Government | Frees a day in units 1 and 3 |
+| Unit days 6, 9, 7, 13, 9, 9, 8, 8, 7; Congress 2 days | Government | Grade 8 taught Congress's basics |
+| Additions: at most 7 days without a home code (Government), 4 (Economics) | Government, Economics | Bar item 10 and C1 |
+| T3.2 one pair from four; Youngstown the T2.9 default | Government | Additions ride inside the standard |
+| Digital product and outside collaboration required; nonpublic action still an action | Government | NML.T5.4, T5.5; C3 action |
+| Unit days 8, 10, 9, 7, 8, 7, 7, 9, 11; credit taught as one running case | Economics | Action and trade had no room |
+| Task budget for units 7 to 9 | Economics | Days, not rows |
+| Paying for college compares aid offers; whole-number comparative advantage first | Economics | Spring timing; the idea before the arithmetic |
+
 ### All four progressions read together. Report: progression-cross-2026-11-13.md
 
 One finding to Cory (the ELA grade 5 unit 4 topic): Desk card q-cross-progression-1. Codex read: progression-cross-codex-2026-11-13.md, nothing new for Cory.
