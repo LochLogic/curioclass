@@ -48,8 +48,8 @@ S:\CurioClass-sources named on each; Oak is taken per unit when a course needs i
   grades 6 and 7. Each item checked for third-party images or text, which that licence does not cover.
 - OpenStax retired CC BY editions, American Government 3e, Economics 2e and Psychology 1e: government, economics and
   psychology. `openstax-retired-ccby\`. Cory 2026-11-13: their preface line on training and taking books into AI
-  does not cover our use (we
-  adapt the text into our own days; we train no model). The current OpenStax editions are CC BY-NC-SA: reference.
+  does not cover our use (we adapt the text into our own days; we train no model). The current OpenStax editions are
+  CC BY-NC-SA: reference.
 
 ## Our own (no base text)
 
