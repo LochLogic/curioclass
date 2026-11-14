@@ -147,6 +147,56 @@ for b in bands:
     for l in b.get('lanes', []):
         for r in l.get('rows', []): r['rle'] = rle(r['cells'])
     for r in b.get('rows', []): r['rle'] = rle(r['cells'])
+# what each step is, in plain words, for the Desk's click bubbles. Keyed by node id, or by its kind (the part
+# before the first colon), or by a row kind. Short: a line or two, or a few bullets ("- " lines).
+ABOUT = {
+    'P1a': "Load the Massachusetts social studies standards into the repo, in our own words, so every later step can point at them.",
+    'P1b': "Redraw the social studies course list to follow the Massachusetts order, moving topics and worksheets without breaking links.",
+    'P1c': "Choose the other states and national references every social studies unit is checked against.",
+    'P1d': "Design the grade 3 year that replaces a single-state study, so it works for students in any state.",
+    'P1e': "Decide where psychology and the social studies electives go: after the core subjects.",
+    'P2': "Look for a free, openly licensed social studies textbook to build from. None met the bar, so social studies is written as Curio Class's own.",
+    'P3': "Replace the old rule (prove at the bottom first) with the new build order: plan from the top down, test with a probe and a guard.",
+    'P4': "Set the lines the probe and the guard are measured against, so a pass or fail is a number, not a feeling.",
+    'P5a': "Give the expert reader a lens per subject: what a strong reviewer of that subject looks for, with sources.",
+    'P5b': "Write the bar for science and social studies (what adoption reviewers expect), as math and ELA already had.",
+    'P5c': "Write the job sheets the readers and writers follow for the new planning layers.",
+    'P5d': "Test both readers (the expert agent and Codex) on work with planted faults, to see if they can be trusted.",
+    'prog': "This grade's list of skills in this subject: what it owns, what it assumes from the grade before, and what it hands on to the next.",
+    'prog-review': "Two independent readers (the expert and Codex) read this subject's whole progression cold; one fix pass applies what they find. Only big items go to the Desk.",
+    'prog-review:all': ('Two readers check where the four subjects meet:\n'
+                        '- Timing: a lean on another subject only uses what that subject has already taught\n'
+                        '- Missing links: the same idea taught twice with neither side knowing\n'
+                        '- One name for one tool across subjects\n'
+                        '- No year overloaded with hard new ideas at once\n'
+                        '- Reading topics line up with science and social studies\n'
+                        '- Sensitive topics handled the same way everywhere'),
+    'frame': "One page for this course: its grades, the standards and skills it owns, its number of days, its unit list with a reason for each, and a map of the base text.",
+    'b1:review': "A read of the whole structure at once: every progression and frame, checking they fit together.",
+    'b1:site': "Check the website's pages and links match the plan, from subject down to course.",
+    'b1:codex': "Codex reads the progressions and frames as a second, independent reader.",
+    'ss': "The scope and sequence for this course: its units in order, each with what it teaches and roughly how many days.",
+    'ss-review': "The expert reads every scope and sequence in this subject together; one fix pass follows.",
+    'units-review': "The expert reads this subject's unit plans together before any days are written.",
+    'probe': "A few real days are written from the unit plans and read, to test the plans before full writing.",
+    'guard': "A few days written from the unit plans and measured against set lines. Full writing in this subject starts only once they pass.",
+    'after': "A course outside the four core subjects. It starts once the core is done.",
+    'baseline1': "A checkpoint: every progression and course frame reviewed, and the website matches the plan.",
+    'baseline2': "A checkpoint: social studies reviewed top to bottom and its probe read. Any fix to the day template is made here, once.",
+    'm-science': "A checkpoint: science reviewed from the progression down, probe read.",
+    'm-ela': "A checkpoint: ELA reviewed from the progression down, probe read.",
+    'm-math': "A checkpoint: older math work converted to the new plan, then reviewed from the progression down, probe read.",
+    'final': "A checkpoint: every core course reviewed from the progressions down; Codex reads a sample.",
+    'row:units': "The unit plans for this course, one cell a unit. Dashed cells are an estimate until the course frame sets the count.",
+    'row:days': "Every teaching day of this course, one cell a day: written, then read by the cheap and the expert readers.",
+    'row:tools': "The interactive tools in this subject, one dot a tool. Lit dots are live and verified.",
+}
+info = {}
+p = os.path.join(ROOT, 'data', 'plans', 'flow-status.csv')
+if os.path.exists(p):
+    for r in csv.DictReader(io.open(p, encoding='utf-8')):
+        info[r['node']] = [r.get('date') or '', r.get('note') or '']
+
 def strip_cells(o):
     if isinstance(o, dict): return {k: strip_cells(v) for k, v in o.items() if k != 'cells'}
     if isinstance(o, list): return [strip_cells(v) for v in o]
@@ -159,7 +209,7 @@ p = os.path.join(ROOT, 'data', 'plans', 'later.csv')
 if os.path.exists(p):
     later = [dict(r) for r in csv.DictReader(io.open(p, encoding='utf-8'))]
 
-out = dict(at=datetime.datetime.now().isoformat(timespec='minutes'), bands=bands, later=later,
+out = dict(at=datetime.datetime.now().isoformat(timespec='minutes'), bands=bands, later=later, about=ABOUT, info=info,
            note='From docs/PRODUCTION-PATH.md (draft 5). Day and unit counts marked "about" are estimates until each course frame sets them.')
 io.open(sys.argv[1], 'w', encoding='utf-8').write(json.dumps(strip_cells(out), separators=(',', ':')))
 cnt = {}
