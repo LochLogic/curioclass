@@ -20,6 +20,9 @@ FAIL (exit 1):
 A standard written ~CODE marks a row that contributes to a standard another row owns (added 2026-11-13): it is
 checked as a code but does not count as owning it, and the code must be owned by some row (an earlier contributing
 row starts the work; a later one applies it).
+An ELA code sits in its own grade; a band code (9-10, 11-12) is owned by the band's last grade and started
+with ~CODE in the earlier one. A K to 8 math code sits in its own grade (4.NBT.B.5 in grade 4); high school math codes
+carry no grade.
 note (exit 0): a handoff that skips one or more grades; a C3 indicator named in more than one grade (depth must
 differ, and the notes must say how); a C3 indicator of a grade band named by no grade in that band; grade row counts.
 """
@@ -35,9 +38,32 @@ GRADES = ['K'] + [str(g) for g in range(1, 13)]
 GI = {g: i for i, g in enumerate(GRADES)}
 STD_FILES = {'social-studies': ['ma-hss-2018.txt', 'c3-indicators.txt'],
              'math': ['ccss-math-standards.txt'],
-             'ela': ['ccss-ela-standards.txt'],
+             'ela': ['ccss-ela-standards.txt', 'ccss-ela-standards-full.txt'],
              'science': ['ngss-pes.txt']}
-ANCHOR = {'social-studies': 'ma-hss-2018.txt', 'science': 'ngss-pes.txt'}
+ANCHOR = {'social-studies': 'ma-hss-2018.txt', 'science': 'ngss-pes.txt', 'ela': 'ccss-ela-standards.txt',
+          'math': 'ccss-math-standards.txt'}
+
+
+def code_grades(subject, code):
+    """(owner grades, all grades) a grade-coded standard may sit in, or None when the code carries no grade.
+    ELA: RL.4.2 sits in grade 4; a band code (RL.9-10.1) is used across the band and owned by its last grade."""
+    if subject == 'math':
+        g = code.split('.')[0]
+        return ([g], [g]) if g in GI else None
+    if subject != 'ela':
+        return None
+    p = code.split('.')
+    if len(p) < 3:
+        return None
+    g = p[1]
+    if g in GI:
+        return [g], [g]
+    if '-' in g:
+        a, b = g.split('-')
+        if a in GI and b in GI:
+            band = GRADES[GI[a]:GI[b] + 1]
+            return [b], band
+    return None
 HEADING = re.compile(r'^MA\.[A-Z0-9]+\.T\d+[a-z]?$')
 BAND = {'K-2': ['K', '1', '2'], '3-5': ['3', '4', '5'], '6-8': ['6', '7', '8'], '9-12': ['9', '10', '11', '12']}
 
@@ -107,6 +133,15 @@ def check(subject):
                 contrib.append((sid, code[1:]))
                 continue
             owners.setdefault(code, set()).add(grade_of[sid])
+    for sid, r in by_id.items():
+        for raw in split(r['standard']):
+            cg = code_grades(subject, raw.lstrip('~'))
+            if not cg:
+                continue
+            allowed = cg[1] if raw.startswith('~') else cg[0]
+            if grade_of[sid] not in allowed:
+                fails.append('%s (grade %s) %s %s: belongs in grade(s) %s' % (
+                    sid, grade_of[sid], 'contributes to' if raw.startswith('~') else 'owns', raw.lstrip('~'), ', '.join(allowed)))
     for sid, code in contrib:
         if code not in owners:
             fails.append('%s contributes to %s, which no row owns' % (sid, code))
