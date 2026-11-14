@@ -102,7 +102,7 @@ def check_file(path):
 
 def default_files():
     pats = ['data/progressions/social-studies.csv', 'data/progressions/science.csv', 'data/progressions/ela.csv',
-            'data/progressions/math.csv', 'data/frames/*.csv', 'docs/courses/*/*-frame*.md']
+            'data/progressions/math.csv', 'data/frames/*.csv', 'docs/courses/*/frame.md']
     out = []
     for p in pats:
         out += sorted(glob.glob(os.path.join(ROOT, p)))

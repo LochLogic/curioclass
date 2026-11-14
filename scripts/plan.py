@@ -1169,6 +1169,13 @@ def main(a):
                 for x in pf: print('  FAIL', x)
                 for x in pn: print('  note', x)
                 bad += len(pf)
+            import frame   # course frames (added 2026-11-13)
+            for s in frame.found():
+                ff, fn = frame.check(s)
+                print('frame %s: %d failure(s)' % (s, len(ff)))
+                for x in ff: print('  FAIL', x)
+                for x in fn: print('  note', x)
+                bad += len(ff)
         sys.exit(1 if bad else 0)
     elif cmd == 'tables':
         for c in (rest[:1] or courses()):
