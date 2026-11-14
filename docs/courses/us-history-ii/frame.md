@@ -75,10 +75,10 @@ Course `us-history-ii` (catalogue id `us-hist-hs`), grade 12, draft frame (2026-
   retrieval at a higher level, and the days stay the same.
 - **Reading level.** Grade 11 to 12 primary sources, excerpted and glossed where the original is long; one secondary
   account per contested event at least, beside a second telling.
-- **Topics.** Pending(ss:us-history-ii): the course's existing topics cover units 2 to 7, 10 and 11 (Roaring Twenties
-  and the Great Depression, World War II and the Home Front, Cold War America, Suburb Boom, Civil Rights Movement,
-  Modern America) and the source skills (Missing Voices Archive, Behind the Documentary); units 1, 8 and 9 have no
-  topic of their own, and the scope and sequence names the topics to add (data/plans/later.csv row L8).
+- **Topics.** The course's existing topics cover units 2 to 7, 10 and 11 (Roaring Twenties and the Great Depression,
+  World War II and the Home Front, Cold War America, Suburb Boom, Civil Rights Movement, Modern America) and the
+  source skills (Missing Voices Archive, Behind the Documentary); units 1, 8 and 9 have no topic of their own, and
+  the scope and sequence names the three topics to add in its Topic pages table (data/plans/later.csv row L8).
 - **The grade 12 timetable** (Cory, 2026-11-14: yes, as picked). US History II takes one period all year. Government and Economics are half years open to
   grade 11 or 12, so a grade 12 student taking both has them in a second period, one each half:
 

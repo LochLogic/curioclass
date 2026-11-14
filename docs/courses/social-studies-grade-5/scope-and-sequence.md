@@ -1,6 +1,6 @@
 # Scope and sequence: Grade 5: The United States to the Civil War, and the Fight for Civil Rights
 
-Course `social-studies-grade-5`, grade 5, draft, written 2026-11-14 from the frame (docs/courses/social-studies-grade-5/frame.md). The days are in data/plans/social-studies-grade-5/days.csv; this page gives the judgment behind them.
+Course `social-studies-grade-5`, grade 5, draft, written 2026-11-14 from the frame (docs/courses/social-studies-grade-5/frame.md), revised the same day from the expert and Codex sequence reads (docs/reviews/sequence-3-5-fixes-2026-11-14.md). The days are in data/plans/social-studies-grade-5/days.csv; this page gives the judgment behind them.
 
 ## The year at a glance
 
@@ -9,8 +9,10 @@ Course `social-studies-grade-5`, grade 5, draft, written 2026-11-14 from the fra
 - Every unit runs the C3 arc: the compelling question and supporting questions on the unit's first day, content taught in time order, sources weighed, a claim from two sources, then the end-of-unit assessment (a task from sources not seen before) and one respond day. Before unit 3 the claim asks only what two sources both confirm (grade 4 depth); from unit 3 two accounts are weighed by their makers.
 - Informed action: once, in unit 10 (days 155 to 158), in small groups.
 - Readiness checks: on the first day of units 2, 4, 5 and 10, where a grade 3 row slept across grade 4 (ss3-sea-trade, ss3-money-saving, ss3-rules-rights, ss3-deliberation). Grade 4 rows and the grade 3 rows grade 4 kept in use (founding ideas, levels of government) open as retrieval tasks inside a day.
-- Sensitivity: units 1, 2, 4 to 9 carry Native, hard-history, disability or LGBTQ content; each such day says "sensitivity read" in its note, for the fresh agent's read with the unit plan. The values rule is applied on named days: Worcester v. Georgia (day 101) and the 2015 marriage ruling (day 139) under rule a; the war's causes from the seceding states' own words (day 115) under rule b.
+- Sensitivity: units 1 to 9 carry Native, hard-history, disability or LGBTQ content (unit 3 the French and Indian War's Native alliances and the King Street shooting), and unit 10 depends on the topics and printed source sets students use; each such day, and each assessment day with hard-history sources, says "sensitivity read" in its note, for the fresh agent's read with the unit plan (added on days 21 to 25, 34, 101, 111, 118 to 121, 141, 144, 147, 150 and 159 at the fix pass). The values rule is applied on named days: Worcester v. Georgia (day 101) and the 2015 marriage ruling (day 139) under rule a; the war's causes from the seceding states' own words (day 115) under rule b.
 - Personal finance: one light touch, no added day (day 54, what rising prices did to a family's savings and debts).
+- Shorter path (FOUNDATION section 5): 9 days are marked "compressible (shorter block)" in the note column (days 3, 8, 18, 40, 53, 56, 70, 82, 152), so a school on a shorter block keeps every code on 151 days. Each folds into the day before or after it and the work moves with it: day 3's treaties join day 2 as one short source; day 8's founder research becomes a short reading inside day 7; day 18's legality and ownership join day 16; a gathering day (40, 56, 152) folds into its claim day, which then carries its codes; day 53's weaknesses join day 52; day 70's provisions join day 69; day 82's Adams joins day 81 as a paired profile. No readiness, assessment or respond day is compressible, and no owned code lives only on a compressible day. The full path stays one lesson of about 40 minutes every school day.
+- Every assessment day (end-of-unit and course-level) lists every code it assesses, and its goal asks about each part of each code, a short prompt per part; unit 10's D1 and D4 codes are judged from the research log, claim and action with the unit rubric.
 
 ## The topics, unit by unit (later.csv L8)
 
@@ -33,37 +35,37 @@ Days 1 to 14, weeks 1 to 3. Codes: MA.5.T1.1 to 4.
 
 Relations first (days 2 to 6: disease and land, treaties, the two wars, the nations today), because they answer the unit question most directly; then why colonies were founded and why English ideas won out (7 to 9); then the colonial regions and labor (10 to 12), whose labor map leads straight into unit 2.
 
-- End-of-unit assessment: day 13, an encounter told from two unseen sources and a crops-and-labor map read. Respond: day 14.
+- End-of-unit assessment: day 13, every owned code: early relations from two unseen sources, two colonies' founding compared with the founder researched, why English ideas won out, the colonies, crops and labor from an unseen map, and a claim. Respond: day 14.
 - Candidate (California grade 5, religion and religious freedom): kept, inside day 7.
 
 ## Unit 2. Slavery in the colonies. "How did enslaved and free Africans shape the colonies, and how did they seek freedom?"
 
 Days 15 to 26, weeks 3 to 6. Codes: MA.5.T1.5, MA.5.T1.6, MA.5.T1.7, MA.5.T1.7a to d.
 
-How slavery began and spread (16 to 18), then lives compared and resistance (19 to 20), then the ways out of slavery in rising order: skilled work, freedom by service, grant and suit, and gradual emancipation (21 to 23). The unit ends on freedom sought and won, which the Revolution's language of liberty is read against in units 3 and 4.
+How slavery began and spread (16 to 18), then lives compared and resistance (19 to 20), then days 21 to 23 distinguish labor arrangements and legal status, then examine different ways people sought or obtained freedom: skilled work and being hired out did not themselves end enslavement (21); a completed indenture or term of service, an owner's grant, and freedom suits in court, with Prince Hall's petitions kept apart from the Freeman and Walker cases (22); gradual emancipation and free Black communities (23). The unit ends on freedom sought and won, which the Revolution's language of liberty is read against in units 3 and 4.
 
 - Readiness: day 15 on grade 3's ss3-sea-trade (the Triangular Trade); reteach in a small group in day 16.
-- End-of-unit assessment: day 25. Respond: day 26.
+- End-of-unit assessment: day 25, every owned code and lettered part: slavery's origins, legality and how common it was; the Triangular Trade and the Middle Passage; lives compared and the revolts; hired-out artisans; the routes to freedom told apart; gradual emancipation and free Black life; and a claim. Respond: day 26.
 - Candidate (California grade 5, resistance in the southern colonies): kept, inside day 20.
 
 ## Unit 3. The road to revolution. "When is breaking a law the right thing to do?"
 
 Days 27 to 43, weeks 6 to 9. Codes: MA.5.T2.1, MA.5.T2.1a to d, MA.5.T2.2, MA.5.T2.3; D2.His.10, 11, 16.
 
-The chain runs in time order: the war, its debts, the Proclamation and the Acts, taxation and representation (28 to 31). The two-source skill is taught where the timeline reaches 1770 (32 to 34), on the year's first contested event, then the chain goes on through the Congress, the Sons of Liberty, the Tea Party, the Suffolk Resolves and the fighting, ending when the British leave Boston (35 to 37), with women's roles and the Boston map after (38 to 39).
+The unit runs in two passes on one shared timeline. The first pass is an overview: the war, its debts and the Proclamation (28 to 29), the Acts from 1764 to 1774 (30), and taxation and representation with how colonial legislatures, town meetings and charters grew (31). The second pass returns to the colonial responses in time order, each return marked on the timeline: the Stamp Act Congress and the Sons of Liberty, 1765 (32); the two-source skill where the timeline reaches 1770 (33 to 35: sourcing unprompted, the King Street shooting in two accounts, weighing them); then the Tea Party, the Suffolk Resolves and the First Continental Congress (36) and the fighting, ending when the British leave Boston (37), with women's roles and the Boston map after (38 to 39).
 
-- End-of-unit assessment: day 42, an unseen document sourced unprompted, two accounts weighed, the chain from war debt to fighting. Respond: day 43.
+- End-of-unit assessment: day 42, every owned code and lettered part: an unseen document sourced unprompted, two accounts weighed with a claim, the chain from war debt to fighting with the Acts on it, the slogan, colonial government's part, the Congress, the Sons of Liberty, the Tea Party, the Suffolk Resolves and the first battles, women's roles, and the Boston map and its people. Respond: day 43.
 - Candidate (Tennessee and New York, the First Continental Congress): kept, inside day 36.
-- Leans: ELA RI.5.3 (ELA unit 2, days 42 to 80) and RI.5.6 (ELA unit 3, days 84 to 123) come later; day 29 brings the unit's own cause-and-effect organizer and day 33 models comparing two accounts before the claim.
+- Leans: ELA RI.5.3 (ELA unit 2, days 42 to 80) and RI.5.6 (ELA unit 3, days 84 to 123) come later; day 29 brings the unit's own cause-and-effect organizer and day 34 models comparing two accounts before the claim.
 
 ## Unit 4. Independence and a first government. "Did the Revolution keep the Declaration's promise?"
 
 Days 44 to 59, weeks 9 to 12. Codes: MA.5.T2.4 to 9, MA.5.T2.5a to c; D2.Eco.11.
 
-The Declaration and who it left out (45 to 46), the war's later events on a map and why the Americans won (47 to 49), who fought on each side and the leaders (50 to 51), then the Articles, the postwar economy and Shays' Rebellion (52 to 55), which is the reason unit 5 exists.
+The Declaration and who it left out (45 to 46), the war's later events on a map and why the Americans won (47 to 49), who fought on each side and the leaders, in brief profiles with one focused comparison (50 to 51), then the Articles, the postwar economy and Shays' Rebellion (52 to 55), which is the reason unit 5 exists.
 
 - Readiness: day 44 on grade 3's ss3-money-saving (money, price, loan), placed first so a reteach falls before day 54; the founding ideas open as a retrieval task the same day.
-- End-of-unit assessment: day 58. Respond: day 59.
+- End-of-unit assessment: day 58, every owned code and lettered part: the Declaration and who it left out, the four later events and why the Americans won, Loyalists, neutrals and those on both sides, two leaders compared, the Articles' adoption, weakness and failure, inflation, deflation and unemployment, Shays' Rebellion, and a claim. Respond: day 59.
 - Candidates (California grade 5): help from Spain and the Netherlands, kept, inside day 49; the Northwest Ordinance, kept, inside day 52.
 
 ## Unit 5. The Constitution. "How did the Constitution try to keep power from growing too strong, and whose rights did it protect?"
@@ -73,7 +75,7 @@ Days 60 to 75, weeks 12 to 15. Codes: MA.5.T3.1 to 6; D2.Civ.1, 3.
 The debates come first (61 to 62), so the document is read as the answer to them; then the Preamble, the branches, checks and balances and the levels (63 to 66), who was left out (67), the amendment process (68), the Bill of Rights (69 to 70), and the claim about one amendment from two sources (71 to 72). Day 73 reviews the founding years on one timeline for course-level check 1.
 
 - Readiness: day 60 on grade 3's ss3-rules-rights; the levels of government and grade 4's branches by name open as retrieval tasks.
-- End-of-unit assessment: day 74. Respond: day 75.
+- End-of-unit assessment: day 74, every owned code: a Convention debate and the Three-Fifths Compromise, a provision and why it was written, the branches and checks and balances, the levels' roles, women's exclusion, the amendment process and the Bill of Rights, and the 1791 claim. Respond: day 75.
 - Candidate (Tennessee and New York, a later amendment as a second case): dropped. Units 8 and 9 use the process on the 13th, 14th, 15th and 19th Amendments, and a second case here would cost a day the unit's sixteen do not hold.
 - Leans: ELA W.5.1 comes later (ELA unit 3, days 84 to 123); day 72 uses a claim, evidence and reasoning frame.
 
@@ -81,9 +83,9 @@ The debates come first (61 to 62), so the document is read as the answer to them
 
 Days 80 to 96, weeks 16 to 20. Codes: MA.5.T4.1 to 4, MA.5.T4.3a, MA.5.T4.3b; D2.Eco.6, 8, 13; D2.Geo.11.
 
-Four short rows in time order: the first presidents (81 to 83), the Purchase and Lewis and Clark (84 to 86), the War of 1812 (87 to 88), and New England's industry (89 to 93), which ends on cotton and enslaved labor to set up unit 7.
+Four short rows in time order: the first presidents (81 to 83), the Purchase and Lewis and Clark (84 to 86), the War of 1812 (87 to 88), and New England's industry (89 to 93), which ends on cotton and enslaved labor to set up unit 7. Day 90 holds both productivity indicators (investment in machines and in workers' learning, productivity and later income); day 92 tells costs inside the work apart from effects on people outside the deal, with an external benefit too; days 89 to 94 mark each benefit and cost short term or long term, and the claim on day 94 weighs them.
 
-- End-of-unit assessment: day 95. Respond: day 96.
+- End-of-unit assessment: day 95, every owned code and lettered part: a president judged by his aims, the Purchase and the route, the War of 1812's causes and events, the industry map, productivity, distant connections, short- and long-term benefits and costs, and a claim. Respond: day 96.
 - Candidate (California grade 5, the cotton gin): kept, inside day 93.
 - Leans: math 5.G.A.1 comes later (math unit 10); none needed, the route uses grade 4 latitude and longitude. Science 5-ESS3-1 comes later (science unit 6); day 92 names polluted rivers as a cost.
 
@@ -91,9 +93,9 @@ Four short rows in time order: the first presidents (81 to 83), the Purchase and
 
 Days 97 to 112, weeks 20 to 23. Codes: MA.5.T4.5, MA.5.T4.5a to d, MA.5.T5.1, MA.5.T5.3; D2.His.4, 5, 6; D2.Civ.14.
 
-Removal first, in time order, with Native self-government shown before the law that attacked it (98 to 104); then slavery's spread (105 to 106); then the abolitionists and their means (107 to 109). Abolition closes the unit so the Civil War follows directly.
+Removal first, in time order, with Native self-government shown before the law that attacked it (98 to 101), the Mashpee Revolt of 1833 (102) before the Trail of Tears of 1838 (103), and why people differed (104); then slavery's spread (105 to 106); then the abolitionists and their means (107 to 109). Abolition closes the unit so the Civil War follows directly.
 
-- End-of-unit assessment: day 111. Respond: day 112.
+- End-of-unit assessment: day 111, every owned code and lettered part: the five removal parts, one short prompt each, why people differed in context, a writer's perspective, slavery's spread with the 1808 ban and the internal trade, an abolitionist's ideas and means, means then and now, and a claim. Respond: day 112.
 - Candidate (Tennessee, Sequoyah and the Cherokee newspaper): kept, day 99.
 - Leans: ELA RI.5.8 (ELA unit 3, days 84 to 123) may come later; day 108 models it once on the Douglass excerpt.
 
@@ -103,26 +105,26 @@ Days 113 to 126, weeks 23 to 26. Codes: MA.5.T5.2, MA.5.T5.4 to 6; D2.His.14, 17
 
 Causes weighed from the seceding states' own words (114 to 116), the war on a map and timeline (117), then emancipation and the amendments (118 to 120) and Reconstruction and its end (121 to 122), then a short history summarized (123). MA.5.T5.6a and 6b are taught in unit 9, as the frame sets.
 
-- End-of-unit assessment: day 125. Respond: day 126.
+- End-of-unit assessment: day 125, every owned code: several causes and two outcomes, the leaders and battles, Lincoln's part, what the Proclamation and each amendment changed, a history's central claim summarized, and a claim. Respond: day 126.
 - Candidates (Tennessee): the Freedmen's Bureau and freed people's schools, kept, day 121; the end of Reconstruction in 1877, kept, day 122.
 
 ## Unit 9. After Reconstruction: rights won and denied. "Why did winning rights in law not end the fight for them?"
 
 Days 127 to 142, weeks 26 to 29. Codes: MA.5.T5.6a, MA.5.T5.6b, MA.5.T5.7, MA.5.T5.9.
 
-Jim Crow and the communities that pushed back (128 to 130), women's suffrage (131 to 132), then the African American civil rights movement (133 to 135) before the movements it became a model for (136 to 139), so "model" means something when students reach it.
+Jim Crow and the communities that pushed back (128 to 130), women's suffrage (131 to 132), then the African American civil rights movement (133 to 135) before the movements it became a model for (136 to 139), so "model" means something when students reach it. The unit runs in time order through its core (128 to 135), then is movement-based (136 to 139): each movement goes on a parallel timeline, so students see the movements overlap rather than one ending before the next began.
 
-- End-of-unit assessment: day 141. Respond: day 142.
+- End-of-unit assessment: day 141, every owned code and lettered part: life under Jim Crow and the communities that pushed back, women's rights work around the 14th and 15th Amendments, the 19th Amendment and who it left out, one movement modelled on another, and a claim on what changed and what stayed. Respond: day 142.
 - Candidate (Tennessee, the Great Migration): kept, inside day 130.
 
 ## Unit 10. Researching civil rights, then acting. "What does it take to win a right?"
 
 Days 147 to 160, weeks 30 to 32. Codes: MA.5.T5.8; D1.1 to D1.5; D2.His.13; D3.3, D3.4; D4.1, D4.4, D4.7, D4.8.
 
-The research cycle in its steps (147 to 154: topic, supporting questions, facts and ideas, sources, source log, evidence, claim, critique), then the action (155 to 158: a problem, strategies compared, a prediction and an agreed decision, the action, a look back). No new content is taught.
+The research cycle in its steps (147 to 154: topic, supporting questions, facts and ideas, sources, source log, evidence, claim, critique), then the action (155 to 158: individual and collective strategies compared on supplied local, regional and global cases, then a school or local problem, a prediction and an agreed decision, the action, a look back). Day 147 asks why the question matters to others; day 148 opens with a model and a guided question revision and asks how each supporting question helps; day 151 opens with a model of a usefulness judgment; day 154 with a model critique before peer work. No new historical survey content is introduced; the unit teaches and applies the remaining inquiry skills.
 
 - Readiness: day 147 on grade 3's ss3-deliberation, placed first so a reteach falls before the decision on day 156.
-- End-of-unit assessment: day 159, the research claim judged with a short task from an unseen source. Respond: day 160.
+- End-of-unit assessment: day 159, every owned code: the research portfolio judged with the unit rubric (the D1 and D4 codes from the research log, claim and action) and a short task from an unseen source. Respond: day 160.
 - Candidate (Tennessee and California, a starter list of research topics): kept, a list in the unit plan, no day cost.
 - Leans: ELA W.5.7 (ELA unit 2) and W.5.1 (ELA unit 3) are taught before.
 
@@ -130,12 +132,16 @@ The research cycle in its steps (147 to 154: topic, supporting questions, facts 
 
 | Check | Days | Week | Covers |
 |---|---|---|---|
-| 1, mid-year | 76 to 77, respond 78 to 79 | 16 | Units 1 to 5: an unseen document sourced unprompted, two accounts weighed, a timeline from the French and Indian War to the Constitution, a map with scale |
-| 2, year-end | 143 to 144, respond 145 to 146 | 29 (last respond day in 30) | Units 1 to 9: several causes weighed, continuity and change from an unseen source, a claim from two sources |
+| 1, mid-year | 76 to 77, respond 78 to 79 | 16 | Units 1 to 5: an unseen document from units 3 or 4 sourced unprompted, two accounts from units 3 or 4 weighed with a claim, a timeline from the French and Indian War to the Constitution, a map with scale on a unit 1 or 4 map |
+| 2, year-end | 143 to 144, respond 145 to 146 | 29 (last respond day in 30) | Units 1 to 9: several causes of one event from units 3 to 7 weighed, continuity and change for free and enslaved African Americans from the 1700s to 1877 (units 2, 7 and 8) from an unseen source, a claim from two sources |
+
+Each check falls two days after a unit's end-of-unit assessment (days 74 and 141), so its items for that unit's skills draw content from earlier units, as the table says, and do not repeat the assessment just given: check 1 asks none of unit 5's own skills, and check 2 asks unit 9's continuity-and-change skill on units 2, 7 and 8. Every check task asks about each part of each code it lists.
 
 Both sit on CALENDAR.md's target weeks (16, 29). The grade's other checks: math weeks 11, 22, 31; science 10, 21, 30; ELA 17, 32. No week holds two subjects' check days: the stagger rule holds.
 
 ## For the lead
+
+None open. The two items written here first were applied to the frame on 2026-11-14; they read:
 
 1. Frame, Course in brief, Days bullet: "A unit that assumes a grade 3 or 4 row opens with a readiness check inside its days" should read "A unit that assumes a grade 3 row dormant across grade 4 opens with a readiness check on its first day (units 2, 4, 5 and 10); a grade 4 row, or a grade 3 row grade 4 kept in use, opens as a retrieval task".
 2. Frame, Seams table: the rows for ss3-sea-trade (unit 2) and ss3-money-saving (unit 4) say each opens "with a retrieval task"; rule 2 makes each a readiness check (the row slept across grade 4), as the days carry. Change "opening with a retrieval task on the Triangular Trade" to "opening with a readiness check on the Triangular Trade", and "opening with a short retrieval task" (money) to "opening with a readiness check".

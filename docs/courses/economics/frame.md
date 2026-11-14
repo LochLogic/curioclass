@@ -9,29 +9,31 @@ scope and sequence sets the days later.
   money and policy, trade), then two of personal finance.
 - **Days.** 80 course days (a half year): 76 in units and 4 for two course-level checks, each an assessment day and a
   respond day. One lesson of about 50 minutes a day, five a week, across 16 weeks. 25 rows in 76 unit days is about 3 days a row, weighted by load, not shared equally: the graph-heavy
-  market units and the five-row finance unit get the most. Each unit's days include its readiness check (and the
-  one-lesson reteach of ss8-public-budget where it is dormant: units 1, 4, 8 and 9), its end-of-unit assessment and one
-  respond day (a unit over 25 days would also hold a mid-unit assessment; none is that long). If the scope and
+  market units and the five-row finance unit get the most. Each unit's days include its readiness check or retrieval task
+  (a readiness check on ss8-public-budget in unit 1 only, covering the whole row; units 4, 8 and 9 open with a
+  retrieval task on the part they use, and unit 1's results set who gets their targeted support), its end-of-unit
+  assessment and one respond day (a unit over 25 days would also hold a mid-unit assessment; none is that long). If the scope and
   sequence finds a unit over, it brings a day-transfer proposal rather than cutting a standard, practice or a respond day.
-- **Day budget, units 7 to 9 (provisional; the scope and sequence tests it day by day).** Unit 7, 7 days: retrieval
-  inside day 1; comparative advantage worked (2); tariffs, quotas and the free-trade argument (1); balances of trade
+- **Day budget, units 7 to 9 (provisional; the scope and sequence tests it day by day).** Unit 7, 7 days: readiness check
+  on wh2-globalization inside day 1; comparative advantage worked (2); tariffs, quotas and the free-trade argument (1); balances of trade
   and payments and exchange rates (1); productivity and globalization's effects from data (1); end-of-unit assessment
-  (1); respond day (1). Unit 8, 9 days: readiness check and job choice, with the ss8-public-budget reteach as a station
-  that day (1); the labor market, income risk and the first-year budget, pay stub and withholding inside it (1); a
-  first tax return (1); advertising evidence, ways to pay and consumer protection (1); insurance quotes and identity
-  protection (1); the informed action (2); assessment (1); respond day (1). The tightest unit: if day 4 overruns,
+  (1); respond day (1). Unit 8, 9 days: retrieval task and job choice, with targeted ss8-public-budget support that
+  day (1); the labor market, income risk and the first-year budget, pay stub and withholding inside it (1); a
+  first tax return, which opens identity protection (1); advertising evidence, ways to pay and consumer protection (1);
+  insurance quotes, identity protection finished (1); the informed action (2); assessment (1); respond day (1). The tightest unit: if day 4 overruns,
   consumer protection is finished in the action days, which check public consumer-protection advice. Unit 9, 11 days:
-  readiness check, banks and simple and compound interest (1); real and nominal rates, saving policies and
-  institutions' services compared (1); credit as one running case on one made-up offer, from its terms, report and
-  disclosure to the plan that totals its cost (2: the offer and its payment table are set up once for both rows, which
-  stay separate); paying for college (1); asset types researched, asset prices, returns and diversification (1); the
-  portfolio chosen and the savings or investment plan (1), tracked at dated observations in the days after; the
-  regulators judged from crises and enforcement records (1); plan finished (1); assessment (1); respond day (1).
+  retrieval task, banks, simple and compound interest, real and nominal rates (1); saving policies investigated (1);
+  credit as one running case on one made-up offer, its terms, report and disclosure (1); the results of not repaying
+  investigated (1); the credit plan that totals its cost, its method carried to college aid offers (1: the offer and
+  its payment table are set up once for all three days); financial markets, assets, prices and returns (1);
+  diversification, asset types researched and the portfolio chosen (1), read from a printed series dated across years;
+  the regulators judged from crises and enforcement records (1); the savings or investment plan with the institutions'
+  services compared (1); assessment (1); respond day (1).
 - **Check-set additions.** Additions ride inside an owned code's lesson where one fits; at most 4 days in the course are
   for additions with no home code. Riding inside: marginal thinking (T1.2), costs of production (T3.6, which needs
   them), externalities on the graph (T4.1), types of unemployment (T5.2), money creation through lending (T6.3), the pay
-  stub and withholding (PFL.T1.1 and T1.2, the first-year budget). Taking days (2 of the 4): a first tax return (1,
-  unit 8) and paying for college (1, unit 9). Extensions named in the unit plan, not taught days: consumer and producer
+  stub and withholding (PFL.T1.1 and T1.2, the first-year budget). Paying for college rides inside the credit plan
+  (PFL.T3.6) and the savings plan (PFL.T2.6). Taking days (1 of the 4): a first tax return (1, unit 8). Extensions named in the unit plan, not taught days: consumer and producer
   surplus, renting a first home.
 - **Standard.** Massachusetts 2018 ECON.T1 to ECON.T7 and Personal Financial Literacy PFL.T1 to PFL.T4 are the content
   anchor; every numbered code is owned by one row and every row sits in one unit. No NML code falls to this course (all
@@ -86,7 +88,9 @@ scope and sequence sets the days later.
   different axes.
 - **The grade 12 timetable** (Cory, 2026-11-14: yes, as picked). The table is in docs/courses/us-history-ii/frame.md: suggested in the spring half for a
   grade 12 student taking all three courses, after US History II's unit 1 toolkit. A grade 11 student takes it beside
-  US History I in either half.
+  US History I in either half. The `school_day` column of data/plans/economics/days.csv gives the spring placement; in a
+  fall offering school day = course day, and the cross-subject timing (the Algebra II bridge, the ELA 12 milestones) is
+  checked again for that half.
 
 ## Seams
 
@@ -94,13 +98,13 @@ Picked up from grade 8 Civics, with grades 7 and 10 (no US History I row is assu
 
 | From (row, grade) | What it hands on | Where this course picks it up |
 |---|---|---|
-| ss8-public-budget (8) | opportunity cost, budget, interest on borrowing and investing, public budgets, a public-data panel (employment, unemployment, inflation, output, income, growth) | Unit 1 (econ-scarcity-choice, econ-incentives: readiness check), unit 4 (econ-taxes-budgets), unit 8 (econ-earning-income), unit 9 (econ-saving-interest: its readiness check may use grade 8's interest on investing) |
-| wh2-soviet-collapse (10) | planned economies and their shortages | Unit 1, econ-systems-property: retrieval |
-| wh2-industrial-revolution (10) | markets, the factory, the supply and demand graph met in grades 7 to 10 | Unit 2 (econ-markets-prices: the graph formalized), unit 3 (econ-business-forms, econ-market-structures) |
-| wh2-postwar-prosperity (10) | productivity and living standards | Unit 3, econ-productivity-wages |
-| wh2-great-depression (10) | unemployment, deflation, a banking collapse | Unit 4 (econ-government-role), unit 5 (econ-macro-measures, econ-business-cycles), unit 6 (econ-fiscal-monetary) |
-| ss7-roman-economy (7) | money, debasement and a credit crisis | Unit 6, econ-money-banking |
-| wh2-globalization (10) | who gained and lost from global trade | Unit 7 (econ-trade, econ-global-economy: here measured with trade and income data) |
+| ss8-public-budget (8) | opportunity cost, budget, interest on borrowing and investing, public budgets, a public-data panel (employment, unemployment, inflation, output, income, growth) | Unit 1 (econ-scarcity-choice, econ-incentives: readiness check on the whole row, day 1), then retrieval tasks in unit 4 (econ-taxes-budgets), unit 8 (econ-earning-income) and unit 9 (econ-saving-interest: interest on investing) |
+| wh2-soviet-collapse (10) | planned economies and their shortages | Unit 1, econ-systems-property: readiness items in day 1's check (last used two grades back) |
+| wh2-industrial-revolution (10) | markets, the factory, the supply and demand graph met in grades 7 to 10 | Unit 2 (econ-markets-prices: the graph formalized), unit 3 (econ-business-forms, econ-market-structures): retrieval tasks (US History I used it in grade 11) |
+| wh2-postwar-prosperity (10) | productivity and living standards | Unit 3, econ-productivity-wages: readiness check on the unit's first day (last used two grades back) |
+| wh2-great-depression (10) | unemployment, deflation, a banking collapse | Unit 4 (econ-government-role), unit 5 (econ-macro-measures, econ-business-cycles), unit 6 (econ-fiscal-monetary): retrieval tasks (US History II unit 3 used it earlier the same year) |
+| ss7-roman-economy (7) | money, debasement and a credit crisis | Unit 6, econ-money-banking: readiness check (short items, no reteach lesson; the unit's first day teaches the functions of money in full) |
+| wh2-globalization (10) | who gained and lost from global trade | Unit 7 (econ-trade, econ-global-economy: here measured with trade and income data): readiness check on the unit's first day (last used two grades back) |
 
 Handed on: this is the last economics course in the subject. Its threads end here:
 
@@ -120,7 +124,7 @@ Handed on: this is the last economics course in the subject. Its threads end her
 | budget | grade 1 (ss1-saving), through ss8-public-budget | Unit 4 (econ-taxes-budgets): public budgets | Units 8 and 9 (personal budgets and plans) |
 | circular-flow | introduced here | Unit 5 (econ-macro-measures): taught explicitly | Unit 5 (econ-business-cycles), unit 6 |
 | aggregate-supply-demand | introduced here | Unit 5 (econ-macro-measures): its own graph, apart from the market graph | Unit 5 (econ-business-cycles) |
-| claim-evidence-reasoning | kindergarten (ssk-i-think-because) | Unit 9 (econ-financial-regulators) | Used throughout in the text; the row names it only here |
+| claim-evidence-reasoning | kindergarten (ssk-i-think-because) | Unit 2 (econ-price-controls): retrieved on the first argument | The writing thread in the scope and sequence, through units 4, 6, 8 and 9 (econ-financial-regulators, where the row names it) |
 
 ## Units
 
@@ -134,14 +138,14 @@ Handed on: this is the last economics course in the subject. Its threads end her
 | 6 | Money, banks and policy. Who should fight a recession or inflation: Congress or the Federal Reserve? | 7 | econ-money-banking; econ-fiscal-monetary | MA.ECON.T6.1; MA.ECON.T6.2; MA.ECON.T6.3; MA.ECON.T6.4; MA.ECON.T4.8; MA.ECON.T4.9; MA.ECON.T4.10; D2.Eco.12.9-12 | Owned: D2.Eco.12.9-12 | What money does; what counts in the money supply; banks and other financial institutions; how the Federal Reserve is organized and what it does, set against the national bank fight retaught in brief. Fiscal and monetary policy; how taxing, spending and the Fed's tools pursue stable prices, full employment and growth; which choices suit a recession or high inflation, with cases from recent decades | Needs unit 5's measures and circular flow: policy is judged by its effect on them. Unit 4's budgets carry into fiscal policy | Candidate: how banks create money through lending, inside T6.3. From the college-level macroeconomics framework | Policy debates from economists on more than one side; no party's policy presented as settled |
 | 7 | Trade and the global economy. Who wins and who loses when a country trades more? | 7 | econ-trade; econ-global-economy | MA.ECON.T7.1; MA.ECON.T7.2; MA.ECON.T7.3; MA.ECON.T7.4; MA.ECON.T7.8; D2.Eco.14.9-12; MA.ECON.T7.5; MA.ECON.T7.6; MA.ECON.T7.7; D2.Eco.15.9-12; D2.Geo.11.9-12 | Owned: D2.Eco.14.9-12, D2.Eco.15.9-12, D2.Geo.11.9-12 | Why people, regions and countries trade; absolute and comparative advantage from opportunity costs, worked first with two made-up countries and two goods with whole-number labour costs, then one real pair from public trade data; tariffs and quotas and why countries set them; the case for and against free trade weighed by who gains and who loses. The balance of trade and of payments; US labor productivity beside other developed countries; exchange rates and buying power; globalization's effects on growth, labor, rights, the environment and income, and its conflicts and cooperation | Last of the economics units, as in the anchor: trade uses unit 1's opportunity cost, unit 2's markets and unit 5's measures. Grade 10 described trade's winners and losers; here they are measured with data | Candidate: none expected beyond the anchor; the comparison table confirms | Workers who lost jobs to trade and those who gained, both from data. Countries and peoples described by data, never ranked |
 | 8 | Earning, spending and protecting. What makes a spending choice a smart one, and who protects the buyer? | 9 | econ-earning-income; econ-spending-consumer; econ-insurance-identity | MA.PFL.T1.1; MA.PFL.T1.2; MA.PFL.T1.4; MA.PFL.T1.5; MA.PFL.T1.6; MA.PFL.T4.1; MA.PFL.T4.2 | Practised: D2.Eco.1.9-12 (owned in unit 1), D4.7.9-12 | Choosing a job (satisfaction, pay, benefits, growth, place); how the labor market sets wages; how a recession or an industry shift can cut income; a first-year budget for one chosen job. Advertising and social media and their measured effects; ways to pay (cash, debit, credit, checks, rent-to-own) and their true cost; consumer protection by state and federal government. The main kinds of insurance and made-up quotes compared for a described person; identity theft and protecting personal information. The year's informed action: a consumer information piece on a question peers face. The action takes 2 of the unit's days: one to choose and research the question, one to make and share the piece; the look back is on the final check's respond day | Personal finance after the economics, as its reasoning needs units 2, 3 and 5 (wages, the labor market, recessions). This unit's three rows are about income and protection; unit 9's are about money over time | Candidate: reading a pay stub and withholding, inside the first-year budget (PFL.T1.1, T1.2); filing a first tax return, 1 day; renting a first home, an extension named in the unit plan. From the personal finance standards (NSPFE 2021, earning income) and Tennessee's personal finance course | No student is asked about family income, jobs or debt. Every quote, offer and brand is made up. Scams shown as patterns, never as real messages to copy |
-| 9 | Saving, credit and investing. What plan best turns today's income into tomorrow's security? | 11 | econ-saving-interest; econ-credit; econ-borrowing-plan; econ-investing; econ-financial-regulators | MA.PFL.T2.1; MA.PFL.T2.2; MA.PFL.T2.3; MA.PFL.T2.4; MA.ECON.T6.5; MA.PFL.T3.1; MA.PFL.T3.2; MA.PFL.T3.3; MA.PFL.T3.5; MA.PFL.T3.4; MA.PFL.T3.6; MA.PFL.T3.7; MA.PFL.T3.8; MA.PFL.T3.9; MA.PFL.T2.6; MA.ECON.T2.11; MA.ECON.T6.6; MA.PFL.T2.5; MA.PFL.T3.10 | None owned. The unit uses unit 5's inflation and unit 6's banks and Fed as review; D2.Eco.12.9-12 stays in unit 6 | Banks as businesses that lend deposits; simple and compound interest (growth by a constant percent); real and nominal rates; saving policies (retirement and education accounts) and how well they work; made-up institutions' credit, savings and investment services compared in a matrix (costs, access, liquidity, risk) with a justified choice for a described person (T6.5). Credit as one running case on one made-up offer: cards as loans, introductory rates, reports and scores, the right to disclosure and a free report; then the results of not repaying (repossession, garnishment, bankruptcy) and a credit plan for a car or home comparing made-up offers and showing the total paid. Financial markets moving savings to investment, asset prices and returns, diversification; asset types researched from a curated source pack, selections justified and sources recorded (T6.6), then a made-up portfolio tracked on paper across several dated observations and a savings or investment plan for a goal. How well the Federal Reserve, the FDIC, the SEC, the consumer financial protection agency and state banking departments protect banks, markets and consumers, judged from crises and enforcement records | Last, as it needs unit 5's inflation (real rates), unit 6's banks and Fed, and unit 2's markets (asset prices). Saving first, then credit, then borrowing, then investing, then the regulators who watch all four | Candidate: paying for college, 1 day: comparing aid offers and loan terms, with filing the aid form named (a grade 12 student in the spring half compares offers then). From the personal finance standards (NSPFE 2021) and the federal agency's activity on aid forms | No real lender, fund or company named or recommended; no real money. No student asked about family debt. Bankruptcy and repossession taught as facts, without shaming |
+| 9 | Saving, credit and investing. What plan best turns today's income into tomorrow's security? | 11 | econ-saving-interest; econ-credit; econ-borrowing-plan; econ-investing; econ-financial-regulators | MA.PFL.T2.1; MA.PFL.T2.2; MA.PFL.T2.3; MA.PFL.T2.4; MA.ECON.T6.5; MA.PFL.T3.1; MA.PFL.T3.2; MA.PFL.T3.3; MA.PFL.T3.5; MA.PFL.T3.4; MA.PFL.T3.6; MA.PFL.T3.7; MA.PFL.T3.8; MA.PFL.T3.9; MA.PFL.T2.6; MA.ECON.T2.11; MA.ECON.T6.6; MA.PFL.T2.5; MA.PFL.T3.10 | None owned. The unit uses unit 5's inflation and unit 6's banks and Fed as review; D2.Eco.12.9-12 stays in unit 6 | Banks as businesses that lend deposits; simple and compound interest (growth by a constant percent); real and nominal rates; saving policies (retirement and education accounts) and how well they work; made-up institutions' credit, savings and investment services compared in a matrix (costs, access, liquidity, risk) with a justified choice for a described person (T6.5). Credit as one running case on one made-up offer: cards as loans, introductory rates, reports and scores, the right to disclosure and a free report; then the results of not repaying (repossession, garnishment, bankruptcy) and a credit plan for a car or home comparing made-up offers and showing the total paid. Financial markets moving savings to investment, asset prices and returns, diversification; asset types researched from a curated source pack, selections justified and sources recorded (T6.6), then a made-up portfolio tracked on paper across several dated observations and a savings or investment plan for a goal. How well the Federal Reserve, the FDIC, the SEC, the consumer financial protection agency and state banking departments protect banks, markets and consumers, judged from crises and enforcement records | Last, as it needs unit 5's inflation (real rates), unit 6's banks and Fed, and unit 2's markets (asset prices). Saving first, then credit, then borrowing, then investing, then the regulators who watch all four | Candidate: paying for college, kept at 0 added days (settled in the scope and sequence), inside the credit plan (PFL.T3.6: aid offers and loan terms compared with the same method, filing the aid form named) and the savings plan (PFL.T2.6: college as one goal) (a grade 12 student in the spring half compares offers then). From the personal finance standards (NSPFE 2021) and the federal agency's activity on aid forms | No real lender, fund or company named or recommended; no real money. No student asked about family debt. Bankruptcy and repossession taught as facts, without shaming |
 
 ## Course-level checks
 
 | Check | After unit | Check days | Respond days | What it checks |
 |---|---|---|---|---|
-| 1, midpoint | 4 | 1 | 1 | Units 1 to 4. An unseen market case: draw and read the graph, predict a shift, judge a policy by marginal costs and benefits, plus a short knowledge section |
-| 2, final | 9 | 1 | 1 | The whole course. An unseen data set on the economy (unit 5 measures, a policy choice from unit 6) and a personal finance case on given figures (a credit offer and a savings goal). Respond day: reteach and the look back at the year's informed action |
+| 1, midpoint | 4 | 1 | 1 | Units 1 to 4. An unseen market case: draw and read the graph, predict a shift, judge a policy by marginal costs and benefits, plus a short knowledge section. It follows unit 4's assessment, so unit 4's skills are asked on units 1 to 3 content |
+| 2, final | 9 | 1 | 1 | The whole course. An unseen data set on the economy (unit 5 measures, a policy choice from unit 6) and a personal finance case on given figures set in earlier units' content (a savings goal against unit 5's inflation, a loan rate after a unit 6 policy move), since it follows unit 9's assessment. Respond day: reteach and the look back at the year's informed action |
 
 ## Cross-subject
 
@@ -155,8 +159,8 @@ Math. The course is taken in grade 11 or 12, so Algebra II (grade 11) may run in
 | math:A-SSE.B.4 (the loan payment formula from a geometric series) | alg2-geometric-series, Algebra II, grade 11 | Unit 9 (econ-borrowing-plan), the last weeks of the half | Same year for a grade 11 student, and possibly not yet taught. Local bridge inside unit 9: the total paid is built from a given payment table (or a calculator's payment function) so the plan never depends on the formula; a student who has the formula uses it as an extension |
 
 No ELA lean is named in the rows. The capstone and research load of the grade 11 and 12 year sit in US History I, US
-History II and ELA; this course's unit 8 information piece is short and should not fall in the same weeks as those
-papers.
+History II and ELA; this course's unit 8 information piece is short and its two days are not on ELA 12's research
+milestone days (school days 135, 145, 147, 150 to 156 and 158), though they fall inside its research weeks.
 
 ## For the lead
 

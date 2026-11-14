@@ -11,8 +11,9 @@ Course `social-studies-grade-5` (catalogue id `ss-k5`), grade 5, draft frame, wr
   rows holding 55 Massachusetts content codes and parts and 29 C3 indicators, from the colonies to 1990s disability
   law and the 2015 marriage ruling; the broad span, the source work, the research and the informed action support a
   provisional 160-day allocation. Each unit's days include its end-of-unit assessment (a task done from sources not
-  seen before) and one respond day; no unit is over 25 days. A unit that assumes a grade 3 or 4 row opens with a
-  readiness check inside its days.
+  seen before) and one respond day; no unit is over 25 days. A unit that assumes a grade 3 row dormant across grade 4
+  opens with a readiness check on its first day (units 2, 4, 5 and 10); a grade 4 row, or a grade 3 row grade 4 kept
+  in use, opens as a retrieval task.
 - **Standard.** Massachusetts 2018 grade 5 (5.T1 to 5.T5, every lettered part) is the content anchor, and every
   code is owned by a row placed below; C3 (3 to 5 band) carries the skills. C3 places the counterclaim in grades 6
   to 8, so no grade 5 unit or check asks students to answer a counterclaim; they name two readings of an idea
@@ -37,8 +38,9 @@ Course `social-studies-grade-5` (catalogue id `ss-k5`), grade 5, draft frame, wr
   a cause.
 - **Sensitivity reads.** Every unit gets the fresh sensitivity agent's read (docs/pipeline/briefs/sensitivity-read.md,
   bar item 12) at the unit plan and again at the days; no outside human reader is planned (Cory, 2026-11-14). Units
-  1, 2, 4, 6, 7, 8 and 9 carry Native or hard-history content (unit 5 the Three-Fifths Compromise, unit 10 the
-  research topics students pick). The agent studies first: unit 1, the Mashpee Wampanoag Tribe's, the Wampanoag Tribe
+  1, 2, 3, 4, 6, 7, 8 and 9 carry Native or hard-history content (unit 3 the French and Indian War's Native alliances
+  and the King Street shooting, unit 5 the Three-Fifths Compromise, unit 10 the research topics and printed source
+  sets students use). The agent studies first: unit 1, the Mashpee Wampanoag Tribe's, the Wampanoag Tribe
   of Gay Head (Aquinnah)'s, the Narragansett Indian Tribe's and the Mashantucket Pequot Tribal Nation's own pages and
   scholarship by Native historians of New England; units 2, 4, 5, 8 and 9, a published framework for teaching slavery
   and Reconstruction, scholarship by Black historians, and enslaved and free Black people's own words; unit 6, the
@@ -64,10 +66,10 @@ and Now)
 |---|---|---|
 | ss4-first-peoples-evidence, ss4-native-nations-sites, ss4-exploration | The first peoples; voyages and conquest; the to-scale timeline; perspective | Unit 1, ss5-colonial-encounters |
 | ss4-map-scale, ss4-regions-resources, ss4-state-maps | Scale with a ruler; regions shaped by land and resources; themed state maps | Unit 1, ss5-colonial-regions; unit 3, ss5-revolution-causes (map-scale) |
-| ss4-choice-and-force; ss3-sea-trade (grade 3, content revisited) | Brought by force; the Triangular Trade | Unit 2, ss5-slavery-colonies, opening with a retrieval task on the Triangular Trade |
+| ss4-choice-and-force; ss3-sea-trade (grade 3, content revisited) | Brought by force; the Triangular Trade | Unit 2, ss5-slavery-colonies, opening with a readiness check on the Triangular Trade |
 | ss4-primary-source | For whom and why, with prompts; two sources compared | Unit 3, ss5-sourcing-corroboration |
 | ss3-founding-ideas (grade 3, content revisited; kept in use in grade 4 by ss4-states-and-statehood) | The Declaration's ideas, what a constitution is for, who was left out | Unit 4, ss5-independence-war; unit 5, ss5-constitution, each opening with a retrieval task |
-| ss3-money-saving (grade 3, content revisited across grade 4) | What money and a price are; banks, loans and interest | Unit 4, ss5-independence-war: inflation, deflation and debt after the war, opening with a short retrieval task |
+| ss3-money-saving (grade 3, content revisited across grade 4) | What money and a price are; banks, loans and interest | Unit 4, ss5-independence-war: inflation, deflation and debt after the war, opening with a readiness check |
 | ss3-levels-of-government (maintained by ss4-national-capital and ss4-disasters-response), ss3-rules-rights (content revisited), ss4-states-and-statehood, ss4-national-capital | The levels, the branches by name (named in grade 3, their buildings in grade 4), what a rule is for, statehood | Unit 5, ss5-constitution |
 | ss4-westward-growth, ss4-political-map | The country's growth mapped; latitude and longitude in degrees | Unit 6, ss5-republic-growth; unit 7, ss5-native-sovereignty-removal and ss5-slavery-expansion |
 | ss4-trade-north-america | Why nations trade, who gains | Unit 6, ss5-new-england-industry |
@@ -136,8 +138,8 @@ other rows.
 
 | Check | After unit | Check days | Respond days | What it checks |
 |---|---|---|---|---|
-| 1, mid-year | 5 | 2 | 2 | Source an unseen document unprompted; weigh two short accounts of one event from the founding years and write a claim with evidence from both (taught in unit 3); a timeline task from the French and Indian War to the Constitution; a map task with scale |
-| 2, year-end | 9 | 2 | 2 | Several causes of one event weighed from given sources (taught in unit 8); a continuity-and-change task across the 1800s and 1900s from an unseen source; a claim with evidence from two sources. No counterclaim |
+| 1, mid-year | 5 | 2 | 2 | Source an unseen document from units 3 or 4 unprompted; weigh two short accounts of one event from units 3 or 4 and write a claim with evidence from both (taught in unit 3); a timeline task from the French and Indian War to the Constitution; a map task with scale on a unit 1 or 4 map. Unit 5 was assessed two days before, so no item asks its own skills |
+| 2, year-end | 9 | 2 | 2 | Several causes of one event from units 3 to 7 weighed from given sources (taught in unit 8); a continuity-and-change task on free and enslaved African Americans from the 1700s to 1877 (units 2, 7 and 8), from an unseen source, since unit 9 was assessed two days before; a claim with evidence from two sources. No counterclaim |
 
 Four course-level check days and four respond days: 8 days. Unit 10's research and action are the year's last product and
 are assessed inside the unit; no course-level check follows them. No check asks for a skill before the unit that

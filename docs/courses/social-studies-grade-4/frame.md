@@ -12,7 +12,7 @@ Course `social-studies-grade-4` (catalogue id `ss-k5`), grade 4, draft frame, wr
   sub-topics run through units 6 and 7), so the full yardstick fits; the progression review named the same.
   Each unit's days include its end-of-unit assessment (a task done from sources not seen before) and one respond
   day; unit 6, the one unit over 25 days, also holds a mid-unit assessment inside its days. A unit that assumes a
-  grade 3 row opens with a readiness check inside its days.
+  grade 3 row opens with a retrieval task inside a day (the row was used the year before; frame-write lesson 16).
 - **Standard.** Massachusetts 2018 grade 4 (4.T1 to 4.T4e) is the content anchor and every one of its standards
   is owned by a row placed below; C3 (3 to 5 band) carries the skills. The check set (California, Tennessee, New
   York) is read unit by unit at the unit plan; this frame names candidate additions with their source. The values
@@ -130,9 +130,9 @@ keeps the levels of government in use between.
 
 | Check | After unit | Check days | Respond days | What it checks |
 |---|---|---|---|---|
-| 1 (week 8, after unit 2) | 2 | 2 | 1 | Units 1 and 2: a distance with a ruler and scale bar; a place by latitude and longitude; fact told from opinion in a short passage about Canada or Mexico the student has not seen. It falls after unit 2, about week 8, clear of math grade 4's check 1 in week 12 (docs/courses/CALENDAR.md, the stagger rule); the first-peoples claim moves to check 2 |
-| 2, mid-year | 5 | 2 | 1 | Units 3 to 5: a claim about how people first reached North America weighed against given evidence the student has not seen; source an unseen primary source (who, when, for whom, why); compare two short sources on one event and say what both confirm; a cause and its effects of one gain in territory, from a map and a timeline |
-| 3, year-end (week 27, before unit 7) | 6 | 2 | 2 | Units 1 to 6 together: a region task (a state map read and its resources), and a short claim with evidence from two given sources. It falls after unit 6, about week 27, so that science's, math's and ELA's year-end checks hold weeks 30, 31 and 32 alone (docs/courses/CALENDAR.md, the stagger rule); unit 7's peoples and hazards follow it and are checked by unit 7's own end-of-unit assessment |
+| 1 (week 8, after unit 2) | 2 | 2 | 1 | Units 1 and 2: a distance with a ruler and scale bar; a place by latitude and longitude; fact told from opinion in a short passage the student has not seen, on unit 1's land and rivers (unit 2 was assessed two days before, so its source skill is asked on earlier content). It falls after unit 2, about week 8, clear of math grade 4's check 1 in week 12 (docs/courses/CALENDAR.md, the stagger rule); the first-peoples claim moves to check 2 |
+| 2, mid-year | 5 | 2 | 1 | Units 3 to 5: a claim about how people first reached North America weighed against given evidence the student has not seen; source an unseen primary source (who, when, for whom, why); compare two short sources on one event and say what both confirm; a cause and its effects, from a map and a timeline, asked on unit 4's exchange between the hemispheres (unit 5 was assessed two days before) |
+| 3, year-end (week 27, before unit 7) | 6 | 2 | 2 | Units 1 to 6 together: a region task (a small map of a Canadian province or Mexican state made from atlas pages, and how its resources shaped settlement and trade: unit 6's skills on unit 2's content, since unit 6 was assessed two days before), and a short claim with evidence from two given sources on units 3 to 5. It falls after unit 6, about week 27, so that science's, math's and ELA's year-end checks hold weeks 30, 31 and 32 alone (docs/courses/CALENDAR.md, the stagger rule); unit 7's peoples and hazards follow it and are checked by unit 7's own end-of-unit assessment |
 
 Six course-level check days and four respond days: 10 days. Nothing is checked before it is taught: sourcing for whom and why
 and the two-source comparison wait for check 2.
@@ -145,9 +145,9 @@ Same-year leans (the availability calendar):
 |---|---|---|---|---|
 | Math grade 4 | 4.MD.A.2, distance problems with the scale bar (ss4-map-scale, ss4-state-maps) | Unit 1 (about days 1 to 16) and unit 6 (about days 107 to 132) | Math grade 4 unit 6 (about days 77 to 95): after unit 1, before unit 6 | Unit 1 teaches its own measuring routine: whole and half bar lengths with a ruler, conversion from a given table, no unit conversion arithmetic beyond doubling and adding |
 | Math grade 4 | 4.NBT.B.4, subtracting years to find spans (ss4-states-and-statehood) | Unit 6 (about days 107 to 132) | Math grade 4 unit 5 (about days 58 to 76): before unit 6 | Spans use round years or counting up on the timeline |
-| Science grade 4 | 4-ESS1-1, rock layers as evidence of change over time (ss4-first-peoples-evidence) | Unit 3 (about days 39 to 56) | Any time; the link is a shared idea of layered evidence | Unit 3 explains in one lesson that deeper layers are usually older |
+| Science grade 4 | 4-ESS1-1, rock layers as evidence of change over time (ss4-first-peoples-evidence) | Unit 3 (about days 42 to 59) | Any time; the link is a shared idea of layered evidence | Unit 3 explains in one lesson that deeper layers are usually older |
 | Science grade 4 | 4-ESS3-1, energy and fuels from natural resources (ss4-regions-resources) | Unit 6 (about days 107 to 132) | Before unit 6 | Unit 6 names the resource and its use; science gives the energy reasoning |
-| Science grade 4 | 4-ESS3-2, reducing the effects of natural hazards (ss4-disasters-response) | Unit 7 (about days 133 to 156) | Before unit 7 | Unit 7 uses official preparedness advice as its source; the engineering design stays in science |
+| Science grade 4 | 4-ESS3-2, reducing the effects of natural hazards (ss4-disasters-response) | Unit 7 (about days 137 to 160) | Before unit 7 | Unit 7 uses official preparedness advice as its source; the engineering design stays in science |
 | ELA grade 4 | W.4.7 short research, SL.4.4 reporting (ss4-canada-mexico-research) | Unit 2 (about days 17 to 38) | Early in the year | Unit 2 teaches its own note-taking frame and a short report structure |
 | ELA grade 4 | RI.4.6, firsthand and secondhand accounts (ss4-primary-source) | Unit 4 (about days 60 to 79) | Before unit 4 | Unit 4 reteaches first-hand and second-hand with one voyage account of each kind |
 
