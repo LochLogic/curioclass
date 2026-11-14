@@ -913,3 +913,14 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
   trusted for progressions, frames, scopes and sequences and unit plans, and both read the progressions and frames.
   Codex runs by script with no clicks (scripts/codex_read.py; Cory 2026-11-13: "use a script to send it over there
   automatically, no approval or interaction from me is needed"). The re-run with fresh plantings stays L10.
+
+## 2026-11-13: card q-ss-progression-1 (Cory, on the Desk)
+
+- **Government and Economics:** open to grade 11 or 12. Their rows stay at grade 12 in the data, but no row
+  assumes a US History I skill any more: 23 links removed, the content examples retaught in brief in the row, and
+  the skills rewired to grade 8 civics, grade 7 and grade 10 rows (data/progressions/social-studies.csv).
+- **The writers' eight calls:** kept as drafted (shared grades 1 and 2 economics split once; "your own state";
+  survey plus one in depth for World History's one-example standards; Rwanda as the grade 10 genocide anchor,
+  Srebrenica second; C3 economics inside grade 3 to 8 history units with a named activity; the added grade 4 and 5
+  hard history with teacher notes; Native nations as present-day governments in grade 8; economics in both US
+  History II, as a review toolkit, and Economics).
