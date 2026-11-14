@@ -51,7 +51,7 @@ Points and pass lines:
 
 ## What each part asks, and where Curio Class answers it
 
-"The scope and sequence" below is docs/courses/ela-6-spine.md, a draft. Nothing in it is built, so every answer is a plan.
+The grade 6 answers below are from the earlier grade 6 plan (docs/courses/ela-6-spine.md) and are being redone against the course frames (docs/courses/english-language-arts-grade-6/frame.md and the grades 7 and 8 frames); the frame reconcile settles which holds. Nothing in them is built, so every answer is a plan.
 Points are in brackets; "words" means reported in words and not scored.
 
 | Part | In our words | Where we answer it today |

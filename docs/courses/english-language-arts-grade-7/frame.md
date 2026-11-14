@@ -158,8 +158,8 @@ Same-year leans (the availability calendar):
 | Social studies grade 7 | Research routine (ss7-research-greek leans on e7-research-questions) | ELA unit 3 (days 61 to 86) | Social studies unit 9 uses it from about day 102 | None needed: ELA comes first |
 | Social studies grade 7 | Latin roots (ss7-latin-legacy leans on e7-word-strategies) | ELA unit 3 (days 61 to 86) | Social studies unit 11 uses them about days 134 to 144 | None needed: ELA comes first |
 | Social studies grade 7 | Argument writing before its unit 12 | ELA unit 4 (days 87 to 108) | Social studies unit 12, about days 145 to 156 | None needed: ELA comes first |
-| Science grade 7 | Thread 2, ecosystems and human impact (e7-reading-range leans on s7-ecosystem-disruption) | Units 1 and 2 (days 1 to 56), unit 6 (days 135 to 156) | Base units 7.5 and 7.6, mid to late in the year | Units 1 and 2 supply their own background (drought, soil); unit 6's reports explain the food web the salmon feed |
-| Science grade 7 | Climate evidence (e7-evaluate-argument leans on s7-climate-change-evidence) | Unit 6 (days 135 to 156) | The science course's climate work | ELA judges the argument only; if science comes later, the EPA page's facts are taken as given and no claim about climate is tested in ELA |
+| Science grade 7 | Thread 2, ecosystems and human impact (e7-reading-range leans on s7-ecosystem-disruption) | Units 1 and 2 (days 1 to 56), unit 6 (days 135 to 156) | Science 7 units 5 and 6, days 97 to 158 | Units 1 and 2 supply their own background (drought, soil); unit 6's reports explain the food web the salmon feed |
+| Science grade 7 | Climate evidence (e7-evaluate-argument leans on s7-climate-change-evidence) | Unit 6 (days 135 to 156) | Science 7 unit 6, days 129 to 158 (climate evidence) | ELA judges the argument only; if science comes later, the EPA page's facts are taken as given and no claim about climate is tested in ELA |
 
 ## For the lead
 

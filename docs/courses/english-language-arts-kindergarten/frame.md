@@ -100,7 +100,7 @@ Every lean is to kindergarten, the same year, so each goes on the availability c
 
 | Row | Lean | Used here | Needed by | If science teaches it later |
 |---|---|---|---|---|
-| ek-main-topic | K-ESS2-1 (weather patterns observed over time) | Row in unit 1; the weather texts that carry the lean are unit 2 | About week 7 | The weather read-alouds and the class weather journal give the patterns themselves (sunny, rainy, windy, snowy days counted with tally pictures, no numbers beyond counting); science's recording deepens them later |
+| ek-main-topic | K-ESS2-1 (weather patterns observed over time) | Row in unit 1; the weather texts that carry the lean are unit 2 | About week 7 | The weather read-alouds and the class weather journal give the patterns themselves (sunny, rainy, windy, snowy days counted with tally pictures, no numbers beyond counting); science's weather chart is already running from week 1, and its weather unit overlaps this work. Use that record where available; otherwise the ELA texts and picture journal supply the observations needed here. |
 | ek-inform | K-LS1-1 (what plants and animals need) | Row in unit 1; the writing that carries the lean is unit 3 (how an animal depends on a tree) | About week 16 | The unit 3 texts state what trees and animals need; the writing uses only those facts |
 | ek-shared-research | K-LS1-1 (what plants and animals need) | Unit 3 | About week 16 | The class question and the provided texts teach the needs of living things; observation of a real tree adds the evidence |
 
@@ -114,7 +114,7 @@ Every lean is to kindergarten, the same year, so each goes on the availability c
 
 What social studies kindergarten leans on here (its frame's calendar): SL.K.3 and SL.K.1 in week 1 (ELA unit 1, on time); W.K.1 in week 2 (ELA teaches it in unit 1, weeks 1 to 7; social studies keeps it spoken until then, its own bridge); RL.K.3 about week 6 (ELA unit 2 from week 7; social studies' teacher-led bridge covers the gap); RI.K.3 about week 18 (ELA unit 3 from week 16, on time); RI.K.1 about week 23 (ELA unit 1, on time).
 
-What science kindergarten leans on here (its frame's calendar): SL.K.3 and W.K.2 from unit 1 (weeks 1 to 7) and SL.K.5 from unit 2 (weeks 7 to 16), on time; W.K.1 about week 20, which ELA now teaches in unit 1, so science's drawn opinion follows ELA (its frame still names ELA unit 4: the fixes report's Cross-subject notes carry the line).
+What science kindergarten leans on here (its frame's calendar): SL.K.3 and W.K.2 from unit 1 (weeks 1 to 7) and SL.K.5 from unit 2 (weeks 7 to 16), on time; W.K.1 about week 20, which ELA now teaches in unit 1, so science's drawn opinion follows ELA (science's frame now names ELA unit 1).
 
 ### Mathematics, kindergarten (same year)
 

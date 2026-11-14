@@ -183,3 +183,77 @@ the catalogue keeps on purpose (the civics frame says so); step 2 makes them har
 ## For Cory
 
 Nothing. Every item was a wording, a day citation or a bridge; the course id approach is a structure call for the lead.
+
+## ELA pass (2026-11-14)
+
+The ELA-bound list above, the ELA fix reports' "Cross-subject notes" that land in ELA frames, the science grade 4
+reconcile's rework 4 and the grade 6 reconcile's length note, applied to the ELA frames, data/progressions/ela.csv
+and docs/RUBRIC-ELA.md. Line numbers in the list had drifted; every edit was matched on its text. No unit, day total,
+owned row or handoff moved.
+
+### Every item
+
+| # | Item | Result |
+|---|---|---|
+| 1 | ELA 6, math 6 days | Applied: unit 3 note "by about day 59"; unit 6 "Why" and the Math grade 6 row "about days 143 to 158" (math 6 unit 3 is days 40 to 59, unit 8 days 143 to 158) |
+| 2 | ELA 6, science 6 days | Applied: "days 52 to 89" in unit 3 "Why" and its Cross-subject row; "days 92 to 135" in unit 6 "Why" and its row (science 6 frame: unit 3 days 52 to 89, units 4 and 5 days 92 to 135) |
+| 3 | ELA 7, science 7 rows | Applied with the list's wording: "Science 7 units 5 and 6, days 97 to 158"; "Science 7 unit 6, days 129 to 158 (climate evidence)". The climate row keeps its if-later line |
+| 4 | ELA 8, science 8 unit 5 | Applied: "days 105 to 131" in the Cross-subject row and in unit 5's "Why" (the same stale range sat there too) |
+| 5 | ELA 8, For the lead 7 | Applied: "Frances Harper's 1866 speech (grade 10)". This also closes the ELA 11-12 report's "(grades 10 and 12)" note on the same line |
+| 6 | ELA K, ek-main-topic bridge | Applied with the list's wording |
+| 7 | ELA K, science lead-in parenthesis | Applied: "(science's frame now names ELA unit 1)" |
+| 8 | ELA 4, science unit 6 days | Applied: "Its unit 6 (about school days 125 to 156), later". Unit 2's "its unit 6" cell names no days; nothing else in the ELA 4 frame cites science 4 days |
+| 9 | ELA 9 and 10 lead-ins | Already done. ELA 9's S-ID.C.9 row matches Algebra I (unit 3, weeks 10 to 12, taught first; its row 178 says the same). ELA 10's lead-in matches the science HS rerun's corrected wording (forecast unit ends about day 130, research unit starts about day 128, fallback kept) and Chemistry's frame (line 189); its if-later line stays |
+| 10 | ELA 5, water grids (optional) | Not applied: the list says no change is needed, and the unit plan can cite science unit 5's grids |
+| 11 | ela.csv e1-key-details, math lean back (optional) | Applied as a notes sentence: "Math grade 1 uses this row's SL.1.2 for story problems read aloud before solving (m1-add-take-problems)." Not as a cross_subject entry: that column records what ELA leans on, so "math:..." there would say the reverse; the math end (m1-add-take-problems' ela:e1-key-details) was already written |
+| 12 | RUBRIC-ELA.md first sentence | Applied with the list's wording; the existing "Nothing in them is built, so every answer is a plan." kept after it |
+| 13 | Dated review notes in the ELA reports | Not edited (dated reports are history); left with the lead, as listed under "For the lead" in each ELA fix report |
+| 14 | ELA 12, Seneca Falls paragraph | Applied: "(grade 10 reads Frances Harper's 1866 speech; no grade reads Seneca Falls)" and the last sentence "The grade 8 frame's line naming Seneca Falls is replaced (2026-11-14 grades 9 and 10 fix pass)." |
+| 15 | ELA 9-10 report: ela.csv grade 2 reading row | Applied: e2-fluency "(about 420 to 820 Lexile)" becomes "(a quantitative reading level of about 420 to 820)". No ELA frame names the measure |
+| 16 | ELA 6-8 report: ELA 9 lead-in | Already done (the frame names the World History I, Biology and Algebra I frames and their weeks) |
+| 17 | ELA 11-12 report: ELA 10 lead-in | Already done (item 9) |
+| 18 | ELA 3-5, K-2, 6-8, 9-10, 11-12 notes for other subjects' frames | Done in the first pass (its items 1 to 34 and 55 to 57); none lands in an ELA frame |
+
+Both ends: every edit above moved a day citation or a wording on the ELA end only; the other ends (math 6, science
+4, 6, 7, 8, Algebra I, Chemistry) already carried the numbers used. The only row edit at a handoff is item 11, which
+writes the ELA end of a lean the math row already names. No math, science or social studies file was edited.
+
+### Long-text length climb, grades 5 to 8
+
+The whole-read long texts: grade 5 an original novel, about 30,000 to 40,000 words (unit 1, 41 days); grade 6 a
+novella, 15,000 to 20,000 (unit 1, 32 days); grade 7 a novella, about 20,000 (unit 1, 30 days); grade 8 a mystery
+novella, about 25,000 (unit 1, 30 days); grade 9 the Odyssey and Romeo and Juliet whole.
+
+Verdict: grades 7 and 8 are in line; no frame edit. Within the grades 6 to 8 band the length climbs every year
+(15,000 to 20,000, then 20,000, then 25,000) and so does the demand of the read (one narrator and a traced theme in
+grade 6, two contrasted narrators in grade 7, dramatic irony and suspense in grade 8). The dip from grade 5 to 6 is
+right for three reasons: grade 5's novel is written low in its own band (measure target about 750 to 950, so a long
+book can be read whole) while the grade 6 to 8 novellas sit in the 925 to 1185 band; grade 5 reads it in a
+90-minute block across 41 days, grades 6 to 8 in a 50-minute lesson across 30 to 32 days, so lesson minutes per word
+are about the same; and the reading volume beyond the anchor comes from home reading (20 minutes on four nights)
+and choice books, which grades 6 to 8 all set. Demand climbs by band and by the read's structure, not by word count
+alone, as the grade 6 reconcile (difference 16) put it.
+
+### Gates
+
+`frame.py sync` 52 courses; `frame.py check` all 52 frames 0 failures (units and days unchanged);
+`progression.py check ela` 374 rows, 0 failures (math checked too, 305 rows, 0 failures, no row edited);
+`stale.py check` 56 files, 0 failures; `plan.py check` at the end, 0 failures.
+
+### For the lead
+
+- **docs/HANDOFF.md** (grade 6 reconcile, rework list): line about 195, "the first ELA pilot (grade 6, unit 2, five
+  days)" becomes "the first ELA pilot (grade 6, unit 1: the novella's opening run and the Yu retelling)"; the same
+  correction at about line 209.
+- **docs/courses/NEXT-SPINES.md**, piece 2 and "On hold": "the pilot is in frame unit 1, not unit 2"; "the full
+  grade 6 ELA text plan beyond unit 2" becomes "the grade 6 scope and sequence (from docs/courses/english-language-arts-grade-6/frame.md)".
+- **DESK-ANSWERS.md**: the three ELA 3-5 items listed above under "DESK-ANSWERS items" (q-cross-progression-1, the
+  piece 2 entry, lines 548 and 554), wording as given there. Unchanged by this pass.
+- **Dated review notes** (item 13): as each ELA fix report's "For the lead" gives them.
+- **Optional, item level:** grade 6's Days bullet offers one free long book on each unit's topic (APPROACH-ELA,
+  volume of reading; grade 6 reconcile difference 12); grades 7 and 8 do not. Their own reconciles can carry the
+  same line if their old work had it.
+
+### For Cory
+
+Nothing.
