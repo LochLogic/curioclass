@@ -14,10 +14,7 @@ History I, WGAC II. **Still being written by Codex at pause** (driver logs in th
 `python -X utf8 scripts/codex_units.py <course> tries=3`; it skips units that pass): WGAC I, World History II,
 US History II.
 
-**Expert reads done:** K, grades 1 to 5, US Government, Economics (docs/reviews/plan-<course>-2026-11-14.md). **Running
-at pause:** US History I, Civics, World History I, WGAC II; if a report is missing or ends early, rerun from the
-template (expert read prompt: read the K and grade 1, 3, 4 reports' "Settled by the expert" tables, same report
-shape). **Not started:** WGAC I, World History II, US History II reads; every Codex read (scripts/codex_read.py,
+**Expert reads done:** K, grades 1 to 5, US Government, Economics, US History I, Civics, World History I, WGAC II (docs/reviews/plan-<course>-2026-11-14.md; expert read prompt: read the K and grade 1, 3, 4 reports' "Settled by the expert" tables, same report shape). Repeat findings: unit 1 check before day 1, oversized assessments, missing dated 2025 to 2026 lines, "?" for apostrophes and macrons (encoding). **Not started:** WGAC I, World History II, US History II reads; every Codex read (scripts/codex_read.py,
 report plan-<course>-codex-2026-11-14.md); fix passes; structure pass.
 
 **Also done:** the new data (math plus weight, tools, supplies and safety; ela-texts; ngss-pe-dimensions; the unit 1 start-of-year fix) is wired into scripts/unit_skeleton.py and scripts/unitplan.py; its not-applied list is for the structure pass. Science base is NGSS (DESK-ANSWERS 2026-11-14); add that to
