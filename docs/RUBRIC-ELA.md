@@ -30,7 +30,9 @@ criteria and not our own summary. It is the ELA twin of [RUBRIC-MATH-K8.md](RUBR
   - About 55 percent informational and 45 percent literary text, counted on anchor texts (2a). Reported in words,
     not scored. Grades 3 to 5: 50 and 50.
   - About 35 percent argument, 35 informative, 30 narrative writing (2o). Reported in words, not scored. Grades 3
-    to 5: 30, 35, 35.
+    to 5: 30, 35, 35. A piece counts under the writing standard its unit teaches it on (W.1 argument, W.2
+    informative, W.3 narrative); a literary analysis taught on W.9 alone counts as argument when it defends a claim
+    about the text (counting rule added 2026-11-14, baseline 1; the shares are unchanged).
   - A school year of about 180 days, with room for tests and breaks, is the yardstick for pacing (2f).
 
 ## How it works
