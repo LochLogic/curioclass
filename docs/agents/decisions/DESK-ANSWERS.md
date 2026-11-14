@@ -993,3 +993,14 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
    core courses from the frames, not grade 4 math first. They stay hidden from the live site until Cory says (the site is
    not launched). Questions 1 and 3 wait on the Desk.
 
+
+## 2026-11-14: card q-baseline-1, baseline 1 (Cory, on the Desk)
+
+1. **Site design changes:** yes, as picked. Written into docs/SITE-DESIGN.md now (unit page, section URLs nested under the unit, a place
+   for course-level check days, the course page showing the frame, fixed day addresses, courses on the find pages); built
+   when the first course pages are built.
+2. **Course pages:** now, from the frames, for all 52 core courses (chat answer above: all units go forward). Hidden
+   from the live site until Cory says.
+3. **Government unit 9 (NML.T5.5):** an optional outside-expert step the teacher arranges, with the paper path always
+   complete on its own (docs/courses/us-government-and-politics/frame.md, For the lead 1).
+

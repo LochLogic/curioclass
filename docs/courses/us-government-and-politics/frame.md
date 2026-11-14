@@ -173,6 +173,7 @@ Math:
 
 ## For the lead
 
-1. **Outside collaboration (NML.T5.5).** Unit 9 needs an outside expert reachable through school staff or a teaching
-   parent. If that cannot be supported for every learner, where NML.T5.5 is taught in full is Cory's call (the paper
-   path above meets it in part).
+1. **Outside collaboration (NML.T5.5), settled 2026-11-14 (Cory, Desk card q-baseline-1).** The outside expert in
+   unit 9 is an optional step the teacher arranges through school staff or a teaching parent. The paper path is always
+   complete on its own, so no class needs an outside contact; a class without one meets NML.T5.5 in part, said plainly
+   to the teacher. The scope and sequence writes both routes into the same seven days.
