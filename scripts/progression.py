@@ -44,10 +44,12 @@ COLS = ['strand', 'grade', 'skill_id', 'standard', 'assumes', 'hands_on', 'model
         'cross_subject', 'notes']
 GRADES = ['K'] + [str(g) for g in range(1, 13)]
 GI = {g: i for i, g in enumerate(GRADES)}
-STD_FILES = {'social-studies': ['ma-hss-2018.txt', 'c3-indicators.txt'],
+# ccss-literacy-6-12.txt (RH, RST, WHST; added 2026-11-14) is accepted in ela, social studies and science rows. It is
+# never an anchor, so no row is required to name its codes.
+STD_FILES = {'social-studies': ['ma-hss-2018.txt', 'c3-indicators.txt', 'ccss-literacy-6-12.txt'],
              'math': ['ccss-math-standards.txt'],
-             'ela': ['ccss-ela-standards.txt', 'ccss-ela-standards-full.txt'],
-             'science': ['ngss-pes.txt']}
+             'ela': ['ccss-ela-standards.txt', 'ccss-ela-standards-full.txt', 'ccss-literacy-6-12.txt'],
+             'science': ['ngss-pes.txt', 'ccss-literacy-6-12.txt']}
 ANCHOR = {'social-studies': 'ma-hss-2018.txt', 'science': 'ngss-pes.txt', 'ela': 'ccss-ela-standards.txt',
           'math': 'ccss-math-standards.txt'}
 
