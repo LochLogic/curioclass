@@ -248,6 +248,8 @@ stages were not totalled.
 
 **ELA and math done 2026-11-13.** ELA: 374 rows K to 12, all 455 grade-level codes owned once; five blind band writers, stitch, reconcile with the older grade 6 work (18 differences, old won 8, 5 sourced, no pull), expert and Codex reads, one fix pass; two questions on Desk card q-ela-progression-1. About 1.6 million agent tokens. Math: 305 rows K to 11, 53 (+) codes deferred to the electives; reconcile with the older grade 3 to 5 and grade 4 work (43 differences, old won 28, all sourced: earned, not steering); expert and Codex reads, one fix pass; nothing for Cory. Similar token cost, not totalled. All four progressions now pass the gate (social studies 384, science 198, ELA 374, math 305 rows). Next: the read across all four, then step 2.
 
+**Step 1 done 2026-11-13.** The read across all four (expert 10 findings, Codex 7, one fix pass) found the progressions fit together; it fixed 7 forward cross-subject links and added a gate rule that catches them. One question to Cory (q-cross-progression-1). Both reports end with a "For the course frames" list, which step 2 takes as input (a shared calendar for same-year links, bridges budgeted as days, the grade 12 timetable).
+
 ### Step 2. Course frames for the four core subjects, then a review: baseline 1
 
 A course frame says what the course is: its grades, the standards and progression skills it owns, its days, its

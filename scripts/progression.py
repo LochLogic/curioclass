@@ -25,6 +25,11 @@ with ~CODE in the earlier one. A K to 8 math code sits in its own grade (4.NBT.B
 carry no grade.
 A (+) high school math part is covered only when named or excluded itself, not through its parent. A cross_subject
 code must be named by a row of the other subject once that subject's progression exists (added 2026-11-13).
+Lean timing (added 2026-11-13, cross-subject read finding 1): a cross_subject lean must be taught at or before the
+leaning row's grade, meaning the named skill id's grade, or for a code the earliest grade of any row of the other
+subject that owns it or ~ contributes to it (high school by course grade: 9 Biology and Algebra I, 10 Chemistry and
+Geometry, 11 Physics and Algebra II). A forward lean FAILs unless the row's notes carry an explicit
+"Just in time:" teach that names the same id or code; then it is a note.
 note (exit 0): a handoff that skips one or more grades; a C3 indicator named in more than one grade (depth must
 differ, and the notes must say how); a C3 indicator of a grade band named by no grade in that band; grade row counts.
 """
@@ -93,6 +98,23 @@ def load(subject):
 def parent(code):
     m = re.match(r'^(.*\d)[a-z]$', code)
     return m.group(1) if m else None
+
+
+def other_grade(other, ref):
+    """Earliest grade at which another subject owns or ~ contributes to ref (a skill id or a standard code)."""
+    best = None
+    for o in other:
+        hit = o['skill_id'] == ref
+        if not hit:
+            for c in split(o['standard']):
+                c = c.lstrip('~')
+                if c == ref or parent(c) == ref or c == parent(ref):
+                    hit = True
+                    break
+        g = (o['grade'] or '').strip()
+        if hit and g in GI and (best is None or GI[g] < GI[best]):
+            best = g
+    return best
 
 
 def check(subject):
@@ -237,6 +259,19 @@ def check(subject):
             notes.append('model %s unused in grade(s) %s between its first and last use (reactivate, or say why)' % (
                 m, ', '.join(gaps)))
     # cross-subject
+    def lean_timing(sid, x, ref, og):
+        # a lean must be owned or taught (~ contribution counts) at or before the leaning row's grade
+        g = GI.get(grade_of[sid], -1)
+        if og is None or GI.get(og, -1) <= g:
+            return
+        nt = by_id[sid]['notes'] or ''
+        if 'just in time:' in nt.lower() and ref in nt:
+            notes.append('%s (grade %s) cross_subject %r: taught in grade %s, bridged by a just-in-time teach in notes' % (
+                sid, grade_of[sid], x, og))
+        else:
+            fails.append('%s (grade %s) cross_subject %r: taught in grade %s, after this row (repoint to an earlier skill, '
+                         'lower the demand, or add "Just in time: ..." naming %s in notes)' % (sid, grade_of[sid], x, og, ref))
+
     for sid, r in by_id.items():
         for x in split(r['cross_subject']):
             if ':' not in x:
@@ -253,6 +288,7 @@ def check(subject):
             for f in STD_FILES[subj]:
                 other_codes.update(codes(f))
             if ref in other_ids:
+                lean_timing(sid, x, ref, other_grade(other, ref))
                 continue
             if ref in other_codes:
                 if other is not None:
@@ -265,6 +301,8 @@ def check(subject):
                                 named.add(parent(c))
                     if ref not in named and parent(ref) not in named:
                         fails.append('%s cross_subject %r: no %s row names that code (point at the skill id or a code a row owns)' % (sid, x, subj))
+                    else:
+                        lean_timing(sid, x, ref, other_grade(other, ref))
                 continue
             if other is None:
                 notes.append('%s cross_subject %r: %s progression not written yet, check the id then' % (sid, x, subj))

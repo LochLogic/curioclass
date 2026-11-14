@@ -10,6 +10,26 @@ heading, and say how many findings went to Cory instead.
 
 ## Week of 2026-11-09
 
+### All four progressions read together. Report: progression-cross-2026-11-13.md
+
+One finding to Cory (the ELA grade 5 unit 4 topic): Desk card q-cross-progression-1. Codex read: progression-cross-codex-2026-11-13.md, nothing new for Cory.
+
+| Choice | Reason in one line | File |
+|---|---|---|
+| `timeline` (social studies) and `number-line` (math) both kept | K to 2 timelines are sequence strips; from grade 3 a timeline is a number line of years and already leans on 2.MD.B.6 | none |
+| `data-graph` (science) kept beside math's named displays | it is the science practice; each row names the math display it uses (bar graph, line plot, coordinate graph, histogram, scatter plot) | none |
+| `point of view` and `perspective` both kept | point of view is whose eyes a text is told through or an author's stance (ELA, and social studies when reading a source's author); perspective is the views of people in the past (social studies) | none |
+| `cause-effect` (science) and `cause-effect-chain` (social studies) both kept | a crosscutting concept and a model of historical causation with weighed causes are different tools | none |
+| `claim-evidence-reasoning` is the one name | finding 4 | social-studies.csv |
+| "opposing claim" in grade 7, "counterclaim" from grade 8, in every subject | follows the ELA standards' own words (W.7.1a, W.8.1) | social-studies.csv (finding 3) |
+| K and 1 use the spoken "I think ... because ..." in all subjects; "claim" as a student word from grade 2 | the K science row may keep "claim" in teacher talk; finding 10 adds it to ELA grade 2 | ela.csv |
+| "percent" kept in grade 5 science with a per-hundred gloss | the hundred-square grid makes it concrete; the formal unit is grade 6 | science.csv |
+| "probability" moved to "chance" in grade 6 science; "interest rate" dropped in grade 3 social studies | each needs math taught later | science.csv, social-studies.csv |
+| "scale" stays one word with several meanings | map scale, graph scale, a weighing scale and scale as size are each glossed where used; the frames add the gloss | none |
+| One research project may serve ELA and social studies in grades 10 to 12 | finding 8; each course still stands alone | ela.csv, social-studies.csv |
+| US spelling in `words` and `cross_subject` across all four files | matches math's 2026-11-13 fix | science.csv, ela.csv, social-studies.csv |
+| Physics gets no trigonometry or vector lean | one-dimensional boundary | none |
+
 ### Social studies progression, K to 12. Report: progression-social-studies-2026-11-13.md
 
 Findings to Cory went to Desk card q-ss-progression-1.
