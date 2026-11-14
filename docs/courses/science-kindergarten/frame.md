@@ -133,9 +133,9 @@ All six go on to grade 1.
 All leans are to kindergarten, the same year, so each is on the availability calendar. Mathematics kindergarten
 teaches K.MD.B.3 in its unit 2 (about week 8) and K.MD.A.2 in its unit 3 (about weeks 12 and 13): units 1 (week 2)
 and 2 (week 6) here come before math teaches these and run on the bridge given; units 3, 4 and 5 come alongside or
-after. ELA kindergarten (weeks counted at five days a week) teaches SL.K.3 and W.K.2 in its unit 1 (weeks 1 to 7),
-SL.K.5 in its unit 2 (weeks 7 to 16) and W.K.1 in its unit 4 (weeks 24 to 32): every ELA lean here comes after ELA
-teaches it except W.K.1 (week 20), which runs on its spoken bridge.
+after. ELA kindergarten (weeks counted at five days a week) teaches SL.K.3, W.K.2 and W.K.1 in its unit 1 (weeks 1 to 7)
+and SL.K.5 in its unit 2 (weeks 7 to 16): every ELA lean here comes after ELA teaches it, W.K.1 (week 20) among them,
+so unit 4's drawn opinion follows ELA's; the spoken bridge stays for a school that teaches opinion writing later.
 
 ### Mathematics, kindergarten
 
@@ -154,7 +154,7 @@ teaches it except W.K.1 (week 20), which runs on its spoken bridge.
 | sk-forecast-severe | SL.K.3 (ask and answer questions to get information) | Unit 2 | About week 8 | The teacher models a question to the visitor or the video first; children ask with a sentence starter ("Why do ...?") |
 | sk-define-problem | SL.K.3 (ask questions to get information about the problem) | Unit 3 | About week 10 | As above; the class asks together before small groups do |
 | sk-needs-places | SL.K.5 (add drawings to a description) | Unit 4 | About week 18 | The model is the drawing; the teacher labels as children tell |
-| sk-change-environment | W.K.1 (draw and tell an opinion with a reason) | Unit 4 | About week 20 | Spoken "I think ..., because I saw ...", the teacher writing; a drawn claim only if ELA has reached it |
+| sk-change-environment | W.K.1 (draw and tell an opinion with a reason) | Unit 4 | About week 20 | ELA unit 1 (weeks 1 to 7) teaches it first, so students draw and tell the claim. If ELA comes later: spoken "I think ..., because I saw ...", the teacher writing |
 | sk-reduce-impact | W.K.2 (draw, tell and write to inform) | Unit 6 | About week 28 | Drawing with a dictated label; a short talk instead of a poster if writing is not yet there |
 
 Weeks are counted at two lessons a week, with the mid-year check and respond day included; the scope and sequence

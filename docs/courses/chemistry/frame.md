@@ -193,7 +193,7 @@ ELA owns W.9-10.1 and W.9-10.2 in grade 10 (e10-w-argument, ELA 10 unit 4, weeks
 | wh2-global-problems (Social studies, grade 10) | chem-climate-forecast, unit 9, weeks 23 to 26 | Climate change as evidence. Available from week 26, before World History II unit 11 (weeks 29 to 32). |
 | alg2-exponential-growth-rational-inputs (Math, grade 11) | chem-nuclear-processes, unit 8 | Half-life as a context; Chemistry is the earlier year. |
 
-**Writing load.** The unit 7 design report (weeks 18 to 20) and the unit 9 forecast (weeks 23 to 26) should not share a due week with ELA 10's process pieces (its argument in unit 4, weeks 13 to 17, and its research report in unit 7, weeks 26 to 31). **Hard content in the same year.** Unit 8 (nuclear, weeks 21 to 23) follows World History II's atomic bombs topic (unit 6, weeks 15 to 18); shared content notes use the same wording.
+**Writing load.** The unit 7 design report (weeks 18 to 20) and the unit 9 forecast (weeks 23 to 26) should not share a due week with ELA 10's process pieces (its argument in unit 4, weeks 13 to 17, and its research report in unit 7, weeks 26 to 31). ELA 10's issue argument is due early in week 26, apart from the forecast (about day 130); if a clear week is needed, ELA moves it to the start of week 27. **Hard content in the same year.** Unit 8 (nuclear, weeks 21 to 23) follows World History II's atomic bombs topic (unit 6, weeks 15 to 18); shared content notes use the same wording.
 
 ## For the lead
 

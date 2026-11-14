@@ -15,7 +15,9 @@ K-12, 1st edition (CC BY 4.0) is the base text through Algebra 2; past Algebra 2
   named (practices, balance of rigor, items labelled by standard with what to do next, extensions, family note and
   supplies, accommodations).
 - docs/courses/math-3-5-progression.md: grades 3 to 5 handoffs, limits and pointers into the Progressions.
-- docs/courses/math-4-spine.md and the math-4 section plans: the worked pattern for every layer below.
+- docs/courses/math-4-spine.md and the math-4 section plans: the worked pattern for every layer below the frame. The
+  grade 4 frame (docs/courses/math-grade-4/frame.md) supersedes the spine's order and units; its reconcile
+  (docs/reviews/frame-math-grade-4-reconcile-2026-11-14.md) lists the edits the old plans take.
 
 ## What good teaching of math looks like, in one paragraph
 
@@ -58,12 +60,15 @@ named in advance and used.
 - **No high school bar.** RUBRIC-MATH-K8.md covers K to 8 only. Algebra 1, Geometry, Algebra 2 and the courses past
   them need the high school criteria (the same reviewer's high school tool, the publishers' criteria for high
   school, the modelling standards) before their frames are read.
-- **Progression pages exist only for grades 3 to 5.** K to 2, 6 to 8 and high school need the same handoff work;
-  the Progressions documents cover every domain from counting and cardinality to high school modelling.
+- **Progression records and narrative pages.** data/progressions/math.csv records core math ownership, handoffs,
+  models and limits from kindergarten through grade 11, and the course frames' Seams tables check them against unit
+  order. The grades 3 to 5 narrative page remains a supplementary explanation; other bands have no narrative page.
 - **Past Algebra 2 has no base text and no progression.** Precalculus, statistics and calculus need a named
   source for order and limits before their frames are written.
-- **The K to 2 fluency and counting work** (counting and cardinality, add and subtract within 5, 10, 20) has no
-  page on how it is checked without a timer.
+- **The K to 2 fluency and counting work** (counting and cardinality, add and subtract within 5, 10, 20). The K to 2
+  frames describe untimed fluency checks through games and individual observation, recorded as just knows, quick
+  strategy or counts all, with coverage of every child. Unit plans turn these into tasks, recording guidance and
+  response decisions. Counting checks are separate from arithmetic-fluency checks.
 
 ## What this lens does not cover
 

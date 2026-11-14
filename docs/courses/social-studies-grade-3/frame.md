@@ -150,11 +150,12 @@ course may teach it, and the bridge if it comes later):
 
 | Other subject, grade | Need | Grade 3 unit (about which days) | The other course should teach it by | Local bridge if later |
 |---|---|---|---|---|
-| ELA grade 3 | W.3.1, opinion writing with reasons (ss3-claim-evidence) | Unit 1 (about days 1 to 24) | Its first writing unit | Unit 1's claim is spoken first, then one written sentence on a frame ("I think ... because the source shows ..."); full paragraphs wait for ELA |
+| ELA grade 3 | W.3.1, opinion writing with reasons (ss3-claim-evidence) | Unit 1 (about days 1 to 24) | ELA grade 3 unit 3 (about days 81 to 119), later | Unit 1's claim is spoken first, then one written sentence on a frame ("I think ... because the source shows ..."); full paragraphs wait for ELA |
 | ELA grade 3 | SL.3.1, collaborative discussion rules (ss3-deliberation) | Unit 2 (about days 25 to 48) | Early in the year | Unit 2 teaches its own discussion norms (listen, restate, give a reason) before the vote |
 | ELA grade 3 | RI.3.7, information from maps, photographs and illustrations (ss3-primary-secondary) | Unit 4 (about days 72 to 89) | Before unit 4 | Unit 4 models reading a photograph and a map as a source |
-| ELA grade 3 | W.3.7 short research, W.3.2 informative writing, SL.3.4 reporting (ss3-community-history, ss3-biography) | Unit 7 (about days 137 to 156) | Before the last quarter | The biography uses a gathered-notes frame and a time-order paragraph template |
+| ELA grade 3 | W.3.7 short research, W.3.2 informative writing, SL.3.4 reporting (ss3-community-history, ss3-biography) | Unit 7 (about days 137 to 156) | ELA grade 3 teaches W.3.2 and W.3.7 in its units 1 and 2 (about days 1 to 77) and SL.3.4 in its unit 3 (about days 81 to 119), before | The biography uses a gathered-notes frame and a time-order paragraph template, kept as practice if ELA has taught them |
 | Math grade 3 | 3.NBT.A.2, adding and subtracting within 1000 (ss3-money-saving) | Unit 3 (about days 49 to 68) | Before unit 3 | The savings plan keeps sums within 100 until the math course has taught 1000 |
+| ELA grade 3 (leaning the other way) | ELA grade 3 unit 1 (about days 1 to 39) reads a short Booker T. Washington selection with its own brief explanation of enslavement and emancipation | Unit 5 (about days 90 to 121) develops the history later | Not needed here: ELA supplies its own explanation | Unit 5 may name the selection as a retrieval point; it teaches the history in full itself |
 | Science grade 3 | 3-ESS2-2, climates of different regions (ss3-globe-grid) | Unit 1 (about days 1 to 24) | Any time; social studies may lead | Unit 1 teaches warm near the equator and the rainfall contrast itself; science deepens it |
 
 Earlier-grade leans (the other subject taught them before this year; no calendar needed): math 2.MD.A.1 (ruler

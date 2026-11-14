@@ -165,12 +165,12 @@ studies grade 4 frames are written; each cell names their units.
 
 | Other subject, grade | Need | Grade 4 unit (science days, about school days) | The other course teaches it | Local bridge if later |
 |---|---|---|---|---|
-| Math grade 4 | 4.OA.A.3, multistep word problems (s4-energy-device: a budget of materials) | Unit 2 (16 to 38, school 21 to 51) | Math grade 4 unit 8 (about school days 114 to 128), with two-step comparison problems from its unit 6 (78 to 96), after | The bridge is used: the budget is two steps of whole-number adding and subtracting with prices in whole numbers (grade 3, 3.OA.D.8) |
-| Math grade 4 | 4.OA.C.5, a pattern from a rule (s4-information-codes) | Unit 3 (42 to 56, school 56 to 75) | Math grade 4 unit 7 (about school days 97 to 111), after | The bridge is used: the code rule is stated and followed; no features of the pattern are explained |
-| Math grade 4 | 4.G.A.1, points, lines and line segments (s4-wave-model) | Unit 3 (42 to 56, school 56 to 75) | Math grade 4 unit 9 (about school days 129 to 149), after | The bridge is used: the wave drawing names "peak", "trough" and "the distance from peak to peak" only, measured with a ruler in whole centimetres (grade 2, 2.MD.A.1) |
-| Math grade 4 | 4.MD.A.1, relative sizes of units (s4-weathering-erosion) | Unit 4 (57 to 73, school 76 to 97) | Math grade 4 unit 6 (about school days 78 to 96), the same weeks | The bridge is used: distances in whole centimetres, water in equal cupfuls, no conversion |
-| Math grade 4 | 4.G.A.1, rays (s4-light-eye: the light-ray model) | Unit 6 (94 to 117, school 125 to 156) | Math grade 4 unit 9 (about school days 129 to 149), the same weeks | The bridge is used: a ray is drawn as a straight path with an arrow showing which way the light goes, without the geometry term until math unit 9 |
-| ELA grade 4 | W.4.2, informative writing (s4-speed-energy) | Unit 1 (1 to 15, school 1 to 20) | ELA grade 4 unit 2 (about school days 39 to 77), after | The bridge is used: the explanation is written on a science frame (claim, evidence, reasoning) of three to five sentences |
+| Math grade 4 | 4.OA.A.3, multistep word problems (s4-energy-device: a budget of materials) | Unit 2 (16 to 38, school 21 to 51) | Math grade 4 unit 8 (about school days 113 to 127), with two-step comparison problems from its unit 6 (77 to 95), after | The bridge is used: the budget is two steps of whole-number adding and subtracting with prices in whole numbers (grade 3, 3.OA.D.8) |
+| Math grade 4 | 4.OA.C.5, a pattern from a rule (s4-information-codes) | Unit 3 (42 to 56, school 56 to 75) | Math grade 4 unit 7 (about school days 96 to 110), after | The bridge is used: the code rule is stated and followed; no features of the pattern are explained |
+| Math grade 4 | 4.G.A.1, points, lines and line segments (s4-wave-model) | Unit 3 (42 to 56, school 56 to 75) | Math grade 4 unit 9 (about school days 128 to 149), after | The bridge is used: the wave drawing names "peak", "trough" and "the distance from peak to peak" only, measured with a ruler in whole centimetres (grade 2, 2.MD.A.1) |
+| Math grade 4 | 4.MD.A.1, relative sizes of units (s4-weathering-erosion) | Unit 4 (57 to 73, school 76 to 97) | Math grade 4 unit 6 (about school days 77 to 95), the same weeks | The bridge is used: distances in whole centimetres, water in equal cupfuls, no conversion |
+| Math grade 4 | 4.G.A.1, rays (s4-light-eye: the light-ray model) | Unit 6 (94 to 117, school 125 to 156) | Math grade 4 unit 9 (about school days 128 to 149), the same weeks | The bridge is used: a ray is drawn as a straight path with an arrow showing which way the light goes, without the geometry term until math unit 9 |
+| ELA grade 4 | W.4.2, informative writing (s4-speed-energy) | Unit 1 (1 to 15, school 1 to 20) | ELA grade 4 unit 1 (about school days 1 to 38), the same weeks | The bridge stays for the first weeks: the explanation is written on a science frame (claim, evidence, reasoning) of three to five sentences; ELA's informative essay arrives in the same weeks |
 | ELA grade 4 | W.4.8 notes from print and digital sources (s4-energy-resources) | Unit 2 (16 to 38, school 21 to 51) | ELA grade 4 unit 2 (about school days 39 to 77), overlapping the end of unit 2 | The bridge is used: a two-column note sheet (what the source says, where it came from) supplied with the readings |
 | ELA grade 4 | W.4.7, a short research project (s4-rock-layers) | Unit 4 (57 to 73, school 76 to 97) | ELA grade 4 unit 2 (about school days 39 to 77), before | Not needed; the class still researches one landform together from teacher-chosen sources |
 | ELA grade 4 | RI.4.7 maps, charts and diagrams (s4-earth-feature-maps); RI.4.9, two texts on one topic (s4-hazard-solutions) | Unit 5 (77 to 93, school 103 to 124) | ELA grade 4 unit 2 (about school days 39 to 77), before | Not needed; map reading is still taught in the unit (table first, then pattern) |
@@ -186,11 +186,10 @@ never percent (6.RP.A.3c), with no number over 1,000,000.
 
 Leans on grade 4 science from other subjects: social studies grade 4 needs 4-ESS3-1 before its unit 6 (school day
 107; met, unit 2 ends near school day 51), 4-ESS3-2 before its unit 7 (school day 133; met, unit 5 ends near school
-day 124) and 4-ESS1-1 at any time (unit 4, school 76 to 97). ELA grade 4 leans on 4-LS1-1 for its animal defense
-topic (e4-main-idea-summary, e4-explain-events, e4-academic-words, e4-informative, e4-research) and on 4-ESS3-2 for
-problem and solution texts (e4-text-structure). ELA grade 4 unit 2 (about school days 39 to 77) teaches the animal
-structures and functions its texts need from its own book, and uses an animal-threat text for its problem and
-solution example; science unit 6 develops the structures argument in full later.
+day 124) and 4-ESS1-1 at any time (unit 4, school 76 to 97). ELA grade 4 unit 2 (about school days 39 to 77)
+introduces the animal structures and defense relationships through its own texts (e4-main-idea-summary,
+e4-explain-events, e4-academic-words, e4-research); science unit 6 later investigates and models them. ELA leans on
+4-ESS3-2 only as an example structure (e4-text-structure).
 
 ## For the lead
 

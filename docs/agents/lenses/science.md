@@ -2,7 +2,7 @@
 
 Pre-work P5a (docs/PRODUCTION-PATH.md), written 2026-11-13. The expert reads this before any science progression,
 course frame, scope and sequence, unit plan or day. It is a way of seeing, not a bar: the bar is the science
-rubric P5b adds. The standard is the Next Generation Science Standards (data/standards/ngss-pes.txt). Grades 6 to
+rubric P5b added, docs/RUBRIC-SCIENCE.md. The standard is the Next Generation Science Standards (data/standards/ngss-pes.txt). Grades 6 to
 8 adapt OpenSciEd Middle School (CC BY 4.0) as the base text, in its 18-unit order (DESK-ANSWERS 2026-11-13); K to
 5 and 9 to 12 are Curio Class's own, with OpenSciEd elementary and high school as reference only.
 
@@ -81,7 +81,7 @@ evidence shows, without "some say" softening. Values rule (b), facts and backed 
 
 ## What this lens does not cover
 
-The scored bar (the P5b science rubric, docs/ADOPTION-BAR.md). Coverage arithmetic and day counts (plan.py check).
+The scored bar (docs/RUBRIC-SCIENCE.md, the P5b science rubric; docs/ADOPTION-BAR.md). Coverage arithmetic and day counts (plan.py check).
 Whether OpenSciEd material, images or kit links may be carried over (BASE-TEXTS.md, "Never carried over"). Tool
 design (the teaching test). Final safety sign-off where a course needs a qualified person (FOUNDATION section 7).
 

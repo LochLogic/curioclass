@@ -131,10 +131,10 @@ check 117 and 118, unit 7 days 119 to 138, unit 8 days 139 to 158, check 159 and
 
 | Other subject | Lean (row and code) | Unit here | When in this year | What the other course is asked for, and the "if later" line |
 |---|---|---|---|---|
-| Science 8 | s8-gravity-mass leans on 8.SP.A.1 (scatter plots and association), science unit 4 (base unit 8.4) | Unit 4 | Scatter plots about days 56 to 60 | Available: science 8 unit 4 is days 78 to 105. If a school moves it earlier, science plots paired data and describes the pattern in words, with no line of best fit (its bridge). |
-| Science 8 | s8-growth-factors leans on 8.SP.A.1, science unit 5 (base unit 8.5); m8-scatter-plots uses MS-LS1-5 (growth against a condition) as a context | Unit 4 | Days 56 to 69 | Available: science 8 unit 5 is days 106 to 130. Unit 4 may use supplied growth data that explain their own context. |
-| Science 8 | m8-function-qualitative uses MS-PS3-1 (describing a relationship from the shape of its graph): s8-kinetic-energy-graphs and s8-wave-amplitude-energy, science units 1 and 2 | Unit 6 | Days 93 to 116 | Earlier: science 8 units 1 and 2 are days 1 to 48. Science reads the shape of a graph in words with grade 7 proportional graphs and one worked example, and asks for no function or rate of change (its bridge). Unit 6 may reuse its graphs. |
-| Science 8 | m8-scientific-notation uses MS-ESS1-3 (powers of ten for very large distances, s8-solar-system-scale, science unit 4) as a context | Unit 7 | Days 119 to 138 | Earlier: science 8 unit 4 is days 78 to 105. Science writes distances in words or with grade 5 powers of ten (5.NBT.A.2) and does not compute in scientific notation. Unit 7 may reuse its distances. |
+| Science 8 | s8-gravity-mass leans on 8.SP.A.1 (scatter plots and association), science unit 4 (base unit 8.4) | Unit 4 | Scatter plots about days 56 to 60 | Available: science 8 unit 4 is days 78 to 104. If a school moves it earlier, science plots paired data and describes the pattern in words, with no line of best fit (its bridge). |
+| Science 8 | s8-growth-factors leans on 8.SP.A.1, science unit 5 (base unit 8.5); m8-scatter-plots uses MS-LS1-5 (growth against a condition) as a context | Unit 4 | Days 56 to 69 | Available: science 8 unit 5 is days 105 to 131. Unit 4 may use supplied growth data that explain their own context. |
+| Science 8 | m8-function-qualitative uses MS-PS3-1 (describing a relationship from the shape of its graph): s8-kinetic-energy-graphs and s8-wave-amplitude-energy, science units 1 and 2 | Unit 6 | Days 93 to 116 | Earlier: science 8 units 1 and 2 are days 1 to 47. Science reads the shape of a graph in words with grade 7 proportional graphs and one worked example, and asks for no function or rate of change (its bridge). Unit 6 may reuse its graphs. |
+| Science 8 | m8-scientific-notation uses MS-ESS1-3 (powers of ten for very large distances, s8-solar-system-scale, science unit 4) as a context | Unit 7 | Days 119 to 138 | Earlier: science 8 unit 4 is days 78 to 104. Science writes distances in words or with grade 5 powers of ten (5.NBT.A.2) and does not compute in scientific notation. Unit 7 may reuse its distances. |
 | Social studies 8 | m8-two-way-tables uses ss8-election-info (percents in polling data) as a context | Unit 4 | Days 65 to 67 | Social studies unit 4 (days about 52 to 63) comes first, so the unit may use its neutral polling data; if social studies moves later, unit 4 uses a neutral class survey (curfew and chores). |
 | ELA (earlier grade) | m8-congruence uses W.7.1 (an argument with clear reasons) | Unit 1 | Days 1 to 20 | Available: taught in grade 7. |
 
@@ -150,7 +150,7 @@ Earlier grades this course assumes from other subjects: W.7.1 (unit 1).
 
 1. **Minutes per lesson.** Pick: 50 minutes, five a week, as in grades 6 and 7.
 2. **The data unit moved.** Settled (expert read 2026-11-14): the move stands. Science 8 places its unit 4 (gravity
-   and mass, scatter plots) at days 78 to 105 and its unit 5 at days 106 to 130; in IM's order the data unit would
+   and mass, scatter plots) at days 78 to 104 and its unit 5 at days 105 to 131; in IM's order the data unit would
    fall about days 101 to 114, after science's unit 4 begins. IM's dependency chart allows the move (8.6 rests on 8.3
    and 7.8). The moved lessons are adapted to unit 3's language (source map).
 3. **IM 8.9 left out.** IM's ninth unit is optional (0 to 10 days): tessellations (lessons 1 to 3) and weather

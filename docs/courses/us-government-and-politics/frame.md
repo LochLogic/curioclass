@@ -138,6 +138,10 @@ the teaching it supplies when it comes first, and the ELA 11 and ELA 12 frames s
 | ela:W.11-12.2 and W.11-12.1 (informative and argument writing) | e11-informative, e11-argument / e12-informative, e12-argument | Unit 8 (gov-policy-news), about weeks 12 to 14 | Argument writing is known from grade 10 (wh2-research-argument); ELA's informative unit may come before or after |
 | ela:SL.11-12.1 (collaborative discussion) | e11-seminar / e12-seminar | Unit 9 (gov-local-action), and the deliberations of units 2 and 4 | Seminar norms are known from earlier grades; any time |
 
+Same-year texts. In a school that runs ELA 12 beside this course, unit 5's rights pair is one other than Plessy and
+Brown, which ELA 12 unit 7 reads for legal reasoning. In a school that runs this course in grade 11, unit 2's founding
+texts never fall in ELA 11's weeks 7 to 11 (its founding documents unit, read for rhetoric).
+
 Math:
 
 | Lean | Math row | Used here | Note |

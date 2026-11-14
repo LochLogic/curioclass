@@ -81,8 +81,10 @@ reference) are taught. Domain words come with the topic.
 
 ## What this lens does not cover
 
-The scored bar, gateways and counts (RUBRIC-ELA.md; K to 2 has separate published criteria not yet read).
-Rights to texts (docs/courses/ela-6/RIGHTS.md, BASE-TEXTS.md). Writing the original texts to the per-grade spec and
+The scored bar, gateways and counts (RUBRIC-ELA.md summarizes grades 3 to 12. Separate K to 2 criteria were consulted
+in progression-ela-codex-2026-11-13.md (phonemic awareness, phonics order, aligned decodables); that report states
+its reading limits).
+Rights to texts (each course frame's rights lines in the Units table, the text records, BASE-TEXTS.md). Writing the original texts to the per-grade spec and
 the qualified ELA teacher's read of them (BASELINE rule 29). Coverage arithmetic (plan.py check).
 
 ## Sources, read into our own words

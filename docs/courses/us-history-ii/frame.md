@@ -137,11 +137,12 @@ last use.
 **Shared research brief with ELA 12** (us2-research-paper and e12-research, cross-read finding 8). Where a school teaches
 both, one project serves both: one question and one source set; ELA 12 owns the writing (W.11-12.7 and W.11-12.8, about
 2,500 words over its research weeks) and the presentation standards; US History II owns the historical question, the
-source sourcing and corroboration and D4.3 to D4.5, scored on its own rubric. Proposed calendar for the pairing: ELA 12's
-project of about eight weeks runs from about day 121 to day 160; the shared question is chosen at its opening (this
-course's unit 9 respond day, about day 123) and the source requirements agreed then; units 10 and 11 add to the source
-set; unit 12's 13 days are the historical synthesis, critique, revision, presentation and action. The ELA 12 frame sets
-its milestones against this before the pairing is called settled. Each course still teaches the whole cycle for a
+source sourcing and corroboration and D4.3 to D4.5, scored on its own rubric. Calendar for the pairing: ELA 12's
+unit 8 runs days 125 to 160, with its milestones in that unit (source list day 135, draft day 145, rehearsal by day
+147, talks days 150 to 156, paper day 158) and the same cut order; ELA requires at least three primary sources among
+eight. The shared question is chosen on this course's unit 9 respond day (about day 123), just before ELA's unit 8
+opens, and the source requirements agreed then; units 10 and 11 add to the source set; unit 12's 13 days are the
+historical synthesis, critique, revision, presentation and action. Each course still teaches the whole cycle for a
 school that uses it alone (the standalone product is in unit 12's row).
 
 ## Course-level checks
@@ -165,7 +166,7 @@ ELA, same year (the availability calendar for the ELA 12 frame):
 
 | Lean | ELA 12 row | Used in this course | Earliest the ELA 12 unit may teach it |
 |---|---|---|---|
-| ela:W.11-12.7 (sustained research project) | e12-research | Question chosen about day 123; units 10 to 12 | Proposed: ELA 12's project runs about days 121 to 160, opening with the shared question (the shared brief above). A school without the pairing still meets the whole cycle in unit 12 (us1-research-inquiry and us1-argument-writing taught it in grade 11) |
+| ela:W.11-12.7 (sustained research project) | e12-research | Question chosen about day 123; units 10 to 12 | ELA 12's unit 8 runs days 125 to 160, opening on the shared question (the shared brief above). A school without the pairing still meets the whole cycle in unit 12 (us1-research-inquiry and us1-argument-writing taught it in grade 11) |
 | ela:SL.11-12.4 (present for an audience) | e12-presentation | Unit 12 | Any time before unit 12 |
 
 Other coordination for the ELA 12 frame: hard content in the same year (the Holocaust in unit 4, the bomb in unit 5,

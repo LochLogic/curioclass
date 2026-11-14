@@ -124,7 +124,7 @@ are written later and set their own unit numbers; this records what kindergarten
 |---|---|---|---|---|
 | ssk-asking-questions | SL.K.3 (ask and answer questions to learn more) | Unit 1 | Week 1 | Social studies models the "I wonder" question itself; ELA practises it |
 | ssk-talk-together | SL.K.1 (agreed-upon rules for discussion) | Unit 1 | Week 1 | Unit 1 teaches the talk rules itself; ELA uses the same rules |
-| ssk-i-think-because | W.K.1 (tell an opinion about a topic) | Unit 1 | Week 2 | Spoken only here; ELA's drawn or written opinion can come later in the year |
+| ssk-i-think-because | W.K.1 (tell an opinion about a topic) | Unit 1 | Week 2 | Spoken only here: ELA teaches the drawn or written opinion in its unit 1 (weeks 1 to 7), alongside or just after week 2. If ELA comes later, the spoken claim stands on its own |
 | ssk-story-characters | RL.K.3 (characters in a story) | Unit 2 | About week 6 | Teacher-led read-aloud with picture cues; the question "What did the character do?" carries it |
 | ssk-sequence-time | RI.K.3 (connect events in a text) | Unit 4 | About week 18 | Picture cards ordered with first, next, last before any text |
 | ssk-national-symbols | RI.K.1 (ask and answer questions about a text) | Unit 5 | About week 23 | Teacher asks and models the answer from the page |

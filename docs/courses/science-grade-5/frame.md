@@ -170,7 +170,7 @@ bridge).
 Leans on grade 5 science from other subjects: ELA grade 5's rainforest unit (its unit 2, about school days 42 to
 79: e5-several-main-ideas, e5-relationships, e5-academic-words) leans on 5-LS2-1, taught in science unit 2 (school
 24 to 55, before or beside it); e5-opinion leans on 5-LS1-1 (unit 2) and e5-reasons-to-points on 5-PS2-1 (unit 4);
-math m5-graph-points and m5-measurement-conversion use shadow and weight data as contexts; social studies grade 5's
+math m5-graph-points and m5-measurement-conversion use shadow and weight data as contexts; math m5-decimal-operations names 5-PS1-2 (adding measured masses to the hundredth of a gram) as a context, which science does not need: s5-conserve-weight weighs in whole grams on one scale, so math's decimal masses are its own data; social studies grade 5's
 unit 6 names 5-ESS3-1 (any time; science teaches it in unit 6, after).
 
 ## For the lead
