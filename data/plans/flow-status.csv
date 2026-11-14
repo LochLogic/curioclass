@@ -124,3 +124,4 @@ b1:review,done,2026-11-14,"Four column reads, a structure read and a Codex sampl
 b1:site,done,2026-11-14,"Site check done (docs/reviews/baseline-1-site-2026-11-14.md); design changes and frame-only pages on Desk card q-baseline-1"
 b1:codex,done,2026-11-14,"Codex read a sample (all four subjects in grades 4 and 9, with neighbours): docs/reviews/baseline-1-codex-2026-11-14.md; its findings went into the subject, structure and cleanup fix passes"
 b1:pages,done,2026-11-14,"SITE-DESIGN updated (approved 2026-11-14); scripts/course_pages.py builds 450 hidden pages (52 courses, 397 units) from the frames, SHOWN = False; report docs/reviews/site-course-pages-2026-11-14.md; before showing: later.csv L19"
+baseline1,done,2026-11-14,"Every progression and course frame reviewed and fixed; website design matches the plan from subject down to course (docs/reviews/baseline-1-*-2026-11-14.md, site-course-pages-2026-11-14.md); paused here per Cory"
