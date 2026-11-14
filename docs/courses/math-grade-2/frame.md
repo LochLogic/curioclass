@@ -117,8 +117,8 @@ Every grade 1 hand-on is picked up here.
 
 Threads that skip grade 3 or end here, as the progression sets them: m2-three-digit-place-value and
 m2-compare-three-digit also hand on to grade 4 (m4-read-compare-large); m2-halves-thirds-fourths to m4-angle-concepts
-(a fraction of a circle); m2-unit-size to m4-unit-conversion; m2-money to m4-measurement-problems (decimal money is
-grade 4). m2-add-sub-within-100 hands on through its owner, m2-fluency-within-100. m2-add-four-two-digit and
+(a fraction of a circle); m2-unit-size to m4-unit-conversion; m2-money to m4-decimal-notation (cents as hundredths of a
+dollar) and m4-measurement-problems (decimal money is grade 4). m2-add-sub-within-100 hands on through its owner, m2-fluency-within-100. m2-add-four-two-digit and
 m2-length-difference end in grade 2: grade 3 adds within 1000 (m3-add-sub-1000) and measures perimeter
 (m3-perimeter) without naming them. Every other hand-on is answered by the grade 3 row's assumes.
 
