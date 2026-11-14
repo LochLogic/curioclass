@@ -55,7 +55,7 @@ Picked up from Science, Grade 5 (and grade 3 and 4 skills that grade 5 does not 
 | Earth's systems interact; where water is and how much | s5-sphere-interactions; s5-water-distribution | Unit 3 (s6-water-cycle-energy, s6-air-masses-weather) |
 | Weather data read for patterns | s3-weather-data (grade 3, maintained through s4-weathering-erosion and s5-sphere-interactions) | Unit 3 (s6-air-masses-weather) |
 | Climates of different regions | s3-climates (grade 3, content revisited) | Unit 3 (s6-climate-circulation), opened with a retrieval task |
-| Sun angle and day length (earth-sun-moon) | s5-shadows-sky | Unit 3 (s6-climate-circulation), at grade 5's depth only; the full model waits for grade 8 unit 4 |
+| Daily and seasonal shadow and day-length patterns, with Earth's spin and orbit (earth-sun-moon) | s5-shadows-sky | Unit 3 (s6-climate-circulation) retrieves them and develops what is new here: latitude, the angle of sunlight and uneven heating; the full model waits for grade 8 unit 4 |
 | Weathering and erosion; rock layers record change; feature maps | s4-weathering-erosion; s4-rock-layers; s4-earth-feature-maps (grade 4, content revisited) | Unit 4 (s6-rock-cycle, s6-surface-change-scales, s6-geologic-time, s6-plate-evidence), each opened with a retrieval task |
 | Solutions that reduce the effects of hazards | s4-hazard-solutions (grade 4, content revisited) | Unit 5 (s6-hazard-forecast) |
 | Patterns that carry information; waves of amplitude and wavelength | s4-information-codes; s4-wave-model (grade 4, content revisited) | Unit 5 (s6-digital-signals), with a wave-model reactivation task |

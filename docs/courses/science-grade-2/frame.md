@@ -98,7 +98,7 @@ expectation; it leans on social studies grade 1's landforms and waters (Cross-su
 | s2-water-where | 1 | s4-earth-feature-maps (grade 4); s5-water-distribution (grade 5) | Features on maps; how much water is salt and fresh, and where |
 | s2-fast-slow-events: stability-change | 2 | s3-fossils (grade 3); s4-rock-layers; s4-weathering-erosion (grade 4) | Fossils as evidence of past environments; rock layers; the rate of erosion measured |
 | s2-erosion-solutions | 2 | s3-weather-hazard (grade 3); s4-weathering-erosion; s4-hazard-solutions (grade 4) | Judging a design that reduces a weather hazard; solutions to natural hazards |
-| s2-compare-designs: the full K-2 design cycle | 2 | s3-design-problem (grade 3) | Criteria, constraints and fair tests of many solutions |
+| s2-compare-designs: the full K-2 design cycle | 2 | s3-design-problem (grade 3) | Need, criteria and constraints, stated precisely enough that two solutions could be judged (3-5-ETS1-1); comparing several solutions is grade 4 and fair tests of a prototype grade 5 |
 | s2-material-properties | 3 | s5-identify-materials (grade 5) | Measured and observed properties identify a material |
 | s2-best-material | 3 | s5-identify-materials (grade 5) | As above |
 | s2-pieces-new-object | 4 | s5-particles; s5-conserve-weight (grade 5) | Matter made of pieces too small to see; weight conserved in a change |
