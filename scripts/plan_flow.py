@@ -197,6 +197,32 @@ if os.path.exists(p):
     for r in csv.DictReader(io.open(p, encoding='utf-8')):
         info[r['node']] = [r.get('date') or '', r.get('note') or '']
 
+# what was found or changed, for the bubbles of finished steps. Reviews: a short hand-written result in
+# data/plans/flow-results.csv (node,result), written when the fix pass closes the step. Grade progressions: counted
+# from the data, so they never go stale.
+found = {}
+p = os.path.join(ROOT, 'data', 'plans', 'flow-results.csv')
+if os.path.exists(p):
+    for r in csv.DictReader(io.open(p, encoding='utf-8')):
+        found[r['node']] = ['What was found', r['result']]
+PFILE = {'social-studies': 'social-studies', 'science': 'science', 'english-language-arts': 'ela', 'math': 'math'}
+for s, f in PFILE.items():
+    p = os.path.join(ROOT, 'data', 'progressions', f + '.csv')
+    if not os.path.exists(p):
+        continue
+    by = {}
+    for r in csv.DictReader(io.open(p, encoding='utf-8')):
+        by.setdefault(r['grade'].strip(), []).append(r)
+    for g, rs in by.items():
+        codes = [c.strip() for r in rs for c in (r['standard'] or '').split(';') if c.strip()]
+        own = len({c for c in codes if not c.startswith('~')})
+        part = len({c for c in codes if c.startswith('~')})
+        links = sum(len([x for x in (r['cross_subject'] or '').split(';') if x.strip()]) for r in rs)
+        std = ', '.join(x for x in [f'{own} standards owned' if own else '',
+                                    f'{part} started here and finished in a later grade' if part else ''] if x)
+        txt = f'{len(rs)} skills; {std}; {links} links to other subjects.'
+        found[f'prog:{s}:{g}'] = ['In this grade', txt]
+
 def strip_cells(o):
     if isinstance(o, dict): return {k: strip_cells(v) for k, v in o.items() if k != 'cells'}
     if isinstance(o, list): return [strip_cells(v) for v in o]
@@ -209,7 +235,7 @@ p = os.path.join(ROOT, 'data', 'plans', 'later.csv')
 if os.path.exists(p):
     later = [dict(r) for r in csv.DictReader(io.open(p, encoding='utf-8'))]
 
-out = dict(at=datetime.datetime.now().isoformat(timespec='minutes'), bands=bands, later=later, about=ABOUT, info=info,
+out = dict(at=datetime.datetime.now().isoformat(timespec='minutes'), bands=bands, later=later, about=ABOUT, info=info, found=found,
            note='From docs/PRODUCTION-PATH.md (draft 5). Day and unit counts marked "about" are estimates until each course frame sets them.')
 io.open(sys.argv[1], 'w', encoding='utf-8').write(json.dumps(strip_cells(out), separators=(',', ':')))
 cnt = {}

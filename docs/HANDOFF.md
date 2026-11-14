@@ -21,7 +21,7 @@ the pilot unit first, the ELA and science pilots, or one unit ahead, PRODUCTION-
 data/modules/math.txt resynced to the 2026-11-11 codes that had been written only into modules.csv. See
 [courses/social-studies/STANDARD.md](courses/social-studies/STANDARD.md). The Desk's plan flow is built by
 `python -X utf8 scripts/plan_flow.py <out.json>` and posted to Desk doc `stats/plan`; node states live in
-data/plans/flow-status.csv. **Saved for later:** anything set aside until a trigger (a file Cory saves by hand,
+data/plans/flow-status.csv. Clicking a step on the Dashboard opens a bubble: what the step is (ABOUT in plan_flow.py), its latest note, and what was found. **When a review step closes, add its result to data/plans/flow-results.csv** (node,result: findings per reader, the main fixes, what went to Cory, in two or three plain sentences); grade progression blocks are counted from the data. **Saved for later:** anything set aside until a trigger (a file Cory saves by hand,
 a reread before a unit cites something) gets a row in data/plans/later.csv; it shows on the Desk's Dashboard under
 the plan flow. Add a row whenever work is parked; mark it done rather than deleting it.
 
