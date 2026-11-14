@@ -232,6 +232,33 @@ To Cory: one Desk card, q-frames-ela-sci-math-1. Bands still in their fix pass a
 | Media work after civics unit 9 (about day 145) | ELA 8 | Same-year availability |
 | Seneca Falls "(grade 10)" | ELA 8 | Grade 12 reads Walker's Appeal |
 
+**ELA, Grades 9 and 10** (frame-ela-9-10-fixes-2026-11-14.md)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Unit 1 question "what does the writer let the reader know, and when" | ELA 9 | Fits withheld and revealed knowledge |
+| Butler's Odyssey with a Latin-to-Greek name key | ELA 9 | Plainest public-domain prose; grade 7 taught the Greek names |
+| Lang's sonnet "The Odyssey" (1879) as the second later answer; a book 4 passage as the cold check | ELA 9 | Public domain; books 5 to 12 are taught |
+| "The Necklace" in the 1903 Original Short Stories translation | ELA 9 | A named pre-1931 translation |
+| Unit 7's second project is the explanatory piece's research stage, with a panel talk in one lesson | ELA 9 | Days by load; the row's talk kept |
+| Unit 7's piece explains the honeycreepers' descent; threats as reading | ELA 9 | Keeps Biology's unit 9 topic its own |
+| Phrase and clause types by sentence combining; L.9-10.5a figures explained for their role; 9a in unit 1, 9b in units 4 and 6 | ELA 9 | Standards in full |
+| Period slurs left out with an omission mark and editor's note | ELA 9, 10 | BASELINE rule 6, the grade 11 wording |
+| SL.9-10.5's digital element made on a shared device and recorded apart; transcripts for listening only | ELA 9, 10 | The W.9-10.6 boundary carried to media |
+| Text records Pending with edition, boundaries, rights, measure, headings, supports | ELA 9, 10 | Written with the scope and sequence |
+| Informational share reported by unit days and by anchor texts, the 70 and 30 comparison named | ELA 9, 10 | Different denominators |
+| "A quantitative reading level of about ..." in place of the brand measure, grades 9 to 12 | ELA 9 to 12 | The wording rule |
+| Shared research brief: one report in two scored parts, one talk, weeks 29 to 31, milestones | ELA 10 | One product without losing W.9-10.2 (joint product with Cory) |
+| Two two-day short inquiries in unit 7; talks in small-group panels over two days | ELA 10 | W.9-10.7 in full; days by load |
+| Mhudi chapters 1 to 4 with summaries; Noli three or four chapters; unit 5 teaches the longer work | ELA 10 | Unit 3's load; RL.9-10.6 planned |
+| Harper's "We Are All Bound Up Together" (1866) for the Declaration of Sentiments; King a pointer | ELA 10 | A Black American voice; under copyright |
+| Unit 3 question on power held by others; Tagore's two collections cited apart | ELA 10 | Answerable from the texts; correct editions |
+| Cloning pages as two general explanations; passage-level analysis first; Pasteur and Tyndall fallback | ELA 10 | RI.9-10.5 in full |
+| Independent checkpoints in units 4 to 7; the year-end check is the .10 evidence | ELA 10 | The end-of-grade-10 line |
+| One-on-one and teacher-led discussion settings; speakers judged in writing; speech adapted | ELA 10 | SL.9-10.1, 3 and 6 in full |
+| Ndebele reader for Mhudi; All Quiet's full content note | ELA 10 | Sensitivity |
+| Chemistry overlap days 128 to 130 kept with the if-later line; week 26 due days set apart | ELA 10 | The science rerun's correction |
+
 **ELA, Grades 11 and 12** (frame-ela-11-12-fixes-2026-11-14.md)
 
 | Choice | Course | Reason |
