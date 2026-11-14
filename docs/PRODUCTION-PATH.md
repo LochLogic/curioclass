@@ -216,6 +216,14 @@ ids the next grade assumes), model_in, model_out, words, and cross_subject.
   12, OpenSciEd middle school, EL K to 5); the existing grades 3 to 5 math page is folded in.
 - **Review**: the expert reads each subject cold, then one read across all four for the cross-subject column.
   Anything that changes what a grade teaches comes to Cory.
+- **Write blind, then reconcile** (Cory, 2026-11-13). Writers (docs/pipeline/briefs/progression-write.md) and
+  the first read never see the subject's earlier planning (science's grade 4 scope and sequence; math's grades 3 to
+  5 progression, grade 4 scope and sequence, unit plans and days). After stitching, one reconcile step
+  (docs/pipeline/briefs/progression-reconcile.md) lists every difference with the old work and settles each by a
+  named source, neither side winning by default, and measures the pull (how often the old work won without a
+  source). Old work that loses becomes rework for its course's turn. Only the big things go to the Desk: a
+  difference no source settles that moves a standard or changes what a grade teaches, or a pull that shows the old
+  work steering. Order per subject: band writers, stitch, reconcile, expert and Codex reads, fix.
 
 Rough cost, not measured: about 0.5 million tokens per subject and grade band with its read, so about 6 to 8
 million for the four subjects.

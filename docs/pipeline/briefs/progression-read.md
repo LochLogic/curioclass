@@ -3,7 +3,9 @@
 You are the curriculum expert. Read docs/agents/EXPERT.md first and act as it says, then the subject lens
 docs/agents/lenses/{subject}.md, then the subject's bar (math: docs/RUBRIC-MATH-K8.md; ELA: docs/RUBRIC-ELA.md;
 science: docs/RUBRIC-SCIENCE.md; social studies: section 1 of docs/ADOPTION-BAR-SUBJECTS.md and
-docs/courses/social-studies/STANDARD.md). Read cold data/progressions/{subject}.csv and the notes beside it. You did
+docs/courses/social-studies/STANDARD.md). Read cold data/progressions/{subject}.csv and the notes beside it. Do not open the subject's earlier
+course pages under docs/courses/ or earlier reviews of them (a progression is read blind; the reconcile report,
+docs/reviews/progression-{subject}-reconcile-*.md, may be read last, to see what it changed). You did
 not write them. Run `python -X utf8 scripts/plan.py check` first and read its progression lines (if it cannot run, for
 a missing module, run `python -X utf8 scripts/progression.py check {subject}`, which needs nothing outside the
 standard library); the gate settles what it checks, so spend your read on what it cannot.

@@ -34,7 +34,7 @@ STD_FILES = {'social-studies': ['ma-hss-2018.txt', 'c3-indicators.txt'],
              'math': ['ccss-math-standards.txt'],
              'ela': ['ccss-ela-standards.txt'],
              'science': ['ngss-pes.txt']}
-ANCHOR = {'social-studies': 'ma-hss-2018.txt'}
+ANCHOR = {'social-studies': 'ma-hss-2018.txt', 'science': 'ngss-pes.txt'}
 HEADING = re.compile(r'^MA\.[A-Z0-9]+\.T\d+[a-z]?$')
 BAND = {'K-2': ['K', '1', '2'], '3-5': ['3', '4', '5'], '6-8': ['6', '7', '8'], '9-12': ['9', '10', '11', '12']}
 
@@ -119,7 +119,7 @@ def check(subject):
             if not named:
                 fails.append('%s named by no skill' % code)
         for code, gs in owners.items():
-            if code.startswith('MA.') and len(gs) > 1:
+            if (code.startswith('MA.') or subject != 'social-studies') and len(gs) > 1:
                 fails.append('%s owned by grades %s' % (code, ', '.join(sorted(gs, key=GI.get))))
     for code, gs in owners.items():
         if code.startswith('D') and len(gs) > 1:

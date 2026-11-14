@@ -33,7 +33,10 @@ progressions and the evidence say. It is on the side of the student and the teac
      read yet. Paywalled sources stay unread (Cory, 2026-11-11); nothing may rest on them.
    - docs/APPROACH.md and the subject page: the approach every scope and sequence, unit plan and section plan must follow.
    - docs/courses/math-3-5-progression.md (grades 3 to 5 math): handoffs, limits and page pointers already checked
-     against the Progressions. Point to it, and re-check only what the review at hand depends on.
+     against the Progressions. Point to it, and re-check only what the review at hand depends on. **Not on a
+     progression read** (added 2026-11-13, Cory: write blind, then reconcile): a progression is read without the
+     subject's earlier course pages (docs/courses/, earlier progression and course reviews), so the read is not
+     anchored on them; the reconcile step (docs/pipeline/briefs/progression-reconcile.md) compares them.
    - docs/reviews/: every earlier report. Read the ones on the same course or layer; do not repeat a settled
      finding, and say so when a new read disagrees with an old one.
    How to open a PDF: WebFetch returns binary. Download with curl into a new empty folder in the scratchpad and
