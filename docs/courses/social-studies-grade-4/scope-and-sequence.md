@@ -111,6 +111,13 @@ Each check falls two days after a unit's end-of-unit assessment (days 37, 102 an
 
 All three sit on CALENDAR.md's target weeks (8, 21, 27). The grade's other checks: math weeks 12, 23, 31; science 10, 19, 30; ELA 16, 32. No week holds two subjects' check days: the stagger rule holds.
 
+## Shorter path
+
+The year is 160 days of about 40 minutes. Two shorter routes keep every owned code, skill and assessment, every observation note and every respond day; the unit plans check them against real minutes, so neither is yet shown to fit.
+
+- **30 to 35-minute lessons, same 160 days.** Each teaching day keeps its source, its task and its exit ticket, and trims the second worked example and the whole-class share; a review or fluency day shortens its practice round; assessment and respond days stay whole.
+- **About 150 days.** Ten of the days marked "compressible (shorter block)" fold into a neighbour, the work moving with them (see the year at a glance): 8 (choosing the map scale, into 7), 13 (latitude and longitude practice, into 12), 22 (checking one fact in two sources, into 21), 36 (review, into 37's opening), 57 (review, into 58's opening), 77 (review, into 78's opening), 98 (the growth map and timeline, into 97 and 99), 101 (review, into 102's opening), 119 (review, into 120's opening) and 130 (review, into 131's opening). The gathering days (34, 55, 75, 128) stay as days on this route. No readiness, assessment or respond day folds.
+
 ## For the lead
 
 None open. The two items written here first (the frame's Days bullet on retrieval, and its science rows' day ranges) were applied to the frame on 2026-11-14.

@@ -214,6 +214,13 @@ place from units 2 to 6. Every check item asks about each part of each code its 
 targets (14 and 31); `frame.py calendar` shows no stagger break for grade 2 (ELA weeks 15
 and 16 and 32, math 18 and 19 and 29, science 17 and 28).
 
+## Shorter path
+
+The year is 96 lessons of 30 to 40 minutes, three a week. Two shorter routes keep every owned code, skill and assessment, every observation note and every respond day; the unit plans check them against real minutes, so neither is yet shown to fit.
+
+- **30-minute lessons, same 96 lessons.** The 30-minute core path above: each lesson keeps its core source set, one supported try and its named evidence; extra examples, longer discussion and display making use the optional ten minutes.
+- **About 86 lessons.** These lessons fold into a neighbour, because each code or skill they carry is taught on another lesson too, and the work moves with them: 7 (fact or opinion, into 8's sourced photograph and map), 9 (the peel laid flat, into 10's Mercator map), 13 (planning the map, into 14, where it is made), 20 (the five oceans, into 19), 22 (land, water and climate, into 21), 38 (renewable and non-renewable resources, into 37), 40 (goods and services here and far away, into 39's farm to table), 54 (opportunity cost in trade, into 53), 74 (practising the interview, into 73's questions) and 86 (resources and earning a living, into 85's gathering day). No assessment, observation, respond or informed action lesson folds.
+
 ## For the lead
 
 1. **Readiness wording in the frame.** Applied 2026-11-14: the frame's Days bullet now says a unit that assumes a

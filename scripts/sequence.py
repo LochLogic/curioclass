@@ -21,6 +21,7 @@ import frame   # noqa: E402
 KINDS = {'Understanding', 'Fluency', 'Application', 'Check', 'Respond'}
 ASSESS = {'', 'readiness', 'mid', 'end', 'course', 'observe'}
 MID_UNIT_DAYS = 25          # a unit longer than this carries a mid-unit assessment
+READINESS_AHEAD = 3         # a readiness check sits at most this many days before its unit's first day
 NEED = ['day', 'stretch', 'unit', 'kind', 'goal', 'skills', 'codes', 'assess']
 
 
@@ -121,6 +122,29 @@ def check(course):
             nxt = next((x for x in days[i + 1:] if x['kind'] != 'Check' or x['stretch'] != 'C'), None)
             if nxt is None or not (nxt['stretch'] == 'C' and nxt['kind'] == 'Respond'):
                 fails.append('day %s: a course-level check with no respond day after it' % d['day'])
+    # readiness timing (Cory, 2026-11-14, sequence-write.md rule 2): a readiness check is given before its unit
+    # opens, in the last ten minutes of the previous unit's last day or of a respond day between the two units, a few
+    # days ahead at most; a unit 1 check is served by the start-of-year check; never on a unit's first day
+    firsts = {}
+    for i, d in enumerate(days):
+        s = d['stretch'].strip()
+        if s.isdigit() and s not in firsts:
+            firsts[s] = i
+    starts = sorted(firsts.values())
+    for i, d in enumerate(days):
+        if d['assess'] != 'readiness':
+            continue
+        s = d['stretch'].strip()
+        if i in starts:
+            fails.append("day %s: a readiness check on unit %s's first day (give it before the unit opens: the last "
+                         "ten minutes of the previous unit's last day or of the respond day between; unit 1: the "
+                         "start-of-year check)" % (d['day'], s))
+            continue
+        nxt = next((j for j in starts if j > i), None)
+        closes = s == 'C' or d['kind'] == 'Respond' or i + 1 >= len(days) or days[i + 1]['stretch'].strip() != s
+        if nxt is None or nxt - i > READINESS_AHEAD or not closes:
+            fails.append("day %s: a readiness check that is not on the previous unit's last day or a respond day "
+                         "within %d days before a unit's first day" % (d['day'], READINESS_AHEAD))
     # every owned skill and code of the frame is placed on some day
     placed = ' '.join(d['skills'] + ' ' + d['codes'] for d in days)
     for r in table:

@@ -103,9 +103,12 @@ and Cross-subject ids, and outside-reader wording (baseline 1 structure fixes, 2
 15. **No status lines about other files.** Stale wording in shared docs goes under "For the lead" with the
     replacement text.
 16. **Readiness or retrieval.** A row used the year before, or earlier the same year, opens as a retrieval task
-    inside a day; every other earlier-grade row the unit assumes (last used two or more grades back) opens the unit
-    with a readiness check on its first day (added 2026-11-14, as the science frames applied it; these words settled
-    2026-11-14 for all 15 social studies courses, the same as sequence-write.md rule 2).
+    inside a day; every other earlier-grade row the unit assumes (last used two or more grades back) gets a readiness
+    check (added 2026-11-14, as the science frames applied it; these words settled 2026-11-14 for all 15 social
+    studies courses, the same as sequence-write.md rule 2). It is given before the unit opens, so its results shape
+    day 1: the last ten minutes of the previous unit's last day, or of the respond day or course-level check respond
+    day between the two units, a few days ahead at most; unit 1's is served by the start-of-year check. Day 1 of a
+    unit stays clean for the hook and the compelling question (Cory, 2026-11-14, one timing in every course).
 
 ## Rules
 - The progression rows are the contract: place every owned row, change none. If a row is wrong, list it under "For

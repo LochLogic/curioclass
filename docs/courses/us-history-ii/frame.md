@@ -8,8 +8,8 @@ Course `us-history-ii` (catalogue id `us-hist-hs`), grade 12, draft frame (2026-
 - **Days.** 160 course days (a full year): 154 in units and 6 for three course-level checks, each an assessment day and a
   respond day. One lesson of about 50 minutes a day, five a week, across 32 weeks. Each unit's days include its
   end-of-unit assessment and one respond day (a unit over 25 days also holds a mid-unit assessment); a row used the year
-  before or earlier this year opens as a retrieval task inside a day, and a row last used two or more grades back opens
-  its unit with a readiness check on the first day, with a reteach station for students it flags (units 1, 3 to 6, 8, 9
+  before or earlier this year opens as a retrieval task inside a day, and a row last used two or more grades back gets
+  a readiness check before its unit opens, with a reteach station for students it flags (units 1, 3 to 6, 8, 9
   and 11; the table is in the scope and sequence).
 - **Senior calendar.** Grade 12 may end early. The capstone question is chosen on unit 9's respond day (about day 123)
   from the exit-routine notes, and units 10 and 11 each give part of one day to the student's source set. Unit 12 then
@@ -107,7 +107,7 @@ Picked up from US History I (grade 11), with World History II (grade 10) and Civ
 | us1-wwi (11) | World War I at home and abroad; US History I ends about 1920 | Unit 2 (both rows) and unit 4 (us2-isolation-fascism) |
 | us1-immigration (11) | immigration of 1880 to 1920 | Unit 2 (us2-twenties-tensions: the 1924 quotas), unit 5 (us2-homefront), unit 11 (us2-recent-trends: then and now) |
 | us1-research-inquiry (11) | the research cycle, sourcing | Unit 3 (us2-depression's primary source report) and unit 12 |
-| wh2-great-depression (10) | the Depression worldwide | Unit 3, us2-depression: content revisited, opens with a readiness check on day 26 (last used in grade 10) |
+| wh2-great-depression (10) | the Depression worldwide | Unit 3, us2-depression: content revisited, readiness check before the unit opens, in day 25's last ten minutes (last used in grade 10) |
 | us1-progressivism (11) | reform by law and regulation | Unit 3, us2-new-deal |
 | wh2-totalitarian-regimes, wh2-road-to-war (10) | fascism, Nazism, the road to war | Unit 4, us2-isolation-fascism: revisited at US depth; one readiness check on day 42 covers unit 4's four grade 10 rows |
 | wh2-wwii-war-and-diplomacy (10) | the war's course and conferences | Unit 4, us2-wwii-war: readiness items in day 42's check |
@@ -121,7 +121,7 @@ Picked up from US History I (grade 11), with World History II (grade 10) and Civ
 | wh2-cold-war-world (10) | the Cold War in Asia | Unit 8, us2-vietnam: readiness check on day 103 (last used in grade 10) |
 | us1-reform-movements, us1-native-west (11), ss8-protest-change (8), wh2-decolonization (10) | how movements form; Native nations' history; decolonization | Unit 9, us2-social-movements: readiness check on day 114 (ss8-protest-change, wh2-decolonization); the US History I rows retrieved |
 | wh2-soviet-collapse (10) | the Soviet collapse | Unit 10, us2-cold-war-end: internal and external causes weighed; retrieval (Economics' day 1 checked it this spring) |
-| wh2-terrorism (10) | terrorism in the world since 1990 | Unit 11, us2-terrorism-response: readiness check on unit 11's first day (day 135) |
+| wh2-terrorism (10) | terrorism in the world since 1990 | Unit 11, us2-terrorism-response: readiness check before unit 11 opens (day 134's last ten minutes) |
 | us1-argument-writing (11) | the sourced argument with counterclaim | Unit 12, us2-research-paper |
 
 Handed on: US History II is the last history course in the subject, so its threads end here. Where they end:

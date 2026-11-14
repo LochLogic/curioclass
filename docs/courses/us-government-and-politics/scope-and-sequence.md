@@ -10,17 +10,17 @@ Each end-of-unit assessment is a composite: an unseen task for the codes a singl
 
 ## Readiness checks and retrieval tasks
 
-Settled rule 1: a row used the year before, or earlier this year, opens as a retrieval task inside a day; a row last used two or more grades back opens its unit with a readiness check on the first day. The course is placed in grade 12, so grade 11 rows (US History I) count as the year before.
+Settled rule 1: a row used the year before, or earlier this year, opens as a retrieval task inside a day; a row last used two or more grades back gets a readiness check, given before its unit opens (Cory, 2026-11-14): in the last ten minutes of the respond day before the unit, and for unit 1 in the start-of-year check, so every unit's first day opens on its question. The course is placed in grade 12, so grade 11 rows (US History I) count as the year before.
 
-| Unit | Readiness check (first day) | Retrieval task |
+| Unit | Readiness check (before the unit opens) | Retrieval task |
 |---|---|---|
-| 1 | Day 1: ss8-citizenship, ss8-greek-roman-roots, ss8-interest-groups-policy, wh1-philosophies-of-government (last used grade 10); reteach station day 2 | none |
-| 2 | Day 7: ss8-civil-rights-laws; reteach station day 12 | Day 7: ss8-declaration, ss8-articles-convention, ss8-ratification-debate (US History I); day 9: Federalist 51 and Brutus No. 1, each given in a short brief |
-| 3 | Day 16: ss8-federal-state-powers, ss8-state-local-government; reteach station day 17 | none |
-| 4 | Day 23: ss8-three-branches; reteach station day 24 | Day 27: ss8-courts-review (US History I) |
-| 5 | Day 38: ss8-state-rights-documents, wh2-wwii-consequences; reteach station day 39 | Day 43: ss8-press-freedom (US History I) |
-| 6 | Day 47: ss8-elections-parties; reteach station day 48 | Day 47: ss8-interest-groups-policy (checked day 1) |
-| 7 | Day 56: wh2-middle-east-since-1980; reteach station day 58 | Day 59: the postwar order (checked day 38) and the Security Council procedure (day 33) |
+| 1 | Start-of-year check: ss8-citizenship, ss8-greek-roman-roots, ss8-interest-groups-policy, wh1-philosophies-of-government (last used grade 10); reteach station day 2 | none |
+| 2 | Day 6, last ten minutes: ss8-civil-rights-laws; reteach station day 12 | Day 7: ss8-declaration, ss8-articles-convention, ss8-ratification-debate (US History I); day 9: Federalist 51 and Brutus No. 1, each given in a short brief |
+| 3 | Day 15, last ten minutes: ss8-federal-state-powers, ss8-state-local-government; reteach station day 17 | none |
+| 4 | Day 22, last ten minutes: ss8-three-branches; reteach station day 24 | Day 27: ss8-courts-review (US History I) |
+| 5 | Day 37, last ten minutes: ss8-state-rights-documents, wh2-wwii-consequences; reteach station day 39 | Day 43: ss8-press-freedom (US History I) |
+| 6 | Day 46, last ten minutes: ss8-elections-parties; reteach station day 48 | Day 47: ss8-interest-groups-policy (checked in the start-of-year check) |
+| 7 | Day 55, last ten minutes: wh2-middle-east-since-1980; reteach station day 58 | Day 59: the postwar order (checked day 37) and the Security Council procedure (day 33) |
 | 8 | none | Day 64: ss8-election-info (kept in use through grade 11); day 65: ss8-interest-groups-policy; day 67: ss8-news-literacy (US History I) |
 | 9 | none; day 73 confirms each team's readiness | Inside days 74 and 77: civic action and global problems, kept in use through grade 11 |
 
@@ -28,7 +28,7 @@ Settled rule 1: a row used the year before, or earlier this year, opens as a ret
 
 Arc: what government and citizenship are and why governments exist, then the forms of government with political ideologies and socialization, then the theories of democracy tested against participation data, and why citizens join voluntary groups. Then the end-of-unit assessment and its respond day. The forms sit beside ideologies (both describe what a government or a person stands for); the theories come next because they need the participation data to judge.
 
-- Readiness: day 1 (see the table). The reteach is a station on day 2; day 4 uses the civic-groups items.
+- Readiness: the start-of-year check, before day 1 (see the table). The reteach is a station on day 2; day 4 uses the civic-groups items.
 - End-of-unit assessment, day 5: unseen participation data and two short readings, covering T1.1 to T1.5, D2.Civ.2 and D2.Civ.6, with day 4's written comparison scored for T1.5 and D2.Civ.6. Respond day 6.
 - Candidate: political ideologies and political socialization, kept, 0 added days of its own: it shares day 2 with T1.3 and stays counted as 1 of the 7 additions. No student is asked about family beliefs.
 
@@ -36,7 +36,7 @@ Arc: what government and citizenship are and why governments exist, then the for
 
 Arc: the Declaration read for its ideas, then the Constitution beside a state constitution, Federalist 10 and 51 against Brutus No. 1, a two-day research presentation on how one principle changed through later documents, efforts to close the gap with a bounded excerpt set from the Letter from Birmingham Jail and a seminar, and a mock hearing with a written position. The documents come first, then their later history, then the two deliberation settings.
 
-- Readiness and retrieval: day 7 (see the table). The documents were read last year, so they open as a retrieval task with the passages printed; civil rights laws, untouched since grade 8, get the readiness check, and the reteach station sits on day 12 where the unit needs them.
+- Readiness and retrieval: day 6's last ten minutes and day 7 (see the table). The documents were read last year, so they open as a retrieval task with the passages printed; civil rights laws, untouched since grade 8, get the readiness check, and the reteach station sits on day 12 where the unit needs them.
 - End-of-unit assessment, day 14: an unseen founding-era provision and a later document, covering T1.6 to T1.10 and D2.Civ.9, with day 11's presentation (T1.8), day 13's written position (T1.10) and the day 12 and 13 look-for records (D2.Civ.9) scored. Respond day 15.
 - Candidate: the Letter from Birmingham Jail, kept inside T1.9 on day 12 as excerpts in context, the whole Letter as further reading, 0 added days. The amendment process and the Bill of Rights read whole sit in unit 5 (T3.1); Federalist 70 and 78 sit in unit 4 (T2.7, T2.6). All 0 added days.
 - ELA 11 runs its founding unit in weeks 7 to 11; this unit sits in weeks 2 to 3, so the two never share weeks.
@@ -45,7 +45,7 @@ Arc: the Declaration read for its ideas, then the Constitution beside a state co
 
 Arc: unitary, confederal and federal systems and the grants and limits of power, then enumerated and implied powers with McCulloch, the modern Commerce Clause cases, the student's own state and its towns with fiscal federalism, and tribal nations as a third sovereign. Tribal sovereignty closes the unit so it is studied as a full sovereign beside the others.
 
-- Readiness: day 16 (see the table). The reteach is a station on day 17.
+- Readiness: day 15's last ten minutes (see the table). The reteach is a station on day 17.
 - End-of-unit assessment, day 21: an unseen dispute over who decides (a state law, a town rule or a tribal court's reach), covering T2.1 to T2.5 and D2.Civ.1 (national, state, local and tribal part). Respond day 22.
 - Candidate: fiscal federalism, kept inside T2.4 on day 19, 0 added days. The modern Commerce Clause cases, kept, 1 day (day 18).
 - Day 20 adapts Since Time Immemorial: content unchanged, our structure and tone, one credit line. Native flag for the sensitivity read.
@@ -54,7 +54,7 @@ Arc: unitary, confederal and federal systems and the grants and limits of power,
 
 Arc: two days on Congress, then the President, executive agencies, the courts and judicial review, a two-day Youngstown case with a moot, two days on checks and balances under strain (1937 and 1973, then reconciliation and war powers), the movement to limit government, and a mock hearing on whether the design still works, where four short source cards compare a decision procedure at a town council, a state legislature, Congress and the UN Security Council. The procedure comparison sits in the hearing (D2.Civ.11 with T2.12) so day 31 keeps its two lettered parts; the Security Council card is a one-paragraph brief and unit 7 teaches it in full.
 
-- Readiness: day 23 on ss8-three-branches, reteach station day 24; day 27 retrieves courts and judicial review.
+- Readiness: day 22's last ten minutes on ss8-three-branches, reteach station day 24; day 27 retrieves courts and judicial review.
 - End-of-unit assessment, day 34: an unseen recent executive action and a court excerpt, covering T2.6 to T2.12 (all lettered parts of T2.8 and T2.10), D2.Civ.4, D2.Civ.11 and Congress, with day 26's agency research (T2.8), the day 29 moot record (T2.9, D2.Civ.4), day 32's argument (T2.11) and day 33's written judgment (T2.12, D2.Civ.11) scored. Respond day 35.
 - Candidate: Congress in full, kept, 2 days (days 23 and 24). Federalist 70 kept inside T2.7 (day 25) and Federalist 78 inside T2.6 (day 27), 0 added days.
 
@@ -66,7 +66,7 @@ Day 36 is the midpoint check on units 1 to 4: an unseen document set and an argu
 
 Arc: the Bill of Rights read whole with the amendment process, then the 14th Amendment and the Universal Declaration compared, three days on a rights pair (by default Betts v. Brady and Gideon v. Wainwright), then two days on press freedom and government control of information.
 
-- Readiness: day 38 (see the table). The reteach is a station on day 39; day 43 retrieves press freedom from US History I.
+- Readiness: day 37's last ten minutes (see the table). The reteach is a station on day 39; day 43 retrieves press freedom from US History I.
 - End-of-unit assessment, day 45: an unseen rights case summary and a press-freedom source, covering T3.1, T3.2 and NML.T1.1 to T1.4, with day 42's presentation scored for T3.2. Respond day 46.
 - Candidate: incorporation and the rights of the accused, kept inside T3.2 through the default pair (days 40 to 42), and the religion clauses through Minersville and Barnette where a class takes that pair, 0 added days. Where ELA 12 runs beside the course the pair is never Plessy and Brown; the default meets this.
 
@@ -74,7 +74,7 @@ Arc: the Bill of Rights read whole with the amendment process, then the 14th Ame
 
 Arc: parties and how candidates are promoted, then platforms and campaign finance, turnout data, the Electoral College and the student's own state's election rules, interest groups, digital news and social media, and consolidation, media effects and polls.
 
-- Readiness: day 47 on ss8-elections-parties, reteach station day 48; civic groups (checked day 1) open as a retrieval task.
+- Readiness: day 46's last ten minutes on ss8-elections-parties, reteach station day 48; civic groups (checked in the start-of-year check) open as a retrieval task on day 47.
 - End-of-unit assessment, day 54: an unseen election package (platform excerpt, ad, turnout table, news post), covering T4.1 to T4.5 and NML.T3.1, T3.3 to T3.5. Respond day 55.
 - Candidate: the Electoral College and the student's own state's election rules, kept, 1 day (day 50). Public opinion and polls, kept inside T4.5 on day 53, 0 added days.
 - Bridge for math:S-IC.B.6 on days 49 and 53: Algebra II teaches it in weeks 28 to 32, later than this unit, so reports are judged by sample, source and margin, with no significance test.
@@ -83,7 +83,7 @@ Arc: parties and how candidates are promoted, then platforms and campaign financ
 
 Arc: how nations deal with each other and why they clash, then the foreign affairs powers with treaty practice, the tools and forces of foreign policy, international organizations and law, and a two-day research and argument on a world issue.
 
-- Readiness: day 56 on wh2-middle-east-since-1980 (last used in grade 10), reteach station day 58; day 59 retrieves the postwar order and the Security Council procedure met on day 33.
+- Readiness: day 55's last ten minutes on wh2-middle-east-since-1980 (last used in grade 10), reteach station day 58; day 59 retrieves the postwar order and the Security Council procedure met on day 33.
 - End-of-unit assessment, day 62: an unseen foreign policy case, covering T5.1 to T5.8 and D2.Civ.1 (international part), with day 61's argument scored for T5.8. Respond day 63.
 - Candidate: treaty ratification and executive agreements, kept inside T5.3 on day 57, 0 added days.
 

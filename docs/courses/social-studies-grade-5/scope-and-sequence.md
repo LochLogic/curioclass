@@ -8,7 +8,7 @@ Course `social-studies-grade-5`, grade 5, draft, written 2026-11-14 from the fra
 - Standard: Massachusetts 2018 grade 5 (5.T1 to 5.T5, every lettered part on a day) as content anchor; C3 (3 to 5 band) for skills. No unit or check asks for a counterclaim (C3 places it in grades 6 to 8).
 - Every unit runs the C3 arc: the compelling question and supporting questions on the unit's first day, content taught in time order, sources weighed, a claim from two sources, then the end-of-unit assessment (a task from sources not seen before) and one respond day. Before unit 3 the claim asks only what two sources both confirm (grade 4 depth); from unit 3 two accounts are weighed by their makers.
 - Informed action: once, in unit 10 (days 155 to 158), in small groups.
-- Readiness checks: on the first day of units 2, 4, 5 and 10, where a grade 3 row slept across grade 4 (ss3-sea-trade, ss3-money-saving, ss3-rules-rights, ss3-deliberation). Grade 4 rows and the grade 3 rows grade 4 kept in use (founding ideas, levels of government) open as retrieval tasks inside a day.
+- Readiness checks: before units 2, 4, 5 and 10 open, in the last ten minutes of the respond day before each (days 14, 43, 59 and 146), where a grade 3 row slept across grade 4 (ss3-sea-trade, ss3-money-saving, ss3-rules-rights, ss3-deliberation); each unit's first day opens on its compelling question (Cory, 2026-11-14). Grade 4 rows and the grade 3 rows grade 4 kept in use (founding ideas, levels of government) open as retrieval tasks inside a day.
 - Sensitivity: units 1 to 9 carry Native, hard-history, disability or LGBTQ content (unit 3 the French and Indian War's Native alliances and the King Street shooting), and unit 10 depends on the topics and printed source sets students use; each such day, and each assessment day with hard-history sources, says "sensitivity read" in its note, for the fresh agent's read with the unit plan (added on days 21 to 25, 34, 101, 111, 118 to 121, 141, 144, 147, 150 and 159 at the fix pass). The values rule is applied on named days: Worcester v. Georgia (day 101) and the 2015 marriage ruling (day 139) under rule a; the war's causes from the seceding states' own words (day 115) under rule b.
 - Personal finance: one light touch, no added day (day 54, what rising prices did to a family's savings and debts).
 - Shorter path (FOUNDATION section 5): 9 days are marked "compressible (shorter block)" in the note column (days 3, 8, 18, 40, 53, 56, 70, 82, 152), so a school on a shorter block keeps every code on 151 days. Each folds into the day before or after it and the work moves with it: day 3's treaties join day 2 as one short source; day 8's founder research becomes a short reading inside day 7; day 18's legality and ownership join day 16; a gathering day (40, 56, 152) folds into its claim day, which then carries its codes; day 53's weaknesses join day 52; day 70's provisions join day 69; day 82's Adams joins day 81 as a paired profile. No readiness, assessment or respond day is compressible, and no owned code lives only on a compressible day. The full path stays one lesson of about 40 minutes every school day.
@@ -44,7 +44,7 @@ Days 15 to 26, weeks 3 to 6. Codes: MA.5.T1.5, MA.5.T1.6, MA.5.T1.7, MA.5.T1.7a 
 
 How slavery began and spread (16 to 18), then lives compared and resistance (19 to 20), then days 21 to 23 distinguish labor arrangements and legal status, then examine different ways people sought or obtained freedom: skilled work and being hired out did not themselves end enslavement (21); a completed indenture or term of service, an owner's grant, and freedom suits in court, with Prince Hall's petitions kept apart from the Freeman and Walker cases (22); gradual emancipation and free Black communities (23). The unit ends on freedom sought and won, which the Revolution's language of liberty is read against in units 3 and 4.
 
-- Readiness: day 15 on grade 3's ss3-sea-trade (the Triangular Trade); reteach in a small group in day 16.
+- Readiness: the last ten minutes of day 14 (unit 1's respond day) on grade 3's ss3-sea-trade (the Triangular Trade); reteach in a small group in day 16.
 - End-of-unit assessment: day 25, every owned code and lettered part: slavery's origins, legality and how common it was; the Triangular Trade and the Middle Passage; lives compared and the revolts; hired-out artisans; the routes to freedom told apart; gradual emancipation and free Black life; and a claim. Respond: day 26.
 - Candidate (California grade 5, resistance in the southern colonies): kept, inside day 20.
 
@@ -64,7 +64,7 @@ Days 44 to 59, weeks 9 to 12. Codes: MA.5.T2.4 to 9, MA.5.T2.5a to c; D2.Eco.11.
 
 The Declaration and who it left out (45 to 46), the war's later events on a map and why the Americans won (47 to 49), who fought on each side and the leaders, in brief profiles with one focused comparison (50 to 51), then the Articles, the postwar economy and Shays' Rebellion (52 to 55), which is the reason unit 5 exists.
 
-- Readiness: day 44 on grade 3's ss3-money-saving (money, price, loan), placed first so a reteach falls before day 54; the founding ideas open as a retrieval task the same day.
+- Readiness: the last ten minutes of day 43 (unit 3's respond day) on grade 3's ss3-money-saving (money, price, loan), so a reteach falls before day 54; the founding ideas open as a retrieval task on day 44.
 - End-of-unit assessment: day 58, every owned code and lettered part: the Declaration and who it left out, the four later events and why the Americans won, Loyalists, neutrals and those on both sides, two leaders compared, the Articles' adoption, weakness and failure, inflation, deflation and unemployment, Shays' Rebellion, and a claim. Respond: day 59.
 - Candidates (California grade 5): help from Spain and the Netherlands, kept, inside day 49; the Northwest Ordinance, kept, inside day 52.
 
@@ -74,7 +74,7 @@ Days 60 to 75, weeks 12 to 15. Codes: MA.5.T3.1 to 6; D2.Civ.1, 3.
 
 The debates come first (61 to 62), so the document is read as the answer to them; then the Preamble, the branches, checks and balances and the levels (63 to 66), who was left out (67), the amendment process (68), the Bill of Rights (69 to 70), and the claim about one amendment from two sources (71 to 72). Day 73 reviews the founding years on one timeline for course-level check 1.
 
-- Readiness: day 60 on grade 3's ss3-rules-rights; the levels of government and grade 4's branches by name open as retrieval tasks.
+- Readiness: the last ten minutes of day 59 (unit 4's respond day) on grade 3's ss3-rules-rights; the levels of government and grade 4's branches by name open as retrieval tasks on day 60.
 - End-of-unit assessment: day 74, every owned code: a Convention debate and the Three-Fifths Compromise, a provision and why it was written, the branches and checks and balances, the levels' roles, women's exclusion, the amendment process and the Bill of Rights, and the 1791 claim. Respond: day 75.
 - Candidate (Tennessee and New York, a later amendment as a second case): dropped. Units 8 and 9 use the process on the 13th, 14th, 15th and 19th Amendments, and a second case here would cost a day the unit's sixteen do not hold.
 - Leans: ELA W.5.1 comes later (ELA unit 3, days 84 to 123); day 72 uses a claim, evidence and reasoning frame.
@@ -123,7 +123,7 @@ Days 147 to 160, weeks 30 to 32. Codes: MA.5.T5.8; D1.1 to D1.5; D2.His.13; D3.3
 
 The research cycle in its steps (147 to 154: topic, supporting questions, facts and ideas, sources, source log, evidence, claim, critique), then the action (155 to 158: individual and collective strategies compared on supplied local, regional and global cases, then a school or local problem, a prediction and an agreed decision, the action, a look back). Day 147 asks why the question matters to others; day 148 opens with a model and a guided question revision and asks how each supporting question helps; day 151 opens with a model of a usefulness judgment; day 154 with a model critique before peer work. No new historical survey content is introduced; the unit teaches and applies the remaining inquiry skills.
 
-- Readiness: day 147 on grade 3's ss3-deliberation, placed first so a reteach falls before the decision on day 156.
+- Readiness: the last ten minutes of day 146 (course-level check 2's respond day) on grade 3's ss3-deliberation, so a reteach falls before the decision on day 156.
 - End-of-unit assessment: day 159, every owned code: the research portfolio judged with the unit rubric (the D1 and D4 codes from the research log, claim and action) and a short task from an unseen source. Respond: day 160.
 - Candidate (Tennessee and California, a starter list of research topics): kept, a list in the unit plan, no day cost.
 - Leans: ELA W.5.7 (ELA unit 2) and W.5.1 (ELA unit 3) are taught before.
@@ -139,11 +139,18 @@ Each check falls two days after a unit's end-of-unit assessment (days 74 and 141
 
 Both sit on CALENDAR.md's target weeks (16, 29). The grade's other checks: math weeks 11, 22, 31; science 10, 21, 30; ELA 17, 32. No week holds two subjects' check days: the stagger rule holds.
 
+## Shorter path
+
+The year is 160 days of about 40 minutes. Two shorter routes keep every owned code, skill and assessment, every observation note and every respond day; the unit plans check them against real minutes, so neither is yet shown to fit.
+
+- **30 to 35-minute lessons, same 160 days.** Each teaching day keeps its source, its task and its exit ticket, and trims the second worked example and the whole-class share; a gathering or review day shortens its practice round; assessment and respond days stay whole.
+- **About 151 days.** The nine days marked "compressible (shorter block)" fold into a neighbour, the work moving with them (see the year at a glance): 3 (the treaties, into 2), 8 (founder research, into 7), 18 (legality and ownership, into 16), 40, 56 and 152 (gathering days, each into its claim day), 53 (the Articles' weaknesses, into 52), 70 (the provisions, into 69) and 82 (Adams, into 81 as a paired profile). No readiness, assessment or respond day folds.
+
 ## For the lead
 
 None open. The two items written here first were applied to the frame on 2026-11-14; they read:
 
-1. Frame, Course in brief, Days bullet: "A unit that assumes a grade 3 or 4 row opens with a readiness check inside its days" should read "A unit that assumes a grade 3 row dormant across grade 4 opens with a readiness check on its first day (units 2, 4, 5 and 10); a grade 4 row, or a grade 3 row grade 4 kept in use, opens as a retrieval task".
+1. Frame, Course in brief, Days bullet: "A unit that assumes a grade 3 or 4 row opens with a readiness check inside its days" should read "A unit that assumes a grade 3 row dormant across grade 4 gets a readiness check before it opens, in the last ten minutes of the respond day before it (units 2, 4, 5 and 10); a grade 4 row, or a grade 3 row grade 4 kept in use, opens as a retrieval task".
 2. Frame, Seams table: the rows for ss3-sea-trade (unit 2) and ss3-money-saving (unit 4) say each opens "with a retrieval task"; rule 2 makes each a readiness check (the row slept across grade 4), as the days carry. Change "opening with a retrieval task on the Triangular Trade" to "opening with a readiness check on the Triangular Trade", and "opening with a short retrieval task" (money) to "opening with a readiness check".
 
 ## For Cory

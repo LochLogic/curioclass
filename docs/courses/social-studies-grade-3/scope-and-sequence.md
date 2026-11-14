@@ -20,7 +20,7 @@ Days 1 to 24, weeks 1 to 5. Anchor and C3 codes: MA.3.T1.1, MA.3.T2.1, MA.3.T2.2
 
 The arc opens on a person (day 1: a short biography tied to the town's founding or a landmark), so the question has a human face, then widens to the globe (days 3 to 6), narrows to the town map (days 7 to 10), widens again to state and region (days 11 to 15), and comes back to how people, Native nations among them, changed this land (days 16 to 18). The claim is modelled from two very short sources, a map and a photograph (day 19), so naming two sources and saying how each supports one claim is met at the start; the evidence is gathered with the supporting questions, each with the facts it needs and one idea people read two ways (day 20, D1.3 and D1.4), and the claim written (day 21). Unit 5 revisits the two-source model on day 117 before its two-source claim. Globe before town map because the grid and hemispheres are the frame for "where"; the town map before the region because scale in whole bar lengths is easiest on a familiar place; land change last because it needs both the map and the early map beside it.
 
-- Readiness: day 1, at the first biography read, on grade 1's ss1-leaders (dormant across grade 2); the one-lesson reteach sits in day 2 in a small group.
+- Readiness: the start-of-year check, before day 1, on grade 1's ss1-leaders (dormant across grade 2); day 1 opens on the compelling question and the first biography, and the one-lesson reteach sits in day 2 in a small group.
 - End-of-unit assessment: day 23, every owned code: the town map read and a small map drawn, grid, hemisphere and climate, the region's states and features, a land change and the culture behind it, the D1 question work, and a short claim from a source not seen before. Respond: day 24.
 - Candidate (New York grade 3, location by continent and hemisphere practised on world communities): kept, inside day 4, no added day.
 - Leans: ELA W.3.1 later, bridged on days 19 and 21; science 3-ESS2-2 later (science unit 6), day 6 teaches warmth and rainfall itself.
@@ -29,9 +29,9 @@ The arc opens on a person (day 1: a short biography tied to the town's founding 
 
 Days 25 to 48, weeks 5 to 10. Codes: MA.3.T1.3, MA.3.T6.5; D2.Civ.1 to 7, 9 to 11; D2.Eco.12.
 
-Readiness first, because four grade 1 civics rows have slept through grade 2. Then the levels and what each does (days 27 to 32: why governments, the leaders at each level and the branches of the state and national governments, the town's actual form, school governance, taxes, our own town), rules and rights (33 to 34), taking part (35 to 37), deliberation ending in a real class vote with the minority heard first (38 to 40), and last the constitution (41 to 43), taught as a concept before the state and the comparison. The constitution closes the unit because the levels just taught are what a state constitution sets up, and it previews the national plan that unit 6 completes.
+Readiness first, in the last ten minutes of day 24 before the unit opens, because four grade 1 civics rows have slept through grade 2. Then the levels and what each does (days 27 to 32: why governments, the leaders at each level and the branches of the state and national governments, the town's actual form, school governance, taxes, our own town), rules and rights (33 to 34), taking part (35 to 37), deliberation ending in a real class vote with the minority heard first (38 to 40), and last the constitution (41 to 43), taught as a concept before the state and the comparison. The constitution closes the unit because the levels just taught are what a state constitution sets up, and it previews the national plan that unit 6 completes.
 
-- Readiness: day 25 on ss1-elected-leaders, ss1-citizens, ss1-voting and ss1-group-roles; reteach in day 26.
+- Readiness: the last ten minutes of day 24 (unit 1's respond day) on ss1-elected-leaders, ss1-citizens, ss1-voting and ss1-group-roles, so day 25 opens on the question; reteach in day 26.
 - End-of-unit assessment: day 47, every owned code: levels, the town's form and taking part, taxes, a rule and a right, working together, deciding, the views behind a disagreement, the constitutions, and a short claim from an unseen source; the discussion and vote (days 39 to 40) also judged with the unit rubric. Respond: day 48.
 - Biography read: day 35, a local person who serves or volunteers.
 - Candidates: California grade 3 (branches, local tribal governments): kept, inside day 28, as the branches of the state and national governments and the leaders at each level; local governments are not taught as a three-branch copy (days 29 to 32 study the town's actual form), and day 43 describes the tribal nation's government from its own constitution without assuming three branches. Tennessee grade 3 civics: read at the unit plan, no day cost here.
@@ -41,9 +41,9 @@ Readiness first, because four grade 1 civics rows have slept through grade 2. Th
 
 Days 49 to 68, weeks 10 to 14. Codes: D2.Eco.1, 2, 3, 5, 7, 9, 10, 14.
 
-Readiness on grade 1's choices and saving, then goods, services and resources (days 50 to 52), money against barter with the class savings plan started (day 53), profit (54 to 55), scarcity, opportunity cost and incentives (56 to 58), banks, credit unions, insurance and interest (59 to 60), then trade outward to the world and one present-day market town in Ghana (61 to 64). The savings plan runs in check-ins across the unit and closes on day 66. Producers before choices because the choices are a business's and a family's; trade last because it needs unit 1's world map and the local economy first.
+Readiness on grade 1's choices and saving (the last ten minutes of day 48, before the unit opens), then goods, services and resources (days 50 to 52), money against barter with the class savings plan started (day 53), profit (54 to 55), scarcity, opportunity cost and incentives (56 to 58), banks, credit unions, insurance and interest (59 to 60), then trade outward to the world and one present-day market town in Ghana (61 to 64). The savings plan runs in check-ins across the unit and closes on day 66. Producers before choices because the choices are a business's and a family's; trade last because it needs unit 1's world map and the local economy first.
 
-- Readiness: day 49 on ss1-choices and ss1-saving; reteach in day 50.
+- Readiness: the last ten minutes of day 48 (unit 2's respond day) on ss1-choices and ss1-saving, so day 49 opens on the question; reteach in day 50.
 - End-of-unit assessment: day 67, every owned code: resources, money against barter, profit, an incentive, cost, benefit and opportunity cost, banks, interest as dollars on each $100, trade and interdependence, and a claim from an unseen source. Respond: day 68.
 - Biography read: day 54, a local business owner.
 - Candidate (California grade 3, specialization and division of labor; how the local economy changed): kept, specialization in day 52; the change over time goes to unit 7 (day 145).
@@ -76,9 +76,9 @@ Time order. The timeline is taught first (days 91 to 92) so every event after it
 
 Days 125 to 136, weeks 25 to 28. Codes: MA.3.T6.3, MA.3.T6.4; D2.Civ.8; D2.Civ.5 completed.
 
-Readiness on grade 1's national symbols, then injustice and independence in brief (126), the Declaration (127), the national plan beside unit 2's state constitution (128, D2.Civ.5 completed), the Bill of Rights (129), who was left out (130), citizenship, voting and equal rights sorted (131), and symbols last (132), so symbols are read against the promises and who they reached. The Revolution's events stay in grade 5 (MA.3.T6.2 excluded on purpose).
+Readiness on grade 1's national symbols (the last ten minutes of day 124, before the unit opens), then injustice and independence in brief (126), the Declaration (127), the national plan beside unit 2's state constitution (128, D2.Civ.5 completed), the Bill of Rights (129), who was left out (130), citizenship, voting and equal rights sorted (131), and symbols last (132), so symbols are read against the promises and who they reached. The Revolution's events stay in grade 5 (MA.3.T6.2 excluded on purpose).
 
-- Readiness: day 125 on ss1-national-symbols; reteach in day 126.
+- Readiness: the last ten minutes of day 124 (course-level check 2's respond day) on ss1-national-symbols, so day 125 opens on the question; reteach in day 126.
 - End-of-unit assessment: day 135, every owned code: the injustice and the Declaration, the Constitution beside the state's, the Bill of Rights, who could vote, one civic virtue or principle, and a claim from an unseen source. Respond: day 136.
 - Biography read: day 130, a person who pressed for rights then.
 - Candidate (California grade 3, landmarks and essential documents): kept, inside day 132.
@@ -105,6 +105,13 @@ The project runs in order: who has lived here (142, 145), the state's reach and 
 Each check falls right after a unit's end-of-unit assessment (check 1 two days after day 67, check 2 two days after day 120, check 3 two days after day 135), so its items for that unit's skills draw content from earlier units, as the table says, and do not repeat the assessment just given.
 
 All three sit on CALENDAR.md's target weeks (14, 25, 28). The grade's other checks: math weeks 12, 23, 31; science 9, 20, 30; ELA 16, 32. No week holds two subjects' check days: the stagger rule holds.
+
+## Shorter path
+
+The year is 160 days of about 40 minutes. Two shorter routes keep every owned code, skill and assessment, every observation note and every respond day; the unit plans check them against real minutes, so neither is yet shown to fit.
+
+- **30 to 35-minute lessons, same 160 days.** Each teaching day keeps its source, its task and its exit ticket, and trims the second worked example and the whole-class share; a review or fluency day shortens its practice round; assessment and respond days stay whole.
+- **About 150 days.** Ten of the days marked "compressible (shorter block)" fold into a neighbour, the work moving with them (see the year at a glance): 8 (distances on the town map, into 7), 13 (practising the region's states, into 12), 22 (review, into 23's opening), 46 (review, into 47's opening), 55 (the business survey, into 54), 66 (the savings tally and review, into 65), 74 (the primary or secondary sort, into 73), 92 (placing events, into 91's timeline), 116 (the sea routes, into 115) and 134 (review, into 135's opening). The other ten compressible days stay as days on this route. No readiness, assessment or respond day folds.
 
 ## For the lead
 

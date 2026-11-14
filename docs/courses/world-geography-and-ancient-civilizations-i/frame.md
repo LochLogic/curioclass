@@ -10,7 +10,7 @@ Course `world-geography-and-ancient-civilizations-i` (catalogue id `world-geo-6`
   of 2 days, each followed by 2 respond days). A full year: one lesson of about 50 minutes a day, five a week, across
   32 weeks. Each unit's days include its end-of-unit assessment and one respond day (a unit over 25 days also holds a
   mid-unit assessment; none here is over 16); a unit that assumes an earlier grade's row last used two or more
-  grades back opens with a readiness check on its first day, and a row used the year before (or earlier this year)
+  grades back gets a readiness check before it opens, and a row used the year before (or earlier this year)
   opens as a retrieval task inside a day. Every row this course assumes was used in grade 5, so it has no readiness
   check.
 - **Standard.** Massachusetts 2018 grade 6 (MA.6.T1 to MA.6.T5c) is the content anchor: every one of the 67 codes

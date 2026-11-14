@@ -11,7 +11,7 @@ days later.
   of 2 days, each followed by 2 respond days). A full year: one lesson of about 50 minutes a day, five a week, across
   32 weeks. Each unit's days include its end-of-unit assessment and one respond day (a unit over 25 days also holds a
   mid-unit assessment; none here is over 20); a unit that assumes an earlier grade's row last used two or more grades
-  back opens with a readiness check on its first day (units 2 and 6, on grade 5 rows unused in grades 6 and 7), and a
+  back gets a readiness check before it opens (units 2 and 6, on grade 5 rows unused in grades 6 and 7), and a
   row used the year before (or earlier this year) opens as a retrieval task inside a day (units 1, 3 and 7).
 - **Standard.** Massachusetts 2018 grade 8 (MA.8.T1 to MA.8.T7) is the content anchor: every one of its 56 codes
   sits with one of the 27 grade 8 progression rows, so every code sits in one unit below. Parent codes carry their

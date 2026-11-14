@@ -10,21 +10,21 @@ Every unit's first and last teaching days end with the exit routine (one open qu
 
 ## Readiness checks and retrieval tasks
 
-Settled rule 1: a row used the year before (US History I) or earlier this year (Government in the fall, Economics from school day 81) opens as a retrieval task inside a day; a row last used two or more grades back opens its unit with a readiness check on the first day, with a reteach station or targeted support for students it flags.
+Settled rule 1: a row used the year before (US History I) or earlier this year (Government in the fall, Economics from school day 81) opens as a retrieval task inside a day; a row last used two or more grades back gets a readiness check, given before its unit opens (Cory, 2026-11-14): in the last ten minutes of the respond day before the unit, and for unit 1 in the start-of-year check, so every unit's first day opens on its question; it comes with a reteach station or targeted support for students it flags.
 
-| Unit | Readiness check (first day) | Retrieval task |
+| Unit | Readiness check (before the unit opens) | Retrieval task |
 |---|---|---|
-| 1 | Day 1: ss8-public-budget; reteach station day 2 | Day 7: us1-industrialization |
+| 1 | Start-of-year check: ss8-public-budget; reteach station day 2 | Day 7: us1-industrialization |
 | 2 | none | Days 13 and 18: us1-wwi, us1-jim-crow, us1-immigration |
-| 3 | Day 26: wh2-great-depression; reteach station day 28 | Day 28: us1-research-inquiry; day 32: us1-progressivism |
-| 4 | Day 42: wh2-totalitarian-regimes, wh2-road-to-war, wh2-wwii-war-and-diplomacy, wh2-holocaust; reteach station day 44, targeted support days 46 and 51 | Day 42: us1-wwi |
-| 5 | Day 57: wh2-atomic-bombs; reteach station day 61 | Day 57: us1-women-work-suffrage, us1-immigration |
-| 6 | Day 67: wh2-cold-war-blocs; reteach station day 68 | Day 75: wh2-industrial-cities (US History I used it) |
+| 3 | Day 25, last ten minutes: wh2-great-depression; reteach station day 28 | Day 28: us1-research-inquiry; day 32: us1-progressivism |
+| 4 | Day 41, last ten minutes: wh2-totalitarian-regimes, wh2-road-to-war, wh2-wwii-war-and-diplomacy, wh2-holocaust; reteach station day 44, targeted support days 46 and 51 | Day 42: us1-wwi |
+| 5 | Day 56, last ten minutes: wh2-atomic-bombs; reteach station day 61 | Day 57: us1-women-work-suffrage, us1-immigration |
+| 6 | Day 66, last ten minutes: wh2-cold-war-blocs; reteach station day 68 | Day 75: wh2-industrial-cities (US History I used it) |
 | 7 | none | Day 86: ss8-civil-rights-laws (Government's unit 2 checked it this fall), us1-civil-rights-1900s, us1-jim-crow; day 93: us1-reconstruction |
-| 8 | Day 103: wh2-cold-war-world; reteach station day 104 | none |
-| 9 | Day 114: ss8-protest-change, wh2-decolonization; reteach station day 115 | Day 116: us1-native-west; day 120: us1-reform-movements |
-| 10 | none | Day 130: wh2-soviet-collapse (Economics' day 1 checked it this spring) |
-| 11 | Day 135: wh2-terrorism; reteach station day 140 | Day 136: us1-immigration |
+| 8 | Day 102, last ten minutes: wh2-cold-war-world; reteach station day 104 | none |
+| 9 | Day 113, last ten minutes: ss8-protest-change, wh2-decolonization; reteach station day 115 | Day 116: us1-native-west; day 120: us1-reform-movements |
+| 10 | none | Day 130: wh2-soviet-collapse (Economics' start-of-year check checked it this spring) |
+| 11 | Day 134, last ten minutes: wh2-terrorism; reteach station day 140 | Day 136: us1-immigration |
 | 12 | none | Day 148: us1-research-inquiry, us1-argument-writing |
 
 ## End-of-unit assessments
@@ -52,7 +52,7 @@ Each end-of-unit assessment is a composite: an unseen task for what one sitting 
 
 Arc: six toolkit days (choice, goals with government's roles as the categories policies fall into, the graph, profit and investment, asset prices tracked across several years of a made-up series, the whole economy), then four on money and government (banks and panics, the Fed, business cycles, policy at work and an argument on who should steer). The tools come before the history that uses them; the Fed follows the panics that made it.
 
-- Readiness: day 1, on grade 8's opportunity cost, budget and data panel (ss8-public-budget). The reteach is a station on day 2.
+- Readiness: the start-of-year check, before day 1, on grade 8's opportunity cost, budget and data panel (ss8-public-budget). The reteach is a station on day 2.
 - End-of-unit assessment, day 11: an unseen panic or war boom with a data table, the chain traced and the response judged, with day 5's tracking sheet and day 10's argument scored. Respond day 12.
 - Candidate: none in the frame.
 
@@ -72,7 +72,7 @@ Arc: five days on the decade's new freedoms (culture, art, faith, nightlife, the
 
 Arc: two days on causes and the two accounts, four on the primary source report, then the New Deal survey, a two-day case study, the Indian Reorganization Act, a day on results and for whom, and the argument. The report comes before the New Deal so students know who needed relief before judging the relief.
 
-- Readiness: day 26, on the Depression worldwide (wh2-great-depression, last used in grade 10). The reteach is a station on day 28.
+- Readiness: the last ten minutes of day 25, on the Depression worldwide (wh2-great-depression, last used in grade 10). The reteach is a station on day 28.
 - End-of-unit assessment, day 38: an unseen program record and a Depression data set, with day 31's report and its geographic evaluation (T2.3, D2.Geo.9), day 34's case presentation (T2.4) and day 37's argument comparing the two accounts (T2.2) scored. Respond day 39.
 - Candidate: the Indian Reorganization Act, kept, 1 day (day 35, Since Time Immemorial). Roosevelt's 1937 court plan, kept in brief inside the survey day (day 32), 0 added days.
 
@@ -86,7 +86,7 @@ Day 40 (week 8) checks units 1 to 3: an unseen task with the unit 1 chain used o
 
 Arc: four days from isolation to Pearl Harbor, four on the war's course (map, roads to war, battles and conferences, a source study), one on soldiers and special units, three on the Holocaust response, and the argument. The response follows the war's course so students judge what was known against what was possible. Day 47 is signposted as a step back from 1941 to the 1930s.
 
-- Readiness: day 42, one check on the four grade 10 rows (wh2-totalitarian-regimes, wh2-road-to-war, wh2-wwii-war-and-diplomacy, wh2-holocaust), with World War I retrieved. The reteach is a station on day 44; days 46 and 51 use the war and Holocaust items for targeted support.
+- Readiness: the last ten minutes of day 41 (course-level check 1's respond day), one check on the four grade 10 rows (wh2-totalitarian-regimes, wh2-road-to-war, wh2-wwii-war-and-diplomacy, wh2-holocaust); day 42 retrieves World War I. The reteach is a station on day 44; days 46 and 51 use the war and Holocaust items for targeted support.
 - End-of-unit assessment, day 55: unseen dated documents from 1938 to 1946 (before, during and after the war), with short items on entry, the map and one conference, and day 49's source study scored. Respond day 56.
 - Candidate: soldiers and the segregated and special units, kept, 1 day (day 50).
 
@@ -96,7 +96,7 @@ Arc: four days from isolation to Pearl Harbor, four on the war's course (map, ro
 
 Arc: four home front days, three on the bomb, then the argument on what winning cost. The home front closes the war at home; the nuclear debate hands to the Cold War.
 
-- Readiness: day 57, on the bomb decision (wh2-atomic-bombs, last used in grade 10), with women's work and immigration retrieved from grade 11. The reteach is a station on day 61.
+- Readiness: the last ten minutes of day 56, on the bomb decision (wh2-atomic-bombs, last used in grade 10); day 57 retrieves women's work and immigration from grade 11. The reteach is a station on day 61.
 - End-of-unit assessment, day 65: an unseen home front source and an unseen later account of the bomb, with a short prompt on each home front part and on the reasons given at the time and the early nuclear debate. Respond day 66.
 - Candidate: the Bracero program and the Zoot Suit riots, kept inside the T3.8f day (day 60), 0 added days.
 
@@ -106,7 +106,7 @@ Arc: four home front days, three on the bomb, then the argument on what winning 
 
 Arc: six days abroad (causes, containment, alliances and Korea, the two systems, the map, Sputnik), six at home (a policy researched and presented, the boom, who was shut out, the metropolitan maps, termination), two on the Red Scare, and the argument. One decade seen abroad, at home and in politics, with the map work running across it.
 
-- Readiness: day 67, on the two blocs (wh2-cold-war-blocs, last used in grade 10). The reteach is a station on day 68. Day 75 retrieves how industry reshaped cities (US History I used it).
+- Readiness: the last ten minutes of day 66, on the two blocs (wh2-cold-war-blocs, last used in grade 10). The reteach is a station on day 68. Day 75 retrieves how industry reshaped cities (US History I used it).
 - End-of-unit assessment, day 82: an unseen Cold War document and an unseen metropolitan map, with day 74's policy presentation and day 81's argument scored and short prompts on the two systems, a flashpoint, Sputnik and McCarthyism. Respond day 83.
 - Candidate: termination and relocation, kept, 1 day (day 78, Since Time Immemorial unit 4).
 
@@ -130,7 +130,7 @@ Arc: seven days on the movement (roots, people, Mendez, Brown, Montgomery, nonvi
 
 Arc: one president at a time on one timeline (Eisenhower, Kennedy, Johnson at home and at war, the antiwar movement, Nixon at war and in diplomacy), then the map and the weighing of results, and the argument judging one president.
 
-- Readiness: day 103, on the Cold War in Asia (wh2-cold-war-world, last used in grade 10). The reteach is a station on day 104.
+- Readiness: the last ten minutes of day 102, on the Cold War in Asia (wh2-cold-war-world, last used in grade 10). The reteach is a station on day 104.
 - End-of-unit assessment, day 112: an unseen presidential document from 1954 to 1975, with day 110's four-presidency timeline and consequences for Vietnamese and Americans scored. Respond day 113.
 - Candidate: the draft, the 26th Amendment and Kent State, kept inside the antiwar day (day 107), 0 added days.
 
@@ -140,7 +140,7 @@ Arc: one president at a time on one timeline (Eisenhower, Kennedy, Johnson at ho
 
 Arc: three survey days (women's and LGBTQ movements; disability and environmental movements; workers' and Native movements with the Chicano and Asian American movements), three in-depth days (causes, course and tactics, opponents and results), presentations with the comparison, and the argument. The survey comes first so every student chooses a movement knowing the field.
 
-- Readiness: day 114, on grade 8's protest and change and grade 10's decolonization (ss8-protest-change, wh2-decolonization). The reteach is a station on day 115. Day 120 retrieves earlier reform movements (grade 11) for the comparison.
+- Readiness: the last ten minutes of day 113, on grade 8's protest and change and grade 10's decolonization (ss8-protest-change, wh2-decolonization). The reteach is a station on day 115. Day 120 retrieves earlier reform movements (grade 11) for the comparison.
 - End-of-unit assessment, day 122: an unseen document from a movement not studied in depth, with the movement studied in depth scored from day 120's presentation against its option. Respond day 123, which is also the day each student chooses the capstone question from the exit-routine notes.
 - Candidate: the Chicano and Asian American movements, kept inside survey day 3 (day 116), 0 added days.
 
@@ -150,7 +150,7 @@ Arc: three survey days (women's and LGBTQ movements; disability and environmenta
 
 Arc: two days on liberalism, the 1970s as the hinge, two on conservatism, a day weighing both, then three on the Cold War's end. Each tradition is explained in terms its supporters accept before it is weighed. Part of day 128 goes to each student's capstone source set.
 
-- Readiness: none. Day 130 opens the Cold War's end with a retrieval task on the Soviet collapse (Economics' day 1 checked it this spring; the items are printed for a student not taking Economics).
+- Readiness: none. Day 130 opens the Cold War's end with a retrieval task on the Soviet collapse (Economics' start-of-year check checked it this spring; the items are printed for a student not taking Economics).
 - End-of-unit assessment, day 133: two unseen sources, one liberal and one conservative, then a causal judgment on the Cold War's end from internal and external evidence. Respond day 134.
 - Paired with ELA 12: day 132's exit routine adds one source that argues against the capstone claim to the shared set.
 - Candidate: the 1970s, kept, 1 day (day 126).
@@ -161,7 +161,7 @@ Arc: two days on liberalism, the 1970s as the hinge, two on conservatism, a day 
 
 Arc: two trend days, three check set days, three on terrorism and the response, and the argument. Part of day 135 goes to each student's capstone source set (ELA 12's source list day where paired).
 
-- Readiness: day 135, on terrorism in the world since 1990 (wh2-terrorism, last used in grade 10). The reteach is a station on day 140, where the unit reaches it.
+- Readiness: the last ten minutes of day 134, on terrorism in the world since 1990 (wh2-terrorism, last used in grade 10). The reteach is a station on day 140, where the unit reaches it.
 - End-of-unit assessment, day 144: an unseen recent policy record, with day 136's immigration comparison and a short prompt on one technological trend. Respond day 145.
 - Paired with ELA 12: day 143's exit routine adds a second source against the claim, so the draft due on day 145 already answers it.
 - Candidate, in the frame's order of keeping: the 2008 crisis, kept, 1 day (day 138); Native self-government today, kept, 1 day (day 139, Since Time Immemorial unit 6); the Gulf War, folded into the September 11 day (day 140), 0 added days; the survey of elections, the Affordable Care Act and COVID-19, kept, 1 day (day 137). In a short senior year the cut order is the survey (day 137), then Native self-government (day 139), then 2008 (day 138), as the frame sets.

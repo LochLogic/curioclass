@@ -106,7 +106,7 @@ Check days 116 and 117 (week 24, CALENDAR.md's target), respond days 118 and 119
 
 Arc: four Republic days, four days on the turn to empire (day 125 names the land question and the Gracchi, armies loyal to their generals and the civil wars before Caesar, so the compelling question has more than one defensible answer), two on classes and slavery, a claim day, then assessment and respond. Day 120, the look-back held from unit 8, opens the unit's week.
 
-- Readiness check, day 121, on grade 5's branches of government (ss5-constitution): last used in grade 5 and not in grade 6, so under the settled rule it opens the unit with a readiness check, not a retrieval task.
+- Readiness check, in the last ten minutes of day 119 (course-level check 2's respond day), on grade 5's branches of government (ss5-constitution): last used in grade 5 and not in grade 6, so under the settled rule it gets a readiness check, not a retrieval task, given before the unit opens so its results shape day 121 (Cory, 2026-11-14). Day 120, unit 8's look-back held here, sits between.
 - End-of-unit assessment, day 132: the map, growth and location, the Republic's government, Caesar and Augustus, the legion and provincial rule (3a) tied to growth and length, and classes and slavery from an unseen source. Respond day 133.
 - Candidate cells: none in the frame.
 
@@ -155,5 +155,5 @@ The year is 160 days of 50 minutes. Two shorter routes keep every owned code, sk
 ## For the lead
 
 1. **Look-back day and the generated calendar (settled 2026-11-14).** The held look-back stays on day 120, so unit 9 runs days 101 to 115 and check 2 days 116 to 117 here, inside week 24; data/plans/calendar.csv follows days.csv once the structure pass makes frame.py read it.
-2. **Readiness or retrieval (settled 2026-11-14).** A row used the year before, or earlier the same year, opens as a retrieval task; every other earlier-grade row (last used two or more grades back) opens its unit with a readiness check. ss5-constitution was not used in grade 6, so day 121's readiness check stays.
+2. **Readiness or retrieval (settled 2026-11-14).** A row used the year before, or earlier the same year, opens as a retrieval task; every other earlier-grade row (last used two or more grades back) gets a readiness check before its unit opens. ss5-constitution was not used in grade 6, so unit 10's readiness check stays, now in the last ten minutes of day 119.
 3. **Topics on file.** Units 6 (Oceania) and 7 (Europe's geography and time zones) have no topic on file; their topic lines above name what each teaches.

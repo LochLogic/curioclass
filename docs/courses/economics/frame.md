@@ -101,10 +101,10 @@ Picked up from grade 8 Civics, with grades 7 and 10 (no US History I row is assu
 | ss8-public-budget (8) | opportunity cost, budget, interest on borrowing and investing, public budgets, a public-data panel (employment, unemployment, inflation, output, income, growth) | Unit 1 (econ-scarcity-choice, econ-incentives: readiness check on the whole row, day 1), then retrieval tasks in unit 4 (econ-taxes-budgets), unit 8 (econ-earning-income) and unit 9 (econ-saving-interest: interest on investing) |
 | wh2-soviet-collapse (10) | planned economies and their shortages | Unit 1, econ-systems-property: readiness items in day 1's check (last used two grades back) |
 | wh2-industrial-revolution (10) | markets, the factory, the supply and demand graph met in grades 7 to 10 | Unit 2 (econ-markets-prices: the graph formalized), unit 3 (econ-business-forms, econ-market-structures): retrieval tasks (US History I used it in grade 11) |
-| wh2-postwar-prosperity (10) | productivity and living standards | Unit 3, econ-productivity-wages: readiness check on the unit's first day (last used two grades back) |
+| wh2-postwar-prosperity (10) | productivity and living standards | Unit 3, econ-productivity-wages: readiness check before the unit opens (last used two grades back) |
 | wh2-great-depression (10) | unemployment, deflation, a banking collapse | Unit 4 (econ-government-role), unit 5 (econ-macro-measures, econ-business-cycles), unit 6 (econ-fiscal-monetary): retrieval tasks (US History II unit 3 used it earlier the same year) |
 | ss7-roman-economy (7) | money, debasement and a credit crisis | Unit 6, econ-money-banking: readiness check (short items, no reteach lesson; the unit's first day teaches the functions of money in full) |
-| wh2-globalization (10) | who gained and lost from global trade | Unit 7 (econ-trade, econ-global-economy: here measured with trade and income data): readiness check on the unit's first day (last used two grades back) |
+| wh2-globalization (10) | who gained and lost from global trade | Unit 7 (econ-trade, econ-global-economy: here measured with trade and income data): readiness check before the unit opens (last used two grades back) |
 
 Handed on: this is the last economics course in the subject. Its threads end here:
 

@@ -12,7 +12,7 @@ Course `social-studies-grade-5` (catalogue id `ss-k5`), grade 5, draft frame, wr
   law and the 2015 marriage ruling; the broad span, the source work, the research and the informed action support a
   provisional 160-day allocation. Each unit's days include its end-of-unit assessment (a task done from sources not
   seen before) and one respond day; no unit is over 25 days. A unit that assumes a grade 3 row dormant across grade 4
-  opens with a readiness check on its first day (units 2, 4, 5 and 10); a grade 4 row, or a grade 3 row grade 4 kept
+  gets a readiness check before it opens (units 2, 4, 5 and 10); a grade 4 row, or a grade 3 row grade 4 kept
   in use, opens as a retrieval task.
 - **Standard.** Massachusetts 2018 grade 5 (5.T1 to 5.T5, every lettered part) is the content anchor, and every
   code is owned by a row placed below; C3 (3 to 5 band) carries the skills. C3 places the counterclaim in grades 6

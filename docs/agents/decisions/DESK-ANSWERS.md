@@ -1004,3 +1004,21 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
 3. **Government unit 9 (NML.T5.5):** an optional outside-expert step the teacher arranges, with the paper path always
    complete on its own (docs/courses/us-government-and-politics/frame.md, For the lead 1).
 
+
+## 2026-11-14: readiness check timing, every course (Cory, in chat, confirming card q-unit-plans of 2026-11-11)
+
+Cory confirmed his Desk choice of 2026-11-11 (card q-unit-plans, decision 4 above) and made it the one timing for every
+course, grade 4 math included.
+
+1. **When:** a unit's readiness check is given before the unit opens, so its results shape day 1: in the last ten
+   minutes of the previous unit's last day, or of the respond day or course-level check respond day where one sits
+   between the two units. A unit 1 readiness check is served by the start-of-year check.
+2. **Refinements approved:** a few days ahead at most, never weeks, so the results stay fresh; day 1 of every unit
+   stays clean for the hook and the compelling question.
+3. **Which units hold one does not change:** sequence-write.md rule 2 (a row used the year before or earlier the same
+   year opens as a retrieval task inside a day; a row last used two or more grades back gets a readiness check).
+4. **Applied:** UNIT-PLAN.md (header, fields 4 and 11, the field template), GLOSSARY.md, the sequence-write,
+   sequence-read, frame-write, plan and plan-read briefs; the 15 social studies scopes and sequences and days.csv files
+   (45 checks moved off a unit's first day: 39 to the respond day before the unit, 6 unit 1 checks to the start-of-year
+   check); scripts/sequence.py now fails a readiness day on a unit's first day. Report:
+   docs/reviews/readiness-timing-2026-11-14.md.

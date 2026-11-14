@@ -6,7 +6,7 @@ The course meets every school day (50 minutes, no timers shown to students), so 
 
 The partial base is Since Time Immemorial (Washington OSPI, CC BY 4.0), on three days only: the one-period Level 1 constitutional case from its high school US history unit 1 (day 25) and the two-period Level 2 allotment analysis from its unit 2 (days 104 and 105). Their content stays as written, in our structure and tone, with one credit line saying the content is the tribes'. data/plans/us-history-i/source-map.csv records every Since Time Immemorial unit and level and why the rest are cut (more days than the units have, Washington's own assessments, or after 1920 and so US History II's).
 
-Readiness checks open units 1, 2, 3, 4, 5, 6 and 8, each on a grade 5, 8 or 9 row last used two or more grades back (day 1 adds grade 8's news literacy and grade 9's significance judgment, both last used in grade 9). Unit 7 and unit 9 open with retrieval tasks on World History II (the year before), and a row met earlier this year (unit 3's Native sovereignty on day 102, unit 6's Jim Crow on day 133, the reform ideas of day 55 on day 123, news literacy on day 144) is retrieved, not checked again. Each student keeps an enduring question and a research portfolio from day 2 to day 160.
+Readiness checks come before units 1, 2, 3, 4, 5, 6 and 8, each on a grade 5, 8 or 9 row last used two or more grades back, given before the unit opens (Cory, 2026-11-14): in the last ten minutes of the respond day before it (days 19, 34, 50, 71, 96 and 122), and for unit 1 in the start-of-year check, so each unit's first day opens on its question (unit 1's check adds grade 8's news literacy and grade 9's significance judgment, both last used in grade 9). Unit 7 and unit 9 open with retrieval tasks on World History II (the year before), and a row met earlier this year (unit 3's Native sovereignty on day 102, unit 6's Jim Crow on day 133, the reform ideas of day 55 on day 123, news literacy on day 144) is retrieved, not checked again. Each student keeps an enduring question and a research portfolio from day 2 to day 160.
 
 The course shares one research product with ELA 11 in unit 4: the reform research paper. History supplies the question set and sources and scores historical reasoning; ELA teaches the process and citation. Milestones: question by the end of week 12 (day 56), source list in week 13 (day 61), draft in week 14 (day 66), paper and talk in week 15 (the talk in ELA 11's days; day 71 scores it here).
 
@@ -30,7 +30,7 @@ The course shares one research product with ELA 11 in unit 4: the reform researc
 
 Arc: four days on the inquiry and its tools (two scholarly interpretations compared, supporting questions tied to them, sources chosen with an expert appraisal), six on causes, three on the Declaration, four on the war and the argument. The research habits come first because the portfolio runs all year.
 
-- Readiness: day 1, on grade 5's French and Indian War, grade 8's road to independence and news literacy, and grade 9's significance judgment (used again on day 16 with a worked example). Day 2 retrieves grades 9 and 10's source checks and contested questions.
+- Readiness: the start-of-year check, before day 1, on grade 5's French and Indian War, grade 8's road to independence and news literacy, and grade 9's significance judgment (used again on day 16 with a worked example). Day 2 retrieves grades 9 and 10's source checks and contested questions.
 - End-of-unit assessment, day 18: the causes weighed, the Declaration and the war, with a source-judging task on unseen sources; the inquiry proposal (days 2 to 4) and the source-selection rationale (day 13) are scored as its components. Respond day 19.
 - Candidate: colonial self-government before 1763, kept, part of day 1, 0 added days. Candidate: the Second Continental Congress and the Olive Branch Petition, kept, part of day 10, 0 added days.
 
@@ -40,10 +40,10 @@ Arc: four days on the inquiry and its tools (two scholarly interpretations compa
 
 Arc: six days on making and ratifying the Constitution ending in the treaty clause case, three on the press, four on the first three presidencies and the claim. The constitutional case sits right after the supremacy clause it applies.
 
-- Readiness: day 20, on grade 8's Articles, Convention, ratification, press freedom and courts, and grade 5's first presidents. The Bill of Rights is recalled from grade 8, not retaught.
+- Readiness: the last ten minutes of day 19, on grade 8's Articles, Convention, ratification, press freedom and courts, and grade 5's first presidents. The Bill of Rights is recalled from grade 8, not retaught.
 - End-of-unit assessment, day 33: the Articles, the Constitution and ratification, the press case and the first three presidencies' effects on federal power and foreign policy, with an unseen source. Respond day 34.
 - Base: Since Time Immemorial high school US history unit 1, Level 1, on day 25.
-- Candidate: the Northwest Ordinance, kept, part of day 21 beside Shays' Rebellion (day 20 carries the readiness check), 0 added days. Candidate: the Whiskey Rebellion, kept, part of day 29, 0 added days.
+- Candidate: the Northwest Ordinance, kept, part of day 21 beside Shays' Rebellion (day 20 opens the unit), 0 added days. Candidate: the Whiskey Rebellion, kept, part of day 29, 0 added days.
 
 ## Unit 3. Expansion and removal, 1800 to 1854 (days 35 to 47, weeks 7 to 10)
 
@@ -51,7 +51,7 @@ Arc: six days on making and ratifying the Constitution ending in the treaty clau
 
 Arc: five days on Jackson and removal (ending with the nations today), six on expansion ending in the map sequence and the compelling question. Removal first so the maps of expansion are read knowing whose land they show.
 
-- Readiness: day 35, on grade 5's Louisiana Purchase, War of 1812 and Native land and self-government.
+- Readiness: the last ten minutes of day 34, on grade 5's Louisiana Purchase, War of 1812 and Native land and self-government.
 - End-of-unit assessment, day 46: Jackson and removal, expansion and the war with Mexico, with a map-as-evidence task on unseen maps. Respond day 47, with review of units 1 to 3.
 - Candidate: Tecumseh and the Shawnee-led confederacy, kept, part of day 41, 0 added days.
 
@@ -65,7 +65,7 @@ Days 48 and 49: knowledge across units 1 and 2 with skills together, then a sour
 
 Arc: four days on the market revolution (day 54 on immigration and nativism), two on the reform survey (day 55 opens with the Awakening and Republican Motherhood; day 56 ends with the question), three on slavery's economy, four on the resistance sources, then the paper and the compelling question, closing with the assessment and the paper scored. The research days fall on the shared brief's weeks, so the slavery and resistance days sit between the question and the draft.
 
-- Readiness: day 51, on grade 5's spread of slavery with cotton and the people who fought it.
+- Readiness: the last ten minutes of day 50 (course-level check 1's respond day), on grade 5's spread of slavery with cotton and the people who fought it.
 - End-of-unit assessment, day 70: the market revolution with each part of T3.2, slavery's economy with the regional comparison, the religious and social trends, common survey questions on every reform strand, and an unseen source to judge; the resistance write-up (day 64) and the reform paper are its components. Respond day 71 (week 15), where the reform paper is also scored for historical reasoning. A school without ELA 11 hands the paper in on day 69; the talk is ELA's.
 - Candidate: temperance and prison reform, kept as brief connected examples on the survey pages of day 55 (asylums are taught on day 56 under MA.USI.T4.2d), 0 added days. Candidate: the Lowell mill workers' magazine, kept, the source of day 53, 0 added days.
 
@@ -75,7 +75,7 @@ Arc: four days on the market revolution (day 54 on immigration and nativism), tw
 
 Arc: six days on the crisis ending in essay 1's first draft, six on the war with drafts 2 and 3 between, seven on Reconstruction ending in essay 2's first draft (day 88), then the assessment (day 89) and its respond day (day 90), then essay 2's second and third drafts (days 91 and 92). Written feedback is returned between every draft, with at least two school days to write it.
 
-- Readiness: day 72, on grade 5's causes of the Civil War and grade 8's constitutional issues.
+- Readiness: the last ten minutes of day 71, on grade 5's causes of the Civil War and grade 8's constitutional issues.
 - End-of-unit assessment, day 89: the sectional crisis, the war and Reconstruction, with a causal explanation on unseen sources of how and why Reconstruction ended; the two essays are its components (the composite is complete after day 92). Respond day 90; day 92 closes with review of units 1 to 4 for the mid-year check.
 - Candidate: the Lincoln-Douglas debates and John Brown's raid, kept, part of day 74, 0 added days. Candidate: the Homestead Act and the 1862 railroad acts, kept, part of day 79, 0 added days.
 
@@ -89,7 +89,7 @@ Days 93 to 95 (week 19): knowledge across units 1 to 4 with skills together, a l
 
 Arc: five days on Jim Crow and Black responses, six on the West through treaties, war, allotment and boarding schools, ending in the citizenship comparison. The compelling question is answered inside the assessment, so the unit has no separate claim day.
 
-- Readiness: day 97, on grade 5's Black life under Jim Crow. Day 104 opens with a retrieval task on unit 3's removal and grade 5's Native sovereignty before the allotment analysis.
+- Readiness: the last ten minutes of day 96 (the mid-year check's respond day), on grade 5's Black life under Jim Crow. Day 104 opens with a retrieval task on unit 3's removal and grade 5's Native sovereignty before the allotment analysis.
 - End-of-unit assessment, day 108: one Jim Crow practice, Black responses, and the West from treaties and laws, answering the compelling question with unseen sources. Respond day 109.
 - Base: Since Time Immemorial high school US history unit 2, Level 2, on days 104 and 105.
 - Candidate: the Chinese and Mexican American West, kept, on the survey pages of day 107 (Chinese exclusion is taught on day 118), 0 added days. Candidate: the Populist movement and the Omaha Platform, dropped: no day is free in unit 6; the Omaha Platform is named on day 123 as context for Progressivism only.
@@ -110,7 +110,7 @@ Arc: six days on industry ending in one cause and consequence chain, five on imm
 
 Arc: six days on Progressivism and its limits, four on women, three on Black civil rights, then two on the year's informed action. Day 126 starts the action (each student notes a present-day local problem like the one the researched policy targeted); day 136 investigates it and compares the options; day 137 decides and takes the action through an adult (or records a reasoned choice not to act); day 160 looks back. When Government runs the same year and supplies the action, days 136 and 137 revisit its evidence, compare it with Progressive-era responses and evaluate the outcome. The limits (eugenics, segregation, who could not vote) close each part so no reform reads as complete.
 
-- Readiness: day 123, on grade 5's women's rights work around the 14th and 15th Amendments; the same day retrieves World History II's industrial-era reform ideas (met on day 55). Day 133 retrieves grade 5's Jim Crow row and unit 6.
+- Readiness: the last ten minutes of day 122, on grade 5's women's rights work around the 14th and 15th Amendments; day 123 retrieves World History II's industrial-era reform ideas (met on day 55). Day 133 retrieves grade 5's Jim Crow row and unit 6.
 - End-of-unit assessment, day 138: Progressivism, women's work and suffrage, and civil rights in the early 1900s, with unseen sources. Respond day 139.
 - Candidate: the 16th and 17th Amendments and the initiative, referendum and recall, kept, on the survey pages of day 126, 0 added days. Candidate: the Red Summer of 1919, kept, part of day 135, 0 added days.
 

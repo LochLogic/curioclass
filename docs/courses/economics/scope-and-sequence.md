@@ -6,17 +6,17 @@ The course meets every school day of the spring half (50 minutes, no timers show
 
 Personal finance is taught inside units 4, 8 and 9 and adds no days. The six personal finance areas of the adoption bar sit here: earning income (unit 8 days 59 and 60, with taxes in unit 4 day 32 and the tax return on day 64), spending (unit 8 days 61 to 63), saving (unit 9 days 68, 69 and 76), investing (unit 9 days 73, 74 and 76), managing credit (unit 9 days 70 to 72) and managing risk (unit 8 days 64 and 65, unit 9 day 75).
 
-**Readiness checks and retrieval tasks** (the rule settled 2026-11-14): a row last used two or more grades back opens its unit with a readiness check on the unit's first day; a row used the year before, or earlier the same year, opens as a retrieval task inside a day. The rows sit at grade 12 in the data, so grade 10 rows count as two grades back unless a grade 11 or earlier grade 12 course uses them.
+**Readiness checks and retrieval tasks** (the rule settled 2026-11-14): a row last used two or more grades back gets a readiness check, given before its unit opens (Cory, 2026-11-14): in the last ten minutes of the previous unit's respond day, and for unit 1 in the start-of-year check, so day 1 of every unit opens on its question; a row used the year before, or earlier the same year, opens as a retrieval task inside a day. The rows sit at grade 12 in the data, so grade 10 rows count as two grades back unless a grade 11 or earlier grade 12 course uses them.
 
 | Row | Last used | Opens as |
 |---|---|---|
-| ss8-public-budget | grade 8 | Readiness check, day 1, the whole row, once; units 4, 8 and 9 then open with retrieval tasks (days 28, 59, 68), as unit 1 checked and used it |
-| wh2-soviet-collapse | grade 10 | Readiness items inside day 1's check (unit 1 assumes it on day 6) |
+| ss8-public-budget | grade 8 | Readiness check in the start-of-year check (unit 1), the whole row, once; units 4, 8 and 9 then open with retrieval tasks (days 28, 59, 68), as unit 1 checked and used it |
+| wh2-soviet-collapse | grade 10 | Readiness items inside the start-of-year check (unit 1 assumes it on day 6) |
 | wh2-industrial-revolution | grade 11 (US History I) | Retrieval tasks, days 9 and 19 |
-| wh2-postwar-prosperity | grade 10 | Readiness check, day 19; reteach station day 24 |
+| wh2-postwar-prosperity | grade 10 | Readiness check, last ten minutes of day 18 (before unit 3); reteach station day 24 |
 | wh2-great-depression | earlier this year (US History II unit 3) | Retrieval tasks, days 29, 37 and 47 |
-| ss7-roman-economy | grade 7 | Readiness check, day 45 (short items; the day teaches money from its functions, so no reteach lesson) |
-| wh2-globalization | grade 10 | Readiness check, day 52; reteach station day 54 |
+| ss7-roman-economy | grade 7 | Readiness check, last ten minutes of day 44 (before unit 6; short items; day 45 teaches money from its functions, so no reteach lesson) |
+| wh2-globalization | grade 10 | Readiness check, last ten minutes of day 51 (before unit 7); reteach station day 54 |
 
 **The writing thread.** Writing from sources grows across the half: a short sourced explanation modelled on day 5; a two-source argument with a counterclaim on day 16 (claim-evidence-reasoning retrieved, taught from kindergarten); an extended policy explanation on day 30; the course's longest argument, about a page, on day 49 (Congress or the Federal Reserve), scored on the course rubric; a synthesis of at least two public sources in the information piece (days 62 and 63); short sourced reports on days 69 and 71; and claim-evidence-reasoning on an agency's record on day 75.
 
@@ -24,7 +24,7 @@ Personal finance is taught inside units 4, 8 and 9 and adds no days. The six per
 
 Arc: scarcity and resources, then opportunity cost and marginal thinking, the production possibilities curve, incentives and interest, policy goals in conflict, and economic systems with property rights. Then the end-of-unit assessment and its respond day. Scarcity and opportunity cost come first because every later unit reasons from them. The curve follows so unemployment, growth and productivity have a picture before incentives and systems use them.
 
-- Readiness: day 1, on grade 8's public budgets, opportunity cost and interest (ss8-public-budget, the whole row, the course's only check on it) and grade 10's planned economies (wh2-soviet-collapse). The reteach is a station on day 2.
+- Readiness: the start-of-year check, before day 1, on grade 8's public budgets, opportunity cost and interest (ss8-public-budget, the whole row, the course's only check on it) and grade 10's planned economies (wh2-soviet-collapse). The reteach is a station on day 2.
 - End-of-unit assessment, day 7: an unseen production possibilities curve for a made-up country and a policy case, with a prompt for each part of T1.1 to T1.9 and D2.Eco.1, 3 and 9 the task misses. Respond day 8.
 - Candidate: marginal thinking, kept inside T1.2 on day 2, 0 added days.
 
@@ -40,7 +40,7 @@ Arc: demand and supply curves, then equilibrium and prices as signals, the same 
 
 Arc: profit and business forms, how firms raise money and what unions and nonprofits do, market structures (with competition pushing output up), costs and then marginal revenue from a price, output and revenue table before the firm's choice, judging a real market's competition (with monopsony and the trusts retaught in brief), productivity, then earnings and productivity. Market structures need unit 2's graph. Productivity comes last because it sets up unit 8's earning.
 
-- Readiness: day 19, on grade 10's postwar productivity and living standards (wh2-postwar-prosperity, two grades back), which day 24 builds on; the reteach is a station on day 24. Day 19 also holds a retrieval task on industrial markets (wh2-industrial-revolution, used in grade 11).
+- Readiness: the last ten minutes of day 18 (unit 2's respond day), on grade 10's postwar productivity and living standards (wh2-postwar-prosperity, two grades back), which day 24 builds on; the reteach is a station on day 24. Day 19 holds a retrieval task on industrial markets (wh2-industrial-revolution, used in grade 11).
 - End-of-unit assessment, day 26: an unseen market from public data (its structure, its competition and its wages), covering T2.5, T3.1 to T3.9, D2.Eco.4, 5 and 13. Respond day 27.
 - Candidate: costs of production (fixed, variable, marginal), kept inside T3.6 on day 22, 0 added days.
 
@@ -48,7 +48,7 @@ Arc: profit and business forms, how firms raise money and what unions and nonpro
 
 Arc: public goods and market failure, then antitrust and regulation (with the Depression retrieved), externalities on the graph as the worked case for a policy's costs and benefits, government budgets and kinds of taxes, and deficits, debt and tax rates since 1950 (PFL.T1.3). Market failure needs units 2 and 3. Budgets follow, because the cost of government action is paid from them.
 
-- Readiness: none. Day 28 opens with a retrieval task on grade 8's public budgets, checked on day 1; targeted support on day 29 for the students day 1 flagged.
+- Readiness: none. Day 28 opens with a retrieval task on grade 8's public budgets, checked in the start-of-year check; targeted support on day 29 for the students it flagged.
 - End-of-unit assessment, day 33: an unseen policy case (a market failure and a proposed tax or rule) judged by costs and benefits, with a budget comparison across the three levels and the tax-rate history read against income profiles, covering T4.1 to T4.7, PFL.T1.3, D2.Eco.6 and 7. Respond day 34.
 - Candidate: externalities on the supply and demand graph, kept inside T4.1 on day 30 (the worked case for T4.6), 0 added days.
 
@@ -68,7 +68,7 @@ Arc: the circular flow, GDP and growth, then unemployment and inflation (with th
 
 Arc: what money does, the money supply and the roles of banks and other institutions, then money creation and the Federal Reserve, fiscal and monetary policy defined, the Fed's tools, and which policy suits a recession or high inflation, argued in writing. It needs unit 5's measures, since policy is judged by its effect on them, and unit 4's budgets carry into fiscal policy.
 
-- Readiness: day 45, short items on what money is, from grade 7's Roman money and debasement (ss7-roman-economy, four or five grades back). The response is the day's own teaching of money from its functions, so there is no reteach lesson.
+- Readiness: the last ten minutes of day 44 (unit 5's respond day), short items on what money is, from grade 7's Roman money and debasement (ss7-roman-economy, four or five grades back). The response is the day's own teaching of money from its functions, so there is no reteach lesson.
 - End-of-unit assessment, day 50: paired unseen scenarios (a recession and high inflation) with indicators, choose and defend a response to each, covering T6.1 to T6.4, T4.8 to T4.10, D2.Eco.12 and D2.Eco.10's money supply part. Respond day 51.
 - Candidate: money creation through lending, kept inside T6.3 on day 46, 0 added days.
 
@@ -76,7 +76,7 @@ Arc: what money does, the money supply and the roles of banks and other institut
 
 Arc: why people and countries trade, then comparative advantage on made-up data and on one real pair (observed trade told apart from opportunity-cost evidence, the calculation on a supplied simplified production-cost table), tariffs and quotas and the free trade debate, the balance of trade and payments and exchange rates, and productivity trends with one focused resource case on globalization's effects. Trade uses unit 1's opportunity cost, unit 2's markets and unit 5's measures.
 
-- Readiness: day 52, on grade 10's globalization (wh2-globalization, two grades back); the reteach is a station on day 54.
+- Readiness: the last ten minutes of day 51 (unit 6's respond day), on grade 10's globalization (wh2-globalization, two grades back); the reteach is a station on day 54.
 - End-of-unit assessment, day 57: an unseen production-possibilities table for two countries (the calculation) with trade and income data interpreted separately, covering T7.1 to T7.8, D2.Eco.14, D2.Eco.15 and D2.Geo.11. Respond day 58.
 - Candidate: none in the frame.
 
@@ -84,7 +84,7 @@ Arc: why people and countries trade, then comparative advantage on made-up data 
 
 Arc: choosing a job, then the labor market and a first-year budget with a pay stub, advertising, ways to pay and consumer protection, the year's informed action (days 62 and 63), a first tax return that opens identity protection, then insurance with identity protection finished. Earning comes before spending, and the informed action follows the consumer protection day it draws on. The look back on the action is on day 80.
 
-- Readiness: none. Day 59 opens with a retrieval task on grade 8's budgets, checked on day 1, with targeted support that day.
+- Readiness: none. Day 59 opens with a retrieval task on grade 8's budgets, checked in the start-of-year check, with targeted support that day.
 - End-of-unit assessment, day 66: an unseen case on given figures (a described person's job offer, budget, ways to pay and insurance quotes), with prompts on advertising evidence, the state and federal roles in consumer protection and income changed by the labor market, covering PFL.T1.1, T1.2, T1.4 to T1.6, T4.1 and T4.2. Respond day 67.
 - Candidate: the pay stub and withholding, kept inside the budget day (day 60), 0 added days. The first tax return, kept, 1 day (day 64). Renting a first home, dropped as a taught day and named as an extension in the unit plan: the nine days are full.
 
@@ -92,7 +92,7 @@ Arc: choosing a job, then the labor market and a first-year budget with a pay st
 
 Arc: banks, interest and real and nominal rates, then saving policies investigated, credit as one running case, the results of not repaying investigated, a credit plan that carries its method to college aid offers, financial markets and assets, diversification with asset research and a made-up portfolio, the regulators, and the savings or investment plan with the institutions' services matrix. Saving comes first, then credit, borrowing, investing, and the regulators who watch all four; the services matrix comes last because it compares credit, savings and investment services the unit has by then taught. It needs unit 5's inflation, unit 6's banks and unit 2's markets.
 
-- Readiness: none. Day 68 opens with a retrieval task on grade 8's interest, checked on day 1; targeted support on day 69.
+- Readiness: none. Day 68 opens with a retrieval task on grade 8's interest, checked in the start-of-year check; targeted support on day 69.
 - The portfolio is read from a printed made-up price series dated across several years, built on published long-run returns of broad asset classes, on days 74 to 76; the record is scored with the assessment.
 - End-of-unit assessment, day 77: an unseen made-up credit offer and savings goal on given figures, covering PFL.T2.1 to T2.6, PFL.T3.1 to T3.10, ECON.T2.11, T6.5 and T6.6, with the saving-policy conclusion (day 69), the not-repaying report (day 71), the matrix and plan (day 76) and the portfolio record scored on the same rubric. Respond day 78.
 - Candidate: paying for college, kept at 0 added days: it rides inside the credit plan (day 72, the same comparison method on two aid offers) and the savings plan (day 76, college as one goal).

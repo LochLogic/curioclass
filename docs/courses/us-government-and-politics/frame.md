@@ -10,7 +10,7 @@ days are set in docs/courses/us-government-and-politics/scope-and-sequence.md an
   respond day. One lesson of about 50 minutes a day, five a week, across 16 weeks. Each unit's days include its readiness check or retrieval task, its end-of-unit assessment and one
   respond day (a unit over 25 days would also hold a mid-unit assessment; none is that long). A row used the year
   before (US History I) or earlier this course opens as a retrieval task inside a day; a row last used two or more
-  grades back opens its unit with a readiness check on the first day, and a one-lesson reteach station follows for
+  grades back gets a readiness check before its unit opens, and a one-lesson reteach station follows for
   students who miss it (units 1 to 7; units 8 and 9 open with retrieval tasks only). Where a unit has more than one such row, one combined check
   covers them. The table is in the scope and sequence.
 - **Check-set additions.** Additions ride inside an owned code's lesson where one fits; at most 7 days in the course are

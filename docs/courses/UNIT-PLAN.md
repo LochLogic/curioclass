@@ -3,8 +3,9 @@
 **Second draft, 2026-11-11. Cory said yes to the unit plan, both field lists, the word caps, the mark "light
 tool" and the readiness check before the unit opens (2026-11-11, Desk card q-unit-plans). The fields are
 fixed for grade 4 math; the first plan in science and in English language arts may change what those subjects
-fill.** From 2026-11-14 the readiness check's place follows sequence-write.md rule 2 (field 4); grade 4 math keeps
-the pre-unit timing until its scope and sequence is rewritten.
+fill.** Which units hold a readiness check follows sequence-write.md rule 2 (2026-11-14); when it is given is one
+timing in every course, grade 4 math included: before the unit opens, so its results shape day 1 (Cory, 2026-11-14,
+field 4).
 
 **Changed 2026-11-11, evening (Cory, Desk card q-plans-4d-1): new word caps (see "Length"), tool asks moved
 to one file per course, rule 19 ("always cover the whole standard") and the fractions wording in rule 4.**
@@ -97,8 +98,8 @@ sets is given).
     tool, with its mark, which day uses which part for which job, and the numbered asks, each with the unit plan
     or section plan it came from (decided 2026-11-11).
 11. **Shared. Every day has a kind, in the subject page's words.** *Math fills:* understanding, fluency, application
-    or check. In grade 4 math the last day of a unit is written "Check (end-of-unit assessment 30, respond 20, next readiness 10)" (field 4). The counts go in the
-    header.
+    or check. A day that ends with the next unit's readiness check names its ten minutes, as in "Check (end-of-unit
+    assessment 30, respond 20, next readiness 10)" (field 4). The counts go in the header.
 12. **Shared. What is carried is named, with what happens to it over the section** (math: tied and withdrawn;
     science: revised; ELA: read and returned to). *Math fills:* the model, the day it is tied to the written
     form and the day it is withdrawn.
@@ -137,16 +138,20 @@ back.
 
 **4. Readiness check, whole.** *Shared.* When it is given; a table with each item, its code, its key and the
 section it serves; for each gap, the ten-minute reteach, when those ten minutes happen, and the earlier tool or
-page. Rule 6 holds. **Which units hold one, and when (2026-11-14, sequence-write.md rule 2, settled for all 15
-social studies courses and the rule for every scope and sequence written since):** a row used the year before, or
-earlier the same year, opens as a retrieval task inside a day, with no readiness check; every other earlier-grade row
-the unit assumes (last used two or more grades back) opens the unit with a readiness check on its first day, the day
-days.csv marks `assess` = `readiness`. A unit with only retrieval tasks fills this field with them (the row, the day,
-the prompt and what the teacher does with a miss); their teacher notes are the before-teaching evidence (adoption
-bar C8). Grade 4 math, planned before the rule, keeps Cory's 2026-11-11 timing until its scope and sequence is
-rewritten in step 5: the check is given before the unit opens, in the last ten minutes of the previous unit's last
-day or of the respond day between the two units, unit 1 served by the start-of-year check, so its last day of a unit
-is end-of-unit assessment 30, respond 20, the next unit's readiness check 10.
+page. Rule 6 holds. **Which units hold one (2026-11-14, sequence-write.md rule 2, settled for all 15 social studies
+courses and the rule for every scope and sequence written since):** a row used the year before, or earlier the same
+year, opens as a retrieval task inside a day, with no readiness check; every other earlier-grade row the unit assumes
+(last used two or more grades back) gets a readiness check. A unit with only retrieval tasks fills this field with
+them (the row, the day, the prompt and what the teacher does with a miss); their teacher notes are the
+before-teaching evidence (adoption bar C8). **When (Cory, 2026-11-14, confirming Desk card q-unit-plans of
+2026-11-11; one timing in every course, grade 4 math included):** the readiness check is given before the unit
+opens, so its results shape day 1. It takes the last ten minutes of the previous unit's last day, or of the respond
+day or course-level check respond day where one sits between the two units; that day is the one days.csv marks
+`assess` = `readiness` (or, when it already holds another assess value, keeps that value and its note says "plus the
+next unit's readiness check (10 minutes)"). It is given a few days ahead at most, never weeks, so the results stay
+fresh. A unit 1 readiness check is served by the start-of-year check. Day 1 of every unit stays clean for the hook
+and the compelling question: no readiness check on a unit's first day. Where the last day is a full end-of-unit
+assessment day, it runs end-of-unit assessment 30, respond 20, the next unit's readiness check 10.
 
 **5. End-of-unit assessment, whole.** *Shared.* A table: number; code and practice; the part of the standard (the verb) it
 tests; the item; the answer; wrong answers with their error letter; the section that owns it. Rules 3, 4 and 5
@@ -284,7 +289,8 @@ lesson: nothing here is built or tried with children. Fields follow UNIT-PLAN.md
 - **Comes back.**
 
 ## 4. Readiness check, whole
-Day _ (the unit's first day; grade 4 math: the day before the unit opens, last ten minutes), or "Retrieval only:" with
+Day _ (before the unit opens: the last ten minutes of the previous unit's last day or of the respond day between;
+unit 1: the start-of-year check), or "Retrieval only:" with
 each retrieval task's row, day and prompt.
 
 | # | Code | The item | Key | Serves section |

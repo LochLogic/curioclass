@@ -10,7 +10,7 @@ Course `world-geography-and-ancient-civilizations-ii` (catalogue id `world-hist-
   of 2 days, each followed by 2 respond days). A full year: one lesson of about 50 minutes a day, five a week, across
   32 weeks. Each unit's days include its end-of-unit assessment and one respond day (a unit over 25 days also holds a
   mid-unit assessment; none here is over 15); a unit that assumes an earlier grade's row last used two or more grades
-  back opens with a readiness check on its first day (unit 10, on grade 5's ss5-constitution), and a row used the
+  back gets a readiness check before it opens (unit 10, on grade 5's ss5-constitution), and a row used the
   year before (or earlier this year) opens as a retrieval task inside a day.
 - **Standard.** Massachusetts 2018 grade 7 (MA.7.T1 to MA.7.T4c) is the content anchor: every one of its 61 codes
   sits with one of the 29 grade 7 progression rows, so every code sits in one unit below. Parent codes carry their

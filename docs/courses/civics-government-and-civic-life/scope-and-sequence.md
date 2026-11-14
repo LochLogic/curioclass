@@ -23,7 +23,7 @@ Arc: three Greek and Roman days, five English and Enlightenment days, four Haude
 
 Arc: four Declaration days, four Articles and Convention days, four ratification days, the compelling question, then assessment and respond.
 
-- Readiness check, day 16, on grade 5's causes of independence and the war (ss5-revolution-causes, ss5-independence-war: not used in grades 6 or 7). ss5-constitution, used in grade 7, returns as a retrieval task on day 20.
+- Readiness check, in the last ten minutes of day 15 (unit 1's respond day), on grade 5's causes of independence and the war (ss5-revolution-causes, ss5-independence-war: not used in grades 6 or 7), so its results shape day 16, which opens on the unit's question. ss5-constitution, used in grade 7, returns as a retrieval task on day 20.
 - End-of-unit assessment, day 29: the causes and key ideas of the Declaration, what it left out and how its principles shaped later claims, the Articles and the road to the Convention, the Convention's leaders and settlements, and contrasting unseen Federalist and Anti-Federalist excerpts compared on the issue they disagree about. Respond day 30.
 - Candidate cell: Federalist No. 51 and Brutus No. 1 are placed by the frame (day 25).
 
@@ -65,7 +65,7 @@ Arc: four citizenship days, three values days, three leadership days, the compel
 
 Arc: five amendment days, three civil rights days, nine research days, then assessment and respond. The heavy research writing falls in weeks 18 and 19, after ELA 8 has taught counterclaims (its days 31 to 62) and research steps (by its day 76).
 
-- Readiness check, day 77, on grade 5's Civil War, Reconstruction amendments and civil rights movements (not used in grades 6 or 7).
+- Readiness check, in the last ten minutes of day 76 (unit 5's respond day), on grade 5's Civil War, Reconstruction amendments and civil rights movements (not used in grades 6 or 7), so its results shape day 77.
 - Research days 85, 87 and 93 ask what changed between two decisions, for whom, and what continued, as MA.8.T5.6 asks.
 - End-of-unit assessment, day 94: the war's constitutional issues, a constitutional change from an unseen document, a civil rights law's context and significance, how views of rights changed, and a short argument from an unseen opinion excerpt with strengths and limitations; the research report counts with it. Respond day 95.
 - Candidate cell settled: incorporation kept, named plainly inside day 80, no added day.
@@ -136,7 +136,7 @@ The year is 160 days of 50 minutes. Two shorter routes keep every owned code, sk
 
 ## For the lead
 
-1. **Readiness or retrieval (settled 2026-11-14).** A row used the year before, or earlier the same year, opens as a retrieval task; a row last used two or more grades back opens its unit with a readiness check. Days 1, 31 and 100 are retrieval tasks; days 16 (without ss5-constitution, which returns on day 20) and 77 keep readiness checks.
+1. **Readiness or retrieval (settled 2026-11-14).** A row used the year before, or earlier the same year, opens as a retrieval task; a row last used two or more grades back gets a readiness check. Days 1, 31 and 100 are retrieval tasks; units 2 (without ss5-constitution, which returns on day 20) and 6 keep readiness checks, given before each unit opens in the last ten minutes of the respond day before it (days 15 and 76; Cory, 2026-11-14).
 2. **Unit 7 split (settled).** About 5/3/4/6, inside 20 days; the frame note follows.
 3. **Unit 10 order (settled).** Assessment 154, respond 155, build 156, rehearse 157, present 158; the frame's "about day 157" becomes about day 158.
 4. **Topics on file.** Unchanged: only units 2 and 3 match a topic filed under us-hist-8; each unit above names its topics in full.

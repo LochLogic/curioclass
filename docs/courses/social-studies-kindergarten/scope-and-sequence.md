@@ -156,6 +156,13 @@ services items use unit 2's class jobs and unit 4's photographs. Every check ite
 code its day lists. Both are on CALENDAR.md's targets, and `frame.py calendar` shows no stagger break for kindergarten (ELA weeks 16 and
 32, math 17 and 31, science 14 and 29).
 
+## Shorter path
+
+The year is 64 lessons of 20 to 30 minutes, about two a week. Two shorter routes keep every owned code, skill and assessment, every observation note and every respond day; the unit plans check them against real minutes, so neither is yet shown to fit.
+
+- **20-minute lessons, same 64 lessons.** The 20-minute route above: each lesson keeps its source or model, one supported try and the closing "because"; extra examples and repeated whole-class sharing go first.
+- **About 54 lessons.** These lessons fold into the one before or after, because each code or skill they carry is taught on another lesson too, and the work moves with them: 4 (rules outside school, into 3), 7 (two points of view, into 8's spoken claim), 15 (fair and caring characters, into 16's folktale), 23 (two world maps, into 22, as one look), 26 (the drawn picture map, into 25's block model), 28 (the town and state maps, into 27), 36 (the picture-strip timeline, into 35), 46 (the bald eagle, into 45 with the flag), 55 (choosing, into 54's needs and wants) and 56 (goods and services, into 57's class store). No observation, check, respond or on-the-day lesson folds.
+
 ## For the lead
 
 1. **The on-the-day lessons on the calendar.** Settled by the lead 2026-11-14: the held on-the-day lessons stay where

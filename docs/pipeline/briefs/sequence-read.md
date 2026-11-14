@@ -17,8 +17,11 @@ The data you must check:
   is counted once.
 - **Readiness or retrieval** (sequence-write rule 2): a row used the year before, or earlier the same year, opens as a
   retrieval task inside a day; every other earlier-grade row the unit assumes (last used two or more grades back)
-  opens the unit with a readiness check on its first day. Check each assumed row's last use in the progression, and
-  name any unit that checks a year-before row or retrieves an older one.
+  gets a readiness check, given before the unit opens: the last ten minutes of the previous unit's last day, or of
+  the respond day or course-level check respond day between the two units (unit 1: the start-of-year check), never
+  on a unit's first day, which stays clean for the hook and the compelling question (Cory, 2026-11-14). Check each
+  assumed row's last use in the progression, and name any unit that checks a year-before row or retrieves an older
+  one, and any readiness check placed on a unit's first day or more than a few days ahead.
 - **Checks that do not repeat:** a course-level check right after a unit's end-of-unit assessment draws its items for
   that unit's skills from earlier units' content, and the scope and sequence says so.
 - **Standards in full:** every lettered part of every owned code is carried by a day, not only named.

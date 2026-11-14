@@ -54,8 +54,13 @@ studies goes first; the other subjects follow in step 5.
    **A unit over 25 days also holds a mid-unit assessment** inside its days (where a base text has its own, use it).
    **Readiness or retrieval** (settled 2026-11-14 for all 15 social studies courses; frame-write lesson 16 uses the
    same words): a row used the year before, or earlier the same year, opens as a retrieval task inside a day; every
-   other earlier-grade row the unit assumes (last used two or more grades back) opens the unit with a readiness check
-   on its first day.
+   other earlier-grade row the unit assumes (last used two or more grades back) gets a readiness check. **When**
+   (Cory, 2026-11-14, one timing in every course): before the unit opens, so its results shape day 1, in the last ten
+   minutes of the previous unit's last day, or of the respond day or course-level check respond day where one sits
+   between the two units; a few days ahead at most, never weeks. That day carries `assess` = `readiness`, or, if it
+   already holds another assess value, keeps it and its note says "plus the next unit's readiness check (10
+   minutes)". A unit 1 readiness check is served by the start-of-year check (day 1's note says so). A unit's first
+   day never holds a readiness check: it stays clean for the hook and the compelling question.
    **Each part of each code:** every observation, end-of-unit and check task asks about each part of each code it
    lists (a short prompt per part; no day added); a product or an observed performance may stand for a code where
    the day says so.
@@ -88,7 +93,8 @@ studies goes first; the other subjects follow in step 5.
 Run `python -X utf8 scripts/sequence.py check {course}` (also run by `python -X utf8 scripts/plan.py check`): days
 numbered in order, the frame's total and each unit's days, `stretch` in 1 to the unit count or `C`, the five kinds,
 an end-of-unit assessment per unit, a mid-unit assessment in units over 25 days, a respond day after each
-course-level check, every owned skill placed, every owned code placed (a note), the .md file present, not empty, with
+course-level check, each `readiness` day on the previous unit's last day or a respond day at most 3 days before a
+unit's first day and never on a first day, every owned skill placed, every owned code placed (a note), the .md file present, not empty, with
 its title and a section per unit, and a "Shorter path" section (a note). Then run
 `python -X utf8 scripts/frame.py calendar` and say in your last message whether your course breaks the stagger rule.
 

@@ -6,7 +6,7 @@ The course meets every school day (50 minutes, no timers shown to students), so 
 
 The base text is partial: John Rankin and Constanze Weise, World History Since 1500 (ETSU, CC BY 4.0), chapters 1 to 5, serves units 7 to 10 only, with one exception: chapter 8's Russia passage (printed pages 99 to 102) is background on day 141. data/plans/world-history-i/source-map.csv records every chapter section, the day it lands on, and each cut with its reason; days that adapt it name the section in the note. Units 1 to 6 have no base and are written from primary sources and scholarship. Credit line on each adapted day: "Adapted from John Rankin and Constanze Weise, World History Since 1500, ETSU, CC BY 4.0." The book's images are not covered by that licence and are checked one by one.
 
-Readiness checks open units 1, 2, 3, 4, 5, 6 and 8: every grade 5, 6 or 7 row the unit assumes that grade 8 did not use and this year has not yet met (the settled rule of 2026-11-14). ss7-rome-fall, used in grade 8 civics, opens as retrieval on day 1; grade 8 rows and rows already met this year open as retrieval tasks. The parallel timeline begun on day 5 is added to at the close of every unit.
+Readiness checks come before units 1, 2, 3, 4, 5, 6 and 8: every grade 5, 6 or 7 row the unit assumes that grade 8 did not use and this year has not yet met (the settled rule of 2026-11-14). Each is given before its unit opens (Cory, 2026-11-14): in the last ten minutes of the respond day before it (days 15, 30, 49, 63, 74 and 109), and for unit 1 in the start-of-year check, so each unit's first day opens on its question. ss7-rome-fall, used in grade 8 civics, opens as retrieval on day 1; grade 8 rows and rows already met this year open as retrieval tasks. The parallel timeline begun on day 5 is added to at the close of every unit.
 
 The course is thin after the redraw (data/plans/later.csv L8), so each unit below names the topics it teaches in full; together they fill the year inside the frame's units and days.
 
@@ -31,7 +31,7 @@ The course is thin after the redraw (data/plans/later.csv L8), so each unit belo
 
 Arc: five days on the categories and the year's tools (the seven interactions, the first cases, the inquiry, the timeline), five on geography and its displays ending in a layered network map, then three on the five source checks and the year's first written claim. The tools come first because every later unit reuses them as review.
 
-- Readiness: day 1, on grade 7's Europe maps (ss7-europe-geo, not used in grade 8). Grade 7's fall of Rome (used in grade 8 civics) and the comparison skill (kept in use in grade 8) open as retrieval tasks the same day.
+- Readiness: the start-of-year check, before day 1, on grade 7's Europe maps (ss7-europe-geo, not used in grade 8). Grade 7's fall of Rome (used in grade 8 civics) and the comparison skill (kept in use in grade 8) open as retrieval tasks on day 1.
 - End-of-unit assessment, day 14: the seven kinds of interaction and the networks, geography and human factors, the five checks on two unseen sources, a map, a parallel timeline and a comparison chart item, the inquiry's enduring issue and supporting questions, and a short claim from selected evidence. Respond day 15.
 - Day 10's layered map has a device route (an offline mapping tool page, supplied data, no account) and a paper route; only the device route shows the technology part of D2.Geo.1, and the record says which route a student took.
 - Candidate: Srivijaya, kept, inside day 9, 0 added days. Candidate: the Indian Ocean as one trade system, kept, the rest of day 9, 0 added days. Candidate: Polynesian voyaging, dropped: no check set member names it and the unit has no free day.
@@ -42,7 +42,7 @@ Arc: five days on the categories and the year's tools (the seven interactions, t
 
 Arc: five days on the six faiths in pairs, two on African practice, three on spread as a geography of diffusion, then three on one empire in depth that tie power back to belief. Faiths come before spread so students know what moved before they map how.
 
-- Readiness: day 16, on grade 6's origins of Judaism, Christianity and Islam and grade 7's Hinduism, Shang and Zhou with Confucius, and Buddhism in East Asia (none used in grade 8), one item per faith; days 17, 18 and 23 use it.
+- Readiness: the last ten minutes of day 15, on grade 6's origins of Judaism, Christianity and Islam and grade 7's Hinduism, Shang and Zhou with Confucius, and Buddhism in East Asia (none used in grade 8), one item per faith; days 17, 18 and 23 use it.
 - End-of-unit assessment, day 29: the six faiths and their timeline, the monotheisms compared, African practice and its survival, a diffusion map with the means of spread, and the chosen empire's power, religion and culture scored from days 27 and 28 beside a context question on an unseen source. Respond day 30.
 - Day 24 works from prepared route maps so the day is the means of spread; day 25 keeps the diffusion reasoning.
 - Candidate: the Tang and Buddhism's spread to Korea and Japan, kept, inside day 23, 0 added days. Candidate: the 1054 split, kept, part of day 24, 0 added days.
@@ -53,7 +53,7 @@ Arc: five days on the six faiths in pairs, two on African practice, three on spr
 
 Arc: four days on the African kingdoms, two on how a historian's account is built from them, five on the Mongol world read the same way, then the two-day map-and-explain task and a discussion of the compelling question. Africa first so the Mansa Musa case teaches interpretation before the travellers are read with it.
 
-- Readiness: day 31, on grade 6's West Africa and Axum rows and grade 7's Silk Roads (none used in grade 8); day 37 uses the Silk Roads item.
+- Readiness: the last ten minutes of day 30, on grade 6's West Africa and Axum rows and grade 7's Silk Roads (none used in grade 8); day 37 uses the Silk Roads item.
 - End-of-unit assessment, day 45: the words for power, the map-and-explain product of days 42 and 43 scored for politics, economy, culture and links, the Mongol roads and a traveller's account, and an unseen secondary claim traced to its primary sources with a further source it raises. Respond day 46, with review of units 1 to 3.
 - Candidate: Great Zimbabwe, kept, about a third of day 34, 0 added days. Candidate: the Hausa city-states, dropped: Songhai already carries the West African case and no day is free. Candidate: the Delhi Sultanate, dropped: no day is free, and South Asia's rule of mixed faiths is taught with the Mughals in unit 7 (day 97).
 
@@ -67,7 +67,7 @@ Days 47 and 48: a sourced claim paragraph from two unseen sources on an interact
 
 Arc: three days on East Asia, four on Europe ending in the three-way comparison, four on the Americas ending in the tribute comparison, then the sourced comparison on the compelling question. The Americas close the unit so unit 8 starts from societies students know.
 
-- Readiness: day 50, on grade 6's Mesoamerica and research report rows (idle grades 7 and 8), used on days 57 to 60. Grade 7's East Asia row opens as a retrieval task the same day.
+- Readiness: the last ten minutes of day 49 (course-level check 1's respond day), on grade 6's Mesoamerica and research report rows (idle grades 7 and 8), used on days 57 to 60. Grade 7's East Asia row opens as a retrieval task on day 50.
 - End-of-unit assessment, day 62: each option in full (Song, Kamakura, Europe's kingdoms, Maya, Mexica, Inca), the Church, feudalism, knighthood and rights in England, the feudal comparison, and an unseen source on how subjects saw a ruler. Respond day 63.
 - Candidate: Kievan Rus and the Mongol yoke, kept, part of day 53, 0 added days. Candidate: Mississippian cities, dropped: the three owned American options fill the days; the unit plan's comparison table records it. Korea under Goryeo, dropped: the 14-day unit carries its owned comparisons and has no free day.
 
@@ -77,7 +77,7 @@ Arc: three days on East Asia, four on Europe ending in the three-way comparison,
 
 Arc: three days on learning (scholars, universities, continuity and change), two on Chinese inventions and one traced route, three on crops and cloth with supply and demand, then the short claim. Learning first because the cotton economy's demand question uses the trade routes the inventions travelled.
 
-- Readiness: day 64, on grade 7's spread of ideas (ss7-ideas-spread, not used in grade 8).
+- Readiness: the last ten minutes of day 63, on grade 7's spread of ideas (ss7-ideas-spread, not used in grade 8).
 - End-of-unit assessment, day 73: classical learning preserved and the universities, the Chinese inventions, the Agricultural Revolution in all three regions, cotton and its exports, a land and culture judgment, and a continuity and change task on unseen sources. Respond day 74.
 - Candidate: al-Khwarizmi and Ibn Sina named as individuals, kept, inside day 64, 0 added days. Candidate: Champa rice, kept, part of day 69, 0 added days.
 
@@ -87,7 +87,7 @@ Arc: three days on learning (scholars, universities, continuity and change), two
 
 Arc: six days on the Mediterranean encounter, ending in the year's middle writing step, two on the slavery comparison, four on the plague ending in the chain, then one day answering the compelling question (did the meetings of peoples around the Mediterranean and beyond bring more exchange or more harm?) from all three strands. The one-to-two page claim sits here because the Crusade accounts are the year's first extended four-perspective primary-source comparison; it is due day 80 (week 16), clear of ELA 9's argument in weeks 20 to 24. No role play or simulation anywhere in the unit.
 
-- Readiness: day 75, on grade 7's Roman slavery and class (ss7-roman-slavery-class, not used in grade 8), used on day 81.
+- Readiness: the last ten minutes of day 74, on grade 7's Roman slavery and class (ss7-roman-slavery-class, not used in grade 8), used on day 81.
 - End-of-unit assessment, day 88: al-Andalus, the Crusades' causes, course and results, how common slavery was, the plague's spread, death rates and repeated outbreaks, the chain and a before-and-after map, with an unseen account to source for perspective. Respond day 89, with review of units 4 to 6.
 - Candidate: the Reconquista as the frame for al-Andalus, kept, part of day 75, 0 added days. Candidate: the Hundred Years' War and Joan of Arc, dropped: the plague carries the crisis of the 1300s and no day is free.
 
@@ -112,7 +112,7 @@ Arc: four days on the Islamic empires, one on the city-states, three on the Rena
 
 Arc: three days on Iberia and the voyages, four on the Americas ending in one global silver economy, five on the Atlantic slave trade ending in resistance and lives built, then two days answering the compelling question. The slave trade follows unit 6's comparison so its scale, heredity and race stand out. No role play or simulation of conquest, sale or the crossing.
 
-- Readiness: day 110, on grade 6's Caribbean peoples and grade 5's slavery in the colonies (not used since).
+- Readiness: the last ten minutes of day 109, on grade 6's Caribbean peoples and grade 5's slavery in the colonies (not used since).
 - End-of-unit assessment, day 124: Iberia after 1492 with Portugal's part, the sea route, colonization's effects, the Columbian Exchange, missionaries and the slave trade, a land-use judgment, and an unseen trader's record set against day 118's interpretation. Respond day 125.
 - Base: ETSU chapters 1 and 2 on days 110, 112, 114, 117, 118 and 121 (source map).
 - Candidate: the Pueblo Revolt of 1680 (with maroon communities on day 121), kept, part of day 115, 0 added days. Candidate: Afonso I's letters, kept, the source of day 118, 0 added days. Candidate: Potosi silver and the Manila galleons, kept, day 116, 0 added days.
@@ -194,7 +194,7 @@ The year is 160 days of 50 minutes. Two shorter routes keep every owned code, sk
 Status after the fix pass (2026-11-14): item 1 goes to the structure pass (data/modules.csv and later.csv are not this course's files); item 2 needed nothing more; item 3 is accepted, and the source map now gives chapter 8's passage its own row.
 
 1. **L8 (thin topics).** Each unit above names its topics in full, and the topic page table names ten new pages (How Societies Meet; Faiths and Empires to 1400; African Kingdoms and the Mongol World; Song, Kamakura and the American Empires; Knowledge on the Move; Slavery and the Black Death; Ottoman and Mughal Empires; The Atlantic Slave Trade; Trade, Science and Empire in the 1600s; Reason, Rights and Rulers) beside the five existing World History pages. Fix: add them to data/modules.csv for course world-hist-hs and mark L8's World History I part as named in data/plans/later.csv.
-2. **This resumed run reviewed the earlier writer's days.csv.** Kept as written, with these corrections: days 91 and 92 said week 18 and are week 19; day 1 now says why there is no readiness check; the dropped Polynesian, Mississippian and Pugachev candidates now say why on their days; days 128 and 141 now name their ETSU sections. No unit, day count or owned row changed.
+2. **This resumed run reviewed the earlier writer's days.csv.** Kept as written, with these corrections: days 91 and 92 said week 18 and are week 19; day 1 now says why there is no readiness check on it; the dropped Polynesian, Mississippian and Pugachev candidates now say why on their days; days 128 and 141 now name their ETSU sections. No unit, day count or owned row changed.
 3. **ETSU on unit 10.** Day 141 leans on chapter 8's Russia passage (Peter and Catherine), which falls in the book's World History II range. It is background only; World History II also uses it (its day 3). No change needed unless the lead wants one book section used by one course only.
 
 ## For Cory

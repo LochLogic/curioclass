@@ -9,8 +9,10 @@ Judge, before a single day is written:
 - is anything used before it is taught (check the scope and sequence and the progression);
 - do assessment numbers collide with taught ones;
 - are the errors real, and can some item tell each error apart from the others;
-- is the readiness check right: on the unit's first day, only for rows last used two or more grades back, with rows
-  used the year before or earlier the same year opened as a retrieval task instead (sequence-write.md rule 2);
+- is the readiness check right: given before the unit opens (the last ten minutes of the previous unit's last day or
+  of the respond day between; unit 1 by the start-of-year check), never on the unit's first day, only for rows last
+  used two or more grades back, with rows used the year before or earlier the same year opened as a retrieval task
+  instead (sequence-write.md rule 2; timing Cory, 2026-11-14);
 - do the minutes, materials and tools hold;
 - does the unit pick up what the unit before promised (its last day file's Tomorrow line and its plan's carried
   list) and hand on cleanly to the next.
