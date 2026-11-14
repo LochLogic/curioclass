@@ -10,6 +10,64 @@ heading, and say how many findings went to Cory instead.
 
 ## Week of 2026-11-09
 
+### Social studies progression, K to 12. Report: progression-social-studies-2026-11-13.md
+
+Findings to Cory went to Desk card q-ss-progression-1.
+
+| Settled | Why | File |
+|---|---|---|
+| The far handoffs (grade 5 to 8, 5 to 11, 8 to 12; 55 in all) stay | They follow the Massachusetts course order, and each has a reason in its notes | social-studies.csv |
+| Cross-course skill links wh2-wwi-causes to us1-sectional-crisis, and wh1-renaissance to us1-revolution-war, stay | Each carries a named C3 skill (D2.His.15, D2.His.3), not a topic | social-studies.csv |
+| The model gaps map-key 5, 7, 8; compass 5; budget; map-scale 8; region 8, 11; lat-long 8; branches 6, 10; opportunity-cost 9 to 11 stay | They follow the course content (the grade 8 civics year; the world history years). Each model returns where it is next needed | social-studies.csv |
+| ss3-globe-grid keeps D2.Geo.10.3-5; ss7-south-asia-geo keeps D2.Geo.12.6-8 | Each matches the indicator | social-studies.csv |
+| production-possibilities and circular-flow first appear in grade 12 | C3 places them in the 9-12 Economics band; nothing earlier needs them | social-studies.csv |
+| `sovereignty` stays a grade 3 word, with a defining phrase | It is the accurate word, and grade 4 builds on it | social-studies.csv |
+| The C3 wording fixes in finding 1 and the row edits in findings 2 to 9 | Item-level edits inside the standards' limits | social-studies.csv |
+
+### Science progression, K to 11. Report: progression-science-2026-11-13.md
+
+To Cory: the grade 12 and Physics questions, already settled on q-hs-science-core (RUBRIC-SCIENCE.md updated); Biology before Chemistry noted, no card.
+
+| Question | Settled | Why |
+|---|---|---|
+| No grade 12 core course | Accept | Appendix K Course Map 3 covers the band in three courses; every HS expectation is owned. |
+| HS-PS2-6 in Chemistry, not Physics | Accept | Molecular material design sits with bonding and forces between particles; reason given in the row. |
+| HS-ESS2-2 in Chemistry | Accept | Feedback in Earth systems goes with the climate rows there; reason holds. |
+| HS-ESS1-5 and HS-ESS1-6 in Physics | Accept | Appendix K repeats ESS1-5 in Physics; plate motion and early Earth evidence sit with radioactive dating (HS-PS1-8 is in Chemistry, but the decay math is used in Physics too). Stated in the rows. |
+| MS-PS4-2 owned in grade 6 though OpenSciEd completes it in 8.2 and 8.4 | Accept, add note | Grade 6 assesses only light reflection, absorption and transmission; s8-earth-sun-moon and s8-wave-amplitude-energy assess the rest. Add that sentence to s6-light-paths. |
+| MS-ETS1 split 1 and 4 in grade 7, 2 and 3 in grade 8 | Accept | Matches where OpenSciEd does the full design work. |
+| 3-5-ETS1 split one per grade | Accept | Matches the reconcile (difference 4) and the one-owner rule. |
+| Age of the Earth, evolution, climate change | Accept as written | Taught as the evidence shows (BASELINE rule 5); no softening found. |
+| Grade 8 and Biology row counts | Accept | Ownership count, not time (finding 10). |
+| Practice-only links (finding 6) | Note, not delete | Keep, mark as practice links. |
+
+### ELA progression, K to 12. Report: progression-ela-2026-11-13.md
+
+One finding to Cory (long texts in grades 9 to 12), plus the dash question from the Codex read: Desk card q-ela-progression-1.
+
+| Choice | Reason in one line | File |
+|---|---|---|
+| e2-prefixes-suffixes boundary: English roots grade 3, Greek and Latin roots grade 4 | L.3.4c and L.4.4b say so; two rows disagreed | data/progressions/ela.csv |
+| e3-long-words names the grade 2 suffixes as review and adds -ment and meaning | grade 2 rows already decode -tion, -sion, -able, -ous | data/progressions/ela.csv |
+| Five assumes and hands_on pairs added (finding 2 table) | each is the same standard's earlier version | data/progressions/ela.csv |
+| e11-seminar and e12-seminar at least twice a unit; K to 2 discussion rows at least two named protocols a week | match grades 3 to 10 and the "often" bar | data/progressions/ela.csv |
+| e6-argument-writing cross_subject to social-studies:ss6-hammurabi-code | D4.1.6-8 is owned in grade 8; overrides reconcile difference 10 | data/progressions/ela.csv |
+| Drop "decodable", "band" and "high end" from five `words` cells | plan words, not student words | data/progressions/ela.csv |
+| e10-ri-argument-evaluate math lean held until math.csv is read | cannot place S-IC.B.6 yet | none now |
+
+### Math progression, K to 11. Report: progression-math-2026-11-13.md
+
+None to Cory. Carried for the course frames: the accelerated path, and the 53 (+) codes deferred to the electives.
+
+| Choice | Reason in one line | File |
+|---|---|---|
+| Exclude F-BF.A.1c, F-BF.B.4b, 4c, 4d with the reasons in finding 1 | (+) parts the base text never tags; the row notes already call them excluded | data/progressions/math-excluded.csv |
+| The 14 high school assumes links in finding 2, and the two in finding 3 | Each is the step the standard or the row's own notes name | data/progressions/math.csv |
+| The four K to 8 links in finding 4 (the m8-two-way-tables swap included) | Each is the standard the next one is written on | data/progressions/math.csv |
+| US spelling in the words column (center, behavior, randomization) | One spelling for one term across grades 8 and 10, as the standards print it | data/progressions/math.csv |
+| ela:L.K.5a becomes ela:ek-word-relationships in two K rows | Point at the skill that owns the code | data/progressions/math.csv |
+| The timer and spaced-practice sentence on m3-add-sub-1000 and m6-decimal-operations | Matches every other fluency row | data/progressions/math.csv |
+
 ### Lesson-day template and day 90 of grade 4 math. Report: lesson-day-2026-11-12.md
 
 13 findings. Seven (1 to 7) changed the template before Cory's yes, which goes to Cory as one question on the

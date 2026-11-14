@@ -246,6 +246,8 @@ applies a standard another row owns (MS-PS4-2 owned in grade 8, MS-PS3-5 in grad
 them). Measured: reads and fix pass about 170 thousand agent tokens plus Codex's own; the write and reconcile
 stages were not totalled.
 
+**ELA and math done 2026-11-13.** ELA: 374 rows K to 12, all 455 grade-level codes owned once; five blind band writers, stitch, reconcile with the older grade 6 work (18 differences, old won 8, 5 sourced, no pull), expert and Codex reads, one fix pass; two questions on Desk card q-ela-progression-1. About 1.6 million agent tokens. Math: 305 rows K to 11, 53 (+) codes deferred to the electives; reconcile with the older grade 3 to 5 and grade 4 work (43 differences, old won 28, all sourced: earned, not steering); expert and Codex reads, one fix pass; nothing for Cory. Similar token cost, not totalled. All four progressions now pass the gate (social studies 384, science 198, ELA 374, math 305 rows). Next: the read across all four, then step 2.
+
 ### Step 2. Course frames for the four core subjects, then a review: baseline 1
 
 A course frame says what the course is: its grades, the standards and progression skills it owns, its days, its

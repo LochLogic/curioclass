@@ -34,11 +34,13 @@ collections come per course; L7 is Cory's; the rest wait on
 their triggers. Cory 2026-11-13: both readers are trusted (q-calibration-1 answered); Codex reads run by script
 (scripts/codex_read.py), no clicks.
 
-**Step 1, science progression, 2026-11-13 (latest):** done, the first subject written blind then reconciled.
+**Step 1, all four progressions done, 2026-11-13 (latest).** ELA: 374 rows K to 12 (data/progressions/ela.csv), all 455 grade-level Common Core codes owned once (9-10 codes owned in grade 10, 11-12 in grade 12, started with ~ the year before). Reconcile: 18 differences, old work won 8 (5 sourced), no pull. Open for Cory: Desk card q-ela-progression-1 (how the dash is taught; one long text a year from outside the British and American tradition in grades 9 to 12). Math: 305 rows K to 11 (data/progressions/math.csv), high school owned in Algebra I (9), Geometry (10), Algebra II (11); 53 (+) codes deferred to the electives (math-excluded.csv). Reconcile: 43 differences, old work won 28, all on a named source, so real but earned; F-IF.C.8 moved to Algebra II on the base text's tags. The gate now counts a parent covered by its lettered parts, never hides a (+) part behind an owned parent, and fails a cross-subject lean to an unowned code. Nothing for Cory from math. Reviews: docs/reviews/progression-{ela,math}-*2026-11-13.md; settled items in docs/reviews/DIGEST.md. Left for the course frames: accelerated path (Algebra I in grade 8), major-work share by days, text picks. Next: the step 1 read across all four progressions, then step 2 course frames.
+
+**Step 1, science progression, 2026-11-13:** done, the first subject written blind then reconciled.
 198 rows K to 11 (data/progressions/science.csv), all 208 NGSS PEs owned once; no grade 12 core course. Reconcile
 (25 differences: old work won 19, 17 on a named source; new won 6; no pull found), expert and Codex reads, fix pass
 (docs/reviews/progression-science-*2026-11-13.md). The gate now reads `~CODE` as a contributing row (starts or
-applies a standard another row owns). Nothing for Cory. Next: ELA, then math, the same way.
+applies a standard another row owns). Nothing for Cory.
 
 **Step 1, social studies progression, 2026-11-13:** done. 384 rows K to 12
 (data/progressions/social-studies.csv), gate scripts/progression.py inside plan.py check, expert and Codex reads

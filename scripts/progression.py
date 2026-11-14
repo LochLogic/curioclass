@@ -23,6 +23,8 @@ row starts the work; a later one applies it).
 An ELA code sits in its own grade; a band code (9-10, 11-12) is owned by the band's last grade and started
 with ~CODE in the earlier one. A K to 8 math code sits in its own grade (4.NBT.B.5 in grade 4); high school math codes
 carry no grade.
+A (+) high school math part is covered only when named or excluded itself, not through its parent. A cross_subject
+code must be named by a row of the other subject once that subject's progression exists (added 2026-11-13).
 note (exit 0): a handoff that skips one or more grades; a C3 indicator named in more than one grade (depth must
 differ, and the notes must say how); a C3 indicator of a grade band named by no grade in that band; grade row counts.
 """
@@ -154,6 +156,10 @@ def check(subject):
                     fails.append('excluded %s has no reason' % e['code'])
                 excl[e['code'].strip()] = e
         anchor = codes(ANCHOR[subject])
+        plus_codes = set()
+        for line in open(os.path.join(ROOT, 'data', 'standards', ANCHOR[subject]), encoding='utf-8'):
+            if not line.startswith('#') and '(+)' in line:
+                plus_codes.add(line.split('	')[0].split()[0].strip())
         kids = {}
         for code in anchor:
             if parent(code):
@@ -161,7 +167,8 @@ def check(subject):
         for code in anchor:
             if HEADING.match(code):
                 continue
-            named = code in owners or (parent(code) in owners) or (
+            plus = code in plus_codes
+            named = code in owners or (parent(code) in owners and not plus) or (
                 code in kids and all(k in owners for k in kids[code]))
             if code in excl:
                 if code in owners:
@@ -245,7 +252,19 @@ def check(subject):
             other_codes = set()
             for f in STD_FILES[subj]:
                 other_codes.update(codes(f))
-            if ref in other_codes or ref in other_ids:
+            if ref in other_ids:
+                continue
+            if ref in other_codes:
+                if other is not None:
+                    named = set()
+                    for o in other:
+                        for c in split(o['standard']):
+                            c = c.lstrip('~')
+                            named.add(c)
+                            if parent(c):
+                                named.add(parent(c))
+                    if ref not in named and parent(ref) not in named:
+                        fails.append('%s cross_subject %r: no %s row names that code (point at the skill id or a code a row owns)' % (sid, x, subj))
                 continue
             if other is None:
                 notes.append('%s cross_subject %r: %s progression not written yet, check the id then' % (sid, x, subj))
