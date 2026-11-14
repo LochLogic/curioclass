@@ -136,3 +136,36 @@ the math lean back on e1-key-details if it wants both ends written; nothing fail
 | SL.1.2 lean points at e1-key-details; daylight data is a later science use | 1 | Matches what the standards ask |
 | Grade 2 cuts made for the day budget; 2.3.17 kept, the estimating lesson dropped; six Curio Class lessons | 2 | Every cut day practises major work; estimating is in four base lessons |
 | 1.G.A.3 and 2.G.A.3 written in full | 1, 2 | Standards in full |
+
+## Codex rerun for grade 2 (applied 2026-11-14)
+
+Applies `frame-math-grade-2-codex-rerun-2026-11-14.md` to `docs/courses/math-grade-2/frame.md`. The rerun reopens none
+of the expert's settled choices; its own settled rows agree with them (order and days kept). Base-text check: grade 2
+lesson 4.13 in the source store is tagged MP2 twice. No unit, skill, standard or day moved.
+
+| # | Finding | Result | What was done |
+|---|---|---|---|
+| 1 | Four addends past 100 put in an extension | Applied | Unit 2 now teaches and assesses totals above 100 (25 + 35 + 45 + 15 as 60 + 60 = 120) in the required work; the extension is now two different groupings of four addends explained; the end-of-year check's four-addend item includes a total above 100. The progression row already says "totals may pass 100": no row change |
+| 2 | Summaries omit what students produce | Applied | Unit 1: students draw both picture and bar graphs with a single-unit scale; unit 3: students generate the data (several objects, or one object several times) and construct the line plot; unit 6: recognize and draw shapes with given attributes, and tell and write time from analog and digital clocks. Wording matches the progression rows |
+| 3 | MP2 has no unit | Applied | Unit 4 candidates now MP.2 (stories, equations and number-line diagrams, base lesson 2.4.13) and MP.5; MP.7 stays in units 1, 5, 6, 7 and 8. The Standard bullet lists where all eight practices sit |
+| 4 | Lens line 61 stale | For the lead | `docs/agents/lenses/math.md` is outside this pass's files; already in this report's For the lead, the rerun's wording is equivalent |
+| 5 | Lens line 65 stale | For the lead | As 4; the rerun adds "coverage of every child", worth taking into that replacement |
+| 6 | Rubric current-state table stale | For the lead | `docs/RUBRIC-MATH-K8.md` line 34 and the teacher-supports row: outside this pass's files; replacement text as the rerun gives it |
+| 7 | Expert grade 2 report's "no ELA frame" line | For the lead | `docs/reviews/frame-math-grade-2-2026-11-14.md` line 17: append the rerun's dated update note; outside this pass's files. The frame itself already uses ELA unit 1 |
+
+Progression changes: none. Grade 1 and grade 3 frames: not edited.
+
+Gates: `scripts/frame.py sync` (52 courses); `scripts/frame.py check math-grade-1 math-grade-2 math-grade-3` 0
+failures each (grade 2: 9 units, 160 days, 154 in units); `scripts/progression.py check math` 305 rows, 0 failures;
+`scripts/stale.py check` 56 files, 0 failures.
+
+For Cory: nothing new. The rerun repeats the open items above: a shorter-period path beside the 60-minute day, and
+who (and any pay) reads the saree silk lessons.
+
+### Settled (rerun)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Four-addend totals above 100 are required unit 2 work, 25 + 35 + 45 + 15 = 120 as the worked case | 2 | 2.NBT.B.6 limits the addends, not the total |
+| MP.2 and MP.5 in unit 4, anchored in base lesson 2.4.13; all eight practices listed with their units | 2 | Every practice has a named home |
+| Units 1, 3 and 6 name what students produce (both graphs, the measured data and line plot, drawn shapes, written time) | 2 | Reading alone does not meet the standards |
