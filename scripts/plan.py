@@ -1161,6 +1161,14 @@ def main(a):
             for x in notes:
                 print('  note', x)
             bad += len(fails)
+        if not rest:
+            import progression
+            for s in [s for s in progression.STD_FILES if progression.load(s) is not None]:
+                pf, pn, n = progression.check(s)
+                print('progression %s: %d rows, %d failure(s)' % (s, n, len(pf)))
+                for x in pf: print('  FAIL', x)
+                for x in pn: print('  note', x)
+                bad += len(pf)
         sys.exit(1 if bad else 0)
     elif cmd == 'tables':
         for c in (rest[:1] or courses()):

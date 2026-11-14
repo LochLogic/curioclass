@@ -906,3 +906,10 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
   texts; the current CC BY-NC-SA editions stay reference.
 - **q-hs-science-core:** yes. Physics is core; the Earth and space standards are folded into Biology, Chemistry and
   Physics; Earth and Space Science and Environmental Science stay electives. data/courses.csv updated.
+
+## 2026-11-13: card q-calibration-1 (Cory, on the Desk)
+
+- **q-calibration-1:** "they are good to go as you suggested." Both readers (the expert agent and Codex) are
+  trusted for progressions, frames, scopes and sequences and unit plans, and both read the progressions and frames.
+  Codex runs by script with no clicks (scripts/codex_read.py; Cory 2026-11-13: "use a script to send it over there
+  automatically, no approval or interaction from me is needed"). The re-run with fresh plantings stays L10.
