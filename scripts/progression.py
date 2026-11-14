@@ -153,10 +153,16 @@ def check(subject):
                 if not (e.get('reason') or '').strip():
                     fails.append('excluded %s has no reason' % e['code'])
                 excl[e['code'].strip()] = e
-        for code in codes(ANCHOR[subject]):
+        anchor = codes(ANCHOR[subject])
+        kids = {}
+        for code in anchor:
+            if parent(code):
+                kids.setdefault(parent(code), []).append(code)
+        for code in anchor:
             if HEADING.match(code):
                 continue
-            named = code in owners or (parent(code) in owners)
+            named = code in owners or (parent(code) in owners) or (
+                code in kids and all(k in owners for k in kids[code]))
             if code in excl:
                 if code in owners:
                     fails.append('%s is both excluded and named' % code)
