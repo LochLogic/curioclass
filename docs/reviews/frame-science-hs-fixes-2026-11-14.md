@@ -140,3 +140,124 @@ no edit.
 | Kepler's third law as T squared = a cubed, roots by calculator | Physics | No math ahead of Algebra II |
 | Alkaline 1.5-volt cells only | Physics | A shorted lithium or rechargeable cell can burn |
 | Same-course order (wave unit before interior unit) recorded in notes, not assumes | Physics | assumes lists earlier grades only |
+
+## Codex rerun (applied 2026-11-14)
+
+The three blocked Codex reads were rerun (`frame-<course>-codex-rerun-2026-11-14.md`) and weighed on their merits
+against the frames as fixed above, the progression and the performance expectations in full. The expert's settled
+rows stand except where noted (Biology 3, a standard's revision left unsupported). Gates after:
+`frame.py sync` (52 courses); `frame.py check science-kindergarten science-grade-1 science-grade-8 biology chemistry
+physics` 0 failures each; `progression.py check science` 198 rows, 0 failures; `stale.py check` 56 files, 0
+failures. Every course keeps its units and days (Biology 10, Chemistry 11, Physics 10; 160 each, 149 in units).
+
+### Biology
+
+| # | Finding | Result | What was done |
+|---|---|---|---|
+| 1 | Unit 4 sends all remaining energy to respiration heat | Applied | Unit 4 and bio-energy-pyramids notes: a proportional budget telling apart energy built into the next level's biomass, respiration heat, and chemical energy in uneaten material and waste entering detrital and decomposer pathways; roughly a tenth is illustrative; atoms tracked apart from energy. 11 days kept |
+| 2 | Unit 1 narrows feedback to a set point | Applied | LS1.A names positive and negative feedback. Unit 1 and bio-homeostasis-feedback notes: a required, supplied organism-level positive-feedback case (simplified blood clotting, no molecular steps): counteracting against amplifying, and what stops the amplifying |
+| 3 | Unit 3's dry-mass revision trigger cannot show sugar atoms in amino acids | Applied | Dry mass shows mass gained, not where sugar's atoms go, so HS-LS1-6's revision on evidence would go unsupported. The expert's revision moment stands; its evidence is now supplied carbon tracing from sugar into new amino acids with a printed atom-tracking path, other elements accounted for from the surroundings; dry mass stays the photosynthesis and respiration evidence (unit 3 and bio-carbon-molecules notes) |
+| 4 | "Every investigation fits one lesson" against week-long observations | Applied | Days bullet: active sessions fit 50-minute lessons; longitudinal investigations name preparation, elapsed time, repeated measurements and teacher drying, inside units 1 and 3's days |
+| 5 | Load note counts four engineering expectations | Applied | bio-population-carrying-capacity notes: 24 life science, three engineering (HS-ETS1-1, HS-ETS1-3, HS-ETS1-4), three Earth and space |
+| 6 | ELA 9 says Biology and Algebra I are written later | Cross-subject | Wording below |
+| 7 | RUBRIC-SCIENCE "only material" | For the lead | Wording below |
+| 8 | RUBRIC-SCIENCE nature-of-science gap | For the lead | Wording below |
+| For Cory | Readers | Collected | Already in "For Cory" above |
+
+Counts: applied 5, cross-subject 1, for the lead 2, rejected 0.
+
+### Chemistry
+
+| # | Finding | Result | What was done |
+|---|---|---|---|
+| 1 | Supplied-data routes drop the investigation and build performances | Applied | Labs bullet course rule: each no-kit or simulation path names the decisions, evidence collection, construction, testing and revision it keeps; supplied results alone are partial coverage for HS-PS1-3, HS-ESS2-5, HS-PS3-4 and HS-PS3-3 (rubric S6), and the unit plan names the practical step still owed. Units 2, 3, 5 and 7 rewritten as given (student-chosen conditions and limits; supplied melting data a supplement; the water-mixing investigation kept; the device always built and tested). The same "active sessions fit 50-minute lessons" wording as Biology replaces "Every investigation fits one lesson" |
+| 2 | Cooking oil does not disappear | Applied | Unit 2 anchor: water and rubbing alcohol dry at different rates while oil leaves a persistent mark; water and alcohol bead differently. Substitute note: controlled water and alcohol comparison, spreading told from drying, evaporation qualitative |
+| 3 | Iron and copper reactions in a main-group unit | Applied | Unit 1: steel wool and copper are optional enrichment about chemical change, not assessed cases for HS-PS1-1 or HS-PS1-2 |
+| 4 | ELA 10 unit 7 overlaps the forecast by three days | Applied | Unit 9 runs about days 113 to 130 (106 unit days and 6 check days before it); ELA 10 unit 7 starts about day 128. The lean now says ELA uses its supplied forecast reading until the forecast is complete. The ELA 10 note in "Cross-subject notes" above, that its if-later line "is not needed", is withdrawn: ELA keeps it |
+| 5 | ELA 10 says the chemistry frame is written later | Cross-subject | Wording below |
+| 6 | RUBRIC-SCIENCE nature-of-science gap | For the lead | Wording below |
+| For Cory | Whether a no-kit route counts as full completion | For Cory | Below |
+
+Counts: applied 4, cross-subject 1, for the lead 1, for Cory 1 new.
+
+### Physics
+
+| # | Finding | Result | What was done |
+|---|---|---|---|
+| 1 | Three anchors too absolute | Applied | Unit 4: a cart or gravity-driven ride with no added power never regains its release height. Unit 7: "Sunlight can damage skin, while a radio receiver detects broadcasts inside a room. How do different frequencies interact with matter, and what controls their effects?", with thermal absorption and photon energy against total exposure in the content. Unit 10: a sourced age table with ancient meteorites, ancient lunar samples, Earth's oldest rocks and younger lunar rocks |
+| 2 | HS-PS3-2, HS-PS4-5, HS-ESS2-1 mechanisms | Applied | Unit 4: each energy change tied to particle motion and relative positions. Unit 6: absorption, detection and photoelectric response taught qualitatively before the explainer, signal traced through matter. Unit 9: uplift and erosion as interacting processes with feedback, across scales. Matching notes in phys-energy-motion-position, phys-wave-technologies, phys-landforms-scales |
+| 3 | Required crosscutting concepts missing in units 6 and 9 | Applied | Unit 6 C3 adds cause and effect (HS-PS4-1, HS-PS4-5); unit 9 adds patterns (HS-ESS1-5); the Standard bullet says C3 entries are required and a dropped candidate never removes one |
+| 4 | Unit 5's no-kit route drops the investigation | Applied | Both induction directions with student decisions on controls, measurements, repetitions and limits; no-kit path is selectable recorded runs or an interactive investigation keeping those decisions, said to be weaker; supplied readings alone do not count |
+| 5 | T squared = a cubed needs a central-body limit | Applied | Sun-centred only, a the semimajor axis; a supplied k in T squared = k times a cubed, or a reference orbit around the same body, for moons and satellites; no derivation. Math readiness, unit 3 note, the two math table rows and phys-orbits notes |
+| 6 | Unit 8 anchor gives the answer away | Applied | Opens on laboratory and stellar spectra; stellar element formation and the early universe come as explanations from that evidence; three expectations and 18 days kept |
+| 7 | RUBRIC-SCIENCE "only material" | For the lead | Wording below |
+| 8 | RUBRIC-SCIENCE nature-of-science gap | For the lead | Wording below |
+| In passing | ELA 11 argument unit is weeks 7 to 11 | Applied | Physics ELA table corrected; availability unchanged |
+
+Counts: applied 6 plus 1 in passing, for the lead 2, rejected 0.
+
+### Progression changes (data/progressions/science.csv, notes only, 8 rows)
+
+| Row | Change |
+|---|---|
+| bio-energy-pyramids | The three-way energy budget (biomass, respiration heat, detritus and decomposers); a tenth illustrative; atoms tracked apart from energy |
+| bio-homeostasis-feedback | Required supplied positive-feedback case beside the set-point investigation |
+| bio-carbon-molecules | Revision evidence is carbon traced into new amino acids; dry mass is not this revision |
+| bio-population-carrying-capacity | 24 life science, three engineering, three Earth and space |
+| phys-orbits | Sun-centred limit; supplied k or reference orbit otherwise |
+| phys-energy-motion-position | Macroscopic change tied to particle motion and positions |
+| phys-wave-technologies | Absorption, detection and photoelectric response before the explainer |
+| phys-landforms-scales | Uplift and erosion feedback across scales |
+
+No assumes or hands_on changed; the grade 8 frame's Seams table needed no edit.
+
+### Settled (rerun)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Energy budget splits biomass, respiration heat and detrital energy; a tenth illustrative | Biology | HS-LS2-4 accounts for energy not passed up |
+| A supplied positive-feedback case is required in unit 1 | Biology | LS1.A names both feedback kinds |
+| HS-LS1-6 revision on carbon-tracing evidence, not dry mass | Biology | Dry mass cannot show sugar atoms in amino acids |
+| Longitudinal investigations name elapsed time inside existing days | Biology, Chemistry | The calendar stays honest |
+| No-kit routes name what they keep; supplied results alone are partial | Chemistry | Rubric S6; investigate and build verbs |
+| Unit 2 anchor: water and alcohol dry, oil leaves a mark | Chemistry | Accurate observation |
+| Iron and copper reactions are enrichment, not HS-PS1-1 or HS-PS1-2 evidence | Chemistry | Main-group boundary |
+| ELA 10 keeps its forecast fallback | Chemistry | The units overlap on days 128 to 130 |
+| Anchors: release height, frequency and exposure, a sourced age table, spectra first | Physics | Accurate, and the answer not given away |
+| Particle, device-matter and landform-feedback mechanisms named | Physics | Standards in full |
+| Cause and effect in unit 6, patterns in unit 9, as required C3 | Physics | Each expectation's own crosscutting concept |
+| Kepler's third law Sun-centred; supplied k otherwise | Physics | Correct predictions without new math |
+| Unit 5 no-kit keeps the student's investigation decisions | Physics | HS-PS2-5's practice |
+
+### Cross-subject (for those frames' owners; not edited here)
+
+- **ELA 9** (`docs/courses/english-language-arts-grade-9/frame.md`, line 156): replace "the biology and Algebra I
+  frames are written later, so their units are not guessed." with "the world history, Biology and Algebra I frames
+  are on file. Biology unit 7 runs in weeks 19 to 23, before this course's unit 7 in weeks 24 to 26; Biology unit 9
+  runs in weeks 25 to 28, so this course retains its supplied-source bridge for human impacts."
+- **ELA 10** (`docs/courses/english-language-arts-grade-10/frame.md`, line 154): replace "the chemistry frame is
+  written later, so its units are not guessed." with "Chemistry timing is recorded in docs/courses/chemistry/frame.md.
+  Its forecast unit ends on about day 130, while this course's research unit starts on about day 128; the
+  forecast-reading fallback covers that overlap." Keep line 176's if-later line (this corrects the earlier note above).
+- **Algebra I, Algebra II, World History II:** the earlier notes above stand.
+
+### For the lead (outside this pass's files)
+
+- `docs/RUBRIC-SCIENCE.md` lines 54 to 55 ("the only material"): "Science course frames and the science progression
+  are now on file, alongside the grade 4 scope and sequence draft and the middle school base text. These are planning
+  evidence, not completed courses; claims about lessons, assessments and classroom use require the corresponding
+  materials." (Same intent as the K to 2 report's wording; use one.)
+- `docs/RUBRIC-SCIENCE.md` line 64, Gateway 2 connections: replace "No plan names where the nature of science is
+  taught" with "Nature-of-science locations are named in the course frames, for example Biology units 5, 7 and 8;
+  Chemistry units 1, 8 and 9; Physics units 3, 7 and 8. Unit plans must specify the tasks and evidence that develop
+  these ideas."
+- For docs/APPROACH-SOURCES.md: the HS-LS1, HS-LS2, HS-PS1-3, HS-PS3-2 and HS-PS3-3 evidence statements; the
+  orbits page of the federal space agency; the radiofrequency and lunar-sample sources the Physics rerun names; the
+  two chemistry evaporation sources; the high school criteria PDF was unreachable.
+
+### For Cory (rerun)
+
+- **Audience and scope (Chemistry, and the same rule in Physics unit 5).** If a no-kit route is meant to count as
+  full course completion, how learners get the hands-on investigation and build the standards require. The frames
+  now mark supplied-data routes as partial coverage until then.
+- **People.** Unchanged: the safety and materials teacher and the sensitive-topic readers.

@@ -171,3 +171,54 @@ no edit.
 | Two third-lesson weeks in weeks 1 to 4 | 2 | Unit 1 done before social studies grade 2's week 6 |
 | Every unit ends with an individual task on an unseen case, inside its days | K, 1, 2 | Transfer at the end (science lens) |
 | The year named "about 36 weeks, of which about N carry science lessons here" | K, 1, 2 | One year, stated one way |
+
+## Codex rerun (applied 2026-11-14)
+
+The kindergarten Codex read was rerun (`frame-science-kindergarten-codex-rerun-2026-11-14.md`) and weighed on its
+merits against the frame as fixed above, the progression and K-ESS3-1, K-ESS2-1 in full. The expert's settled rows
+stand. Gates after: `frame.py sync` (52 courses); `frame.py check science-kindergarten science-grade-1
+science-grade-8 biology chemistry physics` 0 failures each; `progression.py check science` 198 rows, 0 failures;
+`stale.py check` 56 files, 0 failures. Six units and 64 days kept.
+
+| # | Finding | Result | What was done |
+|---|---|---|---|
+| 1 | The needs-and-places model omits air | Applied | ESS3.A for K-ESS3-1 names water, air and land resources. Unit 4 and sk-needs-places notes: the picture model includes water, air and land resources; children name air as a need of the plants, animals and people shown and link local resources (water, soil, wood) to needs; no gases or breathing; the unit's unseen-case task asks for the same links |
+| 2 | The permitted swap of units 4 and 5 breaks a prerequisite | Applied | "For the lead" item 3 rewritten as settled: units 4 and 5 keep their order (unit 5 reuses unit 4's evidence sentence); unit 5 uses any sunny day or its matched-material or no-kit alternative |
+| 3 | The weather-counting bridge's "within 20" | Applied | Math teaches counting to 20 later in the year and a month can hold more than 20 of one weather. Unit 2 and the math bridge: the full record is kept, rows compared by matching picture squares, children count groups of up to ten with support, the teacher counts and labels larger totals; the mid-year check asks which row is longest |
+| 4 | RUBRIC-SCIENCE lines 54 to 55, "the only material" | For the lead | Already listed above (grade 1 Codex F6); outside this pass's files. Replacement wording below |
+| 5 | RUBRIC-SCIENCE line 64, "No plan names where the nature of science is taught" | For the lead | Outside this pass's files. Replacement wording below |
+| 6 | ELA kindergarten's weather bridge keeps the old chronology | Cross-subject | Wording below; ELA's frame not edited |
+| 7 | Earlier reviews present missing ELA frames as current | Rejected | A dated read records what was on disk that day; this fix report records the change, and `stale.py` passes. Rewriting old reads would blur the record |
+| For Cory | Time a week, $40 ceiling, readers | Collected | Already in "For Cory" above |
+
+Counts: applied 3, for the lead 2, cross-subject 1, rejected 1, for Cory 3 (already collected).
+
+Progression changes: sk-needs-places notes only (air and land resources in the picture model). No assumes or
+hands_on changed; the grade 1 frame's Seams table needed no edit.
+
+### Settled (rerun)
+
+| Choice | Course | Reason |
+|---|---|---|
+| Unit 4's picture model includes air and land resources, with the needs they meet | K | ESS3.A for K-ESS3-1: water, air and land resources |
+| Units 4 and 5 keep their order; the warm-climate swap is withdrawn | K | Unit 5 reuses unit 4's evidence sentence |
+| Weather counts: full record, groups of up to ten with support, the teacher counts larger totals | K | No math ahead of math; the month's record stays whole |
+
+### Cross-subject (for those frames' owners; not edited here)
+
+- **ELA kindergarten** (`docs/courses/english-language-arts-kindergarten/frame.md`, line 103, ek-main-topic bridge):
+  replace "science's recording deepens them later" with "science's weather chart is already running from week 1,
+  and its weather unit overlaps this work. Use that record where available; otherwise the ELA texts and picture
+  journal supply the observations needed here."
+
+### For the lead (outside this pass's files)
+
+- `docs/RUBRIC-SCIENCE.md` lines 54 to 55: as in the grade 1 item above: "Science planning material now includes the
+  science progression, course frames, the grade 4 scope and sequence draft, and the middle school base text. These
+  establish planning commitments; they do not establish that a finished science course exists."
+- `docs/RUBRIC-SCIENCE.md` line 64, Gateway 2 connections: replace "No plan names where the nature of science is
+  taught" with "Course frames now name planned locations for nature-of-science learning. Scope and sequence, unit and
+  lesson reviews must verify that students actually do this work."
+- For docs/APPROACH-SOURCES.md: the K-5 review criteria v2.0 address, the direct kindergarten and K-5 engineering
+  evidence statement links, the elementary unit overview pages (public descriptions only); the elementary scope and
+  sequence download returned 403.
