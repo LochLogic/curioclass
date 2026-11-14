@@ -25,6 +25,11 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
    **Changed 2026-11-11 (Cory, accepting the cold strategic review):** that sentence still holds for a single tool
    on the shelf. For a course it does not: a qualified person is required where docs/FOUNDATION.md section 7 says
    so, and Native and hard-history content in a course is one of those rows.
+   **Changed back 2026-11-14 (Cory, Desk cards q-ss-frames-1 and q-frames-ela-sci-math-1):** "We have no support for
+   this, it's just us. Ensure that the sensitivity agent is well educated." No outside reader is looked for, for a
+   tool or a course. The fresh sensitivity agent reads every unit, after studying the community's own published voice
+   and the scholarship (docs/pipeline/briefs/sensitivity-read.md); we teach with honesty and dignity at an age
+   appropriate level.
 6. **Classroom-safe language.** No slurs or expletives. A grawlix (#@$!) stands in where a curse would be (w1-28).
 7. **Privacy is stated.** Wherever a tool records or stores anything, say on screen that it never leaves the device
    (w1-20).

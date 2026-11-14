@@ -117,25 +117,27 @@ Decided 2026-11-11 (Cory), from the discussion recorded in docs/agents/decisions
    main review at every layer. It is the main read, not the only one (changed 2026-11-11, when Cory accepted the cold strategic review). The
    writer and the expert are the same kind of model, so a cold read removes anchoring but not a shared mistake.
    Three things stand beside it: the sources the expert must open before it judges (the pedagogy and standards
-   data, which Cory expects to grow), a script for everything that can be computed (item 2), and a qualified
-   person for the things in item 3.
+   data, which Cory expects to grow), a script for everything that can be computed (item 2), and the agent reads
+   and people in item 3.
 2. **A machine checks what a machine can** (BASELINE rule 27). Standard codes, day counts, coverage of every part
    of a standard, and every answer that can be computed. A key the script cannot reproduce fails the build.
-3. **People are aimed at what only a person can judge** (Cory, 2026-11-11; BASELINE rule 28). Every row below is
-   required before the course it touches is called finished. None has a name or a budget yet: Cory finds the
-   people, and nothing is spent or sent without his yes.
+3. **Reads beside the expert** (Cory, 2026-11-11; BASELINE rule 28; changed 2026-11-14). Every row below is
+   required before the course it touches is called finished. On 2026-11-14 Cory said there is no outside support
+   ("We have no support. Our agents are our best hope for success"): the content rows are agent reads, each by a
+   fresh agent that studies its sources first (docs/pipeline/briefs/sensitivity-read.md). The pilot rows stay people
+   Cory may find; nothing is spent or sent without his yes.
 
    | Who | What they read or do | When |
    |---|---|---|
    | A working teacher of the grade band (grades 3 to 5 for the first pilot) | Reads the pilot unit against written questions (docs/pilots/README.md) | Each course's pilot unit |
    | A teacher or a parent | Teaches the pilot unit's days and notes the minutes | First pilot in each subject |
    | Three students of the grade | Sit the end-of-unit assessment, timed by a watch the student does not see | First pilot in each subject |
-   | A math content reviewer | Every item and key of one whole course's checks | Before a math course is called finished |
-   | A science teacher | Safety and materials of every investigation | Before a science course is called finished |
+   | The answer-key agent (was a math content reviewer) | Solves every item of one whole course's checks cold and compares with the key, beside the script check | Before a math course is called finished |
+   | The safety agent (was a science teacher) | Safety and materials of every investigation, against published school science safety guidance | Before a science course is called finished |
    | A second reader on rights | The licence and source of every text a course teaches from | Before an ELA text is taught |
    | A native Spanish reader | Family notes, and student materials if they are made | Before Spanish is published in a course |
-   | A health specialist | The sensitive health topics | Before those units go live |
-   | A reader from the community concerned | Native and hard-history content in a course | Before those units go live |
+   | The sensitivity agent (was a health specialist) | The sensitive health topics, against public health guidance | Before those units go live |
+   | The sensitivity agent (was a reader from the community concerned) | Native, cultural, disability and hard-history content, after studying the community's own published voice | Before those units go live |
 
    Cory's mom, a grade 2 teacher, is reading the approach pages. The first pilot needs a grade 3 to 5 teacher too.
 4. **Lower layers are solid enough to build on, and expected to be revised** by what is built on them. No layer is

@@ -944,3 +944,45 @@ Done the same day in the unit 3 fix pass (75f0c406): `courses/math-4/u04-1/readi
   communities share it), read beside grade 5 science's water and resources rows (s5-water-distribution,
   s5-protect-resources). The reading and writing standards are unchanged; only the topic moves off the base text's
   disaster module. Nine grade 5 rows and e6-reading-range updated in data/progressions/ela.csv.
+
+## 2026-11-14: card q-ss-frames-1, social studies course frames (Cory, on the Desk)
+
+1. **Time a day:** yes, as picked (40 to 45 minutes in grades 3 to 12; 64, 96 and 96 days in K to 2).
+2. **Community and qualified readers:** "We have no support for this, it's just us. Ensure that the sensitivity
+   agent is well educated, and we will make the best effort we can to teach with honesty and dignity at an age
+   appropriate level." No outside readers are looked for. The fresh sensitivity agent is the read, and it must study
+   the community's own published voice and the scholarship before it judges (docs/pipeline/briefs/sensitivity-read.md).
+   This reverses the 2026-11-11 change to BASELINE rule 5 and the community row of FOUNDATION 7.3.
+3. **Grade 12 timetable:** yes, as picked (Government in the fall, Economics in the spring; either may be taken in
+   grade 11).
+4. **Personal Finance:** "I don't think it needs to be a course but it can be lightly integrated. Since it's covered
+   elsewhere, that will be the main education point." No core course. Economics keeps its credit and budgeting rows as
+   the main teaching; light touches elsewhere (math percent and interest problems, a family budget case) only where a
+   unit already fits them, no added days. The career and technical elective stays listed.
+5. **History and science literacy standards (RH, RST, WHST):** yes, as picked. Load them; the 6 to 12 social
+   studies and science courses meet them alongside their own standards, no extra days.
+6. **Since Time Immemorial:** "Honor it mostly. It still needs to fit our structure and tone. The content shouldn't
+   change though." Where Curio Class adapts its lessons: the content (facts, the tribes' own words and framing) is
+   kept as written; the lesson shape and voice follow Curio Class; the credit line says it is adapted from Since Time
+   Immemorial and that the content is theirs.
+
+## 2026-11-14: card q-frames-ela-sci-math-1, ELA, science and math course frames (Cory, on the Desk)
+
+1. **Time a day:** yes, as picked (160 days everywhere with the named condensations; shorter-period paths decided at
+   each course's scope and sequence).
+2. **Qualified readers:** "We have no support. Our agents are our best hope for success." No math content reviewer,
+   science safety teacher or ELA teacher is looked for. Agent reads take those places: an answer-key read that solves
+   every item cold beside the script check (BASELINE rule 27), a safety read against published school science safety
+   guidance, and the expert's text read (docs/pipeline/briefs/sensitivity-read.md names all three).
+3. **Community and cultural readers:** "Same as the last answer": the well-educated sensitivity agent, no outside
+   readers.
+4. **Science materials:** approved as picked (about $40 a class K and 1, $50 grade 2, $25 a unit grade 3, $30 a unit
+   grades 4 and 5; no-kit routes in Chemistry and Physics unit 5 count as partial coverage, said plainly).
+5. **Math paths:** not now, as picked (later.csv L15).
+6. **ELA 6 to 8 texts:** "Yes, I agree but our agent is the check, not a teacher." Primary documents may anchor a unit
+   where the standard's work is on them; the original literary pieces are written in house and read by the expert
+   agent, not a teacher.
+7. **ELA 9 to 12 check set:** yes, as picked (the college-level English language and literature frameworks and New
+   York's Next Generation 11 to 12 standards, as the check set only).
+8. **Smaller calls:** yes to all three (ELA 10 and World History II share one research product; grade 9's long text
+   as planned; K to 2 may assume one shared classroom device, always with a paper path).

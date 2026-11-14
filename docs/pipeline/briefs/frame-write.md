@@ -80,8 +80,10 @@ These findings came back course after course. Write so none of them comes back:
     evidence the unit itself studies.
 11. **Picks named, not left open,** where the standard allows (a worked case, a country, a text, a phenomenon), and
     chosen so they do not repeat another grade's picks.
-12. **Sensitivity.** A "Sensitivity reads" line in the brief: every unit gets the fresh-agent read; units that need
-    a community or qualified reader are named (who, and any pay, is Cory's).
+12. **Sensitivity.** A "Sensitivity reads" line in the brief: every unit gets the fresh sensitivity agent's read
+    (docs/pipeline/briefs/sensitivity-read.md); units with cultural, Native, hard-history, health or disability
+    content name the community and the sources the agent must study first. No outside human reader is planned (Cory,
+    2026-11-14); safety reads and answer-key reads are agent reads too.
 13. **No math ahead of math.** A unit uses no number work the math progression has not taught by then (coin values,
     percent, negative numbers, scale).
 14. **A paper path** beside any electronic tool, and no student account.
