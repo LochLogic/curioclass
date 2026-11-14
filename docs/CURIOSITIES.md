@@ -302,6 +302,21 @@ end in the same challenge: now build something that survives.
 
 Open: which is first, and whether Load Path lives inside Span and Spire.
 
+### The Art Studio (Cory, 2026-11-13)
+
+An art studio in the collection, maybe a few rooms of it, one per medium, each a bench where the student makes
+something and sees why it works. Candidates:
+
+- **Painting:** mixing pigment (subtractive color, why mud happens), glazing light over dark, warm and cool, and
+  how a few values make a form turn.
+- **Sculpting:** clay or stone in the round; taking away against building up, an armature, balance and where the
+  weight sits, light raking across a surface.
+- **Others to weigh:** printmaking (a carved block printed in reverse, one color per block), weaving (pattern from
+  warp and weft), drawing in perspective (vanishing points), ceramics (a glaze that changes in the kiln).
+
+Each stays a Curiosity, not an art lesson: open-ended, a real material behaving the way it does, no grading of the
+student's taste. Open: one studio with rooms or separate Curiosities, and which medium is first.
+
 ### Open questions for the fleshing out
 
 1. One real place done deeply, or a few sites (Second Growth) and planets (Atmosphere Console) to choose from?
