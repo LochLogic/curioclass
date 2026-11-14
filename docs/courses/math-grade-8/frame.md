@@ -63,8 +63,7 @@ Picked up from Math Grade 7 (and grades 4 and 6 threads)
 | Decimal expansions | m7-decimal-expansion | Unit 8 (m8-irrational-numbers) |
 | Signed addition and subtraction; four quadrants | m7-rational-add-subtract; m6-four-quadrants | Unit 8 (m8-coordinate-distance) |
 
-Handed on to Algebra I and Geometry (where the middle school threads end; their frames are not written, so the rows
-are named, not their units)
+Handed on to Algebra I and Geometry (where the middle school threads end)
 
 | What this course hands on | Row here | What the next course does with it |
 |---|---|---|
@@ -72,13 +71,13 @@ are named, not their units)
 | Angle facts | m8-angle-facts | Geometry: geo-angle-line-proofs, geo-parallelogram-proofs, geo-circle-angle-relationships, geo-similar-triangle-proofs |
 | Dilations and similarity | m8-dilations-similarity | Geometry: geo-dilations, geo-similarity-transformations, geo-scaling-area-volume, geo-partition-segments, geo-right-triangle-trig |
 | Slope; linear relationships | m8-slope-similar-triangles; m8-linear-relationships | Algebra I: alg1-linear-equation-graphs, alg1-graph-features-rates |
-| Comparing proportional relationships | m8-proportional-compare | No row picks it up (see "For the lead", item 6) |
+| Comparing proportional relationships | m8-proportional-compare | Algebra I: alg1-linear-equation-graphs |
 | Linear equations; systems | m8-linear-equations; m8-linear-systems | Algebra I: alg1-writing-equations-constraints, alg1-equation-reasoning, alg1-rearrange-formulas, alg1-inverse-functions, alg1-quadratic-forms-graphs, alg1-factoring, alg1-linear-systems |
 | Functions: define, compare, model, describe | m8-function-define; m8-function-compare; m8-function-model; m8-function-qualitative | Algebra I: alg1-function-notation, alg1-domain-range, alg1-linear-vs-exponential, alg1-quadratic-patterns, alg1-vertex-form-max-min, alg1-graph-features-rates, alg1-piecewise-absolute-value |
 | Volume of cylinders, cones, spheres | m8-volume-curved | Geometry: geo-volume-formulas, geo-modeling-objects-density |
 | Scatter plots; linear models; two-way tables | m8-scatter-plots; m8-linear-models-data; m8-two-way-tables | Algebra I: alg1-scatter-linear-models, alg1-correlation-causation, alg1-two-way-tables |
 | Integer exponents | m8-integer-exponents | Algebra I: alg1-linear-vs-exponential, alg1-exponential-functions |
-| Scientific notation | m8-scientific-notation | No row picks it up (N-Q.A.3 has no row; known from the progression stitch) |
+| Scientific notation | m8-scientific-notation | Ends in core math here; Chemistry (grade 10) retrieves it for particle counts (8.EE.A.4, chem-conservation-mole) |
 | Roots; irrational numbers | m8-roots; m8-irrational-numbers | Algebra I: alg1-quadratic-equations-reasoning, alg1-completing-square, alg1-quadratic-formula, alg1-rational-irrational |
 | Pythagorean theorem; coordinate distance | m8-pythagorean-theorem; m8-coordinate-distance | Geometry: geo-similar-triangle-proofs, geo-right-triangle-trig, geo-solving-right-triangles, geo-coordinate-proofs |
 
