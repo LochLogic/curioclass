@@ -1,7 +1,7 @@
 # Handoff: the one current-state page
 
-**This is the single page that says where the work stands and what to do next. Last updated 2026-11-14, after the
-course frames (top block); older blocks below are kept as written. Course words were renamed 2026-11-12 ([GLOSSARY.md](GLOSSARY.md)). Everything here is pushed to `spec/sara` and `main`.**
+**This is the single page that says where the work stands and what to do next. Last updated 2026-11-14, after
+baseline 1 (top block); older blocks below are kept as written. Course words were renamed 2026-11-12 ([GLOSSARY.md](GLOSSARY.md)). Everything here is pushed to `spec/sara` and `main`.**
 
 ## 2026-11-14: course frames (PRODUCTION-PATH step 2), latest
 
@@ -27,14 +27,23 @@ frame-<course>-reconcile-2026-11-14.md; nothing old was edited (math 4 rework wa
 
 Cory's calls on Desk card q-frames-ela-sci-math-1 (eight questions with picks).
 
-Open for the lead (not Cory's): the course id mismatch (frame slugs such as math-grade-4 and algebra-i against
-data/courses.csv ids such as math-k8 and algebra-1; recommendation in frame-cross-subject-2026-11-14.md); HANDOFF and
-the ELA 6 rights list (docs/courses/ela-6/RIGHTS.md) needs redoing for the frame's outside texts.
+Cory answered both cards on 2026-11-14 (DESK-ANSWERS.md): no outside human readers anywhere; agent reads take
+their places (docs/pipeline/briefs/sensitivity-read.md: sensitivity, safety, answer-key, text; the sensitivity agent
+studies the community's own voice first; BASELINE rule 5 changed back, FOUNDATION 7.3); personal finance lightly
+integrated, Economics the main teaching; RH, RST, WHST loaded (data/standards/ccss-literacy-6-12.txt; cross_subject
+cites them as `lit:<code>`); Since Time Immemorial content unchanged, our structure and tone, a credit line.
 
-**Baseline 1: running** (brief docs/pipeline/briefs/baseline-1.md). Expert reads by part: a subject column each
-(math, science, social studies, ELA), structure (layers, gates, words, the grade as a whole) and the website check;
-reports docs/reviews/baseline-1-<part>-2026-11-14.md; then a Codex read of a sample, a fix pass, and a Desk card if
-anything is Cory's.
+**Baseline 1: done** (brief docs/pipeline/briefs/baseline-1.md; reports docs/reviews/baseline-1-*-2026-11-14.md).
+Column reads for all four subjects, a structure read, a Codex sample of grades 4 and 9, the site check; one fix pass
+per subject (-fixes-), a structure pass and a cleanup pass. New: the step 3 brief and gate
+(docs/pipeline/briefs/sequence-write.md, sequence-read.md, scripts/sequence.py), one school calendar
+(docs/courses/CALENDAR.md, data/plans/calendar.csv, `frame.py calendar`), course ids in data/plans/frames.csv
+(catalog_id; later.csv L12 done), stricter frame gates, the glossary rows, 52 core courses in PRODUCTION-PATH
+(personal finance core = n). Cory's three calls are on Desk card q-baseline-1 (site design changes, frame-only
+course pages for all 52, Government unit 9's outside contact).
+
+**Next: PRODUCTION-PATH step 3, social studies scopes and sequences first**, with sequence-write.md; ELA 6 rights
+list redo is later.csv L14. Files needing deletion move to S:\CurioClass-archive\<what>-<date>\ (Cory, 2026-11-14).
 
 ## 2026-11-13: read this before anything below
 
