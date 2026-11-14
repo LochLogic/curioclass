@@ -20,6 +20,10 @@ You may not edit, create or delete any file: you are in a read-only sandbox, and
 docs/reviews/...", instead give that report, complete, as your final message, in Markdown. Use web search for
 outside sources where the brief asks for them, and name each source by link; mark what rests on memory.
 No em dashes in the report.
+Gates: run the ones the brief names. Other files are being worked on at the same time, so a gate may fail on
+another course's file, or may not finish in the sandbox. Then say so in one line and read the plan anyway, with
+`python -X utf8 scripts/frame.py check <course>` as the structural check: never withhold the verdict over a gate
+result on another file or a gate that did not run (added 2026-11-14, after reads came back blocked on one).
 
 The brief follows.
 
