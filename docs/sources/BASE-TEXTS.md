@@ -33,17 +33,22 @@ Never base texts, even though they share the name:
 ## Social studies: no base text (P2, 2026-11-13)
 
 Scouted in docs/reviews/social-studies-open-material-2026-11-13.md. No open curriculum covers a whole course under
-this bar, so every social studies course is our own. Partial bases, none loaded yet (later.csv L9):
+this bar, so every social studies course is our own. Partial bases (all but Oak loaded 2026-11-13; folder in
+S:\CurioClass-sources named on each; Oak is taken per unit when a course needs it):
 
 - CFPB personal finance activities (public domain; the CFPB name and logo excluded): the finance half of economics.
+  `cfpb-youth-finance\`: 134 of 135 activities, 262 PDFs (one activity's page is a dead link on CFPB's site).
 - East Tennessee State University, World History Since 1500 (2022, CC BY 4.0, college level): world-hist-2 and
-  1500 to 1800 in world-hist-hs. Read its copyright page and image credits before adapting.
+  1500 to 1800 in world-hist-hs. Read its copyright page and image credits before adapting. `etsu-world-history-1500\`.
 - Washington OSPI, Since Time Immemorial (CC BY 4.0): a tribal sovereignty strand in grades 4, 5, 8 and high school,
-  after the sensitivity review; OSPI asks that adaptations keep its content design.
+  after the sensitivity review; OSPI asks that adaptations keep its content design. `since-time-immemorial\`: 17 unit
+  pages (K to 3 pathways, grade 5 US history, middle school unit 1C, high school US history and Contemporary World
+  Problems), 117 files, one folder per unit page; the grade 4 Washington state units are left out.
 - Oak National Academy ancient civilisations units (UK Open Government Licence v3.0, accepted by Cory 2026-11-13):
   grades 6 and 7. Each item checked for third-party images or text, which that licence does not cover.
 - OpenStax retired CC BY editions, American Government 3e, Economics 2e and Psychology 1e: government, economics and
-  psychology. Cory 2026-11-13: their preface line on training and taking books into AI does not cover our use (we
+  psychology. `openstax-retired-ccby\`. Cory 2026-11-13: their preface line on training and taking books into AI
+  does not cover our use (we
   adapt the text into our own days; we train no model). The current OpenStax editions are CC BY-NC-SA: reference.
 
 ## Our own (no base text)
