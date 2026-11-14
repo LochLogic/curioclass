@@ -1022,3 +1022,14 @@ course, grade 4 math included.
    (45 checks moved off a unit's first day: 39 to the respond day before the unit, 6 unit 1 checks to the start-of-year
    check); scripts/sequence.py now fails a readiness day on a unit's first day. Report:
    docs/reviews/readiness-timing-2026-11-14.md.
+
+## 2026-11-14: unit plans and days by script, Codex and Claude reads (Cory, in chat)
+
+1. **Unit plans, now:** scripts/unit_skeleton.py fills the mechanical fields; Codex fills the judgement fields on its
+   own quota (scripts/codex_units.py, docs/pipeline/briefs/plan-codex.md), gated by scripts/unitplan.py; then a Claude
+   expert read and a Codex read of every plan, a Claude fix pass, and one structure pass. No local model.
+2. **Skeleton scripts for math, ELA and science** are built now and edited before each subject uses them.
+3. **Sections, days and lessons will use the same workflow** (script skeleton, Codex writes, code gates, Codex reads
+   every day, Claude reads deeply on a sample and on flags), replacing the step 8 plan of a full Claude read on every
+   day. Its test waits until the unit plans are done or nearly done, so the lessons and findings from unit
+   development shape the test first.

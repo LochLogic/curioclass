@@ -1,0 +1,319 @@
+"""Gate for written unit plans of the four core subjects (docs/courses/<course>/s{uu}.md).
+
+    python -X utf8 scripts/unitplan.py check [<subject> | <course> ...] [--dir DIR] [--data-dir DIR] [--complete]
+
+Arguments are courses or subjects (social-studies, math, ela, science); none means all courses of all four subjects
+(a course with no days.csv yet has no units and is passed over). A course with no s{uu}.md is skipped (--complete makes
+a missing unit plan a failure). --dir DIR reads DIR/<course>/s{uu}.md instead of docs/courses; --data-dir DIR reads
+days.csv, source-map.csv and calendar.csv from DIR/<course>/ (DIR/calendar.csv) instead of data/plans (both for
+tests). Prints `path:line: what` for each failure and `PASS path` or `FAIL path (n)` for each file; exit 1 on any
+failure.
+
+Fails on:
+  - a marker line left by scripts/unit_skeleton.py (the TODO word with "(writer)");
+  - a missing field heading of UNIT-PLAN.md (fields 2 to 10 as `## N. ...`) or the day list;
+  - an owned code, or a lettered part of one, that days.csv gives the unit and the plan never names;
+  - an assessment day (end or mid) whose codes and lettered parts are not each a row of field 5 with an item written;
+  - an em dash anywhere; "Curio" not followed by " Class";
+  - a header day range, a day count or a day list that disagrees with days.csv (the day numbers and kinds);
+  - a readiness check given on the unit's first day (field 4 `Given:` line);
+  - math only: a cluster of an owned standard whose weight (major, supporting, additional, or prerequisite for high
+    school) the plan does not state as `weight (cluster, cluster)`, or states differently from
+    data/standards/ccss-math-focus.csv;
+  - science only: an owned performance expectation with no row in the three-dimensions table of field 2, or a row
+    with an empty practice, core idea or crosscutting concept cell; no anchoring phenomenon named in field 2;
+  - ELA only: a strand of the owned codes (RL, RI, RF, W, SL, L) not named as `(RL)` and so on in field 2, or no text set;
+  - math, ELA and science: a source-map.csv row of the unit whose source id field 10 does not name;
+  - more than 1,250 words outside fields 4, 5, 6, the day list and skel blocks (UNIT-PLAN.md, "Length": unit plan cap; the
+    section plans are separate files, so the merged 1,800 does not apply).
+"""
+import re
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import unit_skeleton as sk  # noqa: E402
+
+MARK = sk.MARK
+CAP = 1250
+FIELDS = list(range(2, 11))
+UNCOUNTED = {4, 5, 6, 'days'}
+
+
+def load_sections(lines):
+    """{key: (start_line_index, end_line_index)} for fields 2..10 and 'days'; key repeats are collected as lists."""
+    heads = []
+    for i, ln in enumerate(lines):
+        m = re.match(r'^## (\d+)\.\s', ln)
+        if m:
+            heads.append((int(m.group(1)), i))
+        elif re.match(r'^## Day list\b', ln):
+            heads.append(('days', i))
+    spans = {}
+    for n, (key, i) in enumerate(heads):
+        end = heads[n + 1][1] if n + 1 < len(heads) else len(lines)
+        spans.setdefault(key, []).append((i, end))
+    return heads, spans
+
+
+def cells(ln):
+    return [c.strip() for c in ln.strip().strip('|').split('|')]
+
+
+def check_file(path, course, unit):
+    msgs = []
+
+    def bad(line, what):
+        msgs.append('%s:%s: %s' % (path, line if line else '-', what))
+
+    text = Path(path).read_text(encoding='utf-8')
+    lines = text.splitlines()
+    sk.set_subject(sk.subject_of(course))
+    rows = sk.unit_days(course, unit)
+    if not rows:
+        bad(0, 'days.csv has no unit %d' % unit)
+        return msgs
+    days = [int(r['day']) for r in rows]
+    kinds = {int(r['day']): r['kind'] for r in rows}
+
+    # em dash, Curio
+    for i, ln in enumerate(lines, 1):
+        if sk.EMDASH in ln:
+            bad(i, 'em dash')
+        if re.search(r'\bCurio\b(?! Class)', ln):
+            bad(i, '"Curio" not followed by " Class"')
+
+    # title
+    m = re.match(r'^# Unit (\d+):\s*\S', lines[0] if lines else '')
+    if not m:
+        bad(1, 'title is not "# Unit N: Name"')
+    elif int(m.group(1)) != unit:
+        bad(1, 'title says unit %s, file is unit %d' % (m.group(1), unit))
+
+    # sections
+    heads, spans = load_sections(lines)
+    for f in FIELDS:
+        if f not in spans:
+            bad(0, 'missing field %d heading (## %d. ...)' % (f, f))
+        elif len(spans[f]) > 1:
+            bad(spans[f][1][0] + 1, 'field %d heading twice' % f)
+    if 'days' not in spans:
+        bad(0, 'missing "## Day list" section')
+    order = [k for k, _ in heads if k != 'days']
+    if order != sorted(order):
+        bad(0, 'fields out of order')
+
+    # header: days
+    head_txt = ' '.join(lines[:12])
+    mh = re.search(r'\*\*Days ([^*]+)\*\*', head_txt)
+    if not mh:
+        bad(2, 'header has no "**Days A to B**"')
+    else:
+        got_days = set()
+        for tok in re.split(r'\s+and\s+', mh.group(1).strip()):
+            m3 = re.fullmatch(r'(\d+)(?: to (\d+))?', tok.strip())
+            if not m3:
+                bad(3, 'header days "%s" not understood' % mh.group(1))
+                break
+            lo = int(m3.group(1))
+            hi = int(m3.group(2) or lo)
+            got_days.update(range(lo, hi + 1))
+        else:
+            if got_days != set(days):
+                bad(3, 'days %s, days.csv has %s' % (mh.group(1), sk.runs_text(days)))
+    mc = re.search(r'\((\d+) course days', head_txt)
+    if mc and int(mc.group(1)) != len(days):
+        bad(3, '%s course days, days.csv has %d' % (mc.group(1), len(days)))
+
+    # day list
+    if 'days' in spans:
+        s, e = spans['days'][0]
+        got = {}
+        for i in range(s, e):
+            if lines[i].startswith('|'):
+                c = cells(lines[i])
+                if len(c) >= 3 and c[0].isdigit():
+                    got[int(c[0])] = (i + 1, c[2])
+        for d in days:
+            if d not in got:
+                bad(s + 1, 'day list lacks day %d' % d)
+            elif got[d][1] != kinds[d]:
+                bad(got[d][0], 'day %d kind "%s", days.csv has "%s"' % (d, got[d][1], kinds[d]))
+        for d in sorted(set(got) - set(days)):
+            bad(got[d][0], 'day %d is not in unit %d of days.csv' % (d, unit))
+
+    # TODO markers
+    todo = [i for i, ln in enumerate(lines, 1) if MARK in ln]
+    for i in todo[:5]:
+        bad(i, MARK + ' left')
+    if len(todo) > 5:
+        bad(todo[5], '... and %d more %s lines' % (len(todo) - 5, MARK))
+
+    # codes
+    f2 = chr(10).join(lines[spans[2][0][0]:spans[2][0][1]]) if 2 in spans else ''
+    for c in sk.required_codes(rows):
+        if not re.search(r'(?<![\w.])%s(?![A-Za-z0-9])' % re.escape(c), f2):
+            bad(0, 'code %s%s not named in field 2' % (c, ' (lettered part)' if c[-1].islower() and c[:-1] in sk.std_text() else ''))
+
+    # readiness
+    if 4 in spans:
+        s, e = spans[4][0]
+        sec = lines[s:e]
+        given = [(s + i + 1, ln) for i, ln in enumerate(sec) if re.match(r'^\**Given:', ln) or re.match(r'^\**Retrieval only:', ln)]
+        if not given:
+            bad(s + 1, 'field 4 has no "Given:" or "Retrieval only:" line')
+        for i, ln in given:
+            m2 = re.search(r'(?<!before )\bday (\d+)\b', ln.split('Note there')[0], re.I)
+            if ln.lstrip('*').startswith('Given:') and m2 and int(m2.group(1)) == days[0]:
+                bad(i, 'readiness check given on the unit\'s first day (day %d)' % days[0])
+
+    # assessment
+    if 5 in spans:
+        s, e = spans[5][0]
+        have = {}
+        for i in range(s, e):
+            ln = lines[i]
+            if ln.startswith('|'):
+                c = cells(ln)
+                if len(c) >= 4 and c[0].isdigit():
+                    have[(int(c[0]), c[1])] = (i + 1, c[3])
+        for r in rows:
+            if r['assess'] not in ('end', 'mid'):
+                continue
+            d = int(r['day'])
+            acodes = sk.split_list(r['codes'])
+            full = []
+            for c in acodes:
+                full.append(c)
+                full.extend(k for k in sk.children(c) if k not in acodes)
+            if not any(k[0] == d for k in have):
+                bad(s + 1, 'no item rows for assessment day %d' % d)
+                continue
+            for c in full:
+                row = have.get((d, c))
+                if row is None:
+                    bad(s + 1, 'assessment day %d: no item for %s' % (d, c))
+                elif MARK not in row[1] and len(row[1].split()) < 3:
+                    bad(row[0], 'assessment day %d: item for %s is empty' % (d, c))
+
+    # subject checks (mechanical only); social studies has none
+    if not sk.is_ss():
+        subject_checks(course, unit, rows, lines, spans, bad)
+
+    # word cap
+    count = 0
+    skip = set()
+    for key in UNCOUNTED:
+        for s, e in spans.get(key, []):
+            skip.update(range(s, e))
+    body = '\n'.join(ln for i, ln in enumerate(lines) if i not in skip)
+    body = re.sub(r'<!-- skel -->.*?<!-- /skel -->', ' ', body, flags=re.S)
+    body = re.sub(r'<!--.*?-->', ' ', body, flags=re.S)
+    count = len(re.findall(r'\S+', body))
+    if count > CAP:
+        bad(0, '%d words outside fields 4, 5, 6 and the day list, cap %d' % (count, CAP))
+    return msgs
+
+
+def subject_checks(course, unit, rows, lines, spans, bad):
+    text = '\n'.join(lines)
+    f2 = '\n'.join(lines[spans[2][0][0]:spans[2][0][1]]) if 2 in spans else ''
+    f10 = '\n'.join(lines[spans[10][0][0]:spans[10][0][1]]) if 10 in spans else ''
+    codes = sk.required_codes(rows)
+    if sk.SUBJ == 'math':
+        found = {}
+        for m in re.finditer(r'\b(major|supporting|additional|prerequisite)\s*\(([^)]*)\)', text):
+            for k in sk.split_list(m.group(2)):
+                found.setdefault(k, m.group(1))
+        for k, wt, cs in sk.math_clusters(codes):
+            want = sk.WEIGHTWORD.get(wt)
+            if not want:
+                continue    # no weight on file for this cluster: the skeleton's TODO names the missing data
+            if k not in found:
+                bad(0, 'cluster %s (%s) has no stated weight: write "weight word (cluster, cluster)", as in the header' % (k, ', '.join(cs[:3])))
+            elif found[k] != want:
+                bad(0, 'cluster %s is stated %s, data/standards/ccss-math-focus.csv says %s' % (k, found[k], want))
+    elif sk.SUBJ == 'science':
+        have = {}
+        lo, hi = spans[2][0] if 2 in spans else (0, 0)
+        for i in range(lo, hi):
+            if lines[i].startswith('|'):
+                c = cells(lines[i])
+                if c and sk.is_pe(c[0]):
+                    have[c[0]] = (i + 1, c)
+        for pe in [c for c in codes if sk.is_pe(c)]:
+            row = have.get(pe)
+            if row is None:
+                bad(0, 'performance expectation %s has no row in the three-dimensions table of field 2' % pe)
+            elif len(row[1]) < 4 or any(not x.strip() for x in row[1][1:4]):
+                bad(row[0], '%s: practice, core idea and crosscutting concept must each be named' % pe)
+        if not re.search(r'anchor', f2, re.I):
+            bad(0, 'field 2 names no anchoring phenomenon or design problem')
+    elif sk.SUBJ == 'ela':
+        for key in sorted({sk.strand_of(c)[0] for c in codes}):
+            if '(%s)' % key not in f2:
+                bad(0, 'field 2 does not name the strand (%s) of the owned codes' % key)
+        if not re.search(r'text set', f2, re.I):
+            bad(0, 'field 2 names no text set')
+    for r in sk.source_rows(course, unit):
+        if r['source'] not in f10:
+            bad(0, 'source-map.csv row %s is not named in field 10' % r['source'])
+
+
+def shown(p):
+    try:
+        return Path(p).resolve().relative_to(sk.ROOT).as_posix()
+    except ValueError:
+        return Path(p).as_posix()
+
+
+def main(a):
+    if not a or a[0] != 'check':
+        raise SystemExit(__doc__)
+    a = a[1:]
+    base = sk.DOCS
+    complete = '--complete' in a
+    a = [x for x in a if x != '--complete']
+    if '--dir' in a:
+        i = a.index('--dir')
+        base = Path(a[i + 1])
+        a = a[:i] + a[i + 2:]
+    if '--data-dir' in a:
+        i = a.index('--data-dir')
+        sk.set_data_dir(a[i + 1])
+        a = a[:i] + a[i + 2:]
+    courses = []
+    for x in a:
+        courses.extend(sk.courses_of(x) if x in sk.SUBJECTS else [x])
+    courses = courses or sk.courses_of(None)
+    bad_any = False
+    seen = 0
+    for course in courses:
+        if sk.subject_of(course) is None:
+            print('not a course in data/plans/frames.csv: %s' % course)
+            bad_any = True
+            continue
+        sk.set_subject(sk.subject_of(course))
+        for u in sk.unit_numbers(course):
+            p = base / course / ('s%02d.md' % u)
+            if not p.exists():
+                if complete:
+                    print('FAIL %s (missing)' % p)
+                    bad_any = True
+                continue
+            seen += 1
+            msgs = check_file(shown(p), course, u)
+            for m in msgs:
+                print(m)
+            if msgs:
+                bad_any = True
+                print('FAIL %s (%d)' % (shown(p), len(msgs)))
+            else:
+                print('PASS %s' % shown(p))
+    if not seen:
+        print('no unit plans found for: %s' % ', '.join(courses))
+    return 1 if bad_any else 0
+
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1:]))

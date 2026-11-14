@@ -324,6 +324,8 @@ Writing starts only here, under the review cadence (step 8).
 
 ### Step 8. The review cadence (from step 7 on)
 
+**Changed 2026-11-14 (Cory, DESK-ANSWERS):** sections, days and lessons will use the unit plan workflow: script skeleton, Codex writes, code gates, Codex reads every day, Claude reads deeply on a sample and on flags. Its test is shaped and run when the unit plans are done or nearly done, from what unit development teaches. The per-day plan below stands until that test replaces it.
+
 Per day: writer, cheap read, expert read, fix pass (with the re-read rule: re-read the paragraph, the seam and the
 built screens changed). Per section: one fresh set read across its days and seams, then its fixes. On the first
 section written, test whether the set read can stand in for the separate cheap check of a fix pass. REVIEW-CADENCE
