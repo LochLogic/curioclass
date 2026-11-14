@@ -28,39 +28,6 @@ write: A newspaper from 1969 tells about the Moon landing that week. Is it prima
   lines: 4
   key: Primary for the Moon landing, because it was made at the time by people living through it. If the same paper ran a story retelling the Revolutionary War, that story is secondary, because the writer was not there. Whether a source is primary depends on the question you ask.
 
-# 6. Environment Shapes Life
-minutes: 35
-materials: pencil, a map of North American culture regions
-ican: I can explain how the environment shaped the food, homes and clothing of Native nations in different regions.
-directions: Long ago, each Native nation used what its land, water and climate offered. Use the clue bank to complete the chart for 5 regions: one nation from each, and its food, homes and clothing. Then explain one pattern you see.
-mistakes: Students often give every nation tipis and bison, a picture from movies. Point to each region's environment first: there were no bison herds on the Northwest Coast and almost no trees in the Arctic. Watch for students who speak of these nations only in the past tense; they are still here today, living in modern homes and keeping many traditions.
-notes: The chart describes traditional ways of life before and around European contact; it simplifies a lot (each region held many nations with different ways). Facts used: Tlingit and Haida fished for salmon, built plank houses of red cedar and wove capes from cedar bark; the Lakota, after horses arrived in the 1700s, followed bison herds, lived in tipis covered with bison hides and wore tanned hide clothing; the Hopi farmed corn, beans, squash and cotton, built stone and adobe pueblos and wove cotton cloth; the Haudenosaunee grew corn, beans and squash (the Three Sisters), hunted deer, built bark-covered longhouses and wore deerskin; the Inuit hunted seals, whales and caribou, built snow houses for winter hunting trips and sod houses, and sewed caribou and sealskin parkas.
-
-## Warm up: Use what you have
-choice: Why did Plains nations cover their homes with bison hides instead of cedar planks?
-  - Bison hides lasted longer than wood.
-  * Bison were plentiful on the grasslands, and tall trees were few.
-  - Cedar planks were against the law.
-choice: What did the Northwest Coast's forests and rivers give the people who lived there?
-  - bison and cotton
-  - snow and ice
-  * cedar trees and salmon
-
-## Main: Complete the chart
-text: **Clue bank:** salmon; corn, beans, squash and deer; bison; corn, beans, squash and cotton; seals, whales and caribou; plank houses of cedar; longhouses covered in bark; tipis covered with bison hides; pueblos of stone and adobe; snow houses and sod houses; capes woven from cedar bark; deerskin clothing; clothing of tanned hides; woven cotton cloth; caribou and sealskin parkas
-table: Region and environment | Nation | Food | Homes | Clothing
-  height: 0.62
-  - Northwest Coast: rainy forests, rivers and ocean | Tlingit or Haida | {salmon} | {plank houses of cedar} | {capes woven from cedar bark}
-  - Great Plains: wide grasslands, few trees | Lakota | {bison} | {tipis covered with bison hides} | {clothing of tanned hides}
-  - Southwest: dry desert and mesas | Hopi | {corn, beans, squash and cotton} | {pueblos of stone and adobe} | {woven cotton cloth}
-  - Eastern Woodlands: forests, lakes, good soil | Haudenosaunee | {corn, beans, squash and deer} | {longhouses covered in bark} | {deerskin clothing}
-  - Arctic: icy, treeless, long winters | Inuit | {seals, whales and caribou} | {snow houses and sod houses} | {caribou and sealskin parkas}
-
-## Stretch: Find the pattern
-write: Choose two regions. Explain how a difference in their environments led to a difference in homes or clothing.
-  lines: 4
-  key: For example: "The Northwest Coast had huge cedar forests, so the Tlingit built big plank houses. The Arctic has almost no trees, so the Inuit built houses from snow and sod. Each people built with what their land gave them."
-
 # 18. Triangular Trade Map
 minutes: 40
 materials: pencil, colored pencils, a world map

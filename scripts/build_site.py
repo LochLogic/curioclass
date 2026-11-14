@@ -474,6 +474,7 @@ for m in modules.values():
     plans = [t for t in mt if t['built'] and t['plan']]
     cards = words.get(m['module_id'], [])
     rcards = [c for c in RESEARCH['cards'] if m['module_id'] in c['modules']] or (RESEARCH['cards'] if m['module_id'] in RESEARCH['for_all'] else [])
+    rcards = rcards if CLOSET_LIVE else []  # research cards live in the Supply Closet, so no links while it is held back
     render('module.html', m['url'], m=m, items=mt, plans=plans, words=cards, subject=subjects[m['subject']], rcards=rcards, rc_all=m['module_id'] in RESEARCH['for_all'],
            games=games_by_module.get(m['module_id'], []), course=courses.get(m['course_id']), chart=charts.get(m['module_id']),
            sheets=ws_by_module.get(m['module_id'], []) if CLOSET_LIVE else [], gens=gen_links.links(m, bool(cards)) if CLOSET_LIVE else [],

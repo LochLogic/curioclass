@@ -133,102 +133,6 @@ write: Museums sometimes end a label with a question that makes visitors look cl
   lines: 3
   key: Sample: "What would you need to keep track of if you could not write?" It makes visitors connect the tablet to their own lives and see that writing was invented to solve a practical problem, keeping records of food and goods.
 
-# 25. Greek City-States Map
-minutes: 40
-materials: pencil, colored pencils, a map of ancient Greece (textbook or atlas) to check against
-ican: I can locate the major places of ancient Greece and explain how geography shaped its city-states.
-directions: Plot and label each place on the grid from its latitude and longitude. Draw the road from Sparta to Corinth to Athens. Label the seas. Then answer the questions about how mountains and sea shaped Greek life.
-mistakes: Students often picture Greece as one country with one government. In this period it was hundreds of separate city-states (poleis), each with its own laws, army and gods it honored most, which sometimes allied and often fought. Students also plot Troy in Greece: it was across the Aegean Sea in Anatolia (today's Turkey).
-notes: The grid is a plain latitude and longitude grid with no coastlines, so students build the map from coordinates. After plotting, have them compare with a printed map of ancient Greece and sketch the coastline. Coordinates are modern locations of the ancient sites (Troy is the site at Hisarlik, Turkey). The key draws only the Sparta to Corinth to Athens road; check the other dots against the table.
-
-## Warm up: Know the places
-match: Match each place to its description.
-  - Athens = City in Attica, famous for early democracy
-  - Sparta = Inland Peloponnese city, famous for its army
-  - Corinth = Trading city on the isthmus to the Peloponnese
-  - Troy = City in Anatolia, setting of Homer's Iliad
-  - Mount Olympus = Highest peak in Greece, home of the gods in myth
-
-## Main: Build the map
-table: Place | Latitude (°N) | Longitude (°E)
-  - Athens | 38.0 | 23.7
-  - Sparta | 37.1 | 22.4
-  - Corinth | 37.9 | 22.9
-  - Troy | 40.0 | 26.2
-  - Mount Olympus | 40.1 | 22.4
-  - Knossos, on the island of Crete | 35.3 | 25.2
-graph: Longitude (°E) | 19 29 1 | Latitude (°N) | 34 42 1
-  key: 22.4,37.1 22.9,37.9 23.7,38.0
-text: Label the seas: write **Aegean Sea** near 38°N, 25°E, **Ionian Sea** near 38°N, 20°E and **Mediterranean Sea** near 34.5°N, 24°E. Write **Anatolia** near 39°N, 28°E.
-fill:
-  - Which city sits between Sparta and Athens on the road? {Corinth}
-  - Which sea would a ship from Athens cross to reach Troy? {Aegean Sea}
-  - Which place is on an island, not the mainland? {Knossos}
-
-## Explain: Geography and city-states
-choice: Most of Greece is covered by what landform?
-  - Wide, flat plains
-  * Steep, rocky mountains
-  - Thick rain forests
-  - Sandy deserts
-write: How did mountains help make Greece a land of separate city-states instead of one kingdom?
-  lines: 3
-  key: Mountains split the land into small valleys and plains that were hard to travel between, so each valley's people formed their own independent city-state with its own government, laws and army.
-write: The sea is never far away in Greece. How did the sea connect what the mountains divided?
-  lines: 3
-  key: Ships were the easiest way to travel and trade, so Greeks traded goods and ideas by sea and founded colonies around the Mediterranean; trading cities like Corinth and Athens grew rich from the sea.
-
-## Stretch: Two cities, two paths
-write: Athens was near the coast, with a busy harbor at Piraeus. Sparta was inland, surrounded by farmland and mountains. How might location help explain why Athens became a trading and naval power while Sparta built the strongest army on land?
-  lines: 4
-  key: Athens faced the sea and had a harbor, so it turned to trade and built a strong navy. Sparta, inland in a farming valley guarded by mountains, relied on land; its farmland was worked by the helots, enslaved people Sparta had conquered, and fear of their revolt pushed Sparta to keep a powerful army ready at all times.
-
-# 30. Roman Republic Government
-minutes: 40
-materials: pencil, textbook chapter on the Roman Republic
-ican: I can describe how the Roman Republic divided and checked power, and compare it to the branches of the US government.
-directions: Use the word bank and your textbook to complete the diagram of Rome's government. Then show how each part checked the others, and compare Rome's government with the three branches of the US government.
-mistakes: Students often say the Roman Senate was elected like the US Senate. Roman senators were mostly former officials who served for life; the Senate advised the consuls and controlled money and foreign affairs, while the assemblies voted. Students also treat the two consuls as a president and vice president: they were equals, and either one could block the other. The tribunes' veto is easy to miss; it was the plebeians' main protection.
-notes: Roman government changed over five centuries; the diagram shows the middle Republic (about 300 to 133 BCE). "Assemblies" simplifies several bodies: the Centuriate Assembly (organized by wealth and army rank) elected consuls and voted on war; the Tribal Assembly and the Plebeian Council passed most laws, and after 287 BCE plebeian votes bound all Romans. The Senate had about 300 members in this period. Rome had no separate court system like the US Supreme Court; officials called praetors ran the courts.
-
-## Warm up: Word bank
-text: **Word bank** (use your textbook for the rest): two consuls, about 300 senators, citizen assemblies, ten tribunes, one year, for life, elected by the assemblies, veto, money, war
-fill:
-  - "Veto" is a Latin word that means "I {forbid}."
-  - The Romans set up a republic in 509 BCE after driving out their {king}.
-  - In a republic, citizens choose {representatives} to make decisions for them.
-
-## Main: Complete the diagram
-table: Part of government | Who and how many | How chosen | Term | Main powers
-  height: 0.55
-  - Consuls | {two consuls} | {elected by the assemblies} | {one year} | {ran the government and led the army; each could veto the other}
-  - Senate | {about 300 senators} | {mostly former officials named to it} | {for life} | {advised the consuls; controlled money and dealings with other countries}
-  - Assemblies | {citizen assemblies} | {all male citizens could vote} | {met when called} | {elected officials, voted on laws and on war}
-  - Tribunes | {ten tribunes} | {elected by the plebeians} | {one year} | {could veto acts of officials and the Senate to protect plebeians}
-fill:
-  - A consul could stop the other consul's action with a {veto}.
-  - The Senate could check the consuls because it controlled {money} for the army and the city.
-  - The assemblies checked the Senate because they elected the {consuls} and voted on laws.
-  - In an emergency, Rome could name a {dictator} with full power for up to six months.
-
-## Compare: Rome and the United States
-table: Roman part | Closest US match | One way they are different
-  height: 0.6
-  - Two consuls | {The President (executive branch)} | {Rome had two equal consuls for one year; the US has one president for four years}
-  - Senate | {The Senate (Congress, legislative branch)} | {Roman senators were not elected and served for life; US senators are elected for six-year terms}
-  - Assemblies | {The House of Representatives and the voters} | {Roman citizens voted on laws themselves; Americans elect representatives to vote}
-  - Tribunes' veto | {The president's veto} | {Tribunes could block almost any official; the president vetoes only bills from Congress, and Congress can override}
-choice: Which US branch had no close match in the Roman Republic?
-  - Legislative
-  - Executive
-  * Judicial, a separate system of courts with a supreme court
-  - All three had close matches
-
-## Stretch: Why split power?
-write: The Romans had lived under a king. Explain how two features of the Republic were designed to keep any one person from becoming a king again.
-  lines: 4
-  key: Two consuls shared the top job, and each could veto the other, so neither could rule alone. Consuls served only one year, so no one stayed in power long. (Also accept: tribunes could veto officials; the Senate controlled money; a dictator's power ended after six months.)
-
 # 42. Share the Water Plan
 minutes: 45
 materials: pencil, calculator (optional)
@@ -276,3 +180,46 @@ write: How will the four countries check that each one keeps its promise? Descri
 write: In a drought year the rivers bring only 100 units, so the countries can take at most 80. Drinking water still needs 20. How much farm water is left, and how would you change your plan?
   lines: 3
   key: 80 - 20 = 60 units of farm water, a 40 percent cut from 100. Sample: cut each country's farm water by 40 percent (A 24, B 18, C 12, D 6), or give extra help, food aid or payment, to the farmers who give up the most, while keeping drinking water for everyone.
+
+# 52. Maya, Aztec, Inca Map
+minutes: 40
+materials: pencil, colored pencils, a physical map of the Americas (textbook or atlas)
+ican: I can locate the Maya, Aztec and Inca civilizations and explain how each adapted to its landform.
+directions: Plot and label each city on the grid from its latitude and longitude. Shade and label the land of each civilization using your atlas. Then complete the chart comparing their landforms and how people farmed them.
+mistakes: Students often call Tikal "the Maya capital." The Maya were many city-states, each with its own king, never one empire with one capital; Tikal was one of the largest. Students also mix up the timelines: the Classic Maya cities were at their height about 250 to 900 CE, centuries before the Aztec (1325 to 1521) and Inca (about 1438 to 1533) empires, which both fell to Spanish invaders.
+notes: Coordinates are modern locations of the sites, rounded (Tenochtitlan lies under Mexico City). Elevations are approximate: Tikal about 250 meters, Mexico City about 2,240 meters, Cusco about 3,400 meters. The grid has no coastlines: after plotting, have students compare with an atlas map and sketch the coast of Mexico, Central America and western South America. The key draws only the dots.
+
+## Warm up: Which is which?
+match: Match each civilization to its description.
+  - Maya = City-states in the rainforest, with stepped pyramids and a full writing system
+  - Aztec = Empire ruled from an island city in a lake, high in a mountain valley
+  - Inca = Empire stretching along the Andes, linked by thousands of miles of roads
+
+## Main: Build the map
+table: Place | Civilization | Latitude | Longitude
+  - Tenochtitlan (capital) | {Aztec} | 19.4°N | 99.1°W
+  - Tikal (major city) | {Maya} | 17.2°N | 89.6°W
+  - Chichen Itza (major city) | {Maya} | 20.7°N | 88.6°W
+  - Cusco (capital) | {Inca} | 13.5°S | 72.0°W
+  - Quito (northern city) | {Inca} | 0.2°S | 78.5°W
+text: West longitudes and south latitudes are negative: 99.1°W is -99.1 and 13.5°S is -13.5.
+graph: Longitude (degrees; west is negative) | -110 -60 10 | Latitude (degrees; south is negative) | -40 30 10
+  key: -99.1,19.4 -89.6,17.2 -88.6,20.7 -72,-13.5 -78.5,-0.2
+  dots: yes
+text: Label the **Yucatán Peninsula** near 20°N, 89°W, the **Andes Mountains** near 15°S, 72°W, and the **Pacific Ocean** near 5°N, 100°W.
+
+## Compare: Three landforms
+table: | Maya | Aztec | Inca
+  height: 0.55
+  - Landform | {Lowland tropical rainforest} | {Highland valley around a lake} | {High mountains (the Andes)}
+  - Height above sea level | {Low, about 250 m at Tikal} | {About 2,240 m} | {About 3,400 m at Cusco}
+  - How they farmed it | {Cleared forest for fields of maize, beans and squash; raised fields} | {Chinampas, floating gardens built in the lake} | {Terraces cut into steep slopes; potatoes freeze-dried to store}
+  - When at its height | {About 250 to 900 CE} | {1325 to 1521} | {About 1438 to 1533}
+write: Choose one civilization. Explain how its people changed the land to farm where farming was hard.
+  lines: 3
+  key: Sample: the Inca lived on steep mountain slopes with little flat land, so they cut terraces, flat steps held up by stone walls, into the mountains. Terraces stopped soil from washing away and let them grow potatoes and maize at different heights. (Or: the Aztecs built chinampas in a lake; the Maya cleared rainforest and built raised fields.)
+
+## Stretch: Geography and power
+write: The Inca built about 40,000 kilometers (25,000 miles) of roads. Why would roads matter more to an empire in the Andes than to the Maya city-states?
+  lines: 3
+  key: The Inca Empire was one long empire across mountains, and its rulers in Cusco needed to move armies, messengers and goods over steep land to control it. Roads with bridges and rest houses held the empire together. The Maya were separate city-states, each ruling a smaller area, so no single ruler needed roads across the whole region.

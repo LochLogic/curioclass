@@ -1,51 +1,4 @@
-# 1. Carnegie's Gospel of Wealth
-minutes: 50
-materials: pencil, two highlighters (two colors)
-ican: I can compare two primary sources' views on the duties of the rich in the Gilded Age.
-directions: Read the background and both sources. Highlight what each writer says rich people owe to others in one color, and what each says about workers in the other. Then answer the questions, citing source letters and excerpt numbers.
-mistakes: Students often read Carnegie as simply generous or simply greedy. His argument has two halves: competition and great inequality are good for progress ("survival of the fittest"), and the rich must give their surplus away during life, on their own judgment. Debs attacks the second half by pointing to the first: the wealth came from workers' wages and labor, so giving it back as libraries is not a gift to them. Also watch for students who think Carnegie supported higher wages; he does not mention them.
-notes: Source A follows the text of "Wealth," North American Review 148, no. 391 (June 1889), pages 653 to 664; cuts are marked [...]. Source B follows a transcription of Eugene V. Debs, "The Pinkertons at Homestead," Locomotive Firemen's Magazine 16, no. 8 (August 1892), the journal of the Brotherhood of Locomotive Firemen, a railroad union (a labor magazine rather than a newspaper); check both against scans before printing. Debs uses harsh words elsewhere in the essay; the excerpts here keep his argument without the insults. Carnegie gave away about 90 percent of his fortune before his death in 1919, including money for more than 2,500 public libraries.
-
-## Background
-text: Andrew Carnegie came to the United States from Scotland as a poor boy and became one of the richest men in the world through steel. In 1889 he published an essay called "Wealth"; readers soon called it "The Gospel of Wealth." In 1892, workers at Carnegie's steel works in Homestead, Pennsylvania, refused a wage cut. Henry Clay Frick, who ran the company, locked them out and hired armed Pinkerton guards; a battle on July 6 left both strikers and guards dead. Eugene V. Debs, a union leader and editor, wrote a reply.
-
-## Read: Two sources
-source: Source A: Andrew Carnegie, "Wealth," North American Review, June 1889
-  [1] "The problem of our age is the proper administration of wealth, so that the ties of brotherhood may still bind together the rich and poor in harmonious relationship."
-  [2] "[...] while the law may be sometimes hard for the individual, it is best for the race, because it insures the survival of the fittest in every department."
-  [3] "This, then, is held to be the duty of the man of Wealth: First, to set an example of modest, unostentatious living, shunning display or extravagance; to provide moderately for the legitimate wants of those dependent upon him; and after doing so to consider all surplus revenues which come to him simply as trust funds, which he is called upon to administer [...] the man of wealth thus becoming the mere agent and trustee for his poorer brethren, bringing to their service his superior wisdom, experience, and ability to administer, doing for them better than they would or could do for themselves."
-  [4] "[...] the best means of benefiting the community is to place within its reach the ladders upon which the aspiring can rise [...]"
-  [5] "Of such as these the public verdict will then be: 'The man who dies thus rich dies disgraced.'"
-source: Source B: Eugene V. Debs, "The Pinkertons at Homestead," Locomotive Firemen's Magazine, August 1892
-  [1] "Suddenly Carnegie, to use a phrase, 'gets religion,' and begins to blubber about the duty of rich men to the poor."
-  [2] "[...] concluded to bestow a portion of his plunder to build libraries bearing his name to perpetuate his fame."
-  [3] "They themselves had built the steel works. From their toil had flowed a ceaseless stream of wealth into the coffers of Carnegie and his associates."
-
-## Analyze
-choice: In excerpt A2, "the law" Carnegie defends is the law of competition. What does he claim about it?
-  - It is unfair and should be replaced by government control.
-  * It can be hard on individuals but is best for society as a whole.
-  - It only works in Scotland, not in America.
-  - It makes everyone equally wealthy over time.
-write: According to excerpt A3, what are the duties of a rich man? List at least three.
-  lines: 3
-  key: Live modestly without showy spending; provide moderately for his family and dependents; treat all surplus money as a trust fund to manage for the good of the community; use his own judgment ("superior wisdom") to do more good than the poor could do for themselves.
-write: What does Carnegie mean in A5 that "the man who dies thus rich dies disgraced"?
-  lines: 2
-  key: Someone who hoards a great fortune until death, instead of giving it away for public good during life, should be judged shamefully by the public.
-write: Debs calls Carnegie's gifts "plunder" (B2). Using B3, explain Debs's reasoning.
-  lines: 3
-  key: Debs argues that the workers created the wealth with their labor, so Carnegie's fortune was taken from them (through low wages and the wage cut at Homestead); giving part of it back as libraries with his own name on them is not charity but returning stolen money while seeking fame.
-write: Compare: how would Carnegie and Debs each answer the question "What do the rich owe working people?"
-  lines: 5
-  key: Carnegie: the rich owe the community wise use of their surplus wealth, such as libraries, parks and schools, decided by the rich themselves, because they know best (A3, A4). Debs: the rich owe workers fair wages and a share of what their labor produces; charity cannot replace justice at work (B2, B3). Carnegie accepts inequality as good for progress (A2); Debs sees it as the problem.
-
-## Stretch: Evaluate
-write: Carnegie wrote that rich people could do more good "than they would or could do for themselves" (A3). Is that view generous, insulting to working people, or both? Defend your answer with evidence from both sources.
-  lines: 5
-  key: Strong answers take a side and use both sources. Generous: Carnegie pushes the rich to give nearly everything away and funded thousands of libraries. Insulting: he assumes workers cannot judge their own needs, and Debs shows workers wanted fair wages, not gifts. Both: the libraries helped many people, but the gifts kept control over money, and decisions, with Carnegie.
-
-# 6. Who Is Missing From This Archive?
+# 1. Who Is Missing From This Archive?
 minutes: 45
 materials: pencil, highlighter
 ican: I can inventory an archive, identify whose voices are missing, and explain how gaps in the record limit what historians can know.
@@ -96,7 +49,7 @@ write: A historian writes the history of the 1892 strike using only Box 1. What 
   lines: 4
   key: The archive would tell the owner's story: outside agitators stirred up trouble (3), the law restored order (7) and the owners cared for the poor (6). It could get wrong why workers struck (wages, fines, child labor, hours), who led the strike, and whether it was local, because no striker's own words survive in the box.
 
-# 17. Harlem Renaissance Voices
+# 3. Harlem Renaissance Voices
 minutes: 45
 materials: pencil, a projected or printed image of Jacob Lawrence's The Migration Series, Panel 1
 ican: I can analyze a poem and a painting as primary sources and explain what they show about the Great Migration.
@@ -153,7 +106,7 @@ write: A historian wants to know what the Great Migration felt like to those who
   lines: 3
   key: Strength: they show feelings, hopes and how Black artists of the time understood the migration, which numbers and laws cannot. Limit: they are artistic interpretations, created years later (the painting) or as one voice (the poem), so they must be checked against letters, newspapers such as the Chicago Defender, and census data.
 
-# 24. Mobilizing the Home Front
+# 9. Mobilizing the Home Front
 minutes: 45
 materials: pencil, calculator, colored pencil
 ican: I can use home front data to make and support claims about how World War II changed American life.
@@ -207,7 +160,7 @@ write: These numbers describe the whole country. Name one group whose wartime ex
   lines: 3
   key: Examples: Black women, who moved from domestic work into factories but faced discrimination in hiring and pay (sources: Black newspapers like the Pittsburgh Courier, oral histories); Mexican American workers in the Bracero Program; Japanese Americans, who were forced into incarceration camps (sources: camp newspapers, Densho oral histories). Accept any group with a fitting source.
 
-# 29. Brown v. Board and Mendez
+# 13. Brown v. Board and Mendez
 minutes: 50
 materials: pencil, two highlighters (two colors)
 ican: I can compare the reasoning of two court decisions and explain how one case built toward another.
@@ -254,7 +207,7 @@ write: Why might the Ninth Circuit have chosen a narrower ruling than the distri
   lines: 4
   key: Supreme Court precedent (Plessy and later school cases) still allowed "separate but equal," and an appeals court is bound by that precedent, so it decided on the narrow ground that California law did not authorize this segregation. That ended segregation for Mexican American children in those districts but left other segregation laws standing; only Brown, decided by the Supreme Court itself, could overturn the precedent nationwide.
 
-# 40. Trace the Documentary's Sources
+# 22. Trace the Documentary's Sources
 minutes: 45
 materials: pencil, highlighter
 ican: I can trace the claims in a secondary source back to its primary sources and judge whether the sources support them.

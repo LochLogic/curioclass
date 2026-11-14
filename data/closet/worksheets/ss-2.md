@@ -32,47 +32,6 @@ write: Circle the word in sentence 8 that tells you it is an opinion. Write it h
   lines: 1
   key: yummiest
 
-# 5. Who Leads Our Town?
-minutes: 20
-materials: pencil
-ican: I can tell what the mayor, the town council and the police chief each do.
-directions: Read the story about the leaders of Pine Hill. Then answer the questions. Look back at the story to check each answer.
-mistakes: Students often think the mayor makes all the laws alone. In the story the council votes on the rule and the mayor signs it; point to both sentences. Some confuse the police chief with the mayor because both are "the boss"; ask "Who is each one the boss of?"
-notes: Towns are set up in different ways. In some, the mayor leads the council meetings; in others, a town manager runs the daily work. Pine Hill is a made-up town that follows a common pattern: voters elect a mayor and a council, the council passes local laws (often called ordinances) and a budget, and the police chief is hired to lead the police department. Invite students to find out who leads your own town.
-
-## Read: Pine Hill Gets a Crosswalk
-passage: Pine Hill Gets a Crosswalk
-  Mayor Rosa Diaz leads the town of Pine Hill. She works with the town council. The council is five people that the voters chose. They meet each month to make town laws and to decide how to spend the town's money.
-  One day, children asked the council for a crosswalk near the school. The council talked about it and voted yes. Then Mayor Diaz signed the new law.
-  Chief Sam Lee leads the town's police officers. His officers helped children cross the busy street until the crosswalk was painted. The police make sure people follow the town's laws.
-
-## Main: Who does each job?
-choice: Who leads the whole town of Pine Hill?
-  * Mayor Rosa Diaz
-  - Chief Sam Lee
-  - the children
-choice: Who votes to make the town's laws?
-  - the police officers
-  * the town council
-  - the children
-choice: How did the council members get their jobs?
-  - The mayor picked them.
-  - They won a race.
-  * The voters chose them.
-choice: Who leads the police officers?
-  - the town council
-  * Chief Sam Lee
-  - Mayor Rosa Diaz
-choice: What did Mayor Diaz do after the council voted yes?
-  * She signed the new law.
-  - She painted the crosswalk.
-  - She helped children cross the street.
-
-## Stretch: Ask the council
-write: The children asked the council for a crosswalk. What is one more thing you could ask a town council to do? Why?
-  lines: 3
-  key: For example, "I would ask for a new slide at the park, because the old one is broken." Any town job with a reason works: fix a road, add a bike lane, plant trees, open a library on Saturdays.
-
 # 16. Natural, Human-Made or Both?
 minutes: 25
 materials: pencil, scissors, glue stick
@@ -180,36 +139,3 @@ write: Is this way fair? "The first 10 students to grab a pencil keep it all day
 write: Which of your 3 ways is the best? Why is it fair, and will the class get its work done?
   lines: 3
   key: For example: "Partners sharing is best, because everyone gets to write, no one waits all day, and partners can help each other."
-
-# 38. Changemaker Timeline
-minutes: 30
-materials: pencil
-ican: I can put changemakers in order on a timeline using the years of what they did.
-directions: Read each changemaker card. Find its year on the timeline and write the card's letter above that spot. Then answer the questions.
-mistakes: Students may place cards in the order they are printed, or put 1947 and 1955 in the same spot. Count the tick marks by 25s and estimate between them: 1947 is just before 1950, and 1955 is just after it. Some think everyone on a timeline lived at the same time; point out that Benjamin Franklin died long before Malala was born.
-notes: Years used: Benjamin Franklin signed the Declaration of Independence in 1776 (he also helped write it). Harriet Tubman escaped slavery in 1849 and then went back to lead others to freedom. Clara Barton founded the American Red Cross in 1881. Jackie Robinson became the first Black player in modern Major League Baseball in 1947. Rosa Parks refused to give up her bus seat in Montgomery, Alabama, in 1955. Malala Yousafzai won the Nobel Peace Prize in 2014 for speaking up for girls' right to go to school; she was 17, the youngest winner ever.
-
-## Warm up: What is a changemaker?
-choice: A changemaker is a person who
-  - is famous on TV.
-  * works to make things better for other people.
-  - lived a long time ago.
-
-## Main: Place 6 changemakers
-timeline: 1750 2025 25
-  - 1776 | Benjamin Franklin helps write and signs the Declaration of Independence.
-  - 1849 | Harriet Tubman escapes slavery, then goes back to lead others to freedom.
-  - 1881 | Clara Barton starts the American Red Cross to help people after disasters.
-  - 1947 | Jackie Robinson becomes the first Black player in modern Major League Baseball.
-  - 1955 | Rosa Parks will not give up her seat on a bus and helps start a bus boycott.
-  - 2014 | Malala Yousafzai wins the Nobel Peace Prize for speaking up for girls' schooling.
-fill:
-  - Who on the timeline came first? {Benjamin Franklin}
-  - Who on the timeline came last? {Malala Yousafzai}
-  - Which two changemakers' years are closest together? {Jackie Robinson} and {Rosa Parks}
-  - How many years after Harriet Tubman's escape did Clara Barton start the Red Cross? {32}
-
-## Stretch: Make a change
-write: Pick one changemaker. What did they change, and how did it help other people?
-  lines: 3
-  key: For example: "Clara Barton started the American Red Cross, so people hurt in fires, floods and wars could get food, shelter and care."
