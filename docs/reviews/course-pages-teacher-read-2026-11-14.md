@@ -170,3 +170,34 @@ room gets tight.
   labels. SHOWN still False.
 - site/templates/courses/unit.html: the code note under the Standards list.
 - site/templates/courses/_style.html: `.cp-note`.
+
+## Frame wording applied (2026-11-14)
+
+Changed only the quoted wording in the named frame.md files (line endings kept; day counts and table shape unchanged).
+
+Applied:
+- science-grade-4 U6: "timed" to "counted" in early and late rounds.
+- english-language-arts-grade-3 U1 to U4: "The unit's word list" now "The unit's word list, studied and spelled." (4 places).
+- english-language-arts-grade-1 U3: r-controlled aside reworded as proposed.
+- english-language-arts-grade-11: line 13 anchor wording reworded to "the high end of the grades 11 to 12 range" (reading-level figures kept); U1 "RI band text" to "informational text".
+- english-language-arts-grade-12 U6: both "balance rule" phrases reworded ("with the year's texts kept balanced"; "keeps the year's texts balanced on current politics").
+- english-language-arts-grade-10 U6, U7: both "facts and backed sources rule" phrases reworded to "every claim backed by a named source"; "(see Cross-subject)" deleted (1 place).
+- english-language-arts-grade-9 U7: "(see Cross-subject)" deleted.
+- english-language-arts-grade-7 U1: "thread 2" now "the year's second strand, the river and its dam". Also reworded the matching "Closes thread 2" in U6, which the report did not list, so the term is not left undefined.
+- english-language-arts-grade-2 U2: "L.2.2a" now "the capital-letters practice" in the product-names sentence only.
+- math-grade-4 U6: "The decimals rule:" label removed; the rule was already stated after it ("A decimal may be read, written, compared and renamed, ...").
+- math-grade-6: U2 and U3 "6.RP.A.3" phrases reworded; "readiness check on 5.NF.B.7" now "dividing unit fractions" in both places (U4 row and the cross-grade table).
+- algebra-i U3, U4: three "started ... finished in" code phrases reworded in words (fitting other function types to data; key features of graphs; piecewise and absolute value functions; effect of changes to a function on its graph).
+- math-grade-1 U8: the ELA week 32 scheduling clause deleted in both places (row text and check note).
+- science-kindergarten U3: "Then K-PS2-2:" now "Then students judge whether a push did what they planned:".
+- science-grade-3 U1, U2 and one more row: "(see Cross-subject)" deleted (3 places).
+- world-geography-and-ancient-civilizations-i: "The year opens with how we study the past and with geography"; "the worked case"; "in the usual order" (U4).
+- civics-government-and-civic-life, economics, world-geography-and-ancient-civilizations-ii: "the anchor's order" to "the usual order" (one place each).
+- us-government-and-politics U9: "proposes a day transfer" clause deleted.
+
+Skipped:
+- HS ELA inline standards codes in prose (grades 9 to 12): the report gives no replacement text, so left as is.
+- Other uses of "anchor" in world-geography-i / civics prose (for example "the anchor does not name", "content anchor"): not in the report.
+- algebra-i "N-Q.A.3 (precision)" and other codes left in prose: no replacement given.
+
+Gates: frame.py check 0 failures for all 20 edited slugs; frame.py sync ran; plan.py check and course_pages.py check 0 failures.

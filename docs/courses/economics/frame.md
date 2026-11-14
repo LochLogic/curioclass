@@ -5,7 +5,7 @@ scope and sequence sets the days later.
 
 ## The course in brief
 
-- **Units.** 9: seven of economics in the anchor's order (scarcity, markets, business, government, the whole economy,
+- **Units.** 9: seven of economics in the usual order (scarcity, markets, business, government, the whole economy,
   money and policy, trade), then two of personal finance.
 - **Days.** 80 course days (a half year): 76 in units and 4 for two course-level checks, each an assessment day and a
   respond day. One lesson of about 50 minutes a day, five a week, across 16 weeks. 25 rows in 76 unit days is about 3 days a row, weighted by load, not shared equally: the graph-heavy

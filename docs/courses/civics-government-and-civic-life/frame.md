@@ -196,7 +196,7 @@ tables may use unit 4's polling data. Hard content in the same year: unit 2 (sla
 
 ## For the lead
 
-1. **Two moves from the anchor's order:** 8.T5.1 and 8.T5.5 (implied powers, judicial review) taught in unit 3 with
+1. **Two moves from the usual order:** 8.T5.1 and 8.T5.5 (implied powers, judicial review) taught in unit 3 with
    the branches; 8.T4.12 and 8.T4.13 (protest, interest groups) taught in unit 8 after the levels of government. Both
    are item-level order calls with reasons in the table; the expert read kept both.
 2. **Check-set candidates:** Blackstone (unit 1), naturalization test questions (unit 5), incorporation (unit 6);

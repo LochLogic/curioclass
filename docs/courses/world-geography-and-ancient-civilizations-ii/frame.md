@@ -30,7 +30,7 @@ Course `world-geography-and-ancient-civilizations-ii` (catalogue id `world-hist-
   History units and the New York toolkit are reference only. The frame maps no base lesson.
 - **The inquiry arc.** Every unit has a compelling question (the table) with supporting questions set by the unit
   plan, runs the C3 arc, and ends with an end-of-unit assessment that includes a task from an unseen source. Content
-  runs in the anchor's order: by region, and in time order within each region. Two departures are the anchor's own:
+  runs in the usual order: by region, and in time order within each region. Two departures are the anchor's own:
   Buddhism's spread to Japan runs past 500 CE (unit 5), and time zones (unit 7) are a modern topic placed with
   Europe's geography.
 - **The comparison thread.** Grade 6's complex-society traits and timeline return in unit 5, where India and China
