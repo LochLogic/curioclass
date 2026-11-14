@@ -92,7 +92,7 @@ Picked up from English Language Arts Grade 5
 | e5-relationships, e5-compare-structures, e5-word-strategies, e5-figurative, e5-conventions | Relationships among people and events; comparing structures; affixes and roots; commas | Unit 4, e6-idea-development, e6-section-structure, e6-word-strategies, e6-punctuation-spelling |
 | e5-figurative, e5-whole-structure, e5-narrator-influence, e5-visual-multimedia, e5-genre-compare | Simile and metaphor; how chapters fit; how a narrator's view shapes events; visual and media elements; same-genre comparison | Unit 5, e6-word-meaning-lit, e6-structure-lit, e6-narrator-pov, e6-read-vs-watch, e6-compare-genres |
 | e5-locate-sources, e5-several-main-ideas, e5-integrate-several | Finding information fast in several sources; integrating several texts | Unit 6, e6-media-integrate and e6-compare-accounts |
-| Grade 5's water unit (its unit 4, beside s5-water-distribution and s5-protect-resources) | Too much and too little water, and how communities share it | Unit 1's flood town and unit 6's flood wall (thread 2) |
+| Grade 5's water unit (its unit 4, beside s5-water-distribution and s5-protect-resources) | Too little water (two drought stories), how much of Earth's water is usable and how communities share a river; floods are new in grade 6 | Unit 1's flood town and unit 6's flood wall (thread 2) |
 
 Each pick-up opens with a short readiness task on the grade 5 skill in the unit named in the last column, not all
 in week 1. Each unit names its readiness tasks in "Why this unit, here".

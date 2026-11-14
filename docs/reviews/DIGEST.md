@@ -190,6 +190,20 @@ To Cory: one Desk card, q-frames-ela-sci-math-1. Bands still in their fix pass a
 | Grade 1 long text read in module 4 unit 1's lessons in place of its two trade books | Days by load | grade 1 frame |
 | Cross-subject tables match the rows' leans; unmatched leans become topic connections | ela.csv | K, 1, 2 frames |
 
+**ELA, Grades 3 to 5** (frame-ela-3-5-fixes-2026-11-14.md)
+
+| Choice | Reason | File |
+|---|---|---|
+| Grades 3 to 5 skills block: word study 10 daily; independent reading 20 on three days; grammar opener 5 and partner rereading 15 on two days; grammar taught in module lessons | Expert floor; one design; timed in the probe | grades 3, 4, 5 frames; reading-range rows |
+| Rows sit where the kept base lessons first teach and assess them; later parts named continued | Base-order placement | grades 3, 4, 5 frames; ela.csv |
+| Grade 3: fluency, writing process, word strategies, literal and nonliteral in unit 1; word forms and sentences in unit 2; speaking reports (with L.3.3b as conventions) in unit 3 | Base M1, M2, M3 assessments | grade 3 frame; ela.csv |
+| Grade 4: informative, writing process, grammar in unit 1; grammar parts by the base map; RL.4.7 on prose and drama in unit 1; W.4.9b in unit 2 | Base M1U2 and M2 assessments | grade 4 frame; ela.csv |
+| Grade 4 unit 3 day swap; social studies grade 4 unit 5 uses the ELA canal set; the unlawful Oneida purchases named | Base lesson content; one canal set | grade 4 frame; ela.csv |
+| Grade 5 days 41, 39, 40, 33 on a base of 154; monologue in unit 1; literary pair and RL.5.6, RL.5.9 in unit 2; both unit 4 stories drought | Lesson counts; base M1U3 and M2U2; grade 6 seam | grade 5 frame; grade 6 Seams row; ela.csv |
+| Life Science module-2 folders are science companions, left out in grades 3 to 5 | Their own overviews | grades 3, 4, 5 source maps |
+| UDHR official text with Curio Class explainers; 1947 reports by renewal search, Curio Class account as fallback | Clear authorship and rights | grade 5 frame |
+| No anchor drafts required before a frame closes; measures are targets until text records | Frame brief | grades 3, 4, 5 frames |
+
 **ELA, Grades 6 to 8** (frame-ela-6-8-fixes-2026-11-14.md)
 
 | Choice | Course | Reason |
