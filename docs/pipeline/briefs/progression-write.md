@@ -29,7 +29,7 @@ to `S:\CurioClass\data\progressions\parts\{part}.csv`.
 - **strand:** {strands} (one per row).
 - **grade:** {grades}.
 - **skill_id:** lower case, hyphens, prefix by grade: {prefixes}. Unique, short, stable.
-- **standard:** `; `-separated codes exactly as in the standards file. {coverage}
+- **standard:** `; `-separated codes exactly as in the standards file. {coverage} A row that only starts or applies a standard another row owns writes it `~CODE` (contributing, not owning); the owning row is the one that completes it.
 - **assumes / hands_on:** `; `-separated skill ids, both ends written: if A hands_on B, B assumes A. Assumes point
   only at an earlier grade, hands_on only at a later one, and a handoff is the real prerequisite (a skill used),
   not just an earlier topic. Prefer the next grade; a skip needs a reason in the notes. Across bands leave the

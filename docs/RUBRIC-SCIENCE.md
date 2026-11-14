@@ -140,9 +140,10 @@ S2, S3, S5, S6, S8, S9 and S10.
 - **High school** scores the core ideas, practices and crosscutting concepts the course claims, at 8 points each,
   and has no 2f (the nature of science is read inside 2b and 2c). Gateway 2 is 32 points.
 - **Curio Class's courses** (data/courses.csv): one elementary course read by grade (science-k5), one middle
-  school course (science-ms), and the high school courses. Biology and Chemistry are core; Earth and Space,
-  Physics and Environmental Science are not, so the core high school set alone does not cover the high school
-  band (see "Questions for Cory").
+  school course (science-ms), and the high school courses. Biology (grade 9), Chemistry (grade 10) and Physics
+  (grade 11) are core, and the high school Earth and space expectations are folded into those three (Cory,
+  2026-11-13, Desk card q-hs-science-core, following NGSS Appendix K's modified domains model). Earth and Space
+  and Environmental Science are electives. There is no core science course in grade 12.
 - **Source by band:** 6-8 has a base text; K-5 and 9-12 are written from scratch with references, so they carry
   more risk on S1, S4 and S10 and get the longer read.
 
@@ -174,9 +175,8 @@ name their standard, what to do next, extensions, family note and supplies, acco
 
 ## Questions for Cory
 
-- **High school coverage (scope).** Only Biology and Chemistry are core. Physics and Earth and Space carry most of
-  the high school physical and earth science expectations, so the core set does not cover the band. Either make
-  Physics (and Earth and Space) core, or say plainly that the core high school path covers part of the band.
+- **High school coverage (scope).** Settled 2026-11-13 (q-hs-science-core): Physics is core and the Earth and
+  space expectations are folded into the three core courses, so the core set covers the band.
 - **A science teacher's read (people).** FOUNDATION 7.3 and S5 want a science teacher to read safety and
   materials before a course is called finished. There are no people yet, so no science course can be called
   finished until one is found.

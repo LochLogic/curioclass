@@ -17,6 +17,9 @@ FAIL (exit 1):
   (has it in model_out without it in model_in);
 - a cross_subject entry that is not subject:CODE with a code in that subject's standards file, or
   subject:skill_id with an id in that subject's progression file once it exists.
+A standard written ~CODE marks a row that contributes to a standard another row owns (added 2026-11-13): it is
+checked as a code but does not count as owning it, and the code must be owned by some row (an earlier contributing
+row starts the work; a later one applies it).
 note (exit 0): a handoff that skips one or more grades; a C3 indicator named in more than one grade (depth must
 differ, and the notes must say how); a C3 indicator of a grade band named by no grade in that band; grade row counts.
 """
@@ -93,13 +96,20 @@ def check(subject):
             if not (r[c] or '').strip():
                 fails.append(where + ': blank ' + c)
         for code in split(r['standard']):
+            code = code.lstrip('~')
             if code not in known:
                 fails.append(where + ': standard %s not in the standards files' % code)
     # anchor coverage and single-grade ownership
-    owners = {}
+    owners, contrib = {}, []
     for sid, r in by_id.items():
         for code in split(r['standard']):
+            if code.startswith('~'):
+                contrib.append((sid, code[1:]))
+                continue
             owners.setdefault(code, set()).add(grade_of[sid])
+    for sid, code in contrib:
+        if code not in owners:
+            fails.append('%s contributes to %s, which no row owns' % (sid, code))
     if subject in ANCHOR:
         excl = {}
         ep = os.path.join(ROOT, 'data', 'progressions', subject + '-excluded.csv')

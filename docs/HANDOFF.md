@@ -34,7 +34,13 @@ collections come per course; L7 is Cory's; the rest wait on
 their triggers. Cory 2026-11-13: both readers are trusted (q-calibration-1 answered); Codex reads run by script
 (scripts/codex_read.py), no clicks.
 
-**Step 1, social studies progression, 2026-11-13 (latest):** done. 384 rows K to 12
+**Step 1, science progression, 2026-11-13 (latest):** done, the first subject written blind then reconciled.
+198 rows K to 11 (data/progressions/science.csv), all 208 NGSS PEs owned once; no grade 12 core course. Reconcile
+(25 differences: old work won 19, 17 on a named source; new won 6; no pull found), expert and Codex reads, fix pass
+(docs/reviews/progression-science-*2026-11-13.md). The gate now reads `~CODE` as a contributing row (starts or
+applies a standard another row owns). Nothing for Cory. Next: ELA, then math, the same way.
+
+**Step 1, social studies progression, 2026-11-13:** done. 384 rows K to 12
 (data/progressions/social-studies.csv), gate scripts/progression.py inside plan.py check, expert and Codex reads
 and a fix pass (docs/reviews/progression-social-studies-*2026-11-13.md). Open for Cory: Desk card
 q-ss-progression-1 (Government and Economics grade placement; the writers' eight calls). Next: the science, ELA and

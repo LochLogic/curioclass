@@ -237,6 +237,15 @@ model gaps. How it was made: five band writers in parallel, one stitcher, two co
 by script, scripts/codex_read.py), one fix pass (19 of 22 findings applied). Measured cost: about 1.4 million
 agent tokens for the subject, reads included, plus Codex's own. The other three subjects follow the same way.
 
+**Science done 2026-11-13** (no Desk card needed): 198 rows, K to 11, in data/progressions/science.csv, all 208
+NGSS performance expectations owned by one row; grade 12 has no core course (prog:science:12 marked done with that
+note). Written blind by four band writers, stitched, then reconciled with the older grade 4 scope and sequence: 25
+differences, the old work won 19 (17 on a named source), the new rows won 6, so the old work did not steer. Expert
+read (13 findings) and Codex read (9) applied in one fix pass. New gate rule: `~CODE` marks a row that starts or
+applies a standard another row owns (MS-PS4-2 owned in grade 8, MS-PS3-5 in grade 6, as OpenSciEd completes
+them). Measured: reads and fix pass about 170 thousand agent tokens plus Codex's own; the write and reconcile
+stages were not totalled.
+
 ### Step 2. Course frames for the four core subjects, then a review: baseline 1
 
 A course frame says what the course is: its grades, the standards and progression skills it owns, its days, its
