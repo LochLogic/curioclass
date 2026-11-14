@@ -89,7 +89,7 @@ stage('prog', 'Progressions', 'For each subject, what every grade owns, assumes 
 def frame_default(c): return 'e' if c.get('days_total') else '.'
 stage('frames', 'Course frames', 'One page per core course: its grades, the standards and skills it owns, its number of days, its unit list and a map of the base text. Three checks then review the whole structure and the website.', [
     dict(title=SHORT.get(n, n), nodes=[N(f'frame:{slug(c["title"])}', c['title'], frame_default(c)) for c in core(n)]) for n in ORDER
-] + [dict(title='Checks', nodes=[N('b1:review', 'Whole-structure review'), N('b1:site', 'Website design check'), N('b1:codex', 'Codex read')])])
+] + [dict(title='Checks', nodes=[N('b1:review', 'Whole-structure review'), N('b1:site', 'Website design check'), N('b1:codex', 'Codex read'), N('b1:pages', 'Course pages from the frames')])])
 mile('baseline1', 'Baseline 1', 'Every progression and course frame has been reviewed. The website matches the plan from subject down to course.')
 
 MILE = {'Social Studies': ('baseline2', 'Baseline 2', 'Social studies is reviewed from the progression down and its probe is read. Any fix to the day template is made here once, for every subject.'),
@@ -183,6 +183,7 @@ ABOUT = {
     'b1:review': "A read of the whole structure at once: every progression and frame, checking they fit together.",
     'b1:site': "Check the website's pages and links match the plan, from subject down to course.",
     'b1:codex': "Codex reads the progressions and frames as a second, independent reader.",
+    'b1:pages': "Build the course and unit pages for all 52 core courses from the frames, hidden from the live site until Cory says.",
     'ss': "The scope and sequence for this course: its units in order, each with what it teaches and roughly how many days.",
     'ss-review': "The expert reads every scope and sequence in this subject together; one fix pass follows.",
     'units-review': "The expert reads this subject's unit plans together before any days are written.",
