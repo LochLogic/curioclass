@@ -1,23 +1,27 @@
-# Job: write the unit plan for unit {unit} of {course} (days {first} to {last})
+# Job: write the unit plan for unit {unit} of {course} (course days {first} to {last})
 
-Write the unit plan (and the section plans, if the unit has more than one section) for unit {unit}, to
-docs/courses/UNIT-PLAN.md. Files: docs/courses/{course}/s{uu}.md, and docs/courses/{course}/u{uu}-N.md for each
-section of a unit with more than one.
+Write the unit plan for unit {unit}, to docs/courses/UNIT-PLAN.md, as docs/courses/{course}/s{uu}.md. Unit plans
+follow the subject-wide order in PRODUCTION-PATH steps 3 and 4: every unit of the subject is planned before the probe,
+and a preceding unit need not have written lessons. Section plans (docs/courses/{course}/u{uu}-N.md) follow in step 7,
+except the section chosen for the probe, which the lead names.
 
-Read first, in this order: docs/GLOSSARY.md; docs/courses/UNIT-PLAN.md; the course's scope and sequence
-(docs/courses/{course}-spine.md: unit {unit}'s row, its limits row and the units around it); the progression
-(docs/courses/math-3-5-progression.md for grades 3 to 5 math); docs/APPROACH.md and the subject's approach page;
-docs/courses/{course}/DEFAULTS.md and TOOL-ASKS.md; the rubric (docs/RUBRIC-MATH-K8.md for K to 8 math). Model on
-the newest planned units: docs/courses/{course}/s03.md with u03-1.md to u03-4.md (a long unit), s02.md (a
-one-section unit), s11.md (the pilot).
+Read first, in this order: docs/GLOSSARY.md; docs/courses/UNIT-PLAN.md (some of its fields are math only; it says
+which); the course frame docs/courses/{course}/frame.md (unit {unit}'s row, its seams, models and cross-subject
+leans); the course's scope and sequence (docs/courses/{course}/scope-and-sequence.md and its rows in
+data/plans/{course}/days.csv: unit {unit}'s days, its reserved assessment slots, and the units around it); the
+progression rows the unit owns (data/progressions/{subject}.csv); docs/APPROACH.md and the subject's approach page;
+the subject lens docs/agents/lenses/{subject}.md and the subject's bar ({bar}); docs/courses/{course}/DEFAULTS.md and
+TOOL-ASKS.md where they exist. Model on the newest planned unit plans of the same subject; until a subject has one,
+on docs/courses/math-4/s03.md for the shape only.
 
-Read the unit plan before yours and the one after (if written), and the last day file of the unit before: its
-Tomorrow line is your day {first}'s opening, and its plan's "carried" list is yours to keep or change.
+Read the unit plan before yours and the one after (if written): the plan before's "carried" list is yours to keep or
+change, and its last day's goal is where yours starts.
 
 Every goal names the item that shows it: each day's exit and each end-of-unit assessment item, and which part of
-the standard each covers (rule 19: the whole standard). No number fact or list on an exit or assessment item may
-come from a taught row. Anything that is a question of scope, money, people or audience goes to Cory in your
-report; everything else you decide.
+the standard each covers (rule 19: the whole standard). The end-of-unit assessment sits inside the unit's days, and
+the plan names its response time once (the same day or a later respond day). No number fact or list on an exit or
+assessment item may come from a taught row. Anything that is a question of scope, money, people or audience goes to
+Cory in your report; everything else you decide.
 
 Do not write data rows or day files: the plan-data job does that after an expert reads your plan. Stay under the
 word caps in UNIT-PLAN.md.

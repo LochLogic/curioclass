@@ -28,7 +28,7 @@ same kind of model that wrote them.
    layers set the order: foundation, standards, approach, **progressions** (layer 4: what each grade owns, assumes
    and hands on, per subject, across all its grades), each course's frame and scope and sequence (with its map
    against the base text, where there is one), then units. Progressions and course frames are built and reviewed
-   for all four core subjects together (math, ELA, science, social studies: 58 courses since the 2026-11-13 social studies redraw, 52 of them core); scope and sequence and
+   for all four core subjects together (math, ELA, science, social studies: 58 courses since the 2026-11-13 social studies redraw, 52 of them core, which get frames now; the 6 electives wait, see After the core subjects); scope and sequence and
    units then go one subject at a time, each reviewed from its progression down. Sections, days, lessons and
    tools come only after every core subject's units are planned and reviewed. This replaces BASELINE rule 25
    ("prove at the bottom before planning wider"; Cory, 2026-11-13). Cory's reasoning, in chat: well-made units in a sound
@@ -253,10 +253,10 @@ stages were not totalled.
 ### Step 2. Course frames for the four core subjects, then a review: baseline 1
 
 A course frame says what the course is: its grades, the standards and progression skills it owns, its days, its
-unit list with a reason for each unit, and, where there is a base text, the source map (data/plans/<course>/source-map.csv: every base lesson placed in
-one of our units, scripted from the source's free pages, then judged for unit edges and day counts; grade 4 math's
+unit list with a reason for each unit, and, where there is a base text, the source map (a section of the frame, every base lesson placed in
+one of our units; the day-level data/plans/<course>/source-map.csv comes with the scope and sequence, scripted from the source's free pages, then judged for unit edges and day counts; grade 4 math's
 table of 149 IM lessons is already scripted, kept outside the repo in the source store). A course frame is the course-level
-summary; its scope and sequence (step 3) then sets every day in order. The 58 courses of the four core subjects get one each. The three scopes and sequences on
+summary; its scope and sequence (step 3) then sets every day in order. The 52 core courses of the four subjects get one each (the 6 electives in these subjects wait, see After the core subjects). The three scopes and sequences on
 file are read as input against the progressions, not assumed right.
 
 Then **baseline 1**, a whole-structure review:
@@ -264,12 +264,18 @@ Then **baseline 1**, a whole-structure review:
 - where the layers, the gates or the vocabulary need alignment or fixing;
 - **the website design check**: whether the site's structure (catalog pages, topics, course and unit pages) still
   fits the hierarchy, and what changes if not. Proposals to Cory; nothing is rebuilt during planning unless he says;
-- a Codex read of a sample, and a human read if a person is found by then.
+- a Codex read of a sample.
 
 ### Step 3. Social studies: scope and sequence for every course, then a review
 
-Each social studies course's frame becomes its scope and sequence (every teaching day in order, by unit). The
-expert reads each against the progression and the content standard P1 set; Cory says yes to each.
+Each social studies course's frame becomes its scope and sequence (every course day in order, by unit), written to
+docs/pipeline/briefs/sequence-write.md: `docs/courses/<course>/scope-and-sequence.md` with one row per day in
+`data/plans/<course>/days.csv` (the five day kinds in every subject; course-level check and respond days take
+`stretch` = `C`). It places its days on the one school calendar, docs/courses/CALENDAR.md (school days, weeks, the
+stagger rule for course-level checks across a grade), settles each "Candidate:" check-set cell and its day cost, and
+reserves assessment slots without writing items or section plans. The gate is `scripts/sequence.py` (run by
+`plan.py check`). The expert reads each to docs/pipeline/briefs/sequence-read.md against the progression and the
+content standard P1 set; Cory says yes to each.
 
 ### Step 4. Social studies: units, then a review, then the probe: baseline 2
 
@@ -298,9 +304,8 @@ they exist. The grade 4 source map resumes here.
 
 ### Step 6. The final review: every subject, every course
 
-One cold read from the progressions down across all 58 courses of the four core subjects: continuity through the grades, the
-cross-subject column, frames and units against their layers. Then a Codex read of a sample and a human read where
-people are found. This is the last check before days.
+One cold read from the progressions down across all 52 core courses of the four subjects: continuity through the grades, the
+cross-subject column, frames and units against their layers. Then a Codex read of a sample. This is the last check before days.
 
 ### Step 7. Sections, days and lessons
 
@@ -351,9 +356,11 @@ tools and claim no course coverage until a section names them (BASELINE rule 26)
 
 ### After the core subjects
 
-The 49 non-core courses (arts and music, health and PE, computer science, career and technical education, social
-and emotional learning, English language development, library and research skills; world languages stay shelved)
-come after the core subjects (Cory, 2026-11-13). Where a core progression leans on one of them (English language
+First the 6 electives of the four core subjects (precalculus, statistics, calculus, earth and space science,
+environmental science, psychology). Then the 49 courses of the other subjects (arts and music, health and PE,
+computer science, career and technical education, social and emotional learning, English language development,
+library and research skills; world languages stay shelved) (Cory, 2026-11-13). Personal finance is no course of its
+own: Economics teaches it, lightly integrated (Cory, 2026-11-14), and data/courses.csv no longer flags it core. Where a core progression leans on one of them (English language
 development with ELA; health with science), the cross_subject column notes it for then.
 
 ### People and a second reader, through all of it
@@ -361,10 +368,10 @@ development with ELA; health with science), the cross_subject column notes it fo
 - **A reader of a different model kind** at each baseline and in P5d's calibration: Codex reads cold against the
   same brief, and its findings are compared with the expert's. Cory pastes the prompts himself. Codex's weekly
   budget resets often and is open for large use (Cory, 2026-11-13); Pro ends 2026-11-30.
-- **People: none yet** (Cory, 2026-11-13). The expert agent, checked in P5, and Codex are the reviewers. A social
-  studies content reviewer, a math content reviewer and teachers are still needed before any course is called
-  finished (FOUNDATION 7.3); they are added when found.
-- The expert agent stands in as the teacher reader until a teacher is found (Cory 2026-11-13).
+- **Reviewers are agents** (Cory, 2026-11-13; FOUNDATION 7.3 revised 2026-11-14). The expert agent, checked in P5,
+  and Codex are the reviewers. The answer-key, safety and sensitivity agents do the content reads FOUNDATION 7.3
+  assigns, each cold and after studying its sources (docs/pipeline/briefs/sensitivity-read.md). No outside human
+  reader is planned; the pilot teaching and student trials FOUNDATION keeps stay as it says.
 
 ## 4. What changes in existing work
 
@@ -386,7 +393,7 @@ development with ELA; health with science), the cross_subject column notes it fo
 - Whether planning every unit before writing leaves few enough problems below (the probe and the guard measure it;
   section 2's table suggests planning can reach about 9 of 26 day-level problems, not the 11 in the day itself).
 - The real cost of planning a subject (social studies measures it first). Rough guesses only so far: 6 to 8 million
-  tokens for the progressions; units for 58 courses not yet sized.
+  tokens for the progressions; units for the 52 core courses not yet sized.
 - How long the whole planning phase takes, so how long no new days go live. Cory accepted this (2026-11-13).
 - Whether a base text helps in ELA and science as it did in math (step 5 tells).
 - How well the expert reads outside math (P5d measures it); whether its findings match a teacher's and a content

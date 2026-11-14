@@ -48,11 +48,18 @@ p = os.path.join(ROOT, 'data', 'plans', 'frames.csv')
 if os.path.exists(p):
     for r in csv.DictReader(io.open(p, encoding='utf-8')):
         frames[r['course'].strip()] = (int(r['units'] or 0) or None, int(r['days'] or 0) or None)
+# the join is the frame slug: a core course's title in course_status.py slugs to its frame folder name
+# ("Science, Grade 4" -> science-grade-4); a core course of the four subjects with no frame row is reported, not guessed
+for _n in ORDER:
+    for _c in [c for c in subj[_n]['courses'] if c.get('core')]:
+        if frames and not _c.get('course'):
+            print('plan_flow: no frames.csv row for core course "%s" (slug %s)' % (_c['title'], slug(_c['title'])), file=sys.stderr)
+def fid(c): return c.get('course') or slug(c['title'])   # the frame slug from course_status.py
 def units_of(c):
-    f = frames.get(slug(c['title']), (None, None))[0]
+    f = frames.get(fid(c), (None, None))[0]
     return (f, False) if f else ((c['units_total'], False) if c.get('units_total') else (EST_UNITS, True))
 def days_of(c):
-    f = frames.get(slug(c['title']), (None, None))[1]
+    f = frames.get(fid(c), (None, None))[1]
     return (f, False) if f else ((c['days_total'], False) if c.get('days_total') else (EST_DAYS, True))
 
 def core(name): return [c for c in subj[name]['courses'] if c.get('core')]
@@ -134,7 +141,8 @@ bands.append(dict(type='rows', id='tools', title='Tools', sub='Interactive tools
 
 after = [dict(title=s['name'], nodes=[[f'after:{slug(c["title"])}', c['title'], '.'] for c in s['courses']])
          for s in CS['subjects'] if s['name'] not in ORDER]
-bands.append(dict(type='stage', id='after', title='After the core', sub='The other 49 courses, such as the arts, health and computer science. They start once the four core subjects are done.', lanes=after, faint=True))
+n_after = sum(len(l['nodes']) for l in after)
+bands.append(dict(type='stage', id='after', title='After the core', sub='The other %d courses, such as the arts, health and computer science. The core electives (precalculus, statistics, calculus, earth and space science, environmental science, psychology) come first; all start once the four core subjects are done.' % n_after, lanes=after, faint=True))
 
 def rle(cs):
     out, i = [], 0

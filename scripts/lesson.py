@@ -124,13 +124,23 @@ def tool_title(folder):
 
 
 def grade(course):
+    """The course's grade as a number (K is 0), read from data/plans/frames.csv; None for a course with no frame row."""
+    cm = plan.course_meta(course)
+    if cm:
+        return 0 if cm[1] == 'K' else int(cm[1])
     m = re.search(r'(\d+)$', course)
     return int(m[1]) if m else None
 
 
 def course_name(course):
-    subj, _, g = course.rpartition('-')
-    return 'grade %s %s' % (g, {'ela': 'English language arts'}.get(subj, subj))
+    cm = plan.course_meta(course)
+    if cm:
+        subj, g = cm[0], cm[1]
+    else:
+        subj, _, g = course.rpartition('-')
+    subj = {'ela': 'English language arts', 'english-language-arts': 'English language arts',
+            'social-studies': 'social studies'}.get(subj, subj)
+    return ('kindergarten %s' % subj) if g == 'K' else 'grade %s %s' % (g, subj)
 
 
 def defaults_cap(course):
@@ -330,8 +340,9 @@ def check_day(d, items, days):
     check_day_kind = row['kind'] == 'Check'
     # minutes
     tot = sum(b[0] for b in d['blocks'])
-    if tot != DAY_MIN:
-        f.append('%s: the parts of the day add to %d minutes, not %d' % (lab, tot, DAY_MIN))
+    lo, hi = plan.day_range(h.get('course', '')) if plan.course_meta(h.get('course', '')) else (DAY_MIN, DAY_MIN)
+    if not lo <= tot <= hi:   # the course's day, from its frame (a range where the frame gives one)
+        f.append('%s: the parts of the day add to %d minutes, not %s' % (lab, tot, hi if lo == hi else '%d to %d' % (lo, hi)))
     if not check_day_kind:
         names = [b[1] for b in d['blocks']]
         k = next((i for i, n in enumerate(names) if n.lower().startswith('warm-up')), -1)

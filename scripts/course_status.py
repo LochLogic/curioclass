@@ -187,6 +187,16 @@ A(f"| **All courses** | **{tot['n']}** | **{tot['core']}** | **{tot['spine']}** 
 A('\nTool counts here leave out tools that sit on shared topics (last table). "Spec" includes a few that are '
   'still ideas.\n')
 
+# the canonical course id is the frame slug (data/plans/frames.csv, written by scripts/frame.py sync); a course
+# title slugs to it ("Science, Grade 4" -> science-grade-4), and a course with no frame gets ''
+FRAME_IDS = set()
+if has('data/plans/frames.csv'):
+    FRAME_IDS = {r['course'] for r in rows('data/plans/frames.csv')}
+def frame_id(title):
+    k = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
+    return k if k in FRAME_IDS else ''
+
+
 for s, label in groups:
     ds = sorted([(k, d) for k, d in courselist.items() if d['subject'] == s], key=lambda kd: kd[1]['sort'])
     A(f'## {label} ({len(ds)} courses)\n')
@@ -197,7 +207,7 @@ for s, label in groups:
         ru, ap, pr, sp, pl = layer_cells(k, d)
         t = d['tools']
         lad, strip = ladder(k)
-        js['courses'].append(dict(title=d['title'], core=d['core'], rubric=ru, approach=ap, prog=pr, spine=sp, plans=pl,
+        js['courses'].append(dict(title=d['title'], course=frame_id(d['title']), core=d['core'], rubric=ru, approach=ap, prog=pr, spine=sp, plans=pl,
                                   mods=d['mods'], spec=t['spec'] + t['idea'], built=t['built'], live=t['live'], **lad))
         if strip: J['strips'].append(dict(title=d['title'], **lad, **strip))
         A(f"| {d['title']} | {'yes' if d['core'] else ''} | {ru} | {ap} | {pr} | {sp} | {pl} | {d['mods']} | "

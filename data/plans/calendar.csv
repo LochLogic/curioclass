@@ -1,0 +1,671 @@
+course,grade,subject,kind,unit,label,first_day,last_day,first_school_day,last_school_day,first_week,last_week
+algebra-i,9,math,unit,1,"One-variable statistics: What is typical of our class, and how much do we differ",1,17,1,17,1,4
+algebra-i,9,math,unit,2,"Linear equations, inequalities and systems: How can a few equations show every p",18,46,18,46,4,10
+algebra-i,9,math,unit,3,Two-variable statistics: When does knowing one quantity help us predict another?,47,59,47,59,10,12
+algebra-i,9,math,check,3,3,60,61,60,61,12,13
+algebra-i,9,math,respond,3,3,62,62,62,62,13,13
+algebra-i,9,math,unit,4,"Functions: How can one rule describe a draining battery, a parking fee and a tem",63,83,63,83,13,17
+algebra-i,9,math,unit,5,Introduction to exponential functions: When does growing by a steady percent ove,84,107,84,107,17,22
+algebra-i,9,math,check,5,5,108,109,108,109,22,22
+algebra-i,9,math,respond,5,5,110,110,110,110,22,22
+algebra-i,9,math,unit,6,"Introduction to quadratic functions: What shape does a thrown ball make, and wha",111,130,111,130,23,26
+algebra-i,9,math,unit,7,"Quadratic equations: When will the ball land, and how can we know without a grap",131,157,131,157,27,32
+algebra-i,9,math,check,7,7,158,159,158,159,32,32
+algebra-i,9,math,respond,7,7,160,160,160,160,32,32
+algebra-ii,11,math,unit,1,Sequences and functions: How can a pattern that steps from term to term become a,1,14,1,14,1,3
+algebra-ii,11,math,unit,2,Polynomials and rational functions: What can the factors of an expression tell u,15,45,15,45,3,9
+algebra-ii,11,math,unit,3,Complex numbers and rational exponents: What does it mean to take the cube root ,46,69,46,69,10,14
+algebra-ii,11,math,check,3,3,70,71,70,71,14,15
+algebra-ii,11,math,respond,3,3,72,72,72,72,15,15
+algebra-ii,11,math,unit,4,"Exponential functions and equations: How long until an amount doubles, and how c",73,95,73,95,15,19
+algebra-ii,11,math,unit,5,"Transformations of functions: How can one graph become a whole family of graphs,",96,109,96,109,20,22
+algebra-ii,11,math,check,5,5,110,111,110,111,22,23
+algebra-ii,11,math,respond,5,5,112,112,112,112,23,23
+algebra-ii,11,math,unit,6,Trigonometric functions: How can a function describe something that goes around ,113,136,113,136,23,28
+algebra-ii,11,math,unit,7,Statistical inferences: How sure can we be about a whole population from one sam,137,157,137,157,28,32
+algebra-ii,11,math,check,7,7,158,159,158,159,32,32
+algebra-ii,11,math,respond,7,7,160,160,160,160,32,32
+biology,9,science,unit,1,Steady inside (weeks 1 to 3). Anchor: a runner's heart rate climbs in a race and,1,13,1,13,1,3
+biology,9,science,unit,2,"One cell, many kinds (weeks 3 to 5). Anchor: an axolotl that loses a leg grows b",14,25,14,25,3,5
+biology,9,science,unit,3,Where the mass goes (weeks 6 to 9). Anchor: bean seeds sprouting in a dark cupbo,26,43,26,43,6,9
+biology,9,science,check,3,Course-level check 1,44,45,44,45,9,9
+biology,9,science,respond,3,Course-level check 1,46,46,46,46,10,10
+biology,9,science,unit,4,Energy and carbon through an ecosystem (weeks 10 to 12). Anchor: a clear spring-,47,57,47,57,10,12
+biology,9,science,unit,5,"Populations rise, fall and hold (weeks 12 to 15). Anchor: for more than sixty ye",58,75,58,75,12,15
+biology,9,science,check,5,"Course-level check 2, mid-year",76,77,76,77,16,16
+biology,9,science,respond,5,"Course-level check 2, mid-year",78,78,78,78,16,16
+biology,9,science,unit,6,Inheritance and variation (weeks 16 to 19). Anchor: two black Labrador retriever,79,94,79,94,16,19
+biology,9,science,unit,7,The evidence for evolution (weeks 19 to 23). Anchor: stickleback fish that moved,95,112,95,112,19,23
+biology,9,science,unit,8,Life and Earth change each other (weeks 23 to 25). Anchor: rocks older than abou,113,123,113,123,23,25
+biology,9,science,unit,9,Designing for a river (weeks 25 to 28). Design problem: a river once full of sal,124,140,124,140,25,28
+biology,9,science,unit,10,Testing rules before the ocean does (weeks 29 to 31). Anchor: the cod off Newfou,141,155,141,155,29,31
+biology,9,science,check,10,"Course-level check 3, year-end",156,158,156,158,32,32
+biology,9,science,respond,10,"Course-level check 3, year-end",159,160,159,160,32,32
+chemistry,10,science,unit,1,"The table that predicts (weeks 1 to 4). Anchor: lithium, sodium and potassium al",1,16,1,16,1,4
+chemistry,10,science,unit,2,"Strong pulls, weak pulls (weeks 4 to 7). Anchor: matched drops of water and rubb",17,31,17,31,4,7
+chemistry,10,science,unit,3,Water shapes the land (weeks 7 to 9). Anchor: rain soaking through limestone hol,32,41,32,41,7,9
+chemistry,10,science,unit,4,Counting atoms by weighing (weeks 9 to 11). Anchor: baking soda and vinegar in a,42,53,42,53,9,11
+chemistry,10,science,check,4,Course-level check 1,54,55,54,55,11,11
+chemistry,10,science,respond,4,Course-level check 1,56,56,56,56,12,12
+chemistry,10,science,unit,5,Hot packs and cold packs (weeks 12 to 15). Anchor: squeeze one first-aid pack an,57,74,57,74,12,15
+chemistry,10,science,unit,6,"Faster, and more (weeks 15 to 18). Anchor: an antacid tablet fizzes away in seco",75,87,75,87,15,18
+chemistry,10,science,unit,7,Design an energy device (weeks 18 to 20). Design problem: a family with no power,88,99,88,99,18,20
+chemistry,10,science,check,7,"Course-level check 2, mid-year",100,101,100,101,20,21
+chemistry,10,science,respond,7,"Course-level check 2, mid-year",102,102,102,102,21,21
+chemistry,10,science,unit,8,Inside the nucleus (weeks 21 to 23). Anchor: a mammoth bone can be dated by how ,103,112,103,112,21,23
+chemistry,10,science,unit,9,Earth's energy budget (weeks 23 to 26). Anchor: the Arctic sea ice each Septembe,113,130,113,130,23,26
+chemistry,10,science,unit,10,Following the carbon (weeks 27 to 29). Anchor: the carbon in a tank of fuel burn,131,143,131,143,27,29
+chemistry,10,science,unit,11,"Where people live, and why (weeks 29 to 31). Anchor: some of the world's largest",144,155,144,155,29,31
+chemistry,10,science,check,11,"Course-level check 3, year-end",156,158,156,158,32,32
+chemistry,10,science,respond,11,"Course-level check 3, year-end",159,160,159,160,32,32
+civics-government-and-civic-life,8,social-studies,unit,1,"Roots of self-government. Which traditions most shaped the founders' plan, and w",1,15,1,15,1,3
+civics-government-and-civic-life,8,social-studies,unit,2,The founding documents. Did the founders' documents live up to their own words?,16,30,16,30,4,6
+civics-government-and-civic-life,8,social-studies,unit,3,The Constitution and the three branches. Does the Constitution keep any one part,31,47,31,47,7,10
+civics-government-and-civic-life,8,social-studies,check,3,1 (mid-year),48,49,48,49,10,10
+civics-government-and-civic-life,8,social-studies,respond,3,1 (mid-year),50,51,50,51,10,11
+civics-government-and-civic-life,8,social-studies,unit,4,Elections and parties. Do elections give citizens real power?,52,63,52,63,11,13
+civics-government-and-civic-life,8,social-studies,unit,5,"Citizens and civic values. What does a good citizen owe, and to whom?",64,76,64,76,13,16
+civics-government-and-civic-life,8,social-studies,unit,6,Rights over time. How have Americans widened the rights the Constitution promise,77,95,77,95,16,19
+civics-government-and-civic-life,8,social-studies,check,6,2 (mid-year),96,97,96,97,20,20
+civics-government-and-civic-life,8,social-studies,respond,6,2 (mid-year),98,99,98,99,20,20
+civics-government-and-civic-life,8,social-studies,unit,7,"Federalism and your state. Who should decide: the nation, the state or the town?",100,119,100,119,20,24
+civics-government-and-civic-life,8,social-studies,unit,8,How change happens. What is the best way to change a law?,120,130,120,130,24,26
+civics-government-and-civic-life,8,social-studies,unit,9,A free press and the news. How can a citizen tell which claims about one public ,131,144,131,144,27,29
+civics-government-and-civic-life,8,social-studies,check,9,3 (year-end),145,146,145,146,29,30
+civics-government-and-civic-life,8,social-studies,respond,9,3 (year-end),147,148,147,148,30,30
+civics-government-and-civic-life,8,social-studies,unit,10,Civic action. What can we do about a problem in our school or community?,149,160,149,160,30,32
+economics,12,social-studies,unit,1,"Scarcity, choice and economic systems. Who should decide what gets made: buyers,",1,8,81,88,17,18
+economics,12,social-studies,unit,2,Markets and prices. Do prices set by markets serve people better than prices set,9,18,89,98,18,20
+economics,12,social-studies,unit,3,"Business, competition and work. When does a business get too big for the good of",19,27,99,107,20,22
+economics,12,social-studies,unit,4,"Government in the economy. When should government step into a market, and who pa",28,34,108,114,22,23
+economics,12,social-studies,check,4,"1, midpoint",35,35,115,115,23,23
+economics,12,social-studies,respond,4,"1, midpoint",36,36,116,116,24,24
+economics,12,social-studies,unit,5,"Measuring the whole economy. How do we know whether the economy is doing well, a",37,44,117,124,24,25
+economics,12,social-studies,unit,6,"Money, banks and policy. Who should fight a recession or inflation: Congress or ",45,51,125,131,25,27
+economics,12,social-studies,unit,7,Trade and the global economy. Who wins and who loses when a country trades more?,52,58,132,138,27,28
+economics,12,social-studies,unit,8,"Earning, spending and protecting. What makes a spending choice a smart one, and ",59,67,139,147,28,30
+economics,12,social-studies,unit,9,"Saving, credit and investing. What plan best turns today's income into tomorrow'",68,78,148,158,30,32
+economics,12,social-studies,check,9,"2, final",79,79,159,159,32,32
+economics,12,social-studies,respond,9,"2, final",80,80,160,160,32,32
+english-language-arts-grade-1,1,ela,unit,1,Tools and work. How do tools help people do their work?,1,33,1,33,1,7
+english-language-arts-grade-1,1,ela,unit,2,"The sun, moon and stars. What patterns can we see in the sky, and what stories d",34,75,34,75,7,15
+english-language-arts-grade-1,1,ela,check,2,Check 1,76,77,76,77,16,16
+english-language-arts-grade-1,1,ela,respond,2,Check 1,78,78,78,78,16,16
+english-language-arts-grade-1,1,ela,unit,3,Birds' amazing bodies. How do a bird's body parts help it survive?,79,119,79,119,16,24
+english-language-arts-grade-1,1,ela,unit,4,Caring for birds. How can people help birds that need it?,120,157,120,157,24,32
+english-language-arts-grade-1,1,ela,check,4,Check 2,158,159,158,159,32,32
+english-language-arts-grade-1,1,ela,respond,4,Check 2,160,160,160,160,32,32
+english-language-arts-grade-10,10,ela,unit,1,"Frankenstein (weeks 1 to 6). What does Victor owe the being he made, and does th",1,28,1,28,1,6
+english-language-arts-grade-10,10,ela,unit,2,What is life made of? From Huxley to cloning (weeks 6 to 9). What did scientists,29,42,29,42,6,9
+english-language-arts-grade-10,10,ela,check,2,Check 1,43,44,43,44,9,9
+english-language-arts-grade-10,10,ela,respond,2,Check 1,45,45,45,45,9,9
+english-language-arts-grade-10,10,ela,unit,3,"Under colonial rule: stories from India, the Philippines and South Africa (weeks",46,60,46,60,10,12
+english-language-arts-grade-10,10,ela,unit,4,Julius Caesar: Shakespeare and his source (weeks 13 to 17). Was Brutus right to ,61,85,61,85,13,17
+english-language-arts-grade-10,10,ela,check,4,Check 2,86,88,86,88,18,18
+english-language-arts-grade-10,10,ela,respond,4,Check 2,89,89,89,89,18,18
+english-language-arts-grade-10,10,ela,unit,5,Persuaded to war: All Quiet on the Western Front (weeks 18 to 23). How were youn,90,111,90,111,18,23
+english-language-arts-grade-10,10,ela,unit,6,"Liberty, word by word, 1776 to 1941 (weeks 23 to 26). What did 'liberty' mean in",112,127,112,127,23,26
+english-language-arts-grade-10,10,ela,unit,7,Rising seas: a research project on one global problem (weeks 26 to 31). What is ,128,155,128,155,26,31
+english-language-arts-grade-10,10,ela,check,7,Check 3,156,158,156,158,32,32
+english-language-arts-grade-10,10,ela,respond,7,Check 3,159,160,159,160,32,32
+english-language-arts-grade-11,11,ela,unit,1,"Stories built on doubt, 1693 to 1890 (weeks 1 to 4). What do these stories refus",1,16,1,16,1,4
+english-language-arts-grade-11,11,ela,unit,2,"Trust thyself: Emerson and Thoreau, 1841 to 1873 (weeks 4 to 7). What did Emerso",17,34,17,34,4,7
+english-language-arts-grade-11,11,ela,unit,3,"Covenant and consent: founding words, 1620 to 1865 (weeks 7 to 11). What did eac",35,55,35,55,7,11
+english-language-arts-grade-11,11,ela,unit,4,"Reform, 1830 to 1860: a research project (weeks 12 to 16; the shared research we",56,78,56,78,12,16
+english-language-arts-grade-11,11,ela,check,4,Check 1,79,80,79,80,16,16
+english-language-arts-grade-11,11,ela,respond,4,Check 1,81,81,81,81,17,17
+english-language-arts-grade-11,11,ela,unit,5,"Douglass: the Narrative and the Fourth of July, 1845 to 1852 (weeks 17 to 19). H",82,95,82,95,17,19
+english-language-arts-grade-11,11,ela,unit,6,"The Scarlet Letter: guilt and the community, the 1640s seen from 1850 (weeks 20 ",96,116,96,116,20,24
+english-language-arts-grade-11,11,ela,check,6,Check 2,117,119,117,119,24,24
+english-language-arts-grade-11,11,ela,respond,6,Check 2,120,120,120,120,24,24
+english-language-arts-grade-11,11,ela,unit,7,"The self in American poetry: Dickinson and Whitman, 1855 to 1890 (weeks 25 to 26",121,130,121,130,25,26
+english-language-arts-grade-11,11,ela,unit,8,"How the other half lived: Riis and the tenement, 1890 (weeks 27 to 28). What did",131,138,131,138,27,28
+english-language-arts-grade-11,11,ela,unit,9,"Inside the marriage, 1892 to 1916: Chopin, Gilman and Glaspell, with a satire pa",139,155,139,155,28,31
+english-language-arts-grade-11,11,ela,check,9,Check 3,156,158,156,158,32,32
+english-language-arts-grade-11,11,ela,respond,9,Check 3,159,160,159,160,32,32
+english-language-arts-grade-12,12,ela,unit,1,"Telling your own story: reflective writing, 1883 to 1916 (about days 1 to 15). H",1,15,1,15,1,3
+english-language-arts-grade-12,12,ela,unit,2,"Hamlet: what can be known, and what can be done (about days 16 to 38). What does",16,38,16,38,4,8
+english-language-arts-grade-12,12,ela,unit,3,"Money, marriage and class: Swift, Austen and Wilde, 1729 to 1895 (about days 39 ",39,50,39,50,8,10
+english-language-arts-grade-12,12,ela,check,3,Check 1,51,52,51,52,11,11
+english-language-arts-grade-12,12,ela,respond,3,Check 1,53,53,53,53,11,11
+english-language-arts-grade-12,12,ela,unit,4,The 1920s: the American dream and its price (about days 54 to 71). What does the,54,71,54,71,11,15
+english-language-arts-grade-12,12,ela,unit,5,Du Bois and Woolf: who gets to think and write (about days 72 to 82). What do Du,72,82,72,82,15,17
+english-language-arts-grade-12,12,ela,check,5,Check 2,83,85,83,85,17,17
+english-language-arts-grade-12,12,ela,respond,5,Check 2,86,86,86,86,18,18
+english-language-arts-grade-12,12,ela,unit,6,"Public words and a public decision, 1933 to today (about days 87 to 102). What m",87,102,87,102,18,21
+english-language-arts-grade-12,12,ela,unit,7,"What does equal mean? The law reads the founding, 1787 to 2021 (about days 103 t",103,120,103,120,21,24
+english-language-arts-grade-12,12,ela,check,7,Check 3,121,122,121,122,25,25
+english-language-arts-grade-12,12,ela,respond,7,Check 3,123,124,123,124,25,25
+english-language-arts-grade-12,12,ela,unit,8,The senior research project (about days 125 to 160). What question do you need a,125,160,125,160,25,32
+english-language-arts-grade-2,2,ela,unit,1,Schools and community. How are schools around the world alike and different?,1,32,1,32,1,7
+english-language-arts-grade-2,2,ela,unit,2,Fossils tell of Earth's changes. What can fossils tell us about the past?,33,74,33,74,7,15
+english-language-arts-grade-2,2,ela,check,2,Check 1,75,76,75,76,15,16
+english-language-arts-grade-2,2,ela,respond,2,Check 1,77,77,77,77,16,16
+english-language-arts-grade-2,2,ela,unit,3,The secret world of pollination. How do plants and pollinators help each other?,78,118,78,118,16,24
+english-language-arts-grade-2,2,ela,unit,4,Providing for pollinators. How can people help pollinators thrive?,119,157,119,157,24,32
+english-language-arts-grade-2,2,ela,check,4,Check 2,158,159,158,159,32,32
+english-language-arts-grade-2,2,ela,respond,4,Check 2,160,160,160,160,32,32
+english-language-arts-grade-3,3,ela,unit,1,"Reading against the odds. ""How do people get past what keeps them from books and",1,39,1,39,1,8
+english-language-arts-grade-3,3,ela,unit,2,"Frogs and the places they live. ""How does where a frog lives shape how it looks ",40,77,40,77,8,16
+english-language-arts-grade-3,3,ela,check,2,Check 1,78,79,78,79,16,16
+english-language-arts-grade-3,3,ela,respond,2,Check 1,80,80,80,80,16,16
+english-language-arts-grade-3,3,ela,unit,3,"A chapter-book series. ""Would you recommend this series to a friend, and why?""",81,119,81,119,17,24
+english-language-arts-grade-3,3,ela,unit,4,"Water around the world. ""Why does clean freshwater matter, and how can people pr",120,156,120,156,24,32
+english-language-arts-grade-3,3,ela,check,4,Check 2,157,158,157,158,32,32
+english-language-arts-grade-3,3,ela,respond,4,Check 2,159,160,159,160,32,32
+english-language-arts-grade-4,4,ela,unit,1,"Poems and becoming a writer. ""How does reading poems help someone become a write",1,38,1,38,1,8
+english-language-arts-grade-4,4,ela,unit,2,"Animal defenses. ""How do animals' bodies and behaviors help them survive?""",39,77,39,77,8,16
+english-language-arts-grade-4,4,ela,check,2,Check 1,78,79,78,79,16,16
+english-language-arts-grade-4,4,ela,respond,2,Check 1,80,80,80,80,16,16
+english-language-arts-grade-4,4,ela,unit,3,"The Erie Canal debate, New York 1808 to 1825. ""Was the canal worth what it cost,",81,119,81,119,17,24
+english-language-arts-grade-4,4,ela,unit,4,"The vote. ""How did people who could not vote win it, and who was left out?""",120,156,120,156,24,32
+english-language-arts-grade-4,4,ela,check,4,Check 2,157,158,157,158,32,32
+english-language-arts-grade-4,4,ela,respond,4,Check 2,159,160,159,160,32,32
+english-language-arts-grade-5,5,ela,unit,1,"Starting over: stories of human rights. ""What does a person need to start over, ",1,41,1,41,1,9
+english-language-arts-grade-5,5,ela,unit,2,"The rainforest. ""How do the living things of El Yunque depend on each other, and",42,80,42,80,9,16
+english-language-arts-grade-5,5,ela,check,2,Check 1,81,82,81,82,17,17
+english-language-arts-grade-5,5,ela,respond,2,Check 1,83,83,83,83,17,17
+english-language-arts-grade-5,5,ela,unit,3,"Athletes who led change. ""What made these athletes leaders of change, beyond win",84,123,84,123,17,25
+english-language-arts-grade-5,5,ela,unit,4,"Water we share. ""How much of Earth's water can people use, and how should commun",124,156,124,156,25,32
+english-language-arts-grade-5,5,ela,check,4,Check 2,157,158,157,158,32,32
+english-language-arts-grade-5,5,ela,respond,4,Check 2,159,160,159,160,32,32
+english-language-arts-grade-6,6,ela,unit,1,"River town: the flood year. ""What does a river town keep, and what does it chang",1,32,1,32,1,7
+english-language-arts-grade-6,6,ela,unit,2,"The first written laws: Hammurabi's code. ""How did Hammurabi want his people to ",33,58,33,58,7,12
+english-language-arts-grade-6,6,ela,check,2,Check 1,59,60,59,60,12,12
+english-language-arts-grade-6,6,ela,respond,2,Check 1,61,62,61,62,13,13
+english-language-arts-grade-6,6,ela,unit,3,"Reading the sky: how forecasters see a storm coming. ""How do forecasters know a ",63,86,63,86,13,18
+english-language-arts-grade-6,6,ela,unit,4,"Signs that speak: from cuneiform to the alphabet and Hangul. ""How did people wor",87,108,87,108,18,22
+english-language-arts-grade-6,6,ela,check,4,Check 2,109,110,109,110,22,22
+english-language-arts-grade-6,6,ela,respond,4,Check 2,111,112,111,112,23,23
+english-language-arts-grade-6,6,ela,unit,5,"Storm voices: poems, a monologue and a one-act play. ""How do writers make a stor",113,136,113,136,23,28
+english-language-arts-grade-6,6,ela,unit,6,"Warnings that save lives: Galveston 1900 to today. ""Why did so many die in Galve",137,156,137,156,28,32
+english-language-arts-grade-6,6,ela,check,6,Check 3,157,158,157,158,32,32
+english-language-arts-grade-6,6,ela,respond,6,Check 3,159,160,159,160,32,32
+english-language-arts-grade-7,7,ela,unit,1,"The salmon year. ""When the river a family has fished for generations changes, wh",1,30,1,30,1,6
+english-language-arts-grade-7,7,ela,unit,2,"The Dust Bowl: when the soil blew away. ""Why did the soil blow away in the 1930s",31,56,31,56,7,12
+english-language-arts-grade-7,7,ela,check,2,Check 1,57,58,57,58,12,12
+english-language-arts-grade-7,7,ela,respond,2,Check 1,59,60,59,60,12,12
+english-language-arts-grade-7,7,ela,unit,3,"Smallpox: who gets the credit? ""Who should get the credit for beating smallpox, ",61,86,61,86,13,18
+english-language-arts-grade-7,7,ela,unit,4,"Athens: who could speak? ""How did Pericles want the world to see Athens, and who",87,108,87,108,18,22
+english-language-arts-grade-7,7,ela,check,4,Check 2,109,110,109,110,22,22
+english-language-arts-grade-7,7,ela,respond,4,Check 2,111,112,111,112,23,23
+english-language-arts-grade-7,7,ela,unit,5,"The marathon and the Games. ""Why do we still tell the story of the runner from M",113,134,113,134,23,27
+english-language-arts-grade-7,7,ela,unit,6,"The Klamath River runs free. ""What happened to the Klamath River when its dams c",135,156,135,156,27,32
+english-language-arts-grade-7,7,ela,check,6,Check 3,157,158,157,158,32,32
+english-language-arts-grade-7,7,ela,respond,6,Check 3,159,160,159,160,32,32
+english-language-arts-grade-8,8,ela,unit,1,"The missing letter. ""What did the missing letter say, and why did someone want i",1,30,1,30,1,6
+english-language-arts-grade-8,8,ela,unit,2,"Founding words, answered. ""When the founders wrote that all men are created equa",31,62,31,62,7,13
+english-language-arts-grade-8,8,ela,unit,3,"Poison and promises: the 1906 fight over food and medicine. ""How did writers and",63,88,63,88,13,18
+english-language-arts-grade-8,8,ela,check,3,Check 1,89,90,89,90,18,18
+english-language-arts-grade-8,8,ela,respond,3,Check 1,91,92,91,92,19,19
+english-language-arts-grade-8,8,ela,unit,4,"Myths made new. ""Why do writers keep retelling Persephone and Nasreddin Hodja, a",93,124,93,124,19,25
+english-language-arts-grade-8,8,ela,check,4,Check 2,125,126,125,126,25,26
+english-language-arts-grade-8,8,ela,respond,4,Check 2,127,128,127,128,26,26
+english-language-arts-grade-8,8,ela,unit,5,"Gene stories: judging science claims in the news. ""When a headline says a gene w",129,156,129,156,26,32
+english-language-arts-grade-8,8,ela,check,5,Check 3,157,158,157,158,32,32
+english-language-arts-grade-8,8,ela,respond,5,Check 3,159,160,159,160,32,32
+english-language-arts-grade-9,9,ela,unit,1,"Traps and bargains: four suspense stories, 1846 to 1924 (weeks 1 to 5). In each ",1,22,1,22,1,5
+english-language-arts-grade-9,9,ela,unit,2,Home from the sea: the Odyssey (weeks 5 to 10). What does Odysseus owe the peopl,23,50,23,50,5,10
+english-language-arts-grade-9,9,ela,unit,3,"Four stories in translation: Russia, France, Brazil and China (weeks 11 to 13). ",51,63,51,63,11,13
+english-language-arts-grade-9,9,ela,check,3,Check 1,64,65,64,65,13,13
+english-language-arts-grade-9,9,ela,respond,3,Check 1,66,66,66,66,14,14
+english-language-arts-grade-9,9,ela,unit,4,Crossing into new worlds: four lives in print and on film (weeks 14 to 17). What,67,84,67,84,14,17
+english-language-arts-grade-9,9,ela,unit,5,"Speaking for the union, 1796 to 1863 (weeks 17 to 19). How did each speaker try ",85,95,85,95,17,19
+english-language-arts-grade-9,9,ela,check,5,Check 2,96,98,96,98,20,20
+english-language-arts-grade-9,9,ela,respond,5,Check 2,99,99,99,99,20,20
+english-language-arts-grade-9,9,ela,unit,6,"Should school start later? Teen sleep, data and argument (weeks 20 to 24). Does ",100,116,100,116,20,24
+english-language-arts-grade-9,9,ela,unit,7,Island birds: what Darwin saw and what people changed (weeks 24 to 26). How do i,117,130,117,130,24,26
+english-language-arts-grade-9,9,ela,unit,8,Romeo and Juliet (weeks 27 to 31). Who or what is most to blame for the deaths o,131,155,131,155,27,31
+english-language-arts-grade-9,9,ela,check,8,Check 3,156,158,156,158,32,32
+english-language-arts-grade-9,9,ela,respond,8,Check 3,159,160,159,160,32,32
+english-language-arts-kindergarten,K,ela,unit,1,"Toys and play. What makes a toy fun, and how do we share it?",1,34,1,34,1,7
+english-language-arts-kindergarten,K,ela,unit,2,Weather wonders. How does the weather change what people wear and do?,35,76,35,76,7,16
+english-language-arts-kindergarten,K,ela,check,2,Check 1,77,78,77,78,16,16
+english-language-arts-kindergarten,K,ela,respond,2,Check 1,79,79,79,79,16,16
+english-language-arts-kindergarten,K,ela,unit,3,"Trees are alive. What do trees need, and who needs trees?",80,118,80,118,16,24
+english-language-arts-kindergarten,K,ela,unit,4,Enjoying and appreciating trees. Why do people care for trees?,119,157,119,157,24,32
+english-language-arts-kindergarten,K,ela,check,4,Check 2,158,159,158,159,32,32
+english-language-arts-kindergarten,K,ela,respond,4,Check 2,160,160,160,160,32,32
+geometry,10,math,unit,1,Constructions and rigid transformations: What can we be sure of using only a com,1,26,1,26,1,6
+geometry,10,math,unit,2,Congruence: How few facts do we need to be sure two triangles are the same?,27,45,27,45,6,9
+geometry,10,math,check,2,2,46,47,46,47,10,10
+geometry,10,math,respond,2,2,48,48,48,48,10,10
+geometry,10,math,unit,3,"Similarity: How can a photo, a map and a shadow tell us true lengths?",49,67,49,67,10,14
+geometry,10,math,unit,4,Right triangle trigonometry: How can one angle and one length give us a height w,68,81,68,81,14,17
+geometry,10,math,unit,5,"Solid geometry: How much does a shape hold, and what happens when we scale it?",82,102,82,102,17,21
+geometry,10,math,check,5,5,103,104,103,104,21,21
+geometry,10,math,respond,5,5,105,105,105,105,21,21
+geometry,10,math,unit,6,Coordinate geometry: How can algebra prove what a drawing only suggests?,106,126,106,126,22,26
+geometry,10,math,unit,7,Circles: What do angles and arcs reveal about the circles around us?,127,143,127,143,26,29
+geometry,10,math,unit,8,Conditional probability: How should a new fact change how likely we think someth,144,157,144,157,29,32
+geometry,10,math,check,8,8,158,159,158,159,32,32
+geometry,10,math,respond,8,8,160,160,160,160,32,32
+math-grade-1,1,math,unit,1,"Adding, subtracting and working with data. What can counting tell us about addin",1,16,1,16,1,4
+math-grade-1,1,math,unit,2,Story problems. How can we show what is happening in a story and find what is mi,17,39,17,39,4,8
+math-grade-1,1,math,unit,3,Adding and subtracting within 20. What makes a sum easy to find?,40,68,40,68,8,14
+math-grade-1,1,math,unit,4,Numbers to 99. What do the two digits of a number tell us?,69,92,69,92,14,19
+math-grade-1,1,math,check,4,after unit 4,93,94,93,94,19,19
+math-grade-1,1,math,respond,4,after unit 4,95,95,95,95,19,19
+math-grade-1,1,math,unit,5,Adding within 100. When do we make a new ten?,96,110,96,110,20,22
+math-grade-1,1,math,unit,6,Length to 120 units. How can we say how long something is?,111,128,111,128,23,26
+math-grade-1,1,math,unit,7,"Geometry and time. What makes a shape that shape, and what time is it?",129,146,129,146,26,30
+math-grade-1,1,math,unit,8,Putting it all together. What do we know now about numbers and stories?,147,156,147,156,30,32
+math-grade-1,1,math,check,8,after unit 8,157,158,157,158,32,32
+math-grade-1,1,math,respond,8,after unit 8,159,160,159,160,32,32
+math-grade-2,2,math,unit,1,"Adding, subtracting and working with data. How can a picture help us add, subtra",1,19,1,19,1,4
+math-grade-2,2,math,unit,2,Adding and subtracting within 100. Which way to add or subtract makes the most s,20,38,20,38,4,8
+math-grade-2,2,math,unit,3,"Measuring length. How do we measure, and how do measurements help us compare?",39,57,39,57,8,12
+math-grade-2,2,math,unit,4,Adding and subtracting on the number line. How is a number line like a ruler?,58,73,58,73,12,15
+math-grade-2,2,math,unit,5,"Numbers to 1,000. What does each digit of a three-digit number tell us?",74,89,74,89,15,18
+math-grade-2,2,math,check,5,after unit 5,90,91,90,91,18,19
+math-grade-2,2,math,respond,5,after unit 5,92,92,92,92,19,19
+math-grade-2,2,math,unit,6,"Geometry, time and money. How do equal parts help us read clocks and count money",93,110,93,110,19,22
+math-grade-2,2,math,unit,7,"Adding and subtracting within 1,000. How can hundreds, tens and ones help us add",111,131,111,131,23,27
+math-grade-2,2,math,unit,8,Equal groups. How can equal groups help us count?,132,143,132,143,27,29
+math-grade-2,2,math,unit,9,"Putting it all together. What do we know now about numbers, measuring and storie",144,156,144,156,29,32
+math-grade-2,2,math,check,9,after unit 9,157,158,157,158,32,32
+math-grade-2,2,math,respond,9,after unit 9,159,160,159,160,32,32
+math-grade-3,3,math,unit,1,"Introducing multiplication. ""How can we find how many without counting one by on",1,22,1,22,1,5
+math-grade-3,3,math,unit,2,"Area and multiplication. ""How much space does a shape cover, and how can multipl",23,38,23,38,5,8
+math-grade-3,3,math,unit,3,"Adding and subtracting within 1,000. ""Which way to add or subtract is best for t",39,59,39,59,8,12
+math-grade-3,3,math,check,3,Check 1,60,60,60,60,12,12
+math-grade-3,3,math,respond,3,Check 1,61,61,61,61,13,13
+math-grade-3,3,math,unit,4,"Division and the multiplication table. ""How are multiplying and dividing related",62,77,62,77,13,16
+math-grade-3,3,math,unit,5,"Multiplying and dividing larger numbers. ""How can facts we know help with bigger",78,91,78,91,16,19
+math-grade-3,3,math,unit,6,"Fractions as numbers. ""Where does a fraction live on the number line?""",92,114,92,114,19,23
+math-grade-3,3,math,check,6,Check 2,115,115,115,115,23,23
+math-grade-3,3,math,respond,6,Check 2,116,116,116,116,24,24
+math-grade-3,3,math,unit,7,"Measuring length, time, liquid volume and mass. ""How do we measure, and how do w",117,133,117,133,24,27
+math-grade-3,3,math,unit,8,"Shapes and perimeter. ""What makes a shape belong to a group, and how far is it a",134,148,134,148,27,30
+math-grade-3,3,math,review,8,Year review,149,156,149,156,30,32
+math-grade-3,3,math,check,8,Check 3,157,158,157,158,32,32
+math-grade-3,3,math,respond,8,Check 3,159,160,159,160,32,32
+math-grade-4,4,math,unit,1,"Factors and multiples. ""How many rectangles can you make with a given area?""",1,8,1,8,1,2
+math-grade-4,4,math,unit,2,"Fraction equivalence and comparison. ""How can two different fractions be the sam",9,25,9,25,2,5
+math-grade-4,4,math,unit,3,"Fraction operations. ""What does it mean to add, subtract or multiply fractions?""",26,44,26,44,6,9
+math-grade-4,4,math,unit,4,"Tenths, hundredths and decimals. ""How can a decimal and a fraction name the same",45,55,45,55,9,11
+math-grade-4,4,math,check,4,Check 1,56,56,56,56,12,12
+math-grade-4,4,math,respond,4,Check 1,57,57,57,57,12,12
+math-grade-4,4,math,unit,5,"Large numbers: place value, rounding, adding and subtracting. ""How does each pla",58,76,58,76,12,16
+math-grade-4,4,math,unit,6,"Times as many, and measurement. ""How can we compare amounts by multiplying, and ",77,95,77,95,16,19
+math-grade-4,4,math,unit,7,"Patterns and multi-digit multiplication. ""How can place value and area help us m",96,110,96,110,20,22
+math-grade-4,4,math,check,7,Check 2,111,111,111,111,23,23
+math-grade-4,4,math,respond,7,Check 2,112,112,112,112,23,23
+math-grade-4,4,math,unit,8,"Multi-digit division and problem solving. ""How can we share or group large numbe",113,127,113,127,23,26
+math-grade-4,4,math,unit,9,"Angles, lines and shapes. ""How do we measure a turn, and how do angles and lines",128,149,128,149,26,30
+math-grade-4,4,math,review,9,Year review,150,156,150,156,30,32
+math-grade-4,4,math,check,9,Check 3,157,158,157,158,32,32
+math-grade-4,4,math,respond,9,Check 3,159,160,159,160,32,32
+math-grade-5,5,math,unit,1,"Volume and expressions. ""How much space does a solid take up, and how can we wri",1,14,1,14,1,3
+math-grade-5,5,math,unit,2,"Fractions as quotients. ""When we share, how can a fraction be the answer to a di",15,21,15,21,3,5
+math-grade-5,5,math,unit,3,"Fraction multiplication. ""What does it mean to take a fraction of a fraction?""",22,41,22,41,5,9
+math-grade-5,5,math,unit,4,"Fraction division and problems. ""How can we divide with unit fractions, and when",42,54,42,54,9,11
+math-grade-5,5,math,check,4,Check 1,55,55,55,55,11,11
+math-grade-5,5,math,respond,4,Check 1,56,56,56,56,12,12
+math-grade-5,5,math,unit,5,"Multi-digit multiplication and division. ""How does the standard algorithm record",57,78,57,78,12,16
+math-grade-5,5,math,unit,6,"Decimal place value. ""How do thousandths extend the place value we know?""",79,90,79,90,16,18
+math-grade-5,5,math,unit,7,"Decimal operations. ""How can what we know about whole numbers and fractions help",91,107,91,107,19,22
+math-grade-5,5,math,check,7,Check 2,108,108,108,108,22,22
+math-grade-5,5,math,respond,7,Check 2,109,109,109,109,22,22
+math-grade-5,5,math,unit,8,"Powers of ten and measurement conversion. ""How do powers of ten move digits, and",110,118,110,118,22,24
+math-grade-5,5,math,unit,9,"Unlike fractions, line plots and scaling. ""How can we add fractions of different",119,134,119,134,24,27
+math-grade-5,5,math,unit,10,"The coordinate plane, shapes and patterns. ""How can two number lines locate a po",135,149,135,149,27,30
+math-grade-5,5,math,review,10,Year review,150,156,150,156,30,32
+math-grade-5,5,math,check,10,Check 3,157,158,157,158,32,32
+math-grade-5,5,math,respond,10,Check 3,159,160,159,160,32,32
+math-grade-6,6,math,unit,1,Area and surface area. How can we find the area of a shape we have no formula fo,1,18,1,18,1,4
+math-grade-6,6,math,unit,2,Introducing ratios. What does it mean for two mixtures to be the same?,19,39,19,39,4,8
+math-grade-6,6,math,unit,3,"Unit rates and percentages. When is a ""better deal"" really better?",40,59,40,59,8,12
+math-grade-6,6,math,check,3,1,60,60,60,60,12,12
+math-grade-6,6,math,respond,3,1,61,61,61,61,13,13
+math-grade-6,6,math,unit,4,Dividing fractions. How many 3/4-cup servings are in 2/3 of a cup?,62,81,62,81,13,17
+math-grade-6,6,math,unit,5,"Arithmetic in base ten. Where does the decimal point go, and how do we know?",82,95,82,95,17,19
+math-grade-6,6,math,unit,6,Expressions and equations. How can one equation describe a whole situation?,96,117,96,117,20,24
+math-grade-6,6,math,check,6,2,118,118,118,118,24,24
+math-grade-6,6,math,respond,6,2,119,119,119,119,24,24
+math-grade-6,6,math,unit,7,Rational numbers. What does a number less than zero mean?,120,141,120,141,24,29
+math-grade-6,6,math,unit,8,"Data sets and distributions. What is typical, and how much do the answers vary?",142,157,142,157,29,32
+math-grade-6,6,math,check,8,3,158,159,158,159,32,32
+math-grade-6,6,math,respond,8,3,160,160,160,160,32,32
+math-grade-7,7,math,unit,1,Scale drawings. How can a map or a model be true to something much bigger?,1,12,1,12,1,3
+math-grade-7,7,math,unit,2,Introducing proportional relationships. How can you tell if two quantities grow ,13,33,13,33,3,7
+math-grade-7,7,math,unit,3,Measuring circles. Why is the distance around every circle about 3 times its wid,34,44,34,44,7,9
+math-grade-7,7,math,check,3,1,45,45,45,45,9,9
+math-grade-7,7,math,respond,3,1,46,46,46,46,10,10
+math-grade-7,7,math,unit,4,Proportional relationships and percentages. How do we find a fair price after a ,47,68,47,68,10,14
+math-grade-7,7,math,unit,5,"Rational number arithmetic. What does it mean to add, subtract, multiply and div",69,91,69,91,14,19
+math-grade-7,7,math,unit,6,"Expressions, equations and inequalities. How can an equation help us find what w",92,118,92,118,19,24
+math-grade-7,7,math,check,6,2,119,119,119,119,24,24
+math-grade-7,7,math,respond,6,2,120,120,120,120,24,24
+math-grade-7,7,math,unit,7,"Angles, triangles and prisms. Which measurements are enough to build a shape?",121,138,121,138,25,28
+math-grade-7,7,math,unit,8,Probability and sampling. How can a small sample tell us about a whole group?,139,157,139,157,28,32
+math-grade-7,7,math,check,8,3,158,159,158,159,32,32
+math-grade-7,7,math,respond,8,3,160,160,160,160,32,32
+math-grade-8,8,math,unit,1,Rigid transformations and congruence. How can we tell that two figures are the s,1,20,1,20,1,4
+math-grade-8,8,math,unit,2,"Dilations, similarity and introducing slope. When are two shapes the same, only ",21,36,21,36,5,8
+math-grade-8,8,math,unit,3,Linear relationships. What does the steepness of a line tell us?,37,55,37,55,8,11
+math-grade-8,8,math,unit,4,Associations in data. Does knowing one thing about a group help predict another?,56,69,56,69,12,14
+math-grade-8,8,math,check,4,1,70,70,70,70,14,14
+math-grade-8,8,math,respond,4,1,71,71,71,71,15,15
+math-grade-8,8,math,unit,5,Linear equations and linear systems. When do two plans cost the same?,72,92,72,92,15,19
+math-grade-8,8,math,unit,6,Functions and volume. How can one quantity determine another?,93,115,93,115,19,23
+math-grade-8,8,math,check,6,2,116,116,116,116,24,24
+math-grade-8,8,math,respond,6,2,117,117,117,117,24,24
+math-grade-8,8,math,unit,7,Exponents and scientific notation. How can we write and compare very large and v,118,137,118,137,24,28
+math-grade-8,8,math,unit,8,Pythagorean theorem and irrational numbers. Is every length a number we can writ,138,157,138,157,28,32
+math-grade-8,8,math,check,8,3,158,159,158,159,32,32
+math-grade-8,8,math,respond,8,3,160,160,160,160,32,32
+math-kindergarten,K,math,unit,1,"Math in our world. How many are there, and how do we know?",1,18,1,18,1,4
+math-kindergarten,K,math,unit,2,"Numbers 1 to 10. How can we show how many, and which has more?",19,44,19,44,4,9
+math-kindergarten,K,math,unit,3,Flat shapes and comparing. What is the same and what is different about these sh,45,63,45,63,9,13
+math-kindergarten,K,math,unit,4,Adding and subtracting. What happens to how many when we put together or take aw,64,83,64,83,13,17
+math-kindergarten,K,math,check,4,after unit 4,84,85,84,85,17,17
+math-kindergarten,K,math,respond,4,after unit 4,86,86,86,86,18,18
+math-kindergarten,K,math,unit,5,Making and breaking apart numbers to 10. How many ways can we make a number?,87,103,87,103,18,21
+math-kindergarten,K,math,unit,6,Numbers 0 to 20. How can ten help us count and show bigger numbers?,104,119,104,119,21,24
+math-kindergarten,K,math,unit,7,Solid shapes all around us. How are solid shapes different from flat ones?,120,134,120,134,24,27
+math-kindergarten,K,math,unit,8,"Putting it all together. What can we count, add and make now?",135,156,135,156,27,32
+math-kindergarten,K,math,check,8,after unit 8,157,158,157,158,32,32
+math-kindergarten,K,math,respond,8,after unit 8,159,160,159,160,32,32
+physics,11,science,unit,1,"Push, pull, bounce (weeks 1 to 4). Anchor: two skaters standing still push off e",1,18,1,18,1,4
+physics,11,science,unit,2,Softer landings (weeks 4 to 6). Design problem: a bicycle helmet liner or a mode,19,30,19,30,4,6
+physics,11,science,unit,3,Where will the spacecraft be? (weeks 7 to 10). Anchor: a spacecraft launched yea,31,46,31,46,7,10
+physics,11,science,unit,4,The first hill (weeks 10 to 13). Anchor: a cart released on a track (or a gravit,47,62,47,62,10,13
+physics,11,science,check,4,Course-level check 1,63,64,63,64,13,13
+physics,11,science,respond,4,Course-level check 1,65,65,65,65,13,13
+physics,11,science,unit,5,"Spin a wheel, light a lamp (weeks 14 to 16). Anchor: a bicycle wheel dynamo ligh",66,76,66,76,14,16
+physics,11,science,unit,6,Messages made of waves (weeks 16 to 19). Anchor: a phone call travels across an ,77,92,77,92,16,19
+physics,11,science,unit,7,"Light, two ways (weeks 19 to 22). Anchor: sunlight can damage skin, while a radi",93,106,93,106,19,22
+physics,11,science,check,7,"Course-level check 2, mid-year",107,108,107,108,22,22
+physics,11,science,respond,7,"Course-level check 2, mid-year",109,109,109,109,22,22
+physics,11,science,unit,8,Where your atoms came from (weeks 22 to 26). Anchor: a sourced set of laboratory,110,127,110,127,22,26
+physics,11,science,unit,9,The restless Earth (weeks 26 to 29). Anchor: the floor of the Atlantic is younge,128,145,128,145,26,29
+physics,11,science,unit,10,"Older than Earth (weeks 30 to 31). Anchor: a selected, sourced age table of anci",146,155,146,155,30,31
+physics,11,science,check,10,"Course-level check 3, year-end",156,158,156,158,32,32
+physics,11,science,respond,10,"Course-level check 3, year-end",159,160,159,160,32,32
+science-grade-1,1,science,unit,1,"Sun, moon and stars. Why is our shadow stick's shadow on one side in the morning",1,8,3,18,1,4
+science-grade-1,1,science,unit,2,"Parts that help. How does a tree stay standing in a storm, and can we copy it to",9,20,20,43,4,9
+science-grade-1,1,science,unit,3,Like their parents. Are the little trees under our big maple like it? Exactly li,21,26,45,56,9,12
+science-grade-1,1,science,unit,4,"Sound. Why does the rubber band go blurry when our box guitar plays, and why doe",27,33,58,71,12,15
+science-grade-1,1,science,check,4,"Course-level check, mid-year",34,35,73,75,15,15
+science-grade-1,1,science,respond,4,"Course-level check, mid-year",36,36,77,77,16,16
+science-grade-1,1,science,unit,5,"Light. Why can't we see the toy inside the box until we open the flap, and why c",37,46,79,99,16,20
+science-grade-1,1,science,unit,6,Sending a message. How can we tell a friend across the playground it is time to ,47,54,101,116,21,24
+science-grade-1,1,science,unit,7,Parents and young. Why does a baby bird cheep with its mouth open when its paren,55,60,118,128,24,26
+science-grade-1,1,science,unit,8,"Daylight and the seasons. Is it light or dark at 5:30 in the evening, and will s",61,65,131,139,27,28
+science-grade-1,1,science,check,8,"Course-level check, year-end",66,67,141,143,29,29
+science-grade-1,1,science,respond,8,"Course-level check, year-end",68,68,145,145,29,29
+science-grade-2,2,science,unit,1,"Land and water. After a rainstorm, where does the water on our schoolyard go? An",1,10,2,19,1,4
+science-grade-2,2,science,unit,2,"The land changes, fast and slow. Why has the bare path down our slope become a d",11,26,21,48,5,10
+science-grade-2,2,science,unit,3,Materials and their best uses. Why are rain boots made of rubber and mittens of ,27,38,50,70,10,14
+science-grade-2,2,science,check,3,"Course-level check, mid-year",39,40,72,74,15,15
+science-grade-2,2,science,respond,3,"Course-level check, mid-year",41,41,76,76,16,16
+science-grade-2,2,science,unit,4,"Can we change it back? Our block castle became a boat, and melted chocolate hard",42,50,78,93,16,19
+science-grade-2,2,science,unit,5,What plants need. Why is the grass under the board yellow and pale when the gras,51,59,94,109,19,22
+science-grade-2,2,science,unit,6,"Seeds and pollinators. How did the burrs get all over my sock, and why do bees v",60,65,111,120,23,24
+science-grade-2,2,science,unit,7,"Habitats. What kinds of plants and animals do we find in each place, and how are",66,73,122,135,25,27
+science-grade-2,2,science,check,7,"Course-level check, year-end",74,75,137,139,28,28
+science-grade-2,2,science,respond,7,"Course-level check, year-end",76,76,140,140,28,28
+science-grade-3,3,science,unit,1,"Pushes, pulls and swings. ""What makes a swing start, stop and keep coming back?""",1,16,2,20,1,4
+science-grade-3,3,science,unit,2,"Pushes and pulls without touching. ""How can things push and pull without touchin",17,33,22,42,5,9
+science-grade-3,3,science,check,2,Course-level check 1,34,35,43,44,9,9
+science-grade-3,3,science,respond,2,Course-level check 1,36,36,45,45,9,9
+science-grade-3,3,science,unit,3,"Growing up and taking after. ""How do living things grow and change, and why do t",37,58,47,73,10,15
+science-grade-3,3,science,unit,4,"Surviving where you live. ""Why do some living things survive in a place while ot",59,78,74,98,15,20
+science-grade-3,3,science,check,4,Course-level check 2,79,80,99,100,20,20
+science-grade-3,3,science,respond,4,Course-level check 2,81,81,102,102,21,21
+science-grade-3,3,science,unit,5,"Environments change. ""How do we know places have changed, and what happens to li",82,97,103,122,21,25
+science-grade-3,3,science,unit,6,"Weather, climate and hazards. ""What weather can we expect here, and how can peop",98,117,123,147,25,30
+science-grade-3,3,science,check,6,Course-level check 3,118,119,148,149,30,30
+science-grade-3,3,science,respond,6,Course-level check 3,120,120,150,150,30,30
+science-grade-4,4,science,unit,1,"Faster and harder. ""Why does a faster ball do more when it hits something?"" Anch",1,15,2,19,1,4
+science-grade-4,4,science,unit,2,"Energy on the move. ""How does energy get from place to place, and where does the",16,38,20,48,4,10
+science-grade-4,4,science,check,2,Course-level check 1,39,40,49,50,10,10
+science-grade-4,4,science,respond,2,Course-level check 1,41,41,52,52,11,11
+science-grade-4,4,science,unit,3,"Waves and messages. ""What do waves carry, and how can a pattern carry a message?",42,56,53,70,11,14
+science-grade-4,4,science,unit,4,"The changing land. ""How did a river make a canyon a mile deep, and what do its l",57,73,72,92,15,19
+science-grade-4,4,science,check,4,Course-level check 2,74,75,93,94,19,19
+science-grade-4,4,science,respond,4,Course-level check 2,76,76,95,95,19,19
+science-grade-4,4,science,unit,5,"Earth's patterns and hazards. ""Where do earthquakes and volcanoes happen, and ho",77,93,97,117,20,24
+science-grade-4,4,science,unit,6,"Senses and structures. ""Can a cat see in complete darkness, and how does a plant",94,117,118,147,24,30
+science-grade-4,4,science,check,6,Course-level check 3,118,119,148,149,30,30
+science-grade-4,4,science,respond,6,Course-level check 3,120,120,150,150,30,30
+science-grade-5,5,science,unit,1,"Matter too small to see. ""What is everything made of, if we cannot see the piece",1,17,2,22,1,5
+science-grade-5,5,science,unit,2,"Where a tree comes from. ""Where does a growing tree's matter come from, and wher",18,41,23,52,5,11
+science-grade-5,5,science,check,2,Course-level check 1,42,43,53,54,11,11
+science-grade-5,5,science,respond,2,Course-level check 1,44,44,55,55,11,11
+science-grade-5,5,science,unit,3,"Mystery materials. ""How can we tell substances apart, and how do we know when mi",45,61,57,77,12,16
+science-grade-5,5,science,unit,4,"Earth and sky. ""What do falling objects, shadows and stars tell us about Earth's",62,81,78,102,16,21
+science-grade-5,5,science,check,4,Course-level check 2,82,83,103,104,21,21
+science-grade-5,5,science,respond,4,Course-level check 2,84,84,105,105,21,21
+science-grade-5,5,science,unit,5,"Earth's systems and its water. ""How do water, air, land and life shape each othe",85,99,107,124,22,25
+science-grade-5,5,science,unit,6,"Protecting water by design. ""How can a community keep its water clean, and how d",100,117,125,147,25,30
+science-grade-5,5,science,check,6,Course-level check 3,118,119,148,149,30,30
+science-grade-5,5,science,respond,6,Course-level check 3,120,120,150,150,30,30
+science-grade-6,6,science,unit,1,Light and matter. Why do we sometimes see different things when looking at the s,1,17,1,17,1,4
+science-grade-6,6,science,unit,2,Thermal energy. How can containers keep stuff from warming up or cooling down? A,18,51,18,51,4,11
+science-grade-6,6,science,unit,3,"Weather, climate and water cycling. Why does a lot of hail, rain, or snow fall a",52,89,52,89,11,18
+science-grade-6,6,science,check,3,"Course-level check 1, mid-year",90,90,90,90,18,18
+science-grade-6,6,science,respond,3,"Course-level check 1, mid-year",91,91,91,91,19,19
+science-grade-6,6,science,unit,4,Rock cycling and plate tectonics. What causes Earth's surface to change? Anchor:,92,115,92,115,19,23
+science-grade-6,6,science,unit,5,Natural hazards. Where do natural hazards happen and how do we prepare for them?,116,135,116,135,24,27
+science-grade-6,6,science,unit,6,Cells and systems. How do living things heal? Anchor: a middle school student br,136,158,136,158,28,32
+science-grade-6,6,science,check,6,"Course-level check 2, year-end",159,159,159,159,32,32
+science-grade-6,6,science,respond,6,"Course-level check 2, year-end",160,160,160,160,32,32
+science-grade-7,7,science,unit,1,Chemical reactions and matter. How can we make something new that was not there ,1,23,1,23,1,5
+science-grade-7,7,science,unit,2,Chemical reactions and energy. How can we use chemical reactions to design a sol,24,41,24,41,5,9
+science-grade-7,7,science,unit,3,Metabolic reactions. How do things inside our bodies work together to make us fe,42,66,42,66,9,14
+science-grade-7,7,science,check,3,"Course-level check 1, mid-year",67,67,67,67,14,14
+science-grade-7,7,science,respond,3,"Course-level check 1, mid-year",68,68,68,68,14,14
+science-grade-7,7,science,unit,4,"Matter cycling and photosynthesis. Where does food come from, and where does it ",69,96,69,96,14,20
+science-grade-7,7,science,unit,5,Ecosystem dynamics. How does changing an ecosystem affect what lives there? Anch,97,128,97,128,20,26
+science-grade-7,7,science,unit,6,Earth's resources and human impact. How do changes in Earth's system impact our ,129,158,129,158,26,32
+science-grade-7,7,science,check,6,"Course-level check 2, year-end",159,159,159,159,32,32
+science-grade-7,7,science,respond,6,"Course-level check 2, year-end",160,160,160,160,32,32
+science-grade-8,8,science,unit,1,Contact forces. Why do things sometimes get damaged when they hit each other? An,1,26,1,26,1,6
+science-grade-8,8,science,unit,2,Sound waves. How can a sound make something move? Anchor: music from a truck par,27,46,27,46,6,10
+science-grade-8,8,science,unit,3,Forces at a distance. How can a magnet move another object without touching it? ,47,74,47,74,10,15
+science-grade-8,8,science,check,3,"Course-level check 1, mid-year",75,75,75,75,15,15
+science-grade-8,8,science,respond,3,"Course-level check 1, mid-year",76,76,76,76,16,16
+science-grade-8,8,science,unit,4,Earth in space. How are we connected to the patterns we see in the sky and space,77,104,77,104,16,21
+science-grade-8,8,science,unit,5,Genetics. Why are living things different from one another? Anchor: cattle with ,105,131,105,131,21,27
+science-grade-8,8,science,unit,6,Natural selection and common ancestry. How could things living today be connecte,132,158,132,158,27,32
+science-grade-8,8,science,check,6,"Course-level check 2, year-end",159,159,159,159,32,32
+science-grade-8,8,science,respond,6,"Course-level check 2, year-end",160,160,160,160,32,32
+science-kindergarten,K,science,unit,1,"Pushes and pulls. Why does our ball sometimes roll all the way to the wall, some",1,9,3,21,1,5
+science-kindergarten,K,science,unit,2,Weather watch. Why do we need our coats at morning recess but not after lunch? A,10,19,23,44,5,9
+science-kindergarten,K,science,unit,3,Ramps and targets. How can we make the ball reach the tower at the end of the ru,20,28,46,64,10,13
+science-kindergarten,K,science,check,3,"Course-level check, mid-year",29,30,66,68,14,14
+science-kindergarten,K,science,respond,3,"Course-level check, mid-year",31,31,71,71,15,15
+science-kindergarten,K,science,unit,4,Living things and what they need. What do the weed in the sidewalk crack and the,32,43,73,98,15,20
+science-kindergarten,K,science,unit,5,Sunlight warms. Why is the slide in the sun warmer than the one under the tree? ,44,54,100,123,20,25
+science-kindergarten,K,science,unit,6,"Caring for our place. Where does the litter in our schoolyard come from, and wha",55,61,125,139,25,28
+science-kindergarten,K,science,check,6,"Course-level check, year-end",62,63,141,143,29,29
+science-kindergarten,K,science,respond,6,"Course-level check, year-end",64,64,145,145,29,29
+social-studies-grade-1,1,social-studies,unit,1,Our groups. What makes a group work well?,1,10,2,17,1,4
+social-studies-grade-1,1,social-studies,unit,2,Clues from the past. How can we find out what our school was like long ago?,11,19,18,31,4,7
+social-studies-grade-1,1,social-studies,unit,3,Leaders. What makes a good leader?,20,31,33,51,7,11
+social-studies-grade-1,1,social-studies,unit,4,Choosing together. What is the fairest way for a group to decide?,32,41,52,67,11,14
+social-studies-grade-1,1,social-studies,check,4,"1, mid-year",42,42,68,68,14,14
+social-studies-grade-1,1,social-studies,respond,4,"1, mid-year",43,43,70,70,14,14
+social-studies-grade-1,1,social-studies,unit,5,Maps and places. Why did people build towns and cities where they did?,44,55,72,89,15,18
+social-studies-grade-1,1,social-studies,unit,6,"One country, many people. What holds a country of so many different people toget",56,68,91,110,19,22
+social-studies-grade-1,1,social-studies,unit,7,Helping our community. How can our class help our community?,69,80,112,130,23,26
+social-studies-grade-1,1,social-studies,unit,8,"Earning, buying and saving. How should people choose what to buy and what to sav",81,93,131,151,27,31
+social-studies-grade-1,1,social-studies,check,8,"2, year-end",94,95,152,154,31,31
+social-studies-grade-1,1,social-studies,respond,8,"2, year-end",96,96,155,155,31,31
+social-studies-grade-2,2,social-studies,unit,1,Maps tell stories. Can a map ever show the world just as it is?,1,16,2,26,1,6
+social-studies-grade-2,2,social-studies,unit,2,"Land, water and climate. Where on Earth would you choose to live, and why?",17,29,28,47,6,10
+social-studies-grade-2,2,social-studies,unit,3,"Living with the land. Should people change the land, or change their ways to fit",30,45,49,73,10,15
+social-studies-grade-2,2,social-studies,check,3,"1, mid-year",46,46,75,75,15,15
+social-studies-grade-2,2,social-studies,respond,3,"1, mid-year",47,47,76,76,16,16
+social-studies-grade-2,2,social-studies,unit,4,Countries and trade. Why do countries need each other?,48,57,78,93,16,19
+social-studies-grade-2,2,social-studies,unit,5,People on the move. Why do people leave home for a new place?,58,71,94,115,19,23
+social-studies-grade-2,2,social-studies,unit,6,"Family stories and culture. When people move to a new place, do they change the ",72,81,117,131,24,27
+social-studies-grade-2,2,social-studies,unit,7,A country up close. What matters most about how people live in the country I cho,82,93,133,151,27,31
+social-studies-grade-2,2,social-studies,check,7,"2, year-end",94,95,152,154,31,31
+social-studies-grade-2,2,social-studies,respond,7,"2, year-end",96,96,155,155,31,31
+social-studies-grade-3,3,social-studies,unit,1,"Where we live. ""Why is our town where it is?""",1,24,1,24,1,5
+social-studies-grade-3,3,social-studies,unit,2,"Who decides here. ""Who should make the rules in our town?""",25,48,25,48,5,10
+social-studies-grade-3,3,social-studies,unit,3,"Making a living here. ""How does our community get what it needs?""",49,68,49,68,10,14
+social-studies-grade-3,3,social-studies,check,3,1,69,70,69,70,14,14
+social-studies-grade-3,3,social-studies,respond,3,1,71,71,71,71,15,15
+social-studies-grade-3,3,social-studies,unit,4,"The first peoples of our land. ""How have the Native nations of our region shaped",72,89,72,89,15,18
+social-studies-grade-3,3,social-studies,unit,5,"First meetings and early colonies. ""Could the colonists and the Native nations h",90,121,90,121,18,25
+social-studies-grade-3,3,social-studies,check,5,"2, mid-year",122,123,122,123,25,25
+social-studies-grade-3,3,social-studies,respond,5,"2, mid-year",124,124,124,124,25,25
+social-studies-grade-3,3,social-studies,unit,6,"Founding ideas. ""What does it mean that government needs the consent of the gove",125,136,125,136,25,28
+social-studies-grade-3,3,social-studies,unit,7,"How our community changed. ""Who has made our community what it is?""",137,156,137,156,28,32
+social-studies-grade-3,3,social-studies,check,7,"3, year-end",157,158,157,158,32,32
+social-studies-grade-3,3,social-studies,respond,7,"3, year-end",159,160,159,160,32,32
+social-studies-grade-4,4,social-studies,unit,1,"North America on the map. ""What can a map tell us, and what does it leave out?""",1,16,1,16,1,4
+social-studies-grade-4,4,social-studies,unit,2,"Our neighbors: Canada and Mexico. ""How are Canada, Mexico and the United States ",17,38,17,38,4,8
+social-studies-grade-4,4,social-studies,unit,3,"The first peoples of North America. ""How do we know about people who lived here ",39,56,39,56,8,12
+social-studies-grade-4,4,social-studies,check,3,1,57,58,57,58,12,12
+social-studies-grade-4,4,social-studies,respond,3,1,59,59,59,59,12,12
+social-studies-grade-4,4,social-studies,unit,4,"Voyages and conquest. ""What did the voyages of the 1400s and 1500s mean for the ",60,79,60,79,12,16
+social-studies-grade-4,4,social-studies,unit,5,"How the United States grew. ""Who gained and who lost as the United States grew?""",80,103,80,103,16,21
+social-studies-grade-4,4,social-studies,check,5,"2, mid-year",104,105,104,105,21,21
+social-studies-grade-4,4,social-studies,respond,5,"2, mid-year",106,106,106,106,22,22
+social-studies-grade-4,4,social-studies,unit,6,"The regions: states, land and resources. ""Why do people in each region make and ",107,132,107,132,22,27
+social-studies-grade-4,4,social-studies,unit,7,"The regions: peoples and hazards. ""How do the people of each region live with ea",133,156,133,156,27,32
+social-studies-grade-4,4,social-studies,check,7,"3, year-end",157,158,157,158,32,32
+social-studies-grade-4,4,social-studies,respond,7,"3, year-end",159,160,159,160,32,32
+social-studies-grade-5,5,social-studies,unit,1,"The colonies and their neighbors. ""Whose land was it, and who decided?""",1,14,1,14,1,3
+social-studies-grade-5,5,social-studies,unit,2,"Slavery in the colonies. ""How did enslaved and free Africans shape the colonies,",15,26,15,26,3,6
+social-studies-grade-5,5,social-studies,unit,3,"The road to revolution. ""When is breaking a law the right thing to do?""",27,43,27,43,6,9
+social-studies-grade-5,5,social-studies,unit,4,"Independence and a first government. ""Did the Revolution keep the Declaration's ",44,59,44,59,9,12
+social-studies-grade-5,5,social-studies,unit,5,"The Constitution. ""How did the Constitution try to keep power from growing too s",60,75,60,75,12,15
+social-studies-grade-5,5,social-studies,check,5,"1, mid-year",76,77,76,77,16,16
+social-studies-grade-5,5,social-studies,respond,5,"1, mid-year",78,79,78,79,16,16
+social-studies-grade-5,5,social-studies,unit,6,"The new republic grows. ""What made the young United States stronger, and at whos",80,96,80,96,16,20
+social-studies-grade-5,5,social-studies,unit,7,"Removal, the spread of slavery, and the fight against it. ""How did people resist",97,112,97,112,20,23
+social-studies-grade-5,5,social-studies,unit,8,"The Civil War and Reconstruction. ""Why did the Civil War happen, and what did it",113,126,113,126,23,26
+social-studies-grade-5,5,social-studies,unit,9,"After Reconstruction: rights won and denied. ""Why did winning rights in law not ",127,142,127,142,26,29
+social-studies-grade-5,5,social-studies,check,9,"2, year-end",143,144,143,144,29,29
+social-studies-grade-5,5,social-studies,respond,9,"2, year-end",145,146,145,146,29,30
+social-studies-grade-5,5,social-studies,unit,10,"Researching civil rights, then acting. ""What does it take to win a right?""",147,160,147,160,30,32
+social-studies-kindergarten,K,social-studies,unit,1,Learning together. What makes our class a good place to learn?,1,10,3,24,1,5
+social-studies-kindergarten,K,social-studies,unit,2,Doing our part. How can each of us help our class?,11,19,26,45,6,9
+social-studies-kindergarten,K,social-studies,unit,3,Where things are. How can we show someone where things are?,20,30,47,71,10,15
+social-studies-kindergarten,K,social-studies,check,3,"1, mid-year",31,32,73,75,15,15
+social-studies-kindergarten,K,social-studies,respond,3,"1, mid-year",33,33,78,78,16,16
+social-studies-kindergarten,K,social-studies,unit,4,Long ago and today. Which change from long ago made the biggest difference to ev,34,40,80,94,16,19
+social-studies-kindergarten,K,social-studies,unit,5,Days we remember. Why do we remember some days and some people?,41,51,97,120,20,24
+social-studies-kindergarten,K,social-studies,unit,6,Work and trade. Why do people work?,52,61,122,143,25,29
+social-studies-kindergarten,K,social-studies,check,6,"2, year-end",62,63,146,148,30,30
+social-studies-kindergarten,K,social-studies,respond,6,"2, year-end",64,64,150,150,30,30
+us-government-and-politics,12,social-studies,unit,1,"Why government, and what kind? Who really takes part in American democracy?",1,6,1,6,1,2
+us-government-and-politics,12,social-studies,unit,2,Founding ideals and the gap. How close has the country come to its founding idea,7,15,7,15,2,3
+us-government-and-politics,12,social-studies,unit,3,"Federalism and sovereignty. Who should decide: the nation, the state, the town o",16,22,16,22,4,5
+us-government-and-politics,12,social-studies,unit,4,The branches and their balance. Does the Constitution's design still work?,23,35,23,35,5,7
+us-government-and-politics,12,social-studies,check,4,"1, midpoint",36,36,36,36,8,8
+us-government-and-politics,12,social-studies,respond,4,"1, midpoint",37,37,37,37,8,8
+us-government-and-politics,12,social-studies,unit,5,"Rights and a free press. How have Americans' rights, and the freedom to publish,",38,46,38,46,8,10
+us-government-and-politics,12,social-studies,unit,6,"Parties, interest groups and media. Who shapes what voters see and choose?",47,55,47,55,10,11
+us-government-and-politics,12,social-studies,unit,7,"The United States in the world. When should the United States act abroad, and th",56,63,56,63,12,13
+us-government-and-politics,12,social-studies,unit,8,"Policy in the news. How does an issue become a law, and how should a citizen rea",64,71,64,71,13,15
+us-government-and-politics,12,social-studies,check,8,"2, final",72,72,72,72,15,15
+us-government-and-politics,12,social-studies,respond,8,"2, final",73,73,73,73,15,15
+us-government-and-politics,12,social-studies,unit,9,"Local action. What can we change here, and how?",74,80,74,80,15,16
+us-history-i,11,social-studies,unit,1,Why break with Britain? 1754 to 1783 (weeks 1 to 4). Was the American Revolution,1,19,1,19,1,4
+us-history-i,11,social-studies,unit,2,"A government on trial, 1781 to 1815 (weeks 4 to 7). Did the Constitution make a ",20,34,20,34,4,7
+us-history-i,11,social-studies,unit,3,"Expansion and removal, 1800 to 1854 (weeks 7 to 10). Who paid for the growth of ",35,47,35,47,7,10
+us-history-i,11,social-studies,check,3,1 (week 10),48,49,48,49,10,10
+us-history-i,11,social-studies,respond,3,1 (week 10),50,50,50,50,10,10
+us-history-i,11,social-studies,unit,4,"Mills, cotton and reform, 1800 to 1860 (weeks 11 to 15). How free was the ""free ",51,71,51,71,11,15
+us-history-i,11,social-studies,unit,5,"The Union breaks and is rebuilt, 1820 to 1877 (weeks 15 to 19). Why did the Civi",72,92,72,92,15,19
+us-history-i,11,social-studies,check,5,"2, mid-year (weeks 19 to 20)",93,95,93,95,19,19
+us-history-i,11,social-studies,respond,5,"2, mid-year (weeks 19 to 20)",96,96,96,96,20,20
+us-history-i,11,social-studies,unit,6,"After Reconstruction: Jim Crow and the West, 1865 to 1900 (weeks 20 to 22). What",97,109,97,109,20,22
+us-history-i,11,social-studies,unit,7,"Industry and newcomers, 1865 to 1920 (weeks 22 to 25). Who built industrial Amer",110,122,110,122,22,25
+us-history-i,11,social-studies,unit,8,"The Progressive Era, 1890 to 1920 (weeks 25 to 28). How far did reformers fix th",123,139,123,139,25,28
+us-history-i,11,social-studies,unit,9,"Empire, news and the First World War, 1867 to 1920 (weeks 28 to 31). Should the ",140,155,140,155,28,31
+us-history-i,11,social-studies,check,9,"3, year-end (week 32)",156,158,156,158,32,32
+us-history-i,11,social-studies,respond,9,"3, year-end (week 32)",159,160,159,160,32,32
+us-history-ii,12,social-studies,unit,1,"The economic toolkit. Who should steer the economy: markets, the Federal Reserve",1,12,1,12,1,3
+us-history-ii,12,social-studies,unit,2,"Tradition and modernity, about 1913 to 1930. Were the 1920s a decade of new free",13,25,13,25,3,5
+us-history-ii,12,social-studies,unit,3,"Depression and New Deal. Did the New Deal fix the Depression, and for whom?",26,39,26,39,6,8
+us-history-ii,12,social-studies,check,3,1,40,40,40,40,8,8
+us-history-ii,12,social-studies,respond,3,1,41,41,41,41,9,9
+us-history-ii,12,social-studies,unit,4,"Isolation, fascism and the Holocaust. Could the United States have acted sooner ",42,56,42,56,9,12
+us-history-ii,12,social-studies,unit,5,"The home front and the bomb. What did winning the war cost, at home and in Japan",57,66,57,66,12,14
+us-history-ii,12,social-studies,unit,6,"The Cold War at home and abroad, 1945 to about 1960. Did the fear of communism m",67,83,67,83,14,17
+us-history-ii,12,social-studies,check,6,"2, mid-year (days 84 and 85, the semester line)",84,84,84,84,17,17
+us-history-ii,12,social-studies,respond,6,"2, mid-year (days 84 and 85, the semester line)",85,85,85,85,17,17
+us-history-ii,12,social-studies,unit,7,The civil rights movement and its laws. How did ordinary people use and challeng,86,102,86,102,18,21
+us-history-ii,12,social-studies,unit,8,"Presidents and the war in Vietnam, 1954 to 1975. How should the choices open at ",103,113,103,113,21,23
+us-history-ii,12,social-studies,unit,9,Movements for rights since the 1960s. What makes a social movement succeed?,114,123,114,123,23,25
+us-history-ii,12,social-studies,unit,10,"Liberals, conservatives and the end of the Cold War, about 1968 to 1991. Why did",124,134,124,134,25,27
+us-history-ii,12,social-studies,unit,11,The United States since 1990. How well has the United States met the challenges ,135,145,135,145,27,29
+us-history-ii,12,social-studies,check,11,"3, year-end",146,146,146,146,30,30
+us-history-ii,12,social-studies,respond,11,"3, year-end",147,147,147,147,30,30
+us-history-ii,12,social-studies,unit,12,Capstone: a researched argument. What question from the past century still needs,148,160,148,160,30,32
+world-geography-and-ancient-civilizations-i,6,social-studies,unit,1,How we study the past. How can we know anything about people who lived thousands,1,10,1,10,1,2
+world-geography-and-ancient-civilizations-i,6,social-studies,unit,2,Early humans and the first farmers. Did the turn to farming make life better?,11,25,11,25,3,5
+world-geography-and-ancient-civilizations-i,6,social-studies,unit,3,"The land and peoples of Western Asia, the Middle East and North Africa today. Wh",26,39,26,39,6,8
+world-geography-and-ancient-civilizations-i,6,social-studies,unit,4,"Mesopotamia. Who gained most from the first cities, and who paid for them?",40,55,40,55,8,11
+world-geography-and-ancient-civilizations-i,6,social-studies,unit,5,"Egypt and Kush. Did the Nile make Egypt, and what can we know of Kush from recor",56,70,56,70,12,14
+world-geography-and-ancient-civilizations-i,6,social-studies,check,5,1 (mid-year),71,72,71,72,15,15
+world-geography-and-ancient-civilizations-i,6,social-studies,respond,5,1 (mid-year),73,74,73,74,15,15
+world-geography-and-ancient-civilizations-i,6,social-studies,unit,6,"Phoenicia and the alphabet. Which mattered more to the world, Phoenicia's ships ",75,84,75,84,15,17
+world-geography-and-ancient-civilizations-i,6,social-studies,unit,7,"Judaism, Christianity and Islam at their origins. How much did these three faith",85,99,85,99,17,20
+world-geography-and-ancient-civilizations-i,6,social-studies,unit,8,Connections and contributions. Why does an ancient society still matter today?,100,113,100,113,20,23
+world-geography-and-ancient-civilizations-i,6,social-studies,check,8,2 (mid-year),114,115,114,115,23,23
+world-geography-and-ancient-civilizations-i,6,social-studies,respond,8,2 (mid-year),116,117,116,117,24,24
+world-geography-and-ancient-civilizations-i,6,social-studies,unit,9,Africa: land and early kingdoms. Did Africa's deserts and seas divide its people,118,131,118,131,24,27
+world-geography-and-ancient-civilizations-i,6,social-studies,unit,10,"Central America and the Caribbean. How do islands, coasts and highlands shape wh",132,142,132,142,27,29
+world-geography-and-ancient-civilizations-i,6,social-studies,unit,11,South America and the Maya and Andes. What can surviving evidence tell us about ,143,156,143,156,29,32
+world-geography-and-ancient-civilizations-i,6,social-studies,check,11,3 (year-end),157,158,157,158,32,32
+world-geography-and-ancient-civilizations-i,6,social-studies,respond,11,3 (year-end),159,160,159,160,32,32
+world-geography-and-ancient-civilizations-ii,7,social-studies,unit,1,South Asia: land and first cities. What can a city tell us when we cannot read i,1,11,1,11,1,3
+world-geography-and-ancient-civilizations-ii,7,social-studies,unit,2,Faiths and empires of ancient India. How did ancient India's beliefs shape the w,12,25,12,25,3,5
+world-geography-and-ancient-civilizations-ii,7,social-studies,unit,3,"East Asia's land and early China. What held early China together: its land, its ",26,37,26,37,6,8
+world-geography-and-ancient-civilizations-ii,7,social-studies,unit,4,Qin unification and the Silk Roads. Who gained and who paid when China was unite,38,51,38,51,8,11
+world-geography-and-ancient-civilizations-ii,7,social-studies,unit,5,Buddhism's journey east and comparing societies. Which better explains similarit,52,62,52,62,11,13
+world-geography-and-ancient-civilizations-ii,7,social-studies,check,5,1 (mid-year),63,64,63,64,13,13
+world-geography-and-ancient-civilizations-ii,7,social-studies,respond,5,1 (mid-year),65,66,65,66,13,14
+world-geography-and-ancient-civilizations-ii,7,social-studies,unit,6,"Oceania, past and present. How have land and sea shaped life in Oceania, past an",67,77,67,77,14,16
+world-geography-and-ancient-civilizations-ii,7,social-studies,unit,7,Europe's land and the world's clocks. Why does Europe look the way it does on a ,78,86,78,86,16,18
+world-geography-and-ancient-civilizations-ii,7,social-studies,unit,8,Greek city-states and democracy. Was Athens a democracy?,87,101,87,101,18,21
+world-geography-and-ancient-civilizations-ii,7,social-studies,unit,9,"Greek wars, myths and accomplishments. Which Greek legacy matters most today?",102,116,102,116,21,24
+world-geography-and-ancient-civilizations-ii,7,social-studies,check,9,2 (mid-year),117,118,117,118,24,24
+world-geography-and-ancient-civilizations-ii,7,social-studies,respond,9,2 (mid-year),119,120,119,120,24,24
+world-geography-and-ancient-civilizations-ii,7,social-studies,unit,10,The Roman Republic and its end. Could the Roman Republic have been saved?,121,133,121,133,25,27
+world-geography-and-ancient-civilizations-ii,7,social-studies,unit,11,What held Rome together. What held the Roman Empire together?,134,144,134,144,27,29
+world-geography-and-ancient-civilizations-ii,7,social-studies,unit,12,"Rome's fall and the spread of ideas. Did Rome fall, or did it change?",145,156,145,156,29,32
+world-geography-and-ancient-civilizations-ii,7,social-studies,check,12,3 (year-end),157,158,157,158,32,32
+world-geography-and-ancient-civilizations-ii,7,social-studies,respond,12,3 (year-end),159,160,159,160,32,32
+world-history-i,9,social-studies,unit,1,How societies meet (weeks 1 to 3). Did geography or human choice do more to deci,1,15,1,15,1,3
+world-history-i,9,social-studies,unit,2,"Belief and empire, about 300 to 1400 (weeks 4 to 6). Did belief follow power, or",16,30,16,30,4,6
+world-history-i,9,social-studies,unit,3,"Kingdoms of Africa and the Mongol world, 1000 to 1500 (weeks 7 to 10). Was a rul",31,46,31,46,7,10
+world-history-i,9,social-studies,check,3,"1, course-level check (week 10)",47,48,47,48,10,10
+world-history-i,9,social-studies,respond,3,"1, course-level check (week 10)",49,49,49,49,10,10
+world-history-i,9,social-studies,unit,4,"Rulers and ruled in East Asia, Europe and the Americas, 1000 to 1500 (weeks 10 t",50,63,50,63,10,13
+world-history-i,9,social-studies,unit,5,"Knowledge, crops and goods on the move, 800 to 1400 (weeks 13 to 15). Who carrie",64,74,64,74,13,15
+world-history-i,9,social-studies,unit,6,"Encounter, slavery and plague, about 750 to 1400 (weeks 15 to 18). Did the meeti",75,89,75,89,15,18
+world-history-i,9,social-studies,check,6,"2, mid-year course-level check (weeks 18 to 19)",90,92,90,92,18,19
+world-history-i,9,social-studies,respond,6,"2, mid-year course-level check (weeks 18 to 19)",93,93,93,93,19,19
+world-history-i,9,social-studies,unit,7,"New powers and new ideas, 1300 to 1600 (weeks 19 to 22). Was the Renaissance a r",94,109,94,109,19,22
+world-history-i,9,social-studies,unit,8,"Oceans connected: Iberia, the Americas and the Atlantic slave trade, 1450 to 170",110,125,110,125,22,25
+world-history-i,9,social-studies,unit,9,"Trade, science and empire in the 1600s (weeks 26 to 28). Did new ways of knowing",126,137,126,137,26,28
+world-history-i,9,social-studies,unit,10,"Reason, rights and rulers, 1640 to 1800 (weeks 28 to 31). Where should a governm",138,155,138,155,28,31
+world-history-i,9,social-studies,check,10,"3, year-end course-level check (week 32)",156,158,156,158,32,32
+world-history-i,9,social-studies,respond,10,"3, year-end course-level check (week 32)",159,160,159,160,32,32
+world-history-ii,10,social-studies,unit,1,"States, rights and revolutions, 1648 to 1830 (weeks 1 to 3). Did the revolutions",1,15,1,15,1,3
+world-history-ii,10,social-studies,unit,2,"The Industrial Revolution, 1750 to 1900 (weeks 4 to 6). Did industrialization ma",16,26,16,26,4,6
+world-history-ii,10,social-studies,unit,3,"Nations and empires, 1850 to 1914 (weeks 6 to 8). Why did a few states come to r",27,39,27,39,6,8
+world-history-ii,10,social-studies,check,3,"1, course-level check (weeks 8 to 9)",40,41,40,41,8,9
+world-history-ii,10,social-studies,respond,3,"1, course-level check (weeks 8 to 9)",42,42,42,42,9,9
+world-history-ii,10,social-studies,unit,4,"The First World War and its peace, 1914 to 1923 (weeks 9 to 12). Was the peace o",43,58,43,58,9,12
+world-history-ii,10,social-studies,unit,5,"Revolution, depression and dictators, 1905 to 1939 (weeks 12 to 15). Why did dem",59,72,59,72,12,15
+world-history-ii,10,social-studies,unit,6,"The Second World War and the Holocaust, 1939 to 1945 (weeks 15 to 18). What did ",73,88,73,88,15,18
+world-history-ii,10,social-studies,check,6,"2, mid-year course-level check (weeks 18 to 19)",89,91,89,91,18,19
+world-history-ii,10,social-studies,respond,6,"2, mid-year course-level check (weeks 18 to 19)",92,92,92,92,19,19
+world-history-ii,10,social-studies,unit,7,"The Cold War, 1945 to 1991 (weeks 19 to 22). Was the Cold War decided more by wh",93,107,93,107,19,22
+world-history-ii,10,social-studies,unit,8,Independence and equal rights after 1945 (weeks 22 to 25). Which means of changi,108,121,108,121,22,25
+world-history-ii,10,social-studies,unit,9,A connected world since 1945 (weeks 25 to 27). Has globalization made the world ,122,133,122,133,25,27
+world-history-ii,10,social-studies,unit,10,"Genocide, atrocity and terror since 1945 (weeks 27 to 29). Why did the world's p",134,144,134,144,27,29
+world-history-ii,10,social-studies,unit,11,Global problems and the research argument (weeks 29 to 32). Which international ,145,157,145,157,29,32
+world-history-ii,10,social-studies,check,11,"3, year-end course-level check (week 32)",158,159,158,159,32,32
+world-history-ii,10,social-studies,respond,11,"3, year-end course-level check (week 32)",160,160,160,160,32,32

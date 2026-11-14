@@ -30,11 +30,11 @@ No course has lessons, print, checks with keys or teacher pages yet. That is lay
 | Health and PE | 8 | 8 | 0 | 0 | 31 | 15 / 8 / 8 |
 | Computer Science | 4 | 0 | 0 | 0 | 66 | 84 / 23 / 8 |
 | World Languages | 2 | 0 | 0 | 0 | 20 | 18 / 0 / 2 |
-| Career and Technical Education | 3 | 1 | 0 | 0 | 19 | 12 / 3 / 4 |
+| Career and Technical Education | 3 | 0 | 0 | 0 | 19 | 12 / 3 / 4 |
 | Social and Emotional Learning | 4 | 0 | 0 | 0 | 10 | 2 / 0 / 8 |
 | English Language Development | 4 | 0 | 0 | 0 | 21 | 15 / 1 / 5 |
 | Library and Research Skills | 4 | 0 | 0 | 0 | 13 | 7 / 4 / 2 |
-| **All courses** | **107** | **69** | **3** | **1** | **750** | **569 / 149 / 83** |
+| **All courses** | **107** | **68** | **3** | **1** | **750** | **569 / 149 / 83** |
 
 Tool counts here leave out tools that sit on shared topics (last table). "Spec" includes a few that are still ideas.
 
@@ -176,7 +176,7 @@ Tool counts here leave out tools that sit on shared topics (last table). "Spec" 
 |---|---|---|---|---|---|---|---|---|
 | Career Exploration, grades 6 to 8 |  | no | shared page only | no | no | no | 8 | 4 / 2 / 2 |
 | Career Pathways, grades 9 to 12 |  | no | shared page only | no | no | no | 5 | 5 / 0 / 0 |
-| Personal Finance, grades 9 to 12 | yes | no | shared page only | no | no | no | 6 | 3 / 1 / 2 |
+| Personal Finance, grades 9 to 12 |  | no | shared page only | no | no | no | 6 | 3 / 1 / 2 |
 
 ## Social and Emotional Learning (4 courses)
 

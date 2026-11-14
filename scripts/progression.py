@@ -54,6 +54,16 @@ ANCHOR = {'social-studies': 'ma-hss-2018.txt', 'science': 'ngss-pes.txt', 'ela':
           'math': 'ccss-math-standards.txt'}
 
 
+def _lit_codes():
+    p = os.path.join(ROOT, 'data', 'standards', 'ccss-literacy-6-12.txt')
+    if not os.path.exists(p):
+        return set()
+    return {l.split('	')[0].strip() for l in open(p, encoding='utf-8') if l.strip() and not l.startswith('#')}
+
+
+LIT_CODES = _lit_codes()   # the lit: form of cross_subject (an also-met RH, RST or WHST code)
+
+
 def code_grades(subject, code):
     """(owner grades, all grades) a grade-coded standard may sit in, or None when the code carries no grade.
     ELA: RL.4.2 sits in grade 4; a band code (RL.9-10.1) is used across the band and owned by its last grade."""
@@ -204,8 +214,17 @@ def check(subject):
         for code, gs in owners.items():
             if (code.startswith('MA.') or subject != 'social-studies') and len(gs) > 1:
                 fails.append('%s owned by grades %s' % (code, ', '.join(sorted(gs, key=GI.get))))
+    # quieter notes (baseline 1 structure finding 7): a note stays only while the rows have not said why
+    def said(sids, *words):
+        nt = ' '.join((by_id[x].get('notes') or '') for x in sids if x in by_id).lower()
+        return any(w.lower() in nt for w in words if w)
+    namers = {}
+    for sid, r in by_id.items():
+        for c in split(r.get('standard') or ''):
+            namers.setdefault(c.lstrip('~'), []).append(sid)
     for code, gs in owners.items():
-        if code.startswith('D') and len(gs) > 1:
+        later = [x for x in namers.get(code, []) if grade_of[x] != min(gs, key=GI.get)]
+        if code.startswith('D') and len(gs) > 1 and not said(later, code):
             notes.append('%s named in grades %s (say in notes how the depth differs)' % (code, ', '.join(sorted(gs, key=GI.get))))
     for code in known:
         if code.startswith('D') and code not in owners:
@@ -232,7 +251,7 @@ def check(subject):
                 fails.append('%s (grade %s) hands on to %s (grade %s): not a later grade' % (sid, grade_of[sid], h, grade_of[h]))
             if sid not in split(by_id[h]['assumes']):
                 fails.append('%s hands on to %s, which does not assume it' % (sid, h))
-            if gh > g + 1:
+            if gh > g + 1 and not said([sid, h], h, sid, 'skip', 'idle', 'dormant', 'returns'):
                 notes.append('%s (grade %s) hands on to %s (grade %s): skips %d grade(s); say why in notes' % (
                     sid, grade_of[sid], h, grade_of[h], gh - g - 1))
     # models
@@ -258,7 +277,10 @@ def check(subject):
             used.setdefault(m, set()).add(GI.get(grade_of[sid], -1))
     for m, gs in sorted(used.items()):
         gaps = [GRADES[i] for i in range(min(gs), max(gs) + 1) if i not in gs]
-        if gaps:
+        users = [x for x, r in by_id.items() if m in set(split(r['model_in'])) | set(split(r['model_out']))]
+        why = any(m in (by_id[x].get('notes') or '') and said([x], 'skip', 'idle', 'dormant', 'return', 'unused', 'not used',
+                                                               'paused', 'rest', 'again', 'reactivat') for x in users)
+        if gaps and not why:
             notes.append('model %s unused in grade(s) %s between its first and last use (reactivate, or say why)' % (
                 m, ', '.join(gaps)))
     # cross-subject
@@ -282,6 +304,19 @@ def check(subject):
                 continue
             subj, ref = [s.strip() for s in x.split(':', 1)]
             ref = ref.split(' ')[0] if ref else ref
+            if subj == 'lit':
+                # an also-met literacy standard (RH, RST, WHST: data/standards/ccss-literacy-6-12.txt), cited without an
+                # ELA row; science and social studies teach it in their own rows (added 2026-11-14). Notes only.
+                if subject == 'ela':
+                    notes.append('%s cross_subject %r: ELA owns its literacy codes; name them in standard instead' % (sid, x))
+                elif ref not in LIT_CODES:
+                    notes.append('%s cross_subject %r: not a code in ccss-literacy-6-12.txt' % (sid, x))
+                else:
+                    band = re.search(r'\.(\d+)-(\d+)\.', ref)
+                    g = GI.get(grade_of[sid], -1) - GI.get('K', 0)
+                    if band and not int(band.group(1)) <= g <= int(band.group(2)):
+                        notes.append('%s (grade %s) cross_subject %r: outside the grade band of the code' % (sid, grade_of[sid], x))
+                continue
             if subj not in STD_FILES or subj == subject:
                 fails.append('%s cross_subject %r names no other subject' % (sid, x))
                 continue

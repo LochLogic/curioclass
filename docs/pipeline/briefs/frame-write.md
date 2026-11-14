@@ -31,7 +31,10 @@ One page per course: `S:\CurioClass\docs\courses\<slug>\frame.md`, where <slug> 
      course-level checks and respond days. The yardstick: a full-year course has 160 teaching days (a school year of
      about 180, less testing and breaks), a half-year course 80. A course may set fewer when what it owns does not
      need them (likely in kindergarten to grade 2, where social studies shares the day): say so and give the time a
-     week it assumes. Never more without a reason.
+     week it assumes. Never more without a reason. The bullet also gives the minutes a lesson and the lessons a week
+     ("One lesson of about 50 minutes a day, five a week, 32 weeks"), and says "Each unit's days include its
+     end-of-unit assessment (and, in units over 25 days, its mid-unit assessments)". These are course days: the school
+     calendar (docs/courses/CALENDAR.md) places them on school days and weeks.
    - **Standard.** how the course meets its standard (anchor, skills, check set, values rule).
    - **Base text.** the base text and its source map, or that the course has none and how sources are chosen.
    - Any other course-wide rule a unit writer must know (the inquiry arc, informed action, the reading level).
@@ -49,19 +52,29 @@ One page per course: `S:\CurioClass\docs\courses\<slug>\frame.md`, where <slug> 
    - **Owned standards:** the codes those rows own, as written in the rows.
    - **Why this unit, here:** why it is a unit and why it sits at this point (order of time, a skill or model it
      needs from an earlier unit, a seam).
+   - **What students learn:** a lettered part of an owned standard (RL.4.1a, MA.WHII.T1.1a) is named by its code in
+     the unit that teaches it, so the gate can see every part placed (standards in full).
    - Units in an order that uses a skill or model before it is taught fail the read.
-6. `## Course-level checks`: where they fall (after which units), what each checks, the days they take.
+6. `## Course-level checks`: one table, columns exactly
+   `| Check | After unit | Check days | Respond days | What it checks |`, one row per check (mid-year, year-end), each
+   with at least one respond day. A row with "review" in its Check cell holds review days (Check days counts them,
+   Respond days is 0). In K to 8, place the checks on the target weeks of docs/courses/CALENDAR.md, so no week (K to 5)
+   or day (6 to 8) holds two subjects' checks.
 7. `## Cross-subject`: every row's cross_subject lean, grouped by the other subject and grade: what this course
    needs, and when in this course's year. Same-year leans form the availability calendar (Codex's list, item 1):
    which unit of this course uses it and the earliest unit of the other course that may teach it, so the other
    subject's frame can honour it. The other subjects' frames are written later; record the need, do not guess
-   their unit numbers.
+   their unit numbers. A citation of another frame's unit gives its course days as that frame states them
+   ("math grade 4 unit 3 (days 30 to 47)"); the gate notes a citation more than 3 days off that unit's place in
+   data/plans/calendar.csv.
 8. `## For the lead`: anything that would change what a grade teaches beyond what the decisions settle, with your
    pick. Scope, money, people or audience questions go here, never decided by you.
 
 ## Lessons from the social studies frames (added 2026-11-14)
 The 15 social studies frames were read by the expert and by Codex and fixed (docs/reviews/frame-*-fixes-2026-11-13.md).
-These findings came back course after course. Write so none of them comes back:
+These findings came back course after course. Write so none of them comes back. `scripts/frame.py` now checks
+lessons 1, 2, 3, 4 (lettered parts, a note), 12 and 14, the one Course-level checks table, the Seams, Models carried
+and Cross-subject ids, and outside-reader wording (baseline 1 structure fixes, 2026-11-14):
 1. **A respond day after each course-level check,** counted in the course's days.
 2. **Check-set cells start "Candidate: ...":** the unit plan settles them.
 3. **The time a day is stated** (minutes per lesson, lessons a week), and why the day total fits it.
@@ -86,9 +99,12 @@ These findings came back course after course. Write so none of them comes back:
     2026-11-14); safety reads and answer-key reads are agent reads too.
 13. **No math ahead of math.** A unit uses no number work the math progression has not taught by then (coin values,
     percent, negative numbers, scale).
-14. **A paper path** beside any electronic tool, and no student account.
+14. **A paper path** beside any electronic tool, and no student account: a "Paper path." bullet in The course in brief.
 15. **No status lines about other files.** Stale wording in shared docs goes under "For the lead" with the
     replacement text.
+16. **Readiness by idle time.** A skill the unit assumes that has been idle two or more grades (no row used it in
+    that time) gets a readiness check on the unit's first day; one used the year before opens as a retrieval task
+    inside a day, not a check (added 2026-11-14, as the science frames applied it).
 
 ## Rules
 - The progression rows are the contract: place every owned row, change none. If a row is wrong, list it under "For
@@ -106,8 +122,9 @@ These findings came back course after course. Write so none of them comes back:
 - Stale notes: a note that waits on other work starts `Pending(<file>, <file>#<text> or <plan node>):`; other
   work-status wording ("not yet placed", "to come") fails the gate. Run `python -X utf8 scripts/stale.py check`
   on your files before finishing.
-- Run `python -X utf8 scripts/frame.py check <slug>` (the gate: sections, placement, owned standards, days;
-  `python -X utf8 scripts/frame.py sync` first writes data/plans/frames.csv) and fix every FAIL.
+- Run `python -X utf8 scripts/frame.py check <slug>` (the gate: sections, placement, owned standards, days, the
+  lessons above; `python -X utf8 scripts/frame.py sync` writes data/plans/frames.csv, data/plans/calendar.csv and the
+  table in docs/courses/CALENDAR.md) and fix every FAIL. Read its notes too: each names a lesson.
 - Check your own work with a short script in the scratchpad before finishing: every owned skill_id placed exactly
   once, every code in Owned standards found in those rows, days in units plus check days equal the total.
 

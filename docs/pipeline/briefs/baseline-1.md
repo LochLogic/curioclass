@@ -9,8 +9,9 @@ findings (docs/reviews/frame-*-2026-11-1[34].md and the fix reports); find what 
 You are the curriculum expert: read docs/agents/EXPERT.md and act as it says. Read AGENTS.md,
 docs/PRODUCTION-PATH.md (steps 2 to 4), docs/GLOSSARY.md, docs/pipeline/briefs/frame-write.md (the format and its
 lessons) and the lens for your part in docs/agents/lenses/. Run `python -X utf8 scripts/plan.py check` first; the
-gates already prove placement, owned standards, day totals, handoff ends and stale marks. Spend the read on what they
-cannot check.
+gates establish the coded placement and reference checks they implement (placement, owned and contributed standards,
+day totals, the checks table, handoff ends, stale marks). They do not establish full standard meaning, within-year
+availability, assessment completeness or the accuracy of unmarked status prose. Spend the read there.
 
 ## Parts
 This brief runs as several readers, one part each. Your part: **{part}**.

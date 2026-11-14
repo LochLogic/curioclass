@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PLANS = ROOT / 'data' / 'plans'
 DOCS = ROOT / 'docs' / 'courses'
 LESSON_MIN = 50          # the lesson part of a 60 minute day (scope and sequence: warm-up 5, lesson about 50, exit 5)
-DAY_MIN = 60
+DAY_MIN = 60             # the default; check() sets both from the course's frame (data/plans/frames.csv minutes_max)
 KINDS = {'Understanding', 'Fluency', 'Application', 'Check', 'Respond'}
 MARKS = {'key', 'light'}
 LESSON_KINDS = {'example', 'tool', 'fix', 'practice', 'challenge'}   # rows a lesson day adds; all count as taught
@@ -33,6 +33,28 @@ def rows(course, name):
         return []
     with io.open(p, encoding='utf-8', newline='') as f:
         return list(csv.DictReader(f))
+
+
+def course_meta(course):
+    """(subject, grade, day minutes) of a plan folder, read from data/plans/frames.csv by frame slug or legacy plan id
+    (math-4), so a course needs no subject-grade name (biology, algebra-i). None when the course has no frame row."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import frame
+    m = frame.meta(course)
+    if not m:
+        return None
+    mins = int(m['minutes_max']) if (m.get('minutes_max') or '').isdigit() else 60
+    return m['subject'], m['grade'], mins
+
+
+def day_range(course):
+    """(least, most) minutes a day of the course, from its frame; (60, 60) when the frame states none."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import frame
+    m = frame.meta(course) or {}
+    lo, hi = m.get('minutes_min') or '', m.get('minutes_max') or ''
+    hi = int(hi) if hi.isdigit() else 60
+    return (int(lo) if lo.isdigit() else hi), hi
 
 
 def courses():
@@ -136,7 +158,8 @@ GRADE_MULT = {'4': (9999, 9, 99)}   # grade 4: four digits by one digit, or two 
 
 def over_limit(expr, course):
     """True when the expression multiplies past what the course's grade multiplies (for a wrong answer's sign)."""
-    lim = GRADE_MULT.get(course.rsplit('-', 1)[-1])
+    cm = course_meta(course)
+    lim = GRADE_MULT.get(cm[1] if cm else course.rsplit('-', 1)[-1])
     if not lim:
         return False
     try:
@@ -612,7 +635,18 @@ def check(course):
     fails, notes = [], []
     parts, days, items = rows(course, 'parts'), rows(course, 'days'), rows(course, 'items')
     wrongs, errors = rows(course, 'wrongs'), rows(course, 'errors')
-    subj, grade = course.rsplit('-', 1)
+    global DAY_MIN, LESSON_MIN
+    cm = course_meta(course)
+    if cm is None:
+        return ['%s: no row in data/plans/frames.csv (run scripts/frame.py sync, or add the frame)' % course], [], 0, 0
+    subj, grade, DAY_MIN = cm
+    if subj == 'english-language-arts':
+        subj = 'ela'
+    LESSON_MIN = DAY_MIN - 10   # warm-up 5 and exit 5 around the lesson
+    lo_min = day_range(course)[0]
+    if not days or not (parts or items):   # a course is never called checked on zero records (Codex 1)
+        return ['%s: the plan stage needs days.csv with parts.csv or items.csv; at the scope stage run scripts/sequence.py'
+                % course], [], 0, 0
     with io.open(ROOT / 'data' / 'units.csv', encoding='utf-8', newline='') as f:
         units = [u for u in csv.DictReader(f) if u['subject'] == subj and u['grade'] == grade]
     codes = set()
@@ -624,7 +658,8 @@ def check(course):
         fails.append('items.csv: duplicate item_id')
     wordrules = [(w['pattern'], w['use'], w['reason']) for w in rows(course, 'words')]   # settled wording, per course
     letters = {(e['stretch'], e['letter']) for e in errors}
-    stretches = sorted({d['stretch'] for d in days} | {i['stretch'] for i in items}, key=int)
+    stretches = sorted({d['stretch'] for d in days} | {i['stretch'] for i in items},
+                       key=lambda x: (not x.isdigit(), int(x) if x.isdigit() else 0))   # course-level days (C) last
 
     # 1. keys: every key-marked item is recomputed; teacher-judged items too where a value is given
     for i in items:
@@ -868,7 +903,7 @@ def check(course):
         nums = [int(d['day']) for d in sd]
         if nums and nums != list(range(nums[0], nums[0] + len(nums))):
             fails.append('unit %s: day numbers are not consecutive: %s' % (s, nums))
-        for u in sorted({d['unit'] for d in sd}):
+        for u in sorted({d['unit'] for d in sd} if s != 'C' else ()):   # course-level days have no section
             # a teaching section is "9.2"; a cumulative check or its respond day is named as in units.csv ("check-2")
             uid = '%s-u%02d-%s' % (course, int(u.split('.')[0]), u.split('.')[1]) if '.' in u else '%s-%s' % (course, u)
             row = next((x for x in units if x['unit_id'] == uid), None)
@@ -899,8 +934,9 @@ def check(course):
                     fails.append('%s: tool minutes in words add to %d, tool_min says %s' % (lab, stated, d['tool_min']))
             if d['kind'] == 'Check':
                 tot = sum(int(re.findall(r'\d+', re.sub(r'\(.*?\)', '', s))[-1]) for s in d['check_min'].split(';') if re.findall(r'\d+', re.sub(r'\(.*?\)', '', s)))   # the last number of each part, notes in brackets aside
-                if tot != DAY_MIN:
-                    fails.append('%s: assessment day parts add to %d minutes, not %d' % (lab, tot, DAY_MIN))
+                if not lo_min <= tot <= DAY_MIN:
+                    fails.append('%s: assessment day parts add to %d minutes, not %s' % (
+                        lab, tot, DAY_MIN if lo_min == DAY_MIN else '%d to %d' % (lo_min, DAY_MIN)))
                 if not any(i['check'] == 'end' and i['day'] == d['day'] for i in items):
                     fails.append('%s: an assessment day with no unit assessment items' % lab)
             elif not any(i['check'] == 'exit' and i['day'] == d['day'] for i in items):
@@ -1153,7 +1189,15 @@ def main(a):
     cmd, rest = a[0], a[1:]
     if cmd == 'check':
         bad = 0
+        import sequence   # scope and sequence stage (added 2026-11-14)
         for c in (rest[:1] or courses()):
+            if sequence.stage(c) == 'scope':
+                fl, nt = sequence.check(c)
+                print('sequence %s: %d failure(s)' % (c, len(fl)))
+                for x in fl: print('  FAIL', x)
+                for x in nt: print('  note', x)
+                bad += len(fl)
+                continue
             fails, notes, ni, nw = check(c)
             print('%s: %d items and %d wrong answers checked, %d failure(s)' % (c, ni, nw, len(fails)))
             for x in fails:
@@ -1170,8 +1214,13 @@ def main(a):
                 for x in pn: print('  note', x)
                 bad += len(pf)
             import frame   # course frames (added 2026-11-13)
+            cal = frame.calendar_rows()
+            gf = frame.check_global()
+            print('frames: %d course(s), %d catalogue failure(s)' % (len(frame.found()), len(gf)))
+            for x in gf: print('  FAIL', x)
+            bad += len(gf)
             for s in frame.found():
-                ff, fn = frame.check(s)
+                ff, fn = frame.check(s, cal)
                 print('frame %s: %d failure(s)' % (s, len(ff)))
                 for x in ff: print('  FAIL', x)
                 for x in fn: print('  note', x)
