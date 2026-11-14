@@ -16,13 +16,16 @@ Fails on:
   - an assessment day (end or mid) whose codes and lettered parts are not each a row of field 5 with an item written;
   - an em dash anywhere; "Curio" not followed by " Class";
   - a header day range, a day count or a day list that disagrees with days.csv (the day numbers and kinds);
-  - a readiness check given on the unit's first day (field 4 `Given:` line);
+  - a readiness check given on the unit's first day (field 4 `Given:` line), except in the course's first unit, whose
+    start-of-year check is the last ten minutes of day 1 (a `Start-of-year check:` line is also a valid field 4 line);
   - math only: a cluster of an owned standard whose weight (major, supporting, additional, or prerequisite for high
     school) the plan does not state as `weight (cluster, cluster)`, or states differently from
     data/standards/ccss-math-focus.csv;
   - science only: an owned performance expectation with no row in the three-dimensions table of field 2, or a row
     with an empty practice, core idea or crosscutting concept cell; no anchoring phenomenon named in field 2;
   - ELA only: a strand of the owned codes (RL, RI, RF, W, SL, L) not named as `(RL)` and so on in field 2, or no text set;
+  - ELA only, a note and never a failure: an anchor text of data/plans/ela-texts.csv for the unit that field 2 and field 10
+    both leave unnamed;
   - math, ELA and science: a source-map.csv row of the unit whose source id field 10 does not name;
   - more than 1,250 words outside fields 4, 5, 6, the day list and skel blocks (UNIT-PLAN.md, "Length": unit plan cap; the
     section plans are separate files, so the merged 1,800 does not apply).
@@ -36,6 +39,8 @@ import unit_skeleton as sk  # noqa: E402
 
 MARK = sk.MARK
 CAP = 1250
+NOTES = []          # notes printed ahead of a file's PASS or FAIL line; they never fail a file
+SHOWN = ['']        # the path being checked, for the notes
 FIELDS = list(range(2, 11))
 UNCOUNTED = {4, 5, 6, 'days'}
 
@@ -110,7 +115,7 @@ def check_file(path, course, unit):
         bad(2, 'header has no "**Days A to B**"')
     else:
         got_days = set()
-        for tok in re.split(r'\s+and\s+', mh.group(1).strip()):
+        for tok in re.split(r'\s*,\s*|\s+and\s+', mh.group(1).strip()):
             m3 = re.fullmatch(r'(\d+)(?: to (\d+))?', tok.strip())
             if not m3:
                 bad(3, 'header days "%s" not understood' % mh.group(1))
@@ -159,12 +164,14 @@ def check_file(path, course, unit):
     if 4 in spans:
         s, e = spans[4][0]
         sec = lines[s:e]
-        given = [(s + i + 1, ln) for i, ln in enumerate(sec) if re.match(r'^\**Given:', ln) or re.match(r'^\**Retrieval only:', ln)]
+        given = [(s + i + 1, ln) for i, ln in enumerate(sec)
+                 if re.match(r'^\**Given:', ln) or re.match(r'^\**Retrieval only:', ln) or re.match(r'^\**Start-of-year check:', ln)]
         if not given:
-            bad(s + 1, 'field 4 has no "Given:" or "Retrieval only:" line')
+            bad(s + 1, 'field 4 has no "Given:", "Retrieval only:" or "Start-of-year check:" line')
         for i, ln in given:
             m2 = re.search(r'(?<!before )\bday (\d+)\b', ln.split('Note there')[0], re.I)
-            if ln.lstrip('*').startswith('Given:') and m2 and int(m2.group(1)) == days[0]:
+            # the course's first unit (day 1) gives its check in the last ten minutes of day 1 (lead rule 2026-11-14)
+            if ln.lstrip('*').startswith('Given:') and m2 and int(m2.group(1)) == days[0] and days[0] != 1:
                 bad(i, 'readiness check given on the unit\'s first day (day %d)' % days[0])
 
     # assessment
@@ -222,7 +229,7 @@ def subject_checks(course, unit, rows, lines, spans, bad):
     codes = sk.required_codes(rows)
     if sk.SUBJ == 'math':
         found = {}
-        for m in re.finditer(r'\b(major|supporting|additional|prerequisite)\s*\(([^)]*)\)', text):
+        for m in re.finditer(r'\b(major|supporting|additional|plus|prerequisite)\s*\(([^)]*)\)', text):
             for k in sk.split_list(m.group(2)):
                 found.setdefault(k, m.group(1))
         for k, wt, cs in sk.math_clusters(codes):
@@ -255,6 +262,12 @@ def subject_checks(course, unit, rows, lines, spans, bad):
                 bad(0, 'field 2 does not name the strand (%s) of the owned codes' % key)
         if not re.search(r'text set', f2, re.I):
             bad(0, 'field 2 names no text set')
+        norm = lambda x: re.sub(r'[^a-z0-9]+', ' ', x.lower()).strip()
+        have = norm(f2 + ' ' + f10)
+        for t in sk.ela_texts(course, unit):
+            if t['use'] == 'anchor' and norm(t['title']) not in have:
+                NOTES.append('%s:-: note (not a failure): anchor text %s "%s" in data/plans/ela-texts.csv is named in neither field 2 nor field 10'
+                             % (SHOWN[0], t['text_id'], t['title']))
     for r in sk.source_rows(course, unit):
         if r['source'] not in f10:
             bad(0, 'source-map.csv row %s is not named in field 10' % r['source'])
@@ -302,8 +315,10 @@ def main(a):
                     bad_any = True
                 continue
             seen += 1
+            del NOTES[:]
+            SHOWN[0] = shown(p)
             msgs = check_file(shown(p), course, u)
-            for m in msgs:
+            for m in msgs + NOTES:
                 print(m)
             if msgs:
                 bad_any = True

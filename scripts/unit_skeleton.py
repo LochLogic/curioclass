@@ -24,8 +24,12 @@ Math adds: cluster weights (data/standards/ccss-math-focus.csv), the frame's pra
 day notes (or in tools/supplies columns and materials.csv where they exist), base-text lesson rows from source-map.csv.
 ELA adds: the frame's text set, owned codes grouped by strand with the days they are taught (kind Understanding) and
 practised (other kinds), writing types and writing days, base-text rows. Science adds: the anchoring phenomenon, the
-frame's practices and crosscutting concepts, a three-dimensions table (one row per performance expectation), safety
-and materials notes from day notes and the frame, base-text rows.
+frame's practices and crosscutting concepts, a three-dimensions table (one row per performance expectation, filled from
+data/standards/ngss-pe-dimensions.csv with the expectation lines, limits and emphases), safety and materials notes from
+the days.csv tools, supplies and safety columns, day notes and the frame, base-text rows. ELA text rows come from
+data/plans/ela-texts.csv (the word list is asked of the writer as data/plans/<course>/wordlist.csv). Math weights include
+`plus` (advanced (+) standards, outside the weighted set). Unit 1's readiness check is the last ten minutes of day 1
+(lead rule 2026-11-14); with no readiness rows the unit says "Start-of-year check: none needed; retrieval only".
 
 Left for the writer: a line that begins `TODO` followed by `(writer):` and what is needed (hook, supporting
 questions, sources chosen, limits, teaching moves, items and answers, errors, response groups, tools, family note and
@@ -267,8 +271,11 @@ def runs(nums):
 
 
 def runs_text(nums):
-    """'26 to 38 and 55' for the header; the checker parses the same shape."""
-    return ' and '.join(('%d to %d' % r) if r[0] != r[1] else str(r[0]) for r in runs(nums))
+    """'26 to 38 and 55' (or '34, 58, 94 and 102 to 120') for the header; the checker parses both shapes."""
+    parts = [('%d to %d' % r) if r[0] != r[1] else str(r[0]) for r in runs(nums)]
+    if len(parts) < 3:
+        return ' and '.join(parts)
+    return '%s and %s' % (', '.join(parts[:-1]), parts[-1])
 
 
 def progression():
@@ -348,6 +355,8 @@ def unit_nums(text):
 def split_unit_cell(cell):
     """(title, question, anchor) from the frame's unit cell; the 'Anchor: ...' tail is science's phenomenon."""
     anchor = ''
+    if SUBJ == 'science':
+        return split_science_cell(cell)
     if not is_ss():
         m = re.search(r'\s+Anchor:\s*(.+)$', cell.strip())
         if m:
@@ -355,6 +364,61 @@ def split_unit_cell(cell):
             cell = cell.strip()[:m.start()]
     t, q = split_title(cell)
     return t, q, anchor
+
+
+def _sentences(text):
+    return [x.strip() for x in re.split(r'(?<=[.?])\s+(?=[A-Z*"])', text.strip()) if x.strip()]
+
+
+def _plain(x):
+    return re.sub(r'\s+', ' ', x.replace('**', '').replace('*', '')).strip().strip('"').strip()
+
+
+def split_science_cell(cell):
+    """(title, question, anchor) from a science frame cell in any of its shapes: K to 2 'Title. *Question?* Anchor: ...',
+    grades 3 to 5 'Title. "Question?" Anchor: ...', grades 6 to 8 'Title. Question? Anchor: ...', high school
+    '**Title** (weeks 1 to 3). Anchor: ... Question?' (question last) or '... Design problem: ... Question? Anchor: ...'.
+    The question and the anchor are kept apart; a 'Design problem:' sentence joins the front of the anchor."""
+    cell = cell.strip()
+    head = ''
+    mh = re.match(r'\*\*(.+?)\*\*\s*(?:\(weeks? [^)]*\))?\.?\s*', cell)
+    if mh:                      # high school: '**Title** (weeks 1 to 3).' leads the cell
+        head, cell = mh.group(1).strip(), cell[mh.end():].strip()
+    ms = list(re.finditer(r'(?<![A-Za-z])Anchor:\s*', cell))
+    if ms:
+        before, tail = cell[:ms[-1].start()].strip(), cell[ms[-1].end():].strip()
+    else:
+        before, tail = cell, ''
+    design, title, question = [], '', ''
+    mq = re.search(r'\*([^*]+\?)\*|"([^"]+\?)"', before)
+    if mq:
+        question = (mq.group(1) or mq.group(2)).strip()
+        title = before[:mq.start()].strip()
+        mid = before[mq.end():].strip()
+        if re.match(r'Design (problem|question):', mid):
+            design.append(mid)
+    else:
+        sents = _sentences(before)
+        qi = max((i for i, x in enumerate(sents) if x.endswith('?')), default=None)
+        if qi is not None:
+            question = sents[qi]
+            title = sents[0] if qi > 0 else ''
+            design = [x for x in sents[1:] if sents.index(x) != qi and re.match(r'Design (problem|question):', x)]
+        else:
+            tsents = _sentences(tail)
+            qi = max((i for i, x in enumerate(tsents) if x.endswith('?')), default=None)
+            title = before
+            if qi is not None:
+                question = tsents[qi]
+                tail = ' '.join(x for i, x in enumerate(tsents) if i != qi)
+    if not question and not tail:
+        t, q = split_title(cell)
+        return head or t, q, ''
+    if head:
+        title = head
+    title = re.sub(r'\s*\(weeks? [^)]*\)', '', _plain(title)).rstrip('.').strip()
+    anchor = ' '.join(design + ([tail] if tail else [])).strip()
+    return title or cell, _plain(question), anchor
 
 
 def frame_cross(course, unit):
@@ -438,13 +502,18 @@ def day_note_lines(rows, rx, skip=None, goal_too=True):
     return out
 
 
-def column_lines(rows):
+def column_lines(rows, only=None, skip=None):
+    """Lines for the optional tools, supplies and safety columns of days.csv. only/skip name columns; a safety cell
+    that is the word none is not a line (it says the day has no hazard)."""
     out = []
     for col in TOOLCOLS:
+        if (only and col not in only) or (skip and col in skip):
+            continue
         if rows and col in rows[0]:
             for r in rows:
-                if r[col].strip():
-                    out.append('  - Day %s, %s column: %s' % (r['day'], col, clean(r[col])))
+                v = (r[col] or '').strip()
+                if v and not (col == 'safety' and v.lower() == 'none'):
+                    out.append('  - Day %s, %s column: %s' % (r['day'], col, clean(v)))
     return out
 
 
@@ -461,7 +530,8 @@ def material_lines(course, rows):
 
 
 PE_RE = re.compile(r'^(?:K-2|3-5|K|[1-5]|MS|HS)-[A-Z]+\d(?:-\d+)?$')
-WEIGHTWORD = {'major': 'major', 'supporting': 'supporting', 'additional': 'additional', 'wap': 'prerequisite'}
+WEIGHTWORD = {'major': 'major', 'supporting': 'supporting', 'additional': 'additional', 'wap': 'prerequisite', 'plus': 'plus'}
+PLUSNOTE = 'plus means advanced (+) standards, outside the weighted set'
 
 # The judgement-line wording that differs by subject. Social studies is frozen: its entries are the original text.
 TXT = {
@@ -496,6 +566,93 @@ def is_pe(code):
     return bool(PE_RE.match(code))
 
 
+_DIMS = {}
+_ELA = {}
+
+
+def pe_dims():
+    """pe -> dimension -> [rows], from data/standards/ngss-pe-dimensions.csv (own-word lines only, as stored)."""
+    if not _DIMS:
+        p = STD / 'ngss-pe-dimensions.csv'
+        if p.exists():
+            lines = [ln for ln in io.open(p, encoding='utf-8') if ln.strip() and not ln.startswith('#')]
+            for r in csv.DictReader(lines):
+                _DIMS.setdefault(r['pe'], {}).setdefault(r['dimension'], []).append(r)
+    return _DIMS
+
+
+def pe_statement(code):
+    """The stored own-word expectation line for a science code ('' when none)."""
+    rows = pe_dims().get(code, {}).get('statement', [])
+    return clean(rows[0]['element']) if rows else ''
+
+
+def pe_limit_lines(code):
+    """' Emphasis: ... Limit: ...' from the clarification and boundary rows ('' when none)."""
+    d = pe_dims().get(code, {})
+    out = ''
+    if d.get('clarification'):
+        txt = ' '.join(clean(r['element']) for r in d['clarification'])
+        out += ' ' + (txt if txt.startswith('Emphasis:') else 'Emphasis: ' + txt)
+    if d.get('boundary'):
+        out += ' Limit: %s' % ' '.join(clean(r['element']) for r in d['boundary'])
+    return out
+
+
+def std_line(code):
+    """The own-word line for a code: the stored expectation statement for science, else the standards file line."""
+    if SUBJ == 'science' and is_pe(code):
+        t = pe_statement(code)
+        if t:
+            return t
+    return std_text().get(code, '')
+
+
+def pe_row(code):
+    """The three-dimensions table row for one expectation, cells filled from the stored rows."""
+    d = pe_dims().get(code)
+    if not d:
+        return '| %s | %s: no rows in data/standards/ngss-pe-dimensions.csv (missing data) | %s | %s |' % (code, MARK, MARK, MARK)
+
+    def join(rows, fmt):
+        t = '; '.join(fmt(r).strip().rstrip('.') for r in rows)
+        return clean(t + '.') if t else ''
+    sep = join(d.get('sep', []), lambda r: '%s: %s' % (r['name'], r['element'])) or MARK + ': no practice on file'
+    dci = join(d.get('dci', []), lambda r: '%s %s%s: %s' % (r['code'], r['name'], ' (secondary)' if r.get('role') == 'secondary' else '', r['element'])) \
+        or MARK + ': no core idea on file'
+    ccc = join(d.get('ccc', []), lambda r: '%s: %s' % (r['name'], r['element']))
+    if not ccc:
+        names = [r['name'] for r in d.get('eta', []) + d.get('nos', [])]
+        ccc = clean('; '.join('%s (connection, no crosscutting concept)' % n for n in names)) or MARK + ': no crosscutting concept on file'
+    return '| %s | %s | %s | %s |' % (code, sep, dci, ccc)
+
+
+def pe_connections(code):
+    d = pe_dims().get(code, {})
+    rows = d.get('eta', []) + d.get('nos', [])
+    return '; '.join('%s: %s' % (clean(r['name']), clean(r['element'])) for r in rows)
+
+
+def ela_rows():
+    """All rows of data/plans/ela-texts.csv (under --data-dir, DIR/ela-texts.csv)."""
+    key = str(DATA_DIR)
+    if _ELA.get('dir') != key:
+        p = (DATA_DIR or PLANS) / 'ela-texts.csv'
+        if not p.exists():
+            p = PLANS / 'ela-texts.csv'     # under --data-dir the real file stands in until the test dir holds its own
+        rows = []
+        if p.exists():
+            rows = list(csv.DictReader(l for l in io.open(p, encoding='utf-8') if l.strip() and not l.startswith('#')))
+        _ELA.clear()
+        _ELA.update({'dir': key, 'rows': rows})
+    return _ELA['rows']
+
+
+def ela_texts(course, unit):
+    """Rows of data/plans/ela-texts.csv for one ELA course and unit."""
+    return [r for r in ela_rows() if r['course'] == course and r['unit'] == str(unit)]
+
+
 def math_clusters(codes):
     """[(cluster, weight word or '', [codes])] in first-seen order, from data/standards/ccss-math-focus.csv."""
     fw = focus_weights()
@@ -515,12 +672,13 @@ def header_weight(codes):
     if SUBJ == 'math':
         cl = math_clusters(codes)
         groups = []
-        for wt in ('major', 'supporting', 'additional', 'wap'):
+        for wt in ('major', 'supporting', 'additional', 'wap', 'plus'):
             ks = [k for k, w_, _ in cl if w_ == wt]
             if ks:
                 groups.append('%s (%s)' % (WEIGHTWORD[wt], ', '.join(ks)))
         L.append(OPEN)
-        L.append('Weight (Student Achievement Partners, data/standards/ccss-math-focus.csv): %s.' % ('; '.join(groups) or 'none on file'))
+        L.append('Weight (Student Achievement Partners, data/standards/ccss-math-focus.csv): %s.%s'
+                 % ('; '.join(groups) or 'none on file', (' In this line ' + PLUSNOTE + '.') if any(w_ == 'plus' for _, w_, _ in cl) else ''))
         L.append(CLOSE)
         miss = [k for k, w_, _ in cl if not w_]
         if miss:
@@ -545,8 +703,17 @@ def field2_extras(course, unit, rows, codes, fr, anchor):
         L.append('%s: Fluency: which owned standards set an expected fluency (the frame\'s fluency note) and how it is built with no timer shown to students, or one line saying the unit sets none.' % MARK)
     elif SUBJ == 'ela':
         L.append(OPEN)
-        if c3:
-            L.append('- **Text set (frame, C3 column):** %s' % c3)
+        trows = ela_texts(course, unit)
+        if trows:
+            L.append('- **Text set (data/plans/ela-texts.csv, %d rows for this course and unit; use is anchor, paired or independent):**' % len(trows))
+            for t in trows:
+                L.append('  - %s (%s): %s, %s%s; %s, %s; status: %s'
+                         % (t['text_id'], t['use'] or 'use not stated', clean(t['title']), clean(t['author']) or 'author not stated',
+                            ' (%s)' % t['year'] if t['year'].strip() else '', t['part'] or 'part not stated', t['kind'] or 'kind not stated', t['status']))
+        else:
+            if c3:
+                L.append('- **Text set (frame, C3 column):** %s' % c3)
+            L.append('- **Text records:** no rows in data/plans/ela-texts.csv for this course and unit.')
         L.append('- **Owned codes by strand (days.csv: taught = days of kind Understanding, practised = days of any other kind):**')
         by = {}
         for c in codes:
@@ -579,10 +746,19 @@ def field2_extras(course, unit, rows, codes, fr, anchor):
             L.append('- **Days whose goal names writing (days.csv goals):**')
             for r in wl:
                 L.append('  - Day %s (%s): %s' % (r['day'], r['kind'], clean(r['goal'])))
+        anchors = [t for t in trows if t['use'] == 'anchor']
+        if anchors:
+            L.append('- **Text complexity on file (ela-texts.csv, measure and qualitative demands of each anchor):**')
+            for t in anchors:
+                L.append('  - %s: measure: %s; demands: %s' % (clean(t['title']), clean(t['measure']) or 'not stated', clean(t['demands']) or 'not stated'))
         L.append(CLOSE)
-        L.append('%s: Anchor and paired texts: for each text in the text set above, say which is the anchor and which is paired, the day it is read, and its rights line. Missing data: the text records (texts.csv, UNIT-PLAN.md) are not built.' % MARK)
-        L.append('%s: Text complexity: for each anchor, the measure where usable, the qualitative demands, the reader and task, and the support, in a line each (missing data: texts.csv).' % MARK)
-        L.append('%s: Word list: the words drawn from the texts for the unit, about 8 to 10 a week, met before, during and after reading (missing data: words.csv is not built).' % MARK)
+        if trows:
+            L.append('%s: Anchor and paired texts: confirm each anchor and paired row above, the day it is read, and fill the rows whose status is to choose or to confirm (name the text, its edition and its part); say which texts you added or dropped. Rights stay as the file has them.' % MARK)
+            L.append('%s: Text complexity: for each anchor, the reader and task and the support (the measure and the qualitative demands are on file above); correct a demand that is wrong.' % MARK)
+        else:
+            L.append('%s: Anchor and paired texts: no rows in data/plans/ela-texts.csv for this course and unit; name each anchor and paired text, the day it is read, and its rights line.' % MARK)
+            L.append('%s: Text complexity: for each anchor, the measure where usable, the qualitative demands, the reader and task, and the support, in a line each.' % MARK)
+        L.append('%s: Word list: draw about 8 to 10 words a week from this unit\'s texts, met before, during and after reading, and write them to data/plans/%s/wordlist.csv (unit, word, text_id, week, when).' % (MARK, course))
         L.append('%s: Main piece of writing: its type, the process (plan, draft, revise, edit, publish) or on-demand, the day it is assigned and the day it is finished; and the writing tasks above that are short pieces.' % MARK)
         L.append('%s: Taught versus practised: check the split above against the unit\'s goals and say which owned codes the unit teaches and which it only practises.' % MARK)
     elif SUBJ == 'science':
@@ -596,18 +772,22 @@ def field2_extras(course, unit, rows, codes, fr, anchor):
             L.append('%s: Anchoring phenomenon or design problem: the frame\'s unit cell names none (missing data); name it on a line that begins "Anchor:".' % MARK)
         pes = [c for c in codes if is_pe(c)]
         if pes:
-            mp = re.search(r'Practices:\s*(.*?)(?:\.?\s*Crosscutting|$)', c3)
-            mc = re.search(r'Crosscutting(?: concepts)?:\s*(.*)$', c3)
-            prac = mp.group(1).strip() if mp and mp.group(1).strip() else 'not in the frame'
-            ccc = mc.group(1).strip() if mc and mc.group(1).strip() else 'not in the frame'
             L.append('')
-            L.append('Three dimensions of each performance expectation (names only; the Next Generation Science Standards are never named in student, teacher or family copy):')
+            L.append('Three dimensions of each performance expectation (names and own-word lines from data/standards/ngss-pe-dimensions.csv; the Next Generation Science Standards are never named in student, teacher or family copy):')
             L.append('')
+            L.append(OPEN)
             L.append('| Performance expectation | Science and engineering practice | Core idea | Crosscutting concept |')
             L.append('|---|---|---|---|')
             for c in pes:
-                L.append('| %s | %s: practice this expectation uses (unit list: %s) | %s: core idea (missing data: no core idea text on file) | %s: crosscutting concept (unit list: %s) |'
-                         % (c, MARK, prac, MARK, MARK, ccc))
+                L.append(pe_row(c))
+            L.append(CLOSE)
+            conn = [(c, pe_connections(c)) for c in pes if pe_connections(c)]
+            if conn:
+                L.append(OPEN)
+                L.append('- **Connections (engineering and nature of science, same file):**')
+                for c, t in conn:
+                    L.append('  - %s: %s' % (c, t))
+                L.append(CLOSE)
             L.append('')
         L.append('%s: Storyline: the question board (what students notice and wonder), the initial class model and its day, each revision with the evidence that causes it, the consensus model and its day, and the unseen phenomenon the end-of-unit assessment uses.' % MARK)
     return L
@@ -635,10 +815,10 @@ def field8_lines(course, rows, fr):
     if SUBJ == 'science':
         safe = day_note_lines(rows, SAFEWORDS, goal_too=False)
         tools = day_note_lines(rows, TOOLWORDS, skip=SAFEWORDS)
-        L.append('- **Materials and tools named in days.csv (notes and goals):**')
-        L.extend(items + tools or ['  - none named'])
-        L.append('- **Safety named in days.csv notes:**')
-        L.extend(safe or ['  - none named'])
+        L.append('- **Materials and tools named in days.csv (tools and supplies columns, notes and goals):**')
+        L.extend(column_lines(rows, skip=('safety',)) + tools or ['  - none named'])
+        L.append('- **Safety named in days.csv (safety column, then notes):**')
+        L.extend(column_lines(rows, only=('safety',)) + safe or ['  - none named'])
         if fr and fr[9].strip():
             L.append('- **Safety and teacher notes (frame, last column of the unit row):** %s' % clean(fr[9]))
     else:
@@ -680,6 +860,67 @@ def field10_extras(course, unit):
         L.append('- **Base text:** %s; data/plans/%s/source-map.csv has no rows for unit %d.' % (base, course, unit))
         miss.append('%s: Base text lessons used: data/plans/%s/source-map.csv has no rows for this unit (missing data; it comes with the scope and sequence, sequence-write.md rule 8); list the lessons, their days and decisions.' % (MARK, course))
     return L, miss
+
+
+def note_clauses(note):
+    """Clauses of a days.csv note: split at a full stop or a semicolon that sits outside brackets. A clause that ends a
+    sentence keeps its full stop."""
+    out, depth, cur = [], 0, ''
+    for i, ch in enumerate(note):
+        cur += ch
+        if ch in '([':
+            depth += 1
+        elif ch in ')]':
+            depth = max(0, depth - 1)
+        elif depth == 0 and ch == ';':
+            out.append(cur[:-1])
+            cur = ''
+        elif depth == 0 and ch == '.' and (i + 1 == len(note) or note[i + 1].isspace()):
+            out.append(cur)
+            cur = ''
+    if cur.strip():
+        out.append(cur)
+    return [c.strip() for c in out if c.strip()]
+
+
+def retrieval_clauses(note, day):
+    """The retrieval tasks a day's note sets: the whole sentence or clause, not a forward mention such as "opens as a
+    retrieval task on day 27" (a clause that does not begin with the words and names another day)."""
+    out = []
+    for c in note_clauses(note):
+        m = re.search(r'retrieval tasks?\b', c, re.I)
+        if not m:
+            continue
+        if m.start() == 0:
+            out.append(c)
+            continue
+        other = [int(x) for x in re.findall(r'retrieval tasks? on day (\d+)', c, re.I) if int(x) != day]
+        if not other:
+            out.append(c[m.start():])
+    return out
+
+
+def grade_num(g):
+    g = str(g or '').strip()
+    return 0 if g == 'K' else int(g) if g.isdigit() else None
+
+
+def year_before(skill, prog, frame_meta):
+    """True when the progression row is from the grade just before the course's own (a retrieval task, not readiness)."""
+    cg, sg = grade_num(frame_meta.get('grade')), grade_num(prog.get(skill, {}).get('grade'))
+    return cg is not None and sg is not None and cg - sg < 2
+
+
+def earlier_unit_skills(allrows, rows, unit):
+    """[(earlier unit number, [skills])] for skills this unit's days cite that earlier units of the course also cite."""
+    mine = uniq(s for r in rows for s in split_list(r['skills']))
+    out = []
+    for u in sorted({int(r['stretch']) for r in allrows if r['stretch'].isdigit() and int(r['stretch']) < unit}):
+        theirs = {s for r in allrows if r['stretch'] == str(u) for s in split_list(r['skills'])}
+        shared = [s for s in mine if s in theirs]
+        if shared:
+            out.append((u, shared))
+    return out
 
 
 def uniq(seq):
@@ -764,8 +1005,11 @@ def build(course, unit):
     for c in codes:
         if len(c) > 1 and c[-1].islower() and c[:-1] in codes:
             continue
-        txt = std.get(c, '')
+        txt = std_line(c)
         kids = [k for k in children(c) if k in codes]
+        if subj == 'science' and txt and is_pe(c) and pe_statement(c):
+            w('- **%s:** %s%s' % (c, clean(txt), pe_limit_lines(c)))
+            continue
         if not txt:
             c3_nolines.append(c)
             w('- **%s:** (no own-word line in the standards file%s)' % (c, '' if c in std else '; code not found'))
@@ -775,13 +1019,17 @@ def build(course, unit):
             w('- **%s:** %s Parts, by verb: %s' % (c, clean(txt), parts))
         else:
             w('- **%s:** %s Parts, by verb: whole standard.' % (c, clean(txt)))
+    if ss and any(c.startswith('MA.') for c in codes):
+        w('- **Taught and assessed in general form:** Curio Class serves every state, so each MA code above is taught and assessed '
+          'in general form: the class\'s own place, with worked examples from several states. Massachusetts or Boston is at most one '
+          'worked example, never the place every student is assumed to live in; items and sources must not assume it.')
     w(CLOSE)
     w('')
     if c3_nolines and ss:
         w('%s: The skill codes above with no own-word line (%s): give each one line, in your own words, and its parts by '
           'verb, from the indicator in data/standards/c3-indicators.txt.' % (MARK, ', '.join(c3_nolines)))
     elif c3_nolines and subj == 'science':
-        w('%s: The performance expectations above have no statement on file (%s; missing data: data/standards/ngss-pes.txt holds codes only): '
+        w('%s: The performance expectations above have no statement on file (%s; missing data: no statement row in data/standards/ngss-pe-dimensions.csv): '
           'give each one line, in your own words, with its assessment boundary.' % (MARK, ', '.join(c3_nolines)))
     elif c3_nolines:
         w('%s: The codes above that are not in the standards file (%s; missing data): give each one line, in your own words, '
@@ -814,6 +1062,10 @@ def build(course, unit):
     w(OPEN)
     w('- **Builds on (progression, assumes):** %s.' % ('; '.join(lab(a) for a in assumes if a not in own) or 'none listed'))
     w('- **Leads to (progression, hands on):** %s.' % ('; '.join(lab(a) for a in hands if a not in own) or 'none listed'))
+    earlier = earlier_unit_skills(allrows, rows, unit)
+    if earlier:
+        w('- **Earlier units in this course whose skills the days of this unit cite (days.csv skills):** %s.'
+          % '; '.join('unit %d (%s)' % (u, ', '.join(sk_)) for u, sk_ in earlier))
     if fr:
         w('- **Why this unit, here (frame):** %s' % clean(fr[7]))
     w(CLOSE)
@@ -829,15 +1081,27 @@ def build(course, unit):
     prev = byday.get(first - 1)
     retr = []
     for r in rows:
-        for m in re.finditer(r'retrieval tasks?\b[^;]*', r['note'], re.I):
-            retr.append((int(r['day']), clean(m.group(0))))
+        for t in retrieval_clauses(r['note'], int(r['day'])):
+            retr.append((int(r['day']), clean(t)))
     given_prev = prev is not None and (prev['assess'] == 'readiness' or
                                        re.search(r"(unit %d's|next unit's) readiness" % unit, prev['note'], re.I) is not None)
     w_ready = False
+    ready1 = []
     if first == 1:
-        w('**Given:** the start-of-year check, before day 1 (served in unit 1, which defines it).')
-        w('%s: Define the start-of-year check: what it asks and how the teacher uses it (or say this course has none, and why).' % MARK)
+        # lead rule 2026-11-14: no sitting before day 1. Readiness rows are the skills this unit assumes that were last
+        # used two or more grades back (a row from the year before is a retrieval task, scope and sequence rule 1) and
+        # that no retrieval task of the unit already carries; with none, the check is not needed and retrieval stands alone.
+        retr_text = ' '.join(t for _, t in retr)
+        ready1 = [a for a in uniq(a for s_ in uniq(s for r in rows for s in split_list(r['skills'])) if s_ in prog
+                                  for a in split_list(prog[s_]['assumes']))
+                  if a not in set(s for r in rows for s in split_list(r['skills'])) and a not in retr_text
+                  and not year_before(a, prog, frame_meta)]
+    if first == 1 and ready1:
+        w('**Given:** day %d, the last ten minutes, after the hook (lead rule 2026-11-14: no sitting before day 1; reteach on day 2 or 3). '
+          'Readiness rows (progression, assumes, not retrieved in this unit): %s.' % (first, '; '.join('%s (grade %s)' % (a, grade_of(a, prog)) for a in ready1)))
         w_ready = True
+    elif first == 1:
+        w('Start-of-year check: none needed; retrieval only.')
     elif given_prev:
         w('**Given:** day %d, the last ten minutes (days.csv day %d: kind %s, assess = %s). Note there: "%s"'
           % (int(prev['day']), int(prev['day']), prev['kind'], prev['assess'] or 'blank', clean(prev['note'])))
@@ -867,9 +1131,9 @@ def build(course, unit):
     # ---- field 5: end-of-unit assessment
     w('## 5. End-of-unit assessment, whole')
     w('')
-    ass = [r for r in rows if r['assess'] in ('end', 'mid')]
+    ass = [r for r in rows if r['assess'] in ('end', 'mid', 'observe')]
     for r in ass:
-        label = 'End-of-unit assessment' if r['assess'] == 'end' else 'Mid-unit assessment'
+        label = {'end': 'End-of-unit assessment', 'mid': 'Mid-unit assessment', 'observe': 'End-of-unit assessment (observation)'}[r['assess']]
         w('Day %s (%s): %s' % (r['day'], label, clean(r['goal'])))
         if r['note']:
             w('Note (days.csv): %s' % clean(r['note']))
@@ -882,12 +1146,12 @@ def build(course, unit):
             full.append(c)
             full.extend(k for k in children(c) if k not in acodes)
         for c in full:
-            txt = clean(std.get(c, ''))
+            txt = clean(std_line(c))
             if len(c) > 1 and c[-1].islower() and c[:-1] in full:
                 part = '%s: %s' % (c[-1], txt)
             else:
                 part = txt or ('whole indicator (verb from the C3 file)' if ss else
-                               'whole expectation (statement not on file; its three dimensions are in the field 2 table)' if subj == 'science'
+                               'whole expectation (statement not on file; see the field 2 table)' if subj == 'science'
                                else 'whole standard')
             w('| %s | %s | %s | %s | section %s |' % (r['day'], c, part, MARK, r['unit']))
         w('')
@@ -967,6 +1231,14 @@ def build(course, unit):
         w('- **Source map (data/plans/%s/source-map.csv):**' % course)
         for r in sm:
             w('  - %s, %s (our days %s): %s. %s' % (r['source'], clean(r['title']), r['days'], r['decision'], clean(r['why'])))
+    if subj == 'ela':
+        trows = ela_texts(course, unit)
+        if trows:
+            w('- **Texts (data/plans/ela-texts.csv: author, edition, rights):**')
+            for t in trows:
+                w('  - %s, %s (%s); edition: %s; rights: %s'
+                  % (clean(t['title']), clean(t['author']) or 'author not stated', t['year'] or 'no year', clean(t['edition']) or 'not stated',
+                     clean(t['rights_basis']) or 'TODO'))
     sens = [r for r in rows if 'sensitiv' in r['note'].lower()]
     if fr and fr[9].strip():
         w('- **Sensitive topics (frame):** %s' % clean(fr[9]))

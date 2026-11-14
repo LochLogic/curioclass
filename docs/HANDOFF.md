@@ -20,9 +20,7 @@ template (expert read prompt: read the K and grade 1, 3, 4 reports' "Settled by 
 shape). **Not started:** WGAC I, World History II, US History II reads; every Codex read (scripts/codex_read.py,
 report plan-<course>-codex-2026-11-14.md); fix passes; structure pass.
 
-**Also open:** a wiring agent was adding the new data (math focus, ngss-pe-dimensions, ela-texts, safety lines, the
-unit 1 start-of-year fix) to scripts/unit_skeleton.py and scripts/unitplan.py, working in scripts/_wip_*.py; check
-its state before using them. Science base is NGSS (DESK-ANSWERS 2026-11-14); add that to
+**Also done:** the new data (math plus weight, tools, supplies and safety; ela-texts; ngss-pe-dimensions; the unit 1 start-of-year fix) is wired into scripts/unit_skeleton.py and scripts/unitplan.py; its not-applied list is for the structure pass. Science base is NGSS (DESK-ANSWERS 2026-11-14); add that to
 docs/pipeline/briefs/plan-codex-science.md in the structure pass.
 
 ## 2026-11-14: course frames (PRODUCTION-PATH step 2), latest
