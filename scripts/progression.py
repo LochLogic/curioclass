@@ -168,6 +168,16 @@ def check(subject):
             if not ok:
                 fails.append('%s (grade %s) uses model %s, which no earlier grade hands on and no row of this grade introduces' % (
                     sid, grade_of[sid], m))
+    # model continuity (Codex read 2026-11-13): grades between a model's first and last use where no row uses it
+    used = {}
+    for sid, r in by_id.items():
+        for m in set(split(r['model_in'])) | set(split(r['model_out'])):
+            used.setdefault(m, set()).add(GI.get(grade_of[sid], -1))
+    for m, gs in sorted(used.items()):
+        gaps = [GRADES[i] for i in range(min(gs), max(gs) + 1) if i not in gs]
+        if gaps:
+            notes.append('model %s unused in grade(s) %s between its first and last use (reactivate, or say why)' % (
+                m, ', '.join(gaps)))
     # cross-subject
     for sid, r in by_id.items():
         for x in split(r['cross_subject']):

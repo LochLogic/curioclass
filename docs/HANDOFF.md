@@ -31,7 +31,14 @@ planted majors; Desk card q-calibration-1). Codex passed too (18 of 18, no false
 severity); both lean lenient, so EXPERT.md gained two rules and a re-run with fresh plantings is later.csv L10.
 Saved for later: L9's four books are in the source store (OpenStax retired CC BY editions x3, ETSU); its
 collections come per course; L7 is Cory's; the rest wait on
-their triggers. Next: progressions for the four core subjects.
+their triggers. Cory 2026-11-13: both readers are trusted (q-calibration-1 answered); Codex reads run by script
+(scripts/codex_read.py), no clicks.
+
+**Step 1, social studies progression, 2026-11-13 (latest):** done. 384 rows K to 12
+(data/progressions/social-studies.csv), gate scripts/progression.py inside plan.py check, expert and Codex reads
+and a fix pass (docs/reviews/progression-social-studies-*2026-11-13.md). Open for Cory: Desk card
+q-ss-progression-1 (Government and Economics grade placement; the writers' eight calls). Next: the science, ELA and
+math progressions the same way (PRODUCTION-PATH step 1), then the read across all four.
 
 [ROADMAP.md](ROADMAP.md) holds the order of work only. Its history is in `docs/archive/`. If another page
 disagrees with this one, the other page is stale: check the date, fix it, and say so.

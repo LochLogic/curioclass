@@ -4,8 +4,9 @@ You are the curriculum expert. Read docs/agents/EXPERT.md first and act as it sa
 docs/agents/lenses/{subject}.md, then the subject's bar (math: docs/RUBRIC-MATH-K8.md; ELA: docs/RUBRIC-ELA.md;
 science: docs/RUBRIC-SCIENCE.md; social studies: section 1 of docs/ADOPTION-BAR-SUBJECTS.md and
 docs/courses/social-studies/STANDARD.md). Read cold data/progressions/{subject}.csv and the notes beside it. You did
-not write them. Run `python -X utf8 scripts/plan.py check` first and read its progression lines; the gate settles
-what it checks, so spend your read on what it cannot.
+not write them. Run `python -X utf8 scripts/plan.py check` first and read its progression lines (if it cannot run, for
+a missing module, run `python -X utf8 scripts/progression.py check {subject}`, which needs nothing outside the
+standard library); the gate settles what it checks, so spend your read on what it cannot.
 
 The data you must check, row by row where it says so:
 - **Ownership:** every skill has one owning grade (the gate checks it is unique; you check it is the right grade

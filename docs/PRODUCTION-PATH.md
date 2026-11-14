@@ -220,6 +220,15 @@ ids the next grade assumes), model_in, model_out, words, and cross_subject.
 Rough cost, not measured: about 0.5 million tokens per subject and grade band with its read, so about 6 to 8
 million for the four subjects.
 
+**Social studies done 2026-11-13** (Desk card q-ss-progression-1): 384 rows, K to 12, in
+data/progressions/social-studies.csv, with data/progressions/social-studies-excluded.csv (10 codes, each with a
+reason) and the band drafts in data/progressions/parts/. Gate: scripts/progression.py (inside plan.py check): ids,
+grades, real codes, every Massachusetts standard owned by one grade or excluded, both ends of every handoff,
+models handed on before use, cross_subject codes real; notes for C3 indicators in two grades, skipped handoffs and
+model gaps. How it was made: five band writers in parallel, one stitcher, two cold reads (expert agent and Codex
+by script, scripts/codex_read.py), one fix pass (19 of 22 findings applied). Measured cost: about 1.4 million
+agent tokens for the subject, reads included, plus Codex's own. The other three subjects follow the same way.
+
 ### Step 2. Course frames for the four core subjects, then a review: baseline 1
 
 A course frame says what the course is: its grades, the standards and progression skills it owns, its days, its
