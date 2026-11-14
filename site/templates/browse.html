@@ -9,6 +9,12 @@
     <h1>{% if color %}<span class="title-dot" style="background:var(--{{ color }})"></span>{% endif %}{{ title }}</h1>
     <p>{{ lede }}</p>
   </div>
+  {% if courses_here %}
+  <section class="group" aria-labelledby="courses-h">
+    <h2 id="courses-h">Courses</h2>
+    <ul class="module-list">{% for x in courses_here %}<li><a href="{{ x.url }}"><b>{{ x.title }}</b></a><span>{{ grade_name(x.grade) }} · {{ x.subject_label }} · {{ x.n_units }} units · {{ x.days }} days</span></li>{% endfor %}</ul>
+  </section>
+  {% endif %}
 
   <div class="browse">
     <aside class="browse-nav" aria-label="{{ nav_label }}">

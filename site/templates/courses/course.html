@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}{{ c.title }} · Curio Class{% endblock %}
+{% block description %}{{ c.lede }} Free, no sign-up.{% endblock %}
+{% block robots %}{% if not shown %}<meta name="robots" content="noindex, nofollow">{% endif %}{% endblock %}
+{% block head %}{% include "courses/_style.html" %}{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Courses', '/courses/'), (grade_name(c.grade), None), (c.subject_label, None)]) }}
+  <div class="page-head">
+    <h1><span class="title-dot" style="background:var(--{{ c.color }})"></span>{{ c.title }}</h1>
+    <p>{{ c.lede }}</p>
+    <p class="cp-promise">Free, no sign-up, no ads.</p>
+  </div>
+
+  <div class="cp-status" role="note">
+    <b>Lessons coming</b>
+    <p>This course is planned unit by unit, and no unit has its lessons yet. Each unit shows its question, what students learn and its standards until its days are written. Sections and day pages, printables and the At home view come with the lessons.</p>
+  </div>
+
+  <section class="group">
+    <h2>The shape of the year</h2>
+    <div class="cp-cards">
+      <div class="cp-card">
+        <h3>Time</h3>
+        <ul>
+          <li>{{ c.shape.days }} days over {{ c.shape.weeks }} weeks, {{ c.shape.term }}</li>
+          <li>Meets {{ c.shape.per_week }}</li>
+          <li>{{ c.shape.minutes }} a day</li>
+        </ul>
+      </div>
+      <div class="cp-card">
+        <h3>Units and checks</h3>
+        <ul>
+          <li>{{ c.units | length }} units, each with its own end-of-unit assessment inside its days</li>
+          {% set real = c.checks | selectattr('check') | list %}
+          {% set review = c.checks | sum(attribute='review') %}
+          {% if real %}<li>{{ real | length }} course-level check{{ 's' if real | length != 1 }}{% if real | rejectattr('respond') | list | length == 0 %}, each followed by respond days{% endif %}:
+            {% for ch in real %}{{ ch.label }}{% if ch.after %} after unit {{ ch.after }}{% endif %}{{ '; ' if not loop.last else '.' }}{% endfor %}</li>{% endif %}
+          {% if review %}<li>{{ review }} year review day{{ 's' if review != 1 }} outside the units</li>{% endif %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="group">
+    <h2>The year at a glance</h2>
+    <p>Every unit and course-level check in teaching order. Day numbers are course days; weeks are weeks of a 32-week school year.</p>
+    <ol class="cp-year">
+      {% for row in c.year %}
+      {% if row.kind == 'unit' %}{% set u = row.unit %}
+      <li>
+        <div class="when"><b>Unit {{ u.n }}</b>{% if u.first %}Days {{ u.first }} to {{ u.last }}<br>{% if u.weeks[0] == u.weeks[1] %}Week {{ u.weeks[0] }}{% else %}Weeks {{ u.weeks[0] }} to {{ u.weeks[1] }}{% endif %}{% else %}{{ u.days }} days{% endif %}</div>
+        <div>
+          <h3><a href="{{ u.url }}">{{ u.title }}</a></h3>
+          {% if u.question %}<p class="q">{{ u.question }}</p>{% endif %}
+          <span class="cp-pill">Lessons coming</span> <span class="count">{{ u.days }} days · {{ u.standards | length }} standard{{ 's' if u.standards | length != 1 }}</span>
+        </div>
+      </li>
+      {% else %}{% set ch = row.check %}
+      <li class="check">
+        <div class="when"><b>Check</b>{% if ch.first %}Days {{ ch.first }} to {{ ch.last }}<br>{% if ch.weeks[0] == ch.weeks[1] %}Week {{ ch.weeks[0] }}{% else %}Weeks {{ ch.weeks[0] }} to {{ ch.weeks[1] }}{% endif %}{% endif %}</div>
+        <div>
+          <h3>{{ ch.label }}</h3>
+          <p>{% if ch.review %}{{ ch.review }} review day{{ 's' if ch.review != 1 }}{% if ch.check or ch.respond %}, {% endif %}{% endif %}{% if ch.check %}{{ ch.check }} check day{{ 's' if ch.check != 1 }}{% endif %}{% if ch.respond %}, then {{ ch.respond }} respond day{{ 's' if ch.respond != 1 }}{% endif %}.</p>
+          {% if ch.what %}<p>{{ ch.what }}</p>{% endif %}
+        </div>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="group">
+    <h2>Before, after and alongside</h2>
+    <div class="cp-cards">
+      <div class="cp-card">
+        <h3>Builds on</h3>
+        {% if c.before %}<ul>{% for x in c.before %}<li><a href="{{ x.url }}">{{ x.title }}</a></li>{% endfor %}</ul>
+        {% else %}<p>This is the first {{ c.subject_label | lower if c.subject != 'ela' else 'English language arts' }} course.</p>{% endif %}
+      </div>
+      <div class="cp-card">
+        <h3>Leads to</h3>
+        {% if c.after %}<ul>{% for x in c.after %}<li><a href="{{ x.url }}">{{ x.title }}</a></li>{% endfor %}</ul>
+        {% else %}<p>This is the last {{ c.subject_label | lower if c.subject != 'ela' else 'English language arts' }} course.</p>{% endif %}
+      </div>
+      <div class="cp-card">
+        <h3>Alongside in {{ grade_name(c.grade) | lower if c.grade != 'K' else 'kindergarten' }}</h3>
+        <ul>{% for x in c.alongside %}<li><a href="{{ x.url }}">{{ x.title }}</a></li>{% endfor %}</ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="group">
+    <h2>Credits</h2>
+    {% if c.adapted %}
+    <p class="cp-prose">Written by Curio Class. Many of this course's days will be adapted from an openly licensed curriculum, used under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> and changed by Curio Class; each adapted day carries its own credit line.</p>
+    {% else %}
+    <p class="cp-prose">Written by Curio Class. Where a day draws on an openly licensed or public-domain source, that day carries its own credit line.</p>
+    {% endif %}
+  </section>
+  <div class="cp-pager"><a href="/courses/">All courses</a>{% if c.units %}<a href="{{ c.units[0].url }}">Unit 1: {{ c.units[0].title }}</a>{% endif %}</div>
+</div>
+{% endblock %}

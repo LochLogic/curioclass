@@ -44,6 +44,10 @@ course pages for all 52, Government unit 9's outside contact).
 
 Cleanup pass done (docs/reviews/baseline-1-cleanup-2026-11-14.md): `frame.py calendar` shows no stagger breaks; scripts/frame.py has a PINS table for courses that choose their weeks. Scope and sequence writers: math 1 unit 7 and math 2 unit 8 end right before the year-end check (keep the two apart); social studies 2 runs above 3 lessons a week early in the year.
 
+**Course pages (Desk card q-baseline-1, answered):** the design changes are in docs/SITE-DESIGN.md; scripts/course_pages.py builds hidden course and unit pages for all 52 core courses from the frames (`SHOWN = False`; report docs/reviews/site-course-pages-2026-11-14.md). Before showing them: later.csv L19. The whole-site build currently stops on other data errors: later.csv L20. Government unit 9 outside contact settled as an optional step.
+
+**PAUSED after baseline 1 (Cory, 2026-11-14: "I do want to pause after the baseline 1 is completed fully").** Do not start step 3 until Cory says.
+
 **Next: PRODUCTION-PATH step 3, social studies scopes and sequences first**, with sequence-write.md; ELA 6 rights
 list redo is later.csv L14. Files needing deletion move to S:\CurioClass-archive\<what>-<date>\ (Cory, 2026-11-14).
 

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}Courses · Curio Class{% endblock %}
+{% block description %}Every core Curio Class course, kindergarten to grade 12, by subject and grade. Free, no sign-up.{% endblock %}
+{% block robots %}{% if not shown %}<meta name="robots" content="noindex, nofollow">{% endif %}{% endblock %}
+{% block head %}{% include "courses/_style.html" %}{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Courses', None)]) }}
+  <div class="page-head">
+    <h1>Courses</h1>
+    <p>{{ courses | length }} core courses, kindergarten to grade 12: English language arts, math, science and social studies, a full year each (two high school courses are half a year). High school courses sit at their usual grade.</p>
+  </div>
+  <div class="cp-status" role="note">
+    <b>Lessons coming</b>
+    <p>Every course is planned unit by unit. Lessons are written course by course; each course page says what it has today.</p>
+  </div>
+  <div class="cp-head-row" aria-hidden="true">{% for sid, label, color in subjects %}<span>{{ label }}</span>{% endfor %}</div>
+  {% for g in grades %}
+  <section class="cp-grade" aria-labelledby="g-{{ g | lower }}">
+    <h2 id="g-{{ g | lower }}">{{ grade_name(g) }}</h2>
+    <div class="cp-grid">
+      {% for sid, label, color in subjects %}
+      <div>
+        <span class="subj">{{ label }}</span>
+        {% for x in grid[g][sid] %}
+        <a class="cp-course" style="--c:var(--{{ color }})" href="{{ x.url }}"><b>{{ x.title }}</b><span>{{ x.n_units }} units · {{ x.days }} days{% if x.term != 'year' %} · {{ x.term }} half{% endif %}</span></a>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}

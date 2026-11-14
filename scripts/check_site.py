@@ -44,6 +44,17 @@ for old, new, *_ in redirects:
         broken.setdefault(new, '_redirects')
     if resolves(old):
         broken.setdefault(old + ' (redirected, but still built)', '_redirects')
+# Hidden course pages (scripts/course_pages.py, SHOWN = False): while .assetsignore keeps courses/* out of the upload,
+# no other page, the sitemap or the search index may point into /courses/.
+ignore = DIST / '.assetsignore'
+if ignore.exists() and 'courses/*' in ignore.read_text(encoding='utf-8').split():
+    for page in DIST.rglob('*.html'):
+        rel = page.relative_to(DIST).as_posix()
+        if not rel.startswith('courses/') and page.parent.name != page.stem and 'href="/courses/' in page.read_text(encoding='utf-8'):
+            broken.setdefault('/courses/ (hidden, but linked)', rel)
+    for name in ('sitemap.xml', 'search-index.json'):
+        if (DIST / name).exists() and '/courses/' in (DIST / name).read_text(encoding='utf-8'):
+            broken.setdefault('/courses/ (hidden, but listed)', name)
 files = [f for f in DIST.rglob('*') if f.is_file()]
 big = [f.relative_to(DIST).as_posix() for f in files if f.stat().st_size > 25 * 2 ** 20]  # Cloudflare's asset limits
 print(f'{pages} pages checked, {len(redirects)} redirects ({splats} splat), {len(broken)} broken internal links, {len(external)} external loads, '

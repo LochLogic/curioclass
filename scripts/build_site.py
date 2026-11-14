@@ -186,6 +186,17 @@ env.globals['closet_live'] = CLOSET_LIVE
 # scope and sequence, once the courses are built (docs/SITE-DESIGN.md). --map builds the old map for a local look.
 MAP_LIVE = bool({'--map', '--preview'} & set(sys.argv))
 env.globals['map_live'] = MAP_LIVE
+# Course and unit pages from the course frames (docs/SITE-DESIGN.md, approved 2026-11-14, Desk card q-baseline-1;
+# scripts/course_pages.py). Hidden until Cory says: only --courses builds them (never --preview, never the deploy
+# command), and while course_pages.SHOWN is False they are noindex, out of the sitemap, search, menus and find pages,
+# and listed in .assetsignore so no deploy uploads them. Setting SHOWN = True there turns all of that around.
+COURSES_LIVE = '--courses' in sys.argv
+if COURSES_LIVE:  # imported only then, so a deploy build never reads the frames
+    import course_pages  # noqa: E402
+    env.globals['grade_name'] = course_pages.grade_name
+COURSES_SHOWN = COURSES_LIVE and course_pages.SHOWN
+env.globals['courses_shown'] = COURSES_SHOWN
+course_list = course_pages.load() if COURSES_SHOWN else []
 # Recess (docs/GAMES.md): the game shelf at /recess/ and a page per game. A game is live once tools/<id>/tool.json
 # exists (the same Sign-off rename as tools) and its bundle is built; it plays at /recess/<id>/play/. The shelf joins
 # the nav, the sitemap and search once one game is live. --recess previews it: a built draft counts as live there.
@@ -280,7 +291,8 @@ for g in GRADES:
     lede = ('Teacher-led on the big screen. ' if grades[g]['band'] == 'k2' else '') + '{count} tools across {n} subjects.'
     browse_page(f'/grades/{g}/', grade_label(g), lede, [('Classrooms', '/classrooms/'), (grade_label(g), None)],
                 subject_sections([m for m in modules.values() if g in m['grades']]), 'Subjects',
-                fit=[g], subtitle='for every subject')
+                fit=[g], subtitle='for every subject',
+                courses_here=[c for c in course_list if c['grade'].lower() == g])  # empty until courses are shown
 for bid, b in bands.items():
     browse_page(f'/grades/{BAND_SLUG[bid]}/', b['label'], b['blurb'] + ' {count} tools across {n} subjects.',
                 [('Classrooms', '/classrooms/'), (b['label'], None)],
@@ -301,7 +313,7 @@ for sid, s in subjects.items():
     langs = [(c, courses[c]['title'].split(' (')[0]) for c in courses if c in used] if sid == 'world-languages' else []
     browse_page(f'/subjects/{sid}/', s['label'], s['covers'] + '. Aligned to ' + s['primary_standards'] + '. {count} tools.',
                 [('Classrooms', '/classrooms/'), (s['label'], None)], sections, 'Grades', subtitle='K-12', color=s['color'],
-                langs=langs if len(langs) > 1 else [])
+                langs=langs if len(langs) > 1 else [], courses_here=[c for c in course_list if c['subject'] == sid])
 
 # play styles and collections
 render('styles.html', '/styles/', counts={f: sum(1 for t in tools if t['format'] == f) for f in formats})
@@ -990,6 +1002,13 @@ if CLOSET_LIVE:  # Supply Closet items, so "fractions vocabulary" or "photosynth
     index += [{'t': f"Break Box: {b['title']}", 'u': b['url'], 'g': grade_label(b['grade']), 's': 'Supply Closet',
                'f': 'Break Box', 'w': b['kind'], 'c': '', 'd': b['idea'], 'b': True} for b in breaks.values()]
     index += ws_index
+# Course and unit pages (scripts/course_pages.py): built only with --courses; in the sitemap and search only once shown
+if COURSES_LIVE:
+    _courses, _n = course_pages.build(DIST, env=env, render=render)
+    if COURSES_SHOWN:
+        index += [{'t': c['title'], 'u': c['url'], 'g': course_pages.grade_name(c['grade']), 's': c['subject_label'],
+                   'f': 'Course', 'w': '', 'c': '', 'd': c['lede'], 'b': True} for c in _courses]
+    print(f"{_n} course and unit pages -> {DIST / 'courses'} ({'shown' if COURSES_SHOWN else 'hidden'})")
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')
 render('search.html', '/search/', index=False)
 # Recess: the shelf (noindex and out of the nav until a game is live), each live game's page and its playable file,
@@ -1031,4 +1050,6 @@ for _r in _redir:
 # Pictures are served from R2 by worker/index.js (the static-asset file limit); keep them out of the asset upload.
 # scripts/sync_media.py uploads the same two patterns. Keep the patterns here, there and in the Worker in step.
 (DIST / '.assetsignore').write_text('.assetsignore\nlibrary/*/art/*.jpg\ntopics/*/words/art/*.webp\n', encoding='utf-8')
+if COURSES_LIVE:  # the hidden course pages: noindex header and kept out of the upload (written after _headers above)
+    course_pages.hide(DIST)
 print(f'{pages} pages, {len(built)} built tools, {len(bench)} on the bench, {len(sitemap)} in sitemap -> dist/')

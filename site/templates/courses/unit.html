@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}Unit {{ u.n }}: {{ u.title }} · {{ c.title }} · Curio Class{% endblock %}
+{% block description %}{{ c.title }}, unit {{ u.n }}: {{ u.question or u.title }} Free, no sign-up.{% endblock %}
+{% block robots %}{% if not shown %}<meta name="robots" content="noindex, nofollow">{% endif %}{% endblock %}
+{% block head %}{% include "courses/_style.html" %}{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Courses', '/courses/'), (c.title, c.url), ('Unit ' ~ u.n, None)]) }}
+  <div class="page-head">
+    <p class="eyebrow">{{ c.title }} · Unit {{ u.n }} of {{ c.units | length }}</p>
+    <h1><span class="title-dot" style="background:var(--{{ c.color }})"></span>{{ u.title }}</h1>
+    {% if u.question %}<p><i>{{ u.question }}</i></p>{% endif %}
+    <ul class="cp-facts">
+      <li>{{ u.days }} days</li>
+      {% if u.first %}<li>Days {{ u.first }} to {{ u.last }} of {{ c.days }}</li>
+      <li>{% if u.weeks[0] == u.weeks[1] %}Week {{ u.weeks[0] }}{% else %}Weeks {{ u.weeks[0] }} to {{ u.weeks[1] }}{% endif %}</li>{% endif %}
+      <li>{{ c.shape.minutes }} a day</li>
+    </ul>
+  </div>
+
+  <div class="cp-status" role="note">
+    <b>Lessons coming</b>
+    <p>This unit is planned; its sections and days are not written yet. Until they are, this page shows what the unit teaches and why it sits here.</p>
+  </div>
+
+  {% if u.anchor %}
+  <section class="group cp-prose">
+    <h2>Where it starts</h2>
+    <p>{{ u.anchor }}</p>
+  </section>
+  {% endif %}
+
+  <section class="group cp-prose">
+    <h2>What students learn</h2>
+    <p>{{ u.learn }}</p>
+  </section>
+
+  {% if u.why %}
+  <section class="group cp-prose">
+    <h2>Why this unit, here</h2>
+    <p>{{ u.why }}</p>
+  </section>
+  {% endif %}
+
+  {% if u.standards %}
+  <section class="group">
+    <h2>Standards</h2>
+    <p>The standards this unit teaches.</p>
+    <ul class="cp-std">{% for s in u.standards %}<li>{% if s.href %}<a href="{{ s.href }}">{{ s.code }}</a>{% else %}<code>{{ s.code }}</code>{% endif %}</li>{% endfor %}</ul>
+  </section>
+  {% endif %}
+
+  {% if u.notes %}
+  <section class="group cp-prose">
+    <h2>Notes for the teacher</h2>
+    <p>{{ u.notes }}</p>
+  </section>
+  {% endif %}
+
+  {% for ch in u.checks %}
+  <section class="group cp-prose">
+    <h2>After this unit: {{ ch.label }}</h2>
+    <p>{% if ch.review %}{{ ch.review }} review day{{ 's' if ch.review != 1 }}{% if ch.check or ch.respond %}, {% endif %}{% endif %}{% if ch.check %}{{ ch.check }} check day{{ 's' if ch.check != 1 }}{% endif %}{% if ch.respond %}, then {{ ch.respond }} respond day{{ 's' if ch.respond != 1 }}{% endif %}{% if ch.first %} (days {{ ch.first }} to {{ ch.last }}){% endif %}.</p>
+    {% if ch.what %}<p>{{ ch.what }}</p>{% endif %}
+  </section>
+  {% endfor %}
+
+  <section class="group">
+    <h2>Coming with the lessons</h2>
+    <div class="cp-cards">
+      <div class="cp-card"><h3>Sections and days</h3><p>The unit's sections, each with its days, goals and kind of day.</p></div>
+      <div class="cp-card"><h3>Checks</h3><p>A readiness check where the unit builds on an earlier grade, and the end-of-unit assessment with its respond time.</p></div>
+      <div class="cp-card"><h3>For the classroom and home</h3><p>The record sheet, a family note in English and Spanish, a sub-ready day and one print bundle for the unit.</p></div>
+    </div>
+  </section>
+
+  <nav class="cp-pager" aria-label="Units">
+    {% if prev %}<a href="{{ prev.url }}">Unit {{ prev.n }}: {{ prev.title }}</a>{% else %}<a href="{{ c.url }}">{{ c.title }}</a>{% endif %}
+    {% if next %}<a href="{{ next.url }}">Unit {{ next.n }}: {{ next.title }}</a>{% else %}<a href="{{ c.url }}">Back to {{ c.title }}</a>{% endif %}
+  </nav>
+</div>
+{% endblock %}
