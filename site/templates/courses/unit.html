@@ -46,8 +46,9 @@
   {% if u.standards %}
   <section class="group">
     <h2>Standards</h2>
-    <p>The standards this unit teaches.</p>
+    <p>The standards this unit teaches.{% if u.standards | selectattr('href') | list %} A linked code opens its own page.{% endif %}</p>
     <ul class="cp-std">{% for s in u.standards %}<li>{% if s.href %}<a href="{{ s.href }}">{{ s.code }}</a>{% else %}<code>{{ s.code }}</code>{% endif %}</li>{% endfor %}</ul>
+    <p class="cp-note">{{ code_help[c.subject] }}</p>
   </section>
   {% endif %}
 

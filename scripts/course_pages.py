@@ -44,27 +44,53 @@ SUBJECT_LABEL = {s: l for s, l, _ in SUBJECTS}
 SUBJECT_COLOR = {s: c for s, _, c in SUBJECTS}
 GRADE_ORDER = ['K'] + [str(i) for i in range(1, 13)]
 WORDS = {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five'}
+# How to read a standards code, said once under each unit's Standards list (the teacher read of 2026-11-14). The
+# standards documents are not named on a page; the codes are what a school's own documents use.
+CODE_HELP = {
+    'math': 'How to read a code: in 4.NF.B.3, 4 is the grade, NF the domain (here, fractions), B the cluster and 3 the '
+            'standard. A high school code starts with its topic instead of a grade (A-REI.B.3 is algebra, F-IF.C.7 '
+            'functions, G-CO.C.10 geometry, S-ID.A.1 statistics). A letter at the end (4.NF.B.3a) is one part of '
+            'that standard.',
+    'ela': 'How to read a code: in RL.4.2, RL is the strand (RL reading literature, RI reading informational text, '
+           'RF reading foundations, W writing, SL speaking and listening, L language), 4 is the grade (9-10 and 11-12 '
+           'in high school) and 2 the standard. A letter at the end (W.4.1a) is one part of that standard.',
+    'science': 'How to read a code: in 4-PS4-2, 4 is the grade (K-2 and 3-5 for grade bands, MS middle school, HS '
+               'high school), PS4 the topic (PS physical science, LS life science, ESS earth and space science, ETS '
+               'engineering design) and 2 the expectation students show.',
+    'social-studies': 'How to read a code: a code that starts with D is from a national inquiry framework: D1 '
+                      'questions, D2 the ideas of civics (Civ), economics (Eco), geography (Geo) and history (His), '
+                      'D3 sources and evidence, D4 conclusions and action, and the grade band last (D2.His.3.6-8). A '
+                      'code that starts with MA is from a state history and social science framework: MA.5.T2.4 is '
+                      'grade 5, topic 2, standard 4 (high school courses use a course letter code, such as GOV for '
+                      'government, in place of the grade).',
+}
 
 # Planning language: a sentence holding any of these is not for a teacher, student or family page.
 PRIVATE = re.compile(
-    r"base text|base unit|base lesson|base module|base's|\bthe base\b(?! of|-ten| ten)|\b\d\.\d's\b|candidate|desk card|card q-|"
-    r'BASELINE|PRODUCTION|docs/|data/|\.md\b|\.csv\b|\.txt\b|S:\\|\bagents?\b|sensitivity read|text agent|text spec|'
+    r"base text|base unit|base lesson|base module|base's|\bthe base\b(?! of|-ten| ten)|\b\d\.\d's\b|(?-i:\bCandidate\b)|as candidate\b|not a candidate|candidate (?:check|set|text|list)|desk card|card q-|"
+    r'(?-i:\bBASELINE\b|\bPRODUCTION\b)|docs/|data/|\.md\b|\.csv\b|\.txt\b|S:\\|\bagents?\b|sensitivity read|text agent|text spec|'
     r'pre-work|rubric|bar item|adoption bar|check set|unit plan|section plan|scope and sequence|progression row|'
-    r"(?<!by )\brows?\b(?!\s+(?:and|of|in a|in the|on|or|by)\b)|\b(?:grade \w+|ELA|unit \d+|course|it) owns\b|"
+    r"(?<!by )(?<!a )\brows?\b(?!\s+(?:and (?:\d+ )?columns|of|in a|in the|on|or columns?|by)\b)|\bidle\b|"
+    r"base (?:time|days?)\b|(?-i:\bBase \d)|candidate:|course in brief|assessment brief|research brief|\bstitch\b|own-state method|day transfer|the day this frees|\b20\d\d-\d\d-\d\d\b|sources rule|[Pp]artial base|(?-i:\bOak (?:National|Sumer|unit|lesson|units|lessons)\b)|(?-i:\bIM\b)|[Ss]upporting cluster|stagger rule|\bthread \d|values rule|\brule [a-z]\b|day budget|are cut (?:here )?for|Standards in full|"
+    r"\bthe progression\b|\bProgressions\b|\(\+\)|\b(?:grade \w+|ELA|unit \d+|course|it) owns\b|"
     r"(?:^|\. )Owns\b|\bcycles? \d+|Skills Block|\b(?:optional )?lessons? \d+|brief below|shared brief|sits? here|"
-    r"\bCory\b|\bprobe\b|\bguard\b|\bthe Desk\b|hard weeks|"
-    r'\bframe\b|the lead\b|flagged|source map|source store|gateway|\bleans?\b|if later|'
+    r"\bCory\b|\bprobe\b(?! (?:to|in|into))|(?<!edge )(?<!National )\bguard\b|\bthe Desk\b|hard weeks|"
+    r"\b(?:the|this|each|a course's|course|its own) frame\b(?![- ]by)|\bframe's\b|\bframes? (?:says|gate|row)|"
+    r'cross-subject\b|the lead\b|flagged|source map|source store|gateway|\bleans?\b|if later|'
     r'\btilde\b|~|\bP\d\b|\bstep \d|\brule \d|\bspec\b|to list\b|reference only|reference-only|NonCommercial|'
     r'store folder|\bmodules? \d|this course owns|the course owns|\bowned (?:here|in|by)\b|placed (?:here|in)\b|'
-    r'availability|concurrent|skill_id|hands_on|cross_subject|\bnote \d|next course, direct|recall required', re.I)
+    r'(?<!resource )availability|concurrent with|skill_id|hands_on|cross_subject|\bnote \d|next course, direct|recall required|'
+    r'settled by|expert read|\bIM \d|of our own|densest|by codes|Lettered parts|\bAlso met\b|\bidle (?:one|two|three|\d)|'
+    r'^\s*brief\s*$|the brief\b(?! survey)|^Day budget', re.I)
 # Company, product and standards-document names (AGENTS.md: no company names on a reader's page; the science 6 to 12
-# frames: the standards document is never named in student, teacher or family copy).
+# frames: the standards document is never named in student, teacher or family copy). Case-sensitive with word edges:
+# "hospital" is not a state office, the Amazon is a river and Genghis Khan is not a company.
 NAMES = re.compile(
-    r'Illustrative Math|Kendall|OpenSciEd|EL Education|OpenStax|Oak National|Khan|CK-12|Student Achievement|'
-    r'Desmos|GeoGebra|Google|Microsoft|Apple\b|Amazon|YouTube|PhET|Lego|LEGO|Play-Doh|Post-it|Velcro|Slinky|'
-    r'Scholastic|Pearson|McGraw|Houghton|Savvas|Newsela|CommonLit|Quizlet|Kahoot|Canva|Padlet|Flip\b|Seesaw|'
-    r'Next Generation|NGSS|Common Core|CCSS|Massachusetts 2018|C3 Framework|OSPI|Since Time Immemorial|'
-    r'East Tennessee State|ETSU|Kendall Hunt', re.I)
+    r'\b(?:Illustrative Math\w*|Kendall|OpenSciEd|EL Education|OpenStax|Oak National|Khan Academy|CK-12|'
+    r'Student Achievement|Desmos|GeoGebra|Google|Microsoft|Apple|Amazon\.com|Amazon Prime|Alexa|YouTube|PhET|Lego|'
+    r'LEGO|Play-Doh|Post-it|Velcro|[Ss]linky|Scholastic|Pearson|McGraw|Houghton|Savvas|Newsela|CommonLit|Quizlet|'
+    r'Kahoot|Canva|Padlet|Flipgrid|Seesaw|Next Generation|NGSS|Common Core|CCSS|Massachusetts 2018|C3 Framework|OSPI|'
+    r'Since Time Immemorial|East Tennessee State|ETSU|Kendall Hunt)\b')
 SKILL_IDS = set()
 for _p in ('ela', 'math', 'science', 'social-studies'):
     with open(os.path.join(ROOT, 'data', 'progressions', _p + '.csv'), encoding='utf-8') as _f:
@@ -73,6 +99,64 @@ SKILL_RE = re.compile(r'(?<![\w-])(%s)(?![\w-])' % '|'.join(sorted(map(re.escape
 INTERNAL_PAREN = re.compile(r'\s*\((?:[^()]*(?:docs/|data/|Desk|BASELINE|card q-|\.md|\.csv|rule \d|step \d|'
                             r'base text|base lesson|frame|row)[^()]*)\)', re.I)
 POSITION_PAREN = re.compile(r'\s*\((?:about |weeks? |days? |about days )[^()]*\)', re.I)
+# A standards code inside running prose (3.NF.A.2a, RL.9-10.1, MS-PS4-1, D2.His.9.6-8, MA.WHI.T3.2): the unit's
+# Standards list already shows each one, linked, so a clause of an aside in parentheses that cites a code is dropped.
+CODE = re.compile(r'(?:(?<![\w.-])(?=[\w.-]*\d)(?=[\w.-]*[A-Z])[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*\.[A-Za-z0-9]+'
+                  r'(?:[.-][A-Za-z0-9]+)*|(?<![\w-])(?:K|K-2|\d|MS|HS)-(?:PS|LS|ESS|ETS)\d+-\d+)(?![\w-]|\.\w)')
+# No timer is shown to students (BASELINE): timed writing in a frame is said as writing in one sitting.
+TIMED = [(re.compile(r'\ba timed (analytic )?(paragraph|essay)', re.I), r'an \1\2 written in one sitting (no timer shown)'),
+         (re.compile(r'\bone timed (paragraph|essay)'), r'one \1 written in one sitting'),
+         (re.compile(r'\btimed (analytic )?writing\b'), r'\1writing in one sitting (no timer shown)'),
+         (re.compile(r'\bonce timed\b'), 'once in one sitting (no timer shown)')]
+# Frame shorthand a teacher would trip on, said plainly (the teacher read of 2026-11-14,
+# docs/reviews/course-pages-teacher-read-2026-11-14.md). Applied before the planning filter.
+TIDY = [(re.compile(r'\s*\((?:the )?(?:\w+ )?(?:\w+ )?clarification[^()]*\)'), ''),
+        (re.compile(r",? (?:as the clarification lists|all the clarification's examples|the clarification's examples)"
+                    r"(?=[.,;)])"), ''),
+        (re.compile(r'with every example the clarification names:'), 'with examples:'),
+        (re.compile(r': both clarification kinds, '), ': '),
+        (re.compile(r'across all five clarification properties:'), 'across five properties:'),
+        (re.compile(r"Two short cases complete the clarification's kinds:"), 'Two short cases:'),
+        (re.compile(r"The clarification's (\w+) example as"), r'An \1 as'),
+        (re.compile(r'the second clarification example'), 'a second example'),
+        (re.compile(r'All four kinds in the clarification are'), 'Four kinds are'),
+        (re.compile(r',? (?:a )?retrieval tasks? across the (?:one|two)-grade gap'), ''),
+        (re.compile(r'\s*\(\d+\.\d+\)'), ''),                       # a base lesson number such as (6.11)
+        # Safety notes that name the base's lessons (science 7 unit 1, science 8 units 1 and 2): keep the safety, drop
+        # the lesson numbers, so a teacher still reads which demonstrations are teacher-only and how a laser is handled.
+        (re.compile(r'\s*\((?:base )?lessons? \d+(?:(?:, | and )\d+)*\)'), ''),
+        (re.compile(r"\bThe base's (?=flame|laser)"), 'The '),
+        (re.compile(r"\bthe base's (?=laser)"), 'the '),
+        (re.compile(r", unless the safety agent's read sets a controlled apparatus"),
+         ', unless the teacher sets up a controlled apparatus'),
+        (re.compile(r'\b(One|Two|Three|one|two|three) added (lessons?|days?)\b'), r'\1 \2'),
+        (re.compile(r'the two remaining added lessons'), 'two more lessons'),
+        (re.compile(r'\s*\(the paper path\)'), ''),
+        (re.compile(r'\bPaper path:'), 'On paper:'), (re.compile(r'\bpaper path:'), 'on paper:'),
+        (re.compile(r'\s*\(see Paper path\)'), ''),
+        (re.compile(r" as the clarification's examples"), ' as examples'),
+        (re.compile(r', both clarification examples'), ''),
+        (re.compile(r"the clarification's other examples"), 'other examples'),
+        (re.compile(r'\b([Pp])aper path\b'), r'\1aper version'),
+        (re.compile(r'\bNo-kit unit;'), 'No lab kit needed;'),
+        (re.compile(r'\bNo-kit(?: path| unit)?:'), 'Without a lab kit:'), (re.compile(r'\bno-kit:'), 'without a lab kit:'),
+        (re.compile(r'\b(?:a|the) no-kit '), 'a '),
+        (re.compile(r'\bStand-ins:'), 'Everyday substitutes:'),
+        (re.compile(r'\bSimulation listed:'), 'A simulation:'),
+        (re.compile(r'\b([Tt])he band\b'), r'\1he grade band'),
+        (re.compile(r"\s*The unit's word list(?=\s+[A-Z]|\s*$)"), ''),   # a frame fragment (see the teacher read)
+        (re.compile(r'\bmeasure targets? (?:of )?about\b'), 'reading level about'),
+        (re.compile(r'\s*\(\d[a-z]\)'), ''),                      # a lettered part alone, such as (1e)
+        (re.compile(r'\((\d[a-z]), '), '('),
+        (re.compile(r', \d[a-z](?: to [a-z])?(?=[,)])'), ''),
+        (re.compile(r'\b(Boundary|Boundaries):'), 'Limits:'),
+        (re.compile(r'\bat band\b'), 'in the grade band'),
+        (re.compile(r'\bThe grade band and the (?:reading )?log\.'), 'Independent reading in the grade band, with a reading log.'),
+        (re.compile(r'\bThe grade band named;'), 'Each text\'s grade band named;'),
+        (re.compile(r'\bpersonal finance touch\b'), 'personal finance'),
+        (re.compile(r',? no added days?\b'), ''),
+        (re.compile(r'\b(?:[Aa] short |[Oo]ne |[Aa] )?([Rr])etrieval tasks? (?:on|across)\b'),
+         lambda m: ('A' if m.group(0)[0].isupper() else 'a') + ' short look back at')]
 dropped = defaultdict(lambda: [0, 0])   # column -> [sentences kept, sentences dropped], for `check`
 drop_log = defaultdict(list)
 
@@ -103,27 +187,72 @@ def _bad(x):
     return PRIVATE.search(x) or NAMES.search(x) or SKILL_RE.search(x)
 
 
+def top_split(x, sep=';'):
+    """Split on sep only outside parentheses, so a list inside an aside stays whole."""
+    out, depth, cur = [], 0, ''
+    for i, ch in enumerate(x):
+        depth += (ch == '(') - (ch == ')')
+        if ch == sep and depth == 0 and x[i + 1:i + 2].isspace():
+            out.append(cur.strip())
+            cur = ''
+            continue
+        cur += ch
+    return [c for c in out + [cur.strip()] if c]
+
+
+def no_codes(s):
+    """Drop each clause of an aside in parentheses that cites a standards code; drop the aside if none is left."""
+    def aside(m):
+        keep = [c for c in top_split(m.group(1)) if not CODE.search(c)]
+        return ' (%s)' % '; '.join(keep) if keep else ''
+    for _ in range(2):
+        s = re.sub(r'\s*\(([^()]*)\)', aside, s)
+    return s
+
+
+CODE_RUN = r'(?:%s)(?: to [a-z]|,? (?:and )?\d[a-z])*(?:,? (?:and )?(?:%s)(?: to [a-z])?)*' % (CODE.pattern, CODE.pattern)
+
+
+def cap(x):
+    return x[:1].upper() + x[1:]
+
+
 def public(text, column):
     """The reader-safe part of a frame cell: internal asides, then planning sentences or clauses, and names dropped."""
-    s = unhyphen_models(POSITION_PAREN.sub('', INTERNAL_PAREN.sub('', plain(text))))
+    s = plain(text)
+    for rx, to in TIDY:
+        s = rx.sub(to, s)
+    s = re.sub(r'(?:^|(?<=[.;:] ))(?:%s)(?:,? (?:%s))* in full[:;] (\w)' % (CODE.pattern, CODE.pattern),
+               lambda m: m.group(m.lastindex).upper(), s)   # "K-2-ETS1-3 in full: two designs" -> "Two designs"
+    s = no_codes(unhyphen_models(POSITION_PAREN.sub('', INTERNAL_PAREN.sub('', s))))
+    # a code used as a label ("RL.9-10.10: the whole novel", "near-synonyms: L.11-12.5a and 5b.") goes, its text stays
+    s = re.sub(r'(?:^|(?<=[.;] ))%s[:,] (\w)' % CODE_RUN, lambda m: m.group(m.lastindex).upper(), s)
+    s = re.sub(r'(?<=: )%s[:,] ' % CODE_RUN, '', s)
+    s = re.sub(r':\s*%s(?=[.;])' % CODE_RUN, '', s)
+    s = re.sub(r'(?:and )?%s (?:is )?(?:completed|finished|begun|started|taught|met) here[:;,]? ' % CODE_RUN, '', s)
+    for rx, to in TIMED:
+        s = rx.sub(to, s)
     for _ in range(2):   # an aside in parentheses that holds planning language goes, the sentence stays
         s = re.sub(r'\s*\(([^()]*)\)', lambda m: '' if _bad(m.group(1)) else m.group(0), s)
     keep = []
+
+    def bad(x):   # planning language, or a short sentence or clause that is mostly a standards code
+        return _bad(x) or (CODE.search(x) and len(x.split()) <= 14)
     for x in sentences(s):
-        if not _bad(x):
+        if not bad(x):
             dropped[column][0] += 1
             keep.append(x)
             continue
-        parts = [c for c in re.split(r';\s+', x.rstrip('.')) if not _bad(c)]
+        parts = [c for c in top_split(x.rstrip('.')) if not bad(c)]
         if parts and len(' '.join(parts)) > 25:
             dropped[column][0] += 1
-            keep.append('; '.join(parts).rstrip(',:; ') + '.')
+            keep.append(cap('; '.join(parts).rstrip(',:; ')) + '.')
             drop_log[column].append('PART ' + x)
         else:
             dropped[column][1] += 1
             drop_log[column].append(x)
     out = ' '.join(keep).strip()
-    return out if out.endswith(('.', '?', '!', '"', ')')) or not out else out + '.'
+    return out if out.endswith(('.', '?', '!', '"', '.)', '?)')) or not out else out + '.'
 
 
 def grade_name(g):
@@ -205,6 +334,10 @@ def load():
         for i, c in enumerate(f['checks']):
             label = plain(c['label'])
             label = re.sub(r'^(\d+)\b', r'Course-level check \1', label)
+            # "Check 1 (day 80; respond day 81)": the days are shown beside the label already
+            label = re.sub(r'\s*\((?:[^()]*\b(?:days?|weeks?)\b[^()]*)\)', '', label)
+            label = re.sub(r'^(Course-level check \d+), (?:(mid-year|year-end) )?course-level check$',
+                           lambda m: m.group(1) + (', ' + m.group(2) if m.group(2) else ''), label)
             item = dict(label=label, after=c['after'], check=c['check'], respond=c['respond'], review=c['review'],
                         what=what[i] if i < len(what) else '', first=None, last=None, weeks=None)
             by_label[c['label']] = item
@@ -285,7 +418,7 @@ def build(dist, env=None, render=None):
     def page(template, path, **ctx):
         nonlocal n
         n += 1
-        ctx.update(shown=SHOWN, grade_name=grade_name)
+        ctx.update(shown=SHOWN, grade_name=grade_name, code_help=CODE_HELP)
         if render:
             render(template, path, index=SHOWN, **ctx)
             return
