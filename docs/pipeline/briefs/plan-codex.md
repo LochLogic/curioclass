@@ -8,6 +8,18 @@ Settled by the expert reads (2026-11-14, apply in every unit you write):
 - Kindergarten to grade 2 exits and observations: each exit has two parts. Every child marks a picture on paper (point, circle, place a token or draw one mark) in the last two minutes; the teacher reads the prompt aloud. The spoken "why" is heard from a rotating group of about six children a day during supported work, so each child is heard about once a week; the record sheet shows the rotation. Never ask a whole class of pre-readers for individual spoken reasons in two minutes.
 - An observation never takes the only teaching minutes of a new skill: teach the skill first (on that day or an earlier one), observe after.
 - Check holiday, symbol and civic facts against current official sources (for example the national bird law of 2024, current federal holidays and their names in our states); say what you checked.
+- Spread spoken and observed evidence across the unit's days (the rotating group); never load every child's spoken evidence into the one assessment day.
+- Where a course names Native nations, do not let one nation carry several units: vary the nations, each from its own sources, and never list a nation's present-day home as a place "around the world".
+- Check current events that touch the unit (court rulings, deaths or changes of named people) on the web before writing; say what you checked.
+- The sensitivity study list in field 10 names at least every source the frame and the scope and sequence name for the unit's topics, then adds the community's own sources.
+- Size the end-of-unit assessment to the day's real minutes for the grade (count the items and the time each takes); where the scope and sequence asks for a short assessment, keep it short.
+- The start-of-year check (unit 1 only): there are no school days before day 1, so never place a sitting "before day 1". If unit 1 has readiness rows (last used two or more grades back), the start-of-year check is those items, given in the last ten minutes of day 1 after the hook; its reteach sits in day 2 or 3 inside existing time. If unit 1 has none (all retrieval), write "Start-of-year check: none needed; retrieval only" and give no extra items.
+- Count each assessment's items against its minutes before you finish (a built map or a written paragraph takes several minutes; a picked answer about one).
+- General form first (bar item 13): Curio Class serves every state. Teach and assess "our town, our state, our region" in a general form any class can use; a Massachusetts or Boston case may be one worked example, never the only answer to a compelling question or an assessed item.
+- Never use a campaign page or party material as a source; for a living public official use official, nonpartisan pages, and prefer people whose story is settled history.
+- Cite documents exactly (article and section numbers, census versus city estimates); check each citation against the source.
+- Where 2025 or 2026 events change what a unit teaches (rulings, laws, agency changes, elections), give the teacher a dated background line ("As of November 2026: ...") with its official source, so the plan can be updated as events move.
+- A reteach station never takes over a day's teaching or product time: it runs inside a set number of minutes the day already has.
 
 Known: the Tennessee standards site blocks fetching; use docs/courses/social-studies/STANDARD.md for that comparison and do not retry it.
 

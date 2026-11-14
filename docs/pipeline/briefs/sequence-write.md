@@ -45,6 +45,25 @@ studies goes first; the other subjects follow in step 5.
   - **school_day**: blank for a course that meets every school day (course day n is school day n). A course meeting
     fewer days a week fills it, so its days sit on the weeks CALENDAR.md gives.
   - **note**: a bridge, a lean's timing, a sensitivity flag, a base-text lesson range.
+  - **Optional columns after `note`, math and science only** (added 2026-11-14): `day,...,school_day,note,tools,supplies,safety`.
+    Social studies and ELA files do not have them and are never checked for them. Each cell is a `; `-separated list
+    ("ruler; protractor"), empty when there is none; no empty item, no trailing semicolon. They feed the unit plan's
+    field 8 (UNIT-PLAN.md, tools and supplies across the unit) and the skeleton's tools and supplies lines.
+    - **tools**: the digital or drawn tools the day uses, by the name the tools file uses (a simulation, an applet, a
+      drawing or construction tool, a calculator). Physical objects go in supplies, not here. Math fills it on every
+      day that uses a tool; a day with none leaves it empty.
+    - **supplies**: the physical things students handle that day (counters, paper, a ruler, a beaker), each named
+      once with its kind, and "household stand-in" or "no-kit" in the item where that is the plan. Math fills it on
+      every day that needs more than pencil and paper; science fills it on every hands-on day.
+    - **safety** (science fills; math leaves empty): for every day that names supplies, the hazard and its control
+      ("hot plate: teacher-only; goggles on"), several hazards separated by semicolons, or the single lower-case word
+      `none` when the day was weighed and has no hazard. Empty means not yet weighed, and the gate fails it on a day
+      with supplies. Eye protection and teacher-only steps go here, in the words of the frame's safety column.
+    - What the gate checks: the cells are well-formed lists; a science file with `supplies` also has `safety` (and the
+      reverse); every science day with supplies has `safety` filled (`none` counts; any other case of the word `none`
+      in a list fails). days.csv has no hands-on marker, so the gate cannot know a hands-on day with no supplies
+      listed: it notes a science day whose goal or note reads like hands-on work (lab, investigate, build, heat) but
+      names no supplies. A science file with none of the three columns gets a note, not a failure.
 
 ## The rules
 1. **Units stay as the frame sets them.** Same order, same days, same owned rows. A unit that does not fit goes under

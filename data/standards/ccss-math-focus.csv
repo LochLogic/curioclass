@@ -1,11 +1,14 @@
 # source: Student Achievement Partners, "Where to Focus" grade documents, one PDF per grade K-8, linked from https://achievethecore.org/page/634/focus-in-mathematics (the source column gives the PDF for each row); high school from "Content from CCSSM Widely Applicable as Prerequisites for a Range of College Majors, Postsecondary Programs and Careers", linked from https://achievethecore.org/page/701/widely-applicable-prerequisites-for-college-and-careers
 # version: K-8 focus documents dated 2013 to 2014 on the PDFs; widely applicable prerequisites table dated 2013 (excerpted from the High School Publishers Criteria)
 # fetched: 2026-11-10
-# level: one cluster per line, columns cluster,focus,source. focus = major, supporting or additional for K-8; wap (widely applicable prerequisite) for high school
+# level: one cluster per line, columns cluster,focus,source. focus = major, supporting or additional for K-8; for high school wap (widely applicable prerequisite) or, on the rows added 2026-11-14, major, supporting, additional (PARCC course emphasis) or plus (all-(+) cluster)
 # licence: the achievethecore.org permissions page (archived copy read at https://web.archive.org/web/20190424072331/https://achievethecore.org/ccpd) says all content on the site is under the Creative Commons Public Domain Dedication (CC0) unless marked with a copyright sign; these PDFs carry no copyright sign or licence line. The live site no longer shows that page (it redirects to the home page) and the current https://achievethecore.org/terms-of-use says only that material "may be used as indicated on Our Site for the particular material". Stored here: the cluster ids and the one-word mark, no document text. Credit: Student Achievement Partners.
 # note: Read from the PDFs themselves, one grade at a time. The marks are drawn shapes (filled square = major, hollow square = supporting, circle = additional, per the key printed on each page), read from the PDF drawing data next to each cluster id; all 93 K-8 clusters in ccss-math-clusters.txt were found, one mark each: 54 major, 18 supporting, 21 additional.
 # note: High school lists only the clusters the table names whole: both N-RN clusters, N-Q, every Algebra domain, every F-IF cluster, G-SRT.B and G-SRT.C (19 rows). The table says only standards without a (+) sign are meant. Clusters not listed here carry no mark in that document; they are left out, not marked.
 # note: The table also names single standards, which do not fit a cluster column: F-BF.A.1, F-LE.A.1, G-CO.A.1, G-CO.C.9, G-CO.C.10, S-ID.A.2, S-ID.C.7, S-IC.A.1 (cluster letters added here; the table prints F-BF.1, F-LE.1, G-CO.1, G-CO.9, G-CO.10, S-ID.2, S-ID.7, S-IC.1). It names G-CO.A, G-CO.B and G-SRT.A as learning prerequisites for those, not as widely applicable prerequisites.
+# source (added 2026-11-14, 35 more high school rows): PARCC Model Content Frameworks for Mathematics, Grades 3-11, Version 4.0, December 2014 (the copy read is https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf; the August 2012 version 2.0 and November 2012 version 3.0 were the earlier releases and the organization's own site no longer serves them), course overview charts for Algebra I (page 43), Geometry (page 47) and Algebra II (pages 50 and 51), and Student Achievement Partners, High School Publishers' Criteria for the Common Core State Standards for Mathematics, Spring 2013 (9 April 2013), https://achievethecore.org/content/upload/Math_Publishers_Criteria_HS_Spring_2013_FINAL.pdf, for the (+) rows. The source cell of each new row names the document, and for a PARCC row the page (#page=N) holds the course chart the mark was read from.
+# note: New high school rows use major, supporting or additional (the PARCC course emphasis, a different scheme from the wap mark above, which stays on the 19 rows that carry it; a wap row is NOT changed to a PARCC mark, so A-SSE, A-APR, A-CED, A-REI, F-IF, N-RN, N-Q and G-SRT.B and G-SRT.C keep wap only) or plus. The marks are filled shapes beside each cluster on the chart (green square = major, blue square with a white centre = supporting, yellow ring = additional), read by eye from the rendered pages, since the PDF text does not carry them. Each cluster is marked in several courses (Algebra I, Geometry, Algebra II and the integrated Mathematics I to III); the mark used is the one from the FIRST traditional-pathway course that lists the cluster, because that is where the cluster is introduced (Curio Class math courses follow Algebra I, Geometry, Algebra II). plus = a cluster whose every standard carries a (+) in the CCSS text (7 clusters: N-CN.B, N-VM.A, N-VM.B, N-VM.C, G-SRT.D, S-MD.A, S-MD.B, checked against data/standards/ccss-math-standards.txt). PARCC does not chart (+) standards, and the Publishers' Criteria (pages 5 and 6) say a college-ready curriculum devotes the majority of time to the standards without a (+) and treats (+) as the content beyond that boundary for students going on to calculus and advanced courses; neither source gives a weight, so plus says "outside the weighted set" and nothing more.
+# note: Where the sources or courses disagree: (1) PARCC marks differ by course for three clusters, F-BF.A (Algebra I supporting; Algebra II and Mathematics I major), S-ID.B (Algebra I supporting; Mathematics I additional) and S-ID.A (Algebra I additional; Mathematics I supporting); the first traditional course wins, so F-BF.A is supporting, S-ID.B supporting, S-ID.A additional. A course that teaches F-BF.A in Algebra II should treat it as major there. (2) PARCC and the Publishers' Criteria answer different questions (PARCC: relative weight in an end-of-course assessment; Criteria: what is widely applicable for college majors), so the two are never merged on one row; the 19 older rows stay wap even where PARCC calls the same cluster major, supporting or additional (for example PARCC marks A-REI.C additional, N-RN.B additional, F-IF.C supporting). (3) Mark counts for the 35 new rows: 7 major, 7 supporting, 14 additional, 7 plus. The 19 older rows and the 93 K-8 rows are unchanged; none was found wrong.
 cluster,focus,source
 K.CC.A,major,https://achievethecore.org/content/upload/SAP_Focus_Math_K%2011.12.14.pdf
 K.CC.B,major,https://achievethecore.org/content/upload/SAP_Focus_Math_K%2011.12.14.pdf
@@ -119,3 +122,38 @@ F-IF.B,wap,https://achievethecore.org/content/upload/Widely%20Applicable%20Prere
 F-IF.C,wap,https://achievethecore.org/content/upload/Widely%20Applicable%20Prerequisites.pdf
 G-SRT.B,wap,https://achievethecore.org/content/upload/Widely%20Applicable%20Prerequisites.pdf
 G-SRT.C,wap,https://achievethecore.org/content/upload/Widely%20Applicable%20Prerequisites.pdf
+N-CN.A,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=50
+N-CN.B,plus,https://achievethecore.org/content/upload/Math_Publishers_Criteria_HS_Spring_2013_FINAL.pdf
+N-CN.C,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=50
+N-VM.A,plus,https://achievethecore.org/content/upload/Math_Publishers_Criteria_HS_Spring_2013_FINAL.pdf
+N-VM.B,plus,https://achievethecore.org/content/upload/Math_Publishers_Criteria_HS_Spring_2013_FINAL.pdf
+N-VM.C,plus,https://achievethecore.org/content/upload/Math_Publishers_Criteria_HS_Spring_2013_FINAL.pdf
+F-BF.A,supporting,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=43
+F-BF.B,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=43
+F-LE.A,supporting,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=43
+F-LE.B,supporting,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=43
+F-TF.A,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=51
+F-TF.B,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=51
+F-TF.C,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=51
+G-CO.A,supporting,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=47
+G-CO.B,major,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=47
+G-CO.C,major,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=47
+G-CO.D,supporting,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=47
+G-SRT.A,major,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=47
+G-SRT.D,plus,https://achievethecore.org/content/upload/Math_Publishers_Criteria_HS_Spring_2013_FINAL.pdf
+G-C.A,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=47
+G-C.B,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=47
+G-GPE.A,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=47
+G-GPE.B,major,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=47
+G-GMD.A,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=47
+G-GMD.B,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=47
+G-MG.A,major,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=47
+S-ID.A,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=43
+S-ID.B,supporting,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=43
+S-ID.C,major,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=43
+S-IC.A,supporting,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=51
+S-IC.B,major,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=51
+S-CP.A,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=51
+S-CP.B,additional,https://iarss.org/wp-content/uploads/2015/01/PARCC_MCF_Mathematics-12-11-2014.pdf#page=51
+S-MD.A,plus,https://achievethecore.org/content/upload/Math_Publishers_Criteria_HS_Spring_2013_FINAL.pdf
+S-MD.B,plus,https://achievethecore.org/content/upload/Math_Publishers_Criteria_HS_Spring_2013_FINAL.pdf

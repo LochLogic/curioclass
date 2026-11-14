@@ -61,6 +61,30 @@ Added 2026-11-12 (Cory's yes on card q-ela-piece-2): ELA adds three row files to
 list). They are shown as generated tables and do not count toward the word cap. The columns are fixed when the
 first ELA pilot plan is written. Not built yet.
 
+ELA text and word data, defined 2026-11-14 (fills the gap above for texts; questions wait for the pilot):
+
+- **Text records: `data/plans/ela-texts.csv`**, one file for all thirteen ELA courses, one row per text a
+  frame's text set names. It is not split into `data/plans/<course>/texts.csv` yet, because a course folder with
+  no `days.csv` fails `plan.py check`; it moves into the course folders when each course has days. Columns:
+  `course`, `unit`, `text_id` (g3-u1-01; gk for kindergarten), `title`, `author`, `year`, `kind` (literary or
+  informational; empty for an image), `form`, `length`, `use` (anchor, paired or independent), `part` (whole,
+  excerpt, selections or retold), `edition`, `measure`, `demands`, `source`, `status`, `rights_basis`,
+  `rights_checked`, `todo`, `note`.
+- `measure` holds a free public number only, with where it came from (the base text's module overviews give
+  Lexile measures for some K to 5 texts). Otherwise "not on file", a frame target for a text still to write, or
+  "none usable" for verse, drama, audio and images. No measure is ever invented.
+- `demands` is the qualitative read in a line: meaning, structure, language and knowledge, and reader and task.
+- `source`: el-education-k5-2017, public domain, US government work, Curio Class original, a traditional tale
+  in a Curio Class retelling, other, or to decide.
+- `status`: on file (the text exists and is named), to write (a Curio Class original), to choose (the frame names
+  a kind or a set, the unit plan names the text) or to confirm (an edition, title or date needs checking).
+- `rights_basis` and `rights_checked` stay empty and every `todo` starts with "rights": rights data is gathered
+  later.
+- **Word list: unit plan output, not input data.** The writer draws it per unit from that unit's texts (about 8
+  to 10 words a week) and writes it as `data/plans/<course>/wordlist.csv` with `unit`, `word`, `text_id`, `week`
+  and `when` (before, during or after reading). The name is not `words.csv`, which `plan.py` already reads as
+  each course's settled word rules.
+
 ## The rules
 
 Each rule is marked **shared** (every subject) or **math fills** (the subject page sets the detail; what math

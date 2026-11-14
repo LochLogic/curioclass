@@ -8,6 +8,9 @@ one row per course day, with the columns of docs/pipeline/briefs/sequence-write.
 course-level check day or its respond day (with a blank `unit`). plan.py runs this gate for a course whose plan
 folder has days.csv but no parts.csv and no items.csv; once section plans are written, plan.py's full gate takes over.
 Added 2026-11-14 (baseline 1 structure finding 2).
+
+Optional columns after `note`, for math and science only: tools, supplies, safety (semicolon lists, empty when none;
+see sequence-write.md). Added 2026-11-14. Social studies and ELA days.csv files are never checked for them.
 """
 import csv, io, re, sys
 from pathlib import Path
@@ -23,6 +26,67 @@ ASSESS = {'', 'readiness', 'mid', 'end', 'course', 'observe'}
 MID_UNIT_DAYS = 25          # a unit longer than this carries a mid-unit assessment
 READINESS_AHEAD = 3         # a readiness check sits at most this many days before its unit's first day
 NEED = ['day', 'stretch', 'unit', 'kind', 'goal', 'skills', 'codes', 'assess']
+LIST_COLS = ('tools', 'supplies', 'safety')   # optional, math and science only (sequence-write.md, days.csv columns)
+LIST_SUBJECTS = ('math', 'science')
+NO_HAZARD = 'none'                            # the one word a science safety cell holds when the day was weighed and has no hazard
+HANDS_ON = re.compile(r'\b(lab|investigat\w*|experiment\w*|dissect\w*|build|builds|built|construct(?:s|ion)?|test(?:s|ing)? '
+                      r'(?:the|a|each|their)|heat\w*|burn\w*|mix\w*|measure|measures|demonstrat\w*|hands-on|model(?:s)? with)\b', re.I)
+
+
+def subject_of(slug):
+    r = frame.frames_csv().get(slug) or {}
+    s = (r.get('subject') or '').strip()
+    if s:
+        return s
+    for k in ('social-studies', 'english-language-arts', 'science', 'math'):
+        if slug.startswith(k) or (k == 'science' and slug in ('biology', 'chemistry', 'physics')):
+            return k
+    return 'math' if slug in ('algebra-i', 'geometry', 'algebra-ii') else ''
+
+
+def list_cell_fails(lab, col, v):
+    """A tools, supplies or safety cell is a `; `-separated list with no empty item."""
+    v = v.strip()
+    if v and any(not x.strip() for x in v.split(';')):
+        return ['%s: %s has an empty item or a stray semicolon (write "a; b; c", empty when none)' % (lab, col)]
+    return []
+
+
+def tool_cols(days, subject):
+    """Failures and notes for the optional tools, supplies and safety columns. Math and science only: any other
+    subject returns nothing, so a social studies days.csv can never fail here.
+    What a script can check: the cells are well-formed lists; a science days.csv that has supplies also has safety;
+    every science day that names supplies (physical material in the hands of students) fills safety, with the single
+    word none when the day was weighed and has no hazard. days.csv has no hands-on marker, so a day whose goal or
+    note reads like hands-on work but names no supplies is a note, not a failure."""
+    fails, notes = [], []
+    if subject not in LIST_SUBJECTS or not days:
+        return fails, notes
+    have = [c for c in LIST_COLS if c in days[0]]
+    if subject == 'science':
+        if not have:
+            notes.append('no tools, supplies or safety columns (a science days.csv carries them: sequence-write.md)')
+        elif 'supplies' in have and 'safety' not in have:
+            fails.append('days.csv has a supplies column and no safety column (science needs both)')
+        elif 'safety' in have and 'supplies' not in have:
+            fails.append('days.csv has a safety column and no supplies column (science needs both)')
+    for d in days:
+        lab = 'day %s' % d['day']
+        for c in have:
+            fails += list_cell_fails(lab, c, d.get(c) or '')
+        sup, saf = (d.get('supplies') or '').strip(), (d.get('safety') or '').strip()
+        if subject == 'science' and 'safety' in have and 'supplies' in have:
+            if sup and not saf:
+                fails.append('%s: supplies named and safety empty (write the hazard and control, or "%s")' % (lab, NO_HAZARD))
+            if saf.lower() == NO_HAZARD and saf != NO_HAZARD:
+                fails.append('%s: safety "%s" must be the lower-case word "%s" alone' % (lab, saf, NO_HAZARD))
+            if NO_HAZARD in [x.strip().lower() for x in saf.split(';')] and ';' in saf:
+                fails.append('%s: "%s" stands alone in a safety cell, not in a list' % (lab, NO_HAZARD))
+            if not sup and not saf and HANDS_ON.search(d['goal'] + ' ' + d.get('note', '')):
+                notes.append('%s: reads like hands-on work but names no supplies and no safety' % lab)
+    if have and not any((d.get(c) or '').strip() for d in days for c in have):
+        notes.append('the %s column(s) are empty on every day' % '/'.join(have))
+    return fails, notes
 
 
 def rows(course, name):
@@ -145,6 +209,9 @@ def check(course):
         if nxt is None or nxt - i > READINESS_AHEAD or not closes:
             fails.append("day %s: a readiness check that is not on the previous unit's last day or a respond day "
                          "within %d days before a unit's first day" % (d['day'], READINESS_AHEAD))
+    tf, tn = tool_cols(days, subject_of(slug))
+    fails += tf
+    notes += tn
     # every owned skill and code of the frame is placed on some day
     placed = ' '.join(d['skills'] + ' ' + d['codes'] for d in days)
     for r in table:
