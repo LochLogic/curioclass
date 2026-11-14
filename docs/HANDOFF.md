@@ -36,7 +36,7 @@ a row whose trigger has passed is marked done or acted on.
 **Pre-work P2 to P5, 2026-11-13 (latest):** P2 to P5c done; Physics is core (58 courses, 52 core). P5d run 1: the
 expert passed calibration ([reviews/calibration-2026-11-13.md](reviews/calibration-2026-11-13.md), 18 of 18
 planted majors; Desk card q-calibration-1). Codex passed too (18 of 18, no false alarms, but it under-ranks
-severity); both lean lenient, so EXPERT.md gained two rules and a re-run with fresh plantings is later.csv L10.
+severity); both lean lenient, so EXPERT.md gained two rules; the re-run with fresh plantings (2026-11-13, docs/reviews/calibration-run2-2026-11-13.md) passed both readers and showed the rules worked.
 Saved for later: L9's four books are in the source store (OpenStax retired CC BY editions x3, ETSU); its
 collections come per course; L7 is Cory's; the rest wait on
 their triggers. Cory 2026-11-13: both readers are trusted (q-calibration-1 answered); Codex reads run by script
