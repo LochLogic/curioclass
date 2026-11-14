@@ -1,13 +1,13 @@
 # Course frame: English Language Arts, Grade 5
 
-Course id ela-k12 (grade 5 row), grade 5, draft frame, written 2026-11-14; the scope and sequence sets the days later.
+Course `english-language-arts-grade-5` (catalogue id `ela-k12`), grade 5, draft frame, written 2026-11-14; the scope and sequence sets the days later.
 
 ## The course in brief
 
 - **Units.** 4, following the base text's grade 5 modules 1 to 3 in order, with unit 4 on water (Cory's yes,
   DESK-ANSWERS 2026-11-13) built on module 4's design (research, survival stories and poems, an opinion essay, a
   recorded announcement).
-- **Days.** 160 teaching days: 153 in units and 7 at course level (4 for two course-level checks, 3 respond days).
+- **Days.** 160 course days: 153 in units and 7 at course level (4 for two course-level checks, 3 respond days).
   One day is one literacy block of about 90 minutes, five days a week: the unit lesson (60 minutes: the base
   text's module lesson) and the skills block (30 minutes). The skills block's week, 150 minutes: the long-word and
   spelling sequence 10 minutes every day (50); on Monday, Wednesday and Friday, independent reading for 20 minutes
@@ -27,7 +27,7 @@ Course id ela-k12 (grade 5 row), grade 5, draft frame, written 2026-11-14; the s
   practice, which the module lessons' close reading and daily writing carry (For the lead 1). Each unit's days include its end-of-unit assessment and its mid-unit
   assessments: the base text's assessments for the module's first two base units are the unit's mid-unit
   assessments, and its third base unit's assessment with the performance task is the end-of-unit assessment (source
-  map).
+  map). A unit that assumes an earlier grade's row opens with a readiness check inside its days where that row has been idle two or more grades, and with a retrieval task inside a lesson where it was used the year before (frame-write lesson 16).
 - **Standard.** The Common Core State Standards for ELA, grade 5 (data/standards/ccss-ela-standards-full.txt), all
   30 progression rows of grade 5 (data/progressions/ela.csv), every lettered part taught in the unit named below.
   The bar is docs/RUBRIC-ELA.md (grades 3 to 5, all three gateways, Gateway 1 in full: Cory's yes, 2026-11-12) and
@@ -183,7 +183,7 @@ No grade 5 story is about a flood or about starting over after one.
 | Check 1 | 2 | 2 | 1 | A cold story chapter and a cold informational passage on a science topic, text-dependent questions with selected and short written answers quoting the text (RL.5.1 to 5.5, RI.5.1 to 5.5, RI.5.7); an on-demand informative paragraph group from the passage (W.5.2, W.5.9); the winter oral reading check and a long-word check (RF.5.3, RF.5.4), the teacher holding the watch |
 | Check 2 | 4 | 2 | 2 | The year together on new cold texts: two short stories in one genre and several short accounts of one event (RL.5.6, RL.5.9, RI.5.6, RI.5.8, RI.5.9); an on-demand opinion essay from the accounts (W.5.1); a language item set on grammar, varieties of English and conventions (L.5.1, L.5.2, L.5.3); the spring oral reading check and long-word check |
 
-Four check days and three respond days: 7 days. The fall oral reading check and long-word screen sit inside unit 1.
+Four course-level check days and three respond days: 7 days. The fall oral reading check and long-word screen sit inside unit 1.
 Each check asks only what the year has taught by then, on texts read cold, with look-fors and two sample answers
 for every written item.
 

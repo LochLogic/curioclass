@@ -1,6 +1,6 @@
 # Course frame: Math Grade 4
 
-Course id math-grade-4, grade 4, draft frame, written 2026-11-13; the scope and sequence sets the days later.
+Course `math-grade-4` (catalogue id `math-k8`), grade 4, draft frame, written 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 
@@ -14,7 +14,7 @@ Course id math-grade-4, grade 4, draft frame, written 2026-11-13; the scope and 
   assessment days a unit; the units here keep 122 lesson days (all required lessons through its unit 8, lessons
   in the angles unit merged twice and the two grade 3 review lessons that open unit 2 merged once, every optional
   lesson cut) and add 5 days of our own where the rows' load
-  notes ask for them. Each unit's days are its lessons, one end-of-unit assessment day and one respond day.
+  notes ask for them. Each unit's days are its lessons, one end-of-unit assessment day and one respond day. A unit that assumes an earlier grade's row opens with a readiness check inside its days where that row has been idle two or more grades, and with a retrieval task inside a lesson where it was used the year before (frame-write lesson 16).
 - **Standard.** The Common Core State Standards for Mathematics, grade 4 (data/standards/ccss-math-standards.txt),
   taught in full, every lettered part placed (4.NF.B.3a to d, 4.NF.B.4a to c, 4.MD.C.5a and b). The 27 progression
   rows are the contract; each unit names the rows it owns. Math has no check set: the standard is used as written.
@@ -155,17 +155,18 @@ and 6 have no angle-measure or symmetry standard. m4-factors-multiples also goes
 
 ## Course-level checks
 
-| Check | Falls after | What it checks | Days |
-|---|---|---|---|
-| Check 1 | Unit 4 | Factors and multiples; equivalent fractions explained; comparing fractions and decimals; adding, subtracting and multiplying fractions by a whole number; tenths and hundredths | 1, then 1 respond day |
-| Check 2 | Unit 7 | Place value to a million, rounding, the addition and subtraction algorithm (untimed); times as many; conversions and measurement problems; multiplying multi-digit numbers with an explained method | 1, then 1 respond day |
-| Year review | Unit 9 | Seven review days from the base text's unit 9 (fractions, whole-number operations, multiplication and division problems) | 7 |
-| Check 3 | The year review | The year together, weighted to the major work: fractions and decimals, the four operations with multi-digit numbers, multistep problems; angles and shapes in one short part | 2, then 2 respond days |
+| Check | After unit | Check days | Respond days | What it checks |
+|---|---|---|---|---|
+| Check 1 | 4 | 1 | 1 | Factors and multiples; equivalent fractions explained; comparing fractions and decimals; adding, subtracting and multiplying fractions by a whole number; tenths and hundredths |
+| Check 2 | 7 | 1 | 1 | Place value to a million, rounding, the addition and subtraction algorithm (untimed); times as many; conversions and measurement problems; multiplying multi-digit numbers with an explained method |
+| Year review, part 1 | 9 | 3 | 0 | The first 3 of the 7 review days from the base text's unit 9 (fractions, whole-number operations, multiplication and division problems), before check 3, so that check 3 falls in week 31 and ELA's year-end check holds week 32 alone (docs/courses/CALENDAR.md, the stagger rule) |
+| Check 3 | 9 | 2 | 2 | The year together, weighted to the major work: fractions and decimals, the four operations with multi-digit numbers, multistep problems; angles and shapes in one short part |
+| Year review, part 2 | 9 | 4 | 0 | The last 4 review days, after check 3 and its respond days: the same review, aimed at what check 3 showed |
 
-Four check days, four respond days and seven review days: 15 days. Every item names its standard, its practice and
+Four course-level check days, four respond days and seven review days (three before check 3, four after it): 15 days. Every item names its standard, its practice and
 what to do next for a student who misses it. Each check has two parts: items that can be redrawn from the practice
 generators, and at least two fixed tasks that ask the student to explain or to model, with a scoring guide. Each
-check and each end-of-unit assessment has a class record sheet, since there are no student accounts. Checks ask nothing the year has not taught by then. The record of check 3, with what its respond days changed, goes
+check and each end-of-unit assessment has a class record sheet, since there are no student accounts. Checks ask nothing the year has not taught by then. The record of check 3, with what its respond days and the last review days changed, goes
 on to the Grade 5 Math teacher. Accommodations (read-aloud,
 extra time, a multiplication table where the item is not testing the facts) are named on each check.
 

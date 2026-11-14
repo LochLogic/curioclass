@@ -42,6 +42,8 @@ per subject (-fixes-), a structure pass and a cleanup pass. New: the step 3 brie
 (personal finance core = n). Cory's three calls are on Desk card q-baseline-1 (site design changes, frame-only
 course pages for all 52, Government unit 9's outside contact).
 
+Cleanup pass done (docs/reviews/baseline-1-cleanup-2026-11-14.md): `frame.py calendar` shows no stagger breaks; scripts/frame.py has a PINS table for courses that choose their weeks. Scope and sequence writers: math 1 unit 7 and math 2 unit 8 end right before the year-end check (keep the two apart); social studies 2 runs above 3 lessons a week early in the year.
+
 **Next: PRODUCTION-PATH step 3, social studies scopes and sequences first**, with sequence-write.md; ELA 6 rights
 list redo is later.csv L14. Files needing deletion move to S:\CurioClass-archive\<what>-<date>\ (Cory, 2026-11-14).
 

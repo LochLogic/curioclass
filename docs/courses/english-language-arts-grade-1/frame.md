@@ -1,6 +1,6 @@
 # Course frame: English Language Arts, Grade 1
 
-Course id ela-k12 (grade 1 year; slug english-language-arts-grade-1), grade 1. Draft frame, 2026-11-13, fixed 2026-11-14 after the two cold reads (docs/reviews/frame-ela-k-2-fixes-2026-11-14.md); the scope and sequence sets the days later.
+Course `english-language-arts-grade-1` (catalogue id `ela-k12`), grade 1. Draft frame, 2026-11-13, fixed 2026-11-14 after the two cold reads (docs/reviews/frame-ela-k-2-fixes-2026-11-14.md); the scope and sequence sets the days later.
 
 ## The course in brief
 

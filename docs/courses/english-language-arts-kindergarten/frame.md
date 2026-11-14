@@ -1,6 +1,6 @@
 # Course frame: English Language Arts, Kindergarten
 
-Course id ela-k12 (kindergarten year; slug english-language-arts-kindergarten), kindergarten. Draft frame, 2026-11-13, fixed 2026-11-14 after the two cold reads (docs/reviews/frame-ela-k-2-fixes-2026-11-14.md); the scope and sequence sets the days later.
+Course `english-language-arts-kindergarten` (catalogue id `ela-k12`), kindergarten. Draft frame, 2026-11-13, fixed 2026-11-14 after the two cold reads (docs/reviews/frame-ela-k-2-fixes-2026-11-14.md); the scope and sequence sets the days later.
 
 ## The course in brief
 

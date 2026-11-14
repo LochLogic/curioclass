@@ -1,12 +1,12 @@
 # Course frame: US Government and Politics
 
-Course id `government`, grades 11 to 12 (half year; rows sit at grade 12 in the data), draft frame (2026-11-13). The
+Course `us-government-and-politics` (catalogue id `government`), grades 11 to 12 (half year; rows sit at grade 12 in the data), draft frame (2026-11-13). The
 scope and sequence sets the days later.
 
 ## The course in brief
 
 - **Units.** 9, from why government exists to the student's own local action.
-- **Days.** 80 teaching days (a half year): 76 in units and 4 for two course-level checks, each an assessment day and a
+- **Days.** 80 course days (a half year): 76 in units and 4 for two course-level checks, each an assessment day and a
   respond day. One lesson of about 50 minutes a day, five a week, across 16 weeks. Each unit's days include its readiness check and, where a grade 8 row is dormant knowledge, the
   one-lesson reteach for students who miss it (units 1, 3, 4, 5, 6 and 8), its end-of-unit assessment and one respond day (a unit over 25 days
   would also hold a mid-unit assessment; none is that long).

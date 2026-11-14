@@ -1,6 +1,6 @@
 # Course frame: Science, Grade 6
 
-Course id science-grade-6, grade 6, draft frame (2026-11-13). The scope and sequence sets the days later.
+Course `science-grade-6` (catalogue id `science-ms`), grade 6, draft frame (2026-11-13). The scope and sequence sets the days later.
 
 ## The course in brief
 
@@ -100,7 +100,7 @@ Handed on to Science, Grade 7 (and to grade 8 and high school)
 
 | What this course hands on | Row here | What the next course does with it |
 |---|---|---|
-| Particle model, temperature as particle motion, energy transfer by collisions | s6-particle-temperature | Grade 7 unit 1 (s7-reactions-atoms) and unit 2 (s7-reaction-energy); grade 8 unit 1 (s8-kinetic-energy-graphs) and unit 3 (s8-energy-transfer-argument, applying MS-PS3-5 to whole objects); Chemistry |
+| Particle model, temperature as particle motion, energy transfer by collisions | s6-particle-temperature | Grade 7 unit 1 (s7-reactions-atoms) and unit 2 (s7-reaction-energy); grade 8 unit 1 (s8-kinetic-energy-graphs) and unit 3 (s8-energy-transfer-argument, applying MS-PS3-5 to whole objects); Chemistry (chem-energy-accounting, chem-thermal-equilibrium, chem-reaction-rates, chem-equilibrium-design) |
 | Particle models of state change | s6-state-change | Grade 7 unit 1 (s7-reactions-atoms); chem-bulk-properties-forces |
 | A design tested against criteria, a model to test changes (start of MS-ETS1-4) | s6-insulator-design | Grade 7 unit 2 (s7-reaction-energy, s7-design-optimize completes MS-ETS1-4); chem-energy-device-design |
 | Water-cycle model; climate from uneven heating and circulation | s6-water-cycle-energy; s6-climate-circulation | Grade 7 unit 6 (s7-climate-change-evidence); chem-earth-energy-climate, chem-water-earth-materials |
@@ -108,8 +108,8 @@ Handed on to Science, Grade 7 (and to grade 8 and high school)
 | Rock-cycle and plate models | s6-rock-cycle; s6-plate-evidence | Grade 7 unit 6 (s7-resource-distribution); phys-earth-interior-convection, phys-crust-ages, bio-environment-change-species |
 | Surface change at many scales | s6-surface-change-scales | phys-landforms-scales |
 | Rock layers read for relative age, the deep-time scale | s6-geologic-time | Grade 8 unit 6 (s8-fossil-record), across grade 7; phys-early-earth-history |
-| Criteria, constraints and comparing two options (start of MS-ETS1-1, MS-ETS1-2) | s6-hazard-forecast | Grade 7 unit 5 (s7-define-design-problem) and unit 6 (s7-human-impact-design); grade 8 unit 1 (s8-design-evaluate) |
-| Light rays reflected, absorbed, transmitted, bent | s6-light-paths | Grade 8 unit 2 (s8-wave-amplitude-energy, applied to sound) and unit 4 (s8-earth-sun-moon, the wave model of light); Physics light rows |
+| Criteria, constraints and comparing two options (start of MS-ETS1-1, MS-ETS1-2) | s6-hazard-forecast | Grade 7 unit 5 (s7-define-design-problem) and unit 6 (s7-human-impact-design); grade 8 unit 1 (s8-design-evaluate); Chemistry (chem-resources-hazards-climate-human) |
+| Light rays reflected, absorbed, transmitted, bent | s6-light-paths | Grade 8 unit 2 (s8-wave-amplitude-energy, applied to sound) and unit 4 (s8-earth-sun-moon, the wave model of light); Physics (phys-wave-particle-light, phys-em-radiation-effects) |
 | Waves as carriers of a pattern; digital signals | s6-digital-signals | Grade 8 unit 2 (s8-wave-amplitude-energy); phys-digital-information, phys-wave-technologies |
 | Cells; the start of MS-LS1-2, MS-LS1-3 and MS-LS1-8 | s6-cells-body-systems | Grade 7 unit 3 (s7-body-systems-food, s7-cell-respiration-growth) and unit 4 (s7-photosynthesis); grade 8 units 2 and 5 |
 

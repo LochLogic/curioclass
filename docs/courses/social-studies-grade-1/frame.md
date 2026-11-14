@@ -1,6 +1,6 @@
 # Course frame: Grade 1: Leaders, Helpers and Communities
 
-Course id ss-k5, grade 1. Draft frame, 2026-11-13; the scope and sequence sets the days later.
+Course `social-studies-grade-1` (catalogue id `ss-k5`), grade 1. Draft frame, 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 

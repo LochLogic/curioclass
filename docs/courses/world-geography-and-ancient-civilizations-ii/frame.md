@@ -1,12 +1,12 @@
 # Course frame: World Geography and Ancient Civilizations II
 
-Course id world-hist-7, grade 7, draft frame (2026-11-13). The scope and sequence sets the days later.
+Course `world-geography-and-ancient-civilizations-ii` (catalogue id `world-hist-7`), grade 7, draft frame (2026-11-13). The scope and sequence sets the days later.
 
 ## The course in brief
 
 - **Units.** 12 units, in the anchor's topic order (7.T1 to 7.T4c): Central and South Asia, East Asia, Oceania,
   then Europe, ancient Greece and Rome, ending about 500 CE.
-- **Days.** 160 teaching days: 148 in units, 12 for course-level checks and respond days (three course-level checks
+- **Days.** 160 course days: 148 in units, 12 for course-level checks and respond days (three course-level checks
   of 2 days, each followed by 2 respond days). A full year: one lesson of about 50 minutes a day, five a week, across
   32 weeks. Each unit's days include its end-of-unit assessment and one respond day (a unit over 25 days also holds a
   mid-unit assessment; none here is over 15); a unit that assumes an earlier grade's row opens with a readiness check

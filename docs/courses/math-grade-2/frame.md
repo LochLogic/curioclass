@@ -1,15 +1,15 @@
 # Course frame: Grade 2 Math
 
-Course id math-k8, grade 2. Draft frame, 2026-11-13; the scope and sequence sets the days later.
+Course `math-grade-2` (catalogue id `math-k8`), grade 2. Draft frame, 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 
 - **Units.** 9, Illustrative Mathematics Grade 2's nine units in its own order, with no unit moved: the base text's
   order teaches the ruler before the number line and the number line before three-digit numbers are placed on it,
   which the progression requires (reasons in the Units table).
-- **Days.** 160 course days: 153 in units (each unit's days include one end-of-unit assessment day, except unit 9,
-  whose assessment is folded into the year-end course-level check that covers its review), 4 for course-level checks
-  (2 after unit 5, 2 after unit 9) and 3 respond days (one after the mid-year check, two after the year-end check). Math is daily: one lesson of 60
+- **Days.** 160 course days: 153 in units (each unit's days include its end-of-unit assessment day, except unit 9,
+  a review unit that owns no row and follows the year-end course-level check as further respond time), 4 for course-level checks
+  (2 after unit 5, 2 after unit 8) and 3 respond days (one after the mid-year check, two after the year-end check). Math is daily: one lesson of 60
   minutes a day, five days a week, 32 weeks, the base text's own lesson length (warm-up, activities, lesson
   synthesis and exit ticket). The base text's 146 lessons, 9 assessment days and 6 check and respond days already
   exceed 160, so seven optional center and puzzle lessons are cut for the day budget (139 kept; the base text marks
@@ -24,7 +24,7 @@ Course id math-k8, grade 2. Draft frame, 2026-11-13; the scope and sequence sets
   child is reached, and that every owned standard is covered. If a unit's evidence cannot fit, the extra day goes to
   Cory before the scope and sequence fixes the year; no standard is cut to keep the total. After each end-of-unit
   assessment, the respond work runs in the center time of the next two lessons, in small groups, on what the
-  assessment showed. No unit runs over 25 days, so none needs a mid-unit assessment.
+  assessment showed. No unit runs over 25 days, so none needs a mid-unit assessment. A unit that assumes an earlier grade's row opens with a readiness check inside its days where that row has been idle two or more grades, and with a retrieval task inside a lesson where it was used the year before (frame-write lesson 16).
 - **Major work.** A provisional allocation, with the 75 percent line for K to 2 (docs/RUBRIC-MATH-K8.md), counted as
   the evidence guide counts it: major clusters plus supporting work that practises them. The supporting units
   practise major work on purpose: money problems add within 100 (2.NBT.B.5, B.6), time skip-counts by 5s
@@ -159,27 +159,14 @@ All seven go on to grade 3 except the ten-frame, which grade 3 does not take as 
 | 6 | Geometry, time and money. *How do equal parts help us read clocks and count money?* | 18 | m2-shape-attributes; m2-halves-thirds-fourths; m2-time-five-minutes; m2-money | 2.G.A.1; 2.G.A.3; 2.MD.C.7; 2.MD.C.8 | None (math). Practices: MP.6 (a.m. and p.m., coin values); MP.7 (quarter of the clock, quarter of a dollar) | Recognizing and drawing shapes with given attributes (a number of angles or equal faces), and identifying triangles, quadrilaterals, pentagons, hexagons and cubes; circles and rectangles in two, three or four equal shares (halves, thirds, fourths), the phrases half of and a third of, and the whole as two halves, three thirds or four fourths (2.G.A.3 in full), and equal shares of the same whole that are not the same shape; telling and writing time from analog and digital clocks to the nearest five minutes, using a.m. and p.m., skip-counting by 5s, quarter past and quarter to; dollar bills, quarters, dimes, nickels and pennies with the $ and cent symbols, and money word problems (2 dimes 3 pennies is 23 cents) | After unit 5 because the clock and coins use skip-counting by 5s and 10s and place value, and halves and fourths of a circle come just before the clock. Placed mid-year as the base text does; three optional center days and the optional puzzle lesson are cut here for the day budget, their games moved into warm-ups | Candidate: Progressions check against the measurement and data section (time and money). Extension: the fewest coins for an amount | Money: made-up prices and play money; no problem makes a child's family spending, allowance or savings the topic. Time examples use the school day. "You ate the whole thing" (6.9) uses paper shapes, not food |
 | 7 | Adding and subtracting within 1,000. *How can hundreds, tens and ones help us add and subtract bigger numbers?* | 21 | m2-add-within-1000; m2-subtract-within-1000 | ~2.NBT.B.7; 2.NBT.B.7 | None (math). Practices: MP.7 (compose and decompose units); MP.3 (compare written methods) | Adding and subtracting within 1000 without composing or decomposing, with hundreds and tens (counting on and back); adding by composing a ten, a hundred or both (278 + 147); subtracting by decomposing a ten, a hundred or both (425 - 278), and as an unknown addend (278 + ? = 425); each step tied to a written method, with methods that record new units; explaining and comparing methods (review of unit 2) | Needs unit 5's hundreds and unit 2's strategies within 100. The heaviest computation of the year, so it gets the two remaining added lessons: subtracting across a zero (402 - 178) and comparing two written methods. The common error, forgetting to decompose after subtracting in the ones, is named in advance | Candidate: Progressions check: written method choices against the Progressions base ten section. Extension: three addends within 1000 | None special |
 | 8 | Equal groups. *How can equal groups help us count?* | 12 | m2-odd-even; m2-arrays-equal-addends; m2-partition-rows-columns | 2.OA.C.3; 2.OA.C.4; 2.G.A.2 | None (math). Practices: MP.7 (rows and columns); MP.8 (pairs always make even) | Odd and even for up to 20 objects by pairing or counting by 2s; an even number as a sum of two equal addends (12 = 6 + 6); rectangular arrays of up to 5 rows and 5 columns, the total as a sum of equal addends (4 + 4 + 4 = 12), no multiplication sign; a rectangle cut into rows and columns of same-size squares, counted | Late in the year as the base text places it: arrays and equal addends use the doubles of unit 1 and set up grade 3 multiplication and area. Partitioning comes after the arrays so a row of squares is seen both as one unit and as several. Two optional center days are cut for the day budget, their games moved into warm-ups | Candidate: Progressions check against the operations and algebraic thinking section (arrays as the grade 3 bridge). Extension: arrays of 6 by 6 | Odd and even with objects, never by pairing children (no child is left as "the odd one"). "Can you share?" (8.1) shares objects, not food |
-| 9 | Putting it all together. *What do we know now about numbers, measuring and stories?* | 13 | | | None (math). Practices: MP.1 (write and solve a problem); MP.4 (a tape diagram) | Spaced review: fluency within 20, sums from memory (review of unit 1); measuring on a map and plotting measurements (review of unit 3); composing and decomposing within 1000 and adding and subtracting within 100 and 1000 (review of units 2, 5 and 7); creating, sorting and solving story problems with tape diagrams (review of units 1 and 2) | Owns no row: the base text's closing unit is spaced review of the major work before the year-end course-level check, including the two fluency targets the check looks at. It has no assessment day of its own: the year-end course-level check, the next two days, covers its review, and the freed day is a second respond day after that check | Candidate: Progressions check: two-step problems against the Progressions situation table. Extension: two-step problems with a comparison | Maps in base lesson 9.3 are made-up maps or the school, not children's home routes |
+| 9 | Putting it all together. *What do we know now about numbers, measuring and stories?* | 13 | | | None (math). Practices: MP.1 (write and solve a problem); MP.4 (a tape diagram) | Spaced review: fluency within 20, sums from memory (review of unit 1); measuring on a map and plotting measurements (review of unit 3); composing and decomposing within 1000 and adding and subtracting within 100 and 1000 (review of units 2, 5 and 7); creating, sorting and solving story problems with tape diagrams (review of units 1 and 2) | Owns no row: the base text's closing unit is spaced review of the major work, including the two fluency targets the check looks at. It follows the year-end course-level check (week 29, after unit 8) and its two respond days, so ELA's year-end check holds week 32 alone (docs/courses/CALENDAR.md), and serves as further respond time, its review aimed at what the check showed. It has no assessment day of its own, since it owns no row; the freed day is the check's second respond day | Candidate: Progressions check: two-step problems against the Progressions situation table. Extension: two-step problems with a comparison | Maps in base lesson 9.3 are made-up maps or the school, not children's home routes |
 
 ## Course-level checks
 
-- **Mid-year course-level check, after unit 5 (2 days, about week 18).** Short written items with a one-to-one part: facts within 20 (watched in a
-  game and on a short untimed card set, recorded as just knows, quick strategy or counts); one- and two-step
-  problems within 100 with a tape diagram or equation, a start-unknown and an opposite-language Compare included;
-  add and subtract within 100, one with a decomposed ten, with an explanation; measure an object in two units and
-  explain the counts; a length word problem; a number line jump problem; three-digit numbers in expanded form,
-  compared and placed on a number line; 10 and 100 more and less. Every item names its standard and what to do next
-  for a child who misses it.
-- **1 respond day after the mid-year course-level check.** Re-teach the gaps (most often decomposing a ten and Compare problems),
-  in small groups, ending with a short fresh task.
-- **Year-end course-level check, after unit 9 (2 days, end of year; it stands for unit 9's own assessment).** Sums of two one-digit numbers from memory and differences within 20
-  (watched, untimed); add and subtract within 100 fluently and within 1000 with a written method and an explanation;
-  four two-digit addends, one with a total above 100; a bar graph and a line plot read and answered; time to five minutes; a money problem;
-  odd or even; an array as equal addends; thirds and fourths of a shape. Every item names its standard and what to do
-  next for a child who misses it.
-- **2 respond days after the year-end course-level check.** Re-teach the gaps the check shows, in small groups, each
-  day ending with a short fresh task. The record, with what the respond days changed, goes on to the Grade 3 Math
-  teacher.
+| Check | After unit | Check days | Respond days | What it checks |
+|---|---|---|---|---|
+| Mid-year course-level check (about weeks 18 to 19) | 5 | 2 | 1 | Short written items with a one-to-one part: facts within 20 (watched in a game and on a short untimed card set, recorded as just knows, quick strategy or counts); one- and two-step problems within 100 with a tape diagram or equation, a start-unknown and an opposite-language Compare included; add and subtract within 100, one with a decomposed ten, with an explanation; measure an object in two units and explain the counts; a length word problem; a number line jump problem; three-digit numbers in expanded form, compared and placed on a number line; 10 and 100 more and less. Every item names its standard and what to do next for a child who misses it. The respond day: Re-teach the gaps (most often decomposing a ten and Compare problems), in small groups, ending with a short fresh task. |
+| Year-end course-level check (week 29) | 8 | 2 | 2 | Sums of two one-digit numbers from memory and differences within 20 (watched, untimed); add and subtract within 100 fluently and within 1000 with a written method and an explanation; four two-digit addends, one with a total above 100; a bar graph and a line plot read and answered; time to five minutes; a money problem; odd or even; an array as equal addends; thirds and fourths of a shape. Every item names its standard and what to do next for a child who misses it. The respond days: Re-teach the gaps the check shows, in small groups, each day ending with a short fresh task. The record, with what the respond days changed, goes on to the Grade 3 Math teacher. Unit 9, a review unit that owns no row, follows the respond days and serves as further respond time, its review aimed at what the check showed; the check falls in week 29 so that ELA's year-end check holds week 32 alone (docs/courses/CALENDAR.md, the stagger rule) |
 
 ## Cross-subject
 
@@ -226,7 +213,7 @@ science and social studies lean on this course's ruler, money and number line in
 2. **Cut center days.** Seven optional base lessons are cut (center days and a puzzle lesson in units 1, 6 and 8),
    their games moved into warm-ups, because the base lessons, assessment days and course-level check days exceed 160. Settled by
    the expert read 2026-11-14: center day 3.17 is kept and the added estimating lesson dropped.
-3. **Unit 9 owns no row.** It is the base text's spaced review unit (13 days, its assessment folded into the year-end
+3. **Unit 9 owns no row.** It is the base text's spaced review unit (13 days, no assessment of its own; it follows the year-end
    course-level check). Pick: keep it as a unit.
 4. **Two threads end in grade 2.** m2-add-four-two-digit and m2-length-difference hand on to no grade 3 row. Pick:
    no row change; grade 3's m3-add-sub-1000 and m3-perimeter use them without naming them, so the grade 3
@@ -259,5 +246,5 @@ sequence.
 | 2.8 | 6, 13 (center days, optional) | none | Cut | Center days in the supporting cluster; 2.OA.C.3, C.4 and 2.G.A.2 are taught in full in the kept lessons |
 | 2.9 Putting It All Together | 1 to 13 | 9 | Keep all | The unit as written |
 
-Totals: 146 base lessons, 139 placed, 7 cut; 6 Curio Class lessons; 8 assessment days (unit 9's is folded into the
-year-end course-level check).
+Totals: 146 base lessons, 139 placed, 7 cut; 6 Curio Class lessons; 8 assessment days (unit 9, which owns no row, has none; it
+follows the year-end course-level check).

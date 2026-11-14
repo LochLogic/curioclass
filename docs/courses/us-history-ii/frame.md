@@ -1,11 +1,11 @@
 # Course frame: US History II (the 1920s to today)
 
-Course id `us-hist-hs`, grade 12, draft frame (2026-11-13). The scope and sequence sets the days later.
+Course `us-history-ii` (catalogue id `us-hist-hs`), grade 12, draft frame (2026-11-13). The scope and sequence sets the days later.
 
 ## The course in brief
 
 - **Units.** 12, in time order from the 1920s to today, opened by an economics toolkit and closed by a researched argument.
-- **Days.** 160 teaching days (a full year): 154 in units and 6 for three course-level checks, each an assessment day and a
+- **Days.** 160 course days (a full year): 154 in units and 6 for three course-level checks, each an assessment day and a
   respond day. One lesson of about 50 minutes a day, five a week, across 32 weeks. Each unit's days include its
   end-of-unit assessment and one respond day (a unit over 25 days also holds a mid-unit assessment); a unit that assumes
   an earlier grade's row opens with a readiness check (its opening retrieval task) inside its days.

@@ -1,6 +1,6 @@
 # Course frame: Math Grade 8
 
-Course id math-grade-8, grade 8, draft frame (2026-11-13). The scope and sequence sets the days later.
+Course `math-grade-8` (catalogue id `math-k8`), grade 8, draft frame (2026-11-13). The scope and sequence sets the days later.
 
 ## The course in brief
 
@@ -126,11 +126,11 @@ Handed on to Algebra I and Geometry (where the middle school threads end). Their
 
 ## Course-level checks
 
-| Check | Falls after | What it checks | Days |
-|---|---|---|---|
-| 1 | Unit 4 (day 70) | Units 1 to 4: a congruence or similarity argument from a sequence of moves, slope from two points and its meaning, a linear relationship across graph, table and equation, a scatter plot with a line of fit interpreted; items labelled by standard with a "what to do next" note | 1, then 1 respond day (day 71) |
-| 2 | Unit 6 (day 116) | Units 1 to 6, weighted to 5 and 6: a linear equation with one, none or infinitely many solutions, a system from a context solved two ways, comparing two functions shown differently, a qualitative graph sketched from a story, a cylinder or cone volume | 1, then 1 respond day (day 117) |
-| 3 | Unit 8 (days 158 and 159) | The year, weighted to major work: transformations, linear relationships, equations and systems, functions, exponents, the Pythagorean theorem; problems that join units on purpose. Every item names its standard and what to do next for a student who misses it; the record, with what the respond day changed, goes on to the Algebra I teacher | 2, then 1 respond day (day 160) |
+| Check | After unit | Check days | Respond days | What it checks |
+|---|---|---|---|---|
+| Check 1 (day 70; respond day 71) | 4 | 1 | 1 | Units 1 to 4: a congruence or similarity argument from a sequence of moves, slope from two points and its meaning, a linear relationship across graph, table and equation, a scatter plot with a line of fit interpreted; items labelled by standard with a "what to do next" note |
+| Check 2 (day 116; respond day 117) | 6 | 1 | 1 | Units 1 to 6, weighted to 5 and 6: a linear equation with one, none or infinitely many solutions, a system from a context solved two ways, comparing two functions shown differently, a qualitative graph sketched from a story, a cylinder or cone volume |
+| Check 3 (days 158 and 159; respond day 160) | 8 | 2 | 1 | The year, weighted to major work: transformations, linear relationships, equations and systems, functions, exponents, the Pythagorean theorem; problems that join units on purpose. Every item names its standard and what to do next for a student who misses it; the record, with what the respond day changed, goes on to the Algebra I teacher |
 
 ## Cross-subject
 

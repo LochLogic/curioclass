@@ -1,6 +1,6 @@
 # Course frame: Math Grade 7
 
-Course id math-grade-7, grade 7, draft frame (2026-11-13). The scope and sequence sets the days later.
+Course `math-grade-7` (catalogue id `math-k8`), grade 7, draft frame (2026-11-13). The scope and sequence sets the days later.
 
 ## The course in brief
 
@@ -133,11 +133,11 @@ Handed on to Math Grade 8 (and to Algebra I, Geometry and Algebra II)
 
 ## Course-level checks
 
-| Check | Falls after | What it checks | Days |
-|---|---|---|---|
-| 1 | Unit 3 (day 45) | Units 1 to 3: a scale drawing problem, deciding and representing a proportional relationship in a table, equation and graph, a circle problem; items labelled by standard with a "what to do next" note | 1, then 1 respond day (day 46) |
-| 2 | Unit 6 (day 119) | Units 1 to 6, weighted to 4 to 6: a multistep percent problem, signed arithmetic including a decimal expansion, a two-step equation and an inequality from a context, equivalent expressions, and one problem that joins percent with an equation | 1, then 1 respond day (day 120) |
-| 3 | Unit 8 (days 158 and 159) | The year, weighted to major work (proportional relationships, percent, signed arithmetic, equations), plus an angle equation and a probability or sampling item. Every item names its standard and what to do next for a student who misses it; the record, with what the respond day changed, goes on to the Grade 8 Math teacher | 2, then 1 respond day (day 160) |
+| Check | After unit | Check days | Respond days | What it checks |
+|---|---|---|---|---|
+| Check 1 (day 45; respond day 46) | 3 | 1 | 1 | Units 1 to 3: a scale drawing problem, deciding and representing a proportional relationship in a table, equation and graph, a circle problem; items labelled by standard with a "what to do next" note |
+| Check 2 (day 119; respond day 120) | 6 | 1 | 1 | Units 1 to 6, weighted to 4 to 6: a multistep percent problem, signed arithmetic including a decimal expansion, a two-step equation and an inequality from a context, equivalent expressions, and one problem that joins percent with an equation |
+| Check 3 (days 158 and 159; respond day 160) | 8 | 2 | 1 | The year, weighted to major work (proportional relationships, percent, signed arithmetic, equations), plus an angle equation and a probability or sampling item. Every item names its standard and what to do next for a student who misses it; the record, with what the respond day changed, goes on to the Grade 8 Math teacher |
 
 ## Cross-subject
 

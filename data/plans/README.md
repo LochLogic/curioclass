@@ -86,6 +86,30 @@ What the gates hold (plan.py; lesson.py where a written day file is read):
 
 The prose plans point at these files instead of restating them.
 
+## Scope-stage and calendar files (added 2026-11-14, docs/PRODUCTION-PATH.md step 3)
+
+Before a unit has parts or items, a course's `days.csv` is the scope and sequence's day file
+(docs/pipeline/briefs/sequence-write.md). Its columns are
+
+    day,stretch,unit,kind,goal,skills,codes,assess,school_day,note
+
+`stretch` is the unit number, or `C` for a course-level check day, its respond days and course-level review days.
+`kind` is one of `Understanding`, `Fluency`, `Application`, `Check`, `Respond`. `assess` is `readiness`, `mid`,
+`end`, `course`, `observe` (K to 2 only) or blank; it reserves the slot, and the unit plan writes the items.
+`school_day` is blank for a course that meets every school day. `scripts/sequence.py` gates it, and `plan.py check`
+runs that gate for a plan folder with a days.csv and no parts or items. The `days.csv` row in the first table
+describes the written-day columns of a planned unit.
+
+Two files hold all courses, and `python -X utf8 scripts/frame.py sync` writes both from the frames; nobody edits them:
+
+| File | One row is | Columns |
+|---|---|---|
+| `frames.csv` | one course frame | `course`, `catalog_id`, `subject`, `grade`, `title`, `units`, `days`, `minutes_min`, `minutes_max`, `per_week`, `weeks`, `term`, `legacy_plan_id` |
+| `calendar.csv` | one unit or course-level check of one course, on the school calendar | `course`, `grade`, `subject`, `kind`, `unit`, `label`, `first_day`, `last_day`, `first_school_day`, `last_school_day`, `first_week`, `last_week` |
+
+`python -X utf8 scripts/frame.py calendar` prints the same placement by grade and lists stagger breaks
+(docs/courses/CALENDAR.md).
+
 ## What the gates cannot see
 
 Whether a question is a good question, whether a day teaches, whether the wording suits a nine-year-old, and any

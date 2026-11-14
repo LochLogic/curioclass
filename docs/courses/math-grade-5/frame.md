@@ -1,6 +1,6 @@
 # Course frame: Math Grade 5
 
-Course id math-grade-5, grade 5, draft frame, written 2026-11-13; the scope and sequence sets the days later.
+Course `math-grade-5` (catalogue id `math-k8`), grade 5, draft frame, written 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 
@@ -14,7 +14,7 @@ Course id math-grade-5, grade 5, draft frame, written 2026-11-13; the scope and 
   exit question). 160 days is the full-year yardstick. The base text's year is 148 lessons (135 required) with 2
   assessment days a unit; the units here keep 123 lesson days (every required lesson through its unit 7, and five
   optional lessons kept for load) and add 2 days of our own where the rows' load notes ask for them. Each unit's
-  days are its lessons, one end-of-unit assessment day and one respond day.
+  days are its lessons, one end-of-unit assessment day and one respond day. A unit that assumes an earlier grade's row opens with a readiness check inside its days where that row has been idle two or more grades, and with a retrieval task inside a lesson where it was used the year before (frame-write lesson 16).
 - **Standard.** The Common Core State Standards for Mathematics, grade 5 (data/standards/ccss-math-standards.txt),
   taught in full, every lettered part placed (5.MD.C.3a and b, 5.MD.C.5a to c, 5.NF.B.4a and b, 5.NF.B.5a and b,
   5.NF.B.7a to c, 5.NBT.A.3a and b). The 25 progression rows are the contract; each unit names the rows it owns.
@@ -151,14 +151,15 @@ Handed on to Math Grade 6 (and, where it skips grade 6, Math Grade 7)
 
 ## Course-level checks
 
-| Check | Falls after | What it checks | Days |
-|---|---|---|---|
-| Check 1 | Unit 4 | Volume and expressions; fractions as quotients; multiplying fractions and the area picture; dividing with unit fractions; fraction problems | 1, then 1 respond day |
-| Check 2 | Unit 7 | The multiplication algorithm (untimed) and division with two-digit divisors; decimal place value, comparing and rounding to thousandths; decimal operations explained | 1, then 1 respond day |
-| Year review | Unit 10 | Seven review days from the base text's unit 8 (whole-number multiplying and dividing, volume, fraction sums and differences) | 7 |
-| Check 3 | The year review | The year together, weighted to the major work: fractions (all four operations as taught), decimals, multi-digit operations, volume; conversion, line plots and the coordinate plane in one short part | 2, then 2 respond days |
+| Check | After unit | Check days | Respond days | What it checks |
+|---|---|---|---|---|
+| Check 1 | 4 | 1 | 1 | Volume and expressions; fractions as quotients; multiplying fractions and the area picture; dividing with unit fractions; fraction problems |
+| Check 2 | 7 | 1 | 1 | The multiplication algorithm (untimed) and division with two-digit divisors; decimal place value, comparing and rounding to thousandths; decimal operations explained |
+| Year review, part 1 | 10 | 3 | 0 | The first 3 of the 7 review days from the base text's unit 8 (whole-number multiplying and dividing, volume, fraction sums and differences), before check 3, so that check 3 falls in week 31 and ELA's year-end check holds week 32 alone (docs/courses/CALENDAR.md, the stagger rule) |
+| Check 3 | 10 | 2 | 2 | The year together, weighted to the major work: fractions (all four operations as taught), decimals, multi-digit operations, volume; conversion, line plots and the coordinate plane in one short part |
+| Year review, part 2 | 10 | 4 | 0 | The last 4 review days, after check 3 and its respond days: the same review, aimed at what check 3 showed |
 
-Four check days, four respond days and seven review days: 15 days. Every item names its standard and what to do
+Four course-level check days, four respond days and seven review days (three before check 3, four after it): 15 days. Every item names its standard and what to do
 next for a student who misses it. Checks ask nothing the year has not taught by then. The record of check 3, with
 what its respond days changed, goes on to the Grade 6 Math teacher. Accommodations (read-aloud,
 extra time, a multiplication table where the item is not testing the algorithm) are named on each check.

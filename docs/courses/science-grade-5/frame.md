@@ -1,6 +1,6 @@
 # Course frame: Science Grade 5
 
-Course id science-k5 (grade 5 row), grade 5, draft frame, written 2026-11-13; the scope and sequence sets the days later.
+Course `science-grade-5` (catalogue id `science-k5`), grade 5, draft frame, written 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 
@@ -9,7 +9,7 @@ Course id science-k5 (grade 5 row), grade 5, draft frame, written 2026-11-13; th
 - **Days.** 120 course days: 111 in units and 9 at course level (6 for three course-level checks, 3 respond
   days). Elementary science shares the day, so the course assumes one science lesson of 45 minutes on four days a
   week (180 minutes a week) across 30 weeks (a school year of about 36 weeks, of which about 30 carry science
-  lessons here; the rest hold breaks, the school's own testing and events). Science has 120 sessions in 30 weeks containing four sessions each. Their school-day positions are set by the shared grade calendar, including weeks without science, and cross-subject dates are generated from that calendar; until it exists, the dates below estimate science day n near school day 4n/3. The year owns
+  lessons here; the rest hold breaks, the school's own testing and events). Science has 120 sessions in 30 weeks of four sessions each; their school days come from docs/courses/CALENDAR.md and data/plans/calendar.csv. Course-level check 1 falls in week 10: five science lessons in three of weeks 8 to 10 bring course days 42 and 43 there, clear of math grade 5's check 1 in week 11 (the stagger rule's first tool, a course that meets fewer than five days a week choosing its weeks; the pin is in scripts/frame.py), and the four-a-week pattern resumes after it. The year owns
   14 rows (14 performance expectations, 3-5-ETS1-3 among them). Several rows need investigations that run for days
   or weeks (a sealed jar ecosystem, a shadow record, weighed soil), and the last row is the band's full design
   cycle with repeated trials, so about 111 days in units fits; the full 160-day yardstick is not needed. Each
@@ -150,30 +150,30 @@ unused after grade 5.
 
 | Check | After unit | Check days | Respond days | What it checks |
 |---|---|---|---|---|
-| Course-level check 1 | 2 (science days 42 to 44) | 2 | 1 | An unseen change (a sealed bag of melting chocolate, weighed) explained with the particle model; an argument about where an unseen plant's added weight came from, from given data; an unseen ecosystem drawn as a food web with decomposers and energy arrows |
+| Course-level check 1 (week 10) | 2 (science days 42 to 44) | 2 | 1 | An unseen change (a sealed bag of melting chocolate, weighed) explained with the particle model; an argument about where an unseen plant's added weight came from, from given data; an unseen ecosystem drawn as a food web with decomposers and energy arrows |
 | Course-level check 2 | 4 (science days 82 to 84) | 2 | 1 | An unknown sample named from an unseen property table; whether an unseen mix made a new substance, with evidence; an unseen shadow data set read for time of day and season; why a far lamp looks dimmer, with the ray model |
 | Course-level check 3 | 6 (science days 118 to 120) | 2 | 1 | The year together: two Earth systems' interaction in an unseen place, modeled; a share of Earth's water read from a graph; a fair test planned for an unseen prototype, with what to hold the same and how many trials |
 
-Six check days and three respond days: 9 days. Each check uses phenomena the class has not studied and asks for a
+Six course-level check days and three respond days: 9 days. Each check uses phenomena the class has not studied and asks for a
 practice used with a core idea. Nothing is checked before it is taught.
 
 ## Cross-subject
 
-Same-year leans (the availability calendar; school days estimated as science day n near 4n/3 until the shared grade calendar sets them). The math, ELA and social
+Same-year leans (the availability calendar; school days from data/plans/calendar.csv). The math, ELA and social
 studies grade 5 frames are written; each cell names their units.
 
 | Other subject, grade | Need | Grade 5 unit (science days, about school days) | The other course teaches it | Local bridge if later |
 |---|---|---|---|---|
-| Math grade 5 | 5.MD.A.1, converting grams and kilograms (s5-conserve-weight, s5-plant-matter) | Unit 1 (1 to 17, school 1 to 23); unit 2 (18 to 41, school 24 to 55) | Math grade 5 unit 8 (about school days 110 to 118), after | The bridge is used: all weights on one scale in grams (grade 3, 3.MD.A.2); the historical data stay in one unit (pounds); no conversion asked |
-| Math grade 5 | 5.NBT.A.2, powers of ten (s5-star-brightness) | Unit 4 (62 to 81, school 83 to 108) | Math grade 5 unit 8 (about school days 110 to 118), after | The bridge is used: distances given as the time light takes to arrive and as a grain-of-sand scale model, no number over 1,000,000 (grade 4, 4.NBT.A.2); powers of ten after math unit 8 |
-| Math grade 5 | 5.G.A.2, points on the coordinate plane (s5-shadows-sky) | Unit 4 (62 to 81, school 83 to 108) | Math grade 5 unit 10 (about school days 135 to 149), after | The bridge is used: shadow length by hour and day length by month drawn as bar graphs (grade 3, 3.MD.B.3) |
-| Math grade 5 | 5.MD.B.2, line plots in fractions of a unit (s5-design-test) | Unit 6 (100 to 117, school 133 to 156) | Math grade 5 unit 9 (about school days 119 to 134), just before | If math unit 9 has not reached line plots by science day 100, the plot is marked in whole and half units (grade 4 line plots, 4.MD.B.4, retrieved) |
-| ELA grade 5 | RI.5.7, several sources to answer a question (s5-particles, s5-matter-movement) | Unit 1 (school 1 to 23); unit 2 (school 24 to 55) | ELA grade 5 unit 2 (about school days 42 to 79), after unit 1 and during the end of unit 2 | The bridge is used: sources are given two at a time with a question to answer from both, the teacher modeling first |
-| ELA grade 5 | RI.5.9, several texts on one topic (s5-plant-matter); SL.5.5, visual displays (s5-food-energy-sun) | Unit 2 (school 24 to 55) | ELA grade 5 unit 3 (about school days 83 to 121), after | The bridge is used: a source chart (idea, which text) supplied; the flow chart is the display, built as a class first |
-| ELA grade 5 | W.5.8, notes from print and digital sources (s5-identify-materials, s5-protect-resources); W.5.7, a short research project (s5-new-substances) | Unit 3 (45 to 61, school 60 to 81); unit 6 | ELA grade 5 unit 2 (about school days 42 to 79), overlapping unit 3; before unit 6 | The bridge is used in unit 3: a note sheet with source lines supplied; the research is the class's own investigation plus one teacher-chosen reading |
-| ELA grade 5 | W.5.1, opinion with logically ordered reasons (s5-gravity-down) | Unit 4 (school 83 to 108) | ELA grade 5 unit 3 (about school days 83 to 121), the same weeks | The bridge is used: the science argument frame (claim, evidence, reasoning) used all year carries the order |
-| ELA grade 5 | SL.5.5, a visual display in a presentation (s5-sphere-interactions) | Unit 5 (85 to 99, school 113 to 132) | ELA grade 5 unit 3 (about school days 83 to 121), before | Not needed; the model drawing is the display |
-| ELA grade 5, unit 4 (water) | ELA's own lean: e5-research and its unit 4 texts lean on 5-ESS2-2 and 5-ESS3-1 (how much of Earth's water is fresh, how communities protect it), Cory 2026-11-13 | Units 5 and 6 (school 113 to 156) | ELA grade 5 unit 4 (about school days 122 to 156) | Science unit 5 starts about two weeks before ELA's unit 4 and gives the water shares in its first weeks; unit 6's community cases can be read in ELA. If a school starts ELA's unit 4 first, ELA retrieves grade 2's where-water-is and teaches the shares from its own text |
+| Math grade 5 | 5.MD.A.1, converting grams and kilograms (s5-conserve-weight, s5-plant-matter) | Unit 1 (1 to 17, school 2 to 20); unit 2 (18 to 41, school 21 to 48) | Math grade 5 unit 8 (about school days 110 to 118), after | The bridge is used: all weights on one scale in grams (grade 3, 3.MD.A.2); the historical data stay in one unit (pounds); no conversion asked |
+| Math grade 5 | 5.NBT.A.2, powers of ten (s5-star-brightness) | Unit 4 (62 to 81, school 75 to 100) | Math grade 5 unit 8 (about school days 110 to 118), after | The bridge is used: distances given as the time light takes to arrive and as a grain-of-sand scale model, no number over 1,000,000 (grade 4, 4.NBT.A.2); powers of ten after math unit 8 |
+| Math grade 5 | 5.G.A.2, points on the coordinate plane (s5-shadows-sky) | Unit 4 (62 to 81, school 75 to 100) | Math grade 5 unit 10 (about school days 135 to 149), after | The bridge is used: shadow length by hour and day length by month drawn as bar graphs (grade 3, 3.MD.B.3) |
+| Math grade 5 | 5.MD.B.2, line plots in fractions of a unit (s5-design-test) | Unit 6 (100 to 117, school 125 to 147) | Math grade 5 unit 9 (about school days 119 to 134), overlapping the first weeks of unit 6 | If math unit 9 has not reached line plots by science day 100, the plot is marked in whole and half units (grade 4 line plots, 4.MD.B.4, retrieved) |
+| ELA grade 5 | RI.5.7, several sources to answer a question (s5-particles, s5-matter-movement) | Unit 1 (school 2 to 20); unit 2 (school 21 to 48) | ELA grade 5 unit 2 (about school days 42 to 79), after unit 1 and during the end of unit 2 | The bridge is used: sources are given two at a time with a question to answer from both, the teacher modeling first |
+| ELA grade 5 | RI.5.9, several texts on one topic (s5-plant-matter); SL.5.5, visual displays (s5-food-energy-sun) | Unit 2 (school 21 to 48) | ELA grade 5 unit 3 (about school days 83 to 121), after | The bridge is used: a source chart (idea, which text) supplied; the flow chart is the display, built as a class first |
+| ELA grade 5 | W.5.8, notes from print and digital sources (s5-identify-materials, s5-protect-resources); W.5.7, a short research project (s5-new-substances) | Unit 3 (45 to 61, school 53 to 74); unit 6 | ELA grade 5 unit 2 (about school days 42 to 79), overlapping unit 3; before unit 6 | The bridge is used in unit 3: a note sheet with source lines supplied; the research is the class's own investigation plus one teacher-chosen reading |
+| ELA grade 5 | W.5.1, opinion with logically ordered reasons (s5-gravity-down) | Unit 4 (school 75 to 100) | ELA grade 5 unit 3 (about school days 83 to 121), the same weeks | The bridge is used: the science argument frame (claim, evidence, reasoning) used all year carries the order |
+| ELA grade 5 | SL.5.5, a visual display in a presentation (s5-sphere-interactions) | Unit 5 (85 to 99, school 105 to 123) | ELA grade 5 unit 3 (about school days 83 to 121), before | Not needed; the model drawing is the display |
+| ELA grade 5, unit 4 (water) | ELA's own lean: e5-research and its unit 4 texts lean on 5-ESS2-2 and 5-ESS3-1 (how much of Earth's water is fresh, how communities protect it), Cory 2026-11-13 | Units 5 and 6 (school 105 to 147) | ELA grade 5 unit 4 (about school days 122 to 156) | Science unit 5 starts about three weeks before ELA's unit 4 and gives the water shares in its first weeks; unit 6's community cases can be read in ELA. If a school starts ELA's unit 4 first, ELA retrieves grade 2's where-water-is and teaches the shares from its own text |
 
 Earlier-grade leans (no calendar needed): math 4.NF.C.6, hundredths (s5-water-distribution, parts out of 100); math
 4.NBT.A.2 (whole numbers to 1,000,000, the star-distance bridge); math 4.MD.B.4 (line plots, the design-test

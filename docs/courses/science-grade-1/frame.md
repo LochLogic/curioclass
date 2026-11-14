@@ -1,6 +1,6 @@
 # Course frame: Science, Grade 1
 
-Course id science-k5, grade 1. Draft frame, 2026-11-13; the scope and sequence sets the days later.
+Course `science-grade-1` (catalogue id `science-k5`), grade 1. Draft frame, 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 
@@ -16,7 +16,7 @@ Course id science-k5, grade 1. Draft frame, 2026-11-13; the scope and sequence s
   comparison (unit 8, mostly recorded across the year in two-minute looks) carry the least. Each unit's days
   include its end-of-unit assessment (the individual task on an unseen case, spread over the unit's last lessons).
   A unit that uses a kindergarten row opens with a retrieval task, a few minutes inside its first lesson (the
-  kindergarten row was used in the grade before).
+  kindergarten row was used in the grade before). A unit that assumes an earlier grade's row opens with a readiness check inside its days where that row has been idle two or more grades, and with a retrieval task inside a lesson where it was used the year before (frame-write lesson 16).
 - **Split unit.** Unit 8 owns s1-daylight-seasons, which needs a record across the year (the row: "opens in fall
   and closes in spring"). Its first day is taught at the end of unit 1 (about week 4), where the class starts the
   daylight chart; the monthly look (light or dark at about 5:30 in the evening, from two or three optional family

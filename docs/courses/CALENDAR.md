@@ -38,11 +38,11 @@ A course-level check is a check that sits outside every unit and covers several 
 4. **9 to 12.** Week 32 (and week 16 for a half-year course) is a finals week. No other rule.
 5. **The tools, in this order.** (a) A course that meets fewer than five days a week chooses its weeks. (b) Review days split around a check. (c) A check moves to the other side of the unit next to it, and its "What it checks" cell changes with it. A unit never moves to make room for a check.
 
-The frame-side moves that bring every K to 8 grade inside the rule are listed per frame in `docs/reviews/baseline-1-structure-fixes-2026-11-14.md`. Until the subject fixers or the scope and sequence writers apply them, the generated table below shows the breaks.
+The frame-side moves that bring every K to 8 grade inside the rule are listed per frame in `docs/reviews/baseline-1-structure-fixes-2026-11-14.md`. They were applied on 2026-11-14 (docs/reviews/baseline-1-cleanup-2026-11-14.md), and `frame.py calendar` shows no break. Tool (a) is written as a pin in `PINS` in scripts/frame.py: a course day placed on a chosen school day, with the days before and after it spread evenly. Three courses use one (science grade 2, social studies grade 2, science grade 5), each named in its frame's Days bullet.
 
 ## Target weeks, K to 8
 
-The weeks each course-level check should fall in once those moves are made. A scope and sequence places its checks on these weeks.
+The weeks each course-level check falls in. A scope and sequence places its checks on these weeks.
 
 | Grade | ELA | Math | Science | Social studies |
 |---|---|---|---|---|
@@ -62,51 +62,51 @@ The weeks each course-level check should fall in once those moves are made. A sc
 | Grade | Course | Course-level check days (weeks) | Units end (week) |
 |---|---|---|---|
 | K | english-language-arts-kindergarten | Check 1 week 16, Check 2 week 32 | 32 |
-| K | math-kindergarten | after unit 4 week 17, after unit 8 week 32 | 32 |
+| K | math-kindergarten | Mid-year course-level ch week 17, Year-end course-level ch week 31 | 31 |
 | K | science-kindergarten | Course-level check, mid- week 14, Course-level check, year week 29 | 28 |
 | K | social-studies-kindergarten | 1, mid-year week 15, 2, year-end week 30 | 29 |
 | 1 | english-language-arts-grade-1 | Check 1 week 16, Check 2 week 32 | 32 |
-| 1 | math-grade-1 | after unit 4 week 19, after unit 8 week 32 | 32 |
+| 1 | math-grade-1 | Mid-year course-level ch week 19, Year-end course-level ch week 30 | 32 |
 | 1 | science-grade-1 | Course-level check, mid- week 15, Course-level check, year week 29 | 28 |
 | 1 | social-studies-grade-1 | 1, mid-year week 14, 2, year-end week 31 | 31 |
 | 2 | english-language-arts-grade-2 | Check 1 weeks 15 to 16, Check 2 week 32 | 32 |
-| 2 | math-grade-2 | after unit 5 weeks 18 to 19, after unit 9 week 32 | 32 |
-| 2 | science-grade-2 | Course-level check, mid- week 15, Course-level check, year week 28 | 27 |
-| 2 | social-studies-grade-2 | 1, mid-year week 15, 2, year-end week 31 | 31 |
+| 2 | math-grade-2 | Mid-year course-level ch weeks 18 to 19, Year-end course-level ch week 29 | 32 |
+| 2 | science-grade-2 | Course-level check, mid- week 17, Course-level check, year week 28 | 28 |
+| 2 | social-studies-grade-2 | 1, mid-year (week 14) week 14, 2, year-end week 31 | 30 |
 | 3 | english-language-arts-grade-3 | Check 1 week 16, Check 2 week 32 | 32 |
-| 3 | math-grade-3 | Check 1 week 12, Check 2 week 23, Check 3 week 32 | 30 |
+| 3 | math-grade-3 | Check 1 week 12, Check 2 week 23, Check 3 week 31 | 30 |
 | 3 | science-grade-3 | Course-level check 1 week 9, Course-level check 2 week 20, Course-level check 3 week 30 | 30 |
-| 3 | social-studies-grade-3 | 1 week 14, 2, mid-year week 25, 3, year-end week 32 | 32 |
+| 3 | social-studies-grade-3 | 1 week 14, 2, mid-year week 25, 3, year-end (week 28, be week 28 | 32 |
 | 4 | english-language-arts-grade-4 | Check 1 week 16, Check 2 week 32 | 32 |
-| 4 | math-grade-4 | Check 1 week 12, Check 2 week 23, Check 3 week 32 | 30 |
+| 4 | math-grade-4 | Check 1 week 12, Check 2 week 23, Check 3 week 31 | 30 |
 | 4 | science-grade-4 | Course-level check 1 week 10, Course-level check 2 week 19, Course-level check 3 week 30 | 30 |
-| 4 | social-studies-grade-4 | 1 week 12, 2, mid-year week 21, 3, year-end week 32 | 32 |
+| 4 | social-studies-grade-4 | 1 (week 8, after unit 2) week 8, 2, mid-year week 21, 3, year-end (week 27, be week 27 | 32 |
 | 5 | english-language-arts-grade-5 | Check 1 week 17, Check 2 week 32 | 32 |
-| 5 | math-grade-5 | Check 1 week 11, Check 2 week 22, Check 3 week 32 | 30 |
-| 5 | science-grade-5 | Course-level check 1 week 11, Course-level check 2 week 21, Course-level check 3 week 30 | 30 |
+| 5 | math-grade-5 | Check 1 week 11, Check 2 week 22, Check 3 week 31 | 30 |
+| 5 | science-grade-5 | Course-level check 1 (we week 10, Course-level check 2 week 21, Course-level check 3 week 30 | 30 |
 | 5 | social-studies-grade-5 | 1, mid-year week 16, 2, year-end week 29 | 32 |
 | 6 | english-language-arts-grade-6 | Check 1 week 12, Check 2 week 22, Check 3 week 32 | 32 |
-| 6 | math-grade-6 | 1 week 12, 2 week 24, 3 week 32 | 32 |
+| 6 | math-grade-6 | Check 1 (day 80; respond week 16, Check 2 (day 118; respon week 24, Check 3 (days 158 and 15 week 32 | 32 |
 | 6 | science-grade-6 | Course-level check 1, mi week 18, Course-level check 2, ye week 32 | 32 |
 | 6 | world-geography-and-ancient-civilizations-i | 1 (mid-year) week 15, 2 (mid-year) week 23, 3 (year-end) week 32 | 32 |
 | 7 | english-language-arts-grade-7 | Check 1 week 12, Check 2 week 22, Check 3 week 32 | 32 |
-| 7 | math-grade-7 | 1 week 9, 2 week 24, 3 week 32 | 32 |
+| 7 | math-grade-7 | Check 1 (day 45; respond week 9, Check 2 (day 119; respon week 24, Check 3 (days 158 and 15 week 32 | 32 |
 | 7 | science-grade-7 | Course-level check 1, mi week 14, Course-level check 2, ye week 32 | 32 |
 | 7 | world-geography-and-ancient-civilizations-ii | 1 (mid-year) week 13, 2 (mid-year) week 24, 3 (year-end) week 32 | 32 |
 | 8 | english-language-arts-grade-8 | Check 1 week 18, Check 2 weeks 25 to 26, Check 3 week 32 | 32 |
-| 8 | math-grade-8 | 1 week 14, 2 week 24, 3 week 32 | 32 |
+| 8 | math-grade-8 | Check 1 (day 70; respond week 14, Check 2 (day 116; respon week 24, Check 3 (days 158 and 15 week 32 | 32 |
 | 8 | science-grade-8 | Course-level check 1, mi week 15, Course-level check 2, ye week 32 | 32 |
 | 8 | civics-government-and-civic-life | 1 (mid-year) week 10, 2 (mid-year) week 20, 3 (year-end) weeks 29 to 30 | 32 |
 | 9 | english-language-arts-grade-9 | Check 1 week 13, Check 2 week 20, Check 3 week 32 | 31 |
-| 9 | algebra-i | 3 weeks 12 to 13, 5 week 22, 7 week 32 | 32 |
+| 9 | algebra-i | Check 1 (weeks 12 to 13) weeks 12 to 13, Check 2 (week 22) week 22, Check 3 (week 32) week 32 | 32 |
 | 9 | biology | Course-level check 1 week 9, Course-level check 2, mi week 16, Course-level check 3, ye week 32 | 31 |
 | 9 | world-history-i | 1, course-level check (w week 10, 2, mid-year course-level weeks 18 to 19, 3, year-end course-level week 32 | 31 |
 | 10 | english-language-arts-grade-10 | Check 1 week 9, Check 2 week 18, Check 3 week 32 | 31 |
-| 10 | geometry | 2 week 10, 5 week 21, 8 week 32 | 32 |
+| 10 | geometry | Check 1 (week 10) week 10, Check 2 (week 21) week 21, Check 3 (week 32) week 32 | 32 |
 | 10 | chemistry | Course-level check 1 week 11, Course-level check 2, mi weeks 20 to 21, Course-level check 3, ye week 32 | 31 |
 | 10 | world-history-ii | 1, course-level check (w weeks 8 to 9, 2, mid-year course-level weeks 18 to 19, 3, year-end course-level week 32 | 32 |
 | 11 | english-language-arts-grade-11 | Check 1 week 16, Check 2 week 24, Check 3 week 32 | 31 |
-| 11 | algebra-ii | 3 weeks 14 to 15, 5 weeks 22 to 23, 7 week 32 | 32 |
+| 11 | algebra-ii | Check 1 (weeks 14 to 15) weeks 14 to 15, Check 2 (weeks 22 to 23) weeks 22 to 23, Check 3 (week 32) week 32 | 32 |
 | 11 | physics | Course-level check 1 week 13, Course-level check 2, mi week 22, Course-level check 3, ye week 32 | 31 |
 | 11 | us-history-i | 1 (week 10) week 10, 2, mid-year (weeks 19 to week 19, 3, year-end (week 32) week 32 | 31 |
 | 12 | english-language-arts-grade-12 | Check 1 week 11, Check 2 week 17, Check 3 week 25 | 32 |
@@ -114,5 +114,5 @@ The weeks each course-level check should fall in once those moves are made. A sc
 | 12 | us-government-and-politics | 1, midpoint week 8, 2, final week 15 | 16 |
 | 12 | us-history-ii | 1 week 8, 2, mid-year (days 84 and week 17, 3, year-end week 30 | 32 |
 
-Stagger rule breaks (K to 5 by week, 6 to 8 by school day before the finals week): grade K week 32 (ela, math); grade 1 week 32 (ela, math); grade 2 week 15 (ela, science, social-studies); grade 2 week 32 (ela, math); grade 3 week 32 (ela, math, social-studies); grade 4 week 12 (math, social-studies); grade 4 week 32 (ela, math, social-studies); grade 5 week 11 (math, science); grade 5 week 32 (ela, math); grade 6 day 60 (ela, math).
+Stagger rule breaks (K to 5 by week, 6 to 8 by school day before the finals week): none.
 <!-- /gen -->

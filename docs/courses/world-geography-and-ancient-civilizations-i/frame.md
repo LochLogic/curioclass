@@ -1,12 +1,12 @@
 # Course frame: World Geography and Ancient Civilizations I
 
-Course id world-geo-6, grade 6, draft frame (2026-11-13). The scope and sequence sets the days later.
+Course `world-geography-and-ancient-civilizations-i` (catalogue id `world-geo-6`), grade 6, draft frame (2026-11-13). The scope and sequence sets the days later.
 
 ## The course in brief
 
 - **Units.** 11 units, in the anchor's topic order (6.T1 to 6.T5c): how we study the past, early humans, then
   Western Asia, the Middle East and North Africa, then Africa, then Central America, the Caribbean and South America.
-- **Days.** 160 teaching days: 148 in units, 12 for course-level checks and respond days (three course-level checks
+- **Days.** 160 course days: 148 in units, 12 for course-level checks and respond days (three course-level checks
   of 2 days, each followed by 2 respond days). A full year: one lesson of about 50 minutes a day, five a week, across
   32 weeks. Each unit's days include its end-of-unit assessment and one respond day (a unit over 25 days also holds a
   mid-unit assessment; none here is over 16); a unit that assumes an earlier grade's row opens with a readiness check

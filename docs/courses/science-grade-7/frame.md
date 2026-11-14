@@ -1,6 +1,6 @@
 # Course frame: Science, Grade 7
 
-Course id science-grade-7, grade 7, draft frame (2026-11-13). The scope and sequence sets the days later.
+Course `science-grade-7` (catalogue id `science-ms`), grade 7, draft frame (2026-11-13). The scope and sequence sets the days later.
 
 ## The course in brief
 
@@ -123,7 +123,7 @@ Handed on to Science, Grade 8 (and to high school)
 | Reactions that release or absorb energy | s7-reaction-energy | Grade 8 unit 3 (s8-energy-transfer-argument); bio-respiration-energy |
 | Populations and resources; disruption | s7-resources-populations; s7-ecosystem-disruption | Grade 8 unit 6 (s8-natural-selection); bio-population-carrying-capacity, bio-biodiversity-math, bio-ecosystem-stability-change |
 | Interaction patterns | s7-interaction-patterns | Grade 8 unit 6 (s8-reproduction-behaviors) |
-| Atoms, molecules, conservation; large molecules | s7-reactions-atoms; s7-food-molecules | Chemistry (chem-conservation-mole, chem-reaction-outcomes, chem-equilibrium-design, chem-bulk-properties-forces, chem-atomic-structure-periodic-patterns); bio-carbon-molecules, bio-photosynthesis-energy |
+| Atoms, molecules, conservation; large molecules | s7-reactions-atoms; s7-food-molecules | Chemistry (chem-conservation-mole, chem-reaction-outcomes, chem-equilibrium-design, chem-bulk-properties-forces, chem-atomic-structure-periodic-patterns, chem-nuclear-processes); bio-carbon-molecules, bio-photosynthesis-energy |
 | Synthetic materials | s7-synthetic-materials | chem-designed-materials |
 | Matter cycling and energy flow in ecosystems | s7-ecosystem-matter-energy | bio-energy-pyramids, bio-carbon-cycle |
 | Biodiversity solutions; human impact design; population and consumption | s7-biodiversity-solutions; s7-human-impact-design; s7-population-consumption | bio-define-human-impact-problem, bio-evaluate-impact-solutions, bio-biodiversity-simulation |

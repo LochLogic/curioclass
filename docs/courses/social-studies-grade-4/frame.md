@@ -1,12 +1,12 @@
 # Course frame: Grade 4: North America, Its Land and Peoples
 
-Course id ss-k5 (grade 4 row), grade 4, draft frame, written 2026-11-13; the scope and sequence sets the days later.
+Course `social-studies-grade-4` (catalogue id `ss-k5`), grade 4, draft frame, written 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 
 - **Units.** 7, in Massachusetts's own order (4.T1 to 4.T4e): the continent on the map, the neighbors, the
   first peoples, voyages and conquest, the country's growth, then the five regions today.
-- **Days.** 160 teaching days: 150 in units and 10 at course level (6 for three course-level checks, 4 respond
+- **Days.** 160 course days: 150 in units and 10 at course level (6 for three course-level checks, 4 respond
   days). It assumes one social studies lesson of about 40 minutes every school day. The year owns 17 rows, fewer
   than grade 3 or 5, but they are wide (ss4-states-and-statehood alone holds six anchor codes, and five region
   sub-topics run through units 6 and 7), so the full yardstick fits; the progression review named the same.
@@ -130,11 +130,11 @@ keeps the levels of government in use between.
 
 | Check | After unit | Check days | Respond days | What it checks |
 |---|---|---|---|---|
-| 1 | 3 | 2 | 1 | A distance with a ruler and scale bar; a place by latitude and longitude; a claim about how people first reached North America weighed against given evidence the student has not seen |
-| 2, mid-year | 5 | 2 | 1 | Source an unseen primary source (who, when, for whom, why); compare two short sources on one event and say what both confirm; a cause and its effects of one gain in territory, from a map and a timeline |
-| 3, year-end | 7 | 2 | 2 | The year together: a region task (a state map read, its resources and hazards), a regional-cultures task from an unseen source, and a short claim with evidence from two given sources |
+| 1 (week 8, after unit 2) | 2 | 2 | 1 | Units 1 and 2: a distance with a ruler and scale bar; a place by latitude and longitude; fact told from opinion in a short passage about Canada or Mexico the student has not seen. It falls after unit 2, about week 8, clear of math grade 4's check 1 in week 12 (docs/courses/CALENDAR.md, the stagger rule); the first-peoples claim moves to check 2 |
+| 2, mid-year | 5 | 2 | 1 | Units 3 to 5: a claim about how people first reached North America weighed against given evidence the student has not seen; source an unseen primary source (who, when, for whom, why); compare two short sources on one event and say what both confirm; a cause and its effects of one gain in territory, from a map and a timeline |
+| 3, year-end (week 27, before unit 7) | 6 | 2 | 2 | Units 1 to 6 together: a region task (a state map read and its resources), and a short claim with evidence from two given sources. It falls after unit 6, about week 27, so that science's, math's and ELA's year-end checks hold weeks 30, 31 and 32 alone (docs/courses/CALENDAR.md, the stagger rule); unit 7's peoples and hazards follow it and are checked by unit 7's own end-of-unit assessment |
 
-Six check days and four respond days: 10 days. Nothing is checked before it is taught: sourcing for whom and why
+Six course-level check days and four respond days: 10 days. Nothing is checked before it is taught: sourcing for whom and why
 and the two-source comparison wait for check 2.
 
 ## Cross-subject

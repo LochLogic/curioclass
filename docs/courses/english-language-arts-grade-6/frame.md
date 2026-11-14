@@ -1,13 +1,13 @@
 # Course frame: English Language Arts Grade 6
 
-Course id ela-k12 (grade 6 row), grade 6, draft frame, written 2026-11-13; the scope and sequence sets the days later.
+Course `english-language-arts-grade-6` (catalogue id `ela-k12`), grade 6, draft frame, written 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 
 - **Units.** 6, each one specific topic and its set of texts: a flood-town novella, the first written laws, how
   forecasters read the sky, how writing systems work, storm poems and a one-act play, and storm warnings from 1900
   to today.
-- **Days.** 160 teaching days: 148 in units and 12 at course level (6 for three course-level checks of 2 days, 6
+- **Days.** 160 course days: 148 in units and 12 at course level (6 for three course-level checks of 2 days, 6
   respond days, 2 after each check). It assumes one ELA lesson of about 50 minutes every school day, five a week,
   for 32 weeks (grade 5's 90-minute block ends here; its skills block's word study moves into the unit lessons),
   about 20 minutes of independent reading on four nights a week, logged, and 15 minutes of in-class independent
@@ -18,7 +18,7 @@ Course id ela-k12 (grade 6 row), grade 6, draft frame, written 2026-11-13; the s
   progression rows: a long text read whole, three pieces through the full writing process and six shorter ones, two
   research projects (taught in unit 3, applied again in unit 6), two rounds of talks, a formal text discussion at
   least every two weeks and the oral reading check; that load fills the full year (the units are weighed in the
-  table, not given equal shares).
+  table, not given equal shares). Each unit's days include its end-of-unit assessment (and, in units over 25 days, its mid-unit assessments). A unit that assumes an earlier grade's row opens with a readiness check inside its days where that row has been idle two or more grades, and with a retrieval task inside a lesson where it was used the year before (frame-write lesson 16).
 - **Standard.** The Common Core State Standards for ELA, grade 6 (RL, RI, W, SL and L; RF ends in grade 5). Every
   grade 6 code is owned by a row placed below, and every lettered part (W.6.1a to e, W.6.2a to f, W.6.3a to e,
   W.6.9a and b, SL.6.1a to d, L.6.1a to e, L.6.2a and b, L.6.3a and b, L.6.4a to d, L.6.5a to c) is named in the
@@ -176,7 +176,7 @@ Handed on to English Language Arts Grade 7
 | Check 2 | 4 | 2 | 2 | Days 109 to 112. A cold informational chapter: the job of one section (RI.6.5), how one person is introduced and elaborated (RI.6.3), technical and root words worked out and checked (RI.6.4, L.6.4), punctuation edited in sentences (L.6.2); a one-sitting informative paragraph with a chart (W.6.2) |
 | Check 3 | 6 | 2 | 2 | Days 157 to 160. A cold poem and a cold story on one subject: figurative meaning and tone (RL.6.4), a stanza's job (RL.6.5), the narrator's view (RL.6.6), how the two forms approach it (RL.6.9); two cold accounts of one event with a data display (RI.6.9, RI.6.7); a one-sitting argument from a small cold source set, with a claim, clear reasons and relevant evidence (W.6.1a, b) |
 
-Six check days and six respond days: 12 days. Every check reads texts not read in the units. No check asks for a
+Six course-level check days and six respond days: 12 days. Every check reads texts not read in the units. No check asks for a
 skill before the unit that teaches it. Units 1, 3 and 5 end in their own end-of-unit assessment on a cold text,
 inside the unit's days. For units 2, 4 and 6 the course-level check that follows is the unit's end-of-unit
 assessment: its informational texts (check 1's article and editorial, check 2's chapter, check 3's two accounts)

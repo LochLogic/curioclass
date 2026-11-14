@@ -1,11 +1,11 @@
 # Course frame: Grade 3: Communities Then and Now
 
-Course id ss-k5 (grade 3 row), grade 3, draft frame, written 2026-11-13; the scope and sequence sets the days later.
+Course `social-studies-grade-3` (catalogue id `ss-k5`), grade 3, draft frame, written 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 
 - **Units.** 7, as in Curio Class's own grade 3 year (docs/courses/social-studies/grade-3-outline.md).
-- **Days.** 160 teaching days: 150 in units and 10 at course level (6 for three course-level checks, 4 respond
+- **Days.** 160 course days: 150 in units and 10 at course level (6 for three course-level checks, 4 respond
   days). It assumes one social studies lesson of about 40 minutes every school day. The year owns 27 progression
   rows, more than any other elementary grade (grade 2 has 18, grade 4 has 17), and runs seven inquiry arcs, a
   community project and the year's informed action, so it takes the full-year yardstick; it does not share the
@@ -152,9 +152,9 @@ unit 7 and grade 4's ss4-regional-cultures.
 |---|---|---|---|---|
 | 1 | 3 | 2 | 1 | Read a town map and a world map (title, legend, directions, whole-bar scale, grid); the levels of government and what each does; a cost, benefit and opportunity cost in a short case; a short claim with one or two pieces of evidence from a given source the student has not seen |
 | 2, mid-year | 5 | 2 | 1 | Primary or secondary, judged by how a source relates to a question; a short timeline in decades and centuries; why people came and what it meant for Native nations, from two given short sources; a claim with evidence from those sources |
-| 3, year-end | 7 | 2 | 2 | The year together: a map task, a civics or economics task, and a short claim with evidence from two unseen sources on a community's change over time, saying where they agree and differ |
+| 3, year-end (week 28, before unit 7) | 6 | 2 | 2 | Units 1 to 6 together: a map task, a civics or economics task, and a short claim with evidence from two unseen sources on an event or idea from units 4 to 6 (first peoples, early colonies or the founding ideas), saying where they agree and differ. It falls after unit 6, about week 28, so that math's and ELA's year-end checks hold weeks 31 and 32 alone (docs/courses/CALENDAR.md, the stagger rule); unit 7, the local history project, follows it and is checked by its own end-of-unit assessment, so nothing it teaches is on this check |
 
-Six check days and four respond days: 10 days. Every check asks a skill used on content, never a fact alone, and
+Six course-level check days and four respond days: 10 days. Every check asks a skill used on content, never a fact alone, and
 asks nothing the year has not taught by then (the timeline and the primary and secondary sort are not tested
 before check 2).
 

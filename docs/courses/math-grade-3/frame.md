@@ -1,6 +1,6 @@
 # Course frame: Math Grade 3
 
-Course id math-grade-3, grade 3, draft frame, written 2026-11-13; the scope and sequence sets the days later.
+Course `math-grade-3` (catalogue id `math-k8`), grade 3, draft frame, written 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 
@@ -13,7 +13,7 @@ Course id math-grade-3, grade 3, draft frame, written 2026-11-13; the scope and 
   with 2 assessment days a unit; the units here keep 120 lesson days (two optional lessons kept, the other five cut,
   three subtraction lessons merged into two, two design lessons cut) and add 8 days of our own where the rows' load
   notes ask for them (fact strategies, measurement-quantity and two-step problems, fractions greater than 1 and the
-  comparison error). Each unit's days are its lessons, one end-of-unit assessment day and one respond day.
+  comparison error). Each unit's days are its lessons, one end-of-unit assessment day and one respond day. A unit that assumes an earlier grade's row opens with a readiness check inside its days where that row has been idle two or more grades, and with a retrieval task inside a lesson where it was used the year before (frame-write lesson 16).
 
 - **Standard.** The Common Core State Standards for Mathematics, grade 3 (data/standards/ccss-math-standards.txt),
   taught in full, every lettered part placed (3.MD.C.5a and b, 3.MD.C.7a to d, 3.NF.A.2a and b, 3.NF.A.3a to d).
@@ -141,15 +141,16 @@ grade 4 or 5 standard extends categorical graphs.
 
 ## Course-level checks
 
-| Check | Falls after | What it checks | Days |
-|---|---|---|---|
-| Check 1 | Unit 3 | Scaled graphs; multiplication as equal groups and arrays; area by tiling and multiplying, rectilinear areas; adding and subtracting within 1,000 and rounding | 1, then 1 respond day |
-| Check 2 | Unit 6 | Division meanings and unknown factors; the properties as strategies; facts within 100 (untimed); one- and two-step problems; fractions on the number line, equivalent and compared | 1, then 1 respond day |
-| Year review | Unit 8 | Eight review days from the base text's unit 8 (fractions, area and perimeter in one design task, multiplication and division practice) before the last check | 8 |
-| Check 3 | The year review | The year together, weighted to the major work: multiplication and division within 100, fractions, area, measurement problems; shapes and perimeter in one short part | 2, then 2 respond days |
+| Check | After unit | Check days | Respond days | What it checks |
+|---|---|---|---|---|
+| Check 1 | 3 | 1 | 1 | Scaled graphs; multiplication as equal groups and arrays; area by tiling and multiplying, rectilinear areas; adding and subtracting within 1,000 and rounding |
+| Check 2 | 6 | 1 | 1 | Division meanings and unknown factors; the properties as strategies; facts within 100 (untimed); one- and two-step problems; fractions on the number line, equivalent and compared |
+| Year review, part 1 | 8 | 3 | 0 | The first 3 of the 8 review days from the base text's unit 8 (fractions, area and perimeter in one design task, multiplication and division practice), before check 3, so that check 3 falls in week 31 and ELA's year-end check holds week 32 alone (docs/courses/CALENDAR.md, the stagger rule) |
+| Check 3 | 8 | 2 | 2 | The year together, weighted to the major work: multiplication and division within 100, fractions, area, measurement problems; shapes and perimeter in one short part |
+| Year review, part 2 | 8 | 5 | 0 | The last 5 review days, after check 3 and its respond days: the same review, aimed at what check 3 showed |
 
-Four check days, four respond days and eight review days: 16 days. Every item names its standard and what to do
-next for a student who misses it (RUBRIC-MATH-K8 gap 3). The record of check 3, with what its respond days changed,
+Four course-level check days, four respond days and eight review days (three before check 3, five after it): 16 days. Every item names its standard and what to do
+next for a student who misses it (RUBRIC-MATH-K8 gap 3). The record of check 3, with what its respond days and the last review days changed,
 goes on to the Grade 4 Math teacher. Checks ask nothing the year has not taught by then, and
 the multiplication facts are checked on paper with no clock. Accommodations (read-aloud, extra time, a number line
 or multiplication table where the item is not testing the facts) are named on each check.

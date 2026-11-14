@@ -1,13 +1,13 @@
 # Course frame: English Language Arts Grade 8
 
-Course id ela-k12 (grade 8 row), grade 8, draft frame, written 2026-11-14; the scope and sequence sets the days later.
+Course `english-language-arts-grade-8` (catalogue id `ela-k12`), grade 8, draft frame, written 2026-11-14; the scope and sequence sets the days later.
 
 ## The course in brief
 
 - **Units.** 5, each one specific topic and its set of texts: a mystery in a town historical society, the founding
   words and the people who answered them, the 1906 fight over poisoned food and false medicine, old myths made new,
   and how gene science reaches the public through the news.
-- **Days.** 160 teaching days: 148 in units and 12 at course level (6 for three course-level checks of 2 days, 6
+- **Days.** 160 course days: 148 in units and 12 at course level (6 for three course-level checks of 2 days, 6
   respond days, 2 after each check). It assumes one ELA lesson of about 50 minutes every school day, five a week,
   for 32 weeks, about 20 minutes of independent reading on four nights a week, logged, and 15 minutes of in-class
   independent reading twice a week, when the teacher confers with each student about once every two weeks. Choice
@@ -160,7 +160,7 @@ Handed on to grade 9 (the ELA 9 to 12 course frames pick these up)
 | Check 2 | 4 | 2 | 2 | Days 125 to 128. A cold modern story with its myth (RL.8.9), word choice and allusion (RL.8.4), two cold texts' structures compared (RL.8.5); words by roots and context (L.8.4); a one-sitting argument with a counterclaim from a small cold source set (W.8.1) |
 | Check 3 | 5 | 2 | 2 | Days 157 to 160. A cold science story in two media (RI.8.7, SL.8.2), a paragraph's structure (RI.8.5), connections and distinctions (RI.8.3), a cold editorial delineated with irrelevant evidence named (RI.8.8) and its view against another (RI.8.6); one unseen informational text at the top of the 925 to 1185 band read without support and scored apart from supported reading (RI.8.10, independently); sentences revised for voice and mood (L.8.1, L.8.3) |
 
-Six check days and six respond days: 12 days. Every check reads texts not read in the units. Units not followed by
+Six course-level check days and six respond days: 12 days. Every check reads texts not read in the units. Units not followed by
 a check end in their own end-of-unit assessment on a cold text, inside the unit's days; where a check follows a
 unit, the check is that unit's end-of-unit assessment, its informational text on the unit's topic but never a text
 the unit read, so no class is tested twice in a week. Check 1 waits for unit 3, which owns RI.8.2; units 1 and 2 end

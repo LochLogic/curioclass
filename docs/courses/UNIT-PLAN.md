@@ -11,8 +11,7 @@ to one file per course, rule 19 ("always cover the whole standard") and the frac
 Two documents are written before any tool for a section is specced or built.
 
 - **The unit plan** is written first, once for each unit. It holds what belongs to the whole unit:
-  the standards and their parts, the readiness check, the end-of-unit assessment, the errors, the respond half of the last
-  day, the tools and supplies, the family note and the sources.
+  the standards and their parts, the readiness check, the end-of-unit assessment, the errors, the response allocation, the tools and supplies, the family note and the sources.
 - **The section plan** is written next, once for each section. It says what the section teaches, its exit questions,
   what each day is for and what job any tool has. It is a plan, not a lesson script.
 
@@ -46,7 +45,8 @@ A course is too large for any one agent to hold, and a fact written in four file
    item (rule 5), that no check item reuses taught numbers (rule 4), and that days and minutes add up.
 4. **Defaults are written once,** in the course's `DEFAULTS.md`. A unit plan or section plan writes a support, an
    accommodation or a room note only where it differs.
-5. **A unit is planned when the one before it is built** (BASELINE rule 25).
+5. **Unit plans follow the subject-wide order in PRODUCTION-PATH steps 3 and 4.** A preceding unit need not have
+   written lessons. Section plans follow step 7, except the probe section.
 6. **A writer or reader starts from the unit's reading pack** (`scripts/plan.py pack <course> <unit>`),
    not from the whole course.
 7. **Every defect is logged** in `data/plans/defects.csv` with who found it and at which layer.
@@ -119,6 +119,10 @@ sets is given).
 
 ## The unit plan: fields, in order
 
+Math-only fields: the *Math fills* parts, which are unit plan field 2 (the model and its days) and section plan
+fields 1 (strategies or the named algorithm, and the mathematical practices), 3 (an exit question for each day)
+and 8 (the warm-up and the fluency target). Every other field is shared by all subjects.
+
 **1. Header.** *Shared.* Course; the unit and its days; its sections with their days; weight (major,
 supporting, additional); days by kind, summed from the sections.
 
@@ -146,8 +150,9 @@ with no plan yet says "to write with section N.N".
 **6. Error register.** *Shared.* Errors and first ideas, lettered once for the unit, each with what it
 shows and its source or "from memory". Section plans use these letters.
 
-**7. The respond half.** *Shared.* How the end-of-unit assessment is marked inside the period, and what each error group
-does. The marking step, in these words unless the subject page changes them: "Students mark the short items
+**7. Response allocation.** *Shared.* Name the marking time and the response time separately. State whether response
+occurs within the assessment day or on later respond days, and count it once. Then how the end-of-unit assessment is
+marked, and what each error group does. The marking step, in these words unless the subject page changes them: "Students mark the short items
 against the key on the screen, pen down, five minutes. Hands up by item sets the groups. Teacher-judged items
 are read after class and answered in the next day's first five minutes." For one child: go over the missed
 items together.
@@ -294,7 +299,8 @@ Day _, thirty minutes, unaided.
 |---|---|---|---|
 | A | | | |
 
-## 7. The respond half
+## 7. Response allocation
+Marking time: _ minutes. Response time: _ minutes, within the assessment day / on respond days _ (counted once).
 Marking step. Then, by error group:
 
 ## 8. Tools and supplies across the unit

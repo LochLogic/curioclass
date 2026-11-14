@@ -1,6 +1,6 @@
 # Course frame: Kindergarten: Living and Learning Together
 
-Course id ss-k5, kindergarten. Draft frame, 2026-11-13; the scope and sequence sets the days later.
+Course `social-studies-kindergarten` (catalogue id `ss-k5`), kindergarten. Draft frame, 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 

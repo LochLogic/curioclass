@@ -1,6 +1,6 @@
 # Course frame: Science, Kindergarten
 
-Course id science-k5, kindergarten. Draft frame, 2026-11-13; the scope and sequence sets the days later.
+Course `science-kindergarten` (catalogue id `science-k5`), kindergarten. Draft frame, 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 

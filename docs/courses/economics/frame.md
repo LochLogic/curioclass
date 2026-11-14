@@ -1,13 +1,13 @@
 # Course frame: Economics, with personal finance
 
-Course id `economics`, grades 11 to 12 (half year; rows sit at grade 12 in the data), draft frame (2026-11-13). The
+Course `economics` (catalogue id `economics`), grades 11 to 12 (half year; rows sit at grade 12 in the data), draft frame (2026-11-13). The
 scope and sequence sets the days later.
 
 ## The course in brief
 
 - **Units.** 9: seven of economics in the anchor's order (scarcity, markets, business, government, the whole economy,
   money and policy, trade), then two of personal finance.
-- **Days.** 80 teaching days (a half year): 76 in units and 4 for two course-level checks, each an assessment day and a
+- **Days.** 80 course days (a half year): 76 in units and 4 for two course-level checks, each an assessment day and a
   respond day. One lesson of about 50 minutes a day, five a week, across 16 weeks. 25 rows in 76 unit days is about 3 days a row, weighted by load, not shared equally: the graph-heavy
   market units and the five-row finance unit get the most. Each unit's days include its readiness check (and the
   one-lesson reteach of ss8-public-budget where it is dormant: units 1, 4, 8 and 9), its end-of-unit assessment and one

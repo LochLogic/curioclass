@@ -1,13 +1,13 @@
 # Course frame: Civics: Government and Civic Life
 
-Course id us-hist-8 (id kept from the old list), grade 8, draft frame (2026-11-13). The scope and sequence sets the
+Course `civics-government-and-civic-life` (catalogue id `us-hist-8`, kept from the old list), grade 8, draft frame (2026-11-13). The scope and sequence sets the
 days later.
 
 ## The course in brief
 
 - **Units.** 10 units, in the anchor's topic order (8.T1 to 8.T7) with two moves named below, ending with the
   year's civic action.
-- **Days.** 160 teaching days: 148 in units, 12 for course-level checks and respond days (three course-level checks
+- **Days.** 160 course days: 148 in units, 12 for course-level checks and respond days (three course-level checks
   of 2 days, each followed by 2 respond days). A full year: one lesson of about 50 minutes a day, five a week, across
   32 weeks. Each unit's days include its end-of-unit assessment and one respond day (a unit over 25 days also holds a
   mid-unit assessment; none here is over 20); a unit that assumes an earlier grade's row opens with a readiness check

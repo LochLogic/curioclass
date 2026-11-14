@@ -113,6 +113,10 @@ TERM = {'us-government-and-politics': 'fall', 'economics': 'spring'}
 # (docs/courses/CALENDAR.md, "Course-level checks across a grade"): K to 2 science and social studies
 WEEKS = {'science-kindergarten': 29, 'social-studies-kindergarten': 30, 'science-grade-1': 29,
          'social-studies-grade-1': 31, 'science-grade-2': 28, 'social-studies-grade-2': 31}
+# tool (a) of the stagger rule for a course that meets fewer than five days a week: course day n pinned to school day s
+# (its lessons are bunched or thinned so a course-level check lands in its target week); days between pins spread
+# evenly. Added 2026-11-14 (baseline 1 cleanup), each pin named in its frame's Days bullet.
+PINS = {'science-grade-2': {40: 84}, 'social-studies-grade-2': {46: 68}, 'science-grade-5': {43: 50}}
 
 SECTIONS = ['The course in brief', 'Seams', 'Models carried', 'Units', 'Course-level checks', 'Cross-subject']
 SUBJ_WORDS = {'math': 'math', 'science': 'science', 'ela': 'ela', 'english language arts': 'ela',
@@ -268,6 +272,10 @@ def school_day(slug, f, n):
     """The school day (1 to 160) on which course day n falls: the course's days spread evenly over its weeks."""
     weeks, start, _ = meeting(slug, f)
     days = f['days'] or YEAR_DAYS
+    pts = [(0, start)] + sorted((k, start + v) for k, v in PINS.get(slug, {}).items() if 0 < k < days) +         [(days, start + weeks * 5)]
+    for (n0, s0), (n1, s1) in zip(pts, pts[1:]):
+        if n <= n1:
+            return s0 + max(1, math.ceil((n - n0) * (s1 - s0) / (n1 - n0)))
     return start + max(1, math.ceil(n * weeks * 5 / days))
 
 

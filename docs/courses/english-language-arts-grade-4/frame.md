@@ -1,12 +1,12 @@
 # Course frame: English Language Arts, Grade 4
 
-Course id ela-k12 (grade 4 row), grade 4, draft frame, written 2026-11-14; the scope and sequence sets the days later.
+Course `english-language-arts-grade-4` (catalogue id `ela-k12`), grade 4, draft frame, written 2026-11-14; the scope and sequence sets the days later.
 
 ## The course in brief
 
 - **Units.** 4, one for each module of the base text's grade 4 year, in the base text's order; unit 3 keeps the
   module's design (a history set, a short play, a piece urging a side, a two-sided discussion) on a new event.
-- **Days.** 160 teaching days: 153 in units and 7 at course level (4 for two course-level checks, 3 respond days).
+- **Days.** 160 course days: 153 in units and 7 at course level (4 for two course-level checks, 3 respond days).
   One day is one literacy block of about 90 minutes, five days a week: the unit lesson (60 minutes: the base
   text's module lesson kept whole) and the skills block (30 minutes). The skills block's week, 150 minutes: the
   long-word and spelling sequence 10 minutes every day (50); on Monday, Wednesday and Friday, independent reading
@@ -22,7 +22,7 @@ Course id ela-k12 (grade 4 row), grade 4, draft frame, written 2026-11-14; the s
   writing practice, which the module lessons' close reading and daily writing carry (For the lead 1). Each unit's days include its end-of-unit assessment and its mid-unit
   assessments: the base text's assessments for the module's first two base units are the unit's mid-unit
   assessments, and its third base unit's assessment with the performance task is the end-of-unit assessment (source
-  map).
+  map). A unit that assumes an earlier grade's row opens with a readiness check inside its days where that row has been idle two or more grades, and with a retrieval task inside a lesson where it was used the year before (frame-write lesson 16).
 - **Standard.** The Common Core State Standards for ELA, grade 4 (data/standards/ccss-ela-standards-full.txt), all
   30 progression rows of grade 4 (data/progressions/ela.csv), every lettered part taught in the unit named below.
   The bar is docs/RUBRIC-ELA.md (grades 3 to 5, all three gateways, Gateway 1 in full: Cory's yes, 2026-11-12) and
@@ -166,7 +166,7 @@ Handed on to English Language Arts, Grade 5
 | Check 1 | 2 | 2 | 1 | A cold poem or story and a cold informational passage with a diagram, text-dependent questions with selected and short written answers (RL.4.1 to 4.6, RI.4.1 to 4.5, RI.4.7); an on-demand informative paragraph group from the passage (W.4.2, W.4.9); the winter oral reading check and a long-word check (RF.4.3, RF.4.4), the teacher holding the watch |
 | Check 2 | 4 | 2 | 2 | Two new cold texts on one topic (a firsthand account and a later article) and a short traditional tale (RI.4.6, RI.4.8, RI.4.9, RL.4.9); an on-demand opinion piece with reasons and evidence from the texts (W.4.1); a language item set on grammar and conventions (L.4.1, L.4.2); the spring oral reading check and long-word check |
 
-Four check days and three respond days: 7 days. The fall oral reading check and long-word screen sit inside unit 1.
+Four course-level check days and three respond days: 7 days. The fall oral reading check and long-word screen sit inside unit 1.
 Each check asks only what the year has taught by then, on texts read cold, with look-fors and two sample answers
 for every written item.
 

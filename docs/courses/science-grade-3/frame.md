@@ -1,6 +1,6 @@
 # Course frame: Science Grade 3
 
-Course id science-k5 (grade 3 row), grade 3, draft frame, written 2026-11-13; the scope and sequence sets the days later.
+Course `science-grade-3` (catalogue id `science-k5`), grade 3, draft frame, written 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 
@@ -9,7 +9,7 @@ Course id science-k5 (grade 3 row), grade 3, draft frame, written 2026-11-13; th
 - **Days.** 120 course days: 111 in units and 9 at course level (6 for three course-level checks, 3 respond
   days). Elementary science shares the day, so the course assumes one science lesson of 45 minutes on four days a
   week (180 minutes a week) across 30 weeks (a school year of about 36 weeks, of which about 30 carry science
-  lessons here; the rest hold breaks, the school's own testing and events). A science day is therefore not a school day. Science has 120 sessions in 30 weeks containing four sessions each. Their school-day positions are set by the shared grade calendar, including weeks without science, and cross-subject dates are generated from that calendar; until it exists, the dates below estimate science day n near school day 4n/3. The year owns 15 rows (16 performance expectations, with 3-PS2-4
+  lessons here; the rest hold breaks, the school's own testing and events). A science day is therefore not a school day. Science has 120 sessions in 30 weeks of four sessions each; their school days come from docs/courses/CALENDAR.md and data/plans/calendar.csv. The year owns 15 rows (16 performance expectations, with 3-PS2-4
   and 3-5-ETS1-1 in one row). A row that joins an investigation, a model revised on evidence and a written
   explanation or argument needs about six to eight 45-minute lessons, so 15 rows fill about 111 days; the full
   160-day yardstick is not needed. Each unit's days include its end-of-unit assessment and, where a unit uses a
@@ -148,25 +148,25 @@ Handed on to Science Grade 4 (and to grade 5 and the middle school, where a thre
 | Course-level check 2 | 4 (science days 79 to 81) | 2 | 1 | An unseen organism's life cycle compared with one studied; a trait sorted as inherited or environmental from given data; a short argument about whether an animal unseen in class survives better alone or in a group, from given evidence |
 | Course-level check 3 | 6 (science days 118 to 120) | 2 | 1 | The year together: an unseen fossil site read for its past environment; the merit of a solution to an unseen environmental change; a season's weather described from a given bar graph of another town |
 
-Six check days and three respond days: 9 days. Each check uses phenomena the class has not studied and asks for a
+Six course-level check days and three respond days: 9 days. Each check uses phenomena the class has not studied and asks for a
 practice used with a core idea, not recall. Nothing is checked before it is taught.
 
 ## Cross-subject
 
-Same-year leans (the availability calendar; science day n falls near school day 4n/3). The math, ELA and social
+Same-year leans (the availability calendar; school days from data/plans/calendar.csv). The math, ELA and social
 studies grade 3 frames are written; each cell names their units.
 
 | Other subject, grade | Need | Grade 3 unit (science days, about school days) | The other course teaches it | Local bridge if later |
 |---|---|---|---|---|
-| Math grade 3 | 3.MD.B.4, measuring to the half and quarter inch (s3-motion-patterns, s3-environment-traits) | Unit 1 (1 to 16, school 1 to 21) and unit 3 (37 to 58, school 49 to 77) | Math grade 3 unit 7 (about school days 117 to 133), after both science units | The bridge is used: lengths and plant heights in whole inches or whole centimetres (grade 2, 2.MD.A.1); halves and quarters only after math unit 7 |
-| Math grade 3 | 3.MD.A.2, masses in grams (s3-design-problem) | Unit 2 (17 to 33, school 23 to 44) | Math grade 3 unit 7 (about school days 117 to 133), after | The bridge is used: the latch's holding criterion is counted in washers held, an equal-unit count with no grams |
-| Math grade 3 | 3.MD.B.3, scaled picture and bar graphs (s3-inherited-traits, s3-weather-data, s3-animal-groups, s3-climates) | Unit 3 (37 to 58, school 49 to 77); unit 4 (59 to 78, school 79 to 104); unit 6 (98 to 117, school 131 to 156) | Math grade 3 unit 1 (about school days 1 to 22), before | Not needed. Unit 4's hunting counts out of 10 and unit 6's month counts are bar graphs of whole numbers |
-| ELA grade 3 | SL.3.1, collaborative discussion (s3-magnet-static) | Unit 2 (17 to 33, school 23 to 44) | ELA grade 3 unit 1 (about school days 1 to 39), at the same time | The question board routine teaches its own talk rules (listen, build on, ask) |
-| ELA grade 3 | RI.3.7, information from diagrams, pictures and maps (s3-life-cycles, s3-fossils) | Unit 3 (37 to 58, school 49 to 77); unit 5 (82 to 97, school 109 to 129) | ELA grade 3 unit 1 (about school days 1 to 39), before | Not needed; each science text still uses a shared diagram routine (what the arrows and labels show) |
-| ELA grade 3 | W.3.1, opinion writing with reasons (s3-animal-groups, s3-habitat-survival, s3-weather-hazard) | Unit 4 (59 to 78, school 79 to 104); unit 6 | ELA grade 3 unit 3 (about school days 81 to 119), during unit 4 | The bridge is used in unit 4: science teaches its own claim, evidence and reasoning frame, spoken first, then on a sentence frame; unit 6 comes after ELA's unit 3 |
+| Math grade 3 | 3.MD.B.4, measuring to the half and quarter inch (s3-motion-patterns, s3-environment-traits) | Unit 1 (1 to 16, school 2 to 20) and unit 3 (37 to 58, school 47 to 73) | Math grade 3 unit 7 (about school days 117 to 133), after both science units | The bridge is used: lengths and plant heights in whole inches or whole centimetres (grade 2, 2.MD.A.1); halves and quarters only after math unit 7 |
+| Math grade 3 | 3.MD.A.2, masses in grams (s3-design-problem) | Unit 2 (17 to 33, school 22 to 42) | Math grade 3 unit 7 (about school days 117 to 133), after | The bridge is used: the latch's holding criterion is counted in washers held, an equal-unit count with no grams |
+| Math grade 3 | 3.MD.B.3, scaled picture and bar graphs (s3-inherited-traits, s3-weather-data, s3-animal-groups, s3-climates) | Unit 3 (37 to 58, school 47 to 73); unit 4 (59 to 78, school 74 to 98); unit 6 (98 to 117, school 123 to 147) | Math grade 3 unit 1 (about school days 1 to 22), before | Not needed. Unit 4's hunting counts out of 10 and unit 6's month counts are bar graphs of whole numbers |
+| ELA grade 3 | SL.3.1, collaborative discussion (s3-magnet-static) | Unit 2 (17 to 33, school 22 to 42) | ELA grade 3 unit 1 (about school days 1 to 39), at the same time | The question board routine teaches its own talk rules (listen, build on, ask) |
+| ELA grade 3 | RI.3.7, information from diagrams, pictures and maps (s3-life-cycles, s3-fossils) | Unit 3 (37 to 58, school 47 to 73); unit 5 (82 to 97, school 103 to 122) | ELA grade 3 unit 1 (about school days 1 to 39), before | Not needed; each science text still uses a shared diagram routine (what the arrows and labels show) |
+| ELA grade 3 | W.3.1, opinion writing with reasons (s3-animal-groups, s3-habitat-survival, s3-weather-hazard) | Unit 4 (59 to 78, school 74 to 98); unit 6 | ELA grade 3 unit 3 (about school days 81 to 119), during unit 4 | The bridge is used in unit 4: science teaches its own claim, evidence and reasoning frame, spoken first, then on a sentence frame; unit 6 comes after ELA's unit 3 |
 | ELA grade 3 | RI.3.3, cause and effect in a science text (s3-variation-advantage) | Unit 4 | ELA grade 3 unit 2 (about school days 40 to 77), before | Not needed; texts are still short and signposted (because, so) |
-| ELA grade 3 | RI.3.8, links between sentences and paragraphs (s3-environment-change-solution) | Unit 5 (82 to 97, school 109 to 129) | ELA grade 3 unit 2 (about school days 40 to 77), before | Not needed; the case readings mark their cause and effect links |
-| ELA grade 3 | RI.3.9, comparing two texts on one topic (s3-climates) | Unit 6 (98 to 117, school 131 to 156) | ELA grade 3 unit 4 (about school days 120 to 156), at the same time | The bridge is used: a two-column chart of what each text says about one city's climate |
+| ELA grade 3 | RI.3.8, links between sentences and paragraphs (s3-environment-change-solution) | Unit 5 (82 to 97, school 103 to 122) | ELA grade 3 unit 2 (about school days 40 to 77), before | Not needed; the case readings mark their cause and effect links |
+| ELA grade 3 | RI.3.9, comparing two texts on one topic (s3-climates) | Unit 6 (98 to 117, school 123 to 147) | ELA grade 3 unit 4 (about school days 120 to 156), at the same time | The bridge is used: a two-column chart of what each text says about one city's climate |
 | Social studies grade 3 | ss3-globe-grid, equator and poles, why near the equator is warm (s3-climates) | Unit 6 | Social studies grade 3 unit 1 (school days 1 to 24), well before | Not needed; unit 6 opens with a globe retrieval task |
 
 No math ahead of math, later grades: unit 4's hunting data are counts out of 10, never percent (6.RP.A.3c), and
@@ -180,7 +180,7 @@ Leans on grade 3 science from other subjects (so their frames can place them): m
 m3-line-plots use this course's weather data and motion measurements as contexts; social studies ss3-globe-grid
 names 3-ESS2-2 (social studies leads, in its unit 1); ELA grade 3's frog unit (its unit 2, about school days 40 to
 77: e3-main-idea, e3-text-connections, e3-informative, e3-short-research) leans on 3-LS1-1 and 3-LS4-3, which
-science teaches later in units 3 and 4 (school days 49 to 104); ELA's own texts carry the facts it needs, and
+science teaches later in units 3 and 4 (school days 47 to 98); ELA's own texts carry the facts it needs, and
 science's wood frog case links back to ELA's frogs.
 
 ## For the lead

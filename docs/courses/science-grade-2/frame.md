@@ -1,6 +1,6 @@
 # Course frame: Science, Grade 2
 
-Course id science-k5, grade 2. Draft frame, 2026-11-13; the scope and sequence sets the days later.
+Course `science-grade-2` (catalogue id `science-k5`), grade 2. Draft frame, 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 
@@ -19,7 +19,10 @@ Course id science-k5, grade 2. Draft frame, 2026-11-13; the scope and sequence s
   include its end-of-unit assessment (the individual task on an unseen case). Returning skills follow one rule: a
   row from grade 1 or kindergarten (idle at most one grade) opens its unit with a retrieval task, a few minutes
   inside a lesson; a row idle two or more grades would open with a readiness check and a one-lesson reteach,
-  counted in the unit's days (none does in grade 2).
+  counted in the unit's days (none does in grade 2). The mid-year course-level check falls in week 17
+  (docs/courses/CALENDAR.md, the stagger rule: social studies' check holds week 14, ELA's weeks 15 and 16, math's
+  weeks 18 and 19): lessons run a little thinner before it, so course days 39 and 40 fall there, and more of the third
+  lessons come after it (the pin is in scripts/frame.py).
 - **Standard.** The 11 grade 2 performance expectations of the Next Generation Science Standards (2-PS1-1 to
   2-PS1-4, 2-LS2-1, 2-LS2-2, 2-LS4-1, 2-ESS1-1, 2-ESS2-1, 2-ESS2-2, 2-ESS2-3) and the band's third engineering
   expectation, K-2-ETS1-3, done in full here. Each is taught with every part its clarification names and inside
@@ -152,7 +155,7 @@ All eight go on to grade 3.
 
 | Check | After unit | Check days | Respond days | What it checks |
 |---|---|---|---|---|
-| Course-level check, mid-year | 3 | 2 | 1 | Short talk, draw and write check on cases not seen before: a picture map of an unfamiliar place read for where the water runs; sorting a photograph set of events into fast and slow, with a reason for one; two new barrier designs' results (a short table) read for what each does well and poorly; a material chosen for a new purpose (a dog bed) from given test data, with the reason; a material shown cooler and warmer, each sample classified. The respond day re-teaches what the check shows (often reading the data for strengths and weaknesses, and the fast or slow reason), in small groups, ending with a fresh short task |
+| Course-level check, mid-year (week 17) | 3 | 2 | 1 | Short talk, draw and write check on cases not seen before: a picture map of an unfamiliar place read for where the water runs; sorting a photograph set of events into fast and slow, with a reason for one; two new barrier designs' results (a short table) read for what each does well and poorly; a material chosen for a new purpose (a dog bed) from given test data, with the reason; a material shown cooler and warmer, each sample classified. The respond day re-teaches what the check shows (often reading the data for strengths and weaknesses, and the fast or slow reason), in small groups, ending with a fresh short task |
 | Course-level check, year-end | 7 | 2 | 1 | Check on new cases: whether a new change can be undone (a candle's wax dripping and hardening; toast), argued from evidence; a new set of pieces made into a new object; a plant test someone else ran, read for whether it was fair and what it shows; a model of a new animal spreading seeds explained; an unfamiliar pair of habitat inventories (one pair with equal counts but different kinds) read for one way the places are alike and one way they differ. The respond day re-teaches the gaps, in small groups, before the record goes on to the grade 3 teacher with what the respond day changed |
 
 ## Cross-subject

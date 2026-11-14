@@ -1,6 +1,6 @@
 # Course frame: English Language Arts Grade 7
 
-Course id ela-k12 (grade 7 row), grade 7, draft frame, written 2026-11-14; the scope and sequence sets the days later.
+Course `english-language-arts-grade-7` (catalogue id `ela-k12`), grade 7, draft frame, written 2026-11-14; the scope and sequence sets the days later.
 
 ## The course in brief
 
@@ -8,7 +8,7 @@ Course id ela-k12 (grade 7 row), grade 7, draft frame, written 2026-11-14; the s
   dams came down, the Dust Bowl, the
   fight against smallpox, who could speak in Athens, the marathon and the Olympic Games in poems and a play, and
   the Klamath River after its dams came down.
-- **Days.** 160 teaching days: 148 in units and 12 at course level (6 for three course-level checks of 2 days, 6
+- **Days.** 160 course days: 148 in units and 12 at course level (6 for three course-level checks of 2 days, 6
   respond days, 2 after each check). It assumes one ELA lesson of about 50 minutes every school day, five a week,
   for 32 weeks, about 20 minutes of independent reading on four nights a week, logged, and 15 minutes of in-class
   independent reading twice a week, when the teacher confers with each student about once every two weeks. Choice
@@ -158,7 +158,7 @@ Handed on to English Language Arts Grade 8
 | Check 2 | 4 | 2 | 2 | Days 109 to 112. Two cold articles on one topic: how each author shapes it (RI.7.9), word choice and tone (RI.7.4), an author's position set apart from others (RI.7.6), words worked out by roots, context and a reference (L.7.4); sentences edited for modifiers and commas (L.7.1, L.7.2) |
 | Check 3 | 6 | 2 | 2 | Days 157 to 160. A cold poem and a cold scene: sound and figures (RL.7.4), form (RL.7.5); a cold editorial and a short recorded talk judged for reasoning and evidence (RI.7.8, SL.7.3); a one-sitting argument from a small cold source set that acknowledges an opposing claim and cites credible sources (W.7.1a, b) |
 
-Six check days and six respond days: 12 days. Check 2 falls after unit 4 so no run of units is longer than 48 unit days without a course-level check (units 1 to 2, 3 to 4, 5 to 6). Every check reads texts not read in the units. Units not followed by a check end
+Six course-level check days and six respond days: 12 days. Check 2 falls after unit 4 so no run of units is longer than 48 unit days without a course-level check (units 1 to 2, 3 to 4, 5 to 6). Every check reads texts not read in the units. Units not followed by a check end
 in their own end-of-unit assessment on a cold text, inside the unit's days; where a check follows a unit, the check is
 that unit's end-of-unit assessment, its informational text on the unit's topic but never a text the unit read, so
 no class is tested twice in a week.

@@ -1,6 +1,6 @@
 # Course frame: Grade 2: Places and Peoples of the World
 
-Course id ss-k5, grade 2. Draft frame, 2026-11-13; the scope and sequence sets the days later.
+Course `social-studies-grade-2` (catalogue id `ss-k5`), grade 2. Draft frame, 2026-11-13; the scope and sequence sets the days later.
 
 ## The course in brief
 
@@ -16,7 +16,10 @@ Course id ss-k5, grade 2. Draft frame, 2026-11-13; the scope and sequence sets t
   parts, the year's action cycle, interviews, a research report), so it keeps grade 1's days. Each unit's days
   include its end-of-unit assessment, in grade 2 a short task done from a source not seen before plus the
   teacher's observation over the unit's last lessons, and one respond lesson after it; a unit that assumes a grade
-  1 row opens with a short readiness check inside its days.
+  1 row opens with a short readiness check inside its days. The mid-year course-level check falls in week 14 (school
+  days 66 to 70; docs/courses/CALENDAR.md, the stagger rule: ELA's check holds weeks 15 and 16, science's week 17,
+  math's weeks 18 and 19): course day 46 is pinned there, so some weeks before it carry a fourth lesson and the weeks
+  after it run at about three (the pin is in scripts/frame.py).
 - **Standard.** Content: Massachusetts 2018 grade 2, MA.2.T1 to MA.2.T5, every standard owned by a row and placed
   below, with one planned split: Massachusetts prints grade 1 T4 and grade 2 T5 as one economics topic, and Curio
   Class teaches it once (data/progressions/social-studies-excluded.csv). Grade 2 teaches resources, people as a
@@ -149,7 +152,7 @@ class chooses its problem afresh and builds on grade 2's work only if it chooses
 
 | Check | After unit | Check days | Respond days | What it checks |
 |---|---|---|---|---|
-| 1, mid-year | 3 | 1 | 1 | On a map not seen before: name what the title, key, compass rose and scale tell; find two continents and two oceans; answer who made the map and when from the map itself; write a claim about how people live with the land in a pictured place, with a reason that names the source. The respond day re-teaches in small groups what the check shows, most often scale and naming the source in a claim, ending with a brief fresh task to see that the re-teaching took |
+| 1, mid-year (week 14) | 3 | 1 | 1 | On a map not seen before: name what the title, key, compass rose and scale tell; find two continents and two oceans; answer who made the map and when from the map itself; write a claim about how people live with the land in a pictured place, with a reason that names the source. The respond day re-teaches in small groups what the check shows, most often scale and naming the source in a claim, ending with a brief fresh task to see that the re-teaching took |
 | 2, year-end | 7 | 2 | 1 | Day one: two short accounts not seen before of one event (a town flood, a ship's arrival): what both say, where they differ, whether each teller had their own way of knowing. Day two: from a short source set not seen before about a place, give a cause-effect chain for one move and a claim with two facts from named sources. The respond day re-teaches what the check shows, with a brief fresh task; the record then goes on to the grade 3 teacher |
 
 ## Cross-subject
