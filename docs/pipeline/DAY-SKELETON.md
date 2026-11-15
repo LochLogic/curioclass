@@ -1,7 +1,10 @@
-# The day skeleton: a design note (2026-11-15, not built)
+# The day skeleton: a design note (2026-11-15, draft built)
 
-One page, written while the unit skeletons ran. No code yet. The day skeleton is built after social studies has
-section plans (PRODUCTION-PATH step 7), and it is proven on social studies first, as the unit skeleton was.
+One page, written while the unit skeletons ran. A living draft, scripts/day_skeleton.py, was built the same day (Cory:
+a file that exists early gathers improvements before its first real need). It is not yet a production step: it is
+proven on social studies once section plans exist (PRODUCTION-PATH step 7), then frozen there, as the unit skeleton was.
+Each run, review or new lesson that touches day writing adds a line under "Draft log" below and, where it is a rule,
+a change to the script.
 
 ## What it is for
 
@@ -47,9 +50,24 @@ sensitive topic is handled, and any timer (only with a grounded purpose).
 7. **Pilot one course, then run the rest.** The skeleton exposes faults the reads miss; it should meet them on one
    course, not 37.
 
-## Open until it is built
+## Draft log
 
-- Whether the skeleton fills the day file itself or a sidecar the writer copies from (the day file holds prose the
-  writer owns; a sidecar keeps regeneration safe).
+- 2026-11-15, draft v0: writes a sidecar, docs/courses/<course>/day-skeletons/d<nnn>.md, never the day file (decided:
+  regeneration stays safe and the writer's prose is never touched). Fills the header (day, unit and section, frame
+  title and question, kind, assessment, minutes, calendar, tools, supplies, safety, leans_on, credit from source-map
+  rows), the goal and note, skills marked own or earlier-grade review, codes in our words with the `~` mark kept, an
+  Assessment block (taught-before days and Collect once, the unit skeleton's own functions), the nine teacher-page
+  parts in LESSON-DAY order with the next day's goal under Tomorrow, and items.csv or parts.csv rows when a section
+  plan has them. Self-test: 8 checks. Tried on us-history-i day 71 and science-grade-4 day 36.
+- 2026-11-15, Cory on long day notes (ELA kindergarten to grade 2 most of all): a days.csv note may run long, since it
+  is the writer's input; the teacher page does not. The day writer turns the note into the page's parts and keeps only
+  what the teacher needs in the room, unless a length has a real need (a safety step, a station rotation). The
+  sidecar prints the note for the writer only; the teacher page never copies it.
+- Known gaps for the first real run: the student page and At home are bare TODOs; the readiness check on a unit's last
+  day is not yet split out from the day's own assessment; no word list (Word Wall cards per day) is read yet; no check
+  yet compares a written day against its sidecar.
+
+## Open until it is first used
+
 - How a day already written learns of a section plan change (most likely a check that lists stale days, not a
   rewrite).

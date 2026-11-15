@@ -308,7 +308,13 @@ def frame_models(course, unit):
         if len(cells) < 4:
             continue
         if not is_ss():
-            if unit in unit_nums(cells[2]):
+            nums = unit_nums(cells[2])
+            if unit in nums and unit != min(nums):
+                # the cell names an earlier unit of this course first (science 7 food-web: unit 3 checks, unit 4 retrieves)
+                out.append((cells[0], 'used again here (first used in unit %d): %s' % (min(nums), cells[2])))
+            elif unit in nums and re.search(r'reactivat|revisit|retriev', cells[2], re.I):
+                out.append((cells[0], 'reactivated here (from an earlier grade: %s): %s' % (cells[1], cells[2])))
+            elif unit in nums:
                 out.append((cells[0], 'introduced or first used here: ' + cells[2]))
             elif unit in unit_nums(cells[3]):
                 out.append((cells[0], 'used again here: ' + cells[3] + ' (from: ' + cells[2] + ')'))
@@ -389,7 +395,9 @@ WTYPE = {'1': 'argument (opinion in kindergarten to grade 5)', '2': 'informative
          '10': 'writing over time (routine and extended)'}
 WRITEWORDS = re.compile(r'\b(draft\w*|essay\w*|write|writes|writing|paragraph\w*|argument\w*|narrative\w*|article\w*|'
                         r'revis\w*|publish\w*|report\w*|poem\w*|scene\w*|opinion\w*|informative|research\w*)\b', re.I)
-SAFEWORDS = re.compile(r'\b(safety|goggles?|eye protection|gloves|hazard\w*|chemical\w*|flame|heat\w*|allerg\w*|sharp|'
+# Safety words in notes (science field 8). "chemical" is left out: "chemical change" and "chemical reaction" name content,
+# not a hazard (spot check 2026-11-15).
+SAFEWORDS = re.compile(r'\b(safety|goggles?|eye protection|gloves|hazard\w*|flame|heat\w*|allerg\w*|sharp|'
                        r'ventilat\w*|demonstration|teacher-only|disposal|food policy)\b', re.I)
 TOOLWORDS = re.compile(r'\b(tools?|simulations?|applets?|calculators?|manipulatives?|supplies|materials?|paper|ruler|'
                        r'protractor|compass|string|kit|device|spinners?|cubes|slips|film|audio|recording|print\w*|'
@@ -444,16 +452,12 @@ def unit_nums(text):
 
 def split_unit_cell(cell):
     """(title, question, anchor) from the frame's unit cell; the 'Anchor: ...' tail is science's phenomenon."""
-    anchor = ''
-    if SUBJ == 'science':
-        return split_science_cell(cell)
     if not is_ss():
-        m = re.search(r'\s+Anchor:\s*(.+)$', cell.strip())
-        if m:
-            anchor = m.group(1).strip()
-            cell = cell.strip()[:m.start()]
+        # every shape the four subjects' frames use (spot check 2026-11-15: italic, quoted after a "?" title, "Title:
+        # Question?", "**Title** (weeks ...)"); social studies keeps split_title, its output is frozen
+        return split_science_cell(cell)
     t, q = split_title(cell)
-    return t, q, anchor
+    return t, q, ''
 
 
 def _sentences(text):
@@ -471,7 +475,7 @@ def split_science_cell(cell):
     The question and the anchor are kept apart; a 'Design problem:' sentence joins the front of the anchor."""
     cell = cell.strip()
     head = ''
-    mh = re.match(r'\*\*(.+?)\*\*\s*(?:\(weeks? [^)]*\))?\.?\s*', cell)
+    mh = re.match(r'\*\*(.+?)\*\*\s*(?:\((?:weeks?|about) [^)]*\))?\.?\s*', cell)
     if mh:                      # high school: '**Title** (weeks 1 to 3).' leads the cell
         head, cell = mh.group(1).strip(), cell[mh.end():].strip()
     ms = list(re.finditer(r'(?<![A-Za-z])Anchor:\s*', cell))
@@ -488,11 +492,15 @@ def split_science_cell(cell):
         if re.match(r'Design (problem|question):', mid):
             design.append(mid)
     else:
-        sents = _sentences(before)
+        # a question may close with a bracketed aside: 'What do the sources say? (each student's own question)'
+        sents = [re.sub(r'(?<=\?)\s+\(.*$', '', x) for x in _sentences(before)]
         qi = max((i for i, x in enumerate(sents) if x.endswith('?')), default=None)
         if qi is not None:
             question = sents[qi]
             title = sents[0] if qi > 0 else ''
+            mc = re.match(r'^([^?:]{2,80}):\s+(.+\?)$', question) if qi == 0 else None
+            if mc and not re.match(r'Design (problem|question)', mc.group(1)):   # 'Similarity: How can ...?'
+                title, question = mc.group(1), mc.group(2)
             design = [x for x in sents[1:] if sents.index(x) != qi and re.match(r'Design (problem|question):', x)]
         else:
             tsents = _sentences(tail)
@@ -507,7 +515,9 @@ def split_science_cell(cell):
     if head:
         title = head
     title = re.sub(r'\s*\(weeks? [^)]*\)', '', _plain(title)).rstrip('.').strip()
-    anchor = ' '.join(design + ([tail] if tail else [])).strip()
+    # a design sentence that runs into "Anchor:" with no full stop still ends as a sentence (science K unit 3)
+    design = [x if re.search(r'[.?!]$', x) else x + '.' for x in design]
+    anchor = ' '.join(design + ([('Anchor: ' if design else '') + tail] if tail else [])).strip()
     return title or cell, _plain(question), anchor
 
 
@@ -605,6 +615,8 @@ def material_lines(course, rows):
 PE_RE = re.compile(r'^(?:K-2|3-5|K|[1-5]|MS|HS)-[A-Z]+\d(?:-\d+)?$')
 WEIGHTWORD = {'major': 'major', 'supporting': 'supporting', 'additional': 'additional', 'wap': 'prerequisite', 'plus': 'plus'}
 PLUSNOTE = 'plus means advanced (+) standards, outside the weighted set'
+WAPNOTE = ('prerequisite means "wap" in the focus file, a widely applicable prerequisite: a high school cluster that later '
+           'courses lean on, still this course\'s own content')
 
 # The judgement-line wording that differs by subject. Social studies is frozen: its entries are the original text.
 TXT = {
@@ -622,7 +634,7 @@ TXT = {
     },
     'science': {
         'hook': 'Hook for day 1: the anchoring phenomenon or design problem as students first meet it (what they see, hear or handle), tied to the compelling question; its source named in field 10.',
-        'supq': 'Question board: the questions students are expected to raise from the phenomenon, grouped, and the day each is answered.',
+        'supq': '',     # the question board is asked once, in the Storyline line (spot check 2026-11-15)
         'claim': 'The closing explanation: what students explain about the phenomenon, from which evidence they gathered or read, and the day the class writes it.',
         'carried': 'Carried: for each model above, how it is revised over the unit (the day of the initial model, each revision with the evidence that caused it, and the consensus model).',
     },
@@ -696,7 +708,11 @@ def pe_row(code):
     ccc = join(d.get('ccc', []), lambda r: '%s: %s' % (r['name'], r['element']))
     if not ccc:
         names = [r['name'] for r in d.get('eta', []) + d.get('nos', [])]
-        ccc = clean('; '.join('%s (connection, no crosscutting concept)' % n for n in names)) or MARK + ': no crosscutting concept on file'
+        ccc = clean('; '.join('%s (connection, no crosscutting concept)' % n for n in names))
+        if not ccc and 'ETS' in code:
+            # the standards list none for some engineering expectations (K-2-ETS1-1): say so, never invent one
+            ccc = 'None listed for this engineering expectation; use the unit\'s focal crosscutting concept (frame, C3 column, above).'
+        ccc = ccc or MARK + ': no crosscutting concept on file'
     return '| %s | %s | %s | %s |' % (code, sep, dci, ccc)
 
 
@@ -752,8 +768,9 @@ def header_weight(codes):
             if ks:
                 groups.append('%s (%s)' % (WEIGHTWORD[wt], ', '.join(ks)))
         L.append(OPEN)
-        L.append('Weight (Student Achievement Partners, data/standards/ccss-math-focus.csv): %s.%s'
-                 % ('; '.join(groups) or 'none on file', (' In this line ' + PLUSNOTE + '.') if any(w_ == 'plus' for _, w_, _ in cl) else ''))
+        L.append('Weight (Student Achievement Partners, data/standards/ccss-math-focus.csv): %s.%s%s'
+                 % ('; '.join(groups) or 'none on file', (' In this line ' + PLUSNOTE + '.') if any(w_ == 'plus' for _, w_, _ in cl) else '',
+                    (' In this line ' + WAPNOTE + '.') if any(w_ == 'wap' for _, w_, _ in cl) else ''))
         L.append(CLOSE)
         miss = [k for k, w_, _ in cl if not w_]
         if miss:
@@ -827,7 +844,7 @@ def field2_extras(course, unit, rows, codes, fr, anchor):
                 L.append('  - %s: measure: %s; demands: %s' % (clean(t['title']), clean(t['measure']) or 'not stated', clean(t['demands']) or 'not stated'))
         L.append(CLOSE)
         if trows:
-            L.append('%s: Anchor and paired texts: confirm each anchor and paired row above, the day it is read, and fill the rows whose status is to choose or to confirm (name the text, its edition and its part); say which texts you added or dropped. Rights stay as the file has them.' % MARK)
+            L.append('%s: Anchor and paired texts: confirm each anchor and paired row above, the day it is read, and fill the rows whose status is to choose or to confirm (name the text, its edition and its part); say which texts you added or dropped. Rights stay as the file has them; where a row says not stated, give the basis you know (public domain by date, written by Curio Class, or the licence) and list the row under "For the lead".' % MARK)
             L.append('%s: Text complexity: for each anchor, the reader and task and the support (the measure and the qualitative demands are on file above); correct a demand that is wrong.' % MARK)
         else:
             L.append('%s: Anchor and paired texts: no rows in data/plans/ela-texts.csv for this course and unit; name each anchor and paired text, the day it is read, and its rights line.' % MARK)
@@ -863,7 +880,7 @@ def field2_extras(course, unit, rows, codes, fr, anchor):
                     L.append('  - %s: %s' % (c, t))
                 L.append(CLOSE)
             L.append('')
-        L.append('%s: Storyline: the question board (what students notice and wonder), the initial class model and its day, each revision with the evidence that causes it, the consensus model and its day, and the unseen phenomenon the end-of-unit assessment uses.' % MARK)
+        L.append('%s: Storyline: the question board (what students notice and wonder from the phenomenon, grouped, with the day each question is answered) and the unseen phenomenon the end-of-unit assessment uses. The model\'s path (initial, revisions, consensus) goes under Carried, once.' % MARK)
     return L
 
 
@@ -956,13 +973,12 @@ def field10_extras(course, unit):
         count = {}
         for r in sm:
             count[r['decision']] = count.get(r['decision'], 0) + 1
-            extra = ''
-            if r.get('order_conflict', '').strip():
-                extra = ' Order conflict: %s (harms learning: %s).' % (clean(r['order_conflict']), r.get('harms_learning', '') or 'not stated')
-            L.append('  - %s, %s: standards %s; goals %s; our days %s; %s. %s%s'
-                     % (r['source'], clean(r['title']), clean(r.get('standards', '')) or 'none listed', clean(r.get('goals', '')) or 'none listed',
-                        r['days'] or 'none', r['decision'], clean(r['why']), extra))
-        L.append('- **Source-map decisions in this unit:** %s.' % ', '.join('%s %d' % (k, v) for k, v in sorted(count.items())))
+            # one line per row (spot check 2026-11-15, bulk): goals, standards and why stay in source-map.csv
+            L.append('  - %s, %s: our days %s; %s%s'
+                     % (r['source'], clean(r['title']), r['days'] or 'none', r['decision'],
+                        '; order conflict' if r.get('order_conflict', '').strip() else ''))
+        L.append('- **Source-map decisions in this unit:** %s. Goals, standards, the reason for each decision and any order '
+                 'conflict are in the file.' % ', '.join('%s %d' % (k, v) for k, v in sorted(count.items())))
     elif base:
         L.append('- **Base text:** %s; data/plans/%s/source-map.csv has no rows for unit %d.' % (base, course, unit))
         miss.append('%s: Base text lessons used: data/plans/%s/source-map.csv has no rows for this unit (missing data; it comes with the scope and sequence, sequence-write.md rule 8); list the lessons, their days and decisions.' % (MARK, course))
@@ -1007,6 +1023,100 @@ def retrieval_clauses(note, day, broad=False):
         if not other:
             out.append(c[m.start():])
     return out
+
+
+# Math, ELA and science retrieval tasks (spot check 2026-11-15, finding 3): the whole clause, never a fragment cut at the
+# word; a clause with no row id, unit, grade or day reference is a routine, a rule or a minute budget, not a task; a
+# clause that only reviews days of the same unit is review, not retrieval; "for unit N" belongs to unit N.
+IDTOK = re.compile(r'\b[a-z0-9]+(?:-[a-z0-9]+)+\b')
+REFWORDS = re.compile(r'\b(?:units?|grades?)\s+(?:\d+|K)\b|\bkindergarten\b|\b(?:Biology|Chemistry|Physics|Algebra I+|Geometry)\b')
+NOT_TASK = re.compile(r'\b(?:instead of|replacing|replaces)\b[^.;]{0,40}$', re.I)
+FOR_UNIT = re.compile(r'\bfor (?:unit (\d+)|the next unit)\b|\bnext unit\'s\b', re.I)
+
+
+def ids_in(text, prog):
+    """Progression row ids named in a text, in order."""
+    return uniq(t for t in IDTOK.findall(text) if t in prog)
+
+
+def day_nums(text):
+    """The course days a text names ('days 43, 45 and 48', 'days 53 to 54', 'day 51')."""
+    out = set()
+    for m in re.finditer(r'\bdays?\s+(\d+(?:\s*(?:,|and|to)\s*\d+)*)', text, re.I):
+        toks = re.findall(r'\d+|\bto\b', m.group(1))
+        i = 0
+        while i < len(toks):
+            if i + 2 < len(toks) and toks[i + 1] == 'to':
+                out.update(range(int(toks[i]), int(toks[i + 2]) + 1))
+                i += 3
+            else:
+                if toks[i] != 'to':
+                    out.add(int(toks[i]))
+                i += 1
+    return out
+
+
+def task_clauses(note, day, prog, first):
+    """The retrieval tasks of one math, ELA or science note (see IDTOK above): whole clauses that name a row id, a unit,
+    a grade or a day outside the unit; "Refresh <row id>" counts too (science 4 day 18)."""
+    out = []
+    for c in note_clauses(note):
+        ids = ids_in(c, prog)
+        m = re.search(r'\bretriev\w*', c, re.I)
+        if not m:
+            if ids and re.search(r'\brefresh\w*', c, re.I):
+                out.append(c)
+            continue
+        if NOT_TASK.search(c[:m.start()]):
+            continue        # 'instead of ordinary mixed retrieval': the task named elsewhere
+        if re.search(r'\bnever\b', c, re.I) and not ids:
+            continue        # a rule ('Retrieval openings never count as assessment evidence')
+        if any(int(x) != day for x in re.findall(r'retriev\w*(?:\s+tasks?)?\s+on\s+day\s+(\d+)', c, re.I)):
+            continue        # a mention of a task on another day
+        words = REFWORDS.search(c)
+        days = day_nums(c)
+        if not ids and not words and not days:
+            continue        # no reference: a routine or a minute budget
+        if not ids and not words and all(first <= d <= day for d in days):
+            continue        # review of this unit's own days
+        out.append(c)
+    return out
+
+
+def unit_tasks(rows, allrows, unit, prog):
+    """[(day, clause)] retrieval tasks of a math, ELA or science unit: its own days' task clauses less those for another
+    unit, plus the clauses of the up to three days before it (its readiness window) that are for it. A clause that names
+    only row ids of the next unit, on the unit's last days, is the next unit's (ELA 7 day 86)."""
+    byday = {int(r['day']): r for r in allrows}
+    first, last = int(rows[0]['day']), int(rows[-1]['day'])
+
+    def rel(u):
+        sk = {s for r in allrows if r['stretch'] == str(u) for s in split_list(r['skills'])}
+        return sk | {a for s in sk if s in prog for a in split_list(prog[s].get('assumes', ''))}
+    me, nxt, prv = rel(unit), rel(unit + 1), rel(unit - 1)
+    out = []
+    for r in rows:
+        d = int(r['day'])
+        for c in task_clauses(r['note'], d, prog, first):
+            m = FOR_UNIT.search(c)
+            if m and (int(m.group(1)) if m.group(1) else unit + 1) != unit:
+                continue
+            ids = set(ids_in(c, prog))
+            if not m and d > last - 3 and ids and not ids & me and ids & nxt:
+                continue
+            out.append((d, c))
+    for k in range(1, 4):
+        p = byday.get(first - k)
+        if p is None or p['stretch'] not in (str(unit - 1), 'C'):
+            break
+        pd = int(p['day'])
+        pfirst = min(int(r['day']) for r in allrows if r['stretch'] == p['stretch'])
+        for c in task_clauses(p['note'], pd, prog, pfirst):
+            m = FOR_UNIT.search(c)
+            ids = set(ids_in(c, prog))
+            if (m and (int(m.group(1)) if m.group(1) else unit) == unit) or (not m and ids and not ids & prv and ids & me):
+                out.append((pd, c))
+    return sorted(out, key=lambda x: x[0])
 
 
 def grade_num(g):
@@ -1081,6 +1191,8 @@ def used_on(r, skill, course_grade, prog, via=True):
     if skill not in own:
         if not via or not any(skill in split_list(prog.get(s, {}).get('assumes', '')) for s in own):
             return False
+        if not is_ss() and (r['kind'] in ('Respond', 'Check') or r['stretch'] == 'C'):
+            return False    # a respond, check or course-level day is no one-hop use (spot check 2026-11-15, science 4)
         return not re.search(r'retriev|readiness', r['note'], re.I) or r['kind'] in ('Understanding', 'Application')
     og = grade_num(prog.get(skill, {}).get('grade'))
     if og is not None and course_grade is not None and og < course_grade and re.search(r'retriev|readiness', r['note'], re.I):
@@ -1103,8 +1215,24 @@ def earlier_rows(course, rows, allrows, prog, frame_meta, ready_day):
     def own(s):
         g = grade_num(prog[s]['grade'])
         return g is None or cg is None or g >= cg
-    assumes = [a for a in uniq(a for s in skills if s in prog and own(s) for a in split_list(prog[s]['assumes']))
-               if a not in set(skills)]
+    nss = not is_ss()
+    tasks = []
+    if nss:
+        # Math, ELA, science (spot check 2026-11-15): an earlier-grade row in the skills column is itself an earlier
+        # row (it was dropped before, losing geometry's readiness rows); assumes come only from own-grade skills first
+        # cited in this unit (a skill an earlier unit already cites is in continuous use, its assumes were met there);
+        # an earlier-grade row a retrieval task names is an earlier row too (science 4 day 18, "Refresh s1-...").
+        unit = int(rows[0]['stretch'])
+        tasks = unit_tasks(rows, allrows, unit, prog)
+        prior = {s for r in allrows if int(r['day']) < first for s in split_list(r['skills'])}
+        mine = [s for s in skills if s in prog and own(s)]
+        early = [s for s in skills if s in prog and not own(s)]
+        named = [a for _, t in tasks for a in ids_in(t, prog) if not own(a)]
+        assumes = [a for a in uniq(early + [a for s in mine if s not in prior for a in split_list(prog[s]['assumes'])] + named)
+                   if a not in set(mine)]
+    else:
+        assumes = [a for a in uniq(a for s in skills if s in prog and own(s) for a in split_list(prog[s]['assumes']))
+                   if a not in set(skills)]
     if not assumes:
         return []
     other, unread = [], []
@@ -1117,10 +1245,20 @@ def earlier_rows(course, rows, allrows, prog, frame_meta, ready_day):
             unread.append((g, c, str(e)))
     retr_days = {}
     for r in rows:
-        clauses = ' '.join(retrieval_clauses(r['note'], int(r['day']), broad=True))
+        if nss:
+            clauses = ' '.join(t for d, t in tasks if d == int(r['day']))
+        else:
+            clauses = ' '.join(retrieval_clauses(r['note'], int(r['day']), broad=True))
         for a in assumes:
-            if (a in split_list(r['skills']) and re.search(r'retriev', r['note'], re.I)) or a in clauses:
+            if (a in split_list(r['skills']) and re.search(r'retriev', r['note'], re.I)) or a in ids_in(clauses, prog) \
+                    or (not nss and a in clauses):
                 retr_days.setdefault(a, []).append(int(r['day']))
+    if nss:     # a task for this unit on a day before it (its readiness window)
+        for d, t in tasks:
+            if d < first:
+                for a in ids_in(t, prog):
+                    if a in assumes:
+                        retr_days.setdefault(a, []).append(d)
     out = []
     for a in assumes:
         e = {'row': a, 'owned': '?', 'last': '', 'lastg': '', 'rule': '', 'named': '', 'off': '', 'group': ''}
@@ -1179,6 +1317,9 @@ def earlier_rows(course, rows, allrows, prog, frame_meta, ready_day):
         if a in retr_days:
             names.append('retrieval, day%s %s' % ('s' if len(retr_days[a]) > 1 else '', runs_text(retr_days[a])))
         e['named'] = '; '.join(names) or 'not named by id'
+        if nss and not names and e['rule'] == 'retrieval' and e['lastg'] == 'earlier this year':
+            # in use this year: no task by id is asked (spot check 2026-11-15, finding 2)
+            e['named'] = 'in use this year (no task by id needed)'
         if e['rule'] == 'readiness' and not rd:
             e['group'] = ('want a readiness check, and the readiness check before this unit does not name them'
                           if ready_day is not None else 'want a readiness check, and days.csv holds no readiness check for this unit')
@@ -1226,20 +1367,148 @@ def evidence_pairs(allrows, unit, day):
 def group_column(rows, col):
     """[(item, [days])] for a ;-separated days.csv column (tools, supplies, safety), items in first-seen order; a safety
     cell that is the word none is not an item."""
-    order, days = [], {}
+    order, days, label = [], {}, {}
     for r in rows:
         for it in [x.strip() for x in (r.get(col) or '').split(';') if x.strip()]:
             if col == 'safety' and it.lower() == 'none':
                 continue
-            if it not in days:
-                order.append(it)
-                days[it] = []
-            days[it].append(int(r['day']))
-    return [(it, days[it]) for it in order]
+            k = item_key(it)
+            if k not in days:
+                order.append(k)
+                days[k] = []
+                label[k] = it
+            if int(r['day']) not in days[k]:
+                days[k].append(int(r['day']))
+    return [(label[k], days[k]) for k in order]
+
+
+def item_key(it):
+    """An item's key for grouping: case, a bracketed aside and plural endings ignored, so 'foil strip switch (household
+    stand-in)' and 'foil strip switch', or 'metal spoons' and 'metal spoon', are one item (spot check 2026-11-15)."""
+    t = re.sub(r'\s*\([^)]*\)', '', it.lower())
+    words = [re.sub(r'(?<=[a-z]{2})(?<!s)s$', '', x) for x in re.findall(r'[a-z0-9]+', t)]
+    return ' '.join(words) or it.lower()
+
+
+MINS = re.compile(r'\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve|fifteen|twenty|thirty|forty|'
+                  r'fifty)[- ]minutes?\b', re.I)
+KEPT = re.compile(r'\bas (?:the )?(?:end-of-unit |mid-unit |assessment )?(?:evidence|products?|records?)\b|'
+                  r'\bassessment (?:products?|evidence)\b|\bend-of-unit evidence\b|\breused on day\b', re.I)
+CODETOK = re.compile(r'(?<![\w.])[A-Z0-9][A-Za-z0-9]*(?:[.-][A-Za-z0-9]+)+')
+
+
+def evidence_days(rows):
+    """Days of a unit with no assess value whose note keeps their product as assessment evidence (math 8 day 34,
+    math 5 day 51): an assessment day reuses that record (sequence-write.md rule 2, Collect once)."""
+    return [r for r in rows if not r['assess'] and KEPT.search(r['note'])]
+
+
+def mentions(text, code):
+    """True when a note names the code, or (math and ELA) its lettered or numbered tail the way notes shorten it:
+    '7c' for 5.NF.B.7c, 'for 6' for 5.NF.B.6."""
+    if re.search(r'(?<![\w.])%s(?![\w])' % re.escape(code), text):
+        return True
+    tail = code.split('.')[-1] if '.' in code else ''
+    if re.fullmatch(r'\d+[a-z]', tail):
+        return re.search(r'(?<![\w.])%s\b' % tail, text) is not None
+    if tail.isdigit():
+        return re.search(r'\bfor %s\b' % tail, text) is not None
+    return False
+
+
+def reuse_sources(note, day, codes, byday):
+    """code -> [days] an assessment day's note reuses for it ('Reuse day 51 ... for 7c', 'Do not recollect the full
+    performance from day 34'). A sentence that names codes maps only those; one that names none maps every code the
+    reused day cites."""
+    out = {}
+    for sent in re.split(r'(?<=\.)\s+|;\s*', note):
+        if not (REUSE.search(sent) or re.search(r'\brecollect\w*|\bre-?scor\w*', sent, re.I)):
+            continue
+        ds = sorted(x for x in day_nums(sent) if x != day and x in byday)
+        if not ds:
+            continue
+        named = [c for c in codes if mentions(sent, c)]
+        others = [t for t in CODETOK.findall(sent) if (t in std_text() or is_pe(t)) and t not in codes]
+        if not named and others:
+            continue        # it reuses evidence for other codes (science 7 day 95)
+        for c in named or codes:
+            fam = {c} | set(children(c)) | ({c[:-1]} if c[-1:].islower() else set())
+            src = [x for x in ds if fam & set(split_list(byday[x]['codes']))]
+            if src:
+                out[c] = uniq(out.get(c, []) + src)
+    return out
+
+
+SECTION_DAYS = 15      # a section longer than this is flagged for breaks (math, ELA, science)
+
+
+def long_sections(sections):
+    """[(section, days)] of the sections longer than SECTION_DAYS (ELA K unit 4 is one 39-day section)."""
+    return [(k, v) for k, v in sections if len(v) > SECTION_DAYS]
+COMPLETES = re.compile(r'\bunit (\d+) completes\b|\bcompleted? in unit (\d+)\b|\bowned (?:later )?in unit (\d+)\b|'
+                       r'\bownership remains in unit (\d+)\b', re.I)
+
+
+def coverage_gaps(codes, evrows, fo, bgn):
+    """Owned codes (the frame's Owned standards when it lists any, never a begun code) that no assessment day or kept
+    teaching day in evrows cites, itself, through a lettered part or through its parent (field 5 coverage line)."""
+    sampled = {c for r in evrows for c in split_list(r['codes'])}
+    owned = [c for c in codes if (not fo or c in fo or (c[-1:].islower() and c[:-1] in fo)) and c not in bgn]
+    return [c for c in owned if not (({c} | set(children(c)) | ({c[:-1]} if c[-1:].islower() else set())) & sampled)]
+
+
+def frame_owned(fr):
+    """The Owned standards cell of a frame unit row, ~ codes left out (they are begun, not owned)."""
+    if not fr or len(fr) < 5:
+        return set()
+    return {c for c in split_list(fr[4].replace('`', '')) if not c.startswith('~')}
+
+
+def begun_codes(unit, rows, rawrows, own_sk, prog, fr):
+    """code -> where it is completed ('' when not said), for the codes a math, ELA or science unit begins and a later
+    unit or grade owns (spot check 2026-11-15, finding 5). A code is begun when days.csv marks it ~ wherever the unit
+    cites it, when the progression marks it ~ on the unit's own rows and no own row owns it, or when a note sentence
+    that names it (or names no code) says "unit N completes" and the frame's unit row does not own it. A lettered part
+    of a begun code is begun too, unless a row owns the part."""
+    codes = uniq(c for r in rows for c in split_list(r['codes']))
+    rawc = [x for r in rawrows for x in split_list(r['codes'])]
+    bare = {x for x in rawc if not x.startswith('~')}
+    out = {}
+    for x in rawc:
+        if x.startswith('~') and x[1:] not in bare:
+            out[x[1:]] = ''
+    pstd = [x for s in own_sk if s in prog for x in split_list(prog[s]['standard'])]
+    pbare = {x for x in pstd if not x.startswith('~')}
+    for x in pstd:
+        if x.startswith('~') and x[1:] not in pbare and x[1:] in codes:
+            out.setdefault(x[1:], '')
+    owned = frame_owned(fr)
+    for r in rows:
+        mine = split_list(r['codes'])
+        for sent in re.split(r'(?<=\.)\s+', r['note']):
+            m = COMPLETES.search(sent)
+            if not m:
+                continue
+            n = int(next(g for g in m.groups() if g))
+            if n == unit:
+                continue
+            named = [c for c in mine if re.search(r'(?<![\w.])%s(?![\w])' % re.escape(c), sent)]
+            for c in named or mine:
+                if c not in owned and not (c[-1:].islower() and c[:-1] in owned) and (owned or c not in pbare):
+                    if not out.get(c):
+                        out[c] = 'unit %d completes it (day %s note)' % (n, r['day'])
+    for c in codes:
+        if c[-1:].islower() and c[:-1] in out and c not in out and c not in pbare:
+            out[c] = out[c[:-1]]
+    return out
 
 
 def build(course, unit):
     allrows = days_rows(course)
+    raw = {int(r['day']): r for r in allrows}      # days.csv as written: the day list and the field 5 code cells keep its ~
+    if not is_ss():
+        # math, ELA, science: a ~ in days.csv marks a begun code; the code itself is the same code (spot check 2026-11-15)
+        allrows = [dict(r, codes='; '.join(x.lstrip('~') for x in split_list(r['codes']))) for r in allrows]
     rows = [r for r in allrows if r['stretch'] == str(unit)]
     if not rows:
         raise SystemExit('%s has no unit %s' % (course, unit))
@@ -1260,6 +1529,17 @@ def build(course, unit):
     order = ['Understanding', 'Fluency', 'Application', 'Check', 'Respond']
     kind_txt = ', '.join('%s %d' % (k.lower(), kinds[k]) for k in order + sorted(set(kinds) - set(order)) if k in kinds)
     sections = sections_of(rows)
+    skills = uniq(s for r in rows for s in split_list(r['skills']))
+    cg = grade_num(frame_meta.get('grade'))
+    own_sk, early_sk, bgn = skills, [], {}
+    if not ss:
+        tx = dict(tx, hook=tx['hook'].replace('day 1', 'day %d' % first))
+        # Spot check 2026-11-15, finding 1: an earlier-grade row in the skills column is listed for retrieval or
+        # readiness, never as owned, and feeds neither Builds on nor Leads to.
+        early_sk = [s for s in skills if s in prog and grade_num(prog[s]['grade']) is not None and cg is not None
+                    and grade_num(prog[s]['grade']) < cg]
+        own_sk = [s for s in skills if s not in early_sk]
+        bgn = begun_codes(unit, rows, [raw[int(r['day'])] for r in rows], own_sk, prog, fr)
     W = []
     w = W.append
 
@@ -1273,6 +1553,11 @@ def build(course, unit):
     if cal:
         sdays = [n for r in cal for n in range(int(r['first_school_day']), int(r['last_school_day']) + 1)]
         sd = '; school days %s, weeks %s to %s' % (runs_text(sdays), cal[0]['first_week'], cal[-1]['last_week'])
+        nweeks = int(cal[-1]['last_week']) - int(cal[0]['first_week']) + 1 if (cal[0]['first_week'].isdigit() and cal[-1]['last_week'].isdigit()) else 0
+        if not ss and len(sdays) > len(rows) and nweeks:
+            # a course that does not meet every school day (science K, 3 a week): the span is not the days it meets
+            sd = '; school days %s (the course meets about %d a week, so not every school day in the span), weeks %s to %s' % (
+                runs_text(sdays), round(len(rows) / nweeks), cal[0]['first_week'], cal[-1]['last_week'])
     sec_txt = '; '.join('%s (days %s)' % (k, runs_text(v)) for k, v in sections)
     w('Course `%s` (%s). **Days %s** (%d course days%s). Sections: %s. Days by kind: %s. '
       'A plan, not a lesson: nothing here is built or tried with children. Fields follow UNIT-PLAN.md.'
@@ -1286,6 +1571,13 @@ def build(course, unit):
     if len(sections) > 1:
         w('%s: Name each section (%s) in one line each; days.csv holds only their numbers and days.'
           % (MARK, ', '.join(k for k, _ in sections)))
+    long_secs = long_sections(sections) if not ss else []
+    if long_secs:
+        # spot check 2026-11-15 (ELA K unit 4, one 39-day section): a section this long is a unit, not a section
+        w('%s: Section%s %s run%s more than %d days (days.csv gives the unit one section); propose the section breaks '
+          '(days and a one-line name each) and list them under "For the lead"; never change days.csv yourself.'
+          % (MARK, 's' if len(long_secs) > 1 else '', ', '.join('%s (%d days)' % (k, len(v)) for k, v in long_secs),
+             '' if len(long_secs) > 1 else 's', SECTION_DAYS))
     w('')
 
     # ---- field 2: standards
@@ -1294,7 +1586,8 @@ def build(course, unit):
     if question:
         w('- **Compelling question (frame):** "%s"' % clean(question))
     w('%s: %s' % (MARK, tx['hook']))
-    w('%s: %s' % (MARK, tx['supq']))
+    if tx['supq']:
+        w('%s: %s' % (MARK, tx['supq']))
     w('%s: %s' % (MARK, tx['claim']))
     w('%s: Teaching moves across the unit: what the teacher does to keep the inquiry going (where to model, where to step back).' % MARK)
     w('')
@@ -1304,27 +1597,36 @@ def build(course, unit):
     for c in codes:
         if len(c) > 1 and c[-1].islower() and c[:-1] in codes:
             continue
-        txt = std_line(c)
+        begun = c.startswith('~') and len(c) > 1   # a code this course begins and a later one owns (lead, 2026-11-15)
+        txt = std_line(c[1:] if begun else c)
+        if begun and txt:
+            txt = '(begun here; the full expectation is owned and assessed later) ' + txt
+        lab_ = c
+        if c in bgn:       # math, ELA, science: the ~ shown wherever the code is (spot check 2026-11-15, finding 5)
+            lab_ = '~' + c
+            if txt:
+                txt = '(begun here; %s) %s' % (bgn[c] or 'the full expectation is owned and assessed later', txt)
         kids = [k for k in children(c) if k in codes]
         if txt and 'such as' in txt:
             txt = txt.rstrip() + ' (The "such as" list gives examples, not required parts.)'
         if txt and not kids and is_choice(c):
             opts = '; '.join('%s (%s) %s' % (k[-1], k, clean(std[k])) for k in children(c))
             w('- **%s:** %s Parts: a choice standard, one option studied in depth and the rest surveyed (not each a '
-              'required part). Options: %s' % (c, clean(txt), opts))
+              'required part). Options: %s' % (lab_, clean(txt), opts))
             continue
-        if subj == 'science' and txt and is_pe(c) and pe_statement(c):
-            w('- **%s:** %s%s' % (c, clean(txt), pe_limit_lines(c)))
+        b = c[1:] if begun else c
+        if subj == 'science' and txt and is_pe(b) and pe_statement(b):
+            w('- **%s:** %s%s' % (lab_, clean(txt), pe_limit_lines(b)))
             continue
         if not txt:
             c3_nolines.append(c)
-            w('- **%s:** (no own-word line in the standards file%s)' % (c, '' if c in std else '; code not found'))
+            w('- **%s:** (no own-word line in the standards file%s)' % (lab_, '' if c in std else '; code not found'))
             continue
         if kids:
             parts = '; '.join('%s (%s) %s' % (k[-1], k, clean(std[k])) for k in kids)
-            w('- **%s:** %s Parts, by verb: %s' % (c, clean(txt), parts))
+            w('- **%s:** %s Parts, by verb: %s' % (lab_, clean(txt), parts))
         else:
-            w('- **%s:** %s Parts, by verb: whole standard.' % (c, clean(txt)))
+            w('- **%s:** %s Parts, by verb: whole standard.' % (lab_, clean(txt)))
     if ss and any(c.startswith('MA.') for c in codes):
         w('- **Taught and assessed in general form:** Curio Class serves every state, so each MA code above is taught and assessed '
           'in general form: the class\'s own place, with worked examples from several states. Massachusetts or Boston is at most one '
@@ -1340,9 +1642,11 @@ def build(course, unit):
     elif c3_nolines:
         w('%s: The codes above that are not in the standards file (%s; missing data): give each one line, in your own words, '
           'and its parts by verb.' % (MARK, ', '.join(c3_nolines)))
-    skills = uniq(s for r in rows for s in split_list(r['skills']))
     w(OPEN)
-    w('- **Progression skills owned (data/progressions/%s.csv):** %s.' % (subj, '; '.join(skills)))
+    w('- **Progression skills owned (data/progressions/%s.csv):** %s.' % (subj, '; '.join(own_sk)))
+    if early_sk:
+        w('- **Earlier-grade rows in the days.csv skills column (retrieval or readiness, not owned; field 4):** %s.'
+          % '; '.join('%s (grade %s)' % (x, grade_of(x, prog)) for x in early_sk))
     models = frame_models(course, unit)
     if models:
         w('- **Carried (frame, models carried):**')
@@ -1353,16 +1657,25 @@ def build(course, unit):
     w(CLOSE)
     if not ss:
         W.extend(field2_extras(course, unit, rows, codes, fr, anchor))
-    w('%s: Limits (what this unit does not teach or assess, and why).' % MARK)
+    if bgn:
+        w('%s: Limits (what this unit does not teach or assess, and why), and for each ~ code above the part this unit teaches and samples (%s).'
+          % (MARK, ', '.join('~' + c for c in codes if c in bgn)))
+    else:
+        w('%s: Limits (what this unit does not teach or assess, and why).' % MARK)
     w('%s: %s' % (MARK, tx['carried']))
     w('')
 
     # ---- field 3: where it sits
     w('## 3. Where it sits')
     w('')
-    assumes = uniq(a for s in skills if s in prog for a in split_list(prog[s]['assumes']))
-    hands = uniq(a for s in skills if s in prog for a in split_list(prog[s]['hands_on']))
-    own = set(skills)
+    assumes = uniq(a for s in own_sk if s in prog for a in split_list(prog[s]['assumes']))
+    hands = uniq(a for s in own_sk if s in prog for a in split_list(prog[s]['hands_on']))
+    own = set(own_sk)
+    if not ss:
+        # Leads to never names a row this course already taught or an earlier grade's row (math 5, math 8, geometry)
+        done = {s for r in allrows if int(r['day']) < first for s in split_list(r['skills'])}
+        hands = [a for a in hands if a not in done and not (a in prog and cg is not None and grade_num(prog[a]['grade']) is not None
+                                                            and grade_num(prog[a]['grade']) < cg)]
     def lab(x):
         return '%s (grade %s)' % (x, grade_of(x, prog))
     w(OPEN)
@@ -1385,9 +1698,12 @@ def build(course, unit):
     w('## 4. Readiness check, whole')
     w('')
     retr = []
-    for r in rows:
-        for t in retrieval_clauses(r['note'], int(r['day']), broad=not ss):
-            retr.append((int(r['day']), clean(t)))
+    if ss:
+        for r in rows:
+            for t in retrieval_clauses(r['note'], int(r['day']), broad=False):
+                retr.append((int(r['day']), clean(t)))
+    else:
+        retr = [(d, clean(t)) for d, t in unit_tasks(rows, allrows, unit, prog)]
 
     def ready_for_me(p):
         return p is not None and (p['assess'] == 'readiness' or
@@ -1494,26 +1810,45 @@ def build(course, unit):
     w('## 5. End-of-unit assessment, whole')
     w('')
     ass = [r for r in rows if r['assess'] in ('end', 'mid', 'observe')]
+    kept = [] if ss else evidence_days(rows)
+    if kept:
+        w(OPEN)
+        w('- **Evidence kept on teaching days (days.csv notes; an assessment day reuses it, never collects it again):** %s.'
+          % '; '.join('day %s (%s)' % (r['day'], ', '.join(split_list(r['codes'])) or 'no codes') for r in kept))
+        w(CLOSE)
+        w('')
     for r in ass:
         label = {'end': 'End-of-unit assessment', 'mid': 'Mid-unit assessment', 'observe': 'End-of-unit assessment (observation)'}[r['assess']]
         w('Day %s (%s): %s' % (r['day'], label, clean(r['goal'])))
-        if r['note']:
+        if r['note'] and ss:
             w('Note (days.csv): %s' % clean(r['note']))
+        elif r['note']:
+            # printed once, in the day list (spot check 2026-11-15, bulk)
+            w('Note (days.csv): in the day list, day %s; read it before writing the items.' % r['day'])
         acodes = split_list(r['codes'])
         full = []
         for c in acodes:
             full.append(c)
             full.extend(k for k in parts_of(c, rows, allrows) if k not in acodes)
         todo5 = []
+        reused, contrib = {}, set()
         if not ss:
             d = int(r['day'])
+            reused = reuse_sources(r['note'], d, full, byday)
+            contrib = {c for c in full if re.search(r'(?<![\w.])%s(?![\w])[^.;]{0,40}contributing evidence' % re.escape(c), r['note'], re.I)}
             w(OPEN)
             lo, hi = frame_meta.get('minutes_min', ''), frame_meta.get('minutes_max', '')
             mins = lo if lo == hi else '%s to %s' % (lo, hi)
             hosts = re.search(r"(unit %d's|next unit's) readiness" % (unit + 1), r['note'], re.I)
-            w('- **Time:** %s; %d row%s below to sample.'
+            named_mins = uniq(m.group(0).lower() for m in MINS.finditer(r['note']))
+            w('- **Time:** %s; %d row%s below to sample.%s'
               % (('%s minutes a day (data/plans/frames.csv)%s' % (mins, ", less 10 for the next unit's readiness check on this day" if hosts else ''))
-                 if lo else 'day length not in data/plans/frames.csv', len(full), '' if len(full) == 1 else 's'))
+                 if lo else 'day length not in data/plans/frames.csv', len(full), '' if len(full) == 1 else 's',
+                 (' The note budgets its own minutes (%s): fit the items to those, not to the whole day.' % ', '.join(named_mins[:8]))
+                 if named_mins else ''))
+            if reused:
+                w('- **Reused, not collected again (days.csv note):** %s.'
+                  % '; '.join('%s from day%s %s' % (c, 's' if len(v) > 1 else '', runs_text(v)) for c, v in reused.items()))
             untaught = [c for c in acodes if not taught_before(allrows, c, d, same_day=r['assess'] == 'observe')]
             if untaught:
                 w('- **Assessed before any teaching day cites it (days.csv codes):** %s.' % ', '.join(untaught))
@@ -1535,8 +1870,13 @@ def build(course, unit):
         w('')
         w('| Day | Code | Part (own words) | The item, answer and wrong answers (error letter) | Owner |')
         w('|---|---|---|---|---|')
+        rawday = split_list(raw[int(r['day'])]['codes'])
         for c in full:
-            txt = clean(std_line(c))
+            txt = clean(std_line(c[1:] if c.startswith('~') and len(c) > 1 else c))
+            if txt and c.startswith('~'):
+                txt = '(begun here, owned later; sample only what this unit teaches) ' + txt
+            elif txt and c in bgn:
+                txt = '(~ begun here, owned later; sample only what this unit teaches) ' + txt
             if is_choice(c) and not any(k in full for k in children(c)):
                 txt = '%s (a choice standard: one row, on the option each student chose)' % txt
             if len(c) > 1 and c[-1].islower() and c[:-1] in full:
@@ -1545,7 +1885,17 @@ def build(course, unit):
                 part = txt or ('whole indicator (verb from the C3 file)' if ss else
                                'whole expectation (statement not on file; see the field 2 table)' if subj == 'science'
                                else 'whole standard')
-            w('| %s | %s | %s | %s | section %s |' % (r['day'], c, part, MARK, r['unit']))
+            item, owner = MARK, 'section %s' % r['unit']
+            if not ss:
+                if any(k in full for k in children(c)):
+                    # the parts below carry the items; the parent keeps its row for scripts/unitplan.py (spot check, finding 6)
+                    part, item = 'the lettered parts below', 'Asked through the part rows below; no separate item.'
+                if c in reused:
+                    owner = 'reused from day%s %s (no new item; name the record)' % ('s' if len(reused[c]) > 1 else '', runs_text(reused[c]))
+                elif c in contrib:
+                    owner = 'section %s, contributing evidence only (days.csv note)' % r['unit']
+            shown = ('~' + c) if ('~' + c) in rawday else c
+            w('| %s | %s | %s | %s | %s |' % (r['day'], shown, part, item, owner))
         w('')
         if todo5:
             W.extend(todo5)
@@ -1553,6 +1903,16 @@ def build(course, unit):
     if not ass:
         w('days.csv marks no end-of-unit assessment day in this unit.')
         w('')
+    if not ss:
+        # an owned code whose evidence has no assessment day (science 7, ELA K; spot check 2026-11-15, finding 6)
+        gaps = coverage_gaps(codes, ass + kept, frame_owned(fr), bgn)
+        if gaps:
+            w(OPEN)
+            w('- **Owned codes on no assessment day of this unit (days.csv codes; frame Owned standards):** %s.' % ', '.join(gaps))
+            w(CLOSE)
+            w('%s: For each code just listed, name the assessment day and item, or the kept product, that gives its evidence; '
+              'where none does, list it under "For the lead" (never add a day).' % MARK)
+            w('')
     w('%s: Teacher-judged items: look-fors, and two sample answers (one that meets them, one that does not). One line on accommodations.' % MARK)
     w('')
 
@@ -1611,8 +1971,15 @@ def build(course, unit):
         used = files_with(codes)
     w('- **Standards files:** %s. **Progression:** data/progressions/%s.csv. **Frame and scope and sequence:** '
       'docs/courses/%s/frame.md, scope-and-sequence.md; days in data/plans/%s/days.csv.' % (', '.join(used), subj, course, course))
-    progcodes = uniq(c for s in skills if s in prog for c in split_list(prog[s]['standard']))
-    only = [c for c in progcodes if (c if ss else c.lstrip('~')) not in codes]
+    progcodes = uniq(c for s in own_sk if s in prog for c in split_list(prog[s]['standard']))
+    if ss:
+        only = [c for c in progcodes if c not in codes]
+    else:
+        # a code cited through its lettered parts, or a part cited through its parent, is cited (spot check, ELA K and 7)
+        def cited(c):
+            c = c.lstrip('~')
+            return c in codes or any(k in codes for k in children(c)) or (c[-1:].islower() and c[:-1] in codes)
+        only = [c for c in progcodes if not cited(c)]
     if only:
         w('- **Note:** the progression lists %s for these skills, but days.csv does not cite %s.%s'
           % (', '.join(only), 'it' if len(only) == 1 else 'them',
@@ -1650,7 +2017,11 @@ def build(course, unit):
         for m in miss10:
             w(m)
         src = {'math': 'the base-text lessons used with each credit line, and the Progressions pages read',
-               'science': 'the base unit and lessons adapted with each credit line, and public data sets with their rights lines',
+               # only grades 6 to 8 adapt a base text; the others are Curio Class's own (spot check 2026-11-15)
+               'science': ('the base unit and lessons adapted with each credit line, and public data sets with their rights lines'
+                           if base_text_of(course) else
+                           'the references read (no base text: this grade\'s units are Curio Class\'s own, any outside unit is '
+                           'reference only and never copied), and public data sets with their rights lines'),
                'ela': 'each text with its author, rights line and place in the unit'}[subj]
         w('%s: Sources chosen for the unit (named, with licence and what was read): %s.' % (MARK, src))
         more = {'math': '', 'science': ' Name the hazards and chemicals the safety read checks against published guidance.',
@@ -1674,7 +2045,7 @@ def build(course, unit):
             for cr in cal:
                 if int(cr['first_day']) <= d <= int(cr['last_day']):
                     sdv = str(int(cr['first_school_day']) + d - int(cr['first_day']))
-        w('| %d | %s | %s | %s | %s | %s |' % (d, sdv, r['kind'], clean(r['goal']), '; '.join(split_list(r['codes'])), clean(r['note'])))
+        w('| %d | %s | %s | %s | %s | %s |' % (d, sdv, r['kind'], clean(r['goal']), '; '.join(split_list(raw[d]['codes'])), clean(r['note'])))
     w('')
     return '\n'.join(W)
 
@@ -1751,7 +2122,72 @@ def self_test():
         # an unreadable days.csv in an earlier grade is noted, not a traceback
         put('science-grade-2', 'days.csv', 'day\n1\n')
         check('unreadable earlier days.csv is noted', 'unreadable' in er()['t2-design']['last'])
+        # spot check 2026-11-15: an earlier-grade id in the skills column is a retrieval row, not owned; a row in use
+        # earlier this year needs no task by id
+        put('science-grade-2', 'days.csv', head + '9,1,1.1,Application,g,t2-design,,,\n')
+        put('science-grade-3', 'days.csv', head + '1,1,1.1,Understanding,g,t3-force,3-PS2-1,,\n'
+                                                  '2,2,2.1,Understanding,g,t3-force;t3-next;t2-old,3-PS2-2,,Retrieve t2-old (grade 2).\n')
+        prog.update({'t2-old': {'grade': '2', 'assumes': ''}, 't3-next': {'grade': '3', 'assumes': 't2-design;tk-push'}})
+        al3 = days_rows('science-grade-3')
+        e = {x['row']: x for x in earlier_rows('science-grade-3', [r for r in al3 if r['stretch'] == '2'], al3, prog, meta, None)}
+        check('earlier-grade skills-column id is a retrieval row, named', 't2-old' in e
+              and e['t2-old']['rule'] == 'retrieval' and e['t2-old']['named'] == 'retrieval, day 2')
+        check('row in use this year needs no task by id', e['t2-design']['named'].startswith('in use this year'))
+        check('own-grade skills are never earlier rows', 't3-force' not in e and 't3-next' not in e)
     set_data_dir(saved[0])
+    # 8. spot check 2026-11-15 (math, ELA, science paths; social studies output is frozen)
+    set_subject('math')
+    for cell, want in [('Adding within 20. *What makes a sum easy to find?*', ('Adding within 20', 'What makes a sum easy to find?')),
+                       ('Smallpox: who gets the credit? "Who should get the credit?"', ('Smallpox: who gets the credit?', 'Who should get the credit?')),
+                       ('Similarity: How can a photo tell us true lengths?', ('Similarity', 'How can a photo tell us true lengths?')),
+                       ('**Douglass** (weeks 17 to 19). How did reading change him?', ('Douglass', 'How did reading change him?'))]:
+        check('compelling question split: %s' % want[0], split_unit_cell(cell)[:2] == want)
+    an = split_unit_cell('Ramps. *Why?* Design problem: miss a block tower Anchor: our ball rolls.')[2]
+    check('design sentence ends before the anchor', 'tower. Anchor: our ball' in an)
+    tc = task_clauses('Then grammar retrieval. Retrieval openings never count as assessment evidence. '
+                      'Retrieve m4-mixed-numbers (grade 4).', 10, {'m4-mixed-numbers': {}}, 5)
+    check('retrieval junk dropped, whole task kept', tc == ['Retrieve m4-mixed-numbers (grade 4).'])
+
+    def R(d, st, k, sk, c, a, n):
+        return dict(day=str(d), stretch=st, unit=st + '.1', kind=k, goal='g', skills=sk, codes=c, assess=a, note=n)
+    pr = {'e6-a': {'grade': '6', 'assumes': ''}, 'e7-b': {'grade': '7', 'assumes': 'e6-a'}, 'e7-c': {'grade': '7', 'assumes': ''}}
+    al = [R(84, '3', 'Understanding', 'e7-c', '', '', 'Retrieve e6-a for unit 3.'), R(85, '3', 'Understanding', 'e7-c', '', '', ''),
+          R(86, '3', 'Check', 'e7-c', '', 'end', 'Retrieve e6-a for unit 4.'), R(87, '4', 'Understanding', 'e7-b', '', '', '')]
+    check('a task for the next unit is credited to it', unit_tasks(al[3:], al, 4, pr) == [(86, 'Retrieve e6-a for unit 4.')]
+          and unit_tasks(al[:3], al, 3, pr) == [(84, 'Retrieve e6-a for unit 3.')])
+    p2 = {'m7-a': {'grade': '7', 'assumes': ''}, 'm8-b': {'grade': '8', 'assumes': 'm7-a'}}
+    check('a respond or check day is no one-hop use', not used_on(R(5, '1', 'Respond', 'm8-b', '', '', ''), 'm7-a', 8, p2)
+          and not used_on(R(5, '1', 'Check', 'm8-b', '', '', ''), 'm7-a', 8, p2)
+          and used_on(R(5, '1', 'Understanding', 'm8-b', '', '', ''), 'm7-a', 8, p2))
+    rows8 = [R(31, '2', 'Understanding', 'm8-x', '8.G.A.4;8.EE.B.6', '', 'Begin slope; unit 3 completes the derivations.'),
+             R(32, '2', 'Understanding', 'm8-x', '~8.F.A.1', '', ''), R(35, '2', 'Check', 'm8-x', '8.G.A.4', 'end', '')]
+    st8 = [dict(r, codes=r['codes'].replace('~', '')) for r in rows8]
+    bg = begun_codes(2, st8, rows8, ['m8-x'], {'m8-x': {'grade': '8', 'standard': '8.G.A.4;~8.EE.B.6', 'assumes': ''}},
+                     ['2', 'u', '16', 'm8-x', '8.G.A.4'])
+    check('begun: ~ in days.csv, and "unit N completes" outside the frame owned list',
+          bg == {'8.F.A.1': '', '8.EE.B.6': 'unit 3 completes it (day 31 note)'})
+    check('reuse note maps a code to its source day',
+          reuse_sources('Reuse day 31 record for 8.G.A.4; no new collection.', 35, ['8.G.A.4'],
+                        {int(r['day']): r for r in st8}) == {'8.G.A.4': [31]})
+    check('note shorthand names a part', mentions('Reuse day 51 for 7c and for 6', '5.NF.B.7c')
+          and mentions('Reuse day 51 for 7c and for 6', '5.NF.B.6') and not mentions('for 7c', '5.NF.B.7a'))
+    check('kept evidence day found', [r['day'] for r in evidence_days(
+        [R(34, '2', 'Application', '', '8.G.A.4', '', 'Retain the product as end-of-unit evidence.'),
+         R(33, '2', 'Application', '', '8.G.A.4', '', '')])] == ['34'])
+    check('coverage: owned code on no assessment day, parts and begun codes handled',
+          coverage_gaps(['8.G.A.4', '8.G.A.3', '8.EE.B.6', '5.NF.B.7'], [R(35, '2', 'Check', '', '8.G.A.4;5.NF.B.7a', 'end', '')],
+                        {'8.G.A.4', '8.G.A.3', '5.NF.B.7'}, {'8.EE.B.6': ''}) == ['8.G.A.3'])
+    check('a section over 15 days is flagged',
+          [k for k, _ in long_sections([('4.1', list(range(39))), ('4.2', list(range(10)))])] == ['4.1'])
+    check('near-duplicate items merge', group_column([dict(day='1', supplies='foil strip switch (household stand-in)'),
+                                                      dict(day='2', supplies='Foil strip switch'), dict(day='3', supplies='metal spoons'),
+                                                      dict(day='3', supplies='metal spoon')], 'supplies')
+          == [('foil strip switch (household stand-in)', [1, 2]), ('metal spoons', [3])])
+    check('wap spelled out on the weight line', any('widely applicable prerequisite' in x for x in header_weight(['G-SRT.B.5'])))
+    set_subject('science')
+    check('engineering expectation with no crosscutting concept says so', 'None listed for this engineering' in pe_row('K-2-ETS1-1'))
+    check('a model first used in an earlier unit is not "introduced here"',
+          any(m == 'food-web' and 'first used in unit 3' in h for m, h in frame_models('science-grade-7', 4)))
     # 4. assessed before taught; a lettered part counts its parent
     al = [dict(day=str(d), stretch='1', unit='1.1', kind=k, goal='', skills='', codes=c, assess=a, note='')
           for d, k, c, a in [(1, 'Understanding', '3-PS2-1', ''), (2, 'Check', '3-PS2-1;3-PS2-2', 'end'),

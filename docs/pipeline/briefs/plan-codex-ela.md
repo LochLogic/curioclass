@@ -2,6 +2,10 @@
 
 **Open for the lead (calls not found in docs/agents/decisions/DESK-ANSWERS.md or the frames; follow the stated default and list any use under "For the lead"):**
 - Who confirms the rights of a text beyond the expert read: not decided. Flag any text whose rights you could not confirm.
+- Edition and rights (Cory, 2026-11-15: filled as the units are written): for every text the unit reads, field 10 gives
+  the edition used (publisher or source and year, or the library id under library/) and its rights basis (public
+  domain with the reason, the licence, or "ours"). Do not edit data/plans/ela-texts.csv: the lead copies these into its
+  `edition`, `rights_basis` and `rights_checked` columns after each batch.
 - Target share of whole texts to excerpts and long to short: none on file (the rubric says report, not score). Report the unit's counts.
 - Kindergarten to grade 5 replace the EL Education trade books with our own texts (Desk 2026-11-12) but no list of replacements exists; name the text you intend and mark it for the text agent.
 
@@ -26,6 +30,14 @@ ELA settled by the frames and the Desk:
 - Grades 3 to 5 teach foundational skills (long words, word parts, fluency) per the Desk call of 2026-11-12; their units start from the taught sequence.
 - Grades 9 to 12 check set: the college-level English frameworks and New York's Next Generation 11 to 12 standards, as check set only.
 - Vocabulary: name the tiered word list and where each word is taught.
+- Contrasting audiences (Cory, 2026-11-15, later.csv L30): the contrast is the audience's relationship and expertise,
+  not headcount. Classroom: student panels, the teacher as lead judge, and a second audience of another class, staff or
+  an outside venue. Home: the parent is the live first audience and lead judge; the second is a real listener outside
+  the home, chosen from a menu (a relative or family friend by phone or video; a library, co-op or community group; a
+  written public piece such as a letter to a local official). Fallback: two contrasting pieces to two outside
+  audiences, the parent asking live questions. Both routes use the same rubric rows, a planning sheet showing what
+  changed between audiences, and a short reflection; the student chooses, the parent approves, and Curio Class
+  collects and posts nothing. ELA grade 12 unit 8 shares its outside audience with US History II unit 12.
 
 Computed lines in the skeleton (scripts/unit_skeleton.py, 2026-11-15; they sit inside skel blocks and do not count toward the word cap):
 - Field 4, "Earlier rows this unit assumes": each row the unit assumes, where it was last used (from the days.csv of this course and of earlier grades; a day that only retrieves it or checks readiness is not a use) and what rule 2 of sequence-write.md gives it (retrieval, or a readiness check when last used two or more grades back). Follow the table. Where a `TODO(writer)` says days.csv and rule 2 disagree, plan what the plan can inside existing time (a retrieval task in an existing day; readiness items where a check is given), never add a day or move a check, and list each disagreement under "For the lead". A retrieval row days.csv names no task for gets one short task in the retrieval table, inside a day the unit already has.
