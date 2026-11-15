@@ -11,6 +11,11 @@ Added 2026-11-14 (baseline 1 structure finding 2).
 
 Optional columns after `note`, for math and science only: tools, supplies, safety (semicolon lists, empty when none;
 see sequence-write.md). Added 2026-11-14. Social studies and ELA days.csv files are never checked for them.
+
+Source map (added 2026-11-15, one layout for every subject, sequence-write.md rule 8): where
+data/plans/<course>/source-map.csv exists its columns start with MAP_COLS in that order (`url` may follow), every
+decision is keep, split, merge, cut or ours, `unit` is a unit number or <unit>.<n> of the frame, `days` lists course
+days in range ("12", "12-13", "12; 14"), blank only on a cut, and every cut gives its reason in `why`.
 """
 import csv, io, re, sys
 from pathlib import Path
@@ -29,6 +34,8 @@ NEED = ['day', 'stretch', 'unit', 'kind', 'goal', 'skills', 'codes', 'assess']
 LIST_COLS = ('tools', 'supplies', 'safety')   # optional, math and science only (sequence-write.md, days.csv columns)
 LIST_SUBJECTS = ('math', 'science')
 NO_HAZARD = 'none'                            # the one word a science safety cell holds when the day was weighed and has no hazard
+MAP_COLS = ['source', 'title', 'goals', 'standards', 'unit', 'days', 'decision', 'why', 'order_conflict', 'harms_learning']
+MAP_DECISIONS = {'keep', 'split', 'merge', 'cut', 'ours'}
 HANDS_ON = re.compile(r'\b(lab|investigat\w*|experiment\w*|dissect\w*|build|builds|built|construct(?:s|ion)?|test(?:s|ing)? '
                       r'(?:the|a|each|their)|heat\w*|burn\w*|mix\w*|measure|measures|demonstrat\w*|hands-on|model(?:s)? with)\b', re.I)
 
@@ -102,6 +109,56 @@ def stage(course):
     if rows(course, 'days') is None:
         return None
     return 'plan' if (rows(course, 'parts') or rows(course, 'items')) else 'scope'
+
+
+def map_days(v):
+    out = []
+    for part in re.split(r'[;,\s]+', re.sub(r'\s*(-|to)\s*', r'\1', v.strip())):
+        if not part:
+            continue
+        m = re.fullmatch(r'(\d+)(?:-|to)(\d+)', part)
+        if m:
+            out += list(range(int(m.group(1)), int(m.group(2)) + 1))
+        elif part.isdigit():
+            out.append(int(part))
+        else:
+            return None
+    return out
+
+
+def map_fails(course, nunits, ndays):
+    """One source-map layout for every subject (lead, 2026-11-15, after the reads found 21 layouts in 21 maps)."""
+    p = PLANS / course / 'source-map.csv'
+    if not p.exists():
+        return []
+    with io.open(p, encoding='utf-8', newline='') as fh:
+        rd = csv.DictReader(fh)
+        head, sm = rd.fieldnames or [], list(rd)
+    if head[:len(MAP_COLS)] != MAP_COLS or any(c != 'url' for c in head[len(MAP_COLS):]):
+        return ['source-map.csv columns are %s; they must be %s (url may follow; sequence-write.md rule 8)'
+                % (','.join(head), ','.join(MAP_COLS))]
+    out = []
+    for i, r in enumerate(sm, 2):
+        lab = 'source-map.csv line %d (%s)' % (i, r['source'])
+        if r['decision'] not in MAP_DECISIONS:
+            out.append('%s: decision "%s" is not keep, split, merge, cut or ours' % (lab, r['decision']))
+        if not r['source'].strip():
+            out.append('%s: no source lesson id' % lab)
+        u = r['unit'].strip()
+        if u and not (re.fullmatch(r'\d+(\.\d+)?', u) and 1 <= int(u.split('.')[0]) <= (nunits or 999)):
+            out.append('%s: unit "%s" is not a unit 1 to %d (or <unit>.<n>)' % (lab, u, nunits))
+        ds = map_days(r['days'])
+        if ds is None:
+            out.append('%s: days "%s" is not a day list ("12", "12-13", "12; 14")' % (lab, r['days']))
+        elif any(not 1 <= d <= ndays for d in ds):
+            out.append('%s: days "%s" fall outside 1 to %d' % (lab, r['days'], ndays))
+        elif not ds and r['decision'] != 'cut':
+            out.append('%s: no days, and the decision is not cut' % lab)
+        if r['decision'] == 'cut' and not r['why'].strip():
+            out.append('%s: a cut with no reason in why' % lab)
+        if r['decision'] != 'cut' and not u:
+            out.append('%s: no unit' % lab)
+    return out
 
 
 def md_fails(md, slug, nunits):
@@ -212,6 +269,7 @@ def check(course):
         if nxt is None or nxt - i > READINESS_AHEAD or not closes:
             fails.append("day %s: a readiness check that is not on the previous unit's last day or a respond day "
                          "within %d days before a unit's first day" % (d['day'], READINESS_AHEAD))
+    fails += map_fails(course, nunits, len(days))
     tf, tn = tool_cols(days, subject_of(slug))
     fails += tf
     notes += tn

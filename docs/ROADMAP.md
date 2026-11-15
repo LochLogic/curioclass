@@ -22,8 +22,9 @@ When a roadmap item starts, finishes or moves, update it here first, then post i
 
 ## Where it stands (a pointer, 2026-11-11)
 
-Live counts are no longer kept here (removed 2026-11-11; the 2026-11-10 table is in the archive). On 2026-11-11
-docs/COURSES-STATUS.md counted 105 courses, 3 with a scope and sequence, 1 with any section plan, and tools at 569 spec, 149
+Live counts are no longer kept here (removed 2026-11-11; the 2026-11-10 table is in the archive). On 2026-11-15
+docs/COURSES-STATUS.md counted 107 courses (105 active, 2 world languages shelved; 52 core courses in the four core
+subjects plus 6 core electives), 52 with a scope and sequence, 16 with unit or section plans, and tools at 569 spec, 149
 built, 83 live. For today's counts run `python scripts/course_status.py` (docs/COURSES-STATUS.md) and
 `python scripts/board.py` (docs/BUILD-BOARD.md). For the state of the work read docs/HANDOFF.md. The shelf counts
 (worksheets, Word Wall, charts, Sub Day, Reading Room) as of 2026-11-10 are in the archive table.
@@ -43,11 +44,10 @@ disagree, this section wins.
 the course would stand up to a state adoption review (docs/ADOPTION-BAR.md, BASELINE rule 20). Every tool in it is
 really good. A course is a grade of a subject or a high school course. Taken together, the courses cover what an
 American public school teaches from kindergarten to grade 12: every grade of the core subjects, and the subjects
-around them (arts, computer science, health and PE, world languages, English language development, library, career
-and technical, social and emotional learning). Depth comes first: a course is finished before the next is started
-(step 6), so breadth is where the site ends up, not a reason to spread thin. This is bent on purpose in one
-place only (2026-11-11): the three first pilots (grade 4 math section 11.1, then one grade 6 ELA slice and one
-science section) and the rubric and approach pages those pilots need. More scopes and sequences wait until the pilot is read.
+around them (arts, computer science, health and PE, world languages (shelved), English language development, library, career
+and technical, social and emotional learning). Every core subject is planned top down before days are written (docs/PRODUCTION-PATH.md, 2026-11-13), and each
+course is finished as a whole before it is called finished, so breadth is where the site ends up, not a reason to
+spread thin. The earlier pilot-first bend (2026-11-11) is retired; the probe and guard replace it.
 
 **One measure, read three ways** (split 2026-11-11). For each course: standards taught in full, out of all its
 standards. "Full on paper" is what the specs say. "Full and live" counts only what a teacher can open today.
@@ -66,13 +66,15 @@ changes in the order:
 3. A lesson-day template (docs/courses/LESSON-DAY.md) is written before the pilot is built.
 4. Every keyed item is kept as data and recomputed by a script before the pilot is built.
 5. A grade 3 to 5 teacher reads section 11.1 against five written questions, one teacher or parent teaches the five
-   days, and three students sit the end-of-unit assessment, timed. Notes go in docs/pilots/. Cory finds the people.
+   days, and three students sit the end-of-unit assessment, timed by a watch the student does not see. Notes go in
+   docs/pilots/. Cory finds the people. (Retired: pilots 2026-11-13; no outside readers 2026-11-14.)
 6. Sara's spec fix batches stop now, not after batch 4. Every tool and spec is sorted by script into three bins
    (rule 8 under "The layers").
-7. A table of where a qualified human is required is in docs/FOUNDATION.md, section 7. For those rows the old
-   line "We don't wait on outside human reviewers" no longer holds.
+7. A table of the reads a course needs is in docs/FOUNDATION.md, section 7. (Changed 2026-11-14: every row is an
+   agent read; no outside human reader is planned.)
 8. The first non-math pilots (one five-day ELA slice, grade 6 unit 2; one science section with real materials)
-   run right after 11.1 is read, not after grade 4 math is finished.
+   run right after 11.1 is read, not after grade 4 math is finished. (Retired 2026-11-13: the probe and guard
+   replace the pilots.)
 9. Item-level choices inside the standards' limits are settled by the curriculum expert and reported in a weekly
    digest. Cory decides scope, audience, money, outside people, and anything that moves a standard between sections
    ("Decisions, kept few").
@@ -91,8 +93,7 @@ development, library, career and technical, and social and emotional learning st
 come first (next section). No spec is fixed and nothing is built for them now. What was done for them on
 2026-11-11: the computer science Specialty standard ids were loaded, health and PE mappings were made, and a bar
 page was written for subjects with no rubric file (docs/ADOPTION-BAR-SUBJECTS.md, second draft). World languages,
-ASL among them, are shelved. Science and social studies are core subjects: the grade 4 science scope and sequence is a draft
-and the science pilot unit runs right after 11.1 is read; social studies uses C3 skills and the Massachusetts 2018
+ASL among them, are shelved. Science and social studies are core subjects, planned top down with math and ELA (docs/PRODUCTION-PATH.md); social studies uses C3 skills and the Massachusetts 2018
 content anchor (docs/courses/social-studies/STANDARD.md); its planning follows docs/PRODUCTION-PATH.md. Superseded 2026-11-13:
 Cory chose the social studies standard method; it is recorded in docs/courses/social-studies/STANDARD.md. Production
 order follows docs/PRODUCTION-PATH.md.
@@ -100,7 +101,7 @@ order follows docs/PRODUCTION-PATH.md.
 ### The layers (added 2026-11-11, Cory)
 
 **Core subjects first (Cory, 2026-11-11; a soft goal).** Math, English language arts, science and social
-studies (56 of the 105 courses) are the first focus; the other subjects follow. This bends where work is
+studies (52 core courses plus 6 core electives, of 107 courses) are the first focus; the other subjects follow. This bends where work is
 complementary (a shared rule, a bar page, a standards fix that serves both). When a choice has to be made, the
 core subjects come first. Every course is still finished to the bar; this sets the order, not the scope.
 
@@ -113,11 +114,11 @@ fifth of the year).
 |---|---|---|---|
 | 1. Foundation | What Curio Class is for, who it serves, the promises, the bar, what we assume about the room, what a tool is for | docs/FOUNDATION.md | Gathered into one file 2026-11-11. Two open questions listed there |
 | 2. Standards | What must be learned. Not ours to change | data/standards/ | Math and ELA texts wired. Science and the rest filed, wired when their courses open. Footnoted limits for math still to add |
-| 3. Approach to teaching | How students learn here and why, with its sources. A short shared core for every subject, then one page per subject | docs/APPROACH.md, docs/APPROACH-MATH.md; evidence detail and source access in docs/APPROACH-SOURCES.md | **Second draft 2026-11-11**, revised once after the expert's cold read (docs/reviews/approach-2026-11-11.md). Cory settled the three decisions on Desk card q-approach the same day (teach first by default in grades 2 to 5, no countdown timer in any tool, SPEC.md rule renamed) and said to go forward without library access. Waiting on Cory: his read of the pages. The English language arts page exists (docs/APPROACH-ELA.md); science and social studies pages are still to be written |
-| 4. Progressions | What each grade inherits and hands on, per subject | data/sequence.csv, the scope and sequence's builds-on columns, a progression page per subject (first: docs/courses/math-3-5-progression.md) | Grades 3 to 5 math: second draft 2026-11-11 after the expert's cold read (docs/reviews/math-3-5-progression-2026-11-11.md); scope and sequence pointers and 15 sequence.csv links corrected; Cory said yes to its four points the same day (Desk card q-progression-math-4), now in the scope and sequence. The science review found errors in sequence.csv, still open |
-| 5. Course scope and sequence | Every teaching day of a year, in order, with the reason | docs/courses/ | Grade 4 math: approved by Cory 2026-11-11, revised since; status draft in docs/COURSES-STATUS.md until the pilot is read. Grade 4 science and grade 6 ELA: revised drafts. More scopes and sequences wait until the pilot is read |
-| 6. Unit and section plan | The contract for each unit and section: the checks written first, what each day is for, where a tool is used and for what job | docs/courses/UNIT-PLAN.md (the fields, rules and blank copies); docs/courses/<course>/sNN.md (unit plan) and uNN-N.md (section plan); rows in data/units.csv | **Fields fixed 2026-11-11** after three trial plans and the expert's cold read (docs/reviews/unit-plans-2026-11-11.md); Cory said yes (Desk card q-section-plans). Grade 4 math: units 1, 2, 3, 9, 10 and 11 are planned, 13 of 43 sections (one expert read of units 1 to 3, docs/reviews/unit-plans-4d-2026-11-11.md). Desk card q-plans-4d-1 is answered and applied. Planning is frozen at these six until pilot unit 11 has been read; the one exception is the start-of-year check and unit 4's readiness items |
-| 7. Lessons, tools, print, checks | What students and teachers touch | The shelves and tools; the lesson-day template docs/courses/LESSON-DAY.md | Building paused, except pilot unit 11 and its key tool, which are built now (step 4f) |
+| 3. Approach to teaching | How students learn here and why, with its sources. A short shared core for every subject, then one page per subject | docs/APPROACH.md, docs/APPROACH-MATH.md; evidence detail and source access in docs/APPROACH-SOURCES.md | **Second draft 2026-11-11**, revised once after the expert's cold read (docs/reviews/approach-2026-11-11.md). Cory settled the three decisions on Desk card q-approach the same day (teach first by default in grades 2 to 5, no countdown timer in any tool, SPEC.md rule renamed) and said to go forward without library access. Waiting on Cory: his read of the pages. The English language arts page exists (docs/APPROACH-ELA.md). Science and social studies: the subject lens plus its rubric stand in through scopes and unit plans; a short approach page per subject is written before days (Cory, 2026-11-14). The countdown rule was narrowed 2026-11-14: a timer only with a grounded purpose (BASELINE rule 30) |
+| 4. Progressions | What each grade inherits and hands on, per subject | data/sequence.csv, the scope and sequence's builds-on columns, a progression page per subject (first: docs/courses/math-3-5-progression.md) | All four core subjects done K to 12, 2026-11-13 (data/progressions/<subject>.csv). The grades 3 to 5 math page and sequence.csv are older |
+| 5. Course scope and sequence | Every teaching day of a year, in order, with the reason | docs/courses/ | All 52 core courses written (docs/courses/<course>/scope-and-sequence.md): social studies read and fixed 2026-11-14; science, ELA and math read, fix pass from 2026-11-15 (docs/HANDOFF.md) |
+| 6. Unit and section plan | The contract for each unit and section: the checks written first, what each day is for, where a tool is used and for what job | docs/courses/UNIT-PLAN.md (the fields, rules and blank copies); docs/courses/<course>/sNN.md (unit plan) and uNN-N.md (section plan); rows in data/units.csv | **Fields fixed 2026-11-11** after three trial plans and the expert's cold read (docs/reviews/unit-plans-2026-11-11.md); Cory said yes (Desk card q-section-plans). Grade 4 math: units 1, 2, 3, 9, 10 and 11 are planned, 13 of 43 sections (one expert read of units 1 to 3, docs/reviews/unit-plans-4d-2026-11-11.md). Desk card q-plans-4d-1 is answered and applied. Since 2026-11-13 these grade 4 math plans are input to math's turn (PRODUCTION-PATH). Social studies: 138 unit plans read and fixed 2026-11-14; science and ELA next, math last |
+| 7. Lessons, tools, print, checks | What students and teachers touch | The shelves and tools; the lesson-day template docs/courses/LESSON-DAY.md | Building paused. Days wait for the probe and guard (PRODUCTION-PATH); the older grade 4 math days stay as built |
 
 Running through every layer: the assessment system, and the supports for English learners, access, teachers and
 families ("What a finished course holds").
@@ -133,9 +134,10 @@ course by course, by the curriculum expert. We write our own course (FOUNDATION,
 3. No tool is built or refined until a section plan names its job.
 4. Tools are key tools (built first; the ones a day is planned around) or light tools (lighter, added over
    time, same standard of correctness). A course is runnable when its key tools are live and print covers the rest.
-5. Frequent cold reads by the curriculum expert are the main review at every layer. Human reads are rare and
-   aimed, except where the table in docs/FOUNDATION.md section 7 says a qualified human is required (2026-11-11).
-6. Grades 3 to 12 assume one device per student, with a one-line projector path. A parent teaching one child at
+5. Frequent cold reads by the curriculum expert are the main review at every layer, with Codex and the agent reads
+   in docs/FOUNDATION.md section 7 beside it; no outside human reader is planned (Cory, 2026-11-14).
+6. Grades 3 to 12 assume one device per student, with a one-line projector path; kindergarten to grade 2 may assume
+   one shared classroom device, always with a paper path (Cory, 2026-11-14). A parent teaching one child at
    home is a named audience.
 7. A teacher judges open work; tools give it structure and print carries rubrics and sample pieces.
 8. Every existing tool and spec is sorted by script into three bins (2026-11-11). Named by a section plan, as key
@@ -144,7 +146,7 @@ course by course, by the curriculum expert. We write our own course (FOUNDATION,
    the same day.
 9. A unit is planned only when the unit before it is built (2026-11-11), once the pilot has been read.
 
-The detail of each is in docs/FOUNDATION.md. Still open: the device assumption for K to 2.
+The detail of each is in docs/FOUNDATION.md. Items 2 and 9 speak of the retired pilot; PRODUCTION-PATH sets the order now.
 
 **The unit and section plans.** Fixed fields in two documents, a unit plan and a section plan (docs/courses/UNIT-PLAN.md, fixed
 2026-11-11). Length is capped by words (caps changed 2026-11-11, Desk card q-plans-4d-1): a section plan 1,250 not counting its
@@ -162,7 +164,7 @@ a unit at a time, with 4e done as the plans come in. The table is in the new ord
 | 4a | The approach: a shared core of about two pages and a page for math, each claim with its source | The curriculum expert has read it cold and its findings are closed (done). Cory answered yes three times on Desk card q-approach (2026-11-11) but has not yet read the pages in full. That read is still owed; work proceeds on the pages meanwhile |
 | 4b | The grades 3 to 5 math progression around grade 4 | Done 2026-11-11. Every grade 4 unit names what grade 3 hands it and what grade 5 needs, checked against the standards' own progressions |
 | 4c | The section plan fields, tried on three sections of grade 4 math, the pilot (section 11.1, area and perimeter, the one section of pilot unit 11) among them | Done 2026-11-11. The expert has read the three; the fields are fixed |
-| 4f | **Now.** Pilot unit 11 built to the bottom. In this order: (1) a cold expert read of docs/courses/math-4/s11.md; (2) the lesson-day template docs/courses/LESSON-DAY.md (Claude drafts, the expert reads, Cory says yes); (3) a script that keeps every keyed item as data and recomputes every key; (4) the five days written in full and Community Plot Planner built; (5) the cost recorded in tokens, wall hours and owner minutes; (6) the reads: verified play, the rubric read, the expert, a grade 3 to 5 teacher against five written questions, one teacher or parent teaching the five days, three students sitting the end-of-unit assessment, timed. Notes go in docs/pilots/ | As in the step 4 row below, and the cost of each piece is written down |
+| 4f | (Retired 2026-11-13.) Pilot unit 11 built to the bottom. In this order: (1) a cold expert read of docs/courses/math-4/s11.md; (2) the lesson-day template docs/courses/LESSON-DAY.md (Claude drafts, the expert reads, Cory says yes); (3) a script that keeps every keyed item as data and recomputes every key; (4) the five days written in full and Community Plot Planner built; (5) the cost recorded in tokens, wall hours and owner minutes; (6) the reads: verified play, the rubric read, the expert, a grade 3 to 5 teacher against five written questions, one teacher or parent teaching the five days, three students sitting the end-of-unit assessment, timed by a watch the student does not see. Notes go in docs/pilots/ | As in the step 4 row below, and the cost of each piece is written down |
 | next | The first non-math pilots, right after 11.1 is read: one five-day ELA slice (grade 6, unit 2) and one science section with real materials. Each needs its rubric file and approach page first | Three section costs are written on one page |
 | 4d | Section plans for the rest of grade 4 math. Frozen at the six units on file (1, 2, 3, 9, 10, 11; 13 of 43 sections) until the pilot has been read. One exception: the start-of-year check and unit 4's readiness items. After that, a unit is planned only when the unit before it is built | Every section has a plan; every tool a plan asks for is marked key or light; the three bins are counted |
 | 4e | The key tools, named from the plans as they come in and built in order of value. Community Plot Planner is the pilot's key tool and is built in 4f (with spec fixes from its plan). Road Trip Logbook is a light tool. Fraction Wall Duel is a light tool for now (Cory, 2026-11-11). No other tool is built until a section plan names it | A build order for key tools, by value |
@@ -206,8 +208,9 @@ The measure says how far a course is. This list says what "finished" means, so n
 tools alone. Grade 4 math is the first course held to it (step 4), and the list is corrected by what that proof
 finds.
 
-1. **A scope and sequence** that accounts for every teaching day: about 150 (180 less testing and school events; the number
-   is set on each scope and sequence). Each unit has its days, its reason for sitting where it does, what the grade before hands
+1. **A scope and sequence** that accounts for every day: 160 in a full-year course, 80 in a half-year course
+   (docs/courses/CALENDAR.md, a 32-week school year that leaves room for a school's own testing and events; the
+   frame sets the number). Each unit has its days, its reason for sitting where it does, what the grade before hands
    it and what the grade after needs from it. A day Curio Class has nothing for is listed as a gap day, never
    papered over.
 2. **Sections for every day on the scope and sequence**, each pulling from the shelves, with daily plans and teacher pages.
@@ -224,10 +227,9 @@ finds.
    asks for, the key words with their Word Wall cards, sentence frames for the talk and the writing.
 6. **Access.** Every tool passes the hooks and an automated access check at the Finish check; one keyboard-only
    play is part of verifying it. Printables read in black and white.
-7. **One outside read.** A working teacher has read at least one section of the course and their notes are filed in
-   docs/pilots/ with what changed because of them. For the pilot unit (2026-11-11): a grade 3 to 5 teacher reads
-   it against five written questions, one teacher or parent teaches the five days, and three students sit the
-   end-of-unit assessment, timed.
+7. **The agent reads.** Changed 2026-11-14 (Cory: "Our agents are our best hope"): no outside reader is planned.
+   The reads in docs/FOUNDATION.md section 7 (answer key, safety, sensitivity, rights, Spanish) are done by agents,
+   and the probe and guard (docs/pipeline/PROBE-GUARD.md) replace the pilot unit's teacher read and timed students.
 8. **Honest public claims.** The course's pages say taught, practiced or shown per the ledger, never more.
 9. **A fresh-agent read of the whole course** against the rubric on file, with every finding closed or listed. The
    reader is the curriculum expert (docs/agents/EXPERT.md): a standing role, always run cold, that researches outside
@@ -268,7 +270,7 @@ when its "closed when" is true. Nothing here is closed by a sentence in a plan.
 | English learner supports were named and in no step | Item 5 of the finished course | Tools: now. Sections: 4 | The pilot unit's teacher page carries all three parts |
 | Access was a font and contrast bar | Item 6 of the finished course. The automated check joins the Finish check in docs/agents/ when building resumes | Hooks: now. Check: with the pilot's key tool | The pilot's key tool passes both |
 | Coherence across grades was one line | Each scope and sequence row names the earlier standards it builds on and where Curio Class teaches them. A script builds a progression table per subject (domain by grade, from the standard texts and the ledger), read at every Shape | Grade 4 math scope and sequence: 4. The table: before step 6 | No section in a finished course builds on a standard taught nowhere below it, or the gap is named |
-| No teacher or class had seen any of it | A grade 3 to 5 teacher reads the pilot unit against five written questions, one teacher or parent teaches the five days, and three students sit the end-of-unit assessment, timed (2026-11-11; Cory finds the people; a grade 2 teacher, Cory's mom, was the first reader named). Every section page carries a short feedback link. Findings are filed in docs/pilots/ (the folder exists from 2026-11-11, see its README.md) | 4, then standing | Item 7 of the finished course. Two teachers before step 6 opens |
+| No teacher or class had seen any of it | (Retired 2026-11-13 and 2026-11-14: pilots and outside readers; the probe, guard and agent reads stand in.) A grade 3 to 5 teacher reads the pilot unit against five written questions, one teacher or parent teaches the five days, and three students sit the end-of-unit assessment, timed by a watch the student does not see (2026-11-11; Cory finds the people; a grade 2 teacher, Cory's mom, was the first reader named). Every section page carries a short feedback link. Findings are filed in docs/pilots/ (the folder exists from 2026-11-11, see its README.md) | 4, then standing | Item 7 of the finished course. Two teachers before step 6 opens |
 | No evidence that it works | Not claimed. A one-page logic model (what the course does, why it should work, what would show it) is written with the pilot unit, which is the lowest tier a federal evidence review accepts. A study waits for a partner | 4 | The logic model is on file and nothing public claims results |
 | The bar on file is our summary, compiled from one Blueprint and Claude's knowledge | docs/RUBRIC-MATH-K8.md: the EdReports K-8 math criteria v2.0, linked and summarised in our own words (all rights reserved, so no copy). The expert read the evidence guide on 2026-11-11 and confirmed the 65 percent line. The pilot unit is read against it | 4 | The fresh-agent read cites the rubric's own indicators, and the 65 percent figure is confirmed or corrected |
 | The reviewer of a spec was the person who fixed it | Three readers after Sara: verified play, a fresh agent, a teacher | 4 | In FINAL-REVIEW.md now |

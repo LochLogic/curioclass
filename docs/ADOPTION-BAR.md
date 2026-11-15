@@ -54,8 +54,8 @@ the shelves that feed it. Single tools keep their own rules (BASELINE, docs/TOOL
 | What | Where it lives | When |
 |---|---|---|
 | Scope and sequence before units: a year's order with reasons, for each pilot course | ROADMAP Track 7, step 1 | Before the unit pilot |
-| Teacher pages that teach the teacher (why this model, watch for, adapt it) | ROADMAP step 4f and Track 7, step 2 (the pilot unit) | Tried on the one pilot unit, grade 4 math pilot unit 11 (section 11.1), which is built now (Cory, 2026-11-11); tool lesson plans stay as they are until the pilot is judged |
-| The pilot unit judged against the bar | ROADMAP step 4f. The pilot is one unit, 11.1. For math the rubric on file is docs/RUBRIC-MATH-K8.md | With Cory's review of the pilot |
+| Teacher pages that teach the teacher (why this model, watch for, adapt it) | ROADMAP step 4f and Track 7, step 2 (the pilot unit) | Tried on grade 4 math unit 11 (section 11.1) under the pilot plan (Cory, 2026-11-11; pilots retired 2026-11-13); next tried on the probe (docs/pipeline/PROBE-GUARD.md); tool lesson plans stay as they are |
+| Plans and days judged against the bar | Pilots retired 2026-11-13: the expert and Codex read every unit plan against the subject's rubric (docs/RUBRIC-MATH-K8.md, RUBRIC-ELA.md, RUBRIC-SCIENCE.md), then the probe and guard days (docs/PRODUCTION-PATH.md) | At each baseline, with Cory's go or no-go |
 | K-2 reading scan for guess-the-word prompts | The old ROADMAP Now list, item 8a, now in docs/archive/ROADMAP-history-2026-11-11.md (tools: the catalog review) | Done for tools by the catalog review; the other shelves wait |
 | Math focus and balance report, per grade | The old ROADMAP Now list, item 8b, now in the same archive (tools: the catalog review) | Done for tools by the catalog review; the other shelves wait |
 | Reading Room: a text record and topic sets | docs/LIBRARY-PLAN.md ("Reading level", "Topic sets"); ROADMAP Track 3 | Before the ten-story pilot |
@@ -72,14 +72,14 @@ standards in; we read it in and can write our map out in it.
 
 | What a review looks at | Where it was | Where it sits now |
 |---|---|---|
-| Assessment beyond one short check per section | Not in the six steps | Every spec ends each code with an unaided check the teacher can see (SPEC.md, three hooks); the pilot unit carries its own assessment (ROADMAP step 4). A readiness check and an end-of-unit assessment per unit (not per unit, since 2026-11-11) and the cumulative checks each scope and sequence names, with respond days, are now part of a finished course (ROADMAP, "What a finished course holds", item 4) |
+| Assessment beyond one short check per section | Not in the six steps | Every spec ends each code with an unaided check the teacher can see (SPEC.md, three hooks); every unit plan carries its own assessment (PRODUCTION-PATH step 4). A readiness check and an end-of-unit assessment per unit (not per unit, since 2026-11-11) and the cumulative checks each scope and sequence names, with respond days, are now part of a finished course (ROADMAP, "What a finished course holds", item 4) |
 | English learner supports | Named above, in no step | SPEC.md, three hooks; FINAL-REVIEW.md |
 | Access: keyboard, color, sound with text | A font and contrast bar, later | SPEC.md, three hooks; FINAL-REVIEW.md |
 | What ships, not what the spec says | The measure read specs only | The measure now also counts live and verified tools and unit days (catalog/tables/measure.md) |
-| A reader outside the project | Open in PHASE1-SCOPE | A working teacher reads the pilot unit (ROADMAP step 4) |
+| A reader outside the project | Open in PHASE1-SCOPE | Changed 2026-11-14 (Cory): no outside reader is planned; agent reads (expert, Codex, answer key, safety, sensitivity, rights, Spanish) take that place (FOUNDATION 7.3) |
 | A real rubric | This file, compiled from one Blueprint and Claude's knowledge | A published rubric is filed and used in step 4 |
 | Coherence across grades | One line in the scope and sequence | Each scope and sequence row names the standards it builds on and where they are taught; a progression table per subject is built by script before step 6 (ROADMAP gap table) |
-| Evidence that it works | Left out | Not claimed. A one-page logic model is written with the pilot unit; a study waits for a partner (ROADMAP gap table) |
+| Evidence that it works | Left out | Not claimed. A one-page logic model is written with the probe (it was planned with the retired pilot unit); a study waits for a partner (ROADMAP gap table) |
 
 The full list of gaps, each with the step that closes it and the test for closed, is in docs/ROADMAP.md, "Gaps found, and how each closes".
 

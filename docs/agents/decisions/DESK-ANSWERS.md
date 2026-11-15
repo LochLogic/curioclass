@@ -1050,6 +1050,25 @@ move to three meetings a week (per_week 3), and the calendar is regenerated with
 science scope fix pass, after the Codex scope run, so running jobs are not disturbed. Source:
 docs/reviews/sequence-science-grade-2-codex-2026-11-14.md, finding 1.
 
+## 2026-11-14: four open questions from the continuity review (Cory, in chat: "Yes, all four")
+
+1. Rights and Spanish readers become agent reads now; the funding rows stay, marked "only if funded".
+2. Through scope and sequence and unit plans, each subject's lens (docs/agents/lenses/) plus its rubric stands in
+   for an approach page. A short approach page per subject is written before days.
+3. Timers (narrowed by Cory the same day, after the live site check): a timer is allowed where it has a grounded
+   purpose, such as a pace cue, a movement game or classroom management. The rule is against timers with no
+   purpose. Cory, on the reading pie timers, the movement timer, the projector timer and game night: "all those
+   timers seem fine to me, they all have a grounded purpose." GAMES.md timed modes stay where each has a purpose
+   (check each; do not strip). Every doc that said "no timers shown to students" takes this wording.
+4. Course counts, said the same way everywhere: "107 courses (105 active, 2 world languages shelved); 52 core
+   courses in the four core subjects plus 6 core electives".
+
+## 2026-11-14: grade 2 science mid-year check moves to week 20 (Cory, in chat: "Yes, move it")
+
+So grade 2 science fits three meetings a week with every day kept, its mid-year course-level check moves from week
+17 to week 20 (docs/reviews/sequence-science-grade-2-2026-11-14.md, For Cory). The science scope fix pass applies it
+to the frame's calendar pin and days.csv, and `frame.py sync` regenerates the calendar.
+
 ## 2026-11-15: Religious texts are read as literature where a standard calls for them (Cory, in chat)
 
 RL.8.9 and RL.9-10.9 name religious works such as the Bible as examples of source material. Cory: "yes, as

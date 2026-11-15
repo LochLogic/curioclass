@@ -1,23 +1,46 @@
 # Handoff: the one current-state page
 
-**This is the single page that says where the work stands and what to do next. Last updated 2026-11-14, after
-baseline 1 (top block); older blocks below are kept as written. Course words were renamed 2026-11-12 ([GLOSSARY.md](GLOSSARY.md)). Everything here is pushed to `spec/sara` and `main`.**
+**This is the single page that says where the work stands and what to do next. Last updated 2026-11-15 (the top
+block); the newest block comes first and older blocks below are kept as written. Course words were renamed
+2026-11-12 ([GLOSSARY.md](GLOSSARY.md)).**
 
-## 2026-11-14 night: social studies unit plans DONE to the structure pass, latest
+## Now (2026-11-15): state and next steps, latest
+
+**State.**
+- Course count: 107 courses (105 active, 2 world languages shelved); 52 core courses in the four core subjects plus
+  6 core electives. By course: [COURSES-STATUS.md](COURSES-STATUS.md) (generated; never edit by hand).
+- Social studies: 15 scopes and sequences and 138 unit plans, all read and fixed (blocks below). The C3 own-word
+  lines (283 codes, data/standards/c3-indicators.txt) and the widened Massachusetts lines were written on 2026-11-14
+  from the framework PDFs (S:\CurioClass-sources\_inbox\standards-2026-11-14\); nothing is open there.
+- Science (12 courses), ELA (13) and math (12): scopes and sequences written by Codex on 2026-11-14 and 15
+  (scripts/codex_scopes.py), each read by Codex and by a Claude expert
+  (docs/reviews/sequence-<course>-2026-11-1[45].md). A Codex fix pass of all 37 starts 2026-11-15.
+
+**Decided, applied in that fix pass** (DESK-ANSWERS, 2026-11-14 and 2026-11-15):
+- Science: NGSS is the base for every course; Massachusetts STE is a crosswalk only and never drops an NGSS code.
+- K to 2 science meets three times a week (per_week 3 in frames.csv and the three frames, then `frame.py sync`).
+- Grade 2 science's mid-year course-level check moves to week 20.
+- Religious texts are read as literature where a standard calls for them, never as scripture (the grade 8 ELA frame's
+  open lines take this ruling).
+
+**Standing since 2026-11-14:** no outside human readers (agent reads: expert, Codex, sensitivity, safety, answer
+key); a timer is allowed where it has a grounded purpose (a pace cue, a movement game, classroom management), never
+without one; pilots are retired (2026-11-13), the probe and guard replace them.
+
+**Next:** (1) the Codex fix pass of the 37 scopes and sequences; (2) unit plans for science and ELA, the social
+studies way; (3) math unit plans last. The social studies probe (PRODUCTION-PATH step 4, PROBE-GUARD.md: one
+section, 3 to 5 days, written and read the full way) and baseline 2 are still to run. The day pipeline (plan-data.md,
+lesson.py, LESSON-DAY.md, courses/<course>/) is math-shaped and the blind rule names all of courses/: adapting both
+for social studies is part of the probe. Files needing deletion move to S:\CurioClass-archive\<what>-<date>\.
+
+## 2026-11-14 night: social studies unit plans done to the structure pass
 
 All 138 plans (15 courses): written by Codex, gated, read by the Claude expert (docs/reviews/plan-<course>-2026-11-14.md)
 and by Codex (plan-<course>-codex-2026-11-14.md, brief docs/pipeline/briefs/plan-codex-read.md), fixed
 (plan-<course>-fixes-2026-11-14.md), then one structure pass (docs/reviews/ss-units-structure-pass-2026-11-14.md:
 scripts, briefs, template, data; one consolidated Unverified list for production). Gate passes on all 138.
 
-**Open:** C3 own-word lines (283 codes) and 7 Massachusetts lines need the C3 framework and the Massachusetts 2018
-history and social science framework PDFs, which are not on file; downloading needs Cory's yes.
-**Next: the probe** (PRODUCTION-PATH step 4, PROBE-GUARD.md): one social studies section, 3 to 5 days, written and
-read the full way. The day pipeline (plan-data.md, lesson.py, LESSON-DAY.md, courses/<course>/) is math-shaped and
-the blind rule names all of courses/ (written for the old math-4 drafts): adapting both for social studies is part of
-the probe and of measure 3 (template change). Then baseline 2 with a Desk card.
-
-## 2026-11-14: course frames (PRODUCTION-PATH step 2), latest
+## 2026-11-14: course frames (PRODUCTION-PATH step 2)
 
 **Social studies frames: all 15 done.** Written by band, read cold by the expert and Codex, then fixed one band at
 a time (each fix pass edits data/progressions/social-studies.csv). Frames: docs/courses/<course>/frame.md; gate
@@ -58,23 +81,21 @@ course pages for all 52, Government unit 9's outside contact).
 
 Cleanup pass done (docs/reviews/baseline-1-cleanup-2026-11-14.md): `frame.py calendar` shows no stagger breaks; scripts/frame.py has a PINS table for courses that choose their weeks. Scope and sequence writers: math 1 unit 7 and math 2 unit 8 end right before the year-end check (keep the two apart); social studies 2 runs above 3 lessons a week early in the year.
 
-**Course pages (Desk card q-baseline-1, answered):** the design changes are in docs/SITE-DESIGN.md; scripts/course_pages.py builds hidden course and unit pages for all 52 core courses from the frames (`SHOWN = False`; report docs/reviews/site-course-pages-2026-11-14.md). Before showing them: later.csv L19. The whole-site build currently stops on other data errors: later.csv L20. Government unit 9 outside contact settled as an optional step.
+**Course pages (Desk card q-baseline-1, answered):** the design changes are in docs/SITE-DESIGN.md; scripts/course_pages.py builds hidden course and unit pages for all 52 core courses from the frames (`SHOWN = False`; report docs/reviews/site-course-pages-2026-11-14.md). Before showing them: later.csv L19 (marked done; L23 holds the newer file count). The worksheet data errors of later.csv L20 are fixed; with --closet the build may still stop on the Word Wall `culture` definition (13 words, cap 12), left for Cory or the Word Wall owner (L20's note). Government unit 9 outside contact settled as an optional step.
 
-**Pause lifted for social studies (Cory, 2026-11-14: "Social studies is overall our test bed. Let's go ahead and do the whole scope and sequence section together and follow the chart on the dashboard").** All 15 social studies scopes and sequences run together, then review, unit plans, units review and the probe, to baseline 2. ELA, science and math stay paused at step 2.
+**Pause lifted for social studies (Cory, 2026-11-14: "Social studies is overall our test bed. Let's go ahead and do the whole scope and sequence section together and follow the chart on the dashboard").** All 15 social studies scopes and sequences run together, then review, unit plans, units review and the probe, to baseline 2. (Then: ELA, science and math stayed paused at step 2, until the unpause below.)
 
-**Scopes unpaused for science, ELA and math (Cory, 2026-11-14 late).** Codex writes all 37 remaining scopes and
+**Scopes unpaused for science, ELA and math (Cory, 2026-11-14 late).** Codex wrote all 37 remaining scopes and
 sequences in one unattended run (`scripts\Start-Codex-Scopes.bat`, driver `scripts/codex_scopes.py`): write blind,
 gate, a scope reconcile for math-grade-4, english-language-arts-grade-6 and science-grade-4
-(docs/pipeline/briefs/sequence-reconcile.md), then a Codex first read (docs/reviews/sequence-<course>-codex-*.md). It
-stops there. Next, after Claude's window resets: the expert reads (grade-band reports, as for social studies), the
-Codex fix pass, then unit plans for science and ELA on the rest of the 61% week, then Cory uses the banked reset.
-Units keep the order: math units last. Cory's reason: the math pause was about older work, which write blind then
-reconcile handles.
+(docs/pipeline/briefs/sequence-reconcile.md), then a Codex first read. Done, with the expert reads; where it stands
+now is the top block. Units keep the order: math units last. Cory's reason: the math pause was about older work,
+which write blind then reconcile handles.
 
-**Where it stands (2026-11-14, paused at 96% of the usage window):** all 15 social studies scopes and sequences are written (docs/courses/<course>/scope-and-sequence.md, data/plans/<course>/days.csv), every one passes sequence.py; writer notes and For the lead items are inside each scope-and-sequence.md. Codex reads were started for the nine K to 8 courses (docs/reviews/sequence-<course>-codex-2026-11-14.md). **Resume:** expert reads (sequence-read.md) of all 15, one agent per band; Codex reads of the six 9 to 12 courses and any K to 8 Codex read that did not land; then one fix pass that settles once, for all 15, readiness check versus retrieval task (sequence-write rule 2 against the frames' Seams wording) and makes frame.py calendar read days.csv school_day and held look-back days; then unit plans, units review, probe, baseline 2.
+**Done since (was "where it stands", 2026-11-14, paused at 96% of the usage window):** all 15 social studies scopes and sequences are written (docs/courses/<course>/scope-and-sequence.md, data/plans/<course>/days.csv), every one passes sequence.py; writer notes and For the lead items are inside each scope-and-sequence.md. Codex reads were started for the nine K to 8 courses (docs/reviews/sequence-<course>-codex-2026-11-14.md). **Resume:** expert reads (sequence-read.md) of all 15, one agent per band; Codex reads of the six 9 to 12 courses and any K to 8 Codex read that did not land; then one fix pass that settles once, for all 15, readiness check versus retrieval task (sequence-write rule 2 against the frames' Seams wording) and makes frame.py calendar read days.csv school_day and held look-back days; then unit plans, units review, probe, baseline 2.
 
-**Next: PRODUCTION-PATH step 3, social studies scopes and sequences first**, with sequence-write.md; ELA 6 rights
-list redo is later.csv L14. Files needing deletion move to S:\CurioClass-archive\<what>-<date>\ (Cory, 2026-11-14).
+(Done: PRODUCTION-PATH step 3 for social studies. Still open from this block: the ELA 6 rights list redo,
+later.csv L14.)
 
 ## 2026-11-13: read this before anything below
 
@@ -106,7 +127,7 @@ the stale notes the script cannot see; every write and fix brief resolves marker
 lands (a frame, a standards file, a review), run it and rewrite what it flags. Also check data/plans/later.csv:
 a row whose trigger has passed is marked done or acted on.
 
-**Pre-work P2 to P5, 2026-11-13 (latest):** P2 to P5c done; Physics is core (58 courses, 52 core). P5d run 1: the
+**Pre-work P2 to P5, 2026-11-13:** P2 to P5c done; Physics is core (58 courses, 52 core). P5d run 1: the
 expert passed calibration ([reviews/calibration-2026-11-13.md](reviews/calibration-2026-11-13.md), 18 of 18
 planted majors; Desk card q-calibration-1). Codex passed too (18 of 18, no false alarms, but it under-ranks
 severity); both lean lenient, so EXPERT.md gained two rules; the re-run with fresh plantings (2026-11-13, docs/reviews/calibration-run2-2026-11-13.md) passed both readers and showed the rules worked.
@@ -115,7 +136,7 @@ collections come per course; L7 is Cory's; the rest wait on
 their triggers. Cory 2026-11-13: both readers are trusted (q-calibration-1 answered); Codex reads run by script
 (scripts/codex_read.py), no clicks.
 
-**Step 1 closed: the read across all four, 2026-11-13 (latest).** Expert (10 findings) and Codex (7) read the four progressions together; one fix pass applied all but one (docs/reviews/progression-cross-*2026-11-13.md). About 95 percent of the 487 cross-subject links were already timed right; 7 forward links repointed, a dozen grade 6 and 8 rows now name the earlier math they use (with a worked-example bridge when the math comes later the same year), 29 high school science rows name their real math, claim-evidence-reasoning is one name across subjects. The gate now fails a cross-subject link to a skill taught in a later grade unless the row's notes carry "Just in time:". Cory answered Desk card q-cross-progression-1: ELA grade 5 unit 4 is water. The report's "For the course frames" lists (both readers) are step 2 inputs. Next: step 2, course frames.
+**Step 1 closed: the read across all four, 2026-11-13.** Expert (10 findings) and Codex (7) read the four progressions together; one fix pass applied all but one (docs/reviews/progression-cross-*2026-11-13.md). About 95 percent of the 487 cross-subject links were already timed right; 7 forward links repointed, a dozen grade 6 and 8 rows now name the earlier math they use (with a worked-example bridge when the math comes later the same year), 29 high school science rows name their real math, claim-evidence-reasoning is one name across subjects. The gate now fails a cross-subject link to a skill taught in a later grade unless the row's notes carry "Just in time:". Cory answered Desk card q-cross-progression-1: ELA grade 5 unit 4 is water. The report's "For the course frames" lists (both readers) are step 2 inputs. Next: step 2, course frames.
 
 **Step 1, all four progressions done, 2026-11-13.** ELA: 374 rows K to 12 (data/progressions/ela.csv), all 455 grade-level Common Core codes owned once (9-10 codes owned in grade 10, 11-12 in grade 12, started with ~ the year before). Reconcile: 18 differences, old work won 8 (5 sourced), no pull. Cory answered Desk card q-ela-progression-1 (DESK-ANSWERS 2026-11-13: the dash is taught; recognizable and recent texts in grades 9 to 12). Math: 305 rows K to 11 (data/progressions/math.csv), high school owned in Algebra I (9), Geometry (10), Algebra II (11); 53 (+) codes deferred to the electives (math-excluded.csv). Reconcile: 43 differences, old work won 28, all on a named source, so real but earned; F-IF.C.8 moved to Algebra II on the base text's tags. The gate now counts a parent covered by its lettered parts, never hides a (+) part behind an owned parent, and fails a cross-subject lean to an unowned code. Nothing for Cory from math. Reviews: docs/reviews/progression-{ela,math}-*2026-11-13.md; settled items in docs/reviews/DIGEST.md. Left for the course frames: accelerated path (Algebra I in grade 8), major-work share by days, text picks. 
 
@@ -133,9 +154,9 @@ math progressions the same way (PRODUCTION-PATH step 1), then the read across al
 [ROADMAP.md](ROADMAP.md) holds the order of work only. Its history is in `docs/archive/`. If another page
 disagrees with this one, the other page is stale: check the date, fix it, and say so.
 
-## Start here: the next action
+## Old next action (retired 2026-11-13)
 
-The pilot unit comes first (grade 4 math unit 11, one section, 11.1: [courses/math-4/s11.md](courses/math-4/s11.md)). In order:
+Kept as written; the pilot plan below was replaced by PRODUCTION-PATH. The pilot unit came first (grade 4 math unit 11, one section, 11.1: [courses/math-4/s11.md](courses/math-4/s11.md)). In order:
 
 1. **Done 2026-11-12: cold expert read of `s11.md`**, revised once
    ([reviews/unit-plan-s11-2026-11-12.md](reviews/unit-plan-s11-2026-11-12.md)): 15 findings, none for Cory,
@@ -206,7 +227,7 @@ The pilot unit comes first (grade 4 math unit 11, one section, 11.1: [courses/ma
    - **Decided 2026-11-12, Desk card 112 `q-course-level-names`** (DESK-ANSWERS, "course level names"): the course
      levels take the words teachers know. What was a stretch is now a **unit**, what was a unit is now a **section**,
      the spine is the **scope and sequence**, the end check is the **end-of-unit assessment** (check day: **assessment
-     day**); sub-ready days are one per unit in the new sense (18 a year in grade 4 math). The staged plan goes ahead:
+     day**); sub-ready days are one per unit in the new sense (9 a year in grade 4 math, one per unit of its frame). The staged plan goes ahead:
      exit slip to exit ticket, the day kind `Use` to Application, topic pages from /modules/ to /topics/ with redirects,
      the tool role "lesson" to "teach". Ids, folders and file names keep their names (`s11-...`, `sNN.md`, `uNN-N/`,
      `math-4-spine.md`, `UNIT-PLAN.md`, `LESSON-DAY.md`). This page uses the new words; dated reports keep theirs.
@@ -373,27 +394,31 @@ What was done, with nothing deleted that was not first saved:
   then `answered`. Cory answers in a comment on the card. Next free card order: 113. Sara's session cannot open the Desk; the main session places her cards. After changes, refresh the
   Dashboard with `python -X utf8 scripts/course_status.py <out.json>` (Desk doc `stats/courses`) and the Roadmap
   tab with `python -X utf8 scripts/desk_roadmap.py <out.json>` (Desk doc `stats/roadmap`).
-- Core subjects first (BASELINE rule 24, a soft goal): see "The order after the pilot".
-- Cory's standing rules that bite most often: every one of the 105 courses is finished to the adoption bar (a
-  firm bar; never call it unrealistic); no countdown timer shown to a student; no library or paywalled access;
+- Core subjects first (BASELINE rule 24, a soft goal): the build order is [PRODUCTION-PATH.md](PRODUCTION-PATH.md).
+- Cory's standing rules that bite most often: every one of the 107 courses (105 active, 2 world languages shelved)
+  is finished to the adoption bar (a firm bar; never call it unrealistic); a timer only where it has a grounded
+  purpose (a pace cue, a movement game, classroom management), never one with no purpose; no library or paywalled access;
   teach first by default in grades 2 to 5; Cory wants pushback and welcomes questions about earlier decisions.
 
 ## Where things stand
 
+Updated 2026-11-15. Per course: [COURSES-STATUS.md](COURSES-STATUS.md) (generated); per step: the Desk's plan flow
+(data/plans/flow-status.csv).
+
 | Layer | State |
 |---|---|
 | 1 Foundation | [FOUNDATION.md](FOUNDATION.md). Done. |
-| 2 Standards | `data/standards/`. Checked 2026-11-11: nothing superseded; gaps listed below. |
-| 3 Approach | [APPROACH.md](APPROACH.md), [APPROACH-MATH.md](APPROACH-MATH.md). Decisions answered. Cory still owes a read of the pages as a whole; his mother is reading "The principles" onward as a grade 2 teacher. ELA: [APPROACH-ELA.md](APPROACH-ELA.md), drafted 2026-11-11, read by the expert, revised once; two points wait for Cory. Science approach page: Sara's piece 3 ([courses/NEXT-SPINES.md](courses/NEXT-SPINES.md)). |
-| 4 Progressions | Math grades 3 to 5 done. |
-| 5 Scope and sequence | Grade 4 math, plus science and ELA scopes and sequences waiting for Cory's final yes. 3 of 105 courses have a scope and sequence. |
-| 6 Unit plans and section plans | Fields fixed in [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). Word caps are 1,250 (section plan), 1,250 (unit plan) and 1,800 (one-section unit) since 2026-11-11. Grade 4 math: units 1, 2, 3, 9, 10 and 11 are planned, which is 13 of 43 sections (the status table shows 17 because it counts unit plans too). 30 sections to go (units 4 to 8 and 12 to 18). **Planning freeze lifted 2026-11-12 by Cory** after the teacher reader's first look at unit 11. |
-| 7 Lessons, tools, print | Section 11.1 (grade 4 math) is built but for its tool, see "Start here" step 4. Template: [courses/LESSON-DAY.md](courses/LESSON-DAY.md). |
-| Texts (ELA) | Grade 6 unit 2 only: [courses/ela-6/RIGHTS.md](courses/ela-6/RIGHTS.md). Every row is "found, not yet second-read"; fifteen questions wait for the second reader (a person, FOUNDATION 7.3). No text is taught before that read. |
-| The bar | Math: [RUBRIC-MATH-K8.md](RUBRIC-MATH-K8.md). All other subjects but ELA and science: [ADOPTION-BAR-SUBJECTS.md](ADOPTION-BAR-SUBJECTS.md), second draft. ELA: [RUBRIC-ELA.md](RUBRIC-ELA.md), drafted 2026-11-11, read by the expert, revised once. Science rubric file: Sara's piece 3. |
+| 2 Standards | `data/standards/`, loaded for every subject; C3 and Massachusetts own-word lines done 2026-11-14. |
+| 3 Approach | [APPROACH.md](APPROACH.md), [APPROACH-MATH.md](APPROACH-MATH.md), [APPROACH-ELA.md](APPROACH-ELA.md). Science and social studies: the subject lens (docs/agents/lenses/) plus the rubric stand in through scopes and unit plans; a short approach page per subject is written before days (Cory, 2026-11-14). |
+| 4 Progressions | All four core subjects done, K to 12 (data/progressions/), 2026-11-13. |
+| Course frames | All 52 core courses done (baseline 1, 2026-11-14). |
+| 5 Scope and sequence | All 52 written: social studies 15 read and fixed; science, ELA and math 37 read, Codex fix pass starting 2026-11-15. |
+| 6 Unit plans and section plans | Social studies: 138 unit plans, read and fixed. Science and ELA next, math last. Template: [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). |
+| 7 Lessons, tools, print | Only the older grade 4 math days exist (built under the retired pilot plan). Days wait for the probe and guard (PRODUCTION-PATH). Template: [courses/LESSON-DAY.md](courses/LESSON-DAY.md). |
+| The bar | Math: [RUBRIC-MATH-K8.md](RUBRIC-MATH-K8.md). ELA: [RUBRIC-ELA.md](RUBRIC-ELA.md). Science: [RUBRIC-SCIENCE.md](RUBRIC-SCIENCE.md). Other subjects: [ADOPTION-BAR-SUBJECTS.md](ADOPTION-BAR-SUBJECTS.md). |
 
-Course count: 105, of which 56 are in the four core subjects ([COURSES-STATUS.md](COURSES-STATUS.md), generated;
-never edit by hand). World languages are shelved (see below) but still counted in the table, as a reminder (Cory).
+Course count: 107 courses (105 active, 2 world languages shelved); 52 core courses in the four core subjects plus 6
+core electives. World languages are shelved but still counted, as a reminder (Cory).
 
 ## What Cory decided on 2026-11-11 (evening), in his words
 
@@ -562,10 +587,10 @@ by the script. Tool asks are still prose in TOOL-ASKS.md. The number limits of a
 within 100") are not yet a gate. `DEFAULTS.md` has been checked against unit 11 only. ELA has no data shape yet (its text
 record, question set and word list wait for Cory's answer on card `q-ela-piece-2`, question 3).
 
-## The order after the pilot
+## The order after the pilot (retired 2026-11-13; PRODUCTION-PATH replaces it)
 
 **Core subjects first (Cory, 2026-11-11; a soft goal, BASELINE rule 24).** Math, English language arts, science
-and social studies (56 of the 105 courses) come first; this bends where work is complementary. Every course is
+and social studies (52 core courses plus 6 core electives, of 107) come first; this bends where work is complementary. Every course is
 still finished to the bar; this sets the order, not the scope.
 
 1. The pilot is read; templates and the plan design are fixed from what it showed.
@@ -573,7 +598,7 @@ still finished to the bar; this sets the order, not the scope.
    only when the one before is built. Unit 10 is next.
 3. Alongside it, once 11.1 has its teacher read: the ELA and science pilots, so a unit's cost is known in three
    subjects. No other math course is built until they are in.
-4. The plan with sizes and dates for all 105 courses, written from three real unit costs.
+4. The plan with sizes and dates for all 107 courses, written from three real unit costs.
 5. The social studies content standard goes to Cory before any social studies scope and sequence.
 
 **Sara's list is [courses/NEXT-SPINES.md](courses/NEXT-SPINES.md)**. Done by her session: piece 1 (the pilot

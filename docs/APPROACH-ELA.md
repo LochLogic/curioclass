@@ -149,8 +149,8 @@ comprehension", and it includes expression. Purposeful rereading and reading wit
 for students behind in grades 4 to 9 (WWC 2022, recommendation 2); the same guide warns that rereading only for
 speed can hurt motivation. For kindergarten to grade 3, reading connected text aloud every day with feedback is
 rated moderate, mostly one-on-one (WWC foundational skills guide, 2016, recommendation 4). *Rule:* fluency
-practice is rereading a short passage of the anchor aloud with a partner. No tool shows a student a countdown
-timer (shared rule). In the oral reading check the teacher holds the watch.
+practice is rereading a short passage of the anchor aloud with a partner. No tool shows a student a timer without a
+grounded purpose (shared rule, BASELINE rule 30). In the oral reading check the teacher holds the watch.
 
 **Talk (principle 5).** SL.6.1: "Engage effectively in a range of collaborative discussions." Extended
 discussion of what a text means is rated moderate for grades 4 to 12, on a small set of studies (WWC 2008,
@@ -191,14 +191,15 @@ exit answer against the sample answer, and gives the end-of-unit assessment on t
 
 ## What ELA adds to the unit and section plan fields
 
-Field numbers are those of [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). They were fixed on math; the pilot is
-the first ELA plan and may change what ELA fills. Proposed, to be tried on the pilot:
+Field numbers are those of [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). They were fixed on math; the first ELA unit plans
+(after the 2026-11-15 scope fix pass; pilots were retired 2026-11-13) may change what ELA fills. Proposed, to be
+tried on those plans:
 
 - **Facts in data. Decided 2026-11-12, Cory's yes:** the text record, the question set (each question with its
   day, its standard and whether it needs the text) and the word list are rows in `data/plans/<course>/`, in
   three files: texts.csv, questions.csv and words.csv. They are shown as generated tables and do not count
-  toward the word cap. The columns are fixed when the first ELA pilot plan is written. The files are not built
-  yet.
+  toward the word cap. The columns are fixed when the first ELA unit plans are written. The text data are in
+  data/plans/ela-texts.csv (2026-11-14); questions.csv and words.csv are not built yet.
 - Header: days by kind, in the ELA kinds.
 - Unit field 2: the text set (generated: record, rights line, status), the word list (generated), the main
   piece of writing, and what is carried: the anchor text, read and returned to.

@@ -128,4 +128,10 @@ by `|`) and `source` (the credit of an adapted item; CC BY, CC0 or public domain
 Units 1, 2, 3, 9 and 10 are in data too (units 2 and 3 on 2026-11-12); a unit still in prose only moves
 into data when it is next opened. 
 The grade 4 math `handbacks.csv` and `materials.csv` are backfilled for every written day (1 to 28 and 72 to 93) on 2026-11-13; `reserved.csv` has no row yet, since no day or plan names a worked example saved for a later day.
-ELA will add `texts.csv`, `questions.csv` and `words.csv` per course (Cory's yes, 2026-11-12); not built yet, and the columns are fixed when the first ELA pilot plan is written.
+ELA text data live in one shared file, data/plans/ela-texts.csv (title, author, use, status; 2026-11-14); per-course
+`questions.csv` and `words.csv` (the unit plan asks for data/plans/<course>/wordlist.csv) come with the ELA unit plans.
+
+As of 2026-11-15: every science, ELA, math and social studies course has data/plans/<course>/days.csv at the scope
+stage (scripts/sequence.py gates it); social studies also has 138 unit plans. Source maps use one layout in every
+subject (sequence-write.md rule 8). The grade 4 math lines above describe the older day-level data, kept as the model
+for day writing.

@@ -16,6 +16,11 @@ Settled 2026-11-14 (baseline 1 structure findings 4 and 6). The gate is `scripts
 
 A frame counts course days. Only the calendar turns them into school days and weeks.
 
+**36 weeks and 32.** A real school year is about 36 weeks (about 180 days); this calendar numbers the 160 days a
+course teaches over 32 weeks, leaving the rest for a school's own testing, holidays and events. Cory's 2026-11-12
+call on the home path named "a 36-week numbered calendar"; whether the home calendar spreads the 160 days over 36
+weeks or numbers these 32 is not settled yet (continuity review 2026-11-14, E5).
+
 ## How a course meets
 
 | Course | Meets | Weeks it spreads over |

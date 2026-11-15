@@ -103,6 +103,10 @@ studies goes first; the other subjects follow in step 5.
    source-map cell is written fresh in Curio Class words. Never copy or lightly edit a base text's lesson purpose,
    learning goal, title sentence or teacher note, even where its licence allows it. **Class size:** minute budgets for
    one-to-one or small-group evidence plan for 30 students.
+   **Math leans in other subjects** (lead, 2026-11-15): students take math every year, so a lean on a math row opens
+   with retrieval by default. It gets a readiness check only where a performance expectation rests on it and no math
+   course uses the row after its grade; where a math course of the same year (Algebra II beside physics) checks or uses
+   it first, the other subject retrieves it, and where the other subject uses it first, it gives the readiness check.
    **Each part of each code:** every observation, end-of-unit and check task asks about each part of each code it
    lists (a short prompt per part; no day added); a product or an observed performance may stand for a code where
    the day says so.
@@ -123,12 +127,23 @@ studies goes first; the other subjects follow in step 5.
 7. **Days by load.** Weigh each owned row's notes; a unit's teaching days follow its load, not equal shares.
 8. **Base texts:** where the course has one, write data/plans/{course}/source-map.csv (one row per base lesson, the
    course unit and day it lands on, keep, split, merge, cut or ours, with the reason for a cut); a source-map row may
-   name a unit before its sections exist.
+   name a unit before its sections exist. **One layout in every subject** (lead, 2026-11-15, after the reads found a
+   different layout in each map; sequence.py gates it), columns in this order:
+   `source,title,goals,standards,unit,days,decision,why,order_conflict,harms_learning`, then `url` if wanted.
+   `source` is the base lesson's own id (IM G3 U2 L5, EL G4 M1 U1 L6, OSE 7.1 L3), or `ours` for a day with no base
+   lesson; `title` is the base lesson's title, short; `goals` and `standards` are the base lesson's, in our own words;
+   `unit` is the course unit (`3` or `3.2`); `days` the course days it lands on (`12`, `12-13`, `12; 14`), blank only
+   on a cut; `decision` one of keep, split (one base lesson over two or more days), merge (two or more base lessons
+   on one day), cut, ours; `why` the reason, required on a cut; `order_conflict` where our order differs from the
+   base's, with `harms_learning` yes or no and why. Days that adapt no base lesson never carry "Base" in their goal
+   or note.
 9. **Sensitivity:** a day with content the frame flags names it in the note column; the sensitivity agent's read
    (docs/pipeline/briefs/sensitivity-read.md) comes with the unit plan.
 10. **A shorter path.** The scope and sequence has a short "Shorter path" section (FOUNDATION section 5, adoption
     bar C2): how the days hold on a shorter period, and a year about 10 days short, by named fold-in days (days whose
-    work folds into a neighbour, nothing assessed and no owned part cut).
+    work folds into a neighbour, nothing assessed and no owned part cut). Each fold-in day names the minutes
+    it saves, and the section states its total against the frame's day count (lead, 2026-11-15, one rule for every
+    subject).
 11. No em dashes; "Curio Class" in full; no company names. Edit only your files. No git.
 
 ## The gate
@@ -136,7 +151,7 @@ Run `python -X utf8 scripts/sequence.py check {course}` (also run by `python -X 
 numbered in order, the frame's total and each unit's days, `stretch` in 1 to the unit count or `C`, the five kinds,
 an end-of-unit assessment per unit, a mid-unit assessment in units over 25 days, a respond day after each
 course-level check, each `readiness` day on the previous unit's last day or a respond day at most 3 days before a
-unit's first day and never on a first day, every owned skill placed, every owned code placed (a note), the .md file present, not empty, with
+unit's first day and never on a first day except unit 1's day 1, every owned skill placed, every owned code placed (a note), the .md file present, not empty, with
 its title and a section per unit, and a "Shorter path" section (a note). Then run
 `python -X utf8 scripts/frame.py calendar` and say in your last message whether your course breaks the stagger rule.
 

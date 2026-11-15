@@ -103,7 +103,7 @@ POSITION_PAREN = re.compile(r'\s*\((?:about |weeks? |days? |about days )[^()]*\)
 # Standards list already shows each one, linked, so a clause of an aside in parentheses that cites a code is dropped.
 CODE = re.compile(r'(?:(?<![\w.-])(?=[\w.-]*\d)(?=[\w.-]*[A-Z])[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*\.[A-Za-z0-9]+'
                   r'(?:[.-][A-Za-z0-9]+)*|(?<![\w-])(?:K|K-2|\d|MS|HS)-(?:PS|LS|ESS|ETS)\d+-\d+)(?![\w-]|\.\w)')
-# No timer is shown to students (BASELINE): timed writing in a frame is said as writing in one sitting.
+# A timer needs a grounded purpose (BASELINE rule 30); timed writing in a frame is said as writing in one sitting.
 TIMED = [(re.compile(r'\ba timed (analytic )?(paragraph|essay)', re.I), r'an \1\2 written in one sitting (no timer shown)'),
          (re.compile(r'\bone timed (paragraph|essay)'), r'one \1 written in one sitting'),
          (re.compile(r'\btimed (analytic )?writing\b'), r'\1writing in one sitting (no timer shown)'),

@@ -1,4 +1,9 @@
-# Pilots: what real people found
+# Pilots: what real people found (retired)
+
+**Retired 2026-11-13 and 2026-11-14.** Pilots were replaced by the probe and guard (docs/pipeline/PROBE-GUARD.md,
+docs/PRODUCTION-PATH.md), and Cory said no outside readers are looked for (2026-11-14): the reads in
+docs/FOUNDATION.md section 7 are agent reads. This folder stays as the record of the grade 4 math build: its read
+logs, COST.md and REVIEW-CADENCE.md. Nothing below is a current plan.
 
 Set up 2026-11-11 (Cory accepted the cold strategic review, recommendation 5). Nothing is filed here yet.
 
@@ -31,4 +36,4 @@ what was changed because of it. A finding that changes a template goes to docs/H
 ## The cost sheet
 
 `COST.md` in this folder records, for each pilot unit and each piece of it: tokens, wall hours, owner minutes,
-and defects found per read. It is the base of the plan with sizes and dates for all 105 courses.
+and defects found per read. It was to be the base of the plan with sizes and dates for all 107 courses (105 active, 2 world languages shelved).

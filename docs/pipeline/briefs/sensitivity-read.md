@@ -7,7 +7,7 @@ places FOUNDATION 7.3 once gave to people: a community reader, a health speciali
 content reviewer and an ELA teacher. Each runs as a fresh agent that has not seen the work written, and each studies
 before it judges. A read that skips its study step fails, whatever it finds.
 
-Slots: {kind} is one of `sensitivity`, `safety`, `answer-key`, `text`; {target} is the file or unit read (a frame
+Slots: {kind} is one of `sensitivity`, `safety`, `answer-key`, `text`, `rights`, `spanish`; {target} is the file or unit read (a frame
 unit, a unit plan, a day, a text); {community} names the people or topic for a sensitivity read; {date}.
 
 ## 1. Study first (every kind)
@@ -28,6 +28,13 @@ studied", each with a link or a file path and one line on what it taught you:
   method, before opening the key.
 - **text:** the subject lens (docs/agents/lenses/ela.md), docs/RUBRIC-ELA.md, the standard's text-complexity
   guidance, and two published model texts of the same kind and grade.
+- **rights** (added 2026-11-15; Cory 2026-11-14, answer 1: the second rights reader is an agent): the licence or
+  public-domain basis of each outside text, image or base-text lesson, from its own source page (the licence text
+  itself, the publication date and place, the edition), plus docs/FOUNDATION.md's rights rules. Credits stay light:
+  one short credit per adapted day (Cory 2026-11-13).
+- **spanish** (added 2026-11-15; the native Spanish reader is an agent): two published Spanish-language school texts of
+  the same grade and kind, a style guide for neutral Latin American Spanish in schools, and the glossary of terms the
+  course already uses in Spanish.
 
 ## 2. Read the target
 - **sensitivity:** facts right and plain (BASELINE rule 5: don't soften history or science); the people shown as
@@ -42,6 +49,12 @@ studied", each with a link or a file path and one line on what it taught you:
   (fix the item), or your error (say so). Check that each item tests the standard the plan says it tests.
 - **text:** a qualified ELA teacher's read: complexity for the grade, the standard's work can be done on it,
   quality as writing, a fair picture of the people in it, and no line a child would be harmed by.
+- **rights:** each outside item has a basis that allows our use (licence, public domain, or our own), the credit says
+  it, the edition used is the one checked, and nothing comes from a login-gated or no-derivatives source. Funding-only
+  items (rows marked "only if funded") are listed, not judged.
+- **spanish:** a reader's read of the Spanish family and student copy: meaning kept, natural and age-appropriate,
+  neutral across Spanish-speaking families, the course's terms used consistently, nothing a family would read as
+  talking down.
 
 ## 3. Report
 docs/reviews/{kind}-{target}-{date}.md: "What I studied" (the list from step 1); a verdict (pass, pass with fixes,

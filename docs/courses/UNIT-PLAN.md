@@ -1,6 +1,6 @@
 # The unit plan and the section plan
 
-**Second draft, 2026-11-11. Cory said yes to the unit plan, both field lists, the word caps, the mark "light
+**Second draft, 2026-11-11, edited through 2026-11-14 (readiness timing, caps, ELA text data). Cory said yes to the unit plan, both field lists, the word caps, the mark "light
 tool" and the readiness check before the unit opens (2026-11-11, Desk card q-unit-plans). The fields are
 fixed for grade 4 math; the first plan in science and in English language arts may change what those subjects
 fill.** Which units hold a readiness check follows sequence-write.md rule 2 (2026-11-14); when it is given is one
@@ -28,10 +28,10 @@ The fields come from the twelve in [APPROACH.md](../APPROACH.md) and the math ad
 [APPROACH-MATH.md](../APPROACH-MATH.md). The first draft was tried on three grade 4 math sections and then read
 cold by the curriculum expert ([the review](../reviews/unit-plans-2026-11-11.md)). This draft follows that
 review. The trial documents are [s03](math-4/s03.md) with [u03-1](math-4/u03-1.md) (a concept section),
-[s09](math-4/s09.md) with [u09-1](math-4/u09-1.md) (a procedure section) and [s11](math-4/s11.md) (the pilot, a
-one-section unit with a key tool). The fields have been tried on math only, and checked against the science
-and ELA scopes and sequences only. The first plan in each of those subjects may change what that subject fills. No plan has
-been used with children.
+[s09](math-4/s09.md) with [u09-1](math-4/u09-1.md) (a procedure section) and [s11](math-4/s11.md) (the old pilot,
+retired 2026-11-13, a one-section unit with a key tool). Since 2026-11-14 the unit plan fields are also in use for
+all 138 social studies unit plans; science and ELA unit plans come next and may change what those subjects fill. No
+plan has been used with children.
 
 ## Facts live in data (added 2026-11-11, Cory: "Let's implement those architectural fixes")
 
@@ -59,9 +59,10 @@ State: unit 11 is in data. Units 1, 2, 3, 9 and 10 move when each is next opened
 Added 2026-11-12 (Cory's yes on card q-ela-piece-2): ELA adds three row files to `data/plans/<course>/`:
 `texts.csv` (the text record), `questions.csv` (every question with its standard) and `words.csv` (the word
 list). They are shown as generated tables and do not count toward the word cap. The columns are fixed when the
-first ELA pilot plan is written. Not built yet.
+first ELA unit plans are written. Not built yet, except the text records below.
 
-ELA text and word data, defined 2026-11-14 (fills the gap above for texts; questions wait for the pilot):
+ELA text and word data, defined 2026-11-14 (fills the gap above for texts; questions wait for the first ELA unit
+plans):
 
 - **Text records: `data/plans/ela-texts.csv`**, one file for all thirteen ELA courses, one row per text a
   frame's text set names. It is not split into `data/plans/<course>/texts.csv` yet, because a course folder with
@@ -129,8 +130,8 @@ sets is given).
     form and the day it is withdrawn.
 13. **Shared. Teaching first is the default for anything new.** An opening task is allowed when students can
     attempt it and the goal is an idea. *Math fills:* ten minutes at most.
-14. **Shared. No countdown timer in any tool.** *Math fills:* a fluency section says how fluency is built
-    without one.
+14. **Shared. No timer without a grounded purpose** (a pace cue, a movement game, classroom management; BASELINE rule 30). *Math fills:* a fluency
+    section says how fluency is built without time pressure.
 15. **Shared. The standard's verb is quoted exactly,** and a section says which part of the standard it carries.
 16. **Shared. Nothing claims a result.** Anything written from memory is marked "from memory". A target of our
     own is marked "ours, untested". A tool that is not built is marked "spec only". Sources are listed.
@@ -405,7 +406,7 @@ UNIT-PLAN.md.
 ## 8. Practice that returns
 - **Warm-up.**
 - **Fluency target.**
-- **How fluency is built with no timer.** (fluency sections)
+- **How fluency is built without time pressure.** (fluency sections)
 
 ## 9. Supports and extension
 - **English learners.**

@@ -2,7 +2,9 @@
 
 Pre-work P5a (docs/PRODUCTION-PATH.md), written 2026-11-13. The expert reads this before any science progression,
 course frame, scope and sequence, unit plan or day. It is a way of seeing, not a bar: the bar is the science
-rubric P5b added, docs/RUBRIC-SCIENCE.md. The standard is the Next Generation Science Standards (data/standards/ngss-pes.txt). Grades 6 to
+rubric P5b added, docs/RUBRIC-SCIENCE.md. The standard is the Next Generation Science Standards (data/standards/ngss-pes.txt): NGSS is the base for every
+science course and its wording governs; the Massachusetts 2016 STE framework is a crosswalk only, and a plan never
+drops an NGSS code to match it (Cory, 2026-11-14, DESK-ANSWERS). Grades 6 to
 8 adapt OpenSciEd Middle School (CC BY 4.0) as the base text, in its 18-unit order (DESK-ANSWERS 2026-11-13); K to
 5 and 9 to 12 are Curio Class's own, with OpenSciEd elementary and high school as reference only.
 

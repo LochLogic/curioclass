@@ -21,6 +21,14 @@ that course (logged), never the run. Order: science, ELA, math (math last). New 
 budget is at or below --min-remaining percent (default 8; Cory 2026-11-06: never hit 0) or when a usage limit shows.
 Writers and readers are blind to the older work; only the reconciler opens it.
 Logs: S:\CurioClass-codex\_scopes\summary.txt and one log per job beside it. No git: the lead commits after.
+
+The fix pass (added 2026-11-15, after the Claude expert reads): `--fix` runs one job per course instead, the brief
+docs/pipeline/briefs/sequence-fix.md with the lead calls in docs/reviews/sequence-lead-calls-2026-11-15.md. A course is
+fixed when docs/reviews/sequence-<course>-fixes-<date>.md exists and its gate passes; the job may edit the course's
+frame.md, scope-and-sequence.md, days.csv and source-map.csv only. Shared files wait for one structure pass after.
+
+    python -X utf8 scripts/codex_scopes.py --fix              fix every course not yet fixed
+    python -X utf8 scripts/codex_scopes.py --fix --status     what is fixed
 """
 import argparse, csv, datetime as dt, glob, os, subprocess, sys, threading, time
 from concurrent.futures import ThreadPoolExecutor
@@ -195,13 +203,40 @@ def chain(c, a, logdir):
     return 'done'
 
 
+def fix_chain(c, a, logdir):
+    course, subj = c['course'], c['subject']
+    date = dt.date.today().isoformat()
+    if done_file('fixes', course) and written(course):
+        return 'done'
+    slots = ['subject=' + subj, 'bar=' + BAR[subj], 'date=' + date]
+    for t in (1, 2):
+        if not may_start(a):
+            return 'held: ' + state['halt']
+        log('%s: fix, try %d' % (course, t))
+        b = brief('sequence-fix.md', '## For this run\n' + BLIND + '\n\n' + SUBJECT_NOTE[subj].replace('{course}', course) + (
+            '' if t == 1 else '\n\nA first try did not finish (no report, or the gate still fails): open the files as '
+            'they are, finish the work, run the gates and fix every FAIL.'), logdir, course + '-fix')
+        run(PY + ['scripts/codex_write.py', b, course] + slots +
+            ['allow=docs/courses/{course}/scope-and-sequence.md;docs/courses/{course}/frame.md;'
+             'data/plans/{course}/days.csv;data/plans/{course}/source-map.csv', 'tag=%s-fixes' % course,
+             'log=' + os.path.join(logdir, course + '-fix.codex.log')],
+            os.path.join(logdir, course + '-fix.log'))
+        src = os.path.join(ROOT, 'docs', 'reviews', 'codex-write-%s-fixes-%s.md' % (course, date))
+        if os.path.exists(src) and os.path.getsize(src) > 200 and written(course):
+            os.replace(src, os.path.join(ROOT, 'docs', 'reviews', 'sequence-%s-fixes-%s.md' % (course, date)))
+            log('%s: FIXED, gate passes' % course)
+            return 'done'
+    log('%s: fix FAILED twice (no report or the gate fails)' % course)
+    return 'fix failed'
+
+
 def status(cs):
     for c in cs:
         k = c['course']
-        print('%-36s %-8s written=%s reconcile=%s read=%s' % (
+        print('%-36s %-8s written=%s reconcile=%s read=%s fixed=%s' % (
             k, c['subject'], 'yes' if written(k) else 'no',
             ('yes' if done_file('reconcile', k) else 'no') if k in OLD else '-',
-            'yes' if done_file('codex', k) else 'no'))
+            'yes' if done_file('codex', k) else 'no', 'yes' if done_file('fixes', k) else 'no'))
 
 
 def main():
@@ -211,6 +246,7 @@ def main():
     p.add_argument('--min-remaining', type=float, default=8)
     p.add_argument('--dry', action='store_true')
     p.add_argument('--status', action='store_true')
+    p.add_argument('--fix', action='store_true', help='the fix pass (sequence-fix.md), one job per course')
     a = p.parse_args()
     cs = courses(a.only)
     if a.status or a.dry:
@@ -226,9 +262,10 @@ def main():
     if os.name == 'nt':
         import ctypes
         ctypes.windll.kernel32.SetThreadExecutionState(0x80000000 | 0x00000001)
-    log('run start: %d courses, %d at once, budget left %s%%' % (len(cs), a.jobs, budget()))
+    log('%s start: %d courses, %d at once, budget left %s%%' % ('fix pass' if a.fix else 'run', len(cs), a.jobs, budget()))
+    job = fix_chain if a.fix else chain
     with ThreadPoolExecutor(a.jobs) as ex:
-        results = dict(zip([c['course'] for c in cs], ex.map(lambda c: chain(c, a, logdir), cs)))
+        results = dict(zip([c['course'] for c in cs], ex.map(lambda c: job(c, a, logdir), cs)))
     tally = {}
     for v in results.values():
         tally[v.split(':')[0]] = tally.get(v.split(':')[0], 0) + 1

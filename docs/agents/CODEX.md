@@ -3,7 +3,11 @@
 **2026-11-04 (Cory): Codex is the primary builder and the phase 1 reviewer** (the cold CODEX-REVIEW.md pass in a new
 chat); Claude's Refine lenses come after. The pilot notes below are history.
 
-Codex does Build (step 1) and Polish (step 5) only. Everything else stays as REFINE.md: the integrator (the main Claude
+This page is about tools. For course work Codex also writes and reads (scopes and sequences, unit plans and their
+reads, by script since 2026-11-13 and 14): see docs/pipeline/README.md, "Planning above the day".
+
+On tools, Codex does Build and the Fix step (the step names are in docs/GLOSSARY.md; this page called it
+"Polish (step 5)" before) only. Everything else stays as REFINE.md: the integrator (the main Claude
 session) writes the brief, three blind Claude lenses review, the integrator merges, fresh Claude agents run the exit
 checks, the integrator closes, commits, pushes and deploys. First run: biased-bot, BR2 (BATCH-BR-LOG.md).
 

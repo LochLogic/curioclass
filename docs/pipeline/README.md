@@ -1,7 +1,23 @@
 # The production pipeline
 
 How lesson days are planned, written, read and fixed by several workers in one repository, one at a time.
-Started 2026-11-12 for grade 4 math units 4 to 8. Written so any course can use it.
+Started 2026-11-12 for grade 4 math units 4 to 8. Written so any course can use it. The build order above the day
+(progressions, frames, scopes and sequences, unit plans) is docs/PRODUCTION-PATH.md; its scripts are in "Planning
+above the day" below.
+
+## Planning above the day (since 2026-11-13)
+
+| Step | Script and gate | Brief | Who now |
+|---|---|---|---|
+| Progressions | `scripts/progression.py` (in `plan.py check`) | progression-write, -read, -cross-read, -reconcile | Claude writes and reads; Codex reads |
+| Course frames | `scripts/frame.py check`, `frame.py sync` (frames.csv, the calendar) | frame-write, frame-read, frame-reconcile | Claude writes and reads; Codex reads |
+| Scope and sequence | `scripts/sequence.py check`; the long run `scripts/codex_scopes.py` | sequence-write, -read, -fix, -reconcile | Codex writes and fixes; Claude expert and Codex read |
+| Unit plans | `scripts/unit_skeleton.py` (mechanical fields), `scripts/codex_units.py` (Codex fills the judgement fields), `scripts/unitplan.py check` | plan-codex (and -ela, -math, -science), plan-codex-read, plan-read | Codex writes and reads every plan; Claude expert reads and fix passes |
+| Any Codex read | `scripts/codex_read.py <brief> <out>` | the read brief named | Codex, by script |
+| Sensitivity, safety, answer key, text | | sensitivity-read | Fresh agents (no outside human readers, Cory 2026-11-14) |
+
+Sections, days and lessons will use the same pattern (script skeleton, Codex writes, gates, Codex reads every day,
+Claude reads a sample and the flags; DESK-ANSWERS 2026-11-14). The table below is the older day pipeline.
 
 ## The pieces
 
@@ -15,7 +31,7 @@ Started 2026-11-12 for grade 4 math units 4 to 8. Written so any course can use 
 | `scripts/pipeline_runner.py` | Optional: runs the queue unattended, starting each worker from `data/pipeline/workers.json`. |
 | `data/pipeline/runs.csv` | One row per unattended run: worker, minutes, tries, tokens. |
 
-## A unit's jobs, in order
+## A unit's jobs, in order (the day pipeline, grade 4 math, 2026-11-12)
 
 `turn.py add-unit <course> <unit> <first>-<last>` queues the first three; the rest are queued when plan data ends.
 
@@ -67,7 +83,9 @@ Workers today (data/pipeline/workers.json):
 ## Beyond math
 
 Nothing in turn.py, the runner or the job order is about math. A new course needs: its plan data in
-data/plans/<course>/ (the README there), a DEFAULTS.md and a written, read pilot unit, because the gates and the
-writer's brief are built from what the expert reads of that pilot find. The briefs name math files only as
-examples; where a brief names a math-only file (the rubric, the progression), the course's own file takes its place.
-Grade 6 English language arts and grade 4 science are the next pilots (docs/HANDOFF.md).
+data/plans/<course>/ (the README there), its frame, scope and sequence and unit plans, and a probe (a few days
+written from finished unit plans and read the full way, docs/pipeline/PROBE-GUARD.md), because the gates and the
+writer's brief are adapted from what the probe finds; a guard runs in every subject before full writing. Pilots were
+retired on 2026-11-13. The briefs name math files only as examples; where a brief names a math-only file (the
+rubric, the progression), the course's own file takes its place. Social studies runs the first probe
+(docs/HANDOFF.md).

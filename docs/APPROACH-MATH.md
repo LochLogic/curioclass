@@ -58,8 +58,8 @@ finding 11). On timing: short timed activities of one to five minutes are rated 
 small-group help for students who struggle, on material already taught, with feedback, never as bare timed
 sheets (WWC 2021, recommendation 6). The evidence does not tell us whether a whole class needs a clock. We
 wanted to say fluency is best built without time pressure. We could not source that, so we do not say it.
-*Rule (Cory, 2026-11-11):* no tool shows a
-countdown timer to a student. Tools build fluency with short, spaced, mixed practice and immediate feedback. A
+*Rule (Cory, 2026-11-11, narrowed 2026-11-14):* no tool shows a
+student a timer without a grounded purpose (a pace cue, a movement game, classroom management; BASELINE rule 30). Tools build fluency with short, spaced, mixed practice and immediate feedback. A
 teacher or parent may run a short paper sprint on facts already taught, the student comparing only with their
 own last score, never graded or posted.
 

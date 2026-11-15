@@ -9,7 +9,7 @@ Work on the subjects on this page waits behind math, English language arts, scie
 is complementary, such as a shared rule or a standards fix that serves both. Social studies is core. Every course
 is still finished to the bar; this sets the order, not the scope.
 
-**What this page is for.** Every one of the 105 courses is to be finished to the adoption bar (docs/FOUNDATION.md,
+**What this page is for.** Every one of the 107 courses (105 active, 2 world languages shelved) is to be finished to the adoption bar (docs/FOUNDATION.md,
 section 4; docs/ADOPTION-BAR.md). Math has a rubric file; English language arts and science rubrics are drafted
 separately. This page writes the bar for every other subject: one shared core, then a short part per subject.
 

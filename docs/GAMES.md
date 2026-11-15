@@ -27,7 +27,8 @@ specific game's name, characters, art or levels never are.
 - No class on the screen: no standard codes, no lesson words, no "show the math" cards. What is going on underneath
   goes in a teacher and parent note (`notes.md` and the tool page's teacher side), never in the game.
 - Its own look: playful and bright, not the classroom tools' look.
-- Timed modes are welcome. Action games are a judgment call per spec: they stay as long as the action asks for
+- Timed modes are welcome where the timer is part of the game (a pace to beat, a round that ends): that is the
+  grounded purpose BASELINE rule 30 asks for; a timer with no purpose is not. Action games are a judgment call per spec: they stay as long as the action asks for
   thinking, not reflexes alone.
 - Some luck is fine (shuffled boards, a daily puzzle); nothing that works like gambling.
 

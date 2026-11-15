@@ -32,6 +32,8 @@ Fails on:
   - ELA only, a note and never a failure: an anchor text of data/plans/ela-texts.csv for the unit that field 2 and field 10
     both leave unnamed;
   - math, ELA and science: a source-map.csv row of the unit whose source id field 10 does not name;
+  - course data it cannot read (a days.csv or source-map.csv missing a column of its layout, a short row, a day that is
+    not a whole number): one `path:-: cannot check:` line naming the file and its columns;
   - over the word cap of UNIT-PLAN.md, "Length" (the one home of the rule): 1,250 words for a unit plan, outside fields
     4, 5 and 6, the day list and skel blocks; 1,800 for a one-section merged document (one with `## U3.` to `## U11.`
     section fields after the day list), outside the same and U3, U4 and U6.
@@ -342,7 +344,13 @@ def main(a):
             bad_any = True
             continue
         sk.set_subject(sk.subject_of(course))
-        for u in sk.unit_numbers(course):
+        try:
+            units = sk.unit_numbers(course)
+        except sk.DataError as e:
+            print('FAIL %s (cannot read: %s)' % (course, e))
+            bad_any = True
+            continue
+        for u in units:
             p = base / course / ('s%02d.md' % u)
             if not p.exists():
                 if complete:
@@ -352,7 +360,12 @@ def main(a):
             seen += 1
             del NOTES[:]
             SHOWN[0] = shown(p)
-            msgs = check_file(shown(p), course, u)
+            try:
+                msgs = check_file(shown(p), course, u)
+            except sk.DataError as e:
+                # course data the gate cannot read (a source map not in the one layout, a short days.csv row): a
+                # failure naming the file and its columns, never a traceback
+                msgs = ['%s:-: cannot check: %s' % (shown(p), e)]
             for m in msgs + NOTES:
                 print(m)
             if msgs:

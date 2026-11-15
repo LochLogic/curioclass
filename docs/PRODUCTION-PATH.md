@@ -1,4 +1,4 @@
-# How a course gets made: the path forward (draft 5, 2026-11-13)
+# How a course gets made: the path forward (draft 5, 2026-11-13, edited through 2026-11-15)
 
 For Cory. Asked 2026-11-13: fold the unit 4 reliability review into the pipeline audit and give one firm "best
 path forward", judged against the end goal (FOUNDATION 1: a teacher can run any course from the first day to the
@@ -53,8 +53,8 @@ same kind of model that wrote them.
    best: a base text's order is the default only where the loss check finds it at least as good for learning.
 6. **People and a second kind of reader at each baseline.** Every reliability number here is the model judging
    itself. There are no people yet (Cory, 2026-11-13), so the expert agent is checked and strengthened first (P5)
-   and Codex reads beside it at every baseline; qualified people are added when found, and nothing is called
-   finished without them (FOUNDATION 7.3).
+   and Codex reads beside it at every baseline. No outside human reader is planned (Cory, 2026-11-14): the agent
+   reads FOUNDATION 7.3 names (answer key, safety, sensitivity, the expert's text read) take those places.
 
 ## 2. What the measurements say
 
@@ -191,8 +191,8 @@ math progression page.
   studies section of docs/ADOPTION-BAR-SUBJECTS.md updated), P5c done (briefs progression-read and frame-read),
   P5d run 1 done (docs/reviews/calibration-2026-11-13.md): the expert passes the line (18 of 18 planted majors);
   Codex passes too; EXPERT.md gains a leniency and a severity rule; re-run is later.csv L10.
-  - The FOUNDATION 7.3 rule that qualified people read a course before it is called finished still stands; with no
-    people, nothing is called finished, but planning goes ahead on the expert and Codex.
+  - FOUNDATION 7.3 (revised 2026-11-14): agents, not people, do the content reads before a course is called
+    finished (expert, Codex, answer-key, safety and sensitivity reads).
 - **Who decides, at every review and baseline.** The expert settles item-level choices. Cory decides go or no-go
   at each baseline, at the final review and on an "off" result from a probe or the guard, and any change to scope
   (what a course or grade teaches, the course list, a subject's order).
@@ -275,7 +275,8 @@ docs/pipeline/briefs/sequence-write.md: `docs/courses/<course>/scope-and-sequenc
 stagger rule for course-level checks across a grade), settles each "Candidate:" check-set cell and its day cost, and
 reserves assessment slots without writing items or section plans. The gate is `scripts/sequence.py` (run by
 `plan.py check`). The expert reads each to docs/pipeline/briefs/sequence-read.md against the progression and the
-content standard P1 set; Cory says yes to each.
+content standard P1 set, Codex reads each too, and one fix pass applies both reads; Cory's call is at the baseline,
+not a yes per course (as run for social studies, 2026-11-14).
 
 ### Step 4. Social studies: units, then a review, then the probe: baseline 2
 
@@ -290,16 +291,18 @@ content standard P1 set; Cory says yes to each.
 
 ### Step 5. The other three subjects, math last: the same cycle
 
-Each subject in turn runs step 3 and step 4's planning and review (scope and sequence, review, units, review), with
-the probe, and a review from the progression down at its end. Math goes last. Science goes second if P2 finds no
+Step 3 now runs for science, ELA and math together (Cory, 2026-11-14 late: Codex wrote all 37 scopes and sequences
+in one run, scripts/codex_scopes.py); step 4 (units, review, probe) then goes subject by subject, with a review from
+the progression down at the end of each. Math goes last. Science goes second if P2 finds no
 social studies base text; otherwise the order of science and ELA is Cory's (section 6, question 2). The probe runs
 in every subject: a few days each is cheap, and each subject's units can be off in their own way.
 
 Science 6 to 8 follows OpenSciEd's order after its loss check. ELA K to 5 and middle school science test the base
 text paths that INTEGRATION-PLAN's two small trials were meant to test, so those trials fold into this step.
 
-**Math last.** Math converts the most old work: grade 4's scope and sequence, unit plans, the unit 4 re-plan and
-its source map are read against the new layers and changed where the review finds it, rather than kept because
+**Math last.** Math's scope and sequence is written now with the others; its unit plans, sections and days come
+last. Math converts the most old work: grade 4's scope and sequence (reconciled in the 2026-11-14 run), unit plans,
+the unit 4 re-plan and its source map are read against the new layers and changed where the review finds it, rather than kept because
 they exist. The grade 4 source map resumes here.
 
 ### Step 6. The final review: every subject, every course
@@ -330,9 +333,9 @@ Per day: writer, cheap read, expert read, fix pass (with the re-read rule: re-re
 built screens changed). Per section: one fresh set read across its days and seams, then its fixes. On the first
 section written, test whether the set read can stand in for the separate cheap check of a fix pass. REVIEW-CADENCE
 step 3 is unchanged: the expert drops to spot checks only when no process finding repeats from an earlier unit (19
-of 26 repeated in unit 4) and expert-only findings are about one a day, and a qualified teacher still reads a
-sample. Plan as if the expert read stays on every day: about 650,000 tokens a fully read day (an estimate including
-the set read), which across about 13,300 days (all 105 courses) is about 8.6 billion, a floor (it leaves out unit-level
+of 26 repeated in unit 4) and expert-only findings are about one a day; the expert agent (no outside reader,
+Cory 2026-11-14) still reads a sample. Plan as if the expert read stays on every day: about 650,000 tokens a fully read day (an estimate including
+the set read), which across about 13,300 days (the 105 active courses) is about 8.6 billion, a floor (it leaves out unit-level
 pieces, planning, tooling and re-reads). Most of those day counts are assumed until each course's frame sets them.
 
 ### Step 9. Tools
@@ -359,7 +362,8 @@ tools and claim no course coverage until a section names them (BASELINE rule 26)
 ### After the core subjects
 
 First the 6 electives of the four core subjects (precalculus, statistics, calculus, earth and space science,
-environmental science, psychology). Then the 49 courses of the other subjects (arts and music, health and PE,
+environmental science, psychology). Then the 49 courses of the other subjects (47 active plus the 2 shelved world
+language courses) (arts and music, health and PE,
 computer science, career and technical education, social and emotional learning, English language development,
 library and research skills; world languages stay shelved) (Cory, 2026-11-13). Personal finance is no course of its
 own: Economics teaches it, lightly integrated (Cory, 2026-11-14), and data/courses.csv no longer flags it core. Where a core progression leans on one of them (English language
@@ -373,7 +377,7 @@ development with ELA; health with science), the cross_subject column notes it fo
 - **Reviewers are agents** (Cory, 2026-11-13; FOUNDATION 7.3 revised 2026-11-14). The expert agent, checked in P5,
   and Codex are the reviewers. The answer-key, safety and sensitivity agents do the content reads FOUNDATION 7.3
   assigns, each cold and after studying its sources (docs/pipeline/briefs/sensitivity-read.md). No outside human
-  reader is planned; the pilot teaching and student trials FOUNDATION keeps stay as it says.
+  reader is planned; pilots are retired (2026-11-13) and the probe and guard replace them.
 
 ## 4. What changes in existing work
 
@@ -384,8 +388,8 @@ development with ELA; health with science), the cross_subject column notes it fo
   input to their steps, read against the new layers.
 - The unit 4 re-plan (days 29 to 38), its source map and cross-day files are held for math's turn. The cross-day
   files and gates are reused by every subject.
-- All math planning and writing stays paused until step 5 reaches math, except small fixes to written days
-  (not days 25 to 28).
+- Math scope and sequence is written now with the other subjects (Codex run, 2026-11-14); math unit plans,
+  sections and days wait for math's turn, except small fixes to written days (not days 25 to 28).
 - Unchanged: light credit, course order by what teaches best, science 6 to 8 on OpenSciEd's order after its loss
   check, substitutes then no-kit, the expert as stand-in teacher reader, no IM login-gated material, no per-day
   `base` column.

@@ -11,7 +11,7 @@ fixes. Survey of the code and data: 2026-11-10 (findings at the end).
 |---|---|---|---|
 | **Topic** | A topic a class spends a few days on. The hub page every shelf links from | `module_id`, about 762 public URLs | **One teachable topic.** Split only when it holds two unrelated topics, and then properly (below). Its list of standards is rewritten in place, from a cluster to the standards inside it |
 | **Tool** | One screen-based teach, see-why or practice piece | `tool_id` | Gains a role and its own list of codes: only the ones it teaches on its main path |
-| **Section** (new, Track 7) | A 1 to 5 day package for a course, in the year's order | `unit_id` (to be designed at the pilot) | Points at topics and picks items from the shelves. It owns nothing but the order, the teacher pages and what no shelf has |
+| **Section** (new, Track 7) | A 1 to 5 day package for a course, in the year's order | `unit_id` (to be designed at the probe) | Points at topics and picks items from the shelves. It owns nothing but the order, the teacher pages and what no shelf has |
 
 **The correction this makes to the locked plan:** rule 22 and step 4 said topics would be split so each names its
 standards. The survey shows `module_id` is the key for the Word Wall (4,413 cards, 719 art folders), anchor charts,
@@ -24,7 +24,7 @@ with no topic home. Same goal (an untaught standard shows), no breakage.
 because splitting is hard. It is split only when it holds two unrelated topics, and then properly: a split script, redirects for the old pages, and its Word Wall, chart and games divided by hand. It is never split just to reach standard-level detail; the ledger does that.
 The step 2 read flags candidates (a guess of one to two dozen: 21 math topics mix domains, such as
 `math-4-angles-and-line-plots`). They come to Cory as exceptions in step 4. The 38 core band topics that span
-grades lean toward staying whole; the pilot tests that.
+grades lean toward staying whole; the course frames and the probe test that (the pilot was retired 2026-11-13).
 
 ## One ledger of who teaches what
 
@@ -57,7 +57,7 @@ Every shelf that prints standards reads them from the tool or the ledger, not fr
 | Related tools | derived | Inside a topic, show siblings first and in order: see why, do it, use it | Small build change; a `role` and order column on tools |
 | Posters, Break Box | band or grade | Unaffected | None |
 | Recess, Curiosities | their own | Outside the bar. They take the role `curiosity` or `recess` and claim no code, so the ledger never counts them | One line in rule 21 |
-| Sections, Tracks, Binder | new | Designed at the pilot (path step 5): a section lists its topics, then for each day the tool, the plan, the worksheet rows, the Word Wall words, the chart, the game and the reading it uses | A section data shape, tried on two sections |
+| Sections, Tracks, Binder | new | Designed at the probe (PRODUCTION-PATH step 4; was the pilot, path step 5): a section lists its topics, then for each day the tool, the plan, the worksheet rows, the Word Wall words, the chart, the game and the reading it uses | A section data shape, tried on two sections |
 
 ## Order (inside the path)
 
@@ -71,6 +71,7 @@ Every shelf that prints standards reads them from the tool or the ledger, not fr
    agrees each; second and third tools added to major-work topics;
    worksheet presets and Reading Room sets written into the ledger.
 5. **Step 5 (prove one course):** the section shape, on grade 4 math and grade 6 ELA, pulling from every shelf.
+   (Replaced 2026-11-13: the section shape is now tested by the probe and guard, docs/PRODUCTION-PATH.md.)
 
 ## Words
 

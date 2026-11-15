@@ -56,8 +56,8 @@ In order, as on the mock-up's first board:
    anywhere) and **Start at day 1**.
 3. **Honest status**: how many units have full lessons today, and that the rest show their standards, tools
    and printables until lessons come. Never imply a finished course that is not.
-4. Four cards: where to start (placement from the readiness checks), the year plan (school calendar or a 36-week
-   home calendar), print or download (per section: a PDF bundle or an offline folder), how this course teaches.
+4. Four cards: where to start (placement from the readiness checks), the year plan (school calendar or a numbered
+   home calendar; "36-week" in Cory's 2026-11-12 call, see docs/courses/CALENDAR.md), print or download (per section: a PDF bundle or an offline folder), how this course teaches.
    Plus **the shape** (Approved 2026-11-14, finding 4): minutes a day, days a week, the year or the half year and its
    weeks, and the course-level checks with the units they follow (from data/plans/frames.csv `minutes_min`,
    `minutes_max`, `per_week`, `weeks`, `term`, and the frame's Course-level checks table).
@@ -71,7 +71,7 @@ In order, as on the mock-up's first board:
    leads to, each linked (the same subject's courses one grade down and one grade up; high school courses at their
    usual grade); alongside, this grade's other core courses, with the weeks where they lean on this one once the
    frames' Cross-subject tables are in CSV.
-6. Side cards: Teaching at home (the same course with one child: At home view, placement, 36-week calendar,
+6. Side cards: Teaching at home (the same course with one child: At home view, placement, numbered home calendar,
    record sheet as portfolio); Out tomorrow (the unit's sub-ready day); tools in this course (each with the days
    that use it); help make it better (report a problem, corrections list, try a unit with your class).
    **Credits** (Approved 2026-11-14, finding 4): one line, once for the course, for its base text: the licence and
@@ -154,7 +154,7 @@ check_site.py fails if any other page, the sitemap or the search index points in
 1. **Teaching map: hidden now, back later.** It no longer shows on the site (build flag `--map` brings back the
    old one for a local look). Once the courses are built it returns, reimagined as a picture of the scopes and sequences and
    courses. Its data (`data/sequence.csv`) is kept.
-2. **Sub Day: one sub-ready day per unit** in each course (18 a year in grade 4 math), written with the unit, that a substitute can run from the
+2. **Sub Day: one sub-ready day per unit** in each course (9 a year in grade 4 math, one per unit of its frame), written with the unit, that a substitute can run from the
    page with its printables. The per-tool Sub Day packets stay on the Supply Closet shelf.
 3. **Names: the best-known word for each thing, locked inside and out.** A deep scan of the names in use writes
    GLOSSARY.md and a staged plan for renames ([reviews/naming-scan-2026-11-12.md](reviews/naming-scan-2026-11-12.md)).
@@ -164,8 +164,8 @@ check_site.py fails if any other page, the sitemap or the search index points in
 
 - No accounts, no tracking. "Pick up where you left off" lives in the browser only; the page works when storage is
   blocked.
-- No timers, scores or ranks on anything a student sees, including the Project view. The Teacher Desk timer is a
-  teacher's tool on the shelf.
+- No scores or ranks on anything a student sees, including the Project view, and no timer without a grounded
+  purpose (a pace cue, a movement game, classroom management; BASELINE rule 30). The Teacher Desk timer is a teacher's tool on the shelf.
 - Every page prints and works offline; a section downloads as one folder.
 - Honest status everywhere: a day not yet taught says so; a course not yet built says what it has today.
 - Every day page carries "report a problem"; fixes are listed in the open on the course's corrections page.

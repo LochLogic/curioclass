@@ -102,8 +102,8 @@ def other_course_plan(path):
         return True                     # a parallel scope job's read or its log
     if len(p) == 4 and p[0] == 'data' and p[1] == 'plans' and p[3] in ('days.csv', 'source-map.csv'):
         return True                     # a parallel scope job's days
-    if len(p) == 4 and p[:2] == ['docs', 'courses'] and p[3] == 'scope-and-sequence.md':
-        return True
+    if len(p) == 4 and p[:2] == ['docs', 'courses'] and p[3] in ('scope-and-sequence.md', 'frame.md'):
+        return True                     # a parallel scope job's page, or a parallel fixer's frame (2026-11-15)
     return len(p) == 4 and p[0] == 'docs' and p[1] == 'courses' and (
         fnmatch.fnmatch(p[3], 's*.md') or p[3] in ('TOOL-ASKS.md', 'DEFAULTS.md'))
 

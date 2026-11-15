@@ -25,7 +25,7 @@ vocabulary cards in English and Spanish, and a family game for home.
 - **Supply Closet live:** 4,400+ vocabulary cards in English and Spanish, 104 family games, anchor charts and posters.
 - **Reading Room in progress:** about 700 public domain stories, curated and processed.
 - Every tool goes through a written build process: a spec, a build, three independent quality reviews (teaching,
-  accessibility, play), a final check, then a human review before it goes live.
+  accessibility, play), a final check, then a fresh independent review and the founder's sign-off before it goes live.
 
 ## The ask
 
@@ -36,7 +36,7 @@ builds and reviews each tool, and the hardware that runs art, voice and builds s
 |---|---|
 | $5,000 | A year of uninterrupted AI compute |
 | $10,000 | Compute plus hardware: the fastest path to all 800 tools |
-| $16,000 | The full first-year budget, including native-speaker Spanish review, paid teacher pilots and outreach |
+| $16,000 | The full first-year budget, including outreach and, only if funded, a native-speaker Spanish review and paid teacher pilots |
 
 I put in about 15 hours a week myself (about $45,000 a year of in-kind work). Full budget: docs/funding/COSTS.md.
 

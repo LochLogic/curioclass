@@ -59,21 +59,66 @@ for m in modules:
 for t in tools:
     info[modmap[t['module']]['_key']]['tools'][t['stage']] += 1
 
+import re
+# the canonical course id is the frame slug (data/plans/frames.csv, written by scripts/frame.py sync); a course
+# title slugs to it ("Science, Grade 4" -> science-grade-4), and a course with no frame gets ''
+FRAMES = {r['course']: r for r in rows('data/plans/frames.csv')} if has('data/plans/frames.csv') else {}
+FRAME_IDS = set(FRAMES)
+def frame_id(title):
+    k = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
+    return k if k in FRAME_IDS else ''
+
+# progression rows by subject and grade (data/progressions/<subject>.csv)
+PROG = {}
+for s_ in CORE4:
+    if has(f'data/progressions/{s_}.csv'):
+        PROG[s_] = {r['grade'].strip().upper() for r in rows(f'data/progressions/{s_}.csv')}
+
+def plan_count(fid, key):
+    """Unit and section plans on file: docs/courses/<frame slug>/ and the older docs/courses/<key>/."""
+    return sum(len(glob.glob(os.path.join(ROOT, 'docs', 'courses', k, '[us][0-9]*.md'))) for k in {fid, key} - {''})
+
 def layer_cells(key, d):
     s = d['subject']
-    grade = key.split('-')[-1] if s in CORE4 and key.startswith(s + '-') else None
-    rubric = 'yes' if (s == 'math' and grade in GRADES[:9]) else 'no'
-    approach = 'draft' if s == 'math' else 'shared page only'
-    prog = 'yes' if (s == 'math' and grade in ('3', '4', '5')) else 'no'
-    spine = 'draft' if has(f'docs/courses/{key}-spine.md') else 'no'
-    plans = len(glob.glob(os.path.join(ROOT, 'docs', 'courses', key, '[us][0-9]*.md')))
+    fid = frame_id(d['title'])
+    grade = FRAMES[fid]['grade'].strip().upper() if fid else None
+    num = 0 if grade == 'K' else int(grade) if grade and grade.isdigit() else None
+    if s == 'math': rubric = 'yes' if (num is not None and num <= 8) else 'no'      # docs/RUBRIC-MATH-K8.md
+    elif s == 'ela': rubric = 'yes' if (num is not None and num >= 3) else 'no'     # docs/RUBRIC-ELA.md, grades 3 to 12
+    elif s == 'science': rubric = 'yes' if fid else 'no'                            # docs/RUBRIC-SCIENCE.md, K to 12
+    else: rubric = 'no'
+    if s == 'math' and has('docs/APPROACH-MATH.md'): approach = 'draft'
+    elif s == 'ela' and has('docs/APPROACH-ELA.md'): approach = 'draft'
+    elif s in ('science', 'social-studies') and fid: approach = 'lens and rubric'   # stand-in until days (Cory, 2026-11-14)
+    else: approach = 'shared page only'
+    prog = 'yes' if (fid and grade in PROG.get(s, set())) else 'no'
+    if fid and has(f'docs/courses/{fid}/scope-and-sequence.md'): spine = 'yes'
+    elif has(f'docs/courses/{key}-spine.md'): spine = 'draft'
+    else: spine = 'no'
+    plans = plan_count(fid, key)
     return rubric, approach, prog, spine, (str(plans) if plans else 'no')
 
-import re
 SPINE_ROW = re.compile(r'^\|\s*(\d*)\s*\|\s*(.+?)\s*\|\s*(\d+)\s*\|\s*(\d+)(?:\s*to\s*(\d+))?\s*\|')
 
-def spine_units(key):
+def days_units(fid):
+    """Units from data/plans/<frame slug>/days.csv: [(unit number or None for a course-level check, label, first, last)]."""
+    p = os.path.join(ROOT, 'data', 'plans', fid, 'days.csv') if fid else ''
+    if not p or not os.path.exists(p): return []
+    out = []
+    for r in csv.DictReader(io.open(p, encoding='utf-8')):
+        st, day = (r.get('stretch') or '').strip(), (r.get('day') or '').strip()
+        if not day.isdigit(): continue
+        n = int(st) if st.isdigit() else None
+        if out and out[-1][0] == n and out[-1][3] == int(day) - 1:
+            out[-1] = (n, out[-1][1], out[-1][2], int(day))
+        else:
+            out.append((n, f'Unit {n}' if n is not None else 'Course-level check', int(day), int(day)))
+    return out
+
+def spine_units(key, fid=''):
     """The scope and sequence table: [(unit number or None for a check, label, first day, last day)]."""
+    got = days_units(fid)
+    if got: return got
     p = os.path.join(ROOT, 'docs', 'courses', f'{key}-spine.md')
     if not os.path.exists(p): return []
     out, inside = [], False
@@ -99,12 +144,12 @@ for f in glob.glob(os.path.join(ROOT, 'courses', '*', 'u*', 'd[0-9][0-9][0-9].md
     WRITTEN.setdefault(os.path.basename(os.path.dirname(os.path.dirname(f))), set()).add(int(os.path.basename(f)[1:4]))
 TAUGHT = {}   # no course day has been taught yet; filled from taught-run records when they exist
 
-def ladder(key):
+def ladder(key, fid=''):
     """Counts down the build order: scope and sequence, unit plans, section plans, days written, read, taught."""
-    units = spine_units(key)
-    d = os.path.join(ROOT, 'docs', 'courses', key)
-    uplans = {int(re.match(r's(\d+)', os.path.basename(f)).group(1)) for f in glob.glob(os.path.join(d, 's[0-9]*.md'))}
-    splans = len(glob.glob(os.path.join(d, 'u[0-9]*-[0-9]*.md')))
+    units = spine_units(key, fid)
+    dirs = [os.path.join(ROOT, 'docs', 'courses', k) for k in {fid, key} - {''}]
+    uplans = {int(re.match(r's(\d+)', os.path.basename(f)).group(1)) for d in dirs for f in glob.glob(os.path.join(d, 's[0-9]*.md'))}
+    splans = sum(len(glob.glob(os.path.join(d, 'u[0-9]*-[0-9]*.md'))) for d in dirs)
     written = WRITTEN.get(key, set())
     only = len(WRITTEN) == 1 and key in WRITTEN
     cheap = (REVIEWED['cheap'] & written) if only else set()
@@ -133,8 +178,8 @@ today = datetime.date.today().isoformat()
 A('# Course status: which layers exist for every course\n')
 A(f'Generated by scripts/course_status.py on {today}. Do not edit by hand; run the script again.\n')
 A('**What this is.** A status table, not a plan. It shows the gap between what exists and a finished course. '
-  'Every course on it is to be finished to the bar (Cory, 2026-11-11). The plan with sizes and dates is written '
-  'after the grade 4 math pilot unit shows what one finished unit costs (ROADMAP step 4f).\n')
+  'Every course on it is to be finished to the bar (Cory, 2026-11-11). The build order is docs/PRODUCTION-PATH.md; '
+  'the current state is docs/HANDOFF.md.\n')
 A('**How courses are counted.** As a school would schedule them: math, English language arts, science and '
   'social studies by grade and then by named high school course; every other subject by discipline and grade '
   'band; world languages by language. The catalog has 93 pages (a subject at a grade or band), which is a '
@@ -145,15 +190,17 @@ A('**The layers** (docs/ROADMAP.md, "The layers"). Standards are loaded for ever
 A('- **Rubric file**: our own-words file of what a published review rubric asks. Where none is written, the bar '
   'for that course is only the general one in docs/ADOPTION-BAR.md, and for subjects with no published rubric '
   'the bar still has to be stated.')
-A('- **Approach**: the subject page that says how the shared approach is carried out.')
-A('- **Progression**: what the grade inherits and hands on.')
-A('- **Scope and sequence**: every teaching day of the year in order. "draft" means written and read by the expert; see '
-  'ROADMAP for which have Cory\'s yes.')
+A('- **Approach**: the subject page that says how the shared approach is carried out. For science and social '
+  'studies, the subject lens (docs/agents/lenses/) and the rubric stand in until days are written (Cory, 2026-11-14).')
+A('- **Progression**: what the grade inherits and hands on (rows for the grade in data/progressions/<subject>.csv).')
+A('- **Scope and sequence**: every day of the year in order (docs/courses/<course>/scope-and-sequence.md). "yes" '
+  'means the file is on file; docs/HANDOFF.md says which have been read and fixed. "draft" is an older -spine.md '
+  'file only.')
 A('- **Plans**: unit plans and section plans on file, as a count.')
 A('- **Topics** and **Tools**: what the catalog holds. Tools are counted as spec / built / live. A spec or a '
   'built tool is not yet tied to a section plan anywhere except the trial sections.')
-A('\nNo course has lessons, print, checks with keys or teacher pages yet. That is layer 7 and starts with the '
-  'pilot unit.\n')
+A('\nNo course has lessons, print, checks with keys or teacher pages yet. That is layer 7; it starts after the '
+  'unit plans, with the probe and guard (docs/PRODUCTION-PATH.md).\n')
 
 courselist = {k: d for k, d in info.items() if d['kind'] == 'course'}
 groups = [(s, subjects[s]) for s in CORE4] + [(s, subjects[s]) for s in subjects if s not in CORE4]
@@ -169,7 +216,7 @@ for s, label in groups:
     tc = collections.Counter()
     for _, d in ds: tc.update(d['tools'])
     lad = collections.Counter()
-    for k, _ in ds: lad.update(ladder(k)[0])
+    for k, d_ in ds: lad.update(ladder(k, frame_id(d_['title']))[0])
     r = dict(n=len(ds), core=sum(d['core'] for _, d in ds), spine=sum(c[3] != 'no' for c in cells),
              plans=sum(c[4] != 'no' for c in cells), mods=sum(d['mods'] for _, d in ds),
              spec=tc['spec'] + tc['idea'], built=tc['built'], live=tc['live'],
@@ -187,15 +234,6 @@ A(f"| **All courses** | **{tot['n']}** | **{tot['core']}** | **{tot['spine']}** 
 A('\nTool counts here leave out tools that sit on shared topics (last table). "Spec" includes a few that are '
   'still ideas.\n')
 
-# the canonical course id is the frame slug (data/plans/frames.csv, written by scripts/frame.py sync); a course
-# title slugs to it ("Science, Grade 4" -> science-grade-4), and a course with no frame gets ''
-FRAME_IDS = set()
-if has('data/plans/frames.csv'):
-    FRAME_IDS = {r['course'] for r in rows('data/plans/frames.csv')}
-def frame_id(title):
-    k = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
-    return k if k in FRAME_IDS else ''
-
 
 for s, label in groups:
     ds = sorted([(k, d) for k, d in courselist.items() if d['subject'] == s], key=lambda kd: kd[1]['sort'])
@@ -206,7 +244,7 @@ for s, label in groups:
     for k, d in ds:
         ru, ap, pr, sp, pl = layer_cells(k, d)
         t = d['tools']
-        lad, strip = ladder(k)
+        lad, strip = ladder(k, frame_id(d['title']))
         js['courses'].append(dict(title=d['title'], course=frame_id(d['title']), core=d['core'], rubric=ru, approach=ap, prog=pr, spine=sp, plans=pl,
                                   mods=d['mods'], spec=t['spec'] + t['idea'], built=t['built'], live=t['live'], **lad))
         if strip: J['strips'].append(dict(title=d['title'], **lad, **strip))

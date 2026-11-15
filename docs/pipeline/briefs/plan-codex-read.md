@@ -15,12 +15,14 @@ data/progressions/, and the bar for the subject in docs/ADOPTION-BAR-SUBJECTS.md
 - sources: is anything invented passed off as a real source, and is each named source traceable;
 - size: does each assessment and each day fit its minutes;
 - hand-on: does each unit hand on cleanly to the next;
-- text: any "?" where an apostrophe, quotation mark or accented letter should be.
+- text: any "?" where an apostrophe, quotation mark or accented letter should be;
+- rule 2 (math, ELA, science): the field 4 table of earlier rows (last use and rule) is followed or each
+  disagreement is under "For the lead"; evidence gathered one child at a time is collected once.
 
 Gate: `python -X utf8 scripts/unitplan.py check {course}`.
 
 Settled (do not raise): readiness timing (before the unit opens; unit 1's check in the last ten minutes of day 1, after
-the hook, never before day 1); no outside human readers; 6 to 12 periods are 50 minutes; no timers shown to students; K to 2 at most
+the hook, never before day 1); no outside human readers; 6 to 12 periods are 50 minutes; a timer only with a grounded purpose (a pace cue, a movement game, classroom management); K to 2 at most
 one shared classroom device with a paper path; no days added beyond the frame's totals; template fields that do not
 fit the subject may say none; some standards codes lack an own-word line (a later pass fills them).
 

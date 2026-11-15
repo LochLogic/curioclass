@@ -67,11 +67,41 @@ MARK = 'TODO' + '(writer)'          # built in two pieces so this file never tri
 EMDASH = chr(0x2014)
 
 
-def read_csv(path):
+class DataError(SystemExit):
+    """A data file the skeleton cannot use: the message names the file (and line) and what is wrong. A SystemExit, so
+    the command line prints the message, never a traceback; scripts/unitplan.py and codex_units.py catch it."""
+
+
+def shown_path(path):
+    try:
+        return Path(path).resolve().relative_to(ROOT).as_posix()
+    except ValueError:
+        return Path(path).as_posix()
+
+
+def read_csv(path, need=None):
+    """Rows of a CSV file ([] when it does not exist). With need (a list of column names), the header must hold every
+    one of them and every row must have as many cells as the header, or DataError names the file, the line, the
+    columns it has and the columns it needs. Lines that start with # are skipped when need is given."""
     if not Path(path).exists():
         return []
     with io.open(path, encoding='utf-8', newline='') as f:
-        return list(csv.DictReader(f))
+        if need is None:
+            return list(csv.DictReader(f))
+        rd = csv.DictReader(l for l in f if not l.startswith('#'))
+        head = rd.fieldnames or []
+        miss = [c for c in need if c not in head]
+        if miss:
+            raise DataError('%s: has columns %s; needs %s (missing: %s)'
+                            % (shown_path(path), ','.join(head) or '(none)', ','.join(need), ','.join(miss)))
+        rows = []
+        for r in rd:
+            if None in r or any(r[c] is None for c in need):
+                n = len([k for k, v in r.items() if k is not None and v is not None]) + len(r.get(None) or [])
+                raise DataError('%s: data row %d has %d cells, the header has %d (%s)'
+                                % (shown_path(path), len(rows) + 1, n, len(head), ','.join(head)))
+            rows.append(r)
+        return rows
 
 
 def set_data_dir(path):
@@ -91,14 +121,14 @@ def plan_file(course, name):
 
 def courses_of(subject=None):
     """Course ids in data/plans/frames.csv order, for one subject or (None) all four, social studies first."""
-    rows = read_csv(PLANS / 'frames.csv')
+    rows = read_csv(PLANS / 'frames.csv', FRAMES_COLS)
     if subject:
         return [r['course'] for r in rows if r['subject'] == subject]
     return [r['course'] for s in SUBJECTS for r in rows if r['subject'] == s]
 
 
 def subject_of(course):
-    for r in read_csv(PLANS / 'frames.csv'):
+    for r in read_csv(PLANS / 'frames.csv', FRAMES_COLS):
         if r['course'] == course:
             return r['subject']
     return None
@@ -109,8 +139,21 @@ def ss_courses():
     return courses_of('social-studies')
 
 
+FRAMES_COLS = ['course', 'subject', 'grade', 'title', 'minutes_min', 'minutes_max']
+DAYS_COLS = ['day', 'stretch', 'unit', 'kind', 'goal', 'skills', 'codes', 'assess', 'note']   # sequence-write.md "The files"
+# The one source-map layout (sequence-write.md rule 8; the same list as MAP_COLS in scripts/sequence.py, which gates it).
+MAP_COLS = ['source', 'title', 'goals', 'standards', 'unit', 'days', 'decision', 'why', 'order_conflict', 'harms_learning']
+
+
 def days_rows(course):
-    return read_csv(plan_file(course, 'days.csv'))
+    """data/plans/<course>/days.csv; DataError when a column of DAYS_COLS is missing, a row is short, or a day is not a
+    whole number."""
+    p = plan_file(course, 'days.csv')
+    rows = read_csv(p, DAYS_COLS)
+    for i, r in enumerate(rows, 1):
+        if not r['day'].strip().isdigit():
+            raise DataError('%s: data row %d: day "%s" is not a whole number' % (shown_path(p), i, r['day']))
+    return rows
 
 
 def unit_numbers(course):
@@ -290,9 +333,17 @@ def split_title(cell):
     return cell, ''
 
 
+CAL_COLS = ['course', 'kind', 'unit', 'first_day', 'last_day', 'first_school_day', 'last_school_day', 'first_week', 'last_week']
+
+
 def calendar_rows(course, unit):
-    return [r for r in read_csv((DATA_DIR or PLANS) / 'calendar.csv')
-            if r['course'] == course and r['kind'] == 'unit' and r['unit'] == str(unit)]
+    p = (DATA_DIR or PLANS) / 'calendar.csv'
+    out = [r for r in read_csv(p, CAL_COLS) if r['course'] == course and r['kind'] == 'unit' and r['unit'] == str(unit)]
+    for r in out:
+        for c in ('first_day', 'last_day', 'first_school_day', 'last_school_day'):
+            if not r[c].strip().isdigit():
+                raise DataError('%s: the row for %s unit %s: %s "%s" is not a whole number' % (shown_path(p), course, unit, c, r[c]))
+    return out
 
 
 def runs(nums):
@@ -314,8 +365,11 @@ def runs_text(nums):
     return '%s and %s' % (', '.join(parts[:-1]), parts[-1])
 
 
+PROG_COLS = ['grade', 'skill_id', 'standard', 'assumes', 'hands_on', 'cross_subject']
+
+
 def progression():
-    return {r['skill_id']: r for r in read_csv(PROGS / (SUBJ + '.csv'))}
+    return {r['skill_id']: r for r in read_csv(PROGS / (SUBJ + '.csv'), PROG_COLS)}
 
 
 def grade_of(skill, prog):
@@ -495,7 +549,7 @@ def days_or_none(nums):
 
 def base_text_of(course):
     """The base text a course adapts (docs/sources/BASE-TEXTS.md), or '' when the course is our own."""
-    meta = next((r for r in read_csv(PLANS / 'frames.csv') if r['course'] == course), {})
+    meta = next((r for r in read_csv(PLANS / 'frames.csv', FRAMES_COLS) if r['course'] == course), {})
     g = meta.get('grade', '')
     if SUBJ == 'math':
         return 'Illustrative Mathematics K-12 (CC BY 4.0)'
@@ -506,8 +560,18 @@ def base_text_of(course):
     return ''
 
 
+def source_map(course):
+    """All rows of data/plans/<course>/source-map.csv ([] when there is none). A map not in the one layout (MAP_COLS)
+    stops the skeleton with DataError naming the file, the columns it has and the columns it needs: a plan written
+    against an unconverted map would lose its base-text lines, so it is not written at all."""
+    try:
+        return read_csv(plan_file(course, 'source-map.csv'), MAP_COLS)
+    except DataError as e:
+        raise DataError('%s. The source map is not yet in the one layout of sequence-write.md rule 8; convert it first.' % e)
+
+
 def source_rows(course, unit):
-    return [r for r in read_csv(plan_file(course, 'source-map.csv')) if r['unit'].split('.')[0] == str(unit)]
+    return [r for r in source_map(course) if r['unit'].strip().split('.')[0] == str(unit)]
 
 
 def files_with(codes):
@@ -524,33 +588,6 @@ def files_with(codes):
         if any(c in keys for c in codes):
             names.append('data/standards/' + name)
     return names
-
-
-def day_note_lines(rows, rx, skip=None, goal_too=True):
-    out = []
-    for r in rows:
-        note = clean(r['note'])
-        goal = clean(r['goal']) if goal_too else ''
-        if rx.search(note) or rx.search(goal):
-            if skip is not None and skip.search(note):
-                continue
-            out.append('  - Day %s (%s): %s' % (r['day'], r['kind'], note or goal))
-    return out
-
-
-def column_lines(rows, only=None, skip=None):
-    """Lines for the optional tools, supplies and safety columns of days.csv. only/skip name columns; a safety cell
-    that is the word none is not a line (it says the day has no hazard)."""
-    out = []
-    for col in TOOLCOLS:
-        if (only and col not in only) or (skip and col in skip):
-            continue
-        if rows and col in rows[0]:
-            for r in rows:
-                v = (r[col] or '').strip()
-                if v and not (col == 'safety' and v.lower() == 'none'):
-                    out.append('  - Day %s, %s column: %s' % (r['day'], col, clean(v)))
-    return out
 
 
 def material_lines(course, rows):
@@ -669,6 +706,10 @@ def pe_connections(code):
     return '; '.join('%s: %s' % (clean(r['name']), clean(r['element'])) for r in rows)
 
 
+ELA_COLS = ['course', 'unit', 'text_id', 'title', 'author', 'year', 'kind', 'use', 'part', 'edition', 'measure', 'demands',
+            'status', 'rights_basis']
+
+
 def ela_rows():
     """All rows of data/plans/ela-texts.csv (under --data-dir, DIR/ela-texts.csv)."""
     key = str(DATA_DIR)
@@ -676,9 +717,7 @@ def ela_rows():
         p = (DATA_DIR or PLANS) / 'ela-texts.csv'
         if not p.exists():
             p = PLANS / 'ela-texts.csv'     # under --data-dir the real file stands in until the test dir holds its own
-        rows = []
-        if p.exists():
-            rows = list(csv.DictReader(l for l in io.open(p, encoding='utf-8') if l.strip() and not l.startswith('#')))
+        rows = read_csv(p, ELA_COLS)
         _ELA.clear()
         _ELA.update({'dir': key, 'rows': rows})
     return _ELA['rows']
@@ -736,16 +775,17 @@ def field2_extras(course, unit, rows, codes, fr, anchor):
             L.append('- **Practices (frame, C3 column):** %s' % c3)
         L.append(CLOSE)
         L.append('%s: Practices: for each practice named above, the task where students do it, and its day.' % MARK)
-        L.append('%s: Fluency: which owned standards set an expected fluency (the frame\'s fluency note) and how it is built with no timer shown to students, or one line saying the unit sets none.' % MARK)
+        L.append('%s: Fluency: which owned standards set an expected fluency (the frame\'s fluency note) and how it is built without time pressure (a timer only with a grounded purpose, BASELINE rule 30), or one line saying the unit sets none.' % MARK)
     elif SUBJ == 'ela':
         L.append(OPEN)
         trows = ela_texts(course, unit)
         if trows:
             L.append('- **Text set (data/plans/ela-texts.csv, %d rows for this course and unit; use is anchor, paired or independent):**' % len(trows))
             for t in trows:
-                L.append('  - %s (%s): %s, %s%s; %s, %s; status: %s'
+                L.append('  - %s (%s): %s, %s%s; %s, %s; status: %s; edition: %s; rights: %s'
                          % (t['text_id'], t['use'] or 'use not stated', clean(t['title']), clean(t['author']) or 'author not stated',
-                            ' (%s)' % t['year'] if t['year'].strip() else '', t['part'] or 'part not stated', t['kind'] or 'kind not stated', t['status']))
+                            ' (%s)' % t['year'] if t['year'].strip() else '', t['part'] or 'part not stated', t['kind'] or 'kind not stated', t['status'],
+                            clean(t['edition']) or 'not stated', clean(t['rights_basis']) or 'not stated'))
         else:
             if c3:
                 L.append('- **Text set (frame, C3 column):** %s' % c3)
@@ -777,11 +817,9 @@ def field2_extras(course, unit, rows, codes, fr, anchor):
                              if any(x.split('.')[0] == 'W' and len(x.split('.')) >= 3 and re.match(r'\d+', x.split('.')[2]).group(0) == n
                                     for x in split_list(r['codes']))})
                 L.append('  - W.x.%s, %s: days %s' % (n, WTYPE.get(n, 'writing'), days_or_none(ds)))
-        wl = [r for r in rows if WRITEWORDS.search(r['goal'])]
+        wl = [int(r['day']) for r in rows if WRITEWORDS.search(r['goal'])]
         if wl:
-            L.append('- **Days whose goal names writing (days.csv goals):**')
-            for r in wl:
-                L.append('  - Day %s (%s): %s' % (r['day'], r['kind'], clean(r['goal'])))
+            L.append('- **Days whose goal names writing (goals in the day list):** %s.' % runs_text(wl))
         anchors = [t for t in trows if t['use'] == 'anchor']
         if anchors:
             L.append('- **Text complexity on file (ela-texts.csv, measure and qualitative demands of each anchor):**')
@@ -845,22 +883,55 @@ def field3_extras(course, unit, skills, prog):
     return L
 
 
+def note_days(rows, rx, skip=None, goal_too=True):
+    """Day numbers whose note (or goal) matches rx, less those whose note matches skip."""
+    out = []
+    for r in rows:
+        note, goal = clean(r['note']), (clean(r['goal']) if goal_too else '')
+        if (rx.search(note) or rx.search(goal)) and not (skip is not None and skip.search(note)):
+            out.append(int(r['day']))
+    return out
+
+
+def grouped_lines(rows, only=None, skip=None):
+    """The optional tools, supplies and safety columns of days.csv, one line per item with the days it appears (an item
+    repeated on many days is printed once)."""
+    out = []
+    for col in TOOLCOLS:
+        if (only and col not in only) or (skip and col in skip):
+            continue
+        if rows and col in rows[0]:
+            for it, ds in group_column(rows, col):
+                out.append('  - %s: %s (day%s %s)' % (col, clean(it), 's' if len(ds) > 1 else '', runs_text(ds)))
+    return out
+
+
 def field8_lines(course, rows, fr):
+    """Field 8 for math, ELA and science: the days.csv columns grouped by item, and the day numbers whose notes or goals
+    name tools or safety (the notes themselves are in the day list, not copied here)."""
     L = [OPEN]
-    items = column_lines(rows)
     if SUBJ == 'science':
-        safe = day_note_lines(rows, SAFEWORDS, goal_too=False)
-        tools = day_note_lines(rows, TOOLWORDS, skip=SAFEWORDS)
-        L.append('- **Materials and tools named in days.csv (tools and supplies columns, notes and goals):**')
-        L.extend(column_lines(rows, skip=('safety',)) + tools or ['  - none named'])
-        L.append('- **Safety named in days.csv (safety column, then notes):**')
-        L.extend(column_lines(rows, only=('safety',)) + safe or ['  - none named'])
+        nd = note_days(rows, TOOLWORDS, skip=SAFEWORDS)
+        L.append('- **Materials and tools named in days.csv (tools and supplies columns, by item):**')
+        L.extend(grouped_lines(rows, skip=('safety',)) or ['  - none in the columns'])
+        if nd:
+            L.append('- **Days whose notes or goals name tools or materials (see the day list):** %s.' % runs_text(nd))
+        sd = note_days(rows, SAFEWORDS, goal_too=False)
+        L.append('- **Safety named in days.csv (safety column, by hazard):**')
+        L.extend(grouped_lines(rows, only=('safety',)) or ['  - none in the column'])
+        if sd:
+            L.append('- **Days whose notes name safety (see the day list):** %s.' % runs_text(sd))
         if fr and fr[9].strip():
-            L.append('- **Safety and teacher notes (frame, last column of the unit row):** %s' % clean(fr[9]))
+            L.append('- **Safety and teacher notes (frame):** in field 10, under "Sensitive topics and teacher notes (frame)".')
     else:
-        tools = day_note_lines(rows, TOOLWORDS)
-        L.append('- **Tools and supplies named in days.csv (notes and goals):**')
-        L.extend(items + tools or ['  - none named'])
+        items = grouped_lines(rows)
+        nd = note_days(rows, TOOLWORDS)
+        L.append('- **Tools and supplies named in days.csv (columns, by item; then notes and goals):**')
+        L.extend(items)
+        if nd:
+            L.append('  - Days whose notes or goals name tools or supplies (see the day list): %s.' % runs_text(nd))
+        if not items and not nd:
+            L.append('  - none named')
     mats = material_lines(course, rows)
     if mats:
         L.append('- **Materials (data/plans/%s/materials.csv):**' % course)
@@ -919,12 +990,14 @@ def note_clauses(note):
     return [c.strip() for c in out if c.strip()]
 
 
-def retrieval_clauses(note, day):
+def retrieval_clauses(note, day, broad=False):
     """The retrieval tasks a day's note sets: the whole sentence or clause, not a forward mention such as "opens as a
-    retrieval task on day 27" (a clause that does not begin with the words and names another day)."""
+    retrieval task on day 27" (a clause that does not begin with the words and names another day). Social studies
+    notes say "retrieval task"; with broad (math, ELA, science) any form of the word counts ("Retrieve s2-compare-designs",
+    "retrieval of unit 1")."""
     out = []
     for c in note_clauses(note):
-        m = re.search(r'retrieval tasks?\b', c, re.I)
+        m = re.search(r'\bretriev\w*' if broad else r'retrieval tasks?\b', c, re.I)
         if not m:
             continue
         if m.start() == 0:
@@ -975,6 +1048,187 @@ def sections_of(rows):
     return sorted(secs.items(), key=lambda kv: min(kv[1]))
 
 
+# ---------------------------------------------------------------------------------------------------------------
+# Computed checks for math, ELA and science (the faults the scope and sequence reads kept finding, 2026-11-14 and 15).
+
+TEACH_KINDS = ('Understanding', 'Fluency', 'Application')
+# Evidence gathered child by child (sequence-write.md rule 2, "Collect once").
+EVIDENCE = re.compile(r'one-to-one|one to one|one-on-one|one on one|conferenc\w*|running records?|'
+                      r'individual\w* (?:reading|read|interview|record)\w*|small[- ]group', re.I)
+REUSE = re.compile(r'\breus\w*', re.I)
+
+
+def subject_courses():
+    """[(grade number, course)] of the current subject, in data/plans/frames.csv order."""
+    out = []
+    for r in read_csv(PLANS / 'frames.csv', FRAMES_COLS):
+        g = grade_num(r['grade'])
+        if r['subject'] == SUBJ and g is not None:
+            out.append((g, r['course']))
+    return out
+
+
+def used_on(r, skill, course_grade, prog, via=True):
+    """True when a days.csv row teaches or assesses a progression row (rule 2: "used" is a day that teaches or assesses
+    it): the row is in its skills, the day is not a readiness check, and for a row owned before the course's grade the
+    day's note sets no retrieval or readiness task (a retrieval opening or a readiness check is not a use).
+    With via (lead, 2026-11-15, after the social studies audit flagged reasoned calls such as grade 7's Roman Republic
+    using grade 5's constitution row): a day that teaches a row whose progression `assumes` names the skill uses it too,
+    since that row builds directly on it. One hop only."""
+    if r['assess'] == 'readiness':
+        return False
+    own = split_list(r['skills'])
+    if skill not in own:
+        if not via or not any(skill in split_list(prog.get(s, {}).get('assumes', '')) for s in own):
+            return False
+        return not re.search(r'retriev|readiness', r['note'], re.I) or r['kind'] in ('Understanding', 'Application')
+    og = grade_num(prog.get(skill, {}).get('grade'))
+    if og is not None and course_grade is not None and og < course_grade and re.search(r'retriev|readiness', r['note'], re.I):
+        return False
+    return True
+
+
+def earlier_rows(course, rows, allrows, prog, frame_meta, ready_day):
+    """One entry per row the unit assumes (the progression's assumes of its skills, less its own skills), each a dict:
+    row, owned (grade text), last (where it was last used), rule ('retrieval', 'readiness' or a fault sentence),
+    named (where days.csv names it for this unit) and off (a sentence when days.csv and the rule disagree, else '').
+    Last use (sequence-write.md rule 2, "Count by grade number"): the highest grade whose days.csv teaches or assesses
+    the row, counting this course's days before the unit as this year; with no use on file, the owner grade. A row last
+    used the year before or earlier this year gets retrieval; two or more grades back, a readiness check."""
+    cg = grade_num(frame_meta.get('grade'))
+    first, lastday = int(rows[0]['day']), int(rows[-1]['day'])
+    skills = uniq(s for r in rows for s in split_list(r['skills']))
+    assumes = [a for a in uniq(a for s in skills if s in prog for a in split_list(prog[s]['assumes'])) if a not in set(skills)]
+    if not assumes:
+        return []
+    other, unread = [], []
+    for g, c in subject_courses():
+        if c == course or cg is None or g >= cg:
+            continue
+        try:
+            other.append((g, c, days_rows(c)))
+        except DataError as e:
+            unread.append((g, c, str(e)))
+    retr_days = {}
+    for r in rows:
+        clauses = ' '.join(retrieval_clauses(r['note'], int(r['day']), broad=True))
+        for a in assumes:
+            if (a in split_list(r['skills']) and re.search(r'retriev', r['note'], re.I)) or a in clauses:
+                retr_days.setdefault(a, []).append(int(r['day']))
+    out = []
+    for a in assumes:
+        e = {'row': a, 'owned': '?', 'last': '', 'lastg': '', 'rule': '', 'named': '', 'off': '', 'group': ''}
+        out.append(e)
+        p = prog.get(a)
+        if p is None:
+            e['rule'] = 'not in data/progressions/%s.csv' % SUBJ
+            e['off'] = '%s is not a row of the progression (missing data)' % a
+            continue
+        og = grade_num(p['grade'])
+        e['owned'] = 'grade %s' % p['grade']
+        here = [int(r['day']) for r in allrows if int(r['day']) < first and used_on(r, a, cg, prog)]
+        later = [int(r["day"]) for r in allrows if int(r["day"]) > lastday and used_on(r, a, cg, prog, via=False)]
+        if og is None or cg is None:
+            e['rule'] = 'grade not a number'
+            e['off'] = 'the grade of %s or of the course is not a number' % a
+            continue
+        if og > cg:
+            e['rule'] = 'owned in a later grade'
+            e['off'] = '%s is owned in grade %s, after this course: the progression or the unit order is wrong' % (a, p['grade'])
+            continue
+        if here:
+            e['last'] = 'this course, last day %d' % max(here)
+            e['lastg'] = 'earlier this year'
+            e['rule'] = 'retrieval'
+        elif og == cg:
+            if later:
+                e['last'] = 'this course, first day %d' % min(later)
+                e['rule'] = 'taught later in this course'
+                e['off'] = '%s is assumed here but first taught on day %d, after this unit' % (a, later[0])
+            else:
+                e['last'] = 'no day of this course'
+                e['rule'] = 'not taught in this course'
+                e['off'] = '%s is owned in this grade but no day of this course\'s days.csv teaches it' % a
+            continue
+        else:
+            used = [(g, c, [int(r['day']) for r in rws if used_on(r, a, g, prog)]) for g, c, rws in other]
+            used = [u for u in used if u[2]]
+            if used:
+                g, c, ds = max(used, key=lambda u: u[0])
+                e['last'] = 'grade %s (%s, last day %d)' % ('K' if g == 0 else g, c, max(ds))
+                e['lastg'] = 'grade %s' % ('K' if g == 0 else g)
+                lg = g
+            else:
+                gone = [u for u in unread if u[0] == og]
+                have = [c for g, c, _ in other if g == og]
+                e['last'] = 'grade %s, the owner (%s)' % (p['grade'], 'its days.csv is unreadable' if gone else
+                                                         'no day of %s cites it' % have[0] if have else 'no days.csv yet')
+                e['lastg'] = 'grade %s' % p['grade']
+                lg = og
+            e['rule'] = 'retrieval' if cg - lg < 2 else 'readiness'
+        rd = ready_day is not None and (a in split_list(ready_day['skills']) or a in ready_day['note'])
+        names = []
+        if rd:
+            names.append('readiness check, day %s' % ready_day['day'])
+        if a in retr_days:
+            names.append('retrieval, day%s %s' % ('s' if len(retr_days[a]) > 1 else '', runs_text(retr_days[a])))
+        e['named'] = '; '.join(names) or 'not named by id'
+        if e['rule'] == 'readiness' and not rd:
+            e['group'] = ('want a readiness check, and the readiness check before this unit does not name them'
+                          if ready_day is not None else 'want a readiness check, and days.csv holds no readiness check for this unit')
+            e['off'] = '%s (last used %s)' % (a, e['lastg'])
+        elif e['rule'] == 'retrieval' and rd and a not in retr_days:
+            e['off'] = '%s wants retrieval (last used %s), not the readiness check that names it' % (a, e['lastg'])
+    return out
+
+
+def taught_before(allrows, code, day, same_day=False):
+    """Teaching days (kinds Understanding, Fluency, Application) of the course before a day that cite the code, its
+    parent (for a lettered part) or one of its parts; with same_day, the day itself counts too."""
+    names = {code} | set(children(code))
+    if len(code) > 1 and code[-1].islower():
+        names.add(code[:-1])
+    return [int(r['day']) for r in allrows if r['kind'] in TEACH_KINDS and names & set(split_list(r['codes']))
+            and (int(r['day']) < day or (same_day and int(r['day']) == day))]
+
+
+def evidence_pairs(allrows, unit, day):
+    """[(other day, later day reuses a record?)] for days within ten course days of an assessment day of the unit where
+    both gather evidence child by child (EVIDENCE in goal or note, and an assess value or kind Check). Days of one
+    assessment spread over the unit (the same assess value in the same unit) are not a pair."""
+    byday = {int(r['day']): r for r in allrows}
+    me = byday[day]
+    if not EVIDENCE.search(me['goal'] + ' ' + me['note']):
+        return []
+    out = []
+    for d in sorted(byday):
+        r = byday[d]
+        if d == day or abs(d - day) > 10 or not (r['assess'] or r['kind'] == 'Check'):
+            continue
+        if not EVIDENCE.search(r['goal'] + ' ' + r['note']):
+            continue
+        if r['stretch'] == me['stretch'] and r['assess'] == me['assess']:
+            continue
+        later = byday[max(d, day)]
+        out.append((d, bool(REUSE.search(later['goal'] + ' ' + later['note']))))
+    return out
+
+
+def group_column(rows, col):
+    """[(item, [days])] for a ;-separated days.csv column (tools, supplies, safety), items in first-seen order; a safety
+    cell that is the word none is not an item."""
+    order, days = [], {}
+    for r in rows:
+        for it in [x.strip() for x in (r.get(col) or '').split(';') if x.strip()]:
+            if col == 'safety' and it.lower() == 'none':
+                continue
+            if it not in days:
+                order.append(it)
+                days[it] = []
+            days[it].append(int(r['day']))
+    return [(it, days[it]) for it in order]
+
+
 def build(course, unit):
     allrows = days_rows(course)
     rows = [r for r in allrows if r['stretch'] == str(unit)]
@@ -989,13 +1243,13 @@ def build(course, unit):
     tx = TXT[subj]
     fr = frame_unit(course, unit)
     title, question, anchor = split_unit_cell(fr[1]) if fr else ('Unit %s' % unit, '', '')
-    frame_meta = next((r for r in read_csv(PLANS / 'frames.csv') if r['course'] == course), {})
+    frame_meta = next((r for r in read_csv(PLANS / 'frames.csv', FRAMES_COLS) if r['course'] == course), {})
     cal = calendar_rows(course, unit)
     kinds = {}
     for r in rows:
         kinds[r['kind']] = kinds.get(r['kind'], 0) + 1
     order = ['Understanding', 'Fluency', 'Application', 'Check', 'Respond']
-    kind_txt = ', '.join('%s %d' % (k.lower(), kinds[k]) for k in order if k in kinds)
+    kind_txt = ', '.join('%s %d' % (k.lower(), kinds[k]) for k in order + sorted(set(kinds) - set(order)) if k in kinds)
     sections = sections_of(rows)
     W = []
     w = W.append
@@ -1123,7 +1377,7 @@ def build(course, unit):
     w('')
     retr = []
     for r in rows:
-        for t in retrieval_clauses(r['note'], int(r['day'])):
+        for t in retrieval_clauses(r['note'], int(r['day']), broad=not ss):
             retr.append((int(r['day']), clean(t)))
 
     def ready_for_me(p):
@@ -1145,7 +1399,14 @@ def build(course, unit):
     given_prev = ready_for_me(prev)
     w_ready = False
     ready1 = []
-    if first == 1:
+    erows = []
+    if not ss:
+        # math, ELA, science: every earlier row the unit assumes, its last use and the treatment rule 2 gives it
+        rday = rows[0] if (first == 1 and rows[0]['assess'] == 'readiness') else (prev if given_prev and first != 1 else None)
+        erows = earlier_rows(course, rows, allrows, prog, frame_meta, rday)
+        if first == 1:
+            ready1 = [e['row'] for e in erows if e['rule'] == 'readiness']
+    elif first == 1:
         # lead rule 2026-11-14: no sitting before day 1. Readiness rows are the skills this unit assumes that were last
         # used two or more grades back (a row from the year before is a retrieval task, scope and sequence rule 1) and
         # that no retrieval task of the unit already carries; with none, the check is not needed and retrieval stands alone.
@@ -1156,8 +1417,9 @@ def build(course, unit):
                   and not year_before(a, prog, frame_meta)]
     if first == 1 and (ready1 or rows[0]['assess'] == 'readiness'):
         w('**Given:** day %d, the last ten minutes, after the hook (lead rule 2026-11-14: no sitting before day 1; reteach on day 2 or 3). '
-          'Readiness rows (progression, assumes, not retrieved in this unit): %s.'
-          % (first, '; '.join('%s (grade %s)' % (a, grade_of(a, prog)) for a in ready1) or 'none found; days.csv day 1 marks the check, see its note'))
+          'Readiness rows (%s): %s.'
+          % (first, 'progression, assumes, not retrieved in this unit' if ss else 'rule 2, the table below',
+             '; '.join('%s (grade %s)' % (a, grade_of(a, prog)) for a in ready1) or 'none found; days.csv day 1 marks the check, see its note'))
         w_ready = True
     elif first == 1:
         w('Start-of-year check: none needed; retrieval only.')
@@ -1175,16 +1437,48 @@ def build(course, unit):
         w('|---|---|---|---|---|')
         w('| 1 | | %s: item, with its key and the earlier row it tests | | |' % MARK)
         w('')
-        w('%s: Readiness items (at least one for each earlier-grade row the note above names), a gap-by-gap ten-minute reteach, '
-          'when it happens, and the earlier tool or page.' % MARK)
-    if retr:
+        w('%s: Readiness items (at least one for each earlier-grade row the %s), a gap-by-gap ten-minute reteach, '
+          'when it happens, and the earlier tool or page.' % (MARK, 'note above names' if ss else 'table below marks readiness'))
+    if erows:
+        w('')
+        w('Earlier rows this unit assumes (progression assumes; last use from the days.csv of this course and earlier grades, '
+          'a day that only retrieves or checks readiness not counted; rule 2 of sequence-write.md: last used the year before or '
+          'earlier this year, retrieval; two or more grades back, readiness check):')
+        w('')
+        w(OPEN)
+        w('| Row | Owned | Last used | Rule says | days.csv names it |')
+        w('|---|---|---|---|---|')
+        for e in erows:
+            w('| %s | %s | %s | %s | %s |' % (e['row'], e['owned'], clean(e['last']) or '-', e['rule'], e['named'] or '-'))
+        w(CLOSE)
+        offs = [e['off'] for e in erows if e['off'] and not e['group']]
+        for gtext in uniq(e['group'] for e in erows if e['group']):
+            items = [e['off'] for e in erows if e['group'] == gtext]
+            if len(items) == 1:
+                gtext = gtext.replace('want a', 'wants a', 1).replace(' name them', ' name it')
+            offs.append('%s %s' % (', '.join(items), gtext))
+        if offs:
+            w('')
+            w('%s: days.csv and rule 2 disagree: %s. Plan what the plan can (a retrieval task inside an existing day; readiness '
+              'items where a check is given); never add a day; list each disagreement under "For the lead".' % (MARK, '; '.join(offs)))
+    quiet = [e['row'] for e in erows if e['rule'] == 'retrieval' and e['named'] == 'not named by id']
+    if retr or quiet:
         w('')
         w('Retrieval tasks (rows used the year before or earlier the same year; days.csv notes):')
         w('')
         w('| Day | The row and task (days.csv) | The prompt, and what the teacher does with a miss |')
         w('|---|---|---|')
-        for d, t in retr:
-            w('| %d | %s | %s: the prompt, and what the teacher does with a miss |' % (d, t, MARK))
+        if ss:
+            for d, t in retr:
+                w('| %d | %s | %s: the prompt, and what the teacher does with a miss |' % (d, t, MARK))
+        else:
+            # one row per distinct task, its days together (a note repeated across days is one task)
+            for t in uniq(t for _, t in retr):
+                w('| %s | %s | %s: the prompt, and what the teacher does with a miss |'
+                  % (runs_text([d for d, u in retr if u == t]), t, MARK))
+        for a in quiet:
+            w('| %s: the day it opens, inside existing time | %s (rule 2 retrieval; days.csv names no task for it) | %s: the prompt, '
+              'and what the teacher does with a miss |' % (MARK, a, MARK))
     w('')
 
     # ---- field 5: end-of-unit assessment
@@ -1196,14 +1490,42 @@ def build(course, unit):
         w('Day %s (%s): %s' % (r['day'], label, clean(r['goal'])))
         if r['note']:
             w('Note (days.csv): %s' % clean(r['note']))
-        w('')
-        w('| Day | Code | Part (own words) | The item, answer and wrong answers (error letter) | Owner |')
-        w('|---|---|---|---|---|')
         acodes = split_list(r['codes'])
         full = []
         for c in acodes:
             full.append(c)
             full.extend(k for k in parts_of(c, rows, allrows) if k not in acodes)
+        todo5 = []
+        if not ss:
+            d = int(r['day'])
+            w(OPEN)
+            lo, hi = frame_meta.get('minutes_min', ''), frame_meta.get('minutes_max', '')
+            mins = lo if lo == hi else '%s to %s' % (lo, hi)
+            hosts = re.search(r"(unit %d's|next unit's) readiness" % (unit + 1), r['note'], re.I)
+            w('- **Time:** %s; %d row%s below to sample.'
+              % (('%s minutes a day (data/plans/frames.csv)%s' % (mins, ", less 10 for the next unit's readiness check on this day" if hosts else ''))
+                 if lo else 'day length not in data/plans/frames.csv', len(full), '' if len(full) == 1 else 's'))
+            untaught = [c for c in acodes if not taught_before(allrows, c, d, same_day=r['assess'] == 'observe')]
+            if untaught:
+                w('- **Assessed before any teaching day cites it (days.csv codes):** %s.' % ', '.join(untaught))
+                todo5.append('%s: Day %d assesses %s before any teaching day of days.csv cites %s: name the earlier day that teaches %s '
+                             '(cited under another code), or list it under "For the lead"; a code is assessed only after a day teaches it.'
+                             % (MARK, d, ', '.join(untaught), 'it' if len(untaught) == 1 else 'them', 'it' if len(untaught) == 1 else 'each'))
+            pairs = evidence_pairs(allrows, unit, d)
+            if pairs:
+                w('- **Child-by-child evidence within ten days (days.csv goals and notes):** %s.'
+                  % '; '.join('day %d also gathers it, %d days %s%s' % (o, abs(o - d), 'before' if o < d else 'after',
+                                                                  ' (the later note reuses the record)' if ok else '')
+                              for o, ok in pairs))
+                bad5 = [o for o, ok in pairs if not ok]
+                if bad5:
+                    todo5.append('%s: Collect once (sequence-write.md rule 2): day %d and day%s %s both gather evidence child by child within '
+                                 'ten days; plan the later one to reuse the earlier record and say so, or list it under "For the lead".'
+                                 % (MARK, d, 's' if len(bad5) > 1 else '', runs_text(bad5)))
+            w(CLOSE)
+        w('')
+        w('| Day | Code | Part (own words) | The item, answer and wrong answers (error letter) | Owner |')
+        w('|---|---|---|---|---|')
         for c in full:
             txt = clean(std_line(c))
             if is_choice(c) and not any(k in full for k in children(c)):
@@ -1216,6 +1538,9 @@ def build(course, unit):
                                else 'whole standard')
             w('| %s | %s | %s | %s | section %s |' % (r['day'], c, part, MARK, r['unit']))
         w('')
+        if todo5:
+            W.extend(todo5)
+            w('')
     if not ass:
         w('days.csv marks no end-of-unit assessment day in this unit.')
         w('')
@@ -1285,7 +1610,7 @@ def build(course, unit):
              ' A leading ~ marks a standard the row touches without owning.' if not ss and any(c.startswith('~') for c in only) else ''))
     if fr and fr[8].strip():
         w('- **Check set adds (frame):** %s' % clean(fr[8]))
-    sm = [r for r in read_csv(plan_file(course, 'source-map.csv')) if r['unit'].split('.')[0] == str(unit)]
+    sm = source_rows(course, unit) if ss else []
     miss10 = []
     if not ss:
         extra10, miss10 = field10_extras(course, unit)
@@ -1297,18 +1622,17 @@ def build(course, unit):
     if subj == 'ela':
         trows = ela_texts(course, unit)
         if trows:
-            w('- **Texts (data/plans/ela-texts.csv: author, edition, rights):**')
-            for t in trows:
-                w('  - %s, %s (%s); edition: %s; rights: %s'
-                  % (clean(t['title']), clean(t['author']) or 'author not stated', t['year'] or 'no year', clean(t['edition']) or 'not stated',
-                     clean(t['rights_basis']) or 'TODO'))
+            w('- **Texts:** author, year, edition and rights of each are in the text set of field 2 (data/plans/ela-texts.csv).')
     sens = [r for r in rows if 'sensitiv' in r['note'].lower()]
     if fr and fr[9].strip():
-        w('- **Sensitive topics (frame):** %s' % clean(fr[9]))
-    if sens:
+        w('- **Sensitive topics%s (frame):** %s' % ('' if ss else ' and teacher notes', clean(fr[9])))
+    if sens and ss:
         w('- **Days flagged for the sensitivity read (days.csv notes):**')
         for r in sens:
             w('  - Day %s: %s' % (r['day'], clean(r['note'])))   # in full: the bracket often holds what to read
+    elif sens:
+        w('- **Days flagged for the sensitivity read (their notes, in full, are in the day list):** %s.'
+          % runs_text([int(r['day']) for r in sens]))
     w(CLOSE)
     if ss:
         w('%s: Sources chosen for the unit (named, with licence and what was read); the primary sources and the community\'s own sources first.' % MARK)
@@ -1346,6 +1670,113 @@ def build(course, unit):
     return '\n'.join(W)
 
 
+def self_test():
+    """Checks of the computed lines on small made-up data in a temporary --data-dir (real course ids, so frames.csv
+    gives grades; nothing under data/ or docs/ is written). Prints each check and returns 0 when all pass."""
+    import tempfile
+    fails = []
+
+    def check(name, ok):
+        print('%s  %s' % ('ok  ' if ok else 'FAIL', name))
+        if not ok:
+            fails.append(name)
+
+    def stops(name, fn, *want):
+        try:
+            fn()
+            check(name, False)
+        except DataError as e:
+            check(name, all(x in str(e) for x in want))
+
+    head = 'day,stretch,unit,kind,goal,skills,codes,assess,note\n'
+    saved = DATA_DIR, SUBJ
+    with tempfile.TemporaryDirectory() as tmp:
+        t = Path(tmp)
+
+        def put(course, name, text):
+            (t / course).mkdir(parents=True, exist_ok=True)
+            (t / course / name).write_text(text, encoding='utf-8', newline='\n')
+
+        set_data_dir(t)
+        set_subject('science')
+        # 1. a source map in an older layout stops with a message naming the file and the missing columns
+        put('science-grade-3', 'source-map.csv', 'base_unit,day,decision\nU1,1,keep\n')
+        stops('old-layout source map stops', lambda: source_map('science-grade-3'),
+              'source-map.csv', 'missing: source,title', 'convert it first')
+        put('science-grade-3', 'source-map.csv', ','.join(MAP_COLS) + '\nOS,T,g,3-PS2-1,1,1 to 2,keep,w,,no\n')
+        check('one-layout source map reads', len(source_map('science-grade-3')) == 1)
+        # 2. days.csv: a missing column, a day that is not a whole number, a short row
+        put('science-grade-4', 'days.csv', 'day,stretch,unit,kind,goal\n1,1,1.1,Understanding,g\n')
+        stops('days.csv missing column stops', lambda: days_rows('science-grade-4'), 'missing: skills,codes,assess,note')
+        put('science-grade-4', 'days.csv', head + 'x,1,1.1,Understanding,g,,,,\n')
+        stops('non-number day stops', lambda: days_rows('science-grade-4'), 'day "x" is not a whole number')
+        put('science-grade-4', 'days.csv', head + '1,1,1.1,Understanding,g,,\n')
+        stops('short row stops', lambda: days_rows('science-grade-4'), 'data row 1 has')
+        # 3. rule 2 by last use: a K row last used in K is readiness in grade 3, a grade 2 row retrieval
+        put('science-kindergarten', 'days.csv', head + '5,1,1.1,Understanding,g,tk-push,,,\n')
+        put('science-grade-2', 'days.csv', head + '9,1,1.1,Application,g,t2-design,,,\n')
+        put('science-grade-3', 'days.csv', head + '1,1,1.1,Understanding,g,t3-force,3-PS2-1,,Retrieve t2-design after the hook.\n'
+                                                  '2,1,1.1,Check,g,t3-force,3-PS2-1,end,\n')
+        prog = {'tk-push': {'grade': 'K', 'assumes': ''}, 't2-design': {'grade': '2', 'assumes': ''},
+                't3-force': {'grade': '3', 'assumes': 'tk-push;t2-design;t9-none'}}
+        rows = days_rows('science-grade-3')
+        meta = {'grade': '3'}
+
+        def er(ready=None):
+            return {e['row']: e for e in earlier_rows('science-grade-3', rows, rows, prog, meta, ready)}
+        e = er()
+        check('K row last used in K is readiness in grade 3',
+              e['tk-push']['rule'] == 'readiness' and 'no readiness check' in e['tk-push']['group'])
+        check('grade 2 row is retrieval, named on day 1', e['t2-design']['rule'] == 'retrieval'
+              and e['t2-design']['named'] == 'retrieval, day 1' and not e['t2-design']['off'])
+        check('row missing from the progression is flagged', 'not a row of the progression' in e['t9-none']['off'])
+        check('readiness check naming the row clears the fault',
+              not er({'day': '1', 'skills': 'tk-push', 'note': ''})['tk-push']['off'])
+        # a grade 2 day that only retrieves the K row is not a use; a grade 2 teaching day is
+        put('science-grade-2', 'days.csv', head + '9,1,1.1,Application,g,t2-design;tk-push,,,Retrieve tk-push.\n')
+        check('a retrieval day is not a use', er()['tk-push']['rule'] == 'readiness')
+        put('science-grade-2', 'days.csv', head + '9,1,1.1,Application,g,t2-design;tk-push,,,\n')
+        e = er()
+        check('a grade 2 teaching day makes the K row retrieval', e['tk-push']['rule'] == 'retrieval'
+              and e['tk-push']['last'] == 'grade 2 (science-grade-2, last day 9)')
+        # an unreadable days.csv in an earlier grade is noted, not a traceback
+        put('science-grade-2', 'days.csv', 'day\n1\n')
+        check('unreadable earlier days.csv is noted', 'unreadable' in er()['t2-design']['last'])
+    set_data_dir(saved[0])
+    # 4. assessed before taught; a lettered part counts its parent
+    al = [dict(day=str(d), stretch='1', unit='1.1', kind=k, goal='', skills='', codes=c, assess=a, note='')
+          for d, k, c, a in [(1, 'Understanding', '3-PS2-1', ''), (2, 'Check', '3-PS2-1;3-PS2-2', 'end'),
+                             (3, 'Understanding', '3-PS2-2', '')]]
+    check('code taught day 1 counts before day 2', taught_before(al, '3-PS2-1', 2) == [1])
+    check('code first taught day 3 is untaught at day 2', taught_before(al, '3-PS2-2', 2) == [])
+    check('same-day teaching counts with same_day', taught_before(al, '3-PS2-2', 3, same_day=True) == [3])
+    # 5. child-by-child evidence within ten days, a reuse note, one assessment spread over a unit
+    ev = [dict(day=str(d), stretch=s, unit=s + '.1', kind='Check', goal=g, skills='', codes='', assess=a, note=n)
+          for d, s, g, a, n in [(3, '1', 'one-to-one interview', 'mid', ''),
+                                (9, '2', 'conference on drafts', 'end', 'reuse the day 3 record'),
+                                (12, '2', 'conference on drafts', 'end', ''),
+                                (30, '3', 'one-to-one interview', 'end', '')]]
+    check('evidence pair within ten days, reuse read', evidence_pairs(ev, 2, 9) == [(3, True)])
+    check('no pair beyond ten days', evidence_pairs(ev, 3, 30) == [])
+    # 6. grouped columns, with safety none dropped
+    gc = [dict(day='1', safety='goggles; none'), dict(day='2', safety='goggles'), dict(day='4', safety='none')]
+    check('grouped safety column', group_column(gc, 'safety') == [('goggles', [1, 2])])
+    # 7. the same input writes the same skeleton (the first science course with days and no source map)
+    for c in courses_of('science'):
+        set_subject('science')
+        try:
+            us = unit_numbers(c)
+            if not us or source_map(c):
+                continue
+            check('deterministic (%s unit %d)' % (c, us[0]), build(c, us[0]) == build(c, us[0]))
+        except DataError:
+            continue
+        break
+    set_subject(saved[1])
+    print('%d failed' % len(fails) if fails else 'all passed')
+    return 1 if fails else 0
+
+
 def main(a):
     force = '--force' in a
     out = None
@@ -1358,39 +1789,49 @@ def main(a):
         set_data_dir(a[i + 1])
         a = a[:i] + a[i + 2:]
     a = [x for x in a if x != '--force']
+    if a[:1] == ['--self-test']:
+        return self_test()
     if a[:1] == ['--list'] and len(a) <= 2:
         subj = a[1] if len(a) == 2 else None
         if subj and subj not in SUBJECTS:
             raise SystemExit('subject must be one of: %s' % ', '.join(SUBJECTS))
         for c in courses_of(subj):
             set_subject(subject_of(c))
-            n = len(unit_numbers(c))
+            try:
+                n = len(unit_numbers(c))
+            except DataError as e:
+                print('%-48s ? units (cannot read: %s)' % (c, e))
+                continue
             print('%-48s %d units' % (c, n) + ('' if n else ' (no days.csv yet)'))
         return 0
-    if not a:
-        raise SystemExit(__doc__)
+    if not a or a[0] in ('-h', '--help'):
+        print(__doc__)
+        return 0 if a else 2
     course = a[0]
     if subject_of(course) is None:
         raise SystemExit('not a course in data/plans/frames.csv: %s' % course)
     set_subject(subject_of(course))
-    if not unit_numbers(course):
-        raise SystemExit('%s has no days.csv yet (its scope and sequence comes first, PRODUCTION-PATH step 5)' % course)
     units = unit_numbers(course)
+    if not units:
+        raise SystemExit('%s has no days.csv yet (its scope and sequence comes first, PRODUCTION-PATH step 5)' % course)
     if len(a) > 1:
+        if not a[1].isdigit() or int(a[1]) not in units:
+            raise SystemExit('%s has no unit %s (units: %s)' % (course, a[1], runs_text(units)))
         units = [int(a[1])]
     folder = (out / course) if out else (DOCS / course)
     folder.mkdir(parents=True, exist_ok=True)
-    rc = 0
     for u in units:
         p = folder / ('s%02d.md' % u)
         if p.exists() and not force:
             print('exists, kept:', p)
-            rc = rc or 0
             continue
-        text = build(course, u)
+        try:
+            text = build(course, u)
+        except DataError as e:
+            raise DataError('unit_skeleton: %s unit %d not written: %s' % (course, u, e))
         p.write_text(text, encoding='utf-8', newline='\n')
-        print('wrote', p, '(%d TODO)' % text.count(MARK))
-    return rc
+        print('wrote', p, '(%d TODO, %d words, about %d tokens)' % (text.count(MARK), len(text.split()), len(text) // 4))
+    return 0
 
 
 if __name__ == '__main__':

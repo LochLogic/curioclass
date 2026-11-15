@@ -9,7 +9,7 @@ K-12, 1st edition (CC BY 4.0) is the base text through Algebra 2; past Algebra 2
 ## Read these first
 
 - docs/APPROACH-MATH.md: focus, coherence and rigor; the progressions as backbone; strategies before standard
-  algorithms; concrete to pictures to symbols with its limits; the number line; fluency without on-screen timers;
+  algorithms; concrete to pictures to symbols with its limits; the number line; fluency without time pressure (a timer only with a grounded purpose, BASELINE rule 30);
   the exit question and error lists; word problem guidance; the practices; staying on grade level.
 - docs/RUBRIC-MATH-K8.md: the bar for K to 8, the 65 percent major-work line (75 for K to 2), and six gaps already
   named (practices, balance of rigor, items labelled by standard with what to do next, extensions, family note and
@@ -53,7 +53,7 @@ named in advance and used.
 **Day**
 - The exit ticket misses the day's goal.
 - A manipulative with no tie to the written method.
-- A countdown timer shown to a student.
+- A timer shown to a student with no grounded purpose (BASELINE rule 30).
 
 ## Gaps this lens sees beyond the rubric
 

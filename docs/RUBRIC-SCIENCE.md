@@ -1,6 +1,7 @@
 # The rubric on file: science, kindergarten to grade 12
 
-First draft, 2026-11-13 (pre-work P5b in docs/PRODUCTION-PATH.md). Not yet read by the curriculum expert. This is
+First draft, 2026-11-13 (pre-work P5b in docs/PRODUCTION-PATH.md). NGSS is the standards base for every course;
+Massachusetts STE is a crosswalk only (Cory, 2026-11-14). Not yet read by the curriculum expert. This is
 the bar a finished Curio Class science course is read against, at every layer from the scope and sequence to the
 day. It is the science sibling of [RUBRIC-MATH-K8.md](RUBRIC-MATH-K8.md) and [RUBRIC-ELA.md](RUBRIC-ELA.md). The
 science 4 review (docs/reviews/science-4-spine-2026-11-11.md) named two tools to file and suggested the name

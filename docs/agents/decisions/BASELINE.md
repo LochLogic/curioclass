@@ -96,14 +96,16 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     refined until a section plan names its job, and the plan marks it key (the one a day is planned around; built
     first) or light (lighter, added over time, same standard of correctness; called "practice" before 2026-11-11, renamed so the mark is not confused with the role "practice"). An existing spec or tool carries
     no weight against what the unit needs (rule 1). A teacher judges open work; a tool gives it structure and marks
-    only what has a right answer. Grades 3 to 12 assume one device per student with a one-line projector path, and
+    only what has a right answer. Grades 3 to 12 assume one device per student with a one-line projector path;
+    kindergarten to grade 2 may assume one shared classroom device, always with a paper path (Cory, 2026-11-14); and
     a parent teaching one child at home is a named audience. Always cover the whole standard (Cory, 2026-11-11): a
     plan teaches and checks every part of each standard it claims, in both directions where the standard has two
     (4.NF.A.1: multiplying and dividing both numbers), even where a scope and sequence title names only one part
     (docs/courses/UNIT-PLAN.md, rule 19). All of this, with the promises it rests on, is in
     docs/FOUNDATION.md, which every spec, unit, section and review agent reads first.
 24. **Core subjects first (Cory, 2026-11-11; a soft goal).** Math, English language arts, science and social
-    studies (56 of the 105 courses) are the first focus; the other subjects follow. This bends where work is
+    studies (52 core courses in the four core subjects plus 6 core electives, of 107 courses: 105 active, 2 world
+    languages shelved) are the first focus; the other subjects follow. This bends where work is
     complementary (a shared rule, a bar page, a standards fix that serves both). When a choice has to be made, the
     core subjects come first. Every course is still finished to the bar; this sets the order, not the scope.
 25. **Plan top down, test with a probe and a guard** (Cory, 2026-11-13, replacing "prove at the bottom before
@@ -121,16 +123,22 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     named wrong answers) is kept as data, and a script recomputes every answer that can be computed. A key the
     script cannot reproduce fails the build. "Worked twice by an agent" is not a check. A lesson day is written
     to one template (docs/courses/LESSON-DAY.md) so its parts can be counted and checked.
-28. **Qualified people are named where a course needs them** (same day). docs/FOUNDATION.md section 7 holds the
-    table. No money is spent and no outside person is approached without Cory's yes.
+28. **The reads a course needs are named** (same day; changed 2026-11-14). docs/FOUNDATION.md section 7 holds the
+    table. Since 2026-11-14 every row is an agent read (expert, Codex, answer key, safety, sensitivity, rights,
+    Spanish); no outside human reader is planned (Cory: "Our agents are our best hope"). No money is spent and no
+    outside person is approached without Cory's yes.
 29. **Course texts are newer and relatable below grade 9** (2026-11-12, card `q-course-texts`). Kindergarten to
     grade 8 anchor on newer texts, mostly original Curio Class texts written to a per-grade text spec and read by
-    a qualified ELA teacher, plus recent public-domain government nonfiction; a deeper search for fitting open
+    the expert agent (Cory, 2026-11-14: "our agent is the check, not a teacher"), plus recent public-domain government nonfiction; a deeper search for fitting open
     texts is allowed. Older Reading Room texts appear there only as a paired or optional read. Grades 9 to 12 may
     anchor on Reading Room texts. The Reading Room itself stays an independent-reading shelf.
     Grades 9 to 12 favour recognizable and recent literature (2026-11-13, card `q-ela-progression-1`): beyond the
     texts the standards name, anchors come from the newest public-domain works (published 1930 or earlier now, one more year each January),
     recent open texts, and short excerpts of well-known recent books; never a library or paid copy.
+30. **A timer needs a grounded purpose** (Cory, 2026-11-14, narrowing the earlier "no countdown timer shown to a
+    student"). A timer is allowed where it has a grounded purpose, such as a pace cue, a movement game or classroom
+    management (the reading pie timers, the movement timer, the projector timer and Game Night all qualify). The
+    rule is against timers with no purpose.
 
 ## One tool Cory reviews personally
 

@@ -15,9 +15,9 @@ so a teacher can run a full course without paying for curriculum or software (VI
 
 **The end goal.** A teacher can run any course on Curio Class from the first day to the last, free, with no account,
 and the course would stand up to a state adoption review. A course is a grade of a subject or a high school course.
-Depth comes first: one course is finished before the next is started (ROADMAP, "The path from here"). One bend,
-on purpose (2026-11-11): the first pilot unit in each of math, English language arts and science is built early,
-with the rubric file and approach page each needs, so the cost of a unit is known in three subjects.
+Every core subject is planned top down (progression, course frames, scopes and sequences, unit plans) before days
+are written (docs/PRODUCTION-PATH.md, Cory 2026-11-13); each course is finished as a whole before it is called
+finished. The earlier pilot-first bend (2026-11-11) is retired; the probe and guard replace it.
 
 **We own the full course** (Cory, 2026-11-11; base texts added 2026-11-12). Curio Class owns every course: its
 shape, tone, format, gates and reads. Where a well-reviewed open program carries a licence as open as ours (CC BY
@@ -33,7 +33,7 @@ teacher already uses, and that is welcome, but it is not the plan.
 | Who | What that means for the work |
 |---|---|
 | **A classroom teacher** running a course | The main reader of every scope and sequence, section plan and teacher page. Teacher pages teach the teacher |
-| **A parent teaching one child at home** (named 2026-11-11; how far, decided 2026-11-12) | The second audience, served by the same course, never a separate track. Every lesson day carries an "at home" block (a 30 to 40 minute one-child path, what the parent says where the class has partner talk, which items to do, home swaps for materials); a course gives placement from its readiness checks, a 36-week numbered calendar and a record that works as a portfolio; answer keys explain, not only list; sample pieces show what grade-level work looks like. Not planned: separate home courses or multi-age plans |
+| **A parent teaching one child at home** (named 2026-11-11; how far, decided 2026-11-12) | The second audience, served by the same course, never a separate track. Every lesson day carries an "at home" block (a 30 to 40 minute one-child path, what the parent says where the class has partner talk, which items to do, home swaps for materials); a course gives placement from its readiness checks, a numbered calendar ("36-week" in Cory's 2026-11-12 call; the school calendar is 160 days over 32 weeks, docs/courses/CALENDAR.md) and a record that works as a portfolio; answer keys explain, not only list; sample pieces show what grade-level work looks like. Not planned: separate home courses or multi-age plans |
 | **A student alone** | The site is public and a child may open any tool with no adult present. Every tool stands alone: defaults work for a solo user and teacher toggles are extras (BASELINE rule 4) |
 
 ## 3. The promises
@@ -76,7 +76,7 @@ Decided 2026-11-11 (Cory) unless marked.
 1. **Grades 3 to 12: one device per student on a tool day.** The courses are designed that way and say so plainly.
    Every tool day still carries one line for a single projector, because some rooms have nothing else and a reviewer
    will ask.
-2. **Kindergarten to grade 2: not yet decided.** Open question for Cory when the first K to 2 course comes up.
+2. **Kindergarten to grade 2: one shared classroom device**, always with a paper path (Cory, 2026-11-14).
 3. **The physical world is written into the lesson plan.** A tool does not replace rolling the marble, using a
    protractor or reading a whole book. Hands-on work, materials and their cost are part of the unit, with a path for
    a teacher who has nothing (docs/reviews/science-4-spine-2026-11-11.md, finding 7).
@@ -117,29 +117,28 @@ Decided 2026-11-11 (Cory), from the discussion recorded in docs/agents/decisions
    main review at every layer. It is the main read, not the only one (changed 2026-11-11, when Cory accepted the cold strategic review). The
    writer and the expert are the same kind of model, so a cold read removes anchoring but not a shared mistake.
    Three things stand beside it: the sources the expert must open before it judges (the pedagogy and standards
-   data, which Cory expects to grow), a script for everything that can be computed (item 2), and the agent reads
-   and people in item 3.
+   data, which Cory expects to grow), a script for everything that can be computed (item 2), a Codex read of a
+   different model kind, and the agent reads in item 3.
 2. **A machine checks what a machine can** (BASELINE rule 27). Standard codes, day counts, coverage of every part
    of a standard, and every answer that can be computed. A key the script cannot reproduce fails the build.
 3. **Reads beside the expert** (Cory, 2026-11-11; BASELINE rule 28; changed 2026-11-14). Every row below is
    required before the course it touches is called finished. On 2026-11-14 Cory said there is no outside support
    ("We have no support. Our agents are our best hope for success"): the content rows are agent reads, each by a
-   fresh agent that studies its sources first (docs/pipeline/briefs/sensitivity-read.md). The pilot rows stay people
-   Cory may find; nothing is spent or sent without his yes.
+   fresh agent that studies its sources first (docs/pipeline/briefs/sensitivity-read.md). No outside human reader is
+   planned. Pilots are retired (2026-11-13): the probe and guard (docs/pipeline/PROBE-GUARD.md) take their place.
 
    | Who | What they read or do | When |
    |---|---|---|
-   | A working teacher of the grade band (grades 3 to 5 for the first pilot) | Reads the pilot unit against written questions (docs/pilots/README.md) | Each course's pilot unit |
-   | A teacher or a parent | Teaches the pilot unit's days and notes the minutes | First pilot in each subject |
-   | Three students of the grade | Sit the end-of-unit assessment, timed by a watch the student does not see | First pilot in each subject |
+   | The expert agent (was a working teacher on the pilot unit) | Reads every plan and the probe and guard days against the subject lens and rubric | Every unit plan; the probe and the guard |
    | The answer-key agent (was a math content reviewer) | Solves every item of one whole course's checks cold and compares with the key, beside the script check | Before a math course is called finished |
    | The safety agent (was a science teacher) | Safety and materials of every investigation, against published school science safety guidance | Before a science course is called finished |
-   | A second reader on rights | The licence and source of every text a course teaches from | Before an ELA text is taught |
-   | A native Spanish reader | Family notes, and student materials if they are made | Before Spanish is published in a course |
+   | The rights agent (was a second reader on rights) | The licence and source of every text a course teaches from | Before an ELA text is taught |
+   | The Spanish agent (was a native Spanish reader) | Family notes, and student materials if they are made | Before Spanish is published in a course |
    | The sensitivity agent (was a health specialist) | The sensitive health topics, against public health guidance | Before those units go live |
    | The sensitivity agent (was a reader from the community concerned) | Native, cultural, disability and hard-history content, after studying the community's own published voice | Before those units go live |
 
-   Cory's mom, a grade 2 teacher, is reading the approach pages. The first pilot needs a grade 3 to 5 teacher too.
+   Rights and Spanish became agent reads on 2026-11-14 (DESK-ANSWERS, the continuity review's four questions); the
+   funding rows for a paid Spanish review and teacher pilots stay, marked "only if funded".
 4. **Lower layers are solid enough to build on, and expected to be revised** by what is built on them. No layer is
    declared finished in the abstract.
 5. **What goes to Cory:** scope, audience, money, accounts, outside people, a live deploy, anything that moves a
@@ -148,7 +147,7 @@ Decided 2026-11-11 (Cory), from the discussion recorded in docs/agents/decisions
 
 ## Open questions on this page
 
-- The device assumption for kindergarten to grade 2 (section 5).
+- Closed 2026-11-14: the device assumption for kindergarten to grade 2 (section 5).
 - Closed 2026-11-11: what happens to existing tools and specs that no section plan asks for (section 6, item 5).
 - Which of these go into "What a finished course holds", listed 2026-11-11 and not yet decided: accessibility to a
   named level, a versioning and errata rule, a course teacher guide, a state alignment document, Spanish student

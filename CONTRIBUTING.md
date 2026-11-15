@@ -14,8 +14,8 @@ consistent and safe.
   [docs/ROADMAP.md](docs/ROADMAP.md) (what comes next, in order) and
   [docs/agents/decisions/BASELINE.md](docs/agents/decisions/BASELINE.md) (the standing rules for every call).
   Suggestions about them are welcome as an issue. Changes to them are Cory's alone.
-- **Every tool goes through the same path,** whoever made it: Spec, Build, Self-check, Refine, Fix, Exit check, Art
-  and voice, Finish check, then Cory's Sign-off. Nothing skips a step, including work by Cory's own helpers. We say
+- **Every tool goes through the same path,** whoever made it: Idea, Spec, Build, Self-check, Refine, Fix, Exit
+  check, Art and voice, Finish check, Cory's Sign-off, then Live. Nothing skips a step, including work by Cory's own helpers. We say
   the step's name, never just "review", so everyone knows which moment is meant.
 - **"Not now" is common** and usually means "not yet in the roadmap's order", not "bad idea".
 

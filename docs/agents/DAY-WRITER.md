@@ -41,7 +41,7 @@ the cost of one day, so work directly: read what you need, write, run the gates,
   exit, assessment or readiness numbers. Grep items.csv before keeping a pair.
 - `version: draft 1, not ready, not yet taught`. `leans_on` names every outside piece by path; one that does not
   exist and is not needed to teach is `when it exists: <path>`, with the fallback said in the prose.
-- No em dashes. "Curio Class" in full. No company names. No timer shown to a student. `credit: ours` unless you
+- No em dashes. "Curio Class" in full. No company names. A timer only with a grounded purpose (BASELINE rule 30). `credit: ours` unless you
   adapt CC BY, CC0 or public domain material.
 
 ## When your day has a base text

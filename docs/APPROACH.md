@@ -3,7 +3,9 @@
 This page says how Curio Class teaches, in every subject, and why. It is layer 3 of a course: it is built on
 [FOUNDATION.md](FOUNDATION.md) and on the standards, and every scope and sequence and section plan is built on it. Each subject
 adds its own page, which says how the subject carries out each principle. Mathematics and English language arts have pages,
-[APPROACH-MATH.md](APPROACH-MATH.md) and [APPROACH-ELA.md](APPROACH-ELA.md); science and social studies pages are still to be written.
+[APPROACH-MATH.md](APPROACH-MATH.md) and [APPROACH-ELA.md](APPROACH-ELA.md); for science and social studies,
+the subject lens (docs/agents/lenses/) plus its rubric stands in through the scopes and sequences and unit plans, and
+a short approach page per subject is written before days (Cory, 2026-11-14).
 
 Two honest notes. Nothing in Curio Class has been tried with children yet, so this page makes no claim about
 results; it explains choices, and its rules are rules for section plans, not descriptions of lessons that exist.
@@ -14,7 +16,7 @@ many studies, how big the effect) is in [APPROACH-SOURCES.md](APPROACH-SOURCES.m
 
 Second draft, 2026-11-11, revised after a cold read by the curriculum expert
 ([reviews/approach-2026-11-11.md](reviews/approach-2026-11-11.md)). Cory settled three points the same day
-(how a lesson opens, no timers in tools, a wording change in SPEC.md). The page as a whole still waits for his
+(how a lesson opens, no timers in tools, narrowed on 2026-11-14 to timers with a grounded purpose, BASELINE rule 30; a wording change in SPEC.md). The page as a whole still waits for his
 read.
 
 Changed 2026-11-12, Cory's yes on card q-ela-piece-2: principle 3 and the modelling line under "Where the

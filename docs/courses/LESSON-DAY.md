@@ -4,13 +4,13 @@ Draft 2, 2026-11-12. Written against day 90 of grade 4 math (pilot unit 11), whi
 end. BASELINE rule 27 points here. **Approved by Cory, 2026-11-12: this sets the shape of about 15,000 lesson
 days.** The curriculum expert read draft 1 cold (docs/reviews/lesson-day-2026-11-12.md); draft 2
 makes its seven "before the yes" changes. The At home block was added the same day (Cory, homeschool option 1;
-DESK-ANSWERS, "homeschool parents and the site's shape"). **Proved on grade 4 math only** until the ELA and science
-pilots run.
+DESK-ANSWERS, "homeschool parents and the site's shape"). **Proved on grade 4 math only** until the probe and guard
+run in other subjects (the pilots were retired 2026-11-13; docs/pipeline/PROBE-GUARD.md).
 
 A section plan says what each day is for. This page says what a teacher and a student hold in their hands on that
 day, how big each piece may be, and which pieces are written and which are generated. The shared shape holds for
-every subject; "What changes by subject" below lists what is known to differ, and the first pilot in each subject
-adds the rest.
+every subject; "What changes by subject" below lists what is known to differ, and the probe in each subject adds
+the rest.
 
 ## What one day ships as
 
@@ -40,9 +40,9 @@ are generated from data wherever they can be.
 
 **The arithmetic, so the size is seen.** A teaching day is at most about 1,420 words a person reads (900
 teacher, 170 at home, 350 student, questions included), of which only the teacher prose, the At home block and the
-student frame are written free: day 90 has about 1,100 such words. At about 150 days a course and 105 courses that is about 16 to 20
+student frame are written free: day 90 has about 1,100 such words. At about 150 days a course and the 105 active courses that is about 16 to 20
 million words, before checks and section openers. The cost is in the reading as much as the writing (see "How days
-are read"). The caps hold it down; the pilot's real counts go in docs/pilots/COST.md.
+are read"). The caps hold it down; real counts (first from grade 4 math, docs/pilots/COST.md) are measured again at the probe.
 
 ## Where it lives
 
@@ -153,7 +153,7 @@ Fixed headings, so a script can find each part and a teacher always finds it in 
 - Tables print at the page's own type size (14 point); a day that will not fit two sides trims, not the type.
 - Strip pictures that are compared side by side share one scale (`scale=N` on each strip figure).
 - An exit ticket that asks for a strip picture prints a box for it; a teacher-judged ticket item gets a tall box.
-- No answers printed. No timer, score or rank. Black and white, readable with no colour.
+- No answers printed. No score or rank; no timer without a grounded purpose (BASELINE rule 30). Black and white, readable with no colour.
 - A large-print version (18 point) is generated from the same file.
 - Instructions a student reads are short sentences in plain words; numbers are written as numerals.
 - A stem with parts prints each of (a), (b), (c) on its own line, on the page and on the ticket.
@@ -190,7 +190,7 @@ teacher page.
   rectangle, the groups).
 - **The exit ticket last** on a teaching day, naming the paper ticket's rows. The child answers alone.
 - **Cap.** 170 words, counted apart from the 900-word teacher prose cap.
-- **Plain words.** No teacher terms without a gloss, no timer shown to the child, no grades or scores.
+- **Plain words.** No teacher terms without a gloss, no timer without a grounded purpose, no grades or scores.
 
 ## Assessment days
 
@@ -221,12 +221,13 @@ the check is the evidence.
    the same in one line. Rows taken from that lesson do not repeat it in `source`. The source's name appears
    nowhere else (`lesson.py check` fails on it). Sources read only to learn are named under Credit as "informed by". A day that is all ours
    says so. Texts, images and other material used but not adapted have their own rights record (texts.csv for
-   ELA), and the first pilot in that subject sets its rule here.
+   ELA), and the probe in that subject sets its rule here.
 5. **It stands alone.** A teacher who has read the section opener can teach the day from its teacher page. Nothing
    says "see the plan".
 6. **The tool is named by its own words** (its modes and screens), with the minutes it gets and the point to stop
    at, and the paper path does the same job.
-7. **No countdown, no rank, nothing leaves the room.** No timer is shown to a student; results live on the record
+7. **No purposeless timer, no rank, nothing leaves the room.** A timer is shown to a student only with a grounded
+   purpose (a pace cue, a movement game, classroom management; BASELINE rule 30); results live on the record
    sheet and in score codes.
 8. **An item id is never reused for different numbers.** A changed item gets a new id, and the day's version goes
    up.

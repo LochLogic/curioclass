@@ -1,7 +1,7 @@
 # What a unit costs
 
 Started 2026-11-12. One row for each piece of each pilot unit, filled in as the piece is made, not afterwards.
-This is the base of the plan with sizes and dates for all 105 courses (ROADMAP), so a guess is worse than a
+This is the base of the plan with sizes and dates for all 107 courses (105 active, 2 world languages shelved; ROADMAP; the pilot plan was retired 2026-11-13, the probe measures cost next), so a guess is worse than a
 blank: leave a cell empty if it was not measured, and say "estimate" if it is one.
 
 - **Tokens:** from the agent's own usage figure at the end of its run. Include the cold read and the revision.

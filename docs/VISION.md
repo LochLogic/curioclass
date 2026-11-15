@@ -38,11 +38,11 @@ because they had gone stale.
 | Pillar (from the master vision) | Where it lives | When |
 |---|---|---|
 | Standards spine: national frameworks, leaf standards, a state crosswalk, prerequisite maps | Tools track and the Teaching map (hidden now) | The state crosswalk and leaf expansion come after the curriculum ladder starts (one state outside the Common Core first); prerequisite maps feed The Map |
-| Curriculum scope and sequence | Curriculum track: a scope and sequence, then units, then Tracks, then the Binder export | Scope and sequence and unit pilot after the worksheets go live |
+| Curriculum scope and sequence | Curriculum track: a scope and sequence, then units, then Tracks, then the Binder export | Scopes and sequences for all 52 core courses written; unit plans under way (docs/HANDOFF.md; the unit pilot was retired 2026-11-13) |
 | Universal shell and Projector Mode | Kit, grown from finished tools; Projector slides become part of a unit day | With the cohort kit fixes, then units |
 | Teacher desk utilities (timers, noise meter, group maker, chimes) | Supply Closet: Teacher Desk shelf, with classroom music and a sound board | After the closet's current items |
 | Live class sync (Class Cast) | Parked | Only with funding and someone to keep a server running |
-| Adaptive practice and mastery receipts | Score codes (a code and QR a student shows; scanned locally), later | After the units pilot |
+| Adaptive practice and mastery receipts | Score codes (a code and QR a student shows; scanned locally), later | After the units (the probe and guard, docs/PRODUCTION-PATH.md) |
 | Differentiation: accessibility bar, reading-level text, word help, sentence frames | Kit (accessibility bar), Reading Room (levels), Supply Closet: Learning Supports shelf | Accessibility bar after the cohort kit fixes |
 | IEP goal bank | Parked | Needs a special-education reviewer |
 | Supply Closet expansion: worksheets, printables, course cartridges, district pack | Supply Closet; worksheets and a 15-generator test group live; LMS cartridges with the Binder | Worksheets now |

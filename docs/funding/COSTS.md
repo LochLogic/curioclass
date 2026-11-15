@@ -44,8 +44,8 @@ tier is what lets the work run without hitting usage limits mid-wave.
 | Storage | 4 TB working drive plus a 4 TB backup drive (art, voice, and story assets grow fast) | $500 to $800 |
 | *Subtotal* | | *$2,700 to $4,700* |
 | **People and testing** | | |
-| Spanish native-speaker review | every Word Wall card, chart and game card is in Spanish | $1,500 to $3,000 |
-| Teacher pilots | thank-you stipends for about 10 classroom teachers who run tools and report back | $1,000 |
+| Spanish native-speaker review (only if funded; an agent read does it meanwhile) | every Word Wall card, chart and game card is in Spanish | $1,500 to $3,000 |
+| Teacher pilots (only if funded) | thank-you stipends for about 10 classroom teachers who run tools and report back | $1,000 |
 | Print testing | paper, ink, and poster prints to test every print format on real printers | $300 |
 | *Subtotal* | | *$2,800 to $4,300* |
 | **Outreach** | | |

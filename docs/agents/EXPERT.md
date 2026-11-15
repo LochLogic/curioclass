@@ -15,11 +15,15 @@ progressions and the evidence say. It is on the side of the student and the teac
 
 ## Before it judges anything
 
+The job brief you were given (docs/pipeline/briefs/) overrides this page where they differ, above all on what a
+blind read may not open.
+
 0. **Read the subject lens first** (added 2026-11-13, P5a): docs/agents/lenses/<subject>.md (social-studies, science, ela or math) for the subject in hand.
-1. **Read the bar we hold ourselves to:** docs/FOUNDATION.md (what may not be contradicted), docs/ROADMAP.md ("The path from here", through "Gaps found"),
-   docs/RUBRIC-MATH-K8.md (math) or, for a subject with no rubric file, docs/ADOPTION-BAR-SUBJECTS.md (the bar
-   for those subjects; docs/ADOPTION-BAR.md is the wider summary), BASELINE rules 20 to 24, and the standard
-   text in data/standards/.
+1. **Read the bar we hold ourselves to:** docs/FOUNDATION.md (what may not be contradicted), docs/PRODUCTION-PATH.md
+   (the build order and what each layer must hold), the subject's rubric file (docs/RUBRIC-MATH-K8.md,
+   docs/RUBRIC-ELA.md, docs/RUBRIC-SCIENCE.md) or, for a subject with no rubric file, docs/ADOPTION-BAR-SUBJECTS.md
+   (docs/ADOPTION-BAR.md is the wider summary), the BASELINE rules (from rule 20 on), and the standard text in
+   data/standards/.
 2. **Read the thing under review in full**, and the files it points at.
 3. **Teach itself from outside sources, and name them.** Its own memory is a starting point, not evidence. For math:
    the standards' own progressions documents, the publishers' criteria and focus documents, the rubric's evidence
@@ -32,8 +36,9 @@ progressions and the evidence say. It is on the side of the student and the teac
      notes" (what each source was found to say, with sizes and limits), and the ranked list of sources nobody has
      read yet. Paywalled sources stay unread (Cory, 2026-11-11); nothing may rest on them.
    - docs/APPROACH.md and the subject page: the approach every scope and sequence, unit plan and section plan must follow.
-   - docs/courses/math-3-5-progression.md (grades 3 to 5 math): handoffs, limits and page pointers already checked
-     against the Progressions. Point to it, and re-check only what the review at hand depends on. **Not on a
+   - docs/courses/math-3-5-progression.md (grades 3 to 5 math; an older page, data/progressions/math.csv is current):
+     handoffs, limits and page pointers already checked against the Progressions. Point to it, and re-check only what
+     the review at hand depends on. Not on a blind read whose brief forbids it. **Not on a
      progression read** (added 2026-11-13, Cory: write blind, then reconcile): a progression is read without the
      subject's earlier course pages (docs/courses/, earlier progression and course reviews), so the read is not
      anchored on them; the reconcile step (docs/pipeline/briefs/progression-reconcile.md) compares them.
@@ -93,9 +98,9 @@ Decided by Cory on 2026-11-11, to cut the number of small questions he is asked.
 ## Where it is used in the path
 
 - The approach to teaching (docs/APPROACH.md and each subject page), before Cory's yes and whenever it changes.
-- Every scope and sequence, before Cory's final yes.
+- Every scope and sequence and every unit plan, beside the Codex read, before the fix pass.
 - The section plan fields on their first three sections, then a sample of each course's section plans.
-- Every pilot unit, beside the fresh-agent read against the rubric (it may be the same run).
+- The probe and guard days (pilot units were retired 2026-11-13), beside the fresh-agent read against the rubric (it may be the same run).
 - Any Shape call marked a judgment call, and any change to the teaching test or the three hooks.
 - At the end of a course: the whole-course read (item 9 of "What a finished course holds").
 - On request, for guidance before work starts, which is cheaper than a review after.

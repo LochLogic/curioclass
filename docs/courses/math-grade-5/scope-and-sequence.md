@@ -6,18 +6,18 @@ The ten frame units keep their order, ownership and 145 days. Four course-level 
 
 ## Earlier learning, settled before placement
 
-Last use means teaching or assessment, not a passing revisit. The grade 4 progression and the permitted `data/plans/math-grade-4/days.csv` were checked for the rows below. Every listed grade 4 row has a teaching or assessment day there; m3-area-concepts has none. Its last substantive use is grade 3. The older plan directory and narrative progression were not consulted.
+Last use means teaching or assessment, not a passing revisit. The grade 4 progression and the permitted `data/plans/math-grade-4/days.csv` were checked for the rows below. Every listed grade 4 row has a teaching or assessment day there; m3-area-concepts has none. By the counted rule, grade g receives retrieval at g+1 and readiness at g+2 or later; retrieval by itself does not reset last use. Its last substantive use is grade 3. The older plan directory and narrative progression were not consulted.
 
 | Earlier row | Last-use grade | Treatment and first placement |
 |---|---|---|
 | m3-area-concepts | 3 | Readiness in the last ten minutes of day 1, after the volume hook; targeted square-unit reteaching in day 2 |
 | m4-area-perimeter-formulas | 4 | Retrieval on day 5 before formulas and on day 25 before fractional area |
-| m4-multiply-multidigit | 4 | Retrieval on day 5; partial products on day 57 before the algorithm, then day 97 for decimals |
+| m4-multiply-multidigit | 4 | Retrieval on day 3 before multiplying layers, again on day 5; partial products on day 57 before the algorithm, then day 97 for decimals |
 | m4-multistep-problems | 4 | Retrieval on day 6 for expressions and day 15 for sharing |
 | m4-mult-comparison | 4 | Retrieval on day 6; retrieve again on day 127 before scaling |
 | m4-divide-multidigit | 4 | Retrieval on day 15, day 66 before two-digit divisors and day 102 before decimal division |
 | m4-fraction-times-whole | 4 | Retrieval on day 22 and day 42 |
-| m4-mixed-numbers | 4 | Retrieval on day 31 before mixed-number products, day 49 and day 119 |
+| m4-mixed-numbers | 4 | Interpretation retrieval on day 18 before mixed-number quotients; rewriting retrieval on day 31 before products, then days 49 and 119 |
 | m4-place-value-ten-times | 4 | Retrieval on day 79 and day 110 |
 | m4-decimal-notation | 4 | Retrieval on day 79 |
 | m4-read-compare-large | 4 | Retrieval on day 80 |
@@ -35,7 +35,7 @@ Last use means teaching or assessment, not a passing revisit. The grade 4 progre
 | m4-classify-shapes | 4 | Retrieval on day 138 before hierarchies |
 | m4-patterns | 4 | Retrieval on day 143 before relating two given rules |
 
-Same-year prerequisites receive retrieval within the day that first uses them: quotient meaning on day 22; quotient and product meanings on day 42; unit 2 sharing on day 73; decimal place units on day 91; fraction area on day 100; decimal operations on day 110; fraction products on day 127; and fraction multiplication on day 131. These are not additional readiness checks. No later unit opens with a readiness check, and no grade 4 row is tested as an older prerequisite.
+Same-year prerequisites receive retrieval within the day that first uses them: quotient meaning on day 22; quotient and product meanings on day 42; unit 2 sharing on day 72, returned to on day 73; decimal place units on day 91; fraction area on day 100; decimal operations on day 110; fraction products on day 127; and fraction multiplication on day 131. These are not additional readiness checks. No later unit opens with a readiness check, and no grade 4 row is tested as an older prerequisite.
 
 ## Unit 1. Volume and expressions
 
@@ -59,7 +59,7 @@ Candidate settled: keep the sharing explanation of a/b on days 15 to 19, zero ad
 
 20 days, course days 22 to 41, weeks 5 to 9. Sections 3.1 to 3.5 connect division to a fraction of a whole number, extend area to one fractional side, use operation properties and mixed-number sides, partition a fraction again, then generalize and apply fraction products. The eighteen teaching days preserve the base order across its two source units. This gives tiling and model-to-symbol reasoning more time than the single quotient row received.
 
-Grade 4 multiplication of a fraction by a whole number is retrieved on day 22, rectangle area on day 25 and mixed numbers on day 31. No readiness or mid-unit assessment is needed. Mixed numbers become single fractions; unlike-denominator addition is not assumed. Day 29 revisits an unnested brace expression. Day 38 generalizes from repeated partitions, and day 39 applies the reasoning to area. Day 40 assesses both parts of 5.NF.B.4: partition meaning, fraction products, tiling with unit-fraction squares, area as a side-length product and products represented as areas. Day 41 responds. Application begins the later-owned fraction-problem work without transferring ownership from unit 4.
+Grade 4 multiplication of a fraction by a whole number is retrieved on day 22, rectangle area on day 25 and mixed numbers on day 31. No readiness or mid-unit assessment is needed. Mixed numbers become single fractions; unlike-denominator addition is not assumed. Day 29 revisits an unnested brace expression. Day 38 generalizes from repeated partitions. Day 39 retains independent partition-and-story explanations for both whole and fractional factors and fractional-area tiling and side-product reasoning. Day 40 reuses them and completes short prompts on the partition equation, fraction products and products represented as rectangular areas; both parts of 5.NF.B.4 are covered without stacking fresh performances. Day 41 responds. Application begins the later-owned fraction-problem work without transferring ownership from unit 4.
 
 Candidate settled: keep partition meaning and tiling on days 22 to 38, zero added days. Keep the garden-area extension as a ten-minute alternate application on day 39. MP8 repeated reasoning and MP7 structure carry into the assessment. The optional estimation, mosaic and flag days remain cut as the frame directs.
 
@@ -85,7 +85,7 @@ Candidate settled: keep the partial-products-to-algorithm connection and the div
 
 12 days, course days 79 to 90, weeks 16 to 18. Sections 6.1 to 6.3 establish thousandths and their forms, compare and round with place units and number lines, then order, apply and assess. Four teaching days establish representations, including the kept optional relationship lesson; six use those representations to compare, round and solve problems. This precedes operations so students can explain the unit they are combining or splitting.
 
-Days 79, 80 and 85 retrieve the specified grade 4 place-value, notation, number-reading and rounding rows. No readiness or mid-unit assessment is needed. Day 89 has four brief blocks: both adjacent-place relationships; numerals, words and expanded form; comparison with symbols and justification; and rounding to a named place. Day 90 responds. MP6 and MP7 require place-unit language and a correction to the longer-is-larger error. Pretend pirate coins are a game context, not history.
+Days 79, 80 and 85 retrieve the specified grade 4 place-value, notation, number-reading and rounding rows. No readiness or mid-unit assessment is needed. Day 88 retains independent rounding and precision evidence. Day 89 reuses it for 5.NBT.A.4 and takes three brief fresh blocks: both adjacent-place relationships; numerals, words and expanded form; comparison with symbols and justification. Day 90 responds. MP6 and MP7 require place-unit language and a correction to the longer-is-larger error. Pretend pirate coins are a game context, not history.
 
 Candidate settled: keep both-direction place value and comparison by place inside days 79 to 88, zero added days. Keep the between-decimals extension as a five-minute alternative on day 87.
 
@@ -93,7 +93,7 @@ Candidate settled: keep both-direction place value and comparison by place insid
 
 17 days, course days 91 to 107, weeks 19 to 22. Sections 7.1 to 7.3 allocate six teaching days to addition and subtraction, five to multiplication and four to division. This heavier single row owns four operations, each with models, explained strategies and a written method. Place units come before addition, fraction area before decimal products, and group size before decimal quotients.
 
-Grade 4 addition, subtraction and tenths/hundredths are retrieved on day 91; multiplication on day 97; division on day 102. Unit 3 area is retrieved on day 100. No readiness or mid-unit assessment is needed. Day 106 assesses each operation in a short block, including a model or drawing, strategy, written connection and reasoning; day 107 responds. Decimal standard-algorithm fluency remains grade 6 work. MP3 critique on day 93 and MP8 place-unit generalization on day 100 also appear in the assessment explanations.
+Grade 4 addition, subtraction and tenths/hundredths are retrieved on day 91; multiplication on day 97; division on day 102. Unit 3 area is retrieved on day 100. No readiness or mid-unit assessment is needed. Day 96 retains independent addition and subtraction in context, each with representation, strategy, written connection, estimate and reasoning. Day 105 retains division with the same connections and an inverse check. Day 106 reuses those three operation records and takes one fresh extended multiplication task and a short estimate-and-critique prompt; day 107 responds.  Decimal standard-algorithm fluency remains grade 6 work. MP3 critique on day 93 and MP8 place-unit generalization on day 100 also appear in the assessment explanations.
 
 Candidate settled: keep place-value explanations for products and quotients throughout, zero added days. Keep the supplied class-event budget as a ten-minute alternative on day 101, replacing a parallel decimal-product context. No child's family finances are requested. Day 96 supplies its own decimal-mass data: science's earlier matter units used whole grams and supply no decimal-mass prerequisite.
 
@@ -101,7 +101,7 @@ Candidate settled: keep place-value explanations for products and quotients thro
 
 9 days, course days 110 to 118, weeks 22 to 24. Sections 8.1 and 8.2 move from repeated tenfold relationships and exponents through both conversion directions to multi-step metric and customary problems. Two teaching days establish powers, two connect them to metric conversion and three apply the relationships. Within-system customary conversions use their stated factor; a power of ten is not asserted for feet and inches.
 
-Day 110 retrieves grade 4 ten-times place value; day 112 retrieves unit relationships and measurement problems. No readiness or mid-unit assessment is needed. Day 117 assesses whole-number zero patterns, decimal multiplication and division patterns, exponent notation, both conversion directions and multi-step contexts. Day 118 responds. Drawn charts show digits changing places, not a physically moving decimal point. MP6 and MP7 require both tracked units and an explanation of why the numerical count changes.
+Day 110 retrieves grade 4 ten-times place value; day 112 retrieves unit relationships and measurement problems. No readiness or mid-unit assessment is needed. Days 114 and 116 retain independent multi-step metric and customary conversions, including both directions and decimal quantities. Day 117 reuses those products and takes short fresh prompts on whole-number zero patterns, decimal multiplication and division patterns, exponent notation and one-step conversions in both directions and both systems. Day 118 responds. Drawn charts show digits changing places, not a physically moving decimal point. MP6 and MP7 require both tracked units and an explanation of why the numerical count changes.
 
 Candidate settled: keep powers-of-ten explanations with conversion, zero added days. Keep the metric-chain extension as a five-minute alternate on day 114. Day 115 includes supplied gram and kilogram data for the science handoff; science's earlier records remain in their single original unit.
 
@@ -111,7 +111,7 @@ Candidate settled: keep powers-of-ten explanations with conversion, zero added d
 
 Day 119 retrieves grade 4 equivalence, sums, mixed numbers and multiples; day 123 retrieves benchmarks; day 125 retrieves measurement line plots; day 127 retrieves multiplicative comparison and unit 3 products. No readiness or mid-unit assessment is needed. The first explanation of common denominators uses repartitioning, which does not depend on the later n/n argument. Day 131 explicitly supplies that later equivalence clause of 5.NF.B.5b. Scaling comparisons use positive quantities; zero is treated separately rather than falsely said to increase.
 
-Days 125 and 126 save independently made plots and operations, including equal redistribution of a total. Day 132 saves no-calculation scaling reasoning, factors above, below and equal to one, and equivalence by n/n. Day 133 reuses these products while assessing unlike sums and differences, mixed numbers, same-whole contexts and benchmark judgments. Day 134 responds once. MP2 quantity reasoning and MP3 critique are carried through the products and final explanations.
+Day 123 saves same-whole addition and subtraction problems with unlike fractions and mixed numbers, representations, estimates and benchmark judgments. Days 125 and 126 save independently made plots and operations, including equal redistribution of a total. Day 132 saves no-calculation scaling reasoning, factors above, below and equal to one, and equivalence by n/n. Day 133 reuses days 123, 125, 126 and 132 while taking short fresh unlike-fraction and mixed-number computations with equivalent common-denominator records. Day 134 responds once. MP2 quantity reasoning and MP3 critique are carried through the products and final explanations.
 
 Candidate settled: keep common denominators through equivalence, without demanding the least, and scaling as size comparison, zero added days. Keep the three-fractions-total-one extension as a five-minute alternative on day 124. The home-weekend investigation stays cut; measurements are supplied or classroom-based.
 
@@ -125,13 +125,13 @@ Candidate settled: keep ordered pairs as distances and hierarchy by inherited at
 
 ## Course-level checks and the shared calendar
 
-Check 1 is day 55, week 11, after unit 4; day 56 responds. Its representation audit connects volume, expressions, quotient meaning, fraction multiplication and both division types. Items using unit 4 skills draw on earlier unit 2 sharing and unit 3 area content. Matching and repairing linked claims replaces the recent unit assessment's story construction and independent contextual solutions.
+Check 1 is day 55, week 11, after unit 4; day 56 responds. New linked-card matching and claim repair sample 5.MD.C.5a and 5b, 5.OA.A.1 and 2, and 5.NF.B.3 in earlier packing, expression and sharing contexts. Unit 4 records from days 51 and 53 are carried forward without rescoring or relisting their codes. The 55-minute sample budget is in days.csv.
 
-Check 2 is day 108, week 22, after unit 7; day 109 responds. It samples the multiplication algorithm, explained division, thousandths and decimal operations. Its decimal-operation contexts come from earlier volume, sharing and fraction area. Comparing and justifying repairs to numerical records replaces the recent model-to-written operation performance. Each code listed in either check receives a short prompt for every part, including the four operations within 5.NBT.B.7. Assessment access includes read-aloud, extra time within the saved-product window and a multiplication table where algorithm fluency is not the target.
+Check 2 is day 108, week 22, after unit 7; day 109 responds. A new repair-selection grid samples 5.NBT.B.5 and 6, 5.NBT.A.1, 3a, 3b and 4, using earlier volume, sharing and area contexts. The completed four-operation record from day 106, incorporating days 96 and 105, is reused without rescoring or relisting 5.NBT.B.7. The 55-minute budget includes a short independent multiplication sample.
 
-Review part 1 is days 150 to 152: multiplication and two division reviews. Check 3 is days 153 and 154, both week 31. The first part connects the year's fraction structures; the second validates a measurement report with number operations, volume and short conversion, plot and coordinate parts. New decision-table and report-audit forms do not repeat the preceding two weeks' hierarchy, plotting or calculation-review forms. Day 155 responds to fraction evidence; day 156 responds to number and measurement evidence. Review part 2 is days 157 to 160, aimed at that evidence: volume, the merged wagon applications, fraction sums and fraction differences. Nothing new is introduced to make room for a check.
+Review part 1 is days 150 to 152: comparison of multiplication records and two explained division reviews. Check 3 is days 153 and 154, week 31. Day 153 samples 5.NF.B.4a, 7a, 7b, 5.NF.A.1 and 5.NF.B.5b in a new linked decision table. Day 154 samples 5.NBT.B.5, 6 and 7, 5.MD.C.5b and 5.MD.A.1 in a report audit and a separate independent untimed multiplication station: about four multi-digit products, no supplied work, ten minutes. Each day budgets 55 minutes; every part of each sampled code has a named short entry. The forms differ from the last two weeks' hierarchy products, graph construction and calculation comparisons. Unit records carry the remaining parts; day 147 graph evidence is reused without rescoring or relisting its codes. Day 155 responds to the fraction samples, day 156 to number and measurement samples, recording the direct fluency station for the grade 6 handoff. Review part 2, days 157 to 160, applies that evidence to volume, wagon applications and fraction sums and differences.
 
-All performances are collected once in their window. A check reuses any relevant recent child-by-child record rather than interviewing the child again. Saved unit evidence is identified by day and code, and unit response time is not counted again as course-level response. The final record includes the response's effect and unfinished learning for grade 6, including that fraction-by-fraction division, long-division fluency and decimal-algorithm fluency are next-grade work.
+Checks claim their fresh samples only. Unit end records carry complete coverage, including retained products named by day and code. Every observation or child-by-child record is collected once per assessment window; a check or end day within ten days reuses it, and retrieval never supplies assessment evidence. There are no individual interview rounds to budget for this class of 30: students work independently at the same time, and the teacher reads the products afterward. A course-level check never rescores unit work or repeats a task form from the preceding two weeks. Read-aloud, access time within the saved-product window and a multiplication table where fluency is not the target preserve access. Unit response time and course-level response time are separate and each counted once. The final record includes the response's effect and unfinished learning, including grade 6's general fraction division, long-division fluency and decimal-algorithm fluency.
 
 Grade 5 target check weeks are distinct: science 10, 21 and 30; social studies 16 and 29; math 11, 22 and 31; ELA 17 and 32. Math needs no calendar move. The review split preserves ELA's week 32 check allocation; math's respond and review days in that week are not check days.
 
@@ -144,7 +144,16 @@ The course has no incoming same-year subject prerequisite. The three other grade
 
 ## Load, practices and materials
 
-Eight of the ten units center major work. For a conservative time budget, assign no major-work minutes to unit 10 or any course-level day. Units 1 to 7 then supply 6,205 major-work minutes after reserving 70 minutes for expression work, five for its later brace revisit and twenty for the older area check and reminder. Unit 8 reserves 300 minutes for powers-of-ten reasoning, with 240 for conversion. Unit 9 reserves 920 minutes for fractions and scaling and 40 for plot construction. This gives 7,425 of 9,600 minutes, about 77.3 percent, before counting major work in checks, reviews or graph applications. Unit plans must preserve these budgets and avoid counting the same minute in two domains. Even discarding entire expression days 6 and 10, all course-level days, unit 10 and the five conversion-centered unit 8 days leaves 123 of 160 days centered on major work.
+Focus is counted once as minutes on major-cluster codes divided by instructional minutes. Exclude all Check and Respond days and the ten assessment minutes inside day 1. Each remaining minute belongs to at most one allocation; minutes devoted to a supporting code are not also credited to a major code.
+
+| Instructional block | Instructional minutes | Major-cluster minutes | Allocation |
+|---|---:|---:|---|
+| Units 1 to 7 | 5,450 | 5,365 | 91 teaching days, less day 1's ten-minute readiness task; reserve 70 minutes for expressions, five for the brace return and ten for the square-unit reminder |
+| Unit 8 | 420 | 240 | Days 110 and 111: 120 powers minutes; days 112 to 115: 30 powers minutes each, their remaining time and day 116 to conversion |
+| Unit 9 | 840 | 800 | Reserve 40 minutes across days 125 and 126 for plot construction; the remaining minutes practise fractions and scaling |
+| Unit 10 | 780 | 0 | Conservatively credit no major minutes, including multiplication warm-ups |
+| Course-level review | 420 | 420 | Seven taught-content review days on whole-number operations, volume and fractions |
+| Total | 7,910 | 6,825 | 86.3 percent; preserve these allocations in unit plans |
 
 The practices have named teaching and assessment evidence: MP1 and MP4 in unit 4's operation choices and model explanations; MP2 in unit 2's sharing and unit 9's scale comparisons; MP3 in unit 7's critique and unit 9's benchmark and scaling arguments; MP5 in unit 1's tool selection; MP6 in unit 5's digit values, unit 8's tracked units and unit 10's coordinates; MP7 in layers, partial products and hierarchies; MP8 in unit 3's partition generalization and unit 7's place-unit generalization. The CSV names these tasks and the assessment notes carry the practice into evidence.
 
@@ -152,25 +161,29 @@ The tools column names drawn models using the frame's model names: array, area-m
 
 ## Shorter path
 
-For a 45-minute period, keep five minutes of retrieval, explicit first teaching and a model-to-symbol example, a representative independent case, synthesis and an original exit question. The source map names the final source activity whose last five minutes of repeated independent practice can move to a specified later warm-up. It does not move a first explanation or a required representation past its assessment. Trim duplicate cases and use extensions as alternatives. Where the next day is an assessment, the practice tail moves to the unit respond day instead. Keep the full independent evidence on its named day; use the saved-product windows to keep assessment blocks short without collecting the same work twice. For original days 49 and 131, reserve ten minutes of explicit connection, fifteen minutes of model-to-equation work, ten minutes of application, and five minutes each for retrieval and exit/synthesis.
+For a 45-minute period, keep five minutes of retrieval or scheduled multiplication maintenance, ten minutes of first teaching and a model-to-symbol example, fifteen minutes of selected independent work, ten minutes of synthesis and five minutes for our exit question. Remove ten minutes of duplicate cases or optional extension from a 60-minute day. The source map specifies the final five-minute repeated-practice tail separately. Where its proposed receiving warm-up already holds multiplication, omit that duplicate tail after keeping a representative independent case on the original day; do not displace multiplication. Other tails may occupy the named later parallel-practice slot, never first teaching or assessment evidence. These are draft selections whose classroom timing remains to be checked in unit planning.
+
+Keep every retained assessment product on its named day. End-day short blocks fit the 45-minute path by reusing the named products; day 106 has one new product, and days 13, 40, 53, 77, 89, 117, 133 and 148 use their saved records. Day 20's single sharing performance fits one block. Course-level checks keep their 55-minute assessment allocation within existing days. For checks 1 and 2, take 45 minutes on the check day and the remaining ten at the start of the next respond day, leaving 35 minutes for response. For check 3, day 153 takes 45 minutes of part A; day 154 finishes its last ten, takes the ten-minute independent multiplication station, then 25 minutes of the report. Day 155 finishes the report's remaining 20 minutes before 25 minutes of fraction response; day 156 keeps 45 minutes of number response. These are single assessment windows with no repeated collection or added meeting. Respond days keep targeted reteaching and a short independent revision; omit repeated secure-case practice first. Original days 49 and 131 keep the 45-minute teaching pattern above. No minute needed for first teaching, representations, evidence or response is removed.
 
 A year ten meetings short folds the following ten unassessed days into the named neighbors. These are compression choices for adoption, not edits to the 160-row master calendar. They preserve every owned part, first teaching and all assessment and response allocations. Renumber meetings locally after folding; reassess subject staggering if a school compresses only this course.
 
-| Fold day | Into day | Work kept inside the neighbor |
-|---|---|---|
-| 4 | 3 | Hidden-cube reasoning as the second layered-prism example |
-| 19 | 18 | General quotient explanation and optional joining-person comparison |
-| 30 | 29 | Fractional area application after matching diagrams with expressions |
-| 48 | 47 | Quotient magnitude and multiplication check in the division synthesis |
-| 64 | 63 | Mixed multiplication-algorithm practice with composing and zeros |
-| 74 | 72 | Fractional partial quotient as a common-denominator sharing example |
-| 87 | 88 | Decimal ordering and between-number reasoning in the decimal problem |
-| 101 | 100 | Decimal product explanation and optional supplied event-budget case |
-| 124 | 123 | Common-denominator choice and wrong-sum benchmark rejection |
-| 144 | 143 | Second given-rule relationship, including its explanation |
+| Fold day | Into day | Minutes saved | Work kept inside the neighbor |
+|---|---|---:|---|
+| 4 | 3 | 60 | Hidden-cube reasoning as the second layered-prism example |
+| 19 | 18 | 60 | General quotient explanation and optional joining-person comparison |
+| 30 | 29 | 60 | Fractional area application after matching diagrams with expressions |
+| 48 | 47 | 60 | Quotient magnitude and multiplication check in the division synthesis |
+| 64 | 63 | 60 | Mixed multiplication-algorithm practice with composing and zeros |
+| 74 | 72 | 60 | Fractional partial quotient as a common-denominator sharing example |
+| 87 | 88 | 60 | Decimal ordering and between-number reasoning in the decimal problem |
+| 101 | 100 | 60 | Decimal product explanation and optional supplied event-budget case |
+| 124 | 123 | 60 | Common-denominator choice and wrong-sum benchmark rejection |
+| 144 | 143 | 60 | Second given-rule relationship, including its explanation |
+
+The ten folds save 600 minutes, ten 60-minute meetings: 160 becomes 150. In a 45-minute local timetable they remove ten 45-minute meetings (450 minutes); required check continuations remain. Each receiving day replaces a parallel case, preserving first teaching, independent evidence and its multiplication warm-up.
 
 ## For the lead
 
 No unit, ownership, audience or day-total change is proposed. The frame's brace timing is reconciled at item level: first teach braces on day 10 and revisit on day 29, allowing the unit 1 assessment to cover its whole code. The exact frame boundary and check weeks are retained.
 
-Uncertainty to inspect in unit planning: time the public base-lesson adaptations, especially the two merged review days, the four-operation unit 7 assessment and check 3's report. The source map specifies retained and omitted activities and the assessment windows name reusable evidence, but these time budgets have not been tried with students. The drawn model names need to remain consistent when a course tools file is eventually written; no existing math digital-tool entry was available in the current tools catalogue.
+Uncertainty to inspect in unit planning: time the public base-lesson adaptations, especially the two merged review days, the one fresh decimal-product task and the two 55-minute year-end samples. The source map specifies retained and omitted activities and the assessment windows name reusable evidence, but these time budgets have not been tried with students. Keep the drawn model names aligned with any course tools file written later. No digital tool is required by this day record.
