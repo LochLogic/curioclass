@@ -1943,10 +1943,13 @@ def home_html(d, row, items, warn, foot):
         group = (g[1], g[2])
         gap = home[last['end']:m.start()]
         same = last['group'] and g[1] == last['group'][0] and len(gap) <= 8   # ", ", " and ", ", then ", " to "
-        if same:   # the same place: the number alone, and its side only when the run turns the page
-            w = w[len(g[1]):].lstrip(', ')
-            if group == last['group']:
-                w = w.split(' (side')[0]
+        rest = w[len(g[1]):].lstrip(', ') if same else ''
+        if same and group == last['group']:
+            rest = re.sub(r'\s*\(side \d+\)$', '', rest)
+        # an unnumbered question in the same place has no number to print: it keeps its full name, never an empty
+        # "****" or a bare "(side 1)" (the stray asterisks of the day 74 home view)
+        if rest.strip():   # the same place: the number alone, and its side only when the run turns the page
+            w = rest
         elif re.search(r'(?:^|\.\**)\s*$', home[:m.start()]):   # a sentence starts with it
             w = w[0].upper() + w[1:]
         last.update(group=group, end=m.end())
