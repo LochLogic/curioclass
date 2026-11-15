@@ -24,9 +24,10 @@ docs/agents/decisions/DESK-ANSWERS.md.
    subject once every unit is planned, before full writing starts. Each measures how far off the plans were
    (section 3, steps 4 and 7; the measures are set in P4).
 3. **Learn the process on clean work first; convert old work last.** Social studies goes first because nothing of
-   it had been planned, so the process is learned without bending old work into it. Math goes last, because it holds
-   the most old work (a grade 4 scope and sequence, unit plans and 48 written days) and gets every lesson learned
-   before that conversion.
+   it had been planned, so the process is learned without bending old work into it. Science, ELA and math then move
+   forward together; math's old work (a grade 4 scope and sequence, unit plans and 48 written days) is handled by
+   writing blind and then reconciling, so it no longer waits for the other subjects (settled 2026-11-15, see
+   DESK-ANSWERS).
 4. **What crosses days goes into data, with gates, not into prose.** Hand-backs, materials, reserved examples and
    the base-text map are small CSVs that plan.py and lesson.py check against the plans and the day text (built for
    grade 4 on 2026-11-13), with a minutes-and-branches check beside them. Every subject uses them; the progressions
@@ -194,18 +195,19 @@ not a yes per course.
 - **Baseline 2**: a full review of social studies from the progression down, plus the probe's result. Template
   changes are made here, once, before step 5.
 
-### Step 5. The other three subjects, math last: the same cycle
+### Step 5. The other three subjects together: the same cycle
 
 Step 3 runs for science, ELA and math together (settled 2026-11-14, see DESK-ANSWERS): Codex writes the 37 scopes
-and sequences (scripts/codex_scopes.py). Step 4 (units, review, probe) then goes subject by subject, science second,
-then ELA, then math, with a review from the progression down at the end of each. The probe runs in every subject:
-a few days each is cheap, and each subject's units can be off in their own way.
+and sequences (scripts/codex_scopes.py). Step 4 (units, review, probe) then runs for science, ELA and math together,
+after social studies' probe and baseline 2 (settled 2026-11-15, see DESK-ANSWERS), with a review from the progression
+down in each subject. The probe runs in every subject: a few days each is cheap, and each subject's units can be off
+in their own way.
 
 Science 6 to 8 follows OpenSciEd's order after its loss check. ELA K to 5 and middle school science test the base
 text paths that INTEGRATION-PLAN's two small trials were meant to test, so those trials fold into this step.
 
-**Math last.** Math's scope and sequence is written with the others; its unit plans, sections and days come last.
-Math converts the most old work: grade 4's scope and sequence (reconciled in the 2026-11-14 run), unit plans, the
+**Math's old work.** Math's unit plans are written blind with the other two subjects, then reconciled with the old
+work. Math converts the most old work: grade 4's scope and sequence (reconciled in the 2026-11-14 run), unit plans, the
 unit 4 re-plan and its source map are read against the new layers and changed where the review finds it, rather
 than kept because they exist. The grade 4 source map resumes here.
 
@@ -223,7 +225,7 @@ Writing starts only here, under the review cadence (step 8).
   P4, before full writing. If the plans are far off, the units are corrected before the rest is written.
 - Section plans stay one section ahead of writing. Days are written in course order.
 - Grade 4 math's 48 written days: the unit 4 days 25 to 28 hold their fixes; the six open re-read items and the
-  seven backfill slips in defects.csv wait for math's units to be settled. A small fix job on the other written days
+  seven backfill slips in defects.csv wait for math's units to be settled (L13). A small fix job on the other written days
   (the rebuild check of the 44 older days: rebuild, gates, one cheap print-and-screen check) may run any time.
 - Each course is finished as a whole before it is called finished: course-level checks (start of year, quarterly,
   year end, each with a respond day) read as one assessment plan; a coherence pass over units and seams; English
@@ -295,9 +297,10 @@ these before Codex writes its first scope:
   steps 1 and 2 and to their subject's scope run, read against the new layers. Cory's call on any scope is at the
   baseline, not a yes per course.
 - Grade 4 math's scope and sequence, unit plans (s01 to s04, s09 to s11), section plans (u04-1 to u04-4 and the
-  rest), the unit 4 re-plan (days 29 to 38) with its source map and cross-day files: held, input to math's turn in
-  step 5. The cross-day files and gates are reused by every subject.
-- Math unit plans, sections and days wait for math's turn, except small fixes to written days (not days 25 to 28).
+  rest), the unit 4 re-plan (days 29 to 38) with its source map and cross-day files: held, input to math's units in
+  step 5 (reconciled there; rework list in L13). The cross-day files and gates are reused by every subject.
+- Math unit plans, sections and days are written in step 5 with science and ELA; until then only small fixes to
+  written days (not days 25 to 28).
 - Section 11.1 (built, all but its tool) and its owed teacher read: held; the expert agent does that read in the
   teacher's place, and it counts toward math's finishing.
 - The start-of-year check and the unit 4 readiness items (the old rule 25 exceptions): held with grade 4 math.

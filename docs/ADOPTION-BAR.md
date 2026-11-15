@@ -9,7 +9,7 @@ now. If later data says formal adoption is a good path, we pivot and are already
 This file is the record of that decision: what the bar asks, what we took into the plan, what we left out and why.
 docs/VISION.md states the decision, docs/ROADMAP.md holds the order of the work, and each track's plan holds the detail.
 
-Source: "US Curriculum Design Blueprint" (docs/US Curriculum Design Blueprint.pdf, compiled by Cory, 2026-11-10),
+Source: "US Curriculum Design Blueprint" (S:\CurioClass-sources\us-curriculum-design-blueprint.pdf, outside the repository, compiled by Cory, 2026-11-10),
 assessed by Claude the same day. The Blueprint is input, not a rule book; see "Cautions about the source".
 
 ## What the bar asks

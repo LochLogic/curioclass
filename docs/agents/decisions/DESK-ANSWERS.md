@@ -1323,3 +1323,25 @@ oldest first, with the doc and section each came from. Where several docs held t
 - Open, found by the flattening: "2026-11-12: course level names" item 2 says 18 sub-ready days a year in grade 4
   math, while GLOSSARY.md says one per unit (9 a year in grade 4 math). The rule (one per unit) is the same; the count
   is checked when the grade 4 math units are written (later.csv L42).
+
+## 2026-11-15: science, ELA and math units move forward together (Cory, in chat)
+
+Cory: "the plan is to have all the units for all three subjects move forward together. now that we have
+reconciliation tactics, math doesn't need to wait." After social studies' probe and baseline 2, step 5 runs the unit
+cycle for science, ELA and math at the same time; math's unit plans are written blind and then reconciled with grade
+4's old work (later.csv L13). This replaces "math last" for units (PRODUCTION-PATH section 1 item 3 and step 5, the
+2026-11-13 lead line above); the scopes already ran together (2026-11-14). Why: the math pause was about older work,
+which writing blind and then reconciling handles. Applied: PRODUCTION-PATH.md, HANDOFF.md, later.csv L13 and L25.
+
+Same message: "split out the other items so we dont lose them and go ahead and take care of any that can be done
+now." The non-math items in L13 became L43 to L48; the overlap tags fix and the PECAT address check were done the
+same day.
+
+## 2026-11-15: the four untracked files (Cory, in chat: "go with all your recommendations")
+
+The US Curriculum Design Blueprint moved to S:\CurioClass-sources\us-curriculum-design-blueprint.pdf (ADOPTION-BAR.md
+points there); docs/Curio-Class-Plan.pdf and docs/agents/audit/wordwall-movement-cards.jpg moved to
+S:\CurioClass-archive\untracked-docs-2026-11-15; docs/Return/ stays as Cory's private folder and is now git-ignored
+whole. AGENTS.md's never-touch list updated to match. Why: the repository is public, the Blueprint is a reference
+source, the plan PDF is replaced by VISION, ROADMAP and PRODUCTION-PATH, the image was a one-time art check, and
+docs/Return/ holds private drafts (Sara's language-partner draft is marked not public).
