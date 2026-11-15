@@ -12,8 +12,9 @@ grade 4 math pilot unit is read against, so the read cites a real reviewer's cri
 - **What we may never say:** that Curio Class was reviewed by, meets, or is endorsed by EdReports. Only EdReports
   can review materials. We use the criteria to check ourselves, in private.
 - **Evidence guide:** read by the curriculum expert on 2026-11-11
-  (https://cdn.edreports.org/media/2026/06/Math%20K-8%20Evidence%20Guide_2.0.pdf). Still unread: the separate guide
-  for multilingual learners.
+  (https://cdn.edreports.org/media/2026/06/Math%20K-8%20Evidence%20Guide_2.0.pdf). The separate multilingual learner
+  criteria are K to 12 and are summarized in docs/RUBRIC-MATH-HS.md ("Multilingual learners", read 2026-11-15); the
+  K to 8 evidence guide for them is still unread, but the criteria and points are the same.
 - **The 65 percent line is real.** The criteria say only that most of the material is on the major clusters; the
   evidence guide (indicator 1e) scores it as at least 65 percent for grades 3 to 8 and 75 percent for K to 2.
   Checked in the guide's own text on 2026-11-11. Reviewers count it three ways: by units, by lessons and by time.

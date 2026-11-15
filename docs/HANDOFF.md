@@ -82,7 +82,7 @@ commits only its own files and never edits in another session's folder. A backgr
   session cannot open the Desk, so the main session places her cards. Cory wants pushback and welcomes questions
   about earlier decisions.
 - After changes, refresh the Desk: `python -X utf8 scripts/course_status.py <out.json>` (doc `stats/courses`) and
-  `python -X utf8 scripts/plan_flow.py <out.json>` (doc `stats/plan`; node states in data/plans/flow-status.csv).
+  `python -X utf8 scripts/plan_flow.py <out.json>` (docs `stats/plan-c0`, `plan-c1`, ... from <out.json>.parts/, sent together in one ArtifactData batch; the Desk joins them, so the plan has no size cap; node states in data/plans/flow-status.csv).
   When a review step closes, add its result to data/plans/flow-results.csv (node, then two or three sentences:
   findings per reader, main fixes, what went to Cory).
 - Parked work gets a row in data/plans/later.csv; mark a row done rather than deleting it, and act on any row whose

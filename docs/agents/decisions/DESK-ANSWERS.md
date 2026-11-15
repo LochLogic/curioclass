@@ -1362,3 +1362,12 @@ from the social studies day folders the probe creates. They now name courses/mat
 progression-write.md bars a subject's own written days. Why: the rule exists so old work cannot steer the new
 layers, and the only old days are grade 4 math's; new days written from the new unit plans are the work itself.
 Applied: HANDOFF.md, plan-codex-read.md, codex_scopes.py, progression-write.md.
+
+## 2026-11-15: SEL and library "smaller", and the informed action evidence (Cory: "L43 and L44 can go with your recommendation")
+
+L43: a smaller SEL or library course has fewer minutes a week (one or two sessions, the frame says which), never
+fewer units, so every standard is still taught, spaced and checked. L44: once a year stays the default; a second
+informed action only where one action cannot teach and check all of the course's C3 informed action indicators, a
+third only in civics, never to fill time, and every action keeps a classroom-only version. Why: quality and fairness
+first; cutting units would cut standards, and a school with less staff still gets the whole course. Applied:
+ADOPTION-BAR-SUBJECTS.md (pass rule, criterion 8, choices 4 and 6); social studies baseline 2 applies L44.

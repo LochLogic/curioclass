@@ -41,7 +41,10 @@ the rest is scored.
   the nature of the subject (decided 2026-11-11). They are "held to the whole core at the size its scope and sequence states":
   every criterion from C1 to C16 and every criterion of the subject part still applies, and what is measured is
   the number of units and days the scope and sequence itself sets out, not the size of a math or science course. Being small
-  waives no criterion.
+  waives no criterion. **Smaller means fewer minutes a week, never fewer units** (Cory 2026-11-15, later.csv L43): each
+  SEL and library course runs the whole year at one or two sessions a week (its frame states which), so every standard
+  of its framework is still taught, practised spaced out over the year and checked. This fits how schools staff these
+  subjects (a counselor or librarian seeing a class once a week).
 - **Beyond the three units,** the reviewer reads: for C1, the whole coverage table, tracing ten standards of the
   reviewer's choice to lesson and check item; for C4, the progression page; for C8 and C9, one cumulative check;
   for C13, the approach page; for C3 and C16, all public copy for the course and the logic model.
@@ -133,8 +136,12 @@ layer it is read at: scope and sequence (S), unit plan and section plan (U), day
 8. [I, in two of three instruments] **Informed action.** Students apply what they concluded to a real problem near
    them. Maryland puts this in the category that must be met; Louisiana does not ask it. How often (decided
    2026-11-11): once a year per course, and up to three times a year if the evidence shows a need for more. The
-   action is one a student can take safely at that age, and the course never tells a student which side to
-   take. (S, U)
+   evidence (Cory 2026-11-15, later.csv L44): a scope writer adds a second action only where one action cannot
+   teach and check all of the course's C3 "taking informed action" indicators (in grades 6 to 12 these split into
+   weighing options and using deliberative processes, which one project rarely does well), and a third only in a
+   civics course, where action is the content; never to fill time. Every action keeps a classroom-only version that
+   needs no money, travel or public identity. The action is one a student can take safely at that age, and the
+   course never tells a student which side to take. (S, U)
 9. [S] **Content against the anchor.** Each unit cites the Massachusetts 2018 codes it teaches
    (data/standards/ma-hss-2018.txt), and every anchor standard of the course is taught in full (C1). Skills cite
    C3 (data/standards/c3-indicators.txt). Grade 3 cites Curio Class's own year in place of the anchor's (item 13).
@@ -537,10 +544,12 @@ The numbers are those of the eleven choices the second draft put to him. His wor
    any spend.
 4. **SEL and library skills.** "4 they can stay separate but are allowed to be smaller than other courses by
    nature of the subject." They stay courses, not strands, each with a sequence per grade. They are held to the
-   whole core at the size their scope and sequence states (see the pass rule).
+   whole core at the size their scope and sequence states (see the pass rule). Smaller means fewer minutes a week,
+   never fewer units (Cory 2026-11-15, see the pass rule).
 6. **Informed action in social studies.** "6 i lean to once per year, but up to three times if the evidence
    indicates a need for more." Once a year per course is the plan. A course may go up to three times a year where
-   the evidence shows a need.
+   the evidence shows a need: one action cannot teach and check all of the course's informed action indicators
+   (Cory 2026-11-15, see criterion 8).
 7. **The pass rule.** "7 accept for now." It stands for now and is tested on the first finished course.
 8. **Professional learning.** "8 i agree for now but this is a future area of growth." None is offered for now.
    It is not ruled out for later.

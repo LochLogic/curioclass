@@ -14,7 +14,15 @@ written for the standards without a (+) mark.
   https://cozy-dream-721ab6aab0.media.strapiapp.com/Math_20_High_20_School_20_Review_20_Criteria_2_0_b2c87a956c.pdf;
   evidence guide PDF:
   https://cozy-dream-721ab6aab0.media.strapiapp.com/Math_20_High_20_School_20_Evidence_20_Guide_2_0_bfb5caba43.pdf).
-  Both read online on 2026-11-15. Still unread: the separate high school guide for multilingual learners.
+  Both read online on 2026-11-15.
+- **Multilingual learners:** EdReports, MLL Supports Review Criteria v2.0, Mathematics, K to 12, and its MLL Supports
+  Evidence Guide v2.0, Mathematics, High School, both updated 07/2025, same licence. Criteria PDF:
+  https://cozy-dream-721ab6aab0.media.strapiapp.com/MLL_Math_20_K_12_20_Review_20_Criteria_2_0_d22015d290.pdf;
+  evidence guide PDF:
+  https://cozy-dream-721ab6aab0.media.strapiapp.com/MLL_Math_20_High_20_School_20_Evidence_20_Guide_2_0_98b052bbdc.pdf.
+  Criteria read in full and the evidence guide read in part (its plan, the indicator 1b pages, the language scope and
+  sequence page, and the assessment accommodation pages) online on 2026-11-15. Summary below, under "Multilingual
+  learners".
 - **Licence:** all rights reserved, as for the K to 8 tool. No copy is kept in this repo and nothing is quoted; what
   follows is a summary in our own words. We may never say that Curio Class was reviewed by, meets, or is endorsed by
   EdReports. We use the criteria to check ourselves, in private.
@@ -79,6 +87,37 @@ Algebra II 64.46 percent.
 | **Direct fluency** (2b) | Students show fluency independently, not only inside group work | The year-end course-level check holds an untimed, independent fluency station that directly samples each named fluency expectation (Geometry: G-CO.D.12, G-SRT.B.5, G-GPE.B.4, G-GPE.B.7). Timing is a plan, never a speed score |
 | **The eight practices** (2e to 2l) | Each practice is developed on purpose, tied to course content | Named in the frames. **Gap:** named tasks per practice in each scope and sequence, carried into teaching and assessment |
 | **Supports** (3a to 3u) | As in K to 8: teacher notes, a year plan, family guidance, the approach, supplies, an assessment system with next steps, special populations, extensions, accommodations, reading levels, technology | As in docs/RUBRIC-MATH-K8.md |
+| **Multilingual learners** (scored apart, four criteria) | Language support inside grade-level work, planned over the year, explained to the teacher, and kept on assessments; see the next section | The English learner hook in every section plan (APPROACH.md). **Gap 9** below |
+
+## Multilingual learners
+
+EdReports scores support for multilingual learners as its own report, beside the content score, but ties each
+indicator to a content indicator so a reviewer can see where in the course the support is or is not. Our summary of
+what it asks, for high school math:
+
+1. **Full part in grade-level work.** For each content indicator on focus, coherence, rigor and the practices
+   (1b, 2a to 2l), the student still learning English gets supports that let them take part fully in that same work,
+   not a simpler task. Supports raise access while keeping the thinking demand: speaking, listening, reading and
+   writing all used; help to understand the whole task (what it asks, how to take part, how to show the answer); and
+   supports specific to the lesson, not one generic line at the top of a chapter. It is the largest part of the score.
+2. **Language planned over time.** Language goals that grow across lessons, units and the course toward independence,
+   the way content goals do, set out in a scope and sequence (its own or inside the content one), balanced across the
+   four domains, spiralled with rising precision, and stated at the lesson level beside the content goal. Lesson-level
+   language goals carry the most points here.
+3. **Teacher guidance.** The approach and the research behind it explained; how to use the supports; drawing
+   attention to how language works in math talk and writing; matching support to each student's current language
+   (light, moderate or heavy, adjusted as the teacher learns more, not a fixed ladder); scaffolds that work in
+   different program models; flexible grouping for fair participation; drawing on the student's home language; and
+   supports offered fairly.
+4. **Assessment.** Accommodations that let the student show grade-level understanding without changing what is
+   assessed, with the classroom supports kept during assessments; a formative plan for language alongside content,
+   tied to the lesson and unit language goals; and guidance on gathering and using that language and content
+   evidence to improve teaching.
+
+What this asks of our plans: the English learner hook stays inside each day and keeps the task's demand (criterion 1);
+the unit plan states a language goal per section and the scope and sequence shows how language goals grow (criterion
+2); teacher notes say how to adjust support by student and use home language (criterion 3); and each check names its
+language accommodations and what language evidence the teacher reads (criterion 4).
 
 ## Begun parts and parent codes
 
@@ -110,3 +149,6 @@ Gaps the scope reads did not close, for the unit plans of all three courses:
 7. A check that no day only reteaches grade 6 to 8 content.
 8. The K to 8 support gaps (family note and supplies per unit, extensions, accommodations, reading-level supports,
    "what to do next" after each check), carried into high school.
+9. Multilingual learners (L50): a language goal beside the content goal in each section, a line in each scope and
+   sequence on how language goals grow over the course, teacher notes on adjusting support and using home language,
+   and the language accommodations and language evidence for each check. The scopes have none of this yet.

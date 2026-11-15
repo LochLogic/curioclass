@@ -289,10 +289,6 @@ later = []
 p = os.path.join(ROOT, 'data', 'plans', 'later.csv')
 if os.path.exists(p):
     later = [dict(r) for r in csv.DictReader(io.open(p, encoding='utf-8'))]
-    # the stats doc has a 256 KB cap: a done row's detail is cut to its first 200 characters (full text in later.csv)
-    for r_ in later:
-        if r_.get('state') == 'done' and len(r_.get('detail', '')) > 200:
-            r_['detail'] = r_['detail'][:200].rsplit(' ', 1)[0] + ' ... (full text in data/plans/later.csv)'
 
 LINKS_EXTRA = {'units-review:social-studies': ['The structure pass report', 'docs/reviews/ss-units-structure-pass-2026-11-14.md']}
 for n_, v_ in LINKS_EXTRA.items():
@@ -302,6 +298,22 @@ flinks = {n_: [v_[0], REPO + v_[1].replace(os.sep, '/')] for n_, v_ in flinks.it
 out = dict(names=names, links=flinks, at=datetime.datetime.now().isoformat(timespec='minutes'), bands=bands, later=later, about=ABOUT, info=info, found=found,
            note='From docs/PRODUCTION-PATH.md (draft 5). Day and unit counts marked "about" are estimates until each course frame sets them.')
 io.open(sys.argv[1], 'w', encoding='utf-8').write(json.dumps(strip_cells(out), separators=(',', ':')))
+# A Desk document holds at most 256 KB, so the plan also goes out as parts: <out>.parts/plan-c<i>.json, each
+# {"stamp", "i", "n", "s"} with s a slice of the JSON text. The Desk joins the parts that share a stamp once all n
+# are in, so the plan has no size cap (each publish sends every part; ArtifactData batch, at most 1 MiB a call).
+_txt = json.dumps(strip_cells(out), separators=(',', ':'))
+_stamp = out['at'] + ':' + str(len(_txt))
+_chunk = 100000
+_parts = [_txt[i:i + _chunk] for i in range(0, len(_txt), _chunk)] or ['']
+_dir = sys.argv[1] + '.parts'
+os.makedirs(_dir, exist_ok=True)
+for _f in os.listdir(_dir):
+    if _f.startswith('plan-c'):
+        os.remove(os.path.join(_dir, _f))
+for _i, _s in enumerate(_parts):
+    io.open(os.path.join(_dir, 'plan-c%d.json' % _i), 'w', encoding='utf-8').write(
+        json.dumps(dict(stamp=_stamp, i=_i, n=len(_parts), s=_s), separators=(',', ':')))
+print('parts:', len(_parts), 'in', _dir)
 cnt = {}
 def tally(cs):
     for ch in cs: cnt[ch] = cnt.get(ch, 0) + 1
