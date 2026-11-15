@@ -66,6 +66,7 @@ def core(name): return [c for c in subj[name]['courses'] if c.get('core')]
 def courses(name): return subj[name]['courses']
 
 bands = []
+names, flinks = {}, {}   # unit labels and the file each finished step opens (repo path)
 def stage(id_, title, sub, lanes): bands.append(dict(type='stage', id=id_, title=title, sub=sub, lanes=lanes))
 def mile(id_, title, sub): bands.append(dict(type='milestone', id=id_, title=title, sub=sub, s=st(id_)))
 def N(id_, label, default='.'): return [id_, label, st(id_, default)]
@@ -103,7 +104,19 @@ for n in ORDER:
         k = slug(c['title']); tot, est = units_of(c)
         have = c.get('units') or 0
         cells = ''.join(st(f'unit:{k}:{i + 1}', 'e' if i < have else '.') for i in range(tot))
-        unit_lanes.append(dict(title=c['title'], est=est, cells=cells))
+        unit_lanes.append(dict(title=c['title'], est=est, cells=cells, k=k))
+        for i in range(tot):
+            f = os.path.join('docs', 'courses', fid(c), 's%02d.md' % (i + 1))
+            if os.path.exists(os.path.join(ROOT, f)):
+                head = io.open(os.path.join(ROOT, f), encoding='utf-8').readline()
+                t_ = re.sub(r'\*+', '', head.split(':', 1)[1]) if ':' in head else ''
+                t_ = re.split(r'\s*\(|\.\s|\?|\.$', t_.strip())[0].strip().rstrip('.')
+                names[f'unit:{k}:{i + 1}'] = 'Unit %d: %s' % (i + 1, t_) if t_ else 'Unit %d' % (i + 1)
+                flinks[f'unit:{k}:{i + 1}'] = ['The unit plan', f]
+        for name, node in (('scope-and-sequence.md', f'ss:{k}'), ('frame.md', f'frame:{k}')):
+            f = os.path.join('docs', 'courses', fid(c), name)
+            if os.path.exists(os.path.join(ROOT, f)):
+                flinks[node] = ['The ' + ('scope and sequence' if name.startswith('scope') else 'course frame'), f]
     stage(f'cycle:{s}', SHORT.get(n, n), 'Each course gets its scope and sequence (the units in order), then a plan for every unit, each reviewed. A probe then writes a few real days to test the plans.', [
         dict(title='Scope and sequence', nodes=[N(f'ss:{slug(c["title"])}', c['title'], 'e' if c.get('days_total') else '.') for c in cs]
              + [N(f'ss-review:{s}', 'Review')]),
@@ -245,7 +258,12 @@ p = os.path.join(ROOT, 'data', 'plans', 'later.csv')
 if os.path.exists(p):
     later = [dict(r) for r in csv.DictReader(io.open(p, encoding='utf-8'))]
 
-out = dict(at=datetime.datetime.now().isoformat(timespec='minutes'), bands=bands, later=later, about=ABOUT, info=info, found=found,
+LINKS_EXTRA = {'units-review:social-studies': ['The structure pass report', 'docs/reviews/ss-units-structure-pass-2026-11-14.md']}
+for n_, v_ in LINKS_EXTRA.items():
+    flinks.setdefault(n_, v_)
+REPO = 'https://github.com/LochLogic/curioclass/blob/main/'
+flinks = {n_: [v_[0], REPO + v_[1].replace(os.sep, '/')] for n_, v_ in flinks.items()}
+out = dict(names=names, links=flinks, at=datetime.datetime.now().isoformat(timespec='minutes'), bands=bands, later=later, about=ABOUT, info=info, found=found,
            note='From docs/PRODUCTION-PATH.md (draft 5). Day and unit counts marked "about" are estimates until each course frame sets them.')
 io.open(sys.argv[1], 'w', encoding='utf-8').write(json.dumps(strip_cells(out), separators=(',', ':')))
 cnt = {}
