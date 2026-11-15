@@ -1041,3 +1041,11 @@ reading: NGSS stays the base for every science course. The 23 codes Massachusett
 crosscutting concepts stay in the standards, and NGSS wording governs. Massachusetts becomes a crosswalk only: a
 plan may note where Massachusetts folds, splits or regrades a code, and never drops an NGSS code to match it.
 Source: docs/reviews/science-data-gaps-2026-11-14.md (Massachusetts codes).
+
+## 2026-11-14: K to 2 science meets three times a week (Cory, in chat)
+
+Kindergarten, grade 1 and grade 2 science had more days than two meetings a week allow (64, 68 and 76 days against
+58, 58 and 56). Cory: "three meetings a week for k-2 science is fine." The days stay; the frames and frames.csv
+move to three meetings a week (per_week 3), and the calendar is regenerated with `frame.py sync`. Applied in the
+science scope fix pass, after the Codex scope run, so running jobs are not disturbed. Source:
+docs/reviews/sequence-science-grade-2-codex-2026-11-14.md, finding 1.
