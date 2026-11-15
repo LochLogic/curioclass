@@ -1049,3 +1049,15 @@ Kindergarten, grade 1 and grade 2 science had more days than two meetings a week
 move to three meetings a week (per_week 3), and the calendar is regenerated with `frame.py sync`. Applied in the
 science scope fix pass, after the Codex scope run, so running jobs are not disturbed. Source:
 docs/reviews/sequence-science-grade-2-codex-2026-11-14.md, finding 1.
+
+## 2026-11-15: Religious texts are read as literature where a standard calls for them (Cory, in chat)
+
+RL.8.9 and RL.9-10.9 name religious works such as the Bible as examples of source material. Cory: "yes, as
+literature is fine." Where a standard calls for it, a religious text may be read as literature or history (its
+story, its language, how later writers drew on it), never as scripture: no religious text is an anchor, the class
+studies what a text says and how later works use it, and no student is asked to state or perform a belief. Grade 8
+unit 4 stays with myths and folk tales (no change needed). Grade 10 day 86 (Paradise Lost) and grade 11's Winthrop
+sermon stand as planned, read as literature and as a seminal US document. Each such day gets the sensitivity read
+with its unit plan. The ELA fix pass replaces the "open with Cory (progression stitch, item 11)" lines in the
+grade 8 frame (unit 4 row and For the lead item 6) with this ruling. Source: expert reads of ELA grades 8 to 11,
+2026-11-15.
