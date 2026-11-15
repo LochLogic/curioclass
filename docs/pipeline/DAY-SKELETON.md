@@ -73,3 +73,9 @@ sensitive topic is handled, and any timer (only with a grounded purpose).
 
 - How a day already written learns of a section plan change (most likely a check that lists stale days, not a
   rewrite).
+- 2026-11-15, first real run (us-history-i days 78 to 82, the social studies probe): parts.csv is the standards'
+  parts (code, part, verb), not the day's timed parts, and items.csv keys rows by `item_id`, so v0 raised a DataError
+  once real plan data existed. Fixed: the day's parts come from the section plan, docs/courses/<course>/u<uu>-<s>.md,
+  the `- **N min. Name.**` lines under `## Day N`, with their sum checked against the frame's minutes; questions are
+  listed by `item_id`; leans_on names the section plan and the section opener (courses/<course>/u<uu>-<s>/opener.md)
+  when they exist; a day whose source-map rows are all `ours` gets the credit "all ours". Self-test still passes.

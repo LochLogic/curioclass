@@ -346,7 +346,7 @@ def check_day(d, items, days):
     if not check_day_kind:
         names = [b[1] for b in d['blocks']]
         k = next((i for i, n in enumerate(names) if n.lower().startswith('warm-up')), -1)
-        if row['opens_min']:   # the opening may be one part or several in a row (a respond half, then teaching)
+        if row.get('opens_min'):   # the opening may be one part or several in a row (a respond half, then teaching)
             run, want = 0, int(row['opens_min'])
             for b in d['blocks'][k + 1:]:
                 run += b[0]
@@ -2819,8 +2819,12 @@ def check_piece(p, items):
     if kind == 'sheet' and not preset(h):
         f.append('%s: preset "%s" is not a row of data/closet/worksheets/generated.csv' % (lab, h.get('preset', '')))
     if kind == 'family':
+        # "spanish: later" in the header: the English note is written first and the Spanish follows when the
+        # section's pieces are finished (social studies probe, 2026-11-15); build prints English only until then
         for lang in ('English', 'Spanish'):
             sec = section(p['body'], lang)
+            if sec is None and lang == 'Spanish' and h.get('spanish') == 'later':
+                continue
             if sec is None:
                 f.append('%s: no "## %s" section' % (lab, lang))
             elif words(sec) > 150:

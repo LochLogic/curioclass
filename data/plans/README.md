@@ -72,6 +72,8 @@ A day writer sees one day; these files let the gates see across them. One row pe
 | `reserved.csv` | one worked example saved for its day | `day`, `numbers` (the given numbers, as an item's stem writes them), `item_id` (when it is a row in items.csv), `note` |
 | `source-map.csv` | one base-text lesson, or one of our days with no base lesson | `source` (`im-g4-u3-l09`; `ours` for a day with none), `title`, `goals` (short, from the lesson's prep file), `standards`, `unit` (our section, `4.2`), `days` (space separated), `decision` (keep, split, merge, cut, ours), `why`, `order_conflict` (blank, or what the order clash is), `harms_learning` (yes, no, unclear; blank when no clash) |
 
+| `sources.csv` | one primary source or interpretation a social studies day prints (added 2026-11-15, us-history-i probe) | `source_id` (`78B`: day and letter as the source sheet prints it), `kind`, `title`, `author`, `date`, `citation` (findable without the url), `url`, `rights` (public domain, CC BY, CC0, ours, or paraphrase only), `difficulty`, `why` (its place in the year), `days`, `use` (teach, exit, reserved, packet, background), `status` (what is checked and what is left), `note` |
+
 Tool rounds need no file of their own: they are already item rows with `check` tool and a `day`.
 
 What the gates hold (plan.py; lesson.py where a written day file is read):
@@ -81,6 +83,8 @@ What the gates hold (plan.py; lesson.py where a written day file is read):
 - **materials:** every day in `used_days` exists; a written day that is listed names the material in its Materials
   or Before class section; no day before `made_day` uses it.
 - **reserved:** no item of an earlier day uses the same set of given numbers.
+- **sources:** a citation, a rights line from the five, a `use` from the five, a difficulty and a why on every row;
+  every day exists; a `reserved` source is printed only on a Check day.
 - **source-map:** `decision` is one of the five; `cut` and `ours` rows have a `why`; every day listed exists; every
   day of a mapped section appears in at least one row; an `order_conflict` has `harms_learning` filled.
 

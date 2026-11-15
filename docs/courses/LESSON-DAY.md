@@ -340,13 +340,20 @@ slides) holds everywhere. Known now to differ:
 - **Judged items.** Facts in data holds everywhere, but an item judged by a person carries look-fors and two
   sample answers instead of a computed key, and a note telling a language gap from a content gap.
 - **New on a check.** Rule 3 is, in general, "nothing on a check is a taught item": new numbers in math, a cold
-  text in ELA, a new situation in science.
+  text in ELA, a new situation in science, an unseen source in social studies.
 - **Caps run per minute.** 15 words of teacher prose a minute of the day (900 at 60 minutes, 1,350 for a
   90-minute literacy block). "Before class" and the student reading cap are set in each course's DEFAULTS.md.
 - **Science** adds a required "Safety and set-up" heading (materials per group, set-up the day before, clean-up
   minutes) and a data sheet.
 - **ELA** prints the text as its own piece, outside the two-side limit, with its rights line; a writing day
   prints a lined page outside it too.
+- **Social studies** (settled by the us-history-i probe, 2026-11-15) prints each day's primary sources as its own
+  piece (`sources-78.md`, `piece: blank`), outside the two-side limit like an ELA text, with a rights line under
+  each source. Its rights record is `data/plans/<course>/sources.csv` (data/plans/README.md): rule 4's "own rights
+  record" for this subject. There is no base text, so every day is ours and says so in its `credit` header; a
+  modern interpretation under copyright is paraphrased in our words and attributed, never quoted. Exits and essay
+  tasks are judged by the teacher (look-fors and samples), and an organizer a student completes is a practice row.
+  Day-level parts are read from the section plan's `- **N min. Name.**` lines.
 - **Runs of days.** A day may belong to a run (`continues: d091`), so an investigation or the writing process is
   not forced into one sheet.
 

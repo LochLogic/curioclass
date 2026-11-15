@@ -1,0 +1,7 @@
+pattern,use,reason
+\bslaves\b,enslaved people,people first in our own words; a source keeps its own words on the source sheet
+\bfreedmen\b(?!.s Bureau),freedpeople,women and children too; the Bureau keeps its name
+\bwar between the states\b|\bnorthern aggression\b,the Civil War,Lost Cause names for the war; they appear only inside a source
+\bboth sides of the (?:debate|story|argument)\b|\btwo sides to the story\b,test the claim against the record,"Lost Cause claims are tested, never balanced as a view"
+\bcarpetbaggers?\b|\bscalawags?\b,Northern newcomer; white Southern Republican,"slurs of the period; they appear only inside a source, named as its word"
+\brole[- ]play|\breenact,read the sources,"no battle role play or reenactment (frame, sensitive topics)"

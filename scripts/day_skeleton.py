@@ -43,6 +43,21 @@ def optional_rows(course, name, need):
     return u.read_csv(p, need) if p.exists() else None
 
 
+def section_parts(course, r, day):
+    """The day's timed parts from its section plan, docs/courses/<course>/u<uu>-<s>.md: the `- **N min. Name.**`
+    lines under `## Day N` (social studies probe, 2026-11-15: parts.csv holds the standards' parts, not the day's)."""
+    if '.' not in r['unit']:
+        return None
+    a, b = r['unit'].split('.', 1)
+    f = u.DOCS / course / ('u%02d-%s.md' % (int(a), b))
+    if not f.exists():
+        return None
+    m = re.search(r'^## Day %d\b.*?(?=^## |\Z)' % day, f.read_text(encoding='utf-8'), re.M | re.S)
+    if not m:
+        return None
+    return [(x.group(1), x.group(2)) for x in re.finditer(r'^- \*\*(\d+) min\. (.+?)\.?\*\*', m.group(0), re.M)]
+
+
 def credit_rows(course, day):
     """Source-map rows whose `days` cell includes this day (sequence.py map_days reads the same cell)."""
     out = []
@@ -142,10 +157,18 @@ def build(course, day):
     lean = []
     if plan:
         lean.append(('' if plan.exists() else 'when it exists: ') + 'docs/courses/%s/%s' % (course, plan.name))
-    lean.append('when it exists: the section %s opener' % r['unit'] if unit else 'the course check set (frame)')
+    if unit and '.' in r['unit']:
+        sp = 'docs/courses/%s/u%02d-%s.md' % (course, unit, r['unit'].split('.', 1)[1])
+        lean.append(sp if (u.ROOT / sp).exists() else 'when it exists: ' + sp)
+        op = 'courses/%s/u%02d-%s/opener.md' % (course, unit, r['unit'].split('.', 1)[1])
+        lean.append(op if (u.ROOT / op).exists() else 'when it exists: the section %s opener (%s)' % (r['unit'], op))
+    else:
+        lean.append('when it exists: the section %s opener' % r['unit'] if unit else 'the course check set (frame)')
     w('- leans_on: %s' % '; '.join(lean))
     cr = credit_rows(course, day)
-    if cr:
+    if cr and all(c['decision'].strip() == 'ours' for c in cr):
+        w('- credit: all ours (source-map: %s)' % '; '.join(c['title'] for c in cr))
+    elif cr:
         w('- credit: adapted from %s' % '; '.join('%s, %s (%s)' % (c['source'], c['title'], c['decision']) for c in cr))
     else:
         w('- credit: none (no base lesson is adapted on this day)')
@@ -195,15 +218,17 @@ def build(course, day):
     w('1. **The header:** generated from the block above.')
     w('2. **Before class:** %s: set-up only, 80 words at most.%s' % (
         u.MARK, (' Lay out: ' + '; '.join(i for c, items in mats if c != 'safety' for i in items) + '.') if mats else ''))
-    parts = optional_rows(course, 'parts.csv', ['day'])
-    mine = [p for p in parts or [] if p['day'].strip() == str(day)]
+    mine = section_parts(course, r, day)
     if mine:
-        w('3. **The day:** one part per row of the section plan (parts.csv); the minutes must add up to the day:')
-        for p in mine:
-            w('   - `#### %s min. %s`' % (p.get('minutes', '?'), p.get('part', p.get('title', '')).strip()))
+        tot = sum(int(n) for n, _ in mine)
+        ok = not lo or int(lo) <= tot <= int(hi or lo)
+        w('3. **The day:** one part per line of the section plan; %d minutes%s:' % (
+            tot, '' if ok else ', NOT the frame\'s %s: fix the section plan' % lo))
+        for n, name in mine:
+            w('   - `#### %s min. %s`' % (n, name.strip()))
     else:
         w('3. **The day:** %s: one `#### N min. Part` heading under `### The day` per block of time, adding up to %s minutes. No section '
-          'plan (parts.csv) is on file yet, so the parts are the writer\'s.' % (u.MARK, lo or 'the day\'s'))
+          'plan is on file yet, so the parts are the writer\'s.' % (u.MARK, lo or 'the day\'s'))
     if any(c == 'tools' for c, _ in mats) or re.search(r'\b(device|projector|tool|simulation|applet)\b', r['note'], re.I):
         w('4. **Other rooms:** %s: the paper path when there are no devices, no printer, one projector; only what differs.' % u.MARK)
     else:
@@ -226,8 +251,8 @@ def build(course, day):
     # ---- questions
     w('## Questions')
     w('')
-    items = optional_rows(course, 'items.csv', ['id'])
-    ids = [i['id'] for i in items or [] if i.get('day', '').strip() == str(day)]
+    items = optional_rows(course, 'items.csv', ['item_id'])
+    ids = [i['item_id'] for i in items or [] if i.get('day', '').strip() == str(day)]
     if ids:
         w('Rows already in items.csv for this day: %s.' % ', '.join('[[%s]]' % i for i in ids))
     else:

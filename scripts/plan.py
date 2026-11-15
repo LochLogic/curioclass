@@ -184,6 +184,9 @@ def numbers(text):
     """The set of numbers in a stem or example: used for the no-reuse rule."""
     t = re.sub(r'\b(?:MP|E|day|Day|unit|section|lesson|item|items)\.? ?\d+', ' ', text)
     t = re.sub(r'\b\d+ min\b', ' ', t)   # minutes in a day row are time, not taught numbers
+    # labels, not taught numbers (social studies probe, unit 5): source and component names (W1, P2, R3), drafts,
+    # essays and unit ranges (draft 1, units 1 to 4)
+    t = re.sub(r'\b[A-Z]\d\b|\b(?:[Dd]rafts?|[Ee]ssays?|units) \d+(?: (?:to|and) \d+)?', ' ', t)
     t = re.sub(r'\((?:a|b|c|d|e|f)\)', ' ', t)
     # a fraction is one number (unit 3: 2/3 is not the numbers 2 and 3); a mixed number stays one too
     return frozenset(re.findall(r'\d+(?: \d+/\d+|/\d+)?(?:,\d{3})*', t))
@@ -675,7 +678,8 @@ def check(course):
                          % round(share * 100))
     wordrules = [(w['pattern'], w['use'], w['reason']) for w in rows(course, 'words')]   # settled wording, per course
     letters = {(e['stretch'], e['letter']) for e in errors}
-    stretches = sorted({d['stretch'] for d in days} | {i['stretch'] for i in items},
+    in_data = {p['stretch'] for p in parts} | {i['stretch'] for i in items}   # units with day-level data
+    stretches = sorted(in_data,   # only units with day-level data; a scope-stage unit has nothing to check here
                        key=lambda x: (not x.isdigit(), int(x) if x.isdigit() else 0))   # course-level days (C) last
 
     # 1. keys: every key-marked item is recomputed; teacher-judged items too where a value is given
@@ -794,14 +798,14 @@ def check(course):
                     fails.append('parts.csv: %s is not in the standards file' % p['code'])
         # 3. no unit assessment item or exit question reuses the numbers of a taught example or of another item
         taught = [('error %s example' % e['letter'], numbers(e['example'])) for e in errors if e['stretch'] == s]
-        taught += [('day %s' % d['day'], numbers(d['opens'] + ' ' + d['by_hand'])) for d in days if d['stretch'] == s]
+        taught += [('day %s' % d['day'], numbers(d.get('opens', '') + ' ' + d.get('by_hand', ''))) for d in days if d['stretch'] == s]
         # lesson-day rows (docs/courses/LESSON-DAY.md, rule 3): worked examples, tool notes, fixes, practice
         taught += [(i['item_id'], numbers(i['stem'])) for i in items if i['stretch'] == s and i['check'] in LESSON_KINDS]
         asked = [(i['item_id'], numbers(i['stem'])) for i in items if i['stretch'] == s and i['check'] in ('end', 'exit')]
         # a fraction item is held to each taught example on a day, one clause at a time (unit 3: a day row names a
         # dozen fractions, and rule 4 forbids reusing a taught pair, not two fractions met in different examples)
         clauses = [('day %s' % d['day'], numbers(c)) for d in days if d['stretch'] == s
-                   for c in re.split(r'[;:]\s|\.\s', d['opens'] + '; ' + d['by_hand'])]
+                   for c in re.split(r'[;:]\s|\.\s', d.get('opens', '') + '; ' + d.get('by_hand', ''))]
         taught_f = [t for t in taught if not t[0].startswith('day ')] + clauses
         for k, (a, na) in enumerate(asked):
             if len(na) < 2:
@@ -933,6 +937,11 @@ def check(course):
             lab = 'day %s' % d['day']
             if d['kind'] not in KINDS:
                 fails.append('%s: kind "%s" is not one of %s' % (lab, d['kind'], ', '.join(sorted(KINDS))))
+            # a unit still at the scope stage (no parts and no items yet) has no day data to gate: a social studies
+            # days.csv lists every day of the year from the scope and sequence (probe, us-history-i unit 5, 2026-11-15)
+            if s not in in_data:
+                continue
+            d = dict({k: '' for k in DAY_COLS | {'opens_min', 'tool_min'}}, **{k: v or '' for k, v in d.items()})
             used = int(d['opens_min'] or 0) + int(d['tool_min'] or 0)
             if used > LESSON_MIN:
                 fails.append('%s: opening %s + tool %s minutes is more than the %d minute lesson'
@@ -1039,6 +1048,26 @@ def check(course):
             t = re.sub(r'<!-- gen:.*?<!-- /gen -->', '', f.read_text(encoding='utf-8'), flags=re.S)
             notes.append('unit %s: %d words of prose outside the generated tables (%s)' % (s, len(t.split()), f.name))
 
+    # sources.csv: one primary source or interpretation a day prints, with its rights line (social studies probe,
+    # 2026-11-15; ADOPTION-BAR-SUBJECTS item 2: a difficulty, a reason for its place, a rights line)
+    dayset = {d['day'] for d in days}
+    for r in rows(course, 'sources'):
+        lab = 'sources.csv %s' % r['source_id']
+        if not r['citation'].strip():
+            fails.append(lab + ': no citation; a teacher must be able to find the source')
+        if not re.match(r'(public domain|CC BY\b|CC0|ours|paraphrase only)', r['rights']):
+            fails.append(lab + ': rights must start public domain, CC BY, CC0, ours or paraphrase only')
+        if r['rights'].startswith('paraphrase only') and r['use'] in ('teach', 'exit', 'reserved'):
+            notes.append(lab + ': paraphrase only, printed to students; check no sentence is quoted')
+        if r['use'] not in ('teach', 'exit', 'reserved', 'packet', 'background'):
+            fails.append(lab + ': use must be teach, exit, reserved, packet or background')
+        if not r['difficulty'].strip() or not r['why'].strip():
+            fails.append(lab + ': difficulty and why are required (ADOPTION-BAR-SUBJECTS item 2)')
+        for x in r['days'].split():
+            if x not in dayset:
+                fails.append(lab + ': day %s is not in days.csv' % x)
+        if r['use'] == 'reserved' and any(d['day'] in r['days'].split() and d['kind'] != 'Check' for d in days):
+            fails.append(lab + ': a reserved source is printed only on its assessment day')
     trace(course, days, items, parts, wrongs, fails, notes)
     cross_day(course, days, items, units, fails, notes)
     planned = sorted({int(m[1]) for f in (DOCS / course).glob('s[0-9][0-9].md') for m in [re.match(r's(\d+)', f.name)]})
@@ -1077,6 +1106,9 @@ def wrong_text(ws):
     return '; '.join(out)
 
 
+DAY_COLS = {'opens', 'holds', 'tool', 'mark', 'tool_use', 'by_hand', 'exit', 'check_min'}   # written-day columns a scope-stage days.csv lacks
+
+
 def blocks(course, s, unit=None):
     """The generated tables of one unit; a section plan (uNN-N.md) gets its own section's days, exits and parts."""
     U = lambda r: unit is None or r.get('unit') == unit
@@ -1102,7 +1134,8 @@ def blocks(course, s, unit=None):
         [[d['day'], d['goal'], d['kind'] + (' (%s)' % d['check_min'].replace(';', ',') if d['check_min'] else ''), d['opens'], d['holds'],
           ('%s (%s): %s' % (d['tool'], d['mark'], d['tool_use'])) if d['tool'] else 'None', d['by_hand'],
           'The end-of-unit assessment' if d['exit'] == 'END' else d['exit']]
-         for d in sorted((d for d in rows(course, 'days') if d['stretch'] == s and U(d)), key=lambda d: int(d['day']))])
+         for d in sorted((dict({k: '' for k in DAY_COLS}, **{k: v or '' for k, v in d.items()})
+                          for d in rows(course, 'days') if d['stretch'] == s and U(d)), key=lambda d: int(d['day']))])
     b['parts'] = table(['Code', 'Part', 'Verb', 'What it is'],
         [[p['code'], '(%s)' % p['part'], p['verb'], p['text']] for p in rows(course, 'parts') if p['stretch'] == s and U(p)])
     return b
@@ -1215,6 +1248,13 @@ def main(a):
                 for x in nt: print('  note', x)
                 bad += len(fl)
                 continue
+            # a course whose days.csv keeps the scope layout (one row per day of the year, an assess column) while its
+            # first unit is planned keeps its scope gate (social studies probe, us-history-i unit 5, 2026-11-15)
+            if 'assess' in (rows(c, 'days')[:1] or [{}])[0]:
+                fl, nt = sequence.check(c)
+                print('sequence %s: %d failure(s)' % (c, len(fl)))
+                for x in fl: print('  FAIL', x)
+                bad += len(fl)
             fails, notes, ni, nw = check(c)
             print('%s: %d items and %d wrong answers checked, %d failure(s)' % (c, ni, nw, len(fails)))
             for x in fails:
