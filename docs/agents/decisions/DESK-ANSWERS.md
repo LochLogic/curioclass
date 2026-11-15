@@ -1,6 +1,10 @@
-# Answers from the Review Desk
+# The decision log
 
-Cory's answers to question cards, and what each still needs. Remove a line once it is applied to the specs.
+Who decided what, when and why: Cory's answers (from the Review Desk, chat and Remote Control) and the lead's rules.
+This is the one home for the reasoning behind a rule. Living docs state each rule once, as it stands, with a short
+pointer here, such as "(settled 2026-11-14, see DESK-ANSWERS)". The log is append-only: entries are never removed
+or rewritten, and a later entry that changes an earlier one says so. Whether a decision is applied is tracked in
+data/plans/later.csv and the docs, not here (settled 2026-11-15, see the entry of that date).
 
 **Words:** entries before 2026-11-12's "course level names" (card 112) keep the words of their day. Read their
 "unit" (the short package) as today's section, "stretch" as unit, "spine" as scope and sequence, "end check" as
@@ -1080,3 +1084,242 @@ sermon stand as planned, read as literature and as a seminal US document. Each s
 with its unit plan. The ELA fix pass replaces the "open with Cory (progression stitch, item 11)" lines in the
 grade 8 frame (unit 4 row and For the lead item 6) with this ruling. Source: expert reads of ELA grades 8 to 11,
 2026-11-15.
+
+## 2026-11-15: later list calls (Cory, in chat, on Remote Control)
+
+- ELA text records: edition and rights are filled as the units are written. Unit writers give each text's edition
+  and rights basis in field 10; the lead copies them into data/plans/ela-texts.csv after each batch (later.csv L32).
+- Day skeleton: built now as a living draft, before its first real need. Cory: "im hoping that having a file there
+  longer will help accumulate improvements along the way to its first real need." scripts/day_skeleton.py writes a
+  sidecar per day; DAY-SKELETON.md keeps its draft log (L31).
+- Contrasting audiences in ELA grade 12 (L30): "L30 is good." One spine, two routes: the contrast is the audience's
+  relationship and expertise, not headcount. Classroom: student panels, the teacher as lead judge, a second audience
+  of another class, staff or an outside venue. Single-parent home: the parent is the live first audience and lead
+  judge, and the second is a real listener outside the home from a menu (a relative or family friend by phone or
+  video; a library, co-op or community group; a written public piece). Fallback: two contrasting pieces to two
+  outside audiences, the parent asking live questions. Why: a home of one parent and one child has no second
+  listener, and quality must match the classroom; the same rubric rows, a planning sheet showing what changed between
+  audiences and a short reflection hold it equal. One outside audience serves ELA 12 unit 8 and US History II unit 12.
+- Day pages (L23): "use your recommendation as long as it holds useful through the future growth." One source file
+  per day, published as one page per section with each day as an anchor. Why: about 13,000 files for 105 courses
+  against the free host's 20,000 (one page per day would be about 30,000); each new course adds its section count,
+  not its day count.
+- Licence and "first free complete" claim (L16): "leave it for now."
+- Long day notes (ELA kindergarten to grade 2 most of all): "something that can be a bit long in the unit but should
+  reduce when the teacher gets them unless they have a need to be that long." A days.csv note may run long as writer
+  input; the teacher page keeps only what the teacher needs in the room.
+
+## 2026-11-15: flatten the living docs; this file becomes the one decision log (Cory, in chat)
+
+Cory: "please ensure you understand the underlying request. if you feel that you do, please go ahead with the
+flattening", approving the lead's recommendation of 2026-11-14: keep a single decision log as the home for who
+decided what, when and why, and flatten everything else. Why: every agent and Codex job reads AGENTS.md, HANDOFF,
+PRODUCTION-PATH, the glossary and its brief before working; layered dated changes make each read longer and costlier
+and leave readers to work out which paragraph wins, which is where most continuity problems came from. A flattened
+doc states each rule once, as it stands, with a short pointer here; the full reasoning and Cory's words live only in
+this file, which is append-only; git keeps every earlier version; dated reports are records and are not flattened.
+The habit from now on: a decision updates the doc that holds the rule in place and adds one entry here, never a new
+dated paragraph under the old rule. HANDOFF holds only the current state and next steps.
+
+## Decisions carried here by the flattening (2026-11-15)
+
+The flattening moved the dated reasons and Cory's words out of the living docs. The lines below are those reasons,
+oldest first, with the doc and section each came from. Where several docs held the same decision, it appears once.
+
+- 2026-10-27, Cory: answered the decision board (172 of 208 answered, 157 recommendations accepted, 3 own calls, 12
+  held with notes); BASELINE rules 1 to 10, its specific calls and its growing-up-q-a gate were drawn from those
+  answers (raw answers answers.json, questions decisions.json). Why: so spec, build and review agents settle
+  questions with these rules and bring Cory only what they cannot settle; several of the 12 holds were "need more
+  info", which is why every question to Cory comes with full context. (BASELINE.md, intro and "What goes to Cory")
+- 2026-10-27, Cory: ASL tools are graphics only, no video and no photos of people; do not re-pitch video. Why: not
+  recorded beyond Cory's call; the collection may change its format (storyboard panels, renderings, labeled sign
+  parameters) instead. (BASELINE.md, "Specific calls")
+- 2026-11-03, Cory: BASELINE rules 11 to 15 adopted (people art drawn by Codex, on a contact sheet Cory sees and
+  checked by a fresh agent; 2 MB a goal, with a `Size:` line over 6 MB; a kit engine promoted only after three
+  finished tools share the code; at most about 10 Codex tools built and not yet reviewed; public copy names no
+  companies). Why: for rule 13, older tools work today and the gain from shared code is efficiency, not capability;
+  the others record no reason. (BASELINE.md, rules 11 to 15)
+- 2026-11-05, Cory: BASELINE rules 16 to 18 adopted (the first tap may cut the welcome; Curiosities finish on Cory's
+  desk review, with plate wording "Instruments" to "Curiosities" and areas to lift fixed after it; the Curiosities
+  entrance is built after every planned Curiosity is fully built). Why: for rule 16, acting at once beats listening;
+  the others record no reason. (BASELINE.md, rules 16 to 18)
+- 2026-11-06, Cory: Curiosity voices go on the Forge as each passes its exit check, at the end of the running Forge
+  queue. Why: "recording them all together was a wish, not a hard rule." (BASELINE.md, rule 18)
+- 2026-11-06, Cory: Curiosities may keep a little game essence (rule 19): a light game touch is fine, a goal ladder,
+  grade, forced finish or game-over is not. Why: a Curiosity must stay purely fun and exploratory, and a light touch
+  can add to that; lenses flag a game element only when it narrows play or turns exploring into scoring.
+  (BASELINE.md, rule 19)
+- 2026-11-11, Cory: the section plan, not BASELINE rule 22, decides how many tools a unit gets; rule 22's line "in
+  math, ELA and science, the major work of a grade gets two or three tools or full modes (see why, do it, use it);
+  the trade is fewer tools on supporting topics for now" is dropped, and a major unit may run on print with no key
+  tool (grade 4 math unit 3 does). Why: tools are the end piece of instruction and are planned from what the unit
+  needs (rule 23; see "2026-11-11: the layers, and what a tool is for"). (BASELINE.md, rule 22)
+- 2026-11-11, lead: a plan's lighter tool mark is "light" ("light tool"), renamed from "practice". Why: so the plan
+  mark is not confused with the tool role `practice` (rule 21) or read as the job "practise with feedback".
+  (BASELINE.md, rule 23; UNIT-PLAN.md, rule 9)
+- 2026-11-11, lead: the readiness check, the end-of-unit assessment, the error letters, "where it sits", the family
+  note and the sources belong to the unit plan, not the section plans. Why: split across section plans they could
+  not be balanced or read whole, and the grade 4 math pilot had cut two unit assessment items to fit a page.
+  (UNIT-PLAN.md, "What the expert read changed" 1)
+- 2026-11-11, lead: unit plan rules 4 to 7 and the marking step of field 7 were added after the expert's cold read
+  of the three trial plans. Why: in all three trial plans a check item repeated something already taught; items
+  shared out "by share of days" left the pilot's assessment without perimeter with multi-digit sides; readiness
+  items for later sections had no reteach slot; "many" was undefined; and the respond half followed a thirty-minute
+  check with no time to mark it. (UNIT-PLAN.md, "What the expert read changed" 2 to 6)
+- 2026-11-11, lead: every unit plan rule and field is marked "shared" or "math fills". Why: rules and fields that
+  were math in disguise (kinds of day, tie and withdrawal, the exit question, the fluency target) needed shared
+  wording before other subjects used them. (UNIT-PLAN.md, "What the expert read changed" 7)
+- 2026-11-11, Cory: the word caps were raised to 1,250 for a unit plan and a section plan and set at 1,800 for a
+  one-section merged document, replacing the 1,000 and 800 of the same morning. Why: the unit 3 and unit 10 files
+  of grade 4 math ran over; Cory: "the other files should get their cap raised again to 1250 words" and "1,800
+  words is fine". (UNIT-PLAN.md, "Decided, Cory, 2026-11-11, evening" and "Length")
+- 2026-11-11, Cory: the curriculum expert settles item-level choices inside the standards' limits (number sizes,
+  which pairs, day swaps inside a unit) and lists them under "Settled by the expert"; the caller copies them into
+  docs/reviews/DIGEST.md weekly for Cory to reverse if he wants. Why: to cut the number of small questions Cory is
+  asked. (EXPERT.md, "What it settles, and what goes to Cory")
+- 2026-11-12, Cory: the teacher reader (Cory's mom) looked briefly at unit 11 and found no hard issues on the
+  surface; Cory judged that enough to build on and lifted the planning freeze, with a full teacher read still owed.
+  Why: the brief read showed no hard issues, so the freeze set by the strategic review no longer needed to hold
+  (later replaced by the 2026-11-13 build order, where the expert agent reads in the teacher's place). (HANDOFF,
+  "Old next action", renames entry)
+- 2026-11-12, lead: the 900-word cap on teacher prose was kept after day 90. Why: day 90's first draft ran 1,074
+  words and was cut to 880 without losing a part; the two worked examples take about 200. (LESSON-DAY.md, "What day
+  90 showed" 2)
+- 2026-11-12, lead: a tool's own notes and exit items are rows in items.csv, like every other question. Why: day
+  90's five family notes lived only in the tool's spec, so the no-reuse gate could not see them. (LESSON-DAY.md,
+  "What day 90 showed" 4)
+- 2026-11-12, lead: day 90's Plot notes table on the student page shows only the family and the numbers given; the
+  full note stays in the tool and the key. Why: writing boxes for the fixes and "On your own" had pushed the page to
+  four sides, and the family and numbers are all a student needs to solve it. (LESSON-DAY.md, "What day 90 showed"
+  8)
+- 2026-11-12, lead: lesson-day draft 2 made the expert's seven "before the yes" changes, among them pictures on the
+  display, the tool's exit in data, the leans_on header with "not ready", questions counted in the student reading
+  cap, and a new exit answer for day 90. Why: the cold read found the display carried no pictures, the tool's exit
+  was outside the data (one item tested nothing on the day's goal), a day could look ready while leaning on missing
+  pieces, the student count left out the questions (98 words became 247), and the exit's answer was 9, the same as
+  the worked example's. (LESSON-DAY.md, header and "What day 90 showed" 7)
+- 2026-11-13, Cory: every layer (progressions, frames, scopes and sequences) is written blind, then reconciled with
+  the earlier Curio Class work: writers may not open earlier planning for the subject, a separate reconcile step
+  compares the blind result with that work and settles each difference by a named source with the pull measured, and
+  a read is done without the earlier course pages and reviews. Cory: "write blind, then reconcile". The reconcile
+  settles and logs every difference itself and sends Cory only a difference that changes which grade or course
+  teaches a standard, or what a grade teaches, when no source settles it, or a pull measure that shows the old work
+  steering. Cory: "let the process do the work and save only the big stuff that really needs my attention for the
+  desk". Why: so the layer is decided by the standards and the evidence, not by what happened to be written first or
+  what days were already built on; good earlier work comes back in on evidence; Cory's attention is kept for the
+  questions that need it. (PRODUCTION-PATH.md step 1; progression-write, progression-reconcile, frame-reconcile and
+  sequence-reconcile briefs, intros; EXPERT.md, "Before it judges anything", step 3)
+- 2026-11-13, Cory: BASELINE rule 25 ("prove at the bottom before planning wider") is replaced by the top-down build
+  order. Why, in Cory's reasoning in chat: well-made units in a sound progression leave fewer problems below, and
+  fixing back up the chain is a cost that cannot be avoided anyway. (PRODUCTION-PATH.md draft 5, section 1, item 1)
+- 2026-11-13, Cory: all pre-work is finished before step 1 starts; in Cory's words it "should be a solved issue
+  before the plan gets started". Why: the plan should not start on an unsettled standard, base-text question or
+  reviewer. (PRODUCTION-PATH.md draft 5, section 3, Pre-work)
+- 2026-11-13, lead: social studies goes first and math last. Why: social studies had nothing planned, so the process
+  is learned without bending old work into it; math holds the most old work (grade 4 scope, unit plans, 48 written
+  days) and gets every lesson learned before converting it. (PRODUCTION-PATH.md draft 5, section 1, item 3)
+- 2026-11-13, lead: the pilots are retired; a new course instead runs a probe (a few days written from finished unit
+  plans and read the full way) and every subject runs a guard before full writing (docs/pipeline/PROBE-GUARD.md).
+  Why: Cory's build order of 2026-11-13 put the probe and the guard in the pilots' place. (docs/pipeline/README.md,
+  "Beyond math")
+- 2026-11-13, lead: the probe and guard measures (P4) are set before any plan is written, as the lead's addition
+  agreed in chat as part of the probe. Why: "on" and "off" must be defined beforehand so the result cannot be read to
+  fit. (PRODUCTION-PATH.md draft 5, section 3, P4)
+- 2026-11-13, lead: the unit 4 test (days 25 to 28 on IM against unit 2 days 7 to 9) is read as "at least as
+  clean", not "cleaner", and base texts stay for quality where a subject has one. Why: residual problems were 12
+  against 13 with none in source-adapted parts and the writer only 3.6% over unit 2, but the fix passes ran under
+  different briefs and the units differ; two experts named something the source offered that the day did not carry,
+  so the gain is real but not automatic. (PRODUCTION-PATH.md draft 5, sections 1 and 2)
+- 2026-11-13, lead: planning well is expected to prevent up to about 9 of unit 4's 26 expert-only problems (the
+  cross-day and stale-plan kinds), not the 11 in the day itself, and the probe and guard measure whether that holds.
+  Why: the reclassified table found 7 cross-day, 2 stale-plan, 6 builder and 11 day-level problems, and the
+  plan-time read of unit 4 caught 11 cross-day problems, 9 in the 10 planned days, before writing.
+  (PRODUCTION-PATH.md draft 5, sections 1 and 2)
+- 2026-11-13, Cory: credits stay light: a day adapted from a base text carries one short credit, once in the foot and
+  once under Credit, and the source's name appears nowhere else. Why: light licence rigor with few tokens spent on
+  it, and minimal and clean on the live site. (LESSON-DAY.md, rule 4; sensitivity-read.md, "1. Study first")
+- 2026-11-13, Cory: stale notes are to be expected often and caught well: a note that waits on other work starts
+  `Pending(...)`, scripts/stale.py fails a marker whose work has landed, read briefs check for stale notes the script
+  cannot see, and write and fix briefs resolve the markers their work lands. Why: Cory, "expect them often, be good
+  at catching them". (HANDOFF, 2026-11-13 block, "Stale notes")
+- 2026-11-13, lead: the expert reads an exit, item or practice set that could pass or fail as a busy writer and a
+  student would, not at its best, and reports the fault if the likely reading fails. Why: in calibration run 1 both
+  readers passed real faults on the benefit of the doubt. (EXPERT.md, "Rules it keeps")
+- 2026-11-14, Cory: the ELA, science and math course frames (all 37) go ahead as planned: "plan is good, please do
+  it". Why: the plan to write them blind with the 15 social studies lessons in frame-write.md was accepted as shown.
+  (HANDOFF, 2026-11-14 block, course frames)
+- 2026-11-14, lead: frame-write.md carries a numbered lessons list (1 to 16), and scripts/frame.py gates lessons 1,
+  2, 3, 4, 12 and 14 with the frame's section and id checks. Why: the expert and Codex reads of the 15 social studies
+  frames found the same faults course after course (docs/reviews/frame-*-fixes-2026-11-13.md); the gating came with
+  the baseline 1 structure fixes. (frame-write.md, Lessons section)
+- 2026-11-14, Cory: the pause is lifted for social studies, and all 15 of its scopes and sequences run together,
+  then review, unit plans, units review and the probe, to baseline 2: "Social studies is overall our test bed. Let's
+  go ahead and do the whole scope and sequence section together and follow the chart on the dashboard". Why: social
+  studies is the test bed subject, so its whole scope step is run at once, following the Dashboard's plan flow.
+  (HANDOFF, 2026-11-14 block, "Pause lifted for social studies")
+- 2026-11-14, Cory: scopes are unpaused for science, ELA and math; Codex writes all 37 remaining scopes and
+  sequences in one unattended run (scripts/codex_scopes.py: write blind, gate, a scope reconcile for math grade 4,
+  ELA grade 6 and science grade 4, then a Codex first read), while units keep the order subject by subject with math
+  last. Why: the math pause was about older work, which writing blind and then reconciling already handles.
+  (HANDOFF, 2026-11-14 block, "Scopes unpaused"; PRODUCTION-PATH.md draft 5, step 5)
+- 2026-11-14, lead: step 3 gets its own brief, file and day kinds (sequence-write.md: scope-and-sequence.md,
+  days.csv, the five kinds). Why: baseline 1 structure finding 2 found step 3 had no brief, no file and no day kinds,
+  and step 4's brief and template were grade 4 math only. (sequence-write.md, opening paragraph)
+- 2026-11-14, lead: Cory's call on a scope and sequence is at the baseline, not a yes per course, as run for social
+  studies. This supersedes the 2026-11-11 rule that the grade 4 science and grade 6 ELA pilot drafts wait for Cory's
+  final yes: Cory retired those pilots and their open questions with the build order on 2026-11-13, and the new
+  science-grade-4 and english-language-arts-grade-6 scopes replace the drafts. Why: the expert and Codex reads plus
+  one fix pass carry each course, and Cory decides go or no-go at the baseline. (PRODUCTION-PATH.md draft 5, step 3)
+- 2026-11-14, lead: count readiness and retrieval by grade number, and this wins over a frame's wording: a row last
+  used in grade g gets retrieval in grade g+1 and a readiness check in grade g+2 or later; a row counts as used only
+  where a day teaches or assesses it. Why: nine science reads found three readings of "idle two or more grades".
+  (sequence-write.md rule 2, "Count by grade number")
+- 2026-11-14, lead: the expert reads of the first social studies unit plans settled standing rules for every Codex
+  unit plan (two-part kindergarten to grade 2 exits with a rotating spoken group, observation only after teaching,
+  official-source checks of holiday, symbol, civic and current-event facts, evidence spread across days, varied Native
+  nations, a sensitivity study list naming every frame source, assessments counted against real minutes, exit
+  tickets of one question, UTF-8 with LF, days.csv day numbers, no pipeline notes, measured population figures,
+  general form first, no campaign sources, exact citations, dated background lines for 2025 and 2026 events, bounded
+  reteach stations, withheld sources kept off teaching days, no identity labels without a source), and the six that
+  fit every subject (UTF-8 with LF, exit tickets, assessment minutes, days.csv day numbers, no pipeline notes, dated
+  background lines) were copied into the math, science and ELA Codex briefs. Why: the reads found these faults in the
+  social studies plans and the same faults would recur in every subject. (plan-codex.md, "Settled by the expert
+  reads"; plan-codex-math.md, plan-codex-science.md, plan-codex-ela.md, "Settled by the social studies plan reads")
+- 2026-11-14, lead, superseding the last sentence of item 1 and the "day 1 of every unit stays clean" part of item 2
+  in "2026-11-14: readiness check timing, every course" above: where unit 1 has readiness rows, its readiness check
+  (the start-of-year check) takes the last ten minutes of course day 1, after the hook and the compelling question;
+  days.csv marks day 1 `assess` = `readiness` (sequence.py accepts it) and the reteach sits in day 2 or 3 inside
+  existing time; where unit 1 has none, the plan says "Start-of-year check: none needed; retrieval only". Day 1 of
+  every other unit stays clean. Why: unit 1 has no previous unit or respond day, and no sitting comes before day 1,
+  so the end of day 1 is the earliest point that still leaves day 1 its hook. (sequence-write.md rule 2, "When";
+  sequence-read.md; GLOSSARY.md, readiness check; UNIT-PLAN.md, field 4; plan-codex briefs, "Settled")
+- 2026-11-15, lead: one hop counts as use: a day that teaches a row whose progression `assumes` names an earlier row
+  uses that earlier row too; a retrieval or readiness day counts this way only where its kind is Understanding or
+  Application; the skeleton and the scope gate count it this way. Why: such a day builds directly on the earlier row.
+  (sequence-write.md rule 2, "Count by grade number")
+- 2026-11-15, lead: the rows a readiness check samples for the next unit are named by id in that day's note, never in
+  its `skills` column. Why: the unit skeleton reads an earlier-grade id in `skills` as a row of the day's own unit.
+  (sequence-write.md rule 2)
+- 2026-11-15, lead: collect once: evidence gathered child by child is taken once per assessment window; a check or
+  end day within ten days reuses that record, and a course-level check never repeats a task form given in the last
+  two weeks. Why: the same fault was found in all six ELA K to 5 courses. (sequence-write.md rule 2, "Collect once")
+- 2026-11-15, lead: every goal, note and source-map cell is written fresh in Curio Class words, never copying or
+  lightly editing a base text's lesson purpose, goal, title sentence or teacher note, even where the licence allows
+  it. Why: math grade 1 copied 140 base lesson purposes. (sequence-write.md rule 2, "Our words")
+- 2026-11-15, lead: a lean on a math row in another subject opens with retrieval by default; it gets a readiness
+  check only where a performance expectation rests on it and no math course uses the row after its grade, and
+  same-year order decides which subject retrieves and which checks. Why: students take math every year.
+  (sequence-write.md rule 2, "Math leans in other subjects")
+- 2026-11-15, lead: one source-map.csv layout in every subject (`source,title,goals,standards,unit,days,decision,
+  why,order_conflict,harms_learning`, then `url`), gated by sequence.py. Why: the scope reads found a different
+  layout in each map. (sequence-write.md rule 8)
+- 2026-11-15, lead: every scope and sequence has a "Shorter path" section whose fold-in days each name the minutes
+  they save, with the total stated against the frame's day count, one rule for every subject. Why: FOUNDATION
+  section 5 and adoption bar C2 ask for a shorter-period path. (sequence-write.md rule 10)
+- 2026-11-15, lead: every elective and later subject passes the four-point "Before a new subject's scopes" checklist
+  (gated layouts, one pilot course then a frozen brief, rule 2 count in the scope gate, unit skeleton on the pilot
+  first) before Codex writes its first scope. Why: in the science, ELA and math round the skeleton run found 21
+  source maps in 21 layouts and readiness gaps the reads had missed. (PRODUCTION-PATH.md, After the core subjects)
+- Open, found by the flattening: "2026-11-12: course level names" item 2 says 18 sub-ready days a year in grade 4
+  math, while GLOSSARY.md says one per unit (9 a year in grade 4 math). The rule (one per unit) is the same; the count
+  is checked when the grade 4 math units are written (later.csv L42).

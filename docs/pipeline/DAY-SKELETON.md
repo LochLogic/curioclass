@@ -63,6 +63,8 @@ sensitive topic is handled, and any timer (only with a grounded purpose).
   is the writer's input; the teacher page does not. The day writer turns the note into the page's parts and keeps only
   what the teacher needs in the room, unless a length has a real need (a safety step, a station rotation). The
   sidecar prints the note for the writer only; the teacher page never copies it.
+- 2026-11-15, from the template flattening: parts are `#### N min.` under `### The day` and At home is capped at 170
+  words, as lesson.py reads them; the draft had `###` and 130. Lesson: read the script's constants, not prose.
 - Known gaps for the first real run: the student page and At home are bare TODOs; the readiness check on a unit's last
   day is not yet split out from the day's own assessment; no word list (Word Wall cards per day) is read yet; no check
   yet compares a written day against its sidecar.

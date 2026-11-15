@@ -22,9 +22,10 @@ data/progressions/, and the bar for the subject in docs/ADOPTION-BAR-SUBJECTS.md
 Gate: `python -X utf8 scripts/unitplan.py check {course}`.
 
 Settled (do not raise): readiness timing (before the unit opens; unit 1's check in the last ten minutes of day 1, after
-the hook, never before day 1); no outside human readers; 6 to 12 periods are 50 minutes; a timer only with a grounded purpose (a pace cue, a movement game, classroom management); K to 2 at most
-one shared classroom device with a paper path; no days added beyond the frame's totals; template fields that do not
-fit the subject may say none; some standards codes lack an own-word line (a later pass fills them).
+the hook, never before day 1); no outside human readers; 6 to 12 periods are 50 minutes; a timer only with a
+grounded purpose (a pace cue, a movement game, classroom management); K to 2 at most one shared classroom device with
+a paper path; no days added beyond the frame's totals; template fields that do not fit the subject may say none; some
+standards codes lack an own-word line (a later pass fills them).
 
 Report, as your final message, in Markdown: what you read; a course verdict (2 to 4 sentences); then per unit,
 findings most serious first (serious, moderate, minor), each with what is wrong, why it matters and the exact fix

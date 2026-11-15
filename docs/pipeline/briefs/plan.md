@@ -22,12 +22,12 @@ the standard each covers (rule 19: the whole standard). The end-of-unit assessme
 the plan names its response time once (the same day or a later respond day). A readiness check, where the scope
 and sequence reserves one (assess = readiness), is given before the unit opens, in the last ten minutes of the
 previous unit's last day or of the respond day between the two units (unit 1: the last ten minutes of day 1, after
-the hook), so its results shape day 1; day 1 of every other unit stays clean for the hook and the compelling question (Cory, 2026-11-14). Rows used
-the year before or earlier the same year open as a retrieval task inside a day instead (sequence-write.md rule 2).
-Your plan's readiness field names the day it is given; plan the next unit's ten minutes on your last day. No number
-fact or list on an exit or
-assessment item may come from a taught row. Anything that is a question of scope, money, people or audience goes to
-Cory in your report; everything else you decide.
+the hook), so its results shape day 1; day 1 of every other unit stays clean for the hook and the compelling
+question (settled 2026-11-14, see DESK-ANSWERS). Rows used the year before or earlier the same year open as a
+retrieval task inside a day instead (sequence-write.md rule 2). Your plan's readiness field names the day it is given;
+plan the next unit's ten minutes on your last day. No number fact or list on an exit or assessment item may come from
+a taught row. Anything that is a question of scope, money, people or audience goes to Cory in your report; everything
+else you decide.
 
 Do not write data rows or day files: the plan-data job does that after an expert reads your plan. Stay under the
 word caps in UNIT-PLAN.md.

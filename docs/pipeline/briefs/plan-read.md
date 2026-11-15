@@ -10,9 +10,10 @@ Judge, before a single day is written:
 - do assessment numbers collide with taught ones;
 - are the errors real, and can some item tell each error apart from the others;
 - is the readiness check right: given before the unit opens (the last ten minutes of the previous unit's last day or
-  of the respond day between; unit 1 by the start-of-year check), never on the unit's first day, only for rows last
-  used two or more grades back, with rows used the year before or earlier the same year opened as a retrieval task
-  instead (sequence-write.md rule 2; timing Cory, 2026-11-14); in math, ELA and science the skeleton's field 4
+  of the respond day between; unit 1 by the start-of-year check in the last ten minutes of day 1, after the hook),
+  never on the first day of any other unit, only for rows last used two or more grades back, with rows used the year
+  before or earlier the same year opened as a retrieval task instead (sequence-write.md rule 2; timing settled
+  2026-11-14, see DESK-ANSWERS); in math, ELA and science the skeleton's field 4
   table gives each row's last use and rule: the plan follows it, or lists the disagreement under "For the lead";
 - is evidence gathered one child at a time collected once (no second round within ten days unless the later day
   reuses the first record), and does every assessed code have teaching before the assessment day;

@@ -9,15 +9,17 @@
 
 Style: a teacher reads this quickly. Write plain full sentences. No slash chains (write "map and photograph", not "map/photograph"), no telegraphic shorthand, no abbreviations a teacher would have to decode. Keep within the word cap by choosing less, not by compressing words.
 
-Settled by the social studies plan reads (2026-11-14; apply where they fit this subject):
+Settled (apply in every unit you write; do not raise):
 - Write the file as UTF-8 with LF line endings. Never let an apostrophe, quote or accented letter turn into "?"; the gate fails it.
 - An exit ticket is one question with at most two parts; any invented case is printed "invented for practice". Kindergarten to grade 2: every child marks a picture on paper while the teacher reads the prompt aloud, and the spoken reason is heard from a rotating group of about six a day.
-- Give each assessment item its minutes and keep the total inside the day's real minutes; a part made earlier on a product day comes off the sitting. No reteaching on an assessment day.
+- Give each assessment item its minutes in the assessment table and keep the total inside the day's real minutes; a part made earlier on a product day comes off the sitting. No reteaching on an assessment day.
 - Check days.csv before naming a day in prose; a day number in the plan matches days.csv.
 - No pipeline notes in the plan (skeleton, gate, run or reviewer remarks); they go in your last message.
-- A fact that can change (a living institution or leader, a renamed place, a court ruling, a current figure) gets a dated teacher background line ("As of November 2026: ...") with its source, after a news search of the last 24 months, deaths included.
-
-Math settled by the frames and the Desk:
+- A fact that can change (a living institution or leader, a renamed place, a court ruling, a current figure) gets a dated teacher background line ("As of November 2026: ...") with its official source where one exists, after a news search of the last 24 months, deaths included.
+- The readiness check is given before the unit opens, in the last ten minutes of the previous unit's last day or of the respond day between the units, a few days ahead at most; day 1 opens on the hook and the compelling question (settled 2026-11-14, see DESK-ANSWERS). Unit 1's check, where unit 1 has readiness rows, takes the last ten minutes of day 1 after the hook, and days.csv marks day 1 `readiness`; unit 1's plan defines what it asks and how the teacher uses it (lead 2026-11-14, see DESK-ANSWERS).
+- Grades 6 to 12 periods are 50 minutes. A timer appears only where it has a grounded purpose, such as a pace cue, a movement game or classroom management (settled 2026-11-14, see DESK-ANSWERS). Kindergarten to grade 2 assume at most one shared classroom device, always with a paper path.
+- No qualified outside readers exist: agent reads take their place (the answer-key read that solves every item cold, the safety read against published school guidance, the expert's text read, and the sensitivity agent, docs/pipeline/briefs/sensitivity-read.md). Name, per unit, what each read that applies must study; where the unit has cultural, Native, hard-history, faith, health or disability content, the community's own sources come first.
+- No day added beyond the frame's totals.
 - Base text: Illustrative Mathematics (CC BY 4.0). Adapt in its order; each lesson used gets one short credit line on its day and nowhere else. The skeleton lists data/plans/{course}/source-map.csv rows in field 10: keep, change or drop each with a reason.
 - The cluster weight line in the skeleton header states major, supporting or additional per cluster from data/standards/ccss-math-focus.csv. Keep it as written (the gate checks it). Supporting work is used to practise major work, and the unit says where.
 - The major-work line is at least 65 percent for grades 3 to 8 and 75 percent for K to 2, counted by units, lessons and time (docs/RUBRIC-MATH-K8.md). State the unit's own share.
@@ -25,16 +27,14 @@ Math settled by the frames and the Desk:
 - Understanding, fluency and application each appear where the standards call for them; the skeleton marks days by kind. Fluency days are fluency, not new content.
 - Every assessment item names its standard. The answer-key read solves every item cold (BASELINE rule 27), so write keys that can be solved: sample answers, what each wrong answer shows, what to do next.
 - A paper path for every task; calculators only after estimating; manipulatives true to the mathematics; household or no-kit supplies named in field 8.
-- Personal finance is light touches only where a day already fits.
+- Personal finance: light touches only where a day already fits.
 
-Computed lines in the skeleton (scripts/unit_skeleton.py, 2026-11-15; they sit inside skel blocks and do not count toward the word cap):
+Computed lines in the skeleton (scripts/unit_skeleton.py; they sit inside skel blocks and do not count toward the word cap):
 - Field 4, "Earlier rows this unit assumes": each row the unit assumes, where it was last used (from the days.csv of this course and of earlier grades; a day that only retrieves it or checks readiness is not a use) and what rule 2 of sequence-write.md gives it (retrieval, or a readiness check when last used two or more grades back). Follow the table. Where a `TODO(writer)` says days.csv and rule 2 disagree, plan what the plan can inside existing time (a retrieval task in an existing day; readiness items where a check is given), never add a day or move a check, and list each disagreement under "For the lead". A retrieval row days.csv names no task for gets one short task in the retrieval table, inside a day the unit already has.
 - Field 5, "Time": the day's minutes from data/plans/frames.csv, less ten when the next unit's readiness check sits on that day, and how many rows the items must sample. The items and their minutes fit inside it.
 - Field 5, "Assessed before any teaching day cites it": codes the assessment day carries that no earlier teaching day of this course cites. Assess only what the class was taught (an earlier-grade part, or what the unit's own days teach under another code), or say under "For the lead" that the item cannot be fair.
 - Field 5, "Child-by-child evidence within ten days": two days close together that both gather evidence one child at a time. Collect once: the later day reuses the earlier record, or narrows to what is new; say which.
 - Fields 8 and 10 give day numbers only where the day list already holds the line; read the day there.
-
-Settled (do not raise): the readiness check is given before the unit opens, in the last ten minutes of the previous unit's last day or the respond day between the units, a few days ahead at most; unit 1's check, where unit 1 has readiness rows, takes the last ten minutes of day 1 after the hook, and days.csv marks day 1 `readiness` (lead rule 2026-11-14; unit 1's plan defines what it asks and how the teacher uses it); day 1 opens on the hook and the compelling question. Periods are 50 minutes; no timers shown to students; K to 2 assume at most one shared classroom device, always with a paper path. No qualified outside readers exist: agent reads take their place (the answer-key read that solves every item cold, the safety read against published school guidance, the expert's text read, and the sensitivity agent, docs/pipeline/briefs/sensitivity-read.md); name, per unit, what each must study, and for sensitive content the community's own sources first. No day added beyond the frame's totals.
 
 You own only docs/courses/{course}/s*.md (and TOOL-ASKS.md, DEFAULTS.md in that folder if the template asks). Edit no other file. Rules: no em dashes; "Curio Class" in full; no company names in student, teacher or family copy. Blind rule: do not open docs/courses/ela-6/, docs/courses/ela-6-spine.md, docs/courses/math-4/, docs/courses/math-4-spine.md, docs/courses/math-3-5-progression*.md, docs/courses/science-4-spine.md, docs/courses/NEXT-SPINES.md, data/plans/math-4/, data/units.csv, courses/, im-g4-draft-map.csv, or docs/reviews/*reconcile*, *math-4*, *ela-6*, science-4-spine*. No git. Leave no stray files.
 

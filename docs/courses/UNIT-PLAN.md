@@ -1,15 +1,5 @@
 # The unit plan and the section plan
 
-**Second draft, 2026-11-11, edited through 2026-11-14 (readiness timing, caps, ELA text data). Cory said yes to the unit plan, both field lists, the word caps, the mark "light
-tool" and the readiness check before the unit opens (2026-11-11, Desk card q-unit-plans). The fields are
-fixed for grade 4 math; the first plan in science and in English language arts may change what those subjects
-fill.** Which units hold a readiness check follows sequence-write.md rule 2 (2026-11-14); when it is given is one
-timing in every course, grade 4 math included: before the unit opens, so its results shape day 1 (Cory, 2026-11-14,
-field 4).
-
-**Changed 2026-11-11, evening (Cory, Desk card q-plans-4d-1): new word caps (see "Length"), tool asks moved
-to one file per course, rule 19 ("always cover the whole standard") and the fractions wording in rule 4.**
-
 Two documents are written before any tool for a section is specced or built.
 
 - **The unit plan** is written first, once for each unit. It holds what belongs to the whole unit:
@@ -25,15 +15,14 @@ unit. `docs/courses/<course>/uNN-N.md` for a section plan. Examples: `math-4/s03
 for each tool (rule 10). Example: [math-4/TOOL-ASKS.md](math-4/TOOL-ASKS.md).
 
 The fields come from the twelve in [APPROACH.md](../APPROACH.md) and the math additions in
-[APPROACH-MATH.md](../APPROACH-MATH.md). The first draft was tried on three grade 4 math sections and then read
-cold by the curriculum expert ([the review](../reviews/unit-plans-2026-11-11.md)). This draft follows that
-review. The trial documents are [s03](math-4/s03.md) with [u03-1](math-4/u03-1.md) (a concept section),
-[s09](math-4/s09.md) with [u09-1](math-4/u09-1.md) (a procedure section) and [s11](math-4/s11.md) (the old pilot,
-retired 2026-11-13, a one-section unit with a key tool). Since 2026-11-14 the unit plan fields are also in use for
-all 138 social studies unit plans; science and ELA unit plans come next and may change what those subjects fill. No
-plan has been used with children.
+[APPROACH-MATH.md](../APPROACH-MATH.md). Cory approved the unit plan, both field lists, the word caps, the mark
+"light tool" and the readiness timing (settled 2026-11-11, see DESK-ANSWERS). The fields are fixed for grade 4 math
+and are in use for all 138 social studies unit plans; the first science and English language arts unit plans may
+change what those subjects fill. Worked examples in grade 4 math: [s03](math-4/s03.md) with [u03-1](math-4/u03-1.md)
+(a concept section) and [s09](math-4/s09.md) with [u09-1](math-4/u09-1.md) (a procedure section); the expert's read
+of the first draft is [the review](../reviews/unit-plans-2026-11-11.md). No plan has been used with children.
 
-## Facts live in data (added 2026-11-11, Cory: "Let's implement those architectural fixes")
+## Facts live in data
 
 A course is too large for any one agent to hold, and a fact written in four files drifts. So:
 
@@ -53,16 +42,13 @@ A course is too large for any one agent to hold, and a fact written in four file
    not from the whole course.
 7. **Every defect is logged** in `data/plans/defects.csv` with who found it and at which layer.
 
-State: unit 11 is in data. Units 1, 2, 3, 9 and 10 move when each is next opened. The word caps under
-"Length" still stand for prose; a generated table does not count.
+In grade 4 math, unit 11 is in data; units 1, 2, 3, 9 and 10 move into data when each is next opened.
 
-Added 2026-11-12 (Cory's yes on card q-ela-piece-2): ELA adds three row files to `data/plans/<course>/`:
-`texts.csv` (the text record), `questions.csv` (every question with its standard) and `words.csv` (the word
-list). They are shown as generated tables and do not count toward the word cap. The columns are fixed when the
-first ELA unit plans are written. Not built yet, except the text records below.
+### English language arts data
 
-ELA text and word data, defined 2026-11-14 (fills the gap above for texts; questions wait for the first ELA unit
-plans):
+ELA keeps three kinds of rows beside the shared ones (settled 2026-11-12, see DESK-ANSWERS, card q-ela-piece-2):
+the text record, every question with its standard, and the word list. They are shown as generated tables and do not
+count toward the word cap.
 
 - **Text records: `data/plans/ela-texts.csv`**, one file for all thirteen ELA courses, one row per text a
   frame's text set names. It is not split into `data/plans/<course>/texts.csv` yet, because a course folder with
@@ -79,8 +65,11 @@ plans):
   in a Curio Class retelling, other, or to decide.
 - `status`: on file (the text exists and is named), to write (a Curio Class original), to choose (the frame names
   a kind or a set, the unit plan names the text) or to confirm (an edition, title or date needs checking).
-- `rights_basis` and `rights_checked` stay empty and every `todo` starts with "rights": rights data is gathered
-  later.
+- Edition and rights are filled as the units are written: the unit writer gives each text's edition and rights
+  basis in field 10, and the lead copies them into `edition`, `rights_basis` and `rights_checked` after each batch
+  (settled 2026-11-15, see DESK-ANSWERS). Until then the cells stay empty and the row's `todo` starts with "rights".
+- **Questions:** `data/plans/<course>/questions.csv`, every question with its standard. Its columns are fixed when
+  the first ELA unit plans are written. Not built yet.
 - **Word list: unit plan output, not input data.** The writer draws it per unit from that unit's texts (about 8
   to 10 words a week) and writes it as `data/plans/<course>/wordlist.csv` with `unit`, `word`, `text_id`, `week`
   and `when` (before, during or after reading). The name is not `words.csv`, which `plan.py` already reads as
@@ -100,7 +89,7 @@ sets is given).
 4. **Shared. No unit assessment item or exit question reuses the numbers or the story of a worked example, a wrong
    example, a planned question or a tool item in the same unit. Same error, new numbers.** A remembered
    answer is not evidence of the skill. (From memory: standard practice in writing checks; no source was
-   opened for it.) **In fractions** (decided 2026-11-11): the rule applies to the fractions an item gives,
+   opened for it.) **In fractions,** the rule applies to the fractions an item gives,
    not to every renaming along the way. The given pair and the answer must both be new to the unit.
 5. **Shared. The end-of-unit assessment covers every part of each standard.** The parts are listed by verb in unit
    field 2. Every part has at least one item before any part has two. Items are not shared out by days.
@@ -114,14 +103,12 @@ sets is given).
    "None".
 9. **Shared. Every tool is marked key or light,** written "(key)" or "(light)" in a day row. A key tool is as
    FOUNDATION defines it. A section that runs on print has no key tool, and says so.
-   "Light tool" replaced "practice tool" (decided 2026-11-11), which sounded like the job "practise with
-   feedback".
 10. **Shared. The ideal instrument is named first, then the spec is judged against it.** Fits, partly fits or
     does not fit, with the reason in one sentence. A tool that is wanted and does not exist is named as "does
     not exist". The unit plan and the section plan keep only that verdict and a link. The gaps and what the plan asks of
     the spec go in the course's one tool-asks file, `docs/courses/<course>/TOOL-ASKS.md`: a heading for each
     tool, with its mark, which day uses which part for which job, and the numbered asks, each with the unit plan
-    or section plan it came from (decided 2026-11-11).
+    or section plan it came from.
 11. **Shared. Every day has a kind, in the subject page's words.** *Math fills:* understanding, fluency, application
     or check. A day that ends with the next unit's readiness check names its ten minutes, as in "Check (end-of-unit
     assessment 30, respond 20, next readiness 10)" (field 4). The counts go in the header.
@@ -138,7 +125,7 @@ sets is given).
 17. **Shared. House rules hold:** plain words, short sentences, "Curio Class" in full, no company names in the
     body of a unit plan or section plan.
 18. **Shared. Word caps, by count.** See "Length".
-19. **Shared. Always cover the whole standard** (Cory's words, decided 2026-11-11). A plan teaches and checks
+19. **Shared. Always cover the whole standard** (Cory's words; also BASELINE rule 23). A plan teaches and checks
     every part of each standard it claims, in both directions where the standard has two, even where a scope and sequence
     title names only one part. Example: 4.NF.A.1 is taught and checked by multiplying both numbers and by
     dividing both numbers. Rule 5 says the same of the end-of-unit assessment; this rule says it of the teaching days and
@@ -163,22 +150,26 @@ back.
 
 **4. Readiness check, whole.** *Shared.* When it is given; a table with each item, its code, its key and the
 section it serves; for each gap, the ten-minute reteach, when those ten minutes happen, and the earlier tool or
-page. Rule 6 holds. **Which units hold one (2026-11-14, sequence-write.md rule 2, settled for all 15 social studies
-courses and the rule for every scope and sequence written since):** a row used the year before, or earlier the same
-year, opens as a retrieval task inside a day, with no readiness check; every other earlier-grade row the unit assumes
-(last used two or more grades back) gets a readiness check. A unit with only retrieval tasks fills this field with
-them (the row, the day, the prompt and what the teacher does with a miss); their teacher notes are the
-before-teaching evidence (adoption bar C8). **When (Cory, 2026-11-14, confirming Desk card q-unit-plans of
-2026-11-11; one timing in every course, grade 4 math included):** the readiness check is given before the unit
-opens, so its results shape day 1. It takes the last ten minutes of the previous unit's last day, or of the respond
-day or course-level check respond day where one sits between the two units; that day is the one days.csv marks
-`assess` = `readiness` (or, when it already holds another assess value, keeps that value and its note says "plus the
-next unit's readiness check (10 minutes)"). It is given a few days ahead at most, never weeks, so the results stay
-fresh. Unit 1's readiness check, where unit 1 has readiness rows, takes the last ten minutes of day 1, after the
-hook and the compelling question, and days.csv marks day 1 `readiness` (lead rule 2026-11-14; no sitting comes
-before day 1). Every other unit's day 1 stays clean for the hook and the compelling question: no readiness check
-on a unit's first day. Where the last day is a full end-of-unit
-assessment day, it runs end-of-unit assessment 30, respond 20, the next unit's readiness check 10.
+page. Rule 6 holds.
+
+- **Which units hold one** (sequence-write.md rule 2, the rule for every course): a row used the year before, or
+  earlier the same year, opens as a retrieval task inside a day, with no readiness check; every other earlier-grade
+  row the unit assumes (last used two or more grades back) gets a readiness check. A unit with only retrieval tasks
+  fills this field with them (the row, the day, the prompt and what the teacher does with a miss); their teacher
+  notes are the before-teaching evidence (adoption bar C8).
+- **When** (one timing in every course, grade 4 math included; settled 2026-11-14, see DESK-ANSWERS): the readiness
+  check is given before the unit opens, so its results shape day 1. It takes the last ten minutes of the previous
+  unit's last day, or of the respond day or course-level check respond day where one sits between the two units;
+  that day is the one days.csv marks `assess` = `readiness` (or, when it already holds another assess value, keeps
+  that value and its note says "plus the next unit's readiness check (10 minutes)"). It is given a few days ahead at
+  most, never weeks, so the results stay fresh. Where the last day is a full end-of-unit assessment day, it runs
+  end-of-unit assessment 30, respond 20, the next unit's readiness check 10.
+- **Unit 1:** where unit 1 has readiness rows, its check takes the last ten minutes of day 1, after the hook and
+  the compelling question, and days.csv marks day 1 `readiness` (lead 2026-11-14, see DESK-ANSWERS). Every other
+  unit's day 1 stays clean for the hook and the compelling question: no readiness check on a unit's first day.
+- **The field's first line** (the gate accepts any line of the field) is `Given:` (the day), `Retrieval only:` (the retrieval tasks) or, in unit 1,
+  `Start-of-year check:`. `scripts/unitplan.py` fails a field 4 with none of the three, and a `Given:` line that names
+  the unit's first day outside unit 1.
 
 **5. End-of-unit assessment, whole.** *Shared.* A table: number; code and practice; the part of the standard (the verb) it
 tests; the item; the answer; wrong answers with their error letter; the section that owns it. Rules 3, 4 and 5
@@ -205,6 +196,9 @@ items together.
 **10. Sources and what is still to make.** *Shared.* The standards file; the progression page; the specs
 read; any open course read to learn, with its licence and what was read; what was not seen; what is still to
 make.
+
+**Day list.** After field 10, `## Day list (from days.csv, do not edit)`: one row a day with its kind, written by
+`scripts/unit_skeleton.py`. `scripts/unitplan.py` checks it against days.csv.
 
 ## The section plan: fields, in order
 
@@ -274,21 +268,20 @@ U11. Three things move so nothing is written twice:
 
 Count words, not pages. A page depends on the screen.
 
-Decided by Cory, 2026-11-11 (Desk card q-plans-4d-1). These replace the first caps (see "Decided"). This list is
-the one home of the caps: `scripts/unitplan.py` enforces the unit plan cap (1,250) on every `sNN.md` and the
-merged cap (1,800) on any `sNN.md` with `## U3.` to `## U11.` headings, counting U5 and U7 to U11 (structure
-pass 2026-11-14; before it the gate read every merged document at 1,250 and skipped the U fields).
+This list is the one home of the caps (settled 2026-11-11, see DESK-ANSWERS). `scripts/unitplan.py` enforces the unit
+plan cap (1,250) on every `sNN.md` and the merged cap (1,800) on any `sNN.md` with `## U3.` to `## U11.` headings,
+counting U5 and U7 to U11.
 
 - **Section plan:** 1,250 words, not counting fields 3 (checks), 4 (errors) and 6 (days).
 - **Unit plan:** 1,250 words, not counting its check tables and error register (fields 4, 5 and 6).
-  (Both raised from 1,000 and 800 by Cory later on 2026-11-11, after the unit 3 and 10 files ran over.)
 - **One-section unit, one merged document:** 1,800 words, not counting checks, errors and days (unit
-  fields 4, 5 and 6, and U3, U4 and U6). Decided by Cory, 2026-11-11, in chat ("1,800 words is fine").
+  fields 4, 5 and 6, and U3, U4 and U6).
 - **Tool gaps and spec asks** do not sit in a unit plan or a section plan, so they do not count. They go in the course's
   TOOL-ASKS.md (rule 10).
 
 How to count: every word in the file outside the fields left out, the title and the header paragraph
-included. A whole field is in or out; nothing is counted by the line.
+included. A whole field is in or out; nothing is counted by the line. A generated table, the day list and the lines
+between `<!-- skel -->` markers do not count.
 
 When over, cut in this order:
 
@@ -301,10 +294,13 @@ Never cut: check items, exit questions, errors, day rows.
 
 ## Blank copy: unit plan
 
+`scripts/unit_skeleton.py` writes this shape with the mechanical fields filled; the writer replaces each
+`TODO(writer)` line.
+
 ```
 # Unit N: Name
 
-Course. **Days A to B.** Sections: N.1 Title (days _ to _); N.2 Title (days _ to _). Weight: major, supporting
+Course. **Days A to B** (N course days). Sections: N.1 Title (days _ to _); N.2 Title (days _ to _). Weight: major, supporting
 or additional. Days by kind, summed from the sections: understanding _, fluency _, application _, check 1. A plan, not a
 lesson: nothing here is built or tried with children. Fields follow UNIT-PLAN.md.
 
@@ -319,8 +315,8 @@ lesson: nothing here is built or tried with children. Fields follow UNIT-PLAN.md
 - **Comes back.**
 
 ## 4. Readiness check, whole
-Day _ (before the unit opens: the last ten minutes of the previous unit's last day or of the respond day between;
-unit 1: the last ten minutes of day 1, after the hook), or "Retrieval only:" with
+**Given:** day _ (before the unit opens: the last ten minutes of the previous unit's last day or of the respond day
+between). In unit 1, "Start-of-year check:" the last ten minutes of day 1, after the hook. Or "Retrieval only:" with
 each retrieval task's row, day and prompt.
 
 | # | Code | The item | Key | Serves section |
@@ -354,6 +350,10 @@ Marking step. Then, by error group:
 ## 9. Family note
 
 ## 10. Sources and what is still to make
+
+## Day list (from days.csv, do not edit)
+| Day | School day | Kind | Goal | Codes | Note |
+|---|---|---|---|---|---|
 ```
 
 (The header paragraph is field 1.)
@@ -421,82 +421,3 @@ UNIT-PLAN.md.
 
 ## 11. Not in this section, and still to make
 ```
-
-## What the trial changed
-
-Each line is a change to the twelve proposed fields, with the reason. The expert read kept some, adjusted
-others; its verdict follows each.
-
-1. **A header line was added, with days by kind.** The plan is where the scope and sequence's counts are settled. *Kept;
-   a fourth count, "check", was added.*
-2. **Field 1 gained "this section's share".** Sections 3.1 and 9.1 each carry part of a standard. *Kept.*
-3. **Strategies and practices moved from the day rows into field 1.** They were the same on every day.
-   *Kept.*
-4. **"Where it comes back" moved from field 9 to field 2.** *Kept; it now sits on the unit plan.*
-5. **"End-of-unit assessment" became "Checks".** *Adjusted: the end-of-unit assessment sits whole on the unit plan. The section plan
-   lists the numbers it owns and writes out its exit questions.*
-6. **Expected errors moved up and were lettered, with the response on the error.** *Kept. Letters are given
-   once for the unit.*
-7. **Readiness was given only by the first section.** *Adjusted: it moves to the unit plan, with rule 6.*
-8. **"What is carried" became "Model and instruments", ideal instrument first.** *Kept, and renamed "What is
-   carried, and instruments" so the name fits every subject.*
-9. **The day row's "who holds the model" was cut to a few words.** *Kept.*
-10. **"Supports and stretch" was renamed "Supports and extension".** *Kept.*
-11. **Talk and writing uses look-fors, not a rubric.** *Adjusted: look-fors for a short task; each
-    teacher-judged check item also has two sample answers.*
-12. **"Sources" was added.** *Adjusted: standing sources move to the unit plan. The plan keeps its "from
-    memory" marks.*
-13. **Two pages was kept as the cap.** *Adjusted: the cap is counted in words. See "Length".*
-
-## What the expert read changed
-
-1. **The unit plan.** Readiness, the end-of-unit assessment, the error letters, "where it sits", the family note and
-   the sources belong to the unit. Split across section plans they could not be balanced or read whole, and
-   the pilot had cut two unit assessment items to fit a page.
-2. **Rule 4, no reuse.** In all three trial plans a check item repeated something already taught. Each was
-   replaced.
-3. **Rule 5, every part of the standard.** Items were shared out "by share of days", which spreads them by
-   time and not by the parts of the standard. The pilot's end-of-unit assessment missed perimeter with multi-digit sides.
-4. **Rule 6, readiness.** Items for later sections now wait for those sections, and the reteach has a named slot.
-5. **Rule 7, "many".** It was undefined.
-6. **The marking step.** The respond half followed a thirty-minute check with no time to mark it.
-7. **Shared and "math fills".** Rules and fields that were math in disguise (kinds of day, tie and
-   withdrawal, the exit question, the fluency target) are marked, with shared wording.
-8. **Four additions:** what the teacher page must explain; check accommodations and reading load;
-   connections, for every section and not only supporting work; "many".
-9. **The four awkward points of the first draft are settled.** The last day's kind is "Check (end-of-unit assessment 30,
-   respond 20, next readiness 10)". The mark "practice tool" becomes "light tool". One job
-   for each use of a tool. The checks have a home.
-10. **Word caps by count,** with an order in which to cut.
-11. **Teacher-judged items carry two sample answers.**
-
-## Decided, Cory, 2026-11-11 (Desk card q-unit-plans)
-
-- The unit plan and both field lists, as a whole.
-- The tool mark name "light tool"; FOUNDATION's key tool wording now reads "the one a day is planned around".
-- The readiness check is given before the unit opens. Cory asked for the option with more structural
-  rigor; the cost is ten minutes of the respond half on each unit's last day.
-- Section 9.1 on days 72 to 73 and section 9.2 on days 74 to 77 (see [s09](math-4/s09.md)); in the scope and sequence.
-- The word caps. A merged one-section document counts
- its 2,500 words without the two check tables, as a unit
-  plan does. The two trial unit plans run about 100 to 170 words over 700; accepted for the trial, and the
-  cap is looked at again after the next three unit plans. **Replaced the same evening; see the next section.**
-  The first caps were: section plan 1,500 words; unit plan 700 words of prose plus its two check tables;
-  one-section unit 2,500 words.
-
-## Decided, Cory, 2026-11-11, evening (Desk card q-plans-4d-1)
-
-The caps were looked at again after units 1, 2 and 3 were written. Cory's answers that change this page:
-
-- **Word caps.** A section plan is 1,000 words not counting its checks, errors and days fields (3, 4 and 6). A
-  unit plan is 800 words not counting its check tables and error register (fields 4, 5 and 6). Later the
-  same day Cory raised both to 1,250 ("the other files should get their cap raised again to 1250 words") and
-  set the merged one-section document at 1,800 ("1,800 words is fine").
-- **Tool gaps move out.** Tool gaps and spec asks no longer sit in the unit or section plans. They go in one
-  tool-asks file for each course, `docs/courses/<course>/TOOL-ASKS.md`. A unit plan's tools field keeps only the
-  verdict and a link (rule 10; unit field 8; section field 5).
-- **"Always cover the whole standard"** (Cory's words). Now rule 19, and in
-  [BASELINE.md](../agents/decisions/BASELINE.md) rule 23. It came from day 14 of grade 4 math, which now
-  teaches the equivalence rule in both directions.
-- **No reuse, in fractions.** The rule applies to the fractions an item gives, not to every renaming along
-  the way; the given pair and the answer must both be new to the unit. Now in rule 4.

@@ -1,7 +1,7 @@
 # Job: expert cold read of the scope and sequence of {course}
 
-Added 2026-11-14 (PRODUCTION-PATH step 3). You are the curriculum expert. Read docs/agents/EXPERT.md first and act as
-it says, then the subject lens docs/agents/lenses/{subject}.md and the subject's bar ({bar}). Read cold
+You are the curriculum expert (PRODUCTION-PATH step 3). Read docs/agents/EXPERT.md first and act as it says, then the
+subject lens docs/agents/lenses/{subject}.md and the subject's bar ({bar}). Read cold
 docs/courses/{course}/scope-and-sequence.md and data/plans/{course}/days.csv; you did not write them. Read beside them
 the frame docs/courses/{course}/frame.md, the progression rows for the course's grades (data/progressions/{subject}.csv),
 docs/courses/CALENDAR.md and data/plans/calendar.csv for the grade. Run `python -X utf8 scripts/plan.py check` and
@@ -18,10 +18,11 @@ The data you must check:
 - **Readiness or retrieval** (sequence-write rule 2): a row used the year before, or earlier the same year, opens as a
   retrieval task inside a day; every other earlier-grade row the unit assumes (last used two or more grades back)
   gets a readiness check, given before the unit opens: the last ten minutes of the previous unit's last day, or of
-  the respond day or course-level check respond day between the two units (unit 1: the start-of-year check), never
-  on a unit's first day, which stays clean for the hook and the compelling question (Cory, 2026-11-14). Check each
-  assumed row's last use in the progression, and name any unit that checks a year-before row or retrieves an older
-  one, and any readiness check placed on a unit's first day or more than a few days ahead.
+  the respond day or course-level check respond day between the two units (unit 1: the last ten minutes of day 1,
+  after the hook), never on any other unit's first day, which stays clean for the hook and the compelling question
+  (settled 2026-11-14, see DESK-ANSWERS). Check each assumed row's last use in the progression, and name any unit
+  that checks a year-before row or retrieves an older one, and any readiness check placed on the first day of any unit but unit 1 or
+  more than a few days ahead.
 - **Checks that do not repeat:** a course-level check right after a unit's end-of-unit assessment draws its items for
   that unit's skills from earlier units' content, and the scope and sequence says so.
 - **Standards in full:** every lettered part of every owned code is carried by a day, not only named.

@@ -1,10 +1,10 @@
 # Job: reconcile the {course} frame with earlier work
 
-Added 2026-11-14 (PRODUCTION-PATH step 2; the frame-level twin of progression-reconcile.md). Cory's rule: write
-blind, then reconcile, and "let the process do the work and save only the big stuff that really needs my attention
-for the desk". The frame docs/courses/{course}/frame.md was written, read twice and fixed without sight of the
-earlier Curio Class planning for this grade. You now compare the two, so what is good in the old work comes back in
-on evidence, and nothing is kept only because it was written first or because days were already built on it.
+This is the frame-level twin of progression-reconcile.md (PRODUCTION-PATH step 2). The rule is to write blind, then
+reconcile, and to bring Cory only the big things (settled 2026-11-13, see DESK-ANSWERS). The frame
+docs/courses/{course}/frame.md was written, read twice and fixed without sight of the earlier Curio Class planning for
+this grade. You now compare the two, so what is good in the old work comes back in on evidence, and nothing is kept
+only because it was written first or because days were already built on it.
 
 ## Read
 - docs/pipeline/briefs/frame-write.md (the format, the lessons list), frame-read.md, and

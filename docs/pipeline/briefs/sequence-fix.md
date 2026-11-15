@@ -1,6 +1,6 @@
 # Job: apply the reads of the scope and sequence of {course}
 
-Added 2026-11-15 (PRODUCTION-PATH step 3, the fix pass after the expert read). The scope and sequence of {course} was
+This is the fix pass after the expert read (PRODUCTION-PATH step 3). The scope and sequence of {course} was
 written by Codex (docs/pipeline/briefs/sequence-write.md), read by Codex, then read by a Claude expert. You apply both
 reads. Model the work on the social studies fix reports (docs/reviews/sequence-3-5-fixes-2026-11-14.md).
 

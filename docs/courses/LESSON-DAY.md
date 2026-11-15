@@ -1,11 +1,11 @@
 # The lesson day: what one teaching day ships as
 
-Draft 2, 2026-11-12. Written against day 90 of grade 4 math (pilot unit 11), which is the worked case at the
-end. BASELINE rule 27 points here. **Approved by Cory, 2026-11-12: this sets the shape of about 15,000 lesson
-days.** The curriculum expert read draft 1 cold (docs/reviews/lesson-day-2026-11-12.md); draft 2
-makes its seven "before the yes" changes. The At home block was added the same day (Cory, homeschool option 1;
-DESK-ANSWERS, "homeschool parents and the site's shape"). **Proved on grade 4 math only** until the probe and guard
-run in other subjects (the pilots were retired 2026-11-13; docs/pipeline/PROBE-GUARD.md).
+This page sets the shape of every lesson day, about 15,000 of them (approved by Cory, settled 2026-11-12, see
+DESK-ANSWERS). BASELINE rule 27 points here. The worked case is day 90 of grade 4 math, at the end. The expert's
+cold read of the first draft is docs/reviews/lesson-day-2026-11-12.md. Every day carries an At home block for a
+parent teaching one child (settled 2026-11-12, see DESK-ANSWERS, "homeschool parents and the site's shape"). The
+shape is **proved on grade 4 math only** until the probe and guard run in other subjects
+(docs/pipeline/PROBE-GUARD.md).
 
 A section plan says what each day is for. This page says what a teacher and a student hold in their hands on that
 day, how big each piece may be, and which pieces are written and which are generated. The shared shape holds for
@@ -32,8 +32,7 @@ today's key and a reuser can see whom to credit.
 **Once per section** (not per day): the section opener (the teacher page for the section: the math explained at an adult's
 level, why this model, the error register in plain words, the supply list; 1,200 words at most) and any generator sheet the plan defines. **Once per
 unit** (filed in the folder of the unit's first section, as docs/courses/UNIT-PLAN.md puts them in the unit
-plan):
- the family note in English and Spanish (150 words at most each), the record sheet, the readiness check
+plan): the family note in English and Spanish (150 words at most each), the record sheet, the readiness check
 and end-of-unit assessment with their answer keys. A sheet with no preset questions (a strip sheet, a blank grid) is a
 `piece: blank`: it prints for students, its words are counted without markup, and it must fit two sides. These
 are generated from data wherever they can be.
@@ -47,7 +46,9 @@ are read"). The caps hold it down; real counts (first from grade 4 math, docs/pi
 ## Where it lives
 
 One source file a day: `courses/<course>/u<unit>-<section>/d<day>.md` (day 90 of grade 4 math is
-`courses/math-4/u11-1/d090.md`). The teacher page and the student page are both in it, so they cannot drift apart.
+`courses/math-4/u11-1/d090.md`). The teacher page and the student page are both in it, so they cannot drift apart:
+a header block, then `## Teacher page` with its fixed `###` headings, then `## Student page` with `### Side 1` and,
+where needed, `### Side 2`.
 The questions are not: every question a student answers on the day (worked examples, the tool's notes, practice,
 wrong answers to fix, the exit) is a row in `data/plans/<course>/items.csv`, and its key is computed there. A day
 file names a question by its id, `[[s11-P90-1]]`, and never types a key. `[[steps:id]]` prints a worked
@@ -82,7 +83,7 @@ shaded (past n a second whole follows), all at one length so they compare; `Lu:2
 `2/6=?` leaves a box there, `unit` writes 1/n in each part, `lab=none` writes nothing. Points, labels listed and
 shaded strips count as the figure's numbers for the stem gate; ticks, blanks and generated labels do not. On the
 display a line or strip figure grows one line or strip a step, and an exit ticket prints its figure on the ticket.
-Three words set what each page shows (unit 3 reads). `then` starts the lines or strips that are the answer: the
+Three words set what each page shows. `then` starts the lines or strips that are the answer: the
 student page and the display's question screen stop before it, the key and the last step show all
 (`line d=5 pt=2/5 / then d=5 sub=2 pt=4/10`, `fstrip 8/12 then 4/6 2/3`). `ask=N` prints only the first N lines
 or strips on the student page and the question screen (`fstrip 6/8 1/2 ask=1`). `by=` sets the display, one entry
@@ -93,10 +94,12 @@ first step that says cut, draw, fold, sketch or circle, all by the last step; th
 answer's line. A strip of more than 24 parts prints as thin lines with a heavy line every 10 parts, so tenths of a
 hundred count by eye. On the student page a line figure's words and whole numbers print at 14 point (its
 fractions stay at the figure's size, so the page keeps to two sides).
+A tile figure is `tiles #/# ##/##`: rows split by `/`, `.` a gap, `sticks` for outlines.
 `steps` (the worked steps as the teacher says them, split by `|`; for a wrong answer to fix, their working then
 the right working; a teacher-judged row lists its look-fors here), `samples` (a teacher-judged row's two sample
 answers, one meeting the look-fors and one not, shown on the key), `path` (an exit's `tool` or `paper`; `board`
-for a practice row written on the board when there is no printer) and `source` (rule 4).
+for a practice row written on the board when there is no printer) and `source` (rule 4). In wrongs.csv, error `x`
+is any other wrong answer, with no group.
 
 The file starts with a header block: `day`, `course`, `unit`, `version` ("draft, not yet taught" until a taught
 run), `materials`, `print`, `credit` (see rule 4) and `leans_on`: every outside piece the day needs, by path (the
@@ -104,7 +107,8 @@ tool, the section opener, a sheet from another unit, the record sheet), or "noth
 piece is missing unless its version says "not ready", and the build then prints "Not ready to teach: <piece>
 missing" at the top of the teacher page. A piece that does not exist yet and is not needed to teach the day is
 written `when it exists: <path>`; the check skips it, the header prints it as "Uses when it exists", and the
-prose must say what the day does until it exists.
+prose must say what the day does until it exists. The record sheet's own header (not a day file's) may carry
+`exitlooks: 7;8`, which gives a judged exit one tick a look-for.
 
 ## The teacher page, in this order
 
@@ -113,15 +117,15 @@ Fixed headings, so a script can find each part and a teacher always finds it in 
 1. **The header** (generated): day, section, kind of day, goal in student words, the parts of the standard, the tool
    and its mark, materials, what to print, version, credit.
 2. **Before class.** Set-up only: what to print, what to open, what to lay out. 80 words at most.
-3. **The day.** One part per block of time, headed with its minutes: `### 10 min. Teaching first`. The minutes
+3. **The day.** One part per block of time, headed with its minutes: `#### 10 min. Teaching first`. The minutes
    add up to the length of the day (60 in grade 4 math, DEFAULTS.md) and agree with `days.csv`. Each part says
    how students work (alone, pairs, groups, whole class), what the teacher does, what students do, what to watch
    for, and what to do if many get it wrong (from the error register). Wording is written out only where the
    words matter: the steps of a worked example (from the row, `[[steps:id]]`), and the planned questions, each
    marked **Ask.** with the answers to expect and the order to show them in. Everything else is told, not
    scripted. An action counted out ("say four pairs aloud", "read six comparisons") lists the pairs or
-   comparisons it counts, so the teacher does not invent them in front of the class and the reserve sees them
-   (unit 3 reads). An Ask that belongs inside a worked example says "after step N": its screen waits for that
+   comparisons it counts, so the teacher does not invent them in front of the class and the reserve sees them.
+   An Ask that belongs inside a worked example says "after step N": its screen waits for that
    step on the display.
 4. **Other rooms.** The paper path when there are no devices, no printer, one projector: only what differs from
    the course's DEFAULTS.md. Every day has a paper path. When the day's tool is planned but not built, the paper
@@ -154,7 +158,8 @@ Fixed headings, so a script can find each part and a teacher always finds it in 
 - Strip pictures that are compared side by side share one scale (`scale=N` on each strip figure).
 - An exit ticket that asks for a strip picture prints a box for it; a teacher-judged ticket item gets a tall box.
 - No answers printed. No score or rank; no timer without a grounded purpose (BASELINE rule 30). Black and white, readable with no colour.
-- A large-print version (18 point) is generated from the same file.
+- A large-print version (18 point) is generated from the same file. It may run longer than two sides; the
+  two-side rule is for the standard page only.
 - Instructions a student reads are short sentences in plain words; numbers are written as numerals.
 - A stem with parts prints each of (a), (b), (c) on its own line, on the page and on the ticket.
 - An exit ticket gives each sentence of its stem the room it asks for: a blank to fill is the room for its
@@ -169,7 +174,8 @@ Every day carries one, under `### At home` on the teacher page, built from the s
 fewer of them. It is written to a parent with no teacher training, who reads it the night before and teaches one
 child at the table. The build turns it into the At home view of the day page (`dNNN-home.html`): the goal and the
 minutes, the block, then every question it names with its answer, pulled from data. It is not printed on the
-teacher page.
+teacher page. Because the student page already holds the questions, the block only says which ones, what to say and
+what to swap; on grade 4 math days 89 to 93 it took 110 to 137 words.
 
 - **Minutes.** 30 to 40 on a teaching day. On an assessment day, the assessment alone, then the respond part one
   to one, about 45 in all (40 to 50).
@@ -191,6 +197,8 @@ teacher page.
 - **The exit ticket last** on a teaching day, naming the paper ticket's rows. The child answers alone.
 - **Cap.** 170 words, counted apart from the 900-word teacher prose cap.
 - **Plain words.** No teacher terms without a gloss, no timer without a grounded purpose, no grades or scores.
+- **The view** gives a worked example's steps and a judged row's look-fors, names a question inside an example
+  "Example 2, question 3", and on an assessment day names every assessment item.
 
 ## Assessment days
 
@@ -214,14 +222,14 @@ the check is the evidence.
    in the form the licensor asks for), and every built piece that prints the item prints the credit at its foot.
    A name or logo the licence excludes appears only in the credit line. A day adapted as a whole says so in its
    `credit` header.
-   **A day adapted from a base text (docs/sources/BASE-TEXTS.md) carries one short credit and no more** (Cory,
-   2026-11-13: minimal and clean on the live site). The `credit` header, printed once in the foot, reads:
+   **A day adapted from a base text (docs/sources/BASE-TEXTS.md) carries one short credit and no more** (settled
+   2026-11-13, see DESK-ANSWERS). The `credit` header, printed once in the foot, reads:
    `Adapted from Illustrative Mathematics K-12 Math, grade 4, unit 3, lessons 7 and 8, CC BY 4.0,
    https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.` The teacher page's Credit section says
    the same in one line. Rows taken from that lesson do not repeat it in `source`. The source's name appears
    nowhere else (`lesson.py check` fails on it). Sources read only to learn are named under Credit as "informed by". A day that is all ours
-   says so. Texts, images and other material used but not adapted have their own rights record (texts.csv for
-   ELA), and the probe in that subject sets its rule here.
+   says so. Texts, images and other material used but not adapted have their own rights record (data/plans/ela-texts.csv
+   for ELA), and the probe in that subject sets its rule here.
 5. **It stands alone.** A teacher who has read the section opener can teach the day from its teacher page. Nothing
    says "see the plan".
 6. **The tool is named by its own words** (its modes and screens), with the minutes it gets and the point to stop
@@ -232,82 +240,87 @@ the check is the evidence.
 8. **An item id is never reused for different numbers.** A changed item gets a new id, and the day's version goes
    up.
 
+## Shelves and sub days
+
+A day names each shelf item it uses (Word Wall card, chart, worksheet row, generator preset, game) by id, and the
+gate fails on an id that does not exist (settled 2026-11-12, see DESK-ANSWERS, card `q-shelves-in-courses`). Not
+built into `lesson.py` yet; it comes with the section 11.1 shelf pieces (later.csv L13). A course has one sub-ready day per unit, written with the unit (docs/SITE-DESIGN.md);
+the per-tool Sub Day packets stay on the shelf. The Reading Room is not where course texts come from below the
+higher grades: K-8 anchors on newer texts, mostly our own (settled 2026-11-12, see DESK-ANSWERS, card
+`q-course-texts`).
+
 ## What the script checks
 
-`python -X utf8 scripts/lesson.py check` fails a day on: a missing header field or heading, or a heading with
-nothing under it; minutes that do not add up to the day or disagree with `days.csv` (the parts after the warm-up
-must sum to the plan's lesson minutes, and an assessment day's parts follow its `check_min`); a Tomorrow that the next
-day's file does not pick up; two numbered questions on one source line; a sketch asked for with no box (a `[[fig:]]`, a {sketch} box or the strip sheet; the goal line and bold labels
-are not read as asking); a table too wide
-for its page (under half an inch a column); a "when it exists" piece the prose does not explain; a figure number
-missing from its stem; a teacher-judged row with no look-fors or samples (from `plan.py check`, which also
-checks duplicate stems, challenges with the same numbers and the course's word rules in `words.csv`); a prose cap passed, or the
-student reading cap (frame and questions together); a question sentence over 15 words in grades 3 to 5; an
-`[[id]]` with no row, or a row for the day that no page uses; a keyed row with no computed key (from `plan.py
-check`, which it runs); a reused set of numbers; a `leans_on` piece missing on a day not marked "not ready"; an
-adapted credit or `source` with no licence or link, or with NonCommercial, ShareAlike or NoDerivatives terms; a
-student page that prints to more than two sides (counted on the printed page whenever Chrome is present, and the
-output says so when it was skipped). It cannot judge whether the day teaches; the expert and people do that.
+`python -X utf8 scripts/lesson.py check` runs `plan.py check` and fails a day on what follows. Items marked "note"
+are reported and do not fail. It cannot judge whether the day teaches; the expert and people do that.
 
-Added for the At home block (2026-11-12): a day with no At home section ("At home block missing"); parts that do
-not add to 30 to 40 minutes (40 to 50 on an assessment day); an `[[id]]` in it that is not on the student page or
-the paper exit ticket; no **Say.** line on a day whose The day has pairs or class talk, or a Say. line with no
-"Expect"; no **Swap.** line when the materials name a projector, grid paper, tiles, a device or a string loop; no
-**Skip.** line; on a teaching day a last part that is not the exit ticket or does not name its rows; on an
-assessment day a first part that is not the assessment; a timer, grade or score; the 170-word cap; and "One child
-at home" left in Other rooms. Until the earlier sections are backfilled, `HOME_TODO` in `lesson.py` lists the
-sections whose days report the missing block as a note instead of a failure.
+**The header and the teacher page.** A missing header field or heading, or a heading with nothing under it; a
+`leans_on` piece missing on a day not marked "not ready"; a "when it exists" piece the prose does not explain, or
+one that exists; minutes that do not add up to the day or disagree with `days.csv` (the parts after the warm-up
+must sum to the plan's lesson minutes, and an assessment day's parts follow its `check_min`); a prose cap passed; a
+bold `**Ask**` not written `**Ask.**` (the build reads both, and holds a fix's right working until an Ask later in
+the same part); `Check:` written mid-line; "after each set" with fewer `Check:` lines than sets; a partner check with
+no `Check:` line or peer key; a part that says the display shows the answers ("answers on the display", "the
+answers on the screen") with no check named; a warm-up with no row; grid paper used in a part and on neither the
+materials nor the print line, or the column sheet used and not printed; a section whose opener sends the family note
+home on a day that does not print it; an adapted credit or `source` with no licence or link, or with
+NonCommercial, ShareAlike or NoDerivatives terms. Notes: "under the camera" on a day with no document camera; a
+strip, card or sheet handled and not listed; a "from day N" material day N never names; an opener sheet listed for
+the day that the day never names; the student page running in another order than the day (unless the part says to
+turn back).
 
-Added from the unit 10 reads: an error letter or "near you" in Tomorrow the next day does not name; a
-teacher-judged practice row the next day does not hand back (unless its pages stay with students); a part that
-says the display shows the answers with no check named; a warm-up with no row; repeated list numbers on a side;
-compared strips with different scales. `plan.py check` adds: a wrong answer for H that is not a left-to-right
-running value; a sentence-shaped wrong answer on an exit that asks for no sentence; an exit or check item whose
-given number is a taught step's result for the same fact (the fact turned into its answer); a day that names a
-tool with no tool rows.
+**Tomorrow and the next day.** A Tomorrow that the next day's file does not pick up; an error letter or "near you"
+in Tomorrow that the next day does not name; a teacher-judged practice row the next day does not hand back (unless
+its pages stay with students); an assessment day with teacher-judged items when the next day's file never names
+"day N's assessment" or "day N's items"; an "If many X" branch on a ticket whose exit has no wrong answer for X.
+Note: a fraction Tomorrow says day N+1 uses that it does not.
 
-Added from the unit 9 reads: a section whose opener sends the family note home on a day that does not print it;
-grid paper used in a part and on neither the materials nor the print line, or the column sheet used and not
-printed; an "If many X" branch on a ticket whose exit has no wrong answer for X; a note when the student page runs
-in another order than the day (unless the part says to turn back). `plan.py check` adds: a difference with one
+**The At home block.** A day with no At home section ("At home block missing"); parts that do not add to 30 to 40
+minutes (40 to 50 on an assessment day); an `[[id]]` in it that is not on the student page or the paper exit ticket;
+no **Say.** line on a day whose The day has pairs or class talk, or a Say. line with no "Expect"; no **Swap.** line
+when the materials name a projector, grid paper, tiles, a device or a string loop; no **Skip.** line; on a teaching
+day a last part that is not the exit ticket or does not name its rows; on an assessment day a first part that is not
+the assessment; a timer, grade or score; the 170-word cap; and "One child at home" left in Other rooms. `HOME_TODO`
+in `lesson.py` lists any sections whose days report the missing block as a note instead of a failure while they are
+backfilled.
+
+**The student page and the ticket.** The student reading cap passed (frame and questions together); a question
+sentence over 15 words in grades 3 to 5; two numbered questions on one source line; repeated list numbers on a
+side; a sketch asked for with no box (a `[[fig:]]`, a {sketch} box or the strip sheet; the goal line and bold labels
+are not read as asking); a table too wide for its page (under half an inch a column); a student table of only ■
+cells (draw an `fstrip`); a student line that runs a blank or a number into a fraction ("___/15   4/5"), which
+prints as a mixed number; a Words and supports frame missing from the side it names; a paper exit with no room to
+write; compared strips with different scales; a student page that prints to more than two sides (counted on the
+printed page whenever Chrome is present, and the output says so when it was skipped).
+
+**Rows and numbers.** An `[[id]]` with no row, or a row for the day that no page uses; a keyed row with no computed
+key; a reused set of numbers; a figure number missing from its stem; a teacher-judged row with no look-fors or
+samples. `plan.py check` adds: duplicate stems; challenges with the same numbers, or whose one fraction matches; the
+course's word rules in `words.csv`; a stem that starts "No drawing", "No line given", "No strips" or "No grid";
+student text in quote marks beside other words; a wrong answer for H that is not a left-to-right running value; a
+sentence-shaped wrong answer on an exit that asks for no sentence; an exit or check item whose given number is a
+taught step's result for the same fact (the fact turned into its answer); a check or exit part that prints both
+fractions of an equality a taught row names (stem, answer or `F()` terms, either order, by the exit's day); an end
+item whose stem list shares three or more numbers (10 or more) with one taught list; a difference with one
 ungrouping whose two errors (smaller from larger, the small 1 only) give one answer, or, past the day both are
-taught, a row keying only one of them; notes for an exit whose carries fall where the day's worked example's do,
-a fix on a worked example's numbers, and a row coded to a standard the scope and sequence teaches later. The key's opening
-line is the equal-forms note only on a day with an equation, the estimate rule on a day of estimates.
+taught, a row keying only one of them; a day that names a tool with no tool rows. Notes from `plan.py check`: an exit
+whose carries fall where the day's worked example's do; a fix on a worked example's numbers; a row coded to a
+standard the scope and sequence teaches later; an exit or end row that asks why or to explain but is keyed, not
+judged; a comparing section's register letter no comparing end item has a wrong row for; one shown value under two
+letters on a check item. A fraction rule's multiplications are not area facts, and the "same answer" note skips
+answers that are only True or False.
 
-Added from the unit 3 reads. The display: a fix shows the stem, the picture and their working, then, after the
-class answers the Ask (or at the fix's `[[steps:id]]`), their working beside the right working, one step a line;
-a warm-up's questions get a screen before "Check your answers"; that screen says an equal name is right, and that
-a sign is right when it reads true as a sentence, when the answers hold fractions or signs. The key lists the
-assessment rows first, then rows in the order the student page meets them (the warm-up first), names an error
-without its example, prints a strip or fraction figure in a full-width row under its item, and on a fraction day
-says any right grouping or cut is right and a name need not be the smallest. The At home view gives a worked
-example's steps and a judged row's look-fors, names a question inside an example "Example 2, question 3", and on
-an assessment day names every assessment item. New gates (FAIL unless marked note): a "when it exists" course piece
-that exists; `Check:` written mid-line; "after each set" with fewer `Check:` lines than sets; a partner check with
-no `Check:` line or peer key; a student table of only ■ cells (draw an `fstrip`); a student line that runs
-a blank or a number into a fraction ("___/15   4/5"), which prints as a mixed number; a Words and supports frame missing from the side
-it names; a paper exit with no room to write; notes for a fraction Tomorrow says day N+1 uses that it does not, a
-"from day N" material day N never names, a strip, card or sheet handled and not listed, and an opener sheet
-listed for the day that the day never names. `plan.py check` adds: a stem that starts "No drawing", "No line
-given", "No strips" or "No grid"; student text in quote marks beside other words; a check or exit part that
-prints both fractions of an equality a taught row names (stem, answer or `F()` terms, either order, by the exit's
-day); challenges whose one fraction matches; notes for a comparing section's register letter no comparing end
-item has a wrong row for, and one shown value under two letters on a check item. A fraction rule's
-multiplications are not area facts, and the "same answer" note skips answers that are only True or False.
-
-Added from the unit 2 reads (2026-11-12). Gates: a bold `**Ask**` not written `**Ask.**` (the build now reads both,
-and holds a fix's right working until an Ask later in the same part); an assessment day with teacher-judged
-items when the next day's file never names "day N's assessment" or "day N's items"; the answers-on-display gate
-also reads "answers on the display" and "the answers on the screen"; notes for "under the camera" on a day with
-no document camera. `plan.py check` fails an end item whose stem list shares three or more numbers (10 or more)
-with one taught list, and notes an exit or end row that asks why or to explain but is keyed, not judged. The
-build: a `tiles` figure kind (`tiles #/# ##/##`, rows by `/`, `.` a gap, `sticks` for outlines); a key that opens
-with the feature and reason rule on a 4.OA.C.5 day; a check screen that says "Your feature may be different" when
-rows ask for a feature; a warm-up question screen before its check; a group screen headed "Find your group."
-that shows only what students match and the first task; a record header `exitlooks: 7;8` that gives a judged
-exit one tick a look-for; error `x` (any other wrong answer, no group) in wrongs.csv; a line or strip figure on a
-check piece prints under its item, with an answer line in place of the work box.
+**What the build does with them.** The display: a fix shows the stem, the picture and their working, then, after the
+class answers the Ask (or at the fix's `[[steps:id]]`), their working beside the right working, one step a line; a
+warm-up's questions get a screen before "Check your answers"; that screen says an equal name is right, and that a
+sign is right when it reads true as a sentence, when the answers hold fractions or signs; a check screen says "Your
+feature may be different" when rows ask for a feature; a group screen is headed "Find your group." and shows only
+what students match and the first task. The key lists the assessment rows first, then rows in the order the student
+page meets them (the warm-up first), names an error without its example, prints a strip or fraction figure in a
+full-width row under its item, and on a fraction day says any right grouping or cut is right and a name need not be
+the smallest. The key's opening line is the equal-forms note only on a day with an equation, the estimate rule on a
+day of estimates, and the feature and reason rule on a 4.OA.C.5 day. A line or strip figure on a check piece prints
+under its item, with an answer line in place of the work box.
 
 **How days are read.** Every day by the gates; a sample of days per section by the expert; the whole of the first
 section in each course by a teacher, in a taught run.
@@ -316,7 +329,7 @@ section in each course by a teacher, in a taught run.
 error letters named in prose not checked against the register; sub-minutes inside a part not checked against the
 part; the order of parts against the plan's row (only their minutes are checked); a rendered page's empty space
 (the two-side count is checked, not wasted height); numbers in the section opener's prose against the reserve.
-The same fact turned round (two sides with their area or perimeter, in any order) is now caught by the reserve,
+The same fact turned round (two sides with their area or perimeter, in any order) is caught by the reserve,
 on every row and in the generator.
 
 ## What changes by subject
@@ -341,46 +354,15 @@ slides) holds everywhere. Known now to differ:
 
 - Spanish student pages (ROADMAP, finished course item 14: Cory's in or not-now).
 - An accessibility conformance level for print (item 10: Cory's).
-- (Decided 2026-11-12, card `q-shelves-in-courses`.) How a day uses the older shelves: a day names each shelf
-  item it uses (Word Wall card, chart, worksheet row, generator preset, game) by id, and the gate fails on an id
-  that does not exist. Not built into `lesson.py` yet; it comes with section 11.1's shelf pieces. A course has one
-  sub-ready day per unit, written with the unit (this replaced "a Sub Day packet generated from every course
-  day" the same day; docs/SITE-DESIGN.md); the per-tool Sub Day packets stay on the shelf. The Reading Room is not where course texts come from below the
-  higher grades: K-8 anchors on newer texts, mostly our own (card `q-course-texts`).
 
 ## The worked case: day 90
 
 Day 90 is written to this page: [courses/math-4/u11-1/d090.md](../../courses/math-4/u11-1/d090.md), its rows in
-`data/plans/math-4/items.csv` (ids starting `s11-` with `90` in them), and its built pages in
-`build/lessons/math-4/u11-1/` (teacher, student, large print, key, exit tickets, display). Counts (draft 2):
-teacher page 898 words of prose, student page 247 words a student reads (98 frame, 149 questions), 60 minutes,
-student page two sides. With the At home block (2026-11-12): teacher prose 879 (the old "one child at home" line
-moved out), At home 128 words and 40 minutes, built as `d090-home.html`. Version "draft 2, not ready, not yet taught": the tool, the section opener, the facts check
-sheet and the record sheet do not exist yet.
-
-### What day 90 showed
-
-1. **The plan's day left 15 minutes unplanned.** Its row gave 10 minutes of teaching and 25 of tool, 35 of the
-   50-minute lesson. Writing every minute down found it. The day now adds 15 minutes on paper (fix the two
-   wrong answers the error register puts on day 90, then two missing sides alone, checked by a partner) and 5
-   minutes pulling the two halves together. The plan's row in `days.csv` was changed to match.
-2. **900 words is tight but holds.** The first draft was 1,074; it was cut to 880 without losing a part. The two
-   worked examples, written out as the teacher says them, take about 200.
-3. **The page gate earns its place.** The first build of the student page ran to three sides.
-4. **The tool's numbers are now checked too.** Its five family notes are rows (`s11-T90-1` to `5`), so the
-   no-reuse gate covers them; before, they lived only in the tool's spec.
-5. **The day leans on three things that do not exist yet:** the tool (spec only, so the paper path is the only
-   one that can be taught today), the section opener (it holds the reteach the day points to), and the facts check
-   part 2 sheet (unit 1's, "still to make").
-6. **Large print runs longer than two sides.** The two-side rule is for the standard page only.
-7. **The cold read found what the gates could not** (draft 2): the display carried no pictures, the tool's exit
-   was outside the data (and one of its items tested nothing on the day's goal), a day could look ready while
-   leaning on missing pieces, the student reading count left out the questions (98 words became 247), and the
-   exit's answer was 9, the same as the worked example's. Each is now a rule or a gate.
-8. **Room to write costs space.** Writing boxes for the fixes and "On your own" pushed the page to four sides;
-   the expert's fix (the Plot notes table shows the family and the numbers given, which is all a student needs to
-   solve it; the full note stays in the tool and the key) brought it back to two.
-9. **The At home block fits in 130 words.** Days 89 to 93 came to 110 to 137 words, 35 to 45 minutes. What made it
-   short: the student page already holds the questions, so the block only says which ones, what to say and what to
-   swap. The hardest calls were the tool day (90: the Plot notes table on paper is the whole job) and the
-   assessment day (93: the groups become going over each missed item together).
+`data/plans/math-4/items.csv` (ids starting `s11-` with `90` in them; the tool's five family notes are rows
+`s11-T90-1` to `5`), and its built pages in `build/lessons/math-4/u11-1/` (teacher, student, large print, key, exit
+tickets, display, and `d090-home.html`). Counts: teacher prose 879 words, At home 128 words and 40 minutes, student
+page 247 words a student reads (98 frame, 149 questions), 60 minutes, student page two sides. The two worked
+examples, written out as the teacher says them, take about 200 of the teacher's words. Version "draft 2, not ready,
+not yet taught": the tool (spec only, so the paper path is the only one that can be taught today), the section opener
+(it holds the reteach the day points to), the facts check part 2 sheet (unit 1's, still to make) and the record sheet
+do not exist yet.

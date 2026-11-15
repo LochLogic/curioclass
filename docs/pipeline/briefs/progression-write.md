@@ -1,15 +1,15 @@
 # Job: write the {subject} progression rows for grades {band}
 
-Added 2026-11-13 (Cory: "write blind, then reconcile"). You write part of Curio Class's {subject} progression
-(PRODUCTION-PATH step 1): one row per skill, the data every later layer (course frames, scopes and sequences,
-units, days) is built from. Other writers do the other grade bands at the same time; a stitcher joins the bands,
-then a reconciler compares the result with older work.
+You write part of Curio Class's {subject} progression (PRODUCTION-PATH step 1): one row per skill, the data every
+later layer (course frames, scopes and sequences, units, days) is built from. Other writers do the other grade bands
+at the same time; a stitcher joins the bands, then a reconciler compares the result with older work.
 
 ## Write blind
 You may not open earlier Curio Class planning for this subject: anything under docs/courses/, docs/reviews/ or
 data/progressions/ about {subject}, and data/units.csv, data/sequence.csv and courses/ (written days). They are
 compared with your rows afterwards by a separate reconcile step (docs/pipeline/briefs/progression-reconcile.md), so
-the progression is decided by the standards and the evidence, not by what happened to be written first.
+the progression is decided by the standards and the evidence, not by what happened to be written first (settled
+2026-11-13, see DESK-ANSWERS).
 {blind_extra}
 
 ## Read first (in S:\CurioClass)

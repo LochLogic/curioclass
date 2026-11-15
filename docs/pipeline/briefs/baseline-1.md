@@ -1,6 +1,6 @@
 # Job: baseline 1, the whole-structure review ({part})
 
-Added 2026-11-14 (PRODUCTION-PATH step 2, "Then baseline 1"). All four progressions and all 52 core course frames
+Baseline 1 is the review that ends PRODUCTION-PATH step 2. All four progressions and all 52 core course frames
 exist, each frame read cold by the expert and by Codex, fixed band by band, lined up across subjects
 (docs/reviews/frame-cross-subject-2026-11-14.md), and three reconciled with earlier work. Each of those reads looked
 at one band. This review looks at the structure whole: what no band read could see. Do not repeat the band reads'

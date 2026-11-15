@@ -1,6 +1,6 @@
 # Job: write the course frames for {courses}
 
-Added 2026-11-13 (PRODUCTION-PATH step 2). A course frame says what a course is: its grades, the standards and
+A course frame (PRODUCTION-PATH step 2) says what a course is: its grades, the standards and
 progression skills it owns, its days, its units in order with a reason for each, its seams with the courses before
 and after, and (where there is a base text) the source map. Its scope and sequence (step 3) then sets every day in
 order, so a frame names no single day. You write the frames for adjacent courses so the seams between them line
@@ -63,20 +63,20 @@ One page per course: `S:\CurioClass\docs\courses\<slug>\frame.md`, where <slug> 
    Respond days is 0). In K to 8, place the checks on the target weeks of docs/courses/CALENDAR.md, so no week (K to 5)
    or day (6 to 8) holds two subjects' checks.
 7. `## Cross-subject`: every row's cross_subject lean, grouped by the other subject and grade: what this course
-   needs, and when in this course's year. Same-year leans form the availability calendar (Codex's list, item 1):
-   which unit of this course uses it and the earliest unit of the other course that may teach it, so the other
-   subject's frame can honour it. The other subjects' frames are written later; record the need, do not guess
-   their unit numbers. A citation of another frame's unit gives its course days as that frame states them
+   needs, and when in this course's year. Same-year leans form the availability calendar: which unit of this
+   course uses it and the earliest unit of the other course that may teach it, so the other subject's frame can
+   honour it. Where the other subject's frame is not written yet, record the need and do not guess its unit
+   numbers. A citation of another frame's unit gives its course days as that frame states them
    ("math grade 4 unit 3 (days 30 to 47)"); the gate notes a citation more than 3 days off that unit's place in
    data/plans/calendar.csv.
 8. `## For the lead`: anything that would change what a grade teaches beyond what the decisions settle, with your
    pick. Scope, money, people or audience questions go here, never decided by you.
 
-## Lessons from the social studies frames (added 2026-11-14)
-The 15 social studies frames were read by the expert and by Codex and fixed (docs/reviews/frame-*-fixes-2026-11-13.md).
-These findings came back course after course. Write so none of them comes back. `scripts/frame.py` now checks
-lessons 1, 2, 3, 4 (lettered parts, a note), 12 and 14, the one Course-level checks table, the Seams, Models carried
-and Cross-subject ids, and outside-reader wording (baseline 1 structure fixes, 2026-11-14):
+## Lessons from the frame reads
+These faults came back course after course in the expert and Codex reads of the 15 social studies frames
+(docs/reviews/frame-*-fixes-2026-11-13.md). Write so none of them comes back. `scripts/frame.py` checks lessons 1, 2,
+3, 4 (lettered parts, a note), 12 and 14, the one Course-level checks table, the Seams, Models carried and
+Cross-subject ids, and outside-reader wording:
 1. **A respond day after each course-level check,** counted in the course's days.
 2. **Check-set cells start "Candidate: ...":** the unit plan settles them.
 3. **The time a day is stated** (minutes per lesson, lessons a week), and why the day total fits it.
@@ -97,8 +97,8 @@ and Cross-subject ids, and outside-reader wording (baseline 1 structure fixes, 2
     chosen so they do not repeat another grade's picks.
 12. **Sensitivity.** A "Sensitivity reads" line in the brief: every unit gets the fresh sensitivity agent's read
     (docs/pipeline/briefs/sensitivity-read.md); units with cultural, Native, hard-history, health or disability
-    content name the community and the sources the agent must study first. No outside human reader is planned (Cory,
-    2026-11-14); safety reads and answer-key reads are agent reads too.
+    content name the community and the sources the agent must study first. No outside human reader is planned
+    (settled 2026-11-14, see DESK-ANSWERS); safety reads and answer-key reads are agent reads too.
 13. **No math ahead of math.** A unit uses no number work the math progression has not taught by then (coin values,
     percent, negative numbers, scale).
 14. **A paper path** beside any electronic tool, and no student account: a "Paper path." bullet in The course in brief.
@@ -106,11 +106,11 @@ and Cross-subject ids, and outside-reader wording (baseline 1 structure fixes, 2
     replacement text.
 16. **Readiness or retrieval.** A row used the year before, or earlier the same year, opens as a retrieval task
     inside a day; every other earlier-grade row the unit assumes (last used two or more grades back) gets a readiness
-    check (added 2026-11-14, as the science frames applied it; these words settled 2026-11-14 for all 15 social
-    studies courses, the same as sequence-write.md rule 2). It is given before the unit opens, so its results shape
+    check, in the same words as sequence-write.md rule 2. It is given before the unit opens, so its results shape
     day 1: the last ten minutes of the previous unit's last day, or of the respond day or course-level check respond
-    day between the two units, a few days ahead at most; unit 1's takes the last ten minutes of day 1, after the hook. Day 1 of any other
-    unit stays clean for the hook and the compelling question (Cory, 2026-11-14, one timing in every course).
+    day between the two units, a few days ahead at most; unit 1's takes the last ten minutes of day 1, after the
+    hook. Day 1 of any other unit stays clean for the hook and the compelling question (one timing in every course,
+    settled 2026-11-14, see DESK-ANSWERS).
 
 ## Rules
 - The progression rows are the contract: place every owned row, change none. If a row is wrong, list it under "For

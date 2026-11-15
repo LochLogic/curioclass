@@ -1,11 +1,10 @@
 # Job: the agent reads that stand in for outside readers ({kind}, {target})
 
-Added 2026-11-14. Cory, on the Desk: "We have no support for this, it's just us. Ensure that the sensitivity agent is
-well educated, and we will make the best effort we can to teach with honesty and dignity at an age appropriate
-level." And: "Our agents are our best hope for success." So no outside reader is planned. These reads take the
-places FOUNDATION 7.3 once gave to people: a community reader, a health specialist, a science safety teacher, a math
-content reviewer and an ELA teacher. Each runs as a fresh agent that has not seen the work written, and each studies
-before it judges. A read that skips its study step fails, whatever it finds.
+No outside reader is planned (settled 2026-11-14, see DESK-ANSWERS). These agent reads take the places of a
+community reader, a health specialist, a science safety teacher, a math content reviewer, an ELA teacher, a second
+rights reader and a native Spanish reader. The aim is to teach with honesty and dignity at an age-appropriate level.
+Each runs as a fresh agent that has not seen the work written, and each studies before it judges. A read that skips
+its study step fails, whatever it finds.
 
 Slots: {kind} is one of `sensitivity`, `safety`, `answer-key`, `text`, `rights`, `spanish`; {target} is the file or unit read (a frame
 unit, a unit plan, a day, a text); {community} names the people or topic for a sensitivity read; {date}.
@@ -28,13 +27,11 @@ studied", each with a link or a file path and one line on what it taught you:
   method, before opening the key.
 - **text:** the subject lens (docs/agents/lenses/ela.md), docs/RUBRIC-ELA.md, the standard's text-complexity
   guidance, and two published model texts of the same kind and grade.
-- **rights** (added 2026-11-15; Cory 2026-11-14, answer 1: the second rights reader is an agent): the licence or
-  public-domain basis of each outside text, image or base-text lesson, from its own source page (the licence text
-  itself, the publication date and place, the edition), plus docs/FOUNDATION.md's rights rules. Credits stay light:
-  one short credit per adapted day (Cory 2026-11-13).
-- **spanish** (added 2026-11-15; the native Spanish reader is an agent): two published Spanish-language school texts of
-  the same grade and kind, a style guide for neutral Latin American Spanish in schools, and the glossary of terms the
-  course already uses in Spanish.
+- **rights:** the licence or public-domain basis of each outside text, image or base-text lesson, from its own
+  source page (the licence text itself, the publication date and place, the edition), plus docs/FOUNDATION.md's
+  rights rules. Credits stay light: one short credit per adapted day (settled 2026-11-13, see DESK-ANSWERS).
+- **spanish:** two published Spanish-language school texts of the same grade and kind, a style guide for neutral
+  Latin American Spanish in schools, and the glossary of terms the course already uses in Spanish.
 
 ## 2. Read the target
 - **sensitivity:** facts right and plain (BASELINE rule 5: don't soften history or science); the people shown as

@@ -1,33 +1,48 @@
 # Glossary: the locked words
 
-Set 2026-11-12 from the naming scan (docs/reviews/naming-scan-2026-11-12.md), on Cory's rule: "the best known word
-for each thing we build", the same word inside and outside. One row per thing we build. New prose, page copy,
-script messages and Desk cards use the word in the first column. A code name (file, URL, column, id) may lag behind
-its word; where it does, the row says so and why, and the staged plan in the review says when it moves.
+These are the locked words: the best known word for each thing we build, the same word inside and outside the
+project (settled 2026-11-12, card 112 `q-course-level-names`, see DESK-ANSWERS "course level names"; the naming scan
+is docs/reviews/naming-scan-2026-11-12.md). One row per thing we build. New prose, page copy, script messages and
+Desk cards use the word in the first column. A code name (file, URL, column, id) may lag behind its word; where it
+does, the row says so and why, and the staged plan in the naming scan says when it moves.
 
-Two rules sit above the table:
+Two rules sit above the tables:
 
 - **"Curio Class" in full**, always. `Curio.*` (the kit's code namespace, `kit/curio.js`) is code, not a name.
 - **The build steps keep their names:** Idea, Spec, Build, Self-check, Refine, Fix, Exit check, Art and voice,
   Finish check, Sign-off, Live (docs/agents/decisions/BASELINE.md). Because "Exit check" is a step, nothing a
   student sees is called an exit check.
 
-**The course words, settled 2026-11-12** (Desk card 112, `q-course-level-names`; DESK-ANSWERS, "course level
-names"). From the old words to the locked ones: unit (the 1 to 6 day package) became **section**, then stretch became
-**unit**, so "stretch sheet" is now the **unit plan** and the old "unit plan" is the **section plan**; spine and year
-spine became **scope and sequence**; end check became **end-of-unit assessment** and check day **assessment day**;
-exit slip became **exit ticket**; the day kind "Use" became **application**; module (a topic page) became **topic**;
-the tool role "lesson" became **teach**. The mathematical senses of unit (unit fraction, square unit, units of
-measure) are not course words and do not change.
+The mathematical senses of unit (unit fraction, square unit, units of measure) are not course words; they keep
+their ordinary meaning.
 
-**What lags:** ids, item ids, folder and file names keep their old letters and words: `s11-...` item ids, plan files
-`sNN.md`, section folders `uNN-N/` and `data/units.csv`, `math-4-spine.md` and the other `-spine.md` files,
-docs/courses/UNIT-PLAN.md (the section and unit plan template) and docs/courses/LESSON-DAY.md, `module_id` and
-`data/modules.csv`, the worksheet lists' "Module" column. Each row below names its lag.
+## Older words, and where they stay
 
-**History keeps its words.** Dated reports in docs/reviews and docs/archive, and DESK-ANSWERS entries before
-2026-11-12's "course level names" entry, keep the words of their day: read "unit" there as today's section,
-"stretch" as today's unit, "spine" as scope and sequence.
+Code, ids and dated records still carry older words. Read them this way:
+
+| Older word | Means today |
+|---|---|
+| stretch | unit |
+| unit (the 1 to 6 day package) | section |
+| stretch sheet | unit plan |
+| unit plan (the old section-level plan) | section plan |
+| spine, year spine | scope and sequence |
+| end check | end-of-unit assessment |
+| check day | assessment day |
+| exit slip | exit ticket |
+| Use (a day kind) | application |
+| module (a topic page) | topic |
+| lesson (a tool role) | teach |
+
+**Where older names stay on purpose:** ids, item ids, folder and file names keep their old letters and words:
+`s11-...` item ids, plan files `sNN.md`, section folders `uNN-N/` and `data/units.csv`, `math-4-spine.md` and the
+other `-spine.md` files, docs/courses/UNIT-PLAN.md (the section and unit plan template) and
+docs/courses/LESSON-DAY.md, `module_id` and `data/modules.csv`, the worksheet lists' "Module" column. Each row
+below names its lag.
+
+**Records keep their words.** Dated reports in docs/reviews and docs/archive, and DESK-ANSWERS entries before its
+2026-11-12 "course level names" entry, keep the words of their day: read them with the table above ("unit" there is
+today's section, "stretch" is today's unit, "spine" is scope and sequence).
 
 ## The course
 
@@ -47,13 +62,13 @@ docs/courses/UNIT-PLAN.md (the section and unit plan template) and docs/courses/
 | **warm-up** | The first minutes of a day (a grammar warm-up in ELA) | opener (that is the section's teacher page), opening, grammar opener | `days.csv` `opens`, `opens_min` |
 | **goal** (on screen and paper: the "I can" line) | What the day is for, in student words | objective, target | `days.csv` `goal` |
 | **section opener** | The teacher page for a section: the content at an adult's level, why this model, the common errors, the supply list | unit opener, unit overview, intro | `opener.md` in each section folder |
-| **readiness check** | The short set of items, given before a unit opens so its results shape day 1, on what the unit builds on from an earlier grade row last used two or more grades back (a row used the year before, or earlier the same year, gets a retrieval task instead; sequence-write.md rule 2). It takes the last ten minutes of the previous unit's last day, or of the respond day between the two units; unit 1's takes the last ten minutes of day 1, after the hook (lead rule 2026-11-14); never on any other unit's first day (Cory, 2026-11-14, every course) | pre-test, diagnostic, pre-assessment | `items.csv` `check` = `readiness`; `readiness.md`; `days.csv` `assess` = `readiness` (on the day it is given) |
+| **readiness check** | The short set of items, given before a unit opens so its results shape day 1, on what the unit builds on from an earlier grade row last used two or more grades back (a row used the year before, or earlier the same year, gets a retrieval task instead; sequence-write.md rule 2). It takes the last ten minutes of the previous unit's last day, or of the respond day between the two units; unit 1's takes the last ten minutes of day 1, after the hook; never on any other unit's first day, in every course (settled 2026-11-14, see DESK-ANSWERS) | pre-test, diagnostic, pre-assessment | `items.csv` `check` = `readiness`; `readiness.md`; `days.csv` `assess` = `readiness` (on the day it is given) |
 | **readiness day** | The day whose last ten minutes hold the next unit's readiness check | | |
 | **retrieval task** | A short look back inside a day at something taught before; not a check and not marked | readiness check, opening retrieval task | |
 | **facts check** | The multiplication facts check of grade 4 math, given in days 1 to 6 and before day 94 | fluency test, timed test | `facts-check-N.md` |
-| **sub-ready day** | One day per unit in each course (9 a year in grade 4 math), and in ELA K to 5 one per base unit (three per Curio Class unit), written with the unit, that a substitute can run from its page (Cory, 2026-11-12, card 112) | Sub Day (that is the per-tool packet), sub plan | Not built |
+| **sub-ready day** | One day per unit in each course (9 a year in grade 4 math), and in ELA K to 5 one per base unit (three per Curio Class unit), written with the unit, that a substitute can run from its page (settled 2026-11-12, see DESK-ANSWERS) | Sub Day (that is the per-tool packet), sub plan | Not built |
 | **at home** block | The one-child path every day carries for a parent teaching at home; built as the day page's At home view | homeschool version, home track | `### At home` in the day file; `<day>-home.html` |
-| **Teaching map** | The picture of every course's order. Hidden now; Cory's plan is to bring it back, reimagined, after the courses | The Map, teaching map (lower case t in a name) | `/map/`, build flag `--map`, `data/sequence.csv` |
+| **Teaching map** | The picture of every course's order. Hidden now; it comes back, reimagined, after the courses are built (settled 2026-11-12, see DESK-ANSWERS) | The Map, teaching map (lower case t in a name) | `/map/`, build flag `--map`, `data/sequence.csv` |
 | **progression** | The layer above the course: one per subject, all its grades, saying what each grade owns, assumes from the grade before and hands on (ROADMAP layer 4) | learning progression (that is the research term), vertical alignment, map | `data/progressions/<subject>.csv`; the page `docs/courses/math-3-5-progression.md` |
 | **course frame** | The course-level summary: grades, the standards and progression skills it owns, its day total, its unit list with a reason for each, and its source map where it has a base text. Its scope and sequence then sets every day | course map, course outline, spine | `docs/courses/<course>/frame.md`, totals and catalogue id in `data/plans/frames.csv` (`scripts/frame.py sync`); PRODUCTION-PATH step 2 |
 | **check set** | The sources a subject checks its units against beyond the anchor standard (social studies: California, Tennessee, New York and the college-level frameworks; math: the Progressions; science: the practice and crosscutting elements; ELA: candidate texts). Not a student assessment | | the frame's "Check set adds" column; a cell starts "Candidate:" until the scope and sequence settles it |
@@ -61,7 +76,7 @@ docs/courses/UNIT-PLAN.md (the section and unit plan template) and docs/courses/
 | **bridge** | The teaching a unit does itself when the other subject has not yet taught a lean (the frame's "if later" line); its time is inside the unit's days | local bridge, workaround | |
 | **source map** | One row per base-text lesson, placed in one of our units and days with a keep, split, merge, cut or ours decision | course map, crosswalk, alignment | `data/plans/<course>/source-map.csv` |
 | **baseline** | A whole-structure review at a set point in the build order, after which the work is the new reference (baseline 1: all progressions and frames; baseline 2: social studies down to its units) | milestone, checkpoint | PRODUCTION-PATH section 3 |
-| **probe**, **guard** | A few days written from finished unit plans to test them, with "on" and "off" set beforehand. The probe runs as each subject's units are done; the guard runs in every subject before full writing | pilot (a pilot was a unit built to the bottom first; retired 2026-11-13) | PRODUCTION-PATH P4, steps 4 and 7 |
+| **probe**, **guard** | A few days written from finished unit plans to test them, with "on" and "off" set beforehand. The probe runs as each subject's units are done; the guard runs in every subject before full writing | pilot (a pilot was a unit built to the bottom first; no longer part of the plan) | PRODUCTION-PATH P4, steps 4 and 7 |
 
 ## Inside a lesson
 
@@ -87,7 +102,7 @@ docs/courses/UNIT-PLAN.md (the section and unit plan template) and docs/courses/
 | **Find** | The door for something for tomorrow: search, standards, topics, grades, subjects | Browse, Classrooms | Not built. Today's `/classrooms/` page, its **grade rooms** and **subject wings**, fold in here and those three names retire |
 | **Shelves** | The door for everything usable on its own: tools, the Supply Closet, the Reading Room, collections | Library (that is the Reading Room's code name), catalog | Not built. One named collection on it is **a shelf** (the Word Wall shelf) |
 | **Explore** | The door for curiosity and play: Curiosities, Recess, play styles | Fun, Games | Not built |
-| **topic** (topic page) | One subject-and-grade topic with its tools, worksheets, Word Wall, anchor chart and more, tied to its standards | module | URL `/topics/<id>/`, moved from `/modules/<id>/` (1,634 pages), which redirects. Lag: `module_id` in data and scripts, `data/modules.csv`, the search index's `m` field, the "Module" column of the worksheet lists |
+| **topic** (topic page) | One subject-and-grade topic with its tools, worksheets, Word Wall, anchor chart and more, tied to its standards | module | URL `/topics/<id>/`; the old `/modules/<id>/` URLs (1,634 pages) redirect there. Lag: `module_id` in data and scripts, `data/modules.csv`, the search index's `m` field, the "Module" column of the worksheet lists |
 | **standard** | One code of a standards document (4.MD.A.3); **part of a standard** is one verb's worth of it | objective, outcome | `/standards/<code>/`; `parts.csv` |
 | **strand** | The grouping above a standard that a topic page shows: a domain in math and science, a strand in ELA, a discipline in the arts | domain (fine when quoting a math document) | `modules.csv` `strand` |
 | **grade band** | K-2, 3-5, 6-8, 9-12 | span, level | `bands.csv`, `band` |
@@ -122,7 +137,7 @@ docs/courses/UNIT-PLAN.md (the section and unit plan template) and docs/courses/
 |---|---|---|
 | **spec** | The written design of one tool, before Build | brief (a brief is what an agent is handed) |
 | **concept** | A tool's row in `data/tools-concepts.csv` (the Idea step's output) | idea card |
-| **unit plan**, **section plan** | The two planning documents: the unit plan (once the stretch sheet) and the section plan (once the unit plan). Template: docs/courses/UNIT-PLAN.md (file name lags) | stretch sheet |
+| **unit plan**, **section plan** | The two planning documents: the unit plan and the section plan. Template: docs/courses/UNIT-PLAN.md (file name lags) | stretch sheet |
 | **reading pack** | One unit's pack for an agent (`plan.py pack`) | |
 | **wave** | A batch of builds | |
 | **Review Desk** (the Desk) | Cory's queue of cards | Teacher Desk (that is a shelf) |

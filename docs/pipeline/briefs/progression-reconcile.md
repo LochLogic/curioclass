@@ -1,9 +1,8 @@
 # Job: reconcile the {subject} progression with earlier work
 
-Added 2026-11-13 (Cory: write blind, then reconcile; "let the process do the work and save only the big stuff
-that really needs my attention for the desk"). The {subject} progression in data/progressions/{subject}.csv was
-written blind: its writers could not see earlier Curio Class planning. You now compare it with that earlier work,
-so what is good in the old work comes back in on evidence, and nothing is kept only because it was written first.
+The {subject} progression in data/progressions/{subject}.csv was written blind: its writers could not see earlier
+Curio Class planning (settled 2026-11-13, see DESK-ANSWERS). You now compare it with that earlier work, so what is
+good in the old work comes back in on evidence, and nothing is kept only because it was written first.
 
 ## Read
 - docs/pipeline/briefs/progression-write.md (how the rows were made) and docs/agents/lenses/{subject}.md.

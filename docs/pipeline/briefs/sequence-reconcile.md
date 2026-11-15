@@ -1,11 +1,12 @@
 # Job: reconcile the {course} scope and sequence with earlier work
 
-Added 2026-11-14 (PRODUCTION-PATH step 3; the scope and sequence twin of frame-reconcile.md). Cory's rule: write
-blind, then reconcile. docs/courses/{course}/scope-and-sequence.md and data/plans/{course}/days.csv were written
-without sight of the earlier Curio Class planning for this grade. You now compare the two, so what is good in the
-old work comes back in on evidence, and nothing is kept only because it was written first or because days were
-already built on it. The frame was reconciled already (docs/reviews/frame-{course}-reconcile-2026-11-14.md); the
-units, their order and their day totals are settled and do not change here.
+This is the scope and sequence twin of frame-reconcile.md (PRODUCTION-PATH step 3). The rule is to write blind, then
+reconcile (settled 2026-11-13, see DESK-ANSWERS). docs/courses/{course}/scope-and-sequence.md and
+data/plans/{course}/days.csv were written without sight of the earlier Curio Class planning for this grade. You now
+compare the two, so what is good in the old work comes back in on evidence, and nothing is kept only because it was
+written first or because days were already built on it. The frame was reconciled already
+(docs/reviews/frame-{course}-reconcile-2026-11-14.md); the units, their order and their day totals are settled and do
+not change here.
 
 ## Read
 - docs/pipeline/briefs/sequence-write.md (the format and rules) and sequence-read.md, and

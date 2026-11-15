@@ -39,4 +39,8 @@ their own work, and do so only while nobody holds the turn (`turn.py status` say
   anything under .claude/, or the folder S:\CurioClass-spec2.
 - Questions of scope, money, people or audience belong to Cory: put them in your last message, never decide them.
   Item-level choices (a number, a wording, a key) you decide and say so.
+- A decision changes the doc that holds the rule, in place, and adds one line to
+  docs/agents/decisions/DESK-ANSWERS.md, the decision log (who decided what, when and why). Never add a new dated
+  paragraph under an old rule. Living docs state each rule once, as it stands now; dated reports under docs/reviews/
+  are records and are never rewritten.
 - Work directly: read what you need, write, run the gates, stop. Your token use is measured.

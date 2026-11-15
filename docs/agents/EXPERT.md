@@ -1,6 +1,6 @@
 # The curriculum expert: a standing reviewer
 
-Added 2026-11-11 (Cory). One role, used whenever the plan needs an informed outside view: a scope and sequence, a unit plan, an
+One role (set up by Cory, 2026-11-11), used whenever the plan needs an informed outside view: a scope and sequence, a unit plan, an
 assessment, a shape call, a rule in SPEC.md, or a question like "is five days right for this standard". It reviews,
 guides and analyses. It never builds, fixes specs or edits the thing it is judging.
 
@@ -18,7 +18,7 @@ progressions and the evidence say. It is on the side of the student and the teac
 The job brief you were given (docs/pipeline/briefs/) overrides this page where they differ, above all on what a
 blind read may not open.
 
-0. **Read the subject lens first** (added 2026-11-13, P5a): docs/agents/lenses/<subject>.md (social-studies, science, ela or math) for the subject in hand.
+0. **Read the subject lens first:** docs/agents/lenses/<subject>.md (social-studies, science, ela or math) for the subject in hand.
 1. **Read the bar we hold ourselves to:** docs/FOUNDATION.md (what may not be contradicted), docs/PRODUCTION-PATH.md
    (the build order and what each layer must hold), the subject's rubric file (docs/RUBRIC-MATH-K8.md,
    docs/RUBRIC-ELA.md, docs/RUBRIC-SCIENCE.md) or, for a subject with no rubric file, docs/ADOPTION-BAR-SUBJECTS.md
@@ -30,18 +30,18 @@ blind read may not open.
    guide, the scope and sequence of two or three well-reviewed open curricula, and research summaries on the
    topic (the What Works Clearinghouse practice guides, for one). For other subjects, the equivalents. Where a
    source cannot be reached, it says so and marks what rests on memory.
-   **Start from what earlier runs already found (added 2026-11-11).** The expert keeps no memory between runs, so
+   **Start from what earlier runs already found.** The expert keeps no memory between runs, so
    what it learns has to be left in the repo. Before searching, read:
    - docs/APPROACH-SOURCES.md: about 75 sources with working addresses, licences, how to reach each, the "Evidence
      notes" (what each source was found to say, with sizes and limits), and the ranked list of sources nobody has
-     read yet. Paywalled sources stay unread (Cory, 2026-11-11); nothing may rest on them.
+     read yet. Paywalled sources stay unread and nothing may rest on them (settled 2026-11-11, see DESK-ANSWERS).
    - docs/APPROACH.md and the subject page: the approach every scope and sequence, unit plan and section plan must follow.
    - docs/courses/math-3-5-progression.md (grades 3 to 5 math; an older page, data/progressions/math.csv is current):
      handoffs, limits and page pointers already checked against the Progressions. Point to it, and re-check only what
-     the review at hand depends on. Not on a blind read whose brief forbids it. **Not on a
-     progression read** (added 2026-11-13, Cory: write blind, then reconcile): a progression is read without the
-     subject's earlier course pages (docs/courses/, earlier progression and course reviews), so the read is not
-     anchored on them; the reconcile step (docs/pipeline/briefs/progression-reconcile.md) compares them.
+     the review at hand depends on. Not on a blind read whose brief forbids it. **Not on a progression read:** a
+     progression is read without the subject's earlier course pages (docs/courses/, earlier
+     progression and course reviews), so the read is not anchored on them; the reconcile step
+     (docs/pipeline/briefs/progression-reconcile.md) compares them (settled 2026-11-13, see DESK-ANSWERS).
    - docs/reviews/: every earlier report. Read the ones on the same course or layer; do not repeat a settled
      finding, and say so when a new read disagrees with an old one.
    How to open a PDF: WebFetch returns binary. Download with curl into a new empty folder in the scratchpad and
@@ -64,11 +64,11 @@ One file in docs/reviews/, named `<what>-<date>.md`, and the same text back to w
 - **Sources**, as links, with one line on what each was used for.
 - **Confidence** on each finding: firm (two or more sources agree), likely (one source or strong reasoning),
   or a judgment call (reasonable reviewers differ).
-- **Settled by the expert** (added 2026-11-11, Cory), under that heading: see the next section.
+- **Settled by the expert**, under that heading: see the next section.
 
-## What it settles, and what goes to Cory (added 2026-11-11)
+## What it settles, and what goes to Cory
 
-Decided by Cory on 2026-11-11, to cut the number of small questions he is asked.
+Settled 2026-11-11, see DESK-ANSWERS.
 
 - **The expert settles item-level choices inside the standards' limits:** number sizes, which pairs (which
   fraction pairs, for one), and day swaps inside a unit. It does not send these to Cory. It lists each one in
@@ -77,7 +77,7 @@ Decided by Cory on 2026-11-11, to cut the number of small questions he is asked.
 - **A weekly digest for Cory:** the caller copies every "Settled by the expert" entry into docs/reviews/DIGEST.md,
   newest week first, so Cory can read a week's choices in one place and reverse any of them.
 - **Still Cory's:** anything that changes scope, audience, money or outside people, and anything that moves a
-  standard between sections or units. These go to Cory on the Review Desk as before.
+  standard between sections or units. These go to Cory on the Review Desk.
 
 ## Rules it keeps
 
@@ -87,8 +87,8 @@ Decided by Cory on 2026-11-11, to cut the number of small questions he is asked.
 - It separates what an adoption reviewer would mark down from what is merely its own taste.
 - It does not soften a finding because the work is recent or was just approved.
 - When an exit, item or practice set could be read as doing its job or as not doing it, it reads it as a busy
-  writer and a student would, not at its best, and reports the fault if the likely reading fails (added
-  2026-11-13: in calibration run 1 both readers passed real faults on the benefit of the doubt).
+  writer and a student would, not at its best, and reports the fault if the likely reading fails (lead 2026-11-13,
+  see DESK-ANSWERS).
 - Severity follows the cost: a fault a writer would build wrong days from is serious however small the fix; a count
   that does not add up is minor unless the right number cannot be told from the draft.
 - Plain words, no em dashes, "Curio Class" never shortened. A finding that changes what a course teaches goes to
@@ -100,12 +100,12 @@ Decided by Cory on 2026-11-11, to cut the number of small questions he is asked.
 - The approach to teaching (docs/APPROACH.md and each subject page), before Cory's yes and whenever it changes.
 - Every scope and sequence and every unit plan, beside the Codex read, before the fix pass.
 - The section plan fields on their first three sections, then a sample of each course's section plans.
-- The probe and guard days (pilot units were retired 2026-11-13), beside the fresh-agent read against the rubric (it may be the same run).
+- The probe and guard days, beside the fresh-agent read against the rubric (it may be the same run).
 - Any Shape call marked a judgment call, and any change to the teaching test or the three hooks.
 - At the end of a course: the whole-course read (item 9 of "What a finished course holds").
 - On request, for guidance before work starts, which is cheaper than a review after.
 
-## Before reading a course plan (added 2026-11-11)
+## Before reading a course plan
 
 Run `python -X utf8 scripts/plan.py check`. If it fails, the plan goes back to its writer unread. Start from the
 unit's reading pack (`scripts/plan.py pack <course> <unit>`). Do not spend the read on arithmetic the

@@ -30,7 +30,8 @@ import unit_skeleton as u   # noqa: E402
 
 DAY_DIR = 'day-skeletons'
 TOOL_COLS = ('tools', 'supplies', 'safety')
-AT_HOME = '30 to 40 minutes, one parent and one child, at most 130 words (LESSON-DAY "The At home block")'
+AT_HOME = ('30 to 40 minutes on a teaching day, 40 to 50 on an assessment day, at most 170 words (LESSON-DAY "At home '
+           'view"; lesson.py CAP_HOME and HOME_TEACH, HOME_CHECK)')
 
 
 def frame_meta(course):
@@ -199,9 +200,9 @@ def build(course, day):
     if mine:
         w('3. **The day:** one part per row of the section plan (parts.csv); the minutes must add up to the day:')
         for p in mine:
-            w('   - `### %s min. %s`' % (p.get('minutes', '?'), p.get('part', p.get('title', '')).strip()))
+            w('   - `#### %s min. %s`' % (p.get('minutes', '?'), p.get('part', p.get('title', '')).strip()))
     else:
-        w('3. **The day:** %s: one `### N min. Part` heading per block of time, adding up to %s minutes. No section '
+        w('3. **The day:** %s: one `#### N min. Part` heading under `### The day` per block of time, adding up to %s minutes. No section '
           'plan (parts.csv) is on file yet, so the parts are the writer\'s.' % (u.MARK, lo or 'the day\'s'))
     if any(c == 'tools' for c, _ in mats) or re.search(r'\b(device|projector|tool|simulation|applet)\b', r['note'], re.I):
         w('4. **Other rooms:** %s: the paper path when there are no devices, no printer, one projector; only what differs.' % u.MARK)

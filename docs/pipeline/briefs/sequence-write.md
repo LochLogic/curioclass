@@ -1,10 +1,10 @@
 # Job: write the scope and sequence of {course}
 
-Added 2026-11-14 (PRODUCTION-PATH step 3; baseline 1 structure finding 2). A scope and sequence sets every course day
-of a course in order, by unit: what each day is for, its kind, the skills and standards it carries, and where the
-assessments fall. It starts from the course frame and changes none of the frame's units, owned rows or day counts.
-It writes no items, answer keys, section plans or lessons: unit plans (step 4) and section plans (step 7) do. Social
-studies goes first; the other subjects follow in step 5.
+A scope and sequence (PRODUCTION-PATH step 3) sets every course day of a course in order, by unit: what each day is
+for, its kind, the skills and standards it carries, and where the assessments fall. It starts from the course frame
+and changes none of the frame's units, owned rows or day counts. It writes no items, answer keys, section plans or
+lessons: unit plans (step 4) and section plans (step 7) do. Social studies goes first; the other subjects follow in
+step 5.
 
 ## Read first (in S:\CurioClass)
 1. AGENTS.md; docs/PRODUCTION-PATH.md steps 2 to 4; docs/GLOSSARY.md (unit, course day, school day, week,
@@ -45,7 +45,7 @@ studies goes first; the other subjects follow in step 5.
   - **school_day**: blank for a course that meets every school day (course day n is school day n). A course meeting
     fewer days a week fills it, so its days sit on the weeks CALENDAR.md gives.
   - **note**: a bridge, a lean's timing, a sensitivity flag, a base-text lesson range.
-  - **Optional columns after `note`, math and science only** (added 2026-11-14): `day,...,school_day,note,tools,supplies,safety`.
+  - **Optional columns after `note`, math and science only**: `day,...,school_day,note,tools,supplies,safety`.
     Social studies and ELA files do not have them and are never checked for them. Each cell is a `; `-separated list
     ("ruler; protractor"), empty when there is none; no empty item, no trailing semicolon. They feed the unit plan's
     field 8 (UNIT-PLAN.md, tools and supplies across the unit) and the skeleton's tools and supplies lines.
@@ -68,31 +68,37 @@ studies goes first; the other subjects follow in step 5.
 ## The rules
 1. **Units stay as the frame sets them.** Same order, same days, same owned rows. A unit that does not fit goes under
    "For the lead" with the fix, never quietly resized.
-2. **Every unit closes with an end-of-unit assessment inside its days** (K to 2: an observation task over the unit's
-   last lessons may stand for it), and the plan names its response time once: in the same day or on a respond day.
-   **A unit over 25 days also holds a mid-unit assessment** inside its days (where a base text has its own, use it).
-   **Readiness or retrieval** (settled 2026-11-14 for all 15 social studies courses; frame-write lesson 16 uses the
-   same words): a row used the year before, or earlier the same year, opens as a retrieval task inside a day; every
-   other earlier-grade row the unit assumes (last used two or more grades back) gets a readiness check. **When**
-   (Cory, 2026-11-14, one timing in every course): before the unit opens, so its results shape day 1, in the last ten
-   minutes of the previous unit's last day, or of the respond day or course-level check respond day where one sits
-   between the two units; a few days ahead at most, never weeks. That day carries `assess` = `readiness`, or, if it
-   already holds another assess value, keeps it and its note says "plus the next unit's readiness check (10
-   minutes)". Unit 1's check, where unit 1 has readiness rows, takes the last ten minutes of day 1, after the hook,
-   and day 1 carries `assess` = `readiness` (lead rule 2026-11-14; sequence.py accepts it). Every other unit's first
-   day never holds a readiness check: it stays clean for the hook and the compelling question.
-   The rows a readiness check samples for the next unit are named by id in that day's note, never in its `skills`
-   column: `skills` holds only what the day's own unit works on (lead rule 2026-11-15; the skeleton reads an
-   earlier-grade id in `skills` as a row of the day's own unit).
-   **Count by grade number, and this rule wins over the frame's wording** (lead, 2026-11-14, after nine science
-   reads found three readings): a row last used in grade g gets retrieval in grade g+1 and a readiness check in grade
-   g+2 or later. "Idle two or more grades" in a frame means the same thing, never "two grades in between". A row
-   counts as used only where a day of that grade's scope and sequence teaches or assesses it, not where it is
-   "revisited" or "kept in use" in passing. One hop also counts (lead, 2026-11-15): a day that teaches a row whose
-   progression `assumes` names the earlier row uses that row too, since it builds directly on it; a day noted as retrieval or
-   readiness counts this way only where its kind is Understanding or Application. The skeleton (scripts/unit_skeleton.py) and the scope gate count it
-   this way. List every earlier-grade row with its last-use grade and its treatment
+2. **Assessments, readiness and retrieval.**
+   **End and mid:** every unit closes with an end-of-unit assessment inside its days (K to 2: an observation task
+   over the unit's last lessons may stand for it), and the plan names its response time once: in the same day or on
+   a respond day. A unit over 25 days also holds a mid-unit assessment inside its days (where a base text has its
+   own, use it).
+   **Readiness or retrieval:** a row used the year before, or earlier the same year, opens as a retrieval task inside
+   a day; every other earlier-grade row the unit assumes (last used two or more grades back) gets a readiness check.
+   frame-write lesson 16 uses the same words. List every earlier-grade row with its last-use grade and its treatment
    before you place a day.
+   **Count by grade number**, and this rule wins over the frame's wording (lead 2026-11-14, see DESK-ANSWERS): a row
+   last used in grade g gets retrieval in grade g+1 and a readiness check in grade g+2 or later. "Idle two or more
+   grades" in a frame means the same thing, never "two grades in between". A row counts as used only where a day of
+   that grade's scope and sequence teaches or assesses it, not where it is "revisited" or "kept in use" in passing.
+   One hop also counts: a day that teaches a row whose progression `assumes` names the earlier row uses that row too,
+   since it builds directly on it; a day noted as retrieval or readiness counts this way only where its kind is
+   Understanding or Application. The skeleton (scripts/unit_skeleton.py) and the scope gate count it this way.
+   **When** (one timing in every course, settled 2026-11-14, see DESK-ANSWERS): the readiness check is given before
+   the unit opens, so its results shape day 1, in the last ten minutes of the previous unit's last day, or of the
+   respond day or course-level check respond day where one sits between the two units; a few days ahead at most,
+   never weeks. That day carries `assess` = `readiness`, or, if it already holds another assess value, keeps it and
+   its note says "plus the next unit's readiness check (10 minutes)". Unit 1's check, where unit 1 has readiness
+   rows, takes the last ten minutes of day 1, after the hook, and day 1 carries `assess` = `readiness`
+   (sequence.py accepts it). Every other unit's first day never holds a readiness check: it stays clean for the hook
+   and the compelling question.
+   **Readiness rows go in the note:** the rows a readiness check samples for the next unit are named by id in that
+   day's note, never in its `skills` column. `skills` holds only what the day's own unit works on, because the
+   skeleton reads an earlier-grade id in `skills` as a row of the day's own unit.
+   **Math leans in other subjects:** students take math every year, so a lean on a math row opens with retrieval by
+   default. It gets a readiness check only where a performance expectation rests on it and no math course uses the
+   row after its grade; where a math course of the same year (Algebra II beside physics) checks or uses it first, the
+   other subject retrieves it, and where the other subject uses it first, it gives the readiness check.
    **End days:** where one end day would ask for full performances on two or more expectations, spread them over
    the unit's last days (no day added), and run whole-class performances in small groups where the day is short.
    In math a full performance is an extended task (multi-step with an explanation, or a modeling task); an end day
@@ -101,21 +107,16 @@ studies goes first; the other subjects follow in step 5.
    only keep, split (one base lesson over two or more days), merge, cut, ours.
    **Checks claim only what they sample:** a check day lists the codes it actually samples, never the whole unit
    or year, and a code is assessed only after a day teaches it. A retrieval opening is practice, never check evidence.
-   **Collect once** (lead, 2026-11-15, after the same fault in all six ELA K to 5 courses): evidence gathered child
-   by child (a one-to-one reading, a conference) is taken once per assessment window. A course-level check or end day
-   within ten days of it reuses that record and says so; it never collects the same evidence again. A course-level
-   check never repeats a task form given in the last two weeks.
-   **Our words** (lead, 2026-11-15, after math grade 1 copied 140 base lesson purposes): every goal, note and
-   source-map cell is written fresh in Curio Class words. Never copy or lightly edit a base text's lesson purpose,
-   learning goal, title sentence or teacher note, even where its licence allows it. **Class size:** minute budgets for
-   one-to-one or small-group evidence plan for 30 students.
-   **Math leans in other subjects** (lead, 2026-11-15): students take math every year, so a lean on a math row opens
-   with retrieval by default. It gets a readiness check only where a performance expectation rests on it and no math
-   course uses the row after its grade; where a math course of the same year (Algebra II beside physics) checks or uses
-   it first, the other subject retrieves it, and where the other subject uses it first, it gives the readiness check.
    **Each part of each code:** every observation, end-of-unit and check task asks about each part of each code it
    lists (a short prompt per part; no day added); a product or an observed performance may stand for a code where
    the day says so.
+   **Collect once:** evidence gathered child by child (a one-to-one reading, a conference) is taken once per
+   assessment window. A course-level check or end day within ten days of it reuses that record and says so; it never
+   collects the same evidence again. A course-level check never repeats a task form given in the last two weeks.
+   **Class size:** minute budgets for one-to-one or small-group evidence plan for 30 students.
+   **Our words:** every goal, note and source-map cell is written fresh in Curio Class words. Never copy or lightly
+   edit a base text's lesson purpose, learning goal, title sentence or teacher note, even where its licence allows it
+   (lead 2026-11-15, see DESK-ANSWERS).
 3. **Course-level checks** come from the frame's Course-level checks table: `C` days after the unit it names, each
    followed by at least one respond day, review days where the table has them. **A course-level check right after a
    unit's end-of-unit assessment draws its items for that unit's skills from earlier units**, so it does not repeat
@@ -133,8 +134,8 @@ studies goes first; the other subjects follow in step 5.
 7. **Days by load.** Weigh each owned row's notes; a unit's teaching days follow its load, not equal shares.
 8. **Base texts:** where the course has one, write data/plans/{course}/source-map.csv (one row per base lesson, the
    course unit and day it lands on, keep, split, merge, cut or ours, with the reason for a cut); a source-map row may
-   name a unit before its sections exist. **One layout in every subject** (lead, 2026-11-15, after the reads found a
-   different layout in each map; sequence.py gates it), columns in this order:
+   name a unit before its sections exist. **One layout in every subject** (sequence.py gates it), columns in this
+   order:
    `source,title,goals,standards,unit,days,decision,why,order_conflict,harms_learning`, then `url` if wanted.
    `source` is the base lesson's own id (IM G3 U2 L5, EL G4 M1 U1 L6, OSE 7.1 L3), or `ours` for a day with no base
    lesson; `title` is the base lesson's title, short; `goals` and `standards` are the base lesson's, in our own words;
@@ -147,9 +148,8 @@ studies goes first; the other subjects follow in step 5.
    (docs/pipeline/briefs/sensitivity-read.md) comes with the unit plan.
 10. **A shorter path.** The scope and sequence has a short "Shorter path" section (FOUNDATION section 5, adoption
     bar C2): how the days hold on a shorter period, and a year about 10 days short, by named fold-in days (days whose
-    work folds into a neighbour, nothing assessed and no owned part cut). Each fold-in day names the minutes
-    it saves, and the section states its total against the frame's day count (lead, 2026-11-15, one rule for every
-    subject).
+    work folds into a neighbour, nothing assessed and no owned part cut). Each fold-in day names the minutes it
+    saves, and the section states its total against the frame's day count. The same rule holds in every subject.
 11. No em dashes; "Curio Class" in full; no company names. Edit only your files. No git.
 
 ## The gate
@@ -157,9 +157,10 @@ Run `python -X utf8 scripts/sequence.py check {course}` (also run by `python -X 
 numbered in order, the frame's total and each unit's days, `stretch` in 1 to the unit count or `C`, the five kinds,
 an end-of-unit assessment per unit, a mid-unit assessment in units over 25 days, a respond day after each
 course-level check, each `readiness` day on the previous unit's last day or a respond day at most 3 days before a
-unit's first day and never on a first day except unit 1's day 1, every owned skill placed, every owned code placed (a note), the .md file present, not empty, with
-its title and a section per unit, and a "Shorter path" section (a note). Then run
-`python -X utf8 scripts/frame.py calendar` and say in your last message whether your course breaks the stagger rule.
+unit's first day and never on a first day except unit 1's day 1, every owned skill placed, every owned code placed
+(a note), the .md file present, not empty, with its title and a section per unit, and a "Shorter path" section (a
+note). Then run `python -X utf8 scripts/frame.py calendar` and say in your last message whether your course breaks
+the stagger rule.
 
 Final message, short: units and days, the check weeks, the gate result, the Candidate cells settled, the "For the
 lead" items, what you were unsure of.
