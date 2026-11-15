@@ -20,7 +20,7 @@ Days 1 to 24, weeks 1 to 5. Anchor and C3 codes: MA.3.T1.1, MA.3.T2.1, MA.3.T2.2
 
 The arc opens on a person (day 1: a short biography tied to the town's founding or a landmark), so the question has a human face, then widens to the globe (days 3 to 6), narrows to the town map (days 7 to 10), widens again to state and region (days 11 to 15), and comes back to how people, Native nations among them, changed this land (days 16 to 18). The claim is modelled from two very short sources, a map and a photograph (day 19), so naming two sources and saying how each supports one claim is met at the start; the evidence is gathered with the supporting questions, each with the facts it needs and one idea people read two ways (day 20, D1.3 and D1.4), and the claim written (day 21). Unit 5 revisits the two-source model on day 117 before its two-source claim. Globe before town map because the grid and hemispheres are the frame for "where"; the town map before the region because scale in whole bar lengths is easiest on a familiar place; land change last because it needs both the map and the early map beside it.
 
-- Readiness: the start-of-year check, before day 1, on grade 1's ss1-leaders (dormant across grade 2); day 1 opens on the compelling question and the first biography, and the one-lesson reteach sits in day 2 in a small group.
+- Readiness: the last ten minutes of day 1, after the hook, on grade 1's ss1-leaders (dormant across grade 2); day 1 opens on the compelling question and the first biography, and the one-lesson reteach sits in day 2 in a small group.
 - End-of-unit assessment: day 23, every owned code: the town map read and a small map drawn, grid, hemisphere and climate, the region's states and features, a land change and the culture behind it, the D1 question work, and a short claim from a source not seen before. Respond: day 24.
 - Candidate (New York grade 3, location by continent and hemisphere practised on world communities): kept, inside day 4, no added day.
 - Leans: ELA W.3.1 later, bridged on days 19 and 21; science 3-ESS2-2 later (science unit 6), day 6 teaches warmth and rainfall itself.
@@ -68,7 +68,7 @@ Time order. The timeline is taught first (days 91 to 92) so every event after it
 
 - Mid-unit assessment: day 105 (the unit is 32 days), every part of the first-half codes: the three colonies on the timeline, why Europeans sailed west, an explorer's route, an explorer's account and an early map, and every part of MA.3.T4.1 and its lettered parts; its response opens day 106.
 - End-of-unit assessment: day 120, every owned code: the second-half codes in full (leaders compared, the spread and what it meant, daily life and change since, slavery, sea trade, barter and port towns, a route), the first-half codes as one short prompt each, and a claim from two unseen sources. Respond: day 121.
-- Candidate (Tennessee 2024 grade 3, New France and New Netherland on the map): kept, inside day 94.
+- Candidate (Curio Class context addition, New France and New Netherland on the map; no Tennessee grade 3 requirement claimed): kept, inside day 94.
 - King Philip's War: not placed (the frame allows it only if days allow; grade 5 unit 1 teaches it with English and Native sources).
 - Leans: ELA grade 3 unit 1's Booker T. Washington selection is named as a retrieval point on day 111; the unit teaches the history itself.
 

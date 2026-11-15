@@ -107,7 +107,7 @@ and Cross-subject ids, and outside-reader wording (baseline 1 structure fixes, 2
     check (added 2026-11-14, as the science frames applied it; these words settled 2026-11-14 for all 15 social
     studies courses, the same as sequence-write.md rule 2). It is given before the unit opens, so its results shape
     day 1: the last ten minutes of the previous unit's last day, or of the respond day or course-level check respond
-    day between the two units, a few days ahead at most; unit 1's is served by the start-of-year check. Day 1 of a
+    day between the two units, a few days ahead at most; unit 1's takes the last ten minutes of day 1, after the hook. Day 1 of any other
     unit stays clean for the hook and the compelling question (Cory, 2026-11-14, one timing in every course).
 
 ## Rules

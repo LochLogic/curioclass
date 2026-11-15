@@ -12,8 +12,13 @@ failure.
 Fails on:
   - a marker line left by scripts/unit_skeleton.py (the TODO word with "(writer)");
   - a missing field heading of UNIT-PLAN.md (fields 2 to 10 as `## N. ...`) or the day list;
-  - an owned code, or a lettered part of one, that days.csv gives the unit and the plan never names;
-  - an assessment day (end or mid) whose codes and lettered parts are not each a row of field 5 with an item written;
+  - an owned code, or a lettered part it owes, that days.csv gives the unit and the plan never names (parts owed:
+    unit_skeleton.parts_of; a choice standard owes no part, and when days.csv cites parts of a code a unit owes only
+    the parts it cites);
+  - an assessment day (end or mid) whose codes and owed parts are not each a row of field 5 with an item written; an
+    observation day (observe) whose codes are not each named in the code cell of a field 5 item row;
+  - a "?" standing for a lost apostrophe, quote or accented letter (a "?" inside a word, or opening a word), or the
+    replacement character; URLs and code spans are skipped;
   - an em dash anywhere; "Curio" not followed by " Class";
   - a header day range, a day count or a day list that disagrees with days.csv (the day numbers and kinds);
   - a readiness check given on the unit's first day (field 4 `Given:` line), except in the course's first unit, whose
@@ -27,8 +32,9 @@ Fails on:
   - ELA only, a note and never a failure: an anchor text of data/plans/ela-texts.csv for the unit that field 2 and field 10
     both leave unnamed;
   - math, ELA and science: a source-map.csv row of the unit whose source id field 10 does not name;
-  - more than 1,250 words outside fields 4, 5, 6, the day list and skel blocks (UNIT-PLAN.md, "Length": unit plan cap; the
-    section plans are separate files, so the merged 1,800 does not apply).
+  - over the word cap of UNIT-PLAN.md, "Length" (the one home of the rule): 1,250 words for a unit plan, outside fields
+    4, 5 and 6, the day list and skel blocks; 1,800 for a one-section merged document (one with `## U3.` to `## U11.`
+    section fields after the day list), outside the same and U3, U4 and U6.
 """
 import re
 import sys
@@ -38,11 +44,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import unit_skeleton as sk  # noqa: E402
 
 MARK = sk.MARK
-CAP = 1250
+CAP = 1250          # a unit plan (UNIT-PLAN.md, "Length")
+CAP_MERGED = 1800   # a one-section unit, one merged document (U3 to U11 after the day list)
 NOTES = []          # notes printed ahead of a file's PASS or FAIL line; they never fail a file
 SHOWN = ['']        # the path being checked, for the notes
 FIELDS = list(range(2, 11))
-UNCOUNTED = {4, 5, 6, 'days'}
+UNCOUNTED = {4, 5, 6, 'days', 'U3', 'U4', 'U6'}
 
 
 def load_sections(lines):
@@ -50,8 +57,11 @@ def load_sections(lines):
     heads = []
     for i, ln in enumerate(lines):
         m = re.match(r'^## (\d+)\.\s', ln)
+        mu = re.match(r'^## U(\d+)\.\s', ln)
         if m:
             heads.append((int(m.group(1)), i))
+        elif mu:
+            heads.append(('U' + mu.group(1), i))
         elif re.match(r'^## Day list\b', ln):
             heads.append(('days', i))
     spans = {}
@@ -104,7 +114,7 @@ def check_file(path, course, unit):
             bad(spans[f][1][0] + 1, 'field %d heading twice' % f)
     if 'days' not in spans:
         bad(0, 'missing "## Day list" section')
-    order = [k for k, _ in heads if k != 'days']
+    order = [k for k, _ in heads if isinstance(k, int)]
     if order != sorted(order):
         bad(0, 'fields out of order')
 
@@ -156,7 +166,8 @@ def check_file(path, course, unit):
 
     # codes
     f2 = chr(10).join(lines[spans[2][0][0]:spans[2][0][1]]) if 2 in spans else ''
-    for c in sk.required_codes(rows):
+    allrows = sk.days_rows(course)
+    for c in sk.required_codes(rows, allrows):
         if not re.search(r'(?<![\w.])%s(?![A-Za-z0-9])' % re.escape(c), f2):
             bad(0, 'code %s%s not named in field 2' % (c, ' (lettered part)' if c[-1].islower() and c[:-1] in sk.std_text() else ''))
 
@@ -178,13 +189,27 @@ def check_file(path, course, unit):
     if 5 in spans:
         s, e = spans[5][0]
         have = {}
+        items = []      # (line, code cell, longest other cell) of every numbered row, for observation days
         for i in range(s, e):
             ln = lines[i]
             if ln.startswith('|'):
                 c = cells(ln)
                 if len(c) >= 4 and c[0].isdigit():
                     have[(int(c[0]), c[1])] = (i + 1, c[3])
+                if len(c) >= 3 and c[0].isdigit():
+                    items.append((i + 1, c[1], max(len(x.split()) for x in c[2:])))
         for r in rows:
+            if r['assess'] == 'observe':
+                # observation tables are numbered by item, not day: each code named in some item's code cell
+                d = int(r['day'])
+                for c in sk.split_list(r['codes']):
+                    rx = r'(?<![\w.])%s(?![A-Za-z0-9])' % re.escape(c)
+                    hit = [x for x in items if re.search(rx, x[1])]
+                    if not hit:
+                        bad(s + 1, 'observation day %d: no item row names %s in its code cell' % (d, c))
+                    elif all(x[2] < 3 for x in hit):
+                        bad(hit[0][0], 'observation day %d: item for %s is empty' % (d, c))
+                continue
             if r['assess'] not in ('end', 'mid'):
                 continue
             d = int(r['day'])
@@ -192,7 +217,7 @@ def check_file(path, course, unit):
             full = []
             for c in acodes:
                 full.append(c)
-                full.extend(k for k in sk.children(c) if k not in acodes)
+                full.extend(k for k in sk.parts_of(c, rows, allrows) if k not in acodes)
             if not any(k[0] == d for k in have):
                 bad(s + 1, 'no item rows for assessment day %d' % d)
                 continue
@@ -202,6 +227,13 @@ def check_file(path, course, unit):
                     bad(s + 1, 'assessment day %d: no item for %s' % (d, c))
                 elif MARK not in row[1] and len(row[1].split()) < 3:
                     bad(row[0], 'assessment day %d: item for %s is empty' % (d, c))
+
+    # "?" for a character lost to encoding (an apostrophe, quote or accented letter written as "?")
+    for i, ln in enumerate(lines, 1):
+        x = re.sub(r'`[^`]*`', ' ', ln)
+        x = re.sub(r'\]\([^)]*\)|<https?://[^>]*>|https?://\S+', ' ', x)
+        if '\ufffd' in x or re.search(r'\w\?\w', x) or re.search(r'(?:^|[\s(\[|])\?(?=[A-Za-z0-9])', x):
+            bad(i, '"?" or the replacement character where a letter, apostrophe or quote was lost (write UTF-8)')
 
     # subject checks (mechanical only); social studies has none
     if not sk.is_ss():
@@ -217,8 +249,11 @@ def check_file(path, course, unit):
     body = re.sub(r'<!-- skel -->.*?<!-- /skel -->', ' ', body, flags=re.S)
     body = re.sub(r'<!--.*?-->', ' ', body, flags=re.S)
     count = len(re.findall(r'\S+', body))
-    if count > CAP:
-        bad(0, '%d words outside fields 4, 5, 6 and the day list, cap %d' % (count, CAP))
+    merged = any(isinstance(k, str) and k.startswith('U') for k, _ in heads)
+    cap = CAP_MERGED if merged else CAP
+    if count > cap:
+        bad(0, '%d words outside fields 4, 5, 6%s and the day list, cap %d%s'
+            % (count, ', U3, U4, U6' if merged else '', cap, ' (merged one-section document)' if merged else ''))
     return msgs
 
 

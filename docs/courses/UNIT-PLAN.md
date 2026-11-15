@@ -173,8 +173,10 @@ opens, so its results shape day 1. It takes the last ten minutes of the previous
 day or course-level check respond day where one sits between the two units; that day is the one days.csv marks
 `assess` = `readiness` (or, when it already holds another assess value, keeps that value and its note says "plus the
 next unit's readiness check (10 minutes)"). It is given a few days ahead at most, never weeks, so the results stay
-fresh. A unit 1 readiness check is served by the start-of-year check. Day 1 of every unit stays clean for the hook
-and the compelling question: no readiness check on a unit's first day. Where the last day is a full end-of-unit
+fresh. Unit 1's readiness check, where unit 1 has readiness rows, takes the last ten minutes of day 1, after the
+hook and the compelling question, and days.csv marks day 1 `readiness` (lead rule 2026-11-14; no sitting comes
+before day 1). Every other unit's day 1 stays clean for the hook and the compelling question: no readiness check
+on a unit's first day. Where the last day is a full end-of-unit
 assessment day, it runs end-of-unit assessment 30, respond 20, the next unit's readiness check 10.
 
 **5. End-of-unit assessment, whole.** *Shared.* A table: number; code and practice; the part of the standard (the verb) it
@@ -271,7 +273,10 @@ U11. Three things move so nothing is written twice:
 
 Count words, not pages. A page depends on the screen.
 
-Decided by Cory, 2026-11-11 (Desk card q-plans-4d-1). These replace the first caps (see "Decided").
+Decided by Cory, 2026-11-11 (Desk card q-plans-4d-1). These replace the first caps (see "Decided"). This list is
+the one home of the caps: `scripts/unitplan.py` enforces the unit plan cap (1,250) on every `sNN.md` and the
+merged cap (1,800) on any `sNN.md` with `## U3.` to `## U11.` headings, counting U5 and U7 to U11 (structure
+pass 2026-11-14; before it the gate read every merged document at 1,250 and skipped the U fields).
 
 - **Section plan:** 1,250 words, not counting fields 3 (checks), 4 (errors) and 6 (days).
 - **Unit plan:** 1,250 words, not counting its check tables and error register (fields 4, 5 and 6).
@@ -314,7 +319,7 @@ lesson: nothing here is built or tried with children. Fields follow UNIT-PLAN.md
 
 ## 4. Readiness check, whole
 Day _ (before the unit opens: the last ten minutes of the previous unit's last day or of the respond day between;
-unit 1: the start-of-year check), or "Retrieval only:" with
+unit 1: the last ten minutes of day 1, after the hook), or "Retrieval only:" with
 each retrieval task's row, day and prompt.
 
 | # | Code | The item | Key | Serves section |

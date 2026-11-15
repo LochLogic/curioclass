@@ -167,7 +167,7 @@ community's people make it richer.
 
 Order: culture and the questions (days 72 and 73), a practice interview with a staff member before the real one (74
 and 75), the interview read as a source and placed on a timeline (76), then what moves with people, with two cultural examples compared,
-and what changes, with one goal the whole community shares (77 and 78), and the modeled claim (79), never a ranking of cultures.
+and what changes, with one possible shared community goal, supported by the supplied examples (77 and 78), and the modeled claim (79), never a ranking of cultures.
 
 - Assessment: day 80, from a short memory and a photograph not seen before (a question about the source, what it can
   and cannot tell, two elements of culture, what the newcomers brought, how place and newcomers changed, how all of a
@@ -189,8 +189,8 @@ built; facts on land and water, resources and work, and people today; one custom
 community; a claim backed by two facts from named sources; a short report with a map, presented.
 
 Order: the question, the choice and the supporting questions (days 82 and 83), sources (84), three gathering days by
-supporting question (85 to 87), the claim (88), drafting, finishing and presenting (89 to 91). Day 90 adds a digital version of the claim and its
-  two facts, made with an adult on the class's one shared device (no account, network or upload), so D4.3's digital
+supporting question (85 to 87), the claim (88), drafting, finishing and presenting (89 to 91). Days 89 and 90 add a digital version of the claim and its
+  two facts, made in a rotation with an adult on the class's one shared device (no account, network or upload), so D4.3's digital
   part is taught; the printed report is the paper path.
 
 - Assessment: day 92, the report scored (physical features, resources and people; a claim with two facts from named

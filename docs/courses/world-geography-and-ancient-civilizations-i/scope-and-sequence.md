@@ -65,7 +65,7 @@ Two check days (71, 72) on units 1 to 5, as the frame's table sets them, then tw
 
 ## Unit 6. Phoenicia and the alphabet (days 75 to 84, weeks 15 to 17)
 
-**Topics taught:** the ancient Mediterranean on a map; why Phoenicia became a sea-trading power, and its colonies; buyers, sellers and merchants who pool money and share risk; barter, weighed silver and coins, and money as a store of value (the personal finance touch, no added day); who did the work, enslaved rowers among them; three ways of writing and how the alphabet spread.
+**Topics taught:** the ancient Mediterranean on a map; why Phoenicia became a sea-trading power, and its colonies; buyers, sellers and merchants who pool money and share risk; barter, weighed silver and coins, and money as a store of value (the personal finance touch, no added day); who did the work: sailors and craftworkers of differing legal statuses, with documented slavery and dependent labor, and rowers' status uncertain in the sources used; three ways of writing and how the alphabet spread.
 
 Arc: map, place and trade first (four days), innovation, the venture's risk and who did the work (one), then writing (three days, ending on what changed and stayed and the compelling question), then assessment and respond. Trade comes before the alphabet because the alphabet spread by the same ships.
 

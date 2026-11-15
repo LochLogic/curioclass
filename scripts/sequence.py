@@ -188,7 +188,8 @@ def check(course):
                 fails.append('day %s: a course-level check with no respond day after it' % d['day'])
     # readiness timing (Cory, 2026-11-14, sequence-write.md rule 2): a readiness check is given before its unit
     # opens, in the last ten minutes of the previous unit's last day or of a respond day between the two units, a few
-    # days ahead at most; a unit 1 check is served by the start-of-year check; never on a unit's first day
+    # days ahead at most; never on a unit's first day, with one exception (lead rule 2026-11-14): unit 1's check
+    # takes the last ten minutes of course day 1, after the hook
     firsts = {}
     for i, d in enumerate(days):
         s = d['stretch'].strip()
@@ -199,10 +200,12 @@ def check(course):
         if d['assess'] != 'readiness':
             continue
         s = d['stretch'].strip()
+        if i == 0 and s == '1':
+            continue  # unit 1's own check, the last ten minutes of day 1
         if i in starts:
             fails.append("day %s: a readiness check on unit %s's first day (give it before the unit opens: the last "
                          "ten minutes of the previous unit's last day or of the respond day between; unit 1: the "
-                         "start-of-year check)" % (d['day'], s))
+                         "last ten minutes of day 1)" % (d['day'], s))
             continue
         nxt = next((j for j in starts if j > i), None)
         closes = s == 'C' or d['kind'] == 'Respond' or i + 1 >= len(days) or days[i + 1]['stretch'].strip() != s

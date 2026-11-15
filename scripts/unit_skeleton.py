@@ -12,7 +12,11 @@ DIR/calendar.csv instead of data/plans (for tests, so synthetic data never sits 
 progression and the standards still come from the repository.
 
 Writes docs/courses/<course>/s{uu}.md in the shape of docs/courses/UNIT-PLAN.md (the unit plan, fields 1 to 10; the
-section plans follow later, PRODUCTION-PATH step 7). Never overwrites an existing file without --force. --out DIR
+section plans follow later, PRODUCTION-PATH step 7). Never overwrites an existing file without --force, so a change
+here reaches new skeletons only and written plans never need a re-run. Lettered parts: a choice standard (is_choice:
+"one of", "from the list", "research one", parts marked "option:") owes no part, one option in depth and the rest
+surveyed; when days.csv cites parts of a code, a unit owes only the parts it cites; a "such as" list gives examples,
+never required parts (structure pass 2026-11-14). --out DIR
 writes DIR/<course>/s{uu}.md instead (for tests). Output is deterministic: same data, same bytes.
 
 Filled from: data/plans/<course>/days.csv (days, kinds, goals, codes, assessment days, notes), data/plans/calendar.csv
@@ -150,9 +154,41 @@ def children(code):
     return sorted(k for k in std if len(k) == len(code) + 1 and k.startswith(code) and k[-1].islower())
 
 
-def required_codes(rows):
-    """Codes a unit must carry: every code in its days.csv rows, in first-seen order, each followed by its lettered
-    parts that days.csv does not itself list."""
+# A choice standard: its lettered parts are options, one studied in depth and the rest surveyed, never each a required
+# part ("one of", "from the list", "research one ...", or parts that say "option:"). "one another" is not a choice.
+CHOICE_PARENT = re.compile(r'\bone of\b|\bfrom the list\b|\bchoosing one\b|\b(?:research|report on|analy[sz]e|in|map)\s+'
+                           r'(?:the causes and course of\s+)?one\b(?!\s+another)', re.I)
+CHOICE_CHILD = re.compile(r'\boption:|\bas an example agency\b', re.I)
+
+
+def is_choice(code):
+    """True for a standard whose lettered parts are options to choose among (see CHOICE_PARENT)."""
+    kids = children(code)
+    if not kids:
+        return False
+    std = std_text()
+    return bool(CHOICE_PARENT.search(std.get(code, ''))) or any(CHOICE_CHILD.search(std.get(k, '')) for k in kids)
+
+
+def parts_of(code, rows=None, allrows=None):
+    """Lettered parts a unit owes for a code. When the course's days.csv cites any part of the code itself (the parts
+    are assigned to units), a unit owes only the parts its own rows cite. Otherwise a choice standard owes none (one
+    option in depth, the rest surveyed) and any other standard owes every part. Without allrows, every part (or none
+    for a choice standard)."""
+    kids = children(code)
+    if not kids:
+        return []
+    if allrows is not None and rows is not None:
+        cited = {c for r in allrows for c in split_list(r['codes'])}
+        if any(k in cited for k in kids):
+            mine = {c for r in rows for c in split_list(r['codes'])}
+            return [k for k in kids if k in mine]
+    return [] if is_choice(code) else kids
+
+
+def required_codes(rows, allrows=None):
+    """Codes a unit must carry: every code in its days.csv rows, in first-seen order, each followed by the lettered
+    parts it owes (parts_of) that days.csv does not itself list."""
     seen, out = set(), []
     for r in rows:
         for c in split_list(r['codes']):
@@ -160,17 +196,17 @@ def required_codes(rows):
                 seen.add(c)
                 out.append(c)
     for c in list(out):
-        for ch in children(c):
+        for ch in parts_of(c, rows, allrows):
             if ch not in seen:
                 seen.add(ch)
                 out.append(ch)
     return out
 
 
-def days_codes_order(rows):
+def days_codes_order(rows, allrows=None):
     """days.csv codes in first-seen order, with each code's lettered parts placed right after it."""
     out = []
-    for c in required_codes(rows):
+    for c in required_codes(rows, allrows):
         out.append(c)
     # place children after their parent
     ordered = []
@@ -999,7 +1035,7 @@ def build(course, unit):
     w('%s: %s' % (MARK, tx['claim']))
     w('%s: Teaching moves across the unit: what the teacher does to keep the inquiry going (where to model, where to step back).' % MARK)
     w('')
-    codes = days_codes_order(rows)
+    codes = days_codes_order(rows, allrows)
     w(OPEN)
     c3_nolines = []
     for c in codes:
@@ -1007,6 +1043,13 @@ def build(course, unit):
             continue
         txt = std_line(c)
         kids = [k for k in children(c) if k in codes]
+        if txt and 'such as' in txt:
+            txt = txt.rstrip() + ' (The "such as" list gives examples, not required parts.)'
+        if txt and not kids and is_choice(c):
+            opts = '; '.join('%s (%s) %s' % (k[-1], k, clean(std[k])) for k in children(c))
+            w('- **%s:** %s Parts: a choice standard, one option studied in depth and the rest surveyed (not each a '
+              'required part). Options: %s' % (c, clean(txt), opts))
+            continue
         if subj == 'science' and txt and is_pe(c) and pe_statement(c):
             w('- **%s:** %s%s' % (c, clean(txt), pe_limit_lines(c)))
             continue
@@ -1078,13 +1121,28 @@ def build(course, unit):
     # ---- field 4: readiness
     w('## 4. Readiness check, whole')
     w('')
-    prev = byday.get(first - 1)
     retr = []
     for r in rows:
         for t in retrieval_clauses(r['note'], int(r['day'])):
             retr.append((int(r['day']), clean(t)))
-    given_prev = prev is not None and (prev['assess'] == 'readiness' or
-                                       re.search(r"(unit %d's|next unit's) readiness" % unit, prev['note'], re.I) is not None)
+
+    def ready_for_me(p):
+        return p is not None and (p['assess'] == 'readiness' or
+                                  re.search(r"(unit %d's|next unit's) readiness" % unit, p['note'], re.I) is not None)
+    # the check may sit up to three days back (sequence.py READINESS_AHEAD), through respond or course-level (C) days,
+    # so long as no other unit opens between
+    prev = byday.get(first - 1)
+    for k in range(1, 4):
+        p = byday.get(first - k)
+        if p is None:
+            break
+        between = [byday.get(first - j) for j in range(1, k)]
+        if any(b is None or b['stretch'] not in (p['stretch'], 'C') for b in between):
+            break
+        if ready_for_me(p):
+            prev = p
+            break
+    given_prev = ready_for_me(prev)
     w_ready = False
     ready1 = []
     if first == 1:
@@ -1096,9 +1154,10 @@ def build(course, unit):
                                   for a in split_list(prog[s_]['assumes']))
                   if a not in set(s for r in rows for s in split_list(r['skills'])) and a not in retr_text
                   and not year_before(a, prog, frame_meta)]
-    if first == 1 and ready1:
+    if first == 1 and (ready1 or rows[0]['assess'] == 'readiness'):
         w('**Given:** day %d, the last ten minutes, after the hook (lead rule 2026-11-14: no sitting before day 1; reteach on day 2 or 3). '
-          'Readiness rows (progression, assumes, not retrieved in this unit): %s.' % (first, '; '.join('%s (grade %s)' % (a, grade_of(a, prog)) for a in ready1)))
+          'Readiness rows (progression, assumes, not retrieved in this unit): %s.'
+          % (first, '; '.join('%s (grade %s)' % (a, grade_of(a, prog)) for a in ready1) or 'none found; days.csv day 1 marks the check, see its note'))
         w_ready = True
     elif first == 1:
         w('Start-of-year check: none needed; retrieval only.')
@@ -1144,9 +1203,11 @@ def build(course, unit):
         full = []
         for c in acodes:
             full.append(c)
-            full.extend(k for k in children(c) if k not in acodes)
+            full.extend(k for k in parts_of(c, rows, allrows) if k not in acodes)
         for c in full:
             txt = clean(std_line(c))
+            if is_choice(c) and not any(k in full for k in children(c)):
+                txt = '%s (a choice standard: one row, on the option each student chose)' % txt
             if len(c) > 1 and c[-1].islower() and c[:-1] in full:
                 part = '%s: %s' % (c[-1], txt)
             else:
@@ -1180,6 +1241,8 @@ def build(course, unit):
     else:
         w('- **Respond days (days.csv):** none in this unit.')
     for r in rows:
+        if int(r['day']) == first:
+            continue    # a readiness check on the unit's own first day is its own (unit 1, day 1), not the next unit's
         if r['assess'] == 'readiness' or re.search(r"(unit %d's|next unit's) readiness" % (unit + 1), r['note'], re.I):
             w("- **Next unit's readiness check:** the last ten minutes of day %s (%s)." % (r['day'], r['kind']))
     if frame_meta.get('minutes_min'):
@@ -1245,8 +1308,7 @@ def build(course, unit):
     if sens:
         w('- **Days flagged for the sensitivity read (days.csv notes):**')
         for r in sens:
-            t = re.sub(r'^sensitivity read \([^)]*\)( with the unit plan)?:?\s*', '', clean(r['note']), flags=re.I)
-            w('  - Day %s: %s' % (r['day'], t))
+            w('  - Day %s: %s' % (r['day'], clean(r['note'])))   # in full: the bracket often holds what to read
     w(CLOSE)
     if ss:
         w('%s: Sources chosen for the unit (named, with licence and what was read); the primary sources and the community\'s own sources first.' % MARK)

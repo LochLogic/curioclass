@@ -72,10 +72,10 @@ The Declaration and who it left out (45 to 46), the war's later events on a map 
 
 Days 60 to 75, weeks 12 to 15. Codes: MA.5.T3.1 to 6; D2.Civ.1, 3.
 
-The debates come first (61 to 62), so the document is read as the answer to them; then the Preamble, the branches, checks and balances and the levels (63 to 66), who was left out (67), the amendment process (68), the Bill of Rights (69 to 70), and the claim about one amendment from two sources (71 to 72). Day 73 reviews the founding years on one timeline for course-level check 1.
+The debates come first (61 to 62), so the document is read as the answer to them; then the Preamble, the branches, checks and balances and the levels (63 to 66), who was left out (67), the amendment process (68), the Bill of Rights (69 to 70), and the claim about one amendment from two sources (71 to 72); the last ten minutes of day 72 review the founding years on one timeline for course-level check 1.
 
 - Readiness: the last ten minutes of day 59 (unit 4's respond day) on grade 3's ss3-rules-rights; the levels of government and grade 4's branches by name open as retrieval tasks on day 60.
-- End-of-unit assessment: day 74, every owned code: a Convention debate and the Three-Fifths Compromise, a provision and why it was written, the branches and checks and balances, the levels' roles, women's exclusion, the amendment process and the Bill of Rights, and the 1791 claim. Respond: day 75.
+- End-of-unit assessment: days 73 and 74 (two Check days), every owned code: a Convention debate and the Three-Fifths Compromise, a provision and why it was written, the branches and checks and balances, the levels' roles, women's exclusion, the amendment process and the Bill of Rights, and the 1791 claim. Respond: day 75.
 - Candidate (Tennessee and New York, a later amendment as a second case): dropped. Units 8 and 9 use the process on the 13th, 14th, 15th and 19th Amendments, and a second case here would cost a day the unit's sixteen do not hold.
 - Leans: ELA W.5.1 comes later (ELA unit 3, days 84 to 123); day 72 uses a claim, evidence and reasoning frame.
 
@@ -86,7 +86,7 @@ Days 80 to 96, weeks 16 to 20. Codes: MA.5.T4.1 to 4, MA.5.T4.3a, MA.5.T4.3b; D2
 Four short rows in time order: the first presidents (81 to 83), the Purchase and Lewis and Clark (84 to 86), the War of 1812 (87 to 88), and New England's industry (89 to 93), which ends on cotton and enslaved labor to set up unit 7. Day 90 holds both productivity indicators (investment in machines and in workers' learning, productivity and later income); day 92 tells costs inside the work apart from effects on people outside the deal, with an external benefit too; days 89 to 94 mark each benefit and cost short term or long term, and the claim on day 94 weighs them.
 
 - End-of-unit assessment: day 95, every owned code and lettered part: a president judged by his aims, the Purchase and the route, the War of 1812's causes and events, the industry map, productivity, distant connections, short- and long-term benefits and costs, and a claim. Respond: day 96.
-- Candidate (California grade 5, the cotton gin): kept, inside day 93.
+- Candidate (California 8.7.1, grade 8, the cotton gin): kept, inside day 93.
 - Leans: math 5.G.A.1 comes later (math unit 10); none needed, the route uses grade 4 latitude and longitude. Science 5-ESS3-1 comes later (science unit 6); day 92 names polluted rivers as a cost.
 
 ## Unit 7. Removal, the spread of slavery, and the fight against it. "How did people resist injustice in the early 1800s?"

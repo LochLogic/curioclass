@@ -78,7 +78,8 @@ studies goes first; the other subjects follow in step 5.
    minutes of the previous unit's last day, or of the respond day or course-level check respond day where one sits
    between the two units; a few days ahead at most, never weeks. That day carries `assess` = `readiness`, or, if it
    already holds another assess value, keeps it and its note says "plus the next unit's readiness check (10
-   minutes)". A unit 1 readiness check is served by the start-of-year check (day 1's note says so). A unit's first
+   minutes)". Unit 1's check, where unit 1 has readiness rows, takes the last ten minutes of day 1, after the hook,
+   and day 1 carries `assess` = `readiness` (lead rule 2026-11-14; sequence.py accepts it). Every other unit's first
    day never holds a readiness check: it stays clean for the hook and the compelling question.
    **Each part of each code:** every observation, end-of-unit and check task asks about each part of each code it
    lists (a short prompt per part; no day added); a product or an observed performance may stand for a code where

@@ -19,8 +19,8 @@ data/progressions/, and the bar for the subject in docs/ADOPTION-BAR-SUBJECTS.md
 
 Gate: `python -X utf8 scripts/unitplan.py check {course}`.
 
-Settled (do not raise): readiness timing (before the unit opens; unit 1 by the start-of-year check, which never sits
-before day 1); no outside human readers; 6 to 12 periods are 50 minutes; no timers shown to students; K to 2 at most
+Settled (do not raise): readiness timing (before the unit opens; unit 1's check in the last ten minutes of day 1, after
+the hook, never before day 1); no outside human readers; 6 to 12 periods are 50 minutes; no timers shown to students; K to 2 at most
 one shared classroom device with a paper path; no days added beyond the frame's totals; template fields that do not
 fit the subject may say none; some standards codes lack an own-word line (a later pass fills them).
 

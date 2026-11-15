@@ -23,7 +23,7 @@ Settled rule 1: a row used the year before (US History I) or earlier this year (
 | 7 | none | Day 86: ss8-civil-rights-laws (Government's unit 2 checked it this fall), us1-civil-rights-1900s, us1-jim-crow; day 93: us1-reconstruction |
 | 8 | Day 102, last ten minutes: wh2-cold-war-world; reteach station day 104 | none |
 | 9 | Day 113, last ten minutes: ss8-protest-change, wh2-decolonization; reteach station day 115 | Day 116: us1-native-west; day 120: us1-reform-movements |
-| 10 | none | Day 130: wh2-soviet-collapse (Economics' start-of-year check checked it this spring) |
+| 10 | none | Day 130: wh2-soviet-collapse (Economics' unit 1 readiness check checked it this spring) |
 | 11 | Day 134, last ten minutes: wh2-terrorism; reteach station day 140 | Day 136: us1-immigration |
 | 12 | none | Day 148: us1-research-inquiry, us1-argument-writing |
 
@@ -150,7 +150,7 @@ Arc: three survey days (women's and LGBTQ movements; disability and environmenta
 
 Arc: two days on liberalism, the 1970s as the hinge, two on conservatism, a day weighing both, then three on the Cold War's end. Each tradition is explained in terms its supporters accept before it is weighed. Part of day 128 goes to each student's capstone source set.
 
-- Readiness: none. Day 130 opens the Cold War's end with a retrieval task on the Soviet collapse (Economics' start-of-year check checked it this spring; the items are printed for a student not taking Economics).
+- Readiness: none. Day 130 opens the Cold War's end with a retrieval task on the Soviet collapse (Economics' unit 1 readiness check checked it this spring; the items are printed for a student not taking Economics).
 - End-of-unit assessment, day 133: two unseen sources, one liberal and one conservative, then a causal judgment on the Cold War's end from internal and external evidence. Respond day 134.
 - Paired with ELA 12: day 132's exit routine adds one source that argues against the capstone claim to the shared set.
 - Candidate: the 1970s, kept, 1 day (day 126).
