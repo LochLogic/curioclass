@@ -3,22 +3,19 @@
 **This is the single page that says where the work stands and what to do next. Last updated 2026-11-14, after
 baseline 1 (top block); older blocks below are kept as written. Course words were renamed 2026-11-12 ([GLOSSARY.md](GLOSSARY.md)). Everything here is pushed to `spec/sara` and `main`.**
 
-## 2026-11-14 evening: social studies unit plans, PAUSE POINT (usage limit), latest
+## 2026-11-14 night: social studies unit plans DONE to the structure pass, latest
 
-**Workflow** (DESK-ANSWERS 2026-11-14): scripts/unit_skeleton.py, then Codex writes by script
-(scripts/codex_units.py with docs/pipeline/briefs/plan-codex.md), gate scripts/unitplan.py, then a Claude expert read
-per course, a Codex read per course, a Claude fix pass, one structure pass, then probe and baseline 2.
+All 138 plans (15 courses): written by Codex, gated, read by the Claude expert (docs/reviews/plan-<course>-2026-11-14.md)
+and by Codex (plan-<course>-codex-2026-11-14.md, brief docs/pipeline/briefs/plan-codex-read.md), fixed
+(plan-<course>-fixes-2026-11-14.md), then one structure pass (docs/reviews/ss-units-structure-pass-2026-11-14.md:
+scripts, briefs, template, data; one consolidated Unverified list for production). Gate passes on all 138.
 
-**Written and gated (committed):** kindergarten, grades 1 to 5, US Government, Economics, US History I, Civics, World
-History I, WGAC II. **Still being written by Codex at pause** (driver logs in the session scratchpad, rerun
-`python -X utf8 scripts/codex_units.py <course> tries=3`; it skips units that pass): WGAC I, World History II,
-US History II.
-
-**Expert reads done:** K, grades 1 to 5, US Government, Economics, US History I, Civics, World History I, WGAC II (docs/reviews/plan-<course>-2026-11-14.md; expert read prompt: read the K and grade 1, 3, 4 reports' "Settled by the expert" tables, same report shape). Repeat findings: unit 1 check before day 1, oversized assessments, missing dated 2025 to 2026 lines, "?" for apostrophes and macrons (encoding). **Not started:** WGAC I, World History II, US History II reads; every Codex read (scripts/codex_read.py,
-report plan-<course>-codex-2026-11-14.md); fix passes; structure pass.
-
-**Also done:** the new data (math plus weight, tools, supplies and safety; ela-texts; ngss-pe-dimensions; the unit 1 start-of-year fix) is wired into scripts/unit_skeleton.py and scripts/unitplan.py; its not-applied list is for the structure pass. Science base is NGSS (DESK-ANSWERS 2026-11-14); add that to
-docs/pipeline/briefs/plan-codex-science.md in the structure pass.
+**Open:** C3 own-word lines (283 codes) and 7 Massachusetts lines need the C3 framework and the Massachusetts 2018
+history and social science framework PDFs, which are not on file; downloading needs Cory's yes.
+**Next: the probe** (PRODUCTION-PATH step 4, PROBE-GUARD.md): one social studies section, 3 to 5 days, written and
+read the full way. The day pipeline (plan-data.md, lesson.py, LESSON-DAY.md, courses/<course>/) is math-shaped and
+the blind rule names all of courses/ (written for the old math-4 drafts): adapting both for social studies is part of
+the probe and of measure 3 (template change). Then baseline 2 with a Desk card.
 
 ## 2026-11-14: course frames (PRODUCTION-PATH step 2), latest
 
