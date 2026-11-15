@@ -46,8 +46,8 @@ In grade 4 math, unit 11 is in data; units 1, 2, 3, 9 and 10 move into data when
 
 ### English language arts data
 
-ELA keeps three kinds of rows beside the shared ones (settled 2026-11-12, see DESK-ANSWERS, card q-ela-piece-2):
-the text record, every question with its standard, and the word list. They are shown as generated tables and do not
+ELA keeps three kinds of rows (settled 2026-11-12, see DESK-ANSWERS, card q-ela-piece-2): the text record, every
+question with its standard, and the word list. They are shown as generated tables and do not
 count toward the word cap.
 
 - **Text records: `data/plans/ela-texts.csv`**, one file for all thirteen ELA courses, one row per text a
@@ -68,8 +68,17 @@ count toward the word cap.
 - Edition and rights are filled as the units are written: the unit writer gives each text's edition and rights
   basis in field 10, and the lead copies them into `edition`, `rights_basis` and `rights_checked` after each batch
   (settled 2026-11-15, see DESK-ANSWERS). Until then the cells stay empty and the row's `todo` starts with "rights".
-- **Questions:** `data/plans/<course>/questions.csv`, every question with its standard. Its columns are fixed when
-  the first ELA unit plans are written. Not built yet.
+- **Questions: rows in the shared `data/plans/<course>/items.csv`,** not a separate file, so every gate that reads
+  items (keys, no reuse, exits, assessment minutes, the day pages) works for ELA unchanged (lead 2026-11-15, see
+  DESK-ANSWERS). Each ELA row fills the shared columns (`code` is the ELA standard, `judged` is key or teacher, a
+  written or spoken task's look-fors go in `steps` and its samples in `samples`) and three more:
+  - `text_id`: the text the question is about, from ela-texts.csv (several space separated for a paired-text
+    question; empty for a question on no text);
+  - `text_ref`: where in the text the answer lives (page, paragraph, lines, chapter or minutes into a read-aloud),
+    so a reader can check the answer and a student can be sent back to reread;
+  - `needs_text`: yes when the answer cannot be given without the text, no otherwise.
+  `plan.py check` fails an ELA row whose `needs_text` is not yes or no, a yes with no `text_id`, a `text_id` with
+  no row in ela-texts.csv, and a course where under 80 percent of rows need the text (plan-codex-ela.md).
 - **Word list: unit plan output, not input data.** The writer draws it per unit from that unit's texts (about 8
   to 10 words a week) and writes it as `data/plans/<course>/wordlist.csv` with `unit`, `word`, `text_id`, `week`
   and `when` (before, during or after reading). The name is not `words.csv`, which `plan.py` already reads as

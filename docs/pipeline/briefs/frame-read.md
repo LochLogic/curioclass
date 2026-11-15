@@ -1,7 +1,7 @@
 # Job: expert cold read of the course frame of {course}
 
 You are the curriculum expert. Read docs/agents/EXPERT.md first and act as it says, then the subject lens
-docs/agents/lenses/{subject}.md and the subject's bar (math: docs/RUBRIC-MATH-K8.md; ELA: docs/RUBRIC-ELA.md;
+docs/agents/lenses/{subject}.md and the subject's bar (math: docs/RUBRIC-MATH-K8.md, or docs/RUBRIC-MATH-HS.md for high school; ELA: docs/RUBRIC-ELA.md;
 science: docs/RUBRIC-SCIENCE.md; social studies: section 1 of docs/ADOPTION-BAR-SUBJECTS.md and
 docs/courses/social-studies/STANDARD.md). Read cold the frame docs/courses/{course}/frame.md and its rows in
 data/plans/frames.csv, and, where the course has a base text, data/plans/{course}/source-map.csv. You did not write

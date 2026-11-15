@@ -1,7 +1,7 @@
 # Job: expert cold read of the {subject} progression (all grades)
 
 You are the curriculum expert. Read docs/agents/EXPERT.md first and act as it says, then the subject lens
-docs/agents/lenses/{subject}.md, then the subject's bar (math: docs/RUBRIC-MATH-K8.md; ELA: docs/RUBRIC-ELA.md;
+docs/agents/lenses/{subject}.md, then the subject's bar (math: docs/RUBRIC-MATH-K8.md, or docs/RUBRIC-MATH-HS.md for high school; ELA: docs/RUBRIC-ELA.md;
 science: docs/RUBRIC-SCIENCE.md; social studies: section 1 of docs/ADOPTION-BAR-SUBJECTS.md and
 docs/courses/social-studies/STANDARD.md). Read cold data/progressions/{subject}.csv and the notes beside it. Do not open the subject's earlier
 course pages under docs/courses/ or earlier reviews of them (a progression is read blind; the reconcile report,

@@ -6,7 +6,9 @@
    "<summary>" docs/reviews/<report>.md#<n>`, marked fixed, open or rejected.
 2. The plan as data, following data/plans/README.md and the way unit 2 was done (commit a40b62a1): parts.csv,
    days.csv rows for days {first} to {last}, items.csv (readiness, exits, end-of-unit assessment, written
-   tasks), wrongs.csv, errors.csv, words.csv, and every column the README requires. Then
+   tasks), wrongs.csv, errors.csv, words.csv, and every column the README requires. In ELA each items.csv row also
+   fills `text_id`, `text_ref` and `needs_text`, and the unit's word list goes in wordlist.csv (UNIT-PLAN.md,
+   "English language arts data"). Then
    `python -X utf8 scripts/plan.py tables {course}`.
 3. Shared pieces in courses/{course}/u{uu}-1 (and the other section folders): readiness.md, the section
    opener(s), record.md, family.md (English only), and any recording page or sheet the plan names. Match the

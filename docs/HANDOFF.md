@@ -13,8 +13,8 @@ time, before more days are written.
 - **Course frames** (step 2): done for all 52 core courses (docs/courses/<course>/frame.md, totals in
   data/plans/frames.csv). Baseline 1 is closed.
 - **Scopes and sequences** (steps 3 and 5): all 52 written, read by the expert and by Codex, fixed and through a
-  structure pass (docs/courses/<course>/scope-and-sequence.md, data/plans/<course>/days.csv). The rule 2 notes the
-  scope gate still prints are all social studies, held for the probe (later.csv L28).
+  structure pass (docs/courses/<course>/scope-and-sequence.md, data/plans/<course>/days.csv). The scope gate prints
+  no rule 2 notes (social studies fixed 2026-11-15, later.csv L28).
 - **Unit plans**: social studies has 138, written, read twice, fixed and through a structure pass. Science, ELA and
   math have skeletons for all 259 units (scripts/unit_skeleton.py, spot-checked); their judgement fields are not
   filled yet.
@@ -32,15 +32,16 @@ plan flow, data/plans/flow-status.csv. Parked work: data/plans/later.csv.
 
 ## Next steps, in order
 
-1. The social studies probe (PRODUCTION-PATH step 4, docs/pipeline/PROBE-GUARD.md) with L28's items, then
+1. The social studies probe (PRODUCTION-PATH step 4, docs/pipeline/PROBE-GUARD.md), then
    baseline 2, where any unit template change is made once, before three more subjects copy it. The day pipeline
-   (plan-data.md, lesson.py, LESSON-DAY.md, courses/<course>/) is math-shaped, and the blind rule names all of
-   courses/: adapting both for social studies is part of the probe.
+   (plan-data.md, lesson.py, LESSON-DAY.md, courses/<course>/) is math-shaped: adapting it for social studies is
+   part of the probe. The blind rule names courses/math-4/ only (narrowed 2026-11-15, see DESK-ANSWERS), so new
+   day folders can be written under courses/.
 2. Science, ELA and math units together (step 5): Codex fills the skeletons the social studies way
    (scripts/codex_units.py with plan-codex-science.md, plan-codex-ela.md and plan-codex-math.md), then expert and
    Codex reads, a fix pass, a structure pass, each subject's own probe and a review from the progression down. ELA
    text editions and rights go into data/plans/ela-texts.csv after each batch (L32). Math is written blind, then
-   reconciled with grade 4's old work (L13); the high school math reads need a short RUBRIC-MATH-HS first (L25).
+   reconciled with grade 4's old work (L13); high school math is read against docs/RUBRIC-MATH-HS.md (L49, L50).
 3. Then the path's later steps: the final review (step 6), a short approach page per subject before days (L27),
    the guard and days (step 7), and tools (step 9).
 

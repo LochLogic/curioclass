@@ -656,6 +656,23 @@ def check(course):
     ids = {i['item_id'] for i in items}
     if len(ids) != len(items):
         fails.append('items.csv: duplicate item_id')
+    if subj == 'ela' and items:   # ELA questions are items.csv rows with three more columns (UNIT-PLAN.md, ELA data)
+        tp = PLANS / 'ela-texts.csv'
+        with io.open(tp, encoding='utf-8', newline='') as f:
+            text_ids = {t['text_id'] for t in csv.DictReader(f)}
+        for i in items:
+            nt, tid = i.get('needs_text', ''), i.get('text_id', '')
+            if nt not in ('yes', 'no'):
+                fails.append('%s: needs_text must be yes or no (does the answer need the text?)' % i['item_id'])
+            if nt == 'yes' and not tid:
+                fails.append('%s: needs_text is yes but text_id is empty' % i['item_id'])
+            for t in tid.split():
+                if t not in text_ids:
+                    fails.append('%s: text_id %s has no row in data/plans/ela-texts.csv' % (i['item_id'], t))
+        share = sum(i.get('needs_text') == 'yes' for i in items) / len(items)
+        if share < 0.8:   # plan-codex-ela.md: at least 80 percent of questions, tasks and exits need the text
+            fails.append('items.csv: %d percent of questions need the text; at least 80 percent must'
+                         % round(share * 100))
     wordrules = [(w['pattern'], w['use'], w['reason']) for w in rows(course, 'words')]   # settled wording, per course
     letters = {(e['stretch'], e['letter']) for e in errors}
     stretches = sorted({d['stretch'] for d in days} | {i['stretch'] for i in items},

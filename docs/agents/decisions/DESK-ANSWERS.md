@@ -1345,3 +1345,20 @@ S:\CurioClass-archive\untracked-docs-2026-11-15; docs/Return/ stays as Cory's pr
 whole. AGENTS.md's never-touch list updated to match. Why: the repository is public, the Blueprint is a reference
 source, the plan PDF is replaced by VISION, ROADMAP and PRODUCTION-PATH, the image was a one-time art check, and
 docs/Return/ holds private drafts (Sara's language-partner draft is marked not public).
+
+## 2026-11-15: ELA questions live in items.csv (lead, later.csv L47; Cory: "do L47")
+
+The question set of card q-ela-piece-2 is stored as rows of each course's shared items.csv, not a separate
+questions.csv, with three ELA columns: text_id, text_ref and needs_text. plan.py check gates them, including the
+80 percent text-dependent rule of plan-codex-ela.md. Why: one file means every existing item gate (keys, no reuse,
+exits, assessment minutes, the day pages) works for ELA without a second set of checks, and the 80 percent rule
+becomes a count instead of a reader's estimate. Applied: UNIT-PLAN.md, data/plans/README.md, APPROACH-ELA.md,
+plan-data.md, scripts/plan.py.
+
+## 2026-11-15: the blind rule names courses/math-4/, not all of courses/ (lead; Cory: "go with your judgement on the rule change")
+
+The blind lists in plan-codex-read.md and scripts/codex_scopes.py named all of courses/, which would bar a writer
+from the social studies day folders the probe creates. They now name courses/math-4/, the only old written days;
+progression-write.md bars a subject's own written days. Why: the rule exists so old work cannot steer the new
+layers, and the only old days are grade 4 math's; new days written from the new unit plans are the work itself.
+Applied: HANDOFF.md, plan-codex-read.md, codex_scopes.py, progression-write.md.

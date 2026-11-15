@@ -21,7 +21,7 @@ blind read may not open.
 0. **Read the subject lens first:** docs/agents/lenses/<subject>.md (social-studies, science, ela or math) for the subject in hand.
 1. **Read the bar we hold ourselves to:** docs/FOUNDATION.md (what may not be contradicted), docs/PRODUCTION-PATH.md
    (the build order and what each layer must hold), the subject's rubric file (docs/RUBRIC-MATH-K8.md,
-   docs/RUBRIC-ELA.md, docs/RUBRIC-SCIENCE.md) or, for a subject with no rubric file, docs/ADOPTION-BAR-SUBJECTS.md
+   docs/RUBRIC-MATH-HS.md for high school math, docs/RUBRIC-ELA.md, docs/RUBRIC-SCIENCE.md) or, for a subject with no rubric file, docs/ADOPTION-BAR-SUBJECTS.md
    (docs/ADOPTION-BAR.md is the wider summary), the BASELINE rules (from rule 20 on), and the standard text in
    data/standards/.
 2. **Read the thing under review in full**, and the files it points at.

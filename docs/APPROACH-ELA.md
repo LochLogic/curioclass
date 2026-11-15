@@ -195,11 +195,11 @@ Field numbers are those of [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). They we
 (after the 2026-11-15 scope fix pass; pilots were retired 2026-11-13) may change what ELA fills. Proposed, to be
 tried on those plans:
 
-- **Facts in data. Decided 2026-11-12, Cory's yes:** the text record, the question set (each question with its
-  day, its standard and whether it needs the text) and the word list are rows in `data/plans/<course>/`, in
-  three files: texts.csv, questions.csv and words.csv. They are shown as generated tables and do not count
-  toward the word cap. The columns are fixed when the first ELA unit plans are written. The text data are in
-  data/plans/ela-texts.csv (2026-11-14); questions.csv and words.csv are not built yet.
+- **Facts in data (settled 2026-11-12, see DESK-ANSWERS):** the text record, the question set (each question with
+  its day, its standard and whether it needs the text) and the word list are data rows, shown as generated tables
+  outside the word cap: texts in data/plans/ela-texts.csv, questions as rows of each course's items.csv with
+  `text_id`, `text_ref` and `needs_text`, the word list in data/plans/<course>/wordlist.csv (UNIT-PLAN.md, "English
+  language arts data").
 - Header: days by kind, in the ELA kinds.
 - Unit field 2: the text set (generated: record, rights line, status), the word list (generated), the main
   piece of writing, and what is carried: the anchor text, read and returned to.

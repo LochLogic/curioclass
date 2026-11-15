@@ -83,7 +83,7 @@ def layer_cells(key, d):
     fid = frame_id(d['title'])
     grade = FRAMES[fid]['grade'].strip().upper() if fid else None
     num = 0 if grade == 'K' else int(grade) if grade and grade.isdigit() else None
-    if s == 'math': rubric = 'yes' if (num is not None and num <= 8) else 'no'      # docs/RUBRIC-MATH-K8.md
+    if s == 'math': rubric = 'yes' if num is not None else 'no'                    # docs/RUBRIC-MATH-K8.md, RUBRIC-MATH-HS.md
     elif s == 'ela': rubric = 'yes' if (num is not None and num >= 3) else 'no'     # docs/RUBRIC-ELA.md, grades 3 to 12
     elif s == 'science': rubric = 'yes' if fid else 'no'                            # docs/RUBRIC-SCIENCE.md, K to 12
     else: rubric = 'no'

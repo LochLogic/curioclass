@@ -41,7 +41,7 @@ STOP = os.path.join(RUN, 'STOP')
 STAGGER = 120
 LIMIT_WORDS = ('usage limit', 'rate limit', 'rate_limit', 'insufficient_quota', 'try again at', 'upgrade to')
 
-BAR = {'science': 'docs/RUBRIC-SCIENCE.md', 'ela': 'docs/RUBRIC-ELA.md', 'math': 'docs/RUBRIC-MATH-K8.md (its high school notes for algebra I, geometry and algebra II)'}
+BAR = {'science': 'docs/RUBRIC-SCIENCE.md', 'ela': 'docs/RUBRIC-ELA.md', 'math': 'docs/RUBRIC-MATH-K8.md for kindergarten to grade 8, docs/RUBRIC-MATH-HS.md for algebra I, geometry and algebra II'}
 SUBJECT_NOTE = {
     'science': ('NGSS is the base for every science course (Cory, 2026-11-14); the Massachusetts STE framework is a '
                 'crosswalk only. Each expectation\'s three dimensions are in data/standards/ngss-pe-dimensions.csv. '
@@ -56,7 +56,7 @@ SUBJECT_NOTE = {
 }
 BLIND = ('Blind rule: do not open docs/courses/ela-6/, docs/courses/ela-6-spine.md, docs/courses/math-4/, '
          'docs/courses/math-4-spine.md, docs/courses/math-3-5-progression*.md, docs/courses/science-4-spine.md, '
-         'docs/courses/NEXT-SPINES.md, data/plans/math-4/, data/units.csv, courses/, im-g4-draft-map.csv, or '
+         'docs/courses/NEXT-SPINES.md, data/plans/math-4/, data/units.csv, courses/math-4/, im-g4-draft-map.csv, or '
          'docs/reviews/*reconcile*, *math-4*, *ela-6*, science-4-spine*. Another course\'s scope and sequence may '
          'be written at the same time as yours; do not edit it.')
 OLD = {

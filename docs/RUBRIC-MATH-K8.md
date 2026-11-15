@@ -48,6 +48,6 @@ closes", and each is tried first on the pilot unit:
 5. A family note and a supplies list per unit.
 6. Assessment accommodations and reading-level supports.
 
-## High school planning note
+## High school
 
-Algebra I, Geometry and Algebra II use the mathematics lens and the published high school criteria. Focus is interpreted per course and counted by instructional minutes, including named connections and applications once; assessment and response time are excluded. K to 8 percentage thresholds are not transferred to high school. Each scope and sequence records its allocation and limits. Unit plans verify the allocations against actual tasks. The full high school bar, docs/RUBRIC-MATH-HS.md, is still to write (data/plans/later.csv L25).
+Algebra I, Geometry and Algebra II are read against docs/RUBRIC-MATH-HS.md.
