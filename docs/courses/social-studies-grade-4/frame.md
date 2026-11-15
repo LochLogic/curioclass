@@ -106,7 +106,7 @@ keeps the levels of government in use between.
 | compass-directions | ss3-map-skills, ss3-globe-grid | Unit 6 (ss4-state-maps); used on every map from unit 1 | Handed to ss5-republic-growth |
 | claim-evidence-reasoning | ss3-claim-evidence, ss3-deliberation | Unit 2 (ss4-canada-mexico-research) | Unit 3 (ss4-first-peoples-evidence) |
 | source-sourcing | ss3-primary-secondary, ss3-colonial-daily-life | Unit 2 (ss4-canada-mexico-research: origin, kind and date) | Unit 4 (ss4-primary-source: adds for whom and why) |
-| corroboration | ss3-primary-secondary | Unit 4 (ss4-primary-source: two sources on one landing, with the independence check) | Unit 2 already checks one fact in two sources at grade 3 depth |
+| corroboration | ss3-primary-secondary | Unit 2 (ss4-canada-mexico-research: one fact checked in two sources, at grade 3 depth) | Unit 4 (ss4-primary-source: two sources on one landing, with the independence check) |
 | opportunity-cost | ss3-scarcity-choice, ss3-money-saving | Unit 2 (ss4-trade-north-america) | Unit 6 (ss4-regions-resources) |
 | timeline | ss3-timeline | Unit 3 (ss4-first-peoples-evidence: a given timeline in thousands of years, read, not built) | Unit 4 (ss4-exploration: to scale), unit 5 (ss4-westward-growth, ss4-mexico-lands, ss4-choice-and-force), unit 6 (ss4-states-and-statehood: admission dates) |
 | cause-effect-chain | ss3-first-meetings, ss3-early-colonies | Unit 4 (ss4-exploration) | Unit 5 (ss4-westward-growth, ss4-choice-and-force), unit 7 (ss4-disasters-response) |
