@@ -11,5 +11,6 @@ Check only these, by looking across files side by side:
 4. Page fit. Run `python -X utf8 scripts/lesson.py build --pdf` and look at this day's student PDF and slips under build/lessons/: boxes tall enough for what is asked, nothing cut off, tables readable, the display order matches the day.
 5. Minutes and materials. Each part's tasks fit its minutes for the grade; every strip, card or sheet a part hands out is in the day's materials and the opener's supplies; readiness branches match the opener's reteach.
 6. The checklist in docs/agents/DAY-WRITER.md, "What the expert reads found that no script can check": run each item on this day.
+7. Sources (social studies). Each quotation on the source sheet matches its free online text at the sources.csv url; each date and figure in the day has a source; each error letter in the day means what errors.csv says (no letter reused for a different error); each hand-back goes where handbacks.csv routes it.
 
 Write docs/reviews/cheap-dNNN-<date>.md (your three-digit day number): each finding as one short paragraph (what, where, the exact fix), tagged CHECK n (1 to 6). No verdict essay. Final message: the count by CHECK and the report path.

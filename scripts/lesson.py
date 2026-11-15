@@ -323,6 +323,10 @@ def check_home(d, items, row, lab):
 
 
 # ------------------------------------------------------------------ the gates
+PLACEHOLDER = re.compile(r'\[(?:to (?:cut|check|add|make|come)|image:)[^\]]*\]', re.I)
+BARE_LETTER = re.compile(r'(\(([A-K])(?:,\s*[A-K])*\))')
+
+
 def check_day(d, items, days):
     f, h, lab = [], d['head'], d['path'].relative_to(ROOT).as_posix()
     for k in HEADER:
@@ -378,7 +382,10 @@ def check_day(d, items, days):
     if nf and re.search(r'\bday %d\b' % nxt, tm, re.I):
         nt = nf.read_text(encoding='utf-8')
         # each error letter "Tomorrow" sends must be picked up by name in the next day (expert, day 81 and 82)
-        for L in sorted({a or b for a, b in re.findall(r'\berror ([A-H])\b|\(([A-H])\)', tm)}):
+        # a letter handbacks.csv routes past the next day (a writing day between) is that later day's to pick up
+        hb = [r for r in plan.rows(h.get('course', ''), 'handbacks') if r['from_day'] == h.get('day')]
+        later = {r['error'] for r in hb if r['to_day'] != str(nxt)} - {r['error'] for r in hb if r['to_day'] == str(nxt)}
+        for L in sorted({a or b for a, b in re.findall(r'\berror ([A-K])\b|\(([A-K])\)', tm)} - later):
             pat = (r'\berror A\b|\(A\)|\bA\b(?= and| or|,|\)| group| pile| students)|(?:and|or|,) A\b' if L == 'A'
                    else r'\b%s\b' % L)
             if not re.search(pat, nt):
@@ -386,15 +393,15 @@ def check_day(d, items, days):
         # a seating promise ("sit near you") must be kept on the next day (expert, days 84 and 85)
         if re.search(r'near you', tm, re.I) and not re.search(r'near you', nt, re.I):
             f.append('%s: "Tomorrow" seats students near you on day %d, which never says so' % (lab, nxt))
-    # a teacher-judged practice row (a written task) goes back the next day, unless it stays with students
-    if nf:
-        nt = nf.read_text(encoding='utf-8')
-        for i in items:
-            if (i['day'] == h.get('day') and i['check'] == 'practice' and i['judged'] == 'teacher'
-                    and '[[%s]]' % i['item_id'] in d['teacher']
-                    and not re.search(r'stay with (?:the )?students|not collected', d['teacher'], re.I)
-                    and not re.search(re.escape(i['item_id']) + r'|written task', nt, re.I)):
-                f.append('%s: the written task %s is judged but day %d never hands it back' % (lab, i['item_id'], nxt))
+    # a teacher-judged practice row (a written task) goes back on its handbacks.csv day (the next day when the course
+    # lists none), unless it stays with students (probe 5.2 reads: the gate read only the next day)
+    for i in items:
+        if (i['day'] == h.get('day') and i['check'] == 'practice' and i['judged'] == 'teacher'
+                and '[[%s]]' % i['item_id'] in d['teacher']
+                and not re.search(r'stay with (?:the )?students|not collected|stays? in (?:the |their )?folders?',
+                                  d['teacher'], re.I)):
+            f += handed_back(d, i['item_id'], nxt, r'written task', lab, 'the written task %s is judged but' % i['item_id'],
+                            whole=True)
     # a part that promises the answers on the display must build that screen (a Check: line or a partner check)
     for _, bname, btxt in d['blocks']:
         if (re.search(r'display shows the answers|answers on the (?:display|screen)', btxt, re.I)
@@ -450,7 +457,7 @@ def check_day(d, items, days):
         if n > 3 and 7.3 * 0.8 / (n - 1) < 0.5:
             f.append('%s: a student table of %d columns leaves its columns under half an inch' % (lab, n))
             break
-        if row['tool']:
+        if row.get('tool'):
             tt = tool_title(row['tool'])
             tm = sum(b[0] for b in d['blocks'] if tt in b[1])
             if tm != int(row['tool_min'] or 0):
@@ -568,6 +575,17 @@ def check_day(d, items, days):
     for r in set(REF.findall(d['student'])):
         if r in byid and byid[r]['check'] == 'exit':
             f.append('%s: exit question %s is printed on the student page; it belongs on the exit ticket' % (lab, r))
+    # a writer's placeholder never reaches a page (expert reads, days 78, 80 and 82, 2026-11-15)
+    for m in sorted(set(PLACEHOLDER.findall(d['teacher'] + d['student']))):
+        f.append('%s: placeholder "%s" is still on the page; cut it or finish it' % (lab, m))
+    # a bare letter in teacher prose: say "error C" or "Source C" (expert read, day 80, 2026-11-15)
+    if plan.rows(h.get('course', ''), 'sources'):
+        for m in sorted(set(BARE_LETTER.findall(d['teacher']))):
+            f.append('%s: "%s" in teacher prose is a bare letter; write "error %s" or "Source %s"'
+                     % (lab, m[0], m[1], m[1]))
+    # the build prints the name and date line; a typed one prints it twice (expert read, day 82, 2026-11-15)
+    if re.search(r'^\W*Name\W*:', d['student'], re.M):
+        f.append('%s: the student page types its own Name line; the build already prints one' % lab)
     # credit
     c = h.get('credit', '').lower()
     if c != 'ours' and not ('adapted' in c and 'http' in c and re.search(r'cc by|cc0|public domain', c)):
@@ -600,6 +618,25 @@ def body_of(path):
     return re.sub(r'^---.*?---', '', path.read_text(encoding='utf-8'), flags=re.S)
 
 
+def handed_back(d, item_id, nxt, alt, lab, what, whole=False):
+    """Where a judged item goes back: the to_day of every handbacks.csv row of the course that lists it from this day,
+    else the next day. A day not written yet is a note for its writer; a written one must name the item (or alt)."""
+    h, out = d['head'], []
+    try:
+        hb = plan.rows(h.get('course', ''), 'handbacks')
+    except Exception:
+        hb = []
+    to = sorted({int(r['to_day']) for r in hb if r.get('from_day') == h.get('day')
+                 and item_id in r.get('what', '').split()}) or [nxt]
+    for t in to:
+        tf = next(iter(sorted(d['path'].parent.parent.glob('u*/d%03d.md' % t))), None)
+        if tf is None:
+            out.append('NOTE %s: %s day %d is not written yet; its writer must hand back %s' % (lab, what, t, item_id))
+        elif not re.search(re.escape(item_id) + '|' + alt, tf.read_text(encoding='utf-8') if whole else body_of(tf), re.I):
+            out.append('%s: %s day %d never hands it back (handbacks.csv)' % (lab, what, t))
+    return out
+
+
 def check_reads4(d, items, row, days, lab, nf):
     """Gates from grouping every cheap and expert finding of units 1, 2, 3, 9, 10 and 11 (2026-11-12): the exit
     tickets go back, the seam between units, room for a challenge and a reason, an assessment day collects, and
@@ -608,14 +645,12 @@ def check_reads4(d, items, row, days, lab, nf):
     n = int(h.get('day', 0) or 0)
     check_kind = row['kind'] == 'Check'
     # the exit tickets of a teaching day come back the next day (days 8, 13, 14, 20: tickets with no hand-back)
-    if nf and not check_kind:
-        ex = [i['item_id'] for i in items if i['day'] == str(n) and i['check'] == 'exit'
-              and i.get('path', '') in ('', 'paper')]
-        nb = body_of(nf)
-        if ex and not (re.search(r'\bE%d\b' % n, nb) or any(e in nb for e in ex)
-                       or re.search(r"\bday %d'?s? (?:exit )?(?:tickets?|exit)\b" % n, nb, re.I)):
-            f.append('%s: day %d never picks up day %d\'s exit tickets (name "E%d", the exit id, or "day %d\'s '
-                     'tickets")' % (lab, n + 1, n, n, n))
+    # the course's handbacks.csv names the day when it lists one (probe 5.2: day 80's exit goes back on day 82)
+    if not check_kind:
+        for e in [i['item_id'] for i in items if i['day'] == str(n) and i['check'] == 'exit'
+                  and i.get('path', '') in ('', 'paper')]:
+            f += handed_back(d, e, n + 1, r"\bE%d\b|\bday %d'?s? (?:exit )?(?:tickets?|exit)\b" % (n, n), lab,
+                             'the exit ticket %s goes back, but' % e)
     # the seam between units (unit 2 reads: day 9 to day 10 broke): the first day of a unit reads the last day of the
     # unit before, names it, and that day's Tomorrow names this one
     prev = next((x for x in days if x['day'] == str(n - 1)), None)
@@ -1872,7 +1907,7 @@ def header_table(d, row, parts, tt, side=frozenset()):
                                      ' (on a branch or Longer only)' if (p['code'], p['part']) in side else '') for p in parts)
     cells = [('Day', '%s, section %s, %s day' % (h['day'], h['unit'], KIND_WORD.get(row['kind'], row['kind'].lower()))),
              ('Goal', row['goal']), ('Standard parts', ps or 'see the section opener'),
-             ('Tool', '%s (%s), %s min' % (tt, row['mark'], row['tool_min']) if row['tool'] else 'None'),
+             ('Tool', '%s (%s), %s min' % (tt, row['mark'], row.get('tool_min')) if row.get('tool') else 'None'),
              ('Materials', h['materials']), ('Print', h['print'])] + (
              [('At home', 'the At home view, %s-home.html, %d minutes with one child'
                % (d['path'].stem, sum(p[0] for p in home_parts(d))))] if 'At home' in d['secs'] else []) + [
@@ -1967,7 +2002,7 @@ def home_html(d, row, items, warn, foot):
 def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     h = d['head']
     row = next(x for x in days if x['day'] == h['day'])
-    tt = tool_title(row['tool']) if row['tool'] else ''
+    tt = tool_title(row.get('tool')) if row.get('tool') else ''
     mine = [i for i in items if i['day'] == h['day'] and i['check'] in plan.LESSON_KINDS | {'exit'}]
     # an assessment day is measured by its end rows, which carry the unit, not the day
     # (a unit with two assessment days keeps each day's end rows apart: select by the day being built)
@@ -2014,7 +2049,7 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         ws, seen = [], set()
         for w in (w for w in wrongs if w['item_id'] == r):
             e = w['error']
-            nm = errname.get(e, '').lower() if e and e not in seen else ''
+            nm = first_lower(errname.get(e, '')) if e and e not in seen else ''
             what = ('error %s' % e) + (', ' + nm if nm else '') if e else ''
             seen.add(e)
             # a note the register's name beside it already says is dropped; with no letter the note is the meaning,
@@ -2551,6 +2586,11 @@ LETTER = re.compile(r'(?<![A-Za-z])[a-z](?![A-Za-z])\s*[=×÷+−-]|[=×÷+−-]
 ERR_X = 'Any other wrong answer: no group'
 
 
+def first_lower(t):
+    """An error name mid-sentence: lower the first letter only, so names keep their capitals (expert day 82)."""
+    return t[:1].lower() + t[1:]
+
+
 def err_name(text):
     """A register error as the key names it: without its worked example (': 2/3 = 2/6', or one in brackets), which
     printed beside wrong answers it did not match (unit 3 reads, days 14 and 20); the row's own note says the rest."""
@@ -2800,6 +2840,8 @@ def check_piece(p, items):
     kind = h.get('piece')
     if kind not in PIECE_KINDS:
         f.append('%s: piece "%s" is not one of %s' % (lab, kind, ', '.join(PIECE_KINDS)))
+    for m in sorted(set(PLACEHOLDER.findall(p['body']))):
+        f.append('%s: placeholder "%s" is still on the sheet; cut it or finish it' % (lab, m))
     if kind == 'opener' and words(p['body']) > CAP_OPENER:
         f.append('%s: the section opener is %d words; the cap is %d' % (lab, words(p['body']), CAP_OPENER))
     if kind == 'check':
@@ -2848,8 +2890,10 @@ def build_piece(p, items, wrongs, errors):
             html.escape(title), mdh(blanks(body)), unit_foot(h, course, name)), 'teacher'), encoding='utf-8')
         return out
     if kind == 'blank':   # a student sheet printed as written (its markup may lay out boxes), with the foot line
-        put(out / (name + '-student.html'), page(title, '<h1>%s</h1>%s%s' % (
-            html.escape(title), mdh(body), unit_foot(h, course, name)), 'student'))
+        # grades 9 to 12 read source sheets at 11 point, images held to a third of a page (fixer, social studies probe, 2026-11-15)
+        hs = '<style>body.student { font-size: 11pt; line-height: 1.35; } body.student img { max-height: 2.5in; max-width: 100%; }</style>'             if (grade(course) or 0) >= 9 else ''
+        put(out / (name + '-student.html'), page(title, '%s<h1>%s</h1>%s%s' % (
+            hs, html.escape(title), mdh(body), unit_foot(h, course, name)), 'student'))
         return out
     if kind == 'sheet':   # a page for the teacher: the preset's link, then the piece's own notes
         g = preset(h)
@@ -2957,7 +3001,7 @@ def build_piece(p, items, wrongs, errors):
     put(out / (name + '-student-large.html'), page(title + ', large print', sb, 'student large'), encoding='utf-8')
     errname = {e['letter']: err_name(e['error']) for e in errors if e['stretch'] == h.get('stretch')}
     errname['x'] = ERR_X
-    tail = lambda w: ((('error %s, %s' % (w['error'], errname.get(w['error'], '').lower())) if w['error'] else '')
+    tail = lambda w: ((('error %s, %s' % (w['error'], first_lower(errname.get(w['error'], '')))) if w['error'] else '')
                       + (' (%s)' % w['note'] if w['note'] else '')).strip()
     wr = lambda i: '; '.join(w['shown'] + (': ' + tail(w) if tail(w) else '')
                              for w in wrongs if w['item_id'] == i['item_id'])

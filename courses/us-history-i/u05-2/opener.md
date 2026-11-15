@@ -42,7 +42,7 @@ what is still to check, is data/plans/us-history-i/sources.csv.
   the new government's foundation. Read it as evidence of what the founders said, once, without dramatic reading.
   Say before it: "This is a hateful claim. We read it because it tells us, in a founder's own words, why the
   Confederacy was made."
-- **No battle role play, no reenactment.** Battles are studied by decision and effect, on a map and a facts card.
+- **No battle role play, no reenactment.** Battles are studied by decision and effect, by place and on a facts card.
   Day 79's photograph shows Lincoln at Antietam, not the dead.
 - **Confederate symbols only as sources.** None appear on our pages except inside a printed source.
 - **The Lost Cause is tested, never balanced.** On day 82 do not ask "which side is right?" Ask "what does the record
@@ -54,34 +54,37 @@ what is still to check, is data/plans/us-history-i/sources.csv.
 ## What is carried
 
 - The essay 1 folder holds the P1 packet, draft 1 with your written feedback, and draft 2 with its revision note. It
-  stays in the room from day 77 to day 84. Return draft 1 with feedback before day 81.
+  stays in the room from day 77 to day 84. Draft 1 comes back with feedback in day 81's warm-up.
 - The Component M organizer (day 79) is completed alone, collected, and scored with the day 89 assessment. Keep it.
 - The day 80 four-source organizer is collected and returned in day 82's warm-up. Day 81 keeps its full writing
   time, so nothing is handed back that day except draft 1.
 
 ## Before the section
 
-- Read the five source sheets and the essay 1 packet.
+- Read the four source sheets, the day 79 organizer, the day 81 model draft pair, the day 82 exit-source slip and
+  the essay 1 packet.
 - Print the source sheets once per student; they are kept in the folder.
-- Mark essay 1, draft 1 with written feedback on two things: the claim's precision and the counterclaim. Write one
-  question the student must answer in draft 2.
+- Mark essay 1, draft 1 with written feedback on four things, one line each: the claim, the counterclaim, the
+  inconsistency to deal with, and why the claim matters to the question.
 - Send the family note home on day 78.
 
 ## The errors to expect
 
 | | The error | What you see | First move |
 |---|---|---|---|
-| A | A label or trigger replaces the underlying conflict | "States' rights caused it; slavery was one issue." | Reread the Confederate constitution's slavery clause with the claim. |
-| C | Lincoln freed everyone at once | "On January 1, 1863, Lincoln freed every enslaved person." | Shade the Proclamation's areas on the outline map; add Fortress Monroe. |
+| A | A label or trigger (regions, the election, states' rights) replaces slavery as the cause | "States' rights caused it; slavery was one issue." | Reread the Confederate constitution's slavery clause with the claim. |
+| C | Lincoln freed everyone at once | "On January 1, 1863, Lincoln freed every enslaved person." | List the Proclamation's exceptions from day 78 Source C's gloss, Fortress Monroe among them. |
+| J | War aims never changed | "The Union fought to end slavery from the first day." | Day 78 Sources A and C side by side, with dates. |
+| K | Empty land | "The government gave away empty land." | Read "Indian titles" in day 79 Source E; name the nations. |
 | D | Roles and battles run together | "Gettysburg won the war." | Sort the leaders by office and the battles on one timeline. |
 | E | Service and source limits narrowed | "The photograph shows they were happy to serve." | Two columns: what it shows, what it cannot. |
 | H | Evidence cut off from who made it and when | "Both sides have a point." | Model one more test; pairs try a second claim. |
-| I | Words changed, reasoning not | "I added two quotations." | One draft pair, side by side; mark what changed in meaning. |
+| I | Words changed, reasoning not | "I added two quotations." | The model draft pair; mark what changed in meaning. |
 
 ## What the teacher needs to know
 
 - The Proclamation applied only to areas in rebellion on January 1, 1863. It did not cover the loyal slave states
-  (Delaware, Maryland, Kentucky, Missouri) or named exceptions (Tennessee and parts of Louisiana and Virginia). It
+  (Delaware, Maryland, Kentucky, Missouri) or Tennessee, which it never named, and it excepted 13 Louisiana parishes, West Virginia and 7 Virginia counties. It
   became real where Union armies went and where enslaved people fled to them. It opened the army to Black men;
   about 180,000 served in the United States Colored Troops.
 - In August 1862 Lincoln wrote publicly that his aim was the Union. He had already shown his cabinet a draft
@@ -89,6 +92,8 @@ what is still to check, is data/plans/us-history-i/sources.csv.
   the whole of his thinking.
 - Davis was the Confederate president; Lee commanded the Army of Northern Virginia; Grant led Union armies in the
   West and from 1864 all Union armies. No single battle ended the war.
-- Harriet Tubman guided the June 1863 Combahee River raid, in which Black Union soldiers freed some 750 people.
+- Harriet Tubman guided the June 1863 Combahee River raid; in her own letter she counts 756 people brought to
+  freedom. Black soldiers were paid less than white soldiers until 1864, and captured Black soldiers faced death or
+  enslavement.
 - After the war, Davis and others wrote that slavery was not the cause. The 1861 record, including the Confederate
   constitution and Stephens's speech, says it was. Historians call the later story the Lost Cause.

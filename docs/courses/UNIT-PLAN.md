@@ -104,7 +104,9 @@ sets is given).
    field 2. Every part has at least one item before any part has two. Items are not shared out by days.
 6. **Shared. At least half the readiness items serve the first section. An item for a later section is asked at the
    opening of that section. The reteach takes the next day's warm-up and first five minutes, for the whole class
-   if more than a third missed the item, otherwise for a small group while the rest do the warm-up.**
+   if more than a third missed the item, otherwise for a small group while the rest do the warm-up.** In social
+   studies a repair is the warm-up and, where needed, a small group during the next pairs or alone part; it never
+   takes minutes from the next day's worked example (expert read, US History I day 80, 2026-11-15).
 7. **Shared. "Many" means more than a third of the class,** everywhere in a unit plan or a section plan.
 8. **Shared. No tool without a named job, and one job for each use.** The job is one of: show why, practise
    with feedback, check unaided. A tool may be used more than once; each use has one job. A day row names the

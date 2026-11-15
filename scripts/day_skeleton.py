@@ -167,11 +167,11 @@ def build(course, day):
     w('- leans_on: %s' % '; '.join(lean))
     cr = credit_rows(course, day)
     if cr and all(c['decision'].strip() == 'ours' for c in cr):
-        w('- credit: all ours (source-map: %s)' % '; '.join(c['title'] for c in cr))
+        w('- credit: ours (the header says exactly "ours"; source-map: %s)' % '; '.join(c['title'] for c in cr))
     elif cr:
         w('- credit: adapted from %s' % '; '.join('%s, %s (%s)' % (c['source'], c['title'], c['decision']) for c in cr))
     else:
-        w('- credit: none (no base lesson is adapted on this day)')
+        w('- credit: ours (no base lesson is adapted on this day; the header says exactly "ours")')
     w(u.CLOSE)
     w('')
     # ---- the day as the scope sets it
@@ -235,7 +235,8 @@ def build(course, day):
         w('4. **Other rooms:** none needed unless the writer adds a device or a print; then the paper path.')
     w('5. **At home:** %s: the same day for one parent and one child; %s.' % (u.MARK, AT_HOME))
     w('6. **Shorter or longer:** %s: what to cut without making the work easier, and the extension.' % u.MARK)
-    w('7. **Words and supports:** %s: key words with their Word Wall cards, sentence frames, access notes.' % u.MARK)
+    w('7. **Words and supports:** %s: key words (with Word Wall card ids only where the topic has cards; never a line '
+      'saying none are supplied), sentence frames, access notes.' % u.MARK)
     nxt = byday.get(day + 1)
     w('8. **Tomorrow:** %s: what the exit tells the teacher and what changes next day.%s' % (
         u.MARK, (' Next day (%d, %s): %s' % (day + 1, nxt['kind'], u.clean(nxt['goal']))) if nxt else ' (the last day of the course)'))

@@ -42,7 +42,11 @@ the cost of one day, so work directly: read what you need, write, run the gates,
 - `version: draft 1, not ready, not yet taught`. `leans_on` names every outside piece by path; one that does not
   exist and is not needed to teach is `when it exists: <path>`, with the fallback said in the prose.
 - No em dashes. "Curio Class" in full. No company names. A timer only with a grounded purpose (BASELINE rule 30). `credit: ours` unless you
-  adapt CC BY, CC0 or public domain material.
+  adapt CC BY, CC0 or public domain material: the word alone, nothing after it.
+- No notes to the writer or builder on the page ("not ready", "do not invent", "these are unfinished"): a day that
+  cannot run is not handed in. No typed Name line. Errors and sources are named "error C" and "Source C".
+- A practice item that stays in folders says so ("stays in the folder"); one that comes back has a handbacks.csv row,
+  and the day it goes to names it.
 
 ## When your day has a base text
 
@@ -83,6 +87,8 @@ Run each on your own day before you hand in. The cheap read uses this list too.
 13. **Asks before answers.** Each planned question comes before the screen or step that answers it.
 14. **On grade.** Nothing needs a skill taught later in the scope and sequence, or a number off the grade's list.
 15. **Shorter keeps the core**: never the fix-its that carry the day's errors, the trace items or the exit.
+16. **Sources (social studies).** Every quotation is word for word from the source in sources.csv; every date and
+    figure has a checked source; an exit's stimulus is unseen; a source line names who, when and for whom.
 
 ## Gates (run until 0 failures for your day)
 

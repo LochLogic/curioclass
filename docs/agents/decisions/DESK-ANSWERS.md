@@ -1371,3 +1371,7 @@ informed action only where one action cannot teach and check all of the course's
 third only in civics, never to fill time, and every action keeps a classroom-only version. Why: quality and fairness
 first; cutting units would cut standards, and a school with less staff still gets the whole course. Applied:
 ADOPTION-BAR-SUBJECTS.md (pass rule, criterion 8, choices 4 and 6); social studies baseline 2 applies L44.
+
+## 2026-11-15: day gates and rules from the social studies probe fix (fixer, US History I days 78 to 82)
+
+Edited in place: LESSON-DAY.md (credit `ours` exactly; error and source letters in words; placeholders fail; a repair never cuts the next day's worked example; hand-backs follow handbacks.csv; revision-note box; no typed Name line), UNIT-PLAN.md rule 6 (social studies repair), DAY-WRITER.md (fixed facts, check 16), CHEAP-READ.md (check 7), data/plans/README.md (`defect --status`). Gates: scripts/lesson.py (placeholder, bare letter, typed Name line, hand-backs and Tomorrow letters read handbacks.csv, error letters to K, grade 9 to 12 source sheets at 11 point), scripts/plan.py (`defect --status`), scripts/day_skeleton.py (credit and Word Wall lines). Why: the expert and cheap reads of days 78 to 82 (docs/reviews/*-2026-11-15.md) traced these to the template.

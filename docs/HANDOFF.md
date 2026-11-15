@@ -18,7 +18,11 @@ time, before more days are written.
 - **Unit plans**: social studies has 138, written, read twice, fixed and through a structure pass. Science, ELA and
   math have skeletons for all 259 units (scripts/unit_skeleton.py, spot-checked); their judgement fields are not
   filled yet.
-- **Section plans and days**: none under the current path. A day skeleton draft exists early on purpose
+- **Social studies probe** (2026-11-15, docs/reviews/probe-social-studies-2026-11-15.md): Off. US History I days 78
+  to 82 written and read the full way; plan share 60%, units changed 88% (mostly error letters holding two
+  misconceptions, written by Codex in 119 units). Next: correct the social studies units and the template line, then
+  probe one more section (later.csv L51) before science, ELA and math units are written.
+- **Section plans and days**: only the probe section (US History I 5.2, days 78 to 82). A day skeleton draft exists early on purpose
   (scripts/day_skeleton.py, docs/pipeline/DAY-SKELETON.md, later.csv L31). Grade 4 math's older plans and 48 days,
   made under the retired pilot plan, are held for math's units in step 5 (PRODUCTION-PATH section 4; rework list in L13).
 - **The site**: not launched. scripts/course_pages.py builds hidden course and unit pages for all 52 core courses
@@ -83,6 +87,10 @@ commits only its own files and never edits in another session's folder. A backgr
   about earlier decisions.
 - After changes, refresh the Desk: `python -X utf8 scripts/course_status.py <out.json>` (doc `stats/courses`) and
   `python -X utf8 scripts/plan_flow.py <out.json>` (docs `stats/plan-c0`, `plan-c1`, ... from <out.json>.parts/, sent together in one ArtifactData batch; the Desk joins them, so the plan has no size cap; node states in data/plans/flow-status.csv).
+  Then refresh the signed-out copy: ArtifactData `list` on `items` (limit 1000) and `stats` (limit 100) with out_dir
+  `<dir>`, run `python -X utf8 scripts/desk_snap.py <dir> <folder holding desk.html>`, and republish the Desk page
+  with `files: {"snap.json": "<that folder>/snap.json"}`. Viewers who are not signed in see only this copy (no
+  comments, no live updates), so skipping it leaves the shared link showing old data.
   When a review step closes, add its result to data/plans/flow-results.csv (node, then two or three sentences:
   findings per reader, main fixes, what went to Cory).
 - Parked work gets a row in data/plans/later.csv; mark a row done rather than deleting it, and act on any row whose

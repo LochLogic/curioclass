@@ -6,11 +6,15 @@ from_day,to_day,what,where,minutes,error,note
 71,86,s05-R4,warm-up,10,F,"readiness gap 4, reasked on day 83"
 77,81,essay 1 draft 1 with written feedback,warm-up,5,I,feedback returned before day 81; read in the warm-up
 78,79,s05-X78,warm-up,5,C,"if more than a third miss the Proclamation's reach, the warm-up and first five minutes repair it"
+78,79,s05-P78-1 s05-P78-2,warm-up,3,J,"timelines checked in pairs at the start, then kept in folders for day 89"
 79,80,s05-X79,warm-up,5,D,battle effects and roles; the land question goes to the small group
+79,80,s05-P79-1,warm-up,2,C,answers read aloud and judged in class
 79,89,s05-P79-2,items,0,D,Component M: the organizer is collected on day 79 and scored with the assessment
-80,82,s05-X80 s05-P80-2,warm-up,5,E,"day 81 is a writing day, so the day 80 repair and the organizer return wait for day 82"
-81,84,essay 1 draft 2 and revision note,writing,0,I,written feedback returned during days 82 and 83
-82,83,s05-X82,warm-up,5,H,source test repair
+80,82,s05-X80 s05-P80-2,warm-up,5,E,"day 81 is a writing day, so the day 80 repair (errors E or H) and the organizer return wait for day 82's warm-up"
+80,81,s05-P80-1,warm-up,2,D,judged aloud before writing starts
+81,82,s05-P81-1,warm-up,0,I,stays in the essay folder with draft 2
+81,84,essay 1 draft 2 and revision note s05-W81 s05-X81,writing,0,I,written feedback returned during days 82 and 83
+82,83,s05-X82,small group,5,H,"source test repair in a small group, since day 83 warm-up holds the R3 and R4 retrieval"
 82,87,s05-X82,opening,0,H,the question-and-investigate move returns for historians' accounts
 84,89,essay 1 final (P1),items,0,,scored as components with the assessment
 88,91,essay 2 draft 1 with written feedback,warm-up,5,I,two school days later

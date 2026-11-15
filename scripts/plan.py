@@ -3,7 +3,7 @@
     python -X utf8 scripts/plan.py check  [course]            gates; exit 1 on any failure
     python -X utf8 scripts/plan.py tables [course]            rewrite the generated blocks in the plan files
     python -X utf8 scripts/plan.py pack   <course> <unit>     print one agent's reading pack
-    python -X utf8 scripts/plan.py defect <course> <artifact> <layer> <found_by> <kind> "<summary>" [ref]
+    python -X utf8 scripts/plan.py defect [--status=open|fixed|rejected] <course> <artifact> <layer> <found_by> <kind> "<summary>" [ref]
     python -X utf8 scripts/plan.py defects                    counts by reader and layer
     python -X utf8 scripts/plan.py reserve <course> <unit>    write the unit's fact triples into its generator
 
@@ -1213,11 +1213,17 @@ def rows_defects():
 
 
 def defect_add(a):
+    status = 'open'
+    for x in [x for x in a if x.startswith('--status=')]:
+        status = x.split('=', 1)[1]
+        a = [y for y in a if y != x]
+    if status not in ('open', 'fixed', 'rejected'):
+        raise SystemExit('status must be open, fixed or rejected')
     if len(a) < 6:
         raise SystemExit(__doc__)
     if a[3] not in READERS:
         raise SystemExit('found_by must be one of: ' + ', '.join(sorted(READERS)))
-    row = [str(datetime.date.today())] + a[:6] + ['open', a[6] if len(a) > 6 else '']
+    row = [str(datetime.date.today())] + a[:6] + [status, a[6] if len(a) > 6 else '']
     with io.open(DEF, 'a', encoding='utf-8', newline='') as f:
         csv.writer(f, lineterminator='\n').writerow(row)
     print('logged:', row)

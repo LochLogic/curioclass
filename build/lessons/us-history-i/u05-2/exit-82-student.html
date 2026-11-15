@@ -1,0 +1,155 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 82 exit-source slip</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; } .student table.even { table-layout: fixed; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.75in; width: 48%; display: inline-block; box-sizing: border-box; padding: .18in; margin: 0 1% .15in 0; vertical-align: top; font-size: 12pt; line-height: 1.3; overflow: hidden; } .slip p { margin: .22em 0; } .slip .foot { font-size: 7pt; line-height: 1.25; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.0in; } .slip .sketch.tall { height: 1.1in; } .slip .fig svg { max-height: 1.2in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+.blank.fblank { width: .8in; height: 1.6em; }   /* a line holding one stands about 2em: room for a stacked fraction */
+</style></head><body class="student"><style>body.student { font-size: 11pt; line-height: 1.35; } body.student img { max-height: 2.5in; max-width: 100%; }</style><h1>Day 82 exit-source slip</h1><p>Hand this out only at the exit ticket. Read the claim card and Source E first; use Source F after you write your question.</p>
+<p><strong>Source E. Constitution of the Confederate States, March 11, 1861.</strong> Public domain.</p>
+<blockquote>
+<p>Article I, section 9, clause 4: No bill of attainder, ex post facto law, or law denying or impairing the right of
+property in negro slaves shall be passed.</p>
+<p>Article IV, section 2, clause 1: The citizens of each State shall be entitled to all the privileges and
+immunities of citizens in the several States; and shall have the right of transit and sojourn in any State of this
+Confederacy, with their slaves and other property; and the right of property in said slaves shall not be thereby
+impaired.</p>
+</blockquote>
+<p>Gloss: <em>impairing</em>, weakening; <em>transit and sojourn</em>, passing through and staying a while. Article I binds the
+Confederate Congress; Article IV binds every state.</p>
+<p><strong>The claim card.</strong> A claim printed in many places long after the war: the Southern states left the Union to defend
+states' rights, and slavery had little to do with it.</p>
+<p><strong>Source F. Enslaved people in each slave state, 1860.</strong> Ours, from the 1860 census, Population of the United
+States in 1860, pp. 598-599 (public domain). The dates of leaving are as the National Park Service gives them. West Virginia was still part of Virginia in 1860.</p>
+<table>
+<thead>
+<tr>
+<th>Left the Union</th>
+<th>Date</th>
+<th>Enslaved people</th>
+<th>Share of all people</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>South Carolina</td>
+<td>December 20, 1860</td>
+<td>402,406</td>
+<td>57%</td>
+</tr>
+<tr>
+<td>Mississippi</td>
+<td>January 9, 1861</td>
+<td>436,631</td>
+<td>55%</td>
+</tr>
+<tr>
+<td>Florida</td>
+<td>January 10, 1861</td>
+<td>61,745</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>Alabama</td>
+<td>January 11, 1861</td>
+<td>435,080</td>
+<td>45%</td>
+</tr>
+<tr>
+<td>Georgia</td>
+<td>January 19, 1861</td>
+<td>462,198</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>Louisiana</td>
+<td>January 26, 1861</td>
+<td>331,726</td>
+<td>47%</td>
+</tr>
+<tr>
+<td>Texas</td>
+<td>February 1, 1861</td>
+<td>182,566</td>
+<td>30%</td>
+</tr>
+<tr>
+<td>Fort Sumter fired on</td>
+<td>April 12, 1861</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Virginia</td>
+<td>April 17, 1861</td>
+<td>490,865</td>
+<td>31%</td>
+</tr>
+<tr>
+<td>Arkansas</td>
+<td>May 6, 1861</td>
+<td>111,115</td>
+<td>26%</td>
+</tr>
+<tr>
+<td>North Carolina</td>
+<td>May 20, 1861</td>
+<td>331,059</td>
+<td>33%</td>
+</tr>
+<tr>
+<td>Tennessee</td>
+<td>June 8, 1861</td>
+<td>275,719</td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Slave states that stayed in the Union</th>
+<th>Enslaved people</th>
+<th>Share of all people</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kentucky</td>
+<td>225,483</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>Maryland</td>
+<td>87,189</td>
+<td>13%</td>
+</tr>
+<tr>
+<td>Missouri</td>
+<td>114,931</td>
+<td>10%</td>
+</tr>
+<tr>
+<td>Delaware</td>
+<td>1,798</td>
+<td>2%</td>
+</tr>
+</tbody>
+</table><div class="foot">Curio Class, grade 11 social studies, section 5.2, exit-82, version draft 2, sources checked 2026-11-15, CC BY 4.0, curioclass.org</div></body></html>

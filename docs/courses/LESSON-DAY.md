@@ -134,19 +134,27 @@ Fixed headings, so a script can find each part and a teacher always finds it in 
 5. **At home.** The same day for one parent and one child (see "The At home block" below). Required on every day.
 6. **Shorter or longer.** What to cut when time runs short without making the work easier, and the extension,
    on the same standard.
-7. **Words and supports.** The key words with their Word Wall cards, the sentence frames, and any access note:
-   only what differs from the section opener.
+7. **Words and supports.** The key words, with their Word Wall card ids where the topic has cards (never a line
+   saying none are supplied), the sentence frames, and any access note: only what differs from the section opener.
 8. **Tomorrow.** What the exit tells the teacher, and what changes the next day because of it, naming the sign
    of each error on both exit paths. A fix-it named by its pupil (Kai, Mia) is handed on by its sum or difference, not
    by the name, since the names come back on later days with other errors. The hand-off is two-sided: the next day's file carries an "If many ...
    day N's exit" line (or an "If day N's tickets showed ..." branch) that acts on it, and the gate checks it,
    finding the next day by number in any section folder of the course. On an assessment day, a display line
    `Check: ...` shows each row with its answer; `Check (sort): ...` shows only the kind (the answer's first part).
-9. **Credit.** See rule 4.
+9. **Credit.** See rule 4. A day that adapts nothing has the header `credit: ours`, exactly.
+
+**Teacher prose names errors and sources in words.** Write "error C" and "Source C", never a bare "(C)":
+error letters and source letters share the alphabet (the gate fails a bare letter in a course with sources).
+**No writer's placeholder reaches a page.** "[to cut]", "[to check]", "[to add]", "[to make]" and "[image:" fail
+on a day and on every piece; cut what cannot be finished. **A repair never cuts the next day's worked example.**
+The warm-up carries it, and a small group during the pairs or alone part takes what does not fit. **Hand-backs
+follow handbacks.csv:** a row routes an item past the next day (a writing day between); its letters are that
+later day's to pick up. **A writing day's student page gives the revision note its own box.**
 
 ## The student page
 
-- A name and date line, then the goal in student words.
+- The goal in student words. The build prints the name and date line; never type one (the gate fails it).
 - Frames to fill during the worked examples, so copying the model is part of the page. A frame on the
   teacher page under Words and supports is printed on the student page too.
 - Room to write: every question that asks for a sketch has a box (`{sketch}`, or `{small}` for a short fix);

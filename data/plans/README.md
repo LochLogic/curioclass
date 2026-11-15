@@ -47,7 +47,7 @@ the unit in parts.csv. Naming an item is a claim that it asks for that piece: th
     python -X utf8 scripts/plan.py check            the gates
     python -X utf8 scripts/plan.py tables           rebuild the tables in the plan files
     python -X utf8 scripts/plan.py pack math-4 11   one unit's reading pack for an agent
-    python -X utf8 scripts/plan.py defect math-4 s11.md plan expert key "what was wrong" [where it is written up]
+    python -X utf8 scripts/plan.py defect [--status=open|fixed|rejected] math-4 s11.md plan expert key "what was wrong" [where it is written up]
     python -X utf8 scripts/plan.py defects          the ledger, counted by reader and layer
 
 The gates fail on: a key the script cannot reproduce; a part of a standard with no unit assessment item; an end-of-unit assessment
