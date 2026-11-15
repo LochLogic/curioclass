@@ -23,7 +23,7 @@ The following audit uses progression rows and explicit teaching or assessment in
 | m7-cross-sections | 7 | Day 81 readiness for unit 5; day 82 rebuilds a prism/pyramid slice before extending to curved solids and rotation. |
 | m7-circles | 7 | Day 81 readiness for unit 5; day 90 explicitly teaches circumference and circle area. Unit 7 therefore retrieves day 90 rather than repeating readiness. |
 | m8-coordinate-distance | 8 | Day 105 readiness for unit 6; connect horizontal and vertical differences to a right triangle. |
-| m7-probability-models | 7 | Day 143 readiness for unit 8; day 144 rebuilds predicted against observed frequency. |
+| m7-probability-models | 7, last used grade 9 | Retrieval on day 144 (predicted against observed frequency); day 143's readiness check covers only m7-compound-events. |
 | m7-compound-events | 7 | Day 143 readiness, including a tree diagram; day 144 reactivates the representation and day 146 develops the new event language. |
 | alg1-writing-equations-constraints | 9 | Retrieve quantity naming and the coordinate plane in day 1's opening and modeling days. |
 | alg1-vertex-form | 9 | Retrieve transformation language on day 1 and the quadratic form on days 110 to 111. |

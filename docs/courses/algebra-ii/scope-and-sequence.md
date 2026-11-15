@@ -12,7 +12,7 @@ This ledger uses actual teaching and assessment days in the current Algebra I an
 |---|---|---|
 | alg1-function-notation | Grade 9, Algebra I days 63 to 67 and later assessment | Readiness, last ten minutes of day 1; then retrieval throughout unit 1 |
 | alg1-linear-vs-exponential | Grade 9, days 84 to 85 and later applications | Day 1 readiness; explicit arithmetic/geometric comparisons on days 2 to 10 make subsequent use retrieval |
-| alg1-exponential-functions | Grade 9, days 86 to 101; taught again here on days 2 to 10 through geometric functions | Covered in the day 1 growth-pattern probe before that work; retrieval in units 2 and 4, no repeated readiness |
+| alg1-exponential-functions | Grade 9, days 86 to 101; taught again here on days 2 to 10 through geometric functions | Covered in the day 1 growth-pattern probe before that work; checked again in day 14's readiness check before unit 2, since warm-up retrieval does not count as a use; retrieval in units 2 and 4 |
 | alg1-quadratic-forms-graphs | Grade 9, days 118 to 127 and later assessment | Readiness on day 14 for unit 2 |
 | alg1-factoring | Grade 9, days 136 to 140 and later assessment | Readiness on day 14; retrieval after the polynomial factors work |
 | alg1-domain-range | Grade 9, days 72 to 73 and later assessment | Day 14 checks the still-idle continuous-domain and range interpretation; unit 1 already retrieves integer domains |
@@ -20,7 +20,7 @@ This ledger uses actual teaching and assessment days in the current Algebra I an
 | alg1-equation-reasoning | Grade 9, days 21 and 23 to 26 | Day 14 readiness; unit 2 then develops equation reasoning explicitly |
 | alg1-inverse-functions | Grade 9, days 77 to 79 and assessment | Readiness on day 45, used in the nonlinear contribution on day 57 |
 | alg1-rational-irrational | Grade 9, days 150 to 151 and assessment | Readiness on day 45 before roots and the number-system extension |
-| alg1-quadratic-equations-reasoning | Grade 9, days 131 to 135; used here in factors, zeros and polynomial intersections | Initial readiness on day 14 before its day 20 use; retrieval in unit 3 from the unit 2 teaching/assessment record, no second day 45 check |
+| alg1-quadratic-equations-reasoning | Grade 9, days 131 to 135; used here in factors, zeros and polynomial intersections | Readiness on day 14 before its day 20 use, and again on day 45 before unit 3; retrieval in unit 3 from the unit 2 teaching and assessment record |
 | alg1-completing-square | Grade 10, Geometry days 110 to 111; completing-square response on day 125 | Retrieval on day 64 before day 65; removed from day 45 readiness |
 | alg1-quadratic-formula | Grade 9, days 145 to 148 and assessment | Readiness on day 45; retrieve on days 64 to 67 |
 | alg1-percent-change-interest | Grade 9, days 97 to 101 and assessment | Day 72 readiness checks rate and time-unit interpretation; fictional deposit totals alone do not establish the entire row |

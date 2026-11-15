@@ -38,10 +38,10 @@ These decisions precede day placement. The grade 6 day file explicitly assesses 
 | m6-center-variability | Grade 6 | Retrieval, day 148 |
 | m6-statistical-questions | Grade 6 | Retrieval, day 149 |
 | m6-summarize-data | Grade 6 | Retrieval, day 149 |
-| m4-angle-concepts | Grade 4 | Readiness in day 1's last 10 minutes after the hook; rebuild on day 2 before day 3's comparison. Explicit teaching here makes day 121 retrieval appropriate |
+| m4-angle-concepts | Grade 4 | Readiness in day 1's last 10 minutes after the hook; rebuild on day 2 before day 3's comparison. Day 120's readiness check names it again before unit 7, and day 121 rebuilds it from those results |
 | m4-protractor | Grade 4 | Same day 1 check and day 2 rebuilding, with actual use on day 3; retrieve on days 121 and 126 |
 | m4-additive-angles | Grade 4 | Readiness in day 120's last 10 minutes; rebuild on day 122 as indicated |
-| m5-add-sub-unlike | Grade 5 | Readiness in day 68's last 10 minutes; rebuild on day 71 as indicated |
+| m5-add-sub-unlike | Grade 5, used earlier this year | Retrieval in day 71's first 10 minutes; day 68's readiness check covers only m5-fraction-add-sub-problems |
 | m5-fraction-add-sub-problems | Grade 5 | Same day 68 check; same-whole and benchmark rebuilding on day 71 |
 | m5-shape-hierarchy | Grade 5 | Readiness on day 120; indicated rebuilding within day 126, before polygon construction |
 | m5-volume-additive | Grade 5 | Readiness on day 120; indicated rebuilding within day 132, before composite volume |

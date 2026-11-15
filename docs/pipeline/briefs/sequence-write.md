@@ -81,6 +81,9 @@ studies goes first; the other subjects follow in step 5.
    minutes)". Unit 1's check, where unit 1 has readiness rows, takes the last ten minutes of day 1, after the hook,
    and day 1 carries `assess` = `readiness` (lead rule 2026-11-14; sequence.py accepts it). Every other unit's first
    day never holds a readiness check: it stays clean for the hook and the compelling question.
+   The rows a readiness check samples for the next unit are named by id in that day's note, never in its `skills`
+   column: `skills` holds only what the day's own unit works on (lead rule 2026-11-15; the skeleton reads an
+   earlier-grade id in `skills` as a row of the day's own unit).
    **Count by grade number, and this rule wins over the frame's wording** (lead, 2026-11-14, after nine science
    reads found three readings): a row last used in grade g gets retrieval in grade g+1 and a readiness check in grade
    g+2 or later. "Idle two or more grades" in a frame means the same thing, never "two grades in between". A row
