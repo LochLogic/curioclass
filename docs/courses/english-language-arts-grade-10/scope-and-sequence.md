@@ -258,16 +258,16 @@ The 148 unit days allocate 7,400 minutes; course checks/respond days add 600, to
 
 Use one three-minute morphology slot each week inside the existing word block and two minutes retrieving the previous grade's recorded word-form strategy; no reteach weeks. The days.csv notes place every weekly slot, including assessment weeks after independent evidence is taken. Whole-word focus lists remain. L.4b is shown by changes of meaning and part of speech, not by merely circling a root. Context, reference pronunciation/part of speech/meaning and verification remain separate L.4a/c/d evidence.
 
-| Weeks and first placement | New derivational family and Latin/Greek parts | Subsequent use |
+| Weeks and first placement | Derivational family and Latin/Greek parts (new unless marked) | Subsequent use |
 |---|---|---|
 | 1 to 2, day 1 | create / creation / creative; Latin cre, -tion/-ive | Responsibility claims and later science explanations |
 | 3 to 5, day 11 | perceive / perception / perceptive; Latin cap/cept with per- | Creature's experience, then cultural-perspective comparison |
 | 6 to 9, day 29 | reproduce / reproduction / reproductive; Latin duc/duct with re-/pro- | Process explanations and narrative commentary |
-| 10 to 17, day 46 | transform / transformation / transformative; Latin form, trans-, -ation/-ative | Colonial comparison, then Shakespeare/source analysis |
+| 10 to 17, day 46 | transform / transformation / transformative; built from retrieved parts, Latin form (grade 4) and trans- (grade 5), with -ation/-ative; no new root | Colonial comparison, then Shakespeare/source analysis |
 | 18 to 22, day 89 after check response | persuade / persuasion / persuasive; Latin suad/suas, -sion/-ive | Whole-speech rhetoric and war poems |
-| 23 to 32, day 111 after evidence/response | synthesize / synthesis / synthetic; Greek syn-, thes/thet | Liberty-document comparison, inquiries and sustained research |
+| 23 to 32, day 111 after evidence/response | synthesize / synthesis / synthetic; Greek syn-, thes/thet; retrieval of grade 9's family in new contexts, not new teaching | Liberty-document comparison, inquiries and sustained research |
 
-These six families are reserved for grade 10's new teaching in the structure-pass band list. Later grades retrieve them and teach different families; earlier grade logs are retrieval evidence, not a claim that a missing formal band list already exists. Within each run introduce forms, use them in a different text/context, compare meanings/parts of speech and verify, rather than repeat the introductory lesson. Continue to retrieve the other five families after their introduction, using an earlier taught text without previewing a cold passage.
+Create, perceive, reproduce and persuade are grade 10's new families in the word-family list (e9-l-word-strategies in the ELA progression); transform is built from retrieved parts and synthesize is grade 9's family, retrieved. Later grades retrieve them and teach different families; earlier grade logs are retrieval evidence, not a claim that a missing formal band list already exists. Within each run introduce forms, use them in a different text/context, compare meanings/parts of speech and verify, rather than repeat the introductory lesson. Continue to retrieve the other five families after their introduction, using an earlier taught text without previewing a cold passage.
 
 ## Rule 2 audit for later writers
 

@@ -32,7 +32,7 @@ Readiness follows grade numbers: last use in grade g means retrieval in grade g+
 | s4-information-codes | Grade 5, days 103 to 110 comparison and design records | Retrieval day 128 |
 | s4-wave-model | Grade 4 | Readiness day 115, targeted full-lesson response day 117 |
 | s4-structures-function | Grade 5, day 20 roots and leaves taking in matter | Retrieval day 136 |
-| s4-senses-brain | Grade 4; its receptor idea is explicitly rebuilt with support on day 13 here | Unit 1 assumes no independent old sensory performance; retrieve the newly taught pathway on days 136 and 144 |
+| s4-senses-brain | This year: day 13 rebuilds its receptor-to-brain idea with support and carries its id | Unit 1 assumes no independent old sensory performance; retrieval by id on day 136, and the pathway again on day 144 |
 | m2-number-line (2.MD.B.6) | Math row used in later math every year; retrieval default under the lead's math-lean rule | Thermometer retrieval in unit 3; read below zero without signed calculations |
 | m5-graph-points (5.G.A.2) | Grade 5 | Retrieval day 78; first-quadrant weather plots |
 | m5-line-plots (5.MD.B.2) | Grade 5 | Retrieve the record-and-compare routine in thermal trials; no independent new display choice |
