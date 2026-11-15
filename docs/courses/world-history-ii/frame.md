@@ -168,6 +168,8 @@ Every cross_subject lean of the 43 rows, grouped by the other subject and grade.
 - **One milestone calendar:** question and source plan at the start of week 29; source list (at least five sources, each judged for usefulness) at the end of week 29; draft by the middle of week 30; revision and the talk taught by the end of week 30; report and talk in week 31; history's adaptation in week 32. Cut order if days are lost: revision days first, never the source list or the draft.
 - **Alone.** A school teaching one course runs that course's whole cycle on its own sources.
 
+**History-only length (this frame only, not part of the shared block above; added 2026-11-14):** a school teaching history alone writes 800 to 1,200 words, with the same criteria and the explanation part shortened, because it has about 100 writing minutes and no homework. Paired schools keep 1,500 to 2,000 words across the ELA 10 minutes.
+
 ### Math, grade 6 (an earlier year)
 
 | This course needs (row, unit, weeks) | The lean | Taught in the other subject by | Availability |
