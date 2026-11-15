@@ -10,11 +10,11 @@ Every unit's first and last teaching days end with the exit routine (one open qu
 
 ## Readiness checks and retrieval tasks
 
-Settled rule 1: a row used the year before (US History I) or earlier this year (Government in the fall, Economics from school day 81) opens as a retrieval task inside a day; a row last used two or more grades back gets a readiness check, given before its unit opens (Cory, 2026-11-14): in the last ten minutes of the respond day before the unit, and for unit 1 in the start-of-year check, so every unit's first day opens on its question; it comes with a reteach station or targeted support for students it flags.
+Settled rule 1: a row used the year before (US History I) or earlier this year (Government in the fall, Economics from school day 81) opens as a retrieval task inside a day; a row last used two or more grades back gets a readiness check, given before its unit opens (Cory, 2026-11-14): in the last ten minutes of the respond day before the unit, and for unit 1 in the last ten minutes of day 1, after the hook, so every unit's first day opens on its question; it comes with a reteach station or targeted support for students it flags.
 
 | Unit | Readiness check (before the unit opens) | Retrieval task |
 |---|---|---|
-| 1 | Start-of-year check: ss8-public-budget; reteach station day 2 | Day 7: us1-industrialization |
+| 1 | Day 1, last ten minutes: ss8-public-budget; reteach station day 2 | Day 7: us1-industrialization |
 | 2 | none | Days 13 and 18: us1-wwi, us1-jim-crow, us1-immigration |
 | 3 | Day 25, last ten minutes: wh2-great-depression; reteach station day 28 | Day 28: us1-research-inquiry; day 32: us1-progressivism |
 | 4 | Day 41, last ten minutes: wh2-totalitarian-regimes, wh2-road-to-war, wh2-wwii-war-and-diplomacy, wh2-holocaust; reteach station day 44, targeted support days 46 and 51 | Day 42: us1-wwi |
@@ -52,7 +52,7 @@ Each end-of-unit assessment is a composite: an unseen task for what one sitting 
 
 Arc: six toolkit days (choice, goals with government's roles as the categories policies fall into, the graph, profit and investment, asset prices tracked across several years of a made-up series, the whole economy), then four on money and government (banks and panics, the Fed, business cycles, policy at work and an argument on who should steer). The tools come before the history that uses them; the Fed follows the panics that made it.
 
-- Readiness: the start-of-year check, before day 1, on grade 8's opportunity cost, budget and data panel (ss8-public-budget). The reteach is a station on day 2.
+- Readiness: the last ten minutes of day 1, after the hook, on grade 8's opportunity cost, budget and data panel (ss8-public-budget). The reteach is a station on day 2.
 - End-of-unit assessment, day 11: an unseen panic or war boom with a data table, the chain traced and the response judged, with day 5's tracking sheet and day 10's argument scored. Respond day 12.
 - Candidate: none in the frame.
 
