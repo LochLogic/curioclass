@@ -1,292 +1,293 @@
 # source: https://www.socialstudies.org/sites/default/files/c3/c3-framework-for-social-studies-rev0617.pdf
 # version: C3 Framework for Social Studies State Standards, 2013 (NCSS rev. 2017-06 PDF)
-# fetched: 2026-10-27
+# fetched: 2026-11-14 (text read from the official PDF; ids first extracted 2026-10-27)
 # level: one C3 indicator with grade-band suffix (D1 questions, D2 Civ/Eco/Geo/His, D3 sources, D4 conclusions); bands K-2, 3-5, 6-8, 9-12
-# note: extracted mechanically from the official PDF text; 283 indicators. Per dimension: D1 20, D2.Civ 54, D2.Eco 58, D2.Geo 48, D2.His 57, D3 14, D4 32.
+# note: ids extracted mechanically from the official PDF text; 283 indicators. Per dimension: D1 20, D2.Civ 54, D2.Eco 58, D2.Geo 48, D2.His 57, D3 14, D4 32.
 # note: NCSS publishes no single total; the count was checked against the PDF tables (max numbers D1.5, Civ.14, Eco.15, Geo.12, His.17, D3.4, D4.8 x 4 bands) minus the 17 cells the PDF marks "Begins in grades ...".
 # note: cells marked "Begins in grades ..." are omitted (not indicators): D2.Civ.4.K-2, D2.Civ.13.K-2, D2.Eco.8.K-2, D2.Eco.11.K-2, D2.His.5.K-2, D2.His.7.K-2/3-5/6-8, D2.His.8.K-2/3-5/6-8, D2.His.13.K-2, D2.His.15.K-2/3-5, D2.His.17.K-2, D3.3.K-2, D3.4.K-2.
 # note: D2.Civ.4.K-2 is printed as a code label in the PDF but its cell reads "Begins in grades 3-5", so it is excluded.
 # note: excluded companion appendices (9-12 only, not core C3): Psychology D2.Psy.1-23, Sociology D2.Soc.1-18, Religious Studies supplement D2.Rel.1-14; the Anthropology appendix uses no D2 code in the PDF text.
-D1.1.K-2
-D1.1.3-5
-D1.1.6-8
-D1.1.9-12
-D1.2.K-2
-D1.2.3-5
-D1.2.6-8
-D1.2.9-12
-D1.3.K-2
-D1.3.3-5
-D1.3.6-8
-D1.3.9-12
-D1.4.K-2
-D1.4.3-5
-D1.4.6-8
-D1.4.9-12
-D1.5.K-2
-D1.5.3-5
-D1.5.6-8
-D1.5.9-12
-D2.Civ.1.K-2
-D2.Civ.1.3-5
-D2.Civ.1.6-8
-D2.Civ.1.9-12
-D2.Civ.2.K-2
-D2.Civ.2.3-5
-D2.Civ.2.6-8
-D2.Civ.2.9-12
-D2.Civ.3.K-2
-D2.Civ.3.3-5
-D2.Civ.3.6-8
-D2.Civ.3.9-12
-D2.Civ.4.3-5
-D2.Civ.4.6-8
-D2.Civ.4.9-12
-D2.Civ.5.K-2
-D2.Civ.5.3-5
-D2.Civ.5.6-8
-D2.Civ.5.9-12
-D2.Civ.6.K-2
-D2.Civ.6.3-5
-D2.Civ.6.6-8
-D2.Civ.6.9-12
-D2.Civ.7.K-2
-D2.Civ.7.3-5
-D2.Civ.7.6-8
-D2.Civ.7.9-12
-D2.Civ.8.K-2
-D2.Civ.8.3-5
-D2.Civ.8.6-8
-D2.Civ.8.9-12
-D2.Civ.9.K-2
-D2.Civ.9.3-5
-D2.Civ.9.6-8
-D2.Civ.9.9-12
-D2.Civ.10.K-2
-D2.Civ.10.3-5
-D2.Civ.10.6-8
-D2.Civ.10.9-12
-D2.Civ.11.K-2
-D2.Civ.11.3-5
-D2.Civ.11.6-8
-D2.Civ.11.9-12
-D2.Civ.12.K-2
-D2.Civ.12.3-5
-D2.Civ.12.6-8
-D2.Civ.12.9-12
-D2.Civ.13.3-5
-D2.Civ.13.6-8
-D2.Civ.13.9-12
-D2.Civ.14.K-2
-D2.Civ.14.3-5
-D2.Civ.14.6-8
-D2.Civ.14.9-12
-D2.Eco.1.K-2
-D2.Eco.1.3-5
-D2.Eco.1.6-8
-D2.Eco.1.9-12
-D2.Eco.2.K-2
-D2.Eco.2.3-5
-D2.Eco.2.6-8
-D2.Eco.2.9-12
-D2.Eco.3.K-2
-D2.Eco.3.3-5
-D2.Eco.3.6-8
-D2.Eco.3.9-12
-D2.Eco.4.K-2
-D2.Eco.4.3-5
-D2.Eco.4.6-8
-D2.Eco.4.9-12
-D2.Eco.5.K-2
-D2.Eco.5.3-5
-D2.Eco.5.6-8
-D2.Eco.5.9-12
-D2.Eco.6.K-2
-D2.Eco.6.3-5
-D2.Eco.6.6-8
-D2.Eco.6.9-12
-D2.Eco.7.K-2
-D2.Eco.7.3-5
-D2.Eco.7.6-8
-D2.Eco.7.9-12
-D2.Eco.8.3-5
-D2.Eco.8.6-8
-D2.Eco.8.9-12
-D2.Eco.9.K-2
-D2.Eco.9.3-5
-D2.Eco.9.6-8
-D2.Eco.9.9-12
-D2.Eco.10.K-2
-D2.Eco.10.3-5
-D2.Eco.10.6-8
-D2.Eco.10.9-12
-D2.Eco.11.3-5
-D2.Eco.11.6-8
-D2.Eco.11.9-12
-D2.Eco.12.K-2
-D2.Eco.12.3-5
-D2.Eco.12.6-8
-D2.Eco.12.9-12
-D2.Eco.13.K-2
-D2.Eco.13.3-5
-D2.Eco.13.6-8
-D2.Eco.13.9-12
-D2.Eco.14.K-2
-D2.Eco.14.3-5
-D2.Eco.14.6-8
-D2.Eco.14.9-12
-D2.Eco.15.K-2
-D2.Eco.15.3-5
-D2.Eco.15.6-8
-D2.Eco.15.9-12
-D2.Geo.1.K-2
-D2.Geo.1.3-5
-D2.Geo.1.6-8
-D2.Geo.1.9-12
-D2.Geo.2.K-2
-D2.Geo.2.3-5
-D2.Geo.2.6-8
-D2.Geo.2.9-12
-D2.Geo.3.K-2
-D2.Geo.3.3-5
-D2.Geo.3.6-8
-D2.Geo.3.9-12
-D2.Geo.4.K-2
-D2.Geo.4.3-5
-D2.Geo.4.6-8
-D2.Geo.4.9-12
-D2.Geo.5.K-2
-D2.Geo.5.3-5
-D2.Geo.5.6-8
-D2.Geo.5.9-12
-D2.Geo.6.K-2
-D2.Geo.6.3-5
-D2.Geo.6.6-8
-D2.Geo.6.9-12
-D2.Geo.7.K-2
-D2.Geo.7.3-5
-D2.Geo.7.6-8
-D2.Geo.7.9-12
-D2.Geo.8.K-2
-D2.Geo.8.3-5
-D2.Geo.8.6-8
-D2.Geo.8.9-12
-D2.Geo.9.K-2
-D2.Geo.9.3-5
-D2.Geo.9.6-8
-D2.Geo.9.9-12
-D2.Geo.10.K-2
-D2.Geo.10.3-5
-D2.Geo.10.6-8
-D2.Geo.10.9-12
-D2.Geo.11.K-2
-D2.Geo.11.3-5
-D2.Geo.11.6-8
-D2.Geo.11.9-12
-D2.Geo.12.K-2
-D2.Geo.12.3-5
-D2.Geo.12.6-8
-D2.Geo.12.9-12
-D2.His.1.K-2
-D2.His.1.3-5
-D2.His.1.6-8
-D2.His.1.9-12
-D2.His.2.K-2
-D2.His.2.3-5
-D2.His.2.6-8
-D2.His.2.9-12
-D2.His.3.K-2
-D2.His.3.3-5
-D2.His.3.6-8
-D2.His.3.9-12
-D2.His.4.K-2
-D2.His.4.3-5
-D2.His.4.6-8
-D2.His.4.9-12
-D2.His.5.3-5
-D2.His.5.6-8
-D2.His.5.9-12
-D2.His.6.K-2
-D2.His.6.3-5
-D2.His.6.6-8
-D2.His.6.9-12
-D2.His.7.9-12
-D2.His.8.9-12
-D2.His.9.K-2
-D2.His.9.3-5
-D2.His.9.6-8
-D2.His.9.9-12
-D2.His.10.K-2
-D2.His.10.3-5
-D2.His.10.6-8
-D2.His.10.9-12
-D2.His.11.K-2
-D2.His.11.3-5
-D2.His.11.6-8
-D2.His.11.9-12
-D2.His.12.K-2
-D2.His.12.3-5
-D2.His.12.6-8
-D2.His.12.9-12
-D2.His.13.3-5
-D2.His.13.6-8
-D2.His.13.9-12
-D2.His.14.K-2
-D2.His.14.3-5
-D2.His.14.6-8
-D2.His.14.9-12
-D2.His.15.6-8
-D2.His.15.9-12
-D2.His.16.K-2
-D2.His.16.3-5
-D2.His.16.6-8
-D2.His.16.9-12
-D2.His.17.3-5
-D2.His.17.6-8
-D2.His.17.9-12
-D3.1.K-2
-D3.1.3-5
-D3.1.6-8
-D3.1.9-12
-D3.2.K-2
-D3.2.3-5
-D3.2.6-8
-D3.2.9-12
-D3.3.3-5
-D3.3.6-8
-D3.3.9-12
-D3.4.3-5
-D3.4.6-8
-D3.4.9-12
-D4.1.K-2
-D4.1.3-5
-D4.1.6-8
-D4.1.9-12
-D4.2.K-2
-D4.2.3-5
-D4.2.6-8
-D4.2.9-12
-D4.3.K-2
-D4.3.3-5
-D4.3.6-8
-D4.3.9-12
-D4.4.K-2
-D4.4.3-5
-D4.4.6-8
-D4.4.9-12
-D4.5.K-2
-D4.5.3-5
-D4.5.6-8
-D4.5.9-12
-D4.6.K-2
-D4.6.3-5
-D4.6.6-8
-D4.6.9-12
-D4.7.K-2
-D4.7.3-5
-D4.7.6-8
-D4.7.9-12
-D4.8.K-2
-D4.8.3-5
-D4.8.6-8
-D4.8.9-12
+# note: 2026-11-14 each id carries a tab then one line in Curio Class's own words, written from the indicator text in the NCSS PDF (the C3 Framework is copyrighted by NCSS, so the sentences are not copied; only short terms of art such as compelling question, supporting question and civic virtues stay close to the source).
+D1.1.K-2	Say why a big inquiry question matters to you personally.
+D1.1.3-5	Say why a big inquiry question matters to other people, such as classmates and adults.
+D1.1.6-8	Show how a question gets at key ideas of a subject area.
+D1.1.9-12	Show how a question reflects a lasting issue that people in the field keep working on.
+D1.2.K-2	Name the subject ideas that connect to a big inquiry question.
+D1.2.3-5	Name the subject concepts tied to a big question that people can interpret in more than one way.
+D1.2.6-8	Explain where experts agree about how the concepts behind a big question are read and applied.
+D1.2.9-12	Explain where experts agree and where they disagree about how the concepts behind a big question are read and applied.
+D1.3.K-2	Name the facts and concepts that connect to a smaller supporting question.
+D1.3.3-5	Name the subject concepts tied to a supporting question that people can interpret in more than one way.
+D1.3.6-8	Explain where experts agree about how the concepts behind a supporting question are read and applied.
+D1.3.9-12	Explain where experts agree and where they disagree about how the concepts behind a supporting question are read and applied.
+D1.4.K-2	Link the smaller supporting questions to the big question they help answer.
+D1.4.3-5	Explain how answering supporting questions helps answer the big question of an inquiry.
+D1.4.6-8	Explain how supporting and big questions strengthen each other as the inquiry goes on.
+D1.4.9-12	Explain how supporting questions move an inquiry forward and how working with sources raises new questions.
+D1.5.K-2	Decide which kinds of sources would help answer the big and supporting questions.
+D1.5.3-5	Decide which kinds of sources would help answer the questions, allowing for people's differing opinions about the answers.
+D1.5.6-8	Decide which kinds of sources would help answer the questions, allowing for the several points of view the sources show.
+D1.5.9-12	Decide which kinds of sources would help answer the questions, weighing the points of view in them, what kinds of sources exist, and how well they fit the inquiry.
+D2.Civ.1.K-2	Describe what people in charge are responsible for.
+D2.Civ.1.3-5	Tell apart what different government officials, levels and branches may do and must do, across times and places.
+D2.Civ.1.6-8	Tell apart the powers and duties of citizens, parties, interest groups and the media, in government and outside it.
+D2.Civ.1.9-12	Tell apart the powers and duties of local, state, tribal, national and international institutions.
+D2.Civ.2.K-2	Explain that everyone in a community, not only its leaders, has a part to play.
+D2.Civ.2.3-5	Explain why a democracy depends on people taking part responsibly, and what that means for how each person acts.
+D2.Civ.2.6-8	Explain the particular roles citizens play, such as voter, juror, taxpayer, service member, petitioner, protester and office-holder.
+D2.Civ.2.9-12	Analyze what citizens do in the U.S. political system, using theories of democracy, changes in participation over time, and models from other countries.
+D2.Civ.3.K-2	Explain why rules are needed and what they are for, at school and elsewhere.
+D2.Civ.3.3-5	Examine where rules, laws and key parts of the U.S. Constitution came from and what they are for.
+D2.Civ.3.6-8	Examine the origins, purposes and effects of constitutions, laws, treaties and international agreements.
+D2.Civ.3.9-12	Analyze how constitutions, laws, treaties and international agreements keep national and international order.
+D2.Civ.4.3-5	Explain how groups make rules that set responsibilities and protect freedoms.
+D2.Civ.4.6-8	Explain what the three branches, officials and agencies can and cannot do, in the United States and other countries.
+D2.Civ.4.9-12	Explain how the U.S. Constitution sets up a government whose powers, duties and limits have shifted over time and are still argued over.
+D2.Civ.5.K-2	Explain what a government is and some things it does.
+D2.Civ.5.3-5	Explain where different systems of government came from, what they do and how they are built, including those in the U.S. and state constitutions.
+D2.Civ.5.6-8	Explain where government came from, what it does and how it is built, using the U.S. Constitution, state constitutions and some other systems.
+D2.Civ.5.9-12	Judge how well citizens and institutions deal with social and political problems at local through international levels.
+D2.Civ.6.K-2	Describe how communities get shared jobs done, assign duties and give people authority.
+D2.Civ.6.3-5	Describe how people gain from working together, and what makes it hard, in government, workplaces, volunteer groups and families.
+D2.Civ.6.6-8	Describe how political, civil and economic organizations shape people's lives.
+D2.Civ.6.9-12	Critique how governments, civil society and markets relate to one another.
+D2.Civ.7.K-2	Practice good civic habits while taking part in school life.
+D2.Civ.7.3-5	Practice civic habits and democratic principles in school.
+D2.Civ.7.6-8	Practice civic habits and democratic principles in school and the community.
+D2.Civ.7.9-12	Practice civic habits and democratic principles when working with others.
+D2.Civ.8.K-2	Describe democratic ideas such as equality, fairness and respect for fair authority and rules.
+D2.Civ.8.3-5	Identify the main civic virtues and democratic principles that guide government, society and communities.
+D2.Civ.8.6-8	Analyze the ideas in the U.S. founding documents and explain how they shape the social and political system.
+D2.Civ.8.9-12	Evaluate how social and political systems, across contexts, times and places, encourage civic virtues and put democratic principles into practice.
+D2.Civ.9.K-2	Follow agreed discussion rules, listen to others and decide things as a group.
+D2.Civ.9.3-5	Use group deliberation to make decisions and reach judgments.
+D2.Civ.9.6-8	Compare the deliberation methods that many kinds of groups use in different settings.
+D2.Civ.9.9-12	Choose and use fitting deliberation methods in many settings.
+D2.Civ.10.K-2	Compare your own point of view with other people's.
+D2.Civ.10.3-5	Identify the beliefs, experiences, views and values behind your own and others' positions on civic issues.
+D2.Civ.10.6-8	Explain how personal interests, views, civic virtues and democratic principles matter when people work on public problems.
+D2.Civ.10.9-12	Analyze how personal interests and views affect, and should affect, the use of civic virtues, democratic principles and constitutional and human rights.
+D2.Civ.11.K-2	Explain how people can decide things together in the classroom.
+D2.Civ.11.3-5	Compare how decisions are made in different settings, such as class, school, government and society.
+D2.Civ.11.6-8	Tell apart the ways decisions are made in class, school, civil society and local, state and national government, and how well each serves its civic purpose.
+D2.Civ.11.9-12	Evaluate several ways of making government decisions at every level by the civic purposes they achieve.
+D2.Civ.12.K-2	Identify and explain how rules work in the classroom and school.
+D2.Civ.12.3-5	Explain how rules and laws change society and how people change them.
+D2.Civ.12.6-8	Assess real and proposed rules and laws as ways to address public problems.
+D2.Civ.12.9-12	Analyze how people use and challenge laws at every level to deal with public issues.
+D2.Civ.13.3-5	Explain how policies are developed to deal with public problems.
+D2.Civ.13.6-8	Analyze what public policies aim to do, how they are carried out and what results, in several settings.
+D2.Civ.13.9-12	Evaluate public policies by their intended and unintended results.
+D2.Civ.14.K-2	Describe how people have worked to make their communities better over time.
+D2.Civ.14.3-5	Show, with examples from past and present, how people change society.
+D2.Civ.14.6-8	Compare past and present ways of changing society and serving the common good.
+D2.Civ.14.9-12	Analyze past, present and emerging ways of changing society, serving the common good and protecting rights.
+D2.Eco.1.K-2	Explain that scarcity forces people to make choices.
+D2.Eco.1.3-5	Compare the benefits and costs of individual choices.
+D2.Eco.1.6-8	Explain how economic decisions affect the well-being of people, businesses and society.
+D2.Eco.1.9-12	Analyze how incentives shape choices and lead to policies with different costs and benefits for different groups.
+D2.Eco.2.K-2	Identify the benefits and costs of personal decisions.
+D2.Eco.2.3-5	Identify the rewards and penalties that push people toward certain decisions.
+D2.Eco.2.6-8	Weigh different answers to current economic problems by their benefits and costs for different groups and for society.
+D2.Eco.2.9-12	Use marginal benefits and marginal costs to argue for or against a way of handling an economic issue.
+D2.Eco.3.K-2	Describe the skills and knowledge needed to make certain goods and services.
+D2.Eco.3.3-5	Give examples of the human, physical and natural resources used to produce goods and services.
+D2.Eco.3.6-8	Explain what buyers and sellers do in markets for products, labor and money.
+D2.Eco.3.9-12	Analyze how incentives affect what a market system produces and distributes.
+D2.Eco.4.K-2	Describe what goods and services the local community makes and what other communities make.
+D2.Eco.4.3-5	Explain why people and businesses specialize and trade.
+D2.Eco.4.6-8	Describe how competition helps set prices and wages in a market economy.
+D2.Eco.4.9-12	Evaluate how much competition among sellers and among buyers there is in particular markets.
+D2.Eco.5.K-2	Identify the prices of products in a local market.
+D2.Eco.5.3-5	Explain how money makes exchange easier.
+D2.Eco.5.6-8	Explain how money makes exchange easier by lowering the costs of making a deal.
+D2.Eco.5.9-12	Describe what competition leads to in particular markets.
+D2.Eco.6.K-2	Explain how people earn income.
+D2.Eco.6.3-5	Explain how investing in skills and education affects productivity and later income.
+D2.Eco.6.6-8	Explain how shifts in supply and demand change prices and quantities of goods, labor, credit and currencies.
+D2.Eco.6.9-12	Suggest reasons for a government role in markets that work poorly.
+D2.Eco.7.K-2	Describe examples of what it costs to produce something.
+D2.Eco.7.3-5	Explain how profit affects what sellers do.
+D2.Eco.7.6-8	Analyze what innovation and entrepreneurship do in a market economy.
+D2.Eco.7.9-12	Use benefits and costs to judge how well government policies improve market results.
+D2.Eco.8.3-5	Give examples of benefits and costs that fall on people outside a transaction.
+D2.Eco.8.6-8	Explain how those outside benefits and costs affect market results.
+D2.Eco.8.9-12	Describe the intended and unintended results of government policies meant to improve market outcomes.
+D2.Eco.9.K-2	Describe what banks do in an economy.
+D2.Eco.9.3-5	Describe what other financial institutions do in an economy.
+D2.Eco.9.6-8	Describe what corporations, non-profits and labor unions do in a market economy.
+D2.Eco.9.9-12	Describe the part played by clear property rights and the rule of law in a market economy.
+D2.Eco.10.K-2	Explain why people save.
+D2.Eco.10.3-5	Explain what an interest rate is.
+D2.Eco.10.6-8	Explain how changing interest rates affect borrowing and investing.
+D2.Eco.10.9-12	Use current data to explain how changes in spending, production and the money supply affect economic conditions.
+D2.Eco.11.3-5	Explain what inflation, deflation and unemployment mean.
+D2.Eco.11.6-8	Use data to judge the state of employment, inflation, total output, income and growth in the economy.
+D2.Eco.11.9-12	Use economic indicators to analyze where the economy is now and where it is heading.
+D2.Eco.12.K-2	Give examples of goods and services that governments provide.
+D2.Eco.12.3-5	Explain how the government pays for the goods and services it provides.
+D2.Eco.12.6-8	Explain how inflation, deflation and unemployment affect different groups.
+D2.Eco.12.9-12	Evaluate which monetary and fiscal policies fit different economic conditions.
+D2.Eco.13.K-2	Give examples of capital goods and human capital.
+D2.Eco.13.3-5	Describe how better tools and better skills let people produce more.
+D2.Eco.13.6-8	Explain why living standards rise as productivity improves.
+D2.Eco.13.9-12	Explain why new technology and investment in capital goods and human capital raise economic growth and living standards.
+D2.Eco.14.K-2	Describe why people in one country trade goods and services with people in other countries.
+D2.Eco.14.3-5	Explain how trade makes nations more dependent on one another.
+D2.Eco.14.6-8	Explain trade barriers and how they affect trade between nations.
+D2.Eco.14.9-12	Analyze how comparative advantage shapes international trade.
+D2.Eco.15.K-2	Describe products made abroad and sold at home, and products made at home and sold abroad.
+D2.Eco.15.3-5	Explain how growing economic interdependence affects different groups within the nations involved.
+D2.Eco.15.6-8	Explain the benefits and costs of trade policies for individuals, businesses and society.
+D2.Eco.15.9-12	Explain how current globalization trends and policies affect growth, labor markets, citizens' rights, the environment, and the spread of resources and income across nations.
+D2.Geo.1.K-2	Make maps, graphs and other pictures of familiar places.
+D2.Geo.1.3-5	Make maps and other graphic pictures of both familiar and unfamiliar places.
+D2.Geo.1.6-8	Make maps that show and explain spatial patterns of culture and environment.
+D2.Geo.1.9-12	Use geospatial technology to make maps that show and explain spatial patterns of culture and environment.
+D2.Geo.2.K-2	Use maps, graphs, photographs and similar sources to describe places and the connections that shape them.
+D2.Geo.2.3-5	Use maps, satellite images and photographs to explain how the location of places and regions relates to their environmental features.
+D2.Geo.2.6-8	Use maps, satellite images and photographs to explain how the location of places and regions relates to changes in their environmental features.
+D2.Geo.2.9-12	Use maps, satellite images and photographs to explain how the location of places and regions relates to their political, cultural and economic dynamics.
+D2.Geo.3.K-2	Use maps, globes and simple models to identify cultural and environmental features of places.
+D2.Geo.3.3-5	Use maps of different scales to describe where cultural and environmental features are found.
+D2.Geo.3.6-8	Use paper and digital mapping and graphing to show and analyze spatial patterns of environmental and cultural features.
+D2.Geo.3.9-12	Use geographic data to analyze how spatial patterns of cultural and environmental features vary at several scales.
+D2.Geo.4.K-2	Explain how weather, climate and other environmental features affect people's lives in a place.
+D2.Geo.4.3-5	Explain how culture shapes the way people change and adapt to their environments.
+D2.Geo.4.6-8	Explain how cultural patterns and economic choices affect environments and daily life, both nearby and far away.
+D2.Geo.4.9-12	Analyze how human and physical systems act on each other and explain their mutual influence.
+D2.Geo.5.K-2	Describe how what people do changes the cultural and environmental character of places.
+D2.Geo.5.3-5	Explain how the cultural and environmental character of places changes over time.
+D2.Geo.5.6-8	Analyze the mixes of cultural and environmental features that make places alike and different.
+D2.Geo.5.9-12	Evaluate how political and economic decisions over time have shaped the cultural and environmental character of places and regions.
+D2.Geo.6.K-2	Identify some cultural and environmental features of particular places.
+D2.Geo.6.3-5	Describe how environmental and cultural features affect where people live in particular places or regions.
+D2.Geo.6.6-8	Explain how the physical and human features of places and regions connect to human identities and cultures.
+D2.Geo.6.9-12	Evaluate how human settlement has affected the environmental and cultural features of particular places and regions.
+D2.Geo.7.K-2	Explain why and how people, goods and ideas travel from place to place.
+D2.Geo.7.3-5	Explain how cultural and environmental features affect where people, goods and ideas spread and travel.
+D2.Geo.7.6-8	Explain how changes in transportation and communication technology affect links among settlements and the spread of ideas and customs.
+D2.Geo.7.9-12	Analyze how historical events and the spread of ideas, technology and customs have shaped migration and where people live, and the reverse.
+D2.Geo.8.K-2	Compare how people in different kinds of communities use nearby and faraway environments to meet daily needs.
+D2.Geo.8.3-5	Explain how settlements and movements of people relate to where natural resources are and how they are used.
+D2.Geo.8.6-8	Analyze how the human relationship with environments widens or narrows patterns of settlement and movement.
+D2.Geo.8.9-12	Evaluate how economic activity and political decisions shape spatial patterns in cities, suburbs and rural areas.
+D2.Geo.9.K-2	Describe how a place's physical environment connects to the economic activity found there.
+D2.Geo.9.3-5	Analyze how catastrophic environmental and technological events affect settlements and migration.
+D2.Geo.9.6-8	Evaluate how long-term, human-caused environmental change affects patterns of conflict and cooperation.
+D2.Geo.9.9-12	Evaluate how long-term climate variability affects migration, settlement, resource use and land use from local to global scales.
+D2.Geo.10.K-2	Describe changes in the physical and cultural features of world regions.
+D2.Geo.10.3-5	Explain why environmental features differ among world regions.
+D2.Geo.10.6-8	Analyze how cultural and environmental features vary among regions of the world.
+D2.Geo.10.9-12	Evaluate how changes in the environment and culture of a place or region affect patterns of trade and land use.
+D2.Geo.11.K-2	Explain how using products links people to faraway places.
+D2.Geo.11.3-5	Describe how patterns of economic activity in a place change over time through contact with nearby and faraway places.
+D2.Geo.11.6-8	Explain how the link between a place's environment and its production of goods shapes patterns of world trade.
+D2.Geo.11.9-12	Evaluate how economic globalization and growing use of scarce resources lead to conflict and cooperation within and among countries.
+D2.Geo.12.K-2	Identify ways a disaster can affect the people living in a place.
+D2.Geo.12.3-5	Explain how natural and human-made disasters in one place affect people in other places.
+D2.Geo.12.6-8	Explain how worldwide shifts in where people live affect land use in particular places.
+D2.Geo.12.9-12	Evaluate how human-made and natural catastrophes affect global trade, politics and migration.
+D2.His.1.K-2	Put several events in time order.
+D2.His.1.3-5	Make and use a time-ordered list of related events to compare developments that happened at the same time.
+D2.His.1.6-8	Analyze how events and developments connect within broader historical settings.
+D2.His.1.9-12	Evaluate how events and developments were shaped by their particular time and place and by broader historical settings.
+D2.His.2.K-2	Compare life in the past with life today.
+D2.His.2.3-5	Compare life in particular periods of the past with life today.
+D2.His.2.6-8	Sort events and developments into examples of change, continuity or both.
+D2.His.2.9-12	Analyze change and continuity within historical eras.
+D2.His.3.K-2	Ask questions about the people and groups who brought about an important change.
+D2.His.3.3-5	Ask questions about the people and groups who brought about important changes and continuities.
+D2.His.3.6-8	Use questions about people and groups to analyze why they and what they shaped are seen as historically significant.
+D2.His.3.9-12	Use questions about people and groups to assess how their significance shifts over time and with historical context.
+D2.His.4.K-2	Compare the views of people in the past with the views of people today.
+D2.His.4.3-5	Explain why people living in the same period saw things differently.
+D2.His.4.6-8	Analyze the many factors that shaped people's views in different eras.
+D2.His.4.9-12	Analyze the complex and interacting factors that shaped people's views in different eras.
+D2.His.5.3-5	Explain how the setting of a time connects to what people thought then.
+D2.His.5.6-8	Explain how and why people's views have changed over time.
+D2.His.5.9-12	Analyze how historical settings shaped, and still shape, people's views.
+D2.His.6.K-2	Compare different accounts of the same event from the past.
+D2.His.6.3-5	Describe how the views of the people who made them shaped historical sources.
+D2.His.6.6-8	Analyze how the makers' views affected what information their historical sources contain.
+D2.His.6.9-12	Analyze how the views of those writing history shaped the history they wrote.
+D2.His.7.9-12	Explain how the views of people today shape how the past is interpreted.
+D2.His.8.9-12	Analyze how today's interpretations of the past are limited by whose views the surviving sources represent.
+D2.His.9.K-2	Identify different kinds of historical sources.
+D2.His.9.3-5	Summarize how different kinds of sources are used to explain past events.
+D2.His.9.6-8	Sort the kinds of sources a later historian used in an interpretation.
+D2.His.9.9-12	Analyze how historical sources relate to the later interpretations built from them.
+D2.His.10.K-2	Explain how sources can be used to study the past.
+D2.His.10.3-5	Compare what different historical sources say about the past.
+D2.His.10.6-8	Spot gaps or weak points in the historical record using evidence from different kinds of sources.
+D2.His.10.9-12	Spot weak points in various kinds of evidence and in competing later interpretations.
+D2.His.11.K-2	Identify who made a source, when and where, using clues in the source itself.
+D2.His.11.3-5	Infer who a source was meant for and why it was made, using clues in the source itself.
+D2.His.11.6-8	Use other sources to work out the likely maker, date, place and audience of a source when they are not stated.
+D2.His.11.9-12	Critique how useful a source is for a particular inquiry given its maker, date, place, audience and purpose.
+D2.His.12.K-2	Ask questions about a source as it relates to a particular event or development.
+D2.His.12.3-5	Ask questions about several sources and how they relate to particular events and developments.
+D2.His.12.6-8	Use questions about several sources to find more to investigate and more sources to consult.
+D2.His.12.9-12	Use questions about several sources to carry the inquiry further and examine more sources.
+D2.His.13.3-5	Use a source's maker, date, place, audience and purpose to judge how useful it is for a topic.
+D2.His.13.6-8	Evaluate how relevant and useful a source is based on its maker, date, place, audience and purpose.
+D2.His.13.9-12	Critique whether the sources behind a later interpretation were appropriate.
+D2.His.14.K-2	Suggest possible reasons for a past event or development.
+D2.His.14.3-5	Explain the likely causes and effects of events and developments.
+D2.His.14.6-8	Explain the several causes and effects of events and developments in the past.
+D2.His.14.9-12	Analyze the many complex causes and effects of past events.
+D2.His.15.6-8	Evaluate how much influence each of several causes had on past events and developments.
+D2.His.15.9-12	Tell long-term causes from triggering events when building a historical argument.
+D2.His.16.K-2	Pick which reasons are more likely than others to explain a past event.
+D2.His.16.3-5	Use evidence to make a claim about the past.
+D2.His.16.6-8	Arrange fitting evidence into a clear argument about the past.
+D2.His.16.9-12	Combine evidence from many sources and interpretations into a reasoned argument about the past.
+D2.His.17.3-5	Sum up the main claim of a history book or article written by a later author.
+D2.His.17.6-8	Compare the main arguments of later works of history on related topics, in more than one medium.
+D2.His.17.9-12	Critique the main arguments of later works of history on related topics, in more than one medium, for historical accuracy.
+D3.1.K-2	Gather useful information from one or two sources, using who made them and how they are built to choose.
+D3.1.3-5	Gather useful information from several sources, using their origin, structure and context to choose.
+D3.1.6-8	Gather useful information from several sources, using origin, authority, structure, context and how well they back each other up to choose.
+D3.1.9-12	Gather useful information from several sources that show a wide range of views, using origin, authority, structure, context and corroboration to choose.
+D3.2.K-2	Judge a source by telling fact from opinion.
+D3.2.3-5	Use the difference between fact and opinion to judge how believable several sources are.
+D3.2.6-8	Judge how believable a source is by checking its relevance and what it was meant for.
+D3.2.9-12	Judge how believable a source is by looking at how experts value it.
+D3.3.3-5	Pick out evidence from several sources that answers a big inquiry question.
+D3.3.6-8	Pick out evidence from several sources that supports claims, and note its limits.
+D3.3.9-12	Pick out evidence from several sources, find where it conflicts, and use that to revise or strengthen claims.
+D3.4.3-5	Use evidence to build claims that answer a big inquiry question.
+D3.4.6-8	Build claims and counterclaims and point out the strengths and limits of each.
+D3.4.9-12	Sharpen claims and counterclaims for precision and significance, and point out the strengths and limits of each.
+D4.1.K-2	Make an argument and give reasons for it.
+D4.1.3-5	Make arguments from claims and evidence drawn from several sources.
+D4.1.6-8	Make arguments from claims and evidence drawn from several sources, admitting the strengths and limits of the arguments.
+D4.1.9-12	Make arguments from precise, well-informed claims with evidence from several sources, admitting counterclaims and weak evidence.
+D4.2.K-2	Explain something using the right order and information that fits.
+D4.2.3-5	Explain something using reasoning, the right order, examples, details and fitting information.
+D4.2.6-8	Explain something using reasoning, the right order, examples, details and fitting information, admitting the explanation's strengths and weaknesses.
+D4.2.9-12	Explain something using sound reasoning, the right order (straight or not), examples, details and important information, admitting the explanation's strengths and weaknesses.
+D4.3.K-2	Share a short summary of an argument in print, speech or digital form.
+D4.3.3-5	Share a summary of arguments and explanations with people outside the class through print, speech and digital tools.
+D4.3.6-8	Adapt arguments and explanations on topics you care about for audiences and venues outside the classroom.
+D4.3.9-12	Adapt arguments and explanations on issues and topics so they reach many audiences and venues outside the classroom.
+D4.4.K-2	Ask and answer questions about an argument.
+D4.4.3-5	Critique arguments.
+D4.4.6-8	Critique arguments for how believable they are.
+D4.4.9-12	Critique how an argument uses claims and evidence, for how believable it is.
+D4.5.K-2	Ask and answer questions about an explanation.
+D4.5.3-5	Critique explanations.
+D4.5.6-8	Critique how an explanation is put together.
+D4.5.9-12	Critique an explanation's reasoning, order and supporting details.
+D4.6.K-2	Name and explain problems near and far, and some ways people are working on them.
+D4.6.3-5	Use subject concepts to explain the challenges people have faced, and the openings they created, in dealing with local, regional and global problems at different times and places.
+D4.6.6-8	Use several subject lenses to analyze how one problem shows up at local, regional and global levels over time, including its features, causes, challenges and openings.
+D4.6.9-12	Use subject and cross-subject lenses to understand the features and causes of local, regional and global problems, examples in several contexts, and the challenges and openings for those addressing them.
+D4.7.K-2	Name ways to take action on local, regional and global problems.
+D4.7.3-5	Explain strategies students and others could use, alone and together, on local, regional and global problems, and predict what might result.
+D4.7.6-8	Assess your own and your group's ability to act on local, regional and global problems, considering sources of influence, strategies and likely outcomes.
+D4.7.9-12	Assess options for individual and group action on local, regional and global problems through self-reflection, choosing strategies and tracing complex causes.
+D4.8.K-2	Use listening, consensus and voting to decide on and take action in the classroom.
+D4.8.3-5	Use a range of deliberative and democratic methods to decide on and act on civic problems in the classroom and school.
+D4.8.6-8	Use a range of deliberative and democratic methods to decide and act in the classroom, school and out-of-school civic settings.
+D4.8.9-12	Use a range of deliberative and democratic strategies and methods to decide and act in the classroom, school and out-of-school civic settings.

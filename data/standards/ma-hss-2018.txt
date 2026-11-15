@@ -7,6 +7,7 @@
 # note: 2026-11-13 frame reads widened MA.K.T2.2, MA.K.T3.3b, MA.1.T3.2c, MA.2.T4.2, MA.3.T6.4 and MA.4.T1.2 to carry their clarifications.
 # note: 2026-11-14 lead items widened MA.7.T4b.3 (parts 3a and 3b became 3a to 3e), MA.7.T1b.2d, MA.8.T3.2, MA.8.T3.4, MA.USII.T1.2, MA.GOV.T1.6, MA.WHI.T3.9, MA.WHII.T3.2 (parts 3.2c and 3.2d added), MA.WHII.T5.5 and MA.WHII.T6.2, each checked against the framework PDF (pages 97, 101, 106, 107, 130, 144, 152, 158, 160, 163).
 # note: 2026-11-14 sequence fixes widened MA.2.T2.4, MA.6.T4b.1, MA.8.T2.1, MA.USI.T3.3, MA.USI.T4.2e, MA.WHI.T3.7 and MA.WHI.T5.1, and corrected MA.6.T2.3's date (2.6 million years), each checked against the framework PDF (pages 92, 86, 105 to 106, 123, 124, 144, 146).
+# note: 2026-11-14 read line by line against the framework PDF and corrected MA.4.T4.2, MA.4.T4d.5, MA.USI.T4.2c (compulsory), MA.USI.T5.4 (policies, short- and long-term impact, battle list), MA.WHII.T4.6 (USSR in 1922, New Economic Plan, personality cult), MA.WHII.T4.9 (economic, social and political conditions) and MA.5.T1.5 (legal status, named leaders).
 # note: some source standards were garbled by PDF extraction (two-column fragments, spliced footnotes); USII.T2.4 reread against the PDF 2026-11-13 (11 single options, a to k).
 MA.K.T1	Kindergarten civics: being a good citizen in the classroom
 MA.K.T1.1	Follow rules and expectations with little reminding, and with help ask and answer questions about why rules exist.
@@ -147,7 +148,7 @@ MA.4.T3.2	Explain who the Vikings were and describe evidence of their early enco
 MA.4.T3.3	Trace European explorations of North America and the Caribbean in the 1400s and 1500s, evaluate why nations sent them (empire, Asian trade routes, colonies, resources), and make a timeline of landings and conquests.
 MA.4.T4	Grade 4: how the United States grew and its regions today
 MA.4.T4.1	Describe how canals, roads, and railways built in the 1800s helped the United States expand westward.
-MA.4.T4.2	Give examples of how the United States gained states and territories from 1791 to 1898, such as the Louisiana Purchase, the Mexican War, the Oregon Territory, Alaska, Hawaii, and Puerto Rico.
+MA.4.T4.2	Give examples of how the United States added states and territories from 1791 to 1898: buying the Louisiana Territory from France, gaining Southwest land through war with Mexico, a treaty with Britain for the Oregon Territory, buying Alaska from Russia, annexing Hawaii, and adding territories such as Puerto Rico after a war with Spain.
 MA.4.T4.3	Compare reasons men and women in the East moved west in the 1800s, and describe pioneer life on the frontier, including wagon trains and western settlements.
 MA.4.T4.4	Explain that many groups came to the United States by choice from other places while others, such as people from Africa, were brought against their will.
 MA.4.T4.5	Explain that by the mid 1800s Americans were deeply divided over slavery and its spread into the West, which led to the Civil War from 1861 to 1865.
@@ -173,7 +174,7 @@ MA.4.T4d.1	Locate the Southwest states on a political map and add their admissio
 MA.4.T4d.2	Explain that Texas, Arizona, and New Mexico once belonged to Mexico, Texas declared independence in 1836, and Arizona and New Mexico came through the Mexican-American War of 1846 to 1848.
 MA.4.T4d.3	Describe the region's diverse cultures, including contributions of Native Peoples, African Americans, the Spanish, Mexicans, and later immigrant groups.
 MA.4.T4d.4	Explain how natural disasters such as hurricanes and drought have affected the region and how government and citizens have responded.
-MA.4.T4d.5	Use atlases and sources to map a Southwest state showing physical features, climate, Native peoples' movements and reservations, and early European and pioneer settlement, with title, scale, compass, and key.
+MA.4.T4d.5	Use atlases, historical sources or state websites to map a Southwest state showing physical features such as waterways and mountains, climate, settlements and movements of Native peoples (including current reservation lands), and European exploration and pioneer settlement of the 1600s to 1800s, with title, scale, compass, and key.
 MA.4.T4e	Grade 4 regions: the West
 MA.4.T4e.1	Locate the Western states and Pacific territories on a political map and add the states' admission dates to the timeline.
 MA.4.T4e.2	Explain that California, Colorado, and Utah once belonged to Mexico and were taken by the United States in the Mexican-American War of 1846 to 1848.
@@ -185,7 +186,7 @@ MA.5.T1.1	Explain early relations between English settlers and Native Peoples, i
 MA.5.T1.2	Compare why different colonies were founded and research one colony's founder, such as William Penn, Roger Williams, or John Winthrop.
 MA.5.T1.3	Analyze why English colonists most shaped the language and political ideas of the future United States, even though other European nations explored North America.
 MA.5.T1.4	Locate the 13 colonies, describe how regional climate affected crops in the Northern, mid-Atlantic, and Southern colonies, and describe varied sources of labor.
-MA.5.T1.5	Describe the origins of slavery, its legality in all colonies through the 1700s, and how common slave ownership was, including among many early national leaders.
+MA.5.T1.5	Describe the origins of slavery, its legal status in all the colonies through the 1700s, and how common slave ownership was, including by many of the country's early leaders such as Washington, Jefferson, Madison, and Mason.
 MA.5.T1.6	Describe the Triangular Trade and the harsh conditions of the Middle Passage for enslaved Africans.
 MA.5.T1.7	Compare living and working conditions of enslaved and free Africans in the 1700s colonies, and explain how some enslaved people sought freedom.
 MA.5.T1.7a	Describe how enslaved people were treated as property, denied education, abused, and punished for escape, and how these conditions led to rebellions.
@@ -490,14 +491,14 @@ MA.USI.T4.1	Describe religious and social trends that shaped America in the 18th
 MA.USI.T4.2	Using primary sources, research one early to mid-19th-century reform movement from the list below and its links to other reforms.
 MA.USI.T4.2a	The abolitionist movement, why individuals like Frederick Douglass and Sojourner Truth fought for it, and how Northern and Southern people responded.
 MA.USI.T4.2b	The women's rights and suffrage movements, their ties to abolitionism and wider educational opportunities for women, including the 1848 Seneca Falls Convention.
-MA.USI.T4.2c	Horace Mann's campaign for free public schooling, rising literacy and the growth of newspaper and magazine publishing.
+MA.USI.T4.2c	Horace Mann's campaign for free compulsory public education, rising literacy and the growth of newspaper and magazine publishing.
 MA.USI.T4.2d	Efforts to support people with disabilities, such as new schools for students with cognitive, hearing or vision disabilities, and asylums for people with mental illness.
 MA.USI.T4.2e	The Transcendentalist movement, including Emerson, Thoreau and Fuller, and its themes of liberty, nature, self-reliance, civil disobedience, materialism and abolitionism.
 MA.USI.T5	The Civil War and Reconstruction: causes and consequences
 MA.USI.T5.1	Describe how expansion into the Midwest raised the importance of sectional politics and shifted the balance of power in the federal government.
 MA.USI.T5.2	Analyze the policies and events that led to the Civil War and how they connect, such as the Missouri Compromise, Compromise of 1850, Kansas-Nebraska Act and Dred Scott decision.
 MA.USI.T5.3	Analyze Abraham Lincoln's presidency, including the Union blockade, the Emancipation Proclamation, his views on slavery and national unity, and the obstacles he faced.
-MA.USI.T5.4	Analyze the roles of Jefferson Davis, Robert E. Lee and Ulysses S. Grant, and evaluate the impact of major battles such as Antietam, Gettysburg and Vicksburg.
+MA.USI.T5.4	Analyze the roles and policies of Jefferson Davis, Robert E. Lee and Ulysses S. Grant, and evaluate the short- and long-term impact of important battles such as Fort Wagner (the Massachusetts 54th Regiment), Bull Run, Shiloh, Fredericksburg, Antietam, Vicksburg, Gettysburg and Appomattox.
 MA.USI.T5.5	Use primary sources like diaries, newspapers, photographs and cartoons to document the roles of men and women who fought or served in the Civil War.
 MA.USI.T5.6	Analyze the consequences of the Civil War and Reconstruction, such as Southern destruction, greater federal power, the 13th, 14th and 15th Amendments and Northern industrial growth.
 MA.USI.T5.7	Analyze the long-term effects of one Jim Crow era practice that limited African Americans' education and economic opportunity, such as school segregation or Plessy v. Ferguson.
@@ -745,14 +746,14 @@ MA.WHII.T4.3h	Describe the global influenza pandemic of 1918 to 1920.
 MA.WHII.T4.3i	Describe the rise of modernism in the arts through composers, artists, writers, choreographers and playwrights such as Stravinsky, Picasso, Joyce, Woolf, and Martha Graham.
 MA.WHII.T4.4	Evaluate how the Treaty of Versailles was negotiated and whether it addressed the problems caused by World War I.
 MA.WHII.T4.5	Analyze early 20th-century Russian history, including unrest under Nicholas II, the Bolsheviks, the 1917 revolutions, and the Russian Civil War in the context of World War I.
-MA.WHII.T4.6	Analyze later Russian developments, including the creation of the USSR, the New Economic Policy, cultural experimentation, Lenin's death, and the struggle that put Stalin in power.
+MA.WHII.T4.6	Analyze later Russian developments, including the creation of the USSR in 1922, the New Economic Plan (NEP) and the building of a Soviet economy, artistic and cultural experimentation, Lenin's death and the cult of his personality, and the power struggle that ended in Stalin's leadership.
 MA.WHII.T4.7	Identify the causes and consequences of the 1930s global economic collapse and evaluate how governments responded to the Great Depression.
 MA.WHII.T4.7a	Examine restrictive monetary policies.
 MA.WHII.T4.7b	Examine unemployment and inflation.
 MA.WHII.T4.7c	Examine political instability in weak democracies such as Germany.
 MA.WHII.T4.7d	Examine the influence of the economic ideas of Keynes, von Mises, Hayek, and Friedman.
 MA.WHII.T4.8	Identify the characteristics of fascism and totalitarianism in the authoritarian regimes of Italy, Germany, and the Soviet Union in the 1920s and 1930s.
-MA.WHII.T4.9	Evaluate the conditions that allowed Hitler, Mussolini, and Stalin to rise, and how each repressed dissent and persecuted minorities.
+MA.WHII.T4.9	Evaluate the economic, social, and political conditions that allowed Hitler, Mussolini, and Stalin to rise in their own countries, and how each dictator repressed dissent and persecuted minorities.
 MA.WHII.T4.10	Analyze the aggression of Germany, Italy, and Japan in the 1930s and early 1940s and the weak response of the League of Nations and Western democracies.
 MA.WHII.T4.10a	Examine Italy's invasion of Ethiopia in 1935.
 MA.WHII.T4.10b	Examine the Spanish Civil War.

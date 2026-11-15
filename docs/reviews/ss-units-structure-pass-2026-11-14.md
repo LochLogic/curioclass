@@ -315,3 +315,20 @@ across courses".
 - **Two downloads, if you want the own-word lines finished:** the C3 framework PDF (for 283 C3 lines) and the 2018
   Massachusetts history and social science framework PDF (for seven lines). Both are free public files. Neither was
   fetched, because a download needs your yes. Everything else in this pass was within the lead's rules.
+
+## Closed 2026-11-14
+
+The two open data items are closed, using the framework text Cory approved downloading (extracted copies in
+S:\CurioClass-sources\_inbox\standards-2026-11-14).
+
+- **data/standards/c3-indicators.txt:** all 283 indicators now carry one own-word line (tab after the id, the same
+  format as ma-hss-2018.txt, so scripts/unit_skeleton.py reads them). Each was written from the indicator text in the
+  NCSS PDF, in plain words and not copied. The header now gives fetched 2026-11-14 and says the lines are own words.
+- **data/standards/ma-hss-2018.txt:** the 7 lines were checked against the framework text and corrected.
+  MA.4.T4.2 (names how each territory was gained), MA.4.T4d.5 (sources, settlements and movements of Native peoples
+  with current reservation lands, 1600s to 1800s), MA.USI.T4.2c ("compulsory" added), MA.USI.T5.4 ("policies",
+  short- and long-term impact, the framework's battle list), MA.WHII.T4.6 (USSR in 1922, the New Economic Plan as the
+  framework names it, personality cult, power struggle), MA.WHII.T4.9 (economic, social and political conditions, in
+  their own countries) and MA.5.T1.5 ("legal status", leaders named). A header note records the pass.
+- **Checks:** unit_skeleton.py on social-studies-grade-3 unit 2 (scratch output only) now shows the C3 lines;
+  unitplan.py check social-studies passes all 138.
