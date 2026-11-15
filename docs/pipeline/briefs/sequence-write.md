@@ -85,7 +85,10 @@ studies goes first; the other subjects follow in step 5.
    reads found three readings): a row last used in grade g gets retrieval in grade g+1 and a readiness check in grade
    g+2 or later. "Idle two or more grades" in a frame means the same thing, never "two grades in between". A row
    counts as used only where a day of that grade's scope and sequence teaches or assesses it, not where it is
-   "revisited" or "kept in use" in passing. List every earlier-grade row with its last-use grade and its treatment
+   "revisited" or "kept in use" in passing. One hop also counts (lead, 2026-11-15): a day that teaches a row whose
+   progression `assumes` names the earlier row uses that row too, since it builds directly on it; a day noted as retrieval or
+   readiness counts this way only where its kind is Understanding or Application. The skeleton (scripts/unit_skeleton.py) and the scope gate count it
+   this way. List every earlier-grade row with its last-use grade and its treatment
    before you place a day.
    **End days:** where one end day would ask for full performances on two or more expectations, spread them over
    the unit's last days (no day added), and run whole-class performances in small groups where the day is short.

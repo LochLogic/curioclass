@@ -29,7 +29,8 @@ that are not failures yet (added 2026-11-14, baseline 1 structure findings 3, 6 
   checks section not in the one table shape (| Check | After unit | Check days | Respond days | What it checks |);
 - no **Sensitivity reads.** bullet, or no "paper path", in The course in brief;
 - a lettered part of an owned standard (W.7.1c) not named by its code in the row of the unit that owns its parent;
-- a unit's rows' ~contribution code missing from its Owned standards;
+- a unit's rows' ~contribution code named nowhere in the unit row (no tilde codes in frames: the begun part is
+  described in the unit's prose, What students learn, with its later owner; lead calls 2026-11-15, math 1);
 - an assumes or hands_on id missing from Seams; a model missing from Models carried; a cross_subject lean (code or
   id) missing from Cross-subject;
 - a cross-frame citation ("math grade 4 unit 8 (about school days 113 to 127)") more than 3 days outside the cited
@@ -116,7 +117,7 @@ WEEKS = {'science-kindergarten': 29, 'social-studies-kindergarten': 30, 'science
 # tool (a) of the stagger rule for a course that meets fewer than five days a week: course day n pinned to school day s
 # (its lessons are bunched or thinned so a course-level check lands in its target week); days between pins spread
 # evenly. Added 2026-11-14 (baseline 1 cleanup), each pin named in its frame's Days bullet.
-PINS = {'science-grade-2': {40: 84}, 'social-studies-grade-2': {46: 68}, 'science-grade-5': {43: 50}}
+PINS = {'science-grade-2': {58: 98}, 'social-studies-grade-2': {46: 68}, 'science-grade-5': {43: 50}}
 
 SECTIONS = ['The course in brief', 'Seams', 'Models carried', 'Units', 'Course-level checks', 'Cross-subject']
 SUBJ_WORDS = {'math': 'math', 'science': 'science', 'ela': 'ela', 'english language arts': 'ela',
@@ -248,7 +249,7 @@ def parse(slug):
         if 20 <= lo <= 240:
             out['minutes'] = (lo, hi)
             break
-    pw = re.search(r'\b(five|four|three|two|one|\d)\s+(?:lessons?|days?|sessions?|times|periods?)?\s*(?:a|per|each)\s+week', timing, re.I)
+    pw = re.search(r'\b(five|four|three|two|one|\d)\s+(?:lessons?|days?|sessions?|meetings?|times|periods?)?\s*(?:a|per|each)\s+week', timing, re.I)
     out['per_week'] = _num(pw.group(1)) if pw else (5 if re.search(r'every school day|each school day|\bdaily\b', timing) else None)
     out['half'] = bool(re.search(r'half[- ]year|a half year', timing, re.I))
     out['checks'] = parse_checks(section(t, 'Course-level checks'))
@@ -546,9 +547,10 @@ def check(slug, cal_rows=None):
             fails.append('%s unit %s: owned standard %s is not owned by the unit\'s rows' % (slug, n, c))
         for c in sorted(owned_codes - listed):
             fails.append('%s unit %s: its rows own %s, missing from Owned standards' % (slug, n, c))
-        missing = sorted(c for c in contrib if c not in cell)
+        missing = sorted(c for c in contrib if c not in ' '.join(u.values()))
         if missing:
-            notes.append('%s unit %s: its rows contribute to %s; name each as ~CODE in Owned standards' % (
+            notes.append('%s unit %s: its rows contribute to %s; name each begun code in What students learn, '
+                         'with its later owner (no ~CODE in Owned standards)' % (
                 slug, n, ', '.join(missing)))
         row_text = ' '.join(u.values())
         unnamed = []

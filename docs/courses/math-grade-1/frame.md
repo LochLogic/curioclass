@@ -150,15 +150,15 @@ unit are set in each subject's scope and sequence; a named bridge covers any ski
 
 ### Science, grade 1
 
-No grade 1 math row needs science first. m1-data-three-categories names s1-daylight-seasons (1-ESS1-2) as a later use, not a prerequisite: science sorts its daylight records in three groups weeks 27 to 28 (its unit 8 in the current calendar) with the method math unit 1 teaches in weeks 2 to 4. It is listed in the table below.
+No grade 1 math row needs science first. m1-data-three-categories names s1-daylight-seasons (1-ESS1-2) as a later use, not a prerequisite: science sorts its daylight records in three groups on its day 62 (school day 133, week 27; its unit 8 in the current calendar) with the method math unit 1 teaches in school days 1 to 16, weeks 1 to 4. It is listed in the table below.
 
 ### What other subjects need from this course (the same year)
 
 | Their row | What it needs | Taught here | When here | Their frame's bridge if they come first |
 |---|---|---|---|---|
-| s1-light-materials, s1-daylight-seasons (science) | 1.MD.C.4, three groups counted and compared | Unit 1 | Weeks 2 to 4 | Both come after this unit (its unit 5 about week 20, its unit 8 weeks 27 to 28; daylight is recorded from its unit 1 but sorted in three groups in unit 8) |
-| s1-like-parents (science) | 1.MD.A.1, order leaves by length | Unit 6 | Weeks 23 to 26 | Science comes first (its unit 3, school days 45 to 56) and orders directly, leaf beside leaf on a strip of tape, with no units |
-| s1-signal-device (science) | 1.MD.A.2, length in same-size units | Unit 6 | Weeks 23 to 26 | Science starts first (its unit 6, school days 101 to 116): science counts steps or paper strips end to end and teaches the no-gaps rule itself before math day 115 |
+| s1-light-materials, s1-daylight-seasons (science) | 1.MD.C.4, three groups counted and compared | Unit 1 | School days 1 to 16, weeks 1 to 4 | Both come after this unit. Light sorting: science day 45, school day 94, week 19. Seasonal sorting: science day 62, school day 133, week 27. Daylight recording begins on science day 9, school day 19, week 4, and is sorted in three groups only in unit 8 |
+| s1-like-parents (science) | 1.MD.A.1, order leaves by length | Unit 6 | School days 111 to 128, weeks 23 to 26 | Science comes first (its unit 3, school days 45 to 56; leaves are ordered on science day 22, school day 45, week 9) and orders directly, leaf beside leaf on a strip of tape, with no units |
+| s1-signal-device (science) | 1.MD.A.2, length in same-size units | Unit 6 | School days 111 to 128, weeks 23 to 26 | Science starts first (its unit 6, school days 101 to 116; it first measures on science day 50, school day 105, week 21): science counts steps or paper strips end to end and teaches the no-gaps rule itself before math day 115 |
 | ss1-voting (social studies) | 1.MD.C.4, tallied data | Unit 1 | Weeks 2 to 4 | Its unit 4 (about week 11) comes after this unit |
 | ss1-goods-services (social studies) | 1.NBT.B.3, compare two numbers | Unit 4 | Days 82 to 92, weeks 17 to 19 | Its unit 8 (about week 27) comes after this unit |
 | ss1-saving (social studies) | 1.OA.A.1, add and subtract within 20 | Units 2 (begun) and 6 (owned) | Weeks 4 to 8, completed by day 128 in week 26 | Its unit 8 (about week 28) comes after both |

@@ -111,7 +111,7 @@ Handed on to high school (Physics, Chemistry, Biology): the middle school scienc
 | Natural selection and its math | s8-natural-selection; s8-selection-math | bio-natural-selection-factors, bio-environment-change-species, bio-trait-proportion-shifts |
 | Reproduction behaviors | s8-reproduction-behaviors | bio-group-behavior |
 
-The light-ray model returns in Physics unit 7 through s6-light-paths, with readiness because its last explicit use is grade 8. The older elementary rows named above are checked at their first required use here. Resting in grade 8: the rock-cycle and plate models,
+The light-ray model first returns in Physics unit 6 through s6-light-paths, with readiness on day 76 and support on day 78; Physics unit 7 retrieves that teaching. The older elementary rows named above are checked at their first required use here. Resting in grade 8: the rock-cycle and plate models,
 last carried in grade 7 unit 6 (s7-resource-distribution); Biology unit 8 (bio-environment-change-species) picks
 the plate model up with a readiness check under the counted last-use rule.
 
@@ -126,7 +126,7 @@ the plate model up with a readiness check under the counted last-use rule.
 | stability-change | s7-ecosystem-disruption | Unit 1 (a collision's change in motion) | High school |
 | energy-transfer | s7-reaction-energy, s6-particle-temperature | Unit 1 (s8-kinetic-energy-graphs) | Units 2 and 3 |
 | wave-model | s4-wave-model; used for information patterns in grade 6 unit 5 (s6-digital-signals); rests in grade 7 | Unit 2 (s8-wave-amplitude-energy, readiness day 26 and response days 28 and 32; amplitude-energy relation developed here) | Unit 4 (light as a wave) |
-| light-ray | s6-light-paths | Unit 2 (sound against light), readiness day 26 and response days 28 and 32 | Unit 4 (s8-earth-sun-moon); the thread ends here |
+| light-ray | s6-light-paths | Unit 2 (sound against light), readiness day 26 and response days 28 and 32 | Unit 4 (s8-earth-sun-moon); Physics unit 6 checks and teaches the light-path return, and Physics unit 7 retrieves it |
 | particle-model | s7-reactions-atoms | Unit 2 (sound through matter) | Unit 5 (proteins as molecules) |
 | structure-function | s7-photosynthesis | Unit 2 (s8-senses-brain: the ear) | Units 5 and 6 |
 | cause-effect | s7-climate-change-evidence | Unit 3 (s8-electromagnetic-forces) | Units 5 and 6 |

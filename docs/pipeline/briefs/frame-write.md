@@ -46,6 +46,8 @@ One page per course: `S:\CurioClass\docs\courses\<slug>\frame.md`, where <slug> 
    introduces or first uses it, the units that use it again.
 5. `## Units`: one table, columns exactly
    `| # | Unit and compelling question | Days | Skills | Owned standards | C3 | What students learn | Why this unit, here | Check set adds | Sensitive topics and teacher notes |`
+   For ELA, replace C3 with Texts in this header; for science, head the C3 column Practices and crosscutting
+   concepts.
    - **Skills:** the skill_id of every progression row the unit teaches, `; `-separated. Every row the course owns
      sits in exactly one unit. A unit that revisits an earlier row's skill names it in the text as review, never in
      this column.

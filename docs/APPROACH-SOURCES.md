@@ -79,6 +79,8 @@ Access codes used in the tables:
 | EEF, Improving Mathematics in Key Stages 2 and 3 | EEF, 2022 update | https://d2tic4wvo1iusb.cloudfront.net/production/eef-guidance-reports/maths-ks-2-3/EEF-Improving-Mathematics-in-Key-Stages-2-and-3-2022-Update.pdf | PDF, extracts (38 pp / 12,094 words) | No licence line matched. | Manipulatives and representations, misconceptions, problem solving. |
 | EdReports Core Content Evidence Guide v2.0, Mathematics K-8 | EdReports, updated 07/2025 | https://cdn.edreports.org/media/2026/06/Math%20K-8%20Evidence%20Guide_2.0.pdf (same file is linked from https://edreports.org/process/review-tools/math); criteria: https://cdn.edreports.org/media/2026/06/Math%20K-8%20Review%20Criteria_2.0.pdf | PDF, extracts (112 pp / 30,804 words); read locally for the summary below. | "(c) EdReports, All Rights Reserved" | The indicator the approach document must satisfy. |
 | NYSED mathematics briefs, Brief 1: The Research Base for Mathematics Teaching and Learning (added) | New York State Education Department | https://www.nysed.gov/sites/default/files/programs/standards-instruction/nysed-brief-1-the-research-base-for-mathematics-teaching-and-learning.pdf (briefs 2, 3, 5 alongside) | PDF, extracts (4 pp / 2,182 words) | No licence line matched. | A state agency's own short research statement; useful model for tone and length. |
+| Progressions for the Common Core State Standards for Mathematics, Geometry 7 to 8 and high school draft (added 2026-11-15) | Common Core Standards Writing Team, 2016 draft | https://mathematicalmusings.org/wp-content/uploads/2016/03/ccss_progression_g_7_hs_2016_03_27.pdf | Access as reported by the grade 8 Codex scope and sequence read, 2026-11-15; not re-tested in the fix pass. The compiled edition above is still over the WebFetch cap (local download only). | As stated in the file; not re-checked. | Reference only: geometry progression comparison for grades 7, 8 and high school. |
+| Eureka Math, Grades 6 to 8 Curriculum Overview (added 2026-11-15) | Great Minds | https://greatminds.org/hubfs/knowledge/resources/math/EM_Basic_Curriculum_Files/Curriculum_Overview/EM_G68_CurriculumOverview.pdf | Access as reported by the grade 8 Codex scope and sequence read, 2026-11-15; not re-tested in the fix pass. | Publisher copyright; no open licence assumed. | Reference only: grades 6 to 8 sequence comparison. Read only; do not reuse text. |
 
 ### EdReports Math K-8 v2.0: where the instructional approach and research base are judged (own-words summary)
 
@@ -116,6 +118,8 @@ Access codes used in the tables:
 | Kamil and others, Improving Adolescent Literacy: Effective Classroom and Intervention Practices (added 2026-11-12) | IES practice guide, 2008 | https://ies.ed.gov/ncee/wwc/Docs/PracticeGuide/adlit_pg_082608.pdf | PDF, extracts (65 pp; word count not recorded). Opened by the curriculum expert on 2026-11-11 with curl and a browser user agent, text taken out with pymupdf. Not re-tested for this entry. Read in part: the checklist (PDF 15 to 16), the level-of-evidence paragraph of all five recommendations (PDF 17, 22, 27, 32, 37) and step 4 of recommendation 2 (PDF 24). | Public domain. | Grades 4 to 12. Vocabulary strong, comprehension strategies strong, discussion moderate, motivation moderate, specialist help strong. Its levels are strong, moderate and low. |
 | National Reading Panel, Teaching Children to Read: Reports of the Subgroups (added 2026-11-12) | NICHD, 2000 | https://www.nichd.nih.gov/sites/default/files/publications/pubs/nrp/Documents/report.pdf | PDF, extracts (449 pp; word count not recorded). Opened by the expert the same way. Not re-tested for this entry. Read in part: PDF 192 (3-3) and PDF 216 (3-28) of the fluency chapter, and the paragraph on its search. | Public domain. | Chapter 3, fluency: guided oral rereading supported; independent silent reading not shown to help. |
 | Hasbrouck and Tindal, An Update to Compiled ORF Norms, Technical Report 1702 (added 2026-11-12) | University of Oregon, 2017 | https://files.eric.ed.gov/fulltext/ED594994.pdf | PDF, extracts (20 pp; word count not recorded). Opened by the expert the same way. Not re-tested for this entry. Read in part: the grade 5 and 6 table, PDF 16 (printed page 13). | All rights reserved; read and cite the figures only. | Oral reading norms by grade and season. |
+| High school science evidence guide v2.0 (added 2026-11-15) | EdReports | https://cdn.edreports.org/media/2025/07/Science-High-School-Evidence-Guide_2.0.pdf (the Biology read used https://cozy-dream-721ab6aab0.media.strapiapp.com/Science_20_High_20_School_20_Evidence_20_Guide_2_0_9d2058e4c2.pdf) | The Biology Codex read (2026-11-14) reports selected phenomena, practice-element and safety passages; the Chemistry Codex read also used it. Not read afresh in the 2026-11-15 fix pass. | All rights reserved; no material copied. | Planning-contract checks for the high school science scopes; keep the prior reads' limited coverage. |
+| HS-ESS2-5, HS-PS3-1 and HS-PS1-5 evidence statements (added 2026-11-15) | NGSS, June 2015 | https://www.nextgenscience.org/sites/default/files/evidence_statement/black_white/HS-ESS2-5%20Evidence%20Statements%20June%202015%20asterisks.pdf ; https://www.nextgenscience.org/sites/default/files/evidence_statement/black_white/HS-PS3-1%20Evidence%20Statements%20June%202015%20asterisks.pdf ; https://www.nextgenscience.org/sites/default/files/evidence_statement/black_white/HS-PS1-5%20Evidence%20Statements%20June%202015%20asterisks.pdf | Used by the Chemistry Codex read; not re-read in the 2026-11-15 fix pass. | NGSS public licence (as above). | Chemistry evidence for those expectations. |
 
 ## Provenance note on achievethecore.org
 
@@ -295,6 +299,9 @@ turns up, and no page may rest on them.
   https://im.kendallhunt.com/k5/teachers/grade-4/unit-N/lesson-N/preparation.html and .../lesson.html ; scope and
   sequence at https://im.kendallhunt.com/k5/teachers/grade-4/course-guide/scope-and-sequence.html . Cool-downs and
   unit assessments need a free sign-in and have not been read.
+- Grade 4 base lesson 5.14, weight and capacity (added 2026-11-15):
+  https://im.kendallhunt.com/k5/teachers/grade-4/unit-5/lesson-14/lesson.html (CC BY 4.0, public lesson; mass/capacity
+  context verified in the local source copy).
 - Fishtank Learning grade 4 unit pages are open (https://www.fishtanklearning.org/curriculum/math/4th-grade/);
   lesson pages show only the objective without a sign-in. Its terms give CC BY-NC-SA 4.0 for the free curriculum.
 - Federal fractions practice guide (Siegler and others, 2010, public domain):
@@ -461,3 +468,22 @@ otherwise; nothing was copied.
   example https://ospi.k12.wa.us/sites/default/files/2023-10/us-hs-unit4-level1.pdf (termination and relocation). That
   guide's role play is replaced with document analysis in US History II (social studies lens: no role play of
   oppression).
+
+## Science and ELA scope and sequence reads, 2026-11-15
+
+Filed from the 2026-11-15 scope fix reports (docs/reviews/sequence-<course>-fixes-2026-11-15.md). Reference only;
+nothing was copied. Science and math high school entries are in the tables above.
+
+- ELA grade 10 (prior Codex read, docs/reviews/sequence-english-language-arts-grade-10-codex-2026-11-15.md; not
+  independently re-read in the fix pass): the Odell grade 10 course overview,
+  https://odell-uploads-staging.s3.amazonaws.com/release/materials/g10_courseataglance.pdf , and research diagnostic
+  lesson, https://access.openupresources.org/curricula/odell-hs-literacy/grade-10/application-unit/section-2/lesson-7/student.html ;
+  the Louisiana high school overview, https://doe.louisiana.gov/docs/default-source/year-long-planning/ela-hs-gb-one-pager_july2020.pdf ,
+  and implementation guide, https://doe.louisiana.gov/docs/default-source/teacher-toolbox-resources/ela-guidebooks-overview-guide.pdf
+  (historical documents, design comparisons only); the working grades 6 to 12 ELA evidence-guide address,
+  https://cdn.edreports.org/reviewtools/ela/2.0/ELA-Grades-6-12-v2.0-Tools_Evidence-Guide.pdf . The oversized New York
+  research-module PDF is unread: its search excerpt is not a completed source read.
+- Science grade 2 (checked 2026-11-15 by the fixer): the federal conservation service pollination explanation,
+  https://www.nrcs.usda.gov/conservation-basics/animals/insects-pollinators (animals seeking food move pollen), and the
+  National Center for Home Food Preservation freezing FAQ, https://nchfp.uga.edu/faqs/fruits/category/faq-freezing
+  (frozen and thawed fruit keeps an observable, lasting change in texture).

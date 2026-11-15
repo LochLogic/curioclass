@@ -82,8 +82,8 @@ Comparing strategies is the part with rated evidence; the wider case rests on pr
 
 **Students who are behind (principle 9).** They stay on grade-level work; sorting into lower sets tends to
 widen gaps (EEF maths report). The readiness check finds the gap, the section plan gives a ten-minute reteach and
-the earlier-grade tool, and respond days give time. The grade 4 scope and sequence has no reteach time beyond its four
-respond days, and Curio Class has no small-group program. Teachers who need one should read the federal guide
+the earlier-grade tool, and respond days give time. The grade 4 scope and sequence provides nine unit respond days, four
+course-level respond days and named ten-minute in-day reminders, and Curio Class has no small-group program. Teachers who need one should read the federal guide
 *Assisting Students Struggling with Mathematics* (WWC 2021), whose six recommendations are all rated strong.
 
 **What a math tool is for (principle 6).** It shows why (move a point on a number line, cut a strip, build an

@@ -16,6 +16,9 @@ Source map (added 2026-11-15, one layout for every subject, sequence-write.md ru
 data/plans/<course>/source-map.csv exists its columns start with MAP_COLS in that order (`url` may follow), every
 decision is keep, split, merge, cut or ours, `unit` is a unit number or <unit>.<n> of the frame, `days` lists course
 days in range ("12", "12-13", "12; 14"), blank only on a cut, and every cut gives its reason in `why`.
+
+Rule 2 (added 2026-11-15, notes only for now): every unit's readiness and retrieval are counted as the unit skeleton
+counts them (rule2_notes); a missed readiness row or a readiness check where retrieval is due prints a note.
 """
 import csv, io, re, sys
 from pathlib import Path
@@ -283,7 +286,46 @@ def check(course):
             c = c.split()[0].lstrip('~')
             if not re.search(r'(?<![\w.-])%s(?![\w-])' % re.escape(c), placed):
                 notes.append('unit %s: standard %s is on no day' % (r['#'], c))
+    notes += rule2_notes(course, subject_of(slug))
     return fails, notes
+
+
+def rule2_notes(course, subject):
+    """Rule 2 readiness and retrieval (sequence-write.md, "Count by grade number"), counted exactly as the unit
+    skeleton counts it (scripts/unit_skeleton.py earlier_rows, one-hop "used"): a note for every unit whose readiness
+    check misses a row it owes, and every row given readiness where retrieval is due. Notes, not failures, while the
+    count settles (lead, 2026-11-15); the skeleton prints the same lines in field 4."""
+    skel_subj = {'english-language-arts': 'ela'}.get(subject, subject)
+    try:
+        import unit_skeleton as u
+    except Exception as e:   # the gate never fails on the helper itself
+        return ['rule 2 check skipped: %s' % e]
+    if skel_subj not in u.SUBJECTS:
+        return []
+    u.set_subject(skel_subj)
+    try:
+        prog = u.progression()
+        allrows = u.days_rows(course)
+        meta = next((r for r in u.read_csv(u.PLANS / 'frames.csv', u.FRAMES_COLS) if r['course'] == course), {})
+        byday = {int(r['day']): r for r in allrows}
+        out = []
+        for unit in sorted({int(r['stretch']) for r in allrows if r['stretch'].isdigit()}):
+            rows = [r for r in allrows if r['stretch'] == str(unit)]
+            first, rday = int(rows[0]['day']), None
+            if first == 1 and rows[0]['assess'] == 'readiness':
+                rday = rows[0]
+            else:
+                for k in range(1, READINESS_AHEAD + 1):
+                    p = byday.get(first - k)
+                    if p and (p['assess'] == 'readiness' or re.search(r"(unit %d's|next unit's) readiness" % unit, p['note'], re.I)):
+                        rday = p
+                        break
+            for e in u.earlier_rows(course, rows, allrows, prog, meta, rday):
+                if e['group'] or 'wants retrieval' in e['off']:
+                    out.append('unit %d (rule 2): %s' % (unit, e['off']))
+        return out
+    except SystemExit as e:   # unit_skeleton.DataError: a data file it cannot read
+        return ['rule 2 check skipped: %s' % e]
 
 
 def main(a):

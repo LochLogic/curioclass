@@ -53,7 +53,7 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 |---|---|---|---|---|
 | K | 16, 32 | 17, 31 | 14, 29 | 15, 30 |
 | 1 | 16, 32 | 19, 30 | 15, 29 | 14, 31 |
-| 2 | 15 to 16, 32 | 18 to 19, 29 | 17, 28 | 14, 31 |
+| 2 | 15 to 16, 32 | 18 to 19, 29 | 20, 28 | 14, 31 |
 | 3 | 16, 32 | 12, 23, 31 | 9, 20, 30 | 14, 25, 28 |
 | 4 | 16, 32 | 12 (or 9), 23, 31 | 10, 19, 30 | 8 (or 12), 21, 27 |
 | 5 | 17, 32 | 11, 22, 31 | 10, 21, 30 | 16, 29 |
@@ -76,7 +76,7 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | 1 | social-studies-grade-1 | 1, mid-year week 14, 2, year-end week 31 | 31 |
 | 2 | english-language-arts-grade-2 | Check 1 weeks 15 to 16, Check 2 week 32 | 32 |
 | 2 | math-grade-2 | Mid-year course-level ch weeks 18 to 19, Year-end course-level ch week 29 | 32 |
-| 2 | science-grade-2 | Course-level check, mid- week 17, Course-level check, year week 28 | 28 |
+| 2 | science-grade-2 | Course-level check, mid- week 20, Course-level check, year week 28 | 27 |
 | 2 | social-studies-grade-2 | 1, mid-year (week 14) week 14, 2, year-end week 31 | 30 |
 | 3 | english-language-arts-grade-3 | Check 1 week 16, Check 2 week 32 | 32 |
 | 3 | math-grade-3 | Check 1 week 12, Check 2 week 23, Check 3 week 31 | 30 |

@@ -369,6 +369,17 @@ library and research skills; world languages stay shelved) (Cory, 2026-11-13). P
 own: Economics teaches it, lightly integrated (Cory, 2026-11-14), and data/courses.csv no longer flags it core. Where a core progression leans on one of them (English language
 development with ELA; health with science), the cross_subject column notes it for then.
 
+**Before a new subject's scopes** (lead, 2026-11-15, from the science, ELA and math round, where the skeleton run found
+21 source maps in 21 layouts and readiness gaps the reads had missed). Every elective and every later subject passes
+these before Codex writes its first scope:
+1. Its data layouts are gated before any writer runs: days.csv and source-map.csv in sequence-write.md's layout,
+   checked by sequence.py, and the subject's progression checked. No writer invents a column.
+2. One pilot course per subject first (Codex write, both reads, fix), then the brief is frozen for the rest of that
+   subject; only a finding that breaks a gate reopens it.
+3. The rule 2 readiness and retrieval count runs in the scope gate (sequence.py rule2_notes) on every course, so the
+   gaps show at scope stage, not at the skeleton.
+4. The unit skeleton runs on the pilot course before the others are written, so its adapter needs are known early.
+
 ### People and a second reader, through all of it
 
 - **A reader of a different model kind** at each baseline and in P5d's calibration: Codex reads cold against the

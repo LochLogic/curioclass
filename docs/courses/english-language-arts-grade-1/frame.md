@@ -148,7 +148,7 @@ Weeks are counted at five days a week: unit 1 is weeks 1 to 7, unit 2 weeks 7 to
 | Row | Lean | Used here | Needed by | If science teaches it later |
 |---|---|---|---|---|
 | e1-connections | 1-ESS1-1 (patterns of the sun, moon and stars) | Unit 2 | About week 7 | Science teaches it first (its unit 1, weeks 1 to 4); if later, the unit 2 read-alouds state the patterns themselves (the sun rises and sets, the moon changes shape, stars come out at night) and the class records them in pictures |
-| e1-informative | 1-LS1-1 (how birds use body parts to survive) | Row in unit 1; the writing that carries the lean is unit 3's bird piece | About week 16 | Science teaches it first (its unit 2, about weeks 5 to 10); if later, the unit 3 bird texts teach each body part and what it does, and the piece uses only those facts. Unit 1's tool piece needs no science |
+| e1-informative | 1-LS1-1 (how birds use body parts to survive) | Row in unit 1; the writing that carries the lean is unit 3's bird piece | About week 16 | Science teaches it first (its unit 2, weeks 4 to 9); if later, the unit 3 bird texts teach each body part and what it does, and the piece uses only those facts. Unit 1's tool piece needs no science |
 | e1-shared-research | 1-LS1-1 (bird body parts, researched) | Row in unit 2; the bird research that carries the lean is unit 3 | About week 16 | Science teaches it first (its unit 2); if later, the provided bird sources supply every fact the research question needs |
 
 Topic connection, not a row lean: the sky research notes in unit 2 meet science's 1-ESS1-1 observations, and the bird texts of units 3 and 4 meet its parent-and-young unit 7.

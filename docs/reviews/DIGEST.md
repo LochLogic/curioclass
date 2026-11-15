@@ -693,3 +693,86 @@ said so: the weekly silent reading block.
 
 Every row of the rights list is still "found, not yet second-read". Fifteen questions wait for the second
 reader (docs/courses/ela-6/RIGHTS.md).
+
+## Scope fix pass, 2026-11-15: math
+
+Twelve math scopes and sequences (K to 8, Algebra I, Geometry, Algebra II). Reports: sequence-<course>-fixes-2026-11-15.md; shared-file edits in structure-pass-math-2026-11-15.md. To Cory: none from any math course.
+
+| Settled | Course |
+|---|---|
+| Focus is one count: major-cluster instructional minutes over instructional minutes, assessment and respond days excluded, each minute once (K 80.7, 2 82.7, 3 65.26, 4 66.9, 6 66.2, 7 65.4, 8 80.49 percent; Algebra I 79.74 percent of prerequisite minutes, no high school threshold claimed) | all |
+| Ten named fold-ins make the shorter year; nothing assessed, no response and no first teaching is cut | all |
+| A 45-minute-only day is not promised in K to 3; shorter-period routes stay draft timing for unit planning | 1, 2, 3, 5 |
+| Course-level checks list only newly sampled codes; recent unit records are carried forward with their date, never rescored or recollected | all |
+| Year-end fluency is a short independent untimed station with no supplied work | 2 (days 144, 145), 5, 7 (158, 159), 8 (159), Algebra I |
+| Retrieval is unmarked practice: it never supplies a scored record and never resets a row's last use; explicit teaching or assessment does | 7, 8, Geometry, Algebra II |
+| Begun codes: the taught part is named in the unit's prose with its later owner; no tilde codes in frames, owned-code cells hold owned codes only | 8, Algebra I, Geometry, Algebra II |
+| Earlier-grade retrievals carry the row id in skills | 1, 8 |
+| Kindergarten has no earlier-grade rows; later units retrieve same-year work | K |
+| K: unit 2 midpoint observed days 34 to 36, respond 37 and 38; year-end counting 146 to 148, fluency 149 to 151, reuse on 152; day 153 one partner-display task, six groups of five | K |
+| Grade 1: all 20 kindergarten rows retrieved; observations planned for 30 (groups 8, 8, 8, 6); day 114 is addition within 100 and equality within 20; unit 8's new evidence is MP.1 and MP.3 riddle reasoning | 1 |
+| Grade 2: all assumed rows are grade 1 and retrieved; unit 9 has an embedded observation on day 159 and response on 160, no separate assessment day | 2 |
+| Grade 3: all 23 grade 2 rows retrieved; facts untimed and private; measuring needs real grams, kilograms and liters, diagrams alone leave it pending; day 153 carries day 21's graph record | 3 |
+| Grade 4: readiness on days 44, 57, 76, 127; money readiness 44, taught and recorded 48 (adapting the coin-thickness lesson), retrieved 86; source units 7 and 8 stay joined in unit 9 | 4 |
+| Grade 5: one grade 3 readiness row, 23 grade 4 retrieval rows; brackets and braces day 10, braces again day 29, never nested; decimal evidence days 96, 105, 106 | 5 |
+| Grade 6: grade 5 rows retrieved; readiness for grade 4 factors and grade 3 scaled graphs; GCF factoring goes until no common factor above 1; day 158 split 10/10/15/10 minutes; one supplied-data project period on day 155 | 6 |
+| Grade 7: populations taught day 154, assessed 155; 145 base lessons (118 keep, 6 merge, 1 split, 20 cut) plus 38 original | 7 |
+| Grade 8: readiness day 1 (symmetry, signed coordinates) and day 92 (exponents); units 7 and 8 retrieve them; day 61's fitted line and day 79's constructed equations retained; day 30's response moves into day 31 | 8 |
+| Algebra I: optional support lessons are cut from the core calendar but keep optional-track data; fold-ins stay unassessed practice | Algebra I |
+| Geometry: unit 1 readiness in day 1's last ten minutes; day 43 renews cylinders only (cones and spheres keep readiness before unit 5); Geometry teaches completing the square for circles and assesses it on day 125; modeling prompts 3 and 6 stay cut as days | Geometry |
+| Algebra II: completing the square and the assessed piecewise and absolute-value cases are retrieval (Geometry renews them); day 45 checks integer exponents; F-IF.C.7 closes by distributed family evidence, part d in unit 2; course id algebra-ii, catalogue id algebra-2 | Algebra II |
+
+## Scope fix pass, 2026-11-15: ELA
+
+Thirteen ELA scopes and sequences (K to 12). Reports: sequence-<course>-fixes-2026-11-15.md; shared-file edits in structure-pass-ela-2026-11-15.md. To Cory: grade 12's audience question (below).
+
+| Settled | Course |
+|---|---|
+| Every earlier-grade row was used in the grade before: retrieval at first use, no readiness check (grade 9: older editing readiness on day 50, last use grades 4/6) | All |
+| Collect individual evidence once per window; reuse matching records from the last ten days, never rescore; new topics alone do not make a new task form | All |
+| Anchor balance counts anchors only, a set or cluster once: K 4/8, 1 4/7, 2 4/7, 3 5/11, 5 60 percent, 6 8/13, 7 7/12, 8 7/12, 9 13/23, 10 10/17, 12 11/18 informational | All |
+| Held or planned source material is not a finished, measured or cleared text; the text record lives in the scope and sequence | All |
+| Shorter year: ten unassessed folds give 150 meetings; timing and a remapped calendar still needed | K to 6 |
+| Continued foundations rows: initial evidence plus a named completing window, no readiness check between units; long e from day 151, printed blending from day 85 | K |
+| ou taught in cycle 11 (day 64), grade 2 retrieves it; classroom-tool model is the M1 U3 L8 display-sign paragraph | 1 |
+| Fable comparison uses new retellings after Jacobs 1894 and La Fontaine/Wright 1882, book I, fable I | 2 |
+| Word-part list: grade 3 affixes; grade 4 roots scrib/script, tract, graph, photo, tele, port, rupt, ject, aud, vis, struct, form; grade 5 dict, spect, bio, geo, meter, therm, mit/miss, cred, aqua/hydro plus -ity, -ian, -ial, -ive, -ance, inter-, trans-, multi-; grade 6 phon, gram, glyph; grade 7 immun, epi, pan, demos, logy; grade 8 tox, pharm, serv, ced/cede, ad- | 3 to 8 |
+| Course check 2 form: grade 4 informational explanation (day 158), grade 5 narrative scene (day 158) | 4, 5 |
+| Sustained literary analysis: grade 6 A1 on the scribe-school story; grade 7 one 450 to 600-word piece (days 13 to 20) counted as argument; grade 8 model 107, practice 120, piece 125 | 6 to 8 |
+| Grade 6 novella demand stays unverified until finished texts compare; length alone is no climb | 6 |
+| Grade 8 talk audience: another school class, families where allowed | 8 |
+| Word-family list: grade 9 analyze, derive, infer, constitute, vary, synthesize; grade 10 create, perceive, reproduce, persuade (+ transform from known parts); grade 11 compel, sustain, legislate, hypothesize (hypo- new); grade 12 reflect, discern, exclude, deliberate, justify, qualify | 9 to 12 |
+| Grade 9 recitation is not a findings presentation (SL.9-10.4 from day 129); long-book offers record progress, not completion | 9 |
+| Grade 10 check 2: cold-poem reconstruction, speech matrix, corrective memo; West African paired story is original fiction near Accra, 1920 | 10 |
+| Grade 11 check 3 is literary analysis; narrative evidence from day 150; Winthrop paired, not an anchor | 11 |
+| Grade 12: informative evidence (day 122) follows unit 6; process writing 60/20/20; panels of rotating students with the teacher as lead judge | 12 |
+
+For Cory (grade 12): a one-child, one-parent home has no second listener, so the contrasting-audience talk stays unfinished there; internal ELA panels do not supply paired history's beyond-classroom audience.
+
+## Scope fix pass, 2026-11-15: science
+
+Twelve science scopes and sequences (K to 8, Biology, Chemistry, Physics). Reports: sequence-<course>-fixes-2026-11-15.md; shared-file edits in structure-pass-science-2026-11-15.md. No new question for Cory.
+
+| Settled | Course |
+|---|---|
+| Last explicit teaching or assessment of the needed part sets the last-use grade; an assumes cell, a passing retrieval or a "maintained skill" label does not, and generic practice does not renew dormant content | All |
+| Readiness sits in the last ten minutes of a day before the dependent unit (after the hook where a unit opens), with the response inside a named later day, counted once | All |
+| Collect individual evidence once; carry recent records unchanged; course-level checks use new cases and a task form not given in the last two weeks, and list only codes they sample in full (partial samples named in notes) | All |
+| Practical evidence: observed or learner-controlled records establish conducting; supplied data, plans or paper reasoning do not | All |
+| Plan observations for a class of 30, six groups of five | All |
+| Shorter path: ten unassessed folds (about 500 minutes in 6 to 12); assessment, readiness, response, safety and owned parts stay; a 90-meeting route is not yet shown | All |
+| Material costs are planning allowances, not quotes or purchase authorization; shared equipment is charged once | All |
+| No earlier-grade prerequisites; K-ESS3-3 individual scope is one or more affected surroundings, the class model covers all four | K |
+| Kindergarten rows are retrieved; preparation days split from observed testing (45/46, 53/54); direct length ordering uses real leaves or life-size prints | 1 |
+| Three meetings a week (K, 1 and 2); grade 2 mid-year check after unit 5 in week 20, year-end week 28 | K, 1, 2 |
+| Readiness: forecast content day 10, needs/place system day 65; pollination is food-seeking visits with incidental pollen transfer | 2 |
+| Readiness days 1, 36, 58, 81 (support 2, 38, 60, 83); check forms on days 35, 80, 119 | 3 |
+| Readiness days 15, 41, 56, 76, 93; waves compared qualitatively with an unnumbered strip, no numerical wavelength | 4 |
+| Readiness days 1, 17, 44, 61, 84; water taught as salt/fresh overview plus separate lake and river inset, no atmospheric quantity | 5 |
+| Weather-data readiness day 51; climate teaching days 84 to 88; one lesson compressed to one day is keep, different lessons sharing a day is merge | 6 |
+| Readiness days 1, 41, 68, 96, 128; day 148 is full MS-ESS3-5, partial MS-ESS3-4 only; source-map minutes total 50 a day | 7 |
+| Unit 2 response is ten minutes inside days 28 and 32 after day 26 readiness (lead exception); light assessment day 97, genetics midpoint 121 | 8 |
+| Readiness days 1, 25, 46, 112, 123, 140; homeostasis investigation is pulse recovery or leaf-pore response, no root-growth feedback claim | Biology |
+| Insulation readiness day 87, support inside 89; math readiness days 41 and 130 stay by lead ruling | Chemistry |
+| Light paths checked day 76, supported 78, used 86, retrieved in unit 7; Chemistry's plate-model melting use does not establish past-motion evidence | Physics |
+| Biology, Chemistry and Physics have no base text and no source map | 9 to 11 |

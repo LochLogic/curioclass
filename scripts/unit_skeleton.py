@@ -1098,7 +1098,13 @@ def earlier_rows(course, rows, allrows, prog, frame_meta, ready_day):
     cg = grade_num(frame_meta.get('grade'))
     first, lastday = int(rows[0]['day']), int(rows[-1]['day'])
     skills = uniq(s for r in rows for s in split_list(r['skills']))
-    assumes = [a for a in uniq(a for s in skills if s in prog for a in split_list(prog[s]['assumes'])) if a not in set(skills)]
+    # Only the unit's own-grade rows bring their assumes (lead, 2026-11-15): an earlier-grade row listed for retrieval
+    # (math lead call 4 puts its id in the skills column) is itself an earlier row, not a source of further ones.
+    def own(s):
+        g = grade_num(prog[s]['grade'])
+        return g is None or cg is None or g >= cg
+    assumes = [a for a in uniq(a for s in skills if s in prog and own(s) for a in split_list(prog[s]['assumes']))
+               if a not in set(skills)]
     if not assumes:
         return []
     other, unread = [], []
@@ -1208,6 +1214,9 @@ def evidence_pairs(allrows, unit, day):
         if not EVIDENCE.search(r['goal'] + ' ' + r['note']):
             continue
         if r['stretch'] == me['stretch'] and r['assess'] == me['assess']:
+            continue
+        # Collect once is about the same evidence twice (lead, 2026-11-15): two checks on different codes are no pair.
+        if not set(split_list(r['codes'])) & set(split_list(me['codes'])):
             continue
         later = byday[max(d, day)]
         out.append((d, bool(REUSE.search(later['goal'] + ' ' + later['note']))))
@@ -1751,12 +1760,14 @@ def self_test():
     check('code first taught day 3 is untaught at day 2', taught_before(al, '3-PS2-2', 2) == [])
     check('same-day teaching counts with same_day', taught_before(al, '3-PS2-2', 3, same_day=True) == [3])
     # 5. child-by-child evidence within ten days, a reuse note, one assessment spread over a unit
-    ev = [dict(day=str(d), stretch=s, unit=s + '.1', kind='Check', goal=g, skills='', codes='', assess=a, note=n)
+    ev = [dict(day=str(d), stretch=s, unit=s + '.1', kind='Check', goal=g, skills='', codes='W.3.1', assess=a, note=n)
           for d, s, g, a, n in [(3, '1', 'one-to-one interview', 'mid', ''),
                                 (9, '2', 'conference on drafts', 'end', 'reuse the day 3 record'),
                                 (12, '2', 'conference on drafts', 'end', ''),
                                 (30, '3', 'one-to-one interview', 'end', '')]]
     check('evidence pair within ten days, reuse read', evidence_pairs(ev, 2, 9) == [(3, True)])
+    check('checks on different codes are no pair',
+          evidence_pairs([dict(r, codes='W.3.2') if r['day'] == '3' else r for r in ev], 2, 9) == [])
     check('no pair beyond ten days', evidence_pairs(ev, 3, 30) == [])
     # 6. grouped columns, with safety none dropped
     gc = [dict(day='1', safety='goggles; none'), dict(day='2', safety='goggles'), dict(day='4', safety='none')]
