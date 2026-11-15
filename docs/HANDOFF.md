@@ -62,6 +62,15 @@ Cleanup pass done (docs/reviews/baseline-1-cleanup-2026-11-14.md): `frame.py cal
 
 **Pause lifted for social studies (Cory, 2026-11-14: "Social studies is overall our test bed. Let's go ahead and do the whole scope and sequence section together and follow the chart on the dashboard").** All 15 social studies scopes and sequences run together, then review, unit plans, units review and the probe, to baseline 2. ELA, science and math stay paused at step 2.
 
+**Scopes unpaused for science, ELA and math (Cory, 2026-11-14 late).** Codex writes all 37 remaining scopes and
+sequences in one unattended run (`scripts\Start-Codex-Scopes.bat`, driver `scripts/codex_scopes.py`): write blind,
+gate, a scope reconcile for math-grade-4, english-language-arts-grade-6 and science-grade-4
+(docs/pipeline/briefs/sequence-reconcile.md), then a Codex first read (docs/reviews/sequence-<course>-codex-*.md). It
+stops there. Next, after Claude's window resets: the expert reads (grade-band reports, as for social studies), the
+Codex fix pass, then unit plans for science and ELA on the rest of the 61% week, then Cory uses the banked reset.
+Units keep the order: math units last. Cory's reason: the math pause was about older work, which write blind then
+reconcile handles.
+
 **Where it stands (2026-11-14, paused at 96% of the usage window):** all 15 social studies scopes and sequences are written (docs/courses/<course>/scope-and-sequence.md, data/plans/<course>/days.csv), every one passes sequence.py; writer notes and For the lead items are inside each scope-and-sequence.md. Codex reads were started for the nine K to 8 courses (docs/reviews/sequence-<course>-codex-2026-11-14.md). **Resume:** expert reads (sequence-read.md) of all 15, one agent per band; Codex reads of the six 9 to 12 courses and any K to 8 Codex read that did not land; then one fix pass that settles once, for all 15, readiness check versus retrieval task (sequence-write rule 2 against the frames' Seams wording) and makes frame.py calendar read days.csv school_day and held look-back days; then unit plans, units review, probe, baseline 2.
 
 **Next: PRODUCTION-PATH step 3, social studies scopes and sequences first**, with sequence-write.md; ELA 6 rights

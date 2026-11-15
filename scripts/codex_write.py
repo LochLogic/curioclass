@@ -14,6 +14,11 @@ message goes to docs/reviews/codex-write-<course>-<date>.md (the outside-file re
 goes to log=PATH (default: a file in the system temp directory, never under docs/reviews). Exit 1 if codex failed or an
 outside file changed. Ignored files (.gitignore) are not in `git status`, so a change there is not seen.
 
+Other jobs (added 2026-11-14 for the scope and sequence run, scripts/codex_scopes.py): `allow=a;b` replaces the
+allowed set with these repo paths or globs ({course} filled), and `tag=x` names the report codex-write-<x>-<date>.md.
+Other courses' scope files (scope-and-sequence.md, days.csv, source-map.csv) and docs/reviews/sequence-* reports may
+change at the same time from parallel jobs and are ignored.
+
 Example:  python -X utf8 scripts/codex_write.py docs/pipeline/briefs/plan-codex.md social-studies-grade-3
 """
 import datetime
@@ -75,9 +80,14 @@ def changed(before, after):
     return out
 
 
+ALLOW = None   # set from allow=; None means the unit plan set below
+
+
 def allowed(path, course):
     p = path.replace('\\', '/')
-    d = 'docs/courses/%s/' % course
+    if ALLOW is not None:
+        return any(fnmatch.fnmatch(p, g.replace('{course}', course)) for g in ALLOW)
+    d ='docs/courses/%s/' % course
     if p.startswith(d) and '/' not in p[len(d):]:
         name = p[len(d):]
         return fnmatch.fnmatch(name, 's*.md') or name in ('TOOL-ASKS.md', 'DEFAULTS.md')
@@ -88,6 +98,12 @@ def other_course_plan(path):
     p = path.replace('\\', '/').split('/')
     if len(p) == 3 and p[:2] == ['docs', 'reviews'] and p[2].startswith('codex-write-'):
         return True                     # another concurrent run's report
+    if len(p) == 3 and p[:2] == ['docs', 'reviews'] and (p[2].startswith('sequence-') or p[2].endswith('.md.log')):
+        return True                     # a parallel scope job's read or its log
+    if len(p) == 4 and p[0] == 'data' and p[1] == 'plans' and p[3] in ('days.csv', 'source-map.csv'):
+        return True                     # a parallel scope job's days
+    if len(p) == 4 and p[:2] == ['docs', 'courses'] and p[3] == 'scope-and-sequence.md':
+        return True
     return len(p) == 4 and p[0] == 'docs' and p[1] == 'courses' and (
         fnmatch.fnmatch(p[3], 's*.md') or p[3] in ('TOOL-ASKS.md', 'DEFAULTS.md'))
 
@@ -103,6 +119,11 @@ def main(a):
         k, v = kv.split('=', 1)
         if k == 'log':
             log = v
+        elif k == 'allow':
+            global ALLOW
+            ALLOW = [g.strip() for g in v.split(';') if g.strip()]
+        elif k == 'tag':
+            slots['_tag'] = v
         else:
             slots[k] = v
     text = open(brief, encoding='utf-8').read()
@@ -111,7 +132,7 @@ def main(a):
     codex = shutil.which('codex') or shutil.which('codex.cmd')
     if not codex:
         raise SystemExit('codex CLI not found')
-    tag = course + ('-s' + slots['uu'] if 'uu' in slots else '')
+    tag = slots.pop('_tag', None) or course + ('-s' + slots['uu'] if 'uu' in slots else '')
     out = os.path.join(ROOT, 'docs', 'reviews', 'codex-write-%s-%s.md' % (tag, date))
     tmp = os.path.join(tempfile.gettempdir(), 'codex-write-%s-%s.last.part' % (tag, date))
     if os.path.exists(tmp):
