@@ -353,6 +353,9 @@ IMPRINT = re.compile(r"publish|printed|copyright|all rights|& co\b|\bco\.|limite
                      r"press$|^london|^new york|^boston|^philadelphia|^chicago|^\d{4}$|edition|dedicat|^to\b|^for\b", re.I)
 FIRST = re.compile(r"^(chapter (i|1|one)|i|1|part (i|1|one|the first)|book (i|1|one|the first)|stave (i|one)|"
                    r"canto (i|1)|act (i|1)|scene (i|1)|book the first)( [a-z].*)?$")
+FIRST_AT = {  # id -> the heading (normalised) a whole book opens on, where it is not chapter one
+    "frankenstein": "letter i",   # Walton's letters open the novel; ELA grade 10 reads them (days 1 and 2)
+}
 FURNITURE = re.compile(r"transcriber|typographical errors|project gutenberg|this e-?book|e-?text was produced|"
                        r"plain text version|craphound\.com|^enlarge|^\[?contents\]?$|^page$|^\d{1,4}$|"
                        r"^\[(illustration|pg \d+)[^\]]*\]$|was produced from|copyright on this publication|"
@@ -429,11 +432,13 @@ def tidy(part):
     return out
 
 
-def trim(part, title):
-    """A whole book: start at chapter one (or past the title page and imprint), stop before end matter."""
+def trim(part, title, start=None):
+    """A whole book: start at chapter one (or past the title page and imprint), stop before end matter. `start` (a
+    row's FIRST_AT) names the heading the story opens on instead, such as a novel's opening letters."""
     t = norm(title)
     words = lambda b: len(plain(b).split())
-    first = next((i for i, b in enumerate(part[:len(part) // 3 + 30]) if b[0] == "h" and FIRST.match(norm(b[2]))), None)
+    first = next((i for i, b in enumerate(part[:len(part) // 3 + 30]) if b[0] == "h" and
+                  (norm(b[2]) == start if start else FIRST.match(norm(b[2])))), None)
     if first is not None:
         part = part[first:]
     else:
@@ -487,6 +492,11 @@ FIXES = {  # id -> [(old, new)]: typos in the source text itself, applied after 
                         ("lauft. Selten fallen sie zusammen. Menschen und zufalle modifieiren gewohulich",
                          "läuft. Selten fallen sie zusammen. Menschen und Zufälle modificiren gewöhnlich")],
     "poe-composition": [('" Barnaby Rudge,"', '"Barnaby Rudge,"')],
+    # the 1818 text (pg 41445, ELA grade 10 fix pass 2026-11-15): three volumes, each restarting at Chapter I
+    "frankenstein": [("### Letter I.\n", "## Volume I\n\n### Letter I.\n"),
+                     ("## Frankenstein; or, the Modern Prometheus.\n\n---\n\n", ""),
+                     ("## Frankenstein; or, the Modern Prometheus.\n\nIN THREE VOLUMES.  \nVOL. II.\n", "## Volume II\n"),
+                     ("## Frankenstein; or, the Modern Prometheus.\n\nIN THREE VOLUMES.  \nVOL. III.\n", "## Volume III\n")],
 }
 
 
@@ -650,7 +660,7 @@ def gutenberg(r, src, uses, cache):
         if not got:
             return None, "not placed"
         a, e, how = got
-        part = trim(unshape(tidy(blocks[a:e]), src), r["title"]) if how == "whole" else blocks[a:e]
+        part = trim(unshape(tidy(blocks[a:e]), src), r["title"], FIRST_AT.get(r["id"])) if how == "whole" else blocks[a:e]
     part = unshape(tidy(part), src)
     if r["source"].startswith("ovid-riley"):  # Riley's footnote numbers and line references sit in the text
         part = [(b[0], re.sub(r"(?<=[a-z,;:.!?’”*])\d{1,3}(?=[\s,;:.]|$)", "",
