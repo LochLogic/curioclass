@@ -289,6 +289,10 @@ later = []
 p = os.path.join(ROOT, 'data', 'plans', 'later.csv')
 if os.path.exists(p):
     later = [dict(r) for r in csv.DictReader(io.open(p, encoding='utf-8'))]
+    # the stats doc has a 256 KB cap: a done row's detail is cut to its first 200 characters (full text in later.csv)
+    for r_ in later:
+        if r_.get('state') == 'done' and len(r_.get('detail', '')) > 200:
+            r_['detail'] = r_['detail'][:200].rsplit(' ', 1)[0] + ' ... (full text in data/plans/later.csv)'
 
 LINKS_EXTRA = {'units-review:social-studies': ['The structure pass report', 'docs/reviews/ss-units-structure-pass-2026-11-14.md']}
 for n_, v_ in LINKS_EXTRA.items():
