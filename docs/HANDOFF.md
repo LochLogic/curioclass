@@ -27,11 +27,21 @@ block); the newest block comes first and older blocks below are kept as written.
 key); a timer is allowed where it has a grounded purpose (a pace cue, a movement game, classroom management), never
 without one; pilots are retired (2026-11-13), the probe and guard replace them.
 
-**Next:** (1) the Codex fix pass of the 37 scopes and sequences; (2) unit plans for science and ELA, the social
-studies way; (3) math unit plans last. The social studies probe (PRODUCTION-PATH step 4, PROBE-GUARD.md: one
-section, 3 to 5 days, written and read the full way) and baseline 2 are still to run. The day pipeline (plan-data.md,
-lesson.py, LESSON-DAY.md, courses/<course>/) is math-shaped and the blind rule names all of courses/: adapting both
-for social studies is part of the probe. Files needing deletion move to S:\CurioClass-archive\<what>-<date>\.
+**Later on 2026-11-15:** the 37 scopes were fixed, structure-passed and rule 2 gaps closed (commits 83e5a8fc to
+c13c112e); unit skeletons for all 259 science, ELA and math units are written by scripts/unit_skeleton.py and
+spot-checked, with the spot-check fixes applied (32380c38; docs/reviews/skeleton-spot-check-fixes-2026-11-15.md;
+social studies output unchanged, those fixes parked in later.csv L28). Making earlier-grade rows visible raised the
+scope gate's rule 2 notes to 97 (science about 35 rows in 17 units, math about 28 in 16, ELA 2): days.csv readiness
+notes to add before Codex fills those units. A day skeleton draft exists early on purpose (scripts/day_skeleton.py,
+DAY-SKELETON.md draft log, L31). Cory 2026-11-15: L30 approved (home and classroom audience routes, in
+plan-codex-ela.md), L23 decided (one page per section with day anchors), L26 already done, L16 left for now, long
+ELA K to 2 day notes are fine in the unit but shrink on the teacher page.
+
+**Next:** (1) close the newly visible rule 2 readiness rows in science, ELA and math days.csv; (2) Codex fills the
+science and ELA unit skeletons the social studies way; (3) math unit plans last (RUBRIC-MATH-HS, L25). The social
+studies probe (PRODUCTION-PATH step 4, PROBE-GUARD.md, with L28's items) and baseline 2 are still to run. The day
+pipeline (plan-data.md, lesson.py, LESSON-DAY.md, courses/<course>/) is math-shaped and the blind rule names all of
+courses/: adapting both for social studies is part of the probe. Files needing deletion move to S:\CurioClass-archive\<what>-<date>\.
 
 ## 2026-11-14 night: social studies unit plans done to the structure pass
 
