@@ -1,0 +1,6 @@
+- Six units: 17, 34, 38, 24, 20 and 23 days, plus four check/respond days, totaling 160.
+- Course-level checks: weeks 18 and 32. No stagger-rule break.
+- Both required gates passed; sequence check reports zero failures or notes.
+- All six Candidate cells settled with no additions or extra days.
+- Source map retains all 86 base lessons.
+- For the lead: readiness wording reconciled to the brief. Equipment costs, microscope access and classroom timing remain unverified.

@@ -1,0 +1,163 @@
+# Scope and sequence: Science Grade 3
+
+Course `science-grade-3`, grade 3, draft, 2026-11-14.
+
+The frame's six units retain their order, 111 unit days, 15 owned progression rows and 16 performance expectations. Nine course-level days bring the total to 120 meetings of 45 minutes. The day decisions, section boundaries, standards, materials and controls live in [days.csv](../../../data/plans/science-grade-3/days.csv). School day is `ceil(course day x 1.25)`, four meetings per week across weeks 1 to 30. No unit or assessment is moved to fit another subject. Sections below are day groupings for later planning, not section plans.
+
+Each unit starts with its frame's observable anchor and a question board. Evidence raises the next question, changes an initial model and supports a consensus explanation. An end-of-unit assessment uses an unfamiliar phenomenon or problem. Where an assessment spans two days, its codes are divided between the days; each code on a day requires all its parts, through short prompts or the performance/product named there. The unit plan will write the items, scoring and accommodations. No unit exceeds 25 days, so no mid-unit assessment is required or reserved. Model revisions and section exit tickets provide intermediate evidence without another assessment day.
+
+The weather log has two explicit five-minute slots in every four-meeting week, including five minutes of the day 77 assessment and designated respond days where necessary. It starts in week 1, records temperature, rain or snow, wind direction and sky, and continues through day 120. Readings below zero are written in words and excluded from numerical graphs and temperature comparisons. Teacher-supplied local records cover seasons the class has not observed. Averages are supplied, never calculated by students. Planting takes 15 minutes on day 18. Two-minute care or observation slots thereafter through day 58 are inside the recorded days, with adult care daily between meetings. Observed and photograph-only stages remain distinct. Neither routine adds days or claims a complete live cycle when it was not observed.
+
+## Unit 1. Pushes, pulls and swings
+
+16 course days, 1 to 16; school days 2 to 20; weeks 1 to 4. Sections: 1.1, days 1 to 5; 1.2, days 6 to 10; 1.3, days 11 to 16.
+
+The swing and safe class pendulum raise two connected questions: what changes motion, and what lets us predict its return? Class tests of equal and unequal pushes establish controlled variables and force arrows before groups plan and run their own tests. Motion records then support predictions, a second repeating motion in a bowl and an explanation of a failed prediction. The arrow model begins on day 1, changes with evidence on days 4 and 8, and reaches consensus on day 13 before transfer. No student rides a swing in an investigation. Force strength is compared, not measured in units; gravity is only a downward pull.
+
+Readiness occupies the last ten minutes of day 1 after the hook: `sk-push-pull` and the prediction practice in `s1-sky-patterns`. Day 2 uses the results for one lesson of support or deeper evidence work. The frame calls these retrieval, but neither row has an explicit grade 2 use in the supplied progression; this draft follows the brief's last-use rule rather than its older content-revisited exception. The later unit 2 use of pushes is retrieval because unit 1 has now taught it. Day 15 assesses controlled-test planning and performance with balanced and unbalanced forces, plus observation-based prediction from repeating motion. Day 16 is the single unit response allocation.
+
+Candidate: drop the come-back can, zero additional days. A second pattern already appears in the bowl on day 11, while elastic construction adds set-up and invites an unnecessary stored-energy explanation. The owned motion reasoning remains.
+
+## Unit 2. Pushes and pulls without touching
+
+17 course days, 17 to 33; school days 22 to 42; weeks 5 to 9. Sections: 2.1, days 17 to 22; 2.2, days 23 to 28; 2.3, days 29 to 33.
+
+The suspended clip and static paper attraction challenge contact-only explanations. Student questions drive tests of distance, object type, magnet number and orientation, followed by static attraction. The initial model on day 17 changes on days 20 and 22. The teacher-only electromagnet on day 24 prompts questions and connects a discovery to a useful device, without student circuits. Only after investigating magnetic effects does the class define the cupboard-latch need, several success criteria and constraints on materials, time and cost. Trying one solution sharpens the problem; changed users require changed criteria. The consensus model on day 29 links evidence to that definition. This load gives seven principal inquiry days, six definition/application days, two assessment days, an opener and a respond day, rather than equal shares of two skill rows.
+
+Retrieve unit 1 forces on day 17 and grade 2 design comparison on day 25; no older idle prerequisite needs readiness. Planting on day 18 serves unit 3 without changing this unit's length. Day 31 assesses the full electric and magnetic questioning expectation, including distance and orientation. Day 32 assesses defining the new toy-car magnetic problem, with a product carrying the complete need, criteria, constraints and changing-needs work. Day 33 responds once to both parts.
+
+Candidate: drop the compass extension, zero additional days. Earth's magnetism is not needed to explain these interactions or define the problem. Keep the time for static as well as magnetic evidence and for the full engineering definition.
+
+## Unit 3. Growing up and taking after
+
+22 course days, 37 to 58; school days 47 to 73; weeks 10 to 15. Sections: 3.1, days 37 to 41; 3.2, days 42 to 46; 3.3, days 47 to 52; 3.4, days 53 to 58.
+
+The class's plants and mealworms, already established on day 18, make life-cycle models answer a live question. Models begin on day 37 and change on days 39 and 41 as dated observations or identified photographs reveal omitted stages. Comparing the butterfly, frog and flowering plant establishes birth, growth, reproduction and death despite different stages and timing. Reproduction leads to the question of offspring likeness and within-kind variation. Plant and animal data both support inheritance reasoning before the hydrangea puzzle and crowding records introduce environmental influence. Days 48 and 49 read the existing comparison; they do not restart grade 2's light-and-water experiment. The consensus revision on day 53 connects the three rows without introducing genes. Six days develop cycles, four focus on inherited traits, six on environmental evidence and its distinction from inheritance, then integration and assessment finish the arc.
+
+Retrieve grade 2 pollination/seed work on day 37, grade 1 like-parents on day 43, and grade 2 plant-needs evidence on day 47. The like-parents row was used for evidence accounts in grade 2; its content is also retaught at this unit's depth. No readiness slot is needed. Day 56 assesses the complete animal and flowering-plant cycle models. Day 57 assesses plant and animal likeness and variation plus an evidence-based environmental explanation. Day 58 responds once to both parts and records which late stages were actually seen. Failed or incomplete live cycles use dated photographs, with no invented observation. Non-human examples avoid requests about student family resemblance, adoption or bodies.
+
+Candidate: keep seed-packet timing for 15 minutes on day 42, within its existing day. Compare the packet's germination and harvest timings with the dated record, while explicitly distinguishing harvest from reproduction. This adds a timing pattern, not a claim that the packet documents the whole life cycle.
+
+## Unit 4. Surviving where you live
+
+20 course days, 59 to 78; school days 74 to 98; weeks 15 to 20. Sections: 4.1, days 59 to 63; 4.2, days 64 to 68; 4.3, days 69 to 73; 4.4, days 74 to 78.
+
+The tundra anchor asks why groups, individual differences and habitat fit can each matter. Five days develop group arguments using musk oxen, wolves, fish and bees, including evidence that some animals survive alone. Counts are sourced counts out of equal numbers of hunts, never percentages. Five days then use unit 3 variation to explain camouflage, thorn differences and a within-kind bird mate-choice case; survival alone does not complete the expectation. Five days connect needs and conditions in the tundra, desert/bog and local habitat. Initial system models on day 59 change with variation evidence on day 66 and habitat evidence on day 69, reaching consensus on day 74. Cause and effect remains explicit in the habitat argument even though the system model also helps.
+
+Retrieve grade 2 habitat diversity and grade 1 parent-offspring on day 59, then grade 1 parts-mimic and same-year variation on day 64. Both grade 1 rows were used in grade 2, so these are retrieval tasks. Day 76 assesses a group-survival argument and a variation explanation covering survival, finding mates and reproduction. Day 77 assesses all three habitat outcomes: doing well, doing poorly and not surviving, with a cause tied to needs and conditions. Its weather log leaves 40 minutes for the assessment. Day 78 responds once to both parts. Paper moths are a table simulation, with no child cast as prey. Predator images are non-graphic. The wood frog's unusual freezing tolerance is not evidence that it survives poorly; avoid the frame's overstatement that it freezes completely solid.
+
+Candidate: keep the local habitat as a second system, one day on day 73 plus ten minutes of preparation on day 72, all inside these 20 days. A public-place photograph inventory offers the same needs-and-conditions argument when access or weather prevents outdoor observation. No organism collection is required.
+
+## Unit 5. Environments change
+
+16 course days, 82 to 97; school days 103 to 122; weeks 21 to 25. Sections: 5.1, days 82 to 86; 5.2, days 87 to 91; 5.3, days 92 to 97.
+
+Arctic tropical-plant fossils open the question of an environment unlike today's. Data on fossil kind, size and location, the desert whales of Wadi Al-Hitan, extinct forms and undisturbed layers supply evidence for a changing past. Relative ages and deep time serve interpretation, with no fossil-name memorization. Models begin on day 82 and change on day 85; students explain how new evidence could change their explanation. Present-day cases then use unit 4 habitat systems and unit 2 criteria: highway/crossing for land, dam/fish ladder for water, lost shade for temperature, a spreading plant for other organisms, and post-fire replanting for food resources. Each case isolates one environmental change. Five days establish fossil reasoning, six develop solution-merit reasoning, two integrate the models, and three assess and respond.
+
+Readiness on `sk-reduce-impact` occupies the last ten minutes of course-level respond day 81, immediately before the unit. Day 82's grouping uses the evidence without delaying its hook; day 83 reserves a one-lesson supported route on harm-reducing solutions, alongside the fossil data, with extra evidence for ready students. Retrieve grade 2 fast/slow events and earlier fossil reading on day 82; topic familiarity does not substitute for interpreting new evidence. Day 95 assesses fossil data inference, day 96 assesses merit of a solution to a new single environmental change, and day 97 responds once to both. Consensus models on day 93 carry the evidence to transfer. Deep time and changes in life are stated plainly from evidence, without soliciting beliefs. Disaster and animal-harm cases remain non-graphic. Climate change is not assessed here; questions, if raised, receive evidence-based answers.
+
+Candidate: keep the state fossil for 20 minutes on day 86, within that day. Where no state fossil is designated, use a documented regional find, with the same inference task. It is evidence about a former environment, not a naming exercise or another field trip.
+
+## Unit 6. Weather, climate and hazards
+
+20 course days, 98 to 117; school days 123 to 147; weeks 25 to 30. Sections: 6.1, days 98 to 102; 6.2, days 103 to 107; 6.3, days 108 to 112; 6.4, days 113 to 117.
+
+The weather log raises the problem of expecting seasonal weather despite daily differences. Five days represent and interpret the class record beside supplied local seasonal records. Five days widen this to many-year climate range and year-to-year variation in the town, Manaus, Cairo and Utqiagvik. Climate is not inferred from one class year. Five days then ask how expected hazards can cause less harm: flood barriers, a wind-resistant roof and lightning rods. Only the roof uses a quick physical model; lightning uses paper evidence. The initial seasonal model on day 98 changes after atypical records on day 102, becomes a weather-and-climate consensus on day 107 and incorporates hazard evidence on day 113. This places representation before climate synthesis and criteria before merit claims.
+
+Retrieve the same-year log on day 98, land/water and globe work on day 103, forecasts on day 108 and grade 2 erosion solutions on day 109. Forecasts were maintained in grade 2; no readiness check is needed. Day 115 assesses the complete seasonal representation and combined-source regional climate expectations. Day 116 assesses a design-merit claim for an unfamiliar hazard. Day 117 responds once to both. No negative-temperature arithmetic, means, climate-cause mechanisms or line graphs are required. Examples stay general; no student must recount a disaster. Fan controls include low speed, fingers clear and eye protection if anything can fly.
+
+Candidate: keep a real forecast and warning for 15 minutes on day 108, inside its existing day. Use dated, located public weather-service information in original Curio Class wording. It provides a reason to consider a protection design, without turning a historical warning into current safety advice.
+
+## Standards and three-dimensional coverage
+
+NGSS is the base. The Massachusetts framework is a crosswalk only and adds no owned codes or days. The element-level planning source is `data/standards/ngss-pe-dimensions.csv`; the table traces the full expectations into day groups and assessments. Teaching ranges include model revisions and practice; they are not additional days. The codes on each assessment day are the contract for full-part coverage, even where a clarification case is taught elsewhere in its unit.
+
+| Expectation | Practice, core idea and crosscutting element used together | Teaching evidence | End-of-unit evidence |
+|---|---|---|---|
+| 3-PS2-1 | Plan and carry out fair tests with controlled variables and repeated trials; contact forces have strength and direction and balanced forces cancel; infer causes of motion changes | 1 to 8, 13 to 14 | 15: plan and observed test, arrows and evidence |
+| 3-PS2-2 | Observe/measure repeating motion, organize evidence and predict from patterns | 8 to 14 | 15: observed motion record and justified prediction |
+| 3-PS2-3 | Ask testable causal questions; static and magnetic interactions depend on objects, distance and magnet orientation | 17 to 24, 29 | 31: questioning performance for both types |
+| 3-PS2-4 | Define a problem using non-contact magnetic effects; connect science discoveries with useful designs | 25 to 30 | 32: new magnetic problem definition |
+| 3-5-ETS1-1 | Define needs with several criteria and resource/time/cost limits; changing needs change desired features | 25 to 30 | 32: complete definition and changed-needs revision |
+| 3-LS1-1 | Develop and revise models of different cycles with the common birth/growth/reproduction/death pattern; reproduction continues the kind | 37 to 42, 53 to 55 | 56: animal and flowering-plant model products |
+| 3-LS3-1 | Analyze data for inherited likeness and within-kind differences in plants and animals; patterns sort similarities and differences | 43 to 46, 51 to 55 | 57: both likeness and variation from both kingdoms |
+| 3-LS3-2 | Explain using evidence how surroundings shape traits, sometimes with inheritance; causal environmental influence | 47 to 55 | 57: explanation from environmental data |
+| 3-LS2-1 | Argue from data how group actions help food, protection and coping with change; groups vary in size/jobs; cause and effect | 59 to 63, 74 to 75 | 76: evidence-based group argument |
+| 3-LS4-2 | Explain from evidence how within-kind differences advantage survival, mate finding and reproduction; cause and effect | 64 to 68, 75 | 76: all three outcomes, not camouflage alone |
+| 3-LS4-3 | Argue from evidence that different organisms do well, poorly or not at all in a habitat; infer causes from needs and conditions | 69 to 75 | 77: argument covering all three outcomes |
+| 3-LS4-1 | Analyze kind/size/location fossil data for past life, extinction and environments; connect observable evidence with long time scales | 82 to 86, 93 to 94 | 95: unseen site inference and model |
+| 3-LS4-4 | Judge solution merit with evidence against goals/limits; environmental changes alter resources, residents and newcomers; explain interacting system parts | 83, 87 to 94 | 96: single-change system and merit argument |
+| 3-ESS2-1 | Represent temperature, precipitation and wind records in tables and permitted graphs; patterns support seasonal expectations | Log throughout, 98 to 102, 107, 113 to 114 | 115: representation and seasonal explanation |
+| 3-ESS2-2 | Obtain and combine trustworthy sources; describe typical climate range and year-to-year change across regions; predict from patterns | 103 to 107, 113 to 114 | 115: source synthesis across regions |
+| 3-ESS3-1 | Judge design merit against goals/limits; people reduce hazard impacts without stopping natural processes; use cause-and-effect evidence to explain improvements | 108 to 114 | 116: unfamiliar design-merit judgment |
+
+Nature of science is deliberate work: days 3 and 7 address controlled evidence and varied methods, day 12 treats a failed prediction as evidence, and days 84 to 85 and 94 address steady natural patterns and revisable past explanations. Engineering starts with a precise problem in unit 2, applies criteria to changed ecosystems in unit 5 and uses hazard evidence in unit 6. Formal comparison of several new solutions and full prototype fair testing remain later-grade ownership.
+
+## Calendar leans and bridges
+
+These decisions use every grade 3 subject's unit/check rows in `data/plans/calendar.csv` and the corresponding frame sections, rather than assuming simultaneous teaching within a week.
+
+| Lean | Availability and recorded response |
+|---|---|
+| Math 3.MD.B.4, finer length measurement | Math unit 7, school days 117 to 133, follows science units 1 and 3. Whole-inch or whole-centimetre bridge on days 9, 12, 19, 44 and 48; no finer length demand in either unit. |
+| Math 3.MD.A.2, grams | Same later math unit. Day 26 counts equal washers as the holding criterion; no grams in unit 2. |
+| Math 3.MD.B.3, scaled graphs | Math unit 1 ends school day 22, before science units 3, 4 and 6. Days 44, 61 and 100 name that availability; earlier motion uses tables, not a premature scaled-graph demand. |
+| ELA SL.3.1 | ELA unit 1, school days 1 to 39, overlaps science unit 2. Day 17 teaches its own listen/build/ask question-board routine. |
+| ELA RI.3.7 | ELA unit 1 ends school day 39 before science units 3 and 5. Days 37 and 82 still teach the shared arrows-and-labels reading routine. |
+| ELA W.3.1 | ELA unit 3, school days 81 to 119, starts during science unit 4. Days 60 to 62 explicitly teach spoken claim/evidence/reasoning, then a sentence frame. It is available before science unit 6, which starts school day 123. |
+| ELA RI.3.3 and RI.3.8 | ELA unit 2 ends school day 77. Variation begins on science day 64, school day 80, and environmental change begins much later; days 64 and 88 name availability and signpost causal links. |
+| ELA RI.3.9 | ELA unit 4, school days 120 to 156, overlaps science unit 6. Days 104 to 105 use the frame's two-column source chart bridge. |
+| Social studies ss3-globe-grid | Unit 1, school days 1 to 24, precedes science climate work. Day 103 retrieves equator, poles and region from a globe/map; no unplanned climate-cause explanation. |
+
+ELA's frog unit overlaps science unit 3 and precedes part of unit 4; ELA supplies its own facts. Science days 40 and 69 link back to that reading without assuming it proves scientific modeling or habitat argument. Earlier grade 2 whole-unit measurement and fossil-topic reading are retrieved at use. No other subject's sequence is changed.
+
+## Course-level checks
+
+| Check | Course days and school days | Weeks | Reserved coverage and response |
+|---|---|---|---|
+| 1, after unit 2 | Check 34 to 35, school 43 to 44; respond 36, school 45 | 9 | Day 34: new bobbing-weight evidence, fair-test performance, balanced/unbalanced arrows and motion prediction. Day 35: full non-contact questioning, including a two-magnet component, and complete problem definition through a new magnet-assisted swing-latch case. Day 36 responds once. |
+| 2, after unit 4 | Check 79 to 80, school 99 to 100; respond 81, school 102 | Check 20; response 21 | Day 79: complete unfamiliar life-cycle models and plant/animal likeness and variation. Day 80: environmental trait explanation and a new group-versus-alone animal argument. Day 81 responds, with the final ten minutes reserved for unit 5 readiness. |
+| 3, after unit 6 | Check 118 to 119, school 148 to 149; respond 120, school 150 | 30 | Day 118: unseen fossil site and merit of a single-change solution. Day 119: seasonal representation and a supplied other-town bar graph. Day 120 responds once and records handoffs. |
+
+The checks immediately following a unit's assessment use earlier-unit content for the recently taught skills. Check 1 returns to unit 1's swing rather than repeating the cupboard or cars; its magnetic observations are supplied and unfamiliar. Check 2 uses unit 3 organisms as contexts for the group argument rather than repeating tundra/hunting work. Check 3 uses weather-log contexts established in units 1 to 5 rather than the unit 6 assessment town, climate synthesis or roof task. This preserves the frame's check purposes and two-day costs while separating the evidence from the unit assessment just given. All parts of every code listed on each check day remain required.
+
+The grade's other check weeks are ELA 16 and 32, math 12, 23 and 31, and social studies 14, 25 and 28. Science weeks 9, 20 and 30 do not overlap them. The response in week 21 is not an assessment day. There are no course-level review days in this frame.
+
+## Materials, access and safety decisions
+
+The CSV fills tools, supplies and safety. Drawn-tool labels follow the frame's model names; they require no digital service. All hands-on days name supplies, and every supplies day has hazard/control text or the weighed value `none`. The no-kit photograph, image-record or recorded-trial route keeps the question, evidence and reasoning but is weaker than planning and carrying out a live investigation. Where the live performance is assessed, the unit plan must specify how teacher observation or an accessible equivalent preserves that practice, rather than replacing it with recall.
+
+Use shared class equipment and household stand-ins before no-kit records. Unit 1 can use one secured pendulum and box/tray stations; the frame's proposed pendulum/balanced-push tool is an optional future alternative with identical printed records. Unit 2 can use a shared large encased magnet set, a comb/cloth alternative to balloon/hair and a cardboard cupboard; observed interaction records replace kit access. Unit 3 uses the shared plants and enclosed habitat, with dated photograph sequences or the proposed growth viewer and its printed equivalent for missed stages. Unit 4 uses precut paper and cloth or equivalent camouflage records; no outdoor trip or device is required. Unit 5 requires only fossil photographs/find records; real fossils or casts are optional. Unit 6 uses the year log/public records or the proposed weather-data viewer with printed records; the fan may be shared, with recorded roof trials when absent. Any future digital alternative must work through one class projector, require no student account and retain its paper path. Digital tools are not prerequisites for running this sequence.
+
+The frame's incremental ceiling remains under about 25 dollars per unit for 30 students beyond paper and existing room equipment. Planning allocations, not verified retail quotes: unit 1 up to 10 dollars for reusable motion materials; unit 2 up to 20 for shared magnet/static/model materials; unit 3 up to 20 for seeds, soil and habitat consumables, including its day 18 set-up charged here once; unit 4 up to 5 for paper/cloth; unit 5 zero beyond printing on the photograph path; unit 6 up to 10 for model consumables with an existing guarded fan and thermometer. Unit plans must price the actual shared stock against the settled ceiling, rather than multiply a class demonstration into 30 kits. No purchase or increased budget is authorized by these allocations.
+
+Eye protection where anything can fly, magnet counts out and back, no magnets near phones or tablets, adult-only electromagnet handling with taped wire ends and disconnection between uses, allergy checks, hand washing, prompt spill removal and humane care are recorded at use. Growing lamps are adult-managed with water away from electricity. Outdoor observations move indoors during unsafe weather. The roof model uses low fan speed, fingers clear and eye protection if anything can fly; lightning remains a reading, never an electrical demonstration. The later unit plans need the course safety page, set-up/clean-up time and the frame's sensitivity and safety reads. These are planning commitments, not completed reviews.
+
+There is no base text for this course. The work is original, so no source-map.csv is required or written; reference-only elementary materials have not supplied wording, problems or images.
+
+## Shorter path
+
+For a shorter period, retain the question, firsthand evidence or clearly labelled substitute, model revision and exit ticket. Use one shared apparatus and prearranged records, read short texts aloud with diagrams and move copying/decoration out of the core time. Reserve care and weather minutes inside the day, shorten duplicate reports rather than inquiry, and split a two-day assessment's work across its existing two meetings. Do not shorten safety controls or silently substitute a fact quiz for a performance. The following folds give a 110-meeting year without changing any assessment, readiness, response or owned-part coverage in the 120-day master CSV.
+
+| Fold this unassessed day | Into | Work retained in the neighbour |
+|---|---|---|
+| 13 | 14 | Consensus force explanation before transfer |
+| 22 | 21 | Question sorting and model revision from magnet evidence |
+| 29 | 30 | Consensus link from magnetic evidence to design criteria |
+| 42 | 41 | Seed-packet timing comparison, retaining harvest/reproduction distinction |
+| 51 | 50 | Data-based inherited/environmental/both sorting |
+| 63 | 62 | Partner critique and argument revision |
+| 74 | 75 | Consensus habitat model before new-case reasoning |
+| 86 | 85 | Regional fossil evidence and model revision |
+| 93 | 94 | Consensus connection between past and present evidence |
+| 113 | 114 | Consensus weather/climate/hazard explanation before transfer |
+
+Use each fold as one combined period, limiting a duplicate example or report and preserving the named reasoning and section exit ticket. Reassign its routine observation to another meeting in the same school week, or use an adult entry; no weather or organism data are invented. Keep checks in their target school weeks, using the saved meetings as gaps inside the units' calendar spans rather than advancing later units. Ten fewer meetings alone do not implement the frame's separate 90-meeting, three-per-week adoption route. That route requires another 20 named folds and a rescheduled calendar at unit-plan stage; this scope and sequence does not claim to have demonstrated that compression.
+
+## For the lead
+
+1. The frame and progression label unit 1's old push/prediction rows as retrieval by a content-revisited exception. The job's newer rule instead follows explicit last use. Day 1 therefore reserves readiness after the hook, with day 2 support, inside the existing 16 days. Align the upstream wording if this last-use interpretation stands; ownership and day counts are unchanged.
+2. The frame commits to a 90-meeting route for about 120 minutes a week. The required ten-day shorter-year route is named here, but the further 20 folds are not yet established. Unit planning must demonstrate them or return that adoption promise for a scope/time decision, rather than remove expectations.
+3. The frame's wood-frog phrase risks implying complete freezing. Day 69 uses only winter-freezing survival and does not infer poor survival from an unusual trait. The state wildlife account distinguishes ice between cells from cells freezing, so retain the simpler wording and source the particular habitat case in the unit plan. [Colorado Parks and Wildlife, Wood Frog](https://cpw.state.co.us/species/wood-frog), checked 2026-11-14.
+
+Remaining uncertainty is the source-specific evidence, not the reserved coverage: flowering/seed and mealworm timing depends on actual stock and conditions, hunting and mate-choice data need documented counts, local fossil/seasonal records need provenance and actual shared-stock costs need checking. Dated substitute records are reserved where live observations fail; none of these are treated as collected data or verified prices in this draft.

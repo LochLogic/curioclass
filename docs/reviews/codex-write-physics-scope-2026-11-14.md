@@ -1,0 +1,7 @@
+- Wrote the physics scope and sequence and days.csv: 10 units, 149 unit days plus 11 check/respond days, 160 total.
+- Course-level checks fall in weeks 13, 22 and 32.
+- Sequence gate: zero failures, no notes. Calendar gate passed; Physics breaks no stagger rule.
+- All ten Candidate cells settled: nineteen additions kept within existing days, one dropped with a reason.
+- Ten unassessed fold-in days provide the shorter-year path.
+- For the lead: material costs and the safety page remain for unit planning.
+- Uncertainty: recorded investigations provide weaker evidence of physical conduct; that limitation is explicit.

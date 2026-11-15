@@ -81,6 +81,28 @@ studies goes first; the other subjects follow in step 5.
    minutes)". Unit 1's check, where unit 1 has readiness rows, takes the last ten minutes of day 1, after the hook,
    and day 1 carries `assess` = `readiness` (lead rule 2026-11-14; sequence.py accepts it). Every other unit's first
    day never holds a readiness check: it stays clean for the hook and the compelling question.
+   **Count by grade number, and this rule wins over the frame's wording** (lead, 2026-11-14, after nine science
+   reads found three readings): a row last used in grade g gets retrieval in grade g+1 and a readiness check in grade
+   g+2 or later. "Idle two or more grades" in a frame means the same thing, never "two grades in between". A row
+   counts as used only where a day of that grade's scope and sequence teaches or assesses it, not where it is
+   "revisited" or "kept in use" in passing. List every earlier-grade row with its last-use grade and its treatment
+   before you place a day.
+   **End days:** where one end day would ask for full performances on two or more expectations, spread them over
+   the unit's last days (no day added), and run whole-class performances in small groups where the day is short.
+   In math a full performance is an extended task (multi-step with an explanation, or a modeling task); an end day
+   holds at most one, plus short items for its other codes. Every year-end check samples each fluency standard
+   directly, as a short independent station with no supplied work (not inside a critique). Source-map decisions use
+   only keep, split (one base lesson over two or more days), merge, cut, ours.
+   **Checks claim only what they sample:** a check day lists the codes it actually samples, never the whole unit
+   or year, and a code is assessed only after a day teaches it. A retrieval opening is practice, never check evidence.
+   **Collect once** (lead, 2026-11-15, after the same fault in all six ELA K to 5 courses): evidence gathered child
+   by child (a one-to-one reading, a conference) is taken once per assessment window. A course-level check or end day
+   within ten days of it reuses that record and says so; it never collects the same evidence again. A course-level
+   check never repeats a task form given in the last two weeks.
+   **Our words** (lead, 2026-11-15, after math grade 1 copied 140 base lesson purposes): every goal, note and
+   source-map cell is written fresh in Curio Class words. Never copy or lightly edit a base text's lesson purpose,
+   learning goal, title sentence or teacher note, even where its licence allows it. **Class size:** minute budgets for
+   one-to-one or small-group evidence plan for 30 students.
    **Each part of each code:** every observation, end-of-unit and check task asks about each part of each code it
    lists (a short prompt per part; no day added); a product or an observed performance may stand for a code where
    the day says so.

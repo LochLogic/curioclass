@@ -1,0 +1,5 @@
+- Written: 4 units of 38, 39, 39 and 37 days, plus 7 course-level days, totaling 160. Source map accounts for 153 base lessons.
+- Checks: weeks 16 and 32. Sequence gate passed with zero failures or notes. Calendar gate found no stagger-rule break.
+- Candidates: all kept within existing unit days.
+- For the lead: text availability and records, grade 3 prerequisite confirmation, module 4 assessment timing, writing-share tally, and device/shorter-calendar arrangements.
+- Uncertain: unwritten texts’ complexity and rights, prior-grade teaching evidence, and untested lesson timing.

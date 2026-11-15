@@ -1,0 +1,6 @@
+- Wrote both files: 8 units with 15, 23, 12, 18, 11, 16, 18 and 36 days, plus 11 course-level days, totaling 160.
+- Check weeks: 11, 17 and 25.
+- Both required gates passed; sequence gate reported zero failures. No stagger break.
+- All eight Candidate cells settled. Hamlet additions retained within existing days; others dropped with reasons.
+- For the lead: incomplete text records, upstream wording conflicts, check 2’s prior-learning purpose, check 3 timing, presentation staffing and shortened-calendar coordination.
+- Uncertain: actual cold-text complexity and timing, and school panel availability.

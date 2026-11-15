@@ -1,0 +1,5 @@
+- Wrote all three files: 8 units, 160 days. Unit counts: 26, 19, 19, 14, 21, 21, 17, 14, plus nine course-level days.
+- Check weeks: 10, 21 and 32. No stagger violation.
+- Sequence gate: zero failures; two notes caused by trailing commas in frame code labels. Valid codes are placed.
+- Settled all eight Candidate cells, with extension decisions and day costs recorded.
+- For the lead: missing high school bar, uncatalogued geometry tools, and assessment timing to verify when items exist.

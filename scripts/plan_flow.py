@@ -153,10 +153,42 @@ for n in ORDER:
     tool_rows.append(dict(title=SHORT.get(n, n), group='Tools', cells='e' * live + '.' * (total - live)))
 bands.append(dict(type='rows', id='tools', title='Tools', sub='Interactive tools, built or rebuilt only for the sections that call for them, then checked live. Tools live today wait on the shelf until a section names them.', rows=tool_rows, dots=True))
 
-after = [dict(title=s['name'], nodes=[[f'after:{slug(c["title"])}', c['title'], '.'] for c in s['courses']])
-         for s in CS['subjects'] if s['name'] not in ORDER]
-n_after = sum(len(l['nodes']) for l in after)
-bands.append(dict(type='stage', id='after', title='After the core', sub='The other %d courses, such as the arts, health and computer science. The core electives (precalculus, statistics, calculus, earth and space science, environmental science, psychology) come first; all start once the four core subjects are done.' % n_after, lanes=after, faint=True))
+# after the core (Cory 2026-11-14: "build out the after the core subjects into our core framework so i can better
+# visualize the massive workload ahead"): the same steps as a core subject, drawn faint, every count an estimate until
+# a frame sets it. The core electives come first, then each other subject in the catalog's order.
+def after_cycle(id_, title, cs, sub, pre=True):
+    lanes = []
+    if pre:
+        lanes.append(dict(title='Pre-work', nodes=[N(f'pre:{id_}', 'Bar work owed'), N(f'prog:{id_}', 'Progression')]))
+    lanes += [dict(title='Course frames', nodes=[N(f'frame:{slug(c["title"])}', c['title']) for c in cs]),
+              dict(title='Scope and sequence', nodes=[N(f'ss:{slug(c["title"])}', c['title']) for c in cs] + [N(f'ss-review:{id_}', 'Review')])]
+    urows = []
+    for c in cs:
+        tot, est = units_of(c)
+        urows.append(dict(title=c['title'], est=est, cells=''.join(st(f'unit:{slug(c["title"])}:{i + 1}') for i in range(tot)), k=slug(c['title'])))
+    lanes.append(dict(title='Unit plans', group=True, rows=urows))
+    lanes.append(dict(title='Review and probe', nodes=[N(f'units-review:{id_}', 'Units review'), N(f'probe:{id_}', 'Probe')]))
+    bands.append(dict(type='stage', id=f'after:{id_}', title=title, sub=sub, lanes=lanes, faint=True))
+    return cs
+
+after_cs = []
+electives = [c for n in ORDER for c in courses(n) if not c.get('core')]
+if electives:
+    after_cs += after_cycle('electives', 'After the core: core electives', electives,
+                            'Precalculus, statistics, calculus, earth and space science, environmental science and psychology: the first courses after the core, built on the progressions of the core subjects.', pre=False)
+for s_ in CS['subjects']:
+    if s_['name'] in ORDER:
+        continue
+    shelved = s_['name'] == 'World Languages'
+    after_cs += after_cycle(slug(s_['name']), 'After the core: ' + s_['name'] + (' (shelved)' if shelved else ''), s_['courses'],
+                            ('Shelved 2026-11-11; counted so the whole is visible. ' if shelved else '')
+                            + 'The same steps as a core subject: the bar work this subject owes first, then its progression, frames, scopes and sequences and unit plans. Counts are estimates until each frame is written.')
+n_after = len(after_cs)
+arows = []
+for c in after_cs:
+    n_days, est = days_of(c)
+    arows.append(dict(title=c['title'], group='After the core', est=est, cells=''.join(st(f'day:{slug(c["title"])}:{i + 1}') for i in range(n_days))))
+bands.append(dict(type='rows', id='after-days', title='After the core: days', sub='Every teaching day of the other %d courses, at about %d days a course until each frame sets its count.' % (n_after, EST_DAYS), rows=arows, faint=True))
 
 def rle(cs):
     out, i = [], 0
