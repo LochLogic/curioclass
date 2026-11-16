@@ -7,6 +7,9 @@ docs/courses/UNIT-PLAN.md and the writer's brief {writer_brief} first.
 1. Merge: list every finding once (the same fault named by two lenses is one finding).
 2. Judge each: fix it, or reject it with a one-line reason (wrong, or it would break a settled rule of UNIT-PLAN or the
    writer's brief).
+   A finding that a part is made, given feedback, revised and scored in one period is right (UNIT-PLAN field 5):
+   never reject it. Fix it by scoring a part made on an earlier day of the unit, or by making the same-day part
+   unscored practice.
 3. Fix in docs/courses/{course}/s{uu}.md only. Change only what each finding needs: no new days, no moved content, no
    new standards. When you split an error letter, the new letter goes after the last one; never re-letter.
 4. Run `python -X utf8 scripts/unitplan.py check {course}` until s{uu}.md passes.

@@ -188,7 +188,8 @@ hold. For each teacher-judged item: the look-fors and two sample answers, one th
 does not. One line on accommodations (read aloud, large print, a scribe, an oral answer). A row for a section
 with no plan yet says "to write with section N.N". A part scored from work made on an earlier day counts only if
 that work had written feedback and a chance to revise before it is scored; work from the day a topic is first
-taught is practice, never a scored part (social studies probe, 2026-11-15).
+taught is practice, never a scored part (social studies probe, 2026-11-15). Work made, given feedback, revised
+and scored all in one period is not a scored part: scored work is made on an earlier day than the score.
 
 **6. Error register.** *Shared.* Errors and first ideas, lettered once for the unit, each with what it
 shows and its source or "from memory". Section plans use these letters. **One mistake per letter:** a letter holds
