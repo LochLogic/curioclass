@@ -1,0 +1,2 @@
+Gate: `unitplan.py check math-grade-4` passes s09.md with no notes.
+Count: 0 findings (lens sources). The mapped tasks have free publisher pages and a verified [CC BY 4.0 licence](https://im.kendallhunt.com/k5/teachers/grade-4/unit-7/lesson-1/lesson.html); reference citations support their claims, invented assessment context is labelled, and safety cites a real [state manual](https://msde.maryland.gov/media/17916).

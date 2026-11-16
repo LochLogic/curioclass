@@ -1,0 +1,6 @@
+1. [5, 7] E1 to E5 and E9 are produced on day 125, followed by final scoring without a specified written-feedback and revision cycle | These items do not satisfy the scored-work rule | Name earlier eligible production days, provide written feedback, and reserve revision before day 125 scoring; refer necessary days.csv changes to the lead.
+2. [5, E6/E8] The newly scored median proof is produced on day 123, which days.csv labels Fluency | Scored evidence cannot originate on a fluency day, even with later feedback and revision | Refer the conflicting day type and assessment window to the lead; replace the scored record with an eligible dated product unless the source allocation is corrected.
+3. [5, E9a; 6, M] “Naming a different sequence without checking its outputs” is classified as wrong, although translating by (-1,-3) before rotating 90 degrees counterclockwise also gives T | A correct alternative can receive an error label | Accept every equivalent sequence. Use “translate by (3,-1), then rotate” as the incorrect example, which sends the origin to (1,3); define M as treating transformation order as interchangeable.
+
+Gate: s06.md passes; the geometry check exits 1 because s07.md and s08.md fail.
+Count: 3 findings (lens assessment).

@@ -1,0 +1,2 @@
+Check: `unitplan.py check geometry` passes s04.md; the course check fails on unfinished s05.md to s08.md and a double-tagged wrong answer in s08.md.
+Count: 0 findings (lens sources). The [2019 base lessons](https://im.kendallhunt.com/HS/teachers/2/4/index.html) and [modeling prompt](https://im.kendallhunt.com/HS/teachers/2/modeling_prompts/7/modeling_tasks.html) are freely checkable, adaptations and original cases are identified, invented measurements are labelled, and the [safety citation](https://www.cde.ca.gov/ci/pl/toolsequipmachsafety.asp) is genuine state guidance.

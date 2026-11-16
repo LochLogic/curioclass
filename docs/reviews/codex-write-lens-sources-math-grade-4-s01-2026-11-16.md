@@ -1,0 +1,4 @@
+1. [10, lines 159 to 161] The sources-read list and day-credit instructions omit the day 3 routine borrowed from base lesson 9.11 | Its verification and attribution are incomplete | Add the first-edition [lesson 9.11 warm-up](https://im.kendallhunt.com/k5/teachers/grade-4/unit-9/lesson-11/lesson.html), identify the portion read and adapted, and include it alongside lesson 1.3 in day 3's single credit.
+2. [10, line 164] “Published elementary classroom guidance” names no safety guide | The proposed safety read has no checkable standard for the loose counters and paper materials | Name and link a state, district or professional school safety guide, with its date and applicable provisions.
+Gate: s01.md passes; the course check fails on unfinished TODO(writer) skeletons in s02.md through s09.md.
+Count: 2 findings (lens sources).

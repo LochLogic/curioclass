@@ -1,0 +1,15 @@
+1. [U3, E16, E17, E19, E21, E22, E24 to E26, E28, E33] These exits repeat the day's task with changed objects or numbers: squeeze lamp for crank lamp, drawer signal for lid alarm, oil filtering for coal filtering | Rehearsal can pass as independent evidence | Replace these cases with reserved problems requiring a different inference, such as choosing between competing explanations, identifying an invalid test comparison, or evaluating controls with different consequences.
+2. [U3, E34 key] The key says the claim of no environmental effects “fails both sources,” using gas's nonrenewability as evidence of environmental harm | The generation-share chart supplies no environmental-effect evidence, and nonrenewability alone does not establish an effect | Key the chart as identifying the resource mix and the second source as disproving the claim through wind structures' habitat effect.
+3. [U3, E35 stimulus and key] The key requires the contact improvement to be “supported by trials,” but the stimulus only states that improved contacts give more reliable output | Students cannot cite trial evidence that was never supplied | Print comparable before-and-after trial records, including the observation conditions, and require the explanation to cite those results.
+4. [5, Item 2 portfolio sample] The sample labelled “Meets” gives test counts and a wider contact but omits the required individual energy-based plan, constraints and explanation of the energy path | A response missing scored components is presented as sufficient | Expand the sample to include the labelled closed circuit, stored-energy-to-sound explanation, success criterion, constraints, failure evidence and comparable retest.
+5. [7, response groups] The four groups cover A to G but omit H and I | Students identified through E18 or E30 have no assigned response route | Put H in the observation-evidence group with its thermometer-comparison repair and I in the resource group with its manufactured-object-to-natural-origin repair.
+6. [U3, E31 and E32 diagnostics] E31 diagnoses environmental harmlessness although it asks only about replenishment; E32 diagnoses a filter removing every effect although its case contains no filter | These labels do not diagnose errors in the questions asked | Replace them with separate letters for “natural gas is replenished within human lifetimes” and “burning fuel releases no air pollutants,” then add their specific repairs and group assignments.
+7. [6, A; U3, E16 and E19; 5, Item 1] A describes a generator creating energy, but it also labels a lamp or warmed clip creating energy | The register's wording does not describe every answer assigned to it | Generalize A to one misconception: “An object creates energy without an energy input,” retaining the source-to-recipient tracing repair.
+
+Gate: s02.md passes; the command exits unsuccessfully because s03.md to s06.md retain TODOs. source-map.csv is absent, as the scope and sequence explicitly specifies.
+
+Count: 7 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- data/plans/unit-rejections.csv

@@ -1,0 +1,8 @@
+Gate: s05.md passed; geometry check failed on unfinished s06 to s08 plans and a double-tagged wrong answer in s08.
+
+1. [5, E3] Circumference evidence is reused from day 80, with no new end-of-unit evidence for this owned G-GMD.A.1 component | Earlier-unit work cannot establish this unit’s completion | Replace E3d’s two-minute interpretation with a fresh circumference-limit argument; give written feedback before day 102 revision and score afterward.
+2. [5, evidence schedule] Field 5 discards days 90, 94 and 98 records and replaces them with later tasks, while days.csv and the scope and sequence require retaining those records without recollection | The assessment schedule gives contradictory instructions and reserves assessment windows whose results the score ignores | For the lead: reconcile the CSV and scope and sequence with the eligible later evidence, explicitly making first-teaching records formative; regenerate the day list.
+3. [7, response groups] Errors E and F enter the group that “rebuild[s] layers,” although they concern negative cube-root inputs and litre conversion | The assigned repair does not address either misconception | Give E a negative-input graph repair and F a labelled unit-cancellation repair, explicitly assigned within the concurrent groups.
+4. [5, E5 sample] “Wall thickness explains the difference” exceeds the supplied measurements; the prototype’s inner height, 12.1 cm, even exceeds the proposed design height of about 11.94 cm | The meets sample accepts an unsupported explanation | Keep the correct capacity calculation, but state that its cause requires exterior measurements and construction information.
+
+Count: 4 findings (lens assessment).

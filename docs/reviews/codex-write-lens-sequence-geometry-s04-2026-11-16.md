@@ -1,0 +1,5 @@
+1. [fields 2 and 8] Supplied tables are withdrawn on day 77, but calculators remain optional and printed forward/reverse ratio tables provide their paper alternative. | Students without calculators lose the means to solve arbitrary-angle problems on days 77 to 80. | Withdraw labelled triangle scaffolds on day 77, but explicitly retain numerical trigonometric reference tables for the paper route, including the assessment.
+2. [field 4] The retrieval table has no populated rows; four paragraphs omit their day and prerequisite labels, leaving the ten-minute and five-minute triangle tasks ambiguously scheduled. | Teachers cannot reliably place retrieval or act on its evidence before teaching. | Restore table rows assigning the ten-minute triangle task to day 67’s final slot, the five-minute triangle task to day 68 after its hook, precision retrieval to day 74, and cylinder/scaling retrieval to day 81’s concurrent groups; name each prerequisite and retain its response to a miss.
+
+Gate: `unitplan.py check geometry` passes s04.md; the course check fails on unfinished s05.md to s08.md and a double-letter wrong-answer tag in s08.md.
+Count: 2 findings (lens sequence).

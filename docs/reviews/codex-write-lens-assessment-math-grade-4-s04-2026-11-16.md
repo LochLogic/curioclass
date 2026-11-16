@@ -1,0 +1,7 @@
+Gate: s04.md passes; the course check fails because s05.md through s09.md contain unfinished TODO(writer) entries.
+
+1. [field 5, scoring samples] The “Meets” samples omit evidence their look-fors require: item 1 omits joining and removal, item 2 omits the reverse notation direction, and item 3 omits equality and less-than comparisons | Incomplete responses are presented as meeting the criteria | Replace each with a complete response covering every required component, or label each sample by the specific component it meets and supply the missing component samples.
+2. [fields 6 and 7, H repair] H’s repair uses equal reference wholes, although H concerns physical amounts from differently sized, unknown wholes | Equal-whole examples reinforce the numerical comparison without correcting its misuse for physical amounts | Compare shaded rectangles with different whole sizes, then reverse the size assignments to show that either shaded amount can be larger; require students to identify the missing whole-size information.
+3. [field 5, day 45 exit] Part (b), showing 4/10 = 40/100 with a grid, repeats the hook’s one-tenth versus ten-hundredths grid comparison with changed numbers | It rehearses the hook instead of providing a fresh assessment task | Replace it with an error-analysis stimulus: show two equal-whole grids with mismatched shaded amounts and ask students to identify and correct the claimed equivalence.
+
+Count: 3 findings (lens assessment).

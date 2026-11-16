@@ -1,0 +1,7 @@
+1. [Day list, day 31] The source map marks the closing sharing lesson “keep,” but the plan replaces it entirely with reading checks and directions. | The school book loses its planned sharing and reflection. | For the lead: restore sharing and reflection within day 31’s existing topic hour, rebudget the checks, and regenerate the day list.
+2. [Field 2, SL.2.2] Recounting heard key ideas is taught on day 13 and checked on day 31, with no later practice named between them. | This owned skill lacks the required taught, practised, checked sequence. | Add a partner recount of a newly read-aloud school paragraph on day 14 or 15 before the image explanation; identify it as SL.2.2 practice.
+3. [Field 2 and day list, day 17] Day 17 explicitly teaches and models W.2.2 while classified Application. | The main topic work contradicts its day type, and the strand table consequently reports no teaching day for W.2.2. | For the lead: change day 17 to Understanding in days.csv and regenerate the header, strand table and day list.
+4. [Day list, day 29 budget] Foundations is fully allocated as 10 minutes transfer, 24 reading rotation and 26 matched reading, omitting the required five-minute dictionary practice. | Following both allocations takes 65 minutes. | Divide the final 26 minutes into five minutes independent dictionary practice and 21 minutes matched reading.
+
+Gate: s01.md passes; the course check fails on unfinished s02.md, s03.md and s04.md.
+Count: 4 findings (lens sequence).

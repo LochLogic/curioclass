@@ -1,0 +1,6 @@
+1. [8 and 10] Outdoor observation and allergy precautions cite no published safety guide; a future safety-agent read is the only reference | Teachers cannot trace the precautions to school safety guidance | Cite [Safety Practices for Out-of-Doors](https://static.nsta.org/connections/elementaryschool/201302GopalSafety.pdf) and connect the applicable precautions to that guidance.
+2. [10; 5, day 96 exit] Observation photographs have no named source, creator or rights basis, including the photograph supposedly showing pollen on bee hairs | The indoor research path and exit depend on photographic evidence that cannot be checked; “Illustrations are ours” does not identify it | Name each photograph, its free source or original file, creator, rights basis and caption; supply the actual photograph for day 96.
+3. [5, day 90 exit] The stimulus summarizes what two paragraphs explain instead of supplying those paragraphs | Children receive the paragraph focuses rather than finding them in the source itself | Print a complete fresh two-paragraph original passage, marked “invented for practice,” and ask children to determine its topic and paragraph focuses.
+
+Gate: s03.md PASS; the course command fails on unfinished TODO(writer) placeholders in s04.md.
+Count: 3 findings (lens sources).

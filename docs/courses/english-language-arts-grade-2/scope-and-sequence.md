@@ -90,7 +90,7 @@ On an assessment row, `codes` names the evidence reserved for that task; the `sk
 
 ## Unit 1. Schools and community
 
-**Calendar:** course days 1 to 32, weeks 1 to 7. The question is how schools around the world are alike and different. The chapter story first makes character response and belonging concrete; school articles then supply facts, definitions, and images for an informational book. Reading and talk precede the book draft, and its conclusion follows its factual pages. Ten days sustain the whole story instead of treating a long text as disconnected excerpts.
+**Calendar:** course days 1 to 32, weeks 1 to 7. The question is how schools around the world are alike and different. The chapter story first makes character response and belonging concrete; school articles then supply facts, definitions, and images for an informational book. Reading and talk precede the book draft, and its conclusion follows its factual pages. Day 17 is Understanding: model the informative paragraph with a topic, facts, definitions and conclusion before the paragraph assessment and later book drafting. Ten days sustain the whole story instead of treating a long text as disconnected excerpts.
 
 Cycles 1 to 5 occupy days 1 to 25: syllable-type review, ai/ay, ee/ea/y, igh/ie/y, then oa/ow. Days 26 to 32 retain foundations time for rereading, spelling transfer, dictionary use, and response. This is a launch and review unit, not an attempt to teach all additional vowel teams before their later cycles.
 
@@ -102,7 +102,7 @@ This unit needs no later same-year content. Social studies' interviews are a lat
 
 ## Unit 2. Fossils tell of Earth's changes
 
-**Calendar:** course days 33 to 74, weeks 7 to 15. A discovery story teaches beginning and ending functions; the Anning account supplies factual knowledge without fabricated inner thoughts. The articles then make paragraph focus, purpose, features, and word strategies useful. Sentence and grammar work precede narrative practice. A practice draft receives feedback before the new discovery narrative is assessed; revising and editing get separate days, followed by collaborative digital publication.
+**Calendar:** course days 33 to 74, weeks 7 to 15. A discovery story teaches beginning and ending functions; the Anning account supplies factual knowledge without fabricated inner thoughts. The articles then make paragraph focus, purpose, features, and word strategies useful. Sentence and grammar work precede narrative practice. Understanding days first teach grammar on days 54 to 56, sentence forms on day 60, revision on day 64, capitals on day 65, letter commas and digital collaboration on day 66, and apostrophes on day 67; drafts and closing tasks practise these skills afterward. A practice draft receives feedback before the new discovery narrative is assessed; revising and editing get separate days, followed by collaborative digital publication.
 
 This unit has 11 owned rows, including five word-strategy parts, six grammar parts, conventions, narrative elaboration, and digital collaboration. It therefore keeps the longest allocation, 42 days. Cycles 6 to 12 run on days 33 to 67: r-controlled review; oi/oy/ou/ow and not-contractions; ild/old/ind/ost and is-contractions; doubling; three -ed sounds and would-contractions; oo/ou/ui/ue/ew; -tion/-sion. Days 68 to 74 retain the foundations hour for observation and response. Knowing a familiar prefix's meaning is taught on day 50; productive prefix decoding waits for the later foundations cycles.
 

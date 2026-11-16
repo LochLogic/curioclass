@@ -1,0 +1,3 @@
+Gate: `unitplan.py check chemistry` passes s03.md; unfinished s04.md to s11.md cause the overall failure.
+
+Count: 0 findings (lens sources). The plan names free references, identifies constructed data as invented, excludes outside images and quotations, specifies school-safe materials and cites a real [secondary-school laboratory safety guide](https://www.acs.org/content/dam/acsorg/about/governance/committees/chemicalsafety/publications/acs-secondary-safety-guidelines.pdf). The [geological pamphlet’s indexed passage](https://pubs.usgs.gov/sim/2940/sim2940_nontechnical.pdf) supports water release above subducting plates; its full download remains blocked, as disclosed. The scope explicitly permits no source-map.csv because no base text is assigned.

@@ -1,0 +1,3 @@
+Gate: s01.md passes; the course check fails on unfinished TODOs in s02.md through s06.md.
+
+Count: 0 findings (lens sources). The free [science source](https://www.nextgenscience.org/sites/default/files/evidence_statement/black_white/4%20PS%20Evidence%20Statements%20June%202015%20asterisks.pdf) supports the speed, transfer and warming account. Investigation materials and precautions follow the linked [safety guidance](https://www.nsta.org/eye-protection-and-safer-practices-faq). Original observations and invented practice data are distinguished; no outside passages or images are planned. The scope and sequence explicitly explains the absent source-map.csv.

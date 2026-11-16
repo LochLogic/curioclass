@@ -1,0 +1,7 @@
+Gate: `unitplan.py check english-language-arts-grade-2` passed, including s04.md.
+
+1. [2; day list; source map] Days 126 and 127 replace lessons marked “keep,” whose purposes are recounting a tale, determining its moral and writing a recount, with sound-device study alone | Retaining source lesson numbers does not retain their instructional work | Use the existing independent-work blocks for recounting 01 or 02 with an event-supported moral on 126 and writing that recount on 127, preserving sound-device instruction. For the lead: align the CSV and source map, then regenerate the day list.
+2. [U6; day 138] The ordinary teaching allocation totals 60 topic minutes, while day 138 also requires a ten-minute response to day 137; no replacement is specified | The stated activities require 70 minutes within a 60-minute block | State that day 138’s response replaces ten independent-work minutes, leaving reading 15, modelling 10, discussion 10, independent work 10, exit 5 and response 10.
+3. [2; U7; day list] Prose places teaching the complete opinion structure on day 135, an Application day, while the generated strand table identifies day 132 as teaching W.2.1 | The plan gives conflicting directions about when instruction ends and application begins | Explicitly model the complete structure on day 132; describe day 135 as guided application of that model and day 136 as further practice.
+
+Count: 3 findings (lens sequence).

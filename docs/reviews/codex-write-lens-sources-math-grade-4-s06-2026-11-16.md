@@ -1,0 +1,3 @@
+Gate: s06.md PASS; the course check fails only on unfinished TODO(writer) entries in s07.md, s08.md and s09.md.
+
+Count: 0 findings (lens sources). All seventeen mapped lessons have working free source pages and CC BY 4.0 notices. Field 10 names the edition, adaptations and daily credits. Original cases are labelled invented for practice; no outside photographs or real statistics remain. The [OA Progression](https://mathematicalmusings.org/wp-content/uploads/2011/05/ccss_progression_cc_oa_k5_2011_05_302.pdf) supports the cited comparison guidance, and the [Maryland safety manual](https://msde.maryland.gov/media/17916) is a real state school safety source.

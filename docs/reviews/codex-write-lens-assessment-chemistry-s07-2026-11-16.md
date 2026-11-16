@@ -1,0 +1,9 @@
+1. [5] No scored component checks dependence on major technological systems, although field 2 includes that connection | Discussion on day 90 supplies no end-of-unit evidence | Expand Item 1’s technology component to require explaining the community’s dependence on the connected system alongside its benefit and cost or risk.
+2. [5; daily exit 97] The exit rehearses Item 2’s serial energy-delivery bottleneck, including the same 500 J requirement | The reserved transfer reasoning is practised immediately beforehand | Replace the exit with a different integration problem, such as incompatible operating schedules between otherwise successful sub-systems, using new values.
+3. [Daily exits 88 and 89] Day 88 repeats the hook’s unequal solar-warming comparison; day 89 repeats the taught heater decomposition and supplies all four sub-problem names | These exits can reward recall of the day’s work | Use different device contexts and require students to identify the relevant paths or sub-problems without supplying the taught list.
+4. [5; 6] Item 1 lists temperature error B and unequal-input error C, but its stimulus contains no temperatures and fixes every input at 2000 J | Neither listed error is elicited by this item | Remove B and C from Item 1’s anticipated errors; retain them for tasks containing the necessary comparisons.
+5. [6; daily exits 93 and 95] Day 93 assigns C despite explicitly matched inputs; day 95 assigns C to changing two features, whereas C describes greater output with greater input | Different mistakes receive the same diagnosis and repair | Remove C from day 93; give the day 95 confounding error its own letter, register entry and response repair using a separate comparison case.
+
+Check: s07.md passes; the course check fails on unfinished s08.md to s11.md. Required data/plans/chemistry/source-map.csv is absent.
+
+Count: 5 findings (lens assessment).

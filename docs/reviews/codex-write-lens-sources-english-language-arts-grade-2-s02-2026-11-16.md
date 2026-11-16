@@ -1,0 +1,3 @@
+Gate: s02.md PASS. Course check fails because s03.md and s04.md retain TODO(writer) placeholders.
+
+Count: 0 findings (lens sources). Original commissions, pending manuscripts, editions and rights are identified; check and exit texts are supplied without paraphrasing unread books. Free [park guidance](https://www.nps.gov/articles/000/mold-casts-and-steinkerns.htm), [museum biography](https://www.oumnh.ox.ac.uk/learn-mary-anning-0) and [archival history](https://www.geolsoc.org.uk/the-library/online-exhibitions/mary-anning-and-the-geological-society/first-discoveries/) support the factual background.

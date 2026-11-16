@@ -1,0 +1,7 @@
+Gate: `python -X utf8 scripts/unitplan.py check geometry` passes s07.md; the course check fails on s08.md placeholders and a double-letter wrong-answer tag.
+
+1. [5, E4 teacher judgments] The look-fors and “Meets” sample omit the requested calculation of angle C | A correct proof accompanied by an incorrect numerical answer could satisfy the stated criteria | Require both the intercepted-arcs proof and C = 180 − 76 = 104 degrees; include that calculation in the meeting sample.
+2. [5, E2; 6, D] “Give an angle subtending a diameter” does not locate the angle’s vertex, but the key requires 90 degrees and labels 180 an error | At the centre, the diameter’s endpoints form a valid 180-degree angle, so the prompt does not establish misconception D | Specify a diameter UV and a distinct point W on the circle; ask for angle UWV and its justification. Retain 90 degrees and D for this explicitly inscribed angle.
+3. [7, day 143 transfer] The ten-minute fresh transfer has no stated role in the subsequent scoring or revision decision | The plan collects additional independent evidence without saying how it affects the final judgment | Use the transfer diagnostically to identify any further correction needed in day 142 work, allow that correction before scoring, and retain the transfer with the revised record. Keep newly made day 143 work unscored that day.
+
+Count: 3 findings (lens assessment).
