@@ -60,8 +60,8 @@ slavery".
 
 **Source E (exit ticket). Abraham Lincoln to James C. Conkling, August 26, 1863.** Public domain. A public letter
 for a mass meeting of Union men in Springfield, Illinois, September 3, 1863, read aloud there. Lincoln wrote to
-those among them who disliked the Emancipation Proclamation.
+those among them who disliked the Emancipation Proclamation. The letter's one dash is printed here as a comma.
 
-> But negroes, like other people, act upon motives. Why should they do anything for us if we will do nothing for
-> them? If they stake their lives for us they must be prompted by the strongest motive, even the promise of
-> freedom. And the promise, being made, must be kept.
+> But negroes, like other people, act upon motives. Why should they do any thing for us, if we will do nothing for
+> them? If they stake their lives for us, they must be prompted by the strongest motive, even the promise of
+> freedom. And the promise being made, must be kept.

@@ -5,10 +5,10 @@ unit: 5.2
 version: draft 2
 credit: All ours.
 ---
-# Day 79: Component M organizer
+# Day 79: leaders and battles organizer
 
 Work alone. Use Sources A, B, C and F. Name the source letter with each piece of evidence. Hand this in at the end
-of the part; it is scored with the day 89 assessment.
+of the part; it is practice, and it comes back with written comments.
 
 | Leader | One decision | Its result | Why it mattered, and the source |
 |---|---|---|---|

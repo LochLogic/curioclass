@@ -14,6 +14,10 @@
    opener(s), record.md, family.md (English only), and any recording page or sheet the plan names. Match the
    newest units' pieces (courses/{course}/u02-1 and u03-1) for shape and tone; read docs/courses/LESSON-DAY.md
    first. Where an earlier day's file names one of your pieces with "when it exists:", remove those words.
+   Source sheets: every quoted passage is copied from a checked free source (a primary-text archive, a park service
+   or other government page) and its link goes in the course's sources.csv; a passage you cannot check is cut, not
+   left as a placeholder (`[to check ...]` fails lesson.py). A paraphrase of a book we cannot read is cut (settled
+   2026-11-15: free sources, no book purchases).
 
 Gates: `python -X utf8 scripts/plan.py check` and `python -X utf8 scripts/lesson.py check` (failures only because
 the days are not written yet are expected; list them). When this job ends, the unit's days are queued.

@@ -20,8 +20,11 @@ time, before more days are written.
   filled yet.
 - **Social studies probe** (2026-11-15, docs/reviews/probe-social-studies-2026-11-15.md): Off. US History I days 78
   to 82 written and read the full way; plan share 60%, units changed 88% (mostly error letters holding two
-  misconceptions, written by Codex in 119 units). Next: correct the social studies units and the template line, then
-  probe one more section (later.csv L51) before science, ELA and math units are written.
+  misconceptions, written by Codex in 119 units). Corrected 2026-11-15: all 138 units by Codex
+  (docs/pipeline/briefs/unit-correct.md, reports docs/reviews/codex-write-correct-*), the rules in UNIT-PLAN.md, the
+  plan-codex briefs and unitplan.py, sources "verified or none", and days 78 to 82 fixed with a Native nations read
+  (docs/reviews/sensitivity-native-u05-2-2026-11-15.md). Next: probe one more section in another course (later.csv
+  L51) before science, ELA and math units are written.
 - **Section plans and days**: only the probe section (US History I 5.2, days 78 to 82). A day skeleton draft exists early on purpose
   (scripts/day_skeleton.py, docs/pipeline/DAY-SKELETON.md, later.csv L31). Grade 4 math's older plans and 48 days,
   made under the retired pilot plan, are held for math's units in step 5 (PRODUCTION-PATH section 4; rework list in L13).

@@ -1387,3 +1387,12 @@ replaces "a part made earlier on a product day comes off the sitting" as a scori
 day exits answered from material not just worked that day. Why: the probe read Off (plan share 60%, units changed
 88%), and science, ELA and math units should start with the rules. Applied: docs/pipeline/briefs/unit-correct.md,
 the Codex correction pass per social studies course.
+
+## 2026-11-15: the probe's last two questions, and the source rule (Cory: "Yes to both questions")
+
+Cory: run the Native nations sensitivity read for day 79 and error K now, the same way as the u05-2 read; day 79's
+map task waits for our own map in the art step (later.csv). Cory approved the order: commit the social studies
+corrections, fix US History I unit 5 and the probe days, add the source rule, probe a second section, then science,
+ELA and math units together. Lead: sources are verified or none (UNIT-PLAN field 10, the four plan-codex briefs,
+plan-data.md step 3; lesson.py already fails a placeholder). Why: the probe's placeholder source sheets changed
+facts once checked, and free sources were settled earlier today.

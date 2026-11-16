@@ -324,7 +324,7 @@ def check_home(d, items, row, lab):
 
 # ------------------------------------------------------------------ the gates
 PLACEHOLDER = re.compile(r'\[(?:to (?:cut|check|add|make|come)|image:)[^\]]*\]', re.I)
-BARE_LETTER = re.compile(r'(\(([A-K])(?:,\s*[A-K])*\))')
+BARE_LETTER = re.compile(r'(\(([A-Z])(?:,\s*[A-Z])*\))')  # register letters run past K once split (2026-11-15)
 
 
 def check_day(d, items, days):
@@ -385,7 +385,7 @@ def check_day(d, items, days):
         # a letter handbacks.csv routes past the next day (a writing day between) is that later day's to pick up
         hb = [r for r in plan.rows(h.get('course', ''), 'handbacks') if r['from_day'] == h.get('day')]
         later = {r['error'] for r in hb if r['to_day'] != str(nxt)} - {r['error'] for r in hb if r['to_day'] == str(nxt)}
-        for L in sorted({a or b for a, b in re.findall(r'\berror ([A-K])\b|\(([A-K])\)', tm)} - later):
+        for L in sorted({a or b for a, b in re.findall(r'\berror ([A-Z])\b|\(([A-Z])\)', tm)} - later):
             pat = (r'\berror A\b|\(A\)|\bA\b(?= and| or|,|\)| group| pile| students)|(?:and|or|,) A\b' if L == 'A'
                    else r'\b%s\b' % L)
             if not re.search(pat, nt):
@@ -692,9 +692,9 @@ def check_reads4(d, items, row, days, lab, nf):
         # every letter an end item's wrong rows can show has a respond group (days 9, 24, 88: groups that did not
         # fit the register); a note, since a teacher-judged item may go back the next day instead
         named = set()
-        for a, b in re.findall(r'\b([A-K]) to ([A-K])\b', td):
+        for a, b in re.findall(r'\b([A-Z]) to ([A-Z])\b', td):
             named |= {chr(c) for c in range(ord(a), ord(b) + 1)}
-        for x in 'ABCDEFGHIJK':
+        for x in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
             if re.search(r'\(%s\)|\berrors? %s\b|^- %s\b|\b%s\b(?= and| or|,|\)| group| pile| students|\.| \()|'
                          r'(?:and|or|,|\() ?%s\b' % ((x,) * 5), td, re.M):
                 named.add(x)

@@ -9,6 +9,7 @@ Settled (apply in every unit you write; do not raise):
 - An exit ticket is one question with at most two parts; any invented case is printed "invented for practice". Kindergarten to grade 2: every child marks a picture on paper while the teacher reads the prompt aloud, and the spoken reason is heard from a rotating group of about six a day.
 - Give each assessment item its minutes in the assessment table and keep the total inside the day's real minutes; a part made earlier on a product day comes off the sitting, and is scored only if it had written feedback and a chance to revise first; work from the day a topic is first taught is never a scored part. No reteaching on an assessment day.
 - Error register: one misconception per letter, with one repair; never join two claims in one letter. File each wrong answer only under a letter whose text describes it.
+- Sources (field 10): verified or none. Name where a quoted text's words can be checked for free (a primary-text archive, a government page, the publisher's page); plan no passage that cannot be checked and no paraphrase of a book we have not read.
 - A day exit is answered from a source or case the students have not just worked through that day, and it measures every named part of the day's goal.
 - Check days.csv before naming a day in prose; a day number in the plan matches days.csv.
 - No pipeline notes in the plan (skeleton, gate, run or reviewer remarks); they go in your last message.

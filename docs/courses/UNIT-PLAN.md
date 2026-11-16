@@ -210,7 +210,9 @@ items together.
 
 **10. Sources and what is still to make.** *Shared.* The standards file; the progression page; the specs
 read; any open course read to learn, with its licence and what was read; what was not seen; what is still to
-make.
+make. **Verified or none:** a text the days will quote is named with where its words were checked (a free
+primary-text archive, a park service or other government page, the publisher's own page); a passage that could not
+be checked is not planned. A paraphrase of a book we have not read is never a source.
 
 **Day list.** After field 10, `## Day list (from days.csv, do not edit)`: one row a day with its kind, written by
 `scripts/unit_skeleton.py`. `scripts/unitplan.py` checks it against days.csv.

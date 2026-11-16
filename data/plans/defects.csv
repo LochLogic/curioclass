@@ -1127,3 +1127,53 @@ date,course,artifact,layer,found_by,kind,summary,status,ref
 2026-11-15,us-history-i,d081.md,day,expert,materials,Day 81 ticks four X81 look-fors; record sheet gives X81 one tick,open,origin=day;docs/reviews/reread-u05-2-2026-11-15.md#10
 2026-11-15,us-history-i,u05-2.md,plan,expert,layout,Error I row stranded below the repair-rule paragraph in the error table,open,origin=section;docs/reviews/reread-u05-2-2026-11-15.md#12
 2026-11-15,us-history-i,d082.md,day,expert,minutes,Reopened cheap C5: day runs 12 and 3 minutes but u05-2.md Day 82 and the skeleton still say 10 and 5,open,origin=section;docs/reviews/reread-u05-2-2026-11-15.md#1
+2026-11-15,us-history-i,s05,template,expert,gate,Verified: plan.py check runs per unit without crashing on the scope days.csv,fixed,origin=template;scripts/plan.py check
+2026-11-15,us-history-i,s05,template,expert,gate,Verified: numbers() skips source and component labels; plan.py check us-history-i shows no false reuse,fixed,origin=template;scripts/plan.py numbers
+2026-11-15,us-history-i,s05,template,expert,gate,Verified: plan.py check runs sequence.check for the scope-layout days.csv (sequence us-history-i: 0 failures),fixed,origin=template;scripts/plan.py main
+2026-11-15,us-history-i,s05,template,expert,fields,"Verified: the sources.csv gate passes the new rows 79H, 79H-FL, 79I and 79-EP",fixed,"origin=template;data/plans/README.md, LESSON-DAY.md What changes by subject"
+2026-11-15,us-history-i,s05,template,expert,gate,Verified: family.md with spanish: later passes lesson.py check,fixed,origin=template;scripts/lesson.py check_piece
+2026-11-15,us-history-i,s05,template,expert,script,Verified: day_skeleton.py regenerated days 78 to 82 from the Day N lines without error,fixed,origin=template;scripts/day_skeleton.py
+2026-11-15,us-history-i,s05,template,expert,materials,"Still open: record.md and family.md stay in u05-2 until section 5.1 is written, then move",open,origin=template;LESSON-DAY.md Where it lives
+2026-11-15,us-history-i,s05,unit,expert,error,s05 day 82 exit row names A and H (checked),fixed,"origin=unit;s05.md field 5 exits, day 82"
+2026-11-15,us-history-i,s05,unit,expert,sequence,"Still open: unitplan.py does not compare day-list notes with days.csv; a gate would touch every course, for the lead",open,origin=unit;s05.md field 10 skel block
+2026-11-15,us-history-i,u05-2.md,plan,cheap,source,"Uncheckable book paraphrases cut (Cory: free sources only); Black voices come from checked primary texts (Douglass, Tubman, Rice)",fixed,origin=unit;docs/reviews/sensitivity-u05-2-2026-11-15.md#1
+2026-11-15,us-history-i,u05-2.md,plan,cheap,source,Still open: the claim card needs a checked Pollard 1866 passage to anchor it; Davis 1881 anchors the worked example,open,origin=section;docs/reviews/sensitivity-u05-2-2026-11-15.md#11
+2026-11-15,us-history-i,d079.md,day,expert,source,Native nations read run 2026-11-15; all 8 findings applied,fixed,origin=unit;docs/reviews/day-079-2026-11-15.md#2
+2026-11-15,us-history-i,d079.md,day,expert,figure,Still open: our outline map is not drawn (later.csv L52); students name places in words,open,origin=section;docs/reviews/day-079-2026-11-15.md#7
+2026-11-15,us-history-i,d080.md,day,cheap,minutes,"Pairs split the organizer: each partner writes two rows, then copies and checks the other two",fixed,origin=day;docs/reviews/cheap-d080-2026-11-15.md#7
+2026-11-15,us-history-i,d081.md,day,cheap,source,"Still open: the P1 packet belongs to section 5.1, not yet written",open,origin=unit;docs/reviews/cheap-d081-2026-11-15.md#6
+2026-11-15,us-history-i,d082.md,day,cheap,layout,Still open: the exit slip line count is set by the template for every course,open,origin=template;docs/reviews/cheap-d082-2026-11-15.md#C4a
+2026-11-15,us-history-i,d082.md,day,expert,coverage,"Still open: D2.His.10 and 11 need end items in s05 field 5, a unit decision",open,origin=unit;docs/reviews/day-082-2026-11-15.md#1
+2026-11-15,us-history-i,d082.md,day,expert,display,Still open: inline stems on the teacher page are a template choice for every course,open,origin=template;docs/reviews/day-082-2026-11-15.md#7
+2026-11-15,us-history-i,d082.md,day,expert,display,Still open: display screens for source days are a template change,open,origin=template;docs/reviews/day-082-2026-11-15.md#12
+2026-11-15,us-history-i,d082.md,day,expert,sequence,"s05 Limits gives the reason: the Lost Cause rewrote the war's cause, essay 1's subject",fixed,origin=scope;docs/reviews/day-082-2026-11-15.md#14
+2026-11-15,us-history-i,d079.md,day,expert,coverage,"Day 79 teaches the land laws in a 5-minute part; X79 uses an unseen clause (Source I, sec. 3) on a slip; Richmond cut from the key",fixed,docs/reviews/reread-u05-2-2026-11-15.md#6
+2026-11-15,us-history-i,d079.md,day,expert,source,Source H (Ruby Valley art. III) and its gloss (1851 Fort Laramie art. 5) name the nations students use,fixed,docs/reviews/reread-u05-2-2026-11-15.md#7
+2026-11-15,us-history-i,d078.md,day,expert,key,"Exit read is neutral: source line and passage only, no explanation",fixed,docs/reviews/reread-u05-2-2026-11-15.md#1
+2026-11-15,us-history-i,d078.md,day,expert,source,Conkling passage recopied from the signed letter (Smithsonian transcript); its one dash shown as a comma and said so,fixed,docs/reviews/reread-u05-2-2026-11-15.md#2
+2026-11-15,us-history-i,d082.md,day,expert,source,"Checked against the FDPP text: ""its cunning"" and the comma before ""but"" are correct",rejected,docs/reviews/reread-u05-2-2026-11-15.md#8
+2026-11-15,us-history-i,d081.md,day,expert,handoff,"Draft 2 feedback written during days 82 and 83, returned in day 84's warm-up (days 81, 82, s05, handbacks)",fixed,docs/reviews/reread-u05-2-2026-11-15.md#9
+2026-11-15,us-history-i,d079.md,day,expert,key,Source F Vicksburg row now says on the Mississippi River,fixed,docs/reviews/reread-u05-2-2026-11-15.md#5
+2026-11-15,us-history-i,d079.md,day,expert,wording,Lee told Davis the time was right and began crossing before Davis could reply,fixed,docs/reviews/reread-u05-2-2026-11-15.md#4
+2026-11-15,us-history-i,d080.md,day,expert,wording,Douglass spoke to Black men in the free states (key and day 80),fixed,docs/reviews/reread-u05-2-2026-11-15.md#13
+2026-11-15,us-history-i,family.md,day,expert,source,Family note and opener call Tubman's source her own letter,fixed,docs/reviews/reread-u05-2-2026-11-15.md#11
+2026-11-15,us-history-i,d078.md,day,expert,handoff,Day 78 and handbacks say students correct their own timelines as the order is read,fixed,docs/reviews/reread-u05-2-2026-11-15.md#3
+2026-11-15,us-history-i,d081.md,day,expert,materials,record.md gives exits on days 78 to 82 one column a look-for,fixed,docs/reviews/reread-u05-2-2026-11-15.md#10
+2026-11-15,us-history-i,u05-2.md,plan,expert,layout,Error I row back inside the table; the repair rule sits below it,fixed,docs/reviews/reread-u05-2-2026-11-15.md#12
+2026-11-15,us-history-i,d082.md,day,expert,minutes,u05-2.md Day 82 and the skeleton say 12 and 3 minutes,fixed,docs/reviews/reread-u05-2-2026-11-15.md#1
+2026-11-15,us-history-i,s05,unit,expert,error,"Register split: C keeps the Proclamation claim, new L (victory alone); D keeps offices, new M (one battle) and N (battles interchangeable); E keeps service, new O (source read past what it shows); retagged in s05, u05-2, data and days",fixed,docs/pipeline/briefs/unit-correct.md
+2026-11-15,us-history-i,s05,unit,expert,error,"K2: Component M removed; the day 79 organizer is practice, commented and returned on day 82",fixed,docs/pipeline/briefs/unit-correct.md#K2
+2026-11-15,us-history-i,s05,unit,expert,error,K3: item 4 asks for a decision with each role; wrongs D and M,fixed,docs/pipeline/briefs/unit-correct.md#K3
+2026-11-15,us-history-i,s05,unit,expert,error,K4: exit 79 uses an unseen clause (Pacific Railway Act sec. 3),fixed,docs/pipeline/briefs/unit-correct.md#K4
+2026-11-15,us-history-i,s05,unit,expert,error,K7: exit 80 uses an unseen letter (Rice) with errors O and E,fixed,docs/pipeline/briefs/unit-correct.md#K7
+2026-11-15,us-history-i,s05,unit,expert,source,"K10: Native land added to sensitive topics and the sensitivity study, both reads dated",fixed,docs/pipeline/briefs/unit-correct.md#K10
+2026-11-15,us-history-i,s05,unit,expert,error,plan.py note: error N had no wrong row on an exit; s05-X79 now has one,fixed,docs/pipeline/briefs/unit-correct.md
+2026-11-15,us-history-i,errors.csv,unit,expert,error,Native 1: K repair reads Source E beside new Source H (Ruby Valley art. III) and its 1851 Fort Laramie gloss; names two nations and the source for each,fixed,docs/reviews/sensitivity-native-u05-2-2026-11-15.md#1
+2026-11-15,us-history-i,d079.md,day,expert,wording,"Native 2: nations and tense fixed in the key, opener and Words and supports (Cheyenne, Arapaho, Shoshone; nations held the land in 1862)",fixed,docs/reviews/sensitivity-native-u05-2-2026-11-15.md#2
+2026-11-15,us-history-i,items.csv,plan,expert,coverage,Native 3: X79 asks about the railway clause (Source I) with Source H; no Homestead choice,fixed,docs/reviews/sensitivity-native-u05-2-2026-11-15.md#3
+2026-11-15,us-history-i,sources-79.md,plan,expert,wording,Native 4: Source E gloss says the law promises the railroad the government will end titles US law recognized; it does not say how,fixed,docs/reviews/sensitivity-native-u05-2-2026-11-15.md#4
+2026-11-15,us-history-i,u05-2.md,plan,expert,coverage,"Native 5: nations shown negotiating (Ruby Valley), resisting and governing today; Ely S. Parker on day 79",fixed,docs/reviews/sensitivity-native-u05-2-2026-11-15.md#5
+2026-11-15,us-history-i,d079.md,day,expert,wording,Native 6: Indian only in the law's words; nations' own names for the teacher,fixed,docs/reviews/sensitivity-native-u05-2-2026-11-15.md#6
+2026-11-15,us-history-i,s05,unit,expert,source,"Native 7: Native land in s05 sensitive topics and sensitivity study (nation sites, treaties)",fixed,docs/reviews/sensitivity-native-u05-2-2026-11-15.md#7
+2026-11-15,us-history-i,family.md,plan,expert,wording,Native 8: family note names the 1862 land laws and the 1863 treaty,fixed,docs/reviews/sensitivity-native-u05-2-2026-11-15.md#8
+2026-11-15,us-history-i,d079.md,day,expert,wording,For Cory item: day 79 teacher background names the US-Dakota War 1862 and Sand Creek 1864; unit 6.2 takes them up,fixed,docs/reviews/sensitivity-native-u05-2-2026-11-15.md
