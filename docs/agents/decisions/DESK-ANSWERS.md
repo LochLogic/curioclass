@@ -1403,3 +1403,13 @@ US History I unit 5 keeps one teacher-background line on day 79 naming both; uni
 Plains wars from the US-Dakota War (1862) and the Sand Creek Massacre (1864) to Wounded Knee (1890). Why: they sit
 beside the treaties and removals of unit 6.2, and unit 5's days are full (Native nations sensitivity read, finding
 for Cory). Applied: data/plans/us-history-i/days.csv day 103, s06.md day list, scope-and-sequence.md unit 6 topics.
+
+## 2026-11-15: paid-only texts are described from a free secondary source (Cory: "Stay with free sources")
+
+Cory: stay with free sources; where a text exists only in paid editions, keep it if the information can still be
+verified, perhaps through a secondary source. Rule: such a text (a people's own chronicle, epic or inscription) may
+be named and described, never quoted, when a free secondary source we have read says what it holds; the day credits
+that source and its link goes in sources.csv. Why: the World History I 3.4 sensitivity read found every source on
+the sheets is an outsider's, and no free, checkable English text by the peoples themselves. Applied: UNIT-PLAN field
+10, plan-data.md step 3; the probe 2 fix pass names the griots, the Tarikh al-Sudan, the Kilwa Chronicle, Ezana's
+inscriptions and the Secret History this way.

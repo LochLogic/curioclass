@@ -17,7 +17,8 @@
    Source sheets: every quoted passage is copied from a checked free source (a primary-text archive, a park service
    or other government page) and its link goes in the course's sources.csv; a passage you cannot check is cut, not
    left as a placeholder (`[to check ...]` fails lesson.py). A paraphrase of a book we cannot read is cut (settled
-   2026-11-15: free sources, no book purchases).
+   2026-11-15: free sources, no book purchases). A text found only in paid editions may be named and described,
+   never quoted, from a free secondary source that says what it holds, credited to that source (UNIT-PLAN field 10).
 
 Gates: `python -X utf8 scripts/plan.py check` and `python -X utf8 scripts/lesson.py check` (failures only because
 the days are not written yet are expected; list them). When this job ends, the unit's days are queued.

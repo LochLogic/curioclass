@@ -212,7 +212,10 @@ items together.
 read; any open course read to learn, with its licence and what was read; what was not seen; what is still to
 make. **Verified or none:** a text the days will quote is named with where its words were checked (a free
 primary-text archive, a park service or other government page, the publisher's own page); a passage that could not
-be checked is not planned. A paraphrase of a book we have not read is never a source.
+be checked is not planned. A paraphrase of a book we have not read is never a source. **Paid-only texts:** a text
+found only in paid editions (a people's own chronicle, epic or inscription) may be named and described, never
+quoted, when a free secondary source we have read (a museum, UNESCO, a university or a scholar's free article) says
+what it holds; the day credits what it says to that secondary source, whose link goes in sources.csv.
 
 **Day list.** After field 10, `## Day list (from days.csv, do not edit)`: one row a day with its kind, written by
 `scripts/unit_skeleton.py`. `scripts/unitplan.py` checks it against days.csv.
