@@ -1,11 +1,19 @@
-Merged: 3 distinct findings.
+Findings merged: 5. Held up by lens: assessment 2/2, sources 2/2, sequence 1/1.
 
-Fixed in s05.md:
-- Changed W’s wrong answer and nonmeeting sample to “six ones,” matching error B.
-- Clarified N’s independent matching task: read directions and number-name options aloud while leaving 904 unspoken.
+Changes in `docs/courses/math-grade-2/s05.md`:
 
-Rejected: 1. The scoring-timing finding incorrectly requires revision on an earlier day. UNIT-PLAN and the writer’s brief require feedback and revision before scoring; the existing plan provides both.
+1. Added current-unit addition and subtraction evidence and fresh number-line tasks.
+2. Added expanded-form input requiring a numeral and number name.
+3. Added a checkable safety citation.
+4. Identified the module overview by title, edition and exact source path.
+5. Corrected the stated major-work share to 640/720 minutes, 88.9 percent.
 
-Per lens held up: assessment 2 of 3; sources 0 of 0; sequence 0 of 0.
+Four findings are fully fixed. The sequence finding is corrected in prose; the lead must change days 74 and 75 in `days.csv` to 45 major-work minutes each and regenerate the day list. Those changes exceed this job’s write boundary.
 
-Gate: `PASS docs/courses/math-grade-2/s05.md`. The course check fails on unfinished `TODO(writer)` placeholders in s06.md through s09.md.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-2` reports `PASS docs/courses/math-grade-2/s05.md`.
+
+REJECTED: none
+
+## Files changed outside the allowed set
+
+- data/plans/unit-rejections.csv

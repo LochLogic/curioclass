@@ -1,4 +1,1 @@
-1. [Field 5, collection and scoring] Graph and the remaining P explanations receive written feedback after day 130, revision on day 131, and scoring on day 131 | The revision opportunity is not on an earlier day than scoring | Keep day 131 revision unscored and explicitly score these retained products on day 132 before response groups; remove conflicting day 131 scoring directions.
-
-Gate: s07.md PASS; the course check fails on unfinished placeholders in s08.md and s09.md.
-Count: 1 findings (lens assessment).
+Count: 0 findings (lens assessment). Keys, samples and error mappings are correct. Assessment evidence covers the claimed standards; retained products receive written feedback and revision before scoring. Every error letter has a repair. Daily exits belong to the separate section plans. Named gate: PASS for s07.md.

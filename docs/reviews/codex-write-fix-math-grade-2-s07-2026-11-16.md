@@ -1,9 +1,9 @@
-Findings merged: 3 distinct findings. Fixed: 2. Rejected: 1.
+Merged: 4 distinct findings. Fixed: 2 in s07.md, the unnamed safety source and repair timing for later retrieval tasks.
 
-1. Fixed: Day 124 now explicitly models both subtraction exchanges with pieces and matching written steps before day 125’s rehearsal.
-2. Fixed: Broad prerequisite gaps receive repair in day 112’s warm-up and first five teaching minutes, preserving response and exit time.
-3. Rejected: The assessment lens requires revision before scoring day. UNIT-PLAN field 5 requires creation on an earlier day, with feedback and revision before scoring. P and Graph already satisfy this: created on days 129 and 130, revised before scoring on day 131.
+Findings held up per lens: assessment 0/0; sources 1/1; sequence 3/3. Two valid sequence findings require changes outside the permitted file.
 
-Per lens held up: assessment 0/1; sources 0 findings; sequence 2/2.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-2` PASS for s07.md.
 
-Gate: `PASS docs/courses/math-grade-2/s07.md`. The course check fails only on unfinished placeholders in s08.md and s09.md.
+REJECTED: sequence 1 | Days 132 and 133 lack receiving calendar notes reserving the planned ten-minute response blocks. | Fixing those authoritative rows requires editing days.csv outside this job's s07.md-only write scope. | the writer's brief
+
+REJECTED: sequence 3 | Day 131's calendar row omits 2.NBT.B.8 and m2-mental-ten-hundred despite the four-minute mental task M. | Adding the code, skill and task note requires editing days.csv outside this job's s07.md-only write scope. | the writer's brief

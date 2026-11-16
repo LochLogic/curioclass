@@ -1,5 +1,5 @@
-1. [Day list, days 48 to 53] Complete daily minute allocations are missing; only retrieval, exits and cleanup have timings | The sequence cannot be verified to fit 35-minute meetings | Add compact daily budgets covering the hook or retrieval, investigation, discussion and model revision, three-minute exit, and five-minute cleanup on plant-handling days.
+1. [Field 8, day 54] The plan requires live plant measurement, but days.csv lists only paper supplies and safety “none” | The authoritative day record omits the materials and precautions this activity requires | For the lead: add seedling cups, trays and rulers to day 54, carry over day 55’s soil, mould, seed and spill precautions, and regenerate the affected tables.
 
-Gate: s05.md passes; the course check fails on unfinished s06.md and s07.md. source-map.csv is absent; the scope and sequence explicitly says none is needed.
+Gate: s05.md PASS. source-map.csv is absent; the scope and sequence explicitly says none is needed.
 
 Count: 1 findings (lens sequence).

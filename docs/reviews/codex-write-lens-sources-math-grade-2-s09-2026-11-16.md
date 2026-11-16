@@ -1,3 +1,4 @@
-Count: 0 findings (lens sources). All 13 mapped [lesson sources](https://im.kendallhunt.com/k5/teachers/grade-2/unit-9/lesson-1/lesson.html) are freely accessible. Field 10 specifies licensing, day credits and linked progression references. Cases are labelled invented, measurements come from classroom objects, and drawings are original. No assessment requires an unavailable source.
+1. [Field 10, safety-read paragraph] “Published school guidance” names no actual guide | The safety read has no checkable reference | Cite the California Department of Education’s [Instructional Management and Safety in Elementary](https://www.cde.ca.gov/ci/pl/instrumagmentsafety.asp), specifically its supervision and materials-management guidance, and connect it to field 8’s ruler use and adult preparation.
 
-Gate: `python -X utf8 scripts/unitplan.py check math-grade-2` passed for s09.md with no notes.
+Gate: `unitplan.py check math-grade-2` passes s09.md with no notes.
+Count: 1 findings (lens sources).

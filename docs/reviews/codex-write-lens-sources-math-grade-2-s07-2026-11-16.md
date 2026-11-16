@@ -1,2 +1,4 @@
-Gate: s07.md passes; the course check fails only on TODO(writer) placeholders in s08.md and s09.md.
-Count: 0 findings (lens sources). The [public lessons](https://im.kendallhunt.com/k5/teachers/grade-2/unit-7/lesson-1/lesson.html) and [progression](https://mathematicalmusings.org/wp-content/uploads/2015/03/ccss_progression_nbp_k5_2015_03_16.pdf) are checkable; the restricted reference is used only for sequence and models, and graph data are explicitly labelled invented for practice.
+1. [10, safety reference] “Published school guidance on paper cutting and loose pieces” names no guide or locator | The planned safety read has no checkable basis | Cite [NSTA’s preschool to grade 2 safety protocols](https://www.nsta.org/blog/preschool-grade-2-scienceengineering-hands-activity-safety-protocols), identifying its sharp-object and small-object guidance alongside the adult-precutting rule.
+
+Gate: `unitplan.py check math-grade-2` passes s07.md with no notes.
+Count: 1 findings (lens sources).

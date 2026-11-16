@@ -1,17 +1,11 @@
-Merged findings: **4 distinct findings**, no duplicates.
+Findings merged: 1. Fixed: 1.
 
-Fixed in `docs/courses/science-grade-2/s04.md`:
+Replaced day 42’s wax exit with an out-of-order puddle sequence requiring children to identify return evidence. Adjusted error D to cover heating and cooling.
 
-1. Corrected the argument exemplar’s unsupported cucumber observation and missing cookie heating comparison.
-2. Replaced day 42’s repeated water and chocolate exit with unseen wax records comparing complete and missing return evidence.
-3. Replaced day 47’s repaired egg case with an unseen toast record requiring reasoning about cooling.
+Findings upheld by lens: assessment 1 of 1; sources 0 of 0; sequence 0 of 0.
 
-Rejected:
+Only docs/courses/science-grade-2/s04.md was edited.
 
-4. Complete teaching-day budgets: UNIT-PLAN.md assigns daily planning to section plans and prohibits editing the generated unit day list.
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-2` passed, including s04.md.
 
-Per lens held up: **assessment 3/3; sources 0 findings; sequence 0/1**.
-
-Gate: `PASS docs/courses/science-grade-2/s04.md`
-
-The course check still fails on unfinished s05.md to s07.md plans. Only s04.md was edited; it meets the word cap, uses UTF-8 with LF endings, and contains no em dashes.
+REJECTED: none

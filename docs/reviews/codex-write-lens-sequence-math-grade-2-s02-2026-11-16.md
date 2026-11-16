@@ -1,0 +1,1 @@
+Count: 0 findings (lens sequence). Owned standards have teaching, practice and closing evidence; hand-offs and model withdrawal are coherent; stated budgets total 60 minutes; supplies support the tasks. The day list matches days.csv and preserves the retained lesson order. `python -X utf8 scripts/unitplan.py check math-grade-2` passes, including s02.md.

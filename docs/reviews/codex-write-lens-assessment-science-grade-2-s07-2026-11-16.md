@@ -1,4 +1,3 @@
-1. [Field 7, day 69 exit] The exit repeats that day's desert versus ocean-shore equal-count comparison; unused pictures alone do not establish a fresh case | Success could reflect rehearsal | Replace it with an unseen habitat pair, such as orchard and hedgerow, with independently specified inventories and a key requiring equal counts but different kinds.
-2. [Field 5, samples] Four teacher-judged items share one meeting sample and three misconception examples; item 1 lacks a nonmeeting sample, and the meeting sample omits its habitat-feature requirement | Teachers lack complete examples for applying each item's look-fors | Add separately labelled meeting and nonmeeting samples for each item, including habitat features and an observation method for item 1, and complete inventories and a graph for item 2.
-Gate: PASS s07.md. Read limitation: data/plans/science-grade-2/source-map.csv does not exist.
-Count: 2 findings (lens assessment).
+Check: `unitplan.py check science-grade-2` passes s07.md. Requested source-map.csv is absent; the scope and sequence explicitly says none is needed.
+
+Count: 0 findings (lens assessment). Independently recomputed keys and samples agree with the stimuli. Error letters match their wrong answers and have repairs. Exits use fresh cases. New individual evidence covers the owned code, with written feedback and revision before scoring.

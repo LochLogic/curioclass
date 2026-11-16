@@ -1,3 +1,10 @@
-Gate: `s05.md` passes; the course check fails on unfinished `TODO(writer)` placeholders in s06 to s09.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-2` passed s05.md with no notes.
 
-Count: 0 findings (lens sources). All 14 mapped lessons are publicly accessible with [verified reuse terms](https://im.kendallhunt.com/k5/teachers/grade-2/unit-5/lesson-1/lesson.html). Secondary references are restricted to consultation without copying. Assessment tasks are identified as original, and invented collection cases are labelled for practice.
+1. [10, safety read] “School guidance for counting materials” names no published guide | The paper-for-beans safety direction has no checkable basis | Cite the [Preschool to Grade 2 safety protocols](https://www.nsta.org/blog/preschool-grade-2-scienceengineering-hands-activity-safety-protocols), sections II.5 and II.6.c, beside the existing materials direction.
+2. [10, module overview] “Local grade 2 module 3 overview” omits its title, edition and file location | Another reader cannot reliably identify the source studied | Name *Place Value, Counting, and Comparison of Numbers to 1,000*, Grade 2 Module 3, Module Overview, edition G2-M3-TE-1.3.0-06.2015; add its exact source-store PDF path and retain the pages, licence and reference-only restriction.
+
+Count: 2 findings (lens sources).
+
+## Files changed outside the allowed set
+
+- data/plans/unit-rejections.csv

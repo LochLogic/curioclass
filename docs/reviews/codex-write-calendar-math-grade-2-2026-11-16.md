@@ -1,6 +1,15 @@
-- Finding 1 fixed: Days 55 and 56 are Check days. Updated kind totals, base-lesson adaptations and day lists retain center practice and yardstick construction.
-- Finding 2 fixed: Recorded ten-minute response blocks on days 39, 40, 58 and 59. Updated affected plans and minute accounting.
-- Finding 4 fixed: Corrected allocations for plot days 52 to 54. Major-work shares are now 79.2% for unit 3 and 80.8% course-wide. Day counts and unit boundaries remain unchanged.
+- Fixed unit 06, sequence 1: Reserved ten-minute response blocks within days 111 and 112’s existing sixty minutes. Synchronized calendar, scope and sequence, day lists and feedback timing.
+- Fixed unit 07, sequence 1: Reserved ten-minute response blocks on receiving days 132 and 133. Synchronized calendar, scope and sequence and day lists.
+- Fixed unit 07, sequence 3: Added 2.NBT.B.8 and m2-mental-ten-hundred to day 131, with its existing four-minute mental task M.
 
-`python -X utf8 scripts/plan.py check math-grade-2`: PASS, zero failures.
+Day counts, unit boundaries and totals remain unchanged. No items left.
+
+`python -X utf8 scripts/plan.py check math-grade-2`: PASS, 0 failures.
 `python -X utf8 scripts/unitplan.py check math-grade-2`: PASS, all nine unit plans.
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

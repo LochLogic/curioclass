@@ -1,11 +1,10 @@
-Merged 3 distinct findings; fixed all 3 in [s06.md](/S:/CurioClass/docs/courses/math-grade-2/s06.md).
+Merged: 3 distinct findings. Fixed: 2 in `docs/courses/math-grade-2/s06.md`.
 
-- Assessment: 1/1 held up. Scheduled written feedback and revision before day 110 scoring.
-- Sequence: 1/1 held up. Corrected the later time and money check reference.
-- Sources: 1/1 held up. Added the reference’s title, issuer, edition and exact local path.
+- Assessment: replaced imported scores with unit 6 items, keys, error mappings and minutes. Retained work receives written feedback and revision before scoring.
+- Sources: added the checkable safety guide and identified local precautions.
 
-Rejected: 0.
+Findings substantiated per lens: assessment 1/1; sources 1/1; sequence 1/1.
 
-Gate: `PASS docs/courses/math-grade-2/s06.md`
+Gate: `PASS docs/courses/math-grade-2/s06.md`. All course files passed; s06.md meets the 1,250-word cap.
 
-The course command still fails on unfinished s07.md to s09.md. Only s06.md was edited; its day list remains unchanged.
+REJECTED: sequence 1 | Days 111 and 112 promise ten-minute response blocks although their calendars already allocate all sixty minutes. | Reserving response time and updating major-work totals requires calendar edits outside the permitted s06.md file. | the writer's brief

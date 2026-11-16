@@ -1,13 +1,9 @@
-Findings merged: 3 distinct findings. Fixed all 3 in docs/courses/math-grade-2/s08.md:
+Merged findings: 2 distinct findings. Fixed both in docs/courses/math-grade-2/s08.md.
 
-1. R remains pending on day 143 and is scored before day 144 response groups, after revision.
-2. Every identified error receives a paper repair station and fresh verification question within existing response blocks.
-3. Day 133’s shape repair also practises complete pairing and explaining leftovers.
+- Assessment: 1 of 1 held up. Added written feedback, later independent corrections and scoring for F, preserving original recall classifications.
+- Sources: 1 of 1 held up. Added verified safety guidance and connected it to the large-paper-counter alternative.
+- Sequence: 0 findings.
 
-Rejected: 0.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-2` passed s08.md without notes.
 
-Findings upheld per lens: assessment 2/2; sources 0 findings; sequence 1/1.
-
-Gate: `python -X utf8 scripts/unitplan.py check math-grade-2` reports **PASS for s08.md**. The course check fails on unfinished `TODO(writer)` entries in s09.md.
-
-Verified UTF-8, LF endings and no em dashes.
+REJECTED: none

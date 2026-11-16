@@ -1,5 +1,3 @@
-Check: `unitplan.py check science-grade-2` passes s07.md. source-map.csv is absent; the scope and sequence explicitly says none is needed.
+Count: 0 findings (lens sequence). Owned content is taught, practised and checked; day budgets total 35 minutes; day types, handoffs, model revisions, supplies and safety limits align with days.csv and the scope and sequence.
 
-1. [Day list, days 67, 68, 69 and 71] These days lack complete minute allocations; only days 66, 70, 72 and 73 have totals | Their work cannot be verified to fit the 35 to 40 minute period | Add a timed breakdown for each missing day totaling 35 minutes, including observation, recording, comparison, model revision, two-minute cleanup and day 69's three-minute exit.
-
-Count: 1 findings (lens sequence).
+Gate: `unitplan.py check science-grade-2` passes s07.md. The requested source-map.csv is absent; the scope and sequence explicitly says none is needed.

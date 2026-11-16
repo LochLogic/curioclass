@@ -1,9 +1,10 @@
-1. [Field 5, lines 108 to 112; field 7] M, O and C receive their revision chance on day 89, when they are also scored | Revision must occur on an earlier day than scoring | Keep day 89 revisions, but defer final scoring of these records until day 90 before response groups.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-2` passes s05.md.
 
-2. [Fields 5 and 6, W and error B] “600 has six tens” is assigned B, whose definition specifically describes treating a digit as ones | The wrong answer diagnoses a different unit confusion from the registered misconception | Replace both W’s wrong answer and its nonmeeting sample with “600 has six ones,” which matches B.
+1. [Field 5, retained F and diagram records] 2.NBT.B.5 and 2.MD.B.6 rely on records from units 2 and 4 despite appearing among this unit's owned skills. | Neither receives new end-of-unit evidence here. | Collect new independent addition and subtraction evidence during day 80, give written feedback and revision before scoring on day 89, and add fresh length-from-zero, sum and difference number-line tasks within day 89's existing assessment time.
+2. [Field 5, N] Every expanded form is an answer students produce; none is a stimulus they must read, although the stated assessment coverage includes reading each form. | A student unable to interpret expanded notation could pass. | Add an unaided expanded-form input, such as `700 + 60 + 9`, requiring the numeral `769` and number name “seven hundred sixty-nine”; rebalance N's existing twelve minutes.
 
-3. [Field 5, N and accommodations] N tests reading 904 but also says 904 is read aloud to everyone; the accommodations prohibit reading target numerals aloud | Supplying its spoken name can conceal inability to interpret the numeral | Read directions and matching options aloud, but leave target numerals unspoken until each child independently names or matches them.
+Count: 2 findings (lens assessment).
 
-Gate: `unitplan.py check math-grade-2` passes s05.md; the course check fails on unfinished s06.md through s09.md.
+## Files changed outside the allowed set
 
-Count: 3 findings (lens assessment).
+- data/plans/unit-rejections.csv

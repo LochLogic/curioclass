@@ -1,0 +1,1 @@
+Count: 0 findings (lens sequence). Standards progress through teaching, practice and checks; handoffs and supplies support the work. All 16 day rows match days.csv, and stated minute budgets add up. The named gate passes s02.md without notes. source-map.csv is absent, consistent with the scope and sequence’s explicit exemption for elementary science.

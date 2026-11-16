@@ -1,22 +1,20 @@
-Merged: **7 findings**. All held up: assessment **6/6**, sources **1/1**, sequence **1/1**. The scheduling finding appeared in two lenses.
+Merged: 8 findings. Assessment 1 and sequence 1 describe the same timing fault.
 
-Fixed fully in s06.md:
+Fixed in s06.md:
 
-1. Scoring now requires food-seeking and incidental pollen transfer.
-2. Replaced repeated exit cases with fresh evidence and model faults.
-3. Supplied explicit trial outcomes and observation limits.
-4. Separated combined wrong answers into single-error examples.
-5. Added response tasks for groups A through D.
+1. Restricted scoring to the earlier-taught seed option; bat work remains unscored practice.
+2. Replaced explanatory transfer cards with observation sequences, using a jay-and-acorn seed case.
+3. Replaced day 61’s rehearsed exit with a failed-transfer record.
+4. Removed unsupported B assignments for omissions.
+5. Reduced day 62’s exit to two parts.
+6. Added the elementary reference’s licence and attribution link.
+7. Required all six meetings instead of the infeasible fold.
+8. Distinguished the recorded chalk allowance from this unit’s stricter no-dust route.
 
-Fixed locally, with external synchronization still needed:
+Held up: assessment 5/5; sources 1/1; sequence 3/3.
 
-6. Preserved pre-assessment pollen teaching and practice, added an unscored fallback, and clarified scoring on day 65.
-7. Removed chalk allowances from both displayed safety lists.
+Seven findings are fully fixed locally. The merged timing finding has a scoring safeguard, but the lead must align pollen teaching across the canonical calendar and plan. Calendar fold and chalk entries also need corresponding corrections outside the authorized file.
 
-**Rejected: 0.**
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-2` reports **PASS docs/courses/science-grade-2/s06.md**. UTF-8, LF endings and no em dashes verified.
 
-For the lead: synchronize days.csv days 62 and 63, supplies, safety, and the scope and sequence, then regenerate the day list. Those files were outside the permitted write scope.
-
-Gate: **PASS docs/courses/science-grade-2/s06.md**.
-
-The course check fails only on unfinished TODO(writer) placeholders in s07.md.
+REJECTED: none
