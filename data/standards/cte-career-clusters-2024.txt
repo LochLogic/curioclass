@@ -5,7 +5,19 @@
 # level: section 1 = one Career Cluster, CTE.Career Clusters.<cluster>; section 2 = one Sub-Cluster, CTE.Career Clusters.<cluster>.<sub-cluster>; section 3 = one Career-Ready Practice, CTE.Career Ready Practices.<n>
 # note: 14 Career Clusters (3 Cross-Cutting: Digital Technology, Management & Entrepreneurship, Marketing & Sales) and 72 Sub-Clusters, both matching the totals Advance CTE states. Names spelled as in the guidebook (the web page writes "Hospitality, Events, & Tourism"; the guidebook "Hospitality, Events & Tourism").
 # note: modules.csv codes only CTE.Career Clusters and CTE.Career Ready Practices, so these lines prefix-match those two codes.
-# note: 12 Career-Ready Practices per careertech.org. The final 2024 PDF (careertech.org/wp-content/uploads/2024/10/Career-Ready-Practices.pdf) is image-only, so the 2024 wording and order were NOT verified; lines are numbered 1-12 only.
+# note: 12 Career-Ready Practices, 2024 (Advance CTE). careertech.org's final PDF is image-only and its practices page answered 404 to the reader on 2026-11-16, so the wording and order were read on 2026-11-16 in North Dakota CTE's reproduction of the 2024 list (cte.nd.gov/sites/www/files/documents/CareerReady/New12ALL.pdf, dated 2025-06); the order matches a second summary (search only). Advance CTE text is all rights reserved, so the lines stay numbers and each practice is described here in our own words only:
+# practice 1: be a dependable, professional contributor who models the workplace's standards and values
+# practice 2: communicate ideas and plans clearly in writing, speech and visuals, listening to others and fitting the message to the audience
+# practice 3: think critically about a workplace problem, plan a solution, weigh options and keep at it, learning from past projects
+# practice 4: work well in mixed teams, in person and online, respecting different views and the skills each member brings
+# practice 5: use digital tools to work productively and to analyse data for decisions, keeping up as tools change
+# practice 6: stay resilient and adapt as work and the workplace change
+# practice 7: manage time and work space well
+# practice 8: bring a creative, inventive mindset to work
+# practice 9: look after money and resources well, both the organisation's and one's own
+# practice 10: plan an education and career path that fits one's strengths, work style, interests and goals
+# practice 11: weigh the environmental and social effects of decisions
+# practice 12: apply the academic and technical skills of the field, and keep them current
 # note: older framework (2002, revised 2008): 16 clusters, 79 pathways. Not on careertech.org's current page; list per state sources (e.g. maine.gov/doe/learning/cte/standards/clusters): Agriculture, Food & Natural Resources; Architecture & Construction; Arts, A/V Technology & Communications; Business Management & Administration; Education & Training; Finance; Government & Public Administration; Health Science; Hospitality & Tourism; Human Services; Information Technology; Law, Public Safety, Corrections & Security; Manufacturing; Marketing (Sales & Service); Science, Technology, Engineering & Mathematics; Transportation, Distribution & Logistics. Not included as lines.
 # section: clusters and sub-clusters
 CTE.Career Clusters.Digital Technology

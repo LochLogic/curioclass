@@ -15,6 +15,7 @@ which sit in this repository under their owners' terms. Each file's header names
 | What | Where | Owner and terms |
 |---|---|---|
 | The full text of the Common Core State Standards | `data/standards/ccss-math-standards.txt`, `data/standards/ccss-ela-standards-full.txt`, and any standard quoted in a course file | (c) Copyright 2010. National Governors Association Center for Best Practices and Council of Chief State School Officers. All rights reserved. Used under the Common Core State Standards Public License. Not CC BY. Keep the notice when you copy it. |
+| The computer science standards statements | `data/standards/csta-2026-statements.txt` | CSTA K-12 Computer Science Standards, 2026, under CC BY-NC-SA 4.0. Not CC BY. Planning reference only: never copied into a course page; pages state standards in our own words. |
 | Standard codes and short names from other bodies (no statement text is stored) | the other files in `data/standards/` | Each belongs to its publisher, named in the file header. The computer science ids come from a document under CC BY-NC-SA 4.0. Where a header gives no licence line, treat the names as all rights reserved. |
 | Outside review rubrics and criteria | `docs/RUBRIC-*.md`, `docs/ADOPTION-BAR*.md` | The source documents are all rights reserved by their publishers. Our pages link to them and describe them in our own words; the descriptions are ours, the criteria are not. |
 | Bundled third-party libraries and public domain sources | noted where they are used | Their own licences. |

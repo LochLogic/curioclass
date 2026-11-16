@@ -93,10 +93,16 @@ CSTA = {l.strip() for f in ('csta-2026-ids.txt', 'csta-2026-specialty-ids.txt')
         for l in (DATA / f).read_text(encoding='utf-8').splitlines() if l.strip() and not l.startswith('#')}
 
 # --- Frameworks without fine-grained codes: closed vocabularies
+# full ids listed in these files (CASEL sub-skills, WIDA clusters, AASL competencies, career clusters) are valid as listed
+LISTED = {(name, l.split('	')[0].strip()) for name, f in (('CASEL', 'casel-5.txt'), ('WIDA-ELD-2020', 'wida-2020.txt'),
+          ('AASL-2018', 'aasl-2018.txt'), ('Career Clusters 2024', 'cte-career-clusters-2024.txt'))
+          for l in (DATA / f).read_text(encoding='utf-8').splitlines() if l.strip() and not l.startswith('#')}
+LISTED_IDS = {i: n for n, i in LISTED}
+
 CLOSED = {
-    'NCAS': re.compile(r'(VA|MU|TH|DA|MA):(Cr[123]|Pr[456]|Re[789]|Cn1[01])'),
-    'NHES-2024': re.compile(r'NHES\.S[1-8]'),
-    'SHAPE-PE-2024': re.compile(r'SHAPE\.S[1-4]'),
+    'NCAS': re.compile(r'(VA|MU|TH|DA|MA):(Cr[123]|Pr[456]|Re[789]|Cn1[01])(?:\.\d\.(?:PK|K|[1-8]|I|II|III)[a-z]?)?'),
+    'NHES-2024': re.compile(r'NHES\.S[1-8](?:\.(?:2|5|8|12)\.\d{1,2})?'),
+    'SHAPE-PE-2024': re.compile(r'SHAPE\.S[1-4](?:\.(?:2|5|8|12)\.\d{1,2})?'),
     'ACTFL': re.compile(r'ACTFL\.(Novice|Intermediate|Advanced) (Low|Mid|High)'),
     'World-Readiness': re.compile(r'WRS\.(Communication|Cultures|Connections|Comparisons|Communities)'),
     'NSPFE-2021': re.compile(r'NSPFE\.(Earning Income|Spending|Saving|Investing|Managing Credit|Managing Risk)'),
@@ -124,6 +130,8 @@ def validate(code):
         return 'CSTA-2026'
     if code in MA_IDS:
         return 'MA-HSS-2018'
+    if code in LISTED_IDS:
+        return LISTED_IDS[code]
     for name, rx in CLOSED.items():
         if rx.fullmatch(code):
             return name

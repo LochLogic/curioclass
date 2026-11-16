@@ -1,0 +1,337 @@
+# source: https://csteachers.org/2026-csta-pk-12-computer-science-standards/ (the publisher's download address; it serves https://csteachers.org/wp-content/uploads/2026/07/2026-CSTA-PK%E2%80%9312-Computer-Science-Standards.pdf, 218 pages)
+# version: 2026 CSTA PK-12 Computer Science Standards, Computer Science Teachers Association, published summer 2026 (DOI 10.1145/3820482)
+# licence: THIS FILE IS NOT CC BY. It holds the standards' own statement text, (c) 2026 Computer Science Teachers Association, licensed CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/). Attribution: Computer Science Teachers Association. (2026). 2026 CSTA PK-12 computer science standards. https://csteachers.org/pk12standards/. Unchanged except whitespace (PDF line breaks joined). Any adaptation of these lines is shared under the same licence. Curio Class's own pages and data stay CC BY: they cite ids and say things in our own words, never copy these lines.
+# fetched: 2026-11-16. Statements taken by script from the PDF's standard pages (the text before each "Boundary Statement"), one per id; boundary statements, practices and dispositions not stored.
+# level: one standard per line, <id><TAB><statement>. 331 lines: the 196 Foundational ids in csta-2026-ids.txt order, then the 135 Specialty ids in csta-2026-specialty-ids.txt order.
+# note: scripts/standards.py does not read this file; the two id files stay the code registry. Every id here is in one of them and every id there is here (checked 2026-11-16).
+E1-ALG-IM-03	Explain how a change to an algorithm leads to a different outcome.
+E1-ALG-ML-02	Recognize that AI systems are technologies that use patterns in data to make decisions or generate new things.
+E1-ALG-PS-01	Decompose a problem or task into individual parts to develop an algorithm.
+E1-DAT-DC-08	Use multiple methods to collect both numeric and non-numeric data to help answer questions.
+E1-DAT-DI-09	Compare a question that can be answered through a data investigation and a question that can be answered through other means.
+E1-DAT-IM-10	Examine a variety of data questions that address the needs of a person or community.
+E1-PRO-PD-04	Create code from an algorithm that includes sequence to solve a problem or express an idea.
+E1-PRO-RD-06	Explain the function of code that includes an event and sequence.
+E1-PRO-TR-07	Debug a program that includes a sequence of commands.
+E1-PRO-VD-05	Identify terms that refer to data values that change over time in everyday life.
+E1-SOC-CE-16	Describe how computing is used by people at home, at school, and in the community.
+E1-SOC-HI-14	Compare how an everyday activity changed after a specific computing technology was introduced.
+E1-SOC-HU-15	Differentiate between activities that humans do well and activities that computing technologies do well.
+E1-SYS-HW-11	Describe the purpose of basic hardware components of a computing system, using accurate terminology.
+E1-SYS-IM-13	Describe an individual’s role in responsibly using computing systems and digital tools.
+E1-SYS-SE-12	Describe how to keep devices and online accounts safe from unauthorized access.
+E2-ALG-IM-03	Describe how an algorithm might impact peers in varied situations.
+E2-ALG-ML-02	Examine how data is used to train a machine learning model.
+E2-ALG-PS-01	Create an algorithm that includes sequence, events, and iteration to solve a problem or express an idea.
+E2-DAT-DC-08	Compare numeric and non-numeric types of data in terms of how they are collected and what information they provide.
+E2-DAT-DI-09	Develop a question that can be answered with data.
+E2-DAT-IM-10	Distinguish between data collection approaches, including those that may lead to inaccurate or biased data.
+E2-PRO-PD-04	Create code from an algorithm that includes sequence, events, and iteration to solve a problem or express an idea.
+E2-PRO-RD-06	Explain the steps taken to create a program.
+E2-PRO-TR-07	Debug a program that includes sequence, events, and iteration.
+E2-PRO-VD-05	Label different representations of information with a name and whether its value is constant or changes.
+E2-SOC-CE-16	Investigate how personal interests connect to computing in different industries and careers.
+E2-SOC-HI-14	Analyze the ways that people from different cultures, backgrounds, and time periods have designed computing technologies to help them solve problems and express ideas.
+E2-SOC-HU-15	Investigate situations where humans have created computing technologies to solve problems.
+E2-SYS-HW-11	Explain how the basic hardware components of a computing system work together to perform input and output (I/O) operations.
+E2-SYS-IM-13	Describe the benefits and harms that arise from an individual’s use of computing systems and digital tools.
+E2-SYS-SE-12	Explain how online actions have real-world consequences.
+E3-ALG-IM-03	Compare how different algorithms may affect outcomes, situations, and people with a wide range of needs.
+E3-ALG-ML-02	Investigate how a machine learning model can change when new data is added to a training set.
+E3-ALG-PS-01	Create an algorithm that includes a combination of sequence, events, iteration, and selection to solve a problem or express an idea.
+E3-DAT-DC-09	Evaluate numeric and non-numeric data for accuracy and completeness.
+E3-DAT-DI-10	Investigate a data question involving relationships between multiple attributes.
+E3-DAT-IM-11	Design a data collection process that addresses the needs of people from different backgrounds or groups.
+E3-PRO-PD-04	Develop code from a student-created algorithm that includes a combination of sequence, events, iteration, and selection to solve a problem or express an idea.
+E3-PRO-PD-05	Use constructive feedback to improve a program.
+E3-PRO-RD-07	Articulate how a specific segment of code contributes to the overall purpose of a program.
+E3-PRO-TR-08	Debug a program that includes a combination of sequence, events, iteration, and selection.
+E3-PRO-VD-06	Identify the variables being stored and manipulated in a program.
+E3-SOC-CE-19	Explain how people in different industries use computing technologies and skills to accomplish their work.
+E3-SOC-ET-17	Describe how new technologies create both benefits and risks in personal and family life.
+E3-SOC-HI-16	Examine how computing innovations have changed the ways people live, work, or communicate over time.
+E3-SOC-HU-18	Examine why people design and build computing technologies.
+E3-SYS-HW-12	Describe the role of software in a computing system to accomplish tasks or solve problems.
+E3-SYS-IM-15	Describe how widely used computing systems may impact an individual’s life and community.
+E3-SYS-NT-14	Explain how people access the internet to gain information and communicate with each other.
+E3-SYS-SE-13	Evaluate how sharing information online might reveal personally identifiable information and other details.
+E4-ALG-IM-03	Evaluate how different algorithms for solving the same problem produce outcomes that may benefit or disadvantage different groups of people.
+E4-ALG-ML-02	Analyze relationships between the properties of training data and a machine learning model’s output.
+E4-ALG-PS-01	Create a written representation of an algorithm that includes a combination of sequence, events, iteration, and selection to solve a problem or express an idea.
+E4-DAT-DC-09	Organize collected data into a table using a computational tool, with rows representing records and columns representing attributes.
+E4-DAT-DI-10	Create an explanation that includes at least one data visualization to report the process and results of a data investigation.
+E4-DAT-IM-11	Investigate how data collected about people may affect individuals and groups.
+E4-PRO-PD-04	Compare different programming solutions to the same problem based on correctness and clarity.
+E4-PRO-PD-05	Collaborate with a team by offering a meaningful contribution to creating a program.
+E4-PRO-RD-07	Document a program to clarify its functionality.
+E4-PRO-TR-08	Debug a program incrementally and repeatedly throughout the development process.
+E4-PRO-VD-06	Trace how data flows and changes variable values in a program.
+E4-SOC-CE-19	Investigate how the workforce adopts new computing technologies and continues to update their computing skills.
+E4-SOC-ET-17	Analyze how the limitations of existing technologies can lead to emerging technologies.
+E4-SOC-HI-16	Investigate the contributions of diverse individuals and communities in the history of computing.
+E4-SOC-HU-18	Distinguish between human learning and machine learning processes.
+E4-SYS-HW-12	Apply a basic troubleshooting process to identify and fix common hardware and software issues.
+E4-SYS-IM-15	Investigate the impacts of widely used computing systems on natural resources and the environment.
+E4-SYS-NT-14	Compare wired and wireless methods that computing devices use to connect to the internet.
+E4-SYS-SE-13	Distinguish between authentication and authorization in protecting devices and private information.
+E5-ALG-IM-03	Articulate how human-centered design principles are incorporated into the development of a computing technology.
+E5-ALG-ML-02	Train a machine learning model to make a classification or prediction.
+E5-ALG-PS-01	Create a visual representation of an algorithm that includes variables and a combination of sequence, events, iteration, and selection to solve a problem or express an idea.
+E5-DAT-DC-09	Use computational tools to collect and organize different types of data.
+E5-DAT-DI-10	Analyze a dataset to identify the nature and possible sources of variability in the data.
+E5-DAT-IM-11	Analyze the benefits and risks of a computing technology that uses collected data.
+E5-PRO-PD-04	Create a novel program by modifying or combining elements of existing programs.
+E5-PRO-PD-05	Construct individual components of a program that are collaboratively assembled into a programming project.
+E5-PRO-RD-07	Create embedded or external documentation for a programming project.
+E5-PRO-TR-08	Debug a program using systematic strategies.
+E5-PRO-VD-06	Use variables to store, compare, and modify data within a program.
+E5-SOC-CE-19	Examine how professionals collaborate while using computing technologies to solve problems.
+E5-SOC-ET-17	Examine how people decide whether or not to use emerging technologies.
+E5-SOC-HI-16	Analyze how the inclusion or exclusion of diverse individuals and communities has shaped the design, development, and societal impact of computing technologies.
+E5-SOC-HU-18	Evaluate when it is appropriate to use or not use computing technologies to solve a problem.
+E5-SYS-HW-12	Explain how hardware and software components of a computing system work together to perform input and output operations, processing, and storage.
+E5-SYS-IM-15	Examine how computing systems impact culture and the ways people live and work.
+E5-SYS-NT-14	Distinguish between the components of wired and wireless networks.
+E5-SYS-SE-13	Describe the concepts of the CIA triad and how each component is important in protecting information.
+EK-ALG-IM-03	Describe how people create algorithms to solve problems.
+EK-ALG-ML-02	Recognize attributes of objects to notice patterns and make decisions.
+EK-ALG-PS-01	Carry out algorithms in daily activities.
+EK-DAT-DC-08	Use collected data to help answer questions.
+EK-DAT-DI-09	Investigate a question that can be answered by collecting data in students’ everyday environments.
+EK-DAT-IM-10	Investigate how data can help a person make informed decisions in everyday life.
+EK-PRO-PD-04	Create a sequence of commands to solve a problem or express an idea.
+EK-PRO-RD-06	Describe how a sequence of commands completes a task.
+EK-PRO-TR-07	Identify a step in a sequence of commands that does not work as expected.
+EK-PRO-VD-05	Identify everyday gestures and symbols that represent information people use to make choices.
+EK-SOC-CE-16	Identify how people use digital devices at home, at school, and at work.
+EK-SOC-HI-14	Identify computing technologies used in daily life that have changed over time.
+EK-SOC-HU-15	Explain that people design and develop computing technologies.
+EK-SYS-HW-11	Examine the use of tools to accomplish a task or solve a problem for different users.
+EK-SYS-IM-13	Identify responsible behavior when using computing systems and digital tools.
+EK-SYS-SE-12	Differentiate between public and private information.
+HS-ALG-IM-09	Design a computing technology using human-centered design principles.
+HS-ALG-IM-10	Evaluate the ethical implications, societal impacts, and potential biases of rule-based and data-driven algorithms.
+HS-ALG-IM-11	Articulate the values embedded in the design of an algorithmic system.
+HS-ALG-ML-06	Justify the selection of a type of AI algorithm to accomplish a task.
+HS-ALG-ML-07	Evaluate training data by examining its source, quality, representativeness, potential biases, and privacy implications.
+HS-ALG-ML-08	Develop a machine learning model for a chosen task using appropriate data and tools.
+HS-ALG-PS-01	Design an algorithm using appropriate data structures to solve a problem or express an idea.
+HS-ALG-PS-02	Optimize the design of an algorithm using procedural abstraction and control structures.
+HS-ALG-PS-03	Evaluate algorithms for efficiency, correctness, and clarity, using metrics or test cases.
+HS-ALG-PS-04	Describe the differences between deterministic and probabilistic algorithms.
+HS-ALG-PS-05	Evaluate AI-generated output to assess bias, accuracy, and potential harms.
+HS-DAT-DC-21	Use a computational tool to generate simulated data that fits certain parameters for use in a simulation.
+HS-DAT-DC-22	Create a data dictionary that describes the name, type, and allowable values for each attribute and the logical relationships between variables in a dataset.
+HS-DAT-DC-23	Use a computational tool to clean and organize text-based data.
+HS-DAT-DC-24	Evaluate different approaches to verifying consistency and compliance with expected data types, values, and ranges.
+HS-DAT-DI-25	Create a data visualization of a multivariate dataset to answer a question or make a classification or prediction.
+HS-DAT-DI-26	Evaluate a data simulation or visualization to answer a data question, inform decision-making, and identify potential limitations.
+HS-DAT-IM-27	Evaluate the societal, environmental, and ethical implications of large- scale data collection and processing, including within AI applications.
+HS-DAT-IM-28	Debate the efficacy of a policy or regulation to ensure responsible data use.
+HS-PRO-PD-12	Create a modular program that uses procedures, external libraries, or objects to improve reusability and readability.
+HS-PRO-PD-13	Use documentation, libraries, application programming interfaces (APIs), and other tools in program development.
+HS-PRO-PD-14	Apply appropriate attribution of intellectual property when developing a computing technology.
+HS-PRO-PD-15	Collaborate on a programming project using a defined workflow that includes design documentation and clear task roles.
+HS-PRO-RD-17	Analyze how a segment of code works, including the role of parameters, return values, and data structures.
+HS-PRO-RD-18	Evaluate AI-generated code for accuracy, reliability, and alignment with program requirements.
+HS-PRO-TR-19	Evaluate a computing technology’s alignment with design specifications and responsible design values, including its correctness, effectiveness, and user experience.
+HS-PRO-TR-20	Refine a computing technology based on user feedback, testing results, and responsible design values to improve its effectiveness and impact.
+HS-PRO-VD-16	Create a program that uses appropriate data structures to store, access, and manipulate data.
+HS-SOC-CE-45	Analyze how diverse teams of people use computational thinking and computing technologies to solve problems and express ideas.
+HS-SOC-CE-46	Connect computing knowledge and skills acquired to students’ personal goals and career aspirations.
+HS-SOC-ET-40	Evaluate the fundamental technological differences between an emerging technology and established technologies and how those differences influence computing.
+HS-SOC-ET-41	Evaluate the societal and environmental impacts of an emerging technology, including those that lead to inequities in access and outcomes.
+HS-SOC-ET-42	Design a conceptual solution to a real-world problem using an emerging technology, analyzing its potential benefits and harms.
+HS-SOC-HI-38	Analyze the historical trajectory of a specific computing technology and how its development is linked to societal and environmental factors.
+HS-SOC-HI-39	Propose modifications to an existing policy or piece of legislation that encourages ethical innovation and minimizes societal risks associated with technology.
+HS-SOC-HU-43	Evaluate how human choices in using, designing, deploying, and regulating computing technologies have risks, benefits, and long-term impacts.
+HS-SOC-HU-44	Debate perspectives on differences between human and artificial intelligence and their implications for consciousness, ethics, and human responsibility.
+HS-SYS-HW-29	Differentiate an operating system as a special type of software that manages both the hardware and other software components of a computing system, including handling memory and peripherals.
+HS-SYS-HW-30	Demonstrate the capabilities and limitations of a physical or simulated computing device to address a task or problem.
+HS-SYS-IM-36	Evaluate the rationale behind a law or policy governing the design and use of computing systems.
+HS-SYS-IM-37	Investigate how computing systems and infrastructure impact society and the environment, identifying who is affected and why.
+HS-SYS-NT-34	Diagram a network of computing systems, including hardware and software.
+HS-SYS-NT-35	Analyze how the internet functions as a network of networks and how it differs from other types of networks.
+HS-SYS-SE-31	Identify different types of cybersecurity and physical security measures and the trade-offs for users, data, and devices.
+HS-SYS-SE-32	Classify the causes and impacts of security breaches and social engineering attacks for individuals, industries, communities, and governments.
+HS-SYS-SE-33	Formulate a solution to a security flaw in a given system.
+MS-ALG-IM-09	Evaluate which human-centered design principles are present or missing in an existing computing technology.
+MS-ALG-IM-10	Examine evidence of beneficial and harmful impacts, ethical issues, and biases of algorithms encountered in daily life.
+MS-ALG-IM-11	Modify an algorithm to address a specific societal impact, ethical issue, or bias.
+MS-ALG-ML-06	Hypothesize how a machine learning model generates classifications or predictions.
+MS-ALG-ML-07	Investigate ways to improve the accuracy of a machine learning model and reduce bias by refining the quality of examples and nonexamples in the training data.
+MS-ALG-ML-08	Evaluate the features and limitations of a machine learning model.
+MS-ALG-PS-01	Design an algorithm that includes variables of multiple data types to solve a problem or express an idea.
+MS-ALG-PS-02	Model a given algorithm with a flowchart or pseudocode that includes a combination of control structures and procedures.
+MS-ALG-PS-03	Verify the accuracy of an algorithm for given inputs.
+MS-ALG-PS-04	Justify whether a problem is best solved using procedural instructions, rule-based logic, data-driven methods, or a combination of these approaches.
+MS-ALG-PS-05	Use an AI tool to generate outputs that assist in solving a computational problem.
+MS-DAT-DC-21	Evaluate how different levels of precision and granularity in data collection affect accuracy, storage, and analysis.
+MS-DAT-DC-22	Explain how data and its associated metadata can be used to answer questions.
+MS-DAT-DC-23	Use a computational tool to sort, filter, group, and summarize structured data.
+MS-DAT-DC-24	Analyze options to address a data quality issue.
+MS-DAT-DI-25	Use a computational tool to identify relationships among variables in a dataset and make a classification or prediction.
+MS-DAT-DI-26	Create data visualizations to show how different design choices can impact the interpretation of the same data.
+MS-DAT-DI-27	Summarize a data investigation process, including potential biases, limitations, and supporting evidence.
+MS-DAT-IM-28	Explain the benefits and risks of allowing personal data and metadata to be collected and used in datasets, including issues of data ownership, privacy, and sovereignty.
+MS-DAT-IM-29	Analyze how decisions made at different stages of working with data can lead to biased data, misleading conclusions, and compromised AI models.
+MS-PRO-PD-12	Use a procedure to structure code for clarity and reusability.
+MS-PRO-PD-13	Use reference documentation in program development.
+MS-PRO-PD-14	Justify the importance of attribution and intellectual property when developing computing technologies.
+MS-PRO-PD-15	Develop a program utilizing inclusive collaboration practices.
+MS-PRO-RD-17	Analyze the roles of iteration, selection, variables, and procedures in a segment of code.
+MS-PRO-RD-18	Analyze AI-generated code for accuracy and usability in a programming project.
+MS-PRO-TR-19	Use systematic strategies to test, refine, and document changes to a computing technology to meet the intended purpose.
+MS-PRO-TR-20	Refine a computing technology based on user feedback to improve its usability and accessibility.
+MS-PRO-VD-16	Use variables of multiple data types to store, access, and manipulate data within a program.
+MS-SOC-CE-44	Analyze how workers in different careers use computational thinking to solve real-world problems.
+MS-SOC-CE-45	Evaluate how automation in technology can create or replace jobs and change how people work.
+MS-SOC-ET-40	Evaluate when it is appropriate to use AI and other emerging technologies to solve a problem based on their capabilities, limitations, and environmental impacts.
+MS-SOC-ET-41	Evaluate how the decisions made while designing an emerging technology influence user experiences differently across different communities.
+MS-SOC-ET-42	Debate ways an emerging technology impacts the social, cultural, and environmental issues in local communities.
+MS-SOC-HI-38	Compare the roles of individuals, communities, organizations, and governments in shaping computing technologies across major eras in computing history.
+MS-SOC-HI-39	Analyze intended and unintended impacts of a historical computing technology on society and the environment.
+MS-SOC-HU-43	Analyze how the decisions humans make when using computing technologies have ethical and social consequences.
+MS-SYS-HW-30	Examine differences between computing systems based on user needs, system requirements, and potential societal, environmental, and ethical impacts.
+MS-SYS-HW-31	Describe computing devices used in various industries, their basic functions, and how they are used to accomplish tasks or solve problems.
+MS-SYS-IM-36	Collaborate to improve the design of a computing system to meet the needs of diverse users.
+MS-SYS-IM-37	Examine how access to computing systems can vary based on personal and social factors, such as physical ability, geographic location, socioeconomic status, and age.
+MS-SYS-NT-34	Model how information in a network is broken down into packets, transmitted between devices, and reassembled.
+MS-SYS-NT-35	Explain how the resilience of the internet depends on interconnected devices and their roles and functions within the network.
+MS-SYS-SE-32	Explain the effects of not using the CIA triad when working with data.
+MS-SYS-SE-33	Evaluate common types of cyber attacks and preventions.
+S1-AIN-DD-01	Analyze AI systems to differentiate the types of problems they address.
+S1-AIN-DD-02	Modify AI system training data to improve fairness and accuracy in outputs.
+S1-AIN-DD-03	Create an application using a prebuilt supervised learning model to make a classification or prediction.
+S1-AIN-DD-04	Compare data representations and how representation choice constrains applicable algorithms.
+S1-AIN-DD-05	Evaluate whether an AI or non-AI computational solution is appropriate for a real-world problem.
+S1-AIN-DS-06	Examine how data flows through a neural network structure.
+S1-AIN-DS-07	Apply data acquisition, cleaning, and transformation techniques to prepare data for AI analysis.
+S1-AIN-HR-08	Plan safeguards for AI systems that protect human well-being and privacy while ensuring meaningful human involvement in decision-making.
+S1-AIN-HR-09	Analyze the potential biases and limitations of AI systems.
+S1-AIN-HR-10	Analyze the environmental impacts of widespread AI adoption.
+S1-AIN-PP-11	Integrate a prebuilt AI agent into an application.
+S1-AIN-PP-12	Analyze how AI tools shape user experiences for people with diverse backgrounds and characteristics.
+S1-AIN-PP-13	Assess how unauthorized data collection has influenced the practice of training AI models.
+S1-AIN-PP-14	Evaluate how ethical implications of AI have changed over time.
+S1-CYB-CP-11	Explain the importance of cybersecurity policies in protecting organizational assets and mitigating risks.
+S1-CYB-CP-12	Explain key components of effective security policies.
+S1-CYB-ND-01	Analyze the role of network services and protocols in secure communication and their potential vulnerabilities.
+S1-CYB-ND-02	Examine the concepts of the Open Systems Interconnection (OSI) model and their role in network communication.
+S1-CYB-ND-03	Distinguish between networks based on their protocols, topologies, and addressing schemes.
+S1-CYB-ND-04	Examine security risks in digital systems and corresponding mitigation strategies.
+S1-CYB-NO-05	Apply diagnostic tools and techniques to resolve network connectivity issues.
+S1-CYB-NO-06	Analyze system processes and network activity using command-line tools to identify potential security concerns.
+S1-CYB-PP-13	Analyze the potential consequences of a cybersecurity decision on individuals, organizations, and society.
+S1-CYB-PP-14	Analyze social engineering techniques and how they exploit human cognitive biases and organizational weaknesses.
+S1-CYB-PP-15	Translate cybersecurity concepts, risks, and solutions clearly to both technical and nontechnical audiences.
+S1-CYB-TS-07	Analyze how common cyber threats related to network activity exploit system vulnerabilities.
+S1-CYB-TS-08	Evaluate a security threat using the CIA triad, states of data, and types of control.
+S1-CYB-TS-09	Analyze how encryption methods in network communication protect privacy and security.
+S1-CYB-TS-10	Evaluate security measures as part of a layered defense strategy to protect sensitive information.
+S1-DSC-AM-04	Apply appropriate analytic and visualization techniques for categorical and quantitative data.
+S1-DSC-AM-05	Examine missing data and its impact on data analysis.
+S1-DSC-AM-06	Analyze structured categorical and/or quantitative datasets, using computational tools and libraries.
+S1-DSC-CC-01	Apply exploratory data analysis techniques to non-hierarchical quantitative data.
+S1-DSC-CC-02	Interpret metadata when using data collected by others.
+S1-DSC-CC-03	Develop a program to manipulate and transform data to prepare for analysis.
+S1-DSC-MI-07	Interpret the results of a data analysis to explain patterns, anomalies, and trends, and connect them back to the original problem or research question.
+S1-DSC-MI-08	Explain the appropriateness of predictive models for the specific problem being addressed.
+S1-DSC-MI-09	Explain how dataset size affects model stability and performance.
+S1-DSC-PP-12	Apply ethical principles to data collection, analysis, and communication to promote privacy, transparency, and accountability.
+S1-DSC-PP-13	Assess how data collection and use may impact marginalized and underrepresented groups.
+S1-DSC-PP-14	Document data analysis results in a format appropriate for an audience with diverse backgrounds and perspectives.
+S1-DSC-VZ-10	Create a data visualization that communicates key findings to diverse audiences.
+S1-DSC-VZ-11	Analyze how graphical conventions in data visualizations support accurate interpretation and how breaking conventions can mislead.
+S1-GMD-AR-07	Examine the key architectural features of computing hardware and their implications for game development.
+S1-GMD-DD-01	Analyze the fundamental components of a game, including players, rules, game mechanics, and outcomes.
+S1-GMD-DD-02	Create a storyboard to plan and communicate a game’s narrative and interactive experience.
+S1-GMD-DD-03	Develop an interactive experience to support gameplay.
+S1-GMD-DD-04	Adapt rule-based logic to improve control of game agents or systems.
+S1-GMD-PP-08	Analyze the ethical implications of copyright and intellectual property in game development.
+S1-GMD-PP-09	Develop a game project collaboratively within a diverse team.
+S1-GMD-PX-05	Create a user-friendly interface for a game, considering accessibility, usability, and aesthetics.
+S1-GMD-PX-06	Optimize basic game usability through user testing and identifying actionable design revisions.
+S1-PHY-CI-04	Use IoT devices to collect sensor data and transmit it locally using device- to-device or device-to-gateway communication.
+S1-PHY-CI-05	Implement IoT communication by connecting physical devices with protocols, applying security practices.
+S1-PHY-DD-03	Develop software to control a physical device using an iterative design process.
+S1-PHY-HC-01	Construct an electrical circuit to power and control a physical computing device.
+S1-PHY-IO-02	Integrate sensors, actuators, and peripherals into a physical computing system.
+S1-PHY-PP-06	Use a version control system to coordinate development in a physical computing project.
+S1-PHY-PP-07	Evaluate social, technical, and sociotechnical impacts of a physical computing system.
+S1-PHY-PP-08	Evaluate the security implications of a physical computing system, including data privacy, unauthorized access, and potential vulnerabilities.
+S1-SWD-DD-01	Implement linear data structures to organize and access collections of data when solving computational problems.
+S1-SWD-DD-02	Design software that accounts for complexity through abstraction.
+S1-SWD-DD-03	Use integrated development environment (IDE) features to streamline software development, including code editing, debugging, version control, and project management.
+S1-SWD-PP-08	Collaborate to develop software that reflects diverse perspectives.
+S1-SWD-TR-06	Use AI-assisted IDE tools or features to understand unfamiliar code and identify errors during debugging.
+S1-SWD-TR-07	Design a test plan that exercises program functionality, including edge cases, error conditions, and varied user inputs.
+S1-SWD-UX-04	Refine a user interface design using accessibility and responsive design tools.
+S1-SWD-UX-05	Create software that serves intended users and contexts using human- centered design principles.
+S1-XCS-XC-01	Explain connections between CS concepts and practices and those from a non-CS discipline (X).
+S1-XCS-XC-02	Formulate a computational solution to a problem in a non-CS discipline (X) using computational thinking.
+S1-XCS-XC-03	Analyze a computer science technology or approach used in a non-CS discipline (X).
+S1-XCS-XC-04	Model relationships within a non-CS discipline using data, visualizations, and computational methods.
+S1-XCS-XC-05	Assess how well an algorithm solves problems within a non-CS discipline (X) by evaluating its accuracy, efficiency, and relevance to the intended goal.
+S2-AIN-DD-01	Analyze problems that can be addressed using unsupervised learning.
+S2-AIN-DD-02	Optimize an AI algorithm’s performance for a given problem.
+S2-AIN-DD-03	Create an application using a complex supervised learning model.
+S2-AIN-DS-04	Evaluate metadata and data pipelines to support transparency in AI model selection and deployment.
+S2-AIN-DS-05	Transform data to meet the input requirements of an AI algorithm.
+S2-AIN-HR-06	Develop a policy that promotes transparency in AI applications.
+S2-AIN-HR-07	Analyze how model optimization choices impact a model’s performance, interpretability, and fairness.
+S2-AIN-PP-08	Develop an AI agent to accomplish a defined task.
+S2-AIN-PP-09	Develop a professional communication artifact by interpreting technical AI results for diverse audiences.
+S2-AIN-PP-10	Debate aspects of AI regulatory frameworks and legislation across countries.
+S2-CYB-CP-09	Debate how various regulations impact organizational security policies, procedures, and compliance.
+S2-CYB-ND-01	Integrate security features in networking hardware and software.
+S2-CYB-ND-02	Design a secure network, including servers, switches, routers, endpoints, and firewalls.
+S2-CYB-ND-03	Evaluate the security implications of different network topologies.
+S2-CYB-NO-04	Analyze network traffic patterns to distinguish between normal and potentially malicious behavior.
+S2-CYB-NO-05	Analyze cybersecurity tasks to improve efficiency and reliability.
+S2-CYB-PP-10	Analyze the benefits, risks, and ethical implications of AI in cybersecurity.
+S2-CYB-PP-11	Analyze cybersecurity vulnerabilities and incidents to inform responsible disclosure practices.
+S2-CYB-PP-12	Create documentation of cybersecurity processes and decisions that supports team coordination and accountability.
+S2-CYB-TS-06	Design access controls to protect sensitive information.
+S2-CYB-TS-07	Evaluate security risks to determine appropriate risk management strategies.
+S2-CYB-TS-08	Examine an incident response plan for a real-world scenario.
+S2-DSC-AM-05	Build a model to explain relationships, make predictions, and evaluate the influence of different variables.
+S2-DSC-AM-06	Evaluate strategies for handling missing data.
+S2-DSC-AM-07	Analyze an unstructured, mixed-type, or high-dimensional dataset using computational tools and libraries.
+S2-DSC-CC-01	Apply exploratory data analysis techniques to a hierarchical structured data source.
+S2-DSC-CC-02	Document the origin, structure, and preparation of a dataset to support clarity and reproducibility.
+S2-DSC-CC-03	Develop a program to collect and integrate data from multiple sources.
+S2-DSC-CC-04	Choose appropriate data to collect for a data science project based on available tools, skills, and project goals.
+S2-DSC-MI-08	Evaluate the performance of models using established metrics.
+S2-DSC-MI-09	Analyze the trade-offs between interpretability, accuracy, and generalizability as they relate to model complexity.
+S2-DSC-MI-10	Analyze how adding or removing variables affects model behavior and performance.
+S2-DSC-PP-13	Evaluate ethical, legal, and social considerations when working with large- scale datasets, predictive models, and emerging technologies.
+S2-DSC-PP-14	Evaluate protective measures in data collection, usage, and governance for privacy, security, and fairness.
+S2-DSC-PP-15	Translate technical results for diverse audiences in professional communication artifacts.
+S2-DSC-VZ-11	Create a visualization that accurately represents data and avoids misleading design choices.
+S2-DSC-VZ-12	Critique a data visualization for misleading elements and their role in spreading misinformation.
+S2-GMD-AR-06	Analyze game system architectures that support scalability, maintainability, and performance.
+S2-GMD-DD-01	Justify the use of responsible design principles in developing an engaging, meaningful game experience.
+S2-GMD-DD-02	Develop a system that programmatically controls 2D or 3D animation states based on game logic and player interactions.
+S2-GMD-DD-03	Construct in-game artificial intelligence to control NPC behavior.
+S2-GMD-PP-07	Create a game utilizing ethical principles in the design and development process.
+S2-GMD-PP-08	Collaborate effectively in a project team by defining and executing assigned roles, communicating clearly, and managing shared resources to deliver a game project.
+S2-GMD-PX-04	Evaluate game interactions using diverse input devices to enhance immersion and player experience.
+S2-GMD-PX-05	Evaluate two versions of a game using defined metrics to determine which performs better.
+S2-PHY-CI-04	Develop an IoT system to manage the collection and transmission of data and enable remote monitoring and control of a physical system.
+S2-PHY-CI-05	Develop an embedded network, evaluating trade-offs among network protocols, security measures, and scalability.
+S2-PHY-DD-03	Develop an application that extends functionality and user engagement with physical devices.
+S2-PHY-HC-01	Develop an electromechanical system using a CAD tool for design and testing.
+S2-PHY-IO-02	Design a closed-loop feedback control system to meet a desired outcome using varying sensor types.
+S2-PHY-PP-06	Apply a project management methodology to collaboratively design, develop, and test a physical computing project.
+S2-PHY-PP-07	Evaluate how physical computing technologies shape social processes, communities, power, and equity in global society.
+S2-PHY-PP-08	Develop a physical computing solution for diverse users using the engineering design process.
+S2-SWD-DD-01	Apply associative and hierarchical data structures to solve computational problems.
+S2-SWD-DD-02	Develop a prototype using diverse user personas and user journey maps to guide design decisions.
+S2-SWD-DD-03	Develop a project in iterative cycles, documenting changes and the rationale for each cycle.
+S2-SWD-DD-04	Modify an existing algorithm to improve efficiency, considering factors such as data structures and algorithmic paradigms.
+S2-SWD-PP-09	Apply an industry-standard software development process to plan and deliver a project while prioritizing equity and justice.
+S2-SWD-TR-07	Use an IDE to test and refine a complex software project.
+S2-SWD-TR-08	Debug a complex software project to identify, isolate, and fix errors.
+S2-SWD-UX-05	Evaluate the user experience to improve usability.
+S2-SWD-UX-06	Create a user-friendly, accessible, and responsively designed interface.

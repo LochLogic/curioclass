@@ -5,43 +5,46 @@
 # note: CASEL publishes no numbering for sub-skills; <n> is the order on the CASEL page (ours, not official). The page frames them as examples ("Such as"), not an exhaustive list.
 # note: 40 sub-skills: Self-Awareness 9, Self-Management 7, Social Awareness 8, Responsible Decision-Making 7, Relationship Skills 9. Competency names spelled as in modules.csv.
 # note: 2026-11-11: the sub-skill wording was removed from this header (the publisher's text is all rights reserved). Read the sub-skills on the source page above, in the order listed there; <n> is that order.
-CASEL.Self-Awareness.1
-CASEL.Self-Awareness.2
-CASEL.Self-Awareness.3
-CASEL.Self-Awareness.4
-CASEL.Self-Awareness.5
-CASEL.Self-Awareness.6
-CASEL.Self-Awareness.7
-CASEL.Self-Awareness.8
-CASEL.Self-Awareness.9
-CASEL.Self-Management.1
-CASEL.Self-Management.2
-CASEL.Self-Management.3
-CASEL.Self-Management.4
-CASEL.Self-Management.5
-CASEL.Self-Management.6
-CASEL.Self-Management.7
-CASEL.Social Awareness.1
-CASEL.Social Awareness.2
-CASEL.Social Awareness.3
-CASEL.Social Awareness.4
-CASEL.Social Awareness.5
-CASEL.Social Awareness.6
-CASEL.Social Awareness.7
-CASEL.Social Awareness.8
-CASEL.Responsible Decision-Making.1
-CASEL.Responsible Decision-Making.2
-CASEL.Responsible Decision-Making.3
-CASEL.Responsible Decision-Making.4
-CASEL.Responsible Decision-Making.5
-CASEL.Responsible Decision-Making.6
-CASEL.Responsible Decision-Making.7
-CASEL.Relationship Skills.1
-CASEL.Relationship Skills.2
-CASEL.Relationship Skills.3
-CASEL.Relationship Skills.4
-CASEL.Relationship Skills.5
-CASEL.Relationship Skills.6
-CASEL.Relationship Skills.7
-CASEL.Relationship Skills.8
-CASEL.Relationship Skills.9
+# note: 2026-11-16: each line is now `CASEL.<Competency>.<n><TAB>our own words` (the shape of ma-hss-2018.txt), so a scope and sequence can be planned from this file. The words are ours, written for planning, never the publisher's.
+# reuse: casel.org terms of use (read 2026-11-16) allow personal, non-commercial use only and bar copying or adapting without written permission; the page is marked all rights reserved. So ids and our own words only, never CASEL's sentences in any Curio Class page. Plan: docs/courses/sel/STANDARD.md.
+# check: scripts/standards.py does not read this file; its CLOSED regex accepts only the five competency codes (CASEL.Self-Awareness), not the numbered ids. Noted for the lead in docs/courses/sel/STANDARD.md.
+CASEL.Self-Awareness.1	Understand who you are by bringing together the personal parts of yourself and the groups you belong to (family, culture, interests, roles)
+CASEL.Self-Awareness.2	Name the strengths you bring, including those that come from your culture and the languages you speak
+CASEL.Self-Awareness.3	Notice and name what you are feeling
+CASEL.Self-Awareness.4	Tell the truth and act on your values, also when it is hard
+CASEL.Self-Awareness.5	See how your feelings, what you care about and what you think shape one another
+CASEL.Self-Awareness.6	Notice your own snap judgements and unfair assumptions about people, and question them
+CASEL.Self-Awareness.7	Believe you can do a task, and act on that belief
+CASEL.Self-Awareness.8	Treat skill and ability as things that grow with effort, practice and help
+CASEL.Self-Awareness.9	Find what interests you and what gives your effort a purpose
+CASEL.Self-Management.1	Handle strong feelings so they guide what you do rather than drive it
+CASEL.Self-Management.2	Know and use ways to calm down and cope with stress
+CASEL.Self-Management.3	Keep yourself on task and push yourself without being made to
+CASEL.Self-Management.4	Set goals for yourself and with a group, and work toward them
+CASEL.Self-Management.5	Plan steps, manage time and keep materials in order
+CASEL.Self-Management.6	Step forward and start something without waiting to be asked
+CASEL.Self-Management.7	Act to shape your own life and your group's, alone and together
+CASEL.Social Awareness.1	Take the point of view of another person
+CASEL.Social Awareness.2	Notice what other people do well
+CASEL.Social Awareness.3	Feel with others and act with care when they struggle
+CASEL.Social Awareness.4	Pay attention to how others feel, and care about it
+CASEL.Social Awareness.5	Notice what you are thankful for, and say so
+CASEL.Social Awareness.6	Recognize that groups and places expect different ways of acting, and that some expectations have been unfair
+CASEL.Social Awareness.7	Read what a situation asks of you and the chances it offers
+CASEL.Social Awareness.8	Understand how groups and systems (a school, the media, a government) shape how people act
+CASEL.Responsible Decision-Making.1	Ask questions and stay open to new ideas
+CASEL.Responsible Decision-Making.2	Reach a sound judgement by weighing information, data and facts
+CASEL.Responsible Decision-Making.3	Find solutions to problems in your own life and in your community
+CASEL.Responsible Decision-Making.4	Think ahead about what your actions may cause, and judge the results
+CASEL.Responsible Decision-Making.5	See that careful thinking helps in school and out of it
+CASEL.Responsible Decision-Making.6	Think about your part in the well-being of yourself, your family and your community
+CASEL.Responsible Decision-Making.7	Weigh how a choice affects you, other people, your community and its institutions
+CASEL.Relationship Skills.1	Speak and listen so that meaning gets across
+CASEL.Relationship Skills.2	Build and keep healthy friendships and other relationships
+CASEL.Relationship Skills.3	Work and get along well with people whose cultures differ from yours
+CASEL.Relationship Skills.4	Work as a team and solve problems together
+CASEL.Relationship Skills.5	Settle disagreements in ways that are calm and fair
+CASEL.Relationship Skills.6	Say no to pressure to do something wrong or harmful
+CASEL.Relationship Skills.7	Lead a group well, and know when to follow
+CASEL.Relationship Skills.8	Ask for help when you need it, and offer help when others do
+CASEL.Relationship Skills.9	Speak up for others whose rights are not being respected

@@ -6,6 +6,8 @@
 # note: grade-level clusters K, 1, 2-3, 4-5, 6-8, 9-12 for ELD-LA/MA/SC/SS; ELD-SI uses K-3 and 4-12 and its codes carry no Interpretive/Expressive mode (the framework says both modes are the same for SI).
 # note: 104 lines = 8 ELD-SI + 48 cluster x KLU Language Expectations for standards 2-5, each in Interpretive and Expressive (96). Only the "most prominent" KLUs per cluster get Language Expectations, so not every standard x KLU x cluster exists (e.g. ELD-MA.K has Inform only).
 # note: extracted from the PDF text by code pattern; all 48 non-SI codes appear in both modes; K math page checked by hand.
+# reuse: wida.wisc.edu/policies (read 2026-11-16): content is for personal, non-commercial use and may not be reproduced, modified or distributed without written permission from WCER and the University of Wisconsin Board of Regents. So this file holds the official reference codes only, and any Curio Class wording about a Language Expectation or a proficiency level is our own. Plan: docs/courses/eld/STANDARD.md.
+# check: scripts/standards.py does not read this file; its CLOSED regex accepts only the coarse codes modules.csv uses (WIDA.ELD-1 to 5, WIDA.Narrate etc.), not these ids. Noted for the lead in docs/courses/eld/STANDARD.md.
 WIDA.ELD-SI.K-3.Narrate
 WIDA.ELD-SI.K-3.Inform
 WIDA.ELD-SI.K-3.Explain
