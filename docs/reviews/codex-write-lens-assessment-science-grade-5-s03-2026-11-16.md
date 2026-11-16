@@ -1,0 +1,7 @@
+1. [field 5, Q2] Powder P’s tested quantity and water volume are missing | Complete dissolving cannot distinguish sugar from a smaller salt portion | State that P uses 8 g in 20 mL water under the references’ temperature, stirring and observation conditions.
+2. [field 5, day 57 exit] The key infers rusting from unspecified scraps changing colour | The stimulus establishes a moisture-linked colour change, without identifying rust or a new substance | Limit the key to that conclusion, or supply steel identity, starting and resulting properties, and evidence supporting rust identification.
+3. [field 5, Q4] The transfer task repeats salt recovery and damp-versus-dry rusting already studied on days 56 and 57 | A cleaning-mixture label does not establish transfer to an unfamiliar phenomenon | Replace the record pair with a fully specified unfamiliar case requiring students to apply controlled-comparison and property evidence.
+4. [field 5, daily exits 55 and 56] The prompts repeat that day’s milk-and-acid clumping and sand-and-salt separation | Calling records “fresh” or “new” leaves the investigated case and conclusion unchanged | Supply unseen comparisons requiring a different evidence decision, such as conflicting results or a failed control, with matching keys.
+
+Check: s03.md passes; the command fails on unfinished placeholders in s04.md to s06.md. Required data/plans/science-grade-5/source-map.csv is absent.
+Count: 4 findings (lens assessment).

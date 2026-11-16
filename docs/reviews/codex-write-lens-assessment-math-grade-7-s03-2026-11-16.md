@@ -1,0 +1,6 @@
+1. [5, 6, U3] The keys and repair print `pi r?` instead of `pi r^2` at lines 86, 88, 93, 102 and 204 | The general area formula loses its squared exponent, making the symbolic key unusable | Replace every literal `r?` in s03.md with `r^2`, including the related teaching prose.
+2. [5] The “Meets” samples at line 93 omit required evidence: E1 omits the general formulas, E2 omits both estimates, and E4 omits most representations and the three point explanations | These samples contradict the stated look-fors and model incomplete work as meeting them | Supply complete successful samples, including E2 estimates of 47.1 meters and 176.625 square meters; label the existing incomplete responses as partial and show their component scores.
+3. [U3] Exit 40 repeats E3’s sector sketch, labels and general derivation with a changed radius; exit 42 repeats E2’s circular-display cord-and-covering story | These exits rehearse assessment tasks rather than provide fresh evidence | Replace exit 40 with correction of an unseen mislabeled sector diagram, and exit 42 with critique of mismatched length and area calculations in an unseen design record.
+
+Gate: s03.md PASS; the command fails on unfinished placeholders in s04.md to s08.md.
+Count: 3 findings (lens assessment).

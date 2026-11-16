@@ -1,0 +1,2 @@
+Gate: s08.md passes; the course check fails on unfinished TODO(writer) placeholders in s09.md.
+Count: 0 findings (lens sources). The [base lessons](https://im.kendallhunt.com/k5/teachers/grade-2/unit-8/lesson-1/lesson.html) and both linked progression drafts are freely checkable. Outside tasks have source mappings, assessment cases are identified as original, and no invented statistic is presented as real.

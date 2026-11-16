@@ -1,0 +1,3 @@
+1. [Field 4, earlier-row table] Last-use entries contradict the controlling scope and sequence: s1-daylight-seasons says grade 3 day 47 rather than grade 1; s1-sky-patterns says grade 3 day 13 rather than its day 1 assessment | The prerequisite history is inconsistent, although both readiness decisions remain correct | Replace those last-use cells with the scope and sequence’s controlling entries and retain readiness on day 61 and support on day 63.
+Gate: s04.md passes; the course check fails on unfinished TODO(writer) entries in s05.md and s06.md. The scope and sequence explicitly says no source-map.csv is needed.
+Count: 1 findings (lens sequence).

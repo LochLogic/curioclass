@@ -1,0 +1,2 @@
+Count: 0 findings (lens sources). Outside tasks have named sources, free publisher links, edition and licence information, and day-credit instructions. The cited [Geometry](https://www.isbe.net/Documents/geometry-k-6.pdf) and [Measurement](https://www.isbe.net/Documents/geometric-measurement-k-5.pdf) drafts support the background guidance. No unchecked quotation or invented statistic presented as real is planned.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-3` passed, including s08.md.

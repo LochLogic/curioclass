@@ -1,0 +1,5 @@
+1. [Field 5, paragraph before items 3 and 4; field 7] Items 3 and 4 are explicitly marked “without intervening feedback or revision,” then retained as 20 of the 30 end points | Earlier work counts without the required written feedback and revision opportunity | Return written feedback before day 66, use its repair time to revise both products, and score them afterward. Update the unchanged-result and unscored-correction instructions accordingly.
+2. [Field 5, section exits, days 62 and 66] Day 62 rehearses item 3’s food-to-repair and respiration model; day 66 repeats item 4’s damaged-absorption effect on nerve cells immediately after anchor-model revision | These exits cannot distinguish transfer from rehearsed answers | Replace day 62 with an unseen model critique requiring an atom audit and mitochondrion explanation. Replace day 66 with new evidence contrasting normal absorption with blocked blood delivery, requiring students to locate and explain the disruption.
+
+Gate: s03.md passes; the course command fails on unfinished TODOs in s04.md to s06.md.
+Count: 2 findings (lens assessment).

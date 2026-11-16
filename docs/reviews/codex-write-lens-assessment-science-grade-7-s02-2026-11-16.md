@@ -1,0 +1,8 @@
+Gate: s02.md PASS; course check fails on unfinished TODO(writer) entries in s03.md through s06.md.
+
+1. [Field 5, item 3] The construction point uses day 35's first-build work, from the first assembly lesson | Later feedback cannot make first-teaching-day work eligible for scoring | Keep day 35 construction formative; score a later individually observed construction contribution, with written feedback and an earlier-day revision opportunity.
+2. [Field 5, scoring samples] The “Meets” samples omit required evidence: item 1 lacks the complete model and four predictions; item 2 lacks product-property evidence, energy arrows and insulation reasoning; item 3 lacks actual readings, conditions and a numerical comparison against criteria | These examples could pass incomplete answers | Replace each with a complete response containing its listed look-fors, including before-and-after measurements for item 3.
+3. [Field 5, item 2] The “Meets” sample calls the bare design's predicted 26-degree value a trial result; only the sleeved design has a supplied physical test | The key models error D by treating a prediction as an observation | Write “The model predicts 26 degrees for the bare design” and identify 23 and 25 degrees as the sleeved design's measured results.
+4. [Field 7] Explanations are marked after class, but the only allocated response occurs earlier that day; “later support” has no scheduled repair tasks | Groups cannot reliably receive repairs based on completed marking | Specify the next day's first five minutes for teacher-judged responses and map each A to G group to its field 6 repair.
+
+Count: 4 findings (lens assessment).

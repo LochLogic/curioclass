@@ -1,0 +1,4 @@
+1. [5, Daily evidence, day 156] E2 is reused as the exit after students have worked on its school-runoff case since day 154. | The revised product does not provide fresh exit evidence. | Retain E2 as the scored product, but use a new runoff case for a question of at most two parts within the existing ten-minute rationale slot; provide its key.
+2. [6, Error E and carbon-model evidence] Reducing inputs from six to three while removal stays four makes stock fall from 22 to 21, illustrating the misconception that lower emissions immediately lower atmospheric stock. | The repair does not expose why that inference can fail. | First reduce inputs from six to five: stock rises from 22 to 23 despite lower emissions. Then contrast inputs below removal and require students to explain the difference.
+
+Count: 2 findings (lens assessment).

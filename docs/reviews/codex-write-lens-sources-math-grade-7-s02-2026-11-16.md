@@ -1,0 +1,2 @@
+Gate: s02.md passes; the course check fails on unfinished TODOs in s03.md through s08.md.
+Count: 0 findings (lens sources). Mapped lessons are freely accessible, the [base licence](https://im.kendallhunt.com/MS/teachers/2/2/1/preparation.html) supports adaptation, and the [Progression](https://commoncoretools.files.wordpress.com/2012/02/ccss_progression_rp_67_2011_11_12_corrected.pdf) is accessible. Adaptations have credits, invented cases require explicit labels, and no assessment depends on an unavailable source.

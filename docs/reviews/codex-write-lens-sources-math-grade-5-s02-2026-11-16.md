@@ -1,0 +1,2 @@
+Gate: s02.md PASS; course check fails on unfinished s03.md to s10.md plans.
+Count: 0 findings (lens sources). The [mapped lessons](https://im.kendallhunt.com/k5/teachers/grade-5/unit-2/lessons.html) and [noticing routine](https://im.kendallhunt.com/k5/teachers/grade-5/unit-8/lesson-14/preparation.html) are freely checkable and licensed CC BY 4.0. Adaptations are identified, invented contexts are labeled, illustrations are original, and the unread Progressions pointer is explicitly limited.

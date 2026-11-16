@@ -1,0 +1,6 @@
+Gate: s04.md passes; the course check fails on unfinished s05.md and s06.md.
+
+1. [5, item 3; 10] Students evaluate source accuracy, bias and methods using only Curio Class summaries that already supply those judgments | This substitutes our account for the sources students must evaluate | Require students to consult the actual [packaging article, page 2](https://www.epa.gov/sites/default/files/2020-09/documents/tfw_article_3_formatted.pdf) and [compostable-materials report, printed page 59](https://www.ams.usda.gov/sites/default/files/media/2025-LS-TR-CompostableMaterials_Final.pdf), including provenance and supporting references; retain summaries only as reading support.
+2. [10; days 73, 76, 86 to 87, 91 to 92] Plant and soil mass records, sprouting-seed gas records and completed decomposer data lack identified source records; field 10 explicitly leaves mass and decomposer records to make | These investigations depend on evidence that cannot yet be checked, and a blank observation sheet supplies no measurements | Name each selected data set, its exact file or free URL, page, units and collection conditions; distinguish class observations from secondhand records and label any constructed replacement “invented for practice.”
+
+Count: 2 findings (lens sources).

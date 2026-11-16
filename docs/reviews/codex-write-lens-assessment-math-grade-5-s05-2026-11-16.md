@@ -1,0 +1,6 @@
+1. [5 daily exit, day 78; 7] None of the three exit options tests error I, and none explicitly tests D | A correct calculation could leave the recorded misconception unresolved | Add an I option asking for length from area 3,510 square meters and width 27 meters, keyed to 130 meters with a labeled equation; require D students to give and distinguish an estimate and an exact result.
+2. [5 daily exit, day 67; 6, E] Reporting 2,368 removed objects as groups is labeled E, whose definition covers remaining objects only | The wrong answer does not match its register text | Define E as “Treats an object count as a group count without dividing by the group size”; retain one repair that explicitly distinguishes objects from groups.
+3. [5 daily exit, day 63] The prompt requires explaining every zero, but the key omits the tens zero in 45,300 | The key leaves part of the required place-value explanation unchecked | Add that 906 × 5 = 4,530 has zero ones; multiplying by ten makes that zero occupy tens, while the final ones zero records the tens multiplier.
+
+Gate: s05.md passes; the course check fails on unfinished TODO(writer) content in s06.md through s10.md.
+Count: 3 findings (lens assessment).

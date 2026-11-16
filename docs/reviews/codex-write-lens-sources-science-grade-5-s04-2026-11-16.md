@@ -1,0 +1,5 @@
+1. [10; days 71 to 74] No source identifies the dated sky charts used as observational data; the linked [constellations reference](https://spaceplace.nasa.gov/constellations/en/) explains seasonal visibility but supplies no dated, site-specific record | The graphs and model revisions lack traceable evidence | Name freely checkable charts with location, dates, observation time and target groups, or explicitly specify original constructed records labelled “invented for practice.”
+2. [10; anchor and field 8] The Australia photograph and replacement plumb-line, lamp-sequence and controlled-light photographs have no identified source; field 10 leaves provenance unresolved | Teachers cannot check what the images actually document or distinguish observations from staged models | Remove the Australia photograph requirement if the original invented diagram replaces it; identify each remaining image’s source and conditions, or specify original staged photographs labelled as model demonstrations.
+
+Gate: s04.md PASS; command exits 1 for unfinished s05.md and s06.md skeletons. Required source-map.csv is absent.
+Count: 2 findings (lens sources).

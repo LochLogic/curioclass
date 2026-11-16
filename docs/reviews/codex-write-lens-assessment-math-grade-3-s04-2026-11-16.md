@@ -1,0 +1,2 @@
+Checker: s04.md passes; the course check fails on unfinished TODO(writer) placeholders in s05.md to s08.md.
+Count: 0 findings (lens assessment). All recomputed keys and samples are correct. Letters A to I each describe one misconception, match their wrong answers and have a repair and response group. Assessment evidence is explicitly unscored. Daily exits await section plans, so their freshness cannot yet be verified.

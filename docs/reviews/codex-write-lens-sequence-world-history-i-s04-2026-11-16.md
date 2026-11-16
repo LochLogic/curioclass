@@ -1,0 +1,2 @@
+1. [field 4] R1 and R2 repairs occur on days 51 and 52 although the readiness check is on day 49 and both prerequisites serve section 4.1 from day 50 | This delays repair beyond the next-day timing required by UNIT-PLAN.md rule 6 | Move each needed ten-minute repair into day 50 after the hook, using warm-up and pairs time; specify a 50-minute allocation that preserves Song teaching and the exit ticket.
+Count: 1 findings (lens sequence).

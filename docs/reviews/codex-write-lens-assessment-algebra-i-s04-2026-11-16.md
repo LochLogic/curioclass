@@ -1,0 +1,7 @@
+1. [5] Day 81’s bonus model receives written feedback after day 81 but is revised and scored on day 82 (lines 95, 126) | No revision opportunity occurs on an earlier day than scoring | Keep this model formative and remove its scoring references; use the fresh day 82 notation, rate and domain items for those codes.
+2. [5] The scored day 73 record tests excluded endpoints on their first explicit teaching day (lines 120, 145, 273, 313) | First-learning work cannot become scored evidence through later revision | Keep day 73 formative; collect a fresh endpoint task during day 75 practice, provide written feedback afterward and reserve revision time on day 76.
+3. [5 and day list] Field 5 excludes first-learning products from days 66, 68, 74 and 76, but the generated day list still directs scoring day 66 at day 106 and days 68, 74 and 76 at day 82 | Teachers receive contradictory instructions about eligible assessment evidence | Correct the originating days.csv notes and regenerate the day list, naming the eligible replacement records from days 70, 75 and 78.
+4. [U3, day 63] The key assumes exactly two dispenser settings, although the prompt says “each small setting” and “each large setting” (line 263) | Multiple settings could share a volume, so the reverse relationship need not be a function | Specify “exactly two settings, small and large”; then the existing two-direction key follows.
+
+Gate: `unitplan.py check algebra-i` passes s04.md; the course check fails on unfinished s05.md to s07.md plans.
+Count: 4 findings (lens assessment).

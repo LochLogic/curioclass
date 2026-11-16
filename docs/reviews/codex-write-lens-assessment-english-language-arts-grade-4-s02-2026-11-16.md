@@ -1,0 +1,7 @@
+Gate: s02.md passes; the course command fails on unfinished TODO(writer) entries in s03.md and s04.md.
+
+1. [field 5, D75h] The scored adjective sample was made on day 73, when adjective order is first taught, and repeats “small spiny fish” from that day's model | Later revision cannot make first-teaching work eligible for scoring | Keep day 73 unscored; collect a fresh editing task on 74, give written feedback, allow revision on 75 and score afterward. Update the collection schedule and D75h.
+2. [field 5, D48a and D48d] Display B repeats R5's day 46 graph: two per block, three and five blocks, answers six and ten, difference four | Students can reproduce the practised calculation instead of interpreting fresh data | Change Display B to three scenes per block, four climbing blocks and seven turning blocks; update its axis, keys and samples to twelve, twenty-one and nine more turning scenes.
+3. [fields 5 and 6, error A] D56c and D62k assign A to evidence without reasoning, but A means a claim has no supporting textual detail | A cited detail with no explanation receives a diagnosis that does not describe it | Add AJ: “A cited detail is not connected to the claim by reasoning.” Recode these cases and matching W.4.9b responses; give AJ a repair connecting a located detail to a claim with an explanatory sentence, and include it in field 7's grouping.
+
+Count: 3 findings (lens assessment).

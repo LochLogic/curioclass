@@ -1,0 +1,11 @@
+1. [10; day 74] The oral history, object, museum label and textbook page remain unidentified and unexamined; field 10 explicitly leaves the oral source and objects unresolved | Their provenance, permitted use and relationship to the historical question cannot be checked | Name each actual source, its free location, maker, date and selected passage or object record; verify permissions and retain the source itself wherever students must examine it.
+
+2. [5, Regional Record A; 10] Assessment A maps Wampanoag communities, but field 10 explicitly removes their sources and supplies no Wampanoag-authored replacement | Assessed geographical content lacks the community evidence the plan requires | Add exact public sources from the named Wampanoag nations, identify which communities A represents, and document the evidence behind their mapped locations.
+
+3. [5, Record B and Q5; 10] Q5 treats Narragansett Bay’s naming as a documented contribution, but the cited [Early History](https://narragansettindiannation.org/history/early/) and [Tribal Government](https://narragansettindiannation.org/history/tribal-government/) pages do not establish that naming attribution | The proposed summary would supply an assessed fact without its claimed supporting evidence | Cite a checked source explicitly establishing the name’s derivation, or replace this example in B, Q5 and its sample with a contribution directly documented by a named source.
+
+4. [5, daily exits 79, 83 and 84; 10] Several exits lack the evidence their answers require: [Menominee Brief History](https://www.menominee-nsn.gov/culturepages/briefhistory) lists rivers and forests without documenting the activity requested on day 79; day 83’s contribution account and day 84’s government notice are unselected | Teachers must invent supporting content or choose sources after the questions have been fixed | Add a verified Menominee account documenting the selected activity; identify the exact contribution passage and dated government notice, then anchor each exit to what those sources actually show.
+
+Check: `unitplan.py check social-studies-grade-3` passes s04.md with no notes; the requested `source-map.csv` is absent.
+
+Count: 4 findings (lens sources).

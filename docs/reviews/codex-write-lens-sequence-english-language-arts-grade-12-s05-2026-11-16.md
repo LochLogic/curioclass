@@ -1,0 +1,2 @@
+Gate: s05.md passes; the course check fails only on unfinished TODO(writer) placeholders in s06.md to s08.md. No source-map.csv exists; the scope and sequence explicitly requires none.
+Count: 0 findings (lens sequence). Daily allocations total 50 minutes, the calendar matches days.csv, reading precedes dependent tasks, and prerequisite retrieval, skill practice and later handoffs are accounted for.

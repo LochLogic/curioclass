@@ -1,0 +1,5 @@
+1. [10; day 61] The required equal-ten hunting counts have no verified source; field 10 explicitly leaves them unresolved. The linked [wolf study](https://wolf.org/wp-content/uploads/2013/08/326nonlineareffectsgroupsize.pdf) does not supply the proposed event records. | The planned graph cannot be presented as observed evidence. | Supply traceable hunting-event records with their sampling method, or replace the count task with the sourced qualitative comparison and align the day’s data row.
+2. [10; days 69 to 70] The [wood-frog reference](https://www.nps.gov/dena/learn/nature/amphibians.htm) documents interior forests and wetlands, not the anchor’s coastal winter tundra. | Freezing tolerance alone does not establish survival under that habitat’s conditions. | Use the frog as a separately specified forest-and-wetland comparison, or add a source documenting its needs and survival in the particular tundra habitat used.
+
+Gate: s04.md PASS, with no notes; the course command fails on unfinished s05.md and s06.md.
+Count: 2 findings (lens sources).

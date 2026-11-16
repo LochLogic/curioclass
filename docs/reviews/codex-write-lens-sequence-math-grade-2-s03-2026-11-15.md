@@ -1,0 +1,2 @@
+Gate: `unitplan.py check math-grade-2` passes s03.md; the course check fails on unfinished `TODO(writer)` entries in s04.md to s09.md.
+Count: 0 findings (lens sequence). Standards coverage and prior-unit records are accounted for; day counts, timing, response allocations and source order align. Concrete measurement leads coherently to rulers, equations and plots, preserving the hand-off to unit 4.

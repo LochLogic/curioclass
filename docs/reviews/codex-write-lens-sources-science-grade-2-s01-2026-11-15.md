@@ -1,0 +1,3 @@
+Gate: `s01.md` PASS; the course check exits 1 because `s02.md` through `s07.md` retain unfinished placeholders. `source-map.csv` is absent; the scope and sequence explicitly exempts elementary science.
+
+Count: 0 findings (lens sources). Field 10 identifies free background sources, including [streamflow](https://www.usgs.gov/water-science-school/science/streamflow-and-water-cycle) and [ice and snow](https://www.usgs.gov/water-science-school/science/ice-snow-and-glaciers-and-water-cycle). Assessment cases are explicitly invented, materials and safety controls are named, and photographs are teacher-created or listed as original materials still to make. No unverifiable external quotation or invented real-world statistic is planned.

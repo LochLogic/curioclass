@@ -1,0 +1,6 @@
+1. [10] *Birds Help Plants* and *Birds Help Animals* have no named factual sources; verification is deferred despite their scheduled readings and exits | Their natural-history claims cannot be traced | Name checked, freely accessible sources for seed dispersal and animals eating birds or eggs, and map each article’s claims to them.
+2. [10] Seven cycle readers are labelled “original” and “ours,” but days.csv and source-map.csv require adaptations of held readers with preserved credit | The rights statement contradicts the planned source use | Identify each adapted reader’s source edition, CC BY 4.0 basis, required attribution and excluded third-party content; distinguish newly written material.
+3. [10] The shared link for checking the nest strips and human-helpers text redirects to a general [publisher planning page](https://www.eleducation.org/curriculum/language-arts/planning/grade-1-2017-ed/), without exposing those words | Readers cannot follow the supplied citation to verify the passages | Give direct free download locations and complete archive/member pointers for the checked sentence strips and assessment text.
+
+Check: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-1` passed s04.md with no notes.
+Count: 3 findings (lens sources).

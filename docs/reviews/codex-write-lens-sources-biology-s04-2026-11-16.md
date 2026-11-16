@@ -1,0 +1,3 @@
+Gate: s04.md passes; biology check fails on unfinished TODO(writer) entries in s05.md to s10.md.
+
+Count: 0 findings (lens sources). Field 10 provides checkable [river records](https://www.emergysociety.com/wp-content/uploads/OdumHT.1957.Trophic-structure-of-Silver-Springs-FL.pdf), [atmospheric data](https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt) and [carbon-cycle background](https://science.nasa.gov/earth/earth-observatory/the-carbon-cycle/), with use limits. Invented assessment records are labelled, materials are named and paper-only, and the scope and sequence explicitly permits the absent source-map.csv.

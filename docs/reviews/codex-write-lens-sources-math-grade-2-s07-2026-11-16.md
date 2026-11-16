@@ -1,0 +1,2 @@
+Gate: s07.md passes; the course check fails only on TODO(writer) placeholders in s08.md and s09.md.
+Count: 0 findings (lens sources). The [public lessons](https://im.kendallhunt.com/k5/teachers/grade-2/unit-7/lesson-1/lesson.html) and [progression](https://mathematicalmusings.org/wp-content/uploads/2015/03/ccss_progression_nbp_k5_2015_03_16.pdf) are checkable; the restricted reference is used only for sequence and models, and graph data are explicitly labelled invented for practice.

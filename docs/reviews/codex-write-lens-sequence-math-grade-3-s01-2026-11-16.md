@@ -1,0 +1,5 @@
+1. [Day list, days 4 to 8 and 21] The daily record retains days 4 and 5 graphs for day 21, while the plan schedules replacement construction on day 6, feedback on day 7 and revision on day 8. These changes are absent from days.csv, source-map.csv and the scope and sequence. | The records prescribe different work and omit time commitments from the authoritative sequence. | Align those records with the day 6 construction, day 7 feedback and ten-minute day 8 revision; identify days 4 and 5 graphs as practice and regenerate the day list.
+2. [2] Every standard says “Parts, by verb: whole standard,” including standards only begun here. | The required breakdown does not show which parts this unit develops and which later units complete. | Replace each placeholder with its actual verbs; distinguish both graph constructions and one- and two-step comparisons, product interpretation and context creation, and the introductory portions deferred to units 4 and 5 or year-end checks.
+
+Count: 2 findings (lens sequence).
+Gate: `unitplan.py check math-grade-3` passes s01.md; the course command fails on unfinished placeholders in s02.md to s08.md.

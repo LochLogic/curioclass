@@ -1,0 +1,7 @@
+Gate: s02.md passes; the course check fails on unfinished s03.md to s10.md. Required source-map.csv is absent.
+
+1. [5, scoring timeline] Both items award points for fresh day24 work, with feedback and revision deferred to day25 | Neither scored response has written feedback and a revision chance on an earlier day | Collect unscored individual science drafts on day21 after teaching, return written feedback day22, revise day23, and score revised evidence day24; keep fresh day24 probes unscored and amend the conflicting withholding instructions.
+2. [5, section exits] The day17 and day21 prompts reference records that are never supplied: sequence, chain and interaction evidence for day17, and counts and protein profiles for day21 | Their keys cannot be checked against actual stimuli, and freshness cannot be established | Print a complete, distinct invented case for each exit, including its records, observation/model labels and a case-specific key; distinguish each from the day's worked case and the end items.
+3. [5 and 6, error A] Register A describes appearance revealing a DNA sequence, but item1's wrong answer and failing sample describe appearance revealing coding or protein identity | Those responses do not explicitly assert the registered misconception | Change both A examples to “The extract's colour reveals its DNA base sequence,” retaining the register's sequence-evidence repair.
+
+Count: 3 findings (lens assessment).

@@ -1,0 +1,9 @@
+Gate: s03.md passes; the course check fails on unfinished skeletons in s04.md to s06.md.
+
+1. [5, life-cycle items] Portfolio item 2 and day 56 name stage and timing records without supplying their contents | Predictions, timing comparisons and samples cannot be checked against an actual stimulus | Print both complete stage sequences, interval values and additional seed-evidence cards; key the predictions and revisions to those records.
+2. [5, day 52 exit] The mint stimulus supplies spacing and height evidence, but the key expects shared inherited features without identifying any parent-young feature | The expected answer exceeds the stimulus | Add a documented parent-cutting relationship and a named shared feature, or remove inherited likeness from this exit's question and key.
+3. [5, portfolio item 1] The basil sample says “other conditions fixed,” although the stimulus fixes only age, light and spacing | The sample claims stronger experimental control than the record supplies | Explicitly hold soil, containers and other growing conditions constant, with water as the only changed condition.
+4. [5, day 41 exit] Paired moth and poppy models, shared patterns, differing stages and timing, and a next-stage prediction rehearse portfolio item 2 with different organisms | Species substitution provides weak evidence of transfer | Replace the exit with a fresh model critique, such as identifying and repairing an unsupported arrow using dated observations; reserve the paired model-construction task for the portfolio.
+5. [5, day 46 exit] The day's goal includes organizing trait tallies in bar graphs, but the exit asks only for likeness, variation and supporting evidence | A child can pass without demonstrating graph construction | Supply fresh numerical plant and animal tallies; ask children to construct labelled bar graphs, then explain the supported likeness and variation.
+
+Count: 5 findings (lens assessment).

@@ -1,0 +1,3 @@
+Gate: s05.md passes; the course check fails only on unfinished TODO(writer) placeholders in s06.md. The scope and sequence explicitly permits no source-map.csv.
+
+Count: 0 findings (lens sources). Free primary sources identify the [photograph](https://science.nasa.gov/resource/the-blue-marble/), [climate evidence](https://www.nps.gov/im/nccn/noca.htm) and [water-distribution data](https://www.usgs.gov/water-science-school/science/where-earths-water). Data adaptations retain provenance, invented cases are labelled, investigation materials and safety controls are named, and original records still to make are disclosed.

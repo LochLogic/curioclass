@@ -1,0 +1,7 @@
+1. [Fields 8 and 10] Supplied mass, ingredient-property, gas-test, heating, electrolysis, water-output, residue and odor records have no specific source locators. Lesson numbers and an overview page do not identify the data; full lessons remain unread. | These records replace investigations and support model revisions, so their observations and measurement conditions must be checkable. | Add a day-by-day record list naming each verified source, exact handout or table, free URL or local path, measurement conditions and adaptation. Label any original synthetic records “invented for practice.”
+
+2. [Field 10; days 18 and 21] The atomic-history and odor readings remain unnamed and unwritten, with no identified passages supporting their accounts. “No quotations are planned” leaves their factual basis unresolved. | Writers cannot verify the historical evidence or receptor explanation before adapting them. | Select and read each source, then record its title, version, free locator and sections used. For odor, the publisher provides [Reading: How do we detect odors?](https://htmlsimulations.s3.us-west-1.amazonaws.com/7.1-Lesson-13-Handout-Reading-How-do.pdf); identify an equally checkable atomic-history text and retain no third-party images.
+
+Gate: `unitplan.py check science-grade-7` passes s01.md; the course command fails on remaining placeholders in s02.md through s06.md.
+
+Count: 2 findings (lens sources).

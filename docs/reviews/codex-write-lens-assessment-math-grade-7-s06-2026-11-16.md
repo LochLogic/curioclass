@@ -1,0 +1,6 @@
+1. [5, R1; U6 days 115 to 116] R1 is revised and scored on day 116, leaving no revision opportunity on an earlier day than scoring | This violates the assessment lens’s earlier-day requirement | Move the draft to day 114, give written feedback afterward, revise on day 115 and retain scoring after day 116.
+2. [U3, exits 102 and 107; 5, M1 and I2] Exit 102 rehearses M1’s four sleeves with cord and ties; exit 107 rehearses I2’s reel, cuts and minimum remainder, with changed numbers | The assessment repeats previously answered cases | Replace these exits with reserved stimuli using different contexts and representations, such as a temperature-change model and a number-line claim requiring boundary tests; supply matching keys.
+3. [5, M3 teacher-judged sample] The “meets” sample describes operation order but supplies neither required algebraic solution chain | It models credit for an incomplete comparison | Add `2.5w + 3 = 18 → 2.5w = 15 → w = 6` and `2.5(w + 3) = 18 → w + 3 = 7.2 → w = 4.2`, alongside the arithmetic expressions and explanation.
+
+Gate: `unitplan.py check math-grade-7` passes s06.md; the course check fails on unfinished s07.md and s08.md.
+Count: 3 findings (lens assessment).

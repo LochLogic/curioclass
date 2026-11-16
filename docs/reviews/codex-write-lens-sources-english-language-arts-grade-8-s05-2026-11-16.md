@@ -1,0 +1,6 @@
+Check: unitplan.py passes s05.md. source-map.csv is absent; the scope and sequence explicitly permits this.
+
+1. [10; U6, days 135 to 142] The research is fenced to five explanatory pages, but day 138 requires evidence across method, observed outcome and limits without selecting an outcome report. The selected [agricultural passages](https://www.fda.gov/food/agricultural-biotechnology/genome-editing-agricultural-biotechnology) explain methods and potential uses. | Students lack a checkable results source for the required synthesis. | Add a freely verifiable results report to field 10 and the research set, naming its author, edition, rights basis and exact outcome-and-limit excerpt.
+2. [U3, E130 and E138] These exits supply descriptions of what another paragraph's sentences do instead of supplying that paragraph: E130 announces a definition and limitation; E138 describes a report's final sentence. | Students cannot inspect the source wording needed for sentence-role analysis and must repeat the supplied summary. | Replace each description with a complete, fresh invented paragraph containing the actual definition, evidence and qualification; ask students to analyze those sentences directly.
+
+Count: 2 findings (lens sources).

@@ -1,0 +1,5 @@
+1. [Field 5, day 29 interaction task, lines 123 to 129] Two of six interaction points assess an unasked static causal explanation and magnet force arrows | Students can complete every requested part and still lose two points | Add explicit prompts to explain the static distance evidence and draw and justify arrows before and after one magnet turns; include both in day 30 feedback and revision.
+2. [Field 5, day 28 exit ticket, line 133] The notice-flap case repeats the day's cupboard-latch problem with younger users and does not require revising a criterion | It rehearses the taught case and cannot establish changed-user reasoning | Replace it with a magnetic pickup tool that must lift three steel washers, then introduce a requirement to release them without touching them. Require a revised checkable criterion, its reason, and the supplied materials, time and cost limits.
+
+Gate: s02.md passes; the course check fails on unfinished TODO(writer) entries in s03.md through s06.md.
+Count: 2 findings (lens assessment).

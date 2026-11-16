@@ -1,0 +1,3 @@
+Gate: s04.md passed `unitplan.py check science-grade-2`; the course run failed on unfinished s05 to s07 plans.
+
+Count: 0 findings (lens sources). Free references support the [change examples](https://www.nextgenscience.org/sites/default/files/evidence_statement/black_white/2-PS1-4%20Evidence%20Statements%20June%202015%20asterisks.pdf) and [freezing damage](https://nchfp.uga.edu/how/freeze/freezing-basics/foods-that-do-not-freeze-well/). Materials and safety controls are named; planned images and records are identified as originals, with invented assessment cases labelled. No unchecked quotations are planned. The absent source-map.csv is consistent with the scope and sequence’s exemption for original elementary courses.
