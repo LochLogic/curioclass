@@ -38,5 +38,7 @@ A unit runs at least one full inquiry cycle on its host task, with the product s
 
 ## Questions in this draft
 
-- One year per grade or per band (STANDARD.md section 3); one or two sessions a week per grade.
-- Whether the Civic Online Reasoning CC BY items and Caulfield's book are taken as partial bases.
+- Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per grade K to 5, one for 6 to 8, one
+  for 9 to 12; the online-reasoning lessons and the web-literacy book are partial bases for 6 to 12 (STANDARD.md
+  section 3). Sessions a week were settled 2026-11-15 (above).
+- Still open: whether the 6 to 8 and 9 to 12 courses each run one year or across their grades.

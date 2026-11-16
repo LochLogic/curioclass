@@ -77,7 +77,7 @@ commits only its own files and never edits in another session's folder. A backgr
 
 ## Standing facts
 
-- 107 courses (105 active, 2 world languages shelved); 52 core courses in the four core subjects plus 6 core
+- 120 courses (118 active, 2 world languages shelved); 52 core courses in the four core subjects plus 6 core
   electives. World languages stay in the course counts as a reminder. Every course is finished to the adoption bar;
   never call that unrealistic.
 - The blind rule: writers and first readers never open a subject's earlier planning (each brief lists the paths),

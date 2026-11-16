@@ -1,5 +1,7 @@
 # Computer science: the standard, made usable
 
+**DRAFT, 2026-11-16.**
+
 Written 2026-11-16 as the subject's pre-work (docs/PRODUCTION-PATH.md, "After the core subjects"; the owed row in
 docs/ADOPTION-BAR-SUBJECTS.md, "Before a scope and sequence in this subject"). The model is
 docs/courses/social-studies/STANDARD.md. Course calls (what a course teaches, the course list, minutes) are Cory's;
@@ -44,27 +46,27 @@ docs/reviews/standards-currency-2026-11-11.md, csta section, item 5).
 
 ## 2. How the standards map to our courses
 
-data/courses.csv has one track, `cs-k12`; COURSES-STATUS lists four band courses (K to 2, 3 to 5, 6 to 8, 9 to 12).
+Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per grade, K to 12, 13 courses under the
+`cs-k12` track.
 
-| Our course | CSTA band(s) | Ids | Note |
+| Our course | CSTA band | Ids | Note |
 |---|---|---|---|
-| Computer Science, grades K to 2 | EK (pre-K and K), E1, E2 | 48 | EK is written for pre-K and K together; Curio Class has no pre-K, so all of EK is taught in K |
-| Computer Science, grades 3 to 5 | E3, E4, E5 | 57 | Grade-level standards, one set per grade |
-| Computer Science, grades 6 to 8 | MS | 45 | CSTA writes one band for the three years and no grade split |
-| Computer Science, grades 9 to 12 | HS Foundational | 46 | Specialty ids claimed only where a unit already goes that far (Cory, 2026-11-11) |
+| Computer Science, kindergarten | EK (pre-K and K) | 16 | Curio Class has no pre-K, so all of EK is taught in K |
+| Computer Science, grades 1 to 5 (one course each) | E1 to E5 | 16, 16, 19, 19, 19 | CSTA writes one set per grade; each course teaches its own |
+| Computer Science, grades 6, 7 and 8 (one course each) | MS | 45 across the three | CSTA writes one band and no grade split; the 6 to 8 scope and sequence places each id in a year (introduced, then built on), and each id is fully met by grade 8 |
+| Computer Science, grades 9 to 12 (one course each) | HS Foundational | 46 across the four | Placed by year the same way; Specialty ids claimed only where a unit already goes that far (Cory, 2026-11-11) |
 
-**Open with Cory: what a band course is.** CSTA writes a separate set for each grade from 1 to 5, so a K to 2 or 3 to 5
-"course" is really three years. Options: (a) one year per grade in K to 5 (six years), with middle and high school
-each one year: the band courses become eight courses; (b) each band course is one year, taught once in the band
-(K to 2 teaches 48 standards in one year), which breaks CSTA's grade order; (c) as (a), but middle school spread over
-three years at fewer minutes a week. **Pick: (a).** It follows the standard's own grade order, it is how most
-elementary schools run computer science (a weekly special, every year), and middle and high school stay the single
-course most schools offer. Minutes per week go in each frame (recommend one session a week in K to 5, as library and
-SEL do; daily or near daily for the middle and high school course).
+Minutes per week go in each frame (recommend one session a week in K to 5; more in 6 to 12). Still open with Cory.
 
-**Specialty standards.** The high school course teaches all 46 Foundational ids. A unit may also claim an S1 id when
+**Partial base for K to 8.** Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): the UK's open computing
+curriculum (scout: docs/reviews/computer-science-open-material-2026-11-16.md) is a partial base for grades K to 8.
+Each unit taken from it is checked unit by unit for third-party material (anything not under the base's own licence
+is left out), and is rephrased for an American audience when needed (spelling, money, place names, school years).
+Its source goes in the day's credit; no company name appears in student, teacher or family copy.
+
+**Specialty standards.** The four high school courses teach all 46 Foundational ids between them. A unit may also claim an S1 id when
 its task already does what the S1 statement and boundary ask (for example a unit that trains and tests a classifier
-may claim an AI S1 id). No unit is lengthened to reach a Specialty id, and no S2 id is claimed in the Foundational
+may claim an AI S1 id). No unit is lengthened to reach a Specialty id, and no S2 id is claimed in a Foundational
 course. Specialty courses (a pathway of one or two courses per area, as CSTA suggests) are not on the course list;
 adding any is Cory's call.
 

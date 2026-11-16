@@ -1,5 +1,7 @@
 # English language development: the standard, made usable
 
+**DRAFT, 2026-11-16.**
+
 Written 2026-11-16 as the pre-work owed for English language development (docs/ADOPTION-BAR-SUBJECTS.md, "Before a
 scope and sequence in this subject", the ELD row), in the shape of docs/courses/social-studies/STANDARD.md. Core
 subjects come first. **Building waits until C11 (English learner supports inside the lesson) is proven in the core
@@ -9,8 +11,8 @@ every other course are C11, not this course (bar part 10).
 | Owed row (ADOPTION-BAR-SUBJECTS) | State | Where |
 |---|---|---|
 | Read the California map in full | Done: all five categories read end to end (2026-11-16); what it adds to bar part 10 is in section 4 | Section 4 |
-| Open the WIDA rubric file | **Blocked.** The PRIME 2020 rubric and workbook download sits behind a request form; forms are not allowed to agents. The PRIME web pages were read in full instead | Section 1; question 4 |
-| Build after C11 is proven in core courses | Recorded as the gate; a test for "proven" is proposed for Cory | Section 6; question 3 |
+| Open the WIDA rubric file | Waiting: the PRIME 2020 rubric and workbook sit behind a request form, which Cory fills in himself (settled 2026-11-16). Until the file comes, the bar rests on the PRIME web pages, read in full | Section 1 |
+| Build after C11 is proven in core courses | Recorded as the gate, with its test (settled 2026-11-16) | Section 6 |
 | Approach page (all ten subjects) | Draft for Cory's yes | docs/courses/eld/APPROACH.md |
 | Base text scout, lens | Done | docs/reviews/eld-open-material-2026-11-16.md; docs/agents/lenses/eld.md |
 | How ELD leans on the ELA progression | Recorded | Section 5 |
@@ -34,7 +36,8 @@ every other course are C11, not this course (bar part 10).
   materials against the four framework parts: standards statements, key language uses, Language Expectations and
   proficiency level descriptors, each scored 1 to 4. Its pages say it is a review of correspondence, not a judgement
   of quality. Eligible: a full year of ELD tied to grade-level content. The rubric and workbook are behind a form
-  (question 4). Copyright WIDA PRIME, all rights reserved.
+  that Cory requests himself (settled 2026-11-16, Cory, Desk card q-later-sel-eld); until the file comes, the ELD
+  bar rests on these web pages. Copyright WIDA PRIME, all rights reserved.
 - **California** uses its own ELD standards (2012), with three levels (Emerging, Expanding, Bridging). They map only
   roughly to WIDA: Emerging about WIDA 1 and 2, Expanding about 3 and 4, Bridging about 5 and 6 (our reading,
   approximate; no official crosswalk was read). Curio Class plans to WIDA and states the rough match for California
@@ -51,13 +54,13 @@ every other course are C11, not this course (bar part 10).
   counts four band courses: K to 2, 3 to 5, 6 to 8, 9 to 12. WIDA's clusters do not line up with them: K to 2 spans
   clusters K, 1 and half of 2-3; 3 to 5 spans the other half of 2-3 and 4-5. Each band course plans each grade
   against its own cluster's ids, so grade 2 and grade 3 both use 2-3, at different content.
-- **Course shape (question 1 for Cory).** Recommended: four band courses, each with three points of entry (by
-  proficiency: levels 1 and 2, 3 and 4, 5 and 6) and a short newcomer strand for students in their first months in
-  English. Students move between entry points on the school's own progress checks (bar item 7; California map
-  1.26: several levels and points of entry and exit). The alternatives are courses split by proficiency level, or
-  six courses by WIDA cluster.
-- **Time (question 2 for Cory).** Recommended: a protected daily period, about 30 minutes in K to 5 and a 45 minute
-  period in 6 to 12, 160 days. Bar item 8 and California 1.26 both ask for designated time that is not ELA time.
+- **Course shape.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): four band courses, each with three points
+  of entry (by proficiency: levels 1 and 2, 3 and 4, 5 and 6) and a short newcomer strand for students in their first
+  months in English. Students move between entry points on the school's own progress checks (bar item 7; California
+  map 1.26: several levels and points of entry and exit).
+- **Time.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): a protected daily period, about 30 minutes in K to
+  5 and a 45 minute period in 6 to 12, 160 days. Bar item 8 and California 1.26 both ask for designated time that is
+  not ELA time.
 - **Placement and exit** use the school's proficiency score (bar part 10, Unsupported). Curio Class gives no
   placement test and keeps no scores.
 
@@ -121,10 +124,9 @@ supports (C11) stay in ELA; ELD adds the protected time and the direct teaching 
 
 ## 6. The C11 gate
 
-The owed row says ELD is built after C11 is proven in the core courses. Proposed test (question 3 for Cory): C11
-passes, with no fail, in the probe and guard units of at least two core subjects, one of them ELA, and the English
-learner hook has been read once by a reader who checks it against the lesson's own language demands. Until then,
-ELD work is limited to this page, the lens and the scout.
+The owed row says ELD is built after C11 is proven in the core courses. Settled 2026-11-16 (Cory, Desk card
+q-later-sel-eld): C11 is proven when it passes, with no fail, in the probe and guard units of at least two core
+subjects, one of them ELA. Until then, ELD work is limited to this page, the lens and the scout.
 
 ## 7. Left out, and why
 
@@ -136,14 +138,3 @@ ELD work is limited to this page, the lens and the scout.
   Spanish.
 - **ELD for students with significant cognitive disabilities:** the 2019 open standards for them (CC BY 4.0, search
   only) are noted for later (data/plans/later.csv L54 is the lead's to update).
-
-## Questions for Cory
-
-1. **Course shape.** Four band courses with three entry points by level and a newcomer strand (pick: matches the
-   catalogue and the map's several-entry-points rule), or courses by proficiency level, or six by WIDA cluster.
-2. **Time.** A protected daily period, about 30 minutes in K to 5 and 45 in 6 to 12 (pick: bar item 8 and the
-   California map), or a shorter period a few days a week.
-3. **What "C11 proven" means.** C11 passes, no fail, in the probe and guard units of two core subjects, ELA one of
-   them (pick: testable from the plans we already have), or after all four core subjects' grade 4 years.
-4. **The WIDA PRIME rubric file** sits behind a request form. Cory fills it in himself (free as far as the page
-   shows; pick, so the bar can be firmed later), or the bar stays on the web pages read.

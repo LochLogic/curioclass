@@ -34,5 +34,6 @@ Every unit has at least one field task day and ends with a plan day.
 
 ## Questions in this draft
 
-- The learner standard (STANDARD.md section 2) and the year each course runs.
-- Sessions a week (recommend two or three).
+- Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): the 2024 national career development guidelines
+  as learner goals, our own as the fallback; each course one year (Exploration grade 7 or 8, Pathways 9 or 10), two
+  or three sessions a week (STANDARD.md sections 2 and 3).

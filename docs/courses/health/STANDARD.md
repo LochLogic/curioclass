@@ -1,5 +1,7 @@
 # Health: the standard, made usable
 
+**DRAFT, 2026-11-16.**
+
 Written 2026-11-16 as pre-work for health (four courses, one per band). It answers the health row of "Before a
 scope and sequence in this subject" in docs/ADOPTION-BAR-SUBJECTS.md. The bar is the health part of that page. The
 lens is docs/agents/lenses/health.md. The approach page is docs/courses/health/APPROACH.md (draft).
@@ -12,7 +14,7 @@ lens is docs/agents/lenses/health.md. The approach page is docs/courses/health/A
 | Fix the file header to "SHAPE America, 2024" | Done 2026-11-11 | data/standards/nhes-2024.txt header |
 | Keep the 2024 standards, with the mapping to the older-keyed tool | Done (decided 2026-11-11) | Section 1; the 2007 to 2024 note |
 | Carry all sensitive topics, each unit removable | Rule written | Section 5 |
-| One paid specialist read per band; confirm the cost with Cory | Noted only; nothing arranged | Section 6 |
+| The expert read for criterion 7 | Settled 2026-11-16 (Cory, Desk card q-later-arts-health-pe): a self-built health expert agent, no paid read | Section 6; docs/agents/lenses/health.md |
 
 ## 1. The standard and the review tool
 
@@ -104,15 +106,22 @@ without breaking the course. The rule:
 7. **Content.** Sensitive units are medically accurate, age-matched to the tool's span expectations, inclusive,
    free of scare tactics and shame, and dated.
 
-## 6. The specialist read (noted only)
+## 6. The expert read (bar criterion 7)
 
-The bar (criterion 7) asks that the health, medical and scientific content be checked by a named, qualified person,
-with the date, and proposes one paid read per band by a health curriculum specialist, with the cost confirmed by
-Cory first. Nothing has been arranged or spent. Two notes for Cory:
+Settled 2026-11-16 (Cory, Desk card q-later-arts-health-pe): "no outside readers available. use a self built
+expert agent". No paid read and no spend. Criterion 7 is met this way:
 
-- docs/PRODUCTION-PATH.md says no outside human reader is planned (settled 2026-11-14). That sits against this
-  criterion. The open item is data/plans/later.csv L45.
-- Without a named read, the health courses cannot pass criterion 7, and the course pages must say so.
+- **Who reads.** A health expert agent, built for this subject from the expert read section of
+  docs/agents/lenses/health.md. It is the named reader; its name in the record is "Curio Class health expert agent".
+- **What it reads.** Every health unit plan and every health day, before the unit's Exit check, for medical and
+  scientific accuracy: facts, figures with their source and year, correct terms for the age, and safe messaging on
+  sensitive topics. It reads against current public health sources, not memory alone.
+- **The record.** Each read is dated and kept with the unit (the reader, the date, what was checked, what was
+  fixed). A unit or day changed after its read is read again. A figure older than its source's latest edition is
+  a finding.
+- **Public copy.** The record stays in our docs. A course page may give the date its figures were last checked
+  against their sources, and says a school's own health staff may check the content too. It never claims the
+  content was reviewed or approved by anyone (AGENTS.md).
 
 ## 7. Left out, and why
 

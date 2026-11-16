@@ -9,7 +9,7 @@ Work on the subjects on this page waits behind math, English language arts, scie
 is complementary, such as a shared rule or a standards fix that serves both. Social studies is core. Every course
 is still finished to the bar; this sets the order, not the scope.
 
-**What this page is for.** Every one of the 107 courses (105 active, 2 world languages shelved) is to be finished to the adoption bar (docs/FOUNDATION.md,
+**What this page is for.** Every one of the 120 courses (118 active, 2 world languages shelved) is to be finished to the adoption bar (docs/FOUNDATION.md,
 section 4; docs/ADOPTION-BAR.md). Math has a rubric file; English language arts and science rubrics are drafted
 separately. This page writes the bar for every other subject: one shared core, then a short part per subject.
 
@@ -253,9 +253,10 @@ coverage is scored.
 5. [I] Content fits the age; skills come back across topics and bands; a topic gets enough time. A one-off lesson
    fails.
 6. [I] Units link students to family and trusted adults, and learning reaches past the classroom.
-7. [I] The health, medical and scientific content is checked by a named person able to judge it, with the date. A
-   health curriculum specialist counts. An agent's read does not. The plan stays as proposed: one paid read per
-   band by a health curriculum specialist. The cost is confirmed with Cory before anything is spent.
+7. [I] The health, medical and scientific content is checked, with the date, by a reader able to judge it. No
+   outside reader is available, so a self-built health expert agent (docs/agents/lenses/health.md) reads every
+   health unit and day for medical and scientific accuracy and records its date; that read meets this criterion.
+   No paid read (Cory, 2026-11-16, Desk card q-later-arts-health-pe).
 8. [I] Objectives cover knowing, valuing and doing, and can be measured. Assessment is of more than one kind and
    includes students assessing themselves.
 9. [I] Materials are inclusive: they fit students' cultures and the conditions they live in, avoid blame, and guide
@@ -440,6 +441,17 @@ other courses by the nature of the subject (see the pass rule for what that mean
 6. [I] Focused and explicit: set time, and each lesson names its skill.
 7. [I] Guidance for the adult, and a way to carry the skill beyond the lesson.
 8. [O] The course page states that no study stands behind the course.
+9. [I] Each unit names one link to that grade's core courses (a discussion routine, a civics row) the teacher may
+   use. A lean, not a strand. (Items 9 to 13 added 2026-11-16, Cory, Desk card q-later-sel-eld, from the deeper
+   review in docs/courses/sel/STANDARD.md section 4.)
+10. [I] Each unit carries the skill past the session: a "carry it out" cue for the school day and a family activity
+    in the family note. Community is optional.
+11. [I] The scope and sequence states sessions a year. A paper fidelity checklist for the teacher (did the session
+    run as planned, what was cut) and the class record of skill checks; no ratings of individual children.
+12. [I] Equity within the promises: family notes in English and Spanish; student voice in class and school life;
+    bias taught as noticing and checking one's own snap judgements on invented cases, never as blame of a group.
+13. [I] Each unit's teacher page opens with a short "before you teach" note: the skill as an adult uses it, and one
+    thing to model. Not training, and not claimed as such.
 
 **Fails if:** posters and discussion with no practice; two of five areas; a band taught the same way every year.
 
@@ -516,7 +528,7 @@ every row but social studies waits behind the core work unless it is complementa
 | Social studies (16) | Done 2026-11-13: the standard chosen (option d) and loaded (data/standards/ma-hss-2018.txt), the course list redrawn, the check states named, economics and geography references named (STANDARD.md). Edition confirmed: C3 Framework, 2013, June 2017 revised PDF, matching data/standards/c3-indicators.txt. Still owed: load the psychology standard (APA 2022) by hand when psychology's turn comes; plan informed action once a year per course, up to three times if the evidence shows a need | Agent |
 | AP and psychology topics (26), in whichever subject they sit | These have no standards file. Mark them now as not yet standards-checked. **Do not lose this note (Cory): the course framework is loaded when that course's scope and sequence is written** | Agent |
 | Arts (20) | Done 2026-11-16 (docs/courses/arts/STANDARD.md): the band-year rule (K to 8 by grade; high school levels I to III by what a student has done), reuse terms read at source, revision watch set (May and November). Lens, base-text scout and APPROACH draft written. Owed: Cory on the high school music strand (then load its ids), pacing and the levels rule (Desk cards); the approach page's yes | Cory, then agent |
-| Health (4) | Done 2026-11-16 (docs/courses/health/STANDARD.md): one topic module read in part, band coverage map drafted, sensitive-unit removal rule, 2007 to 2024 note and header (2026-11-11). Lens, scout and APPROACH draft written. Owed: each band's planner reads its modules; Cory on the paid specialist read against the no-outside-reader rule, and pacing (Desk cards) | Agent, then Cory for the cost |
+| Health (4) | Done 2026-11-16 (docs/courses/health/STANDARD.md): one topic module read in part, band coverage map drafted, sensitive-unit removal rule, 2007 to 2024 note and header (2026-11-11). Lens, scout and APPROACH draft written. Owed: each band's planner reads its modules; the health expert agent read in place of a paid read, and pacing, settled 2026-11-16 (Desk card q-later-arts-health-pe) | Agent |
 | Physical education (4) | Done 2026-11-16 (docs/courses/physical-education/STANDARD.md): the five-to-four map (2026-11-11), appropriate practice read in part, grade-outcome rule, review tool's K to 5 tables read in part. Lens, scout and APPROACH draft written. Owed: the rest of the review tool's tables, read by each band's planner; Cory on pacing and the approach page | Agent |
 | Computer science (4) | Done 2026-11-16: header and the 135 Specialty ids (2026-11-11); all 331 statements under the standards' own licence (data/standards/csta-2026-statements.txt, CC BY-NC-SA, planning only, LICENSE-CONTENT). STANDARD, lens, scout and APPROACH draft in docs/courses/computer-science/. Owed: Cory on courses per band and the partial base (Desk cards) | Cory |
 | Career education (2) | Done 2026-11-16: the 2024 career-ready practices read and set out in our own words in the file header; what a school adds listed (docs/courses/career-education/STANDARD.md). Lens, scout and APPROACH draft written. Owed: Cory on the learner standard and the course years (Desk cards) | Cory |
@@ -540,8 +552,8 @@ The numbers are those of the eleven choices the second draft put to him. His wor
    Language are shelved. No scopes and sequences, no standards loading and no video planning for them now. Part 6 is kept.
 3. **Sensitive health topics.** "3 all." Curio Class carries all of the tool's sensitive topics, and each
    sensitive unit can be left out without breaking the course. The paid read per band by a health curriculum
-   specialist was part of the recommended option and stays as proposed; the cost is confirmed with Cory before
-   any spend.
+   specialist was part of the recommended option and was replaced by Cory 2026-11-16 with a self-built health
+   expert agent read (part 3, criterion 7), since no outside reader is available.
 4. **SEL and library skills.** "4 they can stay separate but are allowed to be smaller than other courses by
    nature of the subject." They stay courses, not strands, each with a sequence per grade. They are held to the
    whole core at the size their scope and sequence states (see the pass rule). Smaller means fewer minutes a week,

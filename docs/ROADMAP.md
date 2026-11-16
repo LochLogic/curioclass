@@ -23,7 +23,7 @@ When a roadmap item starts, finishes or moves, update it here first, then post i
 ## Where it stands (a pointer, 2026-11-11)
 
 Live counts are no longer kept here (removed 2026-11-11; the 2026-11-10 table is in the archive). On 2026-11-15
-docs/COURSES-STATUS.md counted 107 courses (105 active, 2 world languages shelved; 52 core courses in the four core
+docs/COURSES-STATUS.md counted 120 courses (118 active, 2 world languages shelved; 52 core courses in the four core
 subjects plus 6 core electives), 52 with a scope and sequence, 16 with unit or section plans, and tools at 569 spec, 149
 built, 83 live. For today's counts run `python scripts/course_status.py` (docs/COURSES-STATUS.md) and
 `python scripts/board.py` (docs/BUILD-BOARD.md). For the state of the work read docs/HANDOFF.md. The shelf counts
@@ -101,7 +101,7 @@ order follows docs/PRODUCTION-PATH.md.
 ### The layers (added 2026-11-11, Cory)
 
 **Core subjects first (Cory, 2026-11-11; a soft goal).** Math, English language arts, science and social
-studies (52 core courses plus 6 core electives, of 107 courses) are the first focus; the other subjects follow. This bends where work is
+studies (52 core courses plus 6 core electives, of 120 courses) are the first focus; the other subjects follow. This bends where work is
 complementary (a shared rule, a bar page, a standards fix that serves both). When a choice has to be made, the
 core subjects come first. Every course is still finished to the bar; this sets the order, not the scope.
 
@@ -247,7 +247,8 @@ whole-course read. For each one: listed 2026-11-11; in or not-now still to be de
 13. **A state alignment document:** one worked crosswalk on the first finished course. Listed 2026-11-11; in or
     not-now still to be decided by Cory.
 14. **Spanish student materials.** Family notes are already in English and Spanish; student pages are not.
-    Listed 2026-11-11; in or not-now still to be decided by Cory.
+    Listed 2026-11-11. Cory 2026-11-16: grow Spanish accessibility across the site later in the roadmap (student
+    pages, tools, course pages), after the core courses; parked as later.csv L60.
 15. **A print-volume count per student:** the pages a student uses in a year. Listed 2026-11-11; in or not-now
     still to be decided by Cory.
 

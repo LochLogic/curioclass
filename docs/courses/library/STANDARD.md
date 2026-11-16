@@ -1,8 +1,10 @@
 # Library and research skills: the standard, made usable
 
+**DRAFT, 2026-11-16.**
+
 Written 2026-11-16 as the subject's pre-work (docs/PRODUCTION-PATH.md, "After the core subjects"; the owed row in
 docs/ADOPTION-BAR-SUBJECTS.md, "Before a scope and sequence in this subject"). The model is
-docs/courses/social-studies/STANDARD.md. Four band courses (K to 2, 3 to 5, 6 to 8, 9 to 12), course track `library`.
+docs/courses/social-studies/STANDARD.md. Eight courses (section 3), course track `library`.
 Decided: separate courses, our own bar, and they may be smaller: fewer minutes a week (one or two sessions, the frame
 says which), never fewer units (Cory, 2026-11-11 and 2026-11-15).
 
@@ -51,17 +53,21 @@ says which), never fewer units (Cory, 2026-11-11 and 2026-11-15).
 
 ## 3. How the standard maps to our courses
 
-| Course | AASL | Priority skill emphasis (ours, to be set at the progression) |
-|---|---|---|
-| K to 2 | All six foundations, at the "with help" level | Asking a question, finding a book by its parts, retelling what a source says, saying where it came from, sharing with the class |
-| 3 to 5 | All six | Key words, searching a catalogue and a chosen site, note-making, primary and secondary sources, a simple bibliography, first lateral checks of a site |
-| 6 to 8 | All six | Search strategy, lateral reading, judging evidence and who is behind it, paraphrase and quotation, citation in one style, fair use basics |
-| 9 to 12 | All six | Research question design, databases and open sources, lateral reading on hard cases, synthesis across sources, full citation, copyright, licences and fair use, sharing a research product |
+Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per grade K to 5, then one course for
+grades 6 to 8 and one for grades 9 to 12, eight courses. The K to 5 courses each plan one year, so the skills grow
+every year. Still open with Cory: whether the 6 to 8 and 9 to 12 courses each run one year or across their grades.
 
-**The band question, as in computer science.** **Pick:** each band course is planned one year per grade at one or two
-sessions a week, because AASL and the continuum both expect the skills to grow every year and because schools
-schedule library classes weekly. That raises the count from four courses to thirteen, so it is Cory's call; the
-alternative is one year per band, which leaves two of every three grades without library teaching.
+| Courses | AASL | Priority skill emphasis (ours, to be set at the progression) |
+|---|---|---|
+| K, 1 and 2 (one course each) | All six foundations, at the "with help" level | Asking a question, finding a book by its parts, retelling what a source says, saying where it came from, sharing with the class |
+| 3, 4 and 5 (one course each) | All six | Key words, searching a catalogue and a chosen site, note-making, primary and secondary sources, a simple bibliography, first lateral checks of a site |
+| Grades 6 to 8 (one course) | All six | Search strategy, lateral reading, judging evidence and who is behind it, paraphrase and quotation, citation in one style, fair use basics |
+| Grades 9 to 12 (one course) | All six | Research question design, databases and open sources, lateral reading on hard cases, synthesis across sources, full citation, copyright, licences and fair use, sharing a research product |
+
+**Partial bases for 6 to 12.** Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): the CC BY
+online-reasoning lessons and the open web-literacy book named in docs/reviews/library-open-material-2026-11-16.md
+are partial bases for the 6 to 8 and 9 to 12 courses. Only items under an open licence are adapted, in our voice,
+with the source in the day's credit; no company or product name appears in student, teacher or family copy.
 
 Every unit names host tasks from the grade's other courses (bar criterion 4): research for a science investigation, a
 social studies source question, an ELA research piece.

@@ -9,7 +9,7 @@ approach page is docs/courses/arts/APPROACH.md (draft).
 |---|---|---|
 | Which standard and edition | Done | Section 1 |
 | Read the reuse terms | Done 2026-11-16, read at source | Section 2 |
-| A written rule placing each grade's standards, and the three high school levels, in a band year | Done as a rule; the high school music strand and the pacing wait on Cory | Section 3 |
+| A written rule placing each grade's standards, and the three high school levels, in a band year | Done as a rule; high school levels and the music strand decided (Cory 2026-11-16, Desk card q-later-arts-health-pe); pacing waits on Cory | Section 3 |
 | Watch the national revision twice a year | Set up: dates, places and what to do | Section 4 |
 | What is left out, and why | Done | Section 5 |
 | Leans on the core progressions | Done | Section 6 |
@@ -27,8 +27,8 @@ approach page is docs/courses/arts/APPROACH.md (draft).
   course (criterion 1).
 - scripts/standards.py checks NCAS codes by a closed pattern on discipline, process and anchor. It does not check
   the grade or the letter, so a wrong grade passes the script. A reader checks grade and letter against the file.
-- Music is loaded for pre-kindergarten to grade 8 general music only. The high school music strands are not loaded
-  (section 3.3).
+- Music is loaded for pre-kindergarten to grade 8 general music only. The high school composition and theory
+  strand (63 ids) is still to load (section 3.3).
 
 ## 2. Reuse terms (read at source, 2026-11-16)
 
@@ -68,35 +68,52 @@ standards are written grade by grade to grade 8, then in three high school level
   years in turn. Each year still claims only its grade's ids, so a student's record shows which grade's standards
   they met. The scope and sequence says this once, on its first page.
 
-### 3.2 Grades 9 to 12: levels, not grades
+### 3.2 Grades 9 to 12: levels, not grades (Cory 2026-11-16, Desk card q-later-arts-health-pe)
 
-The high school standards come in three levels. From NAfME's appendix to the music standards (read 2026-11-16, our
-words): Proficient is what most students reach in one high school arts course of about 120 hours beyond good
-pre-kindergarten to grade 8 learning; Accomplished takes a further sequence of courses; Advanced goes well past
-Accomplished, at honors or first-year college depth. The coalition's own aim (search only, not read at source) is
-that every student reaches at least Proficient in one arts discipline.
+The high school standards come in three levels, defined by what a student has done, not by grade (NAfME's
+appendix to the music standards, read 2026-11-16, our words): Proficient is what most students reach in one high
+school arts course of about 120 hours beyond good pre-kindergarten to grade 8 learning; Accomplished takes a
+further sequence of courses; Advanced goes well past Accomplished, at honors or first-year college depth. The
+evidence for the structure below is docs/reviews/arts-hs-music-and-levels-2026-11-16.md: no peer-reviewed study
+compares sequenced and survey high school arts courses, so the structure follows the national descriptors and the
+state frameworks that turn them into yearlong courses.
 
 | Year of the 9 to 12 band | Level taught | Ids |
 |---|---|---|
 | Level 1 | Proficient | `.Ia` |
 | Level 2 | Accomplished | `.IIa` |
-| Level 3 | Advanced | `.IIIa` |
-| Level 4 (optional) | Advanced, deepened: a portfolio or production year | `.IIIa`, assessed again on new work |
+| Level 3 | Advanced, at honors depth | `.IIIa` |
+| Level 4 (optional) | Advanced, deepened: a portfolio or production year the student leads | `.IIIa`, assessed again on new, self-directed work |
 
-- A level is one course of 160 days, which is about the 120 hours the descriptor names.
-- Levels are tied to what a student has done, not to their grade. A grade 11 student new to dance starts at
-  level 1. The scope and sequence names the level, never a grade.
-- One level is enough for Proficient. The bar does not ask a school to offer all four.
+- The 9 to 12 band is one course per discipline, as every other band is; its years are levels. A level is a
+  full 160-day year, which is about the 120 hours the descriptor names.
+- Entry: a student new to a discipline starts at Level 1, whatever their grade. The scope and sequence names the
+  level, never a grade. Level 1's first unit assumes no earlier arts learning.
+- Each level requires the one before, or a placement showing: the student shows work scored against the previous
+  level's end-of-course assessment, and starts at the next level if it meets it.
+- Advanced is claimed by assessed work, not by finishing Level 3. A student who ends Level 3 at "partly" has
+  Level 4 to reach it.
+- One level is a complete course and is enough for Proficient. The bar does not ask a school to offer all four.
 
-### 3.3 Music in high school (waits on Cory)
+### 3.3 Music in high school: composition and theory (Cory 2026-11-16, Desk card q-later-arts-health-pe)
 
-The general music strand stops at grade 8. The high school music standards come in strands that are not loaded:
-traditional and emerging ensembles, harmonizing instruments, composition and theory, and technology. The
-ensemble and harmonizing strands add two levels below Proficient (Novice, about grade 5, and Intermediate, about
-grade 8). A high school music course must pick a strand before its scope and sequence. The pick is a scope call,
-so it is a question for Cory. Recommended: composition and theory, because a class can do it with voices, simple
-instruments and free notation on any device, and it needs no ensemble. Once picked, its ids are loaded by hand in
-the same format (ids only), after checking the strand's own code letters at source.
+Music 9 to 12 is a full composition and theory course on the national composition and theory strand, not a stub.
+The reasons and sources are in docs/reviews/arts-hs-music-and-levels-2026-11-16.md.
+
+- The strand starts at Proficient (no Novice or Intermediate levels), so Level 1 follows grade 8 general music
+  directly. It runs to Advanced in the same three levels as 3.2.
+- It needs no instrument: work is shared by notation, performance or technology, and performances may be live
+  or recorded. Days use the voice (singing, sight-singing), body and found percussion, a free keyboard on any
+  device or a Curio Class tool, and the student's own instrument when they have one.
+- Ensemble, harmonizing instrument and music technology ids are not claimed. Those strands assume instruments,
+  a group or production tools and a teacher who hears technique in the room.
+- An ensemble companion page sits inside the course (no days, no ids, not a counted course): how to find a
+  school or community ensemble, a practice log and self-check, how an assignment can be written for the
+  student's own instrument or section, and a plain note that ensemble standards are met and assessed by that
+  ensemble.
+- Ids: 21 per level, 63 in all, format `MU:Cr1.1.C.Ia` (the strand letter `C` before the level). They are loaded
+  by hand, ids only. scripts/standards.py does not yet accept the strand letter; its pattern changes before
+  loading.
 
 ### 3.4 Pacing (waits on Cory)
 
@@ -126,7 +143,7 @@ school. No draft date is given.
 ## 5. Left out, and why
 
 - Pre-kindergarten ids: no pre-kindergarten courses.
-- The high school music strands, until Cory picks one (3.3).
+- The high school ensemble, harmonizing instrument and music technology strands (3.3).
 - Enduring understandings, essential questions, model cornerstone assessments and the glossary: permission
   needed to reproduce (section 2); we write our own.
 - State arts standards: one national set is the reference. A state's own grade placement may differ; the course

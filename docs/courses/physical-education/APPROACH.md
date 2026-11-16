@@ -62,7 +62,8 @@ Fitness concepts return in every warm-up and cool-down. Each grade's outcomes bu
 
 ## Pacing
 
-PE minutes vary widely by school. This is open with Cory, with arts and health (see the pre-work report).
+Settled 2026-11-16 (Cory, Desk card q-later-arts-health-pe): elementary PE (K to 5) is about 2 to 3 sessions a week.
+Middle and high school PE minutes vary widely by school; each band frame states its sessions a year.
 
 ## What a tool may and may not do
 

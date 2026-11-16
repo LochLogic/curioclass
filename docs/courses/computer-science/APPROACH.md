@@ -43,5 +43,6 @@ Each day ends with one piece of evidence the teacher can read in a minute per st
 
 ## Questions in this draft
 
-- Minutes per week per band (set in each frame; recommend one session a week in K to 5).
-- Whether the Teach Computing Curriculum is taken as a partial base (scout, docs/reviews/computer-science-open-material-2026-11-16.md).
+- Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per grade K to 12, and the UK
+  computing curriculum as a partial base for K to 8 (STANDARD.md section 2).
+- Still open: minutes per week per grade (set in each frame; recommend one session a week in K to 5).

@@ -71,7 +71,33 @@ come back in every response. Each year revisits the year before's grade ids as p
 ## Pacing
 
 Waits on Cory (STANDARD.md 3.4). The draft assumes a K to 8 year of 64 sessions with a 32-session path that keeps
-every unit, and 160-day high school levels.
+every unit. High school levels are 160-day years (decided, STANDARD.md 3.2).
+
+## High school levels (Cory 2026-11-16, Desk card q-later-arts-health-pe)
+
+The 9 to 12 course in each discipline runs as Level 1 (Proficient), Level 2 (Accomplished), Level 3 (Advanced)
+and an optional Level 4 (STANDARD.md 3.2). In the plans:
+
+- Each level is written for students placed by what they have done, so classes mix grades. Level 1's first unit
+  teaches from the start; later levels open with a short review unit that doubles as a check of placement.
+- Choice grows by level: Level 1 sets the problems, Level 2 lets the student pick among them and research, Level
+  3 has the student set the problem. This follows the national level descriptors.
+- Level 4 is one sustained project the student leads (a portfolio of related works, a production, a composition
+  set), with checkpoints as check days and critique as respond days.
+- Each level's end-of-course assessment also serves as the placement showing for the level above.
+
+## High school music (Cory 2026-11-16, Desk card q-later-arts-health-pe)
+
+Music 9 to 12 is composition and theory (STANDARD.md 3.3). In the plans:
+
+- The technique is composing and the theory it needs (notation, rhythm, scales, chords, form), practised with the
+  voice, body percussion and a free keyboard or Curio Class tool. No day requires an instrument; a day may offer
+  "use your own instrument" as one way in.
+- Performing days perform the students' own and others' works by voice, body percussion or keyboard, live or
+  recorded, or present a composition through the tool's playback when the standard is about presenting it.
+- Listening and score study carry the responding standards, so the course also covers what a music appreciation
+  course would.
+- An ensemble companion page (no days, no ids) serves students who also play or sing in an ensemble.
 
 ## What a tool may and may not do
 

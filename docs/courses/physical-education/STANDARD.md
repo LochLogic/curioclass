@@ -1,5 +1,7 @@
 # Physical education: the standard, made usable
 
+**DRAFT, 2026-11-16.**
+
 Written 2026-11-16 as pre-work for physical education (four courses, one per band). It answers the PE row of
 "Before a scope and sequence in this subject" in docs/ADOPTION-BAR-SUBJECTS.md. The bar is the PE part of that
 page. The lens is docs/agents/lenses/physical-education.md. The approach page is

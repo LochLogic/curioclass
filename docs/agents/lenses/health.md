@@ -76,10 +76,30 @@ topic is not health education.
 
 ## What this lens does not cover
 
-- Whether the health, medical and scientific content is right: the bar asks for a named, qualified reader
-  (criterion 7). An agent's read never counts for that.
+- Medical and scientific accuracy as a full check: that is the expert read below (criterion 7), a separate pass
+  with its own dated record.
 - Local law and policy on sensitive topics (consent rules, opt-out law): the school's.
 - Counselling and crisis response: the school's staff.
+
+## The expert read (bar criterion 7)
+
+Settled 2026-11-16 (Cory, Desk card q-later-arts-health-pe): a self-built health expert agent meets criterion 7;
+no outside or paid reader. The rule is docs/courses/health/STANDARD.md section 6. The agent doing the read takes
+this lens and checks every unit plan and every day:
+
+1. **Facts.** Each health, medical or scientific statement is true as of today, checked against a current public
+   health source (a government health agency, a national medical or public health body, a peer-reviewed review),
+   not memory alone.
+2. **Figures.** Each figure names its source and year, matches that source, and is from its latest edition.
+3. **Terms.** Body part names, conditions and medical words are correct and fit the span (the tool's
+   expectations).
+4. **No harm.** No method details for suicide or self-harm; a help line and an adult plan are present; no diet,
+   weight or calorie advice to students; no medical advice; no claim a product or practice treats anything.
+5. **Sensitive units.** Medically accurate, inclusive, free of scare tactics and shame (STANDARD.md section 5).
+6. **Leans.** Science facts used in health match the science course's model.
+
+Record per unit: reader ("Curio Class health expert agent"), date, sources checked, findings, fixes. Any change to
+a unit or day after its read sends it back for a new read.
 
 ## Sources, read into our own words
 

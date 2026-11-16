@@ -1,5 +1,7 @@
 # Social and emotional learning: the standard, made usable
 
+**DRAFT, 2026-11-16.**
+
 Written 2026-11-16 as the pre-work owed for social and emotional learning (docs/ADOPTION-BAR-SUBJECTS.md, "Before a
 scope and sequence in this subject", the SEL row), in the shape of docs/courses/social-studies/STANDARD.md. Core
 subjects come first: nothing here starts a frame or a scope and sequence. Decisions already made by Cory
@@ -10,9 +12,9 @@ review).
 
 | Owed row (ADOPTION-BAR-SUBJECTS) | State | Where |
 |---|---|---|
-| Separate courses (decided); they may be small | Applied: four band catalogue rows kept; minutes a week recommended, Cory decides | Section 2; question 1 |
+| Separate courses (decided); they may be small | Applied: four band courses, 13 grade-year frames, 64 sessions a year (settled 2026-11-16) | Section 2 |
 | Write a sequence per grade | Done as a draft, 13 grade years, every grade covering all 40 sub-skills | Section 3 |
-| The design half as the bar, marked for a deeper review | Review done (criteria paper pp 23 to 35 read in full); five gaps named, additions proposed for Cory | Section 4; question 3 |
+| The design half as the bar, marked for a deeper review | Review done (criteria paper pp 23 to 35 read in full); five gaps named; the additions are in bar part 9 (settled 2026-11-16) | Section 4 |
 | Approach page (all ten subjects) | Draft for Cory's yes | docs/courses/sel/APPROACH.md |
 | Base text scout, lens | Done | docs/reviews/sel-open-material-2026-11-16.md; docs/agents/lenses/sel.md |
 
@@ -51,19 +53,19 @@ review).
   courses: K to 2, 3 to 5, 6 to 8, 9 to 12. The bar asks for a sequence for each grade, and the registry gives a
   single lesson set for a band its lower design rating. So each band course holds one distinct year per grade, and
   "a band taught the same way every year" is a fail (bar, Fails if).
-- **How a grade year is framed (question 1 for Cory).** Recommended: each grade year gets its own frame and scope and
-  sequence (13 in all), filed under the four band rows. That raises the frame count, not the catalogue rows, but it
-  may change the 107 course count depending on how a "course" is counted; that is Cory's call.
-- **Minutes (question 2 for Cory; the frame states it, per the pass rule).** Recommended: two sessions a week in
-  every grade, 32 weeks, so 64 sessions a year: about 20 minutes in K to 2, 30 minutes in 3 to 8, 30 to 45 minutes in
-  9 to 12 (an advisory period). With 40 sub-skills a year, one session a week (32 sessions) leaves each sub-skill
-  less than one session of teaching and none of the spaced practice the bar asks for. One session a week stays as
-  the stated short path (C2), with named sessions to drop.
+- **How a grade year is framed.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): each grade year gets its
+  own frame and scope and sequence, 13 grade-year frames filed under the four band courses. The catalogue keeps
+  four courses.
+- **Sessions.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): two sessions a week in every grade, 32 weeks,
+  so 64 sessions a year: about 20 minutes in K to 2, 30 minutes in 3 to 8, 30 to 45 minutes in 9 to 12 (an advisory
+  period). One session a week (32 sessions) is the stated short path (C2), with named sessions to drop; it never
+  drops a unit.
 - **Units.** Six units per grade year (section 3), each with its own readiness check and end-of-unit assessment,
   sized to the minutes chosen. "Never fewer units" is met: every sub-skill is taught, practised spaced out and
   checked every year.
-- **Family notes** in English and Spanish per unit (decided 2026-11-11), which also answers part of the registry's
-  translation criterion (section 4).
+- **Spanish.** Family notes in English and Spanish per unit (decided 2026-11-11); student pages stay English only
+  for now (settled 2026-11-16, Cory, Desk card q-later-sel-eld). Growing Spanish across the site is a later roadmap
+  item (the lead's note).
 
 ## 3. The sequence per grade
 
@@ -136,33 +138,33 @@ Durlak and others 2011 and Cipriano and others 2023 (abstracts only), Oregon's t
 | 27 to 29, 31 to 34 | Adult SEL and training: active, modelled, with feedback, building adults' own competencies | none | Gap E |
 | 35 | Final rating is the lower of evidence and design | 8, "Unsupported" | Stated; the evidence half is unmet by design |
 
-**Gaps and proposals.** Each proposal would change ADOPTION-BAR-SUBJECTS part 9, which only Cory's yes and the lead
-may edit (question 3).
+**Gaps and additions.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): all five are added to
+ADOPTION-BAR-SUBJECTS part 9 (items 9 to 13).
 
 - **A. Approaches.** Free-standing lessons are the approach the registry most often rates; SEL inside academic
-  courses is also counted. Proposal: keep free-standing courses (decided), and add one line to the bar: each SEL
+  courses is also counted. Addition: keep free-standing courses (decided), with one line in the bar: each SEL
   unit names one link to that grade's core courses (an ELA discussion routine, a social studies civics row) that
   the teacher may use. This is a lean, not a strand.
-- **B. Settings.** Bar item 7 asks for a way to carry the skill beyond the lesson. Proposal: make it concrete. Each
+- **B. Settings.** Bar item 7 asks for a way to carry the skill beyond the lesson. Addition: make it concrete. Each
   unit has a "carry it out" line for the school day (a cue the teacher uses outside the session) and a family
   activity in the family note. Community is optional.
-- **C. Sessions and monitoring.** Proposal: the scope and sequence states sessions a year (it will, section 2). For
+- **C. Sessions and monitoring.** Addition: the scope and sequence states sessions a year (it will, section 2). For
   monitoring, promise 2 rules out tracking students; a paper fidelity checklist for the teacher (did the session
   run as planned, which part was cut) and the class record sheet of skill checks meet the purpose without
   student data. Behaviour ratings of individual children are not collected.
-- **D. Equity strategies.** Translation: family notes in English and Spanish are decided; student pages in Spanish
-  are not, and that is a cost and scope call (question 4). Students as agents of change: under the values rule, SEL
+- **D. Equity strategies.** Translation: family notes in English and Spanish; student pages English only for now
+  (section 2). Students as agents of change: under the values rule, SEL
   gives student voice in class and school life (class norms, a school improvement the class proposes and carries
   out), and leaves the analysis of causes of inequity to social studies, where it is taught from sources and
   evidence. Working with bias: SA6 is taught as noticing and checking one's own snap judgements on invented cases,
   never as assigning guilt or innocence to a group. This is the "middle line" ADOPTION-BAR-SUBJECTS sets for C12.
-- **E. Adult SEL.** Professional learning is none for now (decided 2026-11-11). Proposal: each unit's teacher page
+- **E. Adult SEL.** Professional learning is none for now (decided 2026-11-11). Addition: each unit's teacher page
   opens with a short "before you teach" note: the skill as an adult uses it, and one thing to model. Not training,
   and not claimed as such.
 
 **Verdict of the review.** The design half is a sound bar for these courses: it is specific (SAFE, practice by
 doing, grade sequence, all competencies) and checkable on paper. It is not enough alone in three places (B, C, D), and the
-proposals close them within the promises. The evidence half stays unmet and is said so on every course page (bar
+additions close them within the promises. The evidence half stays unmet and is said so on every course page (bar
 item 8): no study has tried these courses. The registry rates a program by the lower of the two halves, so
 Curio Class must never call its SEL courses "evidence-based" or use the registry's rating words.
 
@@ -228,15 +230,3 @@ Applied to SEL:
   social studies the civic side (why a community makes rules). The K and 1 SEL frames cite those rows as
   context links.
 - These leans are noted here for the frames; the core progressions are not edited.
-
-## Questions for Cory
-
-1. **Frames per grade or per band.** Each SEL grade year as its own frame and scope and sequence (13) under the four
-   band rows (pick: the bar and the registry both want a distinct year per grade), or four band frames each holding
-   three or four year plans.
-2. **Minutes.** Two sessions a week in every grade, 64 a year (pick: 40 sub-skills need spaced practice), or one a
-   week, 32 a year, as the main path.
-3. **The bar additions from the deeper review** (section 4, A to E): add them to ADOPTION-BAR-SUBJECTS part 9 (pick),
-   or keep part 9 as it stands.
-4. **Spanish student pages for SEL** (the registry's translation criterion): family notes only, as decided (pick for
-   now, no new cost), or student pages too, later, as a growth item.

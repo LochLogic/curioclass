@@ -93,7 +93,7 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     both directions where the standard has two (4.NF.A.1: multiplying and dividing both numbers), even where a scope
     and sequence title names only one part (docs/courses/UNIT-PLAN.md, rule 19). All of this, with the promises it
     rests on, is in docs/FOUNDATION.md, which every spec, unit, section and review agent reads first.
-24. **Core subjects first (a soft goal).** Math, English language arts, science and social studies (107 courses: 105
+24. **Core subjects first (a soft goal).** Math, English language arts, science and social studies (120 courses: 118
     active, 2 world languages shelved; 52 core courses in the four core subjects plus 6 core electives) are the first
     focus; the other subjects follow. This bends where work is complementary (a shared rule, a bar page, a standards
     fix that serves both). When a choice has to be made, the core subjects come first. Every course is still finished

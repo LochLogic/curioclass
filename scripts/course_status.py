@@ -3,7 +3,9 @@
 A course is counted the way a school would schedule it (Cory, 2026-11-11):
 - math, English language arts, science, social studies: one per grade through grade 8
   (ELA through 12), then one per named high school course;
-- every other subject: one per discipline per grade band; world languages one per language.
+- every other subject: one per discipline per grade band; world languages one per language;
+- except computer science, one per grade K to 12, and library, one per grade K to 5 then one each for grades 6 to 8
+  and 9 to 12 (Cory 2026-11-16, Desk card q-later-cs-career-library).
 The 93 catalog pages (subject by grade or band) are a different count and are not courses.
 
 Run: python -X utf8 scripts/course_status.py [out.json]
@@ -20,6 +22,7 @@ BY_GRADE = {'math-k8', 'ela-k12', 'science-k5', 'science-ms', 'ss-k5'}
 GRADES = ['k'] + [str(i) for i in range(1, 13)]
 BAND_OF = {'k': 'k-2', '1': 'k-2', '2': 'k-2', '3': '3-5', '4': '3-5', '5': '3-5'}
 BANDS = ['k-2', '3-5', '6-8', '9-12']
+PER_GRADE = {'cs-k12': GRADES, 'library': GRADES[:6]}   # course id -> grades that are courses of their own
 ONE_ROW = {'world-languages'}          # keyed by level, not grade: one course per language
 SHORT = {'math': 'Math', 'ela': 'English language arts', 'science': 'Science', 'social-studies': 'Social studies'}
 
@@ -31,6 +34,13 @@ tools = rows('docs/agents/catalog/shape/shape.csv')
 
 def gname(g): return 'Kindergarten' if g == 'k' else 'Grade ' + g
 def bname(b): return b.replace('k', 'K').replace('-', ' to ')
+
+def band_of(g):
+    return BAND_OF.get(g) or ('6-8' if g in ('6', '7', '8') else '9-12')
+def grades_of(b):
+    if b in GRADES: return [b]
+    lo, _, hi = b.partition('-')
+    return GRADES[GRADES.index(lo):GRADES.index(hi) + 1] if lo in GRADES and hi in GRADES else []
 
 def place(m):
     """Returns (kind, key, title, sortkey). kind is 'course' or 'shared'."""
@@ -44,6 +54,11 @@ def place(m):
     title = courses[c]['title']
     if s in ONE_ROW:
         return 'course', c, title.split(' (')[0] + ', all levels', (0, c)
+    if c in PER_GRADE:
+        if g in PER_GRADE[c]:
+            return 'course', f'{c}-{g}', f'{title}, {gname(g)}', (BANDS.index(band_of(g)), c, GRADES.index(g))
+        if any(x in PER_GRADE[c] for x in grades_of(g)):     # a band page over per-grade courses: shared topics
+            return 'shared', f'{c}-{g}', f'{title}, topics shared across grades {bname(g)}', (9, c)
     b = BAND_OF.get(g, g)
     if b in BANDS:
         return 'course', f'{c}-{b}', f'{title}, grades {bname(b)}', (BANDS.index(b), c)
@@ -56,6 +71,14 @@ for m in modules:
                                   tools=collections.Counter(), core=courses[m['course_id']]['core'] == 'y'))
     d['mods'] += 1
     m['_key'] = key
+# per-grade courses exist even where no catalog page sits at that grade yet
+for c, gs in PER_GRADE.items():
+    for g in gs:
+        key = f'{c}-{g}'
+        if key not in info:
+            info[key] = dict(kind='course', title=f"{courses[c]['title']}, {gname(g)}", subject=courses[c]['subject'],
+                             sort=(BANDS.index(band_of(g)), c, GRADES.index(g)), mods=0, tools=collections.Counter(),
+                             core=courses[c]['core'] == 'y')
 for t in tools:
     info[modmap[t['module']]['_key']]['tools'][t['stage']] += 1
 
@@ -182,7 +205,8 @@ A('**What this is.** A status table, not a plan. It shows the gap between what e
   'the current state is docs/HANDOFF.md.\n')
 A('**How courses are counted.** As a school would schedule them: math, English language arts, science and '
   'social studies by grade and then by named high school course; every other subject by discipline and grade '
-  'band; world languages by language. The catalog has 93 pages (a subject at a grade or band), which is a '
+  'band, except computer science (one per grade K to 12) and library (one per grade K to 5, then one '
+  'each for middle and high school); world languages by language. The catalog has 93 pages (a subject at a grade or band), which is a '
   'different count: some pages hold several courses and some hold none.\n')
 A('**The layers** (docs/ROADMAP.md, "The layers"). Standards are loaded for every subject, the shared approach '
   '(docs/APPROACH.md) is a draft that serves every course, and every catalog page is shaped, so those have no '

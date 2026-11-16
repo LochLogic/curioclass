@@ -100,7 +100,7 @@ LISTED = {(name, l.split('	')[0].strip()) for name, f in (('CASEL', 'casel-5.txt
 LISTED_IDS = {i: n for n, i in LISTED}
 
 CLOSED = {
-    'NCAS': re.compile(r'(VA|MU|TH|DA|MA):(Cr[123]|Pr[456]|Re[789]|Cn1[01])(?:\.\d\.(?:PK|K|[1-8]|I|II|III)[a-z]?)?'),
+    'NCAS': re.compile(r'(VA|MU|TH|DA|MA):(Cr[123]|Pr[456]|Re[789]|Cn1[01])(?:\.\d\.(?:[CEHT]\.)?(?:PK|K|[1-8]|I|II|III)[a-z]?)?'),
     'NHES-2024': re.compile(r'NHES\.S[1-8](?:\.(?:2|5|8|12)\.\d{1,2})?'),
     'SHAPE-PE-2024': re.compile(r'SHAPE\.S[1-4](?:\.(?:2|5|8|12)\.\d{1,2})?'),
     'ACTFL': re.compile(r'ACTFL\.(Novice|Intermediate|Advanced) (Low|Mid|High)'),

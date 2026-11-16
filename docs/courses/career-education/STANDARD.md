@@ -1,9 +1,11 @@
 # Career education: the standard, made usable
 
+**DRAFT, 2026-11-16.**
+
 Written 2026-11-16 as the subject's pre-work (docs/PRODUCTION-PATH.md, "After the core subjects"; the owed row in
 docs/ADOPTION-BAR-SUBJECTS.md, "Before a scope and sequence in this subject"). The model is
-docs/courses/social-studies/STANDARD.md. Two courses: Career Exploration (grades 6 to 8, `cte-explore`) and Career
-Pathways (grades 9 to 12, `cte-pathways`). Personal finance is not a course: Economics teaches it, lightly
+docs/courses/social-studies/STANDARD.md. Two courses: Career Exploration (`cte-explore`, one year in grade 7 or 8) and
+Career Pathways (`cte-pathways`, one year in grade 9 or 10), section 3. Personal finance is not a course: Economics teaches it, lightly
 integrated (Cory, 2026-11-14), so it is not planned here.
 
 ## The owed row, and where it stands
@@ -12,7 +14,7 @@ integrated (Cory, 2026-11-14), so it is not planned here.
 |---|---|---|
 | Read the 2024 career-ready practices wording | Done 2026-11-16, from a state's reproduction (the publisher's page was not reachable); described in our own words | data/standards/cte-career-clusters-2024.txt header; section 1 |
 | List what a school adds | Done | Section 4 |
-| A learner standard for the two courses | **Open with Cory** (section 2): the loaded framework is a map of fields, not learner goals | Section 2 |
+| A learner standard for the two courses | Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library); file and licence read still owed | Section 2 |
 | Approach page | Draft, waiting on Cory's yes | docs/courses/career-education/APPROACH.md |
 
 ## 1. The standard and its terms
@@ -37,25 +39,23 @@ The cluster framework says which fields exist and how they group; the practices 
 what a grade 7 student should know or be able to do about planning a career. The bar (part 7) asks for a personal
 plan, labour market data, career tasks (resume, interview, portfolio), hands-on work and defended choices.
 
-**Open with Cory: the learner standard.** Options: (a) clusters and practices only, with Curio Class's own learning
-goals per course, marked "ours"; (b) add the National Career Development Guidelines (National Career Development
-Association, 2024 revision: three domains, goals and leveled indicators), which CSTA 2026 also cites, as the learner
-goals, after its terms are read (its framework page refused the reader on 2026-11-16, so terms and wording are not
-known); (c) add the American School Counselor Association student standards (2021). **Pick: (b), with (a) as the
-fallback if its terms bar ids and our own words.** It is a national, current, K to adult set of learner goals built for
-exactly this, and pairs with the clusters as content. Cost: one more file and a licence read; Cory or the lead may
-need to save the PDF by hand, as with psychology's APA standards.
+**The learner goals.** Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): the National Career
+Development Guidelines (National Career Development Association, 2024 revision: three domains, goals and leveled
+indicators) are the learner goals, with the clusters and practices as content. Fallback: if its terms bar ids and
+our own words, Curio Class writes its own learning goals per course, marked "ours". Still owed: the guidelines file
+and a read of its terms (its framework page refused the reader on 2026-11-16; Cory or the lead may need to save the
+PDF by hand, as with psychology's APA standards).
 
 ## 3. How the standard maps to our courses (recommended, ours)
 
 | Course | Clusters | Practices | Plan and tasks |
 |---|---|---|---|
-| Career Exploration, 6 to 8 | All 14 clusters surveyed, with a sub-cluster in each studied through real jobs and data | All 12 introduced, each practised in a task | An interest and strengths inventory, a first education and career plan, a job study with labour market figures, a short interview practice |
-| Career Pathways, 9 to 12 | Two or three clusters the student picks, studied at sub-cluster depth, with a program of study (courses, training, credentials) | All 12 practised on field tasks | A full plan to a first credential, a resume, a mock interview, a portfolio, an applied project from a chosen field defended with data |
+| Career Exploration, grade 7 or 8 | All 14 clusters surveyed, with a sub-cluster in each studied through real jobs and data | All 12 introduced, each practised in a task | An interest and strengths inventory, a first education and career plan, a job study with labour market figures, a short interview practice |
+| Career Pathways, grade 9 or 10 | Two or three clusters the student picks, studied at sub-cluster depth, with a program of study (courses, training, credentials) | All 12 practised on field tasks | A full plan to a first credential, a resume, a mock interview, a portfolio, an applied project from a chosen field defended with data |
 
-Open with Cory, the same question as computer science: is a band course one year or more? **Pick:** each is one year
-(Career Exploration in grade 7 or 8, Career Pathways in grade 9 or 10), at two or three sessions a week, because most
-schools offer them as one-year electives or advisory courses. The frames say which.
+Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): each course is one year (Career Exploration in
+grade 7 or 8, Career Pathways in grade 9 or 10), at two or three sessions a week. The frames say which grade and
+how many sessions.
 
 Data the courses use: the US Bureau of Labor Statistics Occupational Outlook Handbook and wage data (public domain,
 credit asked) and the O*NET database (CC BY 4.0, with its required attribution in the credit line only). See the scout.

@@ -1413,3 +1413,20 @@ that source and its link goes in sources.csv. Why: the World History I 3.4 sensi
 the sheets is an outsider's, and no free, checkable English text by the peoples themselves. Applied: UNIT-PLAN field
 10, plan-data.md step 3; the probe 2 fix pass names the griots, the Tarikh al-Sudan, the Kilwa Chronicle, Ezana's
 inscriptions and the Secret History this way.
+
+## 2026-11-16: the later subjects' standards questions (Desk cards q-later-arts-health-pe, q-later-cs-career-library, q-later-sel-eld)
+
+Cory answered all 17 items; the lead's pick stood except where noted. Arts: high school music is composition and
+theory, and the way forward for an instrument-centered subject is researched (docs/reviews/arts-hs-music-and-levels-2026-11-16.md);
+high school levels follow what a student has done, with an optional fourth year, on the best evidence found (same
+review); pacing as picked (K to 8 arts 64 sessions with a 32-session path, high school arts 160 days, high school
+health one semester, elementary PE 2 to 3 a week). Health: "no outside readers available. use a self built expert
+agent", so a health expert agent's dated read meets criterion 7 and there is no paid read (later.csv L45 done).
+Computer science is one course per grade K to 12, and library one per grade K to 5 then one each for middle and high
+school (changed from the pick; 120 courses, 118 active). Career education: 2024 national career development
+guidelines, own goals as fallback; one-year courses. The UK computing curriculum is a partial base for CS K to 8,
+checked unit by unit and "rephrased for an American audience when needed"; the library 6 to 12 partial bases are in.
+SEL and ELD as picked; Spanish accessibility across the site is parked for later (ROADMAP item 14, later.csv L60);
+Cory requests the WIDA rubric form himself. Why: Cory's answers. Applied: scripts/course_status.py (PER_GRADE),
+ADOPTION-BAR-SUBJECTS.md (health criterion 7, SEL part 9, course count), BASELINE rule 24, HANDOFF, ROADMAP, and the
+subject STANDARD and APPROACH drafts.

@@ -63,8 +63,8 @@ Each topic returns in the next year at more depth. Getting help from a trusted a
 
 ## Pacing
 
-Health in K to 8 is often one session a week or a block in a semester; high school health is often one semester.
-This is open with Cory, with arts and PE (see the pre-work report).
+Settled 2026-11-16 (Cory, Desk card q-later-arts-health-pe): high school health is one semester. Health in K to 8
+is often one session a week or a block in a semester; each band frame states its sessions a year.
 
 ## What a tool may and may not do
 
