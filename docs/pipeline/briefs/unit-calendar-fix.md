@@ -1,8 +1,8 @@
 # Job: calendar fixes for one course after its unit plans are written, {course} (Codex)
 
 The unit loop could not fix some findings for {course} because the fix lies outside a unit plan: the course calendar
-(data/plans/{course}/days.csv), the scope and sequence (docs/courses/{course}/scope-and-sequence.md) or the generated
-day list in a unit plan. The lead has ruled each one right. They are:
+(data/plans/{course}/days.csv), the scope and sequence (docs/courses/{course}/scope-and-sequence.md), the generated
+day list in a unit plan, or the course's tool asks (docs/courses/{course}/TOOL-ASKS.md). The lead has ruled each one right. They are:
 
 {items}
 
@@ -17,8 +17,8 @@ Read AGENTS.md, docs/courses/UNIT-PLAN.md, docs/courses/{course}/frame.md and th
 3. Run `python -X utf8 scripts/plan.py check {course}` and `python -X utf8 scripts/unitplan.py check {course}` until
    both pass.
 
-Edit only data/plans/{course}/days.csv, docs/courses/{course}/scope-and-sequence.md and docs/courses/{course}/s*.md.
-CSVs stay UTF-8 without BOM with their line endings. No em dashes, "Curio Class" in full, no company names in student,
+Edit only data/plans/{course}/days.csv, docs/courses/{course}/scope-and-sequence.md, docs/courses/{course}/s*.md and
+docs/courses/{course}/TOOL-ASKS.md. CSVs stay UTF-8 without BOM with their line endings. No em dashes, "Curio Class" in full, no company names in student,
 teacher or family copy. Blind list: never open docs/courses/ela-6/, math-4 paths, *-spine.md, data/units.csv,
 courses/, docs/reviews/*reconcile*, *math-4*, *ela-6*. No git.
 

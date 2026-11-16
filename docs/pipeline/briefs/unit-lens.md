@@ -29,8 +29,11 @@ exit table.
   teaching words; an exit is not the day's hook in new numbers.
 - Each error letter listed for an item is a mistake that item can actually produce; contexts make sense to a student
   (no half of a counted thing).
-- Scored work: its day agrees with days.csv, comes after the day that teaches it, and is not made on a fluency or
-  first-teaching day. Unscored transfer sittings that the scores then ignore are a finding.
+- Scored work: its day agrees with days.csv, comes after the day that teaches it, and is not made on a
+  first-teaching day. Work on earlier-taught content made on a fluency day may be scored later, after written
+  feedback and revision (calendars reserve fluency days for collection); that is not a finding. An unaided item
+  answered fresh at the end-of-unit sitting is not an earlier product and needs no feedback cycle. An unscored
+  transfer sitting is a finding only when no scored item covers what it shows.
 
 **sources** (yours if {lens} = sources): field 10 and every text, source or data set the unit names.
 - Verified or none: every text the days will quote names where its words can be checked for free (a free text

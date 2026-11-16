@@ -5,7 +5,7 @@ Usage:
   python -X utf8 scripts/unit_rejections.py open             print the rows not yet ruled on
   python -X utf8 scripts/unit_rejections.py apply [logdir=]  send each overruled, unapplied row back to Codex to fix
   python -X utf8 scripts/unit_rejections.py calendar <course> [logdir=]  send the course's unapplied `lead` rows to
-      Codex with docs/pipeline/briefs/unit-calendar-fix.md (days.csv, scope and sequence, s*.md); run only when no
+      Codex with docs/pipeline/briefs/unit-calendar-fix.md (days.csv, scope and sequence, s*.md, TOOL-ASKS.md); run only when no
       other job is writing that course
 
 The fix step (docs/pipeline/briefs/unit-lens-fix.md) ends with one `REJECTED:` line per finding it turned down:
@@ -157,7 +157,7 @@ def calendar(course, opts):
     tag = 'calendar-%s' % course
     subprocess.run([sys.executable, '-X', 'utf8', 'scripts/codex_write.py', 'docs/pipeline/briefs/unit-calendar-fix.md',
                     course, 'items=' + items, 'writer_brief=' + cu.brief_for(subject),
-                    'allow=data/plans/{course}/days.csv;docs/courses/{course}/scope-and-sequence.md;docs/courses/{course}/s*.md',
+                    'allow=data/plans/{course}/days.csv;docs/courses/{course}/scope-and-sequence.md;docs/courses/{course}/s*.md;docs/courses/{course}/TOOL-ASKS.md',
                     'tag=' + tag, 'log=' + os.path.join(logdir, tag + '.log')], cwd=ROOT)
     gates = [subprocess.run([sys.executable, '-X', 'utf8', 'scripts/%s' % g, 'check', course], cwd=ROOT,
                             capture_output=True).returncode == 0 for g in ('plan.py', 'unitplan.py')]
