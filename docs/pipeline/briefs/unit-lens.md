@@ -17,8 +17,10 @@ exit table.
 - Each wrong answer sits under the letter whose text describes it; every letter used is in the register.
 - Each answer key, sample and look-for is right (work every key yourself before reading it) and would not pass a
   wrong answer; a sample says no more than its source or stimulus holds.
-- Nothing is scored from work made the day the topic is first taught, or from work with no written feedback and a
-  revision chance on an EARLIER day; feedback and revision inside the same period do not count.
+- Nothing is scored from work made the day the topic is first taught, or from work made in the same period that
+  scores it. Scored work is made on an earlier day and gets written feedback and a chance to revise before the score;
+  that feedback and revision may fall on the scoring day itself, before the score (UNIT-PLAN field 5). Do not report
+  a revision on the scoring day as a fault.
 - A day exit gives a fresh stimulus (a new case, source, problem or text); it does not rehearse an end item or redo the
   day's worked example with the nouns swapped.
 - Field 7: every error letter has a group and a repair that is not the next worked example.
@@ -36,6 +38,9 @@ exit table.
 **sequence** (yours if {lens} = sequence): fields 1 to 4 and the day list.
 - Every owned standard or code is taught, practised and checked inside the unit (or the plan says where else).
 - Minutes add up on every day; check and respond days match days.csv; the day list matches days.csv.
+- Ask for minute-by-minute day budgets, daily exits or day plans only where UNIT-PLAN puts them in the unit plan; a
+  unit of several sections leaves them to its section plans. The day list is generated: a fault in it or in days.csv is
+  a finding for the lead (say so), not something the fix step can change.
 - Hand-offs: what the unit needs from earlier units is named and was taught there (scope-and-sequence); what later
   units need is left in place.
 - Science: the anchoring phenomenon or design problem drives the days, and each performance expectation has its three

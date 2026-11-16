@@ -18,5 +18,8 @@ Keep the plan's shape, voice and word cap. UTF-8, LF endings, no em dashes, "Cur
 student, teacher or family copy. Same blind list as the lens reads (docs/courses/ela-6/, math-4 paths, data/units.csv,
 courses/, docs/reviews/*reconcile*, *math-4*, *ela-6*). No git.
 
-Last message (under 200 words): findings merged (count), fixed, rejected with reasons, per lens how many held up,
-and the gate line for s{uu}.md.
+Last message (under 200 words, plus the rejection lines): findings merged (count), fixed, per lens how many held up,
+and the gate line for s{uu}.md. Then one line per rejected finding, each starting `REJECTED:` exactly:
+`REJECTED: <lens> <number> | <the finding, in a sentence> | <why, in a sentence> | <the rule relied on: UNIT-PLAN field N, the writer's brief, or none>`.
+The lead rules on every rejection later and may send the finding back to be fixed, so write each so it can be judged
+without opening the lens report. No rejections: one line, `REJECTED: none`.
