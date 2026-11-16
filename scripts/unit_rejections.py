@@ -4,6 +4,9 @@ Usage:
   python -X utf8 scripts/unit_rejections.py collect          gather new rejections into data/plans/unit-rejections.csv
   python -X utf8 scripts/unit_rejections.py open             print the rows not yet ruled on
   python -X utf8 scripts/unit_rejections.py apply [logdir=]  send each overruled, unapplied row back to Codex to fix
+  python -X utf8 scripts/unit_rejections.py calendar <course> [logdir=]  send the course's unapplied `lead` rows to
+      Codex with docs/pipeline/briefs/unit-calendar-fix.md (days.csv, scope and sequence, s*.md); run only when no
+      other job is writing that course
 
 The fix step (docs/pipeline/briefs/unit-lens-fix.md) ends with one `REJECTED:` line per finding it turned down:
 `REJECTED: <lens> <n> | <finding> | <why> | <rule relied on>`. Reports written before that format (2026-11-16) have
@@ -140,7 +143,35 @@ def apply(opts):
         print(course, uu, len(rs), 'rulings applied:', stamp, flush=True)
 
 
+def calendar(course, opts):
+    import codex_units as cu
+    rows = load()
+    rs = [r for r in rows if r['course'] == course and r['ruling'] == 'lead' and not r['applied']]
+    if not rs:
+        print(course, 'no calendar items')
+        return
+    subject, nums = cu.units(course)
+    items = chr(10).join('- unit %s (%s): %s' % (r['unit'], r['lens'], r['finding']) for r in rs)
+    logdir = opts.get('logdir', os.path.join(ROOT, '..', 'codex-ruling-logs'))
+    os.makedirs(logdir, exist_ok=True)
+    tag = 'calendar-%s' % course
+    subprocess.run([sys.executable, '-X', 'utf8', 'scripts/codex_write.py', 'docs/pipeline/briefs/unit-calendar-fix.md',
+                    course, 'items=' + items, 'writer_brief=' + cu.brief_for(subject),
+                    'allow=data/plans/{course}/days.csv;docs/courses/{course}/scope-and-sequence.md;docs/courses/{course}/s*.md',
+                    'tag=' + tag, 'log=' + os.path.join(logdir, tag + '.log')], cwd=ROOT)
+    gates = [subprocess.run([sys.executable, '-X', 'utf8', 'scripts/%s' % g, 'check', course], cwd=ROOT,
+                            capture_output=True).returncode == 0 for g in ('plan.py', 'unitplan.py')]
+    stamp = '%s calendar %s' % (datetime.date.today().isoformat(), 'pass' if all(gates) else 'FAIL')
+    for r in rs:
+        r['applied'] = stamp
+    save(rows)
+    print(course, len(rs), 'calendar items:', stamp, '(see the report for any LEFT: lines)', flush=True)
+
+
 def main(a):
+    if a and a[0] == 'calendar' and len(a) > 1:
+        calendar(a[1], dict(x.split('=', 1) for x in a[2:]))
+        return 0
     if not a or a[0] not in ('collect', 'open', 'apply'):
         print(__doc__)
         return 2
