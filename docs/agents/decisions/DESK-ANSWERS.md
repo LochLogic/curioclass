@@ -1396,3 +1396,10 @@ corrections, fix US History I unit 5 and the probe days, add the source rule, pr
 ELA and math units together. Lead: sources are verified or none (UNIT-PLAN field 10, the four plan-codex briefs,
 plan-data.md step 3; lesson.py already fails a placeholder). Why: the probe's placeholder source sheets changed
 facts once checked, and free sources were settled earlier today.
+
+## 2026-11-15: the US-Dakota War and Sand Creek are taught in unit 6.2 (Cory: "Go with unit 6.2")
+
+US History I unit 5 keeps one teacher-background line on day 79 naming both; unit 6.2's day 103 now teaches the
+Plains wars from the US-Dakota War (1862) and the Sand Creek Massacre (1864) to Wounded Knee (1890). Why: they sit
+beside the treaties and removals of unit 6.2, and unit 5's days are full (Native nations sensitivity read, finding
+for Cory). Applied: data/plans/us-history-i/days.csv day 103, s06.md day list, scope-and-sequence.md unit 6 topics.
