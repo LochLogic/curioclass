@@ -3,11 +3,9 @@ piece: opener
 course: world-history-i
 unit: 3.4
 version: draft
-credit: All ours. Primary sources are public domain, and one caption translation is CC BY; each source sheet prints its rights line.
+credit: All ours. Primary sources are public domain, one caption translation is CC BY, and one short Secret History excerpt is CC BY-NC-ND, quoted unchanged; each source sheet prints its rights line.
 ---
 # Section 3.4 opener: mapping power and defending a claim
-
-Read this once before day 42; the day pages assume it.
 
 ## What the section does
 
@@ -41,7 +39,8 @@ Nothing in this section is scored before a student has read your written feedbac
 |---|---|
 | A1 | A: two words for one ruler. |
 | A2 map, economy, culture, limit | B, I, N, L (field 5 of s03). |
-| A2 links | K (option b) or D (option d). |
+| A2 links | C (option a), K (option b) or D (option d). |
+| A2 two sources, evidence and inference | F: trace each half of a statement to its source. |
 | A2a, A2b, A2d | H, with J, K or D. |
 | A3 | C and O: trace each route both ways, market to market. |
 | A4, A5a, A5b | E, F, G. |
@@ -56,12 +55,12 @@ data/plans/world-history-i/sources.csv. The day 45 packet is reserved: do not sh
   his book in 1355, years after his journeys. Polo told his book to Rustichello for European readers. Ibn al-Athir,
   a historian in Mosul, wrote for Muslim readers about a disaster to his own world; he did not see these events and
   heard them from people who fled. Ask every day: who made it, when, for whom, and what can it not show?
-- **Their own histories.** Griots' songs, the Tarikh al-Sudan, the Kilwa Chronicle, Ezana's inscriptions and the
-  Secret History of the Mongols are named on the sheets, not quoted: we found no free English text we could check.
-  Say so as each sheet's limit.
-- **Translators' words.** Gibb's 1929 translation says "negroes" and "blacks"; Browne's 1906 translation says
-  "Tartars". They stay printed. When you read aloud, read the translator's word once where it first appears, say
-  what it means and why we do not use it, then say "the people of Mali" in its place for the rest of the reading.
+- **Their own histories.** Griots' songs, the Tarikh al-Sudan, the Kilwa Chronicle and Ezana's inscriptions are
+  named, not quoted: we found no free English text to check; say so as those sheets' limit. The Secret History of
+  the Mongols has one; option d quotes it as Source K.
+- **Translators' words.** They stay printed. Reading aloud, read each once, say what it means and why we do not use
+  it, then use its substitute: "blacks" and "negroes", the people of Mali; "Negrolands", the lands of Mali;
+  "slaves", enslaved people; "Tartars" (outsiders' name for the Mongols), the Mongols.
 - **Slavery named plainly.** Sources A and P1 show enslaved people: armed men at the court and salt miners at
   Taghaza. Source C records raids on inland neighbours; raids like these often took captives, but the passage does
   not say so. Never treat people as one more good; their own voices do not survive here.
@@ -105,8 +104,7 @@ data/plans/world-history-i/sources.csv. The day 45 packet is reserved: do not sh
 
 - Ancient Ghana lay inland, in today's Mauritania and Mali, not in the modern country of Ghana, which took the name
   in 1957.
-- Mali's wealth came from taxing trade and from gold fields its rulers did not mine themselves. Ibn Battuta saw
-  Mali in 1352 and 1353, under Mansa Sulayman, Musa's brother.
+- Mali's wealth came from taxing trade and from gold fields its rulers did not mine themselves.
 - The Swahili towns were African towns with their own rulers, trading across the Indian Ocean; imported porcelain
   and glass show trade, not foreign builders. Gibb's translation says Kilwa was built of wood; its surviving Great
   Mosque and palace are coral stone.

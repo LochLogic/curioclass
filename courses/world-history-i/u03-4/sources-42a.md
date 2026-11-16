@@ -13,8 +13,9 @@ people of Mali, "slaves" for enslaved people. In your own writing, name people a
 
 **Their own histories.** The peoples of Mali kept their own history. Griots (jeliw) still sing the epic of Sundiata;
 UNESCO lists the Sosso-Bala, the balafon kept by the Kouyate griots of Niagassola, as their heritage. Timbuktu's
-scholars later wrote chronicles, among them the Tarikh al-Sudan, kept in family libraries today. We have no free
-English text of them we could check, so this sheet quotes only visitors: that is its limit.
+scholars later wrote chronicles, among them the Tarikh al-Sudan, and Timbuktu's families still keep libraries of
+manuscripts today. We have no free English text of them we could check, so this sheet quotes only visitors: that is
+its limit.
 
 **Fact card (ours).** Ghana (Wagadu), founded by Soninke people, traded gold north across the Sahara and was named
 in writing by the 800s; its capital, Koumbi Saleh, lay inland, in today's Mauritania, far from the modern country of

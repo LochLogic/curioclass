@@ -69,7 +69,7 @@ Gloss: Dugha was the sultan's interpreter and a griot, a keeper and singer of hi
 
 - **Silk:** woven in China; carried west through Central Asian markets toward Persia and the Mediterranean.
 - **Horses:** bred on the grasslands of the steppe; sold toward China and to the armies of Persia and India.
-- **Furs:** sable and squirrel trapped in the northern forests of Rus and Siberia; carried south to Central Asian
+- **Furs:** sable, squirrel and fox trapped in the far north of Rus; carried south down the Volga to Central Asian
   and Persian markets.
 - **Spices:** pepper from southern India, cloves and nutmeg from the islands of Southeast Asia; carried west and
   north by sea and land through Indian Ocean and Persian ports.

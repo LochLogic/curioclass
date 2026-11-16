@@ -23,9 +23,13 @@ time, before more days are written.
   misconceptions, written by Codex in 119 units). Corrected 2026-11-15: all 138 units by Codex
   (docs/pipeline/briefs/unit-correct.md, reports docs/reviews/codex-write-correct-*), the rules in UNIT-PLAN.md, the
   plan-codex briefs and unitplan.py, sources "verified or none", and days 78 to 82 fixed with a Native nations read
-  (docs/reviews/sensitivity-native-u05-2-2026-11-15.md). Next: probe one more section in another course (later.csv
-  L51) before science, ELA and math units are written.
-- **Section plans and days**: only the probe section (US History I 5.2, days 78 to 82). A day skeleton draft exists early on purpose
+  (docs/reviews/sensitivity-native-u05-2-2026-11-15.md). **Second probe** (World History I 3.4, days 42 to 46,
+  docs/reviews/probe-social-studies-2-2026-11-15.md): Off again (plan share 60%, units 42%, one required table
+  added to UNIT-PLAN field 7), but only 6 of 147 findings needed a unit plan; most sit in keys, samples and source
+  sheets written at plan-data. Next (later.csv L56): gates for the repeated faults, a second correction pass run to
+  the gates, an answer-key read after plan-data, a third probe. Whether science, ELA and math units wait is Desk card
+  q-probe-ss-2.
+- **Section plans and days**: only the two probe sections (US History I 5.2, days 78 to 82; World History I 3.4, days 42 to 46). A day skeleton draft exists early on purpose
   (scripts/day_skeleton.py, docs/pipeline/DAY-SKELETON.md, later.csv L31). Grade 4 math's older plans and 48 days,
   made under the retired pilot plan, are held for math's units in step 5 (PRODUCTION-PATH section 4; rework list in L13).
 - **The site**: not launched. scripts/course_pages.py builds hidden course and unit pages for all 52 core courses

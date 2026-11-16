@@ -19,8 +19,8 @@ reached him through an interpreter. Translated by W. W. Rockhill (1900), pp. 235
 > upright heart." ... "But as God gives us the different fingers of the hand, so he gives to men divers ways."
 
 Gloss: *Moal*, Rubruck's spelling of Mongol; *one God*, Rubruck's words, through an interpreter, for Eternal Heaven
-(Tengri), whom Mongol rulers worshipped; *divers*, different. Mongke's letter to King Louis is on your option d
-sheet: read it beside this.
+(Tengri), whom Mongol rulers worshipped; *divers*, different. Mongke's letter to King Louis is Source J on your
+option d sheet: read it beside this.
 
 **Source G. Ibn Battuta, justice and prayer in Mali, 1352 to 1353.** Dictated in 1355; translated by H. A. R. Gibb
 (1929), pp. 323 to 335. Public domain.

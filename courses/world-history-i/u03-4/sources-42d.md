@@ -3,7 +3,7 @@ piece: blank
 course: world-history-i
 unit: 3.4
 version: draft, sources checked 2026-11-15
-credit: Sources D, E and the Source F letter are public domain; the fact cards are ours; rights, citations and links in data/plans/world-history-i/sources.csv.
+credit: Sources D, E and J are public domain; Source K is CC BY-NC-ND 4.0 (trans. Igor de Rachewiltz, ed. John C. Street, Western Washington University CEDAR, 2015), quoted unchanged; the fact cards are ours; rights, citations and links in data/plans/world-history-i/sources.csv.
 ---
 # Days 42 to 44 sources, option d: the Mongol Empire
 
@@ -13,14 +13,28 @@ for Muslim readers about a disaster to his own world; he did not see these event
 fled. Browne's 1906 translation says "Tartars", a European name that linked the Mongols to Tartarus, the underworld;
 Browne himself notes it. The Mongols called themselves Mongol. In your own writing, name people as people.
 
-**Their own history.** The Mongols kept their own account of Chinggis's rise, the Secret History of the Mongols,
-written in the 1200s. We have no free English text of it we could check, so this sheet quotes only outsiders: that
-is its limit.
+**Their own history.** The Mongols kept their own account of Chinggis's rise and his son Ogodei's rule, the Secret
+History of the Mongols, written in Mongolian in the 1200s, its author unknown. A free English translation exists, and
+Source K is a short piece of it; every other source on this sheet is by outsiders.
+
+**Source K. The Secret History of the Mongols: Ogodei Khan names his deeds.** Ogodei, Chinggis's son, was Great
+Khan from 1229 to 1241. Translated by Igor de Rachewiltz, shorter version edited by John C. Street (Western
+Washington University CEDAR, 2015), paragraph 281. CC BY-NC-ND 4.0: quoted word for word, unchanged.
+
+> Ögödei Qa’an said, ‘This I have done after I sat on the great throne of my father:
+>
+> ‘I campaigned against the J̌aqut people and I destroyed them.
+>
+> ‘As my second deed, I had post stations set up so that our messengers could ride in haste all along the way; and
+> for that purpose I had all necessities conveyed to the post stations.
+
+Gloss: *Qa’an*, Great Khan; *J̌aqut*, the translator's note says the people of north China; *post stations*, stops
+with fresh horses for the khan's messengers. Limit: written for the khans' own family, it tells their deeds their way.
 
 **Fact card (ours).** Temujin was proclaimed Chinggis Khan in 1206 and died in 1227; his armies took much of north
 China (the Jin state fell in 1234, after his death) and, after the Khwarazm shah's side killed Mongol envoys sent
 about trade, destroyed the cities of Khwarazm in Central Asia (1219 to 1221). Skilled captives from conquered cities
-were carried off to work for the khans; Rubruck met one, a goldsmith from Paris, at Karakorum. His grandson Hulegu sacked Baghdad in 1258. By the
+were carried off to work for the khans; Rubruck met one, a goldsmith from Paris, at Karakorum. Chinggis's grandson Hulegu sacked Baghdad in 1258. By the
 1260s the empire had split into four khanates: the Golden Horde, the Chagatai khanate, the Ilkhanate in Persia, and
 the Yuan in China, where Khubilai Khan ruled from 1260 to 1294, named his dynasty Yuan in 1271 and conquered the Song
 by 1279. In 1287 the Ilkhan sent Rabban Sauma to Europe to seek an alliance against the Mamluks of Egypt. Yuan rule
@@ -58,7 +72,7 @@ writing of events he did not see, from people who fled them; translated by Edwar
 Gloss: *doth not contain aught*, holds nothing; *nigh unto*, near; *habitable globe*, the lived-in world;
 *devastations*, destruction.
 
-**Source F, the letter. Mongke Khan to King Louis IX of France, 1254.** Mongke was the Great Khan at Karakorum; at
+**Source J. Mongke Khan's letter to King Louis IX of France, 1254.** Mongke was the Great Khan at Karakorum; at
 his court Christians, Muslims and Buddhists debated before the Khan's secretaries (Rockhill, pp. 228 to 235). The
 friar William of Rubruck wrote down the letter's sense "as well as I could understand through an interpreter";
 translated by W. W. Rockhill (1900), pp. 248 to 249. Public domain.
