@@ -24,6 +24,13 @@ exit table.
 - A day exit gives a fresh stimulus (a new case, source, problem or text); it does not rehearse an end item or redo the
   day's worked example with the nouns swapped.
 - Field 7: every error letter has a group and a repair that is not the next worked example.
+- Every code the unit owns has new end-of-unit evidence in this unit, not a record reused from another unit.
+- A cold check is cold: its text, case or problem does not restate the taught one's central idea or reuse its key
+  teaching words; an exit is not the day's hook in new numbers.
+- Each error letter listed for an item is a mistake that item can actually produce; contexts make sense to a student
+  (no half of a counted thing).
+- Scored work: its day agrees with days.csv, comes after the day that teaches it, and is not made on a fluency or
+  first-teaching day. Unscored transfer sittings that the scores then ignore are a finding.
 
 **sources** (yours if {lens} = sources): field 10 and every text, source or data set the unit names.
 - Verified or none: every text the days will quote names where its words can be checked for free (a free text
@@ -34,8 +41,10 @@ exit table.
   paired text has an edition and a rights note; excerpt lengths fit the rights. Math: every outside task or context
   names its source; no invented statistic is presented as real.
 - No company names in student, teacher or family copy; images or people named have a source.
+- Safety guidance cites a real safety standard (a state, district or professional safety guide), never a student
+  sign-off form. Every core text is named with its edition, or the plan says why it is written by us and when.
 
-**sequence** (yours if {lens} = sequence): fields 1 to 4 and the day list.
+**sequence** (yours if {lens} = sequence): fields 1 to 4, field 8 and the day list.
 - Every owned standard or code is taught, practised and checked inside the unit (or the plan says where else).
 - Minutes add up on every day; check and respond days match days.csv; the day list matches days.csv.
 - Ask for minute-by-minute day budgets, daily exits or day plans only where UNIT-PLAN puts them in the unit plan; a
@@ -43,6 +52,11 @@ exit table.
   a finding for the lead (say so), not something the fix step can change.
 - Hand-offs: what the unit needs from earlier units is named and was taught there (scope-and-sequence); what later
   units need is left in place.
+- Field 8, tools and supplies: every end item, investigation and owned standard can be done with the supplies and
+  safety limits field 8 sets (a build and retest needs its materials allowed); supply and safety lines agree with each
+  other, with days.csv and with the cost line.
+- Day types: a fluency or application day does what its type says; a base lesson marked "keep" is taught, not turned
+  into something else.
 - Science: the anchoring phenomenon or design problem drives the days, and each performance expectation has its three
   dimensions. ELA: the text set builds knowledge; writing and speaking tasks follow the texts. Math: clusters carry
   their stated weight; practice builds from concrete to abstract where the grade needs it.
