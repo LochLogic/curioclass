@@ -169,7 +169,8 @@ def after_cycle(id_, title, cs, sub, pre=True):
     lanes.append(dict(title='Unit plans', group=True, rows=urows))
     lanes.append(dict(title='Review and probe', nodes=[N(f'units-review:{id_}', 'Units review'), N(f'probe:{id_}', 'Probe')]))
     bands.append(dict(type='stage', id=f'after:{id_}', title=title, sub=sub, lanes=lanes, faint=True))
-    return cs
+    group = title.replace('After the core: ', '').replace(' (shelved)', '')
+    return [(group[0].upper() + group[1:], c) for c in cs]   # each course with its subject, for the days groups
 
 after_cs = []
 electives = [c for n in ORDER for c in courses(n) if not c.get('core')]
@@ -185,9 +186,9 @@ for s_ in CS['subjects']:
                             + 'The same steps as a core subject: the bar work this subject owes first, then its progression, frames, scopes and sequences and unit plans. Counts are estimates until each frame is written.')
 n_after = len(after_cs)
 arows = []
-for c in after_cs:
+for grp, c in after_cs:     # grouped by subject so each gets its own days bar on the Desk
     n_days, est = days_of(c)
-    arows.append(dict(title=c['title'], group='After the core', est=est, cells=''.join(st(f'day:{slug(c["title"])}:{i + 1}') for i in range(n_days))))
+    arows.append(dict(title=c['title'], group=grp, est=est, cells=''.join(st(f'day:{slug(c["title"])}:{i + 1}') for i in range(n_days))))
 bands.append(dict(type='rows', id='after-days', title='After the core: days', sub='Every teaching day of the other %d courses, at about %d days a course until each frame sets its count.' % (n_after, EST_DAYS), rows=arows, faint=True))
 
 def rle(cs):
