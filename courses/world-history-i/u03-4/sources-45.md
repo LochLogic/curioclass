@@ -7,11 +7,11 @@ credit: P1, F1 and F2 are public domain; the P2 caption translation is CC BY (Br
 ---
 # Day 45 source packet
 
-Reserved for the end-of-unit assessment: do not show it before day 45. Fold F1 and F2 along the line and open only
-the one you choose for A5b. The 1929 translation's words ("negroes", "Negrolands", "slaves") stay as printed.
+Reserved for the end-of-unit assessment: do not show it before day 45. F1 and F2 are cut out as separate cards and
+folded shut; open only the one you choose for A5b. The packet comes back to you on day 46. The 1929 translation's words ("negroes", "Negrolands", "slaves") stay as printed.
 
 **P1. Ibn Battuta, Taghaza, 1352.** Ibn Battuta crossed the Sahara from Sijilmasa (in today's Morocco) to Mali and
-dictated his travels in 1355; translated by H. A. R. Gibb (1929), pp. 317 to 323. Public domain.
+dictated his travels in 1355, for readers in Morocco; translated by H. A. R. Gibb (1929), pp. 317 to 323. Public domain.
 
 > After twenty-five days [from Sijilmasa] we reached Taghaza, an unattractive village, with the curious feature that
 > its houses and mosques are built of blocks of salt, roofed with camel skins. ... No one lives at Taghaza except the
@@ -21,11 +21,13 @@ dictated his travels in 1355; translated by H. A. R. Gibb (1929), pp. 317 to 323
 > thirty, and sometimes as much as forty. The negroes use salt as a medium of exchange, just as gold and silver is
 > used [elsewhere]; they cut it up into pieces and buy and sell with it.
 
-Gloss: *subsist on*, live on; *Massufa*, a Berber people of the desert who guided caravans; *mithqal*, a weight of
+Gloss: *subsist on*, live on; *Massufa*, an Amazigh (Berber) people of the desert who guided caravans; the salt diggers were people the Massufa
+held in slavery; *mithqal*, a weight of
 gold used as money; *Iwalatan*, Walata; *medium of exchange*, money.
 
 **P2. The Catalan Atlas, Majorca, 1375.** A map of the known world attributed to Abraham Cresques, a Jewish
-mapmaker of Majorca, and possibly made for King Charles V of France. Paris, Bibliotheque nationale de France. The
+mapmaker who worked in Majorca, an island in the Mediterranean, far from West Africa; possibly commissioned by the
+King of Aragon for King Charles V of France (Northwestern University, Caravans of Gold record). Paris, Bibliotheque nationale de France. The
 picture, in words: over West Africa, a Black king sits on a throne, wearing a gold crown, holding a sceptre and a
 round gold object, perhaps an orb, a coin or a nugget. The caption beside him, translated by the British Library
 (CC BY):
@@ -40,7 +42,7 @@ distant mapmakers associated Mali with gold.
 
 - - - - - - - - - - fold here - - - - - - - - - -
 
-**F1. Ibn Battuta, arriving at Walata, 1352.** Same book and translation, pp. 317 to 323. Public domain.
+**F1 (cut out and fold shut). Ibn Battuta, arriving at Walata, 1352.** Same book and translation, pp. 317 to 323. Public domain.
 
 > Iwalatan is the northernmost province of the negroes, and the sultan's representative there was one Farba Husayn,
 > "farba" meaning deputy [in their language]. When we arrived there, the merchants deposited their goods in an open
@@ -50,10 +52,12 @@ distant mapmakers associated Mali with gold.
 
 - - - - - - - - - - fold here - - - - - - - - - -
 
-**F2. Ibn Battuta, a festival at the court of Mali, 1353.** Same book and translation. Public domain.
+**F2 (cut out and fold shut). Ibn Battuta, a festival at the court of Mali, 1352 to 1353.** Same book and
+translation, pp. 323 to 335. Public domain.
 
 > A chair is placed for Dugha to sit on. He plays on an instrument made of reeds, with some small calabashes at its
-> lower end, and chants a poem in praise of the sultan, recalling his battles and deeds of valour. ... Thereupon the
+> lower end, and chants a poem in praise of the sultan, recalling his battles and deeds of valour. The women and
+> girls sing along with him and play with bows. ... Thereupon the
 > sultan orders a gift to be presented to Dugha and he is given a purse containing two hundred mithqals of gold dust
 > and is informed of the contents of the purse before all the people.
 
@@ -70,3 +74,5 @@ Gloss: Dugha was the sultan's interpreter and a griot, a keeper and singer of hi
 - **Spices:** pepper from southern India, cloves and nutmeg from the islands of Southeast Asia; carried west and
   north by sea and land through Indian Ocean and Persian ports.
 - **Grain:** wheat and millet grown near oasis towns; sold in the same region to feed towns and caravans.
+- **Gold and salt:** gold from West African fields carried north across the Sahara to North Africa and the
+  Mediterranean; salt dug in the desert carried south to the towns of Mali.

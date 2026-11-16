@@ -16,7 +16,7 @@ the rest.
 
 | Piece | Who reads it | Made how | Size |
 |---|---|---|---|
-| **Teacher page** | The teacher, the night before | Written, plus a header and tables generated from data | 900 words of prose at most on a teaching day, 500 on an assessment day. Generated tables do not count |
+| **Teacher page** | The teacher, the night before | Written, plus a header and tables generated from data | 15 words of prose a minute of the day at most (900 at 60 minutes) on a teaching day, 500 on an assessment day (see "What changes by subject"). Generated tables do not count |
 | **At home view** | A parent teaching one child | Written: the teacher page's At home block. Built as `dNNN-home.html`, each question it names pulled from data with its answer | 170 words at most, counted apart from the teacher prose cap |
 | **Student page** | Each student | Written frame; every question pulled from data | One sheet, both sides of US Letter at most. Words a student reads counts everything printed for the student, questions included; the cap is set per course in DEFAULTS.md (grade 4 math: 350, ours, untested), and the gate reports frame and questions apart. No sentence over 15 words in grades 3 to 5. 18 point type in kindergarten to grade 2, with a line telling the teacher what to read aloud; 14 point in grades 3 to 5; 12 point from grade 6 |
 | **Exit ticket** | Each student, then the teacher | Generated from data: the paper path's exit rows | A quarter page, four to a sheet |
@@ -108,7 +108,9 @@ piece is missing unless its version says "not ready", and the build then prints 
 missing" at the top of the teacher page. A piece that does not exist yet and is not needed to teach the day is
 written `when it exists: <path>`; the check skips it, the header prints it as "Uses when it exists", and the
 prose must say what the day does until it exists. The record sheet's own header (not a day file's) may carry
-`exitlooks: 7;8`, which gives a judged exit one tick a look-for.
+`exitlooks: 7;8`, which gives a judged exit one tick a look-for. A unit whose end items are judged by component
+(social studies) adds `endlooks: 012`: each teacher-judged end item then takes one column a look-for, headed by
+its id (A1, A2, ...), and the sheet prints the 2, 1, 0 rule.
 
 ## The teacher page, in this order
 
@@ -349,8 +351,11 @@ slides) holds everywhere. Known now to differ:
   sample answers instead of a computed key, and a note telling a language gap from a content gap.
 - **New on a check.** Rule 3 is, in general, "nothing on a check is a taught item": new numbers in math, a cold
   text in ELA, a new situation in science, an unseen source in social studies.
-- **Caps run per minute.** 15 words of teacher prose a minute of the day (900 at 60 minutes, 1,350 for a
-  90-minute literacy block). "Before class" and the student reading cap are set in each course's DEFAULTS.md.
+- **Caps run per minute.** 15 words of teacher prose a minute of the day (900 at 60 minutes, 750 at 50, 1,350 for
+  a 90-minute literacy block); `lesson.py check` reads the day's length from the course's frame. An assessment day
+  keeps 500 unless it carries a revision part or scores a product made on earlier days (a handbacks.csv row with
+  `where` = `assessment` into it); then it takes the teaching cap. "Before class" and the student reading cap are set
+  in each course's DEFAULTS.md.
 - **Science** adds a required "Safety and set-up" heading (materials per group, set-up the day before, clean-up
   minutes) and a data sheet.
 - **ELA** prints the text as its own piece, outside the two-side limit, with its rights line; a writing day
@@ -362,6 +367,16 @@ slides) holds everywhere. Known now to differ:
   modern interpretation under copyright is paraphrased in our words and attributed, never quoted. Exits and essay
   tasks are judged by the teacher (look-fors and samples), and an organizer a student completes is a practice row.
   Day-level parts are read from the section plan's `- **N min. Name.**` lines.
+  Settled by the world-history-i probe (2026-11-15): **new by situation.** A judged exit is not its worked example
+  with the nouns swapped; it gives a fresh stimulus (a short invented note, an unseen source) and asks the day's
+  move on it. **A respond day's practice or exit** works a parallel case or a second source, never a redo of the
+  returned item whose key was read. **Scale.** A look-for never asks for a scale on a sketch the day labels not to
+  scale; it asks for the label or the journey times a source gives. **A product scored from collected work** prints
+  under its stem "Scored from the work you handed in. Write nothing here." **Rotated forms** (three word sets, three
+  sources) each get their own key line or row. **Words and supports** glosses only words the day's talk or items
+  use; a word coded to the day is used in an Ask or a look-for, not left on the list. **A reserved source** (sources.csv
+  `use` = `reserved`) is named in no day before its own; its note lists the words to watch (`watch: Taghaza`), and
+  `lesson.py check` fails a day that names one.
 - **Runs of days.** A day may belong to a run (`continues: d091`), so an investigation or the writing process is
   not forced into one sheet.
 

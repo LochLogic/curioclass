@@ -2,9 +2,13 @@ from_day,to_day,what,where,minutes,error,note
 30,31,s03-R1 s03-R2,opening,10,B,"readiness gaps R1 and R2: after the hook, resource zones and the coast and date cards"
 30,37,s03-R3,warm-up,5,O,"readiness gap R3: water, stops and merchant relays, re-asked with a new route, not marked"
 41,42,s03-X41,warm-up,5,L,day 41 exit: what a court source can and cannot show
-42,43,s03-X42,warm-up,5,I,day 42 exit: a producer and a cost on the arrow
-43,44,s03-P42-2 s03-P43-2,read feedback,5,,"the map product with written feedback, marked after day 43; revised on day 44 and scored as A2 on day 45 (K2)"
-43,44,s03-X43,read feedback,0,H,day 43 exit returned clipped to the map; a miss on H goes into the map feedback
+41,42,s03-X41,warm-up,0,A,day 41 exit: dynasty and empire applied together to Mansa Sulayman if many showed A
+42,43,s03-X42-v2,warm-up,5,I,day 42 exit: a producer and a cost on the arrow
+43,44,s03-P42-2-v2 s03-P43-1 s03-P43-2 s03-P43-3,read feedback,5,,"the map product with written feedback, marked after day 43, with the warm-up arrow (P43-1) and the timeline bands (P43-3) in the folder; revised on day 44 and scored as A2 (K2)"
+43,44,s03-X43-v2,read feedback,0,H,day 43 exit returned clipped to the map; a miss on H goes into the map feedback and the band redraw
+43,44,s03-X43-v2,read feedback,0,K,"day 43 exit: a miss on K is answered in the map feedback (made here, brought here)"
 44,45,s03-W44,claim revision,5,,"the closing claim with written feedback, marked after day 44; revised before the assessment and scored in A2d (K2)"
-44,46,s03-X44,feedback,0,I,day 44 exit returned with the assessment; an I miss joins the I response group
-45,46,s03-A1 s03-A2 s03-A2a s03-A2b s03-A2d s03-A3 s03-A4 s03-A5a s03-A5b,feedback,5,,"the marked assessment, by component; response groups from the marks"
+44,45,s03-P44-1 s03-P44-2 s03-P44-3,assessment,0,,"the revised map with its feedback note and discussion detail, kept in the folder by the teacher and scored as A2 on the evening of day 44 (K2)"
+44,46,s03-X44-v2,feedback,0,P,day 44 exit returned with the assessment; a P miss joins the P response group
+45,46,s03-A1-v2 s03-A2-v2 s03-A2a s03-A2b-v2 s03-A2d s03-A3 s03-A4 s03-A5a s03-A5b,feedback,5,,"the marked assessment, by component; response groups from the marks"
+46,49,s03-X46-v2,feedback,0,H,"day 46 exit returned on day 49, the respond day after course-level check 1; an H miss joins the timeline group"

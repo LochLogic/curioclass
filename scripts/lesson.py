@@ -464,7 +464,26 @@ def check_day(d, items, days):
                 f.append('%s: parts naming %s add to %d min; days.csv says %s' % (lab, tt, tm, row['tool_min']))
     # caps
     tw = words(teacher_prose(d))   # the At home block has its own cap (check_home)
-    cap = CAP_CHECK if check_day_kind else CAP_TEACH
+    # 15 words a minute of the course's day (LESSON-DAY "What changes by subject"; 900 at 60 minutes, 750 at 50:
+    # world-history-i day 46 passed at 851 under a flat 900, expert finding 10). An assessment day keeps 500, unless
+    # it carries a revision part or scores a product made on earlier days (a handbacks.csv row of kind assessment
+    # into it), which takes the teaching cap (expert, day 45 finding 11)
+    per = 15 * (hi or DAY_MIN)
+    carries = any(re.search(r'revis', b[1], re.I) for b in d['blocks']) or any(
+        r.get('to_day') == h.get('day') and r.get('where', '').strip().lower() == 'assessment'
+        for r in (plan.rows(h.get('course', ''), 'handbacks') if plan.course_meta(h.get('course', '')) else []))
+    cap = (per if carries else CAP_CHECK) if check_day_kind else per
+    # a reserved source (sources.csv use "reserved") stays out of every day before its own: the day names neither its
+    # id nor a word its note lists after "watch:" (expert, day 44 finding 5: Taghaza taught the day before the check)
+    for s in plan.rows(h.get('course', ''), 'sources'):
+        sd = [int(x) for x in re.findall(r'\d+', s.get('days', ''))]
+        if s.get('use') == 'reserved' and sd and int(h.get('day', 0) or 0) < min(sd):
+            wm = re.search(r'watch:\s*([^.;"]+(?:;[^.;"]+)*)', s.get('note', ''))
+            keys = [s['source_id']] + ([w.strip() for w in re.split(r'[;,]', wm[1]) if w.strip()] if wm else [])
+            for k in keys:
+                if re.search(r'(?<![\w-])%s(?![\w-])' % re.escape(k), d['teacher'] + d['student']):
+                    f.append('%s: names "%s" from reserved source %s (day %d) before its day; keep it out of teaching'
+                             % (lab, k, s['source_id'], min(sd)))
     if tw > cap:
         f.append('%s: teacher page is %d words of prose; the cap is %d' % (lab, tw, cap))
     bw = words(d['secs'].get('Before class', ''))
@@ -2946,14 +2965,23 @@ def build_piece(p, items, wrongs, errors):
                 if v.strip().isdigit()]
         cols += [c for _, c in sorted(mid)]
         ends = [i for i in items if i['stretch'] == st and i['check'] == 'end']
-        cols += [('End %s (%s)' % (i['n'], i['part']) if i['part'] else 'End %s' % i['n'], looks.get(i['n'], 1)) for i in ends]
+        # "endlooks: 012" (a unit whose end items are judged by component, scored 2, 1 or 0): each teacher-judged end
+        # item takes one column a look-for, headed by its id (expert, day 45 finding 3: ten A2 components, one cell)
+        el = h.get('endlooks', '').strip()
+        if el:
+            cols += [(i['item_id'].split('-', 1)[-1], max(1, len(steps(i))) if i['judged'] == 'teacher' else 1)
+                     for i in ends]
+            body += '\n\nEnd items: one cell a look-for, scored 2 (met), 1 (partly met) or 0 (not met).'
+        else:
+            cols += [('End %s (%s)' % (i['n'], i['part']) if i['part'] else 'End %s' % i['n'], looks.get(i['n'], 1))
+                     for i in ends]
         lf = ''.join('<p><b>W%s look-fors:</b> %s</p>' % (w['day'], '; '.join('%d. %s' % (k + 1, html.escape(s))
                      for k, s in enumerate(steps(w)))) for w in wts if steps(w))
         lf = ''.join('<p><b>E%s look-fors:</b> %s</p>' % (i['day'], '; '.join('%d. %s' % (k + 1, html.escape(s))
                      for k, s in enumerate(steps(i)))) for d in sorted({i['day'] for i in items if i['stretch'] == st
                                                                       and i['check'] == 'exit'}, key=int)
                      for i in xj(d)) + lf
-        lf += ''.join('<p><b>End %s look-fors:</b> %s</p>' % (i['n'], '; '.join('%d. %s' % (k + 1, html.escape(s))
+        lf += ''.join('<p><b>%s look-fors:</b> %s</p>' % (i['item_id'].split('-', 1)[-1] if el else 'End ' + i['n'], '; '.join('%d. %s' % (k + 1, html.escape(s))
                       for k, s in enumerate(steps(i)))) for i in ends if i['judged'] == 'teacher' and steps(i))
         hd = '<tr><th>Student</th>%s</tr>' % ''.join('<th colspan="%d">%s</th>' % (n, html.escape(c)) for c, n in cols)
         sub = '<tr><th></th>%s</tr>' % ''.join(''.join('<th>%s</th>' % ('' if n == 1 else '%d' % (k + 1))

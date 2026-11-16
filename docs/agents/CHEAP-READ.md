@@ -6,7 +6,7 @@ Your day: the day file named in your task. Its neighbours: the day before and th
 
 Check only these, by looking across files side by side:
 1. Hand-offs in substance. What the day before's Tomorrow promises, this day does in its words (not just names), and this day's Tomorrow names only what the next day does.
-2. The trace is true. For each phrase in the day's `shows` cell, the items named really ask for that piece of the goal. Answer the exit using only the worked examples: is any step needed that no example showed?
+2. The trace is true. For each phrase in the day's `shows` cell, the items named really ask for that piece of the goal. Answer the exit using only the worked examples: is any step needed that no example showed? For a judged exit, compare its stem and look-fors with the day's worked example: the same structure with the nouns swapped fails.
 3. The key is honest. Rework each key by hand. Each wrong row's letter really produces that wrong answer; each wrong answer the prose names has a row; two errors that give the same answer on one item are told apart by the working asked; the accept rule takes every right form.
 4. Page fit. Run `python -X utf8 scripts/lesson.py build --pdf` and look at this day's student PDF and slips under build/lessons/: boxes tall enough for what is asked, nothing cut off, tables readable, the display order matches the day.
 5. Minutes and materials. Each part's tasks fit its minutes for the grade; every strip, card or sheet a part hands out is in the day's materials and the opener's supplies; readiness branches match the opener's reteach.

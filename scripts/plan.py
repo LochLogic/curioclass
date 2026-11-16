@@ -24,7 +24,7 @@ KINDS = {'Understanding', 'Fluency', 'Application', 'Check', 'Respond'}
 MARKS = {'key', 'light'}
 LESSON_KINDS = {'example', 'tool', 'fix', 'practice', 'challenge'}   # rows a lesson day adds; all count as taught
 CHECKS = {'readiness', 'end', 'exit'} | LESSON_KINDS
-READERS = {'script', 'expert', 'cheap', 'sara', 'teacher', 'student', 'cory', 'writer'}
+READERS = {'script', 'expert', 'cheap', 'sensitivity', 'sara', 'teacher', 'student', 'cory', 'writer'}
 
 
 def rows(course, name):

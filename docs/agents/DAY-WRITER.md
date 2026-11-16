@@ -89,6 +89,12 @@ Run each on your own day before you hand in. The cheap read uses this list too.
 15. **Shorter keeps the core**: never the fix-its that carry the day's errors, the trace items or the exit.
 16. **Sources (social studies).** Every quotation is word for word from the source in sources.csv; every date and
     figure has a checked source; an exit's stimulus is unseen; a source line names who, when and for whom.
+17. **A judged exit is not its worked example** (social studies and every judged subject). Set the exit's stem and
+    look-fors beside the day's worked example: the same structure with the nouns swapped fails. Each look-for can be
+    met from what the stem prints (no scale on a sketch labelled not to scale; a market the look-for names is in the
+    stem); a respond day's practice uses a parallel case or a second source; each rotated form has its own key; a
+    product scored from collected work prints "Scored from the work you handed in. Write nothing here."; Words and
+    supports holds only words the day uses; no reserved source is named before its day.
 
 ## Gates (run until 0 failures for your day)
 

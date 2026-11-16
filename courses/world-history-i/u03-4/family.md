@@ -10,14 +10,16 @@ spanish: later
 
 ## English
 
-This week your student maps one kingdom or empire of 1000 to 1500: Ghana, Mali and Songhai in West Africa, the
-Swahili towns of the East African coast, or the Mongol Empire. They explain how its rulers held power, what was
-traded, who did the work, and how it was linked to other regions.
+This week your student maps one kingdom or empire of 1000 to 1500: Ghana, Mali and Songhai, the Swahili towns of
+East Africa, or the Mongol Empire. They explain how its rulers held power, what was traded, who did the work, and
+its links to other regions.
 
-We read travellers who saw these places, among them Ibn Battuta in Mali and Kilwa and Marco Polo in China, and ask
-what each could and could not know. We name slavery and conquest plainly.
+We read visitors who wrote about these places for readers at home, among them Ibn Battuta in Mali and Kilwa and
+Marco Polo in China, and ask what each could not know. The peoples of these places kept their own
+histories too, in griots' songs, chronicles and manuscripts, and their descendants live there today. We name slavery
+and conquest plainly.
 
-Midweek your student revises the map from written feedback and writes a claim. Ask them: was a ruler's power in this
+Midweek your student revises the map and writes a claim. Ask them: was a ruler's power in this
 age won mainly by trade, by faith or by the sword, and which source makes you say so?
 
-The unit ends with an assessment on the fourth day.
+The unit's assessment comes on the fourth day.

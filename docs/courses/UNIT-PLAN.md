@@ -200,7 +200,11 @@ occurs within the assessment day or on later respond days, and count it once. Th
 marked, and what each error group does. The marking step, in these words unless the subject page changes them: "Students mark the short items
 against the key on the screen, pen down, five minutes. Hands up by item sets the groups. Teacher-judged items
 are read after class and answered in the next day's first five minutes." For one child: go over the missed
-items together.
+items together. **Social studies** (world-history-i probe, 2026-11-15): items are teacher-judged
+by component, so nothing is self-marked by hands up. The groups come from the record sheet's 0 and 1 cells by
+component, through a component-to-move table in this field (each scored component to the error letter whose move
+repairs it); cap the respond day at four groups, others work in pairs from the written move; give the marking time
+honestly (minutes a student times the class).
 
 **8. Tools and supplies across the unit.** *Shared:* each tool with its day, mark and job, its verdict
 (rule 10) and a link to the course's TOOL-ASKS.md; the supplies list. Not here: tool gaps or asks of a spec.
