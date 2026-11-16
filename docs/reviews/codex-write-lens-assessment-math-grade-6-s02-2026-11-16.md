@@ -1,0 +1,7 @@
+1. [5, R1; 6, I] R1 scores posing an estimation question and testing assumptions, but these demands first appear on day 37, when the scored product is made | First-teaching work is ineligible for scoring, even after later revision | Teach these demands through an unscored, different case within day 36’s existing practice; retain R1 for feedback, revision and scoring on day 39.
+2. [5, M2] “No; doubling gives 16:26” does not establish that 8:13 and 12:17 differ | It could credit the misconception that only doubling preserves ratios | Compare equal first quantities: three original groups give 24:39, while two proposed groups give 24:34, so the mixtures differ.
+3. [U3; 6, C] E20 repeats the hook’s 8:12 collection with different objects; E34 repeats error C’s taught 7:4 pair | These exits reuse teaching stimuli | Change E20 to five stars and nine dots and update its diagrams; change C’s example to doubling 6:7, with wrong 12:7 and correct 12:14.
+4. [5, Judgment] The R1/R2 “meeting” sample omits the representation defence, posed question and R2’s ordered ratios | The model accepts incomplete evidence against its own requirements | Expand it to include the question, why the table fits, and labelled sheets-to-children ratios for one class and the school.
+
+Gate: s02.md passes; the course check fails on unfinished TODO entries in s03.md through s08.md.
+Count: 4 findings (lens assessment).

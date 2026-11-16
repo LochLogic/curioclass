@@ -1,0 +1,5 @@
+1. [10; U6, day 112] The optional science temperature-time data have no exact dataset reference; “science unit 2, days 18 to 51” does not identify the observations, and U6 labels every context invented | A teacher cannot verify provenance or distinguish measured observations from fictional values | Add the exact science activity and data-record location to field 10, identify whether its values are measured or invented, and limit U6’s “invented for practice” instruction to fictional contexts.
+2. [3] “IM’s arrows” puts a producer abbreviation in teacher-facing explanatory prose | The settled rules prohibit company and product names in the plan’s body | Have the lead replace the generated wording with “Units 2 and 5 prepare students for this unit through ratio contexts and decimal fluency”; retain the required source credits.
+
+Gate: `unitplan.py check math-grade-6` passes `s06.md`; the course check fails on remaining `TODO(writer)` entries in `s07.md` and `s08.md`.
+Count: 2 findings (lens sources).

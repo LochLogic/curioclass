@@ -1,0 +1,10 @@
+1. [Field 5, E1 and E2] E1 repeats M2’s mass-versus-material cooling investigations in a tray; E2’s first run repeats M3’s metal-cooling and water-warming case with changed numbers | Rehearsed responses cannot support the claim that 16 of 20 points measure transfer to new cases | Replace those portions with an unfamiliar controlled-heating investigation and a different interacting-material system, then recalculate the proportion of points requiring new-case reasoning.
+
+2. [Field 5, “meets” samples] M1’s sample omits the relative predictions and distinct energy pathway; E1’s omits the half-sized water-temperature rise and oil comparison; E2’s omits the surrounding water’s cooling and particle-motion change in its second run | These examples label incomplete responses as meeting the stated look-fors | Complete each sample against every required component, including the supplied observations, or explicitly label it partial and identify its missing components.
+
+3. [Field 5, exit table, days 28 and 34] Day 28 repeats the dyed cold-cup droplet investigation; day 34 repeats the paired cup-and-water-bath comparison, with different readings | Neither provides the required fresh stimulus, so immediate recall can substitute for applying the explanation | Replace day 28 with moisture evidence from a chilled solid object containing no liquid, and day 34 with unfamiliar temperature records for two contacting solids; retain the explanation and prediction demands.
+
+4. [Field 5, M1 wrong answers] M1 lists G, “outside droplets prove leakage,” although its flask stimulus supplies no exterior-droplet observation | The listed error is not elicited by this item, weakening diagnosis and group assignment | Remove G from M1 and diagnose it through the condensation exit, or add an explicit exterior-droplet observation and a question that requires interpreting it.
+
+Gate: s02.md passes; the course check fails on unfinished TODO entries in s03.md through s06.md.
+Count: 4 findings (lens assessment).

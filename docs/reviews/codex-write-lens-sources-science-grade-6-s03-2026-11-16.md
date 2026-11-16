@@ -1,0 +1,5 @@
+1. [10; 8, days 57, 66 and 85] The supplied surface-temperature and illumination records, dry-ice and helium observations, and ocean-evaporation and ice-reflection evidence have no identified data sources. The station and balloon archive links do not identify these records. | The no-kit path depends on evidence whose observations and conditions cannot be checked. | Name a freely accessible source and exact record for each, including conditions, units and adaptations; label constructed values “invented for practice.”
+2. [10, original readings; day 67] “Make original readings” leaves the core cloud reading unnamed and gives neither the reason for writing it nor when it will be written. | A lesson writer cannot identify the intended text or distinguish an original explanation from an adaptation. | Name each planned reading, state why Curio Class is writing it and when, and link its factual sources; identify the edition and rights if adapting an existing text.
+
+Gate: `unitplan.py check science-grade-6` passes s03.md; the command fails on unfinished s04.md, s05.md and s06.md.
+Count: 2 findings (lens sources).
