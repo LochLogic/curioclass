@@ -1430,3 +1430,11 @@ SEL and ELD as picked; Spanish accessibility across the site is parked for later
 Cory requests the WIDA rubric form himself. Why: Cory's answers. Applied: scripts/course_status.py (PER_GRADE),
 ADOPTION-BAR-SUBJECTS.md (health criterion 7, SEL part 9, course count), BASELINE rule 24, HANDOFF, ROADMAP, and the
 subject STANDARD and APPROACH drafts.
+
+## 2026-11-16: the later subjects' follow-ups (Desk card q-later-followups-1, all as picked)
+
+Computer science meets one session a week in K to 5 (a specials rotation) and two to three a week in 6 to 12 (a
+real elective). Library 6 to 8 and 9 to 12 each spread across their grades, about one session every two weeks,
+taught alongside other classes. High school music is a full composition and theory course with an ensemble companion
+page, not a stub. Why: Cory took the picks. Applied: the computer science, library and arts STANDARD and APPROACH
+drafts, and the owed table in ADOPTION-BAR-SUBJECTS.md.

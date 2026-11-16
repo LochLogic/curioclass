@@ -97,7 +97,8 @@ state frameworks that turn them into yearlong courses.
 
 ### 3.3 Music in high school: composition and theory (Cory 2026-11-16, Desk card q-later-arts-health-pe)
 
-Music 9 to 12 is a full composition and theory course on the national composition and theory strand, not a stub.
+Music 9 to 12 is a full composition and theory course on the national composition and theory strand, not a stub
+(settled 2026-11-16, Cory, Desk card q-later-followups-1).
 The reasons and sources are in docs/reviews/arts-hs-music-and-levels-2026-11-16.md.
 
 - The strand starts at Proficient (no Novice or Intermediate levels), so Level 1 follows grade 8 general music

@@ -55,7 +55,8 @@ says which), never fewer units (Cory, 2026-11-11 and 2026-11-15).
 
 Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per grade K to 5, then one course for
 grades 6 to 8 and one for grades 9 to 12, eight courses. The K to 5 courses each plan one year, so the skills grow
-every year. Still open with Cory: whether the 6 to 8 and 9 to 12 courses each run one year or across their grades.
+every year. The 6 to 8 and 9 to 12 courses spread across their grades, about one session every two weeks, taught
+alongside other classes so research skills come back each year. Settled 2026-11-16 (Cory, Desk card q-later-followups-1).
 
 | Courses | AASL | Priority skill emphasis (ours, to be set at the progression) |
 |---|---|---|

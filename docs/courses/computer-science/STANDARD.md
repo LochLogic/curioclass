@@ -56,7 +56,7 @@ Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per g
 | Computer Science, grades 6, 7 and 8 (one course each) | MS | 45 across the three | CSTA writes one band and no grade split; the 6 to 8 scope and sequence places each id in a year (introduced, then built on), and each id is fully met by grade 8 |
 | Computer Science, grades 9 to 12 (one course each) | HS Foundational | 46 across the four | Placed by year the same way; Specialty ids claimed only where a unit already goes that far (Cory, 2026-11-11) |
 
-Minutes per week go in each frame (recommend one session a week in K to 5; more in 6 to 12). Still open with Cory.
+Minutes: one session a week in K to 5 (a specials rotation), two to three a week in 6 to 12 (a real elective). Settled 2026-11-16 (Cory, Desk card q-later-followups-1).
 
 **Partial base for K to 8.** Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): the UK's open computing
 curriculum (scout: docs/reviews/computer-science-open-material-2026-11-16.md) is a partial base for grades K to 8.

@@ -45,4 +45,4 @@ Each day ends with one piece of evidence the teacher can read in a minute per st
 
 - Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per grade K to 12, and the UK
   computing curriculum as a partial base for K to 8 (STANDARD.md section 2).
-- Still open: minutes per week per grade (set in each frame; recommend one session a week in K to 5).
+- Settled 2026-11-16 (Cory, Desk card q-later-followups-1): one session a week in K to 5, two to three a week in 6 to 12.
