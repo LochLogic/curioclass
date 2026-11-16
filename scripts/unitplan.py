@@ -275,6 +275,21 @@ def register_check(course, lines, spans, bad):
                     NOTES.append('%s:%d: note (not a failure): %s' % (SHOWN[0], i + 1, what))
                 else:
                     bad(i + 1, what)
+    # one wrong answer sorts a student into one group: "error D or I", "(D or I)" (second probe, 2026-11-15)
+    two = re.compile(r'\b(?:errors?|letters?)\s+([A-Z])\s+or\s+([A-Z])\b|\(\s*([A-Z])\s+or\s+([A-Z])\s*\)')
+    pair = re.compile(r'\(\s*([A-Z])\s*,\s*([A-Z])\s*\)')
+    for f in (5, 6, 7):
+        for lo, hi in spans.get(f, []):
+            for i in range(lo, hi):
+                if two.search(lines[i]):
+                    what = 'one wrong answer tagged with two letters ("%s"): tag the letter whose text describes it (UNIT-PLAN field 6)' % two.search(lines[i]).group(0)
+                    if course == 'math-4':
+                        NOTES.append('%s:%d: note (not a failure): %s' % (SHOWN[0], i + 1, what))
+                    else:
+                        bad(i + 1, what)
+                elif f == 5 and pair.search(lines[i]):
+                    NOTES.append('%s:%d: note (not a failure): "%s" tags two letters; if it is one wrong answer, keep one'
+                                 % (SHOWN[0], i + 1, pair.search(lines[i]).group(0)))
 
 
 def subject_checks(course, unit, rows, lines, spans, bad):
