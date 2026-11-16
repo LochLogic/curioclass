@@ -1,2 +1,10 @@
-Gate: s02.md passes; the course check fails on unfinished TODOs in s03.md through s08.md.
-Count: 0 findings (lens sources). Mapped lessons are freely accessible, the [base licence](https://im.kendallhunt.com/MS/teachers/2/2/1/preparation.html) supports adaptation, and the [Progression](https://commoncoretools.files.wordpress.com/2012/02/ccss_progression_rp_67_2011_11_12_corrected.pdf) is accessible. Adaptations have credits, invented cases require explicit labels, and no assessment depends on an unavailable source.
+1. [Field 3, “Why this unit, here”] “IM's chart” places a source brand in teacher-facing prose outside a credit | This violates the rule against company or product names in instructional copy | Replace “IM's chart sends 7.2 to 7.4” with “This unit prepares students for fractional rates in unit 4”; retain attribution in field 10 and day credits.
+
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-7` passes s02.md with no notes.
+Count: 1 findings (lens sources).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- docs/COURSES-STATUS.md

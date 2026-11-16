@@ -1,0 +1,5 @@
+1. [10, line 459] The safety read refers to unnamed “published elementary guidance” without citing a safety standard | The sun-viewing prohibition lacks the required traceable basis | Cite the September 2024 [Maryland Science Safety Manual PK-12](https://msde.maryland.gov/media/17916), elementary Earth/Space Science Safety Practices, and connect its prohibition directly to the unit’s paper-record approach.
+2. [6 and 10, line 306] “Federal reading guide, recommendation 3” has no title, edition or source pointer, and field 10 omits it | Teachers cannot verify the authority cited for error J’s repair | Identify and link the July 2016 [Foundational Skills to Support Reading for Understanding in Kindergarten Through 3rd Grade](https://ies.ed.gov/ncee/wwc/docs/practiceguide/wwc_foundationalreading_070516.pdf), recommendation 3, in field 10 and cross-reference it from J.
+
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-1` passed s02.md with no notes.
+Count: 2 findings (lens sources).

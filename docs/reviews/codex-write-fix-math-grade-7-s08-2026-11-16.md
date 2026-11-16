@@ -1,13 +1,7 @@
-Merged: 4 distinct findings, no duplicates. Fixed 3 in docs/courses/math-grade-7/s08.md:
+Findings merged: 5, with no duplicates. Fixed: 4 in docs/courses/math-grade-7/s08.md only: fresh B3 and B4 experiments, complete S147 and A3 samples, a fresh exit 139, and a verified safety citation.
 
-- Added error O’s nested-block repair and independent retry to response allocation.
-- Added the licence name and link to all 16 adapted-day credits.
-- Corrected the return to day 159’s compound-event and sampling-inference check.
+Held up by lens: assessment 3 of 4; sources 1 of 1; sequence 0 findings.
 
-Rejected assessment finding 1: S153 is produced, given feedback and revised on day 153, then scored on day 154. This satisfies UNIT-PLAN field 5’s requirement that production precede the scoring day.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-7` returned `PASS docs/courses/math-grade-7/s08.md`. UTF-8, LF endings and the word cap pass.
 
-Findings upheld per lens: assessment 1/2; sources 1/1; sequence 1/1.
-
-Gate: `python -X utf8 scripts/unitplan.py check math-grade-7` reports `PASS docs/courses/math-grade-7/s08.md`.
-
-Only s08.md was written. UTF-8 and LF endings verified.
+REJECTED: assessment 1 | S153 scores quantitative mean work instead of the categorical population estimate required by days.csv and source-map.csv. | Restoring the categorical score would score first-teaching work on day 153; the proposed data-file reconciliation exceeds this job's permitted edits and remains for the lead. | UNIT-PLAN field 5 and the writer's brief

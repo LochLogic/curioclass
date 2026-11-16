@@ -1,0 +1,3 @@
+Count: 0 findings (lens sources). All 14 base lessons have free publisher links, an edition and licence, and day credits. Original tasks and fictional counts are identified; reference-only material is restricted to planning. The [Progressions](https://mathematicalmusings.org/wp-content/uploads/2015/03/ccss_progression_nbp_k5_2015_03_16.pdf) supports the cited ideas, and the [safety guide](https://static.nsta.org/pdfs/SafetyInElementaryScience.pdf) is professional guidance.
+
+Gate: `unitplan.py check math-grade-1` passes s05.md without notes; the course command fails on unfinished placeholders in s06.md to s08.md.

@@ -1,19 +1,19 @@
-Findings merged: **9**, with no duplicates. All 9 fixed in [s04.md](/S:/CurioClass/docs/courses/english-language-arts-grade-1/s04.md):
+Merged: 9 distinct findings. Fixed: 9 in s04.md only.
 
-1. Replaced repeated exit stimuli on 121, 135 and 148.
-2. Supplied story passage specifications and complete comparison samples.
-3. Separated main-topic evidence from the assigned writing product, with earlier feedback and revision.
-4. Added missing stimulus facts on 128 and 149.
-5. Corrected the opinion sample assigned to error B.
-6. Added factual sources mapped to both natural-history articles.
-7. Corrected seven adapted readers’ editions, rights and attribution.
-8. Added direct source downloads and archive-member pointers.
-9. Restored oo and final-y teaching, practice and sampling.
+Held up by lens: assessment 6/6; sources 1/1; sequence 2/2.
 
-Rejected: **0**.
+1. Reserved unrehearsed comparison pairings and details.
+2. Replaced four exits that repeated taught cases.
+3*(-). Added fresh printing evidence, written feedback and revision before later scoring.
+4. Supplied all five conjunction prompts and complete keyed responses.
+5. Added event-selection and sequencing error letters AB and AC, with repairs and response groups.
+6. Added comparison evidence to exit 135 and informative writing to exit 148.
+7. Named and linked checkable school safety guidance.
+8. Budgeted day 120 retrieval within its existing minutes.
+9. Restored presentation rehearsal and written learning reflection.
 
-Findings upheld by lens: assessment **5/5**, sources **3/3**, sequence **1/1**.
+For the lead: reconcile days.csv’s missing-forms-only printing instruction and its closing-lesson descriptions with the repaired plan and source map.
 
-Human follow-up: check completed manuscripts against the specified passages and keys before use.
+Gate: `PASS docs/courses/english-language-arts-grade-1/s04.md`. The course check exited successfully. Word count: 1,800. UTF-8, LF endings, no em dashes.
 
-Gate: `PASS docs/courses/english-language-arts-grade-1/s04.md`. UTF-8, LF endings and no em dashes verified.
+REJECTED: none

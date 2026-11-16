@@ -1,13 +1,13 @@
-Findings merged: 3. Fixed: 3. Rejected: 0.
+Findings merged: 3 distinct findings. Fixed: 3.
 
-1. Scoring: saved work from days 7 and 9 now receives written feedback and revision on days 8 and 10 before day 11 scoring. Fresh day 11 work is unscored practice.
-2. Error D: changed day 1’s rejected copy to 10 by 11, matching the misconception of changing only one dimension.
-3. Naming: removed organization names from the header and teaching rationale; preserved source attribution.
+1. Assessment 1: Replaced the repeated park comparison with a fresh zigzag correction task.
+2. Sources 1: Named the issuing body, edition, links and applicable sections of the [school safety checklists](https://www.cdc.gov/niosh/school-safety/program/checklists.html).
+3. Sequence 1: Integrated revision into day 10’s ten-minute synthesis, preserving the recorded budget and revision before scoring.
 
-Findings upheld per lens: assessment 2/2; sources 1/1; sequence 0 findings.
+Held up by lens: assessment 1/1; sources 1/1; sequence 1/1.
 
-Only `docs/courses/math-grade-7/s01.md` was edited.
+Only docs/courses/math-grade-7/s01.md changed. Shape and word cap preserved; UTF-8, LF endings and no em dashes verified.
 
-Gate: `PASS docs/courses/math-grade-7/s01.md`.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-7` passed, including `PASS docs/courses/math-grade-7/s01.md`, with no notes.
 
-The course command exits 1 because s02.md through s08.md still contain unfinished `TODO(writer)` placeholders.
+REJECTED: none

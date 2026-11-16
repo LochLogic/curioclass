@@ -1,0 +1,7 @@
+Gate: s04.md passes; the course check fails on TODO(writer) placeholders in s05.md through s08.md. No source-map.csv exists, as explicitly permitted by the scope and sequence.
+
+1. [Field 5, end-of-unit items 1 and 2] The transfer tasks repeat the taught drum-stilling and speaker-strip investigations, changing only the drum’s shape and the strip’s folds. The prompts also name the causal relationships being tested. | Reproducing familiar procedures does not establish cold transfer. | Replace these with an unrehearsed phenomenon involving an unfamiliar sounding source and a separate responding object. Present the observations without naming their causes, require children to choose comparisons for both directions, and rewrite the keys and samples against actual trials.
+
+2. [Field 5, daily exit table, days 28 to 32] The exits repeat that day’s teaching cases: blurry elastic after the blurry-band hook, band and throat after band and throat, paper drum after paper drum, stopping a string after stopping a band, and paper and grains after paper and rice. | Holding back another specimen or recording does not make these fresh evidence of understanding. | Replace these rows with unseen evidence problems requiring a different decision, such as identifying which missing comparison would distinguish sound-driven motion from contact-driven motion. Preserve each day’s goal, actual observation records and the two-part question limit; keep end-of-unit cases separate.
+
+Count: 2 findings (lens assessment).

@@ -1,0 +1,5 @@
+1. [Fields 8, 10] The two live plants are unnamed; “safe thornless plants” leaves suitability unverified | Toxicity and irritation risks depend on the species, and the cited [safety guide](https://static.nsta.org/pdfs/safetyinelementaryscience.pdf) excludes poisonous plants | Name the permitted species and cite its suitability; retain allergy checks and teacher-only handling.
+2. [Field 10] Required animal media, local wildlife pictures and actual town water-source documentation remain unselected and unchecked | Teaching depends on observations and local facts whose provenance, content and reuse rights cannot be verified | Identify the animal records with free source links and rights notes; require dated creator, permission and official water-provider source entries for local materials before use.
+
+Gate: s04.md passes; the course check fails on TODO(writer) placeholders in s05.md and s06.md. The scope and sequence explicitly requires no source-map file.
+Count: 2 findings (lens sources).

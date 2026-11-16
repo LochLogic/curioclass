@@ -1,6 +1,7 @@
-Check: `python -X utf8 scripts/unitplan.py check math-grade-7` passes for s08.md. The overlap wording can describe ranges, so it is not counted as a finding.
+1. [5] S153 replaces the saved categorical population estimate required by days.csv with quantitative mean work | The assessment reads a different product from the calendar’s named evidence | Have the lead reconcile days.csv and source-map.csv with quantitative S153, produced on day 153 and scored on day 154 after feedback and revision.
+2. [5, U3] B3 repeats exit 141’s numbered-slip experiment, and B4 repeats exit 146’s letter-and-number experiment with resized outcome sets | The exits rehearse end items rather than preserve fresh assessment evidence | Replace B3 and B4 with withheld experiments using different contexts, outcome sets and event conditions.
+3. [5] The S147 “Meets” sample omits complete trials and recorded frequencies; A3’s sample omits the median/interquartile-range comparison and plots | These samples are labeled satisfactory despite missing their stated look-fors | Supply a complete S147 example with its trial record and estimates; expand A3’s example to include both plots, medians 22 and 28, interquartile ranges 4, and the gap of 1.5 interquartile ranges.
+4. [U3] Exit 139 repeats the hook’s comparison of two hidden bags after six draws with replacement | It checks an immediately rehearsed argument | Replace it with a withheld case comparing two devices from supplied trial records, requiring a likelihood judgment and an explanation of uncertainty.
 
-1. [5, S153; U6 day 153] Production, written feedback and revision all occur in the same period, followed by scoring on day 154 | Same-period feedback and revision do not qualify this saved work for scoring | Give written feedback after day 153, reserve revision time on day 154, and first score the revised quantitative record on day 155.
-2. [7] Response groups cover A through N but omit O, which B2 and exit 142 use | Students who double-count cumulative checkpoints have no assigned response group | Add O with a nested-block repair distinguishing cumulative totals from separate batches, followed by an independent retry using fresh cumulative counts and a written change record.
-
-Count: 2 findings (lens assessment).
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-7` passed s08.md.
+Count: 4 findings (lens assessment).

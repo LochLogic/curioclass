@@ -1,7 +1,4 @@
-Gate: s04.md passes; the course check fails on TODO(writer) placeholders in s05.md through s08.md.
+Gate: `unitplan.py check math-grade-7` passes s04.md.
 
-1. [4; day list, days 47 to 52] Fraction-division retrieval is scheduled on day 49 after fractional-rate work on days 47 and 48; equivalent-expression retrieval comes on day 52 after rewriting on day 51 | These prerequisite checks arrive after their first instructional use | Add brief retrieval and a response to misses before the relevant core work on days 47 and 51, replacing parallel examples; retain the CSV-required later retrieval.
-2. [day list, day 68 readiness] The plan checks standalone unlike-denominator computation under 5.NF.A.1, although days.csv reserves readiness for m5-fraction-add-sub-problems; the prerequisite table assigns computation to retrieval on day 71 | The next-unit handoff checks an extra skill outside its recorded reservation | Replace standalone part (a) with an addition word problem, retain the subtraction word problem, and leave separate computation retrieval on day 71.
-3. [day list, day 62] S1 takes four minutes from the fifteen-minute production block, leaving S2 eleven minutes despite the required fifteen-minute simple-interest comparison | The detailed allocation undercuts the reserved interest work | Allocate sixteen minutes to mixed practice, four to S1 and fifteen to S2; retain the five-minute opening, synthesis and exit, totaling fifty minutes.
-
-Count: 3 findings (lens sequence).
+1. [Field 2, rigor and focus; U6 days 47, 51, 62, 63, 66] The focus calculation omits S1’s four production minutes and counts ten minutes of grade 6 retrieval plus five context-bridge minutes as major work | The reported instructional share overstates the major-work time actually scheduled | From the stated 810/900 baseline, exclude nineteen production minutes and five revision minutes from both totals, and fifteen prerequisite/context minutes from the numerator: 771/876, or 88.0 percent. Refer the conflict with the CSV’s 810-minute allocation to the lead; the fixer must not edit generated rows.
+Count: 1 findings (lens sequence).

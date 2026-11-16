@@ -1,15 +1,15 @@
-Merged findings: 7 distinct. Fixed all 7 in s03.md:
+Findings merged: 5. Fixed: 5.
 
-1. Score the earlier revised paragraph; leave transfer writing unscored.
-2. Replace overlapping assessment and response cards with reserved fresh cases.
-3. Check irregular-word spelling separately from reading.
-4. Require the fact-page sentence to verify warmth.
-5. Add error N for reversed letters, with repair and response.
-6. Assign L and M to foundations response and day 114 catch-up.
-7. Add the verified reader archive location and all seven member filenames.
+1. Assessment 1: Required current-unit evidence for all four phoneme components, all 52 letter forms and irregular-word reading, with feedback and revision before scoring on day 118.
+2. Assessment 2: Replaced exits 82, 83 and 91 with reserved facts and vocabulary.
+3. Sources 1: Added verified field-experience safety guidance, including advance hazard assessment and school-policy checks.
+4. Sequence 1: Replaced the shortened home schedule with 45 topic minutes and 55 foundations minutes, retaining observations and response.
+5. Sequence 2: Changed the feather-vocabulary teaching day from 86 to 83.
 
-Rejected: 0.
+Held up per lens: assessment 2/2; sources 1/1; sequence 2/2.
 
-Per lens: assessment 6/6 held up; sources 1/1 held up; sequence supplied no findings because its read did not run. A person should rerun that lens against the named target.
+Only `docs/courses/english-language-arts-grade-1/s03.md` was edited. Counted words: 1,799 of 1,800. Error O was appended after N.
 
-Gate: `PASS docs/courses/english-language-arts-grade-1/s03.md`. The course check fails only on unfinished s04.md placeholders.
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-1` returned `PASS docs/courses/english-language-arts-grade-1/s03.md`.
+
+REJECTED: none

@@ -1,0 +1,7 @@
+1. [Field 5, N1 to N4] All six needs points repeat the days 33 and 34 exits: the same watered/dry/dark plant contrasts and leaf, insect, vegetable-and-egg food comparisons | Redrawn organisms rehearse answers rather than establish transfer, leaving at most 13 of 19 points on fresh cases | Replace these assessment panels with different observation problems and food records; rewrite prompts, keys and samples around the new evidence.
+2. [Daily exit table, days 32, 36 and 38] Day 32 swaps the anchor's nouns, day 36 repeats deer, grass and fish placement, and day 38 repeats the taught hole, root, dam and nest comparisons | These exits cannot distinguish application from recalling the day's examples | Reserve different problems for closing: use a changed resource constraint on day 36 and previously untaught change mechanisms on day 38; replace day 32's redrawn anchor with a distinct comparison. Update each key.
+3. [Field 7] The four response groups do not identify which error letters they serve or specify their letter-specific actions | Teachers cannot reliably route all A to J misconceptions to the repairs | Add an explicit mapping: A to D to needs, E and F to links, G to I to claims, and J to impacts; retain each letter's distinct field 6 repair within its group.
+
+Gate: s04.md passes; the course check fails on unfinished TODO placeholders in s05.md and s06.md.
+
+Count: 3 findings (lens assessment).

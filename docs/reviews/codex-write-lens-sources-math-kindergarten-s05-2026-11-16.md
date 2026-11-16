@@ -1,0 +1,3 @@
+Gate: s05.md passes with no notes; the course check fails on unfinished s06.md to s08.md.
+
+Count: 0 findings (lens sources). The mapped lessons have free publisher sources, edition and licence details, and daily credits. Original materials are identified, invented contexts present no real statistics, and safety guidance cites a relevant professional guide. The [lesson source](https://im.kendallhunt.com/k5/teachers/kindergarten/unit-5/lesson-1/preparation.html), [Progression](https://commoncoretools.files.wordpress.com/2011/05/ccss_progression_cc_oa_k5_2011_05_302.pdf) and [handling guidance](https://www.nsta.org/blog/preschool-grade-2-scienceengineering-hands-activity-safety-protocols) support their stated uses.

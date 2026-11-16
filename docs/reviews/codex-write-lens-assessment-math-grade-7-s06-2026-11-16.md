@@ -1,6 +1,9 @@
-1. [5, R1; U6 days 115 to 116] R1 is revised and scored on day 116, leaving no revision opportunity on an earlier day than scoring | This violates the assessment lens’s earlier-day requirement | Move the draft to day 114, give written feedback afterward, revise on day 115 and retain scoring after day 116.
-2. [U3, exits 102 and 107; 5, M1 and I2] Exit 102 rehearses M1’s four sleeves with cord and ties; exit 107 rehearses I2’s reel, cuts and minimum remainder, with changed numbers | The assessment repeats previously answered cases | Replace these exits with reserved stimuli using different contexts and representations, such as a temperature-change model and a number-line claim requiring boundary tests; supply matching keys.
-3. [5, M3 teacher-judged sample] The “meets” sample describes operation order but supplies neither required algebraic solution chain | It models credit for an incomplete comparison | Add `2.5w + 3 = 18 → 2.5w = 15 → w = 6` and `2.5(w + 3) = 18 → w + 3 = 7.2 → w = 4.2`, alongside the arithmetic expressions and explanation.
+1. [5, M1 and N1; U3] M1 repeats exit 96’s cord-plus-ties story, while N1 repeats the packet-delivery story from the day 92 hook and exit | These assessment contexts have already been rehearsed | Replace M1 with a square whose side is x + 1.2 meters and perimeter is 34 meters: 4(x + 1.2) = 34, x = 7.3. Replace N1 with a tank initially holding 46.5 liters, losing 2.25 liters per minute until 15 remain: 46.5 - 2.25t = 15, t = 14 minutes. Update keys, samples and wrong answers, and reserve both cases from teaching.
 
-Gate: `unitplan.py check math-grade-7` passes s06.md; the course check fails on unfinished s07.md and s08.md.
+2. [5, I1 and its sample; 6, G] “7.6 complete packets is allowed” violates both the strict boundary n < 7.6 and the whole-count restriction, but is assigned only G | This answer cannot isolate the fractional-count misconception from endpoint error E | Change both occurrences to “7.5 complete packets is allowed.” This satisfies the real inequality and isolates G.
+
+3. [U3, day 92] The exit changes the numbers in the hook’s fixed delivery fee plus per-packet charge | It repeats the hook instead of providing a fresh stimulus | Replace it with a supplied tape showing four equal unknown boxes plus six loose counters, totaling 26. Ask whether dividing 26 by four finds one box’s count and why. Key: subtract six first, then divide; each box contains five counters.
+
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-7` passes s06.md with no notes.
+
 Count: 3 findings (lens assessment).

@@ -1,4 +1,5 @@
-1. [10] The seven retained cycle readers have only relative ZIP paths in source-map.csv; field 10 identifies no complete free location where their words were checked | The named editions cannot be verified from these citations | Add a working free text URL or a fully located free archive with each reader's member filename, and record which text was checked.
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-1` passes s03.md with no notes.
 
-Gate: s03.md PASS, no notes; course check fails on unfinished TODO(writer) placeholders in s04.md.
+1. [field 10, Required reads and Preparation] Outdoor birdwatching guidance cites no published school safety standard; it only assigns a future safety read | Supervision, boundaries and stopping rules have no checkable professional basis | Cite [Safety and School Science Instruction](https://www.nsta.org/nstas-official-positions/safety-and-school-science-instruction), identify its field-experience guidance, and connect the outdoor option to its advance hazard assessment and school-policy checks.
+
 Count: 1 findings (lens sources).

@@ -1,0 +1,8 @@
+Gate: s03.md passes; the course check fails on unfinished s04.md through s08.md.
+
+1. [field 5] 1.OA.D.8 is listed among this unit's standards and owned skills, but its other unknown positions rely on unit 2's record; day 65 supplies no scored replacement | Earlier evidence does not establish this unit's claimed coverage | Add new unknown-position evidence with keys, written feedback and revision before scoring; the lead must align its assessment codes with days.csv.
+2. [field 5, P look-fors] P requires relating addition to subtraction, although its prompts ask only for addition reordering and regrouping and explicitly exclude the subtraction counterexample from scoring | A complete response to P could fail an unasked requirement | Remove the subtraction look-for from P; retain it for P67, which actually asks for that relationship.
+3. [field 5, sample answers] Shared judgment rows leave several items without samples matching their stimuli: T53 uses 14 and 18 but its successful sample describes nineteen; P, M2 and M1 likewise receive samples from their paired closing items | These do not provide the required successful and unsuccessful answers for each teacher-judged item | Give T53, P, M2 and M1 their own two samples using their actual prompts and quantities.
+4. [field 5, P collection day] P's reordering evidence is collected on day 54, but the day 57 days.csv note specifies day 41 | The scoring instructions identify different retained products, and day 41 first teaches this reordering | For the lead: retain day 54's later product and correct the day 57 data note and generated day list to name days 54 and 55.
+
+Count: 4 findings (lens assessment).

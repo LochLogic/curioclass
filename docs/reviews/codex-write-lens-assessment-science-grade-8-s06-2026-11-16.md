@@ -1,0 +1,7 @@
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-8` passes s06.md.
+
+1. [Field 5, T1 and T2] The final items largely relabel M1 and M2: the same shell forms and diversity pattern, then the same broad versus narrow digits, paired bones and fin-ray contrast | After day 145 feedback, these can reward remembered explanations rather than transfer | Replace T1 with a plant-fossil record containing a disappearance followed by reappearance; replace T2 with new jaw and vertebral comparisons. Rebuild their keys and samples.
+2. [Field 5, T1 key and meeting sample] “Plain W persists beside other forms, so change is branching” exceeds the supplied evidence | Coexistence and first appearances do not establish branching descent, so the sample rewards an unsupported conclusion | Remove branching as a required conclusion. Credit observed structural diversity and coexistence, and state that these records cannot establish a particular branching history.
+3. [Field 5, exit table, days 137 and 156] Day 137 repeats P3’s nest attendance and flower-contact mechanisms with changed numbers; day 156 repeats P1’s tail, projecting limbs and contrasting adult appearances | Both rehearse work just revised instead of providing fresh evidence | Use wind-pollinated flower structures and mate-attraction behavior on day 137; use four species with different developmental features and competing relationship groupings on day 156. Supply matching keys and single-letter wrong answers.
+
+Count: 3 findings (lens assessment).

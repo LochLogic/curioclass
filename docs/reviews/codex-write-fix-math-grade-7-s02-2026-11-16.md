@@ -1,14 +1,16 @@
-Merged: 4 distinct findings. Fixed all 4 in docs/courses/math-grade-7/s02.md:
+Merged: 6 distinct findings. Fixed: all 6 in s02.md only.
 
-1. Replaced E1’s repeated curved graph with fresh points.
-2. Replaced exit 30’s reused assessment numbers and updated its equation and key.
-3. Changed exit 31 to unequal operating durations, so lower flow uses more total water; updated its key.
-4. Allocated day 25’s exit three geometry minutes and two rate minutes. Corrected major work to 42 minutes that day and 684 of 762 instructional minutes, 89.8 percent.
+1. Assessment 1: Replaced E4’s repeated graph interpretation with disputed annotations to evaluate and correct.
+2. Assessment 2: Replaced day 13’s repeated recipe comparison with an unseen measurement-error diagnosis.
+3. Assessment 3: Replaced day 31’s repeated flow comparison with records including a changing rate and explicit effectiveness evidence.
+4. Sources 1: Removed the source name from the instructional rationale.
+5. Sequence 1: Recalculated focus and named existing grade 7 retrieval work to clear 65 percent.
+6. Sequence 2: Restored five-minute retrieval openings on days 25 and 27, preserving G’s production and revision within those days.
 
-Rejected: 0.
+Held up: assessment 3/3; sources 1/1; sequence 2/2.
 
-Findings upheld by lens: assessment 3/3; sources 0 findings; sequence 1/1.
+For the lead: update the shared scope and sequence and daily allocations to match the repaired plan. With other units unchanged, course focus is 4,101/6,302 minutes, 65.07 percent.
 
-Gate: `PASS docs/courses/math-grade-7/s02.md`. The course command fails only on unfinished writer placeholders in s03.md through s08.md.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-7` passed s02.md with no notes. All eight unit plans passed. UTF-8, LF endings and no em dashes verified.
 
-For the lead: day 25’s unchanged data note and generated day list still state 45 major minutes. The corrected allocation is 42; those source records were outside the permitted edit.
+REJECTED: none

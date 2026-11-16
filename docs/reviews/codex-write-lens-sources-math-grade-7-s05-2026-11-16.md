@@ -1,4 +1,5 @@
-1. [4, source reference] “Use grade 5 fraction diagrams from data/progressions/math.csv” points to skill descriptions and model names, not diagrams | The named source cannot supply the prescribed material | Replace with “Draw original same-whole fraction diagrams using the models named in the m5-add-sub-unlike and m5-fraction-add-sub-problems rows.”
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-7` passes s05.md with no notes.
 
-Gate: s05.md passes; the course check fails on TODO(writer) placeholders in s06.md to s08.md.
+1. [U6, adapted-day credits] All 17 credit lines omit the licence link | The planned credits lack the link required by the repository’s credit form and [CC BY 4.0 attribution terms](https://creativecommons.org/licenses/by/4.0/) | Add “CC BY 4.0, https://creativecommons.org/licenses/by/4.0/” to each adapted day’s credit, retaining its source, lesson number and change notice.
+
 Count: 1 findings (lens sources).
