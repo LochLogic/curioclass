@@ -109,6 +109,7 @@ def layer_cells(key, d):
     if s == 'math': rubric = 'yes' if num is not None else 'no'                    # docs/RUBRIC-MATH-K8.md, RUBRIC-MATH-HS.md
     elif s == 'ela': rubric = 'yes' if (num is not None and num >= 3) else 'no'     # docs/RUBRIC-ELA.md, grades 3 to 12
     elif s == 'science': rubric = 'yes' if fid else 'no'                            # docs/RUBRIC-SCIENCE.md, K to 12
+    elif s == 'eld': rubric = 'yes'                                                 # docs/RUBRIC-ELD.md (PRIME 2020), K to 12
     else: rubric = 'no'
     if s == 'math' and has('docs/APPROACH-MATH.md'): approach = 'draft'
     elif s == 'ela' and has('docs/APPROACH-ELA.md'): approach = 'draft'

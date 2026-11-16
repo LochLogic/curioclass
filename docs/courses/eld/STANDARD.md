@@ -11,7 +11,7 @@ every other course are C11, not this course (bar part 10).
 | Owed row (ADOPTION-BAR-SUBJECTS) | State | Where |
 |---|---|---|
 | Read the California map in full | Done: all five categories read end to end (2026-11-16); what it adds to bar part 10 is in section 4 | Section 4 |
-| Open the WIDA rubric file | Waiting: the PRIME 2020 rubric and workbook sit behind a request form, which Cory fills in himself (settled 2026-11-16). Until the file comes, the bar rests on the PRIME web pages, read in full | Section 1 |
+| Open the WIDA rubric file | Done 2026-11-16: the PRIME 2020 rubric and workbook, requested by Cory, read in full; bar part 10 firmed from it | docs/RUBRIC-ELD.md |
 | Build after C11 is proven in core courses | Recorded as the gate, with its test (settled 2026-11-16) | Section 6 |
 | Approach page (all ten subjects) | Draft for Cory's yes | docs/courses/eld/APPROACH.md |
 | Base text scout, lens | Done | docs/reviews/eld-open-material-2026-11-16.md; docs/agents/lenses/eld.md |
@@ -32,12 +32,12 @@ every other course are C11, not this course (bar part 10).
   Regents. So: ids and our own words only. No Language Expectation, proficiency level descriptor or WIDA "can do"
   wording appears in any Curio Class page. Internal docs may name WIDA as the source; public pages say "English
   language development standards" with the id.
-- **WIDA PRIME 2020** (the alignment review behind the bar) was read on its web pages, 2026-11-16. It reviews
-  materials against the four framework parts: standards statements, key language uses, Language Expectations and
-  proficiency level descriptors, each scored 1 to 4. Its pages say it is a review of correspondence, not a judgement
-  of quality. Eligible: a full year of ELD tied to grade-level content. The rubric and workbook are behind a form
-  that Cory requests himself (settled 2026-11-16, Cory, Desk card q-later-sel-eld); until the file comes, the ELD
-  bar rests on these web pages. Copyright WIDA PRIME, all rights reserved.
+- **WIDA PRIME 2020** (the alignment review behind the bar): the rubric and portfolio workbook, requested by Cory
+  through WIDA's form (Desk card q-later-sel-eld), read in full 2026-11-16 and set out in our own words in
+  docs/RUBRIC-ELD.md. It reviews materials against the four framework parts (standards statements, key language
+  uses, Language Expectations, proficiency level descriptors) through match, depth and breadth, each criterion
+  scored 1 to 4. It judges alignment, not quality. WIDA copyright; the workbook is for local use; a planning
+  reference only, and Curio Class claims no PRIME seal or alignment.
 - **California** uses its own ELD standards (2012), with three levels (Emerging, Expanding, Bridging). They map only
   roughly to WIDA: Emerging about WIDA 1 and 2, Expanding about 3 and 4, Bridging about 5 and 6 (our reading,
   approximate; no official crosswalk was read). Curio Class plans to WIDA and states the rough match for California

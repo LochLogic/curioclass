@@ -61,6 +61,9 @@ Proposed, to be tried on the first ELD unit plans (after the gate):
 - Section field 9: the three entry points; newcomer notes; long-term English learner notes; notes for English
   learners with disabilities; home language helps.
 - Section field 10: the two rooms (one teacher with a mixed group, or a pull-out group), as the field asks.
+- Across the unit (bar part 10, items 9 to 12, from docs/RUBRIC-ELD.md): the key language use taught openly from
+  a model text first; at least one change of audience or purpose; talk and writing both in every unit; and a moment
+  where students talk about how the language works.
 
 ## Where the evidence is thin
 

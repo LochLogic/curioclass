@@ -468,26 +468,60 @@ review**.
 
 Supports inside other courses are C11.
 
-**Rests on.** California's criteria map for specialized ELD, grades 4 to 8, skimmed by search; the WIDA PRIME web
-page. *To firm it:* read the California map end to end and open the WIDA rubric file.
+**Rests on.** WIDA PRIME 2020, the rubric and portfolio workbook, read in full 2026-11-16 and set out in our own
+words in [RUBRIC-ELD.md](RUBRIC-ELD.md); California's criteria map for specialized ELD, grades 4 to 8, read in full
+2026-11-16 (docs/courses/eld/STANDARD.md, section 4). A PRIME id in brackets after a criterion means it rests on
+that PRIME criterion; a criterion with none is California's or ours.
 
-1. [I] Every lesson is tied to a named language standard.
-2. [I] Language is taught through grade-level content and texts, with scaffolds, not simplified texts.
-3. [I] Forms of English are taught directly: words, sentence structure, word parts, how texts are built.
-4. [O] Each unit plans structured talk, with frames.
+1. [I] Every unit and every lesson names its language goal: the Language Expectation ids it plans to, drawn from
+   the content standards of the host core unit, with social and instructional language (SI) planned in every unit
+   beside one of LA, MA, SC or SS. [Match.ELD.1, Match.ELD.2-5, Match.LE]
+2. [I] Language is taught through grade-level content and texts, with scaffolds, not simplified texts. Every entry
+   point does the same task on the same content at the same thinking demand; levels change the support, never the
+   task. [Match.ELD.2-5, Depth.PLD]
+3. [I] Forms of English are taught directly: words, sentence structure, word parts, how texts are built. Each form
+   is taught as a feature that does a named job (a language function) inside the unit's Language Expectation, never
+   as grammar on its own, and each unit works at all three dimensions: the whole text, the sentence, and the word
+   or phrase. [Depth.ELD, Depth.LE, Depth.PLD]
+4. [I] Each unit plans structured talk, with frames, including the language of working together: routines, asking,
+   agreeing and disagreeing, negotiating, solving a problem as a group. [Match.ELD.1, Match.ELD.2-5, Depth.ELD]
 5. [I] Work is set at more than one proficiency level, with notes for newcomers and long-term English learners.
-6. [O] The home language is used as a help.
-7. [I] Progress checks are tied to the language standard, with more than one point of entry and exit.
+   [Match.PLD, Depth.PLD]
+6. [I] The home language, culture and experience of the student are used as a help and a way into the content.
+   [Match.ELD.1, Depth.ELD]
+7. [I] Progress checks are tied to the language standard, with more than one point of entry and exit. Growth is
+   watched over the year in more than one way (talk, writing, the student's self-check), against look-fors at each
+   entry point. [Match.PLD, Depth.PLD, Breadth.PLD]
 8. [O] The course is for a protected period and does not stand in for English language arts.
+9. [I] Each unit teaches its key language use (narrate, inform, explain, argue) openly: what it is for, which
+   content standards ask for it, its usual stages, and how it looks in the host subject. Students take a model
+   apart, build one with the teacher, then make their own. [Match.KLU, Depth.KLU]
+10. [I] Each unit has at least one task where students say or write the same content for a different audience or
+    purpose, and notice what they changed. [Depth.KLU]
+11. [I] Every unit plans both modes: interpretive (listening, reading, viewing) and expressive (speaking, writing,
+    representing). [Match.LE, Breadth.LE]
+12. [I] Students talk about how language works: they name a form and its job in their own words, and judge their
+    own language against the unit's goal. [Depth.ELD, Breadth.ELD]
+13. [I] All of the above hold across lessons, units and the year, not here and there: each key language use the
+    cluster's ids name comes back with a harder text or task, and earlier functions and forms return.
+    [Breadth.ELD, Breadth.KLU, Breadth.LE, Breadth.PLD]
+14. [I] Each unit's teacher page has a short note the ELD teacher can share with the teacher of the host core unit:
+    the content used and the language taught. [PRIME Part B, unscored]
 
-**Fails if:** word lists without content; one level for all; no speaking; ELD used as remedial reading.
+**Fails if:** word lists without content; one level for all; no speaking; ELD used as remedial reading; a form
+drilled with no job and no content; a lower entry point given an easier task; a year that builds only one key
+language use; a unit with no interpretive or no expressive work.
 
-**Unsupported.** No national scored rubric exists. Placement needs a proficiency score, which the school supplies.
+**Unsupported.** No national scored rubric of quality exists: PRIME scores alignment to the framework only, and its
+seal is open to publishers alone (RUBRIC-ELD.md). Placement needs a proficiency score, which the school supplies.
 
 **Standards.** data/standards/wida-2020.txt. California's criteria are keyed to its own ELD standards.
 
-**Scope and sequence states:** entry and exit points. **Section plan fills:** the levels and the talk routine.
-**Confidence:** thin.
+**Scope and sequence states:** entry and exit points; a year map of the standards, key language use, functions and
+forms per unit, showing what recurs and grows (item 13). **Section plan fills:** the language goal, the levels and
+the talk routine.
+**Confidence:** fair for design (one instrument read in full and one state map read in full); untested on any
+course.
 
 ### 11. Library and research skills. Ours, untested
 
@@ -534,7 +568,7 @@ every row but social studies waits behind the core work unless it is complementa
 | Career education (2) | Done 2026-11-16: the 2024 career-ready practices read and set out in our own words in the file header; what a school adds listed (docs/courses/career-education/STANDARD.md). Lens, scout and APPROACH draft written. The 2024 national career development guidelines (own goals as fallback) and one-year courses settled 2026-11-16 (Desk cards q-later-*). Owed: the approach page's yes | Cory |
 | Personal finance (1) | No longer a course: Economics teaches it, lightly integrated (settled 2026-11-14) | None |
 | SEL (4) | Done 2026-11-16 (docs/courses/sel/STANDARD.md): a draft sequence for 13 grade years, every grade teaching all 40 sub-skills; the design half's deeper review (five gaps, each with a proposal); our own words for all 40 ids. Lens, scout and APPROACH draft written. Frames, minutes, the five bar additions (part 9) and family-notes-only Spanish settled 2026-11-16 (Desk cards q-later-*); site-wide Spanish parked (later.csv L60). Owed: the approach page's yes | Cory |
-| English language development (4) | Done 2026-11-16 (docs/courses/eld/STANDARD.md): the California map read in full; the C11 gate and a test for "proven" written; the lean on the ELA progression mapped. Lens, scout and APPROACH draft written. Shape, time and the C11 test settled 2026-11-16 (Desk cards q-later-*). Owed: Cory requests the WIDA rubric file through its form (later.csv L61; until then the bar rests on the web pages); the approach page's yes. Build after C11 is proven | Cory |
+| English language development (4) | Done 2026-11-16 (docs/courses/eld/STANDARD.md): the California map read in full; the C11 gate and a test for "proven" written; the lean on the ELA progression mapped. Lens, scout and APPROACH draft written. Shape, time and the C11 test settled 2026-11-16 (Desk cards q-later-*). The WIDA rubric file is done: requested by Cory, read in full 2026-11-16 (docs/RUBRIC-ELD.md; later.csv L61), and part 10 firmed from it. Owed: the approach page's yes. Build after C11 is proven | Cory |
 | Library (8) | Done 2026-11-16: second edition confirmed at source and relabelled (data/subjects.csv too); the continuum's grades 3 to 5 list read in full as the grade check set (docs/courses/library/STANDARD.md). Lens, scout and APPROACH draft written. One course per grade K to 5 then one each for 6 to 8 and 9 to 12, and the 6 to 12 partial bases settled 2026-11-16 (Desk cards q-later-*). The 6 to 8 and 9 to 12 courses spread across their grades, about one session every two weeks (Desk card q-later-followups-1). Owed: the approach page's yes | Cory |
 
 **World languages (2): shelved, 2026-11-11. Owed when unshelved, not before.** Split each language into levels
@@ -637,7 +671,7 @@ loaded: docs/reviews/standards-currency-2026-11-11.md.
 | Ohio, computer science and technology rubric, 2025 | https://education.ohio.gov/getattachment/Topics/Learning-in-Ohio/OLS-Graphic-Sections/Resources/High-Quality-Instructional-Material/HQIM-Rubrics/Computer-Science-Technology-Rubric.pdf.aspx?lang=en-US | State document | Expert, in full, 24 pp. Writer, gateway 1 |
 | CFPB, Youth Financial Education Curriculum Review Tool, 2015 | https://files.consumerfinance.gov/f/documents/cfpb_youth-financialeducation-curriculum-review.pdf | US government work | Writer, in part |
 | CASEL, Criteria Updates and Rationale, 2020 | https://files.casel.org/11_CASEL-Program-Criteria-Rationale.pdf | Copyright CASEL | Writer, pp 23 to 25; expert, pp 21 to 27 |
-| California, criteria map, specialized ELD | https://www.cde.ca.gov/ci/rl/im/documents/evalcritmapprogtype5.docx | State document | Writer, skimmed by search |
-| WIDA PRIME 2020 | https://prime.wceruw.org/instructionalMaterials/index.aspx | University of Wisconsin | Writer, web page only |
+| California, criteria map, specialized ELD | https://www.cde.ca.gov/ci/rl/im/documents/evalcritmapprogtype5.docx | State document | Writer, in full, 2026-11-16 (docs/courses/eld/STANDARD.md) |
+| WIDA PRIME 2020, Rubric and Portfolio Workbook | https://prime.wceruw.org/instructionalMaterials/index.aspx (local copy in S:\CurioClass-sources\WIDA) | WIDA copyright, local use | Writer, in full, 54 pp, 2026-11-16 (docs/RUBRIC-ELD.md) |
 | Empire State Information Fluency Continuum, 2019 | https://libguides.monroe.edu/ESIFC/Intro | Not seen | Writer, introduction page only |
 | AASL standards; K-12 Computer Science Framework; California health and languages criteria; Oregon SEL tool; subject evidence | Addresses in the search report | As listed there | Search report |
