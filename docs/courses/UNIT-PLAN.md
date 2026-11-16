@@ -186,10 +186,14 @@ page. Rule 6 holds.
 tests; the item; the answer; wrong answers with their error letter; the section that owns it. Rules 3, 4 and 5
 hold. For each teacher-judged item: the look-fors and two sample answers, one that meets them and one that
 does not. One line on accommodations (read aloud, large print, a scribe, an oral answer). A row for a section
-with no plan yet says "to write with section N.N".
+with no plan yet says "to write with section N.N". A part scored from work made on an earlier day counts only if
+that work had written feedback and a chance to revise before it is scored; work from the day a topic is first
+taught is practice, never a scored part (social studies probe, 2026-11-15).
 
 **6. Error register.** *Shared.* Errors and first ideas, lettered once for the unit, each with what it
-shows and its source or "from memory". Section plans use these letters.
+shows and its source or "from memory". Section plans use these letters. **One mistake per letter:** a letter holds
+one misconception with one repair; two claims joined by "and" or a semicolon are two letters. A wrong answer is
+filed only under a letter whose text describes it (social studies probe, 2026-11-15).
 
 **7. Response allocation.** *Shared.* Name the marking time and the response time separately. State whether response
 occurs within the assessment day or on later respond days, and count it once. Then how the end-of-unit assessment is

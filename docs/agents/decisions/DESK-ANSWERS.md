@@ -1375,3 +1375,15 @@ ADOPTION-BAR-SUBJECTS.md (pass rule, criterion 8, choices 4 and 6); social studi
 ## 2026-11-15: day gates and rules from the social studies probe fix (fixer, US History I days 78 to 82)
 
 Edited in place: LESSON-DAY.md (credit `ours` exactly; error and source letters in words; placeholders fail; a repair never cuts the next day's worked example; hand-backs follow handbacks.csv; revision-note box; no typed Name line), UNIT-PLAN.md rule 6 (social studies repair), DAY-WRITER.md (fixed facts, check 16), CHEAP-READ.md (check 7), data/plans/README.md (`defect --status`). Gates: scripts/lesson.py (placeholder, bare letter, typed Name line, hand-backs and Tomorrow letters read handbacks.csv, error letters to K, grade 9 to 12 source sheets at 11 point), scripts/plan.py (`defect --status`), scripts/day_skeleton.py (credit and Word Wall lines). Why: the expert and cheap reads of days 78 to 82 (docs/reviews/*-2026-11-15.md) traced these to the template.
+
+## 2026-11-15: after the social studies probe (Cory, and the lead's rules)
+
+Cory, in chat: use free sources instead of buying the Quarles, Fields-Black and Green books (park service pages and
+the primary texts; a paraphrase we cannot check is cut). Cory: fix the social studies units first, with Codex. Lead,
+from the probe (docs/reviews/probe-social-studies-2026-11-15.md): one misconception per register letter (UNIT-PLAN
+field 6, all four plan-codex briefs, and a unitplan.py gate); a part scored from earlier work only after written
+feedback and a chance to revise, never from the day a topic is first taught (UNIT-PLAN field 5 and the briefs; this
+replaces "a part made earlier on a product day comes off the sitting" as a scoring rule, the minutes rule stands);
+day exits answered from material not just worked that day. Why: the probe read Off (plan share 60%, units changed
+88%), and science, ELA and math units should start with the rules. Applied: docs/pipeline/briefs/unit-correct.md,
+the Codex correction pass per social studies course.

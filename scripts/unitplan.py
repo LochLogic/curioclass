@@ -240,6 +240,7 @@ def check_file(path, course, unit):
     # subject checks (mechanical only); social studies has none
     if not sk.is_ss():
         subject_checks(course, unit, rows, lines, spans, bad)
+    register_check(course, lines, spans, bad)
 
     # word cap
     count = 0
@@ -257,6 +258,23 @@ def check_file(path, course, unit):
         bad(0, '%d words outside fields 4, 5, 6%s and the day list, cap %d%s'
             % (count, ', U3, U4, U6' if merged else '', cap, ' (merged one-section document)' if merged else ''))
     return msgs
+
+
+def register_check(course, lines, spans, bad):
+    # one mistake per register letter (UNIT-PLAN field 6; social studies probe, 2026-11-15)
+    if 6 in spans:
+        lo, hi = spans[6][0]
+        for i in range(lo, hi):
+            c = cells(lines[i]) if lines[i].startswith('|') else []
+            if len(c) < 2 or not re.fullmatch(r'[A-Z]{1,2}', c[0]):
+                continue
+            err = re.split(r'(?:right|correct|Right|Correct)\s*:', c[1])[0]
+            if ';' in err:
+                what = 'error %s joins two claims with a semicolon: one misconception per letter (UNIT-PLAN field 6)' % c[0]
+                if course == 'math-4':     # its plans predate the rule; reworked in step 5
+                    NOTES.append('%s:%d: note (not a failure): %s' % (SHOWN[0], i + 1, what))
+                else:
+                    bad(i + 1, what)
 
 
 def subject_checks(course, unit, rows, lines, spans, bad):
