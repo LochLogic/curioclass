@@ -69,6 +69,35 @@ sensitive topic is handled, and any timer (only with a grounded purpose).
   day is not yet split out from the day's own assessment; no word list (Word Wall cards per day) is read yet; no check
   yet compares a written day against its sidecar.
 
+## Findings to build in
+
+Day-level lessons from the reads, for the skeleton to fill, print or check before a writer starts. Each review that
+finds something about days adds a line here (the probe reports, the unit loop's sample reads).
+
+- **Scored work** (both probes; unit loop known-fault test, 2026-11-16): for each scored part the Assessment block
+  prints the day the work was made and the day of its written feedback and revision; a part made the same day it is
+  scored, or on its first teaching day, fails the skeleton (UNIT-PLAN field 5).
+- **Scored day agrees with days.csv** (sample read 2026-11-16, math grade 7 unit 5): the skeleton checks the section
+  plan's scored day against days.csv and stops with a clear data error when they disagree.
+- **Fresh exits and cold checks** (probe 2; sample read, ELA grade 8 unit 3): print the day's hook and worked example
+  beside the exit hole, with the line "the exit is a new case, not this one in new numbers"; a cold check's text may
+  not restate the taught text's central idea or reuse its key teaching words.
+- **Day kinds** (sample read, math grade 2 unit 3): print what the kind means (a Fluency day practises, no new
+  content; an Application day applies taught work), so a day is not quietly turned into an assessment.
+- **Supplies and safety** (sample read, science grade 7 unit 2): print field 8's supply and safety limits beside each
+  investigation or build, and the cost line; a task the limits forbid is a data error, not a writer's guess.
+- **Texts not yet written** (sample read, ELA grade 4 unit 2 and grade 8 unit 3): a core text marked "to write" is a
+  blocker printed at the top of the sidecar (later.csv L58), never a hole for the day writer to fill.
+- **Keys, samples and source sheets** (probe 2: most unit-origin findings sat here, written at plan-data): the
+  skeleton lists each item's key and sample with its source row, so the answer-key read after plan-data (L56) and
+  the writer see the same thing; a sheet passage needs a sources.csv row with a link and a checked status.
+- **Probe 2 check lines** (fix-u03-4): the teacher-prose cap per minute of the day, which an assessment day that
+  scores earlier work takes from its teaching minutes; a reserved source never named before its day; `endlooks` on
+  the record sheet; a key for each rotated form; glosses only for words the day uses; "Scored from the work you
+  handed in" on a respond day.
+- **Open lead items** (data/plans/unit-rejections.csv rows ruled `lead` and not applied): printed as warnings on every
+  day of that unit until the calendar fix lands.
+
 ## Open until it is first used
 
 - How a day already written learns of a section plan change (most likely a check that lists stale days, not a
