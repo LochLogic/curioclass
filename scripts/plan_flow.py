@@ -129,6 +129,34 @@ mile('final', 'Final review', 'Every core course is reviewed from the progressio
 stage('guard', 'The guard', 'A few days in each subject are written from the unit plans and measured. Full writing starts only once they pass.', [
     dict(title='Guard', nodes=[N(f'guard:{slug(n)}', SHORT.get(n, n)) for n in ORDER])])
 
+# section plans (PRODUCTION-PATH step 7): one cell a section, from days.csv's `unit` column (the section id, 5.2).
+# A unit not yet split into sections holds one placeholder `N.1` section longer than six days; it is drawn as an
+# estimate of one section per five days. A section's plan is docs/courses/<course>/u<uu>-<s>.md; a flow-status row
+# section:<course>:<u>.<s> overrides the state (the probe sections are under correction).
+srows = []
+for n in ORDER:
+    for c in core(n):
+        k, p = slug(c['title']), os.path.join(ROOT, 'data', 'plans', fid(c), 'days.csv')
+        secs, est = {}, False
+        if os.path.exists(p):
+            for r in csv.DictReader(io.open(p, encoding='utf-8')):
+                u = (r.get('unit') or '').strip()
+                if re.fullmatch(r'\d+\.\d+', u):
+                    secs[u] = secs.get(u, 0) + 1
+        cells = ''
+        for u, n_d in secs.items():
+            a, b = u.split('.')
+            if b == '1' and n_d > 6 and not any(x.startswith(a + '.') and x != u for x in secs):
+                cells += '.' * max(1, round(n_d / 5)); est = True
+                continue
+            f = os.path.join(ROOT, 'docs', 'courses', fid(c), 'u%02d-%s.md' % (int(a), b))
+            cells += led.get(f'section:{k}:{u}', 'd' if os.path.exists(f) else '.')
+        if not secs:
+            cells, est = '.' * round(days_of(c)[0] / 5), True
+        srows.append(dict(title=c['title'], group=SHORT.get(n, n), est=est, cells=cells))
+bands.append(dict(type='rows', id='sections', title='Section plans', noun='sections', tip='row:sections',
+                  sub='Each section (1 to 6 days) gets a plan: its days, timed parts, questions with keys, words and supports. Plans stay one section ahead of day writing. Dashed cells are an estimate until a unit is split into sections.', rows=srows))
+
 rows = []
 for n in ORDER:
     for c in core(n):
@@ -245,7 +273,8 @@ ABOUT = {
     'final': "A checkpoint: every core course reviewed from the progressions down; Codex reads a sample.",
     'row:units': "The unit plans for this course, one cell a unit. Dashed cells are an estimate until the course frame sets the count.",
     'row:days': "Every teaching day of this course, one cell a day: written, then read by the cheap and the expert readers.",
-    'row:tools': "The interactive tools in this subject, one dot a tool. Lit dots are live and verified.",
+    'row:sections': "The section plans for this course, one cell a section (1 to 6 days): the days, timed parts, questions with keys, words and supports the day writer works from. Dashed cells are an estimate until the unit is split.",
+    'row:tools':"The interactive tools in this subject, one dot a tool. Lit dots are live and verified.",
 }
 info = {}
 p = os.path.join(ROOT, 'data', 'plans', 'flow-status.csv')

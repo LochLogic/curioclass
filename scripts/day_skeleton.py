@@ -3,7 +3,7 @@
     python -X utf8 scripts/day_skeleton.py <course> <day>|u<unit>|all [--force] [--out DIR] [--data-dir DIR]
     python -X utf8 scripts/day_skeleton.py --self-test
 
-A living draft, built 2026-11-15 ahead of its first real need (Cory: "having a file there longer will help accumulate
+A living draft, built 2026-11-15 (findings built in 2026-11-16) ahead of its first real need (Cory: "having a file there longer will help accumulate
 improvements"), from the design note docs/pipeline/DAY-SKELETON.md. It is not yet part of any production step: the day
 writers start after section plans exist (PRODUCTION-PATH step 7), and the skeleton is proven on social studies first,
 then frozen there as the unit skeleton is. Add what each run teaches to the "Lessons" list in DAY-SKELETON.md.
@@ -43,9 +43,8 @@ def optional_rows(course, name, need):
     return u.read_csv(p, need) if p.exists() else None
 
 
-def section_parts(course, r, day):
-    """The day's timed parts from its section plan, docs/courses/<course>/u<uu>-<s>.md: the `- **N min. Name.**`
-    lines under `## Day N` (social studies probe, 2026-11-15: parts.csv holds the standards' parts, not the day's)."""
+def section_block(course, r, day):
+    """The `## Day N` block of the day's section plan, docs/courses/<course>/u<uu>-<s>.md, or None."""
     if '.' not in r['unit']:
         return None
     a, b = r['unit'].split('.', 1)
@@ -53,9 +52,138 @@ def section_parts(course, r, day):
     if not f.exists():
         return None
     m = re.search(r'^## Day %d\b.*?(?=^## |\Z)' % day, f.read_text(encoding='utf-8'), re.M | re.S)
-    if not m:
+    return m.group(0) if m else None
+
+
+def section_parts(course, r, day):
+    """The day's timed parts from its section plan: the `- **N min. Name.**` lines under `## Day N` (social studies
+    probe, 2026-11-15: parts.csv holds the standards' parts, not the day's)."""
+    blk = section_block(course, r, day)
+    if blk is None:
         return None
-    return [(x.group(1), x.group(2)) for x in re.finditer(r'^- \*\*(\d+) min\. (.+?)\.?\*\*', m.group(0), re.M)]
+    return [(x.group(1), x.group(2)) for x in re.finditer(r'^- \*\*(\d+) min\. (.+?)\.?\*\*', blk, re.M)]
+
+
+def section_lines(blk, pattern):
+    """(name, text) of the section plan parts whose name matches pattern, the text cut to one short line."""
+    out = []
+    for m in re.finditer(r'^- \*\*\d+ min\. (.+?)\.?\*\*(.*?)(?=^- \*\*\d+ min|^\S|\Z)', blk or '', re.M | re.S):
+        if re.search(pattern, m.group(1), re.I):
+            t = ' '.join(m.group(2).split())
+            out.append((m.group(1).strip(), t if len(t) <= 220 else t[:217].rsplit(' ', 1)[0] + '...'))
+    return out
+
+
+# ---- findings built in from the reads (DAY-SKELETON.md "Findings to build in"; 2026-11-16)
+
+KIND_MEANS = {   # docs/GLOSSARY.md day kinds, as the sample reads asked them printed (math grade 2 unit 3)
+    'Understanding': 'meets new content: the goal is taught here, from a hook and a worked example',
+    'Fluency': 'practises what earlier days taught until it comes easily; no new content is taught',
+    'Application': 'applies taught work to a new task or case (an inquiry, a lab, a draft); nothing is taught as new',
+    'Check': 'an assessment day: its items sample only what earlier days taught',
+    'Respond': 'acts on an assessment: reteach and revise what the checks showed, from the work students handed in',
+}
+SCORING = ('end', 'mid', 'course')
+ASSESS_DAYS = ('end', 'mid', 'observe', 'course')
+CHECKED = re.compile(r'^(checked|read|written|quoted|caption checked)\b', re.I)
+
+
+def nums(s):
+    return [int(x) for x in re.findall(r'\d+', s or '')]
+
+
+def plan_csv(course, name):
+    """Rows of data/plans/<course>/<name>.csv, or [] when the file is not written yet."""
+    rows = optional_rows(course, name + '.csv', None)
+    return rows or []
+
+
+def lead_rows(course, unit):
+    """Unapplied `lead` rows of data/plans/unit-rejections.csv for the unit: findings that wait on a calendar fix."""
+    p = u.PLANS / 'unit-rejections.csv'
+    if unit is None or not p.exists():
+        return []
+    return [x for x in u.read_csv(p, ['course', 'unit', 'lens', 'finding', 'ruling', 'applied'])
+            if x['course'] == course and x['ruling'] == 'lead' and not x['applied'].strip()
+            and x['unit'].strip().lstrip('0') == str(unit)]
+
+
+def scored_day_check(course, allrows, unit):
+    """items.csv end and mid items against days.csv (sample read, math grade 7 unit 5): every scored item's day is an
+    assessment day, and every days.csv end day of the unit holds end items. A disagreement is a data error."""
+    items = [i for i in plan_csv(course, 'items') if i.get('stretch', '').strip() == str(unit)]
+    if not items:
+        return
+    byday = {int(x['day']): x for x in allrows}
+    path = u.shown_path(u.plan_file(course, 'items.csv'))
+    for i in items:
+        if i.get('check') in ('end', 'mid') and i.get('day', '').strip().isdigit():
+            d = int(i['day'])
+            if d not in byday or byday[d]['assess'] not in ASSESS_DAYS:
+                raise u.DataError('%s: item %s is a %s item on day %d, but days.csv gives day %d no assessment (assess "%s"); '
+                                  'fix the section plan or days.csv' % (path, i['item_id'], i['check'], d, d,
+                                                                        byday.get(d, {}).get('assess', 'no such day')))
+    ends = {int(i['day']) for i in items if i.get('check') == 'end' and i.get('day', '').strip().isdigit()}
+    if ends:
+        for d, x in byday.items():
+            if x['stretch'] == str(unit) and x['assess'] == 'end' and d not in ends:
+                raise u.DataError('%s: days.csv makes day %d unit %d\'s end-of-unit assessment, but no end item is on it '
+                                  '(end items are on day %s)' % (path, d, unit, ', '.join(map(str, sorted(ends)))))
+
+
+def scored_work(course, allrows, r, day):
+    """Lines and stops for work made on earlier days and scored today (both probes; the unit loop's known-fault test):
+    the day it was made and the days of its written feedback, from materials.csv and handbacks.csv."""
+    lines, stops = [], []
+    if r['assess'] not in SCORING:
+        return lines, stops
+    hand = plan_csv(course, 'handbacks')
+    first = {}
+    for c in u.split_list(r['codes']):
+        t = u.taught_before(allrows, c.lstrip('~'), day)
+        if t:
+            first[c] = min(t)
+    for m in plan_csv(course, 'materials'):
+        # materials.csv `per` is copies (one per student or one for the class), not authorship: a sheet made and used
+        # today is a handout. Scored work is a student's copy carried in from an earlier day (first real run, 2026-11-16)
+        used, made = nums(m.get('used_days')), nums(m.get('made_day'))
+        if day not in used or not made or m.get('per', '').strip() == 'class' or made[0] >= day:
+            continue
+        md = made[0]
+        fb = [h for h in hand if nums(h.get('from_day')) and md <= nums(h['from_day'])[0] < day
+              and nums(h.get('to_day')) and nums(h['to_day'])[0] <= day]
+        back = sorted({nums(h['to_day'])[0] for h in fb})
+        lines.append('- Scored work: %s, made on day %d; written feedback handed back on %s (handbacks.csv)' % (
+            m['material'], md, ('day ' if len(back) == 1 else 'days ') + ', '.join(map(str, back)) if back
+            else 'NO day between the day it was made and today'))
+        for c, f in first.items():
+            if md == f:
+                stops.append('%s is made on day %d, the first day %s is taught; scored work comes after teaching '
+                             '(UNIT-PLAN field 5)' % (m['material'], md, c))
+        if not fb:
+            stops.append('%s has no written feedback day before it is scored on day %d (handbacks.csv)' % (m['material'], day))
+    return lines, stops
+
+
+def day_sources(course, day):
+    """sources.csv rows for the day (the `days` cell), and the reserved sources the day must not name yet."""
+    here, later = [], []
+    for s in plan_csv(course, 'sources'):
+        sd = nums(s.get('days'))
+        if day in sd:
+            here.append(s)
+        elif s.get('use') == 'reserved' and sd and day < min(sd):
+            later.append((s, min(sd)))
+    return here, later
+
+
+def unit_field(course, unit, n):
+    """The text of field n of the unit plan s<uu>.md, without its heading, or ''."""
+    p = u.DOCS / course / ('s%02d.md' % unit) if unit else None
+    if not p or not p.exists():
+        return ''
+    m = re.search(r'^## %d\..*?\n(.*?)(?=^## |\Z)' % n, p.read_text(encoding='utf-8'), re.M | re.S)
+    return re.sub(r'<!-- /?skel -->', '', m.group(1)).strip() if m else ''
 
 
 def credit_rows(course, day):
@@ -116,6 +244,39 @@ def build(course, day):
     cg = u.grade_num(meta.get('grade'))
     prog = u.progression()
     unit = int(r['stretch']) if r['stretch'].isdigit() else None
+    if unit is not None:
+        scored_day_check(course, allrows, unit)
+    # ---- what stops or warns before a writer starts (findings built in, 2026-11-16)
+    stops, warns = [], []
+    if subj == 'ela' and unit is not None:
+        for t in u.ela_texts(course, unit):
+            if 'to write' in (t.get('status') or '').lower():
+                stops.append('core text %s (%s), "%s", is still to write: Curio Class writes it before any day of this '
+                             'unit is written, never the day writer (later.csv L58)' % (t['text_id'], t['use'], t['title']))
+    if re.search(r'\bto write\b', r['note'], re.I):
+        warns.append('the days.csv note names something "to write": if it is a text or passage the day reads, it is a '
+                     'blocker, not a hole for the day writer')
+    for x in lead_rows(course, unit):
+        warns.append('open calendar finding (unit-rejections.csv, %s lens, not yet applied): %s' % (x['lens'], u.clean(x['finding'])))
+    work_lines, work_stops = scored_work(course, allrows, r, day)
+    stops += work_stops
+    srcs, reserved = day_sources(course, day)
+    for s in srcs:   # one STOP a source: a sheet passage needs a link (unless we make it) and a checked status
+        st_ = s.get('status', '').strip()
+        made_here = re.match(r'(to make|written)\b', st_, re.I)
+        why = []
+        if not CHECKED.match(st_):
+            why.append('status "%s", not checked' % st_)
+        if not s.get('url', '').strip() and not made_here:
+            why.append('no link')
+        if why:
+            stops.append('source %s ("%s"): %s (sources.csv)' % (s['source_id'], s['title'], '; '.join(why)))
+    items_all = plan_csv(course, 'items')
+    day_items = [i for i in items_all if i.get('day', '').strip() == str(day)]
+    for i in day_items:
+        if not (i.get('answer') or '').strip() and not (i.get('compute') or '').strip() and not (i.get('samples') or '').strip():
+            stops.append('item %s has no key, computed answer or sample answers in items.csv (every rotated form '
+                         'needs its own)' % i['item_id'])
     L = []
     w = L.append
     title = '(course-level check)'
@@ -129,6 +290,19 @@ def build(course, day):
     w('A sidecar for the day writer (scripts/day_skeleton.py, a living draft). Lines between the markers are copies of '
       'data: change the data, not these lines. Every %s is the writer\'s.' % u.MARK)
     w('')
+    if stops or warns:
+        w('## Before writing')
+        w('')
+        w(u.OPEN)
+        for s in stops:
+            w('- **STOP:** %s.' % s.rstrip('.'))
+        for s in warns:
+            w('- **Warning:** %s.' % s.rstrip('.'))
+        w(u.CLOSE)
+        w('')
+        if stops:
+            w('The day is not written until every STOP is cleared in the data and this skeleton is rebuilt (--force).')
+            w('')
     # ---- the header block (LESSON-DAY "Where it lives")
     w('## Header')
     w('')
@@ -139,6 +313,9 @@ def build(course, day):
     if question:
         w('- compelling question (frame): "%s"' % u.clean(question))
     w('- kind: %s%s' % (r['kind'], ('; assessment: %s' % r['assess']) if r['assess'] else ''))
+    if r['kind'] in KIND_MEANS:
+        w('- what the kind means: %s (%s). Keep it this kind: a teaching day is never quietly made an '
+          'assessment, and a Fluency day teaches nothing new' % (r['kind'], KIND_MEANS[r['kind']]))
     w('- version: draft, not yet taught')
     lo, hi = meta.get('minutes_min', ''), meta.get('minutes_max', '')
     w('- minutes: %s' % ((lo if lo == hi else '%s to %s' % (lo, hi)) if lo else '(frames.csv gives none)'))
@@ -193,6 +370,18 @@ def build(course, day):
     w('')
     w('%s: the goal in student words (one sentence a student could repeat at the door).' % u.MARK)
     w('')
+    # ---- supply and safety limits (sample read, science grade 7 unit 2)
+    f8 = unit_field(course, unit, 8)
+    if f8 and (mats or subj == 'science' or re.search(r'\b(lab|investigat\w*|build|experiment|model)\b', r['goal'] + ' ' + r['note'], re.I)):
+        w('## Supplies and safety limits (unit plan field 8)')
+        w('')
+        w(u.OPEN)
+        L.extend('> ' + ln if ln.strip() else '>' for ln in f8.splitlines())
+        w(u.CLOSE)
+        w('')
+        w('Every investigation, build or task stays inside these limits and their cost line. A task the limits forbid is a '
+          'data error to report, never a writer\'s guess.')
+        w('')
     # ---- assessment days
     if r['assess'] in ('end', 'mid', 'observe', 'course', 'readiness'):
         w('## Assessment')
@@ -207,7 +396,17 @@ def build(course, day):
             for other, ok in u.evidence_pairs(allrows, unit, day):
                 w('- Collect once: day %d also gathers child-by-child evidence on a shared code; %s' % (
                     other, 'the later day reuses the record' if ok else 'the later day must reuse that record or sample a new case'))
+        L.extend(work_lines)
+        if unit is not None and r['assess'] == 'end':
+            ends = [i for i in items_all if i.get('stretch', '').strip() == str(unit) and i.get('check') == 'end']
+            if any(i.get('judged') == 'teacher' and '|' in (i.get('steps') or '') for i in ends):
+                w('- Record sheet: teacher-judged end items with several look-fors; the header carries `endlooks: 012` '
+                  'so each look-for gets its own column, scored 2, 1 or 0')
         w(u.CLOSE)
+        if r['assess'] in ('end', 'mid', 'course', 'readiness'):
+            w('')
+            w('A cold check\'s text or case is new: it may not restate a taught text\'s central idea or reuse its key '
+              'teaching words (probe 2; sample read, ELA grade 8 unit 3).')
         w('')
         w('%s: what each item samples (the part of each code), and the record sheet line. Checks claim only what '
           'they sample (sequence-write.md rule 2).' % u.MARK)
@@ -226,6 +425,11 @@ def build(course, day):
             tot, '' if ok else ', NOT the frame\'s %s: fix the section plan' % lo))
         for n, name in mine:
             w('   - `#### %s min. %s`' % (n, name.strip()))
+        blk = section_block(course, r, day)
+        taught = section_lines(blk, r'hook|teaching first|worked example|model')
+        if section_lines(blk, r'exit') and taught:
+            w('   - Beside the exit: today\'s %s. The exit is a new case, not this one in new numbers (probe 2).' % '; '.join(
+                '%s: %s' % (n, t) for n, t in taught))
     else:
         w('3. **The day:** %s: one `#### N min. Part` heading under `### The day` per block of time, adding up to %s minutes. No section '
           'plan is on file yet, so the parts are the writer\'s.' % (u.MARK, lo or 'the day\'s'))
@@ -252,13 +456,52 @@ def build(course, day):
     # ---- questions
     w('## Questions')
     w('')
-    items = optional_rows(course, 'items.csv', ['item_id'])
-    ids = [i['item_id'] for i in items or [] if i.get('day', '').strip() == str(day)]
-    if ids:
-        w('Rows already in items.csv for this day: %s.' % ', '.join('[[%s]]' % i for i in ids))
+    if day_items:
+        w('Rows already in items.csv for this day, each with its key and samples, so the answer-key read and the writer '
+          'see the same thing (probe 2; later.csv L56):')
+        w('')
+        w(u.OPEN)
+        for i in day_items:
+            key = (i.get('answer') or '').strip() or ('computed: %s' % i['compute'] if (i.get('compute') or '').strip() else 'NONE')
+            smp = (i.get('samples') or '').strip()
+            w('- [[%s]] (%s%s): key: %s%s' % (i['item_id'], i.get('check', ''), ', judged by ' + i['judged'] if i.get('judged') else '',
+                                             u.clean(key), ('; samples: ' + u.clean(smp)) if smp else ''))
+        w(u.CLOSE)
     else:
         w('%s: every question the student answers is a row in data/plans/%s/items.csv with a computed key '
           '(LESSON-DAY rule 1); none exists for this day yet.' % (u.MARK, course))
+    w('')
+    if srcs or reserved:
+        w('## Sources')
+        w('')
+        w(u.OPEN)
+        for s in srcs:
+            w('- %s (%s): %s; %s; rights: %s; status: %s' % (s['source_id'], s.get('use', ''), s['title'],
+                                                             s.get('url', '') or 'no link', s.get('rights', ''), s.get('status', '')))
+        for s, d0 in reserved:
+            wm = re.search(r'watch:\s*([^.;"]+(?:;[^.;"]+)*)', s.get('note', ''))
+            w('- Reserved for day %d, never named today: %s ("%s")%s' % (d0, s['source_id'], s['title'],
+                                                                       ('; nor the words ' + wm.group(1).strip()) if wm else ''))
+        w(u.CLOSE)
+        w('')
+    # ---- the checks the written day must pass (probe 2 check lines, fix-u03-4; lesson.py's rules, printed first)
+    hi_min = int(hi or lo or 60)
+    per = 15 * hi_min
+    carries = any(nums(h.get('to_day')) == [day] and h.get('where', '').strip().lower() == 'assessment'
+                  for h in plan_csv(course, 'handbacks'))
+    cap = per if (r['kind'] != 'Check' or carries) else 500
+    w('## Checks the written day must pass')
+    w('')
+    w('- Teacher prose at most %d words (15 a minute of a %d-minute day%s); At home apart, at most 170.' % (
+        cap, hi_min, '' if r['kind'] != 'Check' else (', an assessment day that scores earlier work keeps the teaching cap'
+                                                     if carries else ', an assessment day: 500')))
+    w('- Glosses only for words the day uses.')
+    if reserved:
+        w('- No reserved source, nor a word its note watches for, is named before its day (list above).')
+    if r['kind'] == 'Respond':
+        w('- The student page says "Scored from the work you handed in".')
+    if r['assess'] == 'end':
+        w('- Each rotated form of an item has its own key.')
     w('')
     w('## The student page')
     w('')
@@ -273,8 +516,10 @@ def write(course, day, out=None, force=False):
     p = d / ('d%03d.md' % day)
     if p.exists() and not force:
         return p, 'kept (exists; --force to rebuild)'
-    p.write_text(build(course, day), encoding='utf-8', newline='\n')
-    return p, 'written'
+    text = build(course, day)
+    p.write_text(text, encoding='utf-8', newline='\n')
+    n = text.count('**STOP:**')
+    return p, 'written' + (', %d STOP%s before writing' % (n, '' if n == 1 else 's') if n else '')
 
 
 def self_test():
@@ -306,6 +551,42 @@ def self_test():
     m5 = next((int(r['day']) for r in u.days_rows('math-grade-5') if r['stretch'] == '2'), 1)
     t5 = build('math-grade-5', m5)
     check('earlier-grade skills are review, not the day\'s own', all('taught or practised' not in ln for ln in t5.splitlines() if '(grade 4)' in ln))
+    check('the day kind is explained', '- what the kind means: ' in a)
+    # findings built in 2026-11-16, on a copy of the social studies probe section's data with planted faults
+    import csv as _csv
+    import shutil
+    w1 = 'world-history-i'
+    with tempfile.TemporaryDirectory() as t:
+        shutil.copytree(u.PLANS / w1, Path(t) / w1)
+        u.set_data_dir(t)
+        try:
+            base = build(w1, 45)
+            check('carried scored work prints its made day and feedback days',
+                  re.search(r'Scored work: .+, made on day \d+; written feedback handed back on days? \d', base) is not None)
+            check('the end items print their keys', '(end, judged by teacher): key: ' in base)
+
+            def rewrite(name, fn):
+                p = Path(t) / w1 / name
+                with open(p, encoding='utf-8', newline='') as f:
+                    rows = list(_csv.DictReader(f))
+                head = list(rows[0].keys())
+                rows = fn(rows)
+                with open(p, 'w', encoding='utf-8', newline='') as f:
+                    wr = _csv.DictWriter(f, head, lineterminator='\n')
+                    wr.writeheader()
+                    wr.writerows(rows)
+            rewrite('handbacks.csv', lambda rows: [x for x in rows if not (42 <= int(x['from_day']) < 45)])
+            check('scored work with no feedback day is a STOP', '**STOP:**' in build(w1, 45) and 'no written feedback day' in build(w1, 45))
+            rewrite('sources.csv', lambda rows: [dict(x, status='to cut and check') if x['days'].strip() == '44' else x for x in rows])
+            check('an unchecked source on the day is a STOP', 'not checked' in build(w1, 44))
+            rewrite('items.csv', lambda rows: [dict(x, day='43') if x['item_id'] == 's03-A4' else x for x in rows])
+            try:
+                build(w1, 44)
+                check('an end item on a teaching day is a data error', False)
+            except u.DataError as e:
+                check('an end item on a teaching day is a data error', 's03-A4' in str(e))
+        finally:
+            u.set_data_dir(None)
     print('all passed' if not bad else '%d failed' % bad)
     return bad
 
@@ -331,9 +612,14 @@ def main(a):
         days = [int(which)]
     else:
         raise SystemExit('day must be a number, u<unit> or all')
+    stopped = 0
     for d in days:
         p, how = write(course, d, out, force)
         print('%s: %s' % (u.shown_path(p), how))
+        stopped += 'STOP' in how
+    if stopped:
+        print('%d day%s with a STOP: clear it in the data, then rebuild with --force' % (stopped, '' if stopped == 1 else 's'))
+        raise SystemExit(1)
 
 
 if __name__ == '__main__':

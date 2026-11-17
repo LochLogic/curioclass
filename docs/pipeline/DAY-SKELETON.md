@@ -65,6 +65,27 @@ sensitive topic is handled, and any timer (only with a grounded purpose).
   sidecar prints the note for the writer only; the teacher page never copies it.
 - 2026-11-15, from the template flattening: parts are `#### N min.` under `### The day` and At home is capped at 170
   words, as lesson.py reads them; the draft had `###` and 130. Lesson: read the script's constants, not prose.
+- 2026-11-16, the nine findings built in (Cory: "integrate the findings we have into the code; we can repeat that step
+  again later"). A **Before writing** block at the top lists STOPs (the day is not written until the data clears them;
+  the command exits 1) and warnings. STOPs: an ELA core text still "to write"; a source on the day that is not
+  checked or has no link (one we make needs no link); an item with no key, computed answer or samples; carried scored
+  work with no written feedback day before it, or made on the first day its code is taught. Warnings: open `lead` rows
+  of unit-rejections.csv; a days.csv note naming something "to write". A data error stops the build when an end or
+  mid item in items.csv sits on a day days.csv gives no assessment, or a days.csv end day holds no end item. Printed:
+  what the day kind means; unit field 8 (supply and safety limits) on science days and days with tools, supplies or a
+  lab; the hook and worked example beside the exit, with "a new case, not this one in new numbers"; the cold-check
+  rule on assessment days; each item's key and samples; the day's sources (link, rights, status) and the reserved
+  sources it must not name; `endlooks` when end items are teacher-judged by look-fors; and the checks the written day
+  must pass (prose cap at 15 words a minute, 500 on an assessment day unless it scores carried work; glosses; the
+  respond-day line; a key per rotated form). Self-test 15 checks, the new ones on a copy of the World History I probe
+  data with planted faults. Built every day of all 52 core courses to scratch: no crash.
+- Lessons from that run: (1) materials.csv `per` counts copies (student or class), not authorship, so "made the same
+  day it is scored" cannot be told apart from a handout; the rule covers carried work only (made on an earlier day).
+  (2) The unit plans' field 5 tables are too varied to parse for scored days (item numbers and source years read as
+  days); the scored-day check reads items.csv, which only section plans fill. (3) The all-courses run found a broken
+  Algebra I source-map row (an unquoted comma from a hand edit that day) that `plan.py check` passed: sequence.py
+  does not check a source map's cell count (later.csv L65). (4) ELA has a STOP on most days (core texts still to
+  write, L58); ELA grade 11 has none.
 - Known gaps for the first real run: the student page and At home are bare TODOs; the readiness check on a unit's last
   day is not yet split out from the day's own assessment; no word list (Word Wall cards per day) is read yet; no check
   yet compares a written day against its sidecar.
@@ -74,28 +95,31 @@ sensitive topic is handled, and any timer (only with a grounded purpose).
 Day-level lessons from the reads, for the skeleton to fill, print or check before a writer starts. Each review that
 finds something about days adds a line here (the probe reports, the unit loop's sample reads).
 
-- **Scored work** (both probes; unit loop known-fault test, 2026-11-16): for each scored part the Assessment block
+All nine below were built in on 2026-11-16 (Draft log). A new finding is added here marked `(open)`, and marked
+`(built in <date>)` once the script carries it.
+
+- **Scored work** (built in 2026-11-16; both probes; unit loop known-fault test, 2026-11-16): for each scored part the Assessment block
   prints the day the work was made and the day of its written feedback and revision; a part made the same day it is
   scored, or on its first teaching day, fails the skeleton (UNIT-PLAN field 5).
-- **Scored day agrees with days.csv** (sample read 2026-11-16, math grade 7 unit 5): the skeleton checks the section
+- **Scored day agrees with days.csv** (built in 2026-11-16; sample read 2026-11-16, math grade 7 unit 5): the skeleton checks the section
   plan's scored day against days.csv and stops with a clear data error when they disagree.
-- **Fresh exits and cold checks** (probe 2; sample read, ELA grade 8 unit 3): print the day's hook and worked example
+- **Fresh exits and cold checks** (built in 2026-11-16; probe 2; sample read, ELA grade 8 unit 3): print the day's hook and worked example
   beside the exit hole, with the line "the exit is a new case, not this one in new numbers"; a cold check's text may
   not restate the taught text's central idea or reuse its key teaching words.
-- **Day kinds** (sample read, math grade 2 unit 3): print what the kind means (a Fluency day practises, no new
+- **Day kinds** (built in 2026-11-16; sample read, math grade 2 unit 3): print what the kind means (a Fluency day practises, no new
   content; an Application day applies taught work), so a day is not quietly turned into an assessment.
-- **Supplies and safety** (sample read, science grade 7 unit 2): print field 8's supply and safety limits beside each
+- **Supplies and safety** (built in 2026-11-16; sample read, science grade 7 unit 2): print field 8's supply and safety limits beside each
   investigation or build, and the cost line; a task the limits forbid is a data error, not a writer's guess.
-- **Texts not yet written** (sample read, ELA grade 4 unit 2 and grade 8 unit 3): a core text marked "to write" is a
+- **Texts not yet written** (built in 2026-11-16; sample read, ELA grade 4 unit 2 and grade 8 unit 3): a core text marked "to write" is a
   blocker printed at the top of the sidecar (later.csv L58), never a hole for the day writer to fill.
-- **Keys, samples and source sheets** (probe 2: most unit-origin findings sat here, written at plan-data): the
+- **Keys, samples and source sheets** (built in 2026-11-16; probe 2: most unit-origin findings sat here, written at plan-data): the
   skeleton lists each item's key and sample with its source row, so the answer-key read after plan-data (L56) and
   the writer see the same thing; a sheet passage needs a sources.csv row with a link and a checked status.
-- **Probe 2 check lines** (fix-u03-4): the teacher-prose cap per minute of the day, which an assessment day that
+- **Probe 2 check lines** (built in 2026-11-16; fix-u03-4): the teacher-prose cap per minute of the day, which an assessment day that
   scores earlier work takes from its teaching minutes; a reserved source never named before its day; `endlooks` on
   the record sheet; a key for each rotated form; glosses only for words the day uses; "Scored from the work you
   handed in" on a respond day.
-- **Open lead items** (data/plans/unit-rejections.csv rows ruled `lead` and not applied): printed as warnings on every
+- **Open lead items** (built in 2026-11-16; data/plans/unit-rejections.csv rows ruled `lead` and not applied): printed as warnings on every
   day of that unit until the calendar fix lands.
 
 ## Open until it is first used
