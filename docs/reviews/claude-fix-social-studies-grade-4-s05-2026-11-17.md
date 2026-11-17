@@ -1,0 +1,19 @@
+# Fix report, social-studies-grade-4 unit 5 (2026-11-17)
+
+Findings merged: 47 (51 listed; the same fault named twice: marking step and screen, D1.1.3-5, the Tlingit exit, the day 90 payment exit, day 98 exit). Fixed or partly fixed: 40. Rejected: 7. Lead: 4. Held up: assessment 21 of 22, sources 12 of 17 (5 not applied for the cap), sequence 12 of 12. Gate: PASS for s05.md (1,250 words or fewer outside fields 4, 5, 6).
+
+Main changes: Q1 to Q9 wrong answers and letters corrected (C, T, L, H, G, R added; N moved off Q7); packet A, B, D, F, G rewritten so the stimulus no longer holds the key; owners set by section; field 7 now teacher scored by component with a component-to-letter table and four groups; day 102 is 40 minutes with no in-class marking; exits 82, 84, 85, 86, 90, 95, 96, 97, 98, 100 reworked; N now taught on 101; retrieval repairs moved to warm-ups and pairs time; Teaching line day numbers match days.csv; Gadsden strip carried on 91; D1.1.3-5 stated as practised; pipeline remarks, Tennessee row and blocked-source sentences deleted; Article XII, Equiano edition, canal text status, Gutierrez summary and Polk quote added to sources.
+
+REJECTED: assessment 19 | Exits 82, 95 and 97 use Louisiana, Oregon, Alaska and Puerto Rico, the places Q2 asks, so students could answer Q2 from exit answers | The standard names these places and its dates are fixed; exits use new captions and Q2 uses unseen cards, and the plan already says required dates recur as content | the writer's brief (dates required by the standards stay fixed; exits use a new source detail)
+REJECTED: sources 9 | Maps A, the overlays, diagram B and the day 99 bridge map have no named base-map source | Fix was written, then cut | over the word cap (UNIT-PLAN Length, 1,250); field 10 is counted | UNIT-PLAN Length
+REJECTED: sources 12 | No "As of November 2026" teacher line for the Alaska Federation of Natives, Office of Hawaiian Affairs, Institute of Puerto Rican Culture or the Confederated Tribes, and no news check named | Line was written, then cut; the news check has not been made | over the word cap | UNIT-PLAN Length
+REJECTED: sources 13 | Whitman and Bidwell card details are not tied to a page section on the named NPS pages | Needs words in field 10 and a page check not made here; the packet already says final cards need verification | over the word cap | UNIT-PLAN Length
+REJECTED: sources 15 | G's "reserved Hawaiian petition detail" and "1898 congressional annexation record" are summaries; name exact archives.gov items and lines | Cannot be named without opening the archive items; no room in field 10 | over the word cap | UNIT-PLAN Length
+REJECTED: sources 8 (part) | Louisiana, 1846 Oregon, 1867 treaty and Texas facts each need a free government source | Only the Treaty of Paris and immigration pages were listed as not yet reached; the rest need more words than fit | over the word cap | UNIT-PLAN Length
+REJECTED: sequence 12 (part) | Day 98 exit should reuse the day 97 case | A day exit must come from a case not just worked; I cut the exit to one cause and one effect and removed the map and timeline task from it | none | the writer's brief (a day exit is answered from a source not just worked through)
+
+LEAD:
+- data/plans/social-studies-grade-4/days.csv day 91 goal needs a clause for the Gadsden strip (plan carries it on 91).
+- days.csv day 102 codes omit D1.1.3-5; the plan now says it is practised, not owned (frame agrees), so the code stays off day 102.
+- items.csv and any minutes table for day 102: orientation 1, Q6 4, Q7 5, reread 4, nothing marked in class; the total is 40.
+- Source work still open for the lead: canal text g4-u3-01 is unwritten; Treaty of Paris and immigration sources; dated "As of November 2026" lines and news check; base-map source; NY framework page link.

@@ -1,0 +1,24 @@
+# Fix report: social-studies-grade-4 unit 2 (s02), 2026-11-17
+
+Findings merged: 36 (assessment 15, sources 11, sequence 10; no duplicates across lenses beyond A8/S9 on invented labels). Fixed: 23. Rejected: 12 (11 lines, sequence 8 and 9 share one). Lead: 2 findings. Gate for s02.md: PASS (at the 1,250 word cap, so every addition to counted fields 2, 7, 8 and 10 was squeezed or refused).
+
+Held up per lens: assessment 14 of 15 fixed (A10 rejected), sources 8 of 11 fixed, sequence 1 of 10 fixed (Q7; Q10 is a lead item).
+
+Fixed: A1 (Day 37 marking rewritten, teacher-marked by component, no hands up), A2 (component-to-group table, four groups, others in pairs), A3 (Q3 moved to Vancouver checked in A and B; look-for and packet updated), A4 (Note line rewritten), A5 (B split; new letter Q added after P), A6, A7, A8, A11 (J), A12 (D only), A13, A14, A15 (Q5b fill-in table), S1 (keys provisional, fallback port), S3 (official sources and check date for dated lines; vote and holding to be copied from the Court's opinion page), S4 (same-country pairing for day 33), S5 (Factbook entries and public-domain photographs named), S7 (Article 2 cited, dates to be copied from its history), S8 (census measures named), S9 (labels added to exits 19, 20, 31, 36 and the new cases), S11 (plain-description makers), A9, Q7.
+
+REJECTED: assessment 10 | Day 24 exit restates the day's government table and should use a fresh feature the table lacks (how leaders are chosen or how long they serve) | the exit must measure the day's named goal (the table's columns: form, head, lawmakers, courts), a feature not taught would test untaught content, and the Limits line bars going beyond offices, lawmakers and courts; the card is already a fresh reserved summary | the writer's brief (exit measures every named part of the day's goal) and the unit Limits
+REJECTED: sources 2 | Replace the INE page as Mexico's government source with the Constitution (Chamber of Deputies), gob.mx and the Court's own site | right on the facts but the sentence adds about 45 words to field 10 and the plan is exactly at the 1,250 cap, and no existing line may be cut | over the word cap (UNIT-PLAN, Length); the teacher background already says to refresh the card against the Court's site
+REJECTED: sources 6 | Name a Mexican Indigenous-run source for day 23 or state that INPI alone serves, in the teacher note | needs a source nobody has read, and the one-line statement does not fit under the cap; the plan already says the source is still to choose with the sensitivity read | over the word cap
+REJECTED: sources 10 | Record each named community source, INPI, FIOB, the atlas and the guidance as reached or not reached | I cannot reach or read them in this stage, so a status line would be invented; only the atlas is recorded, as not fully reached | none (also over the word cap)
+REJECTED: sequence 1 | Day 22 is Fluency but checking facts is taught there; say what the day does and what is cut | the plan-side sentence (short teacher model, then practice; compression shortens practice) does not fit under the cap; the retype is a days.csv matter, listed under LEAD | over the word cap
+REJECTED: sequence 2 | Protect the day 34 claim model; compression cuts gathering time | right on the facts, but the sentence does not fit under the cap and no existing line may be cut | over the word cap
+REJECTED: sequence 3 | Tie opportunity-cost on 32 and withdraw it from 33 | the carried line is a field 2 sentence that would cost about 15 words; at the cap | over the word cap
+REJECTED: sequence 4 | Teach source structure on day 18 so D3.1's third test is taught | right on the facts; the sentence would cost about 15 words in field 2; at the cap | over the word cap
+REJECTED: sequence 5 | Keep the full claim frame on 34 and 35 and reduce it on 36 | field 2 already reduces it on 35 per days.csv (day 35 writes from organized notes) and says "keep optional frames", so students who need the frame keep it | none (days.csv day 35 note)
+REJECTED: sequence 6 | Say each day's order and what moves out on days 17 and 23 | needs about 50 words of field 2; at the cap; minutes are left to section plans | over the word cap
+REJECTED: sequence 8 and 9 | Show one digital source on a screen on days 18 and 25; add the atlas sets, comparison sheet, report frame and presentation timing to the supplies | together about 60 words of field 8; at the cap | over the word cap
+
+LEAD:
+- days.csv day 22 is typed Fluency but is the only day that teaches checking one fact in two sources (sequence 1): retype it Understanding or move the two-source check into day 21's goal.
+- days.csv day 36 (Fluency) carries no codes (sequence 10): add D1.5, D3.1, D3.2, D2.Eco.14 and D2.Eco.15 as the review needs.
+- If the cap can be raised or field 2, 8 and 10 trimmed elsewhere, the over-cap sentences above (sources 2, 6, 10; sequence 1 to 4, 6, 8, 9) can be restored; the plan is exactly at 1,250 words.
