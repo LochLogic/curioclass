@@ -343,8 +343,8 @@ Prose first-reading minutes divide counts or caps by an illustrative 150 words/m
 
 | Unit | First reading | Rereading | Independent | Media ceiling and protected production |
 |---|---|---|---|---|
-| 1, 22 days | 15706 counted words, about 105 minutes, plus cold story | Four 15-minute hard-passage blocks | 48 minutes | No required media; evidence model before paragraphs, discussion/words and cold paragraph on separate days. |
-| 2, 28 days | 71619 epic words, about 478 minutes; paired poem/excerpt cap 1650, about 11 more | At least 45 minutes | 48, on 39/40/42/43/45/46; none during packets 1 to 9 | Image initial 6 minutes, audio within reading time. About 160 minutes process writing across 32,35 to 44; no draft demanded during first packets. |
+| 1, 22 days | 15706 counted words, about 105 minutes, plus cold story | Four 15-minute hard-passage blocks | 48 minutes | No required media; day 6 teaches discussion and day 9 teaches word strategies, both Understanding. Evidence model before paragraphs, discussion/words and cold paragraph on separate days. |
+| 2, 28 days | 71619 epic words, about 478 minutes; paired poem/excerpt cap 1650, about 11 more | At least 45 minutes | 48, on 39/40/42/43/45/46; none during packets 1 to 9 | Image initial 6 minutes, audio within reading time. Day 32 is Understanding for narrative modelling and drafting. About 160 minutes process writing across 32,35 to 44; no draft demanded during first packets. |
 | 3, 13 days | 11370 words, about 76 minutes, plus cold 450 to 600 words | 40 minutes | 48 | No media; oral/annotation and retained editing portfolio on separate days. |
 | 4, 18 days | 15501 words, about 103 minutes, plus cold memoir/research sources | 35 minutes | 48 | Film 6, talk 4, chart read 6 minutes. Five research days; product read before parallel panel, comparison records reused. |
 | 5, 11 days | Three pending selections capped at 4300 words, about 29 minutes, plus whole Gettysburg and cold speech | 30 minutes | 48 across eight teaching days | No media; map/defense then paired seminal display, no new process essay. |
