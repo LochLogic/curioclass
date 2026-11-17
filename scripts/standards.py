@@ -75,7 +75,7 @@ def ngss(code):
 
 
 # --- C3 Framework indicators, all four dimensions (socialstudies.org, rev 2017): the official list
-C3_IDS = set(l.strip() for l in (DATA / 'c3-indicators.txt').read_text(encoding='utf-8').splitlines()
+C3_IDS = set(l.split('\t')[0].strip() for l in (DATA / 'c3-indicators.txt').read_text(encoding='utf-8').splitlines()
              if l.strip() and not l.startswith('#'))
 
 
