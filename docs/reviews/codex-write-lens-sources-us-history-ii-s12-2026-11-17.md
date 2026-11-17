@@ -1,0 +1,6 @@
+Gate: s12.md passes; advisory notes at lines 121, 122 and 125 flag paired error letters. Read limit: data/plans/us-history-ii/source-map.csv does not exist.
+
+1. [10; 5, Anderson evidence packet] Field 10 directs original summaries of the museum biography and unread White letter, while leaving other Anderson accounts reference-only pending rights; E152 and the P158/C151 examples nevertheless depend on these records | Source-specific judgments require checkable source evidence, not our retellings | Specify verified student passages, precise locations and reproduction arrangements. Read and transcribe the [free White letter scan](https://www.loc.gov/exhibits/naacp/greatdepression/Assets/na0085_enlarge.jpg), or remove letter-based claims and attribute the catalogue account explicitly as secondary evidence.
+2. [10; 5, one-child C151 fallback] The fallback promises two cited source excerpts but names neither source nor passage, leaving both for later creation | Its evidence and availability cannot be checked under “verified or none” | Select and verify two freely accessible sources now; record titles, makers, dates, links, passage boundaries and rights, keeping the reserved U159 documents excluded.
+
+Count: 2 findings (lens sources).
