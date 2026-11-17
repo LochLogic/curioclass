@@ -1,6 +1,10 @@
-Gate: `unitplan.py check chemistry` passes s01.md without notes; units 2 to 11 fail on unfinished placeholders.
+Gate: `python -X utf8 scripts/unitplan.py check chemistry` passed s01.md with no notes. `source-map.csv` is absent; the scope and sequence explicitly requires none because no base text is assigned.
 
-1. [field 10] The safety reference links to a [student conduct acknowledgment template](https://institute.acs.org/acs-center/lab-safety/education-training/high-school-labs/student-lab-code-of-conduct.html), which this lens explicitly excludes as the safety standard | The required safety read lacks an acceptable governing guide | Cite the professional [Guidelines for Chemical Laboratory Safety in Secondary Schools, 2016](https://www.acs.org/content/dam/acsorg/about/governance/committees/chemicalsafety/publications/acs-secondary-safety-guidelines.pdf), and retain the named paper-handling checks and chemical exclusions.
-2. [field 10; U6 days 6, 10 and 13; U3 day 10] The lithium-oxygen record, sodium-chlorine observation card, paired condition-specific product records and potassium-bromine confirmation record have no identified provenance or explicit fictional status | Students use these records as evidence, including judging source reliability, but the plan does not establish what was observed or who supplied it | Add a record-to-source list in field 10 giving each published record's free URL and relevant section, or identify it explicitly as a Curio Class fictional record, print “invented for practice,” and specify the conditions and methods information needed for the reliability comparison.
+Count: 0 findings (lens sources). References are freely checkable, including the [alkali observations](https://chem.washington.edu/lecture-demos/activity-series-alkali-metals-water) and [gallium history](https://periodic-table.rsc.org/element/31/gallium). Fictional evidence is labelled, original packets are identified as still to make, materials are named, and safety cites the [2016 secondary-school laboratory guide](https://www.acs.org/content/dam/acsorg/about/governance/committees/chemicalsafety/publications/acs-secondary-safety-guidelines.pdf).
 
-Count: 2 findings (lens sources).
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md

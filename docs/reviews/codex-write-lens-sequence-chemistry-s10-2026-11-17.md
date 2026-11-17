@@ -1,0 +1,2 @@
+1. [2, 4] Section 10.1 is assigned both expectations whole and both pH readiness items, although days.csv and the scope and sequence place computational-output instruction and pH in section 10.2 | The section assignments misdirect later planning | Assign quantitative carbon modeling to 10.1, published-output interpretation to 10.2 and consolidation to 10.3; mark R1 and R2 as serving 10.2, retaining the settled day 130 check and day 136 repair.
+Count: 1 findings (lens sequence).

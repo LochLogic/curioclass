@@ -1,0 +1,3 @@
+1. [fields 1 and 2; section structure] The header defines four sections, but field 2 assigns all three expectations to section 9.1, and U3 labels the whole unit’s exits as section 9.1. That section ends on day 116, before feedback and forecasting are taught. | Later section writers receive incorrect ownership. | Assign energy-budget foundations to 9.1, climate causes and timescales to 9.2, feedback to 9.3, and forecasting and integration to 9.4. Move U3 to U11 material into the corresponding section plans, as UNIT-PLAN.md requires for a unit with several sections.
+
+Count: 1 findings (lens sequence).

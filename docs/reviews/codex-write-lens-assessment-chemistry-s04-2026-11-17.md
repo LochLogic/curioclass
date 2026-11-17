@@ -1,0 +1,5 @@
+1. [Field 5 and U3, day 51] The calcium and chlorine exit rehearses the assessment’s transfer phenomenon: a metal incorporates gas into a heavier solid, explained through particles, an equation and proportional masses. | T1’s central explanation is rehearsed immediately before assessment. | Replace day 51’s case with an invented paper decomposition: 2HCl → H2 + Cl2; 7.30 g → 0.20 g + 7.10 g, using molar masses 36.5, 2 and 71. Retain the three representations and coefficient-versus-mass question.
+2. [Daily exit table, day 50] The exit checks internal gas transfer and uncertain readings, but no gas escapes the apparatus. | It cannot establish whether students can account for escaped matter, an explicit part of day 50’s goal. | Add a vented comparison record with gas collected outside the weighed apparatus; require students to enlarge the boundary and reconcile apparatus loss with collected gas, alongside the balance-control judgment.
+
+Gate: `unitplan.py check chemistry` passes s04.md with no notes; the requested `data/plans/chemistry/source-map.csv` is absent.
+Count: 2 findings (lens assessment).

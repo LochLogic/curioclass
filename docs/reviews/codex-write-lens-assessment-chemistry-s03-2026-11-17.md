@@ -1,0 +1,7 @@
+1. [5, R1 and T1(b)] Only unscored T1(b) explicitly requires weighing cost, risk and time; R1 can earn full credit without these investigation decisions | Scored evidence misses part of HS-ESS2-5 | Score fresh unaided T1(b) for four points against its stated look-fors; update the total to 24 points, including 20 transfer points.
+2. [5, R2 sample] “More calcium and sulfate leave the basin than enter” exceeds the supplied concentration evidence; inlet and outlet volumes are unspecified | Concentration can increase through water loss without added dissolved matter | Supply equal measured inlet and outlet volumes and exclude evaporative concentration before accepting this mass-transfer claim.
+3. [U3, day 35; 6, M] The independent prompt repeats M's planned day-35 wrong example: wetter soil, steeper slope, and moisture incorrectly credited for sediment transport | It checks recall of the corrected example | Replace it with withheld, controlled moisture-comparison results requiring students to distinguish sediment transport from deposition and state an evidence limit.
+4. [5, R2; 6, E] “Missing dissolved ions” is assigned E, which specifically means believing dissolved matter ceases to exist | An omitted diagram feature does not establish that misconception | Replace the wrong answer with an explicit disappearance claim; record an unexplained omission as incomplete evidence until the student's explanation supports E.
+
+Gate: `unitplan.py check chemistry` passes s03.md with no notes.
+Count: 4 findings (lens assessment).

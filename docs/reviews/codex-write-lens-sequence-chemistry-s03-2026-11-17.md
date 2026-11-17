@@ -1,0 +1,5 @@
+1. [Field 8, cost and materials table] The plan requires eighteen class trays and three home trays, but copies estimates funding only twelve and two respectively, including unit 2 reuse | The stated practical route exceeds its materials allowance | Refer the discrepancy to the lead: six additional class trays and one home tray add $30 and $5 at the scope's stated rate, making provisional totals $117 and $16.80.
+2. [Fields 1 and 2; section ownership] The header declares three sections, but field 2 assigns the entire expectation to section 3.1, and U3/U6 label work across days 32 to 41 as section 3.1 | Section 3.1 ends before practical collection begins, leaving contradictory instructions for section writers; the merged format is reserved for one-section units | Retain the three-section calendar, assign planning to 3.1, conducting comparisons to 3.2, and synthesis/transfer to 3.3; carry U3 to U11 content into the corresponding section plans.
+
+Gate: `python -X utf8 scripts/unitplan.py check chemistry` passed, including s03.md.
+Count: 2 findings (lens sequence).

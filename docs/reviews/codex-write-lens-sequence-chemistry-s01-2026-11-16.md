@@ -1,5 +1,9 @@
-1. [Field 2; U6 day 4] Day 4 first introduces outer-electron and ionization patterns through a tool used to “show why,” but is labelled Fluency | The day teaches new content instead of practising previously taught relationships | For the lead: change day 4 in days.csv to Understanding and regenerate the day list and header counts: understanding 8, fluency 2; other counts unchanged.
-
-Gate: `unitplan.py check chemistry` passes s01.md; the course check fails on unfinished TODO placeholders in s02.md through s11.md.
-
+1. [Fields 1 and 2; U6] The header and days.csv define three sections, but field 2 assigns both expectations in full to section 1.1, and U6 labels all 16 days as section 1.1 | Section 1.1 ends on day 5, before bond prediction and reaction explanation are taught, so the ownership and teaching sequence contradict each other | Keep the canonical section boundaries. Assign atom/table foundations to 1.1, property/bond predictions and initial reaction explanation to 1.2, and explanation revision and synthesis to 1.3. Leave detailed section fields to the corresponding section plans; the merged U3 to U11 format is for a one-section unit.
 Count: 1 findings (lens sequence).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md

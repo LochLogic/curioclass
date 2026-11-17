@@ -1,12 +1,14 @@
-1. [5, T1 and T2] Twenty scored points come from work made during day 15’s scoring period | Same-period production is ineligible under field 5 | Make T1 and T2 on day 14, provide written feedback, and allow revision on day 15 before scoring.
+Check: `unitplan.py check chemistry` passes s01.md. `source-map.csv` is absent; the scope and sequence explicitly says none is required.
 
-2. [5, R; U3 day 8] R scores a record made on day 8, which days.csv marks Fluency | Scored work cannot originate on a fluency day | Keep day 8 unscored; collect a fresh R on application day 11, give written feedback on day 12, and allow revision before the day 15 score.
+1. [5, T1 and T2a] T1 repeats day 8's sulfur bond-count prediction; T2a requests the C2H6 structure already supplied in day 1 retrieval | These components rehearse earlier answers rather than supply wholly unseen transfer evidence | Replace the hydride cases with HBr and SiH4, and replace ethane with butane, updating structures, wrong answers and samples; the combustion key becomes 2C4H10 + 13O2 -> 8CO2 + 10H2O.
+2. [Daily exit table, day 9] The exit repeats the day's missing-element prediction and discovery story, changing the group and bond count | Changing gallium's group 13 case to a group 14 gap does not make the check cold | Replace it with two competing arrangements of existing anonymous element cards and a held-out property observation; ask which arrangement the observation supports and which claim needs revision.
+3. [5, teacher look-fors and samples] All three “meeting” samples explicitly illustrate components rather than complete responses meeting the item's look-fors | Teachers lack the required successful response against which to judge the whole item | Add a complete meeting response for R, T1 and T2, showing every scored relationship, including particle counts, formulas, structures, atom accounting and evidence-based reasoning.
 
-3. [U3 days 1, 7, 10 and 14] Day 1 repeats the water-bubbling hook as X/Y/Z; day 7 replaces worked lithium chloride with sodium fluoride; day 10 replaces sodium/chlorine with potassium/bromine; day 14 repeats the anchor’s reactive-metal/inactive-gas contrast | These responses can reproduce the day’s explanation without fresh transfer | Replace these prompts or subparts with withheld evidence that changes the reasoning required, rather than only the element names.
+Count: 3 findings (lens assessment).
 
-4. [7] Error M appears in the register, T1 and daily responses but has no response group | Students equating outer-electron count with bond count have no allocated repair | Assign M to the bonding group and explicitly use its shared-pair counting repair with a fresh molecule.
+## Files changed outside the allowed set
 
-5. [U3 day 3] The exit lists C, equal total electrons within a group, but supplies only argon and potassium in different groups | This comparison does not diagnose C | Add neon to the fragment and ask students to explain neon and argon’s shared group despite different total electron counts; otherwise remove C from this exit.
-
-Check: s01.md passes; the chemistry check fails on unfinished s02.md through s11.md. source-map.csv is absent; the scope and sequence explicitly requires none.
-Count: 5 findings (lens assessment).
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md

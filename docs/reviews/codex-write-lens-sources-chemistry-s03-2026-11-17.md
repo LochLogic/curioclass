@@ -1,0 +1,3 @@
+Gate: `python -X utf8 scripts/unitplan.py check chemistry` passes s03.md with no failures or notes.
+
+Count: 0 findings (lens sources). Materials and safety controls are named, constructed data are explicitly labelled, and [mechanism references](https://www.nps.gov/subjects/erosion/weathering.htm) and [published school laboratory safety guidance](https://www.acs.org/content/dam/acsorg/about/governance/committees/chemicalsafety/publications/acs-secondary-safety-guidelines.pdf) support the planned work. No outside quotations or images are planned. The absent source-map.csv agrees with the scope and sequence's explicit exemption for this original course.

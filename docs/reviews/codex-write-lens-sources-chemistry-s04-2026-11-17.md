@@ -1,0 +1,3 @@
+Check: `python -X utf8 scripts/unitplan.py check chemistry` passed s04.md with no notes.
+Read limitation: `data/plans/chemistry/source-map.csv` does not exist, so its rows could not be reviewed.
+Count: 0 findings (lens sources). Field 10 identifies original materials, labels constructed data, supplies free references, discloses the inaccessible oxidation page, and cites a real [secondary-school safety guide](https://www.acs.org/content/dam/acsorg/about/governance/committees/chemicalsafety/publications/acs-secondary-safety-guidelines.pdf). Investigations name materials, quantities, hazards and protective measures; no unchecked quotation or source-dependent assessment summary is planned.

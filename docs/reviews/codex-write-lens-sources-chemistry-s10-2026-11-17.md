@@ -1,0 +1,2 @@
+Gate: `python -X utf8 scripts/unitplan.py check chemistry` passed, including s10.md.
+Count: 0 findings (lens sources). Free [published exhibits](https://www.canada.ca/en/environment-climate-change/services/science-technology/changing-climate-report-2026/cccr-chapter-9-en.html) support the tasks; summaries supplement the originals, invented data are labelled, rights are stated, and paper-only work cites a real [school safety guide](https://www.acs.org/content/dam/pldp/center/lab-safety/publications/acs-secondary-safety-guidelines.pdf).
