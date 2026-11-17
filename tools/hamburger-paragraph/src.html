@@ -82,13 +82,18 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 .fall{transition:transform 1s cubic-bezier(.6,0,1,.6),opacity 1s .4s;transform:translateY(260px);opacity:0}
 .boot-glow{animation:bootglow .6s ease-in-out infinite alternate}
 @keyframes bootglow{to{opacity:.25}}
-.bear{transition:opacity .25s}
 .bubble{animation:pop .35s cubic-bezier(.3,1.6,.5,1) both;transform-box:fill-box;transform-origin:80% 100%}
 @keyframes pop{from{opacity:0;scale:.6}}
 .flag{animation:flag .5s cubic-bezier(.3,1.6,.5,1) both;transform-box:fill-box;transform-origin:50% 100%}
 @keyframes flag{from{transform:scaleY(0)}}
 .steam{animation:steam 2s ease-in-out infinite}
 @keyframes steam{50%{transform:translateY(-8px);opacity:.35}}
+/* the bear eats a good burger: one bite per layer, top down, with crumbs */
+.bear{transition:opacity .25s,transform .16s ease-out}
+.bear.lunge{transform:translate(-56px,10px)}
+.bitten{transition:opacity .22s,transform .22s;opacity:0;transform:translate(46px,-12px) scale(.55);transform-box:fill-box;transform-origin:50% 50%}
+.crumb{animation:crumb .75s ease-in both}
+@keyframes crumb{to{transform:translate(var(--dx),var(--dy));opacity:0}}
 .calm *{animation:none!important;transition:none!important}
 
 /* the finished paragraph, written out like an order ticket */
@@ -182,6 +187,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 
     <div class="actions">
       <button class="serve" id="serve">Serve it! 🛎️</button>
+      <button class="serve hidden" id="again">Build another 🍔</button>
       <button class="small-btn" id="restart">↺ Start over</button>
     </div>
   </aside>
@@ -248,8 +254,9 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   // Fillings get a different topping as they stack up, bottom to top
   const FILLS = ['patty', 'cheese', 'tomato', 'lettuce'];
   const ART = {'bun-top': 'art:bun-top', 'bun-bottom': 'art:bun-bottom', patty: 'art:patty', cheese: 'art:cheese', tomato: 'art:tomato',
-    lettuce: 'art:lettuce', boot: 'art:boot', bear: 'art:bear', 'bear-yum': 'art:bear-yum', 'bear-yuck': 'art:bear-yuck', 'bear-huh': 'art:bear-huh'};
-  const SIZE = {'bun-top': [520, 214], 'bun-bottom': [520, 173], 'patty': [520, 157], 'cheese': [520, 198], 'tomato': [520, 169], 'lettuce': [520, 179], 'boot': [420, 298], 'bear': [340, 336], 'bear-yum': [340, 345], 'bear-yuck': [340, 340], 'bear-huh': [340, 353]}; // [width, height] of each image
+    lettuce: 'art:lettuce', boot: 'art:boot', bear: 'art:bear', 'bear-yum': 'art:bear-yum', 'bear-yuck': 'art:bear-yuck', 'bear-huh': 'art:bear-huh',
+    'bear-chomp': 'art:bear-chomp', 'bear-full': 'art:bear-full'};
+  const SIZE = {'bun-top': [520, 214], 'bun-bottom': [520, 173], 'patty': [520, 157], 'cheese': [520, 198], 'tomato': [520, 169], 'lettuce': [520, 179], 'boot': [420, 298], 'bear': [340, 336], 'bear-yum': [340, 345], 'bear-yuck': [340, 340], 'bear-huh': [340, 353], 'bear-chomp': [340, 326], 'bear-full': [340, 417]}; // [width, height] of each image
   const W = 330;   // drawn width of a burger layer
 
   const state = {topic: 'dogs', top: null, fills: [], bottom: null, trash: [], picked: null, sound: true, busy: false, last: null, own: {}};
@@ -278,6 +285,8 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     boing: () => tone('sine', 220, 520, .35, .3),
     crash: () => { noise(.8, 1400, .6); tone('triangle', 300, 70, .7, .25); },
     yum: () => { tone('sine', 523, 659, .2, .2); tone('sine', 659, 784, .25, .2, .2); tone('sine', 784, 1046, .3, .2, .42); },
+    chomp: () => { noise(.1, 2400, .45); tone('square', 190, 90, .09, .08); },
+    burp: () => { tone('sawtooth', 120, 70, .4, .12); tone('sine', 95, 60, .4, .2); },
   };
 
   // ---------- drawing ----------
@@ -488,6 +497,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const parts = bearParts, spoken = narrate('bear:' + parts.join('|'), parts, {once: false, delay: v.kind === 'yum' ? 800 : 400, still: () => bearParts === parts});
     if (v.kind === 'yum') { await wait(1600); showTicket(); }
     await Promise.all([wait(readMs(v.say)), spoken]);
+    if (v.kind === 'yum') { state.busy = false; setBusy(false); eat(); return; }   // a good burger: the bear eats it (any button still works)
     // the plate comes back unless the burger fell apart; then the class rebuilds
     if (v.kind === 'notop' || v.kind === 'nobottom') {
       burger.style.transform = '';
@@ -509,7 +519,67 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     $('ticket').classList.remove('hidden');
     $('tags').style.opacity = 0;  // the ticket says it all now
   }
-  function hideTicket() { $('ticket').classList.add('hidden'); $('tags').style.opacity = ''; $('burger').style.transform = ''; $('topper').replaceChildren(); }
+  function hideTicket() {
+    $('ticket').classList.add('hidden'); $('tags').style.opacity = ''; $('burger').style.transform = ''; $('topper').replaceChildren();
+    // any change stops the bear's meal and puts the burger back on the plate
+    eatGen++;
+    if (eaten) { eaten = false; $('fx').replaceChildren(); drawBurger(); bear(); }
+    $('again').classList.add('hidden'); $('serve').classList.remove('hidden');
+  }
+
+  // ---------- the reward: the bear eats a good burger ----------
+  // Only after Serve says yum (every part there and in its place). One bite per layer, top bun first, then a burp and
+  // the next step. A click on the scene or Escape skips to the end; with Motion off it is eaten in one go.
+  let eatGen = 0, eaten = false, skipEat = false;
+  const DONE = 'Burp! All gone. Thank you, chef! Press Build another to make a new burger.';
+  async function eat() {
+    const me = ++eatGen, burger = $('burger');
+    eaten = true; skipEat = reduce;
+    const pause = async ms => { if (!skipEat) await wait(ms); return me === eatGen; };
+    if (!await pause(500)) return;
+    const bites = [...$('stack').children].reverse();   // top bun first
+    for (const g of bites) {
+      if (skipEat) break;
+      bear('bear-chomp');
+      const img = $('bear-g').firstChild;
+      SFX.chomp();
+      img.classList.add('lunge');
+      const box = g.getBBox();
+      g.classList.remove('drop'); g.classList.add('bitten');
+      if (g === bites[0]) $('topper').replaceChildren();   // the flag and steam go with the first bite
+      crumbs(560 + box.width * .35, box.y + box.height * .4, 5);
+      if (!await pause(170)) return;
+      img.classList.remove('lunge');
+      if (!await pause(260)) return;
+    }
+    if (me !== eatGen) return;
+    // the end, also where a skip lands: nothing left but crumbs on the plate
+    bites.forEach(g => g.classList.add('bitten'));
+    $('topper').replaceChildren();
+    $('fx').replaceChildren();
+    for (const [x, r] of [[-60, 5], [-22, 4], [14, 6], [52, 4], [80, 5]])
+      el('ellipse', {cx: 560 + x, cy: 596 + (r % 3), rx: r, ry: r * .7, fill: '#b9792f'}, $('fx'));
+    SFX.burp();
+    bear('bear-full', DONE);
+    $('serve').classList.add('hidden'); $('again').classList.remove('hidden');
+    const parts = bearParts;
+    narrate('done', [DONE], {delay: 500, still: () => bearParts === parts});   // spoken once a visit; after that the bubble shows it
+  }
+  function crumbs(x, y, n) {
+    for (let i = 0; i < n; i++) {
+      const c = el('circle', {class: 'crumb', cx: x, cy: y, r: 3 + (i % 3), fill: i % 2 ? '#d9a05b' : '#8a5a2b'}, $('fx'));
+      c.style.setProperty('--dx', `${(i - n / 2) * 14}px`); c.style.setProperty('--dy', `${50 + i * 9}px`);
+      setTimeout(() => c.remove(), 800);
+    }
+  }
+  $('stage').addEventListener('click', e => { if (eaten && !e.target.closest('.tagbtn')) skipEat = true; });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && eaten) skipEat = true; });
+  function nextBurger() {
+    // a new burger: the next one in the list (Write your own starts its own form again)
+    if (state.topic !== 'own') { const keys = Object.keys(TOPICS); state.topic = keys[(keys.indexOf(state.topic) + 1) % keys.length]; }
+    restart();
+    $('serve').focus();
+  }
 
   function restart() {
     if (state.busy) return;
@@ -520,6 +590,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   }
   $('serve').onclick = serve;
   $('restart').onclick = restart;
+  $('again').onclick = nextBurger;
 
   $('sound').onclick = e => {
     state.sound = !state.sound;
@@ -624,7 +695,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 
   // for checking: every line the tool can speak (typed Write your own text aside), and each line that started
   window.__voice = {
-    lines: () => [WELCOME, OWN, PICK, ...Object.values(BEAR),
+    lines: () => [WELCOME, OWN, PICK, ...Object.values(BEAR), DONE,
       ...Object.values(TOPICS).filter(t => t.sentences.length).flatMap(t => [bootLine(t), ...t.sentences.map(x => x[1])])],
     log: voiceLog,
   };

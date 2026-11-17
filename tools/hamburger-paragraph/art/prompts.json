@@ -76,6 +76,22 @@
       "width": 340
     },
     {
+      "name": "bear-chomp",
+      "ref": "bear",
+      "prompt": "The same bear, from the waist up, leaning forward to take a huge happy bite: mouth wide open, eyes squeezed shut with joy, both paws raised up in front of its chest as if holding something. Its paws are empty. No food in the picture.",
+      "cutout": true,
+      "aspect": "3:4",
+      "width": 340
+    },
+    {
+      "name": "bear-full",
+      "ref": "bear",
+      "prompt": "The same bear, from the waist up, happily full after a meal: leaning back, eyes half closed in a contented smile, patting its round tummy with both paws, a few crumbs on its napkin.",
+      "cutout": true,
+      "aspect": "3:4",
+      "width": 340
+    },
+    {
       "name": "diner",
       "prompt": "Empty background: the inside of a cheerful retro diner. A long counter runs across the bottom of the picture, red stools, a checkered floor, warm lamps, a chrome kitchen pass-through window behind. A menu board with no words. No people, no animals, no food. 16:9.",
       "skip_style": true,

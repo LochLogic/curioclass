@@ -12,6 +12,8 @@ friendly. Neighbors checked with `python scripts/neighbors.py hamburger-paragrap
   Start over or a new burger stops any talk, then queues the welcome if never said.
 - Feedback: after Serve, the bear's line is narrated once its sound effect is over (400 ms, 800 ms after the yum),
   dropped if the bubble changed first. Serve waits for it before the buttons come back.
+- The meal (later.csv L53): after a yum serve the bear eats the burger (art bear-chomp, bear-full), then says
+  "Burp! All gone. ... Press Build another ..." once a visit; after that the bubble only shows it. Recorded locally.
 - Read (unchanged order): the finished paragraph, else the bear's bubble, else the picked sentence, else the burger top
   to bottom, else "Pick a sentence. ...". Each sentence is its own recorded part.
 - Templated text made recordable: the boot line is one line per burger (4); "wrong filling" is spoken as two parts,
