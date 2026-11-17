@@ -1,0 +1,16 @@
+# Fix pass, economics unit 2 (s02.md), 2026-11-17
+
+Findings merged: 23 (assessment 9, sources 7, sequence 7); no two lenses named the same fault. Fixed: 21. Rejected: 2 (one in part). Lead items: 4.
+Held up per lens: assessment 9 of 9, sequence 7 of 7, sources 5 of 7 fully (sources 4 not applied, sources 7 applied in part).
+Gate: `python -X utf8 scripts/unitplan.py check economics` gives PASS for s02.md (1,250 word cap met after trimming my own additions; nothing existing was cut except text a finding replaced).
+
+Fixes made: H register story changed to a bus run; assessment time allocation 5/15/8/12 with items 5, 6, 7 lightened (item 6 now eight changes, (f) is a good bought less as income rises); day 12 exit carries the inferior-good clause inside its first part; field 7 now uses the scored-by-component step and a four-group component-to-move table (day 18 line points to it); day 11, 13, 15, 16 exits cut to two parts; day 16 drops T2.9 and gains the hours stimulus line; "upkeep" replaced by "rentals offered"; item 8 gains the explain sentence; item 4 and 9 prompts match their keys; day 10 exit drops C, day 11 exit drops L; day 9 repair moved to day 10's warm-up; unit 1 hand-off named; both C3 indicators in the standards file's wording; one withdrawal day each; elasticity limit; day 11 T2.4, day 15 and 16 teaching-move lines; Tennessee row; testimony and worker-account cards held until named; reading status added ("not reached" for the CBO report, both wage reviews, the rent study and the San Francisco and New York pages, with findings marked to be confirmed); credit now sections 3.1 to 3.4, 4.1 to 4.3 and 5.1; "invented for practice" print line and "made-up case" in item 8.
+
+REJECTED: sources 4 | No "As of November 2026:" teacher background line (federal and state minimum wage, state rent control status, San Francisco and New York rules, CBO 2019 estimate not enacted) | I cannot write figures that were not checked against official pages and a news search, and a placeholder line would be a pipeline note; the line is also about 60 words, over the unit-plan cap | the writer's brief (changeable facts, no pipeline notes); UNIT-PLAN length
+REJECTED: sources 7 (part) | Name a fallback page for the San Francisco address and mark the New York and San Francisco pages "reached on [date]" | No page was reached by this pass, so no date can be claimed; the fallback sentence was cut to keep the word cap (the New York page is now called a definitions FAQ and both pages are marked not reached) | UNIT-PLAN length
+
+LEAD:
+- days.csv: day 15 note says chapter 4 for ceilings and floors; in the retired Economics 2e it is chapter 3, section 3.4. Day 15's note also names rent control "from more than one city" while field 10 puts the second city on day 16.
+- s01.md: its "Comes back" line says only day 16 uses marginal thinking; unit 2 uses it on days 15 and 16.
+- scripts/unit_skeleton.py prints "(no own-word line in the standards file)" for D2.Eco.2.9-12 and D2.Eco.8.9-12, although data/standards/c3-indicators.txt (lines 92 and 115) holds both.
+- Sources 4: the "As of November 2026" background line and the current-events check still need doing with live official pages (federal and state wage, state rent control status, San Francisco and New York rules).
