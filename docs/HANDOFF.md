@@ -10,7 +10,7 @@ which is stale, fix it and say so.
   the unit loop with docs/pipeline/briefs/unit-lens-claude.md (stage `read`, then stage `fix`, one agent each).
   The 186 jobs are in docs/pipeline/claude-jobs.txt. A unit's read is done when its three
   docs/reviews/claude-lens-*-<course>-sNN-2026-11-17.md files exist, its fix when claude-fix-<course>-sNN exists.
-  Pushed: math grade 6, civics, social studies grade 4. Fixed but uncommitted (working tree): geometry, ELA 9, science 8, SS 4, SS 2,
+  Pushed: math grade 6, civics, social studies grade 4. Fixed but uncommitted (working tree): geometry, ELA 9, science 8, SS 2,
   SS 1, SS K, science K, economics, US history I, world history I units already done. Commit a course only when
   all its units are fixed. After the pass: a lead sweep of the `LEAD:` lines in the claude-fix reports (mostly
   days.csv) and one Desk card on the 1,250-word cap, which forced many rejections. Science 8 s06: the fix agent
