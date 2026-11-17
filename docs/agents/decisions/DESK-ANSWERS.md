@@ -1446,3 +1446,10 @@ Cory approved the student wording "Burp! All gone. Thank you, chef! Press Build 
 ## 2026-11-16: lessons from below the frame go into every frame
 
 Frames for every later subject carry the unit-level lessons of the core courses (day kinds, readiness evidence, scored evidence placed, checks that claim samples, minutes inside the period, named safety guides, sourced facts, depth and devices, tools, texts and costs per unit, side standards, textbook source maps, focus method, code labels, sensitivity by unit, the grade 12 calendar, core-only leans). Why: Cory asked that lessons learned reach the unit level and be kept for the next frames. Applied: docs/pipeline/briefs/frame-write.md lessons 17 to 32 (evidence in docs/reviews/frame-unit-lessons-2026-11-16.md); sequence-write.md points its safety words at the frame's last Units column; the six elective frames.
+
+## 2026-11-16: section boundaries found for every unit before any section plan
+
+Cory: find only the start and end of each section first, by a Sonnet agent per course with judgement calls passed up
+to the lead, not by a script alone. Done the same day: 216 units still held as one placeholder section, 1,007
+sections, gated by `scripts/section_cuts.py`. ELA scores end-of-unit parts across its closing weeks, so an end check
+before later teaching is a note, not a failure. Recorded in PRODUCTION-PATH step 7.

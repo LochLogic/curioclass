@@ -224,6 +224,12 @@ Writing starts only here, under the review cadence (step 8).
 - **The guard first**: a few days in each subject written from the unit plans and read in full, measured against
   P4, before full writing. If the plans are far off, the units are corrected before the rest is written.
 - Section plans stay one section ahead of writing. Days are written in course order.
+- **Section boundaries come first, for every unit at once** (2026-11-16): `scripts/section_cuts.py` builds a short brief
+  per course (day kinds, checks, the plan's proposed breaks), one Sonnet agent per course proposes the cuts by
+  docs/pipeline/briefs/section-cuts.md (1 to 6 days, one coherent piece of learning each, no new teaching after a mid check in its
+  section, investigations and writing cycles kept whole), judgement calls come up to the lead, the gates run
+  (`section_cuts.py check`) and `apply` writes the days.csv `unit` column and the plan headers. Run on 216 units
+  of 29 courses: 1,007 sections, none left to decide, one lead fix.
 - Grade 4 math's 48 written days: the unit 4 days 25 to 28 hold their fixes; the six open re-read items and the
   seven backfill slips in defects.csv wait for math's units to be settled (L13). A small fix job on the other written days
   (the rebuild check of the 44 older days: rebuild, gates, one cheap print-and-screen check) may run any time.

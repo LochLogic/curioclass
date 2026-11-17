@@ -251,6 +251,7 @@ def check_file(path, course, unit):
     body = '\n'.join(ln for i, ln in enumerate(lines) if i not in skip)
     body = re.sub(r'<!-- skel -->.*?<!-- /skel -->', ' ', body, flags=re.S)
     body = re.sub(r'<!--.*?-->', ' ', body, flags=re.S)
+    body = re.sub(r'Sections: .*?\.(?= Days by kind)', ' ', body)   # generated from days.csv, not writing
     count = len(re.findall(r'\S+', body))
     merged = any(isinstance(k, str) and k.startswith('U') for k, _ in heads)
     cap = CAP_MERGED if merged else CAP
