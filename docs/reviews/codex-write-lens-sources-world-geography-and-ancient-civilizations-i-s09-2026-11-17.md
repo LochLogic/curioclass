@@ -1,0 +1,6 @@
+1. [5, task 6; 10] P1 and P2 are Curio Class summaries presented as source portions for judging historical evidence and its limits | Students cannot examine the original accounts’ wording, omissions or perspective | Replace P1 with a verified excerpt from [Schoff’s translation, sections 7 and 8](https://sourcebooks.fordham.edu/ancient/periplus.asp). Replace P2 with a verified passage permitted for reproduction, choosing another source if necessary; identify editions and keep both passages reserved until day 130.
+2. [10, core texts] “Kouyate through Niane” omits the work’s title and edition; al-Bakri is identified only as a modern translation | The section writer cannot reliably identify the versions underlying the source packets | Name *Sundiata: An Epic of Old Mali*, its performer, compiler, verified English translator, edition and selected pages from the [linked resource](https://www.bu.edu/africa/outreach/teachingresources/history/ancient-to-medieval-history/ancient/). Identify the [al-Bakri extract](https://jjcweb.jjay.cuny.edu/history/worldspring09/paperdemo/albakriunderline.html) as Hopkins’s 1981 translation, pp. 78 to 87.
+
+Gate: s09.md PASS; notes at lines 105 and 113 flag paired error letters. Required source-map.csv is absent.
+
+Count: 2 findings (lens sources).

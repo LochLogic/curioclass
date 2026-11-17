@@ -1,0 +1,7 @@
+1. [Fields 2 and 8] Electronic mapping and graphing are required by D2.Geo.3.6-8, but the tool does not exist and the fallback supplies only paper and printed outputs | Students lack a complete route through the owned indicator | Refer device provision to the lead; specify an available offline tool, student access, teaching on 120, practice on 121 and independent construction on 122, or explicitly name where the missing instruction and check occur.
+2. [Field 2] “Section 9.1 owns all parts” assigns the entire unit to days 118 to 121, before its environmental and historical teaching | Section writers receive contradictory ownership instructions | Assign mapping to 9.1, regional and environmental reasoning to 9.2, East African and Ghana trade content to 9.3, and source comparison and contributions to 9.4; name shared parts explicitly.
+3. [Day list, day 130, for the lead] The generated goal counts the day 121 product, while its note and the assessment plan count P from 122, revised 123 | The calendar gives conflicting product dates | Have the lead correct day 130’s goal in days.csv to “P from day 122, revised day 123” and regenerate the day list.
+
+Gate: PASS s09.md; notes at lines 105 and 113 flag paired letters “(D, W)” and “(F, O)”.
+Read limitation: The required data/plans/world-geography-and-ancient-civilizations-i/source-map.csv does not exist.
+Count: 3 findings (lens sequence).
