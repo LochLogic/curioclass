@@ -1,17 +1,21 @@
-Merged: **9 distinct findings. Fixed: 9. Rejected: 0.**
+Merged findings: **6**. Fixed **5** in `docs/courses/science-grade-7/s03.md`; **1** requires lead action outside the permitted file.
 
-1. Items 3 and 4 now receive written feedback and day 66 revision before scoring afterward.
-2. Days 62 and 66 exits use fresh model critique and delivery evidence.
-3. Safety directions consistently exclude iodine and classroom burning.
-4. Combustion evidence uses identified qualitative source observations without invented measurements.
-5. Lining comparisons use original, unscaled schematics grounded in identified sources.
-6. Blood-gas comparisons cover lungs and pooled body circulation, preserving partial-pressure labels.
-7. Day 43 allows ten minutes per missed prerequisite within its existing period.
-8. Readiness item 2 serves both opening sections and connects to day 43.
-9. The food-web handoff identifies checks on days 41 and 68 and responses on days 58 and 70.
+1. Calendar conflicts, assessment 1 and sequence 1: valid, unresolved. Lead must reconcile CSV days 43, 55, 58, 59, 61 and 63 to 65, update the scope and sequence, then regenerate the day list. Preserve feedback and day 66 revision before scoring.
+2. Assessment 2: replaced the supplied model explanation with observations and explicitly requested the scored oxygen prediction.
+3. Assessment 3: replaced repeated intestinal disruption with respiratory gas-exchange disruption and updated scoring.
+4. Sources 1: replaced the acknowledgment form with professional safety guidance and required documented hazard analysis and controls.
+5. Sources 2: identified the dated archive snapshot with its SHA-256.
+6. Sequence 2: reserved cleanup within all four affected periods.
 
-Per lens held up: **assessment 2/2; sources 4/4; sequence 3/3.**
+Findings held up: assessment **3/3**; sources **2/2**; sequence **2/2**.
 
-Only s03.md was edited. For the lead: synchronize the corresponding frame, days.csv and source-map.csv records.
+Gate: `PASS docs/courses/science-grade-7/s03.md` from `python -X utf8 scripts/unitplan.py check science-grade-7`. All six course plans passed.
 
-Gate: **PASS docs/courses/science-grade-7/s03.md**, within the word cap. The course command still fails on existing placeholders in s04.md to s06.md.
+REJECTED: none
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

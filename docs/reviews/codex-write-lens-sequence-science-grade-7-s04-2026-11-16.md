@@ -1,5 +1,5 @@
-Gate: s04.md passes; the course check fails on unfinished TODO markers in s05.md and s06.md.
+1. [8; day 77] The loss check substitutes schematics, while days.csv and the scope and sequence require scaled micrographs; field 8 names no observational leaf-image set | Schematics cannot supply the visible cell evidence promised for the structure-function comparison | Specify scaled leaf micrographs in field 8 and retain their comparison on day 77; remove the schematic-only substitution.
+2. [Day list, day 93] The displayed note names grade 5 models checked day 68 and repaired day 70, but days.csv names models “from unit 3” | The generated list differs from its authoritative data and preserves conflicting handoff histories | For the lead: correct day 93’s days.csv note to the day 68 check, day 70 repair and unit 4 development, then regenerate the list.
+3. [Required check] `unitplan.py check science-grade-7` fails s04.md: 1,279 counted words against the 1,250 cap | The plan cannot pass the required gate | Remove at least 29 counted words from repeated prerequisite and model-history prose in field 2, preserving the named revision points, then rerun the check.
 
-1. [field 2, Carried] Food-web and matter-cycle entries imply a taught unit 3 handoff, but the scope and sequence explicitly excludes day 41 readiness and day 58 response as content uses. | This contradicts field 4 and overstates prerequisite readiness. | Describe both as grade 5 models checked day 68, repaired day 70 and developed within unit 4; remove the claimed unit 3 taught origin.
-
-Count: 1 findings (lens sequence).
+Count: 3 findings (lens sequence).

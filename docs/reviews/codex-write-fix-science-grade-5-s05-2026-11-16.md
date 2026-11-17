@@ -1,10 +1,9 @@
-Findings merged: 3. Fixed: 2.
+Findings merged: 2. Fixed: 2 in docs/courses/science-grade-5/s05.md.
 
-- Assessment 2: Q2c now explicitly requests every comparison its scoring requires.
-- Assessment 3: Day 97’s exit now uses dune roots and different graph wholes, avoiding rehearsal of the assessment case.
+Q2 now requires diagnosing faulty atlas labels, wholes and scales and constructing corrected graphs, with matching keys and samples. Replaced the safety sign-off form with [Safety in Elementary Science](https://static.nsta.org/pdfs/SafetyInElementaryScience.pdf), pages 1 to 4, retaining the sand safety data sheet.
 
-Held up by lens: assessment 2 of 3; sources 0 of 0; sequence 0 of 0.
+Findings that held up: assessment 1/1; sources 1/1; sequence 0 findings.
 
-Gate: s05.md PASS. The course check fails only on unfinished TODO(writer) placeholders in s06.md.
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-5` passed, including s05.md.
 
-REJECTED: assessment 1 | Day 98 assessment work is scored before day 99 feedback and revision. | Prior feedback and revision are required for scored earlier products; this is an unaided assessment sitting, and no earlier product is scored. | UNIT-PLAN field 5
+REJECTED: none

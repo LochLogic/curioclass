@@ -1,22 +1,16 @@
-Merged: 8 distinct findings. Fixed all 8 in s01.md:
+Findings merged: 6. Fixed: 6. Held up by lens: assessment 4/4, sources 1/1, sequence 1/1.
 
-1. Supplied assessment passages, located keys, wrong answers and item-specific sample pairs.
-2. Defined written feedback, later revision and scoring dates; first attempts remain diagnostic.
-3. Required separate evidence of posing, responding and linking comments.
-4. Mapped assessed components and every error letter to response groups.
-5. Separated mismatched errors, appending new letters without re-lettering.
-6. Added verified documentary sources for all five poets and the Williams profile.
-7. Added explicit teaching of links and precise language before day 17.
-8. Added practice returns for performance comparison and word relationships.
+1. Removed the supplied Williams inference and updated scoring samples.
+2. Replaced the repeated hope-and-writing companion with The Lunch Table.
+3. Aligned error H, samples and repairs with printed-word substitutions.
+4. Corrected the divided-compound line references.
+5. Added edition, author, rights and location entries for all three assessment companions.
+6. Restored day 6 summary revision after peer feedback and verse/prose comparison.
 
-Rejected: 0; no rejection reasons apply.
+Only s01.md changed. Verified UTF-8, LF endings, no em dashes and the 1,250-word cap.
 
-Findings held up by lens: assessment 5/5; sources 1/1; sequence 2/2.
-
-Preserved all 38 day rows. Verified UTF-8, LF endings and the 1,250-word cap.
-
-For a person: integrate the fixed notebook checkpoints into the forthcoming manuscript and confirm text complexity.
+For the lead: reconcile day 6 in days.csv and source-map.csv, then regenerate the day list.
 
 Gate: `PASS docs/courses/english-language-arts-grade-4/s01.md`
 
-The course command still fails on unfinished `TODO(writer)` entries in s02.md through s04.md.
+REJECTED: none

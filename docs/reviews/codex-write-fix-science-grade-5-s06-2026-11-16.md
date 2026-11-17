@@ -1,14 +1,9 @@
-Findings merged: 6. Fixed: 6, in docs/courses/science-grade-5/s06.md only.
+Findings merged: 2. Fixed: 2. Rejected: 0.
 
-1. Deferred scoring until after day 117 written feedback and revision of days 115 and 116 work; fresh tasks remain unscored.
-2. Supplied all six action cards, both choices and keys.
-3. Added source references to Q1a’s sample and side-leakage evidence to Q2b’s sample.
-4. Appended error I for unrelated actions and assigned its repair.
-5. Replaced the mismatched F example with a single-trial superiority claim.
-6. Replaced factual summaries with verified, attributed source excerpts and aligned the prompts.
+Held up by lens: assessment 1/1; sources 1/1; sequence 0 findings.
 
-Per lens, findings held up: assessment 5/5; sources 1/1; sequence 0 findings.
+Only docs/courses/science-grade-5/s06.md changed. Q1c now awards one point for each required component, including A4’s unresolved evaluation. The safety read now cites [professional guidance](https://www.nsta.org/nstas-official-positions/safety-and-school-science-instruction) and the [activity checklist](https://static.nsta.org/pdfs/scienceactivitysafetychecklist.pdf), retaining the filtration warning.
 
-Gate: `python -X utf8 scripts/unitplan.py check science-grade-5` passed, including s06.md, with no notes.
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-5` passed s06.md and all other course units. UTF-8, LF endings and no em dashes verified.
 
 REJECTED: none

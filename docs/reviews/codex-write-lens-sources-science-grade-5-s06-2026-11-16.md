@@ -1,9 +1,5 @@
-Check: `unitplan.py check science-grade-5` passes s06.md with no notes. The requested `source-map.csv` is absent, so its rows could not be reviewed.
+1. [10, safety read, line 284] The general safety citation is a [student acknowledgment form](https://static.nsta.org/pdfs/SafetyAcknowledgmentForm-ElementarySchool.pdf), explicitly excluded by this brief | The investigations lack the required professional safety guide citation; the filtration warning addresses drinking only | Replace the form with [Safety and School Science Instruction, revised April 2024](https://www.nsta.org/nstas-official-positions/safety-and-school-science-instruction), and use the [Science Activity Safety Checklist, February 2018](https://static.nsta.org/pdfs/scienceactivitysafetychecklist.pdf) to document hazard analysis, material safety data, protective equipment, preparation and disposal. Retain the filtration warning as supplementary guidance.
 
-1. [5, Q1a/Q1c; 10] The assessment supplies original factual summaries instead of the sources students must combine and evaluate | Students judge our selection and wording, including our distinction between reported results and projections, rather than inspect the source evidence | Replace these summaries with short, rights-permitted passages from the [Philadelphia account](https://water.phila.gov/drops/15-years-of-green-city-clean-waters/) covering completed capture, expected benefits and pending evaluation, and the [federal planter and paving descriptions](https://www.epa.gov/green-infrastructure/types-green-infrastructure). Preserve headings, dates, links and numbered lines; revise the prompts to reference those passages.
+Check: `unitplan.py check science-grade-5` passes s06.md. `source-map.csv` is absent; the scope and sequence explicitly permits this for original plans.
 
 Count: 1 findings (lens sources).
-
-## Files changed outside the allowed set
-
-- data/plans/unit-rejections.csv

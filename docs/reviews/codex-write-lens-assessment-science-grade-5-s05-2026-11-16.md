@@ -1,6 +1,4 @@
-1. [5, 7] Day 98 work is scored before day 99 feedback and revision | Students lack the required revision opportunity before scoring | Treat marking after day 98 as written feedback; finalize scores on day 99 after individual revisions.
-2. [5, Q2c] The rubric awards a point for comparing lakes and rivers with ice and groundwater, but the prompt never requests that comparison | Correct responses can lose a point for an unstated requirement | Add: “Compare lake and river amounts with each other and with ice and groundwater, using the fresh-water whole.”
-3. [U3] Day 97’s spring-to-bay exit rehearses Q1’s stream erosion and Q2c’s nearby-saltwater supply explanation | The exit previews the end assessment’s case and reasoning | Replace it with observations of roots retaining dune sand and a question comparing bars with different labelled wholes; key the answers to land-life interaction and why equal bar heights need not represent equal amounts.
+1. [field 5, Q2, lines 105 to 117] The “unseen atlas” repeats days 93 to 95’s Earth-water plotting tasks, largely rescaling the same reservoir data from 100 shares to 1,000 | Changed numbers do not establish cold transfer when the context and graphing sequence are rehearsed | Replace Q2 with a fully specified unfamiliar atlas-display problem requiring students to diagnose incorrect wholes or scales and construct corrected graphs; retain all reservoir coverage and supply matching keys and samples.
 
-Gate: s05.md passes; the course gate fails on unfinished s06.md. Required source-map.csv is absent.
-Count: 3 findings (lens assessment).
+Gate: `unitplan.py check science-grade-5` passes, including s05.md. The requested `data/plans/science-grade-5/source-map.csv` is absent.
+Count: 1 findings (lens assessment).

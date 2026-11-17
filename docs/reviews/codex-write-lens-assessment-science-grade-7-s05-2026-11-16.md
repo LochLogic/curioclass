@@ -1,4 +1,12 @@
-1. [Field 5, E1 and E4] E1 is collected and scored on day 123 and E4 on day 126 without earlier written feedback and a revision opportunity; retaining their scores unchanged on day 127 does not supply either | These retained products do not satisfy the scoring rule | Schedule E1 drafting on day 118, written feedback on day 119 and revision on day 120 before scoring on day 123. Schedule E4 drafting on day 120, written feedback on day 121 and revision on day 122 before scoring its revised written argument and supporting spoken explanation on day 126.
+1. [field 5, E3] The values component is drafted on day 123, when days.csv first teaches separating scientific consequences from community choices | First-teaching work cannot supply scored evidence | Collect that component independently on day 124, give written feedback, and allow revision before scoring on day 125.
 
-Gate: `unitplan.py check science-grade-7` passes s05.md; the command fails because s06.md contains unfinished `TODO(writer)` placeholders.
-Count: 1 findings (lens assessment).
+2. [field 5, E4] The transfer case repeats days 105 to 106’s shaded-plot and insect-count investigation, plus M2’s concentrated habitat loss, 60 percent insect decline and unchanged rival variable | Students can reproduce the earlier argument rather than transfer it | Replace E4 with a different disruption mechanism and evidence structure, retaining living and nonliving changes, magnitude reasoning and rival critique.
+
+3. [field 5, E5] The grazer portion repeats M1’s controlled pond-food trials and prediction of reducing food, with changed numbers | This portion rehearses an earlier assessment story | Replace the pond portion with an unfamiliar population-resource case requiring students to interpret new evidence and predict a change.
+
+4. [field 5, E4 scoring] The directions assign all ten points to the day 122 written product, but the component table also scores a spoken argument delivered on day 126 | The scoring instructions disagree about which evidence earns points | Assign eight points to four earlier written components and two to a fresh unaided spoken argument on day 126, with separate look-fors; keep annotations unscored.
+
+5. [field 5, E4 sample] The passing sample describes “losing the sole refuge,” although the stimulus establishes shade loss around a refuge and increased temperature | The model answer adds an unsupported habitat-loss claim | Replace this with “Reduced shade warms the sole shallow refuge, which could reduce suitable conditions for mayflies and affect fish through food links.”
+
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-7` passed s05.md with no notes.
+Count: 5 findings (lens assessment).

@@ -1,5 +1,2 @@
-Gate: s01.md PASS; course check fails on TODO(writer) placeholders in s02.md through s06.md.
-
-1. [4] The opening promises readiness reteaching on day 2 or 3, but the actual repairs wait until days 7 and 10, although both prerequisites serve section 1.1 | Students complete section 1.1 before identified prerequisite gaps receive repair, contrary to UNIT-PLAN.md rule 6 | Reserve two ten-minute repair blocks within day 2, leaving 30 minutes for retrieval and drawing comparisons; retain days 7 and 10 as follow-ups and align field 4 and the day records.
-
+1. [Day list, days 20 to 22] The generated calendar collects the conservation product on day 20, while the prose makes day 20 formative, collects on day 21 and reserves revision on day 22 | Teachers receive incompatible schedules; source-map.csv also allocates all 50 minutes of day 21 to odor teaching | For the lead: align days.csv, source-map.csv and scope-and-sequence.md with the prose: day 20 practice, day 21 odor work 30 minutes plus product collection 20, day 22 revision 10 plus weathering assessment 40; regenerate the day list.
 Count: 1 findings (lens sequence).

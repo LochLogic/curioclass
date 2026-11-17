@@ -1,18 +1,9 @@
-Merged: **8 distinct findings. Fixed: 8. Rejected: 0.**
+Findings merged: 6. Fixed: 6.
 
-1. Specified Q2 powder quantities and matched test conditions.
-2. Limited day 57’s conclusion to moisture-linked colour change.
-3. Replaced Q4’s repeated salt-and-rust case with unfamiliar clear-solution evidence.
-4. Reworked days 55 and 56 prompts around failed controls and conflicting results.
-5. Removed Q4’s unsupported rust-reading dependency; supplied an original reference card with a verified factual source.
-6. Named permitted metals, liquids and minerals, with teacher identity and safety-sheet matching.
-7. Specified backup-record provenance, conditions and permissions; distinguished observed evidence from invented practice.
-8. Added complete 45-minute teaching-day budgets and exact eight-minute fold-in replacements.
+Held up by lens: assessment 3/3; sources 2/2; sequence 1/1.
 
-Findings upheld per lens: **assessment 4/4; sources 3/3; sequence 1/1.**
+Updated only docs/courses/science-grade-5/s03.md: revised Q4, repaired both exits, replaced the safety reference, specified the original reading and added U6 using existing days and allocations.
 
-Gate: `PASS docs/courses/science-grade-5/s03.md`. Counted length: **1,248/1,250 words**. UTF-8 and LF verified.
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-5` passed s03.md and all other course unit plans.
 
-The course command still fails on unfinished placeholders in s04.md, s05.md and s06.md.
-
-Before teaching, collect and verify the planned backup records and supplier safety sheets.
+REJECTED: none

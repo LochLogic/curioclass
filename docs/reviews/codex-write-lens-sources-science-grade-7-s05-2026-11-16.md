@@ -1,7 +1,6 @@
-1. [10; day list] Crop-yield, climate, local habitat, predator-prey and seed-dispersal records for days 102, 103, 105 to 106, 115 and 117 lack specific dataset citations; field 10 explicitly leaves crop and local data unverified | Teachers cannot check the evidence underlying the explanations | Add verified free sources with table or figure locators, variables, units and day mappings; explicitly label any constructed replacement “invented for practice.”
+1. [10, teacher background] The smallholders’ statement linked for days 104 and 120 returns HTTP 404 | Its planned livelihood and conservation account cannot be checked | Supply a working, free original with title, date and passage location; remove the planned summary until verified.
+2. [10, safety read] The linked [safety document](https://static.nsta.org/ecybermission-files/safety/NSTA%20Middle%20School%20Safety.pdf) is a student acknowledgment form, explicitly excluded by this brief | It does not satisfy the required safety-source rule | Replace it with [Safety and School Science Instruction, revised April 2024](https://www.nsta.org/nstas-official-positions/safety-and-school-science-instruction), and identify the provisions applied to paper handling, movement and preparation.
+3. [8 and 10, data provenance] The promised “published population counts,” day 108 population-per-area comparisons and supplied teaching mass records have no identified dataset | Teachers cannot check the figures or distinguish observations from constructed evidence | Name each dataset and table with units and a free source, or explicitly designate each replacement as a Curio Class original, “invented for practice,” and remove the unsupported “published” description.
 
-2. [10, teacher background] The [smallholders’ account](https://old.spks.or.id/detail-layanan-deforestation-and-landscape-approach) returns HTTP 404 on direct checks | The farmer perspective planned for days 104 and 120 cannot reliably be checked through its supplied source | Replace the link with a verified free copy or an accessible farmer-owned account, and identify the sections supporting each planned summary.
-
-Gate: s05.md PASS; course check FAIL because s06.md retains TODO(writer) placeholders.
-
-Count: 2 findings (lens sources).
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-7` passes s05.md with no notes.
+Count: 3 findings (lens sources).

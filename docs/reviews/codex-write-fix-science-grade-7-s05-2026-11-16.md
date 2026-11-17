@@ -1,13 +1,18 @@
-Findings merged: 3. Fixed: 3.
+Merged findings: 8 distinct; fixed all 8 in [s05.md](/S:/CurioClass/docs/courses/science-grade-7/s05.md).
 
-1. Assessment timing: E1 and E4 now have earlier drafts, written feedback and revision before their unchanged scoring days.
-2. Missing data provenance: added verified crop and climate citations with locators, variables, units and day mappings. Specified remaining constructed records as “invented for practice.”
-3. Broken farmer-perspective link: replaced it with an accessible union statement and page locator.
+1. Moved the scored values draft beyond its first teaching day, with feedback and revision.
+2. Replaced E4’s rehearsed disruption case.
+3. Replaced E5’s rehearsed pond-resource case.
+4. Aligned E4 scoring: eight written points and two spoken points.
+5. Replaced E4’s unsupported refuge-loss sample.
+6. Replaced the broken smallholders’ source and unsupported summary.
+7. Replaced the safety acknowledgment form with guidance and named its applications.
+8. Identified constructed teaching datasets as invented for practice and removed the unsupported “published” description.
 
-Rejected: 0; no rejection reasons apply.
+Findings upheld by lens: assessment 5/5; sources 3/3; sequence 0 findings.
 
-Findings upheld by lens: assessment 1/1; sources 2/2; sequence had 0 findings.
+Only s05.md was edited. Its day list is unchanged, and it remains within the word cap.
 
-Only `docs/courses/science-grade-7/s05.md` was edited. Counted prose: 1,250 words. UTF-8 and LF endings verified.
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-7` passed s05.md with no notes; all six course plans passed.
 
-Gate: `PASS docs/courses/science-grade-7/s05.md`. Course check fails only on unfinished `TODO(writer)` placeholders in `s06.md`.
+REJECTED: none

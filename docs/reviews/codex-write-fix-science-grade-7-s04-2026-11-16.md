@@ -1,14 +1,19 @@
-Findings merged: 4 distinct findings. Fixed all 4 in docs/courses/science-grade-7/s04.md:
+Findings merged: 6. Fixed: 3, covering scoring eligibility, leaf-image provenance and observational evidence, and the word cap.
 
-1. Added unscored benefit-and-harm practice before the assessed record begins.
-2. Required students to evaluate actual source passages; summaries support reading only.
-3. Identified investigation records, units and conditions; labeled constructed bean-gas evidence “invented for practice.”
-4. Corrected the food-web and matter-cycle handoff to grade 5, checked day 68 and repaired day 70.
+Held up by lens: assessment 1/3; sources 1/1; sequence 3/3, with one correction rejected because it requires an unauthorized data edit.
 
-Rejected: 0; no rejection reasons apply.
+Day 93 modeling is unscored practice. Day 94 modeling receives written feedback and revision before scoring. Original micrographs remain to make. The lead must reconcile days.csv provenance and scoring notes.
 
-Per lens held up: assessment 1/1; sources 2/2; sequence 1/1.
+Gate: `PASS docs/courses/science-grade-7/s04.md`. All six course plans pass. s04.md has 1,250 counted words, UTF-8 encoding and LF endings.
 
-Gate: `PASS docs/courses/science-grade-7/s04.md`.
+REJECTED: assessment 2 | Field 7 entirely lacks response allocation. | Field 7 already specifies marking time, response minutes and error groups. | UNIT-PLAN field 7
 
-The course check still fails on unfinished TODO markers in s05.md and s06.md.
+REJECTED: assessment 3 | Item 4 cites error I without a registered misconception or repair. | Field 6 already defines I and its conservation repair, and field 7 assigns its response group. | UNIT-PLAN field 6
+
+REJECTED: sequence 2 | Correct day 93’s days.csv provenance note and regenerate the conflicting day list. | The mismatch is real, but changing authoritative data exceeds the permitted s04.md-only edit boundary. | the writer's brief
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- docs/COURSES-STATUS.md

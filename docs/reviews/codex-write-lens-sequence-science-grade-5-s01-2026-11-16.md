@@ -1,3 +1,1 @@
-Gate: s01.md PASS; the command fails because s02.md to s06.md retain TODO(writer) placeholders.
-
-Count: 0 findings (lens sequence). Both expectations integrate all three dimensions through teaching, practice and checking; day rows match days.csv, daily allocations total 45 minutes, and prerequisite repairs and later handoffs are named.
+Count: 0 findings (lens sequence). Both owned expectations are taught, practised and checked with their three dimensions. Daily budgets total 45 minutes; the day list and check/respond dates match days.csv. Readiness, model revisions, later-unit handoffs, supplies and shorter-path allocations hold. The named check reports PASS for s01.md. source-map.csv is absent, explicitly permitted by the scope and sequence for these original investigations.

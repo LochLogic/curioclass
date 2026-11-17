@@ -1,4 +1,4 @@
-1. [field 1, lines 4 and 9] The header declares one section, but the next paragraph proposes five | Section boundaries conflict with the CSV’s single section 2.1 | Retain section 2.1, days 18 to 41, and relabel the five subdivisions as lesson sets without section numbers.
+1. [4, 8] Day 19 reserves 10 minutes for readiness repair and 35 for investigation, leaving no time for the four-minute exit and three-minute cleanup | The stated activities total 52 minutes in a 45-minute meeting | Allocate 10 minutes to repair, 28 to investigation, three to cleanup and four to the exit.
+2. [1, day list] The header declares one section, but the required merged U6 daily planning table is absent | The generated day list does not specify openings and their duration, model ownership, tool use or handwork, so the daily sequence remains incomplete | Add U6 rows for days 18 to 41 using UNIT-PLAN.md’s required columns and existing day assignments; retain the generated day list unchanged.
 
-Gate: s02.md passes; the course check fails on unfinished units 3 to 6. source-map.csv is absent, explicitly permitted by the scope and sequence.
-Count: 1 findings (lens sequence).
+Count: 2 findings (lens sequence).

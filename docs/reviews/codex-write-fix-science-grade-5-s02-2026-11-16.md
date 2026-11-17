@@ -1,16 +1,18 @@
-Findings merged: 7. Fixed: 7. Rejected: 0.
+Findings merged: **8 distinct findings**. Fixed: **8**, in `docs/courses/science-grade-5/s02.md` only.
 
-1. Replaced repetitive exits on days 21, 33 and 38.
-2. Added explicit energy-flow scoring to Q3.
-3. Corrected day 19’s unsupported inference from new leaves.
-4. Limited Q1’s mineral inference and replaced repair C with a matched comparison.
-5. Added growth measurements to day 20’s exit.
-6. Identified checkable water-culture observations and labelled constructed backup records.
-7. Relabelled subdivisions as lesson sets within section 2.1.
+1. Added the missing snail-to-reed feeding relationship.
+2. Replaced days 18 and 23 exits with unseen system-weight records.
+3. Added distinct matter and energy arrows and diagnosis D to day 36.
+4. Replaced invented empirical backups with the measured historical record and its limitations.
+5. Identified measured air-study points, methods, units and prediction limits.
+6. Replaced the safety acknowledgment form with dated professional guidance and applicable provisions.
+7. Corrected day 19’s allocation to 45 minutes.
+8. Added all 24 U6 daily planning rows.
 
-Findings upheld per lens: assessment 5/5; sources 1/1; sequence 1/1.
+Per lens held up: **assessment 3/3; sources 3/3; sequence 2/2**.
 
-Only docs/courses/science-grade-5/s02.md was edited. Counted words: 1,250.
+Gate: `PASS docs/courses/science-grade-5/s02.md` from `python -X utf8 scripts/unitplan.py check science-grade-5`.
 
-Gate: `PASS docs/courses/science-grade-5/s02.md`.
-The course command exits 1 because s03.md through s06.md retain unfinished content.
+UTF-8, LF endings, no em dashes; 1,418 counted words within the merged-plan cap.
+
+REJECTED: none

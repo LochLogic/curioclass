@@ -1,5 +1,9 @@
-1. [Field 5, item 3, lines 169 to 185] The scored record begins on day 90, when benefit-and-harm evaluation is first explicitly taught | Later feedback, revision and scoring do not make first-teaching-day work eligible for assessment | Teach and practise benefit-and-harm evaluation during day 89's source comparison, before students begin the assessed record on day 90; retain written feedback before day 94's revision.
+1. [field 5, item 2] The scored model is made on day 93, when ecosystem boundaries are first taught | Later feedback and scoring do not make first-teaching-day work eligible | Teach and practise ecosystem boundaries by day 92 within existing time, then collect item 2 on day 93.
 
-Gate: s04.md passes; the course check fails on unfinished s05.md and s06.md skeletons.
+2. [field 7] Response allocation is missing entirely | Register repairs alone do not specify marking time, error groups or how repairs fit the response periods | Add separate marking and response times, grouping instructions, and a fresh repair task for every letter within day 83’s 15 minutes and day 96’s 40 minutes.
 
-Count: 1 findings (lens assessment).
+3. [field 6] Item 4 uses error I, but the register ends at H | “Food matter becomes energy” has no registered misconception or repair | Add I: “Food matter turns into energy,” with a repair tracing conserved atoms separately from released energy, and include its response group.
+
+Gate: `unitplan.py check science-grade-7` fails s04.md only for 1,279 words against the 1,250-word cap; cut at least 29 counted words.
+
+Count: 3 findings (lens assessment).

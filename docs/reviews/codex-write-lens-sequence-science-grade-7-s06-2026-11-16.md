@@ -1,2 +1,3 @@
-1. [4] The earlier-row table incorrectly lists a day 128 readiness check for s5-protect-resources; days.csv checks only s4-energy-resources | This contradicts the retrieval-only handoff and could prompt an unnecessary check | Regenerate that cell as “retrieval, day 144”; retain the existing retrieval task.
+1. [8, materials and three tiers] Days 134 to 135 require weighing evaporation losses, but days.csv lists no balance, the course equipment allowance includes none, and the no-kit instructions still require collecting trials | The investigation depends on equipment whose availability and cost are unresolved | Make live measurement conditional on an available suitable balance; explicitly provide prepared matched mass records for classrooms without one, requiring no local collection. For the lead: reconcile the balance requirement and cost allowance with days.csv.
+
 Count: 1 findings (lens sequence).

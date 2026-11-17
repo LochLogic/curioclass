@@ -1,6 +1,5 @@
-1. [10; day list 53 to 55] No selected g4-u2-02 excerpt covers pufferfish, although these days require same-animal research using that set | The pufferfish group lacks the assigned digital source; field 5’s later book-and-article exception does not resolve these days | Explicitly assign this group the printed animal book and digital original pufferfish article on days 53 to 55, and record that exception in field 10.
+1. [10, g4-u2-02] Woodland Box Turtle is labelled “undated,” but the [linked source](https://www.nps.gov/articles/species-spotlight-box-turtle.htm) states “Last updated: January 15, 2025.” | The edition record is inaccurate. | Replace “undated web edition accessed 2026” with “2025 web edition, updated 15 January 2025, accessed 16 November 2026.”
 
-2. [10; day 54] The selected wildlife excerpts do not supply the diagram and glossary that day 54 requires; for example, the [porcupine selection](https://www.nps.gov/thro/learn/nature/porcupine.htm) and [armadillo selection](https://www.nps.gov/guis/learn/nature/armadillos.htm) provide prose and photographs | The promised visual and reference materials have no identified source | Name an original companion diagram and glossary, with author, edition, rights and factual sources, and specify how they accompany each group’s excerpt.
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-4` passes s02.md with no notes.
 
-Gate: s02.md PASS; the course check reports unfinished TODO(writer) entries in s03.md and s04.md.
-Count: 2 findings (lens sources).
+Count: 1 findings (lens sources).

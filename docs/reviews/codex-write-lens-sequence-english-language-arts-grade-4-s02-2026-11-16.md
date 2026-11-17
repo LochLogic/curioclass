@@ -1,3 +1,3 @@
-Gate: s02.md passes. The course check exits with failure because s03.md and s04.md contain unfinished TODO(writer) placeholders.
+1. [Field 2 and day list, day 64; for the lead] The source map marks the introductory informative-page lesson “keep,” but day 64 replaces it with narrative planning; the informative page is never assigned. | A retained lesson’s writing purpose disappears. | Restore peer-supported creation and completion of the adventure’s informative introduction within the existing allocation; the lead must correct days.csv and regenerate the day list.
 
-Count: 0 findings (lens sequence). All 39 day rows and kind counts match days.csv. Scheduled minutes fit the daily allocation. Prerequisite retrieval and teaching precede use, research supports both writing products, and earlier and later handoffs are named.
+Count: 1 findings (lens sequence).

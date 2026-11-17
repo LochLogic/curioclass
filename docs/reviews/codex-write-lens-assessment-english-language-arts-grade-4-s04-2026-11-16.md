@@ -1,18 +1,6 @@
-1. [5, B1] Day 124 scores a revision of day 123 work, but days.csv postpones feedback until after part 2 | No earlier written feedback and revision opportunity supports this score | Make B1 revision unscored practice and retain the original independent response as reading evidence.
-
-2. [5, J1] The release receives written feedback on 155, but its revision is scheduled only on scoring day 156 | The process score lacks the required earlier-day revision opportunity | Keep that revision unscored and use the eligible G2 process record for W.4.5.
-
-3. [5, I1, L.4.1a] “Explained where volunteers could help” contains an indirect question, not a relative adverb clause | The key would accept work missing the requested grammatical form | Replace it with “The students who organized the collection created a place where residents could leave material for composting.”
-
-4. [5, C1 and G1] Both assessments repeat the letter/account comparison modeled on 127; their keys repeat its urging, outcome and barriers distinction | Recalling the taught comparison can pass as independent analysis | Supply reserved, untaught account pairs and write distinct prompts, keys and samples for each assessment.
-
-5. [4, daily exits] Reserved passages and model segments are unnamed future text, with general criteria instead of passage-specific answers | Correctness and freshness cannot be checked | Print each reserved stimulus, its supported answer and separately lettered wrong answers; identify the teaching passage it differs from.
-
-6. [5, samples] E1’s “Meets” sample uses one scene despite requiring several; D3’s supplies two of eight required forms | Incomplete responses are presented as successful | Expand E1 with evidence from two scenes and a conclusion; provide a complete eight-form D3 sample.
-
-7. [5 and 6, error matching] F1’s single-aspect investigation is labeled I, which describes omitting a source; E1’s unexplained quotation is labeled A, which describes confusing inference with evidence | These responses trigger unrelated repairs | Add separate letters and repairs for investigating only one aspect and failing to explain a quotation’s relevance.
-
-8. [7] Response allocation names generic groups without routing individual error letters to them | No teacher can verify that every letter receives its repair beyond the next worked example | Add a letter-to-group table naming the response opening, separate repair task and fresh transfer check for every registered letter.
-
-Gate: `unitplan.py check english-language-arts-grade-4` passed, including s04.md.
-Count: 8 findings (lens assessment).
+1. [5 and daily exits, E1] E1’s “Meets” sample repeats “Careful inquiry can be shared” from exit 138 and the cooperation theme rehearsed in exits 134 and 136 | The supposedly independent essay can reproduce a practised interpretation | Reserve a different supported theme and evidence combination for E1, and replace its sample accordingly.
+2. [6 and 7, transfer checks] Leo’s map scene repeats Maya’s checking, correction and unanswered-question pattern; later versions merely vary the objects | These checks do not establish cold transfer | Replace it with an unread scene about sharing a scarce resource, rewrite dependent prompts and keys, and remove the noun-swapping instruction.
+3. [5, A4] The answer key locates a pause before “Ruth?”, but the oral directions place it after “Ruth” | The key rewards a correspondence the prescribed presentation does not contain | Change the table key to the rising voice and pause after “Ruth”, matching the oral directions and sample.
+4. [6, J] J combines inadequate word precision, ineffective punctuation and context-insensitive register | One letter cannot distinguish these misconceptions or select a specific repair | Give each misconception a separate letter, targeted repair and response-group entry; update every affected item and exit.
+5. [5 and 6, error routing] E1’s invented-event answer is assigned A rather than AG; H3’s topic-word-as-evidence answer is assigned M, which describes repeating a point instead of explaining support | These labels route students to repairs for different mistakes | Assign invented stated events to AG; give H3’s evidence-identification mistake its own letter, repair and group.
+Count: 5 findings (lens assessment).

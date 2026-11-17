@@ -1,7 +1,4 @@
-Gate: `unitplan.py check science-grade-5` passes s01.md with no notes; s02.md through s06.md fail on unfinished TODOs.
-
-1. [10; U3 day 5; U6 day 5] The two-source reading and food-safe sweetness account are unnamed and still unwritten; E5 describes two sources without supplying them | The teacher cannot check the words or present the actual evidence students must use | Name and supply both reading sources and the sweetness account, with free verification links for outside material; provide original practice records in full and label them invented for practice.
-
-2. [8; 10] The no-kit route promises dated photographs and raw records for every investigation, but field 10 supplies only blanket attribution to original Curio Class material and says the records remain to be made | Teachers cannot trace the backup evidence or distinguish measured results from constructed examples | Identify each backup dataset and photograph by investigation and file, recording creator, date, apparatus, conditions and unedited readings; label constructed alternatives invented for practice instead of presenting them as dated observations.
+1. [field 10, lines 245 to 247] The safety reference is a student and parent acknowledgment form, which this lens explicitly excludes as the governing guide | Investigation controls lack the required school safety reference | Replace it with [Safety in Elementary Science](https://static.nsta.org/pdfs/safetyinelementaryscience.pdf), cite the relevant sections, and check field 8’s controls against them.
+2. [field 8, day 4] “Bean seeds” does not exclude chemically treated planting seeds | [Published elementary safety guidance, page 7](https://static.nsta.org/pdfs/safetyinelementaryscience.pdf) cautions against garden seeds because of possible chemical coatings | Specify untreated grocery beans or seeds packaged for sprouting in the materials list and preparation instructions.
 
 Count: 2 findings (lens sources).

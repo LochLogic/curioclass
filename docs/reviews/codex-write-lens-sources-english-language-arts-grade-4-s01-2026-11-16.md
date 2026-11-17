@@ -1,5 +1,4 @@
-Gate: s01.md PASS; the course check fails on TODO(writer) placeholders in s02.md to s04.md.
+1. [10; 5, Assessment passages] Another Missing Line, Words after Rain and Williams at Work lack explicit edition and rights entries. Field 5’s declaration covers only untitled passages, and field 10 omits these titled companions | Their provenance is incomplete | Add each to field 10 as a Curio Class original, 2026 edition, rights: ours, located in field 5.
 
-1. [10, lines 503 to 504] Five Poets at Work and Williams at Work have no named documentary sources for their biographical facts or claims about inspiration | “Ours” establishes authorship, but leaves the factual basis of the essay and day 36 reading uncheckable | Add free, verified source titles, links and relevant locations for each poet and the Williams assessment profile; require the manuscripts to distinguish documented facts from inferred motivation.
-
+Gate: `unitplan.py check english-language-arts-grade-4` passes s01.md with no notes.
 Count: 1 findings (lens sources).

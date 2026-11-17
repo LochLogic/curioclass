@@ -1,15 +1,13 @@
-Findings merged: 7 distinct findings. Fixed all 7 in docs/courses/science-grade-5/s04.md only:
+Findings merged: 5. Fixed: 5 in docs/courses/science-grade-5/s04.md.
 
-- Completed graph samples.
-- Replaced days 75 to 77 evidence prompts with fresh diagnostic cases.
-- Added H and I, with repairs and retries, and corrected day 73 labels.
-- Specified original constructed charts and staged model photographs; removed the Australia photograph requirement.
-- Corrected prerequisite last-use entries.
+1. Replaced Q2’s rehearsed arrow correction with evidence selection.
+2. Replaced repeated scenarios on days 63, 69 and 72.
+3. Supplied explicit records and keyed answers for days 66, 72 and 78.
+4. Removed day 71’s unsupported error-D diagnosis.
+5. Replaced the safety sign-off citation with published guidance and mapped its sections to hazards.
 
-Per lens held up: assessment 4/4; sources 2/2; sequence 1/1.
+Held up by lens: assessment 4/4; sources 1/1; sequence 0 findings.
 
-Rejected findings: none. The source-map warning is inapplicable: the controlling scope and sequence explicitly requires none.
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-5` passed s04.md with no notes. The plan remains within its word cap.
 
-Gate: `PASS docs/courses/science-grade-5/s04.md`. The course command exits 1 because s05.md and s06.md contain unfinished skeletons.
-
-Word cap, UTF-8, LF endings and no em dashes verified.
+REJECTED: none

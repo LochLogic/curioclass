@@ -1,9 +1,13 @@
-1. [5, day 115 W.4.5] The retained day 114 draft is scored although feedback arrives on 114 and the first documented revision occurs on 115 | The scored product lacks a revision chance on an earlier day | Score a draft with documented written feedback on 113 and revision on 114; exclude new day 115 changes from that score.
-2. [5, daily exits 81, 85, 102 and 103] Day 81 repeats its retrieval timeline; the tale exits repeat episodes taught that day and later used in C115 | Recalled answers can replace independent transfer | Replace these exits with reserved, previously unworked cases or passages, and reserve different episodes for C115.
-3. [7] Four response groups are budgeted but never identified, and letters A through AO have no explicit group assignments | Teachers cannot route each diagnosed error to its repair | Map every letter to a named teacher group or pair routine, with its trigger, response slot and standalone repair task.
-4. [5, day 83 exit] The key requires identifying a burden on the Nation, but the invented card says only that the channel changes crossing locations | The expected answer asserts a harmful effect the stimulus does not establish | State a concrete loss of access in the card, then require that detail as evidence.
-5. [5, teacher-judgment samples W.4.1b and W.4.1c] The passing samples describe using evidence and linking phrases without actually providing supported reasons or linked opinion sentences | A student could repeat these descriptions without demonstrating the assessed writing | Replace both samples with actual opinion excerpts containing source details and correctly functioning links.
-6. [5 and 6, day 95 exit and error V] The exit corrects “their” used for location, but V describes “there” used for possession | The assigned letter diagnoses the reverse mistake | Change the wrong sentence to “There tree stands there,” correct it to “Their tree stands there,” and retain V.
+Check: `unitplan.py check english-language-arts-grade-4` passes s03.md.
 
-Gate: s03.md passes; the course check fails on unfinished TODO(writer) placeholders in s04.md.
-Count: 6 findings (lens assessment).
+1. [5, P99, P108, P116 and P117] The cold checks repeat taught arguments: transport estimates cannot settle construction costs or Ada's tree concern; P116 also repeats M1's already assessed support connection. | Remembered explanations can pass as independent reading. | Replace these prompts and passages with unrehearsed arguments whose central ideas and supporting details differ from the teaching and exit cards.
+
+2. [5, day 99 SL.4.3] Students annotate P99 in print before hearing the same text. | The listening score can come from prior reading. | Give the listening task before distributing P99, collecting individual answers before print annotation.
+
+3. [5, C115 and T7 to T9] C115 retells resolutions already included in the whole tales read on days 85, 102 and 103. Reserving their close analysis does not make those events unseen. | The claimed fresh comparison can reproduce familiar plots and conclusions. | Replace C115 with genuinely unread episodes from three credited traditions and rewrite its comparison key around their distinct themes and event patterns.
+
+4. [5, daily exits 81 and 92] Day 81 replaces the opening survey, construction and opening sequence with a wharf's proposal, building and first use. Day 92 rehearses P98's kitchen, covered tree mark and protective concern using Ina instead of Ada. | One exit repeats the opening structure with changed nouns; the other rehearses the later assessment story. | Use a timeline showing overlapping activities on day 81, and a different dramatic event and character response on day 92 while preserving P98.
+
+5. [6 and 7, AI; exits 92 and 95] AI describes a performance departing from its script, which is the correct observation these items require. | Correctly identifying the mismatch can be classified as a misconception and receive the wrong repair. | Define AI as “The reader treats a performance that contradicts a stage direction as faithful”; specify that wrong answer in both exits and retain direction-to-performance comparison as its repair.
+
+Count: 5 findings (lens assessment).

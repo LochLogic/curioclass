@@ -1,3 +1,1 @@
-Gate: `s05.md` passes; the course check fails on unresolved writer placeholders in `s06.md`.
-
-Count: 0 findings (lens sequence). All 32 day rows and kind counts match days.csv; source-map allocations total 50 minutes daily. Owned expectations have teaching, practice and checks with their three dimensions. Prerequisite handoffs, later returns and model revisions are named, and the rainforest problem connects the investigation and design sequence.
+Count: 0 findings (lens sequence). The 32-day list matches days.csv, stated budgets fit 50-minute periods, all five owned expectations have teaching, practice and checks, handoffs are supported, and paper supplies permit the planned investigations and design work. The named gate passes s05.md without notes.
