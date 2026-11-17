@@ -1,0 +1,10 @@
+1. [10; U6 days 1 to 8] Aristotle, Polybius and the English and Enlightenment texts are explicitly unread or unverified, yet the days schedule summaries and excerpts from them. Several lack editions and free verification links. | This violates “verified or none”; marking verification as future work does not resolve it. | Read the selected passages, record free URLs, exact locations, editions or translations and rights, and replace memory-based summaries with checked accounts before retaining these readings.
+
+2. [5, assessment source notes] Items 5 and 6 use original summaries M and U where students must evaluate documentary evidence. | Students evaluate our selection and interpretation instead of the sources themselves. | Supply checked excerpts from Report 100-565, page 3, and [Constitution Article II, section 1](https://www.archives.gov/founding-docs/constitution-transcript), with separate glosses and author, date and purpose metadata. Identify the actual community-government passages supplied alongside them.
+
+3. [10; U6 day 7] The town-meeting reading is unnamed, although students compare town meetings with assembly records and Blackstone. | The teacher cannot identify or verify this part of the source packet. | Name a specific town-meeting text with jurisdiction, date, passage, edition and free link, or explicitly identify a Curio Class original account, its checked references and when it will be written.
+
+4. [10, living-government background] Present-day Confederacy governance is described without the dated teacher background line and recent-news check required by the writer’s brief. | Readers cannot tell when these current institutional facts were checked. | Add an “As of November 2026” line citing the official community government pages, including [Onondaga Government](https://www.onondaganation.org/government/), and record the required last-24-month news check.
+
+Gate: `unitplan.py check civics-government-and-civic-life` passes s01.md with no notes for this unit.
+Count: 4 findings (lens sources).
