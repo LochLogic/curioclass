@@ -1,6 +1,15 @@
-FIXED: Ruling 41. Added SL.8.1a to d assessment on day 85 and RI.8.8, W.8.9b, W.8.2a/b and W.8.5 coverage on day 87. Updated day 88 response codes, the scope and sequence, and s03.md’s assessment details and generated day list. Preserved 160 days, unit boundaries, day kinds, reading allocations and every other unit’s calendar. CSV remains UTF-8 without BOM with CRLF endings.
+- FIXED unit 01: Days 9 and 14 changed to Understanding; days 23, 25 and 26 to Application.
+- FIXED unit 02: Days 54, 57 and 58 changed to Application.
+- FIXED unit 03: Day 67 changed to Understanding; days 81 and 82 to Application.
 
-LEFT: Ruling 42. The complete anchor feature, source locators and integrated exit passages require a separately authorized text file. The existing before-teaching requirement remains.
+Synchronized the scope and sequence, unit day lists, kind totals and dependent code summaries. Preserved all 160 days, unit boundaries, other CSV fields and CSV line endings. No items left.
 
-PASS: `python -X utf8 scripts/plan.py check english-language-arts-grade-8` (0 failures).
-PASS: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-8` (all five unit plans).
+`python -X utf8 scripts/plan.py check english-language-arts-grade-8`: PASS, 0 failures.
+`python -X utf8 scripts/unitplan.py check english-language-arts-grade-8`: PASS, all five units.
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md
