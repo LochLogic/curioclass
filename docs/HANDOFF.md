@@ -13,7 +13,9 @@ which is stale, fix it and say so.
   Pushed: math grade 6 and civics. Fixed but uncommitted (working tree): geometry, ELA 9, science 8, SS 4, SS 2,
   SS 1, SS K, science K, economics, US history I, world history I units already done. Commit a course only when
   all its units are fixed. After the pass: a lead sweep of the `LEAD:` lines in the claude-fix reports (mostly
-  days.csv) and one Desk card on the 1,250-word cap, which forced many rejections.
+  days.csv) and one Desk card on the 1,250-word cap, which forced many rejections. Science 8 s06: the fix agent
+  deleted the "Proposed sections" line (the only section titles); it is restored, which puts the plan at 1,290 of
+  1,250 words, so the gate FAILS until the titles move into the generated header or the cap is settled.
 
 The plan is [PRODUCTION-PATH.md](PRODUCTION-PATH.md): the four core subjects are planned top down, one layer at a
 time, before more days are written.
