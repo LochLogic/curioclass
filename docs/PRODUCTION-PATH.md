@@ -230,8 +230,9 @@ Writing starts only here, under the review cadence (step 8).
   section, investigations and writing cycles kept whole), judgement calls come up to the lead, the gates run
   (`section_cuts.py check`) and `apply` writes the days.csv `unit` column and the plan headers. Run on 216 units
   of 29 courses: 1,007 sections, none left to decide, one lead fix.
-- **How section plans are authored** (planned 2026-11-16, not yet built): a script skeleton per section (no model;
-  built from `day_skeleton.py`), filling every data field (days, kinds, checks, parts scored, source references,
+- **How section plans are authored** (planned 2026-11-16; the skeleton is built, the rest is not): a script skeleton
+  per section, `scripts/section_skeleton.py` (no model; reuses `day_skeleton.py`; sidecars in
+  docs/courses/<course>/section-skeletons/), filling every data field (days, kinds, checks, parts scored, source references,
   materials) and marking the judgement fields. Notes from a former one-section unit's merged plan are copied into
   each of its sections, flagged for the writer to keep or drop. Then, to keep cost down at the same quality:
   1. Codex writes a whole unit's sections in one run (shared context loaded once, handoffs seen together); capped
