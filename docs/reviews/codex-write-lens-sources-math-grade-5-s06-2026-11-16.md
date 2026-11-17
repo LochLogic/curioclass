@@ -1,3 +1,7 @@
-Gate: s06.md PASS; course check fails on unfinished placeholders in s07.md to s10.md.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-5` passed, including s06.md, with no notes.
 
-Count: 0 findings (lens sources). Field 10 identifies freely checkable [base lessons](https://im.kendallhunt.com/k5/teachers/grade-5/unit-5/lessons.html) and [Progressions](https://mathematicalmusings.org/wp-content/uploads/2023/05/Progressions.pdf), with licenses and adaptation choices. Invented data are labeled; no assessment depends on an unavailable source or an unsupported summary.
+Count: 0 findings (lens sources). Field 10 identifies the edition, [free base lessons](https://im.kendallhunt.com/k5/teachers/grade-5/unit-5/lessons.html), licence and daily credits. Invented data are labeled; outside photographs and historical claims are replaced; no assessment requires an unverified source summary.
+
+## Files changed outside the allowed set
+
+- scripts/section_cuts.py

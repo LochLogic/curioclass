@@ -1,12 +1,21 @@
-Merged findings: 4 distinct findings. Fixed all four in docs/courses/math-grade-5/s05.md:
+Findings merged: 3. Fixed: 2.
 
-1. Added a day 78 missing-dimension option for error I and an explicit estimate-versus-exact check for D.
-2. Broadened error E to cover object counts mistaken for group counts, with one matching repair.
-3. Completed day 63’s key to explain the tens zero in 45,300 and row alignment.
-4. Reduced day 64 practice to 27 minutes, keeping the eight-minute exit within 60 minutes.
+Held up by lens: assessment 1 of 2; sources 0 findings; sequence 1 of 1.
 
-Rejected: 0.
+Only docs/courses/math-grade-5/s05.md was edited. Day 75 now uses a fresh board-fit decision. Day 65 restores prism-volume application through bird-count equipment storage. The plan retains its days, standards, shape and word cap.
 
-Findings upheld by lens: assessment 3/3; sources 0 findings; sequence 1/1.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-5` passed s05.md with no failures or notes.
 
-Gate: `PASS docs/courses/math-grade-5/s05.md`. The course check fails on existing `TODO(writer)` placeholders in s06.md through s10.md.
+REJECTED: assessment 1 | The finding says day 64's unshifted-tens-row repair rehearses assessment item T2 despite different numbers. | Rule 4 explicitly permits the same error with new numbers, and these items have distinct factor pairs and products. | UNIT-PLAN field 5
+
+## Files changed outside the allowed set
+
+- --help
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- data/plans/flow-status.csv
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md
+- scripts/day_skeleton.py
+- scripts/plan_flow.py

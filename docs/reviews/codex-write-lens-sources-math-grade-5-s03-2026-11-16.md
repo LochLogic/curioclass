@@ -1,3 +1,9 @@
-Gate: s03.md PASS, with no notes; course check fails on unfinished s04.md through s10.md skeletons.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-5` passes s03.md with no notes.
+Count: 0 findings (lens sources). The unit identifies free editions, licences and mapped lessons; [public source pages](https://im.kendallhunt.com/k5/teachers/grade-5/unit-3/lessons.html) support the attribution. Original contexts are labeled invented, and checks require no unavailable passage or external data.
 
-Count: 0 findings (lens sources). All 18 mapped lessons have free publisher pages through the [unit 2](https://im.kendallhunt.com/k5/teachers/grade-5/unit-2/lessons.html) and [unit 3](https://im.kendallhunt.com/k5/teachers/grade-5/unit-3/lessons.html) indexes. Their licence and the [Progressions licence](https://mathematicalmusings.org/wp-content/uploads/2023/05/Progressions.pdf) match field 10. Checks use original contexts marked invented for practice; none depends on an unavailable passage, unsourced statistic or source summary.
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md

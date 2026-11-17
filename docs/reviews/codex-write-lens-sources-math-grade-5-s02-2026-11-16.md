@@ -1,2 +1,9 @@
-Gate: s02.md PASS; course check fails on unfinished s03.md to s10.md plans.
-Count: 0 findings (lens sources). The [mapped lessons](https://im.kendallhunt.com/k5/teachers/grade-5/unit-2/lessons.html) and [noticing routine](https://im.kendallhunt.com/k5/teachers/grade-5/unit-8/lesson-14/preparation.html) are freely checkable and licensed CC BY 4.0. Adaptations are identified, invented contexts are labeled, illustrations are original, and the unread Progressions pointer is explicitly limited.
+1. [field 10, Reads needed] The paper-handling safety read names only “published school guidance,” without identifying a guide | The required safety check has no verifiable reference | Add the title, issuing body, free link and applicable section of a state, district or professional school-safety guide supporting field 8’s handling instructions.
+
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-5` passed, including s02.md, with no notes.
+
+Count: 1 findings (lens sources).
+
+## Files changed outside the allowed set
+
+- data/plans/unit-rejections.csv

@@ -1,13 +1,4 @@
-Gate: `unitplan.py check math-grade-5` passes s09.md; the course check fails on unfinished s10.md placeholders.
-
-1. [5] Owned code 5.NBT.B.5 has only unit 5’s reused score and unscored maintenance | No new end-of-unit evidence establishes current fluency | Retain an independent algorithm task on day 130, give written feedback, allow revision on day 131, and score it afterward.
-
-2. [5] Day 125’s required assessment-window plot becomes formative P0, which the end score ignores | The plan bypasses a required evidence collection and collects construction again through P2 | For the lead: reconcile days.csv and scope and sequence by making day 125 explicitly formative and day 126 the scored plot collection.
-
-3. [5, judgment] The “meets” samples omit required evidence: P1’s representation, P2’s plot and difference, and S1b’s scaling explanations and zero qualification | Incomplete responses appear sufficient | Expand each sample to satisfy every stated look-for, or explicitly label component samples and supply the missing components.
-
-4. [5, daily exits] Day 126 repeats P2’s exact `2 × 7/8 = 7/4` calculation and operations chain; day 132 rehearses S1b’s zero and additive-equivalence critiques | These exits rehearse end items | Replace them with reserved transfer problems that change the reasoning task.
-
-5. [7, day 134 exit] The shared response cases cannot check several repairs: C, D, F, H, J, K and L | A correct response can leave the diagnosed misconception intact | Supply letter-specific checks requiring mixed subtraction, incompatible-whole reasoning, plot construction, a proper-fraction multiplier, zero multiplication, the algorithm, and acceptance of a nonleast common denominator, respectively.
-
-Count: 5 findings (lens assessment).
+1. [Field 5, S1b] The prompt supplies the explanations it assesses: taking part, taking more, taking once and taking copies. | Repeating these cues can appear to demonstrate independent scaling reasoning. | Remove those explanations from the prompt. Ask students to justify S1a, address zero, and use multiplication to explain 3/5 = 12/20; retain the existing look-fors.
+2. [Field 5, daily exit 125 and P2] Exit 125 uses 1/2, 3/4 and 7/8, rehearsing every plotted position in P2 before its collection on day 126. | P2's plot construction is partly rehearsed assessment evidence. | Replace exit 125's measurements with 1/8, 1 and 1 3/8 inches; key one mark at each measurement and a combined length of 2 1/2 inches.
+3. [Field 5, daily exit 128] The key specifies only that the product's point lies below 3/4, although the task requires placing it. | An incorrectly located point below 3/4 could satisfy the stated answer. | Require six equal intervals between 0 and 3/4 and a point at the fifth division, corresponding to five sixths of that distance; require matching shading on the rectangle.
+Count: 3 findings (lens assessment).

@@ -1,17 +1,10 @@
-Merged: 5 distinct findings. Fixed all 5 in `docs/courses/math-grade-5/s01.md`:
+Findings merged: 1. Fixed: 1.
 
-1. Q now receives written feedback and revision on day 12, before scoring on day 13.
-2. Items 1 and 2 now have explicit look-fors and meets/does-not-meet samples.
-3. Replaced the broken source URL with the working [unit lesson list](https://im.kendallhunt.com/k5/teachers/grade-5/unit-1/lessons.html).
-4. Added a 45-minute day 14 schedule that includes deferred marking.
-5. Replaced “whole standard” placeholders with explicit parts and teaching, practice and check days.
+Field 10 now names and links the verified [Art and Craft Safety Guide](https://www.cpsc.gov/s3fs-public/blk_media_5015.pdf), publication 5015, sections I and II, with specific preparation, handling and supervision checks. Only docs/courses/math-grade-5/s01.md changed.
 
-Rejected: 0.
+Findings upheld by lens: assessment 0/0; sources 1/1; sequence 0/0.
 
-Findings upheld by lens: assessment 2/2; sources 1/1; sequence 2/2.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-5`
+`PASS docs/courses/math-grade-5/s01.md`
 
-Gate: `PASS docs/courses/math-grade-5/s01.md`
-
-The course check exits 1 because s02.md through s10.md retain unfinished placeholders.
-
-Only s01.md was edited. It remains within the word cap, with UTF-8 encoding, LF endings and no em dashes.
+REJECTED: none

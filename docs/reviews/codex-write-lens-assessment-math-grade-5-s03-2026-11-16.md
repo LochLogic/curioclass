@@ -1,8 +1,11 @@
-Gate: s03.md passes; the course check fails on unfinished s04.md to s10.md.
+1. [Field 5, day 23 exit; field 6, E] The wrong answer “nine fifths” does not match E’s swap of partition count and selected-share count: swapping 9 and 1 in (1/9) × 5 produces 45, not 9/5 | This assigns a different mistake to E’s repair | Replace “using nine fifths is E” with “using (9/1) × 5 = 45 meters is E.”
 
-1. [5, collection and scoring] S1 to S3 are revised on scoring day 40; T1 and T2 are created that day without earlier written feedback and revision | None satisfies the brief’s required earlier-day revision window | Collect scored versions by day 38 after relevant teaching, give written feedback, revise on day 39 and score on day 40. Keep fresh day-40 prompts unscored; reconcile collection dates with the CSV records.
-2. [5, T1 sample] The “Meets” answer says dividing q into b equal parts gives “q × b per share” | This explicitly accepts an incorrect partition explanation | Replace “q × b” with “q ÷ b” and require each share to equal q/b.
-3. [5, daily exits 22 and 39] Day 22 reuses the hook’s four, seven and equal-sharing length story; day 39 repeats S3’s garden, five-by-seven tile arrangement and 35-tile count with changed denominators | These exits rehearse material just encountered instead of supplying independent stimuli | For day 22, supply a number line from 0 to 11 with six equal intervals and ask for one interval’s value and equations. For day 39, supply a 10-by-8 unit-square grid with four columns and three rows selected; ask students to explain the overlap’s area, 12/80 = 3/20 square unit.
-4. [7 and daily exit 41] Every group receives the same proper-fraction product, which contains no mixed number, grouped sum or factor above one | It cannot verify repair of F, G or H | Supply fresh letter-specific exit variants requiring mixed-number renaming for F, distribution for G and explanation of a product exceeding the other factor for H.
+Check: `python -X utf8 scripts/unitplan.py check math-grade-5` passed s03.md.
+Count: 1 findings (lens assessment).
 
-Count: 4 findings (lens assessment).
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md

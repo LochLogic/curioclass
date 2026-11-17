@@ -1,3 +1,5 @@
-Gate: s06.md passes; the course check fails on unfinished TODO(writer) placeholders in s07.md to s10.md.
+Count: 0 findings (lens sequence). Coverage, handoffs, day types, stated budgets and supplies align with the required files. `python -X utf8 scripts/unitplan.py check math-grade-5` passes s06.md with no notes.
 
-Count: 0 findings (lens sequence). Standards have teaching, practice and checks, including carried multiplication evidence. Day rows and counts match days.csv, stated budgets total 60 minutes, and retrieval, model progression and later-unit hand-offs hold.
+## Files changed outside the allowed set
+
+- scripts/section_cuts.py

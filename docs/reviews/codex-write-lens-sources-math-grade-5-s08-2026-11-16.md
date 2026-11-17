@@ -1,3 +1,8 @@
-Gate: `unitplan.py check math-grade-5` passes s08.md; the course check fails on unfinished TODOs in s09.md and s10.md.
+1. [10] “Safety studies published school guidance” names no guide or standard | the required safety read lacks a checkable reference | name and link a free state, district or professional safety guide, identify its relevant sections, and connect them to field 8’s rulers and empty containers.
 
-Count: 0 findings (lens sources). Field 10 identifies [free lesson sources](https://im.kendallhunt.com/k5/teachers/grade-5/unit-6/lessons.html), licences and accurate Progressions references. Outside tasks are traced; invented contexts are labeled; no check depends on unavailable text or unsupported statistics.
+Gate: `unitplan.py check math-grade-5` passes s08.md with no notes.
+Count: 1 findings (lens sources).
+
+## Files changed outside the allowed set
+
+- scripts/section_skeleton.py

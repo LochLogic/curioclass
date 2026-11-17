@@ -1,9 +1,13 @@
-Findings merged: 1. Fixed: 1.
+Findings merged: 3 distinct findings. Fixed all 3 in docs/courses/math-grade-5/s08.md:
 
-Held up by lens: assessment 0 of 0; sources 0 of 0; sequence 1 of 1.
+- Added fresh, unaided standard-algorithm assessment evidence.
+- Added six-minute response exit alternatives matching errors A to J.
+- Named and linked a [safety guide](https://static.nsta.org/pdfs/SafetyAcknowledgmentForm-ElementarySchool.pdf), with relevant pages and applications to supplies.
 
-Updated s08.md to include zero exponents in day 111 teaching and practice, a fresh exit part, assessment evidence, and error J with its repair.
+Per lens held up: assessment 2/2; sources 1/1; sequence 0 findings.
 
-Gate: s08.md PASS. Course check fails on unfinished TODO(writer) entries in s09.md and s10.md.
+Preserved existing days, standards and error letters. Verified new arithmetic, minute totals, UTF-8 and LF endings. Counted length: 1,142 words, within the 1,250-word cap.
+
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-5` returned `PASS docs/courses/math-grade-5/s08.md`, with no notes.
 
 REJECTED: none

@@ -1,6 +1,9 @@
-1. [5, scoring] All scored work is fresh on day 20, with no earlier written feedback and revision opportunity identified | This violates the brief's scoring rule | Keep fresh day-20 work formative; identify eligible earlier work and its collection, written-feedback and revision days before scoring.
-2. [5 item 2; 6 D] Any drawing with unequal pieces is classified as D | Eight half-meter pieces plus eight eighth-meter pieces yield eight equal 5/8-meter shares, so a valid model could fail | Judge equality of each person's total share; define D as accepting unequal total shares, and accept correctly labeled models using unequal component pieces.
-3. [5, daily exits 18 and 19] Day 18 repeats assessment item 3's clay-sharing story, and day 19 repeats item 1's general proof and the day's unknown-group example structure | These exits rehearse assessment work instead of providing fresh evidence | Replace day 18 with analysis of an incorrect mixed-number model and its bounds; replace day 19 with interpretation and correction of an unseen labeled model and equation, reserving the full general proof for item 1.
+Checker: `unitplan.py check math-grade-5` passed, including s02.md, with no notes.
 
-Gate: s02.md passes; the command fails on unfinished skeletons in s03.md to s10.md.
-Count: 3 findings (lens assessment).
+1. [Field 5, day 15 exit] Four sandwiches shared among seven people repeats the hook’s sandwich-sharing task with changed numbers | It measures immediate rehearsal rather than transfer to a fresh stimulus | Replace it with a diagram-to-equation task: show two one-meter strips partitioned into sevenths, highlighting one seventh of each. Ask students to label the highlighted amount and write the equal-sharing division equation. Key: 2/7 meter; 2 ÷ 7 = 2/7. Reserve this stimulus from teaching.
+
+Count: 1 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- data/plans/unit-rejections.csv

@@ -1,4 +1,3 @@
-1. [10, Reads needed] “Published school guidance” names no actual source for the folding and ruler safety read | The read has no checkable safety standard | Name and link a state, district or professional school-safety guide, with its date and relevant provisions.
+1. [10, Reads needed] The safety read cites a [student acknowledgment form](https://static.nsta.org/pdfs/SafetyAcknowledgmentForm-ElementarySchool.pdf). | The sources brief explicitly excludes sign-off forms as the safety standard. | Replace it with [Safety in Elementary Science](https://static.nsta.org/pdfs/SafetyInElementaryScience.pdf), PDF pages 1 and 2, naming hazard assessment, equipment inspection and materials handling as the applicable guidance.
 
-Gate: s09.md passes; the course check fails only on unfinished s10.md placeholders.
 Count: 1 findings (lens sources).

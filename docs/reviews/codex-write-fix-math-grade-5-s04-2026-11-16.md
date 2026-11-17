@@ -1,11 +1,17 @@
-Merged findings: 3. Fixed all three in `docs/courses/math-grade-5/s04.md`:
+Findings merged: 3 distinct findings. Fixed: 3 in docs/courses/math-grade-5/s04.md.
 
-1. Separated revision and scoring: S1/S2 revised day 52, scored day 53; T1/T2 revised day 54, final scores recorded after class day 55.
-2. Reduced day 51’s exit to two parts, using saved S1(b) for grouping evidence.
-3. Added labeled models to S1’s meets-expectations sample.
+- Assessment: 2 of 2 held up. Replaced day 42 and day 51(b) exits with fresh diagram tasks.
+- Sources: 1 of 1 held up. Named the safety guide and relevant sections.
+- Sequence: 0 findings.
 
-Rejected: 0.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-5` passed, including s04.md, with no notes. UTF-8, LF endings and no em dashes verified.
 
-Findings upheld by lens: assessment 3/3; sources 0 findings; sequence 0 findings.
+REJECTED: none
 
-Gate: `PASS docs/courses/math-grade-5/s04.md`. The course command exits 1 because s05.md through s10.md retain unfinished placeholders.
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

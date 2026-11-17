@@ -1,3 +1,12 @@
-Count: 0 findings (lens sources). Outside tasks have mapped sources and free [publisher pages](https://im.kendallhunt.com/k5/teachers/grade-5/unit-4/lessons.html); field 10 records editions, licences, adaptations and reading limits. Original contexts must be labelled “invented for practice.” No check requires an unavailable source or substitutes a summary for necessary source material.
+Count: 0 findings (lens sources).
 
-Gate: s05.md PASS; course check failed on TODO(writer) placeholders in s06.md to s10.md.
+Field 10 and source-map.csv identify public lesson sources, edition, licence and adaptations. [Public base lessons](https://im.kendallhunt.com/k5/teachers/grade-5/unit-4/lessons.html) are accessible. Original checks are identified, invented contexts require labels, and no unchecked passage is planned.
+
+Gate: `unitplan.py check math-grade-5` passed s05.md with no notes.
+
+## Files changed outside the allowed set
+
+- data/plans/flow-status.csv
+- docs/COURSES-STATUS.md
+- scripts/day_skeleton.py
+- scripts/plan_flow.py

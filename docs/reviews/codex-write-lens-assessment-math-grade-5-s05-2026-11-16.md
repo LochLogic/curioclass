@@ -1,6 +1,12 @@
-1. [5 daily exit, day 78; 7] None of the three exit options tests error I, and none explicitly tests D | A correct calculation could leave the recorded misconception unresolved | Add an I option asking for length from area 3,510 square meters and width 27 meters, keyed to 130 meters with a labeled equation; require D students to give and distinguish an estimate and an exact result.
-2. [5 daily exit, day 67; 6, E] Reporting 2,368 removed objects as groups is labeled E, whose definition covers remaining objects only | The wrong answer does not match its register text | Define E as “Treats an object count as a group count without dividing by the group size”; retain one repair that explicitly distinguishes objects from groups.
-3. [5 daily exit, day 63] The prompt requires explaining every zero, but the key omits the tens zero in 45,300 | The key leaves part of the required place-value explanation unchecked | Add that 906 × 5 = 4,530 has zero ones; multiplying by ten makes that zero occupy tens, while the final ones zero records the tens multiplier.
+1. [5, day 64 exit (b) and T2] Both ask students to repair an unshifted tens row and explain its partial products, changing only the numbers | The exit rehearses the end-of-unit item | Replace exit (b) with repairing `364 x 7 = 2,528`: correct answer 2,548, explaining the omitted 2 composed tens, error B.
+2. [5, day 75 exit and S1] Both present two recycling rectangles, asking for one area and another rectangle's missing length | The exit repeats that day's assessment task with changed numbers and nouns | Replace the exit with an invented decision: can a board 32 centimeters wide and 275 centimeters long hold a rectangular display of area 8,960 square centimeters across its full width? Require both checks: available area 8,800 square centimeters; required length 280 centimeters; therefore no. Retain error I for multiplying area by width.
 
-Gate: s05.md passes; the course check fails on unfinished TODO(writer) content in s06.md through s10.md.
-Count: 3 findings (lens assessment).
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-5` passed s05.md with no failures or notes.
+Count: 2 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- data/plans/flow-status.csv
+- docs/COURSES-STATUS.md
+- scripts/day_skeleton.py
+- scripts/plan_flow.py
