@@ -1,0 +1,10 @@
+# Lens report: sequence, social-studies-grade-1 unit 4 (s04), 2026-11-17
+
+Gate: `unitplan.py check social-studies-grade-1` passes s04.md, no note. The day list, the kinds (understanding 5, application 3, check 1, respond 1) and the day numbers named in prose match days.csv; the hand-offs to unit 3 (day 31 respond), day 42, day 48 and day 73 match days.csv, s03 and s05.
+
+1. [2] D2.Civ.8.K-2 includes "respect for legitimate authority and rules", but no day goal teaches it: days 33 and 34 teach equality, fairness and accepting a result, and the Teaching line lists no authority word. Item 2 and error C check it. | A part is assessed that no day teaches | In the Teaching line, name where it is taught: day 35 (an elected leader's authority is bounded by duties and rules, with the captain and the governor) and day 36 (government rules apply to everyone); add "authority" to the vocabulary list.
+2. [2] D2.Eco.12.K-2 (goods and services a government provides) is taught on day 36 only, with no practice day before day 40. | Taught, practised and checked inside the unit: practice is missing | Add that day 37's opening and day 38's opening retrieve one good and one service, inside existing warm-up time.
+3. [5, day 40] The assessment table gives no minutes per item. Five minutes for directions and readings and 25 for the paper parts and five spoken groups are stated, but the four paper parts and four source readings are not timed. | Settled rule: each item gets its minutes and the total fits the day | Add a minutes column (for example item 1 five, item 2 six, item 3 seven, item 4 seven, directions and readings five) showing a total of 30 with the spoken groups running alongside.
+4. [8] The supplies list does not name the printed Article II passages (days 35 and 37), the printed oral summary of the Navajo Nation pages (day 37), the student's own governor page and the two example-state directory prints (day 35), or the class tally record kept from day 34. | Days use these; field 8 should cover them | Add each to the supplies line.
+
+Count: 4 findings (lens sequence).
