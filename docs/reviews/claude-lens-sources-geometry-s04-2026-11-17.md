@@ -1,0 +1,9 @@
+# Lens read: sources, geometry unit 4 (s04.md), 2026-11-17
+
+Checked: field 10, the source-map rows for unit 4 (all twelve IM rows have a public URL on im.kendallhunt.com; days 80 and 81 are ours), the invented-case labels, company names, and the safety line. Every invented case (hook, E3 to E6, retrieval, day 79 flag) is labelled "invented for practice"; no real statistic is presented. No student, teacher or family copy names a company.
+
+1. [10, Reads] The safety citation (cde.ca.gov toolsequipmachsafety) is stated as "inaccessible here", and a page on equipment and machinery safety is not shown to cover rulers, protractors and paper folding | The unit cites a safety standard nobody read, which is the same as no verified standard | Either open the page and name the guidance on hand tools it supports, or replace the link with a guide that was read, or state plainly that the unit uses no cutting, climbing or outdoor work and that the safety read checks that limit.
+2. [10, Progressions line] The Progressions reference gives only a mirror URL (a file name on mathematicalmusings.org) and "licence unconfirmed", with no title, authors or date | A teacher cannot tell what the document is or whether the mirror is the authoritative copy | Name it as printed on the PDF's first page (title, authoring group, date), give its original host, keep it "reference only, never quoted", and state the printed page.
+3. [10, "lesson narratives 1 to 11 in the source store, lesson 4's student summary"] These are named as local store files, which a reader cannot check for free | Verified-or-none requires a public place to check the words the days adapt | Say that the narratives and the lesson 4 summary are read from each lesson's public preparation and student pages (the URLs in source-map.csv), and that the store copy is only a local copy of them.
+
+Count: 3 findings (lens sources).
