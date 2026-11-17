@@ -1,0 +1,3 @@
+Gate: s08.md passes; the course check fails on unfinished s09.md. The requested source-map.csv is absent.
+
+Count: 0 findings (lens sources). Field 10 supplies free primary editions, excerpt boundaries and public-domain grounds for [Riis](https://www.gutenberg.org/files/45502/45502-h/45502-h.htm), [Sui Sin Far](https://suisinfar.omeka.net/items/show/10), the [census table](https://archive.org/details/0225232.nlm.nih.gov) and [committee report](https://archive.org/details/1342646.0001.001.umich.edu). Teaching and assessment use the sources themselves; image mediation and omissions are explicitly addressed.

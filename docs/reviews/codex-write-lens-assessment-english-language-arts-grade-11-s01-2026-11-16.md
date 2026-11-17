@@ -1,0 +1,15 @@
+1. [Field 5, B1 to B6] The cold Bishop examination repeats the taught Mather case and its central distinction between spectral accusations and established causation | Students can recycle the taught interpretation | Replace it with a verified trial account about a different case and a different evidentiary uncertainty; rewrite B1 to B6 accordingly.
+2. [Field 5, day 7 exit] Bierce’s final paragraph already starts with a main clause and contains two independent clauses | “Moving its main clause first” specifies no clear transformation | Ask students to reverse the two clauses while preserving meaning, then explain the changed emphasis. See [the story’s ending](https://www.gutenberg.org/ebooks/375.txt.utf-8).
+3. [Field 5, daily exits] Day 4 retests awful immediately after its explicit modelling; day 10 repeats the taught Haunted Palace-to-collapse connection | Holding these passages aside contradicts the stated teaching and does not provide fresh evidence | Use a different, unmodelled word and context on day 4, and a withheld structural connection on day 10; supply matching keys.
+4. [Field 5, B6] The meeting sample distinguishes a reported tear from its cause but never synthesizes competing contributions or resolves their contradiction; B1’s shared written prompt does not request that synthesis | A response without the assessed discussion skill can meet the sample | Require two attributed positions, their evidence, a reconciliation or explained remaining conflict, and specific further information; provide a sample demonstrating each.
+5. [Field 5, A1] The meeting sample supplies only one detail for each interpretation, although the prompt requires two each | The exemplar fails its own evidence requirement | Expand it to two located details supporting each interpretation, with reasoning and an explicit limit on causal certainty.
+6. [Field 5, exit keys] Day 5’s key omits the required synthesis of two discussion positions; day 11’s key never states presently’s contextual meaning or provides a revised clause | These keys cannot distinguish complete answers from incomplete ones | Give day 5 explicit synthesis look-fors covering both texts; give day 11 the sense “soon” or “almost immediately,” its supporting context, and a meaning-preserving revision with its effect.
+7. [Fields 5 and 6, day 13 exit] H diagnoses copying supplied vocabulary instead of independently gathering words, but the exit requests no vocabulary evidence | The item cannot reveal the assigned misconception | Remove H from this exit and retain its diagnosis under A8’s independent-word log.
+8. [Field 7] Group H to N receives only “repair missing evidence,” although J concerns imposed procedures, K repetitive discussion, L unsynthesized positions and M writing across time frames | These students receive repairs unrelated to their errors | Route each letter to its specific field 6 repair, using separate task cards or groups.
+
+Gate: s01.md passes; the course check fails on unfinished s02.md to s09.md skeletons.
+Count: 8 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- data/plans/unit-rejections.csv

@@ -1,0 +1,16 @@
+1. [5, coverage] L.11-12.4b, SL.11-12.1a to d, W.11-12.5 and W.11-12.6 appear in the owned-code list but have no scored end-of-unit component; the seminar is explicitly unscored | The scored argument cannot establish word-form knowledge, collaborative discussion, revision decisions or individual digital actions | Identify any authorized deferral explicitly; otherwise have the lead align days.csv, then add scored components using this unit's evidence and the required feedback and revision cycle.
+
+2. [5, day 53] The withheld [Fundamental Orders preamble](https://avalon.law.yale.edu/17th_century/order.asp) repeats day 35's central idea of Christian covenant authorizing civil government | A new title does not make this a cold transfer under the stated rule | Replace the seventeenth-century selection with a verified foundational passage advancing a different central claim, then rewrite the comparison prompt, key and samples.
+
+3. [5, day 54, L.11-12.1a and b] Both items return to the split-infinitive prohibition and clarity allowance explicitly taught through the same references on day 46 | Students can repeat the taught resolution instead of resolving a fresh usage dispute | Reserve a different contested usage case and its reference entry for day 54; replace both prompts and samples.
+
+4. [5, day 51 samples] Several “Meets” samples demonstrate less than their component requires: W.1a supplies no significance or organization, W.1b does not develop both positions with evidence, and W.9b discusses only the Declaration despite requiring evaluation of all three texts | The exemplars can calibrate partial evidence as full credit | Supply annotated portfolio excerpts meeting every component look-for; label the existing short examples partial where appropriate.
+
+5. [5, exit table, days 36, 38, 41 and 46] “Next unworked paragraph,” “reserved Crisis paragraph,” “previously unanalysed grievance” and “reserved draft usage dispute” do not identify complete stimuli; their keys remain generic instructions | Teachers cannot verify the answers or preserve the intended separation from worked examples | Specify paragraph boundaries or the exact grievance, print the day 46 dispute and edit passage, and provide stimulus-specific answers and wrong responses.
+
+6. [5, exits, days 35 and 43] Day 35 repeats the hook's question about who makes the covenant; day 43 returns to the explicitly taught narrative-pay turn and Christian appeals | Reserving the closing words does not make the central reasoning fresh | Replace each exit with a specified unused stimulus requiring the same analytical skill through a different central claim, and supply its key.
+
+7. [6 and exit table, days 42 and 44] D means treating a document's “we” as proof of universal consent, but it also labels universal access to rights and universal audience agreement | These answers express different misconceptions and require different repairs | Keep D for inferred universal consent; give access and audience-agreement errors separate letters, examples, repairs and field 7 allocations.
+
+Check: s03.md passes; the course check fails on unfinished s04.md to s09.md. source-map.csv is absent, as the scope and sequence permits.
+Count: 7 findings (lens assessment).

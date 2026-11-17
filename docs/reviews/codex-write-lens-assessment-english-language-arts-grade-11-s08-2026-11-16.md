@@ -1,0 +1,9 @@
+1. [Field 5, items 1 and 2; day 135 exit] The cold assessment repeats day 135’s fire-versus-pneumonia comparison, changing the ward and fire passage while retaining the keyed conclusion that different risks are not contradictory | Remembered reasoning can pass as transfer | Replace the assessment comparison and its keys with a source relationship whose central claim has not been taught or rehearsed.
+2. [Field 5; main writing described in field 2] The day 136 answer receives a numerical scoring guide without a specified later scoring day, written feedback or revision opportunity | Its scoring route does not satisfy the earlier-product rule and conflicts with “No earlier practice product is scored” | Explicitly designate this answer as unscored practice and use its guide for feedback.
+3. [Field 5, daily exits] Day 134’s exit omits numeric claims; day 135’s exit omits images and oral testimony, despite those formats appearing in their respective goals | These exits cannot establish every named part of the goals | Add a reserved numeric comparison to day 134 and a reserved image and brief oral excerpt to day 135, retaining at most two parts per exit.
+4. [Field 5, item 2 sample] One wrong answer receives “C and D” | It combines official-status reasoning and false contradiction in one diagnostic response | Replace it with two separate wrong answers, each demonstrating only its assigned misconception.
+5. [Fields 5 and 6, day 131 exit] The doorway question asks about visible features and former use, but its listed error E concerns judging people’s character | The assigned misconception does not describe the question’s likely wrong answer | Add a letter for assuming present appearance proves former use, supply a concrete wrong answer, and add its matching repair and response group.
+
+Check: s08.md passes; the command exits unsuccessfully because s09.md remains unfinished.
+
+Count: 5 findings (lens assessment).
