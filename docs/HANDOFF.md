@@ -6,12 +6,12 @@ which is stale, fix it and say so.
 
 ## State now
 
-- **Paused 2026-11-17 (usage limit): the Claude second lens pass.** Codex hit its limit, so Claude Sonnet agents run
+- **Running 2026-11-17 (resumed 1pm after a usage-limit pause): the Claude second lens pass.** Codex hit its limit, so Claude Sonnet agents run
   the unit loop with docs/pipeline/briefs/unit-lens-claude.md (stage `read`, then stage `fix`, one agent each).
   The 186 jobs are in docs/pipeline/claude-jobs.txt. A unit's read is done when its three
   docs/reviews/claude-lens-*-<course>-sNN-2026-11-17.md files exist, its fix when claude-fix-<course>-sNN exists.
-  Pushed: math grade 6, civics, social studies grade 4. Fixed but uncommitted (working tree): geometry, ELA 9, science 8, SS 2,
-  SS 1, SS K, science K, economics, US history I, world history I units already done. Commit a course only when
+  Pushed: math grade 6, civics, social studies grades 4 and 2, US history I, economics, ELA 9. Fixed but uncommitted
+  (working tree): geometry, science 8, SS 1, SS K, science K, world history I, math 1, science 4 units already done. Commit a course only when
   all its units are fixed. After the pass: a lead sweep of the `LEAD:` lines in the claude-fix reports (mostly
   days.csv) and one Desk card on the 1,250-word cap, which forced many rejections. Science 8 s06: the fix agent
   deleted the "Proposed sections" line (the only section titles); it is restored, which puts the plan at 1,290 of
