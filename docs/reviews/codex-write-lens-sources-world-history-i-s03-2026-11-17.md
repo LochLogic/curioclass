@@ -1,0 +1,5 @@
+1. [10, days 35 and 36] The historian pair remains unselected: Levtzion was read only as an abstract, and neither historian has a specified passage and primary-source chain | Students cannot trace actual interpretations using unspecified texts | Select two fully read, freely checkable passages; record editions, pages, claims, underlying primary passages and transmission. Replace Levtzion if the [linked publisher record](https://doi.org/10.1017/S002185370000428X) cannot supply the required free text.
+2. [10 and 4, E40] E40 requires a Rabban Sauma passage although field 10 explicitly leaves that text unverified | The exit depends on source words the plan has not checked or located | Verify the [Budge 1928 translation](https://depts.washington.edu/silkroad/texts/sauma.html), record its edition and exact passage, and identify separate teaching and reserved exit selections.
+
+Gate: `python -X utf8 scripts/unitplan.py check world-history-i` passed, including s03.md.
+Count: 2 findings (lens sources).
