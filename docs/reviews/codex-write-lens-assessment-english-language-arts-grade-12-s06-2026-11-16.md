@@ -1,7 +1,23 @@
-1. [5, S2/S4 and P1/P2 samples] S2’s passing sample omits diction and tone; S4’s omits credibility and accuracy judgments for several sources. P1/P2 give instructions instead of sample answers | Partial work is labeled as meeting the look-fors | Replace these with actual responses demonstrating every required component, including located recording evidence for S2 and source-by-source judgments for S4.
-2. [Daily exit table, E97] The prompt supplies a fresh model paragraph but never requires students to use it; students can answer entirely from the explanation they just drafted | The exit can pass without engaging with its fresh stimulus | Require students to cite a specific relationship in the supplied paragraph, explain it, and construct a transition justified by that relationship; key both parts.
-3. [5, S1; 6, A] “The speech is moving because it is sad” is assigned A, whose misconception is that naming a device explains its effect; this answer names no device | The diagnosis sends students to a repair for a different mistake | Replace it with “Direct address makes the speech powerful,” which names a device without explaining its effect.
+Gate: PASS for s06.md, no notes. source-map.csv is absent; the scope and sequence says none is required.
 
-Gate: s06.md passes; the course check fails on unfinished s07.md and s08.md. The required source-map.csv is absent.
+1. [5, S3] The “Meets” sample names the Census but gives no identifiable table or chart finding | A prose-only summary could receive full credit for integrating visual, numerical and written evidence | Add a located table comparison and chart observation, reconcile them with the report and minutes, and require those contributions for full credit.
+2. [5, P3] The “Meets” sample contains one transition, “However,” between two simple subject-verb-object sentences; the key requires only one explicit relationship | It does not demonstrate varied transitions and syntax linking major sections under W.11-12.2c | Replace it with linked section excerpts demonstrating distinct transitions and sentence structures; make that variety necessary for full credit.
+3. [U3 E93, 6 and 7] E93 places inferring an individual household’s change under C alongside inferring a local policy effect, but C describes only the latter | The geography repair does not address aggregate-to-individual inference | Keep C for national-to-local policy causation; give aggregate-to-individual inference a separate letter, an explicit wrong answer, and a paired repair showing different household outcomes compatible with one aggregate result.
 
 Count: 3 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- docs/COURSES-STATUS.md
+- scripts/standards.py
+- tools/hamburger-paragraph/art/bear-chomp.webp
+- tools/hamburger-paragraph/art/bear-full.webp
+- tools/hamburger-paragraph/art/prompts.json
+- tools/hamburger-paragraph/notes.md
+- tools/hamburger-paragraph/spec.md
+- tools/hamburger-paragraph/src.html
+- tools/hamburger-paragraph/voice/3963819adc13.mp3
+- tools/hamburger-paragraph/voice/lines.json
+- tools/hamburger-paragraph/voice/local.json

@@ -1,16 +1,13 @@
-Checker: PASS for s08.md. The required data/plans/english-language-arts-grade-12/source-map.csv is absent.
+1. [Field 5] The additional scored argument, informative-writing, reading-analysis and seminar components in the scoring prose lack complete teacher-judged items and paired samples | Teachers cannot consistently distinguish sufficient evidence from partial or incorrect work | Add numbered component rows naming each code, retained task, look-fors, meeting and nonmeeting samples, and collection, feedback, revision and scoring dates.
+2. [Daily exits, E137] The written corroboration response does not check the day's stated accurate phrasing and self-correction goals | A student could pass while reading inaccurately | Record individual accuracy, phrasing and self-correction during the existing rereading block; retain E137 for corroboration.
+3. [Daily exits, E130] The prompt requires disagreement between the selected sources, but the key accepts agreement and source selection does not guarantee a discrepancy | Students may invent disagreement or receive credit without answering the second demand | Ask whether the sources agree, qualify or contradict each other, requiring located evidence and accepting warranted agreement.
 
-1. [5, S1-S3, V1 and T1-T7] New performances and responses are scored in their production periods without a documented feedback-and-revision stage | These do not satisfy field 5’s scoring rule | Separate collection from scoring, name written-feedback and revision opportunities, and score retained earlier work on dates consistent with days.csv; refer necessary CSV changes to the lead.
-2. [5, assessment conditions] End evidence explicitly reuses day 131’s literary and informational evidence records, although 131 first teaches RL.11-12.1 and RI.11-12.1 | First-teaching work cannot supply scored evidence for these owned codes | Keep 131 formative and collect separate literary and informational evidence on a later application day, followed by written feedback and revision before end scoring.
-3. [5, cold packet] The Du Bois selection returns to artistic freedom and its constraints, the central idea already taught through McKay and Hughes | Withholding the passage does not make this a cold conceptual transfer; the selected passage explicitly discusses bounded artistic freedom | Replace the cold pair with comparably demanding texts about a different central problem, then rewrite T1-T7 and their samples. See the [selected Du Bois paragraphs](https://www.dareyoufight.org/Volumes/32/06/criteria_of_negro_art.html).
-4. [5, assessment conditions] “Score neither ... work revised on the scoring day” prohibits an allowed revision | It excludes valid earlier work that receives written feedback and revision before its score that day | Replace this prohibition with: “Scored work must originate on an earlier day; written feedback and revision may occur on the scoring day before scoring.”
-5. [U3, E128, E138-E139, E144 and E146] Fixed exit stimuli remain unspecified or unwritten, including the archive record, model paragraphs, conclusion, figure and talk segment | Their keys cannot be solved or checked for whether they accept unsupported answers or repeat instruction | Supply the complete reserved stimuli, locators, worked answers and distinct wrong answers before treating these exits as complete.
-6. [7] “Group by weakest component using field 6” supplies no explicit allocation covering A-X | Teachers must invent how each diagnosed error reaches its repair | Map every scored component to its error letter, assign every letter to a named response group or pair task, and specify the corresponding field 6 repair and fresh transfer stimulus.
-7. [U3, E133] The key lists V, although the supplied card contains no irrelevant quotation, and omits E despite verbatim borrowing without attribution | The item cannot diagnose the listed quotation-selection misconception and misses an error it actually presents | Remove V, add E for unattributed borrowing, and add D for the unsupported district-wide conclusion; keep the other diagnoses separate.
-8. [U3, E128] The key requires a qualify-family form and assigns K, but the prompt requests only a query and provenance judgment | A complete answer to the question can omit the supposedly assessed word strategy | Explicitly request a correctly explained changed form, including its meaning and word class, within the provenance explanation.
-
-Count: 8 findings (lens assessment).
+Check: `unitplan.py` passes s08.md without notes. The required course `source-map.csv` is absent.
+Count: 3 findings (lens assessment).
 
 ## Files changed outside the allowed set
 
-- data/plans/unit-rejections.csv
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md

@@ -1,16 +1,25 @@
-Findings merged: 7.
+Findings merged: 4 distinct findings. Fixed: 4, in `docs/courses/english-language-arts-grade-10/s01.md` only.
 
-Fixed 6 in s01.md:
+1. Added contrasting audiences and purposes to the writing-range evidence and scoring guide; appended error V.
+2. Replaced R5 with a reserved 405-word passage about promised reform and gambling; updated its prompt, key, sample and edition citation.
+3. Removed error O from day 24’s exit, retaining N.
+4. Cited the verified federal archive copy of the safety toolkit, named applicable sections and connected them to teacher directions.
 
-1. Deferred the writing-range score until day 25, after revision.
-2. Kept first-taught day 11 discussion moves diagnostic; scored day 22 evidence.
-3. Corrected passage references across retrieval, exits and R1; added day 7’s timed reread.
-4. Replaced draft-based exits on days 20 and 24 with fresh source-based tasks.
-5. Corrected day 11’s curiosity-and-compassion key.
-6. Added pacing analysis to R4’s key and sample; omissions receive partial credit.
+Per lens held up: assessment 3/3; sources 1/1; sequence 0 findings.
 
-Rejected 1: redistributing the final chapter would violate this brief’s prohibition on moving content. The valid day 22 timing concern remains for a person.
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-10` reports `PASS docs/courses/english-language-arts-grade-10/s01.md`, including the word cap.
 
-Per lens, findings held up: assessment 6/6; sources 2/2; sequence 2/2, with one sequence remedy rejected under the scope limit.
+REJECTED: none
 
-Gate: `PASS docs/courses/english-language-arts-grade-10/s01.md`. The course check still fails on unfinished placeholders in s02.md through s07.md.
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- docs/COURSES-STATUS.md
+- tools/hamburger-paragraph/art/bear-chomp.webp
+- tools/hamburger-paragraph/art/bear-full.webp
+- tools/hamburger-paragraph/art/prompts.json
+- tools/hamburger-paragraph/src.html
+- tools/hamburger-paragraph/voice/3963819adc13.mp3
+- tools/hamburger-paragraph/voice/lines.json
+- tools/hamburger-paragraph/voice/local.json

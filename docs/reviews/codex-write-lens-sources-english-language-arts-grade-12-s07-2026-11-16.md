@@ -1,5 +1,5 @@
-1. [10; U3 E115] The dictionary link covers only I through L, excluding compel, compulsion, compulsive and precedent, which the unit requires students to verify. See the [archive’s volume index](https://www.gutenberg.org/ebooks/673). | The supplied reference cannot support those vocabulary and spelling checks. | Add verified entry links from volume 661 for the C words and volume 666 for precedent; retain volume 664 for the justify family.
+1. [U3 E109; U6 selections] E109 requires Plessy’s procedural account of the petitioner’s claim, but the selected pages omit that account. | Students lack the passage needed to distinguish reported allegations from the Court’s reasoning. | Add the relevant [Statement of the Case, pages 538 to 539](https://www.govinfo.gov/content/pkg/USREPORTS-163/pdf/USREPORTS-163-537.pdf), label it separately from the majority opinion, and identify the reserved exit paragraph.
+2. [U6 day 111, selections and word list] Students must examine Tinker’s syllabus and locate its heading, but the selection starts on page 505; the syllabus occupies pages 503 to 504. | The planned source packet omits material explicitly required by the instruction. | Add [pages 503 to 504](https://www.govinfo.gov/content/pkg/USREPORTS-393/pdf/USREPORTS-393-503.pdf) as a separately labeled reporter’s syllabus.
 
-Gate: s07.md passes; the course check fails on unfinished s08.md placeholders. The requested source-map.csv is absent.
-
-Count: 1 findings (lens sources).
+Gate: s07.md passes with no notes. The requested source-map.csv is absent.
+Count: 2 findings (lens sources).

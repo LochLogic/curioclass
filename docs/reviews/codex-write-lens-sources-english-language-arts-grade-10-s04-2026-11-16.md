@@ -1,5 +1,10 @@
-1. [4, 10] The “supplied Roman-authority diagram” has no identified source, rights note or original-material designation | The historical context supporting students’ judgments cannot be checked or reproduced from the plan | Name its free factual source and reproduction rights in field 10, or identify it as a Curio Class original still to make and cite the sources for its institutional claims.
-2. [5, 10] Day 78 requires a “poetic glossary,” but field 10 identifies only the historical dictionary | The specialist reference students must consult is unspecified | Add the glossary’s title, free URL, edition/date and reuse limits to field 10, identifying the relevant entries.
+Gate: `unitplan.py check english-language-arts-grade-10` passes s04.md. No source-map.csv exists.
 
-Check: s04.md passes; the course command fails on unfinished s05.md to s07.md. The requested source-map.csv is absent.
-Count: 2 findings (lens sources).
+Count: 0 findings (lens sources). Field 10 supplies free primary-text locations, editions and rights notes. The [North passages](https://shakespeare-navigators.ewu.edu/plutarch_caesar/index.html) match the cited extracts; the [museum confirms CC0 image rights](https://art.thewalters.org/object/37.884/). Safety guidance cites published school resources. Some archive requests returned temporary HTTP 503 errors, limiting live rechecking.
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md

@@ -1,21 +1,23 @@
-Merged findings: 9. Fixed all 9 in s02.md:
+Findings merged: 8. Fixed: 7, in s02.md only.
 
-1. Corrected the unsupported implantation-to-nourishment causal claim.
-2. Established written feedback and earlier revision for scored word logs.
-3. Replaced day 38’s repeated task with fresh, unscored transfer practice.
-4. Added error O after N and corrected day 36’s K assignment.
-5. Aligned days 33 and 34 exits with process-ordering goals.
-6. Supplied actual contrasting samples for N1 to N7.
-7. Scheduled digital instruction and student rehearsal before publication.
-8. Allocated 50 minutes per teaching day and identified concurrent conferences.
-9. Added day 35 reasoning analysis and corrected its practice reference.
+1. Score the day 35 reasoning paragraph after feedback and revision.
+2. Make day 32 discussion formative; revise day 38 evidence before scoring.
+3. Require flexible, dynamic display in the digital demonstration.
+4. Supply actual textual evidence and a named reference in passing samples.
+5. Replace day 29’s rehearsed exit with a reserved bridge paragraph.
+6. Split speaker identification (F) from narrative situation (new Z), with separate repairs.
+7. Remove mismatched error Y from day 38’s exit.
 
-Rejected: 0.
+Per lens upheld: assessment 7/7; sources 0 findings; sequence 0/1.
 
-Findings upheld by lens: assessment 6/6; sources 0 findings; sequence 3/3.
+Gate: `PASS docs/courses/english-language-arts-grade-10/s02.md`. UTF-8, LF endings, no em dashes verified.
 
-For the lead: reconcile the course minute ledger with the revised allocation recorded in s02.md. Reading-rate assumptions still need testing.
+REJECTED: sequence 1 | Day 37 is labelled Fluency although its task audits narrative sequence. | Changing its classification here would contradict days.csv and the required fixed day list; the lead must resolve the data classification. | the writer's brief
 
-Gate: `PASS docs/courses/english-language-arts-grade-10/s02.md`.
+## Files changed outside the allowed set
 
-The course command still fails on existing unfinished placeholders in s03.md through s07.md.
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md
+- scripts/standards.py

@@ -1,14 +1,11 @@
-1. [5, process evidence] Day 37 scores the revision trail from days 32 to 34, including planning and initial digital publication made when those process skills are first taught on day 32 | First-teaching work is ineligible for scoring | Mark day 32 artifacts as practice; score later process work made on day 33, given written feedback that day and revised on day 34.
+1. [Field 5] SL.11-12.1 is owned but has no scored end-of-unit item, criteria or samples; U7 supplies formative observations only | Discussion proficiency cannot receive an end judgment | Add SL.1a to d criteria using individual day 29 discussion evidence, written feedback on day 30, a retry before scoring on day 37, and meeting/nonmeeting samples with matching repairs.
+2. [Field 5] The short writing samples claimed for W.11-12.10 have no identified feedback, revision or scoring route | The scored essay alone does not establish routine writing across shorter and extended tasks, purposes and audiences | Name the day 22 paragraph and day 33 argument as evidence, define their distinct purposes and audiences, give the paragraph written feedback on day 23 and revision on day 34, and score both on day 37 against explicit W.10 criteria.
+3. [U3, E24; U6, D24] E24 repeats D24’s modeled conclusion that omitting the Ghost from the film does not prove anything about its existence | That component measures recall of the taught interpretation | Give the reserved final-reply versions new pause, eye-line or intertitle choices, and require judgments supported by those new choices rather than the previously explained omission.
+4. [Field 5, whole-play C3 sample] The meeting sample omits the required objective summary and instructs students to “trace” three moments without demonstrating that development | A response missing required evidence is presented as meeting the criteria | Replace it with a complete sample containing an objective summary, two developed theme claims supported across acts, and an explanation of their interaction.
 
-2. [5, V6] The meeting sample renders “rest” as work rather than leisure | It can award credit for losing the sentence’s central contrast | Require a paraphrase preserving that Macbeth presents leisure outside Duncan’s service as toil, and identify the relative clause that qualifies “rest.” See [Macbeth 1.4](https://www.gutenberg.org/files/1533/1533-h/1533-h.htm).
+Check: s02.md passes the named unit-plan check without notes. The requested source-map.csv is absent.
+Count: 4 findings (lens assessment).
 
-3. [5, process criteria] W.11-12.4, W.11-12.5 and W.11-12.6 are recorded against process work without their own complete look-fors and meeting/nonmeeting samples | The generic 0 to 2 scale cannot establish consistent judgments | Add separate criteria and sample pairs for audience fit, substantive revision after feedback, and actual individual digital publication and updating.
+## Files changed outside the allowed set
 
-4. [5, C1] The meeting sample supplies no student-generated interpretive question and does not distinguish explicit detail from inference | An incomplete response is presented as meeting the item | Expand the sample with an interpretive question, separately identified explicit detail and inference, and supporting textual locators.
-
-5. [6, G; 5, V3] “Discernment is an adjective” does not exemplify G’s claim that a suffix leaves part of speech unchanged: discern is a verb | The assigned repair diagnoses a different mistake | Replace the wrong answer with “Discernment remains a verb because discern is a verb.”
-
-6. [6, F; 5, V5] V5’s wrong answer rejects contextual checking after copying a definition, while F describes leaving a preliminary guess unverified | The register does not describe the answer assigned to it | Rewrite F as “A dictionary definition applies without checking its fit in this sentence,” with a repair comparing the selected sense against Macbeth’s sentence.
-
-Gate: s02.md passes; the course check fails on unfinished s03.md to s08.md. Required source-map.csv is absent.
-Count: 6 findings (lens assessment).
+- data/plans/unit-rejections.csv

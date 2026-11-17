@@ -1,8 +1,19 @@
-Gate: s05.md PASS; course check fails on unfinished s06 to s08. The requested source-map.csv is absent.
+1. [5, P2 sample] The passing sample links disfranchisement to diminished educational support, although Du Bois presents these as separate developments. | This rewards an unsupported causal link. | Replace that link with the chapter’s distinct relationships: voting rights protect workers and property, while industrial schools depend on college-trained teachers; preserve his qualification that Washington’s teachings hastened, rather than directly caused, the losses. See [chapter 3](https://pressbooks.library.torontomu.ca/thesoulsofblackfolk/chapter/3/).
 
-1. [5, scoring] M1/M2 are first produced on day 80 and S1 on day 81, without written feedback and revision on an earlier day | After-class marking does not satisfy the brief's scoring condition | Keep these cold tasks unscored; identify replacement scored components with explicit earlier drafting, written-feedback and revision dates.
-2. [5, S1 sample] The “Meets” answer does not demonstrate clarity, convincingness and engagement for each audience or three specific placements and their effects | An incomplete response is presented as meeting the full item | Replace it with a complete memo addressing all three criteria for both audiences and explaining three placements.
-3. [5, M1 sample] “Its separate summary neutrally states...” describes a summary instead of supplying one | The exemplar omits a separately scored requirement and cannot calibrate its marking | Print the actual objective summary separately from the analytical response, covering the selection's diagnosis, qualifications and proposed combination.
-4. [5 and 6, M1 diagnostics] “An evaluative summary (B)” and “an unrepresentative summary (C)” exceed their register definitions: recommending agreement and summarizing only the opening | Those labels can route different errors to inappropriate repairs | Narrow B's wrong answer to a recommendation to agree and C's to an opening-only summary; print a concrete wrong response for each.
+2. [Daily exit table, E78(b)] Explaining why the invented episode follows the historical search repeats day 78’s explicit model of the documentary gap and announced invention. | Students can repeat the modeled explanation without analyzing the reserved passage. | Replace part (b) with evaluation of the manager’s assertion followed by the denial of training, keyed to how that juxtaposition exposes the contradiction, addressing clarity, convincingness and engagement.
 
-Count: 4 findings (lens assessment).
+3. [5 and 6, M1 diagnostic sample] “Schools are good. Children should work hard” is labeled A, although A means substituting a topic word for a central idea. These are propositions, albeit unsupported ones. | Group A’s proposition-writing repair does not address this response’s actual error. | Replace this failing sample with “Education,” which directly demonstrates A.
+
+Gate: `unitplan.py check english-language-arts-grade-12` passed s05.md without notes. source-map.csv is absent; the scope and sequence explicitly says none is required.
+
+Count: 3 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- tools/hamburger-paragraph/art/bear-chomp.webp
+- tools/hamburger-paragraph/art/bear-full.webp
+- tools/hamburger-paragraph/art/prompts.json
+- tools/hamburger-paragraph/src.html
+- tools/hamburger-paragraph/voice/3963819adc13.mp3
+- tools/hamburger-paragraph/voice/lines.json
+- tools/hamburger-paragraph/voice/local.json

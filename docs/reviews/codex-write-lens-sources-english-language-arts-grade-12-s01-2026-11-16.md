@@ -1,6 +1,10 @@
-1. [10; 5 N2; U6 day 13] Modern usage references are link only, but day 13 supplies a paper packet with no device access | Students cannot consult the actual modern source required by N2 | Provide live access during N2, or select a freely reproducible modern reference and include its exact passage in the packet.
-2. [10, spelling reference] Chapter 6 of the [2016 government style manual](https://www.govinfo.gov/content/pkg/GPO-STYLEMANUAL-2016/pdf/GPO-STYLEMANUAL-2016.pdf) covers compounding, not spelling | The assigned extract cannot support N4’s spelling lookup | Cite chapter 5 for spelling and chapter 6 for hyphenation; supply a named free dictionary containing both “definitely” and “separate.”
+Count: 0 findings (lens sources). Field 10 names editions, rights bases, primary-text locations and passage boundaries; original materials are explicitly identified.
+Checker: PASS s01.md, no failures or notes.
+Limits: source-map.csv is absent; several source pages returned HTTP 503 or 403, so live verification was incomplete.
 
-Check: s01.md passes; the command fails on unfinished placeholders in s02.md through s08.md. The requested source-map.csv is absent.
+## Files changed outside the allowed set
 
-Count: 2 findings (lens sources).
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

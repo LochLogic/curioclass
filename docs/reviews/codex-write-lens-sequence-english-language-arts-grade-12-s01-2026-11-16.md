@@ -1,6 +1,11 @@
-1. [2, U6 day 3] Addams’s 5,728-word chapter receives at most 50 reading minutes, including the access block | The scope and sequence’s 80 to 100 words-per-minute planning scenario requires about 57 to 72 minutes before rereading | Schedule two 30-minute home or in-school access blocks after days 1 and 2, give the content note beforehand, and retain day 3’s 20-minute reading block.
-2. [U6 day 2] Two different 50-minute schedules appear for day 2, at lines 348 and 349 | The teaching schedule contains 16 rows for 15 days and gives competing instructions | Delete the first day 2 row, retaining the second row’s Twain dialogue and sequence diagram.
-3. [2] L.11-12.4b is listed as owned, taught and practised, but its check is neither identified here nor explicitly handed forward | Teachers cannot trace the skill from instruction to evidence | State that days 3, 6 and 11 prepare the changed-form evidence checked in unit 2 on day 36, matching the scope and sequence.
+Gate: `unitplan.py check english-language-arts-grade-12` passes s01.md.
 
-Check: s01.md PASS; the course command fails on unfinished TODOs in s02.md through s08.md.
-Count: 3 findings (lens sequence).
+1. [Field 1, U6, day list: day 8] Day 8 is labeled Fluency but allocates its main block to narrative drafting and conferences; UNIT-PLAN defines ELA fluency as reading fluency. | The day type misrepresents the planned instruction. | For the lead: change day 8 in days.csv to Application, regenerate the day list and strand summaries, and update the header to application 6, fluency 0. Preserve the drafting and conferences.
+
+Count: 1 findings (lens sequence).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- docs/COURSES-STATUS.md

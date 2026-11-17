@@ -1,20 +1,15 @@
-Findings merged: 10. Fixed: 10. Rejected: 0.
+Findings merged: 7 distinct findings. Fixed: 6 in s03.md.
 
-1. Replaced scored first-teaching work with day 56 responses, feedback and day 57 revision.
-2. Scheduled literary-response feedback and revision; excluded day 49 synthesis from scoring.
-3. Added retained-record prompts, look-fors and meeting/nonmeeting samples.
-4. Replaced day 55’s repeated exit analysis with the fire-making passage.
-5. Added error M for retelling without reasoning.
-6. Directed paired response groups to their letter’s repair.
-7. Added dictionary editions, entry links and reproduction terms.
-8. Made capitalization instruction, practice and independent assessment explicit.
-9. Separated unit 4’s history prerequisite from owned skills.
-10. Marked incoming handoffs strong or weak with evidence references.
+Held up by lens: assessment 4 of 4; sources 0 findings; sequence 2 of 3.
 
-Per lens upheld: assessment 6/6; sources 1/1; sequence 3/3.
+Fixed:
+- Assessment 1: Made S1 unscored; C1 supplies fresh assessment evidence.
+- Assessment 2: Completed both reference records and corrected the unsupported escape claim.
+- Assessment 3: Separated failing samples, appended error letters O to Q and extended response allocation.
+- Assessment 4: Aligned day 52’s exit criteria with its prompt.
+- Sequence 1: Required shared-device access with audio and scheduled day 48’s digital lookup.
+- Sequence 2: Assigned ten-minute readiness repairs, combining both gaps within the existing allowance.
 
-Only s03.md changed. UTF-8, LF endings, no em dashes; 1,250 counted words. Ghana-story samples remain conditional on the finished text.
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-10` reports PASS for s03.md and all other course plans. The plan meets the 1,250-word cap.
 
-Gate: `PASS docs/courses/english-language-arts-grade-10/s03.md`
-
-The course command still fails on unfinished s04.md through s07.md.
+REJECTED: sequence 3 | Day 57 teaches sentence editing but is labelled Fluency rather than Application. | Changing its label requires editing days.csv, outside this job’s scope, while the plan’s day list must match days.csv. | the writer's brief

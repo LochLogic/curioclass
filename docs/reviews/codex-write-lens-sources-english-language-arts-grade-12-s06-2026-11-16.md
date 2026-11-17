@@ -1,7 +1,20 @@
-Gate: s06.md PASS; course check fails on unfinished s07.md and s08.md. The requested source-map.csv is absent.
+Gate: `unitplan.py check english-language-arts-grade-12` passed, including s06.md. The course's source-map.csv is absent.
 
-1. [10; U6, day 100] Municipal republication rights remain unconfirmed and field 10 prohibits distributed extracts, but U6 requires Larry Akers's testimony printed | The assessment packet contradicts its source-use restriction | Establish and record reproduction rights for that exact passage, or specify linked access instead of a distributed print extract.
-2. [10; U6, day 91] The assigned history supply-and-demand pages have no identified text, edition, free locator or rights basis; field 10 explicitly leaves them unverified | The required reading cannot be checked or supplied reliably | Name the author, title, edition, exact selection, free source and rights basis, or remove this unverified reading assignment.
-3. [10; U6, day 95] The selected hearing pages 78 to 79 include rental-platform company references in Duane Reed's remarks. [Hearing transcript](https://services.austintexas.gov/edims/document.cfm?id=420244) | Reading this entire window violates the company-name rule | Start this selection at Alyssa's opening on PDF page 78 and end at her closing thanks on page 79, excluding adjacent speakers; give these boundaries in field 10.
+1. [10, U6] The whole Challenger address is assigned with print, but its embedded Magee verse retains “unconfirmed rights” | the complete anchor lacks the required resolved rights basis for reproduction | identify John Gillespie Magee Jr.'s “High Flight” (1941), cite its [Library of Congress text record](https://blogs.loc.gov/catbird/2013/09/john-gillespie-magees-high-flight/), and document the quotation's verified rights basis; until resolved, specify linked access without reproducing the verse in packets.
 
-Count: 3 findings (lens sources).
+Count: 1 findings (lens sources).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- docs/COURSES-STATUS.md
+- tools/hamburger-paragraph/art/bear-chomp.webp
+- tools/hamburger-paragraph/art/bear-full.webp
+- tools/hamburger-paragraph/art/prompts.json
+- tools/hamburger-paragraph/notes.md
+- tools/hamburger-paragraph/spec.md
+- tools/hamburger-paragraph/src.html
+- tools/hamburger-paragraph/voice/3963819adc13.mp3
+- tools/hamburger-paragraph/voice/lines.json
+- tools/hamburger-paragraph/voice/local.json

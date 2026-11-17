@@ -1,15 +1,21 @@
-Merged: 8 distinct findings. Fixed: 7.
+Merged findings: 3, with no duplicates. Fixed all 3 in s05.md:
 
-Held up by lens: assessment 4/4; sources 2/2; sequence 1/2.
+- Added a separately scored whole-novel summary within L2’s existing 25 minutes, with look-fors, samples, written feedback and revision before scoring on day 111.
+- Removed Pope’s dead citation and flagged the first-publication date as unconfirmed.
+- Removed ss8-constitution-text from unit 5 ownership and labeled it as unit 6 readiness.
 
-Fixed paired samples and look-fors, L2’s evidence, R1’s scoring, day 111’s undefined transfer, Pope’s edition reference, poster evidence and credits, and print-and-digital reference access.
+Findings upheld by lens: assessment 1/1; sources 1/1; sequence 1/1.
 
-Pope now uses a checked [official anthology reprint](https://ccea.org.uk/downloads/docs/Support/General/2019/GCSE%20English%20Literature%20Poetry%20Anthology%202017.pdf#page=41). For the lead: confirm the original publication witness and update catalogue metadata.
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-10` passed, including s05.md.
 
-Gate: `s05.md PASS`. The course check still fails on unfinished placeholders in s06.md and s07.md. Only s05.md was edited.
+For the lead: Pope’s first-publication date still needs verification.
 
-REJECTED: sequence 2 | Day 98 is labelled Fluency despite a rhetorical-judgment goal, and its note moves that work to days 97 and 100. | The proposed reclassification and note removal require days.csv edits and regeneration outside the permitted file scope; the writer must keep plan days consistent with days.csv. | the writer's brief
+REJECTED: none
 
 ## Files changed outside the allowed set
 
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
 - data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

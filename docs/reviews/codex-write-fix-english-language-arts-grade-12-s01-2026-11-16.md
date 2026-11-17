@@ -1,17 +1,18 @@
-Merged: 9 distinct findings. Fixed: 9. Rejected: 0.
+Findings merged: 4. Fixed: 3, all in s01.md.
 
-1. Supplied E4 and E8 to E11 passages, feedback, specific keys and diagnostic wrong answers; marked them unscored practice.
-2. Replaced N4’s repeated spelling target with “recieve.”
-3. Used Madrid for D7 and reserved the London correction and Twain’s closing question for E7.
-4. Assigned every error letter to a response group.
-5. Provided individual online reference access during N2.
-6. Corrected the spelling and hyphenation chapter references and linked dictionary entries.
-7. Scheduled two 30-minute Addams reading blocks, retaining day 3’s 20 minutes.
-8. Removed the duplicate day 2 row.
-9. Linked word-family instruction to unit 2’s day 36 check.
+- Replaced the repeated narrative case and its five scoring samples.
+- Replaced E5’s repeated inference with a fresh comparison using reserved passages.
+- Added error letters Z and AA, distinct repairs, exit labels and response-group routing.
 
-Held up by lens: assessment 4/4; sources 2/2; sequence 3/3.
+Per lens: assessment 3/3 held up and were fixed; sources reported 0 findings; sequence 1/1 identified a real mismatch, but its correction conflicts with the permitted file boundary.
 
-Gate: `PASS docs/courses/english-language-arts-grade-12/s01.md`
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-12` reports `PASS docs/courses/english-language-arts-grade-12/s01.md`. The plan meets the 1,800-word cap.
 
-The course command still fails on unfinished placeholders in s02.md through s08.md. Only s01.md was edited; its word cap, UTF-8 and LF requirements pass.
+REJECTED: sequence 1 | Day 8 is labeled Fluency although its main work is narrative drafting and conferences. | Correcting the classification requires changing days.csv; relabeling s01.md alone would contradict the required source data, and only s01.md may be edited. | UNIT-PLAN field 1 and the writer's brief
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

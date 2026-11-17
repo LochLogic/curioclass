@@ -1,18 +1,17 @@
-Findings merged: 8. Fixed: 8. Rejected: 0.
+Findings merged: 7. Fixed: 7. Held up by lens: assessment 4/4, sources 1/1, sequence 2/2.
 
-1. Corrected exit error routing; appended I and J with separate repairs.
-2. Enforced P1’s evidence count in scoring and the sample.
-3. Replaced E67 with a fresh Whitman excerpt outside P2’s packet.
-4. Added specific peer claims for group G’s transfer and exit.
-5. Completed E57’s key with a supported individual inference.
-6. Corrected the racial-violence passage locator and source date.
-7. Corrected Douglass’s release date and marked Cogewea’s transcription undated.
-8. Scheduled chapter 6 before chapter 7 within existing reading blocks.
+1. Replaced the repeated cold comparison with [The Gift of the Magi](https://en.wikisource.org/wiki/The_Four_Million/The_Gift_of_the_Magi) and [The Pasture](https://en.wikisource.org/wiki/North_of_Boston/The_Pasture), revising prompts, keys and samples.
+2. Replaced E70’s repeated recognition contrast with responsibility passages.
+3. Added dated eligible and ineligible alternatives for error B.
+4. Corrected E62’s plot-summary wrong answer.
+5. Required disclosed commercial-name omissions throughout supplied readings and extracts.
+6. Replaced the reading ledger with counted allocations, a supported read-along route and explicit practice reductions.
+7. Added modeled phrasing, partner feedback and independent rereading on both fluency days.
 
-Held up by lens: assessment 5/5; sources 2/2; sequence 1/1.
+Only s04.md was edited. UTF-8, LF endings and the word cap pass.
 
-Gate: `PASS docs/courses/english-language-arts-grade-12/s04.md`
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-12` passes s04.md; all eight course plans pass.
 
-The course check fails on unfinished placeholders in s05.md through s08.md.
+For the lead: the new cold pair needs the planned expert suitability and complexity read. Prepare and verify the read-along durations before instruction.
 
-For the lead: day 58’s CSV note still directs chapter 7 reading too early. Correcting that source row and regenerating its table are outside this job’s write scope.
+REJECTED: none

@@ -1,12 +1,18 @@
-Updated only [s02.md](/S:/CurioClass/docs/courses/english-language-arts-grade-12/s02.md).
+Findings merged: 5 distinct findings. Fixed: 4, in s02.md only.
 
-- Findings merged: **9 distinct findings**.
-- Fixed: **9**, covering scoring eligibility, process criteria, answer keys, error labels, literary language instruction and sources.
-- Rejected: **0**.
-- Held up by lens: assessment **6/6**, sequence **1/1**, sources **2/2**.
+Assessment: 4 of 4 held up and were fixed. Added discussion and routine-writing scoring routes, fresh E24 performance choices, and a complete whole-play sample.
 
-For the lead: update days.csv’s old archival-film reference to the planned Curio Class silent interpretation. The mechanical day list remains unchanged.
+Sources: 0 findings.
 
-Gate: `PASS docs/courses/english-language-arts-grade-12/s02.md`
+Sequence: 1 of 1 confirmed a data conflict; its proposed correction was rejected under the file boundary.
 
-Counted words: **1,713/1,800**. The course check still fails on unfinished s03.md through s08.md.
+Gate: `PASS docs/courses/english-language-arts-grade-12/s02.md`. UTF-8 and LF endings verified.
+
+REJECTED: sequence 1 | Day 24’s days.csv note specifies the 1921 silent film while s02.md requires an original Curio Class film. | The proposed correction requires editing days.csv and regenerating the day list, but this job permits changes only to s02.md and forbids hand-editing that table. | writer's brief
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

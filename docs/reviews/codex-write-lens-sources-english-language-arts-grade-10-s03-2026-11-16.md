@@ -1,5 +1,5 @@
-1. [10; 4–5, vocabulary references] The plan requires printed reference entries and uses them in assessed word logs, but names no dictionary, edition, entry links or reproduction rights | Teachers cannot verify or reproduce the intended reference text reliably | Add freely checkable sources for the required entries, including remote and the transform word family, with edition and reuse notes.
+Check: `unitplan.py check english-language-arts-grade-10` passed s03.md with no notes. source-map.csv is absent; the scope and sequence says none applies.
 
-Check: s03.md PASS; the course command fails on unfinished s04.md to s07.md. The course’s source-map.csv is absent.
+Verification limit: some archive URLs and older dictionary revisions could not be fetched directly.
 
-Count: 1 findings (lens sources).
+Count: 0 findings (lens sources). Editions and reuse terms are stated, primary passages have free locations ([Tagore](https://en.wikisource.org/wiki/The_Hungry_Stones_and_Other_Stories/The_Renunciation), [Plaatje](https://en.wikisource.org/wiki/Index:Solomon_Tshekisho_Plaatje_-_Mhudi.pdf)), and unwritten fiction and summaries are clearly marked as unfinished.

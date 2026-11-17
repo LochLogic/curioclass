@@ -1,8 +1,12 @@
-1. [10; U3 E125] The Hughes transcription corrupts the central concession, printing “afraid too” instead of “afraid to do”; verification remains deferred | E125 asks students to interpret that sentence, so its wording must be settled | Replace the transcription with the [free 1926 printing, page 694](https://thenation.s3.amazonaws.com/classroom/NATION.LangstonHughes.NegroArtists.June1926.pdf), verify the complete selected passage and record that edition in field 10.
+1. [field 2, L.11-12.1] The reproduced standard includes a company name and branded reference examples | Teacher-facing copy violates the repository’s naming rule | Have the lead omit the optional branded examples, retaining the standard’s wording about consulting references and its standards-file citation.
 
-Gate: PASS for s08.md. source-map.csv is absent; the scope and sequence explicitly says none is required.
+Gate: PASS s08.md, no notes. Input note: source-map.csv is absent. Verification limit: the dictionary endpoint returned HTTP 503.
+
 Count: 1 findings (lens sources).
 
 ## Files changed outside the allowed set
 
-- data/plans/unit-rejections.csv
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md

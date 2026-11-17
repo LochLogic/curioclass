@@ -1,5 +1,4 @@
-1. [2; U6, reading load] The plan omits the scope and sequence's nightly reading-access blocks for days 103 to 112. For example, day 105 assigns all 1,949 words of Federalist 51 to sixteen minutes before rereading and comparison. | This exceeds the scope's supported-reading budget and crowds analysis. | Restore the single thirty-minute home or supervised-school access blocks, assign selections before their discussion, and retain fifty-minute class totals.
-2. [2; U6, word list] The proposed vocabulary replaces the settled weeks 21 to 24 lists and first teaches interest on 116, after its contextual meaning is needed on 105. | The knowledge sequence loses agreed vocabulary and requires a technical meaning before its planned instruction. | Restore the scope's weekly lists, locate their teaching in the relevant reading blocks, and teach interest during Madison before day 105; retain the existing word-family slots.
+1. [U6, day 116] Mahanoy’s newly released reasoning receives 12 reading minutes, below the 18 required by the scope and sequence and U6’s reading-load rule | Six promised reading minutes are missing before discussion and revision | Allocate words 5, reading 18, seminar 13 and revision 14, keeping E116 within revision: 50 minutes.
 
-Gate: s07.md passes; the course check fails only on unfinished s08.md placeholders.
-Count: 2 findings (lens sequence).
+Gate: `unitplan.py check english-language-arts-grade-12` passes s07.md.
+Count: 1 findings (lens sequence).

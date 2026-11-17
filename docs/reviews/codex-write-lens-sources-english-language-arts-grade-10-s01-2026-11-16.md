@@ -1,6 +1,11 @@
-Gate: s01.md PASS; course check fails on TODOs in s02.md through s07.md. source-map.csv is absent.
+Gate: `unitplan.py check english-language-arts-grade-10` passes s01.md.
 
-1. [5 R1; daily evidence day 7] Creation, abandonment and the bed-curtain encounter are located in I.4 of the [1818 source](https://www.gutenberg.org/cache/epub/41445/pg41445-images.html), not I.5. | The cited chapter does not supply the required evidence. | Change these references to I.4 and explicitly reserve its curtain passage for day 7's reread alongside I.5.
-2. [4 retrieval day 2; daily evidence day 2] Both tasks locate “ardour” in letter 4, where it does not occur in the [specified text](https://www.gutenberg.org/cache/epub/41445/pg41445-images.html). | Students cannot infer its meaning from the assigned passage. | Locate retrieval's “ardour” in letter 1; for the exit, use “capitulated” from letter 4's boarding paragraph, with the meaning “bargained over the terms of his rescue.”
+1. [10, Reads needed] “School suicide-prevention guidance” names no published source for the unit's safety advice | Teachers cannot check that advice against the required professional or school guidance | Cite [Preventing Suicide: A Toolkit for High Schools (2012)](https://library.samhsa.gov/sites/default/files/sma12-4669.pdf), identify the applicable sections, and connect the teacher directions to them.
 
-Count: 2 findings (lens sources).
+Count: 1 findings (lens sources).
+
+## Files changed outside the allowed set
+
+- tools/hamburger-paragraph/art/bear-chomp.webp
+- tools/hamburger-paragraph/art/bear-full.webp
+- tools/hamburger-paragraph/art/prompts.json

@@ -1,12 +1,7 @@
-1. [U3, E103 and E113 to E115] Exits depend on unspecified passages from unwritten originals; E107 also leaves its amendment unidentified | The keys and fresh-stimulus requirement cannot be verified | Supply the exact reserved passages, invented facts, applicable rule and edit sentences; identify E107’s amendment and key its actual wording.
+1. [field 5] L.11-12.4b has practice and exits but no scored end-of-unit evidence | Correct word-form use is never assessed at the end | Add a day 119 portfolio component using an earlier word-form application, with written feedback, revision, look-fors and contrasting samples.
+2. [field 5, Further taught-code evidence] The retained 109/112 evidence records and short W.9 pieces have no specified written-feedback and revision cycle | These earlier products cannot qualify as scored evidence under field 5 | Name the eligible products, feedback days, revision days and scoring components before counting them toward end-of-unit coverage.
+3. [U3, E115] The key concludes that the replacement notice falls outside both removal grounds, but the stimulus establishes only that the safety sign remains visible | Blocking the route is a separate permitted ground that the facts never exclude | Add “and left the posted route clear” to E115’s inspection finding, or accept that removal eligibility remains uncertain.
+4. [U3, E120] “A fresh paragraph” and “a previously unpaired founding clause” identify no actual selections; the key merely repeats the task and assigns A to P | Freshness, answer accuracy and applicable error letters cannot be checked | Specify both passages and locators, provide a supported sample answer, and assign separate wrong answers only to letters the completed item can elicit.
 
-2. [U3, E106] The key requires Walker’s firsthand-observation warrant from the assigned closing paragraph, but that warrant occurs in the selection’s opening paragraph | Students cannot support the required answer from the specified stimulus | Assign both precisely located paragraphs, or change the question and key to analyze the closing paragraph’s rhetorical questions and challenge to submission. [Assigned text](https://pressbooks.nvcc.edu/ushistory/chapter/david-walkers-appeal/).
-
-3. [Field 5, P2] The “Meets” sample calls circulation the school’s strongest argument while omitting upset students, classroom interruptions and alleged team-rule violations | It models an underdeveloped counterclaim as fair and thorough | Include those supplied facts, then explain why their strength and limits support the disposition. [Opinion, part I.A](https://www.supremecourt.gov/opinions/20pdf/20-255_g3bi.pdf).
-
-4. [U3, E114 and E115] Correct-answer summaries end with bundled error letters without separate wrong responses | A missed component cannot be assigned reliably to one misconception and repair | Give each anticipated wrong response its own matching letter, distinguishing counterclaim, cohesion, tone and each conventions error.
-
-5. [Fields 5 and 6, R2/B] “Authority means popularity throughout” is filed under retaining a term’s everyday meaning, although popularity is not that everyday meaning | The diagnostic label prescribes an unsupported repair | Replace it with a response confusing delegated authority with expertise, or register the existing misconception separately and assign its repair.
-
-Gate: s07.md PASS; course check FAIL on s08.md TODO(writer) placeholders. Required source-map.csv is absent.
-Count: 5 findings (lens assessment).
+Check: `unitplan.py check english-language-arts-grade-12` passed for s07.md with no notes. The required `source-map.csv` is absent.
+Count: 4 findings (lens assessment).

@@ -1,16 +1,19 @@
-Findings merged: 6. Fixed: 6. Rejected: 0.
+Findings merged: 5 distinct findings. Fixed all 5 in docs/courses/english-language-arts-grade-12/s05.md:
 
-1. Kept M1, M2 and S1 unscored; assigned scores to components drafted on day 78, given written feedback and revised on day 79.
-2. Completed S1’s exemplar with all three criteria for both audiences and specific placement effects.
-3. Printed M1’s separate objective summary.
-4. Narrowed M1’s B and C diagnostics and supplied concrete wrong responses.
-5. Corrected and reserved E77’s exact passage.
-6. Added the dictionary edition, entry links, rights basis and packet reproduction selections.
+1. Corrected P2’s causal key and passing sample.
+2. Replaced E78(b) with analysis of the manager’s assertion and training refusal.
+3. Changed M1’s failing sample to “Education,” matching error A.
+4. Added the verified 1926 Hughes source and explicit rights basis.
+5. Added modeled phrasing and repeated partner reading within day 76’s existing seven-minute block.
 
-Per lens upheld: assessment 4/4; sources 2/2; sequence 0 findings.
+Held up by lens: assessment 3/3; sources 1/1; sequence 1/1.
 
-Changed only docs/courses/english-language-arts-grade-12/s05.md. Preserved days, standards, generated blocks and error letters. Counted prose: 1,566/1,800 words; UTF-8 with LF endings.
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-12` PASS for s05.md. Word cap passed; UTF-8, LF endings and absence of em dashes verified. Only s05.md edited.
 
-Gate: `PASS docs/courses/english-language-arts-grade-12/s05.md`
+REJECTED: none
 
-Course check fails only on unfinished placeholders in s06.md through s08.md.
+## Files changed outside the allowed set
+
+- tools/hamburger-paragraph/notes.md
+- tools/hamburger-paragraph/spec.md
+- tools/hamburger-paragraph/src.html

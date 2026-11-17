@@ -1,17 +1,22 @@
-Gate: s04.md PASS; course check fails on unfinished s05 to s07 plans. Required source-map.csv is absent. No files edited.
+1. [5, C1, line 153] C1’s supported revision receives the score, while its independent first response remains unscored | The scored response cannot establish RL.9-10.10’s independent comprehension | Score the original unaided response as a fresh end-of-unit item; retain the supported revision separately as growth evidence.
 
-1. [5, C1 to C4 and B1 to B5; 7] Fresh responses are collected on days 82 and 84, marked before day 85, and receive feedback only afterward | Scored evidence lacks the required feedback and revision opportunity before scoring | Collect these responses unscored, return written feedback before day 85, allow revision during its repair time, then score the retained responses.
+2. [5, speaking evidence] No end-of-unit item assesses SL.9-10.1a to d, SL.9-10.4 or SL.9-10.6; seminars and presentation rehearsals have no component scoring guidance | These owned codes lack new end-of-unit assessment evidence | Add component rows using this unit’s observed discussions and presentation records, with look-fors, contrasting samples, written feedback and a later opportunity to improve before scoring.
 
-2. [5, B1 and daily exit 69] B1 repeats day 64's Cassius/Cinna and North page 63 comparison and its inference; exit 69 repeats day 68's Antony request and the performance day's rehearsal task | Remembered analysis can pass as fresh evidence | Replace B1 with a distinct reserved play/source passage pair and its own key; give exit 69 a different reserved III.1 passage from both exit 68 and the rehearsal.
+3. [5, vocabulary evidence, line 171] Vocabulary activities have no end-of-unit scoring row for L.9-10.4a to d or L.9-10.6 | Completing word activities does not establish mastery of each strategy or independent vocabulary acquisition | Add a timed audit of the day 81 word record covering context inference, word-family changes, general and specialized references, verification, independently gathered words and accurate use; provide feedback and revision before scoring.
 
-3. [5, B5] “Hungry” and “active” are not near-synonyms, and the sample incorrectly makes motion their shared denotation | The item cannot establish the required distinction between similar denotations | Compare “hungry” with “ravenous”: both express appetite, while “ravenous” intensifies the ocean's consuming threat. Update the sample accordingly. See [sonnet 64](https://shakespeare.mit.edu/Poetry/sonnet.LXIV.html).
+4. [5, A2] A2 requires an evidenced argument but never requires character development across the play, interaction or its effect on plot or theme | A static judgment about Brutus could earn full marks without demonstrating owned RL.9-10.3 | Add a separately scored component requiring early and late scene evidence, conflicting motives, an interaction and its consequence for plot or theme; assess it through the earlier argument after feedback and revision.
 
-4. [5, daily exit 71; 6, D] The key's “ancestral enjoyment” reverses the passage's promise to heirs, supplies no identifiable figure, and codes overlooking rhetoric as literal belief | The key rewards an inaccurate reading and sends the response to the wrong repair | Reserve the wounds-as-mouths passage instead. Key its personification to Antony's incitement; use “Caesar's wounds literally speak” as the D response.
+5. [5, exit 64] The key identifies managed paper placement as the transformation, although North already describes deliberately placing papers in Brutus’s seat | A shared action could receive credit as an authorial change | Require the contrast between North’s appeals from sympathizers and Shakespeare’s explicit staging of Cassius directing Cinna’s placements, then explain its effect on apparent public support. [North, page 63](https://shakespeare-navigators.ewu.edu/plutarch_caesar/plutarch_5_63.html).
 
-5. [5, daily exit 74] “Staging makes private friction visible” does not explain how the poet's interruption changes North's episode | A generic statement about drama can pass without analyzing the requested transformation | Require the timing contrast: Phaonius interrupts and breaks the ongoing quarrel in [North, page 216](https://shakespeare-navigators.ewu.edu/plutarch_caesar/plutarch_6_216.html); Shakespeare's poet arrives after the reconciliation. Explain how this changes the interruption's function.
+6. [5, daily exits 71 and 78] Exit 71 asks only about Antony despite the goal’s comparison with Brutus; exit 78 asks only about Hardy despite the goal’s two-poem comparison of cumulative diction and figures | Both exits permit success without demonstrating the named comparison | Supply reserved details from both relevant texts and require an evidenced contrast; update the keys to require both texts and the named language features.
 
-6. [5, daily exits 75, 81 and 85] “A reserved IV.3 detail,” “an unused North detail,” and “a fresh excerpt” never identify the actual stimuli; their keys give procedures rather than passage-specific answers | Teachers cannot verify freshness or distinguish supported interpretation from unsupported claims | Specify each excerpt by locator and opening/closing words, print it with the question, and supply a passage-specific successful response and coded wrong response.
+Check: `unitplan.py check english-language-arts-grade-10` passes s04.md. The scope and sequence confirms that source-map.csv is not applicable.
 
-7. [5, A2; 6, G] “Brutus's defenders have no reasons” dismisses the opposing position; G describes believing that an opposing claim needs no evidence | The diagnosed misconception and assigned repair differ | Replace A2's wrong sample with “The liberty counterclaim needs no textual evidence because it is only an objection,” retaining G.
+Count: 6 findings (lens assessment).
 
-Count: 7 findings (lens assessment).
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md

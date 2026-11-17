@@ -1,20 +1,15 @@
-Merged findings: 8. Fixed: 8, only in docs/courses/english-language-arts-grade-12/s07.md.
+Findings merged: 7. Fixed: 7. Held up by lens: assessment 4/4, sources 2/2, sequence 1/1.
 
-1. Supplied exact reserved exit passages, invented facts, rules and edit sentences; identified E107’s amendment.
-2. Corrected E106’s Walker paragraph locations.
-3. Strengthened P2’s counterclaim sample with the supplied school concerns.
-4. Separated E114 and E115 wrong answers by misconception; appended Q and R without relettering.
-5. Corrected R2’s wrong answer to match error B.
-6. Added the missing dictionary volumes and named entries.
-7. Restored nightly reading-access blocks while retaining fifty-minute classes.
-8. Restored the settled vocabulary lists and taught Madison’s civic meaning of interest before E105.
+Changed only docs/courses/english-language-arts-grade-12/s07.md:
 
-Findings upheld by lens: assessment 5/5; sources 1/1; sequence 2/2.
+1. Added scored word-form evidence from earlier work, with feedback, revision, look-fors and samples.
+2. Specified eligible evidence products, feedback and revision days, and scoring components; first-teaching-day work remains unscored.
+3. Clarified that E115’s replacement notice leaves both the sign visible and the route clear.
+4. Specified E120’s passages, locators, supported answer and applicable error letters.
+5. Added Plessy’s separately labeled Statement of the Case and identified E109’s reserved paragraph.
+6. Added Tinker’s reporter’s syllabus and opening opinion page.
+7. Restored day 116 to eighteen reading minutes within fifty total minutes.
 
-Gate: s07.md PASS. Course check fails only on existing s08.md TODO(writer) placeholders.
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-12` reports PASS for s07.md, with no notes. UTF-8, LF endings and the word cap pass.
 
 REJECTED: none
-
-## Files changed outside the allowed set
-
-- data/plans/unit-rejections.csv

@@ -1,17 +1,22 @@
-Findings merged: 7. Fixed: 7, in s06.md only.
+Findings merged: 4. Fixed: 4.
 
-1. Replaced incomplete S2, S4, P1 and P2 samples with responses covering the look-fors.
-2. Required E97 to analyze its supplied paragraph and justify a transition.
-3. Matched S1’s wrong answer to error A.
-4. Changed Larry Akers’s testimony from a printed extract to linked access.
-5. Removed the unverified history-page assignment, using students’ earlier work to verify topic familiarity.
-6. Bounded Alyssa’s hearing selection to exclude adjacent speakers.
-7. Allowed ten minutes for five two-minute reactions, reducing the seminar to seven minutes.
+1. S3 now requires a located table comparison and chart observation, reconciled with the report and minutes.
+2. P3 now requires varied transitions and sentence structures, with a matching exemplar.
+3. Aggregate-to-household inference has new error letter L, an explicit wrong answer and a paired repair. Existing letters are unchanged.
+4. The borrowed verse is identified and sourced. Whole-address access uses the linked transcript and streamed audio; packets omit the verse pending rights confirmation.
 
-Findings held up by lens: assessment 3/3; sources 3/3; sequence 1/1.
+Per lens held up: assessment 3/3; sources 1/1; sequence 0 findings.
 
-Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-12` reports s06.md PASS. The course check fails on unfinished s07.md and s08.md.
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-12` PASS, including s06.md.
 
-Verified UTF-8, LF endings, no em dashes, and compliance with the word cap.
+Only s06.md was edited. For the lead: verse reproduction rights remain unconfirmed.
 
 REJECTED: none
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md
+- scripts/standards.py

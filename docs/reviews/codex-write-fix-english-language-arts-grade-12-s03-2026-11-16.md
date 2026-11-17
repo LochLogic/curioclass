@@ -1,20 +1,14 @@
-Updated only `docs/courses/english-language-arts-grade-12/s03.md`.
+Findings merged: 4. Fixed: 4 in s03.md.
 
-Findings merged: **8**. Fixed: **8**. Rejected: **0**.
+1. Added current-unit discussion evidence with feedback, revised participation and separate scoring for SL.11-12.1a to d.
+2. Replaced the repeated assessment situations and taught wording; aligned prompts, keys, samples and sources.
+3. Broadened error A to cover accepting stated judgments despite contrary evidence.
+4. Corrected error E to cover misidentifying a derived word’s grammatical function.
 
-1. Restricted scored notebook work to parts with dated production, written feedback and revision.
-2. Replaced repeated E46 and E50 structural tasks with reserved alternatives.
-3. Corrected C2’s debt-column interpretation.
-4. Aligned wrong answers, error letters and repairs.
-5. Added E50 branches for figure interpretation and synonym nuance.
-6. Completed C1 and E47’s sufficient-answer samples.
-7. Required corrected, collated Austen transcription before classroom use.
-8. Set reading cut points before each act’s analysis and exit ticket.
+Per lens held up: assessment 4/4; sources 0 findings; sequence 0 findings.
 
-Per lens, findings held up: assessment **6/6**, sources **1/1**, sequence **1/1**.
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-12` reports PASS for s03.md, within the word cap. UTF-8, LF endings and no em dashes verified.
 
-Gate: **PASS docs/courses/english-language-arts-grade-12/s03.md**. The course command fails on unfinished `s04.md` through `s08.md`.
+For the lead: day 47’s unchanged days.csv note says “no second scored discussion collection.” Reconcile it with P3’s revised participation record, scored on day 48.
 
-Verified UTF-8, LF endings, no em dashes and 1,663 counted words, within the 1,800-word cap.
-
-Before teaching, prepare the corrected Austen transcription and verify the provisional reading timing.
+REJECTED: none

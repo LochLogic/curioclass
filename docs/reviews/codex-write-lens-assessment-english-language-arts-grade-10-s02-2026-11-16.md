@@ -1,14 +1,19 @@
-1. [5, day 34 exit] The key says failed implantation leads to inadequate nourishment, but the primer presents failed implantation and malformed placenta as alternatives. | It rewards a causal claim the source does not make. | Replace the key with: “The primer distinguishes implantation failure from poor placenta formation; poor placenta formation can prevent adequate nourishment.” Contrast this with the fact sheet’s general inefficiency claim followed by its example. [Primer](https://www.fda.gov/animal-veterinary/animal-cloning/primer-cloning-and-its-use-livestock-operations).
+1. [5, R6] The scored paragraph is made on day 31, when the plan explicitly first teaches W.9-10.9b. Later revision does not make first-teaching work eligible | This is practice rather than valid scored evidence | Score the existing day 35 reasoning paragraph instead, with written feedback and revision before day 41.
 
-2. [5, retained word logs] Day 41 reuses days 30 and 35 word logs as assessment evidence without naming written feedback and a revision opportunity on an earlier day. | Their eligibility for scoring is unestablished. | Specify written feedback after day 35 and revision on day 38; score only the revised records. Otherwise retain these logs as practice.
+2. [5, S1a to S1d] Both seminar records are scored, but written feedback comes afterwards and no revision opportunity is specified for the day 38 performance | The retained discussion evidence lacks the required feedback and revision cycle | Make day 32 formative; give written feedback on day 38 evidence and allow correction or a brief revised performance before scoring on day 41.
 
-3. [5, day 38 exit] The exit asks students to explain details and transitions in the narrative they have just revised and identify the seminar contribution informing that revision. | This repeats the day’s work rather than testing transfer to a fresh stimulus. | Supply a reserved two-narrator passage, labelled “invented for practice,” and ask students to revise a detail and transition for a stated audience, then explain their choices.
+3. [5, D1] The passing criteria require a working link and saved update but omit flexible and dynamic display | A student can receive full credit without demonstrating that part of W.9-10.6 | Add a required demonstration of changing the published product's display and include it in the passing criteria.
 
-4. [5 and 6, exit coding] Day 32 assigns a failure to identify a partner’s evidence to L, which describes surface correction mistaken for substantive revision. Day 36 asks for accurate use of “reproductive” but omits K from its error assignments. | These responses would trigger unrelated or missing repairs. | Add a separate letter for failing to identify and explain an evidence-based contribution, with its own response group and repair; assign grammatical-function errors on day 36 to K.
+4. [5, S1a and V3 samples] S1a's passing sample merely reports using evidence without supplying it; V3 says “my dictionary” although the look-for requires a named reference | Incomplete evidence is presented as meeting the criteria | Give S1a an actual passage detail and its contribution to discussion; give V3 the reference title and entry used.
 
-5. [5, days 33 and 34 exits] Day 33 checks an appearance qualification rather than outlining a cloning process. Day 34 compares risk paragraphs rather than how the two explanations order the shared nuclear-transfer process. | Neither exit establishes the process-ordering goal named for its day. | Use reserved, unworked process passages: require an ordered outline with a connection on day 33, and comparison of introduction, step order and connections on day 34.
+5. [5, day 29 exit] The whale and animalcule question returns to the hook's contrast between visible differences and underlying unity | An unmodelled paragraph still rehearses the hook's central idea | Replace it with a fully printed, reserved paragraph about a different issue, such as an invented bridge closure, asking students to infer its claim and orient two narrators.
 
-6. [5, N1 to N7] The narrative “Meets” and “Does not” entries describe hypothetical writing instead of supplying the required sample answers. N2, for example, describes an exchange without presenting any dialogue. | Teachers cannot compare actual writing against demonstrated scoring boundaries. | Provide contrasting short narrative excerpts for N1 to N6 and contrasting process-record samples for N7, showing the evidence required for each score.
+6. [6, F] “Cannot identify the narrative situation or speaker” combines two independently diagnosable errors | One letter cannot identify which repair is needed | Keep F for unidentified speakers; create a separate letter for an unclear narrative situation, with its own repair and field 7 allocation.
 
-Check: s02.md passes the required gate; the course command fails on unfinished placeholders in s03.md through s07.md. The requested source-map.csv is absent.
-Count: 6 findings (lens assessment).
+7. [5, day 38 exit] Error Y concerns unexplained specialist language, but the exhibit stimulus contains none | The assigned diagnosis does not match the problem presented | Remove Y from this exit; retain H and I and keep Y attached to N6.
+
+Count: 7 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- scripts/standards.py

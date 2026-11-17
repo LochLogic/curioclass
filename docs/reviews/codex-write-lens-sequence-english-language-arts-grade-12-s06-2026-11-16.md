@@ -1,3 +1,18 @@
-1. [U6, day 90] Five students giving two-minute reactions need ten minutes, but the group block allows seven | Some students cannot complete the informal presentation record carried into unit 8 | Increase reactions to ten minutes and reduce the teacher-led seminar from ten to seven, preserving the fifty-minute total.
-Gate: s06.md passes; the course check fails on unfinished s07.md and s08.md. The requested source-map.csv is absent.
-Count: 1 findings (lens sequence).
+Checker: PASS for s06.md, with no notes. The requested source-map.csv is absent.
+
+Count: 0 findings (lens sequence). Daily budgets total 50 minutes, day types and assessment dates match days.csv, prerequisites have retrieval or bridges, and the text sequence supports writing, discussion and later-unit handoffs. Supplies and access limits are explicit.
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- docs/COURSES-STATUS.md
+- tools/hamburger-paragraph/art/bear-chomp.webp
+- tools/hamburger-paragraph/art/bear-full.webp
+- tools/hamburger-paragraph/art/prompts.json
+- tools/hamburger-paragraph/notes.md
+- tools/hamburger-paragraph/spec.md
+- tools/hamburger-paragraph/src.html
+- tools/hamburger-paragraph/voice/3963819adc13.mp3
+- tools/hamburger-paragraph/voice/lines.json
+- tools/hamburger-paragraph/voice/local.json

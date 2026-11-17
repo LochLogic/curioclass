@@ -1,7 +1,15 @@
-Check: s05.md passes. The course check fails on unfinished s06.md to s08.md. The requested source-map.csv is absent.
+Gate: PASS s05.md. No source-map.csv exists for this course. The cited Wollstonecraft archive returned HTTP 503 during verification.
 
-1. [U3, E77] The exit locates the wealth-and-exclusion contrast in chapter 1's final paragraph, but that paragraph is the night-sky and hotel coda; the contrast appears immediately before it. | Supplying the stated paragraph omits the evidence the question requires. | Specify the passage beginning “So I went back to my inn” and ending “cast it into the hedge,” using the [linked edition](https://en.wikisource.org/wiki/A_Room_of_One%27s_Own_%28Harcourt_1929%29/Chapter_1), and reserve that passage for E77.
+1. [10, Hughes source] “I, Too” cites only a local transcription whose metadata gives no originating source | The edition identifier is allowed, but readers cannot trace its wording to a verified free primary text | Retain the local identifier and add the checked [1926 “Epilogue” text](https://en.wikisource.org/wiki/The_Weary_Blues_(collection)/Epilogue), identifying its publication in The Weary Blues and its United States public-domain basis.
 
-2. [10; U6 word-family tasks] The supplied dictionary entries have no named dictionary, edition, free verification location or reproduction basis. | Their definitions and grammatical information cannot be checked, and the blanket public-domain statement covers only the listed literary texts. | Add the exact reference edition, free entry links and rights basis for deliberate, deliberation, deliberative, compel, compulsion and compulsive; specify which entry text the packets reproduce.
+Count: 1 findings (lens sources).
 
-Count: 2 findings (lens sources).
+## Files changed outside the allowed set
+
+- tools/hamburger-paragraph/art/bear-chomp.webp
+- tools/hamburger-paragraph/art/bear-full.webp
+- tools/hamburger-paragraph/art/prompts.json
+- tools/hamburger-paragraph/src.html
+- tools/hamburger-paragraph/voice/3963819adc13.mp3
+- tools/hamburger-paragraph/voice/lines.json
+- tools/hamburger-paragraph/voice/local.json

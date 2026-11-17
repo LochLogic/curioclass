@@ -1,14 +1,17 @@
-1. [5, day 23 writing-range record] The score includes day 20’s draft, but its revision opportunity is scheduled for day 24. | Earlier work is scored before the required feedback-and-revision cycle. | Defer this record’s score until day 25, using the revised product, and remove the day 23 score.
+Check: `unitplan.py check english-language-arts-grade-10` passes s01.md. source-map.csv is absent; the scope and sequence states none applies.
 
-2. [5, S3 and S4] The day 26 audit accepts day 11 contributions although connecting questions and summaries of disagreement are first modelled that day. | First-teaching performances can become scored evidence. | Keep those day 11 observations diagnostic; score the corresponding day 22 contributions after the earlier written feedback and practice.
+1. [Field 5, W.9-10.10 and writing-range look-for] The scoring guide checks short and extended writing but requires no range of audiences. All retained pieces could address the same reader and still pass | This leaves an owned requirement without assessment evidence | Designate the existing objective summary for a reader unfamiliar with the novel, retain the essay for a familiar reader, and require the writing-range record to explain their different purposes and audience choices.
+2. [Field 5, R5] The reserved passage repeats the taught concerns of abandoned dependents, failed protection and exclusion, and includes the explicitly taught word “ardent.” See [the reserved text](https://human.libretexts.org/@go/page/83011) | An unread passage can still cue the unit’s rehearsed interpretation, weakening the claimed cold transfer | Replace the extract and R5 prompt, key and sample with a reserved passage whose central idea and diagnostic language differ from the taught material; preserve the ten-minute slot.
+3. [Daily exit table, day 24; field 6, O] The exit asks for a significant revision and an accompanying source link, but assigns O, which means treating paper work as digital publication | A valid paper answer can supply both requested elements, so this item cannot establish that misconception | Remove O from this exit and retain N. Keep O attached to P3’s observed digital-publication evidence.
 
-3. [Daily exits, days 2, 6 and 7] Ardour is absent from letter 4; delayed correspondence occurs in I.3, not I.4; the bedside-curtain passage occurs in I.4, not I.5. | Students cannot establish the expected answers from the specified passages. | For day 2, supply letter 4’s conciliating sentence and require a context clue, suitable reference and verified meaning. Correct days 6 and 7 to I.3 and I.4, explicitly reserving those passages from worked examples. [1818 text](https://www.gutenberg.org/cache/epub/41445/pg41445-images.html)
+Count: 3 findings (lens assessment).
 
-4. [Daily exits, days 20 and 24] Both exits examine the student’s current draft rather than supplying a fresh stimulus. Calling a paragraph unconferenced does not make it new to its writer. | The exits can reproduce reasoning already developed during that day’s work. | Supply a previously unworked source paragraph and an invented paragraph or revision choice, labelled “invented for practice,” requiring an independent evidence or revision judgment.
+## Files changed outside the allowed set
 
-5. [Daily exit, day 11] The key calls curiosity and compassion “opposed impulses.” Both support Victor’s decision to listen. | The key rewards an invented motivational conflict. | Replace it with: curiosity prompts the hearing, compassion strengthens that decision, and the creature begins his account. [II.2](https://www.gutenberg.org/cache/epub/41445/pg41445-images.html)
-
-6. [5, R4 key and structure sample] R4 requires an explanation of changing pace, but neither its key nor the “Meets” sample demonstrates one. | An answer omitting a required structural choice is presented as sufficient. | Add a specific contrast between compressed narrative time and a slowed scene, explain its reader effect, and classify answers missing pace as partial.
-
-Gate: s01.md PASS; the course check fails on unfinished s02.md to s07.md. The required source-map.csv is absent.
-Count: 6 findings (lens assessment).
+- tools/hamburger-paragraph/art/bear-chomp.webp
+- tools/hamburger-paragraph/art/bear-full.webp
+- tools/hamburger-paragraph/art/prompts.json
+- tools/hamburger-paragraph/src.html
+- tools/hamburger-paragraph/voice/3963819adc13.mp3
+- tools/hamburger-paragraph/voice/lines.json
+- tools/hamburger-paragraph/voice/local.json
