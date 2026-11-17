@@ -1,0 +1,7 @@
+Gate: `unitplan.py check algebra-ii` passes s04.md; the course check fails on unfinished TODOs in s05.md to s07.md.
+
+1. [field 5, E5b, line 135] The verbal conditions do not establish the keyed logarithmic curve, sign intervals or monotonicity. For example, with z=log₂(x/5), y=z+sin(2πz) satisfies every stated condition but has local extrema and positive values below x=5. | A valid response could be rejected. | Explicitly identify the calibration as logarithmic with base 2 before asking students to sketch it.
+2. [field 5, accommodations, lines 137 and 148] The printed-table route relies on day 84 technology evidence, but no written-feedback and revision cycle is specified, and the sitting says no earlier product is scored. | Reading supplied calculator outputs does not demonstrate the student's technological evaluation required by F-LE.A.4. | Either provide an accessible device for fresh E1d evaluation on day 94, or explicitly collect day 84 work, provide written feedback and revision before scoring, and amend the earlier-product statement.
+3. [field 5, teacher-judgment samples, lines 143 to 146] Several “Meets” samples omit required look-fors: E4 supplies no brackets or estimates, and E5 omits sign intervals, end behavior and the sketch. | These examples permit incomplete evidence to pass despite the component-scoring rule. | Expand each meeting sample to demonstrate every listed look-for, or label it an excerpt that is insufficient by itself.
+
+Count: 3 findings (lens assessment).
