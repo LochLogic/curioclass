@@ -1,7 +1,13 @@
-1. [5] Day 81’s bonus model receives written feedback after day 81 but is revised and scored on day 82 (lines 95, 126) | No revision opportunity occurs on an earlier day than scoring | Keep this model formative and remove its scoring references; use the fresh day 82 notation, rate and domain items for those codes.
-2. [5] The scored day 73 record tests excluded endpoints on their first explicit teaching day (lines 120, 145, 273, 313) | First-learning work cannot become scored evidence through later revision | Keep day 73 formative; collect a fresh endpoint task during day 75 practice, provide written feedback afterward and reserve revision time on day 76.
-3. [5 and day list] Field 5 excludes first-learning products from days 66, 68, 74 and 76, but the generated day list still directs scoring day 66 at day 106 and days 68, 74 and 76 at day 82 | Teachers receive contradictory instructions about eligible assessment evidence | Correct the originating days.csv notes and regenerate the day list, naming the eligible replacement records from days 70, 75 and 78.
-4. [U3, day 63] The key assumes exactly two dispenser settings, although the prompt says “each small setting” and “each large setting” (line 263) | Multiple settings could share a volume, so the reverse relationship need not be a function | Specify “exactly two settings, small and large”; then the existing two-direction key follows.
+Gate: `unitplan.py check algebra-i` passes, including s04.md.
 
-Gate: `unitplan.py check algebra-i` passes s04.md; the course check fails on unfinished s05.md to s07.md plans.
-Count: 4 findings (lens assessment).
+1. [field 5, F-IF.B.6 graph evidence] The claimed graph-rate estimate uses temperature endpoints supplied explicitly in words | Students can calculate -3 without reading a graph, so graph-reading proficiency is not established | Replace part (b) with a supplied graph for a fresh case, ask for the rate over a nonvertex interval, and key approximate coordinate readings, the quotient and its contextual meaning.
+2. [field 5, retained and fresh stimuli] The fresh shift g(x) = abs(x - 4) + 2 repeats the right-four translation in day 78’s retained construction; day 75’s retained step task repeats day 74’s two-tier hourly-fee setup | Scored evidence rehearses previously posed tasks | Give g a new horizontal shift and update its graph and wrong answer; replace the retained step task with a different context, new breakpoints and a different boundary convention.
+3. [field 5, scoring records] Field 5 prohibits scoring first-learning products, but days.csv still directs scoring those products, including day 66 at day 106 and days 68, 73, 74 and 76 at day 82 | The authoritative calendar and assessment instructions prescribe different scoring records | For the lead: remove those scoring directives, identify days 75 and 78 as the eligible retained replacements, preserve the fresh day 82 items, and regenerate the affected tables.
+Count: 3 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

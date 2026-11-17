@@ -1,17 +1,24 @@
-Merged: 7 distinct findings. Fixed all 7 in docs/courses/english-language-arts-grade-8/s05.md:
+Merged 6 distinct findings; fixed all 6 in s05.md:
 
-1. Replaced Packet F’s rehearsed leaf-count scenario with flowering-time evidence and different omissions; updated keys and samples.
-2. Replaced P2’s repeated recipe analogy with a composition analogy; updated prompt, key and samples.
-3. Added actual source judgments, quotation, paraphrase and complete citations to M3’s sample.
-4. Completed F2’s sample across all five sources, including quantitative and spoken-emphasis evidence.
-5. Corrected E138’s unsupported duration inference to a repeatability limitation.
-6. Added a verified federal results report with author, edition, rights basis and exact excerpt; integrated it into research.
-7. Replaced E130 and E138’s descriptions with complete, fresh paragraphs.
+1. Added end-of-unit scoring rows for missing standards, using earlier work with feedback and revision, plus a fresh word-part item.
+2. Replaced packet P and aligned its questions, keys and samples.
+3. Replaced E129, E133, E148 and E149 with fresh cases.
+4. Made E138’s lack of replication explicit.
+5. Expanded M2’s sample with attributed findings from three sources and a focused follow-up question.
+6. Corrected L2’s hawk evidence.
 
-Rejected: 0.
+Findings upheld by lens: assessment 6/6; sources 0/0; sequence 0/0.
 
-Findings upheld by lens: assessment 5/5; sources 2/2; sequence reported 0.
+Gate: `unitplan.py check english-language-arts-grade-8` PASS for s05.md, no notes. Word count: 1,756/1,800. UTF-8 and LF verified.
 
-Only s05.md changed. Day list and skeleton blocks remain unchanged. UTF-8, LF, no em dashes; 1,748 counted words against the 1,800 cap.
+For the lead: reconcile day 153’s assessment-code metadata with the added scoring rows. Data files were unchanged.
 
-Gate: `PASS docs/courses/english-language-arts-grade-8/s05.md`
+REJECTED: none
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

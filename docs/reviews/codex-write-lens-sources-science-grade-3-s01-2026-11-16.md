@@ -1,5 +1,11 @@
-1. [8 and 10, lines 202 and 217] The no-kit route requires records “from a real class,” but identifies no actual data source; motion records remain unmade | Teachers cannot obtain or verify the evidence this fallback requires | Name and link the specific records, including creator, dates, apparatus, conditions and repeated trials. Until those records exist, mark the no-kit route unavailable.
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-3` passed for s01.md, with no notes.
 
-Gate: s01.md PASS; the course check fails on unfinished TODO(writer) placeholders in s02.md through s06.md.
+Count: 0 findings (lens sources). Practice cases are labelled invented, investigation data come from classroom observations, substitute records require provenance, and safety cites [published professional guidance](https://static.nsta.org/pdfs/SafetyInElementaryScience.pdf). No unverified outside passage or image is assigned.
 
-Count: 1 findings (lens sources).
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

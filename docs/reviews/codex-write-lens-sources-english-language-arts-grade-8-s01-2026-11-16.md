@@ -1,5 +1,11 @@
-1. [10; U3] The anchor novella has no readable edition, and its passage locations remain unavailable; most literary exits and the essay therefore depend on an unwritten source | Calling these manuscript requirements does not satisfy “verified or none,” and their textual basis cannot be checked | Supply the complete original as a freely accessible, identified edition; replace reserved-passage placeholders with exact chapter or paragraph references and verify each source-dependent task against it.
+Count: 0 findings (lens sources). The [preservation](https://www.archives.gov/publications/prologue/2015/spring/family-archives-1.html) and [letter-dating](https://blogs.loc.gov/manuscripts/2022/05/behind-the-scenes-helping-letters-tell-a-story/) passages are freely verifiable, with precise selections and rights notes. Original miniatures appear in full; unfinished novella-dependent tasks are explicitly blocked from student use.
 
-Gate: s01.md passes; the course check fails on unfinished TODO(writer) placeholders in s02.md to s05.md. source-map.csv is absent, as field 10 acknowledges.
+Gate: PASS s01.md. source-map.csv is absent, already acknowledged in field 10. No files edited.
 
-Count: 1 findings (lens sources).
+## Files changed outside the allowed set
+
+- tools/hamburger-paragraph/art/bear-chomp.webp
+- tools/hamburger-paragraph/art/bear-full.webp
+- tools/hamburger-paragraph/art/prompts.json
+- tools/hamburger-paragraph/src.html
+- tools/hamburger-paragraph/voice/lines.json

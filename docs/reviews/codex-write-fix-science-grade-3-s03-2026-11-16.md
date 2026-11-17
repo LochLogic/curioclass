@@ -1,19 +1,15 @@
-Findings merged: **9**. Fixed: **9**. Rejected: **0**.
+Findings merged: 3. Fixed: 3, in docs/courses/science-grade-3/s03.md only.
 
-1. Supplied complete life-cycle sequences, timing values, seed-evidence cards and matching keys.
-2. Added mint parent-cutting relationships and shared toothed-leaf evidence.
-3. Made watering the only changed condition in the basil comparison.
-4. Replaced day 41’s paired model construction with model critique and repair.
-5. Added numerical plant and animal tallies and graph construction to day 46’s exit.
-6. Established invented-record labels and provenance requirements for photographs.
-7. Replaced unspecified packet wording with an explicitly invented timing card.
-8. Assigned readiness item 1 to section 3.1 and budgeted item 2’s return at day 42’s opening.
-9. Corrected resemblance’s last content teaching to grade 1 and explained grade 2’s retrieval-only role.
+1. Removed error labels that did not match the supplied assessment and day 52 stimuli.
+2. Supplied dated mustard and lacewing sequences, feature tallies, controlled watering data and a specific answer key for day 58.
+3. Included day 18 setup and continuing care within the estimated $25 budget, identifying reused equipment.
 
-Per lens, findings upheld: **assessment 5/5; sources 2/2; sequence 2/2**.
+Findings upheld per lens: assessment 2/2; sources 0 findings; sequence 1/1.
 
-Only `s03.md` was edited. Word cap, UTF-8 and LF requirements pass.
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-3` passed all six plans, including `PASS docs/courses/science-grade-3/s03.md`. Word cap, UTF-8 and LF requirements preserved.
 
-Gate: `PASS docs/courses/science-grade-3/s03.md`
+REJECTED: none
 
-The course command exits with existing placeholder failures in `s04.md` through `s06.md`.
+## Files changed outside the allowed set
+
+- scripts/section_cuts.py

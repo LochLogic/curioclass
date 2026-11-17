@@ -1,3 +1,2 @@
-Gate: `unitplan.py check algebra-i` passes s01.md; the course check fails on unfinished `TODO(writer)` placeholders in s02.md to s07.md.
-
-Count: 0 findings (lens sources). The [base lessons](https://im.kendallhunt.com/HS/teachers/1/1/1/preparation.html), [modeling prompts](https://im.kendallhunt.com/HS/teachers/1/modeling_prompts/2/modeling_tasks.html) and [Progressions](https://mathematicalmusings.org/wp-content/uploads/2023/05/Progressions.pdf) are freely checkable under the stated licenses. Adaptations have day credits, invented data are labeled, and no check requires an unavailable source.
+Count: 0 findings (lens sources). The plan identifies its first-edition base text, maps outside tasks to [free licensed pages](https://im.kendallhunt.com/HS/teachers/1/1/1/preparation.html), labels supplied cases as invented for practice, and explicitly drops the unverified extension.
+Gate: `python -X utf8 scripts/unitplan.py check algebra-i` passed s01.md with no notes.

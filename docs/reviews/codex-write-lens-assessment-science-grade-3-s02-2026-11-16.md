@@ -1,5 +1,13 @@
-1. [Field 5, day 29 interaction task, lines 123 to 129] Two of six interaction points assess an unasked static causal explanation and magnet force arrows | Students can complete every requested part and still lose two points | Add explicit prompts to explain the static distance evidence and draw and justify arrows before and after one magnet turns; include both in day 30 feedback and revision.
-2. [Field 5, day 28 exit ticket, line 133] The notice-flap case repeats the day's cupboard-latch problem with younger users and does not require revising a criterion | It rehearses the taught case and cannot establish changed-user reasoning | Replace it with a magnetic pickup tool that must lift three steel washers, then introduce a requirement to release them without touching them. Require a revised checkable criterion, its reason, and the supplied materials, time and cost limits.
+1. [Field 5, day 22 exit] C is listed for an item showing only a magnet pair, but C describes incorrectly predicting repulsion between a magnet and steel. | This item cannot establish the registered steel misconception. | Remove C from this exit's error list, or add a steel comparison that can elicit it while retaining the two-part limit.
 
-Gate: s02.md passes; the course check fails on unfinished TODO(writer) entries in s03.md through s06.md.
+2. [Fields 2 and 5] m2-measure-with-tools is listed as owned, but no scored end item requires using a measuring tool; the interaction cards supply their distances. | The owned row has no new end-of-unit evidence. | Add an individual whole-centimetre ruler measurement to the day 29 interaction record, with look-fors for zero alignment, endpoint reading and units; include written feedback and day 30 revision before scoring.
+
+Read limit: data/plans/science-grade-3/source-map.csv is absent. Gate: s02.md PASS.
 Count: 2 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- data/plans/flow-status.csv
+- docs/COURSES-STATUS.md
+- scripts/day_skeleton.py
+- scripts/plan_flow.py

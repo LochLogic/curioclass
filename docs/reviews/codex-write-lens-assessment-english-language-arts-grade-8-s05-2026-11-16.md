@@ -1,9 +1,17 @@
-Check: `unitplan.py check english-language-arts-grade-8` passes s05.md. The requested source-map.csv is absent.
+1. [5] W.8.7, W.8.8, SL.8.1, W.8.2a to f, W.8.9b, W.8.5 and L.8.4b lack end-of-unit scoring rows; the research audit is diagnostic and the other records are practice | Owned standards lack explicit end evidence | Add component scoring rows using this unit’s eligible products and discussion records, with written feedback and revision before product scoring, plus a fresh word-part item. Refer assessment-code changes in days.csv to the lead.
+2. [5, packet P] P1 repeats the taught gene paragraph’s definition, protein-making function and regulatory qualification, including M1’s answer pattern | Remembering the taught explanation can satisfy the supposed cold check | Replace packet P with unseen paragraphs having a different central idea and comparison; rewrite P1 and P2 keys and samples accordingly.
+3. [Daily exits] E129 repeats the opening all-traits headline challenge; E133 restates the day’s press-freedom and checking distinction; E148 and E149 rehearse the assessed label proposal and warning counterclaim | These exits measure rehearsal rather than transfer to fresh cases | Replace these inserts with different source-bound cases. Keep work on the assessed argument in the main drafting task.
+4. [Daily exit E138] Counting each plant once does not establish that the finding lacks replication; several independent trials could each count every plant once | The key rewards an inference the stimulus does not support | Replace the final sentence with an explicit limitation, such as “Only one trial was conducted, and the comparison has not been repeated,” then align the key.
+5. [5, M2 sample] The “Meets” sample names three topics but supplies neither identifiable sources nor their findings | A research outline without demonstrated research could receive full credit | Supply a sample containing the student’s question, an attributed finding from each of at least three sources across distinct avenues, and a further focused question arising from those findings.
+6. [5, L2 sample] The sample calls the hawks distant, although the narration presents them as appearing close to Sylvia | The model misstates its textual evidence | Replace “distant hawks” with an explanation of how seeing the hawks below her reverses Sylvia’s usual perspective. [Story text](https://facultyweb.ivcc.edu/rrambo/eng1001/white_heron.htm)
 
-1. [5/U3, Packet F and E145] Both use leaf counts, one-room testing and a graphic omitting that limitation; changing the counts rehearses F1 | Recall can replace fresh media analysis | Replace Packet F with a different finding and different information omissions; rebuild its prompts, keys and samples.
-2. [5/U3, Packet P2 and E131] P2 repeats the recipe-to-genetic-instructions analogy and its boundary | The supposedly cold item repeats an answered comparison | Replace paragraph 2 with an unseen comparison involving a different relationship and limitation; rewrite P2 and its samples.
-3. [5, M3 sample] The “Meets” answer reports having checked and cited sources but supplies no actual credibility judgment, quotation, paraphrase or complete citation | A procedural assertion could pass without demonstrating the required work | Supply a worked sample containing those artifacts and evidence-based source judgments.
-4. [5, F2 sample] The “Meets” answer omits the article and graphic and gives no specific quantitative or oral-emphasis evidence | It does not meet the prompt’s requirement to analyze each source through its presentation choices | Replace it with a complete sample covering all five sources and identifying supporting wording, quantities and spoken emphasis.
-5. [U3, E138 key] “Observed only once” is keyed as limiting the evidence’s duration, although no duration is supplied | The key rewards an unsupported inference | State that the report lacks repeated observations and cannot establish repeatability; remove the duration claim.
+Gate: s05.md passed with no notes. The requested source-map.csv is absent.
+Count: 6 findings (lens assessment).
 
-Count: 5 findings (lens assessment).
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

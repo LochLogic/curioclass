@@ -1,12 +1,7 @@
-Findings merged: 4. Fixed: 3. Rejected: 1.
+Merged: 5 distinct findings. Fixed: 4 in docs/courses/algebra-i/s02.md: E5’s missing prompts, day 18’s repeated task structure, the heating diagnostic, and error C’s definition.
 
-1. Fixed incomplete “Meets” samples for modeling, expression interpretation and inequality graphs.
-2. Fixed source attribution in s02.md, separating the [published alignments](https://im.kendallhunt.com/HS/teachers/1/modeling_prompts/3/preparation.html) from Curio Class adaptation alignments.
-3. Fixed prerequisite accounting: day 34 contributes 30 instructional minutes, giving 1,232/1,267 minutes, 97.24%.
-4. Rejected the revision-timing finding. Production occurs on day 44, with written feedback afterward and revision before scoring on day 45. UNIT-PLAN requires production on an earlier day, not revision on an earlier day.
+Held up by lens: assessment 5/5, including one valid conflict requiring edits outside scope; sources 0 findings; sequence 0 findings.
 
-Findings held up per lens: assessment 1/2; sources 1/1; sequence 1/1.
+Gate: `python -X utf8 scripts/unitplan.py check algebra-i` passed, including `PASS docs/courses/algebra-i/s02.md`.
 
-For the lead: source-map.csv still contains the false no-alignment-list claim. Only s02.md was authorized for editing.
-
-Gate: `python -X utf8 scripts/unitplan.py check algebra-i` reports **PASS docs/courses/algebra-i/s02.md**; the course command fails on unfinished `TODO(writer)` placeholders in s03.md through s07.md.
+REJECTED: assessment 1 | days.csv and the scope and sequence still direct day 45 scoring of first-teaching products from days 18, 19 and 23. | Reconciling those records requires edits outside the permitted s02.md file; field 5 already replaces their scores through E7, E10, E11 and E12, so the lead must reconcile the external records. | the writer's brief

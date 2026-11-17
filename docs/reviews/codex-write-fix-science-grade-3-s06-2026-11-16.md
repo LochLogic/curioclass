@@ -1,15 +1,16 @@
-Findings merged: 5 distinct findings. Fixed all 5 in docs/courses/science-grade-3/s06.md:
+Merged 7 reported findings into 6 distinct findings. Fixed all 6 in [s06.md](/S:/CurioClass/docs/courses/science-grade-3/s06.md):
 
-1. Added matched unsheltered trials and a retention goal to day 114.
-2. Completed product C’s “Meets” sample with Q’s climate and precipitation range.
-3. Broadened error C to cover daily and single-year weather records.
-4. Identified verified climate records, stations, periods, units, missing-data handling and reuse terms.
-5. Labelled constructed hazard evidence “invented for practice” and clarified roof-data provenance and model limits.
+1. Removed globe-grid from owned science skills, retaining its retrieval task.
+2. Added repeated comparison counts to H’s passing sample.
+3. Replaced W’s icon error with a matching bar-graph error.
+4. Allocated all 45 minutes of the shorter route, retaining later W revision.
+5. Specified local archives, station selection, periods, variables and matching no-kit provenance.
+6. Named and dated planned Curio Class readings and linked their supporting records.
 
-Rejected: 0.
+Findings held up: assessment 3/3; sources 2/2; sequence 2/2. The ownership finding was shared by assessment and sequence.
 
-Per lens: assessment 3/3 held up; sources 2/2 held up; sequence reported 0 findings.
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-3` passed, including s06.md. UTF-8, LF endings and the word cap verified.
 
-For a person: packet layouts remain to make; the local class log and warning remain unverified.
+Lead: preserve the globe-grid ownership correction when regenerating the plan.
 
-Gate: `python -B -X utf8 scripts/unitplan.py check science-grade-3` returned `PASS docs/courses/science-grade-3/s06.md`. All six course plans passed. UTF-8, LF endings and no em dashes verified.
+REJECTED: none

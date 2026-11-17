@@ -1,15 +1,9 @@
-Merged: **5 distinct findings**. Fixed: **5**. Rejected: **0**, so no rejection reasons apply.
+Merged: 6 distinct findings. Fixed: 5 in `docs/courses/algebra-i/s05.md`.
 
-In [s05.md](/S:/CurioClass/docs/courses/algebra-i/s05.md):
+Held up by lens: assessment 2/3; sources 1/1; sequence 2/2.
 
-1. Replaced H, K and L teaching examples with different numerical cases.
-2. Specified day 95 growth as 50 percent of the current amount each hour.
-3. Labeled day 85 observations as hours 0, 1 and 2.
-4. Corrected printed-page citations in field 10 and error G.
-5. Allocated readiness repair to five warm-up minutes and five teaching minutes after the hook, preserving the 50-minute day.
+Fixed the day 85 error mapping, day 84 exit stimulus, base-text edition, discrete versus continuous domain work, and hook-first timing.
 
-Findings upheld by lens: assessment **3/3**, sources **1/1**, sequence **1/1**.
+Gate: `python -X utf8 scripts/unitplan.py check algebra-i` reports `PASS docs/courses/algebra-i/s05.md`, with no notes.
 
-Gate: `PASS docs/courses/algebra-i/s05.md`
-
-The course check fails only on unfinished `TODO(writer)` placeholders in s06.md and s07.md.
+REJECTED: assessment 1 | Field 5 substitutes eligible evidence for days 66, 94, 98 and 100, while CSV notes still direct scoring those products. | Restoring those scores would assess first-teaching practice; correcting the CSV and regenerating its tables requires writes outside this job’s scope, so the lead must reconcile them separately. | UNIT-PLAN field 5; the writer's brief

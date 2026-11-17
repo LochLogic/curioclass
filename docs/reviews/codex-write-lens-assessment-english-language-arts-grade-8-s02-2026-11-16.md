@@ -1,12 +1,14 @@
-Gate: s02.md passes. The course command fails on TODO(writer) placeholders in s03.md through s05.md. The requested source-map.csv is absent.
+1. [5, Cold A to D; 6] The cold set repeats taught arguments and wording: Cold A reprises day 50's limited-space, quotation and source-reference solution; Cold C and D repeat E38 and E41's limited-reader trials and universal-success claims. Field 6 even teaches “Bun sales prove clarity” before Cold D uses cafe sales. | Students can reproduce rehearsed judgments instead of transferring their reading and listening skills. | Replace the four cold texts with unseen contexts, central claims and wording; preserve the assessed standard parts, then rewrite their prompts, keys and samples. Remove assessment-specific examples from the teaching error register.
+2. [U3, E31] The exit asks why sending calculations supports Banneker's equality challenge, which is the same question posed by day 31's hook and answered through its main reading. Reserving a closing insert does not make that task fresh. | The exit measures recall of the day's explanation. | Replace it with a withheld almanac passage addressing a different purpose, and ask students to determine a contextual word meaning and explain its effect; supply a matching key and wrong answer.
 
-1. [5, A46.1 to A46.3] Existing maps and vocabulary logs enter the scoring framework without scheduled earlier written feedback and revision | Their eligibility for scoring is unestablished | Explicitly make day 46 diagnostic and unscored, or identify later practice versions, earlier written feedback and a subsequent revision day for every scored artifact.
-2. [5 and 6, A60.4 to A60.6] Assessment answers repeat teaching examples: twelve versus eighteen and opposing delay judgments appear in A46.2’s sample; the editor sentence and shortened Readers quotation appear in H and I’s day 48 examples | Remembered answers can substitute for transfer | Replace those teaching examples with different cases and sentences, reserving the assessment stimuli exclusively for day 60.
-3. [5 and U3] A46.1, A46.2 and numerous exits lack completed stimuli and passage-specific keys; several require unwritten reports, editorials or draft samples | Their answers, distractors and freshness cannot be verified | Supply the exact passages or draft samples, specific answers and complete meeting/nonmeeting samples before treating these checks as finished.
-4. [5, A60.6] The required omission removes usually, although the key calls the result meaning-preserving | Removing a frequency qualification broadens the source’s claim and rewards the distortion the unit teaches students to avoid | Retain usually and omit nonessential wording from a revised stimulus; update both samples and require preservation of qualifications.
-5. [5, A60.3] The prompt asks about an objection concerning cost, but Cold A contains an objection concerning limited space | Students cannot cite the requested objection, while the key answers a different question | Replace “cost” with “limited space” throughout the item.
-6. [U3, E32] The key attributes explanatory process language to the background’s second Constitution paragraph, which only names amendment and ratification processes | The requested contextual explanation exceeds the stimulus | Supply a reserved passage that actually explains constitutional change, such as the linked page’s [Article V explanation](https://www.archives.gov/founding-docs/constitution/what-does-it-say), and key the answer to its wording.
-7. [5, A59.1] The meeting sample concedes limited space but never states the competing claim | It could receive credit despite the omission identified by K | State the opposing proposal explicitly, then distinguish the writer’s claim and show the logical order of supporting reasons.
-8. [7] Four broad group names replace an explicit allocation of error letters A through S | Teachers cannot consistently route each diagnosed error to its repair | Map every letter to a group and its field 6 repair, identify the fresh transfer task, and specify how remaining errors receive written partner repairs when four groups are running.
+Check: `unitplan.py check english-language-arts-grade-8` passes s02.md. The required `source-map.csv` is absent.
 
-Count: 8 findings (lens assessment).
+Count: 2 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md
+- scripts/standards.py

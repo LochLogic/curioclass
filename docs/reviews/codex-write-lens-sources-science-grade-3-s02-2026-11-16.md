@@ -1,7 +1,10 @@
-Check: s02.md passes; the course check fails on unfinished placeholders in s03.md through s06.md.
+Gate: `unitplan.py check science-grade-3` passes s02.md with no notes.
+Reading note: source-map.csv is absent; the scope and sequence explicitly permits this because the course is original.
+Count: 0 findings (lens sources). References are freely checkable, invented records are labeled, investigation materials and controls are named, and safety guidance cites a [professional elementary science safety guide](https://static.nsta.org/pdfs/SafetyInElementaryScience.pdf).
 
-1. [8, 10] Day 18 names mealworms and a habitat but omits bedding, food, moisture supplies and a species-specific care source | “Adults feed animals” does not establish a safe, reproducible care routine | Name the species, all habitat consumables and a freely checkable husbandry guide; specify daily and holiday care consistent with the linked [elementary safety guidance, pages 6 to 7](https://static.nsta.org/pdfs/SafetyInElementaryScience.pdf).
-2. [8, 10] The 14-day flowering and 40-day seed expectations are attached to generic “fast-cycling flowering seeds” without the source’s required growing conditions or nutrition supplies | Those timings apply to particular rapid-cycling plants under specified conditions | Identify the plant type, name its growing medium and nutrition supplies, and state the continuous-light, moisture and temperature conditions supporting the timings in the [linked growing guidance](https://fastplants.org/frequently-asked-questions/).
-3. [8, 10] Day 24 offers “verified observation records” without identifying any record or checkable source | The no-apparatus alternative promises evidence whose provenance cannot be checked | Name a free source and the exact on-off observations used, or specify original classroom records with apparatus, observer and date; label hypothetical substitutes “invented for practice” and remove “verified.”
+## Files changed outside the allowed set
 
-Count: 3 findings (lens sources).
+- data/plans/flow-status.csv
+- docs/COURSES-STATUS.md
+- scripts/day_skeleton.py
+- scripts/plan_flow.py

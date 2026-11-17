@@ -1,9 +1,14 @@
-Gate: s03.md PASS; the course check fails on unfinished TODO(writer) placeholders in s04.md and s05.md.
+Check: `unitplan.py check english-language-arts-grade-8` passed `s03.md` without notes. The course’s `source-map.csv` is absent.
 
-1. [5, A86.2, A86.3, A86.6] The cold reference pack supplies qualified's meaning, the assessed root explanations and the antonym relationship | Copying entries can replace the reasoning being assessed | Collect context, root and word-relationship responses before releasing references for A86.4 and A86.5.
-2. [U3, E66, E67, E71] The exits reuse toxic/toxicity, pharmacist and adhere from that day's language model; changing the surrounding nouns leaves the worked answer intact | These exits measure recall of the example rather than transfer | Replace each with a reserved passage using a different word carrying the taught root or prefix, with independently worked keys.
-3. [5, meeting samples] A75.3 supplies neither an actual quotation nor paraphrase or complete citation; A87.1 names sources' functions without giving the student's question or substantive findings; A87.2 describes successful work instead of showing it | Samples labelled meeting do not demonstrate every required component | Supply constructed portfolio excerpts showing each required component and identify precisely which evidence earns each score.
-4. [7, T88] The language group includes K to N, but its assigned transfer contains no word-meaning hypothesis, reference-selection task, verification trail or antonym task | Students cannot demonstrate independent transfer after those repairs | Add separate reserved language cases for K, L, M and N within the existing transfer allocation, each with its prompt and keyed look-for.
-5. [6, K; 5, A86.3] The reversed meaning of preceded is assigned to K, which describes ignoring context, without establishing whether the student instead reversed pre- | The assigned context repair may leave the actual prefix misconception untouched | Make the wrong reasoning explicit, register reversed prefix meaning separately, and add its prefix-comparison repair and response group.
+1. [Daily exit table, E72 and E79] E72 repeats day 72’s retrieval contrast between the bulletin and Act; E79 reuses day 77’s model-table evidence about Wiley’s investigation and section 7 | These assess rehearsed relationships rather than transfer to fresh stimuli | Replace both with fully printed, unused source pairs addressing different relationships, and write corresponding new keys.
+2. [Daily exit table, E88] Students must repair “a new paragraph or table cell,” but neither that artifact nor its supporting evidence is supplied; the generic synthesis insert cannot instantiate each assigned error | The teacher cannot administer or consistently judge the promised exit | Supply reserved flawed artifacts, source evidence and keyed corrections for the available assignments, including separate cases for errors requiring references, research records or discussion.
+3. [Fields 5 to 7, A87.5 and error O] A87.5 assigns a font change claimed as substantive revision to O, whose registered misconception concerns organising evidence without considering the reader | Cosmetic revision and audience organisation receive the same diagnosis despite needing different repairs | Add a separate letter for mistaking surface formatting for substantive revision, relabel this wrong answer, and assign its repair group and written move.
 
-Count: 5 findings (lens assessment).
+Count: 3 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md

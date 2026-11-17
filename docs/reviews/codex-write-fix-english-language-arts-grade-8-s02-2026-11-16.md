@@ -1,17 +1,13 @@
-Merged: 9 distinct findings. Fixed: 9. Rejected: 0.
+Findings merged: 3, with no duplicates. Fixed: 2 fully and 1 partly.
 
-1. Made day 46 diagnostic and unscored.
-2. Replaced teaching examples that revealed assessment answers.
-3. Supplied concrete check passages, draft samples, keys and answers.
-4. Preserved “usually” in the shortened quotation.
-5. Corrected the objection from cost to limited space.
-6. Reserved the Article V explanation for E32 and corrected its key.
-7. Added an explicit competing proposal to A59.1’s meeting sample.
-8. Routed every error letter to repairs, with separate transfer tasks and exits.
-9. Aligned vocabulary weeks and reuse dates with the calendar.
+- Assessment 1: Replaced Cold A to D with fresh contexts and arguments, updated prompts, keys and samples, and removed assessment-specific teaching examples.
+- Assessment 2: Replaced E31 with a fresh contextual vocabulary and tone question.
+- Sequence 1: Changed day 54 to practise links already taught. The day-type change is rejected below.
 
-Findings upheld by lens: assessment 8/8; sources 1/1; sequence 1/1. The Constitution finding was shared.
+Held up by lens: assessment 2/2; sources 0 findings; sequence 1/1 in part.
 
-Gate: `PASS docs/courses/english-language-arts-grade-8/s02.md`. The course command still fails on existing `TODO(writer)` placeholders in s03.md through s05.md.
+Only s02.md was edited. UTF-8, LF endings, standards and the day list were preserved.
 
-Only s02.md was edited. It remains within the word cap, UTF-8 with LF endings, without em dashes.
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-8` reports PASS for s02.md.
+
+REJECTED: sequence 1 | Days 54, 57 and 58 should change from Fluency to Application because their tasks develop writing. | Changing their types and counts only in s02.md would break the required match to days.csv, which this job forbids editing. | the writer's brief

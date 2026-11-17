@@ -1,17 +1,22 @@
-Merged findings: 7. Fixed: 7. Rejected: 0.
+Updated only `docs/courses/english-language-arts-grade-8/s04.md`.
 
-1. Replaced rehearsed assessment analogy, irony and connotation examples and their keys.
-2. Replaced E112 and E116 with fresh situations and keys.
-3. Replaced E111’s false contradiction with an actual narrator switch and valid repair.
-4. Aligned wrong answers with error letters B, E and O.
-5. Supplied Borrow and Hawthorne passages beside E124 and T124, with text-based evidence requirements.
-6. Corrected Bulfinch’s revised edition, chapter and excerpt boundaries.
-7. Aligned anchor lengths with the scope and sequence and budgeted reading within existing days.
+Findings merged: 6. Fixed: 6.
 
-Findings upheld per lens: assessment 4/4; sources 2/2; sequence 1/1.
+1. Assessment 1: Replaced reused cold texts and interpretations with fresh stimuli and keys, including two unseen miniature productions.
+2. Assessment 2: Allowed supported findings of fidelity without requiring a departure.
+3. Assessment 3: Replaced E93, E101 and E102 with different cases and conclusions.
+4. Assessment 4: Replaced the dialogue sample with empty greetings and the explicit misconception registered under C.
+5. Sources 1: Cited school drama guidance and connected its controls to staging precautions.
+6. Sequence 1: Added paired oral rereading for accuracy and expression before day 119 editing.
 
-Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-8` reports **PASS for s04.md**. The course check fails only on unfinished `s05.md` placeholders.
+Held up by lens: assessment 4/4; sources 1/1; sequence 1/1.
 
-Only `docs/courses/english-language-arts-grade-8/s04.md` was edited. It retains the word cap, UTF-8 and LF endings.
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-8` passed, including `s04.md`.
 
-For human review: confirm the completed full-length manuscripts fit the allocated reading minutes.
+Word count: 1,799 against the 1,800 cap. UTF-8, LF endings and absence of em dashes verified.
+
+REJECTED: none
+
+## Files changed outside the allowed set
+
+- data/plans/unit-rejections.csv

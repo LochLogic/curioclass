@@ -1,5 +1,8 @@
-1. [8, 10; days 37 to 49] Required evidence remains unlocated: dated photograph sequences, verified parent-young records, puppy-litter and rabbit-ear data, and backup crowding data have no identified source. Listing them as “still to make” does not establish provenance. | Teachers cannot verify stages, family relationships or whether supplied measurements are observations. | Identify each record and its free source, or its class-owned dated original with creator and reuse permission. Explicitly label synthetic alternatives “invented for practice”; never present them as observed records.
-2. [10; day 42] The seed-packet timing activity assigns germination and harvest wording without naming a packet, edition or freely checkable publisher page; field 10 nevertheless says no unseen packet wording is assigned. | The planned source-dependent reading cannot be checked or prepared reliably. | Select an exact packet with a free matching text and identify the timing lines used, keeping company names out of instructional copy, or replace it with an explicitly invented timing card.
+Check: `unitplan.py check science-grade-3` passes s03.md with no notes.
+Source-map: absent by design; the scope and sequence explicitly requires none for this original course.
+Count: 0 findings (lens sources). References are freely checkable, invented records are labelled, photographs require provenance and permission, materials are named, and safety cites [professional elementary guidance](https://static.nsta.org/pdfs/SafetyInElementaryScience.pdf).
 
-Gate: s03.md PASS; the course command exits with failures for unfinished s04.md to s06.md. No source-map.csv exists, as the scope and sequence explicitly permits.
-Count: 2 findings (lens sources).
+## Files changed outside the allowed set
+
+- --help
+- docs/COURSES-STATUS.md

@@ -1,4 +1,11 @@
-1. [10, heating source-map entry] The entry claims the source publishes no alignment list, but its [public preparation page](https://im.kendallhunt.com/HS/teachers/1/modeling_prompts/3/preparation.html) lists A-CED.A.2, A-CED.A.3 and A-SSE.A.1. | This obscures which alignments come from the source and which describe our adaptation. | Record the published list separately and identify A-REI.C.6 and A-REI.D.12 as Curio Class adaptation alignments; remove the false no-list claim.
+Count: 0 findings (lens sources).
 
-Gate: s02.md PASS; course check fails on unfinished TODO(writer) content in s03.md through s07.md.
-Count: 1 findings (lens sources).
+The [base lessons](https://im.kendallhunt.com/HS/teachers/1/2/index.html) and [heating prompt](https://im.kendallhunt.com/HS/teachers/1/modeling_prompts/3/preparation.html) are freely accessible with CC BY 4.0 notices. Field 10 identifies editions and adaptations, labels invented contexts, and limits the progression reference to consultation. No assessment depends on an unavailable source or an unsupported summary.
+
+Gate: `python -X utf8 scripts/unitplan.py check algebra-i` passes s02.md with no notes.
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- docs/COURSES-STATUS.md

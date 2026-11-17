@@ -1,5 +1,12 @@
-1. [10; 6, error G] Printed-page citations for the [Functions progression](https://mathematicalmusings.org/wp-content/uploads/2013/07/ccss_progression_functions_2013_07_02.pdf) are one page too high | Readers are directed to incorrect source locations | In field 10, change printed pages 9 to 11 and 17 to 18 to 8 to 10 and 16 to 17; in field 6, G, change printed page 17 to 16. Keep the PDF page numbers.
+1. [10] The core base text is named without its edition | The plan omits the required edition identification | Add “first edition, 2019 to 2021” to the base-text entry, matching docs/sources/BASE-TEXTS.md, and retain its licence and lesson links.
 
-Gate: s05.md passed; the course check failed on unfinished TODO(writer) entries in s06.md and s07.md.
+Gate: `python -X utf8 scripts/unitplan.py check algebra-i` passed s05.md with no notes.
 
 Count: 1 findings (lens sources).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

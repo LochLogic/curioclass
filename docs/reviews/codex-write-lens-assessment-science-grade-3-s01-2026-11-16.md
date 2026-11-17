@@ -1,7 +1,14 @@
-1. [5, 7] Days 14 and 15 score newly produced work without an earlier written-feedback and revision opportunity; day 16 also scores fresh transfer immediately after repair | These scores violate the brief’s eligibility rule | Identify earlier production, written-feedback and revision dates for each scored component, exclude first-teaching work, and keep day 16’s immediate transfer unscored.
-2. [5, day 13 exit] The “fresh empty seat” repeats the anchor’s held-swing explanation and rehearses the end assessment’s next-turn prediction | A familiar answer can pass without transfer | Replace it with a distinct motion case and a different evidence decision, such as judging whether a prediction remains supported after conditions change.
-3. [5, day 10 exit key] The key cites “both earlier right-turn-to-centre observations,” but the supplied sequence contains only one completed right-turn-to-centre transition | The required evidence exceeds the stimulus | Extend the sequence to left, centre, right, centre, left, centre, right, centre, left, centre, right; then predict centre using the two completed matching transitions.
-4. [5, 6] Day 10 assigns every unsupported answer to G, although G describes believing that predictions need no observational evidence | An omitted explanation does not establish that misconception, and this contradicts field 6’s omission rule | Record missing evidence as an incomplete component; assign G only when the response expresses preference or explicitly rejects observational support.
+Check: `python -X utf8 scripts/unitplan.py check science-grade-3` passed s01.md with no notes.
 
-Gate: `unitplan.py check science-grade-3` passes s01.md; the course check fails on unfinished placeholders in s02.md to s06.md.
-Count: 4 findings (lens assessment).
+1. [Field 5, day 13 exit] The cart reverses repeatedly after release without any stated cause for those reversals | The stimulus leaves the force explanation underdetermined | Show the cart on a U-shaped track, released from a raised end, and distinguish the initial holding pushes from the later added push.
+2. [Field 5, day 5 exit key] The key lists possible motion changes but never specifies how force direction explains each one | A response could match the key while wrongly claiming that a forward push slows a forward-moving ball | Specify initial motion and force arrows in each drawing; require starting toward the push, slowing under an opposing push, turning toward a sideways push, and remaining at rest under balanced forces.
+
+Count: 2 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

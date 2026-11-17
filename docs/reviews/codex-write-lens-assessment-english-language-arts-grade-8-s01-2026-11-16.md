@@ -1,11 +1,18 @@
-Gate: s01.md PASS; command exits 1 because s02.md to s05.md contain TODO(writer) placeholders.
+Gate: s01.md PASS, with no notes. The required source-map.csv is absent.
 
-1. [5, U3] Novella questions lack actual passages and factual keys; day 15 language items lack their sentences | Correctness and exit freshness cannot be verified | Supply exact stimuli, passage locations, worked keys and concrete passing and failing answers before assessment use.
-2. [5, U7] The model paragraph rehearses the cold miniature's location reveal, accusation and record-led correction | Day 28 can reward remembered analysis | Replace the instructional model with a different incident and explanation that disclose none of the cold story's events.
-3. [5, W.8.10] Day 27 scores short responses and the day 11 narrative without scheduling their written feedback and earlier revision opportunity | These stored pieces do not meet the scoring eligibility rule | Identify eligible pieces, date their written feedback and provide revision before day 27; exclude unrevised pieces from scoring.
-4. [5, day 15 L.8.1b] The key says the “actor becomes receiver as subject” | Passive voice changes grammatical position, not who performs or receives the action | State that the receiver becomes the subject while semantic roles remain unchanged; provide a complete active/passive pair.
-5. [6, Q] One letter combines inappropriate voice shifts and inappropriate mood shifts, with alternative repairs | The code does not identify one misconception | Keep Q for voice shifts, add X for mood shifts, and assign each its own wrong answer and repair.
-6. [7] Four broad groups and unspecified paired cards do not allocate every error letter | Teachers lack a complete route from diagnosed error to repair, especially S to V | Add a letter-to-group table covering every register entry, with the actual repair task for each teacher or paired group.
-7. [U3, day 30] The exit uses the assessment texts and repair just discussed during response time | It does not demonstrate transfer to a fresh stimulus | Reserve a new short text or case for the exit and require application of the repaired skill before setting the goal.
+1. [U3] Most exits, including E8, E14, E23 and E26, specify an unwritten reserved sentence or paragraph instead of an actual stimulus | Correctness, freshness and error assignments cannot be checked | Supply each exact stimulus and location, its worked answer and a concrete wrong answer for each assigned letter.
+2. [Field 5] Day 28 repeats taught material: another archive missing-letter mystery, plus an application of the postmark and stationery methods already read in [Kells’s account](https://blogs.loc.gov/manuscripts/2022/05/behind-the-scenes-helping-letters-tell-a-story/) | Withholding paragraphs does not make their central reasoning cold | Replace both selections with unseen cases requiring different central inferences, then rebuild the keys.
+3. [Field 5] A29.2 repeats the notebook’s gerund-subject, participial-modifier and purpose-infinitive sentence frames; A29.5 repeats the register’s repair templates with substituted nouns | Remembered templates can substitute for independent analysis | Use different sentence structures and genuinely new shift problems, retaining all assessed functions.
+4. [Field 5] Several “Meets” entries, including Development, Process and Literary evidence, describe successful work rather than provide sample answers | Teachers cannot calibrate the stated scoring against actual responses | Supply concrete meeting and nonmeeting responses, with quotations and process artifacts where required.
+5. [Field 5, A29.3] Both model sentences add “before visitors arrived,” which the story never establishes | A model answer introduces unsupported narrative information | Replace that phrase with “while both volunteers were upstairs.”
+6. [Fields 5 and 6] “The drawer is furniture” does not exemplify D’s incident-listing error, and “All letters were dated by their writer” invents information rather than exemplifying A’s weak evidence choice | These responses send students to mismatched repairs | For D, give an accurate event list without causal explanation; for A, offer the assignment detail as insufficient dating evidence.
 
-Count: 7 findings (lens assessment).
+Count: 6 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- tools/hamburger-paragraph/art/bear-chomp.webp
+- tools/hamburger-paragraph/art/bear-full.webp
+- tools/hamburger-paragraph/art/prompts.json
+- tools/hamburger-paragraph/src.html
+- tools/hamburger-paragraph/voice/lines.json

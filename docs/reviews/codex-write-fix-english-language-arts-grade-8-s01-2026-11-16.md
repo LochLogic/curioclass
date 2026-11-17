@@ -1,17 +1,21 @@
-Updated only [s01.md](/S:/CurioClass/docs/courses/english-language-arts-grade-8/s01.md).
+Merged: 8 findings. Fixed: 7.
 
-- **Assessment 1 / sources 1, merged:** supplied diagnostic text, sentences and keys. Rejected inserting the complete novella into this plan because it would violate UNIT-PLAN's 1,800-word cap. Its edition, passage references and factual keys remain explicit prerequisites for student use.
-- **Assessment 2:** replaced the model that rehearsed the cold story.
-- **Assessment 3:** scheduled written feedback and later revision for eligible scored pieces; excluded unrevised practice.
-- **Assessment 4:** corrected the passive-voice explanation and supplied a complete pair.
-- **Assessment 5:** separated voice error Q from mood error X, with distinct examples and repairs.
-- **Assessment 6:** routed all 24 error letters to teacher or paired repairs.
-- **Assessment 7:** supplied fresh day 30 transfer material.
-- **Sequence 1:** allocated 300 new-reading minutes and 14 home instalments within the existing allowance.
-- **Sequence 2:** allocated 20 concurrent language minutes on day 29 and removed assessment spillover into day 30.
+Fixes: complete exit stimuli and keys; new cold assessment cases; fresh grammar structures; concrete scoring samples; corrected narrative timing; aligned wrong answers with error letters; explicit standards breakdowns.
 
-For the lead: commission the novella and complete passage/key verification. Reading pace and discussion timing still need trials with finished materials.
+Held up for correction: assessment 6/6; sources 0 findings; sequence 1/2.
 
-`unitplan.py check`: s01 passes; the course fails on unfinished s02 to s05 placeholders.
+Gate: `PASS docs/courses/english-language-arts-grade-8/s01.md`. UTF-8 and LF endings verified.
 
-`plan.py check` and `lesson.py check` cannot complete because the sandbox lacks the `markdown` module.
+REJECTED: sequence 1 | Days 9 and 14 should be Understanding, and days 23, 25 and 26 Application, rather than Fluency. | Changing s01.md alone would contradict days.csv, which this job forbids editing; the lead must change the data and regenerate the mechanical fields. | the writer's brief
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- docs/COURSES-STATUS.md
+- scripts/standards.py
+- tools/hamburger-paragraph/art/bear-chomp.webp
+- tools/hamburger-paragraph/art/bear-full.webp
+- tools/hamburger-paragraph/art/prompts.json
+- tools/hamburger-paragraph/src.html
+- tools/hamburger-paragraph/voice/lines.json

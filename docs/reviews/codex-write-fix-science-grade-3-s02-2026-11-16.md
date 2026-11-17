@@ -1,17 +1,20 @@
-Merged findings: 5 distinct findings. Fixed all 5 in `docs/courses/science-grade-3/s02.md`:
+Findings merged: 2. Fixed: 2.
 
-- Added explicit prompts and feedback/revision coverage for both scored interaction explanations.
-- Replaced day 28’s repeated latch case with a pickup-tool problem requiring a changed-user criterion.
-- Specified mealworm species, habitat supplies, care source and daily/holiday care.
-- Specified the rapid-cycling plant type, nutrition supplies and growing conditions.
-- Defined electromagnet record provenance and labelled hypothetical alternatives.
+Per lens, findings upheld: assessment 2/2; sources 0/0; sequence 0/0.
 
-Rejected: 0; no rejection reasons apply.
+Removed error C from the magnet-pair exit. Added individual ruler measurement on day 29, written feedback, day 30 revision and day 31 scoring.
 
-Per lens held up: assessment 2/2; sequence 0 findings; sources 3/3.
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-3` returned `PASS docs/courses/science-grade-3/s02.md`.
 
-Preserved days, standards and plan shape. Counted words: 1,250. UTF-8, LF endings, no em dashes.
+REJECTED: none
 
-Gate: `PASS docs/courses/science-grade-3/s02.md`
+## Files changed outside the allowed set
 
-The course gate still fails on unfinished placeholders in s03.md through s06.md.
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- data/plans/flow-status.csv
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md
+- scripts/day_skeleton.py
+- scripts/plan_flow.py

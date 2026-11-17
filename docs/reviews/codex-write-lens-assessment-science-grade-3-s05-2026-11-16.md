@@ -1,7 +1,12 @@
-1. [field 5, day 95 key and day 94 exit] Both keys infer a lake from freshwater fossils without lake-specific evidence. | Freshwater organisms could also inhabit rivers or ponds, so the keys reject defensible answers. | Replace “lake” with “freshwater environment”, or supply evidence distinguishing a lake from other freshwater habitats.
-2. [field 5, product S sample] The “Meets” sample omits the ditch plug’s five-token cost, although scoring requires comparing both costs and the path constraint. | The sample models an incomplete answer as meeting all six criteria. | Add: “The plug costs five tokens and the pool costs six. Both fit the budget, but the plug floods the path.”
-3. [field 5, exits on days 86 and 94] Day 86 repeats product F’s two-location fish-and-water-plant inference with changed lengths. Day 94 repeats its fossil sequence and product S’s drainage case, including seven plants, five egg clusters and six tokens. | These exits rehearse assessment evidence, including S revised that same day. | Replace day 86 with a spatial fossil-map inference involving aquatic finds and terrestrial tracks; replace day 94 with a different fossil-map comparison and a shade-restoration case using new outcomes and constraints.
-4. [field 5, days 95 and 96 diagnostics] The supposedly fresh diagnostics reproduce products F and S: the same layered fossil sequence and the same water-loss solution tradeoff, with quantities and labels changed. | They provide weak evidence of transfer after feedback and revision on those structures. | Use a fossil-site comparison requiring competing spatial explanations on day 95 and a temperature-change solution with different outcomes and constraints on day 96.
+Gate: `unitplan.py check science-grade-3` passes s05.md with no notes. source-map.csv is absent by design, as the scope and sequence explains.
 
-Gate: s05.md passes; the course check fails on unfinished s06.md placeholders. Required source-map.csv is absent.
-Count: 4 findings (lens assessment).
+1. [5, day 91 exit ticket; 6, error E] Error E requires choosing larger counts despite a broken limit, but the ticket supplies only one solution, which meets every goal and limit | The item cannot distinguish checking constraints from ignoring them | Add a competing whole-patch removal option yielding ten plants and eight feeding visits for six tokens; require choosing between it and strip removal with reasons.
+
+Count: 1 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md

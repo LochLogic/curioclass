@@ -1,6 +1,12 @@
-1. [field 2; day list, 1 to 18] The daily budgets reserve only 184 minutes for reading and modelling, against approximately 300 class minutes for new reading in the scope and sequence | Whole-novella completion before essay planning lacks an allocated reading route | Replace the generic budgets with day-specific allocations reserving approximately 300 new-reading minutes, reallocating at least 116 existing task minutes and naming instalments within the existing home-reading allowance.
+1. [Fields 1–2, U6, day list] Days 9, 14, 23, 25 and 26 are labelled Fluency but teach grammar or develop composition; days 9 and 14 introduce new skills | UNIT-PLAN defines ELA fluency as reading fluency, so the types and header counts misrepresent the sequence | For the lead: change days 9 and 14 to Understanding and 23, 25 and 26 to Application in days.csv, regenerate the day list, and update counts to 12 understanding, 0 fluency, 12 application, 4 check and 2 respond.
+2. [Field 2] Several standards give “Parts, by verb: whole standard,” including RL.8.2 and RL.8.3 | This omits the required breakdown needed to trace instruction and practice across each demand | Replace these labels with explicit verb parts, including theme determination, development analysis and objective summary for RL.8.2, and action, character and decision effects for RL.8.3.
 
-2. [day list, 29 to 30] Day 29 permits unfinished assessment explanations to continue on day 30, whose response activities already total 50 minutes | The fallback overbooks the respond day and delays evidence needed for its repairs | Allow up to 20 concurrent waiting minutes for language work on day 29, verify that the tasks fit, and remove the day 30 completion fallback.
-
-Gate: s01.md passes; the course check fails on unfinished TODO(writer) placeholders in s02.md to s05.md.
+Check: PASS s01.md. The requested source-map.csv is absent, as field 10 states.
 Count: 2 findings (lens sequence).
+
+## Files changed outside the allowed set
+
+- tools/hamburger-paragraph/art/bear-chomp.webp
+- tools/hamburger-paragraph/art/bear-full.webp
+- tools/hamburger-paragraph/art/prompts.json
+- tools/hamburger-paragraph/src.html

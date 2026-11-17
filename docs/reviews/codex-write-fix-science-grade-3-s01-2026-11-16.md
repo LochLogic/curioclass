@@ -1,17 +1,18 @@
-Merged: 7 distinct findings. Fixed all 7 in s01.md only.
+Findings merged: 2. Fixed: 2 in docs/courses/science-grade-3/s01.md.
 
-1. Scoring eligibility: score day 7 and day 12 records after written feedback and revision. Fresh performances on days 14 to 16 remain unscored.
-2. Day 13 exit reuse: replaced the swing case with a cart case requiring an evidence decision after conditions change.
-3. Day 10 key: extended the sequence to supply both cited transitions.
-4. Error G: missing evidence is incomplete; G requires an expressed misconception.
-5. No-kit evidence: marked the route unavailable until real records with provenance are supplied.
-6. Readiness repairs: allocated ten minutes per gap within day 2’s 45 minutes.
-7. Measurement ownership: removed grade 2 measurement from owned skills; retained retrieval.
+1. Assessment 1: Added a U-shaped track to explain the cart’s reversals and distinguished the holding pushes from the later added push.
+2. Assessment 2: Specified initial motion and push directions in the day 5 drawings, with matching explanations for starting, slowing, turning and remaining still.
 
-Rejected: 0.
+Findings upheld per lens: assessment 2/2; sources 0/0; sequence 0/0.
 
-Held up by lens: assessment 4/4; sources 1/1; sequence 2/2.
+Gate: `python -X utf8 scripts/unitplan.py check science-grade-3` reported `PASS docs/courses/science-grade-3/s01.md`.
 
-For a person: review the earlier-record scoring schedule. The no-kit records still need creation.
+REJECTED: none
 
-Gate: `PASS docs/courses/science-grade-3/s01.md`. The course command fails on unfinished placeholders in s02.md through s06.md. UTF-8, LF endings and no em dashes verified.
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

@@ -1,5 +1,7 @@
-1. [5, day 114 exit] The key credits reduced marker displacement, but the stimulus supplies only sheltered trials | All markers might also remain without the shelter, so the causal claim exceeds the evidence | Add matched unsheltered trials showing marker loss and an explicit retention goal; require comparison with the sheltered results.
-2. [5, product C] The sample labelled “Meets” omits Q's climate description, despite requiring a combined description of each region | It models an incomplete response as meeting the look-fors | Include Q's cold winters and cool summers from the atlas, its 2 to 10 rainy August days from the station card, and the supported comparison with P.
-3. [5 and 6, error C] Responses inferring climate from today's rain are labelled C, whose register text specifies one year's record | The assigned letter does not describe the stated wrong answer | Define C as “A short weather record determines the whole climate,” retaining the many-year comparison repair and covering both daily and single-year examples.
-Gate: `unitplan.py check science-grade-3` passes s06.md. The requested source-map.csv is absent; the scope and sequence explicitly states none is required.
+Gate: `unitplan.py check science-grade-3` passed, including s06.md. source-map.csv is absent; the scope and sequence explicitly says none is required.
+
+1. [field 5, coverage] No end item checks ss3-globe-grid, although field 2 lists it as owned | The stated ownership and assessment coverage disagree | For the lead: classify it as cross-subject retrieval, consistent with day 103 and the scope and sequence, and remove it from the owned list.
+2. [field 5, product H sample] The “Meets” sample omits the repeated comparison counts required by its look-fors | It models a passing response without the specified comparison evidence | Add: “The doorway trials wet 1, 2 and 1 counters, compared with 6, 5 and 6 without it.”
+3. [field 5, day 115 W] The listed scale error concerns icons, but the item requires a bar graph | That wrong answer does not match the required representation | Replace it with a bar-graph error, such as labelling ticks 0, 2, 4, 6 but drawing six tick intervals for six rainy days (A).
+
 Count: 3 findings (lens assessment).

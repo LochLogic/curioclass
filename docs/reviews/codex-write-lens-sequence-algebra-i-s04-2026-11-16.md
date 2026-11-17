@@ -1,5 +1,9 @@
-Gate: s04.md passes; the course check fails on unfinished s05.md, s06.md and s07.md skeletons.
+Count: 0 findings (lens sequence). Teaching precedes fluency and application; daily budgets total 50 minutes; day counts match days.csv; prerequisites, later completion and handoffs are named; supplies support every task.
+Gate: `python -X utf8 scripts/unitplan.py check algebra-i` passed, including s04.md, with no notes.
 
-1. [4, prerequisite handoffs] The last-use table gives grade 8 day 160 for m8-function-define, m8-function-qualitative and m8-function-model, while the scope and sequence records day 114 for all three | The documents give conflicting evidence for the incoming handoffs, although retrieval remains appropriate | Reconcile the underlying last-use calculation with the recorded teaching and assessment days, then regenerate these entries using day 114 unless later qualifying instruction is documented.
+## Files changed outside the allowed set
 
-Count: 1 findings (lens sequence).
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

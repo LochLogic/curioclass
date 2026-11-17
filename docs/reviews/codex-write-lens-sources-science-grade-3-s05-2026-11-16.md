@@ -1,7 +1,8 @@
-1. [10; days 83 and 86] Fossil size-location records remain unverified, with supplied practice records offered meanwhile; the linked [Florissant page](https://www.nps.gov/flfo/learn/kidsyouth/welcome-to-eocene-florissant.htm) supplies environmental background but no specimen measurements. | Invented dimensions cannot serve as the promised documented regional fossil record. | Name the specimens, measured dimensions, find locations and free record URLs; label schematic drawings and invented measurements separately, retaining documented evidence for day 86.
+Count: 0 findings (lens sources). Free references support the named cases, invented records are labeled, original drawings replace photographs with unverified rights, and safety cites [professional elementary guidance](https://static.nsta.org/pdfs/safetyinelementaryscience.pdf). The checker reports s05.md PASS. source-map.csv is absent, explicitly permitted by this course's scope and sequence.
 
-2. [10; days 88 and 89] Crossing-test and fish-passage records have no identified dataset or explicit original-case attribution. The linked [fish-ladder page](https://oceanservice.noaa.gov/facts/fish-ladder.html) explains the mechanism, without reporting comparative trials. | Mechanism descriptions cannot substantiate measured solution effectiveness. | Assign a freely checkable trial record with location, conditions and results, or explicitly designate the teaching records as Curio Class originals, print “invented for practice,” and limit conclusions to those model cases.
+## Files changed outside the allowed set
 
-Gate: `unitplan.py check science-grade-3` passes s05.md; the course command fails on unfinished s06.md TODOs.
-
-Count: 2 findings (lens sources).
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- docs/COURSES-STATUS.md

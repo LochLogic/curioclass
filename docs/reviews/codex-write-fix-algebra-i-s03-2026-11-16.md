@@ -1,17 +1,11 @@
-Merged: **9 distinct findings. Eight fixed; one repair rejected.** Only `docs/courses/algebra-i/s03.md` was edited.
+Findings merged: 5, with no duplicates. Fixed: 4 in `docs/courses/algebra-i/s03.md`: relative-frequency wording, a fresh prediction case, item-specific scoring criteria and samples, and source edition details.
 
-1. Fixed: day 57’s institution report is unscored formative work.
-2. Rejected calendar synchronization: editing days.csv, the scope and sequence and the generated Day list would violate file ownership and UNIT-PLAN’s generated-table rule.
-3. Fixed: day 54 interpretations receive written feedback and day 55 revision before scoring.
-4. Fixed: appended precision error P after the existing letters; K retains prediction certainty.
-5. Fixed: C now covers grand-total errors in either conditional direction.
-6. Fixed: F’s retry produces residuals 1, -2, 1 and explicitly tests the zero-sum claim.
-7. Fixed: J’s retry requires plotting, fitting and justifying direction.
-8. Fixed: field 10 records the [published alignments](https://im.kendallhunt.com/HS/teachers/1/modeling_prompts/4/preparation.html), distinguishing the adaptation’s selections.
-9. Fixed: day 57 allocates ten revision minutes within fifty. Related prerequisite accounting was updated.
+Held up per lens: assessment 3/3; sources 1/2 within this plan; sequence 0 findings.
 
-Findings held up: assessment **7/7**, sources **1/1**, sequence **2/2**.
+Gate: `python -X utf8 scripts/unitplan.py check algebra-i` reports `PASS docs/courses/algebra-i/s03.md`, with no notes. UTF-8, LF endings and the new prediction key were verified.
 
-For the lead: synchronize the external calendar records and correct source-map.csv’s alignment claim.
+REJECTED: sources 1 | The Modeling 4 source-map record falsely denies a [published alignment list](https://im.kendallhunt.com/HS/teachers/1/modeling_prompts/4/preparation.html) and needs correction. | Field 10 already lists those alignments, distinguishes the selected day 57 codes and flags the error; correcting source-map.csv exceeds the permitted file ownership. | the writer's brief
 
-Gate: **PASS docs/courses/algebra-i/s03.md**. The course check fails on unfinished placeholders in s04.md through s07.md.
+## Files changed outside the allowed set
+
+- data/plans/unit-rejections.csv

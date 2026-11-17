@@ -1,5 +1,5 @@
-Gate: s06.md passes; the command fails on unfinished TODO(writer) lines in s07.md.
+Gate: `unitplan.py check algebra-i` passed s06.md with no notes.
 
-1. [Day 123, U6/U3] The fluency exit expects students to convert x² - 6x + 5 into factored form, although factoring is deferred to unit 7 and preceding days teach expansion and reading supplied factors | This introduces an untaught procedure on a rehearsal day | Supply (x - 1)(x - 5) as a candidate form and ask students to verify it by expansion, then use its zeros to justify the graph match.
+1. [U6, days 122 to 123] The source map keeps lesson 13's graph-to-expression reconstruction, but day 123 only matches supplied expressions to graphs; day 122 adds coefficient effects without reconstruction. | A retained base-lesson goal is omitted. | Model reconstructing a standard-form expression from a graph on day 122, then rehearse it independently on day 123 within the existing explanation and core minutes.
 
 Count: 1 findings (lens sequence).

@@ -1,20 +1,18 @@
-Updated only `docs/courses/algebra-i/s06.md`.
+Merged: 8 distinct findings. Fixed: 8 in docs/courses/algebra-i/s06.md only.
 
-Merged findings: **8**, with no duplicates. Fixed all eight:
+1. Added fresh linear and exponential construction evidence.
+2. Added scored comparison across different function representations.
+3. Put equivalence verification in day 127’s draft, with feedback and revision before scoring.
+4. Replaced item 6’s rehearsed signed product and updated its key and samples.
+5. Replaced reused exits 117, 120, 121 and 128.
+6. Removed dropped extensions from the planned source inventory.
+7. Identified the base text’s 2019 online edition.
+8. Restored graph-to-expression modeling on day 122 and independent rehearsal on day 123.
 
-1. Corrected growth-comparison values, graph window and sample.
-2. Restored missing exponents in exit tickets and day tasks.
-3. Used day 127’s path draft, written feedback afterward and revision on day 128 before scoring.
-4. Labelled passing quotations as excerpts and required complete evidence.
-5. Added fresh, keyed retry cards covering errors A through N.
-6. Replaced the repeated horizontal-shift assessment.
-7. Replaced day 124’s repeated flight model.
-8. Supplied day 123’s factored candidate for verification by expansion.
+Held up by lens: assessment 5/5; sources 2/2; sequence 1/1.
 
-Rejected: **0**.
+Preserved the plan’s shape and word cap. No days or standards added. Assessment sitting: 35 minutes.
 
-Findings upheld by lens: assessment **7/7**; sources **0 findings**; sequence **1/1**.
+Gate: `python -X utf8 scripts/unitplan.py check algebra-i` returned `PASS docs/courses/algebra-i/s06.md`.
 
-Verified changed arithmetic, retry coverage, timing totals, UTF-8, LF endings and the word-cap check.
-
-Gate: **PASS docs/courses/algebra-i/s06.md**. The course command fails only on unfinished `TODO(writer)` entries in `s07.md`.
+REJECTED: none

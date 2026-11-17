@@ -1,5 +1,9 @@
-1. [Field 2; U6] The focus calculation excludes all of day 34, including its five-minute retrieval and 25-minute lesson core | This contradicts the scope and sequence's minute method and understates instructional time | Include those 30 prerequisite minutes in both numerator and denominator, change day 34's U6 entry from 0 to 30, and replace 1,202/1,237 (97.17%) with 1,232/1,267 (97.24%). Revise U6's blanket exclusion of assessment-day instruction accordingly.
+Check: `python -X utf8 scripts/unitplan.py check algebra-i` passes for s02.md.
 
-Gate: `unitplan.py check algebra-i` passes s02.md; the command fails on unfinished placeholders in s03.md through s07.md.
+Count: 0 findings (lens sequence). Owned content is taught, practised and checked; fluency methods have earlier instruction; budgets total 50 minutes; day counts and assessment allocations match days.csv; handoffs and paper supplies support the planned work.
 
-Count: 1 findings (lens sequence).
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- docs/COURSES-STATUS.md

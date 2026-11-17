@@ -1,10 +1,11 @@
-Updated only [s01.md](/S:/CurioClass/docs/courses/algebra-i/s01.md).
+Findings merged: 6. Fixed: 6.
 
-- Merged findings: 2. Fixed: 2. Rejected: 0.
-- Added histogram and two-distribution readiness items within ten minutes; corrected component histories.
-- Included algebra openings: 438/673 prerequisite minutes, 65.08%.
-- Sequence lens: 2/2 held up.
-- Sources lens: 0 findings.
-- Assessment lens: incomplete; no findings evaluated. A person must arrange that missing read.
+Per lens held up: assessment 4/4; sequence 2/2; sources 0 findings.
 
-Gate: `PASS docs/courses/algebra-i/s01.md`. The course command exits 1 because s02.md through s07.md contain unfinished placeholders.
+Updated `docs/courses/algebra-i/s01.md` with complete exemplars, fresh exit reasoning, a matching error definition, corrected prerequisite minutes (403/673, 59.88 percent), and day 14 trial comparisons within existing time.
+
+For the lead: reconcile day 14’s `days.csv` description and regenerate the day list. Those files were outside the permitted write scope.
+
+Gate: `python -X utf8 scripts/unitplan.py check algebra-i` reports `PASS docs/courses/algebra-i/s01.md`.
+
+REJECTED: none
