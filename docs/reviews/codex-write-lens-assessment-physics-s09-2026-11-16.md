@@ -1,0 +1,5 @@
+1. [5, items 1 and 2] Survey R supplies scored interpretations: inner-core paths are “consistent with solid metal,” and the magnetic card identifies moving conducting outer-core material | Students can repeat supplied conclusions instead of independently interpreting evidence; a new survey name does not make this cold transfer | Replace those interpretations with unfamiliar observation records, withhold the layer conclusions, and require a justified model prediction for an additional record.
+2. [5, teacher-judged samples] The “Meets” samples omit required components: item 1 gives no boundary-reflection inference, and item 4 gives no explanation of the claim’s significance | These exemplars fall short of their own scoring requirements and could normalize incomplete responses | Add an evidence-supported reflection inference to sample 1 and an explicit significance statement to sample 4, or label and score them as partial responses.
+
+Gate: `unitplan.py check physics` passes s09.md; the command fails on unfinished `TODO(writer)` entries in s10.md.
+Count: 2 findings (lens assessment).

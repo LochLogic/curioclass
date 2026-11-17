@@ -1,14 +1,14 @@
-Findings merged: **4 distinct findings**. Fixed all four in `docs/courses/biology/s08.md`:
+Findings merged: 3 distinct findings. Fixed: 3.
 
-1. Completed the assessment samples with missing claim limits and the oxygen-to-life mechanism.
-2. Replaced day 121’s repeated oxygen sequence with fresh woodland-water feedback evidence, retaining the rate comparison.
-3. Identified day 119’s competing arguments as invented for practice and distinguished them from the published source.
-4. Labelled days 115, 116 and 118’s records as invented for practice and removed the historical-data description.
+Held up by lens: assessment 2 of 2; sources 0 findings; sequence 1 of 1.
 
-Rejected: **0**.
+Changed only `docs/courses/biology/s08.md`:
+- Replaced Item 2 with an untaught beaver-valley case, including prompt, scoring, samples and error mapping. Transfer remains 24 of 26 points, about 92 percent.
+- Broadened error F to cover oxygen sinks and clarified dissolved oxygen in the pond exit ticket.
+- Included collection within existing closing blocks on days 120, 122 and 123, keeping each at 50 minutes.
 
-Findings held up by lens: assessment **2/2**; sources **2/2**; sequence **0 findings**.
+For the lead: update day 120’s canonical timing to eight minutes revision plus two collection, then regenerate its day-list row. Generated content was preserved.
 
-Gate: `python -X utf8 scripts/unitplan.py check biology` reports **PASS for s08.md**. The course check fails on unfinished TODO placeholders in s09.md and s10.md.
+Gate: `python -X utf8 scripts/unitplan.py check biology` passed all biology plans, including `PASS docs/courses/biology/s08.md`.
 
-UTF-8, LF endings and no em dashes verified.
+REJECTED: none

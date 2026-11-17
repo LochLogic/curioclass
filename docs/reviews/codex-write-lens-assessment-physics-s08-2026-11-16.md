@@ -1,0 +1,5 @@
+1. [field 5, exits 114 and 123] These exits rehearse items 1 and 2: the same mass-lifetime comparison and Sun-to-Earth model, and the same three cosmic evidence lines plus local radiation transfer, with changed values. | Remembered explanations can substitute for fresh reasoning. | Replace these exits with withheld cases requiring different inferences, such as diagnosing inconsistent evidence, and reserve the assessment scenarios for day 126.
+2. [field 5, “Meets” samples] Item 1’s sample omits Earth’s later outward radiation; item 3’s sample omits the specified stars’ contrasting production possibilities and primordial versus stellar element origins. | Answers labelled “Meets” omit required scoring criteria. | Complete the samples: include Earth’s reradiation, the massive late-stage star’s production through the iron group versus the smaller star’s current helium production, and primordial hydrogen and helium followed by stellar enrichment.
+
+Check: s08.md passes; the course checker fails on unfinished s09.md and s10.md. The requested physics source-map.csv is absent.
+Count: 2 findings (lens assessment).

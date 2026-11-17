@@ -1,18 +1,9 @@
-Findings merged: 6. Fixed: 6.
+Findings merged: 5. Fixed: 4 in `docs/courses/biology/s07.md`.
 
-1. Removed scoring for probability inference first taught on day 103.
-2. Added concrete retained statistical and adaptation tasks, numerical records, keys and contrasting samples.
-3. Added explicit wrong responses with matching error letters to all four exits.
-4. Identified evidence-pack records, source links and reuse terms; labelled synthetic records “invented for practice.”
-5. Replaced the unsupported anchor timescale.
-6. Added modelling and independent practice for both translation directions on day 102.
+Held up by lens: assessment 4/4; sources 0 findings; sequence 0/1.
 
-Rejected: 0.
+Fixed variation scoring, communication criteria and samples, day 98’s conflicting-evidence task, and the dry-rock comparison.
 
-Per lens held up: assessment 3/3; sources 2/2; sequence 1/1.
+Gate: `python -X utf8 scripts/unitplan.py check biology` returned `PASS docs/courses/biology/s07.md`. UTF-8 and LF endings verified.
 
-Only docs/courses/biology/s07.md was edited. UTF-8 and LF verified; 1,235 counted words against the 1,250 cap.
-
-Gate: `PASS docs/courses/biology/s07.md`.
-
-The course command fails on unfinished `TODO(writer)` placeholders in s08.md to s10.md.
+REJECTED: sequence 1 | Allowing day 110 to fold into day 109 conflicts with the stated 18-day calendar and requires removing the fold-in instructions. | Wrong: the scope and sequence explicitly authorizes this fold-in under “Shorter path” as an optional shorter-calendar adoption while preserving canonical numbering. | none

@@ -1,0 +1,6 @@
+Gate: s06.md PASS; course check fails on unfinished s07.md to s10.md. Reading note: data/plans/physics/source-map.csv is absent.
+
+1. [Fields 1 to 2; day list, day 80] Day 80 is Fluency, but no preceding day teaches the frequency-wavelength-speed relationship; day 79 measures travel speed and amplitude only. Retrieving formula rearrangement does not establish this wave relationship. | Independent practice precedes the necessary science teaching. | Lead: change day 80 to Understanding in days.csv and regenerate the header and day list; field 2 should explicitly place teaching and guided practice of v = fλ there.
+2. [Fields 3 to 4] The repair references and last-use table name grade 8 day 75, grade 6 day 160 and grade 8 day 96, while the scope and sequence identifies wave work on grade 8 days 27 to 46, digital signals on grade 6 days 127 to 135 and light interactions on grade 8 day 26. | Teachers cannot reliably locate the prerequisite teaching for day 78's repairs. | Lead: reconcile these locations against the earlier courses' authoritative days.csv rows, correct the conflicting inventory and scope entries, and replace field 4's repair references with confirmed locations.
+
+Count: 2 findings (lens sequence).

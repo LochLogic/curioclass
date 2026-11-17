@@ -1,6 +1,3 @@
-Gate: `unitplan.py check biology` passes s10.md. The requested biology source-map.csv is absent.
+Gate: `unitplan.py check biology` passes s10.md. The requested `data/plans/biology/source-map.csv` is absent.
 
-1. [Day list, day 147; field 10] “Rope-free gear” misstates the [cited gear source](https://www.fisheries.noaa.gov/new-england-mid-atlantic/marine-mammal-protection/developing-viable-demand-gear-systems), which describes reduced rope exposure and systems that deploy rope during retrieval | Students could model elimination of rope hazards rather than reduction of persistent vertical lines | Replace “rope-free gear” with “on-demand gear” in the source day row, regenerate the table, and explain the remaining retrieval-line exposure in the evidence extract.
-2. [Field 10, cod assessment] The statement “not an open licence” contradicts the [report’s copyright page](https://publications.gc.ca/collections/collection_2025/mpo-dfo/fs70-5/Fs70-5-2025-048-eng.pdf), which explicitly names the Open Government Licence - Canada | The source record gives incorrect reuse conditions for the planned extracts and redrawn trends | Record the report-specific licence, link it, and retain the report citation and applicable attribution requirements instead of describing its licence as noncommercial-only.
-
-Count: 2 findings (lens sources).
+Count: 0 findings (lens sources). Named texts and data are freely verifiable, invented cases are labelled, reproduction limits are stated, and safety cites [professional school guidance](https://www.nsta.org/nstas-official-positions/safety-and-school-science-instruction). No files edited.

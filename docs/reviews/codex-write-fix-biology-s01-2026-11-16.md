@@ -1,20 +1,16 @@
-Merged: 11 distinct findings. Fixed 10 in [s01.md](/S:/CurioClass/docs/courses/biology/s01.md):
+Merged: 8 distinct findings. Fixed: 8 in docs/courses/biology/s01.md only.
 
-1. Added formative practical observations and later execution repeats before scoring.
-2. Replaced repeated clotting assessment with an unfamiliar amplification case.
-3. Explicitly requested the scored tissue-to-function explanation.
-4. Supplied comparison conditions, measurement resolution and a complete exemplar.
-5. Labelled constructed data as invented for practice.
-6. Specified garden peas and limited cross-species comparisons.
-7. Added checked sources and evidence-card credits.
-8. Added eleven daily budgets, each totalling 50 minutes.
-9. Located explanatory-writing instruction, practice, revision and checks.
-10. Removed duplicated senses readiness sampling, retaining retrieval.
+Held up by lens: assessment 5/5; sources 1/1; sequence 2/2.
 
-Rejected sequence finding 4: the computed grade 8 history correctly counts indirect prerequisite use; changing assigned readiness treatment would conflict with the writer’s instruction to preserve scheduled checks.
+1. Replaced reused assessment cards with unfamiliar tissue and transport evidence requiring cold-case predictions.
+2. Replaced the supplied birth explanation with observations requiring inference of amplification and its stopping condition.
+3. Removed error E from the item lacking pulse evidence.
+4. Supplied a common anomalous replicate, with written feedback before day 9 revision.
+5. Completed item 3’s exemplar with a justified shared-plan contribution and risk, cost and time considerations.
+6. Replaced the safety acknowledgment form with professional school science guidance and named the required controls.
+7. Aligned observations and minutes to four, three and three trios, preserving feedback before revised execution and day 12 scoring.
+8. Corrected prerequisite last-use and readiness versus retrieval entries.
 
-Held up by lens: assessment 4/4; sources 3/3; sequence 3/4.
+Gate: `python -X utf8 scripts/unitplan.py check biology` reports `PASS docs/courses/biology/s01.md`. All biology plans pass. Word cap, UTF-8 and LF endings verified.
 
-For the lead: reconcile the authoritative grade 7 readiness designation with computed indirect grade 8 use.
-
-Gate: `PASS docs/courses/biology/s01.md`. The biology command exits 1 because s02.md to s10.md retain unfinished placeholders.
+REJECTED: none

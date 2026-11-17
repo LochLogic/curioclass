@@ -1,3 +1,2 @@
-Gate: s08.md passes; the course check fails on unfinished TODO(writer) placeholders in s09.md and s10.md.
-
-Count: 0 findings (lens sequence). Standards have teaching and evidence, the phenomenon connects the lesson sets, prerequisites and later handoffs are named, and the day list, section boundaries, day counts and specified time budgets agree.
+1. [8; day list, days 120, 122 and 123] Daily paper collection requires two minutes, but each named schedule already totals 50 minutes without collection | These days require 52 minutes as written | Include collection within the closing blocks: day 120, eight minutes revision plus two collection; day 122, three minutes checking plus two collection; day 123, three minutes explaining corrections plus two collection before readiness. The lead must update day 120’s canonical timing and regenerate its day-list row.
+Count: 1 findings (lens sequence).

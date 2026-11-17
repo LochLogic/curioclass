@@ -1,0 +1,3 @@
+Gate: s07.md passes; the course check fails on unfinished s08.md to s10.md. Requested source-map.csv is absent. The patient-account page timed out, limiting verification of that background reference.
+
+Count: 0 findings (lens sources). The [microwave](https://www.fda.gov/radiation-emitting-products/resources-you-radiation-emitting-products/microwave-ovens) and [tanning](https://www.fda.gov/radiation-emitting-products/tanning/risks-tanning) quotations match their named sections. Constructed records are labelled as invented, original materials are identified, paper-only supplies are named, and safety cites [professional school guidance](https://www.nsta.org/nstas-official-positions/safety-and-school-science-instruction).

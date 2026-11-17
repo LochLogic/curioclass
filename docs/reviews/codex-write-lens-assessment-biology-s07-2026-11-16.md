@@ -1,7 +1,8 @@
-1. [5, retained work] The day 103 record earns points for probabilistic interpretation, first explicitly taught that day | Later feedback does not make first-teaching work eligible for scoring | Keep that inference unscored; award retained points only for distribution comparisons taught on day 102, and assess probability through item 4.
-2. [5, retained work] The retained statistical and adaptation components lack concrete prompts, numerical records and meets/does-not samples | Their keys and scoring cannot be independently checked | Supply both tasks, their data, worked keys and contrasting samples, preserving the earlier feedback and revision dates.
-3. [5, exit tickets; 6] All four exits attach letters to correct keys without stating likely wrong answers | Teachers cannot reliably connect an observed response to its registered misconception | Add explicit wrong responses, each assigned to one matching register letter; keep letters separate from correct keys.
+Gate: `python -X utf8 scripts/unitplan.py check biology` passes, including s07.md.
 
-Check: s07.md passes; the course check fails on unfinished s08.md to s10.md skeletons.
-Read limitation: data/plans/biology/source-map.csv is absent.
-Count: 3 findings (lens assessment).
+1. [field 5, item 2] Mutation and sexual reproduction are supplied as prior knowledge but absent from the scoring criteria and meeting sample | Full credit does not demonstrate this named part of HS-LS4-2 | Require students to explain how mutation supplies genetic variants and sexual reproduction recombines them; include this in the inherited-variation points and sample.
+2. [field 5, retained communication] The two-point portfolio component lacks meeting and nonmeeting samples, an actual evidence question and a point breakdown | Teachers cannot consistently judge the scored communication performance | State the portfolio prompt and evidence question, allocate the two points explicitly, and supply samples covering the required communication forms and response.
+3. [field 5, day 98 exit] The shared wrist, matching development, closer sequences and preceding fossil repeat the taught evidence pattern and rehearse item 1 with different organisms | Success can reflect recognition of the rehearsed explanation | Replace this with uninterpreted records containing one credible conflict; ask which branching inference remains supported and what requires investigation or revision.
+4. [field 5, item 3] The key and meeting sample omit the dry-rock decline from 25 to 15 percent, although the prompt requires explaining the contrasting directions | An answer can receive full credit without explaining the nonliving contrast | Require comparison of wet-rock increase with dry-rock decline and connect both to condition-dependent reproductive differences; revise the sample accordingly.
+
+Count: 4 findings (lens assessment).

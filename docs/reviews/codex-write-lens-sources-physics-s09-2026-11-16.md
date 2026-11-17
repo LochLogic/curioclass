@@ -1,0 +1,7 @@
+Gate: `unitplan.py check physics` passes s09.md; the course check fails only on unfinished s10.md. No source-map.csv exists, as the scope and sequence explicitly permits.
+
+1. [10; evidence sheets for days 130 to 131 and 138 to 141] The plan names background explanations but leaves the actual seismic, magnetic, continental-age and position-measurement records unidentified. The linked [interior explanation](https://www.nps.gov/subjects/geology/plate-tectonics-inner-earth-model.htm) supplies no seismic records, and [continental history](https://www.usgs.gov/geology-and-ecology-of-national-parks/geology-new-york-region) supplies no continent-wide age comparison | Students need traceable observations to evaluate evidence independently of our conclusions | Add a record-to-day table naming each free dataset or published figure/table, its version, selected observations and permitted reuse; distinguish constructed practice records from empirical records.
+
+2. [10, “Still to make”] “Original readings” names no texts, editions or writing schedule and gives no reason for writing them ourselves | The core reading material cannot be checked against the source and original-text requirements | Name each planned reading, its days, purpose and supporting sources; identify it as a Curio Class original, explain why it is needed, and state when its first edition will be written.
+
+Count: 2 findings (lens sources).

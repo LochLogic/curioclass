@@ -1,13 +1,9 @@
-Merged: 4 distinct findings. Fixed: 3. Rejected: 1.
+Findings merged: 2. Fixed: 2 in docs/courses/biology/s05.md.
 
-1. Rejected blanket feedback-before-scoring requirement: UNIT-PLAN field 5 applies prior feedback and revision to earlier product work; these fresh assessment responses are scored on later days.
-2. Fixed F routing: causal errors from items 1 and 4 now receive the matched versus unmatched habitat repair.
-3. Fixed provenance: named synthetic teaching packets by day and identified day 70’s published study sections.
-4. Fixed the [behavioral-biology reference’s licence](https://openstax.org/books/biology/pages/45-7-behavioral-biology-proximate-and-ultimate-causes-of-behavior) to displayed CC BY-NC-SA, with access date and background-only use retained.
+- Assessment: 1 of 1 held up. Replaced reused disturbance cases with withheld windstorm and repeated-fire records, updating answers and samples.
+- Sources: 1 of 1 held up. Replaced the safety citation with verified activity risk assessment guidance.
+- Sequence: 0 findings.
 
-Per lens held up: assessment 1/2; sources 2/2; sequence 0 findings.
+Gate: `python -X utf8 scripts/unitplan.py check biology` passes s05.md with no notes, within the word cap.
 
-Only `docs/courses/biology/s05.md` changed. Counted words: 1,249. UTF-8, LF endings, no em dashes.
-
-Gate: `PASS docs/courses/biology/s05.md`.
-The biology check exits unsuccessfully because s06.md through s10.md retain unfinished writer placeholders.
+REJECTED: none

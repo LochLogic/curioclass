@@ -1,13 +1,11 @@
-Findings merged: 3 distinct findings. Fixed all three in [biology/s06.md](/S:/CurioClass/docs/courses/biology/s06.md):
+Findings merged: 4 distinct findings. Fixed: all 4 in `docs/courses/biology/s06.md`.
 
-1. Added gamete-lineage and offspring evidence to the day 84 snail exit.
-2. Assigned every error letter to a response group, using its field 6 repair.
-3. Named five sensitivity sources with authors, free URLs and relevant sections.
+Per lens, findings held up: assessment 3/3; sources 1/1; sequence 0 findings.
 
-Rejected: 0.
+Added the withheld plant transfer case, replaced the labelled snail conclusions with evidence records, corrected item 3’s diagnostic sample, and replaced the safety reference with the Science Safety Handbook and linked controls.
 
-Held up by lens: assessment 2/2; sources 1/1; sequence 0 findings.
+Preserved assessment dates and plan structure. Counted prose is 1,250 words. UTF-8, LF endings and no em dashes confirmed.
 
-Gate: `PASS docs/courses/biology/s06.md` from `python -X utf8 scripts/unitplan.py check biology`.
+Gate: `python -X utf8 scripts/unitplan.py check biology` passed `s06.md` and all other biology unit plans.
 
-The overall gate fails only on unfinished placeholders in s07.md through s10.md.
+REJECTED: none

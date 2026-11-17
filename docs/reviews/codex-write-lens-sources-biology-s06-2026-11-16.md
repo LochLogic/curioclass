@@ -1,5 +1,5 @@
-Gate: s06.md passes; biology fails on unfinished s07.md to s10.md. Required input data/plans/biology/source-map.csv is absent.
+1. [10, safety reference, line 223] The linked [Safety in the Science Classroom](https://static.nsta.org/pdfs/safetyinthescienceclassroom.pdf) is a student conduct and signature document | The sources lens explicitly excludes student sign-off forms as the safety authority | Replace it with the [Science Safety Handbook](https://www.cde.ca.gov/ci/pl/sciencesafetyhandbook.asp), citing “General Lab Safety” and “Life Science Classroom”; connect its hazard assessment and controls to bean ingestion, allergies, dust, spills, rulers and protective equipment decisions.
 
-1. [10, Agent reads] The five sensitivity sources are described only by category, with no identifiable works | The planned read cannot locate or verify the community accounts it requires | Name each work, author, free URL and relevant section; mark sources still unselected as unverified.
+Gate: `python -X utf8 scripts/unitplan.py check biology` passed s06.md with no notes.
 
 Count: 1 findings (lens sources).

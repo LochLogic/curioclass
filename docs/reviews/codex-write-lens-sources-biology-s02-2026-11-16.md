@@ -1,5 +1,5 @@
-1. [10, protein-structure source, line 202] “Rights unverified” leaves the cited open textbook’s licence unresolved | UNIT-PLAN.md requires the licence of any open course read, including background references | Replace with “CC BY-NC-SA 4.0; reference only; no copied text or images,” as stated on the [cited publisher page](https://openstax.org/books/microbiology/pages/7-4-proteins).
+Gate: `python -X utf8 scripts/unitplan.py check biology` passes s02.md with no failures or notes.
 
-Gate: `unitplan.py check biology` passes s02.md; the overall command fails on unfinished s03.md to s10.md.
+1. [field 10, Reads owed] “Secondary laboratory guidance” links to a [student conduct and acknowledgment form](https://institute.acs.org/acs-center/lab-safety/education-training/high-school-labs/student-lab-code-of-conduct.html). | The sources lens explicitly excludes student sign-off forms as the safety standard; the separate storage page covers only storage. | Replace that citation with the [2016 secondary-school laboratory safety guidelines](https://www.acs.org/content/dam/acsorg/about/governance/committees/chemicalsafety/publications/acs-secondary-safety-guidelines.pdf), naming the risk-assessment, flammable-material, protective-equipment and waste sections for checking day 15.
 
 Count: 1 findings (lens sources).

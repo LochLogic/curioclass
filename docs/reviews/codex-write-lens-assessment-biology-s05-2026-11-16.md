@@ -1,5 +1,4 @@
-1. [5, Judging] Items 1 to 4 receive final scores without earlier-day written feedback and a revision chance; marking them later does not satisfy that rule | All 40 points lack the required feedback-and-revision opportunity | Treat the initial readings as provisional, give written feedback and allow revisions on day 75, then finalize scores after day 75.
-2. [7, Marking] Item 1 lists causal error F, but its response routing names only A and B | A student who infers causation from model fit can receive an unrelated population-rule or scale repair | Add item 1’s causal-limit component to the F route and explicitly assign it the matched-versus-unmatched comparison in the group-evidence group.
+1. [5, item 3] The seasonal-flood recovery case repeats a teaching case named for day 67; saltwater replacement also closely follows its sea-level-rise case. | Recalling taught explanations can substitute for transfer. | Replace both with withheld windstorm and repeated-fire records, using new counts and composition evidence, and require students to infer recovery or replacement.
 
-Gate: s05.md passes; the biology check fails on unfinished s06 to s10 plans. source-map.csv is absent; the scope and sequence explicitly says none is required.
-Count: 2 findings (lens assessment).
+Check: `unitplan.py check biology` passes s05.md. The required `data/plans/biology/source-map.csv` is absent.
+Count: 1 findings (lens assessment).

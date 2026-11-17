@@ -1,16 +1,14 @@
-Merged findings: 6 distinct findings. Fixed all 6 in `docs/courses/biology/s02.md`:
+Findings merged: 4. Fixed: 4. Held up by lens: assessment 1/1, sources 1/1, sequence 2/2.
 
-1. Draft on day 21, written feedback day 22, revision day 23, scoring day 24. Fresh day 24 probes are unscored.
-2. Supplied complete, distinct exit cases and case-specific keys.
-3. Aligned both error A examples with the registered misconception.
-4. Recorded the [verified source licence](https://openstax.org/books/microbiology/pages/7-4-proteins).
-5. Added teaching and practice of the natural-process consistency assumption.
-6. Added nine daily budgets, each totalling 50 minutes.
+Changed only docs/courses/biology/s02.md:
 
-Rejected: 0; no rejection reasons apply.
+- Replaced day 21’s repeated repair exit with an intact-animal tissue-turnover case.
+- Replaced the conduct-form citation with laboratory safety guidelines and named the relevant sections.
+- Made day 23 revisions unscored practice and scored day 24’s existing fresh tasks, preserving the shorter path.
+- Made copying before division explicit on day 18; day 19 rehearses it.
 
-Findings held up by lens: assessment 3/3; sources 1/1; sequence 2/2.
+The plan retains its shape and meets the word cap. UTF-8 and LF checks passed.
 
-Gate: `PASS docs/courses/biology/s02.md`. Counted length: 1,250 words. UTF-8 and LF verified.
+Gate: `PASS docs/courses/biology/s02.md` from `python -X utf8 scripts/unitplan.py check biology`. All biology plans passed.
 
-The overall biology check fails on unfinished `s03.md` through `s10.md`, outside this job’s scope.
+REJECTED: none

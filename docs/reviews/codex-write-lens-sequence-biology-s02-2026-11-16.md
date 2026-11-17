@@ -1,6 +1,5 @@
-Gate: s02.md PASS; the course command fails on unfinished s03.md to s10.md files.
+1. [Day list, day 23] The shorter path folds day 23 into day 22, but day 23 now holds 40 minutes of required revisions and day 22 already uses all 50 minutes | The fold-in would lose revision time needed before scoring | For the lead: revise the fold-in designation in days.csv and the scope and sequence to protect these revisions, then regenerate the day list.
 
-1. [2; day list, days 16 to 17] Applying the HS-LS1-1 assumption that natural processes remain consistent across times is required on day 24 but has no named teaching or practice task beforehand | Students face an unpractised component | Model that assumption using earlier and present biological records on day 16, then require students to apply it on day 17.
-2. [Day list] Days 14 and 16 to 23 lack complete minute allocations | Their retrieval, teaching, tool work, model revisions and evidence collection cannot be checked against the 50-minute period | Supply budgets totalling 50 minutes for each of these nine days, including the existing retrieval and exit-ticket reservations.
+2. [Field 2; day 19] Complete DNA copying before division is first explicitly taught through the copying demonstration on a Fluency day; day 18 only counts dividing cells | Fluency depends on a mechanism not yet taught | Teach copying before division during day 18’s image discussion; make day 19 retrieve and practise that model.
 
 Count: 2 findings (lens sequence).

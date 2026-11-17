@@ -1,0 +1,2 @@
+Gate: s05.md PASS; the course check fails on unfinished s06.md through s10.md.
+Count: 0 findings (lens sources). References are freely checkable, constructed data are explicitly labelled, materials are named, and [professional school safety guidance](https://www.nsta.org/blog/electrical-safety-hazards-and-protocols-science-instructional-spaces) is cited. Original recordings and the cell safety data sheet remain explicitly listed deliverables. The scope and sequence explains why no source-map.csv is required.

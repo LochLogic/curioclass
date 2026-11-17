@@ -1,3 +1,5 @@
-Gate: s04.md passes; biology check fails on unfinished TODO(writer) entries in s05.md to s10.md.
+Gate: `python -X utf8 scripts/unitplan.py check biology` passed s04.md with no notes.
 
-Count: 0 findings (lens sources). Field 10 provides checkable [river records](https://www.emergysociety.com/wp-content/uploads/OdumHT.1957.Trophic-structure-of-Silver-Springs-FL.pdf), [atmospheric data](https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt) and [carbon-cycle background](https://science.nasa.gov/earth/earth-observatory/the-carbon-cycle/), with use limits. Invented assessment records are labelled, materials are named and paper-only, and the scope and sequence explicitly permits the absent source-map.csv.
+1. [Field 10, safety citation] The linked [Safety in the Science Classroom](https://static.nsta.org/pdfs/SafetyInTheScienceClassroom.pdf) is a student and parent sign-off document. | The sources lens explicitly excludes sign-off forms as the safety authority. | Replace it with [Safety and School Science Instruction, revised April 2024](https://www.nsta.org/nstas-official-positions/safety-and-school-science-instruction), citing its activity risk-assessment guidance and retaining the paper-only materials and hazard limits.
+
+Count: 1 findings (lens sources).

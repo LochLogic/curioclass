@@ -1,8 +1,13 @@
-Gate: s09.md passes; biology fails on unfinished s10.md placeholders. Requested data/plans/biology/source-map.csv is absent.
+1. [5, earlier portfolio] Day 125 problem-definition work is scored although that day first teaches global-to-local analysis and criteria | First-teaching work is ineligible for scoring | Keep day 125 work formative; score a fresh day 126 fluency product, with written feedback on day 127 and revision before day 139.
 
-1. [Field 5, short prompts and scoring] The short prompts have no mapped scoring consequences; item 3 can earn all 20 points without explaining counteracting feedback | Required evidence can be wrong without reducing the score | Map each short prompt to an existing component and specify how both responses determine its points.
-2. [Field 5, daily exits] Only days 127, 132 and 138 have explicit fresh exit stimuli; the other teaching days specify notebook decisions answering goals | Those directions permit reuse of the day's worked task and provide no checkable daily key | Add fresh prompts, keys and applicable error letters for days 124 to 126, 128 to 131 and 133 to 137.
-3. [Field 5, answer benchmarks] Day 127's key explains only one pressure and supplies no solution, although the prompt requires two pressures and a solution; item 2's “meets” sample omits the required habitat mechanism | Incomplete responses can be accepted as meeting the stated requirements | Require two pressure mechanisms, an explicit solution and its comparison test for day 127; complete item 2's sample with a causal habitat explanation.
-4. [Field 7, response groups] “Apply the register repair in groups” never assigns groups to letters A through E | The teacher must invent the grouping and repair allocation | Add an explicit letter-to-group table naming each register repair and a fresh repair task.
+2. [5, formative evidence and short prompts] Several checks repeat taught cases: day 124 repeats the hook; day 128 repeats the treated-reach example with changed numbers; days 129 and 130 repeat the taught proposals and feedback loops; short prompt 3 repeats the sediment controller | Recall can pass as independent application | Replace these with withheld cases requiring the same reasoning in different systems, without supplying the taught causal chain.
 
-Count: 4 findings (lens assessment).
+3. [5, day 137 exit] The key requires using the fish text’s access mechanism to justify planting, but neither the stimulus nor the [assigned account](https://www.fisheries.noaa.gov/west-coast/science-data/dam-removals-elwha-river) establishes that planting reopens blocked habitat | The expected answer requires an unsupported evidence link | Change the proposed intervention to barrier removal, or supply evidence connecting planting to its claimed habitat benefit and revise the key accordingly.
+
+4. [5, scoring samples] Item 2’s “Meets” sample omits the failed pollutant threshold and checks only some refinement thresholds; item 4’s sample omits passage-only and several required comparison categories | Incomplete answers are presented as meeting the stated requirements | Expand item 2 to check every threshold and item 4 to compare all four options across all seven categories, including explicit uncertainties.
+
+5. [5 and 6, day 134 exit] Error E concerns overriding a hard constraint, but both options explicitly meet the supplied constraints | The item cannot diagnose the assigned misconception | Remove E from this exit and give direct feedback on unsupported rankings, or add an explicit constraint that one option fails.
+
+Check: `python -X utf8 scripts/unitplan.py check biology` passed s09.md. Required `data/plans/biology/source-map.csv` is absent.
+
+Count: 5 findings (lens assessment).

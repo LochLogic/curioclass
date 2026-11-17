@@ -1,5 +1,3 @@
-1. [Day list, timing] Days 48 to 55 lack complete minute allocations; day 57's listed blocks total 45 of 50 minutes | Daily feasibility cannot be verified | Add timing prose outside the generated table allocating 50 minutes per day, including retrieval, tool use, notebook evidence and collection; assign day 57's remaining five minutes explicitly.
+Count: 0 findings (lens sequence). Both owned expectations have teaching, practice and checks; handoffs are supported; day types, minutes, materials and safety limits agree with days.csv.
 
-Gate: `s04.md` passes; the biology check fails on unfinished `s05.md` through `s10.md`. `source-map.csv` is absent, expressly permitted by the scope and sequence.
-
-Count: 1 findings (lens sequence).
+Gate: `unitplan.py check biology` passes, including s04.md. The scope and sequence explicitly explains that no source-map.csv is required because no base text is used.

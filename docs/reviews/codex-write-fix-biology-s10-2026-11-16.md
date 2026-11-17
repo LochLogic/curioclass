@@ -1,15 +1,21 @@
-Merged: 7 distinct findings. Fixed 6 fully; 1 partially. Rejected: 0.
+Merged: 6 distinct findings. Fixed 5 in docs/courses/biology/s10.md:
 
-1. Replaced day 151’s repeated assessment case with delayed-compliance practice.
-2. Added technology and extraction facts to support item 2’s prompt and sample.
-3. Completed item 1’s sample with the matched control and causal-comparison explanation.
-4. Removed mismatched D, C and F error assignments.
-5. Added on-demand gear terminology and remaining retrieval-line exposure to source guidance. Lead action remains: correct “rope-free gear” in day 147’s source data and regenerate the day list, outside this brief’s write scope.
-6. Corrected the cod report’s licence and attribution guidance.
-7. Added complete 50-minute teaching-day allocations, including device rotations, evidence collection and saving.
+- Replaced cued exits on days 141, 146 and 148 with withheld evidence requiring justified model changes.
+- Corrected day 155’s abundance key.
+- Removed the incorrect E label from Item 3’s displaced-impact omission.
+- Added day 153’s tool allocation.
+- Added the whole-class readiness repair threshold.
 
-Findings held up by lens: assessment 4/4; sources 2/2; sequence 1/1.
+Held up and fixed: assessment 3/3; sources 0 findings; sequence 2/3.
 
-Only `docs/courses/biology/s10.md` was edited. Counted words: 1,218/1,250. UTF-8 and LF verified.
+For the lead: align day 153’s tool allocation in days.csv.
 
-Gate: `PASS docs/courses/biology/s10.md` from `unitplan.py check biology`.
+Gate: `python -X utf8 scripts/unitplan.py check biology` passed, including s10.md. UTF-8 and LF verified; word cap passes.
+
+REJECTED: sequence 2 | Day 143 introduces spreadsheet entry and formulas despite its Fluency classification. | Reclassification requires editing days.csv and regenerating fixed fields, which exceeds the writer’s permitted plan-file edits; the lead must resolve the classification. | the writer's brief
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- docs/COURSES-STATUS.md

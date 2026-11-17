@@ -1,6 +1,9 @@
-Gate: s06.md passes `unitplan.py check biology`; s07.md through s10.md fail on unfinished placeholders.
+1. [field 5, retained component] Day 89 repeats the four genome-project connections taught from the same source on day 80; the promised new plant question is absent | Recall can earn the four points | Supply a withheld genetics case with a new question requiring all four connections, and rewrite the look-fors and samples. Preserve the feedback, revision and scoring dates.
 
-1. [5, day 84 exit] The snail stimulus gives no gamete-lineage or offspring observations, yet asks students to defend three heritable sources | The supplied evidence supports variation mechanisms but cannot establish transmission | Add reproductive-lineage and offspring records for the variants, or ask students to identify the missing transmission evidence and accept a conditional claim.
-2. [7] The four response groups have no explicit error-letter allocation, particularly for overlapping errors G, H and K | Teachers must invent placements before using the repairs | Assign A–C to inheritance questions, D–F to variation mechanisms, I–J to probability and distributions, and G, H and K to causal evidence; link each letter to its field 6 repair.
+2. [field 5, day 84 exit] The snail exit rehearses item 2's bundled mechanisms and transmission evidence, with the conclusions already labelled | Students can repeat the supplied conclusions instead of independently interpreting evidence | Replace it with distinct, unlabelled chromosome, sequence and lineage records; require students to infer the mechanisms and justify transmission.
 
-Count: 2 findings (lens assessment).
+3. [fields 5 and 6, item 3 sample J] “Each bar is an individual plant” does not express J's specific misconception that frequency is a trait measurement | The diagnostic letter assigns the wrong repair | Replace that wrong answer with “The frequency of 12 means those plants are each 12 centimetres tall (J).”
+
+Gate: `unitplan.py check biology` passes s06.md. Required `data/plans/biology/source-map.csv` is absent, so that cross-check was unavailable.
+
+Count: 3 findings (lens assessment).

@@ -1,0 +1,6 @@
+1. [field 8] Six groups each receive an apparatus set, while the teacher spends 40 minutes observing individuals at a separate station; all battery connections require teacher supervision. | The rotation leaves group current trials without the required supervision and allocates no station set. | Reserve one existing set for the teacher station and five for passive induction or recorded analysis; conduct all battery-powered trials at the supervised station and revise the grouping description accordingly.
+2. [fields 2 to 3; day list] WHST.11-12.2a to e is claimed in full, but appears only on day 73; the sequence identifies no subsequent practice or check of organized explanatory writing, transitions, disciplinary style and a supported conclusion. | A model revision alone does not establish the full writing standard. | Name instruction on day 73, independent explanatory-writing practice on day 74, and a component check covering a to e within the existing evidence; identify the resulting handoff explicitly.
+
+Count: 2 findings (lens sequence).
+
+Gate: s05.md passes; the physics check fails on unfinished placeholders in s06.md to s10.md. Required data/plans/physics/source-map.csv is absent.
