@@ -1,0 +1,51 @@
+# source: Curio Class's own outcomes for the two science electives (Earth and Space Science, Environmental Science), written 2026-11-16 for their course frames; our own words, no published course description, exam framework or textbook wording used
+# version: 2 (2026-11-16): CUR-ESS gains volcanic hazard and tropical cyclone outcomes (renumbered in teaching order, now 1 to 26); CUR-ENV.7, 9, 10 and 11 widened (water supply; rival causes; solid waste; dose-response and biomagnification), after the expert frame reads of 2026-11-16
+# level: one outcome per line, as id<TAB>statement; CUR-ESS.<n> for Earth and Space Science, CUR-ENV.<n> for Environmental Science, numbered in teaching order
+# note: every high school NGSS performance expectation is owned by Biology, Chemistry or Physics (DESK-ANSWERS q-hs-science-core). These outcomes go past what those courses teach (deeper models, local data, quantitative reasoning, field and map work, systems and solutions); the rows in data/progressions/science.csv (ess-, env-) own them and name the NGSS expectations they deepen as ~CODE.
+CUR-ESS.1	Read a topographic map as a model of a landscape: contour lines, contour interval, relief, and the gradient of a slope or stream worked out from the map and drawn as a profile.
+CUR-ESS.2	Map a small outdoor site in the field (pacing, compass bearings, measured heights) and turn the field notes into a scaled map with a key.
+CUR-ESS.3	Identify common minerals by tests a class can run (hardness, streak, lustre, cleavage, density, reaction to weak acid) and explain each property from the mineral's make-up.
+CUR-ESS.4	Classify igneous, sedimentary and metamorphic rocks by texture and make-up, and infer from a rock the setting and process that formed it.
+CUR-ESS.5	Put the events recorded in a rock exposure or cross section in order using superposition, original horizontality, cross-cutting relations, inclusions and unconformities.
+CUR-ESS.6	Read a geologic map, draw a cross section from it, and match rock layers between distant sites with key beds and fossils.
+CUR-ESS.7	Combine the order of events with radiometric ages to bracket the age of a rock or event, solving the decay relation for time and stating the uncertainty.
+CUR-ESS.8	Locate an earthquake from the arrival times of its waves at three stations, and compare earthquakes by magnitude, where each whole step means ten times the ground motion and about thirty times the energy.
+CUR-ESS.9	Find the speed and direction of plate motion from satellite position records, and explain how a locked plate boundary stores strain between earthquakes.
+CUR-ESS.10	Reconstruct a prehistoric earthquake from independent lines of evidence (drowned forests, tree rings, buried soils, tsunami deposits, written and oral records) and turn a recurrence record into a stated chance of a future event.
+CUR-ESS.11	Read a volcano's monitoring record (earthquakes, ground swelling, gas) and its dated eruption history to state its hazard, including ash and mudflows as well as the eruption itself.
+CUR-ESS.12	Measure or read stream discharge, outline a watershed on a topographic map, and relate rainfall to how fast and how high a stream rises.
+CUR-ESS.13	Work out flood recurrence intervals and yearly chances from a gauge record, and explain how paving, drainage and lost vegetation change floods.
+CUR-ESS.14	Explain how groundwater is stored and moves (porosity, permeability, the water table, flow from high to low head) and map flow direction from well levels.
+CUR-ESS.15	Use temperature, humidity and dew point to explain cloud formation, rising and sinking air and the energy released when water vapour condenses, with lapse rates read from soundings.
+CUR-ESS.16	Explain how a tropical cyclone draws its energy from warm ocean water and condensing vapour and loses it over land or cool water, and read its track and intensity forecast with its uncertainty.
+CUR-ESS.17	Read surface and upper-air weather maps, make a short-range forecast for a named place, and score forecasts against what happened.
+CUR-ESS.18	Explain wind-driven and density-driven ocean circulation from temperature and salinity measurements, and how the ocean moves heat.
+CUR-ESS.19	Explain El Niño and La Niña as linked changes in ocean and atmosphere from buoy, sea-surface and rainfall records, and trace their effects to distant places.
+CUR-ESS.20	Reconstruct past climate from natural records (ice cores, tree rings, ocean and lake sediments), each dated and calibrated, and tell gradual change from abrupt change.
+CUR-ESS.21	Test a simple energy-balance climate model against the measured temperature record and natural records, and read regional climate projections with their spread.
+CUR-ESS.22	Explain the surface temperatures of Venus, Earth and Mars from sunlight received at each distance, reflectivity and the greenhouse effect of each atmosphere, in a quantitative energy balance that is tested against measurements and revised where it fails.
+CUR-ESS.23	Read spacecraft images and data to argue whether liquid water once flowed on another world, and where it went.
+CUR-ESS.24	Observe and record the night sky over weeks (Moon phase and position, planets, star patterns) and use parallax to find the distance to a nearby star.
+CUR-ESS.25	Place stars on a diagram of brightness against temperature and use it to infer each star's size and stage of life, and the mass of a main-sequence star.
+CUR-ESS.26	Detect a planet around another star from a light curve, and work out its size, orbital period and distance from the star.
+CUR-ENV.1	Plan and carry out field sampling of living things (quadrats, transects, random placement, enough samples) and record counts and cover with their uncertainty.
+CUR-ENV.2	Work out species richness and a diversity index for sites and judge whether a difference between sites is larger than sampling variation.
+CUR-ENV.3	Explain from long-running experiment data how nutrients, soil acidity and competition set the number of plant species a place holds.
+CUR-ENV.4	Test soil properties (texture, infiltration, organic matter, pH) and relate them to how a soil forms and holds water and nutrients.
+CUR-ENV.5	Explain how land use, rain and slope combine to erode soil, and judge soil conservation practices from erosion, sediment and yield data.
+CUR-ENV.6	Trace nitrogen and phosphorus from fields and towns through a watershed to algal blooms and low-oxygen water, using monitoring data.
+CUR-ENV.7	Judge the health of a stream or lake from chemical tests and the animals living in it, explain where a town's water comes from and how pumping and diversion draw down groundwater and rivers, and explain how drinking water is treated and how treatment can fail.
+CUR-ENV.8	Compare energy sources by life-cycle emissions, land and water use, reliability and cost per unit of energy, from published data.
+CUR-ENV.9	Explain how a national electricity system changed its fuel mix and what happened to its emissions, and weigh which policies, prices and other changes drove it against rival explanations.
+CUR-ENV.10	Trace a material from extraction to waste, including the waste a town makes and how it is reduced, reused, recycled or landfilled, and explain how contaminants move from mine and town waste into water, soil and air.
+CUR-ENV.11	Judge a health risk from exposure data (amount, pathway, time) and a dose-response relation, explain how persistent substances build up in bodies and food chains, judge who bears the risk, and weigh cleanup choices.
+CUR-ENV.12	Model human population change from birth, death and migration rates, explain the demographic transition from national data, and project change with stated assumptions.
+CUR-ENV.13	Estimate the land, water and energy behind a person's food and goods, and compare how population and consumption each drive total impact.
+CUR-ENV.14	Weigh the evidence that one cause (an invasive species, habitat loss, overharvest) drove a wildlife decline against other possible causes, using survey data.
+CUR-ENV.15	Evaluate conservation strategies (protected areas, corridors, removal programmes, restoration) with population, area and cost data.
+CUR-ENV.16	Explain how the main outdoor air pollutants form and spread, and read air quality readings and long-term monitoring trends, including what clean air rules changed.
+CUR-ENV.17	Measure and map surface and air temperatures across a neighbourhood and explain the differences from land cover.
+CUR-ENV.18	Analyse from maps and published data how past land-use decisions shape who is exposed to heat and pollution today.
+CUR-ENV.19	Plan and carry out a local environmental investigation, from a question to data to a claim with its limits.
+CUR-ENV.20	Design and evaluate a local solution against criteria and constraints, with costs, benefits and trade-offs among the people affected.
+CUR-ENV.21	Explain how environmental decisions are made through law, regulation, markets and community action, and choose a route for a local proposal.

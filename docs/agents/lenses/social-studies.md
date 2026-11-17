@@ -62,6 +62,8 @@ No role play or simulation that puts a child in a victim's or perpetrator's plac
 - An anchor standard in the course's Massachusetts topic range has no unit.
 - The replaced grade 3 year, or "your state" in grade 8, keeps Massachusetts-only content.
 - No unit lists what the check set (California, Tennessee, New York) adds, or an addition has no recorded source.
+- Psychology (no Massachusetts anchor): an APA22 target or theme with no unit, the standard's priority areas not
+  weighted in the days, or a study taught without its sample and replication record.
 
 **Scope and sequence**
 - A unit question can be answered without the unit's sources, or has only one defensible answer.
@@ -89,7 +91,7 @@ No role play or simulation that puts a child in a victim's or perpetrator's plac
 
 The scored bar and pass rule (ADOPTION-BAR-SUBJECTS.md, the P5b rubric). Coverage arithmetic, day counts and id
 checks (plan.py check). Whether a source may be adapted (BASE-TEXTS.md, the source's own terms). Final accuracy of
-Native and hard-history content (the sensitivity agent's read, FOUNDATION section 7). Psychology (after the core).
+Native and hard-history content (the sensitivity agent's read, FOUNDATION section 7).
 
 ## Sources, read into our own words
 

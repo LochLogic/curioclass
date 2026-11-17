@@ -12,7 +12,7 @@ docs/reviews/social-studies-content-standard-2026-11-12.md.
 | P1b. Redraw the course list | Done 2026-11-13 (Cory's yes on Desk card q-ss-course-list, with the lead's high school pick) | Section 2 below; data/courses.csv |
 | P1c. Name the check states | Done (the lead names them, per PRODUCTION-PATH) | Section 3 |
 | P1d. Design the replaced year | Draft done, read in its turn | docs/courses/social-studies/grade-3-outline.md |
-| P1e. Psychology and electives | Done: psychology after the core | Section 4 |
+| P1e. Psychology and electives | Done: psychology framed in the after-the-core stage | Section 4 |
 
 ## 1. The anchor file (P1a)
 
@@ -54,7 +54,7 @@ course stays one row by grade (`ss-k5`), as now.
 | 12 | US History II (the 1920s to today) | USII.T1 to USII.T5 | yes | New course | us-hist-hs (id kept) |
 | 11 to 12 | US Government and Politics (half year) | GOV.T1 to GOV.T5 | yes | Little change | government (kept) |
 | 11 to 12 | Economics (half year), with personal finance | ECON.T1 to ECON.T7, PFL.T1 to PFL.T4 | yes | Adds the personal finance standards | economics (kept) |
-| 11 to 12 | Psychology | APA, after the core (section 4) | no | None | psychology (kept) |
+| 11 to 12 | Psychology | APA 2022 (data/standards/apa-hs-psych-2022.txt; section 4) | no | None | psychology (kept) |
 
 - News/media literacy (NML) has no course of its own: grade 8 carries 8.T7, and NML.T1 to T5 are placed in the
   high school courses' unit plans.
@@ -95,11 +95,10 @@ unrated in their new ones; they can join if a unit's check finds a gap the three
 
 ## 4. Psychology and the other electives (P1e)
 
-- **Psychology** is not core (data/courses.csv) and the core subjects come first (Cory, 2026-11-13). It waits for
-  the after-the-core stage. Its standard is the APA National Standards for High School Psychology Curricula,
-  third revision, approved by the APA Council in February 2022 (confirmed from secondary sources; apa.org blocks
-  automated reading, so the file is loaded by hand when psychology's turn comes: Cory saves the PDF, the lead
-  writes ids and our own words).
+- **Psychology** is not core (data/courses.csv); it is framed in the after-the-core stage. Its standard is the APA
+  National Standards for High School Psychology Curricula, third revision (2022), loaded as
+  data/standards/apa-hs-psych-2022.txt (ids and our own words, from the PDF in the source store); the frame is
+  docs/courses/psychology/frame.md.
 - **Government and Economics** are core here although Massachusetts calls them electives, because a civics and an
   economics course is what most states require for graduation. Their standards are in the anchor file.
 - **Personal finance** sits inside Economics (PFL), and NSPFE 2021 stays cited where topics already use it.

@@ -115,7 +115,13 @@ The weeks each course-level check falls in. A scope and sequence places its chec
 | 11 | physics | Course-level check 1 week 13, Course-level check 2, mi week 22, Course-level check 3, ye week 32 | 31 |
 | 11 | us-history-i | 1 (week 10) week 10, 2, mid-year (weeks 19 to week 19, 3, year-end (week 32) week 32 | 31 |
 | 12 | english-language-arts-grade-12 | Check 1 week 11, Check 2 week 17, Check 3 week 25 | 32 |
+| 12 | calculus | Check 1, mid-year (week  week 17, Check 2 (weeks 24 to 25) weeks 24 to 25, Check 3, year-end (week  week 32 | 32 |
+| 12 | precalculus | Check 1 (week 10, days 4 week 10, Check 2 (weeks 20 to 21, week 20, Check 3 (week 32, days 1 week 32 | 32 |
+| 12 | statistics | Check 1 (weeks 9 to 10) week 9, Check 2 (weeks 18 to 19) week 18, Check 3 (weeks 30 to 31) weeks 29 to 30 | 32 |
+| 12 | earth-and-space-science | Course-level check 1 week 11, Course-level check 2, mi week 21, Course-level check 3, ye week 32 | 31 |
+| 12 | environmental-science | Course-level check 1 week 11, Course-level check 2, mi week 21, Course-level check 3, ye week 32 | 31 |
 | 12 | economics | 1, midpoint week 23, 2, final week 32 | 32 |
+| 12 | psychology | 1, mid-year week 17, 2, year-end week 32 | 32 |
 | 12 | us-government-and-politics | 1, midpoint week 8, 2, final week 15 | 16 |
 | 12 | us-history-ii | 1 week 8, 2, mid-year (days 84 and week 17, 3, year-end week 30 | 32 |
 

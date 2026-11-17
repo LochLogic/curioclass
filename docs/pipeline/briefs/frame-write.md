@@ -112,6 +112,61 @@ Cross-subject ids, and outside-reader wording:
     hook. Day 1 of any other unit stays clean for the hook and the compelling question (one timing in every course,
     settled 2026-11-14, see DESK-ANSWERS).
 
+## Lessons from below the frame
+Found 2026-11-16 in the core courses' scope and sequence reads, unit lens findings, data/plans/unit-rejections.csv
+and the lead rulings (evidence and counts: docs/reviews/frame-unit-lessons-2026-11-16.md). A frame fault rarely shows in
+the frame read: the scope writer guesses in days.csv, the unit fixer cannot change days.csv, and the fix lands on the
+lead. Say these things in the frame so nobody below it has to guess:
+17. **Day kinds defined.** A "Day kinds." bullet in The course in brief: the first explicit teaching of anything (a
+    formula, model, method, term set) is Understanding; Fluency practises only what an earlier day taught;
+    investigating, drafting, editing or using taught ideas on a new task is Application. Say what Fluency looks like
+    in this course, or that it has little or none.
+18. **Readiness evidence, not verdicts.** Each assumed earlier-grade row gives the grade and course of its last use
+    (with the core course's unit or days where its scope exists) and the treatment that follows from lesson 16's
+    count. The scope gate's count governs, and the scope fix pass updates the frame. No "kept in use" or "maintained"
+    without a day or unit behind it. A course open to more than one grade says which grade the count starts from and
+    what changes for the other; a course with routes says which route the rows assume.
+19. **Scored evidence placed.** Each unit names its end-of-unit evidence form: a sitting with unseen items, or a
+    product whose draft day, written feedback and revision before the score are counted in the unit's days. No score
+    from a day a topic is first taught. An end day holds at most one full performance; a unit owning many standards or
+    a long product budgets more end days.
+20. **Checks claim samples.** "What it checks" names the units sampled, the task forms and any recent unit record
+    reused unscored, never "every code"; a check right after a unit's end draws that unit's items from earlier units.
+21. **Inside the period.** The Days bullet says the minutes hold set-up, clean-up and collecting work; a lab or field
+    unit names its clean-up time; readiness checks take ten minutes; a Shorter path fold-in never takes a feedback or
+    revision day.
+22. **Safety named.** The Safety read bullet names the guides by title with a free link (a state or professional
+    laboratory, field work or field trip guide), never a student sign-off form. The last Units column gives each
+    hands-on or field unit's hazards and controls in the words days.csv will copy; any teacher demonstration is one
+    the safety read would pass.
+23. **Facts sourced.** Anchors, cases, named figures and data sets carry a free source (an agency page, an archive,
+    the study itself), an "as of" date where they can change, or the words "invented for practice". No constructed
+    value is passed off as a measurement.
+24. **Depth and devices.** "What students learn" names what is out (a proof method, a mechanism kept qualitative, a
+    lettered part left to a later course). A "Devices." bullet gives devices per student (class set, pairs, one
+    shared), which owned codes need technology, and how a paper-path student meets those parts in full.
+25. **Tools, texts and costs per unit.** Each unit names its key tools by generic name with their job (the scope
+    writes TOOL-ASKS.md from them) and what Curio Class must write itself (readings, cases, data cards, maps), so one
+    writing step is planned. A course with supplies gives a provisional cost per unit for a class of 30 (consumables,
+    reusable items counted once, printing), with any ceiling question under "For the lead".
+26. **Literacy and other side standards.** Claimed in full only with the units that teach and check each lettered
+    part; otherwise "practised, not owned".
+27. **Textbook source maps.** Where the base is a textbook placed by section: a section is not a lesson (days are
+    ours, adapted, credited once a day); check days are `ours`, never a kept section; goals are in our words; students
+    read our adapted text, with a reading load a day at the course's level.
+28. **One focus method (math).** The frame states how the course meets the subject bar's focus rows, what counts and
+    whether a unit reports a share (high school math: RUBRIC-MATH-HS as settled in DESK-ANSWERS for L49).
+29. **Owned, begun and revisited, one way.** Owned codes sit in Owned standards; a begun code is named in What
+    students learn with its later owner; a revisit is named as review in the text; the course that finishes a code
+    checks it.
+30. **Sensitivity by unit.** Each flagged unit names the communities its days touch and their own sources (lesson 12),
+    matched to what those days teach.
+31. **Grade 12 calendar.** A course taught in grade 12 says whether its last weeks hold teaching, where its year-end
+    check sits, and which days fold if seniors leave early.
+32. **Lean on core courses only.** A cross-subject or same-subject lean names a core course; a course never assumes an
+    optional course was taken (a lean on one is a bridge the unit teaches, or a "by course order" seam with its
+    fallback).
+
 ## Rules
 - The progression rows are the contract: place every owned row, change none. If a row is wrong, list it under "For
   the lead" with the fix; do not edit data/progressions/.

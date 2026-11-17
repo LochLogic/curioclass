@@ -41,6 +41,23 @@ biology,9,science,unit,9,Designing for a river (weeks 25 to 28). Design problem:
 biology,9,science,unit,10,Testing rules before the ocean does (weeks 29 to 31). Anchor: the cod off Newfou,141,155,141,155,29,31
 biology,9,science,check,10,"Course-level check 3, year-end",156,158,156,158,32,32
 biology,9,science,respond,10,"Course-level check 3, year-end",159,160,159,160,32,32
+calculus,12,math,unit,1,Approaching a value: How can we say what a function is heading toward at an inpu,1,14,1,14,1,3
+calculus,12,math,unit,2,The derivative and how to compute it: How fast is a quantity changing at one ins,15,36,15,36,3,8
+calculus,12,math,unit,3,"Rates in context and local approximation: When one quantity changes, how fast do",37,50,37,50,8,10
+calculus,12,math,unit,4,"What derivatives say about a graph, and best choices: What does a function's rat",51,65,51,65,11,13
+calculus,12,math,unit,5,Accumulation and the fundamental theorem: How can adding up a rate tell us how m,66,81,66,81,14,17
+calculus,12,math,check,5,"Check 1, mid-year (week 17)",82,83,82,83,17,17
+calculus,12,math,respond,5,"Check 1, mid-year (week 17)",84,84,84,84,17,17
+calculus,12,math,unit,6,"More ways to integrate: Which method finds an antiderivative for a given form, a",85,93,85,93,17,19
+calculus,12,math,unit,7,"Equations about rates: If we know only how fast something changes, can we predic",94,102,94,102,19,21
+calculus,12,math,unit,8,"Measuring with integrals: How can thin slices add up to a distance travelled, an",103,119,103,119,21,24
+calculus,12,math,check,8,Check 2 (weeks 24 to 25),120,121,120,121,24,25
+calculus,12,math,respond,8,Check 2 (weeks 24 to 25),122,122,122,122,25,25
+calculus,12,math,unit,9,Motion in the plane and polar regions: How do we find the speed and path of an o,123,132,123,132,25,27
+calculus,12,math,unit,10,Infinite series: When can adding infinitely many numbers give a finite total?,133,144,133,144,27,29
+calculus,12,math,unit,11,Taylor polynomials and power series: How can a polynomial stand in for a sine cu,145,157,145,157,29,32
+calculus,12,math,check,11,"Check 3, year-end (week 32)",158,159,158,159,32,32
+calculus,12,math,respond,11,"Check 3, year-end (week 32)",160,160,160,160,32,32
 chemistry,10,science,unit,1,"The table that predicts (weeks 1 to 4). Anchor: lithium, sodium and potassium al",1,16,1,16,1,4
 chemistry,10,science,unit,2,"Strong pulls, weak pulls (weeks 4 to 7). Anchor: matched drops of water and rubb",17,31,17,31,4,7
 chemistry,10,science,unit,3,Water shapes the land (weeks 7 to 9). Anchor: rain soaking through limestone hol,32,41,32,41,7,9
@@ -74,6 +91,21 @@ civics-government-and-civic-life,8,social-studies,unit,9,A free press and the ne
 civics-government-and-civic-life,8,social-studies,check,9,3 (year-end),145,146,145,146,29,30
 civics-government-and-civic-life,8,social-studies,respond,9,3 (year-end),147,148,147,148,30,30
 civics-government-and-civic-life,8,social-studies,unit,10,Civic action. What can we do about a problem in our school or community?,149,160,149,160,30,32
+earth-and-space-science,12,science,unit,1,Reading a landscape (weeks 1 to 4). Anchor: Mount Monadnock in New Hampshire sta,1,18,1,18,1,4
+earth-and-space-science,12,science,unit,2,The rock record (weeks 4 to 7). Anchor: at Siccar Point on the coast of Scotland,19,33,19,33,4,7
+earth-and-space-science,12,science,unit,3,Cascadia's hidden earthquake (weeks 7 to 11). Anchor: along the Copalis River in,34,51,34,51,7,11
+earth-and-space-science,12,science,check,3,Course-level check 1,52,53,52,53,11,11
+earth-and-space-science,12,science,respond,3,Course-level check 1,54,54,54,54,11,11
+earth-and-space-science,12,science,unit,4,"When the creek rises (weeks 11 to 15). Anchor: Ellicott City, Maryland, flooded ",55,71,55,71,11,15
+earth-and-space-science,12,science,unit,5,"Lake-effect snow (weeks 15 to 18). Anchor: in November 2014, south of Buffalo, N",72,88,72,88,15,18
+earth-and-space-science,12,science,unit,6,When the anchovies vanished (weeks 18 to 21). Anchor: in 1972 the catch of Peru',89,103,89,103,18,21
+earth-and-space-science,12,science,check,6,"Course-level check 2, mid-year",104,105,104,105,21,21
+earth-and-space-science,12,science,respond,6,"Course-level check 2, mid-year",106,106,106,106,22,22
+earth-and-space-science,12,science,unit,7,Ice that remembers (weeks 22 to 25). Anchor: a Greenland ice core counted year b,107,123,107,123,22,25
+earth-and-space-science,12,science,unit,8,Where did Mars's water go? (weeks 25 to 28). Anchor: Jezero crater on Mars holds,124,137,124,137,25,28
+earth-and-space-science,12,science,unit,9,"Worlds around other stars (weeks 28 to 31). Anchor: small, regular dips in the l",138,155,138,155,28,31
+earth-and-space-science,12,science,check,9,"Course-level check 3, year-end",156,158,156,158,32,32
+earth-and-space-science,12,science,respond,9,"Course-level check 3, year-end",159,160,159,160,32,32
 economics,12,social-studies,unit,1,"Scarcity, choice and economic systems. Who should decide what gets made: buyers,",1,8,81,88,17,18
 economics,12,social-studies,unit,2,Markets and prices. Do prices set by markets serve people better than prices set,9,18,89,98,18,20
 economics,12,social-studies,unit,3,"Business, competition and work. When does a business get too big for the good of",19,27,99,107,20,22
@@ -226,6 +258,21 @@ english-language-arts-kindergarten,K,ela,unit,3,"Trees are alive. What do trees 
 english-language-arts-kindergarten,K,ela,unit,4,Enjoying and appreciating trees. Why do people care for trees?,119,157,119,157,24,32
 english-language-arts-kindergarten,K,ela,check,4,Check 2,158,159,158,159,32,32
 english-language-arts-kindergarten,K,ela,respond,4,Check 2,160,160,160,160,32,32
+environmental-science,12,science,unit,1,What sets the number of species? (weeks 1 to 4). Anchor: in a hay meadow at Roth,1,18,1,18,1,4
+environmental-science,12,science,unit,2,"Holding the soil (weeks 4 to 7). Anchor: on China's Loess Plateau, over the deca",19,33,19,33,4,7
+environmental-science,12,science,unit,3,"The water you drink (weeks 7 to 11). Anchor: in August 2014 about 400,000 people",34,51,34,51,7,11
+environmental-science,12,science,check,3,Course-level check 1,52,53,52,53,11,11
+environmental-science,12,science,respond,3,Course-level check 1,54,54,54,54,11,11
+environmental-science,12,science,unit,4,Turning off coal (weeks 11 to 14). Anchor: in 2012 Britain made about 40 per cen,55,69,55,69,11,14
+environmental-science,12,science,unit,5,The mines left behind (weeks 14 to 17). Anchor: more than 500 abandoned uranium ,70,85,70,85,14,17
+environmental-science,12,science,unit,6,"Two countries, two futures (weeks 18 to 20). Anchor: Japan's population has been",86,100,86,100,18,20
+environmental-science,12,science,check,6,"Course-level check 2, mid-year",101,102,101,102,21,21
+environmental-science,12,science,respond,6,"Course-level check 2, mid-year",103,103,103,103,21,21
+environmental-science,12,science,unit,7,Snakes in the Everglades (weeks 21 to 24). Anchor: in the far south of Everglade,104,117,104,117,21,24
+environmental-science,12,science,unit,8,"The hottest blocks (weeks 24 to 27). Anchor: on one summer afternoon in 2017, vo",118,135,118,135,24,27
+environmental-science,12,science,unit,9,Designing for our own place (weeks 28 to 31). Anchor: in 2011 Philadelphia chose,136,155,136,155,28,31
+environmental-science,12,science,check,9,"Course-level check 3, year-end",156,158,156,158,32,32
+environmental-science,12,science,respond,9,"Course-level check 3, year-end",159,160,159,160,32,32
 geometry,10,math,unit,1,Constructions and rigid transformations: What can we be sure of using only a com,1,26,1,26,1,6
 geometry,10,math,unit,2,Congruence: How few facts do we need to be sure two triangles are the same?,27,45,27,45,6,9
 geometry,10,math,check,2,Check 1 (week 10),46,47,46,47,10,10
@@ -387,6 +434,42 @@ physics,11,science,unit,9,The restless Earth (weeks 26 to 29). Anchor: the floor
 physics,11,science,unit,10,"Older than Earth (weeks 30 to 31). Anchor: a selected, sourced age table of anci",146,155,146,155,30,31
 physics,11,science,check,10,"Course-level check 3, year-end",156,158,156,158,32,32
 physics,11,science,respond,10,"Course-level check 3, year-end",159,160,159,160,32,32
+precalculus,12,math,unit,1,Functions as one toolkit: Can one set of questions describe every function we ha,1,16,1,16,1,4
+precalculus,12,math,unit,2,"Polynomial and rational functions, all their zeros: How can we be sure we have f",17,32,17,32,4,7
+precalculus,12,math,unit,3,"Logarithms as inverses, and growth models: Which model fits a set of growth data",33,46,33,46,7,10
+precalculus,12,math,check,3,"Check 1 (week 10, days 47 to 49)",47,48,47,48,10,10
+precalculus,12,math,respond,3,"Check 1 (week 10, days 47 to 49)",49,49,49,49,10,10
+precalculus,12,math,unit,4,"Trigonometric functions, exact values, graphs and inverses: How can we know a si",50,65,50,65,10,13
+precalculus,12,math,unit,5,"Identities and equations: How can we prove two expressions are always equal, and",66,79,66,79,14,16
+precalculus,12,math,unit,6,"Any triangle, and vectors: How can we find a distance or a force we cannot measu",80,98,80,98,16,20
+precalculus,12,math,check,6,"Check 2 (weeks 20 to 21, days 99 to 101)",99,100,99,100,20,20
+precalculus,12,math,respond,6,"Check 2 (weeks 20 to 21, days 99 to 101)",101,101,101,101,21,21
+precalculus,12,math,unit,7,"Matrices: How can one array of numbers hold a network, move a shape or solve a s",102,114,102,114,21,23
+precalculus,12,math,unit,8,"Polar coordinates, complex numbers in polar form, and parametric curves: What ne",115,132,115,132,23,27
+precalculus,12,math,unit,9,"Conic sections: Why do a planet's orbit, a satellite dish and a whispering galle",133,143,133,143,27,29
+precalculus,12,math,unit,10,"Infinite sums, rates and limits, the road to calculus: How can adding forever gi",144,157,144,157,29,32
+precalculus,12,math,check,10,"Check 3 (week 32, days 158 to 160)",158,159,158,159,32,32
+precalculus,12,math,respond,10,"Check 3 (week 32, days 158 to 160)",160,160,160,160,32,32
+psychology,12,social-studies,unit,1,The science of psychology. How can we tell a psychological finding we can trust ,1,14,1,14,1,3
+psychology,12,social-studies,unit,2,Brain and behavior. How much of what we do can be traced to the brain and to our,15,25,15,25,3,5
+psychology,12,social-studies,unit,3,"Sensation and perception. Do we see the world as it is, or as our brain builds i",26,36,26,36,6,8
+psychology,12,social-studies,unit,4,"Consciousness and sleep. Why do we need sleep, and what changes when consciousne",37,46,37,46,8,10
+psychology,12,social-studies,unit,5,Learning. How much of what we do was learned from consequences and from watching,47,54,47,54,10,11
+psychology,12,social-studies,unit,6,"Memory. Why do we forget, and why do we sometimes remember what never happened?",55,62,55,62,11,13
+psychology,12,social-studies,unit,7,Thinking and language. Why do sensible people make predictable mistakes in judgm,63,71,63,71,13,15
+psychology,12,social-studies,unit,8,Intelligence. Can one test measure intelligence fairly?,72,80,72,80,15,16
+psychology,12,social-studies,check,8,"1, mid-year",81,81,81,81,17,17
+psychology,12,social-studies,respond,8,"1, mid-year",82,82,82,82,17,17
+psychology,12,social-studies,unit,9,Development across the life span. How do heredity and experience shape a person ,83,92,83,92,17,19
+psychology,12,social-studies,unit,10,"Motivation and emotion. What drives what we do, and where do our emotions come f",93,103,93,103,19,21
+psychology,12,social-studies,unit,11,"Personality. Can personality be measured, and does it change?",104,111,104,111,21,23
+psychology,12,social-studies,unit,12,"Social psychology. Why do ordinary people go along with a group, and when do the",112,121,112,121,23,25
+psychology,12,social-studies,unit,13,"Culture, gender and identity. How do culture and identity shape the way people t",122,130,122,130,25,26
+psychology,12,social-studies,unit,14,"Stress, health and wellness. What helps people cope with stress, and how do we k",131,140,131,140,27,28
+psychology,12,social-studies,unit,15,Psychological disorders. How do psychologists decide when thoughts and behaviour,141,150,141,150,29,30
+psychology,12,social-studies,unit,16,"Treatment and getting help. What treatments work, and how does a person find hel",151,158,151,158,31,32
+psychology,12,social-studies,check,16,"2, year-end",159,159,159,159,32,32
+psychology,12,social-studies,respond,16,"2, year-end",160,160,160,160,32,32
 science-grade-1,1,science,unit,1,"Sun, moon and stars. Why is our shadow stick's shadow on one side in the morning",1,8,3,18,1,4
 science-grade-1,1,science,unit,8,"Daylight and the seasons. Is it light or dark at 5:30 in the evening, and will s",9,9,19,19,4,4
 science-grade-1,1,science,unit,2,"Parts that help. How does a tree stay standing in a storm, and can we copy it to",10,21,20,43,4,9
@@ -566,6 +649,22 @@ social-studies-kindergarten,K,social-studies,unit,5,Days we remember. Why do we 
 social-studies-kindergarten,K,social-studies,unit,6,Work and trade. Why do people work?,52,61,122,145,25,29
 social-studies-kindergarten,K,social-studies,check,6,"2, year-end",62,63,146,148,30,30
 social-studies-kindergarten,K,social-studies,respond,6,"2, year-end",64,64,150,150,30,30
+statistics,12,math,unit,1,"Describing one variable: What does a whole set of data look like, and where does",1,17,1,17,1,4
+statistics,12,math,unit,2,"Two quantitative variables: When one quantity changes with another, how well can",18,30,18,30,4,6
+statistics,12,math,unit,3,Producing data: samples and experiments: How do the ways we gather data decide w,31,43,31,43,7,9
+statistics,12,math,check,3,Check 1 (weeks 9 to 10),44,45,44,45,9,9
+statistics,12,math,respond,3,Check 1 (weeks 9 to 10),46,46,46,46,10,10
+statistics,12,math,unit,4,Probability and counting: How can we find the chance of something we cannot just,47,55,47,55,10,11
+statistics,12,math,unit,5,"Random variables and decisions: What should we expect in the long run, and how c",56,74,56,74,12,15
+statistics,12,math,unit,6,"How samples vary: If every sample gives a different answer, how can any one samp",75,85,75,85,15,17
+statistics,12,math,check,6,Check 2 (weeks 18 to 19),86,87,86,87,18,18
+statistics,12,math,respond,6,Check 2 (weeks 18 to 19),88,88,88,88,18,18
+statistics,12,math,unit,7,"Estimating and testing proportions: How sure can we be about a percentage, and w",89,112,89,112,18,23
+statistics,12,math,unit,8,Estimating and testing means: How do we compare averages when we do not know the,113,131,113,131,23,27
+statistics,12,math,unit,9,Counts in categories and regression slopes: Are two categorical variables linked,132,144,132,144,27,29
+statistics,12,math,check,9,Check 3 (weeks 30 to 31),145,146,145,146,29,30
+statistics,12,math,respond,9,Check 3 (weeks 30 to 31),147,147,147,147,30,30
+statistics,12,math,unit,10,"The investigation: Can we answer a question of our own with data, and say how su",148,160,148,160,30,32
 us-government-and-politics,12,social-studies,unit,1,"Why government, and what kind? Who really takes part in American democracy?",1,6,1,6,1,2
 us-government-and-politics,12,social-studies,unit,2,Founding ideals and the gap. How close has the country come to its founding idea,7,15,7,15,2,3
 us-government-and-politics,12,social-studies,unit,3,"Federalism and sovereignty. Who should decide: the nation, the state, the town o",16,22,16,22,4,5

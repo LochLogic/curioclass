@@ -58,7 +58,7 @@ step 5.
     - **safety** (science fills; math leaves empty): for every day that names supplies, the hazard and its control
       ("hot plate: teacher-only; goggles on"), several hazards separated by semicolons, or the single lower-case word
       `none` when the day was weighed and has no hazard. Empty means not yet weighed, and the gate fails it on a day
-      with supplies. Eye protection and teacher-only steps go here, in the words of the frame's safety column.
+      with supplies. Eye protection and teacher-only steps go here, in the words of the hazards and controls in the frame's last Units column.
     - What the gate checks: the cells are well-formed lists; a science file with `supplies` also has `safety` (and the
       reverse); every science day with supplies has `safety` filled (`none` counts; any other case of the word `none`
       in a list fails). days.csv has no hands-on marker, so the gate cannot know a hands-on day with no supplies

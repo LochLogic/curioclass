@@ -4,7 +4,7 @@ Pre-work P5a (docs/PRODUCTION-PATH.md), written 2026-11-13. The expert reads thi
 course frame, scope and sequence, unit plan or day. Math already has the most on file, so this lens points there
 and adds only what is missing. The standard is the Common Core State Standards for Mathematics
 (data/standards/ccss-math-standards.txt, ccss-math-clusters.txt, ccss-math-focus.csv). Illustrative Mathematics
-K-12, 1st edition (CC BY 4.0) is the base text through Algebra 2; past Algebra 2 is Curio Class's own.
+K-12, 1st edition (CC BY 4.0) is the base text through Algebra 2; past Algebra 2 (Precalculus, Statistics, Calculus) each course frame names its own open base text.
 
 ## Read these first
 
@@ -63,8 +63,9 @@ named in advance and used.
 - **Progression records and narrative pages.** data/progressions/math.csv records core math ownership, handoffs,
   models and limits from kindergarten through grade 11, and the course frames' Seams tables check them against unit
   order. The grades 3 to 5 narrative page remains a supplementary explanation; other bands have no narrative page.
-- **Past Algebra 2 has no base text and no progression.** Precalculus, statistics and calculus need a named
-  source for order and limits before their frames are written.
+- **Past Algebra 2.** Precalculus, Statistics and Calculus have progression rows (pc-, stat-, calc-) at grade 12,
+  owning the (+) codes and Curio Class's own outcome list (data/standards/curio-math-electives.txt); each frame names
+  an open base text, to be loaded into the source store.
 - **The K to 2 fluency and counting work** (counting and cardinality, add and subtract within 5, 10, 20). The K to 2
   frames describe untimed fluency checks through games and individual observation, recorded as just knows, quick
   strategy or counts all, with coverage of every child. Unit plans turn these into tasks, recording guidance and

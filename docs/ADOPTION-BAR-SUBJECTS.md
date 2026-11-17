@@ -103,7 +103,7 @@ Sixteen courses, kindergarten to grade 12, in Massachusetts's course order (redr
 q-ss-course-list): one course per grade from kindergarten to grade 5 (one row, `ss-k5`), World Geography and
 Ancient Civilizations I and II (6, 7), Civics (8), World History I and II (9, 10), US History I and II (11, 12),
 US Government and Politics and Economics with personal finance (half years, 11 to 12). Fifteen are core.
-Psychology is not core and waits for the after-the-core stage. The list is data/courses.csv; the reasons are in
+Psychology is not core; it is framed in the after-the-core stage. The list is data/courses.csv; the reasons are in
 docs/courses/social-studies/STANDARD.md, section 2.
 
 **Rests on.** EdReports and AIR criteria (2024) and Louisiana's tool (2026-27), read in full by the writer;
@@ -194,7 +194,7 @@ layer it is read at: scope and sequence (S), unit plan and section plan (U), day
 
 **Unsupported.** Economics and geography have no rubric of their own; they are read against the CEE content
 standards (2010) and Geography for Life (2012) as references. Psychology's standard is the APA high school
-standards (2022 revision), loaded by hand when psychology's turn comes (apa.org blocks automated reading).
+standards (2022 revision), loaded as data/standards/apa-hs-psych-2022.txt.
 Maryland's value-laden items are left out on purpose; the values rule (item 11) governs instead.
 
 **Standards.** data/standards/c3-indicators.txt (2013) for skills; data/standards/ma-hss-2018.txt (Massachusetts
@@ -559,8 +559,8 @@ every row but social studies waits behind the core work unless it is complementa
 | Subject | Owed before a scope and sequence | Who |
 |---|---|---|
 | All ten active subjects | An approach page per subject (layer 3) that fills the section plan's subject slots: the kinds of day and the form of daily evidence | Agent drafts, Cory's yes |
-| Social studies (16) | Done 2026-11-13: the standard chosen (option d) and loaded (data/standards/ma-hss-2018.txt), the course list redrawn, the check states named, economics and geography references named (STANDARD.md). Edition confirmed: C3 Framework, 2013, June 2017 revised PDF, matching data/standards/c3-indicators.txt. Still owed: load the psychology standard (APA 2022) by hand when psychology's turn comes; plan informed action once a year per course, up to three times if the evidence shows a need | Agent |
-| AP and psychology topics (26), in whichever subject they sit | These have no standards file. Mark them now as not yet standards-checked. **Do not lose this note (Cory): the course framework is loaded when that course's scope and sequence is written** | Agent |
+| Social studies (16) | Done 2026-11-13: the standard chosen (option d) and loaded (data/standards/ma-hss-2018.txt), the course list redrawn, the check states named, economics and geography references named (STANDARD.md). Edition confirmed: C3 Framework, 2013, June 2017 revised PDF, matching data/standards/c3-indicators.txt. The psychology standard (APA 2022) is loaded as data/standards/apa-hs-psych-2022.txt. Still owed: plan informed action once a year per course, up to three times if the evidence shows a need | Agent |
+| AP and psychology topics (26), in whichever subject they sit | The AP topics have no standards file; psychology's standard is data/standards/apa-hs-psych-2022.txt. Mark them now as not yet standards-checked. **Do not lose this note (Cory): the course framework is loaded when that course's scope and sequence is written** | Agent |
 | Arts (20) | Done 2026-11-16 (docs/courses/arts/STANDARD.md): the band-year rule (K to 8 by grade; high school levels I to III by what a student has done), reuse terms read at source, revision watch set (May and November). Lens, base-text scout and APPROACH draft written. Music strand (a full composition and theory course plus an ensemble companion page, docs/reviews/arts-hs-music-and-levels-2026-11-16.md), pacing and the levels rule settled 2026-11-16 (Desk cards q-later-*); music strand ids now pass scripts/standards.py. Full music course confirmed (Desk card q-later-followups-1). Owed: the approach page's yes; load the 63 strand ids when the high school music frame is written | Cory, then agent |
 | Health (4) | Done 2026-11-16 (docs/courses/health/STANDARD.md): one topic module read in part, band coverage map drafted, sensitive-unit removal rule, 2007 to 2024 note and header (2026-11-11). Lens, scout and APPROACH draft written. Owed: each band's planner reads its modules; the health expert agent read in place of a paid read, and pacing, settled 2026-11-16 (Desk card q-later-arts-health-pe) | Agent |
 | Physical education (4) | Done 2026-11-16 (docs/courses/physical-education/STANDARD.md): the five-to-four map (2026-11-11), appropriate practice read in part, grade-outcome rule, review tool's K to 5 tables read in part. Lens, scout and APPROACH draft written. Pacing (elementary 2 to 3 sessions a week) settled 2026-11-16 (Desk cards q-later-*). Owed: the rest of the review tool's tables, read by each band's planner (later.csv L46); the approach page's yes | Agent |

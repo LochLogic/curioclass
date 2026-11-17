@@ -50,6 +50,11 @@ STD_FILES = {'social-studies': ['ma-hss-2018.txt', 'c3-indicators.txt', 'ccss-li
              'math': ['ccss-math-standards.txt'],
              'ela': ['ccss-ela-standards.txt', 'ccss-ela-standards-full.txt', 'ccss-literacy-6-12.txt'],
              'science': ['ngss-pes.txt', 'ccss-literacy-6-12.txt']}
+# the core electives' own lists (added 2026-11-16): accepted codes, and every code in them must be owned by a row
+ELECTIVE_FILES = {'math': ['curio-math-electives.txt'], 'science': ['curio-science-electives.txt'],
+                  'social-studies': ['apa-hs-psych-2022.txt']}
+for _s, _fs in ELECTIVE_FILES.items():
+    STD_FILES[_s] = STD_FILES[_s] + _fs
 ANCHOR = {'social-studies': 'ma-hss-2018.txt', 'science': 'ngss-pes.txt', 'ela': 'ccss-ela-standards.txt',
           'math': 'ccss-math-standards.txt'}
 
@@ -214,6 +219,11 @@ def check(subject):
         for code, gs in owners.items():
             if (code.startswith('MA.') or subject != 'social-studies') and len(gs) > 1:
                 fails.append('%s owned by grades %s' % (code, ', '.join(sorted(gs, key=GI.get))))
+    for f in ELECTIVE_FILES.get(subject, []):
+        if os.path.exists(os.path.join(ROOT, 'data', 'standards', f)):
+            for code in codes(f):
+                if code not in owners:
+                    fails.append('%s (%s) named by no skill' % (code, f))
     # quieter notes (baseline 1 structure finding 7): a note stays only while the rows have not said why
     def said(sids, *words):
         nt = ' '.join((by_id[x].get('notes') or '') for x in sids if x in by_id).lower()

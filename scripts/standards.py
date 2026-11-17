@@ -95,7 +95,11 @@ CSTA = {l.strip() for f in ('csta-2026-ids.txt', 'csta-2026-specialty-ids.txt')
 # --- Frameworks without fine-grained codes: closed vocabularies
 # full ids listed in these files (CASEL sub-skills, WIDA clusters, AASL competencies, career clusters) are valid as listed
 LISTED = {(name, l.split('	')[0].strip()) for name, f in (('CASEL', 'casel-5.txt'), ('WIDA-ELD-2020', 'wida-2020.txt'),
-          ('AASL-2018', 'aasl-2018.txt'), ('Career Clusters 2024', 'cte-career-clusters-2024.txt'))
+          ('AASL-2018', 'aasl-2018.txt'), ('Career Clusters 2024', 'cte-career-clusters-2024.txt'),
+          # the core electives (added 2026-11-16): APA 2022 psychology ids, and Curio Class's own outcome lists where
+          # no open standard covers a course (math past the (+) codes, the two science electives)
+          ('APA-HS-Psych-2022', 'apa-hs-psych-2022.txt'), ('Curio Class math electives', 'curio-math-electives.txt'),
+          ('Curio Class science electives', 'curio-science-electives.txt'))
           for l in (DATA / f).read_text(encoding='utf-8').splitlines() if l.strip() and not l.startswith('#')}
 LISTED_IDS = {i: n for n, i in LISTED}
 

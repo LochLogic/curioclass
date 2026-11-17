@@ -85,6 +85,11 @@ COURSE_ROWS.update({
     'physics': ('science', _prefix('phys-')),
     'algebra-i': ('math', _prefix('alg1-')), 'geometry': ('math', _prefix('geo-')),
     'algebra-ii': ('math', _prefix('alg2-')),
+    # the six core electives (added 2026-11-16): their rows sit in the core subjects' progressions at grade 12
+    'precalculus': ('math', _prefix('pc-')), 'statistics': ('math', _prefix('stat-')),
+    'calculus': ('math', _prefix('calc-')),
+    'earth-and-space-science': ('science', _prefix('ess-')), 'environmental-science': ('science', _prefix('env-')),
+    'psychology': ('social-studies', _prefix('psy-')),
 })
 
 # slug -> (catalogue id in data/courses.csv, grade on the school calendar). Added 2026-11-14 (baseline 1 structure
@@ -98,6 +103,9 @@ COURSE_META = {
     'us-government-and-politics': ('government', '12'), 'economics': ('economics', '12'),
     'biology': ('biology', '9'), 'chemistry': ('chemistry', '10'), 'physics': ('physics', '11'),
     'algebra-i': ('algebra-1', '9'), 'geometry': ('geometry', '10'), 'algebra-ii': ('algebra-2', '11'),
+    'precalculus': ('precalculus', '12'), 'statistics': ('statistics', '12'), 'calculus': ('calculus', '12'),
+    'earth-and-space-science': ('earth-space', '12'), 'environmental-science': ('environmental', '12'),
+    'psychology': ('psychology', '12'),
 }
 for _slug in COURSE_ROWS:
     m = re.match(r'(social-studies|english-language-arts|science|math)-(kindergarten|grade-(\d+))$', _slug)
