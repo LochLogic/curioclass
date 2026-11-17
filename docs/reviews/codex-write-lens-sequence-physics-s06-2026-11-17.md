@@ -1,0 +1,2 @@
+1. [2 and day list] Field 2 first teaches v = f × wavelength on day 80, but days.csv labels day 80 Fluency | Students cannot consolidate a relationship they have not yet learned | For the lead: change day 80 to Understanding in days.csv, regenerate the day list, and update the header to understanding 7 and fluency 0, preserving the planned teaching and existing day count.
+Count: 1 findings (lens sequence).

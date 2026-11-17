@@ -1,0 +1,5 @@
+1. [10; 5, earlier four-form record] Day 118 requires carbon and barium spectral reference patterns, but the linked hydrogen table and stellar comparison do not supply those element references. | The scored spectral matches lack checkable reference data. | Add the free [carbon](https://physics.nist.gov/PhysRefData/Handbook/Tables/carbontable2_a.htm) and [barium](https://physics.nist.gov/PhysRefData/Handbook/Tables/bariumtable2_a.htm) tables, specify the selected lines and wavelength units, and label the constructed stellar spectra “invented for practice”.
+2. [10; 5, item 1] The billion-year solar luminosity-growth record has no identified model, table or figure; the [stellar overview](https://science.nasa.gov/universe/stars/) describes slow luminosity changes without supplying that record. | Students must use evidence whose provenance cannot be checked. | Name a freely accessible solar-evolution model and its selected figure or values, and identify the card as a model prediction.
+
+Check: `python -X utf8 scripts/unitplan.py check physics` passes s08.md without notes; requested `data/plans/physics/source-map.csv` is absent.
+Count: 2 findings (lens sources).
