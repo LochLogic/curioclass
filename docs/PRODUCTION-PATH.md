@@ -230,6 +230,21 @@ Writing starts only here, under the review cadence (step 8).
   section, investigations and writing cycles kept whole), judgement calls come up to the lead, the gates run
   (`section_cuts.py check`) and `apply` writes the days.csv `unit` column and the plan headers. Run on 216 units
   of 29 courses: 1,007 sections, none left to decide, one lead fix.
+- **How section plans are authored** (planned 2026-11-16, not yet built): a script skeleton per section (no model;
+  built from `day_skeleton.py`), filling every data field (days, kinds, checks, parts scored, source references,
+  materials) and marking the judgement fields. Notes from a former one-section unit's merged plan are copied into
+  each of its sections, flagged for the writer to keep or drop. Then, to keep cost down at the same quality:
+  1. Codex writes a whole unit's sections in one run (shared context loaded once, handoffs seen together); capped
+     at three sections a run if later sections come out weaker.
+  2. The writer gets only its slice: the skeletons, that unit's plan fields, the source pages for those days, one
+     short rules card and one approved example section plan.
+  3. Code gates (length, fields, day numbers, em dashes, names) run before any model reads.
+  4. Lens reads take the whole unit's sections at once; the fix pass patches flagged fields, never rewrites.
+  5. Stable prompt parts (rules card, unit plan) come first so repeated runs reuse cached context.
+  6. Claude reads on flags, a small sample, and a per-unit cohesion pass, not every section.
+  The first social studies unit is the pilot: lens findings and tokens against the unit loop's numbers decide
+  whether this becomes the standard path. Considered and dropped: a Haiku skeleton (a script is exact and free) and
+  a Sonnet first draft before Codex (two drafters either waste the draft or anchor on it).
 - Grade 4 math's 48 written days: the unit 4 days 25 to 28 hold their fixes; the six open re-read items and the
   seven backfill slips in defects.csv wait for math's units to be settled (L13). A small fix job on the other written days
   (the rebuild check of the 44 older days: rebuild, gates, one cheap print-and-screen check) may run any time.

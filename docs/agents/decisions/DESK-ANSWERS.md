@@ -1453,3 +1453,11 @@ Cory: find only the start and end of each section first, by a Sonnet agent per c
 to the lead, not by a script alone. Done the same day: 216 units still held as one placeholder section, 1,007
 sections, gated by `scripts/section_cuts.py`. ELA scores end-of-unit parts across its closing weeks, so an end check
 before later teaching is a note, not a failure. Recorded in PRODUCTION-PATH step 7.
+
+## 2026-11-16: how section plans will be authored (planned, not built)
+
+Cory asked whether Haiku skeletons, a Sonnet rough draft, a Codex final with lens reads and a Claude refine would
+work. Settled: the skeleton stays a script; no Sonnet pre-draft. Cost comes down instead from unit-batched Codex
+writing, a sliced brief, gates before reads, per-unit reads with patch-only fixes, a stable prompt prefix, and
+Claude reading on flags, a sample and a per-unit cohesion pass. Piloted on the first social studies unit before it
+becomes standard. Cory picks this up next session; nothing is built yet. Written into PRODUCTION-PATH step 7.
