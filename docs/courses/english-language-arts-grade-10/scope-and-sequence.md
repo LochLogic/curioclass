@@ -158,9 +158,9 @@ A year ten days shorter folds these ten unassessed meetings into neighbours. Ori
 | Fold-in day | Work and receiving-day budget | Minutes saved |
 |---|---|---|
 | 10 | Day 9: 30 I.7 reading, 10 frame comparison, 5 words, 5 exit. Day 11: 35 II.1 to 3 first reading, 10 character comparison, 5 exit. | 50 |
-| 37 | Day 36: 20 tissue reading, 20 narrative drafting, 5 sequence audit, 5 exit. Day 38: 15 seminar, 25 revision/conference, 5 audit, 5 exit. | 50 |
+| 37 | Day 37 is Application in the full calendar. Day 36: 20 tissue reading, 20 narrative drafting, 5 sequence audit, 5 exit. Day 38: 15 seminar, 25 revision/conference, 5 audit, 5 exit. | 50 |
 | 47 | Day 46: 25 whole Postmaster, 10 reread, 10 context/retrieval/words, 5 exit. Day 48: 25 Cabuliwallah, 10 comparison paragraph, 10 colon work, 5 exit. | 50 |
-| 57 | Day 58: 5 punctuation retrieval, 5 seminar preparation, 30 observed group discussion, 10 synthesis. Day 59: 20 cold/taught comparison, 20 punctuation/spelling practice then evidence, 10 retained regional record. | 50 |
+| 57 | Day 57 is Application in the full calendar. Day 58: 5 punctuation retrieval, 5 seminar preparation, 30 observed group discussion, 10 synthesis. Day 59: 20 cold/taught comparison, 20 punctuation/spelling practice then evidence, 10 retained regional record. | 50 |
 | 69 | Day 68: 25 scene reading, 10 painting/detail rehearsal, 10 syntax, 5 exit. Day 70: 20 Brutus reading, 10 paired performed III.1 excerpts and delivery explanations, 5 claim feedback, 10 syntax/draft, 5 exit. Excerpt performance is not dropped. | 50 |
 | 79 | Day 78: 20 two whole poems, 15 reread/figures, 10 argument draft, 5 exit. Day 80: 20 two further whole poems, 10 earlier-poem contrast, 15 syntax/draft, 5 exit. | 50 |
 | 98 | Day 97: 30 whole Wilson reading, 15 reread/rhetoric, 5 exit. Day 100: 10 judgment preparation, 25 seminar, 10 analytic paragraph, 5 exit. | 50 |
