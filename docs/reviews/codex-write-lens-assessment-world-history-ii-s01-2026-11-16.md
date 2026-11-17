@@ -1,9 +1,14 @@
-1. [5, earlier evidence] Items 5 and 6 score products whose written feedback and revision occur entirely on day 13 | The required opportunity on an earlier day is absent | Draft and give written feedback by day 12, revise on day 13, and score on day 14; update the absence arrangement likewise.
-2. [5, items 7 and 8] P4 and P5 do not establish the disagreement their keys require: an eighteenth-century guarantee and the later spread of international human rights can coexist | Students must invent a disagreement to meet the key | Supply passages explicitly supporting opposing interpretations and rewrite both keys around that documented disagreement. See the [lecture synopsis](https://www.ucsd.tv/shows/Lynn-Hunt-Inventing-Human-Rights-14182) and [interview](https://www.magazine.columbia.edu/article/human-rights-newer-you-think).
-3. [5, item 4] The sufficient sample treats P1 as protection against arbitrary detention, but the printed excerpt only requires detention to be authorized by law | Citing a detention law does not itself demonstrate a broken promise | Print article 7's additional prohibition of arbitrary orders and require an explanation distinguishing lawful detention from arbitrary action. See [article 7](https://www.elysee.fr/en/french-presidency/the-declaration-of-the-rights-of-man-and-of-the-citizen).
-4. [7, component-to-move table] Missing facts automatically trigger unrelated misconceptions: item 2's removal component routes to B, while missing war facts or dates route to A | Repairs about unlimited monarchy or connecting evidence cannot reliably repair those knowledge gaps | Route demonstrated misconceptions by the actual response and add factual retrieval repairs for omissions.
-5. [7, response groups] G, O, P and Q have no component-to-move route or explicit response assignment | Registered errors can escape the response allocation | Assign each letter a teacher-group or paired repair, retaining the four-group cap; route “Parliament abolished monarchy” explicitly to P.
-6. [5 and 6, item 2] “England had universal suffrage” is tagged E, whose text concerns declared rights guaranteeing equality | The wrong answer does not establish that misconception | Give the belief that parliamentary limits introduced universal suffrage its own letter and repair, then update the response table.
-7. [daily exit table, days 3 and 12] Day 3's exit checks Peter and serfdom but omits the other named goals; day 12 checks one interpretation of success without the required compelling-question and two supporting-question evidence | The exits cannot show whether students achieved the day's full goals | Provide fresh, keyed two-part exits covering day 3's royal and regional comparisons and day 12's agreement, disagreement and application across the named questions.
+1. [Field 5, item 1c] The prompt, look-fors and sufficient sample describe serfdom continuing, but never require its spread | MA.WHII.T1.1c can receive full credit without evidence of that named part | Explicitly ask how serfdom expanded, add a scored look-for for expansion, and revise the sufficient sample accordingly.
+2. [Daily exit table, day 11] The Salvadoran coffee-labour versus British manufacturing comparison repeats the comparison explicitly assigned to that day's model and practice in field 2 | Withholding a paragraph does not make its already-taught central inference cold | Reserve a different Latin American case and European comparison for the exit; keep the Salvadoran coffee comparison in teaching.
+3. [Daily exit table, day 1 key] The key substitutes “sovereignty” for the historian's stated criterion, ending hereditary rule | The vignette establishes neither foreign rule nor national independence, so the key introduces an unsupported distinction | Replace “sovereignty or participation” with “ending hereditary rule or achieving equal political participation.”
 
-Count: 7 findings (lens assessment).
+Gate: `unitplan.py check world-history-ii` passed s01.md with no notes.
+Count: 3 findings (lens assessment).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

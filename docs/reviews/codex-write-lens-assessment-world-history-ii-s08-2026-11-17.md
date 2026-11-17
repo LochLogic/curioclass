@@ -1,0 +1,15 @@
+1. [5, day 119 evidence block] New work receives feedback, revision and scoring in the same period, as days.csv also directs; task 1 additionally names the first-teaching day 108 grid as scored evidence | Neither route supplies eligible earlier-day work | Collect, give written feedback and revise the new work on 119; score it on 120. Replace the day 108 scoring reference with the new day 119 grid. For the lead: correct day 119’s scoring note in days.csv.
+
+2. [5, samples and scoring] Several “Meets” samples omit required components: task 1 supplies no regional comparison; task 2 omits the named ANC, Mandela and UN contributions; task 4 omits its required movement and country comparison | These examples establish a passing threshold below the prompts’ requirements | Give component-level look-fors and complete passing samples, including the regional goals, each named contribution, and the required movements, countries and changed assumptions.
+
+3. [7] Students self-mark and raise hands, while groups A to Q lack a scored-component-to-repair table and a four-group limit | This contradicts UNIT-PLAN’s social studies marking rule and gives no reliable allocation from demonstrated errors | Record teacher-judged components as 0 or 1, map each component to its repair letter, run at most four teacher groups, assign remaining repairs to pairs, and state realistic teacher marking time per student and class.
+
+4. [5, daily exits E108 and E113] E108 repeats the hook’s question about freedom remaining unfinished after independence; E113 repeats day 113’s retrieval comparison between nineteenth-century Zionism and later persecution | Changed captions or dates do not make these cold checks | Replace both with fully specified, withheld sources or cases that require students to infer the relationship without stating the taught conclusion in the stimulus.
+
+5. [5, E114] The exit checks partition-map status only; displacement and Arab rejection and invasion are deferred to the lesson’s task | The exit does not measure all named parts of day 114’s goal | Supply a fresh map and short accounts, then ask two parts covering proposal versus implementation and the relationship among rejection, invasion and displacement.
+
+6. [5, items 3b and 4] Single wrong answers carry “(C, K)” and “(H, P)” | Each combines independently diagnosable misconceptions, preventing one-letter classification | Split each into two standalone wrong answers, each with one matching letter. The validator passes s08.md but explicitly notes both multiple-letter tags.
+
+7. [5 and 6, items 3e and 3f] Letter L describes collapsing all wars into one event, but tags an invasion placed before the partition vote and an incorrect claim that Egypt captured the West Bank in 1973 | Neither answer demonstrates L’s registered misconception | Give chronology reversal and mistaken territorial attribution separate letters and repairs, or replace both wrong answers with examples that actually merge distinct wars.
+
+Count: 7 findings (lens assessment).

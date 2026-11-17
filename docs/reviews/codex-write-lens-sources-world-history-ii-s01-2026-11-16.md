@@ -1,8 +1,13 @@
-1. [5, P4/P5; 10] P4 is a promotional synopsis, and the selected P5 fragments do not establish the historians' disagreement about continuity between revolutionary rights and modern human rights. | Items 7 and 8 require positions the supplied evidence does not demonstrate. | Replace P4 with a verified, timestamped passage from [Hunt's lecture](https://www.ucsd.tv/shows/Lynn-Hunt-Inventing-Human-Rights-14182), and expand [Moyn's selection](https://www.magazine.columbia.edu/article/human-rights-newer-you-think) to preserve his English-language qualifier and explicit objection to linking the movements.
+1. [5, P3/P5 and day 5 exit] Source-dependent tasks use our comparison synthesis, paraphrase of Moyn and summary of the Law of Suspects | Students reason from conclusions selected by the curriculum writer instead of examining the cited sources | Replace these stimuli with bounded, attributed excerpts from the comparison sources, [Moyn’s first answer](https://www.magazine.columbia.edu/article/human-rights-newer-you-think) and [the law’s sections 1 and 2](https://revolution.chnm.org/d/417/); retain glosses and distinguish editorial context from source text.
+2. [5, day 8 exit; 10] “Give a new account” names no author, title, free location or reserved passage, while the Haitian institutional source on the 1825 indemnity remains unselected | The section writer cannot supply the promised fresh, verified account or trace its evidence about the indemnity | Select and verify the account now; record its author, title, date, free URL and exact reserved passage, including a checked source for the 1825 demand.
+3. [10] The core textbook entry identifies Rankin and Weise and chapter numbers but omits the book’s full title, edition year and free location | Teachers cannot reliably identify the edition behind the planned adaptations and page references | Cite John Rankin and Constanze Weise, *World History Since 1500: An Open and Free Textbook* (2022), with its [official free edition](https://dc.etsu.edu/etsu-oer/13/), CC BY 4.0 licence and selected chapter passages.
 
-2. [5, P1; 10] P1 stops before article 7's procedural requirements and prohibition of arbitrary orders. | The packet omits the safeguards needed to examine the promised protection against arbitrary detention. | Include the remainder of [article 7](https://www.elysee.fr/en/french-presidency/the-declaration-of-the-rights-of-man-and-of-the-citizen), with attribution and glosses.
-
-3. [10, Checked selections; 5, exit 11] Field 10 directs writers to summarize ECUARUNARI's page and marks it reference only, while exit 11 requires students to interpret its mission as a community account. | A writer's summary replaces the community's own evidence. | Explicitly provide the [mission passage](https://ecuarunari.net/quienes-somos/) through a short attributed selection with a documented rights basis, or direct access, and remove it from the blanket summary instruction.
-
-Gate: `unitplan.py check world-history-ii` passed s01.md with no notes.
 Count: 3 findings (lens sources).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/media-manifest.txt
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md
