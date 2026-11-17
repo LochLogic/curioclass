@@ -1438,3 +1438,7 @@ real elective). Library 6 to 8 and 9 to 12 each spread across their grades, abou
 taught alongside other classes. High school music is a full composition and theory course with an ensemble companion
 page, not a stub. Why: Cory took the picks. Applied: the computer science, library and arts STANDARD and APPROACH
 drafts, and the owed table in ADOPTION-BAR-SUBJECTS.md.
+
+## 2026-11-16: Hamburger Paragraph bear line approved (later.csv L53)
+
+Cory approved the student wording "Burp! All gone. Thank you, chef! Press Build another to make a new burger." for the bear meal moment. Why: Cory's yes in chat. Applied: tools/hamburger-paragraph/spec.md already carries the line; no change needed.
