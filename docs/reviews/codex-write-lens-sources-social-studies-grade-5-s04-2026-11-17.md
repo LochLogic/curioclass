@@ -1,0 +1,7 @@
+1. [10, line 197; Q3 and E50] The cited [Mohawk history page](https://www.srmt-nsn.gov/culture-and-history) does not describe Mohawk military alliance with Britain during the Revolution | It cannot substantiate the profiles assigned to it | Add a verified, freely accessible Mohawk community account identifying the participants and their wartime choices; cite the specific passage and revise the profiles accordingly.
+2. [10, line 215; E46 and E51] Leader details remain explicitly “from memory,” and E46's factual card about women's resistance and voting has no identified supporting passage | Required classroom texts lack a checked factual basis | Name free sources and relevant passages for all eight leaders and the women's card; identify the resulting profiles and card as Curio Class originals to be written during section planning.
+3. [10, line 202] The agrarian-unrest PDF link returned HTTP 404 during verification | A named reference for debt, petitions and reform cannot be retrieved through the supplied citation | Replace it with the university's accessible [archived essay](https://archive.csac.history.wisc.edu/shays_rebellion1.pdf), identifying the passages used.
+
+Gate: s04.md passes; notes at lines 127, 138 and 139 flag multiple error letters, outside this lens.
+Read limitation: data/plans/social-studies-grade-5/source-map.csv does not exist, so its unit rows could not be checked.
+Count: 3 findings (lens sources).

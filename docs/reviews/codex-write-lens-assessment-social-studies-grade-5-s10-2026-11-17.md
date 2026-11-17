@@ -1,0 +1,11 @@
+Gate: PASS s10.md, with notes at lines 121, 124 and 130 covered below. Required data/plans/social-studies-grade-5/source-map.csv is absent.
+
+1. [Daily exits, X151, X153, X154] The caption, paired details and argument are unspecified, and their keys are generic | Neither correctness nor independence can be checked | Supply each complete reserved stimulus and its content-specific answer.
+2. [5, U; daily exits 147, 148, 155] U and exits 147 to 148 repeat the taught legal-protection-versus-access distinction; X155 repeats the shared-materials comparison through missing labels | Recalled teaching can substitute for transfer | Give U a different source context and usefulness question, and replace these exits with substantively different cases.
+3. [7] Response allocation lacks the required component-to-move table and provides no four-group cap | Teachers cannot reliably assign component-level misses to manageable repairs | Map each scored component to its error letter and repair, run at most four groups, and provide written paired repairs for others.
+4. [5, P4 and P12 samples] P4’s “Meets” sample covers only one supporting question; P12 never predicts each chosen strategy’s result with a reason | Incomplete work is presented as meeting every look-for | Complete P4’s two-question grid and give P12 two or three chosen-problem strategies, each with its mechanism, prediction and limit.
+5. [5, P8 sample] “The ruling supplies the protection” and the other source descriptions provide no actual evidence details | Naming source functions can pass as selecting evidence | Give one concrete, credited detail from each distinct work and explain its relevance.
+6. [5, P4, P7, P13 wrong samples] Single responses carry Q/B, M/E and G/J together, as the gate notes | Their diagnoses and repairs are ambiguous | Split each into separate wrong responses, each demonstrating and carrying one letter.
+7. [6, N] “One hero instantly changed everyone’s life” combines sole agency with immediate universal change | One letter requires two different repairs | Restrict N to sole agency and separately register the timing-and-reach misconception; update its examples and groups.
+
+Count: 7 findings (lens assessment).
