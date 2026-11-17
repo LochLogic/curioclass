@@ -1,0 +1,4 @@
+1. [field 2, day 16] The eighth installment has no earlier reading allocation, but its 3,000 to 3,500 words require 43 to 50 minutes at the scope and sequence’s planning allowance; day 16 offers at most 35 reading minutes | Students using the no-home route cannot finish on schedule without losing response time | Allocate at least 1,050 words of eighth-installment reading before day 15, then reserve 35 reading minutes on day 16 while protecting its 15 response minutes.
+2. [field 2, day 14] W.7.5 and L.7.3 receive their first explicit teaching on a day labelled Fluency | The day introduces skills instead of practising previously taught work | For the lead: change day 14 to Understanding in days.csv, regenerate the header and day list, and remove the prose exception.
+Gate: s01.md PASS; course check fails on unfinished s02.md through s06.md. source-map.csv is absent by design according to the scope and sequence.
+Count: 2 findings (lens sequence).

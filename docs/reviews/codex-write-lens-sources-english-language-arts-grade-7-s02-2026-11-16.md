@@ -1,0 +1,3 @@
+Check: s02.md PASS. The course check fails on unfinished placeholders in s03.md through s06.md. The requested source-map.csv does not exist.
+
+Count: 0 findings (lens sources). Federal passages and chart counts are freely checkable at the named sources, including [NRCS History](https://www.nrcs.usda.gov/about/history/brief-history-nrcs) and the [weather-service account](https://www.weather.gov/ddc/BlackSunday1935). The [film edition](https://archive.org/details/plow_that_broke_the_plains) is accessible with the stated runtime. Edition and rights notes are supplied, commissioned originals are identified, and invented quantities are labelled.
