@@ -1,0 +1,11 @@
+Gate: PASS for s12.md. The required data/plans/world-geography-and-ancient-civilizations-ii/source-map.csv is absent.
+
+1. [7, scoring and grouping] No scored-component record or component-to-move table is defined | Teachers cannot consistently turn missing evidence into repair groups | Define each scored component’s 0/1 criterion and map each missing component to its specific error letter and repair.
+2. [7, response groups] The plan assigns groups A to F, then separate repairs for G to M, without the required four-group cap | The fifteen-minute response allocation lacks a workable grouping rule | Limit teacher-led repair to four priority groups; assign remaining students paired work using explicit written repairs.
+3. [5, item 3 sample] The “Meets” answer supplies no dated routes and leaves geographic coverage incomplete | An answer missing required map evidence is presented as sufficient | Supply a complete annotated sample with endpoints, dates, four mechanisms, three idea categories and all three continents.
+4. [5, daily exit 150] Continuing Latin records are keyed as evidence of continuing administration | The stimulus does not identify administrative records or surviving governing institutions | Specify dated municipal tax records maintained by a continuing local council; key the counterclaim to that documented institutional continuity.
+5. [5, daily exit 147] The chronology card repeats the taught origins, patronage and establishment sequence, supplying the distinction students must explain | Recall of the teaching account can pass as cold application | Replace it with an unfamiliar, withheld policy extract without explanatory chronology labels; ask what its evidence establishes and what remains unproved.
+6. [5, item 1] One wrong answer carries “A and B” | Single-cause reasoning and universal disappearance cannot be diagnosed separately | Use “Inflation alone explains the breakup” under A and “Every Roman region ended in 476” under B as separate wrong answers.
+7. [5, item 3] Error L concerns a shared Han and Roman border, but the item contains neither empire | This item cannot elicit the designated geographic mistake | Remove L from item 3; retain it with the day 153 exit that actually presents those territories.
+
+Count: 7 findings (lens assessment).
