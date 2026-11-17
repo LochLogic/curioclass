@@ -1,0 +1,8 @@
+# Lens sources: science-kindergarten s01 (2026-11-17)
+
+Gate: `unitplan.py check science-kindergarten` PASS for s01.md, no notes. The unit quotes no text, uses no outside image and no data set; all cases are Curio Class originals and the invented ones are marked.
+
+1. [10 and 8, eye protection] Field 8 requires fitted impact eye protection for everyone on every moving-object day, while field 10 says only that the two safety pages were read for "protection sections"; no clause is named that calls for goggles when large soft balls roll slowly, and days.csv lists no such hazard | a safety rule must rest on a named published standard, and a requirement with no cited basis may be wrong in either direction | In field 10 Safety, name the section of the eye-protection page (and of the elementary guide) that sets the trigger and say how it applies to slow soft-ball rolls, a string pull and a gentle bump. If no clause covers it, field 8 should say "wear eye protection where the district's policy or the guidance for impact hazards calls for it" rather than "everyone"; keep the stop-for-missing-protection line. Add the question to the safety reader's list in field 10.
+2. [10 Safety, other hazards] The two safety pages are listed as read, but the plan names no section for tape on floors (trips), string (entanglement) or collisions, so the safety reader has no cited standard for those three hazards | field 10 must let a reader check each hazard against a source | Add one clause naming the guide's supervision and floor-hazard sections, and mark any string or trip control that the guide has no line for as "from memory".
+
+Count: 2 findings (lens sources).
