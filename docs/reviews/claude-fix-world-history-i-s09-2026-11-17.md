@@ -1,0 +1,25 @@
+# Fix: world-history-i unit 9 (s09.md), 2026-11-17
+
+Findings merged: 27 (assessment 11, sources 8, sequence 8; none named twice). Fixed: 23 (two only in part, see below). Rejected: 4. Held up per lens: assessment 11 of 11, sources 5 of 8, sequence 7 of 8 (Q5 and Q7 partial). Gate: `unitplan.py check world-history-i` PASS for s09.md (1,250 word cap met by writing fixes short; one pass ran 400 words over before trimming).
+
+What changed, by finding:
+- Assessment 1 to 11: field 7 now says all four items are teacher-judged, with a component-to-move table and four groups at most; reserved U is no longer Nieuhof-contaminated (R135 is now Kaempfer alone, compared with the adapted base passages on Tokugawa and Qing limits; Nieuhof stays on U only); A3 wrong list is G, L, M, H and the report Does-not sample is about China; A1 gains J, A2 gains K; E126 now a charter plus a lender (errors B, J); new letters O and P added after N and E130 filed under them; E134 gains a route inset (invented for practice); E128 lists J only; E127 gains J and "invented for practice"; E133 inset printed as invented; packet G moved to Ottoman Cairo and the Red Sea and Portuguese Lisbon, Goa and Macau.
+- Sources 1: Nieuhof letter wording matched in the archive's text layer today (OCR, lines for the letter found); printed page still to confirm on the scan; e-rara row and page 268 removed; Kaempfer edition and archive link given in R135 (catalogue seen, passages unread, none quoted). Sources 3: Inside Indonesia page footer says all rights reserved, so the teacher reads aloud and copies nothing. Sources 4: each frame source marked reached or not reached. Sources 6: nothing is quoted from Galileo or Hooke. Sources 8: New York 9.7 marked not read and unused.
+- Sequence 1, 2, 3, 6, 8: latitude-longitude retrieved for five minutes on 132 and tied to ports on 133 (field 2 and field 4 row 133); M133 cut to fifteen mapping, ten explaining, with retrieval 5, tie-in 5, holdings 10, exit 5; day 135 now warm-up 5, teach 10 (including trade-limits context), read, compare and plan 10, write 20 (150 to 200 words), check 5; unit 8 organizers named from unit 8's carried list; A3 base carries 1600 and 1680 layers.
+- Sequence 5 partial: R135 is read after class and returned on 137; the second geographic practice on 134 was cut for the word cap. Sequence 7 partial: supplies now name a globe, dated base maps and packets; the full list was cut for the cap.
+
+REJECTED: sources 2 | The hook's nutmeg route map and the maps for M133, A3 and G need a named source, maker and rights note | Only a short fix fitted: the "own nutmeg route map" wording was dropped to "a nutmeg route map" and no source statement stays, because field 10 was at the word cap; maps are Curio Class drawings, to be stated in sources.csv | none (word cap, UNIT-PLAN Length)
+REJECTED: sources 5 | A2 and E132 ask about hulls and sails but no read source covers them | Adding a source read needs a page we have not read, which I cannot invent, and the note would not fit the cap; reword-to-navigation would drop the T4.10 ships part, so left for the lead | UNIT-PLAN Length (word cap) and rule 19 (cover the whole standard)
+REJECTED: sources 7 | The Dutch minorities claim and the wealth account trace only to page ranges of an advanced textbook | No page or museum source for the minorities claim is known to me and the note would not fit the cap | UNIT-PLAN Length (word cap)
+REJECTED: sequence 4 | Teaching line should say days 131 and 132 teach Galileo, Kepler and ships first | A short version fitted only by cutting other required fixes; the day goals and notes in days.csv already state the content | UNIT-PLAN Length (word cap)
+
+LEAD:
+- days.csv note for 133 still says the latitude-longitude model is taught in the first ten minutes; change to a five-minute tie-in after the retrieval on 132, and add the latitude-longitude retrieval to 132's note; update the frame row for latitude-longitude (currently "first used here").
+- source-map.csv etsu-03-japan lists day 133 as "merge"; days.csv moved the Tokugawa and Qing limits to 135; make them agree.
+- days.csv day 135 goal and note say "accounts offered"; R135 now offers Kaempfer alone (Nieuhof is U); reword the goal.
+- Consider typing day 131 as Understanding (it teaches Galileo and Kepler first), and whether day 133's load needs a split between 133 and 134.
+- Find a free hulls and sails source (museum or maritime history, or unit 8 material) before day 132 and the A2 ship items are built; source the Dutch minorities claim.
+- Add Nieuhof (Ogilby 1669, McGill copy) and Kaempfer (1727) rows to the unit sources.csv; confirm Nieuhof's printed page on the scan; read Kaempfer's passages before day 135 quotes any.
+- State in sources.csv that the hook map, M133 and A3 base maps and G schematics are Curio Class drawings (field 10 had no room).
+- Sensitivity read for day 128 must obtain at least one community-authored account (Banda Eli descendants, Des Alwi or Usman Thalib are all not reached).
+- Print the new E134 route inset and E126 case as "invented for practice" in the exit bank when day pages are built.
