@@ -1,0 +1,10 @@
+# Lens read: sources, math-grade-6 unit 5 (docs/courses/math-grade-6/s05.md)
+
+unitplan.py check: PASS for s05.md. The unit quotes no outside text. Every context is invented and carries the printed label (hook, P1, P2, S6, E82, E90b, E91, E95); no statistic is presented as real; no company, person or place is named in student copy; no safety guidance is needed for drawing only.
+
+1. [field 10, progression citation] The Number System progression is cited from a conference-handout cloud-storage bucket, with "licence unstated" | A reference-only source should point at the progression's own publisher so a reader can check the passage and its terms | Replace the link with the progression's home page (the University of Arizona Institute for Mathematics and Education progressions page, where the Number System document is hosted), or name the local copy that was read; keep "reference only".
+2. [field 10, base text] The IM links all point to the commercial publisher's site (im.kendallhunt.com) and the plan names the edition only as "first-edition"; the page that shows the CC BY 4.0 statement is not named | Rights checks and a teacher cannot verify the licence from the cited page; the day credits give no edition | Add one line to field 10 naming the page where the CC BY 4.0 statement and attribution wording were read, and the edition used in the credit lines.
+3. [field 10, "Sources read"] It lists narratives 6.5.1 and 6.5.3 to 6.5.14 and tasks 1 and 14, while 6.5.2 and 6.5.15 are cut | A reader cannot tell whether the cut lessons were read, and the hook and day 93 plan lean on 6.5.1 and 6.5.14 | Say whether 6.5.2 and 6.5.15 were read, and that the hook and the day 93 layout are original Curio Class text adapted in structure only (no IM prices, lengths or layouts copied).
+4. [field 8, TOOL-ASKS] Field 8 links no TOOL-ASKS.md, and the file does not exist in docs/courses/math-grade-6/ | UNIT-PLAN rule 10 and field 8 require the link for named tools (place-value chart, area model) | Name TOOL-ASKS.md in field 8; the file itself is a lead task.
+
+Count: 4 findings (lens sources).
