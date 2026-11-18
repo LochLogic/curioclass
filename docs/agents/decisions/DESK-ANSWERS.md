@@ -1497,3 +1497,13 @@ kit, a cheaper route for any unit over $150. Same-grade seams stay in prose; the
 science outcomes stay. Calculus extensions stay extensions, first cut on the accelerated route. Psychology unit 15 is
 required. Statistics reads take a data-teaching lens (docs/agents/lenses/statistics.md, GAISE in our own words).
 Record: docs/reviews/desk-answers-electives-frames-2026-11-17.md.
+
+## 2026-11-17: day kinds, the Fluency mislabel fixed where calendars are made (later.csv L64)
+
+Cory (2026-11-16, "do not forget") asked that the Fluency mislabel the unit lenses kept finding be fixed at the
+source, not one day at a time; the lead set the rule. A Fluency day only practises what earlier days taught; first
+teaching of anything new is Understanding; drafting, revising or editing a piece of writing is Application; where a
+day does both, first teaching wins. One home: docs/GLOSSARY.md, row "teaching day"; sequence-write.md and frame-write.md
+lesson 17 point to it, and scripts/sequence.py fails a Fluency goal that drafts, edits, introduces or teaches (notes for
+the rest). Where a unit plan had already moved the first teaching to an earlier day, the day stays Fluency.
+Record: docs/reviews/fluency-sweep-2026-11-17.md.

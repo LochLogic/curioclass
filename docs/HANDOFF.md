@@ -12,12 +12,12 @@ which is stale, fix it and say so.
   Every course in the list is fixed, gated and pushed; science 8 was held over the cap until the caps were raised to
   1,600 and 2,300 (2026-11-17, DESK-ANSWERS). `stash@{0}` (redundant, from a 5:35pm autostash race) and
   `stash@{1}` (2026-10-27, another session's) are left in place; never `git stash` here.
-  **Next:** (1) a pass over the findings rejected for the old cap, now that there is room; (2) Desk cards for the
-  calls only Cory can make (US History I s08 topic, SS 3 s02 Menominee swap, science 1 s01 stars scope, ELA 11 s06
-  Occom rights, ELA 11 s01 Chopin cold read on day 14 vs taught day 139, ELA 11 s05 Jacobs chapter I kept against
-  the scope and sequence); (3) a lead sweep of the `LEAD:` lines in the claude-fix reports (mostly days.csv codes,
-  kinds and notes, ela-texts.csv and source-map.csv rows, unverified sources, generated header lines such as ELA K
-  s03 "2 rows below"); (4) a Desk refresh.
+  **Pausing point for baseline 2 (2026-11-17, Cory).** Since the pass: the caps are 1,600 and 2,300; Desk answers
+  q-lens-pass-1 and q-electives-frames-1 are applied (docs/reviews/desk-answers-*-2026-11-17.md, elective base texts
+  now in the source store); later.csv L64 (Fluency mislabel: one rule in GLOSSARY "teaching day", a sequence.py gate,
+  44 days relabelled, docs/reviews/fluency-sweep-2026-11-17.md), L65 and L66 are done. Everything is committed and
+  every gate passes. Carried into baseline 2: docs/reviews/lead-list-lens-pass-2026-11-17.md (934 LEAD items and 489
+  findings rejected for the old cap, by unit) and the Fluency sweep's "left for the lead" list.
 
 The plan is [PRODUCTION-PATH.md](PRODUCTION-PATH.md): the four core subjects are planned top down, one layer at a
 time, before more days are written.

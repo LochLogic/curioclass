@@ -117,10 +117,9 @@ Found 2026-11-16 in the core courses' scope and sequence reads, unit lens findin
 and the lead rulings (evidence and counts: docs/reviews/frame-unit-lessons-2026-11-16.md). A frame fault rarely shows in
 the frame read: the scope writer guesses in days.csv, the unit fixer cannot change days.csv, and the fix lands on the
 lead. Say these things in the frame so nobody below it has to guess:
-17. **Day kinds defined.** A "Day kinds." bullet in The course in brief: the first explicit teaching of anything (a
-    formula, model, method, term set) is Understanding; Fluency practises only what an earlier day taught;
-    investigating, drafting, editing or using taught ideas on a new task is Application. Say what Fluency looks like
-    in this course, or that it has little or none.
+17. **Day kinds defined.** A "Day kinds." bullet in The course in brief, using the definitions of docs/GLOSSARY.md
+    (row "teaching day"; first teaching is Understanding, Fluency only practises, drafting and editing are
+    Application). Say what Fluency looks like in this course, or that it has little or none.
 18. **Readiness evidence, not verdicts.** Each assumed earlier-grade row gives the grade and course of its last use
     (with the core course's unit or days where its scope exists) and the treatment that follows from lesson 16's
     count. The scope gate's count governs, and the scope fix pass updates the frame. No "kept in use" or "maintained"

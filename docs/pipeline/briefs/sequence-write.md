@@ -34,7 +34,11 @@ step 5.
   - **unit**: the section, as `<unit>.<n>` (`3.2`), where the scope and sequence already splits a unit into sections;
     otherwise `<unit>.1`. Blank on a `C` day.
   - **kind**: `Understanding`, `Fluency`, `Application`, `Check` or `Respond`, in every subject. The goal says the
-    activity (an inquiry, a lab, a source reading, a discussion, a draft); there are no other kinds.
+    activity (an inquiry, a lab, a source reading, a discussion, a draft); there are no other kinds. Set the kind by
+    what the day does, by the definitions in docs/GLOSSARY.md (row "teaching day"), never by the base lesson's place
+    or a wish to balance counts. Before you type a day Fluency, check that an earlier day of this course teaches
+    everything the goal and note ask, and that the day writes no draft, revision or edit; if not, it is
+    Understanding or Application, and the goal says so plainly.
   - **goal**: what the day is for, in a short teacher sentence ("I can" lines come with the unit plan).
   - **skills**: the skill_ids the day teaches or assesses, `; `-separated. Every owned skill is on at least one day
     of its unit.
@@ -155,6 +159,8 @@ step 5.
 ## The gate
 Run `python -X utf8 scripts/sequence.py check {course}` (also run by `python -X utf8 scripts/plan.py check`): days
 numbered in order, the frame's total and each unit's days, `stretch` in 1 to the unit count or `C`, the five kinds,
+a Fluency day whose goal drafts or edits writing or introduces or teaches (a failure; a revised piece of writing, a
+code carried for the first time in the course, or a note that introduces, teaches, begins or drafts prints a note),
 an end-of-unit assessment per unit, a mid-unit assessment in units over 25 days, a respond day after each
 course-level check, each `readiness` day on the previous unit's last day or a respond day at most 3 days before a
 unit's first day and never on a first day except unit 1's day 1, every owned skill placed, every owned code placed

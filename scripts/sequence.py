@@ -17,6 +17,11 @@ data/plans/<course>/source-map.csv exists its columns start with MAP_COLS in tha
 decision is keep, split, merge, cut or ours, `unit` is a unit number or <unit>.<n> of the frame, `days` lists course
 days in range ("12", "12-13", "12; 14"), blank only on a cut, and every cut gives its reason in `why`.
 
+Fluency kind (added 2026-11-17, later.csv L64; definitions in docs/GLOSSARY.md, row "teaching day"): a Fluency day
+whose goal drafts or edits writing, or introduces or teaches, fails (fluency_checks). What a script cannot judge is a
+note: a goal that revises a piece of writing, a note that introduces, teaches, begins or drafts, and a code the day
+carries for the first time in the course (map and fact-routine days do this legitimately).
+
 Rule 2 (added 2026-11-15, notes only for now): every unit's readiness and retrieval are counted as the unit skeleton
 counts them (rule2_notes); a missed readiness row or a readiness check where retrieval is due prints a note.
 """
@@ -96,6 +101,44 @@ def tool_cols(days, subject):
                 notes.append('%s: reads like hands-on work but names no supplies and no safety' % lab)
     if have and not any((d.get(c) or '').strip() for d in days for c in have):
         notes.append('the %s column(s) are empty on every day' % '/'.join(have))
+    return fails, notes
+
+
+# Fluency mislabels (later.csv L64, 2026-11-17). The goal is the day's plain statement of what it does, so a writing
+# verb or a teaching verb there is reliable; "before drafting" and the noun "introduction" are not verbs and do not match.
+FLU_FAIL = re.compile(r'(?<!before )\b(draft|drafts|drafting|edit|edits|editing|introduce|introduces|introducing|'
+                      r'teach|teaches)\b|\bfor the first time\b', re.I)
+WRITING = r'(sentence|paragraph|draft|essay|narrative|argument|explanation|analysis|account|summary|report|letter|retelling|writing|claim)s?'
+FLU_REVISE = re.compile(r'\brevis(e|es|ing)\b(\s+\S+){0,3}?\s+%s\b' % WRITING, re.I)
+FLU_NOTE = re.compile(r'\b(introduce|introduces|introducing|teach|teaches)\b(?! no\b| or\b)', re.I)
+# skip "no new content ..." clauses and another subject's teaching ("Math 7 teaches ... before this day")
+FLU_NOTE_NOT = re.compile(r'(\b(no|not|never|nothing|without|before)\b[^.;|]{0,40}'
+                          r'|\b(math|ela|science|history|social studies)\b[^.;|]{0,20})$', re.I)
+
+
+def fluency_checks(days):
+    """Failures and notes for Fluency days that first teach (Understanding) or work on a piece of writing
+    (Application), by the definitions of docs/GLOSSARY.md (row "teaching day")."""
+    fails, notes, seen = [], [], set()
+    for d in days:
+        codes = [c.strip() for c in d['codes'].split(';') if c.strip()]
+        if d['kind'] == 'Fluency':
+            lab, goal, note = 'day %s' % d['day'], d['goal'], d.get('note', '')
+            m = FLU_FAIL.search(goal)
+            if m:
+                fails.append('%s: a Fluency day whose goal says "%s" (first teaching is Understanding; drafting, revising '
+                             'or editing writing is Application; GLOSSARY "teaching day")' % (lab, m.group(0)))
+            else:
+                if FLU_REVISE.search(goal):
+                    notes.append('%s: Fluency, but the goal revises a piece of writing (Application?)' % lab)
+                hits = [x for x in FLU_NOTE.finditer(note) if not FLU_NOTE_NOT.search(note[:x.start()])]
+                if hits:
+                    notes.append('%s: Fluency, but the note says "%s" (Understanding or Application?)' % (lab, hits[0].group(0)))
+            new = [c for c in codes if c not in seen]
+            if new:
+                notes.append('%s: Fluency, first day in the course for %s (practice of a taught skill, or first '
+                             'teaching?)' % (lab, ', '.join(new)))
+        seen.update(codes)
     return fails, notes
 
 
@@ -278,6 +321,9 @@ def check(course):
             fails.append("day %s: a readiness check that is not on the previous unit's last day or a respond day "
                          "within %d days before a unit's first day" % (d['day'], READINESS_AHEAD))
     fails += map_fails(course, nunits, len(days))
+    ff, fn = fluency_checks(days)
+    fails += ff
+    notes += fn
     tf, tn = tool_cols(days, subject_of(slug))
     fails += tf
     notes += tn

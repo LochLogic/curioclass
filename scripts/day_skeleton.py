@@ -78,8 +78,8 @@ def section_lines(blk, pattern):
 
 KIND_MEANS = {   # docs/GLOSSARY.md day kinds, as the sample reads asked them printed (math grade 2 unit 3)
     'Understanding': 'meets new content: the goal is taught here, from a hook and a worked example',
-    'Fluency': 'practises what earlier days taught until it comes easily; no new content is taught',
-    'Application': 'applies taught work to a new task or case (an inquiry, a lab, a draft); nothing is taught as new',
+    'Fluency': 'practises what earlier days taught until it comes easily; no new content is taught and no writing is drafted, revised or edited',
+    'Application': 'applies taught work to a new task or case (an inquiry, a lab, a draft, a revision or edit); nothing is taught as new',
     'Check': 'an assessment day: its items sample only what earlier days taught',
     'Respond': 'acts on an assessment: reteach and revise what the checks showed, from the work students handed in',
 }
