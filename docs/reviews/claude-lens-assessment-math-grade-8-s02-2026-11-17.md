@@ -1,0 +1,9 @@
+# Lens assessment, math-grade-8 unit 2 (s02), 2026-11-17
+
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-8` gives PASS for s02.md, no notes. I worked every key (M1, M2, S2, P1 and S3 a to d) and all are correct.
+
+1. [5, items M1, M2, S2, P1; field 6 letter B] Every dilation in the mid-unit and end-of-unit items is about the origin, so no item can produce error B (center ignored) and no item shows whether a student can dilate from a stated center, although days 22 to 24 teach construction from a stated center and 8.G.A.4 allows any center | field 7 sends B to the A to C repair group but nothing ever records B, so that part of dilation has no unit evidence | in S2 add a dilation of triangle ABC by 2 about vertex B(-2,3): A'(-6,3), B'(-2,3), C'(-6,11), with "dilating about the origin instead" filed under B; to hold S2 at its time, cut the separate vertex list for the vertical-axis reflection to one answer line, or take two minutes from the five-minute P1 revision
+2. [7, Marking] "Allow sixty teacher minutes after day 35" for 30 students whose teacher-read work is P1 and S3 (a), (b), (c) and (d) | about 24 seconds a component is not enough to read a written argument, and the allocation field must give marking time honestly | change to ninety teacher minutes after day 35, with the order: read S3 (d) and P1 first, then S3 (a) to (c) against the one-line key for each; keep day 36's first five minutes for feedback
+3. [5, S3] Ten unaided minutes for three arguments, with part (a) holding three claims (alternate interior, corresponding, same-side interior), against ten minutes for the one argument in (d) and twenty for the mostly mechanical S2 | students who run out of time are recorded as unfinished, which reads as a gap in angle facts and sends them to the wrong repair group | rebalance inside the same 35 minutes: S2 fifteen minutes, S3 (a) to (c) fifteen minutes, (d) ten minutes unchanged
+
+Count: 3 findings (lens assessment).

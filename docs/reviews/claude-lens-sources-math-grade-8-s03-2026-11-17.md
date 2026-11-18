@@ -1,0 +1,8 @@
+# Lens sources: math-grade-8 unit 3 (2026-11-17)
+
+check: `unitplan.py check math-grade-8` PASS for s03.md. Credits checked against source-map rows for unit 3: lessons 1 to 14 map to days 37 to 43, 46 to 52 and the credit lines match (8.3.1 to 8.3.14); days 44, 45, 53, 54, 55 are "ours" and carry no credit, correctly. Base text edition (first edition, CC BY 4.0) agrees with docs/sources/BASE-TEXTS.md. Every context (robots, feed, reservoir, cart, tank) is labelled "invented for practice" and no statistic is presented as real. No company names in family copy; no laboratory or safety standard needed.
+
+1. [10] The Functions Progressions link points to a third-party mirror (mathematicalmusings.org), not the authors' or publisher's page | "Verified or none" asks for where the words can be checked at the source; a mirror can drift or vanish | Replace that link with the Progressions project's own page (ime.math.arizona.edu/progressions, the Functions K-8 progression), keeping "PDF pages 5 to 6 (printed 5 to 6)" and the reference-only note; have the page numbers re-checked against that copy.
+2. [10] The Expressions and Equations link points to a files.wordpress.com host and cites "PDF page 12 (printed 12)" with the slope-invariance and derivation claims attached | The plan builds its derivation and "Candidate settled" notes on this reading but names only a mirror; the same source-of-record fix applies | Point it to the same Progressions project page (grade 6-8 Expressions and Equations progression) and keep the sentence "Reference only; draft reuse licences unconfirmed. No passage is planned."
+
+Count: 2 findings (lens sources).

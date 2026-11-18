@@ -1,14 +1,13 @@
-Findings merged: **3 distinct findings**.
+Merged findings: 3. Fixed: 3, in docs/courses/math-grade-3/s07.md only.
 
-Fixed:
-- Required exact readings for prepared amounts aligned to scale marks, with equipment-specific tolerances reserved for genuine measurement variation.
-- Replaced the unverified Progressions attribution with a checked [Geometric Measurement citation](https://www.isbe.net/Documents/geometric-measurement-k-5.pdf), including date, subsection and pages.
+- Sources 1: added verified [safety guidance](https://static.nsta.org/pdfs/SafetyInElementaryScience.pdf), page references and the connection to field 8.
+- Sequence 1: retained mass equipment and sealed objects for later measurements, physical corrections and day 133 repairs.
+- Sequence 2: replaced all eight standards’ placeholders with verb-level parts, identifying teaching days and earlier-unit maintenance.
 
-Rejected:
-- Assessment finding 1: Item 1 is made, receives written feedback and is revised on day 121, then scored on day 132. UNIT-PLAN field 5 permits this; it does not require revision on a separate day.
+Held up by lens: assessment 0/0; sources 1/1; sequence 2/2.
 
-Findings upheld per lens: **assessment 1/2; sources 1/1; sequence 0 findings**.
+For the lead: update affected days.csv supply rows and regenerate the supply list to match the equipment schedule.
 
-Gate: **PASS docs/courses/math-grade-3/s07.md**. The course check fails only on unfinished `TODO(writer)` placeholders in s08.md.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-3` passed s07.md. Within the word cap; UTF-8, LF, no em dashes.
 
-Only s07.md was edited. UTF-8, LF endings and no em dashes verified.
+REJECTED: none

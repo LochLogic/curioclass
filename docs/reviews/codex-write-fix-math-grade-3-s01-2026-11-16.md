@@ -1,15 +1,9 @@
-Findings merged: 3, combining assessment finding 1 with sequence finding 1.
+Findings merged: 2. Fixed: 1. Rejected: 1 shared finding.
 
-Fixed in `docs/courses/math-grade-3/s01.md`:
+Added explicit modelling and guided context creation on day 11, followed by independent context creation on day 19. Only s01.md changed.
 
-1. Corrected assessment references to day 6 constructions, written feedback on day 7, revision on day 8 and scoring on day 21. Days 4 and 5 remain unscored practice.
-2. Supplied the scored bar scale of ten; explicitly excluded scale choice and defense from scoring.
-3. Replaced all seven “whole standard” placeholders with actual verbs, distinguishing work completed here from introductory work completed later.
+Held up for fixes within scope: assessment 0/1; sources 0 findings; sequence 1/2.
 
-Rejected: 0.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-3` reports `PASS docs/courses/math-grade-3/s01.md`.
 
-Per lens held up: assessment 2/2; sources 0 findings; sequence 2/2.
-
-For the lead: `days.csv`, `source-map.csv` and the scope and sequence still need matching corrections. They were outside the permitted write scope. The plan’s erroneous mechanical day notes were corrected locally.
-
-Gate: `PASS docs/courses/math-grade-3/s01.md`. The course command fails on existing `TODO(writer)` placeholders in s02.md through s08.md.
+REJECTED: assessment 1; sequence 2 | The plan’s day 6 graph collection, day 7 feedback, day 8 revision and day 21 scoring conflict with authoritative records retaining days 4 and 5 construction evidence. | Reconciliation requires lead edits to days.csv, source-map.csv and the scope and sequence before regenerating the day list, which this job cannot change; the plan’s existing cycle preserves earlier-day work, feedback and revision. | the writer's brief

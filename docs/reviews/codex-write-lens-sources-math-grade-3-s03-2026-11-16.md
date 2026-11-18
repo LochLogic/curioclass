@@ -1,3 +1,4 @@
-Check: s03.md passes `unitplan.py check math-grade-3`; the course command fails on unfinished skeletons s04.md to s08.md.
+1. [10] The core base text has no edition stated, although the scope and sequence specifies first-edition lessons | The required source identification is incomplete | Add “first edition, Grade 3, Unit 3, lessons 1 to 20” to the base-text entry, retaining the free lesson links and licence.
 
-Count: 0 findings (lens sources). All 20 mapped lesson pages are freely accessible with CC BY 4.0 licensing. The cited [progression](https://mathematicalmusings.org/wp-content/uploads/2023/05/Progressions.pdf) matches the stated page and licence. Adaptations have named sources, invented stories are labelled, and assessment items need no external source stimulus.
+Gate: `unitplan.py check math-grade-3` passes s03.md with no notes.
+Count: 1 findings (lens sources).

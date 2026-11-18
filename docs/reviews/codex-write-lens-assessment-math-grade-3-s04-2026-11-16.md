@@ -1,2 +1,2 @@
-Checker: s04.md passes; the course check fails on unfinished TODO(writer) placeholders in s05.md to s08.md.
-Count: 0 findings (lens assessment). All recomputed keys and samples are correct. Letters A to I each describe one misconception, match their wrong answers and have a repair and response group. Assessment evidence is explicitly unscored. Daily exits await section plans, so their freshness cannot yet be verified.
+1. [Field 5, lines 90, 103, 105 and 115] Every assessment item is explicitly unscored, with no scored item covering the same learning | The unit provides diagnostics but no scored end-of-unit evidence for its assessed standards | Score fresh unaided items 1 to 5 on day 76. Give the day 75 Fact Strategy Record written feedback and a chance to revise before scoring it on day 76, without collecting it again. Update field 7 accordingly.
+Count: 1 findings (lens assessment).

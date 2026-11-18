@@ -1,14 +1,14 @@
-Findings merged: 4 unique findings. All 4 fixed in docs/courses/math-grade-3/s02.md.
+Findings merged: 2. Fixed: 2, only in docs/courses/math-grade-3/s02.md.
 
-1. Item 6: written feedback and revision now occur on day 36, with the saved revision scored on day 37. Updated timing.
-2. Item 1: look-fors and sample now explain coverage without gaps or overlaps.
-3. Item 5: look-fors accept either rectangle orientation with consistent labels and 40 square units.
-4. Sources: lesson 3 receives credit for tiling and counting; corner-counting is identified as a Curio Class original, from memory. Removed its unverified Progressions attribution.
+1. Replaced item 3’s repeated inch-square diagram with three rows of seven; updated the key and meeting sample to 21 square inches.
+2. Named and linked the safety guidance, connecting it to adult-prepared pieces and the clear-floor or tabletop setup.
 
-Rejected: 0.
+Held up per lens: assessment 1/1; sources 1/1; sequence 0 findings.
 
-Per lens held up: assessment 3/3; sources 1/1; sequence 0 findings.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-3` passed s02.md with no notes.
 
-Gate: `PASS docs/courses/math-grade-3/s02.md`.
+REJECTED: none
 
-Course check fails on existing `TODO(writer)` placeholders in s03.md through s08.md.
+## Files changed outside the allowed set
+
+- data/plans/unit-rejections.csv

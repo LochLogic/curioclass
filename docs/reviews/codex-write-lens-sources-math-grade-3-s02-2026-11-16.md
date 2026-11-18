@@ -1,5 +1,10 @@
-1. [10, lines 165 and 169] The corner-counting contrast is described as retained from [base lesson 3](https://im.kendallhunt.com/k5/teachers/grade-3/unit-2/lesson-3/lesson.html), whose public text contains no such contrast; the alternative compiled-page attribution is explicitly unread | Its provenance is misleading | Credit lesson 3 for tiling and counting only; label the corner-counting contrast as a Curio Class original, from memory, consistent with error D, and remove its unverified Progressions attribution.
+1. [10] “Published elementary school materials guidance” names no actual safety guide | The cutting and floor-space precautions cannot be checked against a cited source | Cite California’s [Physical Hazards in the Elementary Classroom](https://www.cde.ca.gov/ci/pl/physicalhazardssci.asp), “Other Physical Hazards,” and connect its sharp-tool and trip-hazard guidance to field 8’s adult-prepared pieces and clear-floor or tabletop setup.
 
-Gate: s02.md passes; the course check fails on remaining TODO(writer) placeholders in s03.md through s08.md.
-
+Gate: `unitplan.py check math-grade-3` passes s02.md with no notes.
 Count: 1 findings (lens sources).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- docs/COURSES-STATUS.md

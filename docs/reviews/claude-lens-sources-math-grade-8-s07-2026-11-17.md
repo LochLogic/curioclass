@@ -1,0 +1,9 @@
+# Lens read: sources, math-grade-8 unit 7 (s07.md)
+
+Gate: `unitplan.py check math-grade-8` passes s07.md. No text is quoted in this unit; the credits name the CC BY base text with its day links; the Progressions PDF is marked reference only.
+
+1. [Field 10, day 128] Field 10 says "Contexts are invented for practice; no current statistics are used", but days.csv day 128 and the frame say the days reuse the science unit 4 solar-system distances, and the adapted base lessons for days 128 to 131 carry real-world quantities | a real distance or size with no named source breaks "every outside task or context names its source", and the two statements contradict each other | add to field 10: "Distances reused on day 128 come from science 8 unit 4 (s8-solar-system-scale); their source is named on that unit's plan. Any other real quantity from lessons 9 to 12 is replaced by an invented one marked 'invented for practice' or given its government or museum page." Drop or correct "no current statistics are used".
+2. [Field 5, F2] "invented for practice" sits after the model widths only, so the distances 580,000,000 and 19,000,000 kilometres could read as real planetary figures | no invented statistic may be presented as real | reword: "Two distances are 580,000,000 and 19,000,000 kilometres and two model widths are 0.00000079 and 0.000000021 metres; all four values are invented for practice."
+3. [Field 10, source-map decisions] The plan says lesson 16 is kept "with neutral supplied distances replacing device comparisons", but the source map marks IM G8 U7 L16 "keep" | an adapted lesson with its main context replaced should read "change" with the reason | LEAD: change the source-map row for IM G8 U7 L16 from keep to change (device comparison replaced by supplied neutral distances); the count then reads keep 15, change 1, ours 4.
+
+Count: 3 findings (lens sources).

@@ -1,2 +1,5 @@
-Count: 0 findings (lens sources). Outside tasks have named sources, free publisher links, edition and licence information, and day-credit instructions. The cited [Geometry](https://www.isbe.net/Documents/geometry-k-6.pdf) and [Measurement](https://www.isbe.net/Documents/geometric-measurement-k-5.pdf) drafts support the background guidance. No unchecked quotation or invented statistic presented as real is planned.
-Gate: `python -X utf8 scripts/unitplan.py check math-grade-3` passed, including s08.md.
+Gate: `unitplan.py check math-grade-3` passes s08.md with no notes.
+
+1. [10, Reads needed] The short-string safety read refers only to unspecified “published elementary school guidance” | The planned handling precaution has no checkable safety source | Name and link a state, district or professional elementary safety guide, identify its relevant section, and connect the string-handling precaution to that guidance.
+
+Count: 1 findings (lens sources).

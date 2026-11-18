@@ -1,4 +1,3 @@
-1. [2; day list, days 71 to 74] No teaching day explicitly connects a partitioned dividend to the sum of two quotients, although day 76 requires that explanation | Multiplication partitions and related facts alone do not establish the division strategy being checked | Assign concrete split-dividend instruction to day 71 and independent practice to day 72, within their existing minutes.
+Count: 0 findings (lens sequence). Coverage and handoffs are explicit; day counts, kinds and allocations match days.csv; concrete models precede independent practice; supplies support the planned work. Detailed daily budgets and exits belong in the section plans.
 
-Gate: s04.md PASS; course check failed on unfinished s05.md to s08.md.
-Count: 1 findings (lens sequence).
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-3` reports PASS for s04.md, with no notes.

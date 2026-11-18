@@ -1,2 +1,4 @@
-Gate: s07.md passes; the course check fails on unfinished TODO(writer) placeholders in s08.md.
-Count: 0 findings (lens sequence). The calendar matches days.csv, stated daily allocations total 60 minutes, major work accounts for 590 of 900 teaching minutes, and prerequisite retrieval, model progression and later hand-offs align with the scope and sequence.
+1. [field 8] Mass equipment and sealed objects are listed only for day 122, but the saved-work schedule requires fresh physical mass measurements on day 123 and corrections afterward | The supplies schedule does not support the planned measuring work | State that equipment remains available for day 123, physical corrections and day 133 repairs. For the lead: update the affected days.csv supply rows and regenerate the supply list.
+2. [field 2] Every standard ends with “Parts, by verb: whole standard” instead of listing its parts as UNIT-PLAN.md requires | Distinct teaching obligations are not separately traceable, including estimating versus measuring and the different time-interval operations | Replace each placeholder with verb-level parts, identifying which are taught here and which are maintained from named earlier units.
+
+Count: 2 findings (lens sequence).

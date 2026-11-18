@@ -1,5 +1,5 @@
-1. [5 and 7, lines 104 to 113, 132] All scored work is produced on day 58, with marking that day and no earlier written-feedback and revision stage | This fails the brief's earlier-day scoring requirement | Identify eligible addition, subtraction and rounding work from later practice days, schedule written feedback and revision before day 58, and score those records; keep fresh day-58 tasks diagnostic and adjust the sitting accordingly.
-2. [5, lines 107 and 109] Both “Meets” samples omit required components: Item 1 omits two calculations and method-choice justification; Item 2 omits most rounded values and the 735 tie explanation | Incomplete responses are labelled as meeting criteria that require every component | Supply complete qualifying samples, including all calculations, explanations, method choice and inverse check.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-3` passed s03.md with no notes.
 
-Gate: `unitplan.py check math-grade-3` passes s03.md; the course check fails on unfinished s04.md to s08.md. Daily exits are deferred to section plans, so their freshness remains unverified.
-Count: 2 findings (lens assessment).
+1. [Field 5, lines 97 to 113] Both end-of-unit items are explicitly unscored, and no scored item covers their content | The unit supplies no scored end-of-unit evidence for 3.NBT.A.1 or 3.NBT.A.2 | Make items 1 and 2 fresh, unaided scored items on day 58, retaining their component criteria and 44-minute budget; update the contradictory unscored wording in fields 5 and 7. Fresh end-of-unit responses require no earlier feedback cycle.
+
+Count: 1 findings (lens assessment).

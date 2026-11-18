@@ -1,3 +1,11 @@
-Check: s05.md passes; the course check fails on unfinished writer placeholders in s06.md to s08.md.
+1. [10] The base text is named “K-12” without an edition | The core-text edition requirement is unmet | Identify the linked K-5 Grade 3, Unit 4 web edition, lessons 12 to 21, including its displayed 2021 copyright date and CC BY 4.0 licence. [Source](https://im.kendallhunt.com/k5/teachers/grade-3/unit-4/lesson-12/lesson.html)
 
-Count: 0 findings (lens sources). All ten mapped lessons are freely accessible. The [hook image](https://im.kendallhunt.com/k5/teachers/grade-3/unit-4/lesson-12/lesson.html) and [progression reference](https://mathematicalmusings.org/wp-content/uploads/2011/05/ccss_progression_cc_oa_k5_2011_05_302.pdf) are traceable. Adaptation credits and licensing are specified, invented contexts are labelled, and no assessment requires an unavailable source or substitutes a summary for one.
+Gate: `unitplan.py check math-grade-3` passes s05.md with no notes.
+Count: 1 findings (lens sources).
+
+## Files changed outside the allowed set
+
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md

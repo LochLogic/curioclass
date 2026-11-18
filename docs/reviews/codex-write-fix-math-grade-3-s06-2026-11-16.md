@@ -1,14 +1,13 @@
-Merged: **5 distinct findings**, with no duplicates. Fixed 4 in s06.md:
+Findings merged: 3. Fixed: 3, in docs/courses/math-grade-3/s06.md only.
 
-1. Completed item 7’s successful sample with 2/2 = 1 and both plotted locations.
-2. Added separately scored item 8 tool-choice evidence and a mathematical sample explanation.
-3. Made teacher-marked error letters determine repair groups, mapping A through L to repairs and fresh transfer tasks.
-4. Clarified that day 96 practises the paper-tape representation already established on day 95.
+1. Added fresh multiplication, division, addition and subtraction evidence from day 108, with written feedback and revision before scoring on day 113.
+2. Required two different equal-area region shapes in the design scoring criteria and updated the sample.
+3. Corrected the progression citation to printed pages 7 to 9.
 
-Rejected 1: The design-timing finding misreads UNIT-PLAN field 5. Feedback and revision occur on day 112; scoring occurs on day 113, an earlier-day product as required.
+Per lens held up: assessment 2 of 2; sources 1 of 1; sequence 0 findings.
 
-Held up by lens: **assessment 3/4; sources 0 findings; sequence 1/1**.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-3` passed, including s06.md.
 
-For the lead: The unchanged day 96 data note still says “introduce.” Align that wording with the clarified prose when data edits are authorized.
+For the lead: align day 113’s days.csv codes with the added 3.OA.C.7 and 3.NBT.A.2 assessment rows. That file was outside this job’s write scope.
 
-Gate: **PASS docs/courses/math-grade-3/s06.md**. Course check fails only on unfinished s07.md and s08.md entries. The plan remains within its word cap at 1,186 counted words.
+REJECTED: none

@@ -1,3 +1,1 @@
-1. [field 2, Fluency; day list] Field 2 assigns five minutes to facts plus five separate minutes to written computation, but days.csv and the scope and sequence require one shared five-minute rotation | The plan adds five practice minutes daily and conflicts with the authoritative schedule | Combine both routines into one five-minute rotation; change day 89’s partner work from 16 to 21 minutes and day 91’s application from 30 to 35 minutes to preserve their 60-minute totals.
-Gate: s05.md passes; the course check fails on unfinished TODO(writer) entries in s06.md to s08.md.
-Count: 1 findings (lens sequence).
+Count: 0 findings (lens sequence). Days and kinds match days.csv, stated budgets total correctly, prerequisite handoffs are supported, retained lessons preserve order, and paper supplies support the planned work. The named checker passed s05.md with no notes.

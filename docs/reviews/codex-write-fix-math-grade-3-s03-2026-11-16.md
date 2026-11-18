@@ -1,14 +1,14 @@
-Findings merged: 3 distinct findings.
+Findings merged: 2. Fixed: 1, adding the first edition identification in field 10. Only `docs/courses/math-grade-3/s03.md` changed.
 
-Fixed in docs/courses/math-grade-3/s03.md:
+Held up by lens: assessment 0 of 1; sources 1 of 1; sequence 0 findings.
 
-1. Made both day-58 items explicitly unscored diagnostic practice, with feedback and error grouping rather than grades.
-2. Completed both “Meets” samples, including every calculation, method choice, rounded value and tie explanation.
+Gate: `python -X utf8 scripts/unitplan.py check math-grade-3` passed s03.md with no notes.
 
-Rejected: the sequence correction requires moving day-52 content to day 51 and changing CSV notes, conflicting with the prescribed source order and this job’s no-moved-content, single-file limits. The lead should resolve the remaining fluency-day concern.
+REJECTED: assessment 1 | Both end-of-unit items are unscored, so the lens requires fresh scored items on day 58. | Scores are not required, both items already provide component evidence, and scoring newly made day-58 responses that day violates the earlier-day scoring rule. | UNIT-PLAN field 5
 
-Per lens: assessment 2/2 held up and were fixed; sources reported 0 findings; sequence 1/1 identified a valid concern, but its correction was rejected under the stated limits.
+## Files changed outside the allowed set
 
-Gate: `PASS docs/courses/math-grade-3/s03.md`.
-
-The course command fails on unfinished s04.md through s08.md.
+- build/lessons/math-4/u03-3/d018-key.html
+- build/lessons/math-4/u03-4/d023-key.html
+- data/plans/unit-rejections.csv
+- docs/COURSES-STATUS.md
