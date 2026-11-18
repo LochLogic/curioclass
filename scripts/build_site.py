@@ -1010,6 +1010,10 @@ if COURSES_LIVE:
         index += [{'t': c['title'], 'u': c['url'], 'g': course_pages.grade_name(c['grade']), 's': c['subject_label'],
                    'f': 'Course', 'w': '', 'c': '', 'd': c['lede'], 'b': True} for c in _courses]
     print(f"{_n} course and unit pages -> {DIST / 'courses'} ({'shown' if COURSES_SHOWN else 'hidden'})")
+# The Front Office and Show Your Work (scripts/front_office.py): the curriculum top to bottom for administrators, built
+# on every build (Cory, 2026-11-17: live as a draft), six files, noindex and out of the sitemap, search and menus.
+import front_office  # noqa: E402
+front_office.build(DIST, env=env, render=render)
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')
 render('search.html', '/search/', index=False)
 # Recess: the shelf (noindex and out of the nav until a game is live), each live game's page and its playable file,

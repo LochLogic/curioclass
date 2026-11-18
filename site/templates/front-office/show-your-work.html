@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% block title %}Show Your Work · Curio Class{% endblock %}
+{% block description %}How the Curio Class curriculum is built and checked: the foundations, the layers, the checks, the base texts and the review record.{% endblock %}
+{% block robots %}<meta name="robots" content="noindex, nofollow">{% endblock %}
+{% block head %}
+<style>
+.syw .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 16px; }
+.fo-draft { background: #fff4d6; border-bottom: 1px solid #ecd9a3; color: #6b5310; font: 600 13px/1.4 var(--sans); text-align: center; padding: 8px 16px; }
+.syw .syw-hero { padding: 56px 16px 40px; border-bottom: 1px solid var(--line); }
+.syw-hero .eyebrow { color: var(--accent-ink); }
+.syw-hero .eyebrow a { color: inherit; }
+.syw-hero h1 { font-size: clamp(40px, 6vw, 66px); margin: 10px 0 14px; }
+.syw-hero p { font-size: 20px; color: var(--muted); max-width: 52ch; margin: 0; }
+.syw .syw-layout { display: grid; grid-template-columns: 230px 1fr; gap: 56px; padding: 48px 16px 80px; }
+.syw-toc { position: sticky; top: 24px; align-self: start; font-size: 15px; }
+.syw-toc b { display: block; font: 600 12px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.syw-toc a { display: block; padding: 7px 0 7px 14px; color: var(--muted); text-decoration: none; border-left: 2px solid var(--line); }
+.syw-toc a:hover, .syw-toc a.on { color: var(--ink); border-left-color: var(--accent); }
+.syw-main { max-width: 760px; min-width: 0; }
+.syw-main section { margin-bottom: 64px; scroll-margin-top: 20px; }
+.syw-main h2 { font-size: 34px; margin: 0 0 6px; }
+.syw-main .kicker { font: 600 13px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 10px; }
+.syw-main p { margin: 0 0 14px; }
+.syw-main .intro { font-size: 19px; color: var(--muted); }
+.syw-flow { list-style: none; padding: 0; margin: 22px 0 0; counter-reset: s; }
+.syw-flow li { counter-increment: s; position: relative; padding: 0 0 22px 62px; }
+.syw-flow li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 42px; height: 42px; border-radius: 50%; background: var(--ink); color: #fff; display: grid; place-items: center; font: 600 18px/1 var(--serif); }
+.syw-flow li::after { content: ""; position: absolute; left: 20px; top: 46px; bottom: 4px; border-left: 2px dashed #cfc3a8; }
+.syw-flow li:last-child::after { display: none; }
+.syw-flow h3 { font-size: 21px; margin: 8px 0 4px; }
+.syw-flow p { margin: 0; color: var(--muted); }
+.syw-flow .against { display: inline-block; margin-top: 8px; font-size: 13px; background: var(--paper-2); border-radius: 999px; padding: 5px 12px; color: var(--ink); }
+.syw-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 20px; }
+.syw-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 18px 16px; box-shadow: var(--shadow); }
+.syw-card .ic { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; background: #e7f0ef; color: var(--teal); margin-bottom: 10px; }
+.syw-card h3 { font-size: 18px; margin: 0 0 6px; }
+.syw-card p { font-size: 15px; color: var(--muted); margin: 0; }
+.syw-callout { background: var(--ink); color: #e9eaee; border-radius: 18px; padding: 26px 28px; margin-top: 18px; }
+.syw-callout h3 { color: #fff; font-size: 22px; margin: 0 0 10px; }
+.syw-callout ul { margin: 0; padding-left: 20px; }
+.syw-callout li { margin: 6px 0; }
+.syw-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 18px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; font-size: 15px; }
+.syw-table th { text-align: left; font: 600 12px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--paper-2); padding: 12px 14px; }
+.syw-table td { padding: 12px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+.syw-table td b { font-weight: 600; display: block; }
+.syw-table td small { color: var(--muted); }
+.syw-lic { display: inline-block; white-space: nowrap; font: 600 12px/1 var(--sans); background: #e7f0ef; color: var(--teal); border-radius: 999px; padding: 5px 10px; text-decoration: none; }
+.syw-acc { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); margin: 14px 0; overflow: hidden; }
+.syw-acc > summary { cursor: pointer; padding: 16px 18px; font: 600 19px/1.2 var(--serif); list-style: none; display: flex; align-items: center; gap: 10px; }
+.syw-acc > summary::-webkit-details-marker { display: none; }
+.syw-acc > summary small { font: 400 14px/1 var(--sans); color: var(--muted); margin-left: auto; }
+.syw-acc > summary::after { content: "+"; font: 400 22px/1 var(--sans); color: var(--muted); }
+.syw-acc[open] > summary::after { content: "\2212"; }
+.syw-rev { padding: 14px 18px; border-top: 1px solid var(--line); }
+.syw-rev b { display: block; margin-bottom: 4px; }
+.syw-rev p { margin: 0; color: var(--muted); font-size: 15px; }
+.syw-soon { border: 2px dashed var(--line); border-radius: var(--radius); padding: 16px 18px; color: var(--muted); font-size: 15px; }
+@media (max-width: 860px) { .syw .syw-layout { grid-template-columns: 1fr; gap: 10px; } .syw-toc { position: static; display: none; } .syw-table { font-size: 14px; } }
+@media print { .site-head, .site-foot, .fo-draft, .syw-toc { display: none; } .syw-layout { display: block; } .syw-acc:not([open]) > :not(summary) { display: block; } }
+</style>
+{% endblock %}
+{% block main %}
+<div class="syw">
+  <div class="fo-draft">Draft for review. Not linked from the site yet.</div>
+  <header class="wrap syw-hero">
+    <div class="eyebrow"><a href="/front-office/">The Front Office</a> &rsaquo; Show Your Work</div>
+    <h1>Show Your Work</h1>
+    <p>How the curriculum is built, what every layer is checked against, the open texts it draws on, and the record of what review found and fixed.</p>
+  </header>
+
+  <div class="wrap syw-layout">
+    <nav class="syw-toc" aria-label="On this page">
+      <b>On this page</b>
+      <a href="#approach">The approach</a>
+      <a href="#layers">The layers</a>
+      <a href="#checks">The checks</a>
+      <a href="#standing">Where things stand</a>
+      <a href="#texts">Base texts</a>
+      <a href="#record">The review record</a>
+      <a href="#corrections">Corrections</a>
+    </nav>
+
+    <div class="syw-main">
+      <section id="approach">
+        <div class="kicker">The approach</div>
+        <h2>Top down, one layer at a time.</h2>
+        <p class="intro">Most curricula are written lesson by lesson and stitched together. Curio Class is written the other way: the whole K to 12 path first, then each course, then each unit, and only then the days.</p>
+        <p>Every layer is finished and checked before the next one starts, and each is written from the one above it. That way a day can always be traced back to the unit it serves, the course that unit belongs to, and the skill and standard behind it. When a layer changes, everything that rests on it is checked again.</p>
+        <p>Earlier drafts are kept out of sight while a layer is written, so old decisions cannot quietly steer new work. Differences between the new layer and older material are then settled one by one, each against a named source.</p>
+      </section>
+
+      <section id="layers">
+        <div class="kicker">The layers</div>
+        <h2>From skills to days.</h2>
+        <ol class="syw-flow">
+          <li><h3>Skill ladders</h3><p>Every skill from kindergarten to grade 12, in teaching order, with the earlier skills each one assumes and the links between subjects.</p><span class="against">Checked against the state and national standards</span></li>
+          <li><h3>Course frames</h3><p>Each course's shape: its units in order, the question each unit asks, the standards each unit owns, and how many days each gets.</p><span class="against">Checked against the skill ladders</span></li>
+          <li><h3>Scope and sequence</h3><p>The school year laid out day by day: what each day teaches, what kind of day it is, and where students show what they know.</p><span class="against">Checked against the course frame</span></li>
+          <li><h3>Unit plans</h3><p>For each unit: the evidence students produce, the sources they read, the common misunderstandings to watch for and how to answer them.</p><span class="against">Checked against the scope and sequence</span></li>
+          <li><h3>Sections</h3><p>Each unit broken into short runs of days that share one goal.</p><span class="against">Checked against the unit plan</span></li>
+          <li><h3>Days</h3><p>The lesson itself: what the teacher does, what students do, the materials, the exit check and a page for families.</p><span class="against">Checked against the section and unit plans</span></li>
+        </ol>
+      </section>
+
+      <section id="checks">
+        <div class="kicker">The checks</div>
+        <h2>What every layer has to pass.</h2>
+        <p>Checks come in two kinds. Rules that can be counted are checked automatically, every time anything changes. Questions of judgement get separate reads, each with one job, and every finding is either fixed or answered with a reason.</p>
+        <div class="syw-grid">
+          <div class="syw-card"><div class="ic">&#10003;</div><h3>Standards</h3><p>Every standard a course claims is taught, practiced and checked somewhere, and nothing is taught before what it builds on.</p></div>
+          <div class="syw-card"><div class="ic">&#9776;</div><h3>Sequence</h3><p>Units and days come in an order that makes sense, with no gaps, repeats or jumps between grades.</p></div>
+          <div class="syw-card"><div class="ic">&#9998;</div><h3>Assessment</h3><p>Students show what they know in ways that match what was taught, and every check has a clear answer key.</p></div>
+          <div class="syw-card"><div class="ic">&#128279;</div><h3>Sources</h3><p>Every fact is traced to a named source, and every text is checked for its edition and rights.</p></div>
+          <div class="syw-card"><div class="ic">&#9878;</div><h3>Sensitivity</h3><p>Topics about real communities are checked against that community's own published guidance.</p></div>
+          <div class="syw-card"><div class="ic">&#9888;</div><h3>Safety</h3><p>Every hands-on activity is checked against named safety guides for the grade.</p></div>
+        </div>
+      </section>
+
+      <section id="standing">
+        <div class="kicker">Where things stand</div>
+        <h2>Honest status.</h2>
+        <p>The Front Office shows exactly which layers are done for every course. To be plain about the rest:</p>
+        <div class="syw-callout">
+          <h3>What has not happened yet</h3>
+          <ul>
+            <li>No part of the curriculum has been taught with students yet.</li>
+            <li>No working classroom teacher has reviewed it yet.</li>
+            <li>Most days are planned but not yet written.</li>
+          </ul>
+        </div>
+        <p style="margin-top:16px">Nothing here claims review or endorsement by any outside organization.</p>
+      </section>
+
+      <section id="texts">
+        <div class="kicker">Base texts</div>
+        <h2>The open texts behind the courses.</h2>
+        <p>Where an openly licensed curriculum or textbook does a course well, Curio Class adapts it rather than starting over. Each adapted day names its source in a credit line. Social studies has no base text: it is written from primary sources and openly available records.</p>
+        <table class="syw-table">
+          <thead><tr><th>Source</th><th>Used for</th><th>Licence</th></tr></thead>
+          <tbody>
+          {% for b in base_texts %}
+            <tr><td><b>{{ b.name }}</b><small>{{ b.ed }}</small></td><td>{{ b.use }}</td><td>{% if b.url %}<a class="syw-lic" href="{{ b.url }}" rel="license noopener">{{ b.lic }}</a>{% else %}<span class="syw-lic">{{ b.lic }}</span>{% endif %}</td></tr>
+          {% endfor %}
+          </tbody>
+        </table>
+        <p style="margin-top:14px"><small>Adapted material is changed by Curio Class. No source named here reviewed or endorses Curio Class.</small></p>
+      </section>
+
+      <section id="record">
+        <div class="kicker">The review record</div>
+        <h2>What review found, and what changed.</h2>
+        <p>Each layer's review is summarized here as it closes: how many findings were raised and the main fixes made.</p>
+        {% for g in reviews %}
+        <details class="syw-acc"{% if loop.first %} open{% endif %}>
+          <summary>{{ g.layer }}<small>{{ g['items']|length }} review{{ '' if g['items']|length == 1 else 's' }}</small></summary>
+          {% for r in g['items'] %}<div class="syw-rev"><b>{{ r.t }}</b><p>{{ r.s }}</p></div>{% endfor %}
+        </details>
+        {% endfor %}
+        <div class="syw-soon">Reviews of the scopes and sequences, the unit plans and the days are added here as each one closes.</div>
+      </section>
+
+      <section id="corrections">
+        <div class="kicker">Corrections</div>
+        <h2>Fixed in the open.</h2>
+        <p>Every day page will carry a way to report a problem, and every fix will be listed on that course's corrections page, so anyone can see what changed and why.</p>
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.syw-toc a'));
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); }); });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  document.querySelectorAll('.syw-main section').forEach(function (s) { io.observe(s); });
+})();
+</script>
+{% endblock %}

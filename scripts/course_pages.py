@@ -169,7 +169,8 @@ def plain(s):
 
 
 def sentences(s):
-    return [x for x in re.split(r'(?<=[.!?"])\s+(?=[A-Z"(\u201c])', s) if x.strip()]
+    # a closing quote ends a sentence only after . ! or ? ('the "free labor" North' stays whole)
+    return [x for x in re.split(r'(?:(?<=[.!?])|(?<=[.!?]["\u201d]))\s+(?=[A-Z"(\u201c])', s) if x.strip()]
 
 
 MODEL_IDS = set()   # the frames' model ids (map-key, food-web): shown as words on a page

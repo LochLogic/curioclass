@@ -1,0 +1,358 @@
+{% extends "base.html" %}
+{% block title %}The Front Office · Curio Class{% endblock %}
+{% block description %}The whole Curio Class curriculum, from the K to 12 skill ladders down to each day, in one place.{% endblock %}
+{% block robots %}<meta name="robots" content="noindex, nofollow">{% endblock %}
+{% block head %}
+<style>
+.fo { --fo-ink: var(--ink); --fo-soft: #fffdf8; --fo-rule: var(--line); --fo-teal: var(--teal); }
+.fo .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 16px; }
+.fo-draft { background: #fff4d6; border-bottom: 1px solid #ecd9a3; color: #6b5310; font: 600 13px/1.4 var(--sans); text-align: center; padding: 8px 16px; }
+
+/* Hero */
+.fo .fo-hero { padding: 56px 16px 40px; }
+.fo-hero .eyebrow { color: var(--accent-ink); }
+.fo-hero h1 { font-size: clamp(40px, 6vw, 68px); margin: 10px 0 14px; }
+.fo-hero p.lede { font-size: 20px; color: var(--muted); max-width: 46ch; margin: 0; }
+.fo-hero .links { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; }
+.fo-btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 10px 18px; font: 600 15px/1 var(--sans); text-decoration: none; border: 1px solid var(--fo-rule); background: var(--card); color: var(--ink); }
+.fo-btn.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+.fo-btn:hover { box-shadow: var(--shadow); }
+
+/* The waterfall */
+.fo .fo-falls { margin-top: 8px; margin-bottom: 64px; position: relative; }
+.fo-falls h2 { font-size: 26px; margin-bottom: 4px; }
+.fo-falls > p { color: var(--muted); margin: 0 0 22px; }
+.fo-step { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: center;
+  background: var(--card); border: 1px solid var(--fo-rule); border-radius: var(--radius); padding: 16px 20px; box-shadow: var(--shadow);
+  margin-left: calc(var(--i) * 5.2%); margin-bottom: 14px; max-width: calc(100% - var(--i) * 5.2%); }
+.fo-step::before { content: ""; position: absolute; left: 26px; top: -15px; height: 14px; border-left: 2px dashed #cfc3a8; }
+.fo-step:first-of-type::before { display: none; }
+.fo-step .num { font: 600 12px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.fo-step h3 { font-size: 22px; margin: 4px 0 2px; }
+.fo-step p { margin: 0; color: var(--muted); font-size: 15px; }
+.fo-step .count { text-align: right; min-width: 170px; }
+.fo-step .count b { font: 600 28px/1 var(--serif); display: block; }
+.fo-step .count span { font-size: 13px; color: var(--muted); }
+.fo-meter { grid-column: 1 / -1; height: 6px; border-radius: 6px; background: var(--paper-2); overflow: hidden; }
+.fo-meter i { display: block; height: 100%; background: linear-gradient(90deg, var(--teal), #3f8f8a); border-radius: 6px; }
+@media (max-width: 720px) { .fo-step { margin-left: calc(var(--i) * 3px); max-width: none; grid-template-columns: 1fr; } .fo-step .count { text-align: left; } }
+
+/* Subjects */
+.fo-subjects { display: flex; gap: 10px; flex-wrap: wrap; margin: 6px 0 22px; }
+.fo-subj { border: 2px solid var(--c); color: var(--c); background: var(--card); border-radius: 999px; padding: 9px 18px; font: 600 15px/1 var(--sans); cursor: pointer; }
+.fo-subj[aria-pressed="true"] { background: var(--c); color: #fff; }
+.fo-board h2 { font-size: 30px; }
+.fo-board .sub { color: var(--muted); margin: 6px 0 20px; }
+
+/* Skill ladder heat strip */
+.fo-ladder { background: var(--card); border: 1px solid var(--fo-rule); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 26px; overflow-x: auto; }
+.fo-ladder h3 { font-size: 19px; margin-bottom: 4px; }
+.fo-ladder p { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+.fo-heat { display: grid; grid-template-columns: minmax(140px, 200px) repeat(13, minmax(26px, 1fr)); gap: 3px; font-size: 12px; min-width: 560px; }
+.fo-heat .h { color: var(--muted); text-align: center; font-weight: 600; }
+.fo-heat .s { color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 8px; align-self: center; }
+.fo-heat .c { height: 22px; border-radius: 4px; background: var(--paper-2); display: grid; place-items: center; color: #fff; font-weight: 600; font-size: 11px; }
+
+/* Grade rows */
+.fo-grades { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 22px 18px; margin-top: 14px; }
+.fo-grades.wide { grid-template-columns: 1fr; }
+.fo-grade { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding-top: 14px; border-top: 1px solid var(--fo-rule); align-content: start; }
+.fo-grade .g { font: 600 30px/1 var(--serif); color: var(--c); }
+.fo-grade .g small { display: block; font: 600 11px/1.3 var(--sans); letter-spacing: .04em; overflow-wrap: anywhere; hyphens: auto; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+.fo-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+.fo-card { text-align: left; background: var(--card); border: 1px solid var(--fo-rule); border-left: 5px solid var(--c); border-radius: 12px; padding: 14px 16px; cursor: pointer; font: inherit; color: inherit; transition: transform .12s, box-shadow .12s; }
+.fo-card:hover, .fo-card:focus-visible { transform: translateY(-2px); box-shadow: var(--shadow); }
+.fo-card b { font: 600 18px/1.2 var(--serif); display: block; }
+.fo-card .meta { font-size: 13px; color: var(--muted); margin: 4px 0 10px; }
+.fo-pips { display: flex; gap: 4px; }
+.fo-pips span { flex: 1; height: 6px; border-radius: 4px; background: var(--paper-2); }
+.fo-pips span.on { background: var(--teal); }
+.fo-pips span.half { background: linear-gradient(90deg, var(--teal) 50%, var(--paper-2) 50%); }
+.fo-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--muted); margin: 0 0 8px; }
+.fo-legend i { display: inline-block; width: 16px; height: 6px; border-radius: 4px; background: var(--teal); vertical-align: middle; margin-right: 6px; }
+.fo-legend i.half { background: linear-gradient(90deg, var(--teal) 50%, var(--paper-2) 50%); }
+.fo-legend i.off { background: var(--paper-2); border: 1px solid var(--fo-rule); }
+
+/* Show your work card */
+.fo-syw { margin: 56px 0 72px; background: var(--ink); color: #fff; border-radius: 22px; padding: 34px 36px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; }
+.fo-syw h2 { font-size: 32px; color: #fff; }
+.fo-syw p { margin: 8px 0 0; color: #d7d9de; max-width: 60ch; }
+.fo-syw a { background: #fff; color: var(--ink); }
+@media (max-width: 720px) { .fo-syw { grid-template-columns: 1fr; padding: 26px 22px; } .fo-grade { grid-template-columns: 1fr; gap: 8px; } }
+
+/* Reader drawer */
+.fo-scrim { position: fixed; inset: 0; background: #1f243055; opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 40; }
+.fo-scrim.open { opacity: 1; pointer-events: auto; }
+.fo-reader { position: fixed; top: 0; right: 0; bottom: 0; width: min(720px, 100%); background: var(--fo-soft); z-index: 41; transform: translateX(102%); transition: transform .25s ease; display: flex; flex-direction: column; box-shadow: -12px 0 40px #1f243026; }
+.fo-reader.open { transform: none; }
+.fo-reader header { display: flex; align-items: center; gap: 10px; padding: 14px 20px; border-bottom: 1px solid var(--fo-rule); background: var(--card); }
+.fo-crumbs { flex: 1; font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; }
+.fo-crumbs a { color: var(--muted); }
+.fo-close { border: 1px solid var(--fo-rule); background: var(--card); border-radius: 999px; width: 36px; height: 36px; font-size: 20px; line-height: 1; cursor: pointer; }
+.fo-print { border: 1px solid var(--fo-rule); background: var(--card); border-radius: 999px; padding: 8px 14px; font: 600 13px/1 var(--sans); cursor: pointer; }
+.fo-body { overflow-y: auto; padding: 26px 30px 60px; }
+.fo-body .eyebrow { color: var(--c); }
+.fo-body h2 { font-size: 34px; margin: 8px 0 10px; }
+.fo-body .lede { font-size: 18px; color: var(--muted); margin: 0 0 18px; }
+.fo-q { font: italic 500 22px/1.35 var(--serif); border-left: 4px solid var(--c); padding: 4px 0 4px 16px; margin: 6px 0 20px; }
+.fo-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 0 0 22px; }
+.fo-stats div { background: var(--card); border: 1px solid var(--fo-rule); border-radius: 12px; padding: 12px 14px; }
+.fo-stats b { display: block; font: 600 22px/1.1 var(--serif); }
+.fo-stats span { font-size: 13px; color: var(--muted); }
+.fo-body h3 { font-size: 20px; margin: 26px 0 10px; }
+.fo-body p { margin: 0 0 12px; }
+.fo-layers { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 6px; }
+.fo-layers li { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: center; background: var(--card); border: 1px solid var(--fo-rule); border-radius: 10px; padding: 9px 12px; font-size: 15px; }
+.fo-layers .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--paper-2); border: 2px solid #cfc3a8; }
+.fo-layers .dot.on { background: var(--teal); border-color: var(--teal); }
+.fo-layers .dot.half { background: linear-gradient(90deg, var(--teal) 50%, var(--card) 50%); border-color: var(--teal); }
+.fo-layers small { color: var(--muted); }
+.fo-units { display: grid; gap: 8px; }
+.fo-unit { display: grid; grid-template-columns: 46px 1fr auto; gap: 12px; align-items: center; text-align: left; background: var(--card); border: 1px solid var(--fo-rule); border-radius: 12px; padding: 12px 14px; cursor: pointer; font: inherit; color: inherit; }
+.fo-unit:hover { box-shadow: var(--shadow); }
+.fo-unit .n { font: 600 24px/1 var(--serif); color: var(--c); text-align: center; }
+.fo-unit b { font-weight: 600; display: block; }
+.fo-unit i { font-style: normal; color: var(--muted); font-size: 14px; }
+.fo-unit .d { font-size: 13px; color: var(--muted); white-space: nowrap; }
+.fo-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.fo-chips span { background: var(--paper-2); border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 600; color: var(--ink); }
+.fo-section { background: var(--card); border: 1px solid var(--fo-rule); border-radius: 14px; margin: 0 0 12px; overflow: hidden; }
+.fo-section summary { cursor: pointer; padding: 12px 16px; font-weight: 600; display: flex; justify-content: space-between; gap: 10px; list-style: none; }
+.fo-section summary::-webkit-details-marker { display: none; }
+.fo-section summary::after { content: "+"; color: var(--muted); font-size: 20px; line-height: 1; }
+.fo-section[open] summary::after { content: "\2212"; }
+.fo-section summary small { color: var(--muted); font-weight: 400; margin-left: auto; }
+.fo-day { display: grid; grid-template-columns: 62px 1fr; gap: 10px; padding: 10px 16px; border-top: 1px solid var(--fo-rule); font-size: 15px; }
+.fo-day .dn { font: 600 15px/1.2 var(--serif); }
+.fo-day .dn small { display: block; font: 600 10px/1.4 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.fo-kind { display: inline-block; font: 600 10px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: 4px 8px; margin-right: 6px; vertical-align: 2px; }
+.k-Understanding { background: #e3eef7; color: #24527a; }
+.k-Fluency { background: #e7f3ea; color: #23633d; }
+.k-Application { background: #fbeadf; color: #8a3d12; }
+.k-Check { background: #efe6f6; color: #5b3a7a; }
+.k-other { background: var(--paper-2); color: var(--muted); }
+.fo-written { font: 600 10px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--teal); }
+.fo-note { background: #fff4d6; border: 1px solid #ecd9a3; border-radius: 12px; padding: 12px 14px; font-size: 14px; color: #6b5310; }
+.fo-loading { color: var(--muted); padding: 30px 0; }
+@media print {
+  .site-head, .site-foot, .fo-draft, .fo-scrim, main > .fo > :not(.fo-reader), .fo-reader header { display: none !important; }
+  .fo-reader { position: static; transform: none; box-shadow: none; width: auto; }
+  .fo-body { overflow: visible; padding: 0; }
+  .fo-section { break-inside: avoid; } .fo-section:not([open]) > :not(summary) { display: block; }
+}
+</style>
+{% endblock %}
+{% block main %}
+<div class="fo">
+  <div class="fo-draft">Draft for review. Not linked from the site yet, and still growing as each layer is written.</div>
+  <section class="wrap fo-hero">
+    <div class="eyebrow">The Front Office</div>
+    <h1>The whole curriculum, top to bottom.</h1>
+    <p class="lede">Every subject, course, unit, section and day of Curio Class, and how each layer leads into the next. Open anything to read it.</p>
+    <div class="links">
+      <a class="fo-btn primary" href="#board">Browse the curriculum</a>
+      <a class="fo-btn" href="/front-office/show-your-work/">Show Your Work: how it was built</a>
+    </div>
+  </section>
+
+  <section class="wrap fo-falls" aria-labelledby="falls-h">
+    <h2 id="falls-h">How the layers flow</h2>
+    <p>Each layer is written from the one above it and checked against it, so a day always traces back to a standard. Totals for the four core subjects.</p>
+    {% set t = totals %}
+    {% set steps = [
+      ('Skill ladders', 'Every skill from kindergarten to grade 12, in order, with what each one builds on.', t.skills, t.skills, 'skills mapped', ''),
+      ('Course frames', 'Each course\'s shape: its units, their order, the standards each one owns.', t.frames, t.courses, 'of ' ~ t.courses ~ ' courses', ''),
+      ('Scope and sequence', 'The year laid out day by day: what each day teaches and how it is checked.', t.scopes, t.courses, 'of ' ~ t.courses ~ ' courses', ''),
+      ('Unit plans', 'The plan for each unit: its question, evidence, sources and common misunderstandings.', t.unit_plans, t.units, 'of ' ~ t.units ~ ' units', t.unit_written ~ ' written in full, the rest outlined'),
+      ('Sections', 'A unit broken into its short runs of days, each with one goal.', t.sections, t.sections, 'sections laid out', ''),
+      ('Days', 'The lesson itself: what the teacher does, what students do, and the materials.', t.written, t.days, 'of ' ~ '{:,}'.format(t.days) ~ ' days written', 'All days are planned; writing them is next')
+    ] %}
+    {% for name, what, have, of, unit, note in steps %}
+    <div class="fo-step" style="--i: {{ loop.index0 }}">
+      <div>
+        <div class="num">Layer {{ loop.index }}</div>
+        <h3>{{ name }}</h3>
+        <p>{{ what }}{% if note %} <b>{{ note }}.</b>{% endif %}</p>
+      </div>
+      <div class="count"><b>{{ '{:,}'.format(have) }}</b><span>{{ unit }}</span></div>
+      <div class="fo-meter" aria-hidden="true"><i style="width: {{ [100, (100 * have / (of or 1))|round(1)]|min if have else 0 }}%{% if have and 100 * have / (of or 1) < 1.5 %}; min-width: 6px{% endif %}"></i></div>
+    </div>
+    {% endfor %}
+  </section>
+
+  <section class="wrap fo-board" id="board" aria-labelledby="board-h">
+    <h2 id="board-h">Browse by subject</h2>
+    <p class="sub">Pick a subject, then open any course. Courses run from kindergarten at the top to grade 12 at the bottom.</p>
+    <div class="fo-subjects" role="group" aria-label="Subject">
+      {% for s in subjects %}<button class="fo-subj" style="--c: var(--{{ s.color }})" data-subject="{{ s.id }}" aria-pressed="false">{{ s.label }}</button>{% endfor %}
+    </div>
+    <div id="fo-board-body"><p class="fo-loading">Loading...</p></div>
+  </section>
+
+  <section class="wrap">
+    <div class="fo-syw">
+      <div>
+        <h2>Show Your Work</h2>
+        <p>The foundations, the order things were written in, every check each layer passes, the base texts behind the courses and the record of what review found and fixed.</p>
+      </div>
+      <a class="fo-btn" href="/front-office/show-your-work/">Read the method</a>
+    </div>
+  </section>
+
+  <div class="fo-scrim" id="fo-scrim"></div>
+  <aside class="fo-reader" id="fo-reader" aria-label="Reader" aria-hidden="true">
+    <header>
+      <nav class="fo-crumbs" id="fo-crumbs" aria-label="Where you are"></nav>
+      <button class="fo-print" onclick="window.print()">Print</button>
+      <button class="fo-close" id="fo-close" aria-label="Close the reader">&times;</button>
+    </header>
+    <div class="fo-body" id="fo-body"></div>
+  </aside>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var SUBJECTS = {{ subjects|tojson }};
+  var GRADES = ['K','1','2','3','4','5','6','7','8','9','10','11','12'];
+  var cache = {}, current = null;
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function gradeName(g) { return g === 'K' ? 'Kindergarten' : 'Grade ' + g; }
+  function subj(id) { return SUBJECTS.filter(function (s) { return s.id === id; })[0]; }
+  function load(id) {
+    if (cache[id]) return Promise.resolve(cache[id]);
+    return fetch('/front-office/data/' + id + '.json').then(function (r) { return r.json(); }).then(function (d) { cache[id] = d; return d; });
+  }
+  function pips(st) {
+    var cls = [st.frame ? 'on' : '', st.scope ? 'on' : '',
+      st.unit_state === 'written' ? 'on' : (st.unit_plans ? 'half' : ''),
+      st.sections ? 'on' : '', st.written ? 'half' : ''];
+    return '<div class="fo-pips" aria-hidden="true">' + cls.map(function (c) { return '<span class="' + c + '"></span>'; }).join('') + '</div>';
+  }
+  function heat(p, color) {
+    var max = 1; p.strands.forEach(function (s) { s.by_grade.forEach(function (n) { if (n > max) max = n; }); });
+    var h = '<div class="fo-heat"><div></div>' + GRADES.map(function (g) { return '<div class="h">' + g + '</div>'; }).join('');
+    p.strands.forEach(function (s) {
+      h += '<div class="s" title="' + esc(s.name) + '">' + esc(s.name) + '</div>';
+      s.by_grade.forEach(function (n, i) {
+        var a = n ? (0.25 + 0.75 * n / max) : 0;
+        h += '<div class="c" title="' + esc(s.name) + ', ' + gradeName(GRADES[i]) + ': ' + n + ' skills" style="' + (n ? 'background: color-mix(in srgb, var(--' + color + ') ' + Math.round(a * 100) + '%, #fff)' : '') + '">' + (n || '') + '</div>';
+      });
+    });
+    return h + '</div>';
+  }
+  function board(id) {
+    var s = subj(id);
+    document.querySelectorAll('.fo-subj').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.subject === id); });
+    $('fo-board-body').innerHTML = '<p class="fo-loading">Loading ' + esc(s.label) + '...</p>';
+    return load(id).then(function (d) {
+      var h = '<div class="fo-ladder"><h3>' + esc(s.label) + ' skill ladder</h3><p>' + d.progressions.skills.toLocaleString() +
+        ' skills, by strand and grade. Darker means more skills taught that year.</p>' + heat(d.progressions, s.color) + '</div>';
+      h += '<div class="fo-legend"><span><i></i>Done</span><span><i class="half"></i>Under way</span><span><i class="off"></i>Not yet</span><span>Bars, left to right: frame, scope and sequence, unit plans, sections, days</span></div>';
+      var most = 0; GRADES.forEach(function (g) { most = Math.max(most, d.courses.filter(function (c) { return c.g === g; }).length); });
+      h += '<div class="fo-grades' + (most > 1 ? ' wide' : '') + '">';
+      GRADES.forEach(function (g) {
+        var cs = d.courses.filter(function (c) { return c.g === g; });
+        if (!cs.length) return;
+        h += '<div class="fo-grade" style="--c: var(--' + s.color + ')"><div class="g">' + (g === 'K' ? 'K' : g) + '<small>' + (g === 'K' ? 'Kinder&shy;garten' : gradeName(g)) + '</small></div><div class="fo-cards">';
+        cs.forEach(function (c) {
+          h += '<button class="fo-card" style="--c: var(--' + s.color + ')" data-go="' + id + '/' + c.slug + '"><b>' + esc(c.t) + '</b><div class="meta">' +
+            c.n_units + ' units &middot; ' + c.days + ' days' + (c.term !== 'year' ? ' &middot; ' + c.term + ' half' : '') + '</div>' + pips(c.status) + '</button>';
+        });
+        h += '</div></div>';
+      });
+      h += '</div>';
+      $('fo-board-body').innerHTML = h;
+    });
+  }
+  function find(d, slug) { return d.courses.filter(function (c) { return c.slug === slug; })[0]; }
+  function crumbs(s, c, u) {
+    var h = '<a href="#' + s.id + '">' + esc(s.label) + '</a>';
+    if (c) h += ' <span>&rsaquo;</span> ' + (u ? '<a href="#' + s.id + '/' + c.slug + '">' + esc(c.t) + '</a>' : '<span>' + esc(c.t) + '</span>');
+    if (u) h += ' <span>&rsaquo;</span> <span>Unit ' + u.n + '</span>';
+    $('fo-crumbs').innerHTML = h;
+  }
+  function layerRow(on, label, note) {
+    return '<li><span class="dot ' + on + '"></span><span>' + label + '</span><small>' + note + '</small></li>';
+  }
+  function courseView(s, d, c) {
+    var st = c.status, sh = c.shape;
+    var link = function (slug) { var x = find(d, slug); return x ? '<a href="#' + s.id + '/' + slug + '">' + esc(x.t) + '</a>' : ''; };
+    var h = '<div class="eyebrow">' + esc(s.label) + ' &middot; ' + gradeName(c.g) + '</div><h2>' + esc(c.t) + '</h2><p class="lede">' + esc(c.lede) + '</p>';
+    h += '<div class="fo-stats"><div><b>' + c.n_units + '</b><span>units</span></div><div><b>' + c.days + '</b><span>days, ' + esc(sh.per_week) + '</span></div><div><b>' + esc(sh.minutes.replace(' minutes', '')) + '</b><span>minutes a day</span></div><div><b>' + sh.weeks + '</b><span>weeks, ' + esc(sh.term) + '</span></div></div>';
+    if (c.before.length || c.after.length) {
+      h += '<p>' + (c.before.length ? '<b>Comes after:</b> ' + c.before.map(link).join(', ') + '. ' : '') + (c.after.length ? '<b>Leads to:</b> ' + c.after.map(link).join(', ') + '.' : '') + '</p>';
+    }
+    h += '<h3>Where this course stands</h3><ul class="fo-layers">' +
+      layerRow(st.frame ? 'on' : '', 'Course frame', st.frame ? 'Done' : 'Not yet') +
+      layerRow(st.scope ? 'on' : '', 'Scope and sequence', st.scope ? 'Done, ' + st.planned + ' days planned' : 'Not yet') +
+      layerRow(st.unit_state === 'written' ? 'on' : (st.unit_plans ? 'half' : ''), 'Unit plans', st.unit_state === 'written' ? 'Written and reviewed' : (st.unit_plans ? 'Outlined, being written' : 'Not yet')) +
+      layerRow(st.sections ? 'on' : '', 'Sections', st.sections ? st.sections + ' laid out' : 'Not yet') +
+      layerRow(st.written ? 'half' : '', 'Days', st.written ? st.written + ' of ' + st.planned + ' written' : 'Planned, not yet written') + '</ul>';
+    h += '<h3>Units</h3><div class="fo-units">';
+    c.units.forEach(function (u) {
+      h += '<button class="fo-unit" data-go="' + s.id + '/' + c.slug + '/' + u.n + '"><span class="n">' + u.n + '</span><span><b>' + esc(u.t) + '</b>' + (u.q ? '<i>' + esc(u.q) + '</i>' : '') + '</span><span class="d">' + u.days + ' days</span></button>';
+    });
+    return h + '</div>';
+  }
+  function kindChip(k) { var known = ['Understanding','Fluency','Application','Check']; return k ? '<span class="fo-kind ' + (known.indexOf(k) > -1 ? 'k-' + k : 'k-other') + '">' + esc(k) + '</span>' : ''; }
+  function unitView(s, d, c, u) {
+    var h = '<div class="eyebrow">' + esc(c.t) + ' &middot; Unit ' + u.n + '</div><h2>' + esc(u.t) + '</h2>';
+    if (u.q) h += '<p class="fo-q">' + esc(u.q) + '</p>';
+    h += '<div class="fo-stats"><div><b>' + u.days + '</b><span>days</span></div>' + (u.weeks ? '<div><b>' + u.weeks[0] + (u.weeks[1] !== u.weeks[0] ? '&ndash;' + u.weeks[1] : '') + '</b><span>weeks of the year</span></div>' : '') +
+      '<div><b>' + u.sections.filter(function (x) { return /^\d/.test(x.id); }).length + '</b><span>sections</span></div></div>';
+    if (u.learn) h += '<h3>What students learn</h3><p>' + esc(u.learn) + '</p>';
+    if (u.why) h += '<h3>Why this unit, here</h3><p>' + esc(u.why) + '</p>';
+    if (u.std.length) h += '<h3>Standards this unit owns</h3><div class="fo-chips">' + u.std.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('') + '</div>';
+    if (u.checks.length) h += '<p><b>Course-level checks in this unit:</b> ' + u.checks.map(esc).join('; ') + '.</p>';
+    h += '<h3>Sections and days</h3>';
+    if (!u.sections.length) h += '<p class="fo-note">The days for this unit are not laid out yet.</p>';
+    u.sections.forEach(function (sec, i) {
+      var first = sec.days[0].d, last = sec.days[sec.days.length - 1].d;
+      h += '<details class="fo-section"' + (i === 0 ? ' open' : '') + '><summary>' + (/^\d/.test(sec.id) ? 'Section ' + esc(sec.id) : esc(sec.id)) + '<small>Days ' + first + (last !== first ? '&ndash;' + last : '') + '</small></summary>';
+      sec.days.forEach(function (x) {
+        h += '<div class="fo-day"><div class="dn">Day ' + x.d + (x.w ? '<small class="fo-written">Written</small>' : '') + '</div><div>' + kindChip(x.k) + esc(x.g || 'Planned.') + '</div></div>';
+      });
+      h += '</details>';
+    });
+    return h;
+  }
+  function open(html, s) {
+    $('fo-body').innerHTML = html; $('fo-body').scrollTop = 0;
+    $('fo-reader').style.setProperty('--c', 'var(--' + s.color + ')');
+    $('fo-reader').classList.add('open'); $('fo-scrim').classList.add('open');
+    $('fo-reader').setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    $('fo-reader').classList.remove('open'); $('fo-scrim').classList.remove('open');
+    $('fo-reader').setAttribute('aria-hidden', 'true'); document.body.style.overflow = '';
+  }
+  function route() {
+    var parts = location.hash.replace(/^#/, '').split('/').filter(Boolean);
+    var s = subj(parts[0]) || (parts[0] === 'board' ? null : null);
+    if (!s) { if (!current) { current = SUBJECTS[0].id; board(current); } close(); return; }
+    var p = s.id === current ? Promise.resolve() : board(s.id);
+    current = s.id;
+    p.then(function () { return load(s.id); }).then(function (d) {
+      var c = parts[1] && find(d, parts[1]);
+      if (!c) { close(); return; }
+      var u = parts[2] && c.units.filter(function (x) { return String(x.n) === parts[2]; })[0];
+      crumbs(s, c, u);
+      open(u ? unitView(s, d, c, u) : courseView(s, d, c), s);
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-go]'), b = e.target.closest('.fo-subj');
+    if (t) { location.hash = t.dataset.go; }
+    else if (b) { location.hash = b.dataset.subject; }
+  });
+  $('fo-close').onclick = function () { location.hash = current || ''; };
+  $('fo-scrim').onclick = function () { location.hash = current || ''; };
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && $('fo-reader').classList.contains('open')) location.hash = current; });
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+{% endblock %}
