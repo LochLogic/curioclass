@@ -9,7 +9,7 @@ credit: ours
 
 Three picture cards. Printed "invented for practice". Children circle one. Never used in teaching (rule 4): the taught cards are the coat hooks and block corner.
 
-**Card 1.** Label: "cushions". Picture: cushions heaped across the walkway; a child with a cane waits at the end of the heap.
+**Card 1.** Label: "cushions". Picture: cushions heaped across the walkway; no person in the picture. The teacher says why it matters: the walkway must stay clear for everyone.
 
 **Card 2.** Label: "color". Picture: a child holding up a green crayon with a happy face. Nothing in the way.
 

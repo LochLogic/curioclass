@@ -27,7 +27,7 @@ Each day is 20 minutes (30 on the longer route): a two-minute reopen, six minute
 - **A:** "It matters because the teacher says so." The child has not yet found a personal use. Offer two classroom uses of an answer (a place for coats, a job to do) and let each child point to the one they would use.
 - **K:** "The two classmates share nothing." Lay two activity cards side by side and ask what the table, the room and the light do for each.
 
-If a child names home or family in an answer, thank them and bring it back to our room. Wrong answers are voiced by a puppet or "someone might say", never by a named child.
+If a child names home or family in an answer, thank them warmly in one line, ask nothing more, and go on with "and in our room ..."; never correct the word a child uses for family. Wrong answers are voiced by a puppet or "someone might say", never by a named child.
 
 ## Supplies for the section
 

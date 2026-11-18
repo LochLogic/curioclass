@@ -86,6 +86,13 @@ sensitive topic is handled, and any timer (only with a grounded purpose).
   Algebra I source-map row (an unquoted comma from a hand edit that day) that `plan.py check` passed: sequence.py
   does not check a source map's cell count (later.csv L65). (4) ELA has a STOP on most days (core texts still to
   write, L58); ELA grade 11 has none.
+- Lessons from the kindergarten probe (2026-11-18, docs/reviews/probe-social-studies-3-2026-11-18.md): (1) the
+  skeleton STOPs on a source whose status is not "written" or checked, which our own read-alouds tripped until
+  sources.csv said "written: <path>". (2) Spoken exits need `path` spoken, or the skeleton plans a paper ticket a
+  five-year-old cannot read. (3) Another day's exit cannot be named as [[id]]; the skeleton should print it in words.
+  (4) Skeleton minutes came from the frame minimum (20); kindergarten content needed 30, so minutes should come from
+  the section plan's `## Day N` block. (5) "Scored from the work you handed in" and the write-nothing line belong on
+  the teacher page only for grades whose children do not read (later.csv).
 - Known gaps for the first real run: the student page and At home are bare TODOs; the readiness check on a unit's last
   day is not yet split out from the day's own assessment; no word list (Word Wall cards per day) is read yet; no check
   yet compares a written day against its sidecar.

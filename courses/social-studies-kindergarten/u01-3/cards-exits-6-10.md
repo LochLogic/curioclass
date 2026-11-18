@@ -11,7 +11,7 @@ Day 9 has no exit card. Each card is marked by every child (circle, point or dra
 
 ## Day 6 exit card: answering what was said
 
-**Picture:** Three small pictures in a row, each in a circle. (a) Two children: one points at a row of scarves on a low hook; the second points at the same scarves with a smile. (b) A child sits perfectly still, arms folded, looking straight ahead, a small blank bubble above. (c) A child points at a toy truck, with the first child's scarf bubble behind.
+**Picture:** Three small pictures in a row, each in a circle. (a) Two children: one points at a row of scarves on a low hook; the second points at the same scarves with a smile. (b) A paper-bag puppet sits perfectly still, facing front, a small blank bubble above. (c) A child points at a toy truck, with the first child's scarf bubble behind.
 
 **Mark:** Point to the picture where the second child answers the idea. Show me the picture where a child is talking about something else. **Spoken:** the teacher reads "I want the scarves hung lower so we can reach them." "Show how to answer that idea after your turn comes."
 
@@ -29,7 +29,7 @@ Day 9 has no exit card. Each card is marked by every child (circle, point or dra
 
 ## Day 10 exit card: the museum
 
-**Picture:** A small pretend museum with glass cases. A cluster of visitors of many ages looks at a clay pot in a case. Beside it, a sign picture shows a hand hovering over a pot, crossed by a line. Below: three pictures in circles. (a) A whole clay pot in its case. (b) A pair of shoes. (c) The museum door.
+**Picture:** A small pretend museum with glass cases. A cluster of visitors of many ages looks at a model sailboat in a case. Beside it, a sign picture shows a hand hovering over a boat, crossed by a line. Below: three pictures in circles. (a) A whole model sailboat in its case. (b) A pair of shoes. (c) The museum door.
 
 **Mark:** Circle what the rule protects. **Spoken:** "Why this rule?" This is the fresh try; recheck other missed parts with a new two-view or claim card.
 
@@ -38,4 +38,4 @@ Day 9 has no exit card. Each card is marked by every child (circle, point or dra
 - Day 6: (a); (b) is the still-sitting picture (error C); (c) changes the subject.
 - Day 7: Moss (round head) to the paper ready, drawing first; Wren (curl) to the quiet room, listening first. Both want to start with something; accept that wording.
 - Day 8: (a), take turns so both can use the bucket; the partner asks a why-question and the child answers with a because.
-- Day 10: (a), the whole clay pot; the objects stay whole and others can still see them.
+- Day 10: (a), the whole model sailboat; the objects stay whole and others can still see them.

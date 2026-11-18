@@ -12,8 +12,8 @@ Exit story for day 13, new and never used in teaching (rule 4). Printed "invente
 **Page 1.** Text: "Lulu and Max are puppets. They share the reading corner."
 Picture: a cozy reading corner with a rug, shelf of books, and a pile of five round cushions in the middle. Two paper-bag puppets stand at the edge.
 
-**Page 2.** Text: "The cushions are in the way. Where should they go?"
-Picture: a child with a cane cannot pass the pile on the walkway. The cushions block the path.
+**Page 2.** Text: "The cushions are in the way. The walkway must stay clear for everyone. Where should they go?"
+Picture: the cushions block the walkway, with a clear path drawn faintly behind them. No one stands in it.
 
 **Page 3.** Text: "Lulu says, 'Put them in the basket by the window. Then the walkway is clear.'"
 Picture: Lulu points at a big basket under a window.

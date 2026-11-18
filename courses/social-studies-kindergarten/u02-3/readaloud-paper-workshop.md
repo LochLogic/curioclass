@@ -7,21 +7,21 @@ credit: ours
 ---
 # The Paper Workshop
 
-Day 15 read-aloud, revisited on day 16. Ten pages in six scenes. Made by Curio Class for this class to think with; invented, and not a record of what our class did. Art: plain line drawings, thick outlines, no writing, no brands. Children of many skin tones, hair and clothes; one child wears glasses and one has a hearing aid. Teacher Ruiz is a woman. Roles are mixed (a boy shares, a girl organizes). The unit's scene cards are the six scenes, one card each, drawn from the page marked as the key.
+Day 15 read-aloud, revisited on day 16. Ten pages in six scenes. Made by Curio Class for this class to think with; invented, and not a record of what our class did. Art: plain line drawings, thick outlines, no writing, no brands. Children of many skin tones, hair and clothes; one child (Teo) wears glasses and one has a hearing aid. Teacher Ruiz is a woman. Roles are mixed (a boy shares, a girl organizes). The unit's scene cards are the six scenes, one card each, drawn from the page marked as the key.
 
 **Scene 1 (page 1).** Text: "It is Paper Workshop day. Teacher Ruiz puts out a big stack of paper, round-tip scissors and crayons. 'Let us make paper animals,' she says."
 Picture: a long table; children arrive. Teacher Ruiz, a woman with gray-streaked hair and a lanyard, sets down the paper stack.
 
-**Scene 1 (page 2).** Text: "Pia has extra sheets. Nell has none. Pia slides three sheets across. 'You can use some of mine,' says Pia."
-Picture: Pia, a girl with a puff of dark hair, passes sheets to Nell, a girl with glasses and a bandana. Key picture for Pia (caring: she shares).
+**Scene 1 (page 2).** Text: "The paper stack is small today. Pia has a few sheets left over. Nell's sheets are used up. Pia slides three sheets across. 'You can use some of mine,' says Pia."
+Picture: Pia, a girl with a puff of dark hair, passes sheets to Nell, a girl with a ponytail. Key picture for Pia (caring: she shares).
 
-**Scene 2 (page 3).** Text: "Cut, cut, cut. Little paper scraps fall everywhere. Nell gathers them into a bowl."
+**Scene 2 (page 3).** Text: "Cut, cut, cut. Pia's scissors stick, so Nell lends Pia her scissors. Little paper scraps fall everywhere. Nell gathers them into a bowl."
 Picture: Nell brushing scraps off the table into a bowl with a small hand-brush. The floor and chairs are clear.
 
-**Scene 3 (page 4).** Text: "Isa stands at the edge. There is no room at the table, and the paper is nearly gone. Isa waits."
-Picture: Isa, a small boy holding his hands together, stands behind the crowded chairs. Others have many sheets each; some have a few too many.
+**Scene 3 (page 4).** Text: "The paper is nearly gone for everyone. Isa counts the sheets. 'Some of us have lots,' says Isa. 'I have none.'"
+Picture: Isa, a small boy, stands at the crowded table with a pencil and a row of tally marks. Others have many sheets each; some have a few too many.
 
-**Scene 3 (page 5).** Text: "Teo sees. 'We have lots, and Isa has none. That is not fair.' Teo scoots over and shares out the extra paper so each child has the same. Now Isa has the same as everyone."
+**Scene 3 (page 5).** Text: "Teo hears. 'We have lots, and Isa has none. That is not fair.' Teo scoots over and shares out the extra paper so each child has the same. Now Isa has the same as everyone."
 Picture: Teo, a boy with freckles, moves his chair; paper lies in neat even stacks, one for each child. Key picture for Teo (fair, and just: he puts the unfair thing right).
 
 **Scene 4 (page 6).** Text: "Teacher Ruiz is in charge of the workshop. It is her job to organize the work. She says, 'Scissors are for cutting paper. Crayons are for coloring. Please keep them on the table.'"

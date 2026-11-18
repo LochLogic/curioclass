@@ -17,7 +17,7 @@ Day 17: read Our Decision Record, children draw the "after" picture from the sam
 
 ## The ideas, at an adult's level
 
-A result is judged by evidence, not by having chosen it (error C). "It helps because it helps" is a claim with no reason (error F). A finding that the change did not help also meets the standard. Score only later dated attempts after a child has read written feedback; first attempts are practice. Score civic understanding apart from speech, English or movement; a pointing, token, drawing or private exchange counts.
+A result is judged by evidence, not by having chosen it (error C). "It helps because it helps" is a claim with no reason (error F). A finding that the change did not help also meets the standard. Score only later dated attempts after a child has heard written feedback; first attempts are practice. Score civic understanding apart from speech, English or movement; a pointing, token, drawing or private exchange counts.
 
 ## The errors, in plain words
 

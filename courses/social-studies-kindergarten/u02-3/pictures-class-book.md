@@ -10,7 +10,7 @@ credit: ours
 Two scenes in five pictures, new and never used in teaching (rule 4). Printed "invented for practice". Plain line drawings, thick outlines, no writing. After the mark on who is in charge, the teacher asks: "Who did what they said they would do?" and then "Which picture shows the class agreeing? Which shows someone following it?"
 
 **Scene 1 (page 1).** Text: "Jun borrows the class book. 'I will bring it back tomorrow,' says Jun."
-Picture: Jun, a child with straight black hair and a school bag, holds a big picture book and talks to the class. The cover is plain.
+Picture: Jun, a child with short curly hair and a school bag, holds a big picture book and talks to the class. The cover is plain.
 
 **Scene 1 (page 2).** Text: "The next day Jun puts the book back on the shelf."
 Picture: Jun places the book on a low shelf. A wall calendar shows a new day.

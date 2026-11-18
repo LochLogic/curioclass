@@ -1,11 +1,20 @@
 # Handoff: the current state
 
-Where the work stands and what to do next, as of 2026-11-15. The reasons behind decisions are in the decision log,
+Where the work stands and what to do next, as of 2026-11-18. The reasons behind decisions are in the decision log,
 [agents/decisions/DESK-ANSWERS.md](agents/decisions/DESK-ANSWERS.md). If another page disagrees with this one, find
 which is stale, fix it and say so.
 
 ## State now
 
+- **Done 2026-11-18: the third probe, kindergarten social studies** (Cory 2026-11-17; report
+  docs/reviews/probe-social-studies-3-2026-11-18.md). Section plans for units 1 to 3 (u01-1 to u03-4, now gated by
+  unitplan.py), docs/courses/social-studies-kindergarten/DEFAULTS.md, plan data and shared pieces (our own
+  read-alouds as `piece: story`), and days 1 to 19, all read (section lens, answer key, expert per unit, sensitivity)
+  and fixed by Claude Sonnet agents (Codex out of tokens). Result: Off on plan share (51%) and units changed (68% of
+  19 early-grade units), On for template (new `spoken` path, per-minute prose cap on ranged frames, short-day At
+  home). Next: later.csv L74 (K to 2 rules, a correction pass, probe again), L72 (kindergarten page rendering), L73
+  (small gates), L71 (Cory: seven units.csv rows; until then plan.py and lesson.py show seven known failures).
+  Example section plan u01-1 is on the Desk for Cory's sign-off. Token ledger for L69 in the report.
 - **Done 2026-11-17: the Claude second lens pass** (Codex had hit its limit). Claude Sonnet agents ran the unit loop
   with docs/pipeline/briefs/unit-lens-claude.md (stage `read`, then stage `fix`) over the 186 jobs in
   docs/pipeline/claude-jobs.txt; reports are docs/reviews/claude-lens-*-2026-11-17.md and claude-fix-*-2026-11-17.md.

@@ -9,7 +9,7 @@ credit: ours
 
 A picture read-aloud for day 2. Ten pages. Say first: "We made this picture to look at how people can like different things. These children are pretend." Read each page's words; the pictures do the rest. No child in the class is asked which character they are like.
 
-Drawing style for all pages: plain black line drawing on white, thick lines, no shading, no brand names, no printed words. Nia has dark brown skin and hair in two puffs. Dev has light brown skin, short straight hair and round glasses. Mina has pale skin and a long braid and wears a picture-card board on a cord around her neck. The room has a rug, a reading corner with a beanbag and a low shelf of book bins, a water table (a shallow tub on a stand) with cups, one window, one door and a shelf of tidy-up bins.
+Drawing style for all pages: plain black line drawing on white, thick lines, no shading, no brand names, no printed words. Nia has dark brown skin and hair in two puffs. Dev has light brown skin, short straight hair and round glasses. Mina has pale skin and a long braid and wears a picture-card board on a cord around her neck. The room has a rug, a reading corner with a beanbag and a low shelf of book bins, a water table (a shallow tub on a stand) with cups, one window, one door, a puppet corner (a low shelf of paper puppets) and a shelf of tidy-up bins.
 
 ## Page 1
 
@@ -61,13 +61,13 @@ Drawing style for all pages: plain black line drawing on white, thick lines, no 
 
 ## Page 9
 
-**Picture:** Nia and Dev side by side at the shelf, each putting something in a bin: Nia a book, Dev a cup. Mina waves from the rug.
+**Picture:** Nia and Dev side by side at the shelf, each putting something in a bin: Nia a book, Dev a cup. Mina puts her puppet back on the puppet-corner shelf.
 
-**Read:** At clean-up time Nia and Dev put things away. The room is ready for tomorrow.
+**Read:** Mina likes the puppet corner. At clean-up time Nia, Dev and Mina put things away. The room is ready for tomorrow.
 
 ## Page 10
 
-**Picture:** The wide view of the room one last time, with all three children in their places: Nia reading, Dev pouring, Mina on the rug. Over the room a thought bubble holds the shapes of a window, a door and a rug.
+**Picture:** The wide view of the room one last time, with all three children in their places: Nia reading, Dev pouring, Mina at the puppet corner. Over the room a thought bubble holds the shapes of a window, a door and a rug.
 
 **Read:** Different things we like. The same room we share. What do you need? What do I need?
 

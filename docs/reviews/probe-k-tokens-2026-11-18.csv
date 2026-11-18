@@ -1,0 +1,34 @@
+stage,unit,tokens,tools,seconds
+section-write,u01,146809,18,208
+section-write,u02,181649,24,397
+section-write,u03,176685,21,399
+section-read,u01,130176,14,200
+section-read,u03,144949,17,242
+section-read,u02,146410,17,246
+section-fix,u01,98598,10,88
+section-fix,u03,118063,13,112
+section-fix,u02,108634,14,110
+lead-fix,u01,123606,24,81
+lead-fix,u02,89389,9,40
+lead-fix,u03,102082,10,59
+pieces,u01,145828,33,275
+pieces,u02,139281,28,256
+plan-data,u01-u02,227190,33,374
+key-read,u01-u02,186189,21,383
+record-pieces,u01-u02,93545,8,62
+key-fix,u01-u02,180159,38,371
+day-write,u01-1 (2 days),161994,33,369
+day-write,u01-2 (3 days),155731,33,318
+day-write,u01-3 (5 days),257821,65,911
+day-write,u02-1 (2 days),156648,33,361
+expert-read,u01 (10 days),248040,46,477
+day-write,u02-2 (2 days),180198,44,526
+day-write,u02-3 (2 days),150211,33,292
+fix,u01 expert (25),80553,101,1008
+day-write,u02-4 (3 days),179906,35,363
+sensitivity-read,u01-u02 (19 days),185880,34,333
+expert-read,u02 (9 days),86110,62,628
+fix,u02 expert part 1 (7),101201,18,162
+fix,u02 expert part 2 (19 more),176383,50,594
+measure2-read,K s03-s06 + G1 + G2 (19 units),223415,19,247
+fix,sensitivity (18),191542,50,522

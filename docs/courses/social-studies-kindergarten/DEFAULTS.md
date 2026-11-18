@@ -19,4 +19,8 @@ differs from this.
   draws the cards on scrap paper.
 - **Read-alouds** are ours (courses/social-studies-kindergarten/u0N-N/readaloud-*.md, pictures-*.md, cards-*.md,
   `piece: story`); until the art exists the teacher shows the page descriptions as quick sketches or tells them.
-- **At home.** 15 to 30 minutes, one parent and one child: the story told, one sort or drawing, the exit asked aloud.
+- **At home.** 15 to 30 minutes, one grown-up or older child who cares for the child, any day skippable: the story
+  told, one sort or drawing, the exit asked aloud. It asks nothing about the home, money or family, and needs nothing
+  a home may not have; the family note says a spare copy of any card is at school.
+- **Practice cases are invented.** Every card and story child is made up for practice: the teacher note says so and
+  the teacher says it aloud ("this is a pretend class"), so no child in the room is the mistake.

@@ -29,4 +29,4 @@ Four new cases, one for each group the record sheet may call on day 10. Say firs
 
 ## Key for the sorting table
 
-The museum card: the whole pot, because the rule keeps the objects whole and others can still see them.
+The museum card: the whole model sailboat, because the rule keeps the objects whole and others can still see them.

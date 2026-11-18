@@ -48,3 +48,5 @@ Picture: the lion standing, the net on the ground, the mouse sitting on a rock b
 Picture: lion and mouse side by side in a calm moment. Sun low behind them.
 
 **Teacher questions.** "What did the mouse say she would do? Did she do it?" Frame: "She said ___. She did ___." Name her courage. Then: "Is the lion in charge? What shows that?"
+
+**Care note for page 4.** If a child says this happened to them, say "Thank you for telling me, I'm glad you're safe here," ask no more before the class, offer a private time and follow school reporting rules. A child may look away or cover the picture; tell page 4 as "the lion held the mouse's paw, then let go" for any child who asks to skip it.

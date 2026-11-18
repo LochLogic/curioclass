@@ -23,7 +23,7 @@ Each card is marked by every child (circle or point) and a spoken question is he
 
 ## Day 5 exit card: choosing the song
 
-**Picture:** Four puppets of different colors sit in a row in front of a music box. One has a red hat. Below, two rule pictures in circles: (a) only the puppet with the red hat touching the music box while three puppets look on; (b) a turn card passing from puppet to puppet, with a different puppet touching the music box each time.
+**Picture:** Four plain paper-bag puppets, all the same, sit in a row in front of a music box, told apart by a hat, a scarf, a bow and nothing; the red hat came out of a hat bag drawn at random. Below, two rule pictures in circles: (a) only the puppet with the red hat touching the music box while three puppets look on; (b) a turn card passing from puppet to puppet, with a different puppet touching the music box each time.
 
 **Mark:** Circle the picture of the fairer rule. **Spoken:** "Why is this not fair to the other puppets? What could we do instead?"
 
