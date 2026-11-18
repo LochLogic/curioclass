@@ -25,6 +25,8 @@ data/media-manifest.txt, courses/math-4/, docs/courses/math-4/, docs/courses/ela
 
 One file per section, docs/courses/{course}/u{uu}-{n}.md, in the fields of the blank copy, every TODO filled.
 
+- **Defaults first.** docs/courses/{course}/DEFAULTS.md says what holds every day (minutes, caps, type size, exits,
+  At home). A section plan writes only what differs from it.
 - **Kindergarten first.** Children do not read yet. Evidence is spoken, drawn, pointed to, sorted or acted out and
   seen by the teacher; an "exit question" is asked aloud with picture cards, and its wrong answers are what a
   five-year-old actually says. Days are 20 to 30 minutes; the `- **N min. Part.**` lines must add up inside that.
@@ -34,6 +36,38 @@ One file per section, docs/courses/{course}/u{uu}-{n}.md, in the fields of the b
 - **Sensitivity.** Homes, families, money, bodies, religion and names differ. No child is asked to report on home,
   share about themselves in public, or be the example of a mistake. Follow the frame's Sensitive topics lines.
 - **Rule 4:** no taught case, number or picture reappears in an exit or check.
+
+## Rules from the probes (2026-11-18; each one a fault found in every subject so far)
+
+1. **A repair slot fits what is routed to it.** Every hand-back, retry and error repair sent to a day lands in a
+   named part of that day (handbacks.csv `where` is a word of the part's name) whose minutes hold all of it. A
+   warm-up holds one repair of at most 5 minutes; more gets its own "Return and repair" part. When the receiving
+   day is in the next section, give that day the slot too. An error letter's `if_many` minutes fit the slot it
+   names. `plan.py check` fails a planned day whose part cannot hold its hand-backs.
+2. **Shared equipment fits the minutes.** Count it: groups times minutes a turn must fit inside the part. One scale
+   for six groups in 11 minutes does not; add stations, make it a demonstration with readings shared, or widen the
+   part. The same holds for one reading per child (a shadow stick, a turn at a tool) and for a teacher who must hear
+   each child.
+3. **Real readings, with a fallback.** Where the class can measure, it measures. An invented record is the named
+   fallback, said aloud to be invented, and the plan says what happens when a reading fails (no gain on a
+   whole-gram scale, a cloudy day). Safety notes name the equipment actually used.
+4. **Notation and terms are taught before they are tested.** No exit, check or At home asks for a symbol, rule
+   form or term before the day that teaches it, across section edges too.
+5. **Exits ask a transfer.** An exit is a new case that needs the day's idea, not the worked example again in new
+   numbers.
+6. **Set-ups for later units** (soil to dry, a plant to grow, a monthly reading) take at most 5 minutes of a day
+   and are named as set-ups, so the day's own storyline holds. Start one only as early as its lead time needs.
+
+Kindergarten to grade 2, in addition (kindergarten probe, L74):
+
+7. **Stems are spoken.** An exit or end item asks one thing, aloud, in a child's words; three asks in one stem are
+   three items or one.
+8. **Minutes are counted as turns.** A part where each child takes a turn is children times turn length; "five
+   groups of six, two minutes a group" in a 10-minute part does not fit. Hear a rotating six a day, with a record
+   column naming who was heard.
+9. **One marking scale** per record: shown, shown with help, not yet seen. Do not mix it with points or
+   "insufficient evidence".
+10. **One actor per story scene,** so a child can say who did what; a puppet speaks one line at a time.
 - **One wrong answer, one letter.** Each wrong answer is tagged with exactly one error letter from the unit's register.
 - **Caps:** 1,600 words per section plan, not counting fields 3, 4 and 6 (UNIT-PLAN "Length"; cut in its order).
 - No em dashes. Write "Curio Class" in full if you name it. No company or product names in teacher-facing text.
