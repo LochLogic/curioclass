@@ -2801,10 +2801,12 @@ def count_sides(pdf):
 # kind: opener (written, 1,200 words at most), record (the record sheet, generated), check (a readiness check:
 # student page and key generated from the rows), facts (a facts check sheet), family (the family note), sheet (a
 # generator preset's page for the teacher), blank (a sheet printed as written, for students to work on: one with
-# no preset, such as the strip sheet; two sides at most).
+# no preset, such as the strip sheet; two sides at most), story (a read-aloud, picture sequence or picture
+# cards in our own words, with a picture description per page for the artist; built as a teacher page like an
+# opener; added 2026-11-18 at the kindergarten probe).
 CAP_OPENER = 1200
 PIECE_HEAD = ['piece', 'course', 'unit', 'version', 'credit']
-PIECE_KINDS = ('opener', 'record', 'check', 'facts', 'family', 'sheet', 'blank')
+PIECE_KINDS = ('opener', 'record', 'check', 'facts', 'family', 'sheet', 'blank', 'story')
 
 
 def preset(h):
@@ -2904,7 +2906,7 @@ def build_piece(p, items, wrongs, errors):
     mdh = lambda t: markdown.markdown(t, extensions=['tables'])
     blanks = lambda t: re.sub(r'_{2,}', lambda m: '<span class="blank" style="width:%.1fem"></span>'
                               % (len(m[0]) * 0.45 if len(m[0]) > 2 else 2.5), t)
-    if kind in ('opener', 'family'):   # prose for the teacher or family: a blank is never bold (sheets keep theirs)
+    if kind in ('opener', 'family', 'story'):   # prose for the teacher or family: a blank is never bold (sheets keep theirs)
         put(out / (name + '.html'), page(title, '<h1>%s</h1>%s%s' % (
             html.escape(title), mdh(blanks(body)), unit_foot(h, course, name)), 'teacher'), encoding='utf-8')
         return out
