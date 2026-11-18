@@ -1,0 +1,5 @@
+from_day,to_day,what,where,minutes,error,note
+1,2,s01-R1 s01-R2 s01-R3,repair,5,,"start-of-year check repairs: the whole class for any item more than a third missed, otherwise small groups while the rest do the warm-up; each missed item gets a fresh independent retry"
+1,2,s01-X1,repair,2,,the judged day 1 exit goes back with its error letters; each student who missed it does the fresh retry s01-P2-3 alone
+5,6,s01-W5,warm-up,3,,the situation-card written task is read after class by its three look-fors and returned for a revision note in the first three minutes of day 6
+5,6,s01-X5,repair,7,,"the judged day 5 exit goes back with its look-fors ticked; day 6 repairs the most common of errors A, D or I for the whole class in seven minutes"

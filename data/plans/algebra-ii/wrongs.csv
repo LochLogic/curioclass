@@ -1,0 +1,89 @@
+item_id,shown,compute,value,error,note
+s01-R1,h(2) = 8n - 6,,,G,"reads h(2) as h times 2, so doubles the rule 4n - 3"
+s01-R1,The input is 5 and the output is 2,,,x,finds 5 but swaps the names input and output; no register letter
+s01-R2,"B is linear because it increases, so the next term is 36",27+(27-18),36,B,"uses the last difference, 9, on a constant-ratio pattern"
+s01-R2,"B is linear, so the next term is 33",27+(18-12),33,B,"uses the first difference, 6, on a constant-ratio pattern"
+s01-R3,"p(n) = 40 + 0.25n, so p(2) = 40.5",40+F(1;4)*2,40.5,B,adds 0.25 each step instead of multiplying
+s01-R3,"p(n) = 40(0.25)^(n-1), so p(2) = 10",40*F(1;4)**1,10,C,counts one step too few from the starting index 0
+s01-R3,p(2) = 20,40*F(1;4)*2,20,x,multiplies 40 by 0.25 and then by 2 instead of using the power; no register letter
+s01-X1,(a) 44,8+4*9,44,C,counts four changes from chain 1 instead of three
+s01-X1,"(b) Each chain has 9 more beads than the chain before it, with no first chain",,,D,gives the recurrence without the starting value
+s01-X1,"(a) 35, with no earlier chain named",,,x,finds the term but does not say which earlier term it came from; no register letter
+s01-X2,S(3) = 27,12+5+5+5,27,B,adds 5 three times to 12 instead of multiplying
+s01-X2,S(3) = 300,12*5**2,300,C,"uses the power 2 for three steps, one too few"
+s01-X2,S(3) = 36,12*3,36,x,"multiplies the start by the position, a linear rule for a pattern that multiplies; no register letter"
+s01-X2,The position is 1500 and the term is 3,,,x,swaps position and term; no register letter
+s01-X2,S(3) = 125,5**3,125,x,drops the start 12 and cubes the factor; no register letter
+s01-X3,P(3) = -10,10-20,-10,B,subtracts the last change of 20 from P as if P added
+s01-X3,P(3) = 30,10*3,30,x,reads the factor 1/3 as 3; no register letter
+s01-X3,Q(3) = 28,35-7,28,x,a slip in subtracting 7 instead of 6; no register letter
+s01-X4,"b(3) = 40, from 80, 60, 40",100-20*3,40,B,subtracts 20 each time instead of multiplying by 0.8
+s01-X4,"The point (3, 48) is right",80-16-16,48,B,"subtracts 16 each time after seeing 80 and 64, and accepts the wrong point"
+s01-X4,"b(3) = 64, from 100, 80, 64",100*F(4;5)**2,64,C,"starts the count at 100 as if it were b(1), one step short"
+s01-X5,(a) v(n) = v(n-1) - 8 with no starting value,,,D,gives the recurrence without the starting value
+s01-X5,"v(2.5) = 50, so yes",70-8*F(5;2),50,A,allows a noninteger input for a sequence indexed by counted stops
+s01-X5,v(4) = 46,70-8*3,46,C,counts three stops of 8 instead of four
+s01-X5,(a) v(0) = 70 and v(n) = v(n-1) - 8 for integers n at least 1,,,x,"gives a correct recurrence but a domain that runs past stop 8, where riders would be negative; no register letter"
+s01-W5,r(n) = r(n-1) + 3,,,D,recurrence with no starting value
+s01-W5,r(1) = 2 and r(n) = r(n-1) + 3 for all numbers n at least 2,,,A,domain allows noninteger rows
+s01-E1,"The domain is all numbers, and u(1.5) is a term",,,A,allows a noninteger input for a sequence indexed by counted terms
+s01-E1,It is not a function because the rule uses two earlier terms,,,I,treats needing earlier terms as having more than one output
+s01-E2,"(c) t(n) = 7 + 4n, so t(5) = 27",7+4*5,27,C,counts five changes from stage 1 instead of four
+s01-E2,(a) a(n) = a(n-1) - 4 with no a(1),,,D,gives the recurrence without the starting value
+s01-E2,(a) a(4) = 3,19-4*4,3,C,counts four changes from n = 1 instead of three
+s01-E3,The total is 36,9*2**2,36,F,"gives the last contribution, T(2), as the accumulated total"
+s01-E3,"T(n) = 9(2)^n is still correct, and 60 is a mistake in counting",,,E,keeps the model after contradictory new data
+s01-E4,(c) h(n) = 12n + 3,12*2+3,27,H,uses the output change without dividing by the three input steps
+s01-E4,(d) k(n) = 10(2)^n,10*2**3,80,C,counts from n = 0 when the first term is at n = 1
+s01-E4,(d) k(n) = 10(4)^(n-1),10*4**2,160,J,uses the ratio over two input steps as the ratio for one step
+s01-K1-1,6 moves,2*3,6,x,doubles the 2-disk count and forgets the move of the biggest disk; no register letter
+s01-K1-1,9 moves,3*3,9,x,triples the 2-disk count; no register letter
+s01-P1-1,14 moves,2*7,14,x,doubles the 3-disk count and forgets the move of the biggest disk; no register letter
+s01-P1-1,11 moves,7+4,11,x,adds the number of disks to the 3-disk count; no register letter
+s01-F1-1,30 moves,2*15,30,x,the student's own answer: doubles and forgets the biggest disk's move; no register letter
+s01-F1-1,16 moves,15+1,16,x,adds the biggest disk's move once but moves the 4 disks only once; no register letter
+s01-P2-1,q(3) = 6n + 15,,,G,reads q(3) as q multiplied by 3
+s01-P2-1,q(3) = 8,3+5,8,x,adds the input to 5 and drops the 2; no register letter
+s01-P2-2,v(0) = 0,6*0,0,x,reads 2^0 as 0; no register letter
+s01-P2-2,v(2) = 144,(6*2)**2,144,x,squares 6 times 2 instead of 6 times 2 squared; no register letter
+s01-P2-3,Chain 4 has 21 beads,5+4*4,21,C,counts four changes from chain 1 instead of three
+s01-P2-3,"Each chain has 4 more beads than the chain before it, with no first chain",,,D,gives the recurrence without the starting value
+s01-P2-4,"C is linear, and the next term is 42",28+(28-14),42,B,"uses the last difference, 14, on a constant-ratio pattern"
+s01-P2-4,"D is exponential, and the next term is 22",,,x,right next term but names the type wrongly; no register letter
+s01-P2-5,"q(n) = 120 + 0.2n, so q(2) = 120.4",120+F(1;5)*2,120.4,B,adds 0.2 each step instead of multiplying
+s01-P2-5,"q(n) = 120(0.2)^(n-1), so q(2) = 24",120*F(1;5)**1,24,C,counts one step too few from the starting index 0
+s01-K2-1,L(3) = 7,1+2*3,7,B,adds 2 for each fold instead of doubling
+s01-K2-1,L(3) = 4,2**2,4,C,"counts two folds for three, one step too few"
+s01-K2-1,The position is 8 and the term is 3,,,x,swaps position and term; no register letter
+s01-P2-6,P(4) = 24,3*2**3,24,C,"uses the power 3 for four stages, one too few"
+s01-P2-6,P(4) = 11,3+2*4,11,B,adds 2 for each stage instead of doubling
+s01-P2-6,P(4) = 12,3*4,12,x,"multiplies the start by the position, a linear rule for a pattern that multiplies; no register letter"
+s01-P2-7,"(a) position 16, term 4",,,x,swaps position and term; no register letter
+s01-P2-7,"(c) position 9, term 0",,,x,"swaps position and term, and reads the 0 inside the brackets as the term; no register letter"
+s01-P3-7,"q(3) + 1 = q(4), so they are equal",,,x,treats adding 1 to the output as adding 1 to the input; no register letter
+s01-P3-7,v(3) = 18,6*3,18,x,multiplies 6 by 3 instead of using the power; no register letter
+s01-K3-1,"Y adds 6 each step, so Y(4) = 54",48+6,54,B,"uses the first difference, 6, on a constant-ratio pattern"
+s01-K3-1,"Y adds 24 each step, so Y(4) = 72",48+24,72,B,"uses the last difference, 24, on a constant-ratio pattern"
+s01-P3-8,The dots of both tables lie on a line,,,x,joins dots into a line and calls both graphs lines; no register letter
+s01-F3-1,The next term is 18,12+6,18,B,adds the last change to a constant-ratio pattern
+s01-F3-1,The next term is 15,12+3,15,B,adds the first change to a constant-ratio pattern
+s01-P4-7,g(5) = 15n - 20,,,G,reads g(5) as g multiplied by 5
+s01-P4-7,v(4) = 24,6*4,24,x,multiplies 6 by 4 instead of using the power; no register letter
+s01-P4-7,v(4) = 48,6*2**3,48,C,"uses the power 3 for the input 4, one too few"
+s01-K4-1,"S: 3, 7, 11, 15, so (2, 48) is not on the graph",3+4*3,15,B,adds 4 each time instead of multiplying
+s01-K4-1,"S: 3, 12, 48, 192, but (2, 48) is not on the graph, because 48 is the third term",,,C,"counts the third term as n = 3, one step too many from the start index 0"
+s01-F4-1,The points are right,,,x,accepts the points; no register letter
+s01-F4-1,"The right points are (0, 6), (1, 12), (2, 18), (3, 24)",6+6*3,24,B,adds 6 each time instead of multiplying
+s01-P5-1,u(6) = 42n + 6,,,G,reads u(6) as u multiplied by 6
+s01-P5-1,The input is 43 and the output is 6,,,x,swaps input and output; no register letter
+s01-P5-2,"c(1) = 40, c(2) = 0, c(3) = -40",80-40*3,-40,B,subtracts 40 each time instead of halving
+s01-P5-2,"c(1) = 80, c(2) = 40, c(3) = 20",80*F(1;2)**2,20,C,"treats the start as c(1), one step too few from the start index 0"
+s01-K5-1,"m(2) = 6, m(3) = 12, m(4) = 18",6*3,18,D,"has no starting value, so begins from 0"
+s01-K5-1,"m(2) = 24, m(3) = 144, m(4) = 864",4*6**3,864,B,multiplies by 6 each time instead of adding
+s01-K5-2,"Yes, it is the same sequence, because the rule is the same",,,D,treats the recurrence as the whole definition
+s01-P5-4,"m(1.5) = 7, halfway between m(1) and m(2)",(4+10)/2,7,A,allows a noninteger input
+s01-P5-4,m(0) = -2,4-6,-2,A,allows an input before the start
+s01-P5-6,The inputs are all integers from 0 up,,,x,ignores that the books run out; no register letter
+s01-P5-6,"The last day is day 7, with -1 books left",20-3*7,-1,x,carries the rule past the last day that makes sense; no register letter
+s01-K5-3,"w is not a function, because the rule needs two earlier terms",,,I,treats needing earlier terms as having more than one output
+s01-K5-3,"w(2) = 6, w(3) = 9, w(4) = 12",3*4,12,x,adds 3 each time and ignores the second earlier term; no register letter

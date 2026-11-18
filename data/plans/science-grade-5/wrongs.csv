@@ -1,0 +1,43 @@
+item_id,shown,compute,value,error,note
+s01-R1,I made a house from five pieces.,,,J,a missing-piece gap: record M on the readiness sort
+s01-R1,Stiff is good for a house.,,,K,a property-use gap: record P on the readiness sort
+s01-X1,It was empty. Nothing was in it.,,,A,
+s01-X1,Plan 2: weigh two different bottles.,,,D,
+s01-X2a,The shelf has five pieces.,,,J,
+s01-X2a,Stiff is good.,,,K,
+s01-X2b,"Cloth itself: 64 g, the damp weight.",64,64,H,the damp reading called the dry weight
+s01-X2b,Water: 64 g.,64,64,x,the whole damp reading called water
+s01-X2b,Water: 116 g.,64+52,116,x,added the two readings
+s01-X3a,"Flat pouch: 5 dots. Flat, it has 5 dots. Some air went away.",,,I,
+s01-X3a,Flat pouch: no dots.,,,I,
+s01-X3b,...because it is fine to move it.,,,L,
+s01-X3b,"...because the stick is the same, so it is fair.",,,L,
+s01-X4a,There is no air in the bottle.,,,A,
+s01-X4a,"Fewer dots, because some of the air went away.",,,I,
+s01-X4b,"Stone 58 g, cutting 2 g, water 86 g.",58|60-58|86,58|2|86,x,read the water from the last scale reading without subtracting
+s01-X4b,"Stone 58 g, cutting 60 g, water 86 g.",58|60|86,58|60|86,x,wrote each running reading as the amount added
+s01-X4b,"Stone 58 g, cutting 60 g, water 26 g.",58|60|86-60,58|60|26,x,wrote the cutting's running reading without subtracting
+s01-E1,"Air is nothing, so nothing is inside the cushion.",,,A,
+s01-E1,Each dot is one grain of the solid that you can see.,,,B,
+s01-E1,"The solid vanished. The water is clear, so nothing is left.",,,C,
+s01-E2,I weighed only the water.,,,D,
+s01-E2,I read the pouch without zeroing the empty scale first.,,,x,"a scale not zeroed; a weighing procedure gap, not in the register"
+s01-P1-1,"The same. Air is nothing, so it cannot add weight.",,,A,a first idea: gas is assigned no matter
+s01-K1-1,The ball is the same weight.,,,A,the readings are ignored; air is called nothing
+s01-P1-2,A ball with nothing drawn inside. Air is nothing.,,,A,
+s01-P1-3,Each dot is one grain of sand that you can see.,,,B,a dot is mistaken for a visible grain
+s01-P2-1,6 before and 5 after.,,,J,
+s01-P2-1,Long is good.,,,K,
+s01-K2-1,Block 3 is not in the wall.,,,J,
+s01-P2-2,Only four blocks are listed.,,,J,
+s01-K2-2,"(b) 120 g, the weight from the bag.",120,120,H,the bag reading called the dry soil weight
+s01-K2-2,(a) 120 g.,120,120,x,the whole bag reading called water
+s01-K2-2,(a) 224 g.,120+104,224,x,added the two readings
+s01-K3-1,6 dots before and 4 dots after. Some air went away.,,,I,
+s01-P3-1,"8 dots, then 3 dots.",,,I,
+s01-P3-2,It was empty.,,,A,
+s01-K4-1,Dry soil 204 g.,204,204,H,"the last reading, with beans and water in it, called dry soil"
+s01-K4-1,"Dry soil 172 g, beans 174 g, water 204 g.",172|174|204,172|174|204,x,wrote each running reading as the amount added
+s01-K4-1,"Dry soil 172 g, beans 2 g, water 204 g.",172|174-172|204,172|2|204,x,read the water from the last scale reading without subtracting
+s01-P4-3,Dry soil 164 g. Beans 167 g. Water 195 g.,,,x,wrote each running reading as the amount added
+s01-P4-1,I changed everything.,,,I,"air is said to have changed or gone, not just its spacing"

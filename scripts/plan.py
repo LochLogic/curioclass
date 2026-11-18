@@ -24,7 +24,7 @@ KINDS = {'Understanding', 'Fluency', 'Application', 'Check', 'Respond'}
 MARKS = {'key', 'light'}
 LESSON_KINDS = {'example', 'tool', 'fix', 'practice', 'challenge'}   # rows a lesson day adds; all count as taught
 CHECKS = {'readiness', 'end', 'exit'} | LESSON_KINDS
-READERS = {'script', 'expert', 'cheap', 'sensitivity', 'sara', 'teacher', 'student', 'cory', 'writer'}
+READERS = {'script', 'expert', 'cheap', 'sensitivity', 'answer-key', 'sara', 'teacher', 'student', 'cory', 'writer'}
 
 
 def rows(course, name):
@@ -1186,7 +1186,7 @@ def pack(course, s):
                      ('Readiness check', 'readiness'), ('End-of-unit assessment', 'end-check'), ('Exit questions', 'exits'),
                      ('Error register', 'errors')]:
         out += ['', '## ' + title, '', b[k]]
-    tools = sorted({d['tool'] for d in rows(course, 'days') if d['stretch'] == s and d['tool']})
+    tools = sorted({d.get('tool', '') for d in rows(course, 'days') if d['stretch'] == s and d.get('tool')})
     asks = DOCS / course / 'TOOL-ASKS.md'
     if tools and asks.exists():
         text = asks.read_text(encoding='utf-8')

@@ -93,6 +93,12 @@ sensitive topic is handled, and any timer (only with a grounded purpose).
   (4) Skeleton minutes came from the frame minimum (20); kindergarten content needed 30, so minutes should come from
   the section plan's `## Day N` block. (5) "Scored from the work you handed in" and the write-nothing line belong on
   the teacher page only for grades whose children do not read (later.csv).
+- Lessons from the science grade 5 and Algebra II probe (2026-11-18, docs/reviews/probe-science-math-2026-11-18.md):
+  the skeletons ran unchanged in a second and third subject and band. (1) The source STOP blocked every day of both
+  courses until the writer checked licences; check sources once per course at section time (later.csv L75). (2) The
+  skeleton does not list handbacks.csv rows, so day 5 handed day 6 repairs with no slot; list them, with the receiving
+  day's slot. (3) No DEFAULTS.md in either course; caps fell back to general defaults (L76). (4) Two-row exits with a
+  drawing box fill the quarter slip at grade 5; tight stems fixed it at day level.
 - Known gaps for the first real run: the student page and At home are bare TODOs; the readiness check on a unit's last
   day is not yet split out from the day's own assessment; no word list (Word Wall cards per day) is read yet; no check
   yet compares a written day against its sidecar.

@@ -1,0 +1,4 @@
+pattern,use,reason
+\bplug(?:ged|ging)? (?:in|into)\b,put the input into the rule,"the notation repair (error G) traces an input through the rule; ""plug in"" hides the step"
+\b(?:obviously|simply|easily|clearly|trivially)\b,cut the word,"it tells a student the step is easy, and a student who cannot do it hears that they should be able to"
+\bf\s+of\s+[a-z0-9]\b,write f(x),"a page writes function notation in symbols; reading it aloud as ""f of x"" is for the teacher"

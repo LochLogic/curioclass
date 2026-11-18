@@ -1,0 +1,14 @@
+stage,course,tokens,tools,seconds
+section-write 1.1-1.2,science-grade-5,155418,25,253
+section-write 1.1-1.2,algebra-ii,153783,17,345
+plan-data 1.1,algebra-ii,94520,40,718
+plan-data 1.1,science-grade-5,104182,47,810
+answer-key read+fix,algebra-ii,139811,19,240
+answer-key read+fix,science-grade-5,166083,31,454
+day-write d1-d5,algebra-ii,245044,68,802
+day-write d1-d4,science-grade-5,259017,74,757
+expert-read d1-d5,algebra-ii,243861,27,458
+expert-read d1-d4,science-grade-5,203972,33,403
+measure2 read,both,199405,21,335
+fix pass d1-d5,algebra-ii,208741,51,510
+fix pass d1-d4,science-grade-5,115182,97,1228

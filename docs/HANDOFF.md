@@ -6,6 +6,15 @@ which is stale, fix it and say so.
 
 ## State now
 
+- **Done 2026-11-18: the fourth probe, first for science and math** (Cory 2026-11-18; report
+  docs/reviews/probe-science-math-2026-11-18.md). Science grade 5 and Algebra II: section plans 1.1 and 1.2, plan
+  data and pieces for section 1.1, days 1 to 4 and 1 to 5, read (answer key, one expert read per course) and fixed by
+  Claude Sonnet agents with the lean process (L69 test). Result: Off on plan share (50%, 42%) and units changed (6 of
+  11 other units), On for template; the social studies, science and math probe nodes are closed. **Skeletons:** the
+  machinery runs unchanged across three subjects and bands; what it runs on is not ready (the same running faults in
+  every probe). Shortest path to ready: L75 (gate and skeleton session), L76 with L74 (rules, per-band DEFAULTS,
+  small unit edits), then L78 (confirm probe with ELA and middle school). Cory's items: L71 (units.csv rows, now
+  eleven), L77 (soil trial, source A1). Token ledger in docs/reviews/probe-science-math-tokens-2026-11-18.csv.
 - **Done 2026-11-18: the third probe, kindergarten social studies** (Cory 2026-11-17; report
   docs/reviews/probe-social-studies-3-2026-11-18.md). Section plans for units 1 to 3 (u01-1 to u03-4, now gated by
   unitplan.py), docs/courses/social-studies-kindergarten/DEFAULTS.md, plan data and shared pieces (our own
@@ -14,7 +23,7 @@ which is stale, fix it and say so.
   19 early-grade units), On for template (new `spoken` path, per-minute prose cap on ranged frames, short-day At
   home). Next: later.csv L74 (K to 2 rules, a correction pass, probe again), L72 (kindergarten page rendering), L73
   (small gates), L71 (Cory: seven units.csv rows; until then plan.py and lesson.py show seven known failures).
-  Example section plan u01-1 is on the Desk for Cory's sign-off. Token ledger for L69 in the report.
+  Example section plan u01-1 signed off by Cory 2026-11-18. Token ledger for L69 in the report.
 - **Done 2026-11-17: the Claude second lens pass** (Codex had hit its limit). Claude Sonnet agents ran the unit loop
   with docs/pipeline/briefs/unit-lens-claude.md (stage `read`, then stage `fix`) over the 186 jobs in
   docs/pipeline/claude-jobs.txt; reports are docs/reviews/claude-lens-*-2026-11-17.md and claude-fix-*-2026-11-17.md.

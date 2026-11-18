@@ -1,0 +1,5 @@
+pattern,use,reason
+\batoms?\b|\bmolecules?\b,"dots, or parts too small to see",this unit gives the tiny parts no names (5-PS1-1 limit); say dots
+\bmass\b,weight,mass and weight are not told apart in grade 5 (5-PS1-2 limit); say weight in grams
+\bdensity\b|\bbuoyan\w*,leave it out,density and buoyancy are not taught in this unit
+\bNGSS\b|Next Generation Science,leave it out,"the standards are never named in student, teacher or family copy"
