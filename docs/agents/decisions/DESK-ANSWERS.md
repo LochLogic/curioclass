@@ -1507,3 +1507,14 @@ day does both, first teaching wins. One home: docs/GLOSSARY.md, row "teaching da
 lesson 17 point to it, and scripts/sequence.py fails a Fluency goal that drafts, edits, introduces or teaches (notes for
 the rest). Where a unit plan had already moved the first teaching to an earlier day, the day stays Fluency.
 Record: docs/reviews/fluency-sweep-2026-11-17.md.
+
+## 2026-11-17: The Front Office and Show Your Work (live as a draft)
+
+Cory asked for the Desk dashboard reimagined as a public page that lets anyone from a state department of education
+down to a teacher see the whole curriculum, from progressions to days, plus a methodology page. Names chosen: "The
+Front Office" (/front-office/) and "Show Your Work" (/front-office/show-your-work/). The methodology does not say who
+did the work: no mention of AI, and nothing that says it was human made. Review reports are cleaned before posting,
+and the base texts are cited there properly. The print-and-offline rule bends for these pages, since they are for
+administration and background policy. The page count stays flat: six files, with every layer opening in a reader
+drawer. Live 2026-11-17 as an unlinked noindex draft; Cory: "the site looks great". More buttons and functionality
+come in later drafts (later.csv L70). Rules: docs/SITE-DESIGN.md, section "The Front Office".

@@ -149,6 +149,25 @@ page entry, and `courses/*` in dist/.assetsignore, so even a deploy of a `--cour
 check_site.py fails if any other page, the sitemap or the search index points into /courses/. To show them: set
 `SHOWN = True`, add `--courses` to the deploy command, rebuild, check.
 
+### The Front Office: `/front-office/` and Show Your Work: `/front-office/show-your-work/` (Cory, 2026-11-17)
+
+For administrators and policy readers, from a state department of education down to a teacher: the whole curriculum
+top to bottom, and how it is built. Not a teacher or student page, so the print-and-offline rule bends here: the pages
+load data as you browse (one JSON per subject), and the reader prints the open course or unit only.
+
+- **The Front Office** shows the six layers as a flow with counts, a skill ladder per subject (strand by grade), every
+  course by grade, and a reader drawer for each course, unit, section and day. Each view has its own link
+  (`#subject/course/unit`).
+- **Show Your Work** walks through the approach, the layers, the checks, an honest status (not yet taught with
+  students, no working teacher has read it, most days not yet written), the base texts with their licences, the
+  review record and corrections.
+- **Wording:** describe checks, never checkers. No mention of who or what did the work, and nothing that implies it
+  was human made. Review summaries are cleaned before they are posted; base texts are cited here properly.
+- **Page count:** six files in all. Every layer opens in the drawer, so new courses, units and days add no pages.
+- **Built by** scripts/front_office.py on every build. `check` scans the output for internal names and process words.
+- **Draft for now:** a draft banner, `noindex, nofollow`, and no sitemap, search or menu entry. Later drafts get more
+  buttons and functionality (later.csv L70).
+
 ## Decided at the home check (Cory, 2026-11-12)
 
 1. **Teaching map: hidden now, back later.** It no longer shows on the site (build flag `--map` brings back the
