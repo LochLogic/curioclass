@@ -1,0 +1,17 @@
+# Fix report: english-language-arts-grade-11 unit 8 (s08), 2026-11-17
+
+Findings merged: 23 (assessment 8, sources 7, sequence 8; sequence 8 is a days.csv lead). Fixed: 20 (merged findings, with sources 1 to 5 and 7 folded into field 10 lines). Rejected: 1 (sources 6). Lead: 6.
+Held up per lens: assessment 8 of 8, sources 6 of 7, sequence 7 of 8 (the eighth is entirely a LEAD).
+Gate: `python -X utf8 scripts/unitplan.py check english-language-arts-grade-11` PASS for s08.md (1,250-word cap met by keeping the additions short). The file was also converted from CRLF to LF.
+
+Fixed in s08.md: item 2 key and Meets sample no longer assert a Bresnan-report link; the packet supply line now names Bresnan's office; item 1 Does-not sample is a true listing and H is added; 133 look-for rewritten with unambiguous letters; 131 exit states the doorway image is outside reading and hook, and E is added to its look-for; 132 exit now holds the party paragraphs unread until the exit and "English" becomes "remembered, from before the family's move to America" (table row, error F, look-for); 134 inquiry no longer asks about fire pathways and the cold-packet paragraph says stairs and ladders are not taught or named on 131 to 136; 135 exit gets a new short printed caption; field 5 says 137 samples only RI.7 and SL.2 and the L.4b and SL.1 parts are scored later; field 7 gives groups E, F, G, H and moves group I to day 138; Tier 2 list cut to nine taught words; read-aloud, chunking and image minutes stated; SL.11-12.1 practised on 136 with 132 as preparation, written synthesis kept on 136, and 1a, 1c, 1d versus 1b stated for the 12 minutes; L.11-12.4b is practised, not taught, on 131; the withdrawn model is named; supplies add the printed word reference and the omission-disclosed Sui Sin Far copy; field 10 gains editions and rights, the corrected Riis link, scan-check notes for table 84, the committee report and the Sui Sin Far count, and image caption and maker notes.
+
+REJECTED: sources 6 | The Chinese American sensitivity link is an event page and none of the four community links is recorded as read, so replace it and mark all four as not yet read | Adding the replacement and marks was cut because field 10 is at the 1,250-word cap and the sensitivity pass itself reads and records these links | none (word cap; UNIT-PLAN Length)
+
+LEAD:
+- days.csv 132 note says "40-minute path" and "40-minute budget"; the school day and the plan are 50 minutes. Correct it.
+- days.csv 131 note repeats a sentence and says "Greek hypo- new" for a family introduced on 126; the 131 and 136 notes should say retrieved.
+- days.csv 132 note says the reading includes the complete childhood-party episode; the plan now holds the two party paragraphs for the exit. Align the note, or send the 132 exit back for a different new source.
+- Decide whether the Riis selection (about 4,428 and 4,859 words on 131 and 132) must shrink, and whether days.csv 132 carries ~SL.11-12.1.
+- wordlist.csv for this unit must drop to the nine taught Tier 2 words (scrupulous, ulterior, representative, genuine, indignation, annual, mean, concur, compel); the other seven are gloss-only.
+- Text records g11-u8-01 to 04: copy the editions and rights now in field 10, change census "Eleventh Census" to the 1894 volume, set the census status to confirm until the scan check, and name the later unit that scores ~L.11-12.4b and ~SL.11-12.1 against scope-and-sequence (none was checked here).
