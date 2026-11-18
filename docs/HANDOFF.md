@@ -6,20 +6,19 @@ which is stale, fix it and say so.
 
 ## State now
 
-- **Running 2026-11-17 (resumed 1pm after a usage-limit pause): the Claude second lens pass.** Codex hit its limit, so Claude Sonnet agents run
-  the unit loop with docs/pipeline/briefs/unit-lens-claude.md (stage `read`, then stage `fix`, one agent each).
-  The 186 jobs are in docs/pipeline/claude-jobs.txt. A unit's read is done when its three
-  docs/reviews/claude-lens-*-<course>-sNN-2026-11-17.md files exist, its fix when claude-fix-<course>-sNN exists.
-  Pushed: math grades K, 1, 6 and 8, civics, social studies grades K to 4, US history I, US government, economics,
-  ELA grades 3, 5, 7, 9 and 10, science grades K, 1, 4 and 6, world history I, physics, geometry. Every read is
-  launched; the last fixes (algebra II, ELA K, 2 and 11) were running at about 8pm. Commit a course only when all its
-  units are fixed. A second usage-limit pause hit about 3:40pm; agents were resumed at 5:35pm. At 5:35pm a
-  `pull --rebase --autostash` raced the agents' writes, the rebase stopped and the stash was not reapplied, so
-  finished fixes vanished from the working tree; they were restored from `stash@{0}` (now redundant, left in place,
-  as is `stash@{1}` from 2026-10-27, another session's). The commit script no longer stashes. After the pass: a lead sweep of the `LEAD:` lines in the claude-fix reports (mostly
-  days.csv) and one Desk card on the 1,250-word cap, which forced many rejections. Science 8 s06: the fix agent
-  deleted the "Proposed sections" line (the only section titles); it is restored, which puts the plan at 1,290 of
-  1,250 words, so the gate FAILS until the titles move into the generated header or the cap is settled.
+- **Done 2026-11-17: the Claude second lens pass** (Codex had hit its limit). Claude Sonnet agents ran the unit loop
+  with docs/pipeline/briefs/unit-lens-claude.md (stage `read`, then stage `fix`) over the 186 jobs in
+  docs/pipeline/claude-jobs.txt; reports are docs/reviews/claude-lens-*-2026-11-17.md and claude-fix-*-2026-11-17.md.
+  Every course in the list is fixed, gated and pushed except **science 8**, held uncommitted: its s06 fix agent deleted
+  the "Proposed sections" line (the only section titles); restored, the plan is 1,290 of 1,250 words, so the gate
+  FAILS until the titles move into the generated header or the cap is settled. `stash@{0}` (redundant, from a
+  5:35pm autostash race) and `stash@{1}` (2026-10-27, another session's) are left in place; never `git stash` here.
+  **Next:** (1) one Desk card on the word caps (1,250 and 1,800), which forced most rejections; (2) Desk cards for the
+  calls only Cory can make (US History I s08 topic, SS 3 s02 Menominee swap, science 1 s01 stars scope, ELA 11 s06
+  Occom rights, ELA 11 s01 Chopin cold read on day 14 vs taught day 139, ELA 11 s05 Jacobs chapter I kept against
+  the scope and sequence); (3) a lead sweep of the `LEAD:` lines in the claude-fix reports (mostly days.csv codes,
+  kinds and notes, ela-texts.csv and source-map.csv rows, unverified sources, generated header lines such as ELA K
+  s03 "2 rows below"); (4) a Desk refresh.
 
 The plan is [PRODUCTION-PATH.md](PRODUCTION-PATH.md): the four core subjects are planned top down, one layer at a
 time, before more days are written.
