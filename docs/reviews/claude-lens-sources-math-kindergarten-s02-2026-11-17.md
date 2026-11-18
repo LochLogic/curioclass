@@ -1,0 +1,15 @@
+unitplan check: PASS for s02.md. No outside data set, statistic or quoted text is used; every context is an invented picture or a paper object. No company names in exits, items or the family note.
+
+1. [10, Safety] The only safety source is an association blog post on science activity protocols (Ken Roy, April 19, 2024), and field 8 adds only "non-toxic age-labelled supplies" | the lens requires a real safety standard or professional or state or district guide, and this unit's loose-piece risk is choking, not science lab safety; a blog post is not a standard | add the NSTA safety guidance page for the grade band and one published small-parts rule (for example the federal small-parts limit for toys for children under three, as a floor for the counters) after reading each page; keep the blog as secondary and mark any rule not opened "from memory"
+
+2. [10, Progressions] The 2019 Progressions is cited at a third-party site and called "CC BY 4.0" with no check of the licence on the publisher's own page; the 2015 comparison is a publisher's curriculum overview whose licence is not stated | verified or none: the licence claim is unchecked and a reference that is not open-licensed must say so | name where the licence was read (the publisher's own Progressions page) or mark "licence from memory"; add "all rights reserved or restricted licence, reference only" for the curriculum overview
+
+3. [10, Verified reading] Activity text was read for 7 of the 22 adapted lessons (1, 2, 7, 12, 16, 17, 22); the other 15 were kept from preparation purposes and narratives | days adapted from a lesson whose activity was not read cannot be credited or checked | add to "Still to make": each day writer reads that lesson's activity text and its public page before adapting (lessons 3 to 6, 8 to 11, 13 to 15, 18 to 21); say the keep decisions for those are provisional
+
+4. [10 and U3, invented cases] Only the day 43 exit and F4 are printed "invented for practice"; every other exit and M and F item uses an invented picture set (shells, kites, tents, drums, badges) | the settled rule prints any invented case so, and teachers must not read these as real counts or data | add one line to the U3 and field 5 headers: "Every picture and collection below is invented for practice and printed so on the sheet"
+
+5. [10, cross-subject] Day 41 relies on ELA unit 1 (school days 1 to 34) and the science weather unit (school days 23 to 44) for timing and overlap, but field 10 does not name the ELA or science frame or scope and sequence files read | a day-order claim about other courses needs its source | list docs/courses/ela-kindergarten and science-kindergarten scope-and-sequence pages (whichever files were read) in field 10, or drop the claim
+
+6. [10, last paragraph] "The 2019 Progressions edition supplies the verified comparison" does not say what was verified | a reader cannot tell which claim rests on the page numbers given | reword to: "Page references to the 2019 Progressions (PDF pages 15 to 17 and 79 to 80) were read; the 2015 overview was compared and nothing copied"
+
+Count: 6 findings (lens sources).
