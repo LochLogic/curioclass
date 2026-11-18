@@ -1461,3 +1461,12 @@ work. Settled: the skeleton stays a script; no Sonnet pre-draft. Cost comes down
 writing, a sliced brief, gates before reads, per-unit reads with patch-only fixes, a stable prompt prefix, and
 Claude reading on flags, a sample and a per-unit cohesion pass. Piloted on the first social studies unit before it
 becomes standard. Cory picks this up next session; nothing is built yet. Written into PRODUCTION-PATH step 7.
+
+## 2026-11-17: word caps raised to 1,600 and 2,300
+
+Cory: a cap that keeps causing rejections is too tight, so raise it unless there is a valid reason not to. In the
+Claude second lens pass 489 of 708 rejected findings cited the cap. A section plan and a unit plan go from 1,250 to
+1,600 words, a one-section merged document from 1,800 to 2,300, counted as before. The cap still marks a contract,
+not the lesson: edition and rights detail belongs in ela-texts.csv and source-map.csv, not in field 10. Applied:
+UNIT-PLAN.md "Length", scripts/unitplan.py, ROADMAP. Science 8 s06 (1,290 words) now passes. The findings rejected
+for the cap are picked up in the lead sweep.

@@ -293,13 +293,13 @@ U11. Three things move so nothing is written twice:
 
 Count words, not pages. A page depends on the screen.
 
-This list is the one home of the caps (settled 2026-11-11, see DESK-ANSWERS). `scripts/unitplan.py` enforces the unit
-plan cap (1,250) on every `sNN.md` and the merged cap (1,800) on any `sNN.md` with `## U3.` to `## U11.` headings,
+This list is the one home of the caps (raised 2026-11-17, see DESK-ANSWERS). `scripts/unitplan.py` enforces the unit
+plan cap (1,600) on every `sNN.md` and the merged cap (2,300) on any `sNN.md` with `## U3.` to `## U11.` headings,
 counting U5 and U7 to U11.
 
-- **Section plan:** 1,250 words, not counting fields 3 (checks), 4 (errors) and 6 (days).
-- **Unit plan:** 1,250 words, not counting its check tables and error register (fields 4, 5 and 6).
-- **One-section unit, one merged document:** 1,800 words, not counting checks, errors and days (unit
+- **Section plan:** 1,600 words, not counting fields 3 (checks), 4 (errors) and 6 (days).
+- **Unit plan:** 1,600 words, not counting its check tables and error register (fields 4, 5 and 6).
+- **One-section unit, one merged document:** 2,300 words, not counting checks, errors and days (unit
   fields 4, 5 and 6, and U3, U4 and U6).
 - **Tool gaps and spec asks** do not sit in a unit plan or a section plan, so they do not count. They go in the course's
   TOOL-ASKS.md (rule 10).

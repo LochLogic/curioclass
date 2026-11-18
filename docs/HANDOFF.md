@@ -9,11 +9,10 @@ which is stale, fix it and say so.
 - **Done 2026-11-17: the Claude second lens pass** (Codex had hit its limit). Claude Sonnet agents ran the unit loop
   with docs/pipeline/briefs/unit-lens-claude.md (stage `read`, then stage `fix`) over the 186 jobs in
   docs/pipeline/claude-jobs.txt; reports are docs/reviews/claude-lens-*-2026-11-17.md and claude-fix-*-2026-11-17.md.
-  Every course in the list is fixed, gated and pushed except **science 8**, held uncommitted: its s06 fix agent deleted
-  the "Proposed sections" line (the only section titles); restored, the plan is 1,290 of 1,250 words, so the gate
-  FAILS until the titles move into the generated header or the cap is settled. `stash@{0}` (redundant, from a
-  5:35pm autostash race) and `stash@{1}` (2026-10-27, another session's) are left in place; never `git stash` here.
-  **Next:** (1) one Desk card on the word caps (1,250 and 1,800), which forced most rejections; (2) Desk cards for the
+  Every course in the list is fixed, gated and pushed; science 8 was held over the cap until the caps were raised to
+  1,600 and 2,300 (2026-11-17, DESK-ANSWERS). `stash@{0}` (redundant, from a 5:35pm autostash race) and
+  `stash@{1}` (2026-10-27, another session's) are left in place; never `git stash` here.
+  **Next:** (1) a pass over the findings rejected for the old cap, now that there is room; (2) Desk cards for the
   calls only Cory can make (US History I s08 topic, SS 3 s02 Menominee swap, science 1 s01 stars scope, ELA 11 s06
   Occom rights, ELA 11 s01 Chopin cold read on day 14 vs taught day 139, ELA 11 s05 Jacobs chapter I kept against
   the scope and sequence); (3) a lead sweep of the `LEAD:` lines in the claude-fix reports (mostly days.csv codes,

@@ -149,9 +149,9 @@ course by course, by the curriculum expert. We write our own course (FOUNDATION,
 The detail of each is in docs/FOUNDATION.md. Items 2 and 9 speak of the retired pilot; PRODUCTION-PATH sets the order now.
 
 **The unit and section plans.** Fixed fields in two documents, a unit plan and a section plan (docs/courses/UNIT-PLAN.md, fixed
-2026-11-11). Length is capped by words (caps changed 2026-11-11, Desk card q-plans-4d-1): a section plan 1,250 not counting its
-checks, errors and days; a unit plan 1,250 not counting its check tables and error register; a one-section unit
-1,800 by the same count. Tool asks sit in one TOOL-ASKS.md per course. Check items, exit questions, errors and day rows are never cut to fit. It
+2026-11-11). Length is capped by words (caps raised 2026-11-17, see DESK-ANSWERS): a section plan 1,600 not counting its
+checks, errors and days; a unit plan 1,600 not counting its check tables and error register; a one-section unit
+2,300 by the same count. Tool asks sit in one TOOL-ASKS.md per course. Check items, exit questions, errors and day rows are never cut to fit. It
 is a contract, not the lesson.
 
 **The order inside step 4 (changed 2026-11-11, night, Cory).** The labels 4a to 4f keep their meaning, so older
@@ -177,7 +177,7 @@ Where the step 4 row below and this table disagree, this table wins.
 |---|---|---|
 | **Course** | A grade of a subject | Gets a scope and sequence: its sections in order, with the reason for the order |
 | **Unit** | A run of sections on one idea (added 2026-11-11) | Owns the readiness check, the end-of-unit assessment and, in ELA, the text set and word list |
-| **Section** | A 1 to 5 day package inside a unit (section 3.4 of grade 4 math, six days, is the named exception) | Points at topics and picks from every shelf. Owns only the order, the teacher pages and what no shelf has. Has a section plan (1,250 words at most, not counting checks, errors and days, under its unit plan) before any of its tools is built |
+| **Section** | A 1 to 5 day package inside a unit (section 3.4 of grade 4 math, six days, is the named exception) | Points at topics and picks from every shelf. Owns only the order, the teacher pages and what no shelf has. Has a section plan (1,600 words at most, not counting checks, errors and days, under its unit plan) before any of its tools is built |
 | **Topic** | One teachable topic, and the hub page every shelf hangs from (`module_id` in code, which lags) | Split only when it holds two unrelated topics, and then properly. Its standards are spelled out, never a bare cluster |
 | **Tool** | One screen piece | Carries only the codes it teaches on its main path, and a role: teach, see why or practice. Built only when a section plan names its job, which also marks it key or light. How many tools a unit gets is set by its section plans (BASELINE rules 22 and 23, changed 2026-11-11); a major unit may run on print with no key tool, as grade 4 math unit 3 does |
 | **Shelves** | Word Wall, charts, Game Night, Sub Day, lesson plans, worksheets, generators, Reading Room, Teaching map (hidden now, back later reimagined) | Keep their keys. Worksheets and generators are the home of fluency and extra practice; the Reading Room is the home of year-long reading |

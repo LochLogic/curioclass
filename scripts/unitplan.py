@@ -34,8 +34,8 @@ Fails on:
   - math, ELA and science: a source-map.csv row of the unit whose source id field 10 does not name;
   - course data it cannot read (a days.csv or source-map.csv missing a column of its layout, a short row, a day that is
     not a whole number): one `path:-: cannot check:` line naming the file and its columns;
-  - over the word cap of UNIT-PLAN.md, "Length" (the one home of the rule): 1,250 words for a unit plan, outside fields
-    4, 5 and 6, the day list and skel blocks; 1,800 for a one-section merged document (one with `## U3.` to `## U11.`
+  - over the word cap of UNIT-PLAN.md, "Length" (the one home of the rule): 1,600 words for a unit plan, outside fields
+    4, 5 and 6, the day list and skel blocks; 2,300 for a one-section merged document (one with `## U3.` to `## U11.`
     section fields after the day list), outside the same and U3, U4 and U6.
 """
 import re
@@ -46,8 +46,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import unit_skeleton as sk  # noqa: E402
 
 MARK = sk.MARK
-CAP = 1250          # a unit plan (UNIT-PLAN.md, "Length")
-CAP_MERGED = 1800   # a one-section unit, one merged document (U3 to U11 after the day list)
+CAP = 1600          # a unit plan (UNIT-PLAN.md, "Length")
+CAP_MERGED = 2300   # a one-section unit, one merged document (U3 to U11 after the day list)
 NOTES = []          # notes printed ahead of a file's PASS or FAIL line; they never fail a file
 SHOWN = ['']        # the path being checked, for the notes
 FIELDS = list(range(2, 11))
