@@ -1518,3 +1518,12 @@ and the base texts are cited there properly. The print-and-offline rule bends fo
 administration and background policy. The page count stays flat: six files, with every layer opening in a reader
 drawer. Live 2026-11-17 as an unlinked noindex draft; Cory: "the site looks great". More buttons and functionality
 come in later drafts (later.csv L70). Rules: docs/SITE-DESIGN.md, section "The Front Office".
+
+## 2026-11-18: Kindergarten probe (q-probe-ss-3)
+
+Cory took both picks. (1) docs/courses/social-studies-kindergarten/u01-1.md is signed off as the example section plan
+the next writers copy; comments on it become a fix before more section plans are written. (2) The probe read Off, so
+the early grades get K to 2 rules (a rotating six with a record column, minutes counted as whole-class turns, one
+actor per story scene, spoken stems), then a correction pass over the 19 kindergarten to grade 2 social studies units,
+then a fourth probe, before more early-grade days (later.csv L74). Baseline 2 goes ahead with
+docs/reviews/probe-social-studies-3-2026-11-18.md as social studies' probe result.
