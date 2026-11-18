@@ -10,10 +10,13 @@ which is stale, fix it and say so.
   the unit loop with docs/pipeline/briefs/unit-lens-claude.md (stage `read`, then stage `fix`, one agent each).
   The 186 jobs are in docs/pipeline/claude-jobs.txt. A unit's read is done when its three
   docs/reviews/claude-lens-*-<course>-sNN-2026-11-17.md files exist, its fix when claude-fix-<course>-sNN exists.
-  Pushed: math grade 6, civics, social studies grades K, 1, 2 and 4, US history I, economics, ELA 9, science K and 4,
-  world history I, math 1, physics, geometry. In progress (some units fixed, uncommitted): math 8, ELA 3, 5 and 10,
-  science 6, US government. A second usage-limit pause hit about 3:40pm; agents were resumed at 5:35pm. Commit a
-  course only when all its units are fixed. After the pass: a lead sweep of the `LEAD:` lines in the claude-fix reports (mostly
+  Pushed: math grades K, 1, 6 and 8, civics, social studies grades K to 4, US history I, US government, economics,
+  ELA grades 3, 5, 7, 9 and 10, science grades K, 1, 4 and 6, world history I, physics, geometry. Every read is
+  launched; the last fixes (algebra II, ELA K, 2 and 11) were running at about 8pm. Commit a course only when all its
+  units are fixed. A second usage-limit pause hit about 3:40pm; agents were resumed at 5:35pm. At 5:35pm a
+  `pull --rebase --autostash` raced the agents' writes, the rebase stopped and the stash was not reapplied, so
+  finished fixes vanished from the working tree; they were restored from `stash@{0}` (now redundant, left in place,
+  as is `stash@{1}` from 2026-10-27, another session's). The commit script no longer stashes. After the pass: a lead sweep of the `LEAD:` lines in the claude-fix reports (mostly
   days.csv) and one Desk card on the 1,250-word cap, which forced many rejections. Science 8 s06: the fix agent
   deleted the "Proposed sections" line (the only section titles); it is restored, which puts the plan at 1,290 of
   1,250 words, so the gate FAILS until the titles move into the generated header or the cap is settled.
