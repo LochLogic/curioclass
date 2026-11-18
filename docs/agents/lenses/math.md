@@ -65,7 +65,8 @@ named in advance and used.
   order. The grades 3 to 5 narrative page remains a supplementary explanation; other bands have no narrative page.
 - **Past Algebra 2.** Precalculus, Statistics and Calculus have progression rows (pc-, stat-, calc-) at grade 12,
   owning the (+) codes and Curio Class's own outcome list (data/standards/curio-math-electives.txt); each frame names
-  an open base text, to be loaded into the source store.
+  an open base text, loaded into the source store (docs/sources/BASE-TEXTS.md). Statistics reads also take the
+  data-teaching lens, docs/agents/lenses/statistics.md.
 - **The K to 2 fluency and counting work** (counting and cardinality, add and subtract within 5, 10, 20). The K to 2
   frames describe untimed fluency checks through games and individual observation, recorded as just knows, quick
   strategy or counts all, with coverage of every child. Unit plans turn these into tasks, recording guidance and

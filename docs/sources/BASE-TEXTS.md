@@ -18,11 +18,19 @@ whole store is catalogued in `S:\CurioClass-sources\_catalog\` (`CATALOG.csv`, `
 
 ## Base texts
 
-| Subject, grades | Source | Edition, licence | Store folder | State 2026-11-13 |
+| Subject, grades | Source | Edition, licence | Store folder | State |
 |---|---|---|---|---|
 | Math K to 8, Algebra 1, Geometry, Algebra 2 | Illustrative Mathematics K-12 Math | 1st edition 2019-2021, CC BY 4.0 (im.kendallhunt.com) | `illustrative-math\` | complete, 32,376 files, 7.7 GB (open pages only; cool-downs, keys, assessments and teacher guides are behind a free login, listed in LOGIN-GATED.csv, not taken) |
 | Science 6 to 8 | OpenSciEd Middle School | 2022 standard units, CC BY 4.0 (printed in each teacher edition) | `openscied-ms\` | all 18 unit packages, about 18 GB |
 | ELA K to 5 | EL Education K-5 Language Arts | 2017 edition, CC BY 4.0 | `el-education-k5-2017\` | complete, 259 files, 1.67 GB |
+| Precalculus (grade 12) | OpenStax, Precalculus (1st edition) | retired 1st edition (2014; PDF revision PR-2015-002(03/17)), CC BY 4.0 on its copyright page and the publisher's book record | `openstax-precalculus-1e\` | loaded 2026-11-17: 1 PDF, 86 MB, with the book record |
+| Statistics (grade 12) | OpenStax, Statistics (2020) and OpenStax, Introductory Statistics (1st edition) | Statistics 2020, live, CC BY 4.0; Introductory Statistics 1st edition 2013, retired, CC BY 4.0 (its 2nd edition is CC BY-NC-SA: never) | `openstax-statistics\`, `openstax-introductory-statistics-1e\` | loaded 2026-11-17: 1 PDF each, 31 MB and 27 MB |
+| Statistics (gap filler) | Online Statistics Education (David M. Lane, project leader) | public domain, stated on the site's home page; credited anyway | `lane-online-statistics\` | loaded 2026-11-17: whole-book PDF, 34 MB, with the site pages |
+| Calculus (grade 12) | Dale Hoffman, Contemporary Calculus | CC BY 3.0 US on the author's archive page (Calculus_all.html, 2016-08-25): that copy is the base. The newer combined volume (chapters 4 to 8, printed 2020) says CC BY-SA 3.0 US: reference only. LibreTexts copy CC BY-NC-SA: never | `contemporary-calculus\` (`archive-2016\` is the base) | loaded 2026-11-17: 152 archive PDFs (about 213 MB) plus 101 current-site PDFs (about 135 MB) |
+| Earth and Space Science, units 1 to 4 and 7 | Physical Geology, 2nd Edition (Steven Earle, BCcampus, 2019) | CC BY 4.0 except the figures on the book's own exceptions page (never reused) | `physical-geology-2e\` | loaded 2026-11-17: PDF and EPUB, 465 MB, with the exceptions page |
+| Earth and Space Science, units 8 and 9 | OpenStax, Astronomy (1st edition) | retired 1st edition, CC BY 4.0 (Astronomy 2e is CC BY-NC-SA: reference only) | `openstax-astronomy-1e\` | loaded 2026-11-17: 1 PDF, 161 MB |
+| Earth and Space Science, units 5 to 7 | JetStream, An Online School for Weather (NOAA National Weather Service) | public domain unless noted, per the Weather Service's own disclaimer page; no endorsement implied, not presented as official material; images credited to others excluded | `noaa-jetstream\` | loaded 2026-11-17: 134 lesson pages as HTML, 16 MB (no images) |
+| Environmental Science | Introduction to Environmental Sciences and Sustainability (Emily P. Harris, University of West Florida, 2023) | CC BY 4.0 except where noted; built from Fisher's Environmental Biology (CC BY); chapters 12 to 14 and 11.4 checked part by part before use | `harris-environmental-sciences-2023\` | loaded 2026-11-17: PDF and EPUB, 95 MB |
 
 Never base texts, even though they share the name:
 - IM 2nd edition (accessim.org, "v.360"): CC BY-NC.
@@ -53,8 +61,8 @@ S:\CurioClass-sources named on each; Oak is taken per unit when a course needs i
 
 ## Our own (no base text)
 
-- Math past Algebra 2 (precalculus, statistics, calculus).
-- Science K to 5 and 9 to 12 (OpenSciEd elementary and high school are reference). NASA, USGS, NOAA material and PhET
+- Science K to 5 and the core 9 to 12 courses (OpenSciEd elementary and high school are reference); the two
+  science electives have the bases above. NASA, USGS, NOAA material and PhET
   simulations from before 2026-03-29 are free extras, each checked on its own terms.
 - ELA 6 to 12, on public-domain texts. CommonLit is not used at all (its terms bar AI tools).
 - Social studies K to 12: C3 skills, with the Massachusetts 2018 framework as the content anchor (codes and short
@@ -84,7 +92,7 @@ rule 4 holds the form):
 > https://creativecommons.org/licenses/by/4.0/. Changed by Curio Class.
 
 The same shape for "OpenSciEd Unit X.Y, lesson N" and "EL Education K-5 Language Arts Curriculum (2017), grade G,
-module M, unit U, lesson L". No wording that implies endorsement.
+module M, unit U, lesson L". No wording that implies endorsement. The grade 12 bases (2026-11-17) use the line their course frame's Base text bullet gives, also kept in each store folder's NOTES.md.
 
 ## Never carried over from a base text
 

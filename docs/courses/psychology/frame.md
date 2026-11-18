@@ -416,12 +416,13 @@ added days; ELA 12 owns its own standards):
 
 ## For the lead
 
-1. **May a school leave out unit 15 (disorders)?** Health treats its sensitive units as removable
-   (docs/courses/health/STANDARD.md section 5). Pick: no. Psychological disorders are a priority area of the standard,
-   and unit 16's help-seeking needs it; it is taught under the mental health rules and safe-messaging guidance above,
-   with a family note before it opens. A family may still opt a student out of a day under the school's own process.
-2. **The same-grade gate.** Psychology's seams with Government and Economics are by course order, in prose only, as
-   the effort's decision 3 set. Pick: keep it that way; no assumes or hands_on between grade 12 rows.
+1. **May a school leave out unit 15 (disorders)?** Settled (Cory, 2026-11-17, Desk card q-electives-frames-1): no. Unit 15 is required:
+   psychological disorders are a priority area of the standard and unit 16's help-seeking needs it. It is taught under
+   the mental health rules and safe-messaging guidance above, with a family note before it opens; a family may still
+   opt a student out of a day under the school's own process.
+2. **The same-grade gate.** Settled (Cory, 2026-11-17, Desk card q-electives-frames-1): Psychology's seams with Government and Economics stay by
+   course order, in prose only; the gate change for same-grade seams waits in data/plans/later.csv L67 until a scope
+   needs it.
 3. **Grade 11 or 12.** data/courses.csv lists Psychology as grades 11 to 12 (typical 12); the rows sit at 12. Pick: no
    change; the frame gives an "if later" line for every grade 11 row and lean it uses, as Economics does.
 4. **The term.** scripts/frame.py TERM names only Government (fall) and Economics (spring), so Psychology is a full

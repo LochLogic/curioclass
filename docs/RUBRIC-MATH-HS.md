@@ -2,9 +2,8 @@
 
 Filed 2026-11-15 (data/plans/later.csv L25; Cory approved writing it before the high school math unit plans). This
 is the bar Algebra I, Geometry and Algebra II unit plans are written and read against. Kindergarten to grade 8 keep
-docs/RUBRIC-MATH-K8.md, which this file follows in shape. Precalculus, Statistics and Calculus are not active
-courses; when one becomes active, the lead decides how much of this file applies, since both sources below are
-written for the standards without a (+) mark.
+docs/RUBRIC-MATH-K8.md, which this file follows in shape. Precalculus, Statistics and Calculus take this file with
+the one change in "The grade 12 courses" below (Cory, 2026-11-17, L49).
 
 ## The two sources
 
@@ -75,6 +74,26 @@ minute counted once. Check days and respond days are left out; so are assessment
 days. Each scope and sequence states the account once, and unit plans replace planned minutes with the minutes of
 actual tasks. The course line is more than half. Planned now: Algebra I 79.74 percent, Geometry 70.59 percent,
 Algebra II 64.46 percent.
+
+## The grade 12 courses: Precalculus, Statistics and Calculus
+
+Both sources are written for the standards without a (+) mark, so focus rows 1a to 1c have nothing to measure in
+these three courses. In their place (Cory, 2026-11-17, Desk card q-electives-frames-1, L49):
+
+- **The owned-outcome account** stands in for 1a to 1c. Every code a course owns (its (+) codes and its
+  data/standards/curio-math-electives.txt outcomes) is taught in full in one named unit and assessed on that unit's
+  end-of-unit assessment; the course-level checks sample codes again and never claim all of them.
+- **One cap: review and readiness take at most 15 percent of unit minutes.** Counted: review days and part-days in
+  the rows' load notes, retrieval tasks outside them, readiness checks (ten minutes each) and daily-opening minutes
+  spent on earlier courses' rows, each minute once. Not counted: check days, respond days and time on the course's
+  own earlier units. Each unit plan lists its count; the scope and sequence sums them and states the course share
+  against the cap. No unit has its own share.
+- **The modeling cycle stays whole:** no step (assumptions, model, computation, interpretation, validation,
+  revision, report) is cut to save time.
+
+Everything else in this file applies in full: coherence (1d, 1e), assessment (1f, 1g), rigor (2a to 2d), the eight
+practices (2e to 2l), supports (3a to 3u) and the multilingual-learner criteria. Statistics reads also take
+docs/agents/lenses/statistics.md.
 
 ## What each part asks, and where Curio Class answers it
 

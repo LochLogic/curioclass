@@ -1470,3 +1470,30 @@ Claude second lens pass 489 of 708 rejected findings cited the cap. A section pl
 not the lesson: edition and rights detail belongs in ela-texts.csv and source-map.csv, not in field 10. Applied:
 UNIT-PLAN.md "Length", scripts/unitplan.py, ROADMAP. Science 8 s06 (1,290 words) now passes. The findings rejected
 for the cap are picked up in the lead sweep.
+
+## 2026-11-17: six calls from the lens pass (Desk card q-lens-pass-1)
+
+Cory answered six calls; applied the same day (report: docs/reviews/desk-answers-lens-pass-2026-11-17.md).
+US History I unit 8: students choose one listed women's organization; the 1869 National Woman Suffrage Association
+is the teacher's worked example. Social studies grade 3 unit 2: the Menominee Indian Tribe of Wisconsin stays on day
+43 for the constitution comparison only; the 24-month news check runs before days are written. Science grade 1 unit
+1: stars present but hidden by day stays, weighted lightly (never costs a core point), sourced to a NASA page. ELA
+grade 11: Occom's 1768 Narrative (first printed 1982) gives way on day 109 to two excerpts of his Moses Paul sermon,
+1788 printing, bounds checked on the scan; the day 14 cold story is Poe's The Oval Portrait, with Chopin kept for
+day 139; Jacobs chapter I is kept for day 93 (no better period text found) and the scope and sequence now agrees; the
+frame's slur note covers Narrative chapters 4, 6, 9 and 10.
+
+## 2026-11-17: the six core elective frames (Desk card q-electives-frames-1, ten calls)
+
+Cory answered the frames' For the lead questions for Precalculus, Statistics, Calculus, Earth and Space Science,
+Environmental Science and Psychology. Precalculus then Calculus on the accelerated path (L15), Precalculus the stated
+prerequisite, straight from Algebra II a named alternative with a bridge of about 20 lessons. L49 done: an owned-outcome
+account for focus 1a to 1c and one 15 percent cap of unit minutes for review and readiness, in RUBRIC-MATH-HS.md.
+Earth and Space Science typical grade 12, open to grades 10 to 12 after (or alongside) Biology, Chemistry and Physics
+(judgement left to the lead, so advanced students can reach it). Base texts loaded into the source store. Environmental
+Science unit 5 keeps the Navajo Nation case on released material only, no contact, a fresh sensitivity read first (L68).
+Cost ceilings for a class of 30: about $400 Precalculus and Calculus, $450 Statistics, $1,000 each science with shared
+kit, a cheaper route for any unit over $150. Same-grade seams stay in prose; the gate change is L67. The widened
+science outcomes stay. Calculus extensions stay extensions, first cut on the accelerated route. Psychology unit 15 is
+required. Statistics reads take a data-teaching lens (docs/agents/lenses/statistics.md, GAISE in our own words).
+Record: docs/reviews/desk-answers-electives-frames-2026-11-17.md.
