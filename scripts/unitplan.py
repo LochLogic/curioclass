@@ -37,6 +37,11 @@ Fails on:
   - over the word cap of UNIT-PLAN.md, "Length" (the one home of the rule): 1,600 words for a unit plan, outside fields
     4, 5 and 6, the day list and skel blocks; 2,300 for a one-section merged document (one with `## U3.` to `## U11.`
     section fields after the day list), outside the same and U3, U4 and U6.
+Section plans (docs/courses/<course>/u{uu}-{n}.md, added 2026-11-17 at the kindergarten probe) are checked with their
+unit. Each fails on: a TODO(writer) marker; a missing field heading 1 to 11; an em dash or "Curio" without " Class"; a
+lost "?"; a header day range that is not the section's days in days.csv; a `## Day N` block for a day outside the
+section, or a section day with no block; a day whose `- **N min. Part.**` lines add up outside frames.csv
+minutes_min to minutes_max; over 1,600 words outside fields 3, 4 and 6 and skel blocks.
 """
 import re
 import sys
@@ -261,6 +266,85 @@ def check_file(path, course, unit):
     return msgs
 
 
+SEC_CAP = 1600   # a section plan (UNIT-PLAN.md, "Length"), outside fields 3, 4 and 6
+LOST_Q = re.compile(r'\w\?\w|(?<![\w(\[\s])\?\w|�')
+
+
+def check_section(path, course, unit):
+    """Failures for one section plan u{uu}-{n}.md (see the module doc)."""
+    text = Path(path).read_text(encoding='utf-8')
+    lines = text.split('\n')
+    msgs = []
+
+    def bad(i, what):
+        msgs.append('%s:%d: %s' % (shown(path), i + 1, what))
+    sec = re.search(r'u(\d+)-(\d+)\.md$', str(path))
+    sid = '%d.%d' % (int(sec.group(1)), int(sec.group(2)))
+    nums = [int(r['day']) for r in sk.days_rows(course) if (r.get('unit') or '').strip() == sid]
+    fr = [r for r in sk.read_csv(sk.PLANS / 'frames.csv', sk.FRAMES_COLS) if r['course'] == course]
+    lo, hi = (int(fr[0]['minutes_min']), int(fr[0]['minutes_max'])) if fr and fr[0]['minutes_min'] else (0, 999)
+    if not nums:
+        bad(-1, 'section %s has no days in days.csv' % sid)
+    heads = {}
+    for i, ln in enumerate(lines):
+        m = re.match(r'## (\d+)\. ', ln)
+        if m:
+            heads[int(m.group(1))] = i
+        if MARK in ln:
+            bad(i, 'a skeleton marker left for the writer')
+        if '—' in ln:
+            bad(i, 'an em dash')
+        if re.search(r'\bCurio\b(?! Class)', ln):
+            bad(i, '"Curio" without " Class"')
+        if 'http' not in ln and '`' not in ln and LOST_Q.search(ln):
+            bad(i, 'a "?" standing for a lost character')
+    for f in range(1, 12):
+        if f not in heads:
+            bad(-1, 'missing field heading "## %d. ..."' % f)
+    m = re.search(r'\*\*Days? (\d+)(?: to (\d+))?\.\*\*', text)
+    if nums and m:
+        a, b = int(m.group(1)), int(m.group(2) or m.group(1))
+        if (a, b) != (min(nums), max(nums)):
+            bad(-1, 'header says days %d to %d; days.csv gives section %s days %d to %d'
+                % (a, b, sid, min(nums), max(nums)))
+    blocks, cur = {}, None
+    for i, ln in enumerate(lines):
+        d = re.match(r'## Day (\d+)\b', ln)
+        if d:
+            cur = int(d.group(1))
+            blocks[cur] = [i, 0]
+            continue
+        if ln.startswith('## '):
+            cur = None
+        if cur is not None:
+            mm = re.match(r'\s*- \*\*(\d+) min\. ', ln)
+            if mm:
+                blocks[cur][1] += int(mm.group(1))
+    for n, (i, total) in blocks.items():
+        if nums and n not in nums:
+            bad(i, 'day %d is not in section %s' % (n, sid))
+        elif not total:
+            bad(i, 'day %d has no "- **N min. Part.**" lines' % n)
+        elif not lo <= total <= hi:
+            bad(i, 'day %d parts add up to %d minutes; the day is %d to %d' % (n, total, lo, hi))
+    for n in nums:
+        if n not in blocks:
+            bad(-1, 'section day %d has no "## Day %d" block' % (n, n))
+    skip = set()
+    order = sorted(heads.items(), key=lambda x: x[1])
+    for k, (f, start) in enumerate(order):
+        end = order[k + 1][1] if k + 1 < len(order) else len(lines)
+        if f in (3, 4, 6):
+            skip.update(range(start, end))
+    body = '\n'.join(ln for i, ln in enumerate(lines) if i not in skip)
+    body = re.sub(r'<!-- skel -->.*?<!-- /skel -->', ' ', body, flags=re.S)
+    body = re.sub(r'<!--.*?-->', ' ', body, flags=re.S)
+    count = len(re.findall(r'\S+', body))
+    if count > SEC_CAP:
+        bad(-1, '%d words outside fields 3, 4 and 6, cap %d' % (count, SEC_CAP))
+    return msgs
+
+
 def register_check(course, lines, spans, bad):
     # one mistake per register letter (UNIT-PLAN field 6; social studies probe, 2026-11-15)
     if 6 in spans:
@@ -407,6 +491,16 @@ def main(a):
                 print('FAIL %s (%d)' % (shown(p), len(msgs)))
             else:
                 print('PASS %s' % shown(p))
+            for q in sorted(p.parent.glob('u%02d-*.md' % u)):
+                seen += 1
+                qm = check_section(q, course, u)
+                for m in qm:
+                    print(m)
+                if qm:
+                    bad_any = True
+                    print('FAIL %s (%d)' % (shown(q), len(qm)))
+                else:
+                    print('PASS %s' % shown(q))
     if not seen:
         print('no unit plans found for: %s' % ', '.join(courses))
     return 1 if bad_any else 0

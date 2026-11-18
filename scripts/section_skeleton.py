@@ -294,8 +294,10 @@ def build(course, section):
     else:
         nxt = next((r for r in allrows if int(r['day']) > days[-1]), None)
         w('- After: the end of unit %d%s' % (unit, ('; next, day %s (%s): %s' % (nxt['day'], nxt['kind'], u.clean(nxt['goal']))) if nxt else ', the last of the course'))
-    rd = [int(r['day']) for r in allrows if r['assess'] == 'readiness' and int(r['day']) <= unit_days[0]]
-    if rd:   # given in the last minutes of the day before the unit (or on its first day); a readiness day at the
+    rd = [int(r['day']) for r in allrows if r['assess'] == 'readiness' and unit_days[0] - 1 <= int(r['day']) <= unit_days[0]]
+    if field(text, r'4\.').lstrip().lstrip('*').lower().startswith('retrieval only'):   # kindergarten probe, 2026-11-17
+        w('- No readiness check for this unit: unit plan field 4 is retrieval only.')
+    elif rd:   # given in the last minutes of the day before the unit (or on its first day); a readiness day at the
         w('- The readiness check for this unit: day %d (days.csv).' % max(rd))   # a readiness day at the unit end is the next unit's
     w(u.CLOSE)
     w('')
@@ -360,7 +362,7 @@ def build(course, section):
         w('')
         L.extend(reg[:2] + named)
     elif reg:
-        w('No error register row names one of days %d to %d; the register has letters %s.' % (
+        w('No error register row gives one of days %d to %d as a number (the unit plan may place letters in prose); the register has letters %s.' % (
             days[0], days[-1], ', '.join(c for c in (ln.strip().strip('|').split('|')[0].strip() for ln in reg[2:]) if c)))
     else:
         w('The unit plan has no error register table.')
