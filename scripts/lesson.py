@@ -290,7 +290,7 @@ def check_home(d, items, row, lab):
     labels = page_labels(d)
     byid = {i['item_id']: i for i in items}
     exits = [i['item_id'] for i in items if i['day'] == h.get('day') and i['check'] == 'exit'
-             and i.get('path', '') in ('', 'paper')]
+             and i.get('path', '') in ('', 'paper', 'spoken')]
     for r in REF.findall(home):
         if r not in labels and r not in exits:
             f.append('%s: At home names [[%s]], which is not on the student page%s' % (
@@ -310,7 +310,9 @@ def check_home(d, items, row, lab):
         if not re.search(r'assessment', parts[0][1], re.I):
             f.append('%s: on an assessment day the At home path opens with the assessment' % lab)
         for i in items:   # the view prints every end item (day 24 read); each must be found on the page
-            if i['day'] == h.get('day') and i['check'] == 'end' and i['item_id'] not in labels:
+            # path "spoken": asked aloud with picture cards, never printed for the child (kindergarten probe,
+            # 2026-11-18); the At home view prints it with its question, so the page need not hold it
+            if i['day'] == h.get('day') and i['check'] == 'end' and i['item_id'] not in labels                     and i.get('path', '') != 'spoken':
                 f.append('%s: end item %s is not on the student page, so the At home view cannot say where it is'
                          % (lab, i['item_id']))
     else:

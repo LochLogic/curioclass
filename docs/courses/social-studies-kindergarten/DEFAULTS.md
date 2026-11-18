@@ -11,7 +11,8 @@ differs from this.
   what to read aloud. 18 point type.
 - **Exits are spoken.** The teacher asks the exit question aloud and shows its picture cards; the child points,
   sorts, says or draws. The teacher marks a class list (the section's record sheet) while children answer, a few at
-  a time during the hands-on part or the closing circle. No paper exit ticket unless the plan names a drawing.
+  a time during the hands-on part or the closing circle. Exit and end items have `path` spoken in items.csv: no paper ticket prints, and the At home view prints
+  the question for the parent to ask. No paper exit ticket unless the plan names a drawing.
 - **Talk.** Every child may pass in public talk; a pair or a puppet stands in for sharing about oneself. No child
   reports on home, family, money, bodies or religion, or is the example of a mistake.
 - **Supplies.** Crayons, paper, blocks, picture cards, two folded-paper puppets, chart paper. A room with nothing

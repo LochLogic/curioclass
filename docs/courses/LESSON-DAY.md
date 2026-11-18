@@ -98,7 +98,8 @@ A tile figure is `tiles #/# ##/##`: rows split by `/`, `.` a gap, `sticks` for o
 `steps` (the worked steps as the teacher says them, split by `|`; for a wrong answer to fix, their working then
 the right working; a teacher-judged row lists its look-fors here), `samples` (a teacher-judged row's two sample
 answers, one meeting the look-fors and one not, shown on the key), `path` (an exit's `tool` or `paper`; `board`
-for a practice row written on the board when there is no printer) and `source` (rule 4). In wrongs.csv, error `x`
+for a practice row written on the board when there is no printer; `spoken` for an exit or check item asked aloud with
+picture cards and never printed for the child, kindergarten, 2026-11-18) and `source` (rule 4). In wrongs.csv, error `x`
 is any other wrong answer, with no group.
 
 The file starts with a header block: `day`, `course`, `unit`, `version` ("draft, not yet taught" until a taught
