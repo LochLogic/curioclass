@@ -15,4 +15,6 @@ New picture pair, never used in teaching (rule 4). Printed "invented for practic
 
 **Picture C (not respectful).** One child pulls a shape card out of the partner's hand while the partner's mouth is open round.
 
+## Key (teacher)
+
 Token goes on Picture B. Picture C is a talking picture for error H, never a trap.

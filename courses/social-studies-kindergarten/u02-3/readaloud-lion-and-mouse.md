@@ -3,11 +3,11 @@ piece: story
 course: social-studies-kindergarten
 unit: 2.3
 version: draft, not yet taught
-credit: Retold from Aesop (public domain). Source, Aesop for Children (1919), read.gov/aesop/007.html, rights note read.gov/aesop/about.html, and Project Gutenberg https://www.gutenberg.org/ebooks/19994. Retelling and new drawings, ours, CC BY 4.0.
+credit: Retold from Aesop (public domain). Source, Aesop for Children (1919), read.gov/aesop/007.html, rights note read.gov/aesop/about.html. Retelling and new drawings, ours, CC BY 4.0.
 ---
 # The Lion and the Mouse
 
-Day 16 folktale, twelve pages. A very old story told by many people, credited to Aesop. Source: "The Lion and the Mouse" in Aesop for Children (1919), https://read.gov/aesop/007.html (rights note https://read.gov/aesop/about.html; the original book is in the public domain in the United States); also Project Gutenberg, https://www.gutenberg.org/ebooks/19994. This retelling is in our own words and the drawings are new. The old moral is kept: "A kindness is never wasted." The lion's paw moment is told calmly, and children do not act it out. The lion is strong, but strong is not the same as in charge: do not teach him as a rightful leader.
+Day 16 folktale, twelve pages. A very old story told by many people, credited to Aesop. Source: "The Lion and the Mouse" in Aesop for Children (1919), https://read.gov/aesop/007.html (rights note https://read.gov/aesop/about.html; the original book is in the public domain in the United States); This retelling is in our own words and the drawings are new. The old moral is kept: "A kindness is never wasted." The lion's paw moment is told calmly, and children do not act it out. The lion is strong, but strong is not the same as in charge: do not teach him as a rightful leader.
 
 Art: plain line drawings, thick outlines, no writing. The mouse is a small gray mouse with a round ear and a little scarf; the lion is large with a soft mane. Faces are calm, never snarling.
 

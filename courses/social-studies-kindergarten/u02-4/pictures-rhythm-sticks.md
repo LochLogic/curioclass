@@ -7,7 +7,7 @@ credit: ours
 ---
 # The Rhythm Sticks (day 19 fresh try)
 
-New picture story for the day 19 fresh try. Never used in teaching or on day 18 (rule 4). Printed "invented for practice". Eight pages. Plain line drawings, thick outlines, no writing, no brands. Children of many skin tones; one child uses a wheelchair. After the story the teacher asks the missed character or rule question and the child points to the pictured action.
+New picture story for the day 19 fresh try. Never used in teaching or on day 18 (rule 4). Printed "invented for practice". Eight pages. Plain line drawings, thick outlines, no writing, no brands. Children of many skin tones; one child uses a wheelchair. After the story the teacher asks one question for each missed part and the child points to the pictured action: "Who is in charge? Show me what they did." "Who did what they said they would do? Show me." "Where did the class agree on the rule? Where did someone follow it? Show me."
 
 **Page 1.** Text: "Teacher Dube has a box of rhythm sticks for music time."
 Picture: Teacher Dube, a woman with a headscarf and a warm smile, holds a wooden box of short sticks and stands by a rug.
@@ -33,4 +33,6 @@ Picture: Ravi, a boy with a crest of hair, holds out both hands as the box arriv
 **Page 8.** Text: "They tap the sticks all together. Tap, tap, tap."
 Picture: the whole circle holding sticks up, tapping, smiling.
 
-**Right answers.** Responsible: Ellis (said he would bring it back, did). In charge: Teacher Dube. Rule made: page 5 (the class agrees). Rule followed: page 7 (Ravi waits, then takes one).
+## Key (teacher)
+
+Responsible: Ellis (said he would bring it back, did). In charge: Teacher Dube. Rule made: page 5 (the class agrees). Rule followed: page 7 (Ravi waits, then takes one).

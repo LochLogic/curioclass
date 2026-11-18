@@ -275,6 +275,11 @@ def check_home(d, items, row, lab):
     if not parts:
         return f + ['%s: At home has no parts written "- **N min. Name.** ..."' % lab]
     lo, hi = HOME_CHECK if assess else HOME_TEACH
+    c = h.get('course', '')
+    dlo, dhi = plan.day_range(c) if plan.course_meta(c) else (DAY_MIN, DAY_MIN)
+    if dhi and dhi < 45:   # a short course day (kindergarten, 20 to 30 minutes) keeps home to the same length;
+        # the 30 to 40 rule was set for 60-minute days (kindergarten probe, 2026-11-18)
+        lo, hi = (dlo, dhi + 10) if assess else (max(10, dlo - 5), dhi)
     tot = sum(p[0] for p in parts)
     if not lo <= tot <= hi:
         f.append('%s: At home parts add to %d minutes; %s %d to %d' % (

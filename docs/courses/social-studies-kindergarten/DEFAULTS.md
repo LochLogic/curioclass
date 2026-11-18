@@ -1,0 +1,21 @@
+# Kindergarten social studies: what holds every day
+
+Written 2026-11-18 at the kindergarten probe (docs/agents/DAY-WRITER.md, "Read first" 6). A day writes only what
+differs from this.
+
+- **The day.** 20 to 30 minutes (frames.csv), most days 25: a gathering on the rug, the read-aloud or picture talk,
+  one hands-on part (sort, act out, draw, point), and a spoken exit with picture cards. Teacher prose cap 450 words
+  (15 a minute of the longest day).
+- **Children do not read.** The student page is pictures, boxes to draw in and at most a word label under a
+  picture. Student page cap 60 words, everything printed for children included; a line on the teacher page says
+  what to read aloud. 18 point type.
+- **Exits are spoken.** The teacher asks the exit question aloud and shows its picture cards; the child points,
+  sorts, says or draws. The teacher marks a class list (the section's record sheet) while children answer, a few at
+  a time during the hands-on part or the closing circle. No paper exit ticket unless the plan names a drawing.
+- **Talk.** Every child may pass in public talk; a pair or a puppet stands in for sharing about oneself. No child
+  reports on home, family, money, bodies or religion, or is the example of a mistake.
+- **Supplies.** Crayons, paper, blocks, picture cards, two folded-paper puppets, chart paper. A room with nothing
+  draws the cards on scrap paper.
+- **Read-alouds** are ours (courses/social-studies-kindergarten/u0N-N/readaloud-*.md, pictures-*.md, cards-*.md,
+  `piece: story`); until the art exists the teacher shows the page descriptions as quick sketches or tells them.
+- **At home.** 15 to 30 minutes, one parent and one child: the story told, one sort or drawing, the exit asked aloud.

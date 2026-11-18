@@ -19,6 +19,10 @@ Each exit has a picture card that every child marks (circle or point) and a spok
 
 **Picture:** Two new children at a shared table. On the left, Ana (brown skin, dark hair in a ponytail) holds a brush over a painting pad. On the right, Kofi (dark skin, short hair) presses a ball of clay. Between them is a bare space of table. Below the picture are three marking choices in a row, each in a circle: an empty, clear table space; a paint brush alone; a ball of clay alone.
 
-**Mark:** Circle what both classmates need. The key is the clear table space: both need space and their own materials. The brush alone and the clay alone each fit only one child. **Spoken:** "What do both need in their shared room? Why does that matter to you?"
+**Mark:** Circle what both classmates need. **Spoken:** "What do both need in their shared room? Why does that matter to you?"
 
 Print "invented for practice" beneath the picture. Never ask a child which classmate they are like.
+
+## Key (teacher)
+
+- Day 2: the clear table space; both need space, and materials may be added in speech. The brush alone and the clay alone each fit only one child.

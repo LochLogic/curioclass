@@ -188,7 +188,9 @@ teacher page. Because the student page already holds the questions, the block on
 what to swap; on grade 4 math days 89 to 93 it took 110 to 137 words.
 
 - **Minutes.** 30 to 40 on a teaching day. On an assessment day, the assessment alone, then the respond part one
-  to one, about 45 in all (40 to 50).
+  to one, about 45 in all (40 to 50). A course whose day is under 45 minutes (kindergarten, 20 to 30) keeps home to the
+  class day: 5 minutes under its shortest to its longest on a teaching day, its shortest to 10 over its longest on an
+  assessment day (kindergarten probe, 2026-11-18).
 - **Parts**, written `- **N min. Name.** ...`, in the order of the day: the minutes and the name inside one pair of
   `**`, on one line. The closing period may be left off, and a name may end in "?" or "!". The check names any part
   line it cannot read. Their minutes add up to the total; there is no other place the total is written.
