@@ -697,8 +697,8 @@ def check(course):
         if not (pth == '' or (pth in ('tool', 'paper') and i['check'] == 'exit') or (pth == 'board' and i['check'] == 'practice')
                 or (pth == 'spare' and i['check'] in LESSON_KINDS)
                 # spoken: asked aloud with picture cards, never printed for the child (kindergarten probe, 2026-11-18)
-                or (pth == 'spoken' and i['check'] in ('exit', 'end', 'readiness'))):
-            fails.append('%s: path must be tool, paper or spoken on an exit, spoken on a check item, board on a practice row, '
+                or (pth == 'spoken' and i['check'] in ('exit', 'end', 'readiness') + tuple(LESSON_KINDS))):
+            fails.append('%s: path must be tool, paper or spoken on an exit, spoken on a check or lesson item, board on a practice row, '
                          'or spare on a lesson row' % i['item_id'])
         # a teacher-judged row carries its look-fors (steps) and its samples (meets | partly | not), so the key holds them
         if i['judged'] == 'teacher' and not i.get('steps', '').strip():

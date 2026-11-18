@@ -11,14 +11,14 @@ One separate card for modelling the claim and the why-question, kept apart from 
 
 ## The card
 
-**Picture, top:** A low open tub on a shelf the height of a child's waist. The tub holds scissors with rounded blades and blunt tips, standing handle up in a row. Three children of different sizes reach in easily, each taking one pair.
+**Picture, top:** A low open tray on a shelf the height of a child's waist. The tray holds a stack of paper sheets. Three children of different sizes reach in easily, each taking one sheet.
 
-**Picture, bottom left:** The same scissors in a locked box on a high shelf. A small child stands on tiptoe, hands up, unable to reach.
+**Picture, bottom left:** The same paper in a closed box on a high shelf. A small child stands on tiptoe, hands up, unable to reach.
 
-**Picture, bottom right (the question):** Two children face each other. One has a speech bubble with a question mark. The other has a speech bubble with the low tub in it.
+**Picture, bottom right (the question):** Two children face each other. One has a speech bubble with a question mark. The other has a speech bubble with the low tray in it.
 
 ## How the teacher uses it
 
-Say the claim with a finger on the top picture: "I think we need the scissors tub, because everyone can find them." Then the partner's why-question, "Why do you think that?", and the answer. Children echo both parts.
+Say the claim with a finger on the top picture: "I think we need the paper tray, because everyone can reach it." Then the partner's why-question, "Why do you think that?", and the answer. Children echo both parts.
 
 The pairs then choose a rule picture for a class question from Our Class Charter. These pictures are the class's own, made on day 5 and kept on the chart paper; this card is the only invented picture in the model.

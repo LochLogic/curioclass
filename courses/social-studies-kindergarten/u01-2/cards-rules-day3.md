@@ -7,7 +7,7 @@ credit: ours
 ---
 # Matching cards (day 3 supported work)
 
-Three rule cards and three "what it protects" cards. Pairs match each rule to what it protects and say safe, fair or helps us learn. Plain black line drawings, no printed words, no people's faces shown in close-up, no brand names. None of these repeats a page of Sharing the Glue.
+Three rule cards and three "what it protects" cards. Pairs match each rule to what it protects and say safe, fair or helps everyone learn. Plain black line drawings, no printed words, no people's faces shown in close-up, no brand names. None of these repeats a page of Sharing the Glue.
 
 ## Rule card 1: take turns
 
@@ -27,7 +27,7 @@ Three rule cards and three "what it protects" cards. Pairs match each rule to wh
 
 ## Protects card B: a clean table for the next person
 
-**Picture:** A bare, clean table with a fresh sheet of paper and two empty chairs. (Matches wipe the table: helps us learn, and the room is ready for the next person.)
+**Picture:** A bare, clean table with a fresh sheet of paper and two empty chairs. (Matches wipe the table: fair, so the next person can use the table, or helps everyone learn, because the room is ready. Either reason is right; the card shows the next person, not learning alone.)
 
 ## Protects card C: people who stay upright
 

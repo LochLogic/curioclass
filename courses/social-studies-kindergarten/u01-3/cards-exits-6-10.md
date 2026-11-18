@@ -17,7 +17,7 @@ Day 9 has no exit card. Each card is marked by every child (circle, point or dra
 
 ## Day 7 exit card: two puppets and their reasons
 
-**Picture:** A left column of two puppets, Pia (round head) and Tov (a tall head with a star on top). A right column of two reason pictures, in a different order: a quiet room with one child listening; a table with paper and crayons ready. Space for a line from each puppet to its reason.
+**Picture:** A left column of two puppets, Moss (round head) and Wren (a tall head with a curl). A right column of two reason pictures, in a different order: a quiet room with one child listening; a table with paper and crayons ready. Space for a line from each puppet to its reason.
 
 **Mark:** Draw a line from each puppet to its reason. **Spoken:** "How are their ideas alike or different?"
 
@@ -36,6 +36,6 @@ Day 9 has no exit card. Each card is marked by every child (circle, point or dra
 ## Key (teacher)
 
 - Day 6: (a); (b) is the still-sitting picture (error C); (c) changes the subject.
-- Day 7: Pia (round head) to the paper ready, drawing first; Tov (star) to the quiet room, listening first.
+- Day 7: Moss (round head) to the paper ready, drawing first; Wren (curl) to the quiet room, listening first. Both want to start with something; accept that wording.
 - Day 8: (a), take turns so both can use the bucket; the partner asks a why-question and the child answers with a because.
 - Day 10: (a), the whole clay pot; the objects stay whole and others can still see them.

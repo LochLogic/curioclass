@@ -7,7 +7,7 @@ credit: ours
 ---
 # Claim-frame cards (day 5)
 
-Two things: the teacher's sample card for the claim frame, and the layout of a blank candidate-rule card that you draw from the room before the lesson. Our Class Charter itself is real and made by the class; the sample card is a drawing we made.
+Three things: the teacher's sample card for the claim frame, the three candidate-rule cards the class picks from, and the what-if picture. Our Class Charter itself is real and made by the class; the sample card is a drawing we made.
 
 ## Sample card: coats on the hooks
 
@@ -17,9 +17,15 @@ Two things: the teacher's sample card for the claim frame, and the layout of a b
 
 Use it to model: "I think we need this rule, because ..." (the coats stay dry and easy to find). Also model the child-voice question: "Why do we have this rule?"
 
-## Candidate-rule card (blank layout, three drawn before the lesson)
+## Candidate-rule cards (three, printed)
 
-Each card is a plain line drawing of one real thing in your room that could have a rule: for example the scissors tub, the book bin, the line at the door. It has two panels. Left: the thing in use, looked after. Right: the reason, a picture of what is protected or who benefits. No people's faces, no printed words. The class picks two of the three, gives a because for each, and you write their words beside the picture symbols.
+Each card is a plain line drawing of one thing in a classroom that could have a rule, in two panels. Left: the thing in use, looked after. Right: the reason, a picture of what is protected or who benefits. No people's faces, no printed words. The class picks two of the three, each child by putting a counter on one card; the two with the most counters stay. The class gives a because for each, and you write their words beside the picture symbols. A class whose room lacks one of these things swaps in a similar thing that day 8 does not use.
+
+**Card 1: the scissors tub.** Left: a low open tub on a shelf, rounded scissors standing handle up. Right: the same scissors scattered across a table, one on the floor.
+
+**Card 2: the book bin.** Left: a bin of picture books, spines up, on a low shelf. Right: books in a heap on the rug, a page torn.
+
+**Card 3: the door line.** Left: children in a line at the door, a gap between each, one hand on the door. Right: children bunched at the door, one child pushed to the side.
 
 ## What if a rule does not work?
 

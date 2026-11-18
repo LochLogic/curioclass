@@ -2,15 +2,15 @@ from_day,to_day,what,where,minutes,error,note
 1,2,s01-R3,supported work,10,,"readiness item 3 bridge: a partner turn with picture cues, then fade the cue"
 1,3,s01-R2,supported work,10,,"readiness item 2 bridge: enact two dolls sharing glue, contrast a helpful rule with an unexplained command"
 1,4,s01-R1,supported work,10,,"readiness item 1 bridge, small group: model a wonder with an object, contrast question and statement, invite a new wonder"
-1,2,s01-X1,reopen,2,A,two classroom uses of an answer; a small group takes the rest in supported work
-2,3,s01-X2,reopen,2,K,"one picture, one sentence; a small group takes the rest"
-3,4,s01-X3,reopen,2,B,"one picture, one sentence; a small group takes the rest"
-4,5,s01-X4,reopen,2,B,"one picture, one sentence; a small group takes the rest"
-6,7,s01-X6,reopen,2,C,"one picture, one sentence; a small group takes the rest"
+1,2,s01-X1,reopen,3,A,two classroom uses of an answer; a small group takes the rest in supported work
+2,3,s01-X2,reopen,3,K,"one picture, one sentence; a small group takes the rest"
+3,4,s01-X3,reopen,3,B,"one picture, one sentence; a small group takes the rest"
+4,5,s01-X4,reopen,3,B,"one picture, one sentence; a small group takes the rest"
+6,7,s01-X6,reopen,3,C,"one picture, one sentence; a small group takes the rest"
 5,9,Our Class Charter,introduce,,,"three pictured charter rules laid out at the tables for the drawing of why one chosen rule helps (practice, not scored)"
 7,9,practice notes toward s01-E2 s01-E5,assessment,0,,the practice note taken on the one day among days 3 to 7 the child is in the rotating six; the revised attempt is the child's day 9 group
-9,10,record sheet cells for s01-E1 s01-E2 s01-E3 s01-E4 s01-E5 s01-E6 s01-E7 s01-E8,move groups,10,,"at most four groups from the 0 and 1 cells, by the letter whose move repairs it (s01 field 7)"
-9,10,children not yet heard on day 9,fresh tries,8,,"unheard parts stay not yet observed, never inferred"
+9,10,record sheet cells for s01-E1 s01-E2 s01-E3 s01-E4 s01-E5 s01-E6 s01-E7 s01-E8,move groups,13,,"at most four groups from the 0 and 1 cells, by the letter whose move repairs it (s01 field 7)"
+9,10,children not yet heard on day 9,fresh tries,15,,"unheard parts stay not yet observed, never inferred"
 5,11,s02-R11,retrieval,4,,Our Class Charter retrieved after the hook; no score
 7,13,perspective columns,reopen,2,,unit 1 talk circle and perspective columns recalled as retrieval
 11,12,s02-X11,warm-up,3,A,finished and not finished pair of pictures; spoken claim once as review
@@ -27,3 +27,6 @@ from_day,to_day,what,where,minutes,error,note
 14,18,Our Decision Record for s02-E2 s02-E3,conversations,0,,item 2 is read from the dated record; item 3 from the day 17 confirmation
 18,19,record sheet letters A to J,small groups,10,,at most two groups of five minutes by letter; the others work in pairs from a picture card
 18,19,s02-X19 and unfinished observations,fresh try,8,,unheard parts stay not yet observed; a participation gap meets a fresh accessible shared job and decision
+5,6,s01-X5,reopen,3,B,"one picture, one sentence each for errors B, E and J (the exit is repaired aloud, not returned); a small group takes the rest"
+7,8,s01-X7,reopen,4,D,"one picture, one sentence for error D, then error E: point to the paper ready and say because together"
+9,10,Garden Path for s01-E3,fresh tries,15,,the outside-setting reason for item 3 is heard on day 10 from children whose cell is blank

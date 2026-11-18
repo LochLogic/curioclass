@@ -404,6 +404,7 @@ def check_day(d, items, days):
     # lists none), unless it stays with students (probe 5.2 reads: the gate read only the next day)
     for i in items:
         if (i['day'] == h.get('day') and i['check'] == 'practice' and i['judged'] == 'teacher'
+                and i.get('path', '') != 'spoken'   # said aloud and judged on the spot: nothing to hand back
                 and '[[%s]]' % i['item_id'] in d['teacher']
                 and not re.search(r'stay with (?:the )?students|not collected|stays? in (?:the |their )?folders?',
                                   d['teacher'], re.I)):
@@ -476,6 +477,8 @@ def check_day(d, items, days):
     # it carries a revision part or scores a product made on earlier days (a handbacks.csv row of kind assessment
     # into it), which takes the teaching cap (expert, day 45 finding 11)
     per = 15 * (hi or DAY_MIN)
+    if lo and hi and lo < hi and lo <= tot <= hi:   # a ranged frame (kindergarten 20 to 30): the day's own minutes set the
+        per = 15 * tot                                # cap, or a 20-minute day carries 30 minutes of words (probe 2026-11-18)
     carries = any(re.search(r'revis', b[1], re.I) for b in d['blocks']) or any(
         r.get('to_day') == h.get('day') and r.get('where', '').strip().lower() == 'assessment'
         for r in (plan.rows(h.get('course', ''), 'handbacks') if plan.course_meta(h.get('course', '')) else []))
@@ -1969,6 +1972,9 @@ def home_html(d, row, items, warn, foot):
     def where(r):
         if r in exits:
             return 'ticket question %d' % (exits.index(r) + 1) if len(exits) > 1 else 'the ticket question'
+        if byid.get(r, {}).get('path') == 'spoken':   # asked aloud, on no page: never print the id (expert, 2026-11-18)
+            return {'exit': 'the question to ask at the end', 'end': 'a check question to ask aloud'}.get(
+                byid[r]['check'], 'a question to ask aloud')
         side, _, name = labels.get(r, r).partition(', ')
         return '%s (%s)' % (name, side) if name else side
     home = d['secs']['At home']

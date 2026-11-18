@@ -17,9 +17,9 @@ Each card is marked by every child (circle or point) and a spoken question is he
 
 ## Day 4 exit card: yard gate
 
-**Picture:** The edge of a schoolyard with a low wooden gate across the opening to a car lane, closed. A school helper in a green cap drops the latch. On the far side of the gate a car waits in the lane. Three people appear below, each in a circle: the school helper in a green cap, a child on a swing and a person holding a lunchbox.
+**Picture:** The edge of a schoolyard with a low wooden gate across the opening to a car lane, closed. A school helper in a green cap drops the latch. On the far side of the gate a car waits in the lane. Three pictures appear below, each in a circle: the car waiting in the lane, a child on a swing and a bird on a post.
 
-**Mark:** Circle the person who made the rule. **Spoken:** "Why was this gate closed, and what does the rule do for children?"
+**Mark:** Circle what the gate keeps children away from. **Spoken:** "Why was this gate closed, and what does the rule do for children?"
 
 ## Day 5 exit card: choosing the song
 
@@ -30,5 +30,5 @@ Each card is marked by every child (circle or point) and a spoken question is he
 ## Key (teacher)
 
 - Day 3: (a), wet paintings stay on the drying rack so clothes stay clean; accept another supported proposal.
-- Day 4: the school helper; key only the reason, it keeps children out of the car lane.
+- Day 4: the car in the lane; key the reason, it keeps children out of the car lane.
 - Day 5: (b); the others never get a choice, so take turns so all can choose.

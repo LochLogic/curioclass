@@ -4,8 +4,8 @@ Written 2026-11-18 at the kindergarten probe (docs/agents/DAY-WRITER.md, "Read f
 differs from this.
 
 - **The day.** 20 to 30 minutes (frames.csv), most days 25: a gathering on the rug, the read-aloud or picture talk,
-  one hands-on part (sort, act out, draw, point), and a spoken exit with picture cards. Teacher prose cap 450 words
-  (15 a minute of the longest day).
+  one hands-on part (sort, act out, draw, point), and a spoken exit with picture cards. Teacher prose cap 15 words a minute of
+  the day's own length: 300 at 20 minutes, 375 at 25, 450 at 30 (expert read, 2026-11-18).
 - **Children do not read.** The student page is pictures, boxes to draw in and at most a word label under a
   picture. Student page cap 60 words, everything printed for children included; a line on the teacher page says
   what to read aloud. 18 point type.
