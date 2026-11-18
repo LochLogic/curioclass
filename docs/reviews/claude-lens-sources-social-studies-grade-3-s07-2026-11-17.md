@@ -1,0 +1,23 @@
+# Lens read: sources, social-studies-grade-3 unit 7 (2026-11-17)
+
+1. [10, 5] The Bisceglia interview is used both ways. Field 10 lists it "for 146 to 147" (teaching) and field 5 makes it transfer source C, withheld from the assessment. Its rights are "unclear, factual reference only", item pages are blocked, machine transcription is unreliable, and C rests on our own synopsis of audio nobody has verified. | A source withheld for an assessment is never used on a teaching day; an item must not rest on our summary where the source is needed; rights are unclear. | Use a different interview with clear free rights for days 146 and 147 (or the class's own supplied one). Replace C with an interview whose words and rights can be checked for free, such as a National Park Service or Library of Congress oral history with a stated rights line; name it and where its words were checked.
+
+2. [10] Day 153 relies on William Cooper Nell's writing and the New England Freedom Association's aid, but no source in field 10 names either, and the Wheatley letter link is not identified by recipient, date or printing. | Verified or none: a passage that could not be checked is not planned. | Name the free source and edition for Nell's text and for the Association (the NPS page, if it covers it, with the paragraph read), and identify the Wheatley letter and its edition on the ct250 page; otherwise use a case whose source was read.
+
+3. [10] Field 10 writes about the blocked Tennessee site ("refuses automated reading") and gives the New York K-8 comparison with no link or edition. | The brief says not to write about the blocked site; a comparison with no locator cannot be checked. | Delete the Tennessee row. Give the New York row a URL and edition, or delete it.
+
+4. [10] The day 141 hook falls back on the Long Wharf engraving and a market photograph is listed, but field 10 says both are "catalogue records located, images uninspected", and no day uses the market photograph. | Images named must have a source that was looked at. | Open both images and record what was seen, or drop the market photograph; say which day uses each.
+
+5. [10] The Boston origin chart is "official search extract only, full report blocked", yet it supports who lived in Boston on day 145. | Something that could not be checked is not planned; population figures must name the measure. | Drop the chart, or use the readable pages of the same Boston PDF for origin groups and name who counts, which year and what is counted.
+
+6. [10] Denver is a worked case on 144, and the study list says to read Arapaho and Cheyenne nations' own histories first, but no page is named or linked. "Local tribal government and education pages", "Black historians' scholarship" and "immigrant voices" also have no locator, and none is recorded as reached or not reached. | The sensitivity study must name each source and record it; a Native worked case needs the nations' own pages named. | Name pages for the Cheyenne and Arapaho Tribes, the Northern Arapaho Tribe and the Northern Cheyenne Tribe, and two scholarship and two immigrant-voice sources, each marked reached or not reached.
+
+7. [10] No dated teacher background line ("As of November 2026: ...") with an official source and no statement of what was checked appear for the local nation's present status, the day 142 nations, or the Boston figures (City estimate 2024 and the Census Bureau Vintage 2024 estimate are both given with no note of which the day uses). | Facts that can change are undated. | Add "As of November 2026: ..." lines for the nation's status (its own page plus the official listing) and for the Boston figures, and one line saying what news and legal checks were made.
+
+8. [8, 10] Day 156's limits ("no travel, fundraising, hazardous cleanup or required public contact", "safe for the age") cite no safety guidance. | Safety guidance must cite a real standard. | Cite the state or district guidance on student community projects and visitors by name and page, or mark the limits "ours, untested".
+
+9. [10] Edition and rights lines are thin: the nation pages are "paraphrase facts" with no stated excerpt limit; E is "such as a town history page"; the Carleton and Buell maps have no LOC item URLs. | Each core text needs an edition and rights note. | Give the LOC item URLs, state "no quotation beyond one sentence" for the nation pages, and name the rights line E must carry before day 141.
+
+10. [5, 10] Q5's Meets sample and the day 157 closing use "Local Nation Account", "Local Interview" and "Labor History Card", none listed under "Still to make". | Items must rest on sources the plan will produce. | Add all three to "Still to make" with a source and rights line each.
+
+Count: 10 findings (lens sources).
