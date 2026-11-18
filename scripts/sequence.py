@@ -143,6 +143,11 @@ def map_fails(course, nunits, ndays):
     out = []
     for i, r in enumerate(sm, 2):
         lab = 'source-map.csv line %d (%s)' % (i, r['source'])
+        if None in r or any(v is None for v in r.values()):
+            # a stray comma shifts every cell after it (later.csv L65, Algebra I row 60)
+            n = len(head) + len(r.get(None) or []) - sum(v is None for k, v in r.items() if k is not None)
+            out.append('%s: %d cells under a %d-column header (quote any comma inside a cell)' % (lab, n, len(head)))
+            continue
         if r['decision'] not in MAP_DECISIONS:
             out.append('%s: decision "%s" is not keep, split, merge, cut or ours' % (lab, r['decision']))
         if not r['source'].strip():
