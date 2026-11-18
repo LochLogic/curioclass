@@ -1527,3 +1527,11 @@ the early grades get K to 2 rules (a rotating six with a record column, minutes 
 actor per story scene, spoken stems), then a correction pass over the 19 kindergarten to grade 2 social studies units,
 then a fourth probe, before more early-grade days (later.csv L74). Baseline 2 goes ahead with
 docs/reviews/probe-social-studies-3-2026-11-18.md as social studies' probe result.
+
+## 2026-11-18: Science and math probe, the shortest path to ready skeletons (q-probe-sci-math-1)
+
+Cory took the pick in chat: work to ready skeletons by the shortest path. The fourth probe (science grade 5 and Algebra
+II, docs/reviews/probe-science-math-2026-11-18.md) showed the skeletons run unchanged in three subjects and bands, while
+the plans they run on carry the same running faults in every probe. In order: one gate and skeleton session (later.csv
+L75), rules and per-band DEFAULTS with small unit edits and the K to 2 pass (L76 with L74), then one confirm probe with
+an ELA section and a middle-school section (L78). Scale when plan share is 35% or under.

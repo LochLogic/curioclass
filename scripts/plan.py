@@ -487,6 +487,20 @@ def day_list(cell):
     return [int(x) for x in xs] if xs and all(x.isdigit() for x in xs) else None
 
 
+def names_material(name, text):
+    """Whether text names the material, singular or plural alike (probe 4: a singular name failed against a plural)."""
+    def norm(x):
+        out = []
+        for w in re.findall(r'[a-z0-9]+', x.lower()):
+            if re.search(r'(?:ches|shes|xes|sses)$', w):
+                w = w[:-2]
+            elif len(w) > 3 and w.endswith('s') and not w.endswith('ss'):
+                w = w[:-1]
+            out.append(w)
+        return ' %s ' % ' '.join(out)
+    return norm(name) in norm(text)
+
+
 def cross_day(course, days, items, units, fails, notes):
     """The unit 4 test's cross-day facts: hand-backs, materials, reserved examples and the source map. A day inside
     the course's days in data/units.csv whose section is not in days.csv yet is allowed: its writer picks the row up."""
@@ -524,7 +538,8 @@ def cross_day(course, days, items, units, fails, notes):
         if h['minutes'] and not h['minutes'].isdigit():
             fails.append('%s: minutes "%s" is not a whole number' % (lab, h['minutes']))
         d = parse(b)
-        if d is None:
+        if d is None:   # not written yet: the slot is checked against the section plan's parts (probe 4, L75)
+            land.setdefault((b, h['where']), []).append((lab, int(h['minutes']) if h['minutes'].isdigit() else 0))
             continue
         txt = d['teacher'] + d['student']
         ids = [x for x in h['what'].split() if x in byid]
@@ -533,24 +548,49 @@ def cross_day(course, days, items, units, fails, notes):
         if not named:
             fails.append('%s: day %d is written but never names day %d (or E%d, or the items sent)' % (lab, b, a, a))
         land.setdefault((b, h['where']), []).append((lab, int(h['minutes']) if h['minutes'].isdigit() else 0))
+    def blocks_of(n):
+        """The day's timed parts: from the written day, else from its section plan's `## Day N` block."""
+        d = parse(n)
+        if d is not None:
+            return d['blocks'], 'day'
+        r = known.get(n)
+        if not r or '.' not in r.get('unit', ''):
+            return None, None
+        a, b2 = r['unit'].split('.', 1)
+        f = ROOT / 'docs' / 'courses' / course / ('u%02d-%s.md' % (int(a), b2))
+        if not f.exists():
+            return None, None
+        m = re.search(r'^## Day %d\b.*?(?=^## |\Z)' % n, f.read_text(encoding='utf-8'), re.M | re.S)
+        if not m:
+            return None, None
+        return [(int(x.group(1)), x.group(2).strip(), '') for x in
+                re.finditer(r'^- \*\*(\d+) min\. (.+?)\.?\*\*', m.group(0), re.M)], 'section plan'
+
     slots = {}
     for (b, where), got in sorted(land.items()):
-        blocks, w = parse(b)['blocks'], where.lower()
+        blocks, src = blocks_of(b)
+        if not blocks:
+            continue
+        w = where.lower()
         if w == 'opening':   # the first timed part after the warm-up
             k = next((j for j, (m, nm, _) in enumerate(blocks) if not nm.lower().startswith('warm-up')), None)
         else:                # words of the part's heading
             k = next((j for j, (m, nm, _) in enumerate(blocks) if w in nm.lower()), None)
         if k is None:
-            notes.append('day %d: hand-backs land in "%s", which names no timed part of the day (%s)'
-                         % (b, where, ', '.join(x for x, _ in got)))
+            (fails if src == 'section plan' else notes).append('day %d: hand-backs land in "%s", which names no timed part of the day in its %s (%s); '
+                         'name the part in `where`, or give the day a slot for them' % (b, where, src, ', '.join(x for x, _ in got)))
         else:
             slots.setdefault((b, k), []).extend(got)
+    # a slot must hold what is routed to it: the fault every probe found by reading (probe 4, later.csv L75). A FAIL
+    # while the day is only planned (cheap to fix in the section plan); a note once it is written, since rows marked
+    # "only if" are alternatives the writer may already have fitted.
     for (b, k), got in sorted(slots.items()):
-        m, nm, _ = parse(b)['blocks'][k]
+        blocks, src = blocks_of(b)
+        m, nm, _ = blocks[k]
         tot = sum(x for _, x in got)
         if tot > m:
-            notes.append('day %d: hand-backs take %d minutes in "%s", a %d-minute part; they may not fit (%s)'
-                         % (b, tot, nm, m, ', '.join(x for x, _ in got)))
+            (fails if src == 'section plan' else notes).append('day %d: hand-backs need %d minutes in "%s", a %d-minute part in its %s (%s); widen the part '
+                         'or route fewer repairs there' % (b, tot, nm, m, src, ', '.join(x for x, _ in got)))
 
     # materials
     for k, m in enumerate(rows(course, 'materials'), 2):
@@ -559,6 +599,18 @@ def cross_day(course, days, items, units, fails, notes):
         if not m['made_day'].isdigit() or not used:
             fails.append('%s: made_day must be a day number and used_days day numbers, space separated' % lab)
             continue
+        # a row that prints from a piece file needs that file once the day that makes it is written (from L73, in
+        # L75: the kindergarten probe named sheets nobody wrote). A bare name lives beside the day file.
+        f0 = day_file(course, int(m['made_day']))
+        if f0 is not None:
+            here = f0.parent
+            for nm in re.findall(r'(?<![\w/.-])((?:[\w-]+/)*[\w-]+\.md)\b', m['material'] + ' ' + m.get('note', '')):
+                p = (ROOT / nm) if '/' in nm else (here / nm)
+                if '/' in nm:
+                    here = p.parent   # a list "dir/sources-42a.md, 42b.md" shortens the names after the first
+                if not (p.exists() or ('/' not in nm and any(here.glob('*-' + nm)))):
+                    fails.append('%s: names %s, which does not exist; day %s is written, so write the piece or fix '
+                                 'the name' % (lab, nm, m['made_day']))
         for n in used:
             if not exists(n):
                 fails.append('%s: day %d is not a day of the course' % (lab, n))
@@ -568,7 +620,7 @@ def cross_day(course, days, items, units, fails, notes):
             if d is not None:   # the Materials section is the header's materials and print lines
                 said = ' '.join([d['head'].get('materials', ''), d['head'].get('print', ''),
                                  d['secs'].get('Before class', '')])
-                if m['material'].lower() not in said.lower():
+                if not names_material(m['material'], said):
                     fails.append('%s: day %d is listed, but its materials, print line and Before class never name it'
                                  % (lab, n))
     # and the reverse: a written day that names a material must be in that material's used_days, so a row cannot

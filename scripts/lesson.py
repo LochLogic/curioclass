@@ -34,6 +34,9 @@ HOME_TEACH, HOME_CHECK = (30, 40), (40, 50)   # minutes at home: a teaching day;
 HOME_TODO = set()
 # A part: "- **N min. Name.**", the name on one line; its closing "." may be left off, and "?" or "!" is kept.
 HOME_PART = re.compile(r'^- \*\*(\d+) min\.? ([^*\n]+?[?!]?)\.?\*\*(.*?)(?=^- \*\*\d+ min|^\*\*|\Z)', re.M | re.S)
+# work that stays with students, in any wording (science and math probe 2026-11-18: one exact phrase was required)
+KEPT = (r'stays? with (?:the )?students|not collected|\b(?:stays?|staying|kept|keeps?|remains?|goes? back in(?:to)?|'
+        r'put (?:it |them )?(?:back )?in(?:to)?|tucks?)\b[^.\n]{0,40}\b(?:folders?|notebooks?|journals?|binders?)\b')
 TALK = re.compile(r'\bpairs?\b|turn-and-talk|whole class|\bthe class\b|\*\*Ask\.?\*\*', re.I)
 HOME_LACKS = re.compile(r'projector|grid paper|tiles|device|string loop|document camera|large tiles', re.I)
 SENTENCE_MAX = 15            # words in one student sentence, grades 3 to 5 (ours, untested)
@@ -322,7 +325,9 @@ def check_home(d, items, row, lab):
         elif exits and not set(exits) <= set(REF.findall(last[2])):
             f.append('%s: the At home exit ticket part does not name the paper exit row(s) %s'
                      % (lab, ', '.join(exits)))
-    if re.search(r'\btimer\b|\bscores?\b|\bgrades?\b(?! \d)|\bpoints\b|\bpercent', home, re.I):
+    # "points" is a score word, but graphing needs it ("plot the points"): only the score sense fails (probe 4)
+    if re.search(r'\btimer\b|\bscores?\b|\bgrades?\b(?! \d)|\bpercent|\b(?:\d+|extra|bonus|earn\w*|lose|lost|gets?|wins?)'
+                 r' points\b|\bpoints? (?:for|each|off)\b', home, re.I):
         f.append('%s: At home shows no timer, grade or score' % lab)
     if re.search(r'one child at home', d['secs'].get('Other rooms', ''), re.I):
         f.append('%s: "One child at home" now lives in At home; take it out of Other rooms' % lab)
@@ -406,8 +411,7 @@ def check_day(d, items, days):
         if (i['day'] == h.get('day') and i['check'] == 'practice' and i['judged'] == 'teacher'
                 and i.get('path', '') != 'spoken'   # said aloud and judged on the spot: nothing to hand back
                 and '[[%s]]' % i['item_id'] in d['teacher']
-                and not re.search(r'stay with (?:the )?students|not collected|stays? in (?:the |their )?folders?',
-                                  d['teacher'], re.I)):
+                and not re.search(KEPT, d['teacher'], re.I)):
             f += handed_back(d, i['item_id'], nxt, r'written task', lab, 'the written task %s is judged but' % i['item_id'],
                             whole=True)
     # a part that promises the answers on the display must build that screen (a Check: line or a partner check)
@@ -454,7 +458,7 @@ def check_day(d, items, days):
     for side, body in d['sides']:
         for chunk in re.split(r'\n(?=\*\*)', body):
             # the goal line ("**I can ...**") and a bold label are not asks; only the words under them are
-            ask = re.sub(r'^\*\*I can .*?\*\*\s*$', ' ', chunk, flags=re.M)
+            ask = re.sub(r'^\**\s*I can\b.*$', ' ', chunk, flags=re.M)   # plain or bold (science and math probe)
             ask = re.sub(r'\*\*[^*\n]+\*\*', ' ', ask)
             if (re.search(r'\b(sketch|draw)\b', ask, re.I) and not re.search(r'\{sketch\}|\{work\}|\{small\}|\{tall\}|\[\[fig:', chunk)
                     and not re.search(r'grid paper|\bback\b|notebook|strip sheet', chunk, re.I)):
@@ -1030,6 +1034,11 @@ def md(text, items, teacher=False):
             return m[0]
         if not teacher:
             return part_lines(frac_blanks(stacked(stem(i)), i))
+        # an id inside a sentence prints a short label, not the whole stem and answer, which broke the sentence
+        # (Algebra II expert, 2026-11-18, finding 11); the key gives the item in full
+        ls = m.string.rfind('\n', 0, m.start()) + 1
+        if re.search(r'(?:[A-Za-z]\w*|\]\]),?\s+$', m.string[ls:m.start()]) and not re.search(r'\*\*\s*$', m.string[ls:m.start()]):
+            return 'item **%s**' % m[1].split('-', 1)[-1]
         return stem(i) + (' **[%s]**' % i['answer'] if i['answer'] else '')
 
     def sub_steps(m):
@@ -1935,8 +1944,10 @@ def header_table(d, row, parts, tt, side=frozenset()):
     ps = '; '.join('%s (%s) %s%s' % (p['code'], p['part'], p['text'],
                                      ' (on a branch or Longer only)' if (p['code'], p['part']) in side else '') for p in parts)
     cells = [('Day', '%s, section %s, %s day' % (h['day'], h['unit'], KIND_WORD.get(row['kind'], row['kind'].lower()))),
-             ('Goal', row['goal']), ('Standard parts', ps or 'see the section opener'),
-             ('Tool', '%s (%s), %s min' % (tt, row['mark'], row.get('tool_min')) if row.get('tool') else 'None'),
+             # fallbacks from days.csv, not "see the section opener" and "None" (probe 4: neither was true)
+             ('Goal', row['goal']), ('Standard parts', ps or (row.get('codes') or '').replace(';', ',') or 'none named'),
+             ('Tool', '%s (%s), %s min' % (tt, row['mark'], row.get('tool_min')) if row.get('tool')
+              else (row.get('tools') or '').strip() or 'None'),
              ('Materials', h['materials']), ('Print', h['print'])] + (
              [('At home', 'the At home view, %s-home.html, %d minutes with one child'
                % (d['path'].stem, sum(p[0] for p in home_parts(d))))] if 'At home' in d['secs'] else []) + [
@@ -2206,6 +2217,14 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     def ex_steps(i):
         st, first, col, cnt = ex_plan(i)
         o = []
+        # a teacher-judged science example's steps are look-fors for readings the class has not taken yet: the
+        # display shows the question and the Ask screens, never a checklist for the answer (science grade 5 expert,
+        # 2026-11-18, finding 17)
+        if i.get('judged') == 'teacher' and re.match(r'(?:K|\d{1,2}|MS|HS)-[A-Z]{2,3}\d', i.get('code', '')):
+            for k in sorted(held):
+                o.extend(held.pop(k))
+            last_ex.append(i)
+            return o
         for k in range(len(st)):
             # a step that lays this example beside an earlier one shows that one's picture too
             other = (''.join(figure(figures(e)[0]) for e in last_ex[-1:] if len(figures(e)) == 1)
@@ -2371,6 +2390,9 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                 # a6252157 #1)
                 qm = list(re.finditer(r'"([^"]+)"', m[3]))
                 qs = [q[1] for q in qm if q[1].rstrip().endswith('?')][:1] or [q[1] for q in qm][:1]
+                if not qm:   # an unquoted Ask ("**Ask.** What went in? Expect: ...") is its own question (probe 4)
+                    uq = re.match(r'\s*([^"?\n]{3,240}\?)', m[3])
+                    qs = [uq[1]] if uq else []
                 for a, b in zip(qm, qm[1:]):
                     gap = m[3][a.end():b.start()]
                     if (b[1].rstrip().endswith('?') and b[1] not in qs and
@@ -2588,6 +2610,14 @@ def accept(rows):
     77: the factors note printed on adding days)."""
     # a fraction rule "(16 ÷ 2)/(10 ÷ 2)" is not a factor equation (day 16 read: the factors note on every unit 3 key)
     rule = lambda s: re.sub(r'\([^()]*[×÷][^()]*\)/\([^()]*[×÷][^()]*\)', 'F', s)
+    # the lines below were written for grade 3 to 5 arithmetic; another band or subject gets its own (probe 4: the
+    # factors note opened every Algebra II and science key)
+    codes = {(i.get('code') or '').strip() for i in rows} - {''}
+    if any(re.match(r'(?:N|A|F|G|S)-[A-Z]{2,3}\b', c) for c in codes):   # high school math (F-IF, A-SSE, ...)
+        return ('Any equal rule or expression is right (12(5)^n and 5^n × 12 are the same rule; 5 × 12^n is '
+                'not); a recurrence also needs its starting value.')
+    if codes and not any(re.match(r'(?:K|\d{1,2})\.[A-Z]', c) for c in codes):   # no K to 8 math code: science, ...
+        return ''
     if any(LETTER.search(stem(i)) or LETTER.search(i['answer']) or '÷' in rule(stem(i) + i['answer'])
            or re.search(r'×.*=', rule(i['answer'])) for i in rows):
         return ACCEPT

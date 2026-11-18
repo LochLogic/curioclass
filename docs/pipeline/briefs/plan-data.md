@@ -19,6 +19,10 @@
    left as a placeholder (`[to check ...]` fails lesson.py). A paraphrase of a book we cannot read is cut (settled
    2026-11-15: free sources, no book purchases). A text found only in paid editions may be named and described,
    never quoted, from a free secondary source that says what it holds, credited to that source (UNIT-PLAN field 10).
+4. Sources, once for the course (later.csv L75): for every sources.csv row a day of this unit will use, open the
+   link, read its licence or terms, fill `rights` and set `status` to `checked: <date>` (or `written: <path>` for a
+   piece we make). A row you cannot check is cut, with its passage. The day skeleton STOPs on any source left
+   unchecked, as a backstop only: day writers never set a status themselves.
 
 Gates: `python -X utf8 scripts/plan.py check` and `python -X utf8 scripts/lesson.py check` (failures only because
 the days are not written yet are expected; list them). When this job ends, the unit's days are queued.

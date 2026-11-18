@@ -99,6 +99,10 @@ sensitive topic is handled, and any timer (only with a grounded purpose).
   skeleton does not list handbacks.csv rows, so day 5 handed day 6 repairs with no slot; list them, with the receiving
   day's slot. (3) No DEFAULTS.md in either course; caps fell back to general defaults (L76). (4) Two-row exits with a
   drawing box fill the quarter slip at grade 5; tight stems fixed it at day level.
+- 2026-11-18, L75 built in: a **Hand-backs** section lists handbacks.csv rows in (with the receiving part and its
+  minutes, or "NO PART NAMED") and out; plan.py fails a planned day whose part cannot hold them. The source STOP stays
+  as a backstop: sources are checked once per course at plan data (plan-data.md step 4). Self-test 17 checks; every
+  day of all 52 core courses built to scratch with no crash.
 - Known gaps for the first real run: the student page and At home are bare TODOs; the readiness check on a unit's last
   day is not yet split out from the day's own assessment; no word list (Word Wall cards per day) is read yet; no check
   yet compares a written day against its sidecar.

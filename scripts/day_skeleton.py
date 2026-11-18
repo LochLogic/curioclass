@@ -270,7 +270,8 @@ def build(course, day):
         if not s.get('url', '').strip() and not made_here:
             why.append('no link')
         if why:
-            stops.append('source %s ("%s"): %s (sources.csv)' % (s['source_id'], s['title'], '; '.join(why)))
+            stops.append('source %s ("%s"): %s (sources.csv; checked once for the course at plan data, '
+                         'plan-data.md step 4, never by the day writer)' % (s['source_id'], s['title'], '; '.join(why)))
     items_all = plan_csv(course, 'items')
     day_items = [i for i in items_all if i.get('day', '').strip() == str(day)]
     for i in day_items:
@@ -453,6 +454,32 @@ def build(course, day):
     w('No timer is shown to students unless it has a grounded purpose (a pace cue, a movement game, classroom '
       'management; LESSON-DAY rule 7).')
     w('')
+    # ---- hand-backs (science and math probe, 2026-11-18: day 5 handed day 6 repairs it had no slot for)
+    hb_in = [h for h in plan_csv(course, 'handbacks') if nums(h.get('to_day')) == [day]]
+    hb_out = [h for h in plan_csv(course, 'handbacks') if nums(h.get('from_day')) == [day]]
+    if hb_in or hb_out:
+        w('## Hand-backs')
+        w('')
+        w('Rows of handbacks.csv. Incoming work lands in a named part of today; that part must hold its minutes '
+          '(plan.py checks the section plan). Outgoing work is made today and handed back later.')
+        w('')
+        w(u.OPEN)
+        parts = section_parts(course, r, day) or []
+        for h in hb_in:
+            where = h.get('where', '').strip()
+            hit = [(mn, nm) for mn, nm in parts if where and where.lower() in nm.lower()]
+            slot = ('the %s-minute part "%s"' % hit[0]) if hit else 'NO PART NAMED "%s" in the section plan' % where
+            w('- In from day %s: %s, %s minutes, into %s%s%s' % (
+                h.get('from_day', ''), h.get('what', ''), h.get('minutes', '') or '?', slot,
+                ('; error ' + h['error']) if h.get('error', '').strip() else '',
+                ('; ' + u.clean(h['note'])) if h.get('note', '').strip() else ''))
+        for h in hb_out:
+            nb = byday.get((nums(h.get('to_day')) or [0])[0])
+            w('- Out to day %s: %s, %s minutes into its "%s" part%s' % (
+                h.get('to_day', ''), h.get('what', ''), h.get('minutes', '') or '?', h.get('where', ''),
+                (' (%s)' % u.clean(nb['goal'])) if nb else ''))
+        w(u.CLOSE)
+        w('')
     # ---- questions
     w('## Questions')
     w('')
@@ -587,6 +614,11 @@ def self_test():
                 check('an end item on a teaching day is a data error', 's03-A4' in str(e))
         finally:
             u.set_data_dir(None)
+    # hand-backs listed with the receiving part (science and math probe, 2026-11-18)
+    h6, h5 = build('algebra-ii', 6), build('algebra-ii', 5)
+    check('incoming hand-backs name the receiving part and its minutes',
+          '## Hand-backs' in h6 and re.search(r'In from day 5: .+ into the \d+-minute part "', h6) is not None)
+    check('outgoing hand-backs are listed on the day that makes them', 'Out to day 6:' in h5)
     print('all passed' if not bad else '%d failed' % bad)
     return bad
 
