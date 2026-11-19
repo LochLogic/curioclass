@@ -1,0 +1,6 @@
+pattern,use,reason
+\bNGSS\b|Next Generation Science,leave it out,"the standards are never named in student, teacher or family copy"
+\b(?:forces?|friction|magnets?|magnetic|energy)\b,"push, pull and touch","unit 1 limits (s01 field 2): no force, friction, magnet or energy words"
+\b(?:speed|velocity|acceleration|momentum)\b,"faster, slower, start and stop","unit 1 limits: no numerical speed; the ledger words are start, stop, faster, slower"
+\b(?:degrees?|percent|probabilit\w*|averages?)\b,"warmer, cooler, about the same, possible","unit 2 limits (s02 field 2): no degrees, averages, percentages or probability; warmth is a feel with three words, and a forecast says what is possible"
+\b(?:gravity|gravitational)\b,"rolls down, and starts from the ramp",unit 3 limits (s03 field 2): no gravity mechanism; a ramp is a change the class makes and tests

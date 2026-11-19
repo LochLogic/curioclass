@@ -1,0 +1,39 @@
+from_day,to_day,what,where,minutes,error,note
+1,2,s01-X1,Warm-up,5,C,touch and no-touch cards; children sort them and say it moved when it was touched; a third or fewer are heard in a two-minute small group at one lane
+2,3,s01-X2,Warm-up,5,A,"two pairs of cards, same object and different object; children point to the fair pair"
+3,4,s01-X3,Warm-up,5,B,two pulled objects; children show the start with their hands
+4,5,s01-X4,Warm-up,5,F,"same ball, two ways, tape marks"
+5,6,s01-X5,Warm-up,5,D,"three order cards (come close, touch, changed); children put them in order"
+6,7,s01-X6,Warm-up,5,E,repeat one matched pull with the teacher and keep both records
+7,9,s01-X7,Return and repair,5,A,"the largest error group works with the teacher on its move in these five minutes; if another letter is the largest, that group takes the minutes and this one uses repair cards"
+8,9,s01-E1,Return and repair,0,A,"repair cards (same object, different object) unless this is the largest group"
+8,9,s01-E2,Return and repair,0,D,"repair cards (order of come close, touch, changed) unless this is the largest group"
+8,9,s01-E3,Return and repair,0,B,"repair cards (two pulls on the same box, shown with hands) unless this is the largest group"
+8,9,s01-E4,Return and repair,0,F,"repair cards (same ball, two tape marks) unless this is the largest group"
+8,9,s01-E5,Return and repair,0,D,"repair cards (order of come close, touch, changed) unless this is the largest group"
+8,9,s01-E6,Return and repair,0,E,repair cards (keep both tries) unless this is the largest group; the day 8 score is never changed
+11,12,s02-X11b,Warm-up,5,A,"lay a class chart row where the afternoon was cooler or the same beside one where it was warmer; the class says it varies, so we check each day; if the chart has no such row, say we have not seen every day yet"
+12,13,s02-X12,Warm-up,5,A,"the same repair with a second chart row; the class says it varies, so we check each day"
+13,14,s02-X13,Warm-up,5,B,five squares in a line; each child's partner slides a square into a box as it is counted; the last number says how many
+14,15,s02-X14b,Return and repair,5,C,"a small group with the teacher puts the date square into both rows of the retained live-month sheet and says one day, two rows"
+14,15,s02-X14a,Return and repair,0,B,the rest of the class touch-and-slide five squares in pairs in the same five minutes
+15,16,s02-X15,Return and repair,6,D,the larger error group works with the teacher: the word possible and the might-or-might-not picture beside the answer; the others use the repair cards
+15,16,s02-X15,Return and repair,0,E,"in the same six minutes: order three cards, what we saw, what the forecast says, what may come later; the others use the repair cards"
+17,19,s02-X17b,Return and revise,3,F,"move the indoor-play card before the storm card; the three minutes are shared by every letter, and a child revises at most two captions"
+17,19,s02-X17a,Return and revise,0,G,"match the squares and replace the claim, inside the same three minutes"
+18,19,s02-W1b,Return and revise,0,B,"touch each square once and replace the count, inside the same three minutes"
+18,19,s02-W2,Return and revise,0,A,"circle the contrary pair and say the claim again for all three, inside the same three minutes"
+20,21,s03-X20,Return and repair,3,A,"put the want picture before the idea picture; the larger group works with the teacher, the rest use the want and idea cards in pairs"
+20,21,s03-X20,Return and repair,3,B,swap the tool card for the want card; shares the six minutes with A
+21,22,s03-X21,Return and repair,5,A,"one repair only: the class retells keep, change, watch and orders the want picture first"
+22,23,s03-X22a,Return and repair,3,C,"two lanes, two pushes, watch the start, then lay the stopping dots beside it"
+22,23,s03-X22b,Return and repair,2,E,"match each result picture to the want picture, yes or no"
+23,24,s03-X23,Return and repair,5,F,lay the reached and missed pictures side by side and say sometimes
+24,25,s03-X24a,Return and repair,5,D,"roll past a bumper with a gap, then into it; each child puts a finger on the touch"
+24,25,s03-X24b,Return and repair,0,D,"finds the touch on the drawn path, inside the same five minutes"
+25,26,s03-X25b,Return and repair,3,A,"want picture first, then try one; the larger group works with the teacher"
+25,26,s03-X25a,Return and repair,2,B,swap the tool card for the want card
+26,28,s03-X26b,Return and revise,2,D,find the touch on the child's own path and put a finger on it; day 27 has no repair
+26,28,s03-X26a,Return and revise,2,E,"match the result picture to the want picture, yes or no"
+27,28,s03-P1a,Read the captions,3,A,the day 27 caption strip for A is read once to the group that shares it and written on the mat
+27,28,s03-P2a,Read the captions,0,B,"the caption strip for B, inside the same three minutes"

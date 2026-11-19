@@ -1,0 +1,98 @@
+item_id,shown,compute,value,error,note
+s01-X1,It slid by itself.,,,C,leaves out the touch
+s01-X1,Touches the card with the hand held away.,,,C,the motion begins with no touch
+s01-X1,Touches the cushion alone with the curved arrow.,,,C,the motion begins with no touch
+s01-X2,Use the big pram for the hard push.,,,A,changes the pram as well as the push
+s01-X2,Touches pair two.,,,A,a different pram in each picture
+s01-X3,A pull cannot make it go.,,,B,no link from a pull to motion
+s01-X3,Touches the toy car being pushed.,,,B,a push is the only start the child sees
+s01-X4,Use the small tray.,,,F,a different object added to a direction test
+s01-X4,Touches the small-tray card.,,,F,a different object added to a direction test
+s01-X5,They stopped when they saw each other.,,,D,puts the cause before the touch
+s01-X5,Touches the card with the gap.,,,D,puts the cause before the touch
+s01-X6,"Throw it away, Pip was right.",,,E,drops a result that disagrees with the guess
+s01-X6,Touches the bin.,,,E,drops a result that disagrees with the guess
+s01-X7,Use the thick rope for the hard pull.,,,A,changes the rope as well as the pull
+s01-X7,Touches pair two.,,,A,a different rope in each picture
+s01-X9,Touches pair two because different pucks are needed.,,,A,changes the puck as well as the push
+s01-X9b,Touches the card with the gap.,,,D,puts the cause before the touch
+s01-E1,Change the ball too.,,,A,changes the object while testing strength
+s01-E1,Use a bigger ball for the harder push.,,,A,changes the object while testing strength
+s01-E2,The box starts moving before the ball reaches it.,,,D,puts the cause before the touch
+s01-E2,Swaps to a different ball for the stronger push.,,,A,changes the object while testing strength
+s01-E3,A pull cannot change the way the box moves.,,,B,no link from a pull to motion
+s01-E3,The box only moves when it is pushed.,,,B,no link from a pull to motion
+s01-E4,I must change the ball to test which way.,,,F,a different object added to a direction test
+s01-E4,Use a bigger ball for the other place.,,,F,a different object added to a direction test
+s01-E5,The box moves before contact because the ball is near it.,,,D,puts the cause before the touch
+s01-E5,Marks the box moving when the ball only passes by.,,,D,puts the cause before the touch
+s01-E6,Throw away the marks that do not match my guess.,,,E,drops a result that disagrees with the guess
+s01-E6,I will rub out the mark that is not what I thought.,,,E,drops a result that disagrees with the guess
+s02-X10,Touches the card about last year.,,,,"asks about a time the pictures do not show; no register letter fits, record not yet seen; the unit 1 recording repair follows"
+s02-X10,Touches the card about next week.,,,,"asks about a time the pictures do not show; no register letter fits, record not yet seen; the unit 1 recording repair follows"
+s02-X11a,Touches the swing set in the morning and the pond in the afternoon.,,,,"changes the place as well as the time; no register letter fits, record shown with help once keep, change, watch is said back"
+s02-X11b,Touches the full calendar page.,,,A,reads two days as every day
+s02-X11b,Says afternoons are always warmer.,,,A,states the rule from two days
+s02-X12,Touches the afternoon bench and says afternoons are warm.,,,A,gives the rule in place of the marks
+s02-X12,Touches the afternoon bench and gives no reason.,,,,a guess at which picture; ask again with the two marks pointed out; no error A follows unless a rule is said
+s02-X13,"Says five, with one rain square touched twice.",,,B,counts a date twice
+s02-X13,"Says three, with one rain square missed.",,,,a square missed; touch-and-slide with a partner; record shown with help
+s02-X14a,"Says nine, with a rain square touched twice.",,,B,counts a date twice
+s02-X14a,"Says ten, with two squares touched twice.",,,B,counts a date twice
+s02-X14b,"Touches two dots, because the day is in two rows.",,,C,adds overlapping rows into more days
+s02-X14c,Touches the rainy row.,,,,"a matching slip; no register letter fits, record shown with help"
+s02-X15,Touches the morning clock and says that already happened.,,,E,reads a forecast as a report of the past
+s02-X15,"Says a storm will come, no doubt.",,,D,treats a forecast as a guarantee
+s02-X16,Touches the first page.,,,,"a page chosen for the wrong question; no register letter fits, record shown with help"
+s02-X17a,Says both places are the same.,,,G,gives every region the same pattern
+s02-X17a,Touches Seattle.,,,,reads the empty row as the larger; match the rows square to square; record shown with help
+s02-X17b,Touches after the first thunder.,,,F,waits for the danger before getting ready
+s02-X19a,Touches the card about last week.,,,E,asks the forecast about the past
+s02-X19b,Touches wait for thunder.,,,F,waits for the danger before getting ready
+s02-W1a,Touches only one weather picture.,,,,"a day has more than one weather; no register letter fits, record shown with help"
+s02-W1b,"Says seven, with a square touched twice.",,,B,counts a date twice
+s02-W2,Touches yes and says afternoons are always warmer.,,,A,states a rule from some days
+s02-W3a,Touches October.,,,,"a matching slip or a guess; no register letter fits, record shown with help"
+s02-W3b,Says the later month has more.,,,,a reason that does not use the squares; record shown with help once the squares are matched
+s02-F1,Asks what the weather was yesterday.,,,E,asks the forecast about the past
+s02-F1,Asks about something the page does not hold.,,,,"kept on the not-on-this-page card; marked shown, never an error"
+s02-F2a,Says they will come.,,,D,treats a forecast as a guarantee
+s02-F2a,Touches the morning clock.,,,E,reads a forecast as a report of the past
+s02-F2b,Says Denver and Seattle are the same.,,,G,gives every region the same pattern
+s02-F3a,Touches wait until thunder.,,,F,waits for the danger before getting ready
+s02-F3b,Touches the big tree.,,,H,takes a tree for shelter in thunder
+s03-X20,Touches the tall stool.,,,B,names a tool in place of what people want
+s03-X20,"Says just build it, with no want named.",,,A,starts to build before saying what is wanted
+s03-X21,Touches the what-color card.,,,,a question the problem cannot use; record shown with help
+s03-X21,Says build a rail instead of choosing a card.,,,A,starts to build before finding out
+s03-X22a,Touches yes.,,,C,takes a farther stop as a faster start
+s03-X22a,Says it went farther so it was faster.,,,C,takes distance for how it started
+s03-X22b,Touches yes.,,,E,lets the look of the ramp outweigh the result
+s03-X22b,Says it looks good so it worked.,,,E,ignores the result picture
+s03-X23,Touches a reached picture.,,,F,takes one success for always
+s03-X23,Says it reached so it always does.,,,F,one trial treated as proof
+s03-X24a,Touches picture one.,,,D,a nearby bumper is taken as the cause of the turn
+s03-X24a,Says the wall was close.,,,D,proximity before the touch
+s03-X24b,"Touches a spot before the touch, near the bumper.",,,D,places the turn before the contact
+s03-X25a,Touches the wide new shelf.,,,B,a favorite fix is named in place of the want
+s03-X25b,Says build a shelf now.,,,A,builds before finding out
+s03-X25b,Asks about something that has nothing to do with the box.,,,,record shown with help; the question goes on the not-on-this-page card
+s03-X26a,Touches yes.,,,E,lets the look of the guide outweigh the result
+s03-X26a,Says the guide is neat and strong.,,,E,ignores the result picture
+s03-X26b,"Touches a spot before the touch, near the guide.",,,D,places the turn before the contact
+s03-X28a,Touches yes.,,,E,lets the look of the guide outweigh the result
+s03-X28a,Says the guide is neat.,,,E,ignores the result picture
+s03-X28b,Touches a spot near the guide before the touch.,,,D,places the turn before the contact
+s03-P1a,Says build a wall now.,,,A,builds before finding out what is wanted
+s03-P1a,Asks something the cards do not hold.,,,,"kept on the not-on-this-page card; marked shown, never an error"
+s03-P1b,Draws the mark in the wrong place.,,,,no register letter; record shown with help
+s03-P1c,Touches the ball in the walking strip.,,,,no register letter; record shown with help
+s03-P2a,Draws a favorite ramp or tool and no want.,,,B,a tool is named in place of what people want
+s03-P2b,Touches is tall or is red.,,,,no register letter; a feature the wanted change does not need; record shown with help
+s03-P2c,Says build first and find out after.,,,A,builds before finding out
+s03-M1a,Marks a start from where the ball stopped.,,,C,reads the stopping place as the start
+s03-M1b,"Says yes because it went farther, with no start watched.",,,C,takes distance for how it started
+s03-M2,"Marks the turn before the touch, near the bumper.",,,D,places the turn before the contact
+s03-M3a,Says the bumper was close.,,,D,a nearby bumper taken as the cause
+s03-M3b,"Says yes while the mat shows a miss, because it looks nice.",,,E,lets the look of the design outweigh the result
+s03-P20-1,Draws a bigger ramp or a tool and no wanted place.,,,B,a tool is named in place of what people want to be different
