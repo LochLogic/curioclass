@@ -82,7 +82,9 @@ def show(subject, before=None, kind=None):
         if r['course'] != cur:
             cur = r['course']
             print('\n## %s' % cur)
-        print('- %s %s %s: %s%s' % (r['where'], ('day ' + r['day']) if r['day'] else '(planned)', r['kind'],
+        # The course goes on every line: section names (u02-1) repeat across grades, and a writer who greps for one
+        # must not mistake kindergarten's u02-1 for grade 1's (found 2026-11-18, grade 1 unit 3).
+        print('- %s %s %s %s: %s%s' % (r['course'], r['where'],('day ' + r['day']) if r['day'] else '(planned)', r['kind'],
                                      r['entry'], (' (' + r['note'] + ')') if r['note'] else ''))
 
 
