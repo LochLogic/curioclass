@@ -58,6 +58,24 @@ One file per section, docs/courses/{course}/u{uu}-{n}.md, in the fields of the b
 6. **Set-ups for later units** (soil to dry, a plant to grow, a monthly reading) take at most 5 minutes of a day
    and are named as set-ups, so the day's own storyline holds. Start one only as early as its lead time needs.
 
+Added after the confirm probe (L78, docs/reviews/probe-confirm-2026-11-18.md):
+
+- Rule 3 also means **a reading inside the instrument's step**: a 1 g scale cannot show a 0.7 g change. Name the
+  instrument's step beside each planned reading; where it cannot resolve the change, the reading is a demonstration
+  on a finer instrument or the invented record is the plan, said so.
+- Rule 2 also covers **clean-up**: goggle cleaning, handwashing and spills have supplies named and minutes counted
+  (thirty students at two sinks is not two minutes).
+
+English, in addition:
+
+11. **Content notes name what the texts contain** (death, execution, violence, slavery, racism, religion, abuse,
+    addiction, slurs left out), not only the topic the unit is about.
+12. **Reading fits the minutes:** about 120 words a minute read in class, alongside the day's other parts. More goes
+    to a teacher read-aloud or home reading, named.
+13. **One word, one sense at a time:** a word the day checks in one sense, which a text the class reads uses in
+    another, gets a line saying so.
+14. **A passage used on several days keeps its terms:** states, implies and suggests mean the same on every day.
+
 Kindergarten to grade 2, in addition (kindergarten probe, L74):
 
 7. **Stems are spoken.** An exit or end item asks one thing, aloud, in a child's words; three asks in one stem are

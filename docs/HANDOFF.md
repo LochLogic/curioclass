@@ -6,6 +6,16 @@ which is stale, fix it and say so.
 
 ## State now
 
+- **Done 2026-11-18: the confirm probe (L78), first for ELA and for middle school** (report
+  docs/reviews/probe-confirm-2026-11-18.md). After L75 (hand-backs in the day skeleton, the plan.py slot gate, sources
+  checked once), L76 with L74 (rules 1 to 10, per-band DEFAULTS.md from scripts/defaults.py, unit edits): ELA grade 11
+  days 1 to 5 and science grade 7 days 1 to 6, lean process, Sonnet agents. Result: Off on plan share (46%, 50%;
+  line 35%), Watch on units (3 of 13 other units firm), On for template. Skeletons ran with no STOP and no unslotted
+  hand-back; the rule kinds mostly did not return; what is left is item keys in unit data that two reads still
+  catch, plus content notes and reading pace in ELA. Rules round done (section-write rules 11 to 14 and science lines,
+  plan-data Keys paragraph, DEFAULTS regenerated, measure 2 unit fixes). **Next is Cory's pick, Desk card
+  q-probe-confirm-1 (later.csv L79):** a second confirm probe (recommended) or scale a first wave. Lead: L80 (two page
+  gates). 2.22M tokens, 195k and 174k a finished day.
 - **Done 2026-11-18: the fourth probe, first for science and math** (Cory 2026-11-18; report
   docs/reviews/probe-science-math-2026-11-18.md). Science grade 5 and Algebra II: section plans 1.1 and 1.2, plan
   data and pieces for section 1.1, days 1 to 4 and 1 to 5, read (answer key, one expert read per course) and fixed by

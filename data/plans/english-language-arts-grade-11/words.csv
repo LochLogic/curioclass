@@ -1,0 +1,3 @@
+pattern,use,reason
+\b(?:act(?:ing)? out|role[- ]?play(?:ing)?|re-?enact(?:ing|ment)?)\b,"read aloud, name or discuss it","the Salem trials, accusations and executions are named plainly and never acted out (section 1.1 limits)"
+\b(?:obviously|simply|easily|clearly|trivially)\b,cut the word,"it tells a student the step is easy, and a student who cannot do it hears that they should be able to"

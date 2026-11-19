@@ -1,0 +1,59 @@
+item_id,shown,compute,value,error,note
+s01-R1,Color tells them apart.,,,A,
+s01-R1,"They are both white, so they are the same substance.",,,A,
+s01-R2,Any time two things are mixed you get a new substance.,,,B,
+s01-R2,"The liquids were mixed, so there is a new substance.",,,B,
+s01-X1,What we saw: the powder made a gas from the water.,,,x,"an inference written in the saw column; it sorts to no register letter, so the teacher returns the sheet to separate seen from thought"
+s01-X1,Rule: be careful.,,,x,a rule with no harm named; ask what it protects
+s01-X2,"Nothing is left, so the matter is gone.",,,D,
+s01-X2,The mass will not change because gas weighs nothing.,,,C,
+s01-X2,They are different drawings.,,,x,no drawing chosen; ask which drawing agrees with the classmate and what the other shows
+s01-X3,"Bubbles show a reaction, so her claim is proved.",,,E,
+s01-X3,Test it again.,,,x,"a test with no result named; written comment, no letter"
+s01-X4,"The evidence is enough: it dried up, so the water is gone.",,,D,
+s01-X4,Look at it again.,,,x,a second look is not a second kind of evidence; written comment
+s01-X5,Equal readings show gas has no mass.,,,C,
+s01-X5,A closed pouch that makes gas should read lower.,,,F,
+s01-X5,It fell by 1.0 g.,F(612;10)-F(602;10),1.0,x,the readings subtracted wrongly
+s01-X6,Gas has no mass.,,,C,
+s01-X6,"Yes: 0.6 g reached the collector, so that mass names the gas.",,,J,
+s01-X6,1.4 g moved.,F(8;10)+F(6;10),1.4,x,"the vessel fall and the collector gain added, as if two different amounts moved"
+s01-X6,All 0.8 g reached the collector.,F(1328;10)-F(1320;10),0.8,x,the leak ignored; the collector gained only 0.6 g
+s01-X6,The 0.2 g that is in neither is destroyed.,,,D,
+s01-E1,"It crumbled, so a reaction occurred.",,,G,
+s01-E1,"The odor matches, so there was no reaction.",,,H,
+s01-E2,The product's particles must be unchanged because matter remains.,,,I,
+s01-E3,Gas has no mass.,,,C,
+s01-E3,Oxygen atoms disappear.,,,D,
+s01-E3,The whole closed system loses mass.,,,F,
+s01-K1-1,Before 214.3 g. After 214.0 g. Nothing changed.,,,x,the readings are written but the change is not read from them; ask which number is smaller
+s01-P1-1,"Saw: a, b, c. Think: d.",,,x,an inference sorted as something seen; ask whether anyone watched the water float up
+s01-P1-2,Because the teacher said so.,,,x,a rule with no harm named; ask what it protects
+s01-P2-1,"Cool and warm have 6 dots. After: no dots, the water is gone.",,,D,
+s01-P2-2,"Yes, they are both white.",,,A,
+s01-P2-3,"Yes, it vanished, so it is a new substance.",,,B,
+s01-K2-1,After: no dark dots. The sugar is gone.,,,D,
+s01-P2-4,"One picture of bubbles, no key and no count.",,,x,no key or count; ask what each dot stands for and how many are in the cup
+s01-P2-5,We all drew bubbles. The colors are different.,,,x,a difference no mass reading can settle; ask which difference is about what is in the cup
+s01-P3-1,Scene 4: be careful.,,,x,no fault or step named; ask what exactly to do
+s01-P3-2,"Gas weighs nothing, so B cannot change. The 0.4 g is gone.",,,C,
+s01-P3-2,Nothing left cup A; the 0.4 g just disappeared.,,,D,
+s01-K3-1,Try it and see.,,,x,no measurement and no result named; ask what you would measure and what would change your mind
+s01-P3-3,"Support: it bubbled. Against: it did not bubble, so I am right.",,,E,bubbling alone treated as proof
+s01-P4-1,Yes for all four: bubbles mean a reaction.,,,E,
+s01-K4-1,The sugar is gone because I cannot see it.,,,D,
+s01-P4-2,One mat with a star on the model we like.,,,x,a model chosen before any evidence can pick it
+s01-P4-3,"The gas is from the water, right?",,,x,an answer written as a question; ask what you could observe to find out
+s01-P4-4,"I claim the gas came from the water, because I think so.",,,x,a source claimed with no evidence; ask what we saw or read
+s01-P5-1,"6 are gone, so that matter is destroyed.",,,D,
+s01-K5-1,Nothing left: gas has no mass.,,,C,
+s01-P5-2,"Before 214.3 g, after 214.0 g. The mass is gone.",,,D,
+s01-P5-3,"No, the chalk is still in the cup.",,,x,the cup is read as unchanged; ask what the lower reading says
+s01-P5-4,"Yes, the reading did not change, so gas weighs nothing.",,,C,
+s01-P5-5,A pouch that makes gas always loses mass.,,,F,
+s01-P6-1,(a) A line round the pouch only. (b) Gas weighs nothing; B lost mass for no reason.,,,C,
+s01-P6-1,(a) The pouch loses mass because it made gas. (b) It went into the air.,,,F,
+s01-K6-1,"Combined after: 97.9 g, so 0.7 g is gone.",,,D,
+s01-P6-2,1.8 g moved.,F(9;10)+F(9;10),1.8,x,"the vessel fall and the collector gain added, as if two amounts moved"
+s01-P6-3,"Explanation 2 does not fit the closed pouch, so it is out.",,,J,boundary evidence read as if it named the gas
+s01-P6-4,"I claim the gas is the same in both, because the mass matched.",,,J,

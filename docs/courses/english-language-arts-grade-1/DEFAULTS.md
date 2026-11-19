@@ -12,6 +12,7 @@ Generated 2026-11-18 by scripts/defaults.py (later.csv L76) from its band and su
 - **At home.** 15 to 30 minutes, one grown-up or older child, any day skippable; the exit is asked aloud.
 - **Core texts are written or checked before days.** A text still "to write" stops the day skeleton; the day writer never writes one.
 - **A cold check reads a new text,** not one taught, and does not restate the taught text's central idea.
+- **Reading fits the minutes:** about 120 words a minute in class alongside the day's other parts; more goes to a read-aloud or home reading, named. Content notes name what the texts contain, not only the topic.
 - **Repair slots fit what is routed to them.** Every hand-back lands in a named part of its day (handbacks.csv `where`) that holds its minutes; a warm-up holds one repair of at most 5 minutes (plan.py checks).
 - **Exits ask a transfer:** a new case that needs the day's idea, not the worked example in new numbers.
 - **Talk.** Every student may pass in public talk; no one is the example of a mistake.

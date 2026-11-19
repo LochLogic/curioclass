@@ -2,7 +2,7 @@
 
     python -X utf8 scripts/defaults.py <course>|all [--force] [--dry]
 
-Built 2026-11-18 for later.csv L76 (science and math probe: neither course had a DEFAULTS.md, so caps and "what holds
+Built 2026-11-18 for later.csv L76; two lines added after the L78 confirm probe (science and math probe: neither course had a DEFAULTS.md, so caps and "what holds
 every day" fell back to general defaults; docs/reviews/probe-science-math-2026-11-18.md). The day length comes from
 data/plans/frames.csv; the rest from the blocks below: one per grade band, one per subject, and the probe rules every
 course shares. A section plan or day writes only what differs. Never overwrites a DEFAULTS.md without --force: a
@@ -67,7 +67,8 @@ SUBJ = {
         'is not written.',
         '**Real readings, with a fallback.** The class measures where it can; an invented record is the named fallback, '
         'said aloud to be invented, and the plan says what happens when a reading fails. Safety notes name the '
-        'equipment actually used.',
+        'equipment actually used. A reading sits inside the instrument\'s step (a 1 g scale cannot show 0.7 g), and '
+        'clean-up (goggle cleaning, handwashing) has its supplies and minutes.',
         '**Set-ups for later units** take at most 5 minutes of a day and are named as set-ups.',
     ],
     'math': [
@@ -79,6 +80,8 @@ SUBJ = {
         '**Core texts are written or checked before days.** A text still "to write" stops the day skeleton; the day '
         'writer never writes one.',
         '**A cold check reads a new text,** not one taught, and does not restate the taught text\'s central idea.',
+        '**Reading fits the minutes:** about 120 words a minute in class alongside the day\'s other parts; more goes '
+        'to a read-aloud or home reading, named. Content notes name what the texts contain, not only the topic.',
     ],
     'social-studies': [
         '**Sources are free and checked once for the course** at plan data (status `checked: <date>`); a passage that '

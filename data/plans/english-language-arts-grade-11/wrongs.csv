@@ -1,0 +1,50 @@
+item_id,shown,compute,value,error,note
+s01-R1,She is hiding something evil.,,,x,a character claim that the speech does not make; no register letter for a retrieval look
+s01-R2,Faith knows he is going to meet the devil.,,,x,adds knowledge the paragraph does not give; a place to model locating a clause
+s01-R3,Faith is a good person.,,,x,a claim with no phrase and no because; a place to rebuild the because sentence
+s01-R4,The subject is resolve and the verb is justified.,,,x,names a noun and a participle; a place to model finding subject and verb
+s01-R5,"The witnesses were pinched and bitten, so the central claim is that she did it.",,,x,takes the witnesses' report for Mather's central claim; a place to model a neutral summary
+s01-R6,Ocular means very large.,,,x,a sense with no clue from the paragraph; a place to model infer then verify
+s01-R7,"Variation is a verb, so the noun is variable.",,,x,a part of speech confused; a place to give the family card
+s01-R8,I disagree. Everybody knows he should go.,,,x,disagrees without paraphrasing and with no line cited; a place to model the evidence turn
+s01-X1,"The staff was a live snake, so the traveller is the devil.",,,O,treats one reading of the staff as proved
+s01-X2,"It really happened, so he is right to distrust them. Goodman Brown passed on. It means the same.",,,O,"one reading stated as true, and a rewrite that drops facts and claims no change (G)"
+s01-X3,"She said she was not troubled, so she is the witch who caused it.",,,A,a witness's report is taken to prove the cause
+s01-X4,Grave means a place to bury someone.,,,C,takes the familiar sense with no clue from the sentence about his clothes
+s01-X5,"Both writers sound sure, so both are right.",,,A,confident sound is taken for proof; a list of two positions with no link would be L
+s01-A1,"The book says the tints came from her cheeks, so the painting literally took her life.",,,A,a detail of the account taken as literal fact
+s01-A2,"The story ends because she dies, so the ending just tells us what happened.",,,B,plot named in place of structural effect
+s01-A3,A vignette is a short scene or sketch.,,,C,a sense from memory with no clue from the passage
+s01-A4,Perception is a verb that means to see.,,,D,two forms given the same grammatical role
+s01-A5,"I think it means anger or fire, from my head.",,,E,a guess presented as consulting the entry
+s01-A6,I kept my first guess without looking back.,,,F,keeps a first guess with no reread
+s01-A7,I cut the wound and the meaning is the same.,,,G,drops a clause and calls the meaning the same
+s01-A8,The resolution is the end of the plot. The log copies the teacher's list.,,,B,resolution taken as the end of the plot; or a supplied list copied (H)
+s01-B1,Both speakers must be right because they have authority.,,,A,authority is taken for evidence
+s01-B2,Dry shoes prove supernatural travel.,,,A,a reported detail taken as proof of the cause
+s01-B3,I just think she did it.,,,I,an opinion with no prepared passage
+s01-B4,One person assigned every role and nobody agreed.,,,J,one student imposes every role
+s01-B5,I said the same thing again.,,,K,repeats the same view with no probing question
+s01-B6,Ada says one thing and Ben says another.,,,L,lists two positions with no relation stated
+s01-B7,I retell what the class said about it.,,,N,retells a supplied explanation
+s01-B8,The entry treats the accusation as verified fact.,,,A,accusation treated as verified fact
+s01-B9,It holds only one short piece.,,,M,one short piece offered for writing across time frames
+s01-X2,Goodman Brown passed on. It means the same.,,,G,"the rewrite cuts the stern and sad look and the missing greeting, and says nothing changed"
+s01-X4,I know grave means serious.,,,E,"a meaning from memory offered as the entry, with no line copied"
+s01-X4,My first guess was right so I did not read the entry again.,,,F,keeps the first guess with no reread and no check
+s01-X5,One student said the tombstone shows corruption. Another said Mather states a claim.,,,L,two positions listed with no relation and no missing evidence named
+s01-A8,My log has the eight words the teacher gave us.,,,H,copies the supplied list; no independent words
+s01-K1-1,Faith knows about the devil.,,,x,a guess about what Faith knows marked as stated
+s01-P2-1,"(b) S, because the paragraph says the staff wriggled.",,,O,treats one reading of the staff as stated
+s01-K2-1,"Brown is weak, because he is.",,,x,a claim with no phrase and a because that repeats the claim
+s01-P2-2,Brown turned pale when the minister spoke.,,,G,cuts the facts the clauses carry and calls it the same
+s01-P3-1,The traveller talked as they walked.,,,G,drops two facts and calls it the same
+s01-K3-1,Bishop tried to drown the witness.,,,A,a witness report taken as proof of the act
+s01-P3-2,"She did it, because the witnesses said so.",,,A,a confident report taken to prove the cause
+s01-P4-1,"(c) reported, because Mather wrote it down.",,,A,writing it down taken as proof
+s01-P4-2,He felt a great conceivable.,,,D,a form used in the wrong job
+s01-K4-1,I know conceive means to become pregnant.,,,C,a meaning from memory with no clue from the sentence
+s01-P4-3,Nettled means very tired.,,,C,a sense with no clue from the sentence
+s01-P4-4,Scruples means a kind of shoe.,,,C,a sense with no check against the sentence or card
+s01-P5-1,Grave means a place for burial.,,,C,the familiar sense with no clue from the sentence
+s01-P5-2,Brown is bad and Bishop was guilty.,,,A,verdicts stated as proved

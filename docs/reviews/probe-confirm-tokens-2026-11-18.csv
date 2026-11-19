@@ -1,0 +1,15 @@
+stage,course,tokens,tools,seconds
+section-write 1.1-1.2,english-language-arts-grade-11,183095,17,431
+section-write 1.1-1.2,science-grade-7,180900,15,444
+plan-data 1.1,science-grade-7,115571,68,831
+answer-key read+fix 1.1,science-grade-7,172270,23,366
+plan-data 1.1,english-language-arts-grade-11,121356,146,1526
+answer-key read+fix 1.1,english-language-arts-grade-11,175169,42,406
+day-write 1-6,science-grade-7,89009,98,1115
+expert read 1-6,science-grade-7,230726,28,497
+day-write 1-5,english-language-arts-grade-11,214567,122,1477
+fix pass 1-6,science-grade-7,258271,73,878
+expert read 1-5,english-language-arts-grade-11,80000,57,804
+measure 2 read (both),both,199418,35,277
+fix pass 1-5,english-language-arts-grade-11,203179,54,457
+measure 2 unit corrections,both,99615,21,149

@@ -8,7 +8,8 @@
    days.csv rows for days {first} to {last}, items.csv (readiness, exits, end-of-unit assessment, written
    tasks), wrongs.csv, errors.csv, words.csv, and every column the README requires. In ELA each items.csv row also
    fills `text_id`, `text_ref` and `needs_text`, and the unit's word list goes in wordlist.csv (UNIT-PLAN.md,
-   "English language arts data"). Then
+   "English language arts data"). `opens_min` counts only the parts after the warm-up (lesson.py reads it so), even when the warm-up holds the
+   repair (L78). Then
    `python -X utf8 scripts/plan.py tables {course}`.
 3. Shared pieces in courses/{course}/u{uu}-1 (and the other section folders): readiness.md, the section
    opener(s), record.md, family.md (English only), and any recording page or sheet the plan names. Match the
@@ -19,6 +20,11 @@
    left as a placeholder (`[to check ...]` fails lesson.py). A paraphrase of a book we cannot read is cut (settled
    2026-11-15: free sources, no book purchases). A text found only in paid editions may be named and described,
    never quoted, from a free secondary source that says what it holds, credited to that source (UNIT-PLAN field 10).
+   Keys (the faults two reads still found after the answer-key read, L78): a key quotes the text exactly and takes
+   each referent from the sentence itself; "stated" and "implied" are used as the text supports; a key never leans on
+   events after the passage the item gives; science wrong answers and keys are right about what moves (particles,
+   not the solid itself); an exit or check is not the worked example's structure in new numbers; a shared piece is
+   the sheet itself (boxes and lines to write in), never a description of it or a note to the teacher.
 4. Sources, once for the course (later.csv L75): for every sources.csv row a day of this unit will use, open the
    link, read its licence or terms, fill `rights` and set `status` to `checked: <date>` (or `written: <path>` for a
    piece we make). A row you cannot check is cut, with its passage. The day skeleton STOPs on any source left
