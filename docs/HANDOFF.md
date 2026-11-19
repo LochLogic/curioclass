@@ -6,6 +6,8 @@ which is stale, fix it and say so.
 
 ## State now
 
+- **Under way 2026-11-18: the science ladder test (later.csv L81).** Kindergarten to grade 3, initial dirty pass: ledger (scripts/ledger.py, data/plans/ledgers/science.csv), section plans K to 3, then plan data and days K to 3, then a read-only sample. Pauses after each grade for Cory (capacity). Kindergarten section plans are done (13 sections); next is grade 1 section plans when Cory says go. Tokens: docs/reviews/ladder-science-tokens-2026-11-18.csv.
+
 - **Done 2026-11-18: the confirm probe (L78), first for ELA and for middle school** (report
   docs/reviews/probe-confirm-2026-11-18.md). After L75 (hand-backs in the day skeleton, the plan.py slot gate, sources
   checked once), L76 with L74 (rules 1 to 10, per-band DEFAULTS.md from scripts/defaults.py, unit edits): ELA grade 11

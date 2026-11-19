@@ -90,7 +90,32 @@ Kindergarten to grade 2, in addition (kindergarten probe, L74):
 - **Caps:** 1,600 words per section plan, not counting fields 3, 4 and 6 (UNIT-PLAN "Length"; cut in its order).
 - No em dashes. Write "Curio Class" in full if you name it. No company or product names in teacher-facing text.
 - Where the unit plan is wrong or silent, decide, write it in the section plan, and list it in your report under
-  "Plan points". Do not edit the unit plan, days.csv or any other file.
+  "Plan points". Do not edit the unit plan, days.csv or any other file (in a ladder run, `scripts/ledger.py add` is the one
+  exception).
+
+## In a ladder run (a subject written grade by grade from kindergarten up; later.csv L81)
+
+The job names it when it is one. Continuity across sections and grades is the point of the run.
+
+- **Read the ledger first:** `python -X utf8 scripts/ledger.py show <subject> --before {course}` lists what the
+  earlier grades and this course's earlier sections teach. Also read this course's section plan just before yours,
+  if one exists.
+- **Build on it.**
+  - A term, model or routine the ledger shows is review here: name it as review, in the same words, and do not
+    teach it as new.
+  - A case or investigation an earlier grade used may come back as a reminder, never as an exit or check (rule 4
+    holds across grades).
+  - Where the unit plan and the ledger disagree on wording, keep the ledger's wording and list it under "Plan
+    points".
+- **Add what you plan,** one call per entry, day left blank:
+  `python -X utf8 scripts/ledger.py add <subject> {course} u{uu}-<n> "" <kind> "<entry>" "<note>"`.
+  - Kinds are term, notation, model, case, investigation, material, routine, text and skill.
+  - Add every new term and every case, investigation, model and routine the section teaches. Add a material only
+    when students handle it for the first time.
+  - Add review entries too, with the note "review of <course> <where>".
+  - Never edit the CSV by hand.
+- **This is a first pass:** no read follows right away, and format and polish are fixed later. The gates below still
+  must pass.
 
 ## Gates
 

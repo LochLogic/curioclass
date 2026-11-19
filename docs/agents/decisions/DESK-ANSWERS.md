@@ -1535,3 +1535,20 @@ II, docs/reviews/probe-science-math-2026-11-18.md) showed the skeletons run unch
 the plans they run on carry the same running faults in every probe. In order: one gate and skeleton session (later.csv
 L75), rules and per-band DEFAULTS with small unit edits and the K to 2 pass (L76 with L74), then one confirm probe with
 an ELA section and a middle-school section (L78). Scale when plan share is 35% or under.
+
+## 2026-11-18: The confirm probe and the grade ladder (q-probe-confirm-1, q-dirty-fill-1)
+
+Cory set aside the choice between one more probe and a first wave and asked instead for a dirty fill from the
+beginning to the end of each course, then two full refines. Cory then refined the order: one subject at a time, from
+kindergarten day 1 to the end of each grade, then the next grade up, because continuity is the main issue and
+formatting is fixed in review. Cory took option (a) of docs/reviews/assessment-dirty-fill-2026-11-18.md: science,
+with a subject ledger (scripts/ledger.py) carried up the grades, and refine 1 trailing one grade behind the fill.
+
+The test is science kindergarten to grade 3, initial dirty pass only:
+- the ledger first;
+- section plans for K, 1, 2 and 3 in order;
+- then plan data and days for K, 1, 2 and 3 in order;
+- then a read-only sample of about 10 days a grade, which finds faults and fixes none.
+
+Because of capacity, the run pauses after each grade of section plans and each grade of days. Cory continues it by
+hand. later.csv L81.
