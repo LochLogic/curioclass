@@ -6,7 +6,7 @@ which is stale, fix it and say so.
 
 ## State now
 
-- **Under way 2026-11-18: the science ladder test (later.csv L81).** Kindergarten to grade 3, initial dirty pass: ledger (scripts/ledger.py, data/plans/ledgers/science.csv), section plans K to 3, then plan data and days K to 3, then a read-only sample. Runs straight through (Cory dropped the pauses 2026-11-18), in two lanes: section plans a grade ahead, plan data and days behind. Section plans for kindergarten to grade 3 are done (2026-11-19); kindergarten (64 days), grade 1 (68 days), grade 2 (76 days) and grade 3 (120 days) are all written and committed; the read-only sample of kindergarten to grade 2 is done (docs/reviews/ladder-sample-science-*-2026-11-19.md); the grade 3 sample and the report are next. Day-stage jobs come from _scratch/ladder/gen.py. Tokens: docs/reviews/ladder-science-tokens-2026-11-18.csv.
+- **Done 2026-11-19: the science ladder test (later.csv L81).** Kindergarten to grade 3, initial dirty pass: ledger (scripts/ledger.py, data/plans/ledgers/science.csv), section plans, plan data and 328 days (K 64, grade 1 68, grade 2 76, grade 3 120), all committed, then a read-only sample of 40 days. Result: 1.4 FIRM faults a day, nearly none gate-visible; fill cost about 72k tokens a day. Report: docs/reviews/ladder-science-report-2026-11-19.md. Next step waits on Cory's pick (Desk card q-ladder-science-1). Day-stage jobs come from _scratch/ladder/gen.py. Tokens: docs/reviews/ladder-science-tokens-2026-11-18.csv.
 
 - **Done 2026-11-18: the confirm probe (L78), first for ELA and for middle school** (report
   docs/reviews/probe-confirm-2026-11-18.md). After L75 (hand-backs in the day skeleton, the plan.py slot gate, sources
