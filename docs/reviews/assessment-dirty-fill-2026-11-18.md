@@ -114,3 +114,65 @@ This replaces the probe gate: q-probe-confirm-1 is answered by the pilot, not by
 finds little, drop refine 2 for the rest and save about 600M tokens.
 
 Not settled here, and Cory's call: the total spend (1.6B to 2.2B tokens over the core), and which pilot course.
+
+## Revised after Cory's order (2026-11-18): one subject, kindergarten up, day 1 to the end of each grade
+
+Cory's reply: start at kindergarten in one subject and go from day 1 to the end of that grade, then grade 1 of the
+same subject, and so on up. Continuity is the point; formatting is fixed in review.
+
+### Is continuity the main issue?
+
+- **Within a course, it was** in probes 1 to 4: hand-backs with no slot, notation tested before it was taught,
+  retrieval of things never taught. The confirm probe shows the rules mostly fixed these.
+- **Across grades, it has never been tested.** Every probe was one course. The scope gate only checks that an
+  earlier grade's row exists. It does not check what that grade's days actually taught, which terms they used, or
+  which cases and texts they already spent.
+
+  A kindergarten-up ladder is the first order that can carry that forward. It is the strongest argument for this
+  plan.
+- **What is left after the confirm probe is mostly not formatting.** It is wrong answer keys, content notes and
+  reading pace. Review still catches these, but only a content read does: the answer-key read and the expert read
+  stay in the refines.
+
+### Order and size
+
+These ladders run in series, so their length is the wall-clock cost (MEASURED from days.csv):
+
+| Subject | Ladder | Days | Note |
+|---|---|---|---|
+| Science | K to 8, then biology, chemistry, physics | 1,528 | K to 2 are 64 to 76 days of 30 to 40 minutes; no held course |
+| Math | K to 8, then Algebra I, geometry, Algebra II | 1,920 | Grade 4 math's older days are held for rework (L13), and another stream left grade 4 math review files on 2026-11-17 |
+| Social studies | K to 8, then world history, US history; economics, government and US history II at grade 12 | 2,016 | Splits at high school, so continuity there is a choice of path |
+| ELA | K to 12 | 2,080 | K to 5 days are 90 to 120 minutes, so the costliest start |
+
+### What changes in the plan
+
+1. **The course ledger becomes a subject ledger.** It carries across grades: terms, notation, models, cases, texts
+   and sources already used, and what each grade taught on which day. Each grade reads it and appends to it, so
+   grade 3 knows what K to 2 actually did. This is new work, and it comes first.
+2. **Refine 1 trails one grade behind the fill.** If every grade is filled before any refine, a fault in
+   kindergarten is already echoed in grades 1 to 12 by the time refine 1 reaches it, and each fix makes the grades
+   above it stale.
+
+   If refine 1 runs on grade n while grade n+1 is being filled, each grade is written looking back on a refined
+   grade. The cost is the same, the spread is much smaller, and the order is still front to back.
+3. **Refine 2 runs over the whole ladder at the end,** kindergarten up, as Cory described. It is the pass that
+   reads continuity across all the grades at once.
+4. **The probe days already written stay,** for example science grades 5 and 7. The fill writes around them and
+   reads them as earlier days. Refine 1 reads them like every other day.
+
+### Recommendation (revised)
+
+- **Start with science.** It is the shortest ladder, has the cheapest start (short K to 2 days), a strong K to 8
+  progression and no held course.
+
+  Math gains the most from continuity, but it has the grade 4 hold. It could start once that is settled.
+- **Cost of the science ladder** (DERIVED from the per-day rates above):
+  - fill, about 75M tokens;
+  - refine 1, about 170M;
+  - refine 2, about 130M;
+  - about 375M in all.
+- **Checkpoint after kindergarten and grade 1** (132 days, about 20M to 30M through refine 1). It reads three things: edge
+  faults per day against the confirm probe, stale days caused by refine fixes, and what the grade 1 refine found
+  that traces to kindergarten. Then go on up the ladder, and start the other subjects as parallel lanes once
+  science passes grade 2.
