@@ -1,0 +1,18 @@
+---
+piece: blank
+course: science-grade-2
+unit: 4.2
+version: draft, not yet taught
+credit: ours
+---
+
+
+# Bus set and record (day 46)
+
+Each child has a packet of five cut pieces: two rectangles, two circles and one square, all stiff card, corners rounded. Teacher: pre-cut and put in an envelope per child.
+
+<div style="display:flex;gap:.2in;margin-top:.1in"><div style="flex:1"><div>Bus</div><div style="border:1px solid #000;height:2in"></div></div><div style="flex:1"><div>My different whole</div><div style="border:1px solid #000;height:2in"></div></div></div>
+<div style="margin-top:.15in">Draw a line from each piece in the bus to its place in the different whole.</div>
+<div style="margin-top:.15in">My bus became a ____________. I used the same pieces.</div>
+<div style="margin-top:.15in">This shape does ____________ because it is ____________ (flat, round, stiff, floppy).</div>
+<div style="margin-top:.15in;font-size:90%">Teacher: the bus case is read by the look-for list for items E7 to E12. No coaching. Say that the case is invented for practice.</div>

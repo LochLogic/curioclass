@@ -1,0 +1,6 @@
+pattern,use,reason
+\bNGSS\b|Next Generation Science,leave it out,"the standards are never named in student, teacher or family copy"
+\bwater cycle\b|\bevaporat|\bcondensation\b,leave it out,"unit 1 teaches no water cycle (s01.md field 2, limits)"
+\b(\d+|two|three|four|five|ten|hundred|thousand|million) (years?|centuries)\b|\btectonic|\bcanyon,leave it out,"unit 2 limits (s02.md): no counts of time, no plate motion, no canyons"
+\bphotosynthes|\bnutrient|\bgerminat|\bchlorophyll,leave it out,"unit 5 limits (s05.md): observable growth only, no mechanism, no soil nutrients, no germination"
+\becosystem|\bspecies\b|\bfood (web|chain)|\badaptation|\bbiodiversity,leave it out,"unit 7 limits (s07.md): kinds seen only, no scientific names, food webs, adaptation or ranking of habitats"

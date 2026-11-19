@@ -1,0 +1,29 @@
+---
+piece: story
+course: science-grade-2
+unit: 1.3
+version: draft, not yet taught
+credit: ours
+---
+
+# Day 9 packet: Willow Bay
+
+A reserved packet printed only on day 9. Read the directions once. Print "invented for practice" on each view.
+
+Drawing style: plain black line drawing on white, thick lines, no shading, no brand names.
+
+## View 1: from the side
+
+**Picture:** A side view of Willow Bay: two rounded hills with a narrow valley between them. A bending river runs along the valley floor to the ocean at the right edge.
+
+## View 2: from above
+
+**Picture:** The same bay seen from above. The valley is a narrow lighter band between two round hill shapes. The river bends along the band and widens where it meets the ocean. Caption below: Rainwater runs along the valley toward the river mouth.
+
+## Directions
+
+**Read:** "Here are two views of one bay. Make a picture model of this area, with a key. Then use your model to show the way the water goes. Then say how a map could show a different area."
+
+## Key (teacher)
+
+E4: two hills, a valley between them, a bending river in the valley ending in the ocean, a key. E5: the water runs along the low valley toward the mouth, not over the hills, because the valley is lower. E6: a map of a different area would show its own shapes and places, with its own key.
