@@ -1,0 +1,7 @@
+pattern,use,reason
+\bNGSS\b|Next Generation Science,leave it out,"the standards are never named in student, teacher or family copy (s01.md field 2)"
+\b(velocity|vector|frequency|momentum)\b,leave it out,"the standard limits: no terms like velocity or vector, and no period or frequency (s01.md field 2)"
+\bnewtons?\b,leave it out,"forces are compared, never measured in units (s01.md field 2)"
+\b(magnetic fields?|field lines|electrons?|protons?|atoms?|particles?)\b,leave it out,"no fields, no particles (s02.md field 2)"
+\b(plate tectonics|tectonic plates?|continental drift)\b,leave it out,the Svalbard trunks are told as land that has since moved; no mechanism is taught (u05-1.md field 1)
+\b(millions?|billions?) of years\b,leave it out,deep time is stated plainly with no numbers of years (u05-1.md field 1)
