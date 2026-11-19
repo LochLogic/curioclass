@@ -6,7 +6,7 @@ which is stale, fix it and say so.
 
 ## State now
 
-- **Under way 2026-11-18: the science ladder test (later.csv L81).** Kindergarten to grade 3, initial dirty pass: ledger (scripts/ledger.py, data/plans/ledgers/science.csv), section plans K to 3, then plan data and days K to 3, then a read-only sample. Runs straight through (Cory dropped the pauses 2026-11-18), in two lanes: section plans a grade ahead, plan data and days behind. Section plans for kindergarten to grade 2 are done; grade 3 section plans and kindergarten days (units 1 and 2 written) are under way. Day-stage jobs come from _scratch/ladder/gen.py. Tokens: docs/reviews/ladder-science-tokens-2026-11-18.csv.
+- **Under way 2026-11-18: the science ladder test (later.csv L81).** Kindergarten to grade 3, initial dirty pass: ledger (scripts/ledger.py, data/plans/ledgers/science.csv), section plans K to 3, then plan data and days K to 3, then a read-only sample. Runs straight through (Cory dropped the pauses 2026-11-18), in two lanes: section plans a grade ahead, plan data and days behind. Section plans for kindergarten to grade 3 are done (2026-11-19); kindergarten days are all written (64 days); grade 1 days are under way, then grades 2 and 3. Day-stage jobs come from _scratch/ladder/gen.py. Tokens: docs/reviews/ladder-science-tokens-2026-11-18.csv.
 
 - **Done 2026-11-18: the confirm probe (L78), first for ELA and for middle school** (report
   docs/reviews/probe-confirm-2026-11-18.md). After L75 (hand-backs in the day skeleton, the plan.py slot gate, sources

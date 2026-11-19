@@ -4,3 +4,6 @@ pattern,use,reason
 \b(?:speed|velocity|acceleration|momentum)\b,"faster, slower, start and stop","unit 1 limits: no numerical speed; the ledger words are start, stop, faster, slower"
 \b(?:degrees?|percent|probabilit\w*|averages?)\b,"warmer, cooler, about the same, possible","unit 2 limits (s02 field 2): no degrees, averages, percentages or probability; warmth is a feel with three words, and a forecast says what is possible"
 \b(?:gravity|gravitational)\b,"rolls down, and starts from the ramp",unit 3 limits (s03 field 2): no gravity mechanism; a ramp is a change the class makes and tests
+\b(?:photosynthesis|chlorophyll|carbon dioxide|oxygen|nutrients?)\b,"water, light and a place to live","unit 4 limits (s04 field 2): no photosynthesis, gases or nutrients"
+\b(?:food chains?|food webs?|predators?|prey|ecosystems?)\b,animals eat; the place gives what they use,unit 4 limits: no food chains or ecosystem words
+\b(?:decompos\w*|biodegrad\w*|microplastics?|toxic|chemicals?|emissions?|pollut\w*)\b,"litter, harm, hurt, and the four parts","unit 6 limits (s06 field 2): no decomposition rates, manufacturing chemistry or pollution words; a factory can make the air hazy and litter can hurt a living thing"

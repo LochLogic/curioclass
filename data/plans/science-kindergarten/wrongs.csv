@@ -96,3 +96,183 @@ s03-M2,"Marks the turn before the touch, near the bumper.",,,D,places the turn b
 s03-M3a,Says the bumper was close.,,,D,a nearby bumper taken as the cause
 s03-M3b,"Says yes while the mat shows a miss, because it looks nice.",,,E,lets the look of the design outweigh the result
 s03-P20-1,Draws a bigger ramp or a tool and no wanted place.,,,B,a tool is named in place of what people want to be different
+s03-P21-1,"Draws only the place it should stop, and no stop.",,,,record shown with help
+s03-P21-1,Draws a new ramp or tool and no wanted place.,,,B,a tool is named in place of what people want to be different
+s03-P21-0,Lays the idea card first.,,,A,builds before saying what is wanted
+s03-P22-0,Lays the idea card first.,,,A,builds before saying what is wanted
+s03-P22-1,Moves a square to reached though the ball stopped short.,,,,"record shown with help; the child marks what was hoped, not what was watched"
+s03-P23-0,Touches yes for a result that looks neat but stopped short.,,,E,lets the look of the result outweigh where the ball stopped
+s03-P23-1,Puts down no card.,,,,record shown with help
+s03-P23-2,Moves the square to reached though the ball stopped short.,,,,"record shown with help; marks what was hoped, not what was watched"
+s03-P24-0,Points to one reached picture and says it always reaches.,,,F,takes one success for always
+s03-P24-1,Draws the bend before the ball reaches the bumper.,,,D,places the turn before the contact
+s03-P25-1,Says build a tray now.,,,A,builds before finding out
+s03-P25-1,Asks about something that has nothing to do with the problem.,,,,record shown with help; the question goes on the not-on-this-page card
+s03-P25-2,Draws a big new tray.,,,B,a favorite fix is drawn in place of the want
+s03-P25-0,Touches a spot before the bumper and says it was close.,,,D,places the turn before the contact
+s03-P26-0,Lays the tool card first and calls it the problem.,,,B,a favorite tool is named in place of the want
+s03-P26-1,Moves the square to reached though the ball missed the target.,,,x,hides a miss
+s03-P26-2,Points to the one that stopped farther and says it was faster.,,,C,takes a farther stop as a faster start
+s03-P27-1,Draws a bigger ramp and no wanted place.,,,B,a favorite tool is drawn in place of the want
+s03-P28-1,Draws the bend before the ball reaches the wall.,,,D,places the turn before the contact
+s04-X32b,Plants need nothing.,,,A,denies that a plant needs anything
+s04-X33a,Touches the goat only and says plants do not drink.,,,A,misses the common water need
+s04-X33b,Touches the boxed pot and says both look well because both were watered.,,,B,water alone keeps a plant well
+s04-X34a,Touches the sunflower and says it is eating the water.,,,C,treats a watered plant as eating
+s04-X34b,Touches yes: the cow and the cat eat the same.,,,D,misses the different foods
+s04-X35b,Touches yes: the hiker eats the same as the chipmunk.,,,D,misses the different foods
+s04-X36a,Touches the dark bed and says the sunflower can live anywhere.,,,E,separates the place from the need
+s04-X37a,Touches the cottage and says the house makes the water.,,,F,leaves out the source of the water
+s04-X37b,Draws nothing and says a house means people do not need nature.,,,F,leaves people out of the system
+s04-X38a,Says nothing changed because plants cannot change things.,,,G,misses a plant change
+s04-X38b,Touches the person with the mower and says only people change things.,,,H,leaves animals out of the changes
+s04-X39b,I like the woodpecker.,,,I,a liking offered as the reason
+s04-X40a,"Touches the wildflower spot, or says they are the same.",,,J,ignores the pictured difference in what is left
+s04-X40b,I like it.,,,I,a liking offered as the reason
+s04-X43a,Says nothing changed because plants cannot change things.,,,G,misses a plant change
+s04-X43b,Only people change places.,,,H,leaves plants and animals out of the changes
+s04-N1a,Puts drops on the animals and the child but none on the plant.,,,A,leaves the plant out of the water pattern
+s04-N1b,Just the animals needed water.,,,A,leaves the plant out of the water pattern
+s04-N2a,Touches the watering can.,,,B,takes the unchanged water as the change
+s04-N2b,Water is enough.,,,B,omits light
+s04-N3a,Touches the plant along with the animals.,,,C,treats the plant as eating a meal
+s04-N3b,Touches yes: the soil is the plant's meal.,,,C,treats soil as a plant meal
+s04-N4b,Touches yes: they all eat the same.,,,D,misses the different foods
+s04-M1a,Puts the plant on the bank and says it can live anywhere.,,,E,separates the place from the need
+s04-M1b,"Draws a single line, to the soil, and says that is all.",,,E,shows only part of the place links
+s04-M2a,Puts the prairie dog in the pond and says anywhere is fine.,,,E,separates the place from the need
+s04-M2b,Draws no lines and says the animal can live anywhere.,,,E,separates the place from the need
+s04-M3a,Draws no lines and says buildings mean people do not need nature.,,,F,leaves people out of the system
+s04-M3b,The people do not need anything here.,,,F,leaves people out of the system
+s04-C1a,Says nothing changed because plants cannot change places.,,,G,misses a plant change
+s04-C2a,Says only people change things.,,,H,leaves animals out of the changes
+s04-C2b,"Nothing, because only people change things.",,,H,leaves animals out of the changes
+s04-C3b,"Touches the route through the plants, or says both routes are the same.",,,J,ignores the pictured difference in what is left
+s04-C3c,I like it.,,,I,a liking offered as the reason
+s04-P32-1,Circles a picture that shows up once.,,,x,picks one that does not repeat
+s04-P32-2,Circles a picture that shows up once.,,,x,picks one that does not repeat
+s04-P32-3,Circles a picture that shows up once.,,,x,picks one that does not repeat
+s04-P33-3,Draws a drop on the squirrel and the robin only.,,,A,leaves out the plant pictures
+s04-P33-2,Circles the shelf plant and says both are the same because both had water.,,,B,water alone keeps a plant well
+s04-P34-1,Draws a bite on the watered plant and says it is eating the water.,,,C,treats a watered plant as eating
+s04-P34-2,Joins every animal to the grass and says they all eat the same.,,,D,misses the different foods
+s04-P35-3,Draws a bite on the grass and says the grass is eating the water.,,,C,treats a watered plant as eating
+s04-P36-1,Draws a line from the fish to the dry bank.,,,E,separates the place from the need
+s04-P36-2,Draws no line and says grass needs nothing.,,,E,separates the place from the need
+s04-P37-1,Draws a line from the school to the tap and says the school makes the water.,,,F,leaves out the source of the water
+s04-P37-2,Draws nothing and says people in a town do not need the land.,,,F,leaves people out of the system
+s04-P38-1,Circles the fence and says nothing changed.,,,G,misses an animal and a plant change
+s04-P38-2,Says I like the nest.,,,I,a liking offered as the reason
+s04-P39-1,Circles the bridge.,,,G,misses the change the animal made
+s04-P39-2,Says I like the swallow.,,,I,a liking offered as the reason
+s04-P40-5,"Touches plan 2, or says the plans are the same.",,,J,ignores the pictured difference in what is left
+s04-P40-6,I like it.,,,I,a liking offered as the reason
+s04-P41-2,Puts a plant with those that eat a meal.,,,C,treats the soil or water as the plant's meal
+s04-P43-1,Draws all three lines to the grass.,,,D,treats all animals as eating the same
+s05-X44a,Touches the clock and says it was later.,,,H,treats the time as the cause
+s05-X44a,Says the soil gets warm by itself.,,,A,denies that the sun is the cause
+s05-X44b,It is warmer because it is later.,,,H,treats the time as the cause
+s05-X44b,The sun cannot warm soil.,,,A,denies that the sun is the cause
+s05-X45a,Touches the right card and says soil and sand show it.,,,C,compares unlike materials
+s05-X45b,Touches the right card and says the long one shows it best.,,,G,compares unequal times out
+s05-X46a,Says water never gets warm in the sun.,,,B,leaves water out of the pattern
+s05-X46a,Touches the shaded tub.,,,,reads the caption the wrong way round; shown with help
+s05-X46b,Touches the same rock early and later and says later makes it warm.,,,H,treats the time as the cause
+s05-X47a,Touches the striped roof and says it is nearer.,,,D,a cover beside the patch does not shade it
+s05-X47a,Touches the striped roof and says it is prettier.,,,E,takes looks for the job
+s05-X47b,Points to the stripes and says the colours do it.,,,E,takes looks for the job
+s05-X48a,Touches the shaded stone.,,,,reads the caption the wrong way round; shown with help
+s05-X48b,Says water cannot warm in the sun.,,,B,turns a tie into a denial
+s05-X48c,"Sunlight does not warm surfaces, the water was the same.",,,A,lets one tie cancel the clear pair
+s05-X49a,Touches cover 3 and says near is enough.,,,D,a cover beside the tray does not shade it
+s05-X49a,Touches cover 2.,,,,supports among the plants; shown with help
+s05-X49b,Touches as soon as the cover goes on.,,,F,leaves out the shared time
+s05-X50a,Touches the flowers and says it will look better so it works.,,,E,takes looks for the job
+s05-X50a,Touches the farther cover.,,,D,a cover standing off does not shade the open half
+s05-X50b,Because it is nicest.,,,E,takes looks for evidence
+s05-X51a,Touches yes and says the canopy is close by.,,,D,near is taken for shaded
+s05-X51b,Because it was later in the day.,,,H,treats the time as the cause
+s05-X54a,Touches the ribbon.,,,E,takes looks for the job
+s05-X54b,The cover looks nice.,,,E,takes looks for evidence
+s05-W1a,Touches the rock and water pair and says they prove it.,,,C,compares unlike materials
+s05-W1b,Marks a sample the caption does not name.,,,,reads the caption against its words; shown with help
+s05-W2a,Marks against the sand caption.,,,,reads the caption against its words; shown with help
+s05-W2b,Marks against the soil caption.,,,,reads the caption against its words; shown with help
+s05-W2c,Marks against the rock caption.,,,,reads the caption against its words; shown with help
+s05-W2d,"Says water never warms, against the water caption.",,,B,leaves water out of the pattern
+s05-W3a,Marks later for every material whatever the records say.,,,,assumes the later look always wins; shown with help
+s05-W3b,"The later one is warmer, so sunlight did it.",,,H,treats the time as the cause
+s05-W3b,The sun does not warm things.,,,A,denies that the sun is the cause
+s05-D1a,Touches the cover beside the patch and says it will shade it.,,,D,a cover beside the patch does not shade it
+s05-D1b,Touches pieces that would close the side.,,,,loses the side view; shown with help
+s05-D2a,"Builds a cover that stands beside the patch, leaving it in the sun.",,,D,a cover beside the patch does not shade it
+s05-D2b,The colours make it work.,,,E,takes looks for the job
+s05-D2b,It will be cool as soon as it is on.,,,F,leaves out the shared time
+s05-D3a,Marks without touching both patches.,,,,no comparison made; shown with help
+s05-D3b,It works because it is the nicest.,,,E,takes looks for evidence
+s05-P49-3,Adds a piece that stands beside the animal.,,,D,a roof beside the animal does not shade it
+s05-P50-4,"Yes, the one out longer shows it.",,,G,out longer is taken for the sun doing it
+s06-X55a,"Makes three marks, or marks one scrap twice.",,,,"a miscount with no stated belief; recounted with a partner, no letter"
+s06-X55b,Says it stays where it fell.,,,A,treats the first place as permanent
+s06-X56a,Touches the van for air.,,,,"takes the vehicle for the haze; shown with help, no letter"
+s06-X56b,Draws the wrappers pushed into the shrubs and says that keeps them safe.,,,C,moves the harm to living things
+s06-X57a,Pushes the wrappers under the shrubs.,,,C,moves the harm to living things
+s06-X57b,Reusing paper does not change how much new paper we need.,,,B,misses the resource link
+s06-X58a,Touches the puddle.,,,,"looks at the water, not the bottles; shown with help, no letter"
+s06-X58b,Says every bottle goes to be recycled everywhere.,,,F,assumes every place collects the same things
+s06-X59a,Touches more for one corner.,,,,"a miscount with no stated belief; recounted with a partner, no letter"
+s06-X59b,"The reminder did it, the numbers went down.",,,E,takes a smaller count as proof of cause
+s06-X61a,Tucks the paper under the shrubs.,,,C,moves the harm to living things
+s06-X61b,A nice border shows people what to do.,,,D,takes decoration for the action
+s06-T1a,Touches the bent stems for what people do.,,,,"names the effect for the action; shown with help, no letter"
+s06-T1b,Says walking cannot change the plants.,,,G,denies the local impact
+s06-T2a,Draws a new route across another part of the same plants.,,,H,moves the same damage
+s06-T2b,Draws feet crossing other plants and says now they are protected.,,,H,moves the same damage
+s06-T3,A pretty border tells people what to do.,,,D,takes decoration for the action
+c1-K1,Takes a bigger car for the harder push.,,,A,changes the object while testing how hard
+c1-K4,Takes a different ball to test which way.,,,C,thinks which way needs another object
+c1-K2,Marks the car starting to move before the hand reaches it.,,,D,places the motion before the touch
+c1-K3,Says a pull cannot change how the box goes.,,,B,denies that a pull changes motion
+c1-K5,Says to throw away the marks that do not match the guess.,,,E,drops the try that was not guessed
+c1-W1,Touches square 6 twice and says seven.,,,F,counts one square twice
+c1-W2,Says afternoons are always warmer.,,,G,makes a rule that the records contradict
+c1-W3,Touches the shorter row because its squares are bigger.,,,,a comparison miss; sorts to no group
+c1-F1,Asks what the weather was yesterday.,,,L,asks the forecast about the past
+c1-F2,Says the page means the storm must come.,,,H,takes a forecast for a guarantee
+c1-F2,Says every town has the same storms.,,,I,ignores the town rows
+c1-F3,Touches wait until thunder.,,,J,waits for danger before getting ready
+c1-F3,Touches stand under a tree.,,,K,takes a tree for shelter
+c1-X31a,Touches pair two because a bigger truck is stronger.,,,A,changes the object while testing how hard
+c1-X31b,Touches the warmer day and agrees with the friend.,,,G,makes a rule that the records contradict
+c1-X31c,Touches wait until thunder.,,,J,waits for danger before getting ready
+c1-X31d,Touches yes because one try worked.,,,,one success taken for a pass; sorts to no group
+c2-N1,Leaves out the seedling because plants do not need water.,,,M,denies the plant need for water
+c2-N2,Says water is enough for the pale plant.,,,N,leaves out light
+c2-N3,Touches the bean plant because it eats the soil.,,,O,takes soil for a plant meal
+c2-N4,Says every animal eats the same food.,,,P,misses the different diets
+c2-M1,Places the plant in the dark cave because it can live anywhere.,,,Q,separates place from needs
+c2-M2,Places the hare on the stony top with nothing to eat.,,,Q,separates place from needs
+c2-M3,Says people in houses do not need anything from the meadow.,,,R,leaves people out of the system
+c2-C1,Says plants cannot change a wall.,,,S,denies plant changes
+c2-C2,Says only people make holes.,,,T,leaves animals out
+c2-C3,Touches plan two because it has a red roof.,,,U,takes a liking for evidence
+c2-C3,Says both plans leave the same trees.,,,V,ignores the shown difference
+c2-D1,Touches one square twice.,,,F,counts one square twice
+c2-D3,Says mornings are always cooler.,,,G,makes a rule that the records contradict
+c2-X64a,Touches the carrot for the plant.,,,O,takes a carrot for the plant meal
+c2-X64b,Touches the stony path because a duck can live anywhere.,,,Q,separates place from needs
+c2-X64c,Says only people change lawns.,,,T,leaves animals out
+c2-X64d,Agrees with the friend.,,,G,makes a rule that the records contradict
+c1-K1b,Takes a bigger car for the harder push.,,,A,changes the object while testing how hard
+c1-K4b,Takes a different ball to test which way.,,,C,thinks which way needs another object
+c1-K2b,Marks the car starting to move before the hand reaches it.,,,D,places the motion before the touch
+c1-K3b,Says a pull cannot change how the box goes.,,,B,denies that a pull changes motion
+c1-K5b,Says to throw away the marks that do not match the guess.,,,E,drops the try that was not guessed
+c1-W1b,Touches square 5 twice and says six.,,,F,counts one square twice
+c1-W2b,Says afternoons are always cooler.,,,G,makes a rule that the records contradict
+c1-W3b,Touches the shorter row because its squares are bigger.,,,,a comparison miss; sorts to no group
+c1-F1b,Asks what the weather was yesterday.,,,L,asks the forecast about the past
+c1-F2b,Says the page means the storm must come.,,,H,takes a forecast for a guarantee
+c1-F2b,Says every town has the same storms.,,,I,ignores the town rows
+c1-F3b,Touches wait until thunder.,,,J,waits for danger before getting ready
+c1-F3b,Touches stand under a tree.,,,K,takes a tree for shelter

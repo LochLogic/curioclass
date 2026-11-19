@@ -1,0 +1,33 @@
+---
+piece: story
+course: science-kindergarten
+unit: 4.3
+version: draft, not yet taught
+credit: ours
+---
+# Change sequences and the kite card (day 43)
+
+Held back, never taught from. Plain black line drawings on white, thick lines, no shading, no printed words except a caption, no brand names. Children in the pictures are of many skin tones, hair and abilities. Say aloud first that every case is invented for practice. No taught place, animal or sequence reappears.
+
+## Sequence C1. A young plant and a stone
+
+A young plant beside a stone with soil packed around it; the same plant later with its roots grown and the soil pushed aside toward damp ground. Card: a cloud (not evidence).
+**C1a:** "Invented for practice. Touch the picture that shows the roots changed the place." **Key:** the picture with the soil pushed aside. The cloud is shown with help, no letter. "Nothing changed, plants cannot change places" is error G.
+**C1b:** "What does that help the plant get?" **Key:** water.
+
+## Sequence C2. A fox and a bank
+
+A fox starts to dig; soil comes out in a pile; the bank has a den opening.
+**C2a:** "Touch what the animal changed." **Key:** the bank, now with a den. "Only people change things" is error H.
+**C2b:** "What does the animal get from that?" **Key:** a safe place to be. "Nothing, only people change things" is error H.
+
+## Sequence C3. A channel for a garden
+
+A dry garden of food plants; people digging a channel from a stream; water running along the channel to a green garden.
+**C3a:** "Touch the land the people changed." **Key:** the channel.
+**C3b:** "Two routes for the channel bring the same water. One crosses a bare strip. The other removes a patch of plants. Touch the route that leaves more plants standing." **Key:** the route across the bare strip. The other route, or "they are the same", is error J.
+**C3c:** "Why that one?" **Key:** it leaves the plants standing. "I like it" is error I.
+
+## The kite card
+
+An unchanged kite in the sky. It is a card that is not evidence of a change, and it sits in the group of cards on the front table.
