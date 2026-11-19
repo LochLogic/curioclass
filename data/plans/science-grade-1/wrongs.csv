@@ -1,0 +1,333 @@
+item_id,shown,compute,value,error,note
+s01-P1-1,Touches the cloudy picture.,,,x,touches the picture seen once
+s01-X1a,"The sun stays put, so nothing changed.",,,A,treats the sun as staying in one place
+s01-X1a,Touches the post and says it moved.,,,x,the post is the same on both cards
+s01-X1b,It looks nice.,,,x,gives a reason that is not about time order
+s01-X2a,"Touches the sun on the left, where the shadow is.",,,x,"names the side of the shadow, not the side of the sun"
+s01-X2a,Touches the sun straight above the bench.,,,x,"a shadow would then lie under the bench, not to its left"
+s01-X2b,Middle: it stays.,,,A,expects the shadow to stay where it was
+s01-X2b,Left: it goes back.,,,x,reverses the order of the dots
+s01-X3a,Middle: it stays where it is.,,,A,expects the shadow to stay where it was
+s01-X3a,Left.,,,x,reverses the order of the dots
+s01-X3b,Because the sun stays there.,,,A,gives a staying sun as the reason
+s01-X3b,Because I want it.,,,x,"gives a wish, not a record"
+s01-X4a,High above the windmill: it stays.,,,B,reads the strip as one picture
+s01-X4a,Low above the gate: it goes back.,,,x,reverses the order of the looks
+s01-X4b,Middle: it stays.,,,A,expects the shadow to stay where it was
+s01-X4b,Left.,,,x,reverses the order of the dots
+s01-X4c,No: the moon comes out only at night.,,,C,replaces the picture with a day and night rule
+s01-X5a,They went away in the morning.,,,D,treats not seen as not there
+s01-X5a,There are no stars in the day.,,,x,states the pattern without a reason
+s01-X5b,The cloudy night: it is night.,,,x,uses night alone and leaves out the clear sky
+s01-X5c,No: the moon is for night.,,,C,replaces the picture with a day and night rule
+s01-X6a,Middle: it stays.,,,A,expects the shadow to stay where it was
+s01-X6a,Left.,,,x,reverses the order of the dots
+s01-X6b,High above the boat shed: it stays.,,,B,reads the strip as one picture
+s01-X6b,Low above the dock.,,,x,reverses the order of the looks
+s01-X6c,No stars.,,,x,does not use the two night records
+s01-X8a,High above the bridge: it stays.,,,A,expects the sun to stay in one place
+s01-X8a,Low above the canal.,,,x,reverses the order of the looks
+s01-X8b,The moon is out only at night.,,,C,replaces the picture with a day and night rule
+s01-X8c,No stars.,,,x,does not use the night record
+s01-E1,It stays there: high above the roof.,,,A,expects the sun to stay in one place
+s01-E1,High above the hill.,,,x,a place no sheet shows
+s01-E1,"Lower above the hill, with no sheet pointed to.",,,x,"right place, no evidence named"
+s01-E2,It stays there: high above the barn.,,,B,reads the sheet as one picture
+s01-E2,"There is no moon in the morning, so the covered picture is empty.",,,C,replaces the pictures with a day and night rule
+s01-E2,High above the ridge.,,,x,a place no sheet shows
+s01-E3,The stars stop existing each morning.,,,D,"treats not seen as not there; the pattern can still be met, so noted, not scored against"
+s01-E3,Stars are in the day pictures too.,,,x,contradicts the records
+s01-E3,There will be no stars next night.,,,x,does not use the night records
+s01-P2-1,Puts the third dot on the second dot: it stays.,,,A,treats the sun as staying in one place
+s01-P2-1,Says it goes there because they want it.,,,x,gives a reason that is not about the dots
+s01-P3-1,Touches the middle: it stays where it is.,,,A,treats the sun as staying in one place
+s01-P3-1,Says it goes there because they want it.,,,x,gives a reason that is not about the dots
+s01-P3-2,Touches the side the shadow is on.,,,x,"names where the shadow is, not where the sun is"
+s01-P3-3,"Says the dots in any order, not by the clock pictures.",,,x,does not use the clock pictures to order the dots
+s01-P4-1,Says the moon is in the same place in every picture.,,,B,treats the moon as staying in one place
+s01-P4-2,Draws the moon in one place and says it stays.,,,B,treats the moon as staying in one place
+s01-P4-2,Draws the line through the places out of clock order.,,,x,does not use the clock pictures to order the places
+s01-P5-3,Touches the cloudy night card.,,,x,uses night alone and leaves out the clear sky
+s01-P5-4,The sun.,,,x,names the day sky object
+s01-P5-5,Under night only.,,,C,replaces the picture with a day and night rule
+s01-P6-2,Middle: it stays.,,,A,expects the shadow to stay where it was
+s01-P6-3,High above the bridge: it stays.,,,B,reads the strip as one picture
+s01-P6-4,No stars.,,,D,treats not seen as not there
+s01-P6-6,Sun and shadow on the same side.,,,x,does not use the opposite side
+s01-P8-1,It stays in one place.,,,A,reads the strip as one picture
+s01-P8-2,The moon is only out at night.,,,C,replaces the picture with a day and night rule
+s01-P8-3,The stars are gone.,,,D,treats not seen as not there
+s02-X10a,Touches the leaves or the flower.,,,x,"a first idea, shown with help"
+s02-X10b,"Yes, roots eat the soil.",,,A,treats water uptake as eating the soil
+s02-X11a,Touches the leaves or the flower.,,,x,"a first idea, shown with help"
+s02-X11b,Touches the roots or the flower.,,,x,"a first idea, shown with help"
+s02-X11c,Still straight: plants do not move.,,,B,treats a plant as unable to respond
+s02-X12a,Touches the fallen leaf.,,,x,"a first idea, shown with help"
+s02-X12b,Still straight: the plant stays the same.,,,B,treats a plant as unable to respond
+s02-X13a,Touches the legs or the mouth.,,,x,"a first idea, shown with help"
+s02-X13b,The eyes carry it under the stone.,,,C,treats the part that senses as the part that moves
+s02-X14a,Touches feet to eyes.,,,x,"a first idea, shown with help"
+s02-X14b,The eyes move the duck away.,,,C,treats the part that senses as the part that moves
+s02-X15a,"The petals, because they are pretty.",,,D,takes appearance for a shape that does the job
+s02-X15b,Draw a beetle on the bag so it is safe.,,,D,takes a stuck-on picture for a working shape
+s02-X16a,Touches plan one.,,,x,"a first idea, shown with help"
+s02-X16b,Roots on the lighthouse wall: now it looks like a tree.,,,D,takes a tree picture for a working shape
+s02-X17a,The coloured pattern.,,,D,takes decoration for a working shape
+s02-X17b,It looks like a tree so it stands.,,,D,takes looking like a tree for a working shape
+s02-X18a,The stuck-on picture of roots.,,,D,takes a stuck-on picture for a working shape
+s02-X18b,A taller post.,,,x,"a first idea, shown with help"
+s02-X19a,The glued picture of thorns.,,,D,takes a stuck-on picture for a working shape
+s02-X19a,The solid sheet.,,,x,"blocks the air too, shown with help"
+s02-X19b,The thorn picture makes it work.,,,D,takes a stuck-on picture for a working shape
+s02-X21,A picture of a bird stuck on the strips.,,,D,takes a stuck-on picture for a working shape
+s02-E20a,The roots eat the soil.,,,A,treats water uptake as eating the soil
+s02-E20a,The plant cannot move or respond.,,,B,treats a plant as unable to respond
+s02-E20a,The eyes move the legs.,,,C,treats the part that senses as the part that moves
+s02-E20b,I drew a tortoise on the roof so it works.,,,D,takes a stuck-on picture for a working shape
+s02-E21a,The roots eat the soil.,,,A,treats water uptake as eating the soil
+s02-E21a,The plant cannot move or respond.,,,B,treats a plant as unable to respond
+s02-E21a,The eyes move the legs.,,,C,treats the part that senses as the part that moves
+s02-E21b,The tortoise picture on the cover makes it work.,,,D,takes a stuck-on picture for a working shape
+s02-P10-1,Points to one picture and says it happened once.,,,x,does not see the repeat
+s02-P10-2,They eat the soil.,,,A,treats water uptake as eating the soil
+s02-P11-1,Points to the roots and says they eat the soil.,,,A,treats water uptake as eating the soil
+s02-P11-2,Says the plant stays the same.,,,B,treats a plant as unable to respond
+s02-P12-1,Says the shoot stayed straight.,,,B,treats a plant as unable to respond
+s02-P12-2,Puts the leaf picture on the roots row.,,,x,does not link the leaf to the light job
+s02-P12-3,"I saw it stay the same, so plants do not move.",,,B,treats a plant as unable to respond
+s02-P13-1,The roots eat the soil.,,,A,treats water uptake as eating the soil
+s02-P13-2,They carry the hare away.,,,C,treats the part that senses as the part that moves
+s02-P13-3,Puts the eyes under move.,,,C,treats the part that senses as the part that moves
+s02-P13-4,"A gate clicks, legs, ears.",,,C,swaps the part that senses and the part that moves
+s02-P14-1,The ears carry the hare away.,,,C,treats the part that senses as the part that moves
+s02-P14-2,The ears carry the dog to the kitchen.,,,C,treats the part that senses as the part that moves
+s02-P14-3,Only the hare moved.,,,x,misreads the dog frames
+s02-P14-4,A plant cannot respond like an animal.,,,B,treats a plant as unable to respond
+s02-P15-1,Roots make it look like a tree.,,,D,takes appearance for a shape that does the job
+s02-P15-2,It is pretty.,,,D,takes appearance for a shape that does the job
+s02-P15-3,"The pink petals to a job, because they are pretty.",,,D,takes appearance for a shape that does the job
+s02-P16-1,The tower is too short.,,,x,"a first idea, shown with help"
+s02-P16-2,They do not touch anything.,,,x,"feet that float, shown with help"
+s02-P16-3,It looks like a tree.,,,D,takes appearance for a shape that does the job
+s02-P17-1,It is a pretty tree.,,,D,takes appearance for a shape that does the job
+s02-P17-2,"It looks like a tree, so it stands.",,,D,takes looking like a tree for a working shape
+s02-P17-3,From the tower to the foot.,,,x,"arrow set at the thing, shown with help"
+s02-P18-1,It will always stand.,,,x,"says what is hoped, not what was seen, shown with help"
+s02-P18-2,I will stick a picture of roots on it.,,,D,takes a stuck-on picture for a working shape
+s02-P18-3,"Yes, it always stands.",,,x,"takes one stand for every time, shown with help"
+s02-P18-4,The roots picture on it makes it work.,,,D,takes a stuck-on picture for a working shape
+s02-P19-1,It looked like a tree.,,,D,takes appearance for a shape that does the job
+s02-P19-2,It must look like an animal.,,,D,takes looking like an animal for a job
+s02-P19-3,It is pretty.,,,D,takes appearance for a shape that does the job
+s03-X22a,Points only to the shorter leaf.,,,x,"names a difference, not a shared feature; shown with help, no letter"
+s03-X22a,Points to the seed path.,,,x,"the path is a drawn link, not a feature of the plants"
+s03-X22b,Lays the blades side by side with the bases apart.,,,x,"tips are not compared; shown with help and a length prompt, no letter"
+s03-X22b,Lays the blades from longest to shortest.,,,x,reverses the order asked; shown with help
+s03-X23a,"They are exact copies, everything is the same.",,,A,treats a shared feature as identity
+s03-X23a,Points to the parent's white forepaw.,,,x,"a marking only the parent has, which is a difference"
+s03-X23b,"Nothing is different, it is a copy.",,,A,treats a shared feature as identity
+s03-X23b,Points to the black fur.,,,x,"a shared feature, not a difference"
+s03-X24a,"The kitten has a patch on its tail, so it is not a cat like her.",,,B,treats a difference as making a different kind
+s03-X24a,Points to the head patch and the tail patch as the same place.,,,x,the patches are in different places
+s03-X24b,That makes them different animals.,,,B,treats a difference as making a different kind
+s03-X24b,They look exactly the same.,,,A,treats a shared feature as identity
+s03-X25a,"Touches the first grouping, because the little one is a different thing since it is smaller.",,,B,a difference in size takes it out of its kind
+s03-X25a,Touches the first grouping with no reason.,,,x,unsupported; shown with help
+s03-X25b,The small maple does not go with the big one because plants do not have babies.,,,C,limits young to animals
+s03-X25b,The cat with the white tail is not like the other.,,,B,a difference takes it out of its kind
+s03-X25b,Because they look nice together.,,,x,no observation; shown with help
+s03-X25c,Lays the blades with the bases apart.,,,x,"tips are not compared; shown with help, no letter"
+s03-X25c,Lays the parent blade first.,,,x,orders by the grown-up first rather than by length
+s03-X27a,"That is not its young, plants have no babies.",,,C,limits young to animals
+s03-X27a,Points to how short the young leaf is.,,,x,"names a difference, not a shared feature"
+s03-X27b,"The young one looks different, so it is another kind.",,,B,treats a difference as making a different kind
+s03-X27b,They are copies.,,,A,treats a shared feature as identity
+s03-X27c,"They are copies, everything is the same.",,,A,treats a shared feature as identity
+s03-X27c,Points to the white muzzle.,,,x,"a marking only the dog has, which is a difference"
+s03-X27d,"The puppy has white paws, so it is not a dog like the parent.",,,B,treats a difference as making a different kind
+s03-X27d,Nothing is different.,,,A,treats a shared feature as identity
+s03-E26a,They are exact copies because both have leaves.,,,A,treats a shared feature as identity
+s03-E26a,"The big oak leaf is not like the small ones, so it is a different kind.",,,B,treats a difference as making a different kind
+s03-E26a,"Plants cannot have young, so the small plants are not the oak's young.",,,C,limits young to animals; the seed path is drawn on the card
+s03-E26a,Names the oak and the pine and says nothing about what is seen.,,,x,naming earns no point; stays incomplete
+s03-E26b,"They are exact copies, they all look the same.",,,A,treats a shared feature as identity
+s03-E26b,A different patch means it cannot be a rabbit.,,,B,treats a difference as making a different kind
+s03-E26b,Names the rabbits and the fish and says nothing about what is seen.,,,x,naming earns no point; stays incomplete
+s04-X28,Touches the one harder tap.,,,x,does not separate the hand from the spoon; shown with help
+s04-X28,Touches the spoon alone with nothing done.,,,x,no comparison is made; shown with help
+s04-X29,Touches the comb lying still with the plucked teeth.,,,x,a still comb does not test the idea that moving makes sound; shown with help
+s04-X29,Touches the comb lying still with the comb swept slowly.,,,x,a still comb does not test the idea; shown with help
+s04-X30,Touches the one much harder tap.,,,x,changes the tap instead of repeating it; shown with help
+s04-X30,Touches a different tray.,,,x,changes the thing tested; shown with help
+s04-X30,The tray keeps ringing when it is held still.,,,A,"a source keeps producing sound after its vibration is stopped; volunteered, met first on day 31"
+s04-X31a,Touches ring it harder.,,,x,does not stop the body; shown with help
+s04-X31a,Touches watch the handle only.,,,x,no comparison of the body free and held; shown with help
+s04-X31b,It would still ring loudly when it is held.,,,A,a source keeps producing sound after its vibration is stopped
+s04-X31b,It would sound the same.,,,x,no reason from the band or drum records; shown with help
+s04-X32,Sound cannot move foil.,,,B,denies that sound can make another material vibrate
+s04-X32,Touches the hand pressing the foil.,,,C,accepts touching as a sound-only test
+s04-X32,Touches the card waving with the speaker off.,,,x,"tests the card, not the sound; shown with help"
+s04-X34a,Touches the record with the hand near the fringe.,,,C,accepts a hand near the fringe as a sound-only test
+s04-X34a,"Sound cannot do that, so neither record is fair.",,,B,denies that sound can make another material vibrate
+s04-X34b,The arrow is unproven because sound cannot move things.,,,B,denies that sound can make another material vibrate
+s04-X34b,"Touches it shakes, so it sounds.",,,x,the other arrow; shown with help
+s04-X34c,The held drum still sounds.,,,A,a source keeps producing sound after its vibration is stopped
+s04-X34c,"Touches it sounds, so it makes things shake.",,,x,the other arrow; shown with help
+s04-E33a,The ruler keeps making sound after it is held still.,,,A,a source keeps producing sound after its vibration is stopped
+s04-E33a,Names the ruler and the drum and says nothing about what was compared.,,,x,naming earns no point; stays incomplete
+s04-E33b,Sound cannot move paper.,,,B,denies that sound can make another material vibrate
+s04-E33b,"I held the ribbon while it played and it moved, so sound did it.",,,C,accepts touching as a sound-only test
+s04-E33b,"It moved, so it was the sound, with the ribbon left on the table beside the speaker.",,,x,does not control table contact; stays unclassified
+s04-P32-1,We hold the strip and see if it moves.,,,C,accepts touching as a sound-only test
+s04-P32-1,We change the strip and keep the sound.,,,x,"changes the thing watched, not the sound; shown with help"
+s04-P32-2,Sound cannot move anything.,,,B,denies that sound can make another material vibrate
+s04-P32-2,The strip is blurry.,,,x,no off and on comparison; shown with help
+s05-X38,Touches the pair with the long wait.,,,A,waiting alone makes the object visible
+s05-X38,Touches the pair with a different toy in an open box.,,,x,two things changed; shown with help
+s05-X39,"Yes, it needs a lamp to be seen.",,,B,a switched-on source needs another lamp
+s05-X39,Says it cannot be seen in the dark.,,,x,no reason from the lights; shown with help
+s05-X40,Touches we wait a long time.,,,A,waiting alone makes the object visible
+s05-X40,Touches the door is blue.,,,x,a feature that is not light; shown with help
+s05-X41,"Touches the first card, the lantern with the room light on.",,,B,the source needs the room light
+s05-X41,"Touches the third card, the toy car.",,,x,"an ordinary object, not a source; shown with help"
+s05-X42,"Neither, the night light needs the window.",,,B,a switched-on source needs outside light
+s05-X42,The button shows up after a wait.,,,A,waiting alone makes the object visible
+s05-X43a,Touches the baking paper.,,,x,reads a dim patch as no light; shown with help
+s05-X43a,Touches the clear sandwich bag.,,,x,reads a bright patch as a shadow; shown with help
+s05-X43b,"Yes, it is a fair test.",,,E,moving the light between pieces is thought necessary
+s05-X43b,Says the flashlight can be anywhere.,,,x,no reason given; shown with help
+s05-X44,"Yes, the side patch is lit so it went through.",,,C,a side patch is taken as light through the tray
+s05-X44,Says the tray is a fourth kind of piece.,,,D,a mirror-like piece is given its own group
+s05-X45a,Puts the side card in a fourth hoop of its own.,,,D,the mirror-like card is given a fourth group
+s05-X45a,Touches the lets light through hoop.,,,x,counts the wrong hoop as fewest; shown with help
+s05-X45a,Touches the blocks hoop.,,,x,counts the wrong hoop as fewest; shown with help
+s05-X45b,Touches the plan with the moved flashlight.,,,E,moving the light between samples is thought necessary
+s05-X45b,Touches either plan and says they are the same.,,,x,does not see the change in the light; shown with help
+s05-X47a,Touches the leaf and says it shows up after a wait.,,,A,waiting alone makes the object visible
+s05-X47a,"Neither, the firefly needs a lamp.",,,B,a source needs another lamp
+s05-X47b,Touches the baking-tin lid.,,,C,a patch beside the piece is taken as light through it
+s05-X47b,Touches neither because neither is clear.,,,x,dim read as none; shown with help
+s05-E46a,Wait long enough and the unlit label shows up.,,,A,waiting alone makes the object visible
+s05-E46a,The little light needs another lamp to be seen.,,,B,a source needs another lamp
+s05-E46a,Names the label and the little light and says nothing about what was compared.,,,x,naming earns no point; stays incomplete
+s05-E46b,The side patch shows light went through the mirror.,,,C,redirection taken as transmission
+s05-E46b,The mirror needs a fourth group.,,,D,two sorting questions mixed
+s05-E46b,I moved the light for each piece so it was easy to see.,,,E,a changed light position confounds the pieces
+s05-E46b,Names the four pieces and says nothing about what each did.,,,x,naming earns no point; stays incomplete
+s06-X48a,Touches the flashlight at the friend's face.,,,x,a safety gap; light never points at eyes is said aloud again; shown with help
+s06-X48b,"Yes, the friend got the signal.",,,A,noticing the signal is taken as understanding the message
+s06-X49a,Touches the paper plan.,,,B,a plan is taken for a device that sends
+s06-X49b,Touches the string lying in loops.,,,x,slack string is read as ready; said aloud; shown with help
+s06-X50a,Touches the row with the gap.,,,E,a gap between strips is counted as measuring
+s06-X50b,"Says 5 strips, counting the gap.",,,E,the gap is counted as a unit
+s06-X51a,Touches the pair where the signal changed.,,,D,a changed signal is not seen as a second change
+s06-X51b,Says it works anywhere and stops.,,,C,reach is assumed from one near result
+s06-X51b,Changes the signal and tries far away.,,,D,two things change at once
+s06-X52a,"Yes, it will work every time.",,,F,one match is taken as proof it always works
+s06-X52b,Touches the record with a match and a miss.,,,F,one match is taken as a reason to depend
+s06-X53a,Touches the lamp blink.,,,x,"the screen blocks light; review of unit 5, said aloud; shown with help"
+s06-X53b,Touches the ribbon.,,,x,a feature chosen with no trial behind it; said aloud; shown with help
+s06-X55a,Touches shout louder.,,,x,shouting is not the problem and is not the aim; shown with help
+s06-X55a,Touches change the message.,,,x,changing the message is a different test; shown with help
+s06-X55b,"My friend saw the blink, so it worked.",,,A,noticing is taken as understanding when the friend marked another card
+s06-X55b,"It worked near, so it works anywhere.",,,C,reach is assumed from the near mark
+s06-X55b,It failed far because it was far.,,,D,"the signal also changed, so distance alone is not the reason"
+s06-X55b,"It worked once, so it will every time.",,,F,one result is taken as proof
+s06-E54a,"My sketch is a nice picture of a drum, so my device is done.",,,B,a sketch is taken for a built device
+s06-E54a,Names the problem and says nothing about a trial or a built part.,,,x,naming earns no point; stays incomplete
+s06-E54b,"My friend saw the blink, so the message worked.",,,A,noticing is taken as understanding the message
+s06-E54b,"It worked at the near mark, so it works at the farther mark too.",,,C,reach is assumed from the near mark
+s06-E54b,I changed the signal and it failed far away because it was far.,,,D,"two changes, so distance alone is not shown"
+s06-E54b,"The path to the farther mark is 7 strips, counting the gap.",,,E,a gap is counted as a strip
+s06-E54b,"It worked once, so it will always work.",,,F,one success is taken as dependable
+s06-E54b,Names the drum and the friend and says nothing about the path or the marks.,,,x,naming earns no point; stays incomplete
+s07-X56a,"Says the young do nothing, the adult does it all.",,,A,only the adult is taken to act
+s07-X56b,Touches the covered nest frame.,,,x,the young in the nest are taken for the adult action; said aloud again; shown with help
+s07-X56c,Why does the mother do that? The babies do not do anything.,,,A,only the adult is taken to act
+s07-X57a,Touches the young swimming out.,,,x,the young action is taken for the adult action; shown with help
+s07-X57b,"Says the young do nothing, she does it.",,,A,only the adult is taken to act
+s07-X57c,Touches the picture with the food arrow.,,,D,a plant is taken to feed its young like an animal
+s07-X57c,"Says neither, a plant has no young.",,,E,grown plants are left out of the idea
+s07-X58a,Touches the mother wrapping the pup.,,,x,a thing only the words tell is taken for something the picture shows; shown with help
+s07-X58b,Says the picture shows her wrapping it.,,,C,a picture is taken to show what only the words report
+s07-X58c,You can see the kelp holding it in the picture.,,,C,a reason is taken to be visible in a picture
+s07-X59a,"Says nothing, the parent keeps it warm.",,,A,only the adult is taken to act
+s07-X59b,Touches the chick staying under the fold.,,,x,the young action is taken for the adult action; shown with help
+s07-X59c,"Touches yes, they all do the same thing.",,,B,one care behaviour is taken for every animal
+s07-P59a,The grown-up helps the babies.,,,A,only the adult is taken to act
+s07-E60a,Only the big duck does anything useful.,,,A,only the adult is taken to act
+s07-E60a,Every animal must use these calls.,,,B,one care behaviour is taken for every animal
+s07-E60a,The picture proves what the call sounded like.,,,C,a picture is taken to prove a sound
+s07-E60a,Names the ducks and says nothing about calls or staying still.,,,x,naming earns no point; stays incomplete
+s07-E60b,The grown sunflower brings food to its seedling.,,,D,a plant is taken to feed its young like an animal
+s07-E60b,Grown plants cannot make young.,,,E,grown plants are left out of the idea
+s07-E60b,Marks the young plant and says nothing about where it came from.,,,x,marking earns no point; stays incomplete
+s07-X61a,"Says nothing, the mother does it.",,,A,only the adult is taken to act
+s07-X61b,Touches the frame with the distant adult.,,,x,the before frame is taken for the helping frame; shown with help
+s07-X61c,She comes because I can hear it call in the picture.,,,C,a picture is taken to prove a sound
+s08-X9a,Touches the dark part.,,,D,the dark part is taken to be the daylight
+s08-X9b,"Nothing, the report tells how long it was light.",,,C,one evening report is taken to give the whole day
+s08-X62a,Touches the October strip.,,,x,a strip already in its right group is moved; shown with help
+s08-X62b,They are all the same.,,,A,every season is taken to have the same daylight
+s08-X63a,Touches the noon report.,,,C,one moment is taken to tell the whole day
+s08-X63a,Touches the card with the same size of sun in each box.,,,x,a drawing is taken for a record; shown with help
+s08-X63b,"The same, they are all about the same.",,,A,every season is taken to have the same daylight
+s08-X63b,Longer.,,,B,the seasonal comparison is reversed
+s08-E64a,All of the seasons have the same daylight.,,,A,every season is taken to have the same daylight
+s08-E64a,Winter has more daylight.,,,B,"the seasonal comparison is reversed, with no reason about shading"
+s08-E64a,"Points only to the evening report: it was light at 5:30, so the day was long.",,,C,one evening report is taken to give the whole day
+s08-E64a,"Winter has more daylight, because its dark part is the longest.",,,D,the dark part is taken to be the daylight
+s08-E64a,Names the seasons and points to nothing.,,,x,naming earns no point; stays incomplete
+s08-X65a,Touches the fall label.,,,x,a label already right is changed; shown with help
+s08-X65b,Winter has the most daylight.,,,B,the seasonal comparison is reversed
+s08-X65b,"December's dark part is longest, so it has the most daylight.",,,D,the dark part is taken to be the daylight
+c1-S35a,"Puts the covered dot back by the gate or on the bench dot, because the sun stays in one place.",,,A,the sun is taken to stay at one apparent position
+c1-S35a,Touches the dot nearest the gate with no reason given.,,,x,naming a place earns no point; shown with help if pointed along the dots
+c1-S35b,"Touches high above the water tower, because the moon stays in one place.",,,B,the moon is taken to stay at one apparent position
+c1-S35b,"Touches low above the chimney, back at the start.",,,x,the path is not followed on; shown with help if pointed along the pictures
+c1-S35c,Says the stars are gone in the morning.,,,C,stars are taken to cease to exist in the day
+c1-S35c,Touches the cloudy dark night.,,,x,a dark night is chosen without the clear sky; shown with help
+c1-P35a,Says the roots eat the soil.,,,D,roots are taken to take in soil as food
+c1-P35a,Marks the leaves as the part that takes in water.,,,x,another part is given the job; shown with help
+c1-P35b,"Says the plant did nothing, because plants cannot move or respond.",,,E,a plant is taken to be unable to respond
+c1-P35b,Draws the arrow from the leaves to the window.,,,x,the arrow is backwards; shown with help
+c1-A35a,Says the shell helps the snail see.,,,x,another part's job is named; shown with help
+c1-A35b,"Says the eyes move the tongue, or touches the eyes for both.",,,F,the part that senses is taken to be the part that moves
+c1-C35a,Says to stick a snail picture on a flat cover.,,,G,a picture on the cover is taken to make the design work
+c1-C35b,Draws a flat card resting on the dish with a snail picture on it.,,,G,"a picture is taken to make the design work, and the cover touches the dish"
+c1-C35b,Draws a cover and no dish.,,,x,the problem object is left out
+c1-C35c,Circles all three without sliding the marker.,,,x,the check was not carried out; stays incomplete
+c1-C35d,Says the snail picture on the cover keeps the branch off.,,,G,a picture is taken to make the design work
+c1-L36a,"Touches fits, because they all have the same leaf shape.",,,H,young are taken to be exact copies of their parent
+c1-L36b,Touches fits: a white ear means a different kind.,,,I,a visible difference is taken to make a different kind
+c1-V36a,Touches the hand pressing the strip with sound on as a sound test.,,,L,a touch is taken to be a fair sound-only test
+c1-V36a,Touches only the sound on record.,,,x,no comparison record is chosen; stays incomplete
+c1-V36b,Says the held lid still sounds.,,,J,a source is taken to keep sounding after its shaking is stopped
+c1-V36c,"Says sound cannot make a strip shake, so the strip moved some other way.",,,K,sound is taken not to make another material shake
+c1-V36c,"Touches it shakes, so it sounds.",,,x,the other arrow; shown with help
+c1-X37a,"Touches the fountain place or the path place, because the sun stays in one place.",,,A,the sun is taken to stay at one apparent position
+c1-X37b,Touches the flat card with a bird drawn on it.,,,G,a picture is taken to make the design work
+c1-X37c,Touches the hooves card and says they are exact copies.,,,H,young are taken to be exact copies of their parent
+c1-X37d,Says sound cannot move a streamer.,,,K,sound is taken not to make another material shake
+c1-X37d,"Touches it shakes, so it sounds.",,,x,the other arrow; shown with help
+c2-V66a,Touches neither look and says the toy shows up if we wait longer.,,,M,waiting alone is taken to make an object seen
+c2-V66a,Touches look 1.,,,x,the unlit look is chosen; shown with help
+c2-V66b,Says it needs another lamp to shine on it first.,,,N,a lit lamp is taken to need another light to be seen
+c2-P66a,Moves the lamp closer for each piece.,,,P,the light is taken to be what moves between pieces
+c2-P66a,Touches only the piece.,,,x,what stays still is not named; shown with help
+c2-T66a,Puts the filter under dark shadow.,,,x,the partly clear piece is taken for blocking; shown with help
+c2-T66b,Says a patch beside the mirror means the light went through it.,,,O,a patch beside a mirror is taken for light through
+c2-T66c,"Touches keep, because most pieces let light through.",,,x,one case is not allowed to change the account; shown with help
+c2-M67a,"Records what was meant at the farther mark, not what the friend marked.",,,x,the friend's actual mark is not used; shown with help
+c2-M67b,Says seeing the flashes means the friend understood.,,,Q,noticing a signal is taken for understanding it
+c2-M67c,Says it works at every mark because it worked near.,,,R,working near is taken to mean working far
+c2-A67a,Says only the ewe does something for the lamb.,,,S,only the adult is taken to act for the young
+c2-A67b,Says the picture shows what sound the chick made.,,,T,a still picture is taken to show a sound
+c2-A67c,Says grown plants cannot make young.,,,U,a grown plant is taken not to make young
+c2-S67a,Says winter has more daylight than spring.,,,V,the seasonal comparison is reversed
+c2-S67a,Touches the dark part of a strip.,,,x,the key is misread; shown with help
+c2-S67b,Says the evening report tells the whole day.,,,W,one moment is taken for the whole day
+c2-X68a,Says the patch means light went through the mirror.,,,O,a patch beside a mirror is taken for light through
+c2-X68b,Says it works farther too because it worked near.,,,R,working near is taken to mean working far
+c2-X68c,Touches the note and says it tells the whole day.,,,W,one moment is taken for the whole day
+c2-X68d,Says only the cow does something for the calf.,,,S,only the adult is taken to act for the young
