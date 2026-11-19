@@ -1098,8 +1098,9 @@ def check(course):
             if e['stretch'] == s and 'memory' in e['source'].lower():
                 notes.append('unit %s error %s rests on memory, not a source' % (s, e['letter']))
         # prose weight, outside the generated blocks
-        f = DOCS / course / ('s%02d.md' % int(s))
-        if f.exists():
+        # stretch C (course-level check days) has no unit plan file (ladder run, 2026-11-19)
+        f = DOCS / course / ('s%02d.md' % int(s)) if s.isdigit() else None
+        if f and f.exists():
             t = re.sub(r'<!-- gen:.*?<!-- /gen -->', '', f.read_text(encoding='utf-8'), flags=re.S)
             notes.append('unit %s: %d words of prose outside the generated tables (%s)' % (s, len(t.split()), f.name))
 
