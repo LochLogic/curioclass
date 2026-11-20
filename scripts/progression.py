@@ -69,7 +69,7 @@ ANCHOR = {'social-studies': 'ma-hss-2018.txt', 'science': 'ngss-pes.txt', 'ela':
           'math': 'ccss-math-standards.txt', 'health': 'nhes-2024.txt', 'physical-education': 'shape-pe-2024.txt',
           'computer-science': 'csta-2026-ids.txt', 'arts': 'ncas-performance-standards.txt'}
 # anchor codes no row is asked to own: arts pre-K ids (no pre-K course; arts STANDARD.md section 3)
-ANCHOR_SKIP = {'arts': re.compile(r'\.PK[a-z]$')}
+ANCHOR_SKIP = {'arts': re.compile(r'\.PK[a-z]?$')}  # media arts ids may carry no letter
 LEVEL = {'I': '9', 'II': '10', 'III': '11'}
 SPAN = {'2': ['K', '1', '2'], '5': ['3', '4', '5'], '8': ['6', '7', '8'], '12': ['9', '10', '11', '12']}
 
@@ -118,7 +118,7 @@ def code_grades(subject, code):
     if subject == 'arts':
         # VA:Cr2.3.4a sits in grade 4 (Ka in K). High school levels (arts STANDARD.md 3.2): Level 1 = grade 9 (.Ia),
         # Level 2 = 10 (.IIa), Level 3 = 11 (.IIIa); grade 12 is the optional Level 4 and may only contribute (~)
-        m = re.match(r'^(?:VA|MU|TH|DA|MA):[A-Za-z]+\d+\.\d+\.(?:C\.)?(K|[1-8]|I|II|III)[a-z]$', code)
+        m = re.match(r'^(?:VA|MU|TH|DA|MA):[A-Za-z]+\d+\.\d+\.(?:C\.)?(K|[1-8]|I|II|III)[a-z]?$', code)
         if not m:
             return None
         g = m.group(1)
