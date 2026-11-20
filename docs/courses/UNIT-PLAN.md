@@ -124,13 +124,13 @@ sets is given).
     or check. A day that ends with the next unit's readiness check names its ten minutes, as in "Check (end-of-unit
     assessment 30, respond 20, next readiness 10)" (field 4). The counts go in the header.
 12. **Shared. What is carried is named, with what happens to it over the section** (math: tied and withdrawn;
-    science: revised; ELA: read and returned to). *Math fills:* the model, the day it is tied to the written
+    science: revised; ELA: read and returned to; arts: shown, carried with a step card, withdrawn). *Math fills:* the model, the day it is tied to the written
     form and the day it is withdrawn.
 13. **Shared. Teaching first is the default for anything new.** An opening task is allowed when students can
     attempt it and the goal is an idea. *Math fills:* ten minutes at most.
 14. **Shared. No timer without a grounded purpose** (a pace cue, a movement game, classroom management; BASELINE rule 30). *Math fills:* a fluency
     section says how fluency is built without time pressure.
-15. **Shared. The standard's verb is quoted exactly,** and a section says which part of the standard it carries.
+15. **Shared. The standard's verb is quoted exactly,** and a section says which part of the standard it carries. *Arts:* the performance standard's verb is not quoted (all rights reserved); the unit plan states each part in one line of our own words and cites the id; an anchor's wording may be quoted. *Computer science:* a plan names each standard by its id and gives its action in a short phrase of our own words; the statement and its boundary statement are never quoted.
 16. **Shared. Nothing claims a result.** Anything written from memory is marked "from memory". A target of our
     own is marked "ours, untested". A tool that is not built is marked "spec only". Sources are listed.
 17. **Shared. House rules hold:** plain words, short sentences, "Curio Class" in full, no company names in the

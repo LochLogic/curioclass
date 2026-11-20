@@ -54,14 +54,22 @@ STD_FILES = {'social-studies': ['ma-hss-2018.txt', 'c3-indicators.txt', 'ccss-li
              'science': ['ngss-pes.txt', 'ccss-literacy-6-12.txt'],
              # the later subjects (added 2026-11-19, health and PE pre-work): span-coded indicators, see code_grades
              'health': ['nhes-2024.txt', 'hecat-topics.txt'],
-             'physical-education': ['shape-pe-2024.txt']}
+             'physical-education': ['shape-pe-2024.txt'],
+             # computer science (added 2026-11-19, CS pre-work): Foundational ids only; specialty ids wait on Cory
+             'computer-science': ['csta-2026-ids.txt'],
+             # arts (added 2026-11-19, arts pre-work): NCAS performance standards, one file for the five disciplines
+             'arts': ['ncas-performance-standards.txt']}
 # the core electives' own lists (added 2026-11-16): accepted codes, and every code in them must be owned by a row
 ELECTIVE_FILES = {'math': ['curio-math-electives.txt'], 'science': ['curio-science-electives.txt'],
                   'social-studies': ['apa-hs-psych-2022.txt']}
 for _s, _fs in ELECTIVE_FILES.items():
     STD_FILES[_s] = STD_FILES[_s] + _fs
 ANCHOR = {'social-studies': 'ma-hss-2018.txt', 'science': 'ngss-pes.txt', 'ela': 'ccss-ela-standards.txt',
-          'math': 'ccss-math-standards.txt', 'health': 'nhes-2024.txt', 'physical-education': 'shape-pe-2024.txt'}
+          'math': 'ccss-math-standards.txt', 'health': 'nhes-2024.txt', 'physical-education': 'shape-pe-2024.txt',
+          'computer-science': 'csta-2026-ids.txt', 'arts': 'ncas-performance-standards.txt'}
+# anchor codes no row is asked to own: arts pre-K ids (no pre-K course; arts STANDARD.md section 3)
+ANCHOR_SKIP = {'arts': re.compile(r'\.PK[a-z]$')}
+LEVEL = {'I': '9', 'II': '10', 'III': '11'}
 SPAN = {'2': ['K', '1', '2'], '5': ['3', '4', '5'], '8': ['6', '7', '8'], '12': ['9', '10', '11', '12']}
 
 
@@ -90,6 +98,28 @@ def code_grades(subject, code):
             band = SPAN[p[2]]
             return band, band
         return None
+    if subject == 'computer-science':
+        # E3-ALG-IM-03: EK = K, E1 to E5 = own grade; MS and HS ids are owned by one grade of the band and may be
+        # ~ in its other grades (computer science STANDARD.md, 2026-11-19)
+        b = code.split('-')[0]
+        if b == 'EK':
+            return ['K'], ['K']
+        if len(b) == 2 and b[0] == 'E' and b[1] in '12345':
+            return [b[1]], [b[1]]
+        if b in ('MS', 'HS'):
+            band = BAND['6-8' if b == 'MS' else '9-12']
+            return band, band
+        return None
+    if subject == 'arts':
+        # VA:Cr2.3.4a sits in grade 4 (Ka in K). High school levels (arts STANDARD.md 3.2): Level 1 = grade 9 (.Ia),
+        # Level 2 = 10 (.IIa), Level 3 = 11 (.IIIa); grade 12 is the optional Level 4 and may only contribute (~)
+        m = re.match(r'^(?:VA|MU|TH|DA|MA):[A-Za-z]+\d+\.\d+\.(?:C\.)?(K|[1-8]|I|II|III)[a-z]$', code)
+        if not m:
+            return None
+        g = m.group(1)
+        if g in LEVEL:
+            return [LEVEL[g]], [LEVEL[g]] + (['12'] if g == 'III' else [])
+        return [g], [g]
     if subject != 'ela':
         return None
     p = code.split('.')
@@ -220,7 +250,7 @@ def check(subject):
             if parent(code):
                 kids.setdefault(parent(code), []).append(code)
         for code in anchor:
-            if HEADING.match(code):
+            if HEADING.match(code) or (subject in ANCHOR_SKIP and ANCHOR_SKIP[subject].search(code)):
                 continue
             plus = code in plus_codes
             named = code in owners or (parent(code) in owners and not plus) or (

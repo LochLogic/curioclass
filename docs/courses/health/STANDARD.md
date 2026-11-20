@@ -71,20 +71,20 @@ read; it is checked against each module's span tables when the band's units are 
 
 | Topic | K to 2 | 3 to 5 | 6 to 8 | 9 to 12 |
 |---|---|---|---|---|
-| Personal health and wellness (PHW) | 1, 2, 3, 4, 5 | 1 to 9 | All but 12 | All |
-| Food and nutrition (FN) | 1, 2, 3, 6, 7 | 1 to 8, 12 | 1 to 9, 12 | All |
+| Personal health and wellness (PHW) | 1, 2, 3, 4, 5, 11 | 1 to 11 | All | All |
+| Food and nutrition (FN) | 1, 2, 3, 6, 7 | 1 to 8, 10, 12 | 1 to 9, 11, 12 | All |
 | Mental and emotional health (MEH) | 1, 2, 3, 4, 5, 7 | 1 to 5, 7 to 9 | All; 6 in a sensitive unit (s) | All; 6 in a sensitive unit (s) |
 | Physical activity (PA) | 1, 4, 6 (with PE) | 1 to 7 (with PE) | All (with PE) | All (with PE) |
-| Safety (S) | 1, 3, 4, 5, 6, 7 | 1, 3 to 8 | All | All |
+| Safety (S) | 1, 3 to 8 | 1, 3 to 8 | All | All |
 | Violence prevention (V) | 1, 3, 7; 8 in body safety (s) | 1, 2, 3, 5, 7; 8, 9 in body safety (s) | 1 to 3, 5 to 7; 4, 8, 9, 10 in a sensitive unit (s) | All; 4, 8, 9, 10 in a sensitive unit (s) |
 | Tobacco (T) | 1, 2 | 1, 2, 3, 4 | All | All |
 | Alcohol and other drugs (AOD) | 1 (medicine safety) | 1, 2, 3 | 1 to 4, 6, 8 | All |
-| Sexual health (SH) | 1, 2, 3 (s) | 1, 2, 3, 4, 6 (s) | 1 to 9 (s) | All (s) |
+| Sexual health (SH) | 1, 2, 3 (s) | 1, 2, 3, 4, 6 (s) | 1 to 10 (s) | All (s) |
 
 Key: a number listed in a sensitive part of a cell is taught only in the sensitive unit. MEH 6 is not taught
 before grade 6; a grade 3 to 5 mental health unit teaches getting help for sad or worried feelings under the
-help-seeking outcome, which the planner confirms from our outcome wording. PHW 12 is left to 9 to 12; the 6 to 8
-planner confirms the reason from its wording. In the 9 to 12 column, an outcome 6 to 8 already teaches is a
+help-seeking outcome, which the planner confirms from our outcome wording. Care-seeking (PHW 10 and 11) starts in
+K to 2 because the NHES care indicators do; PHW 12 (fads) is judged in grade 7 (progression read, 2026-11-19). In the 9 to 12 column, an outcome 6 to 8 already teaches is a
 revisit (a short practice unit), not taught again in full.
 
 Standards by band: every band teaches all eight NHES standards across its topics, and every skill standard

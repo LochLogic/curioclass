@@ -1,8 +1,10 @@
 # Computer science: approach (layer 3)
 
-**DRAFT, 2026-11-16, for Cory's yes.** Nothing here is decided until he says so. Short by design: it fills the subject
-slots of the unit and section plan (docs/courses/UNIT-PLAN.md) and leans on the shared approach (docs/APPROACH.md),
-the lens (docs/agents/lenses/computer-science.md) and the standard (STANDARD.md). Ours, untested.
+**DRAFT, 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-computer-science-read-2026-11-19.md), for
+Cory's yes.** Nothing here is decided until he says so. It fills the subject slots of the unit and section plan
+(docs/courses/UNIT-PLAN.md) and leans on the shared approach (docs/APPROACH.md), the lens
+(docs/agents/lenses/computer-science.md) and the standard (STANDARD.md), which holds the rules this page points to:
+ownership of MS and HS ids, devices and rooms, privacy and safety, blocks to text, real cases, quoting. Ours, untested.
 
 ## The kinds of day, in computer science's words
 
@@ -13,36 +15,113 @@ The `kind` column keeps the shared words; the goal says the activity.
 | Understanding | Unplugged or trace day | An idea taught with cards, paper or movement, or a given program traced and predicted before it is run |
 | Fluency | Modify day | Students change a working program or algorithm in small, checked steps; short practice with the construct |
 | Application | Make day, design day or society day | Students design and build their own program or artifact against criteria, or audit a real system or case with evidence |
-| Check | Assessment day | End-of-unit assessment: read and trace items plus a short build or debug task |
+| Check | Assessment day | End-of-unit assessment: read and trace items plus a short build or debug task. The task has look-fors and two sample programs, one that meets them and one that does not (UNIT-PLAN unit field 5), and a paper version for a class with no device, marked as in STANDARD.md "Devices and rooms" |
 | Respond | Respond day | Fixes from the assessment, by error letter |
 
 Order inside a unit: understanding before modify before make. A make day never comes before a trace or modify day on
 the same construct.
 
+## How a day opens (section field 6)
+
+Every day opens in its first five minutes with one of three things. (a) A retrieval trace: a short program or algorithm
+from an earlier unit, "what happens?", answered on paper, three minutes. (b) The wrong example from the last exit
+ticket, if more than a third missed it. (c) For a new idea, one short concrete moment, unplugged, that the teaching then
+names. Teaching first is the default for anything new: no blank editor, and no "try it" on a construct, before one worked
+example has been shown and traced. In grades 6 to 12 a day may open with a predict task on a short given program (ten
+minutes at most; ours, untested) when students have all they need to attempt it. The day row gives the opening and its
+minutes.
+
 ## The form of daily evidence
 
-Each day ends with one piece of evidence the teacher can read in a minute per student:
-- **Trace or predict days:** an exit ticket with a short program or algorithm and the question "what happens?",
-  answered in writing, with wrong answers by error letter (UNIT-PLAN rule 3).
+- **Grades K to 2:** the answer is a pointing, sorting or ordering task, or said aloud to a partner and noted by the
+  teacher by exception; a program is checked on the screen during the day.
+- **Grades 3 to 12, trace or predict days:** an exit ticket with a short program or algorithm and the question "what
+  happens?", answered in writing, with wrong answers by error letter (UNIT-PLAN rule 3).
 - **Modify and make days:** the program itself, checked against two or three stated look-fors, plus one line from the
-  student: what they tested and what they changed.
+  student: what they tested and what they changed. A tool checks the look-fors it can (does the program do these three
+  things on the tests?) and shows the student a "yes" or "not yet" for each; the teacher reads the open part for a
+  rotating third of the class each day, so every student is read at least once a week and twice if the exit ticket
+  shows a gap.
 - **Unplugged days:** the paper artifact (the sorted cards, the drawn path, the encoded message) with one written
-  question.
-- **Society days:** a short claim with one piece of dated evidence.
+  question (K to 2: said or pointed).
+- **Society days:** a short claim and two views, each with one dated source (STANDARD.md "Real cases in society days").
+- Student work is read on the device, or on a printout the student hands in.
 
 ## What computer science adds to the plan fields
 
-- Unit field 2: the concepts the unit covers (ALG, PRO, DAT, SYS, SOC) and the practice taught; the unplugged path.
-- Section field 1: the notional-machine point the teacher page must explain (what the computer does, step by step).
-- Section field 3: each day's evidence in the form above.
-- Section field 4: the expected bugs and misconceptions, each shown as a wrong program beside a right one.
-- Section field 5: what is carried: the worked program, modified then withdrawn; the day students first build alone.
-- Section field 6: kind of day as above; minutes at the keyboard and away from it.
-- Section field 7: pair roles (driver and navigator) and when they switch.
-- Section field 8: the device count; the paper path for every tool day.
+**Unit plan.**
+- Field 2: each standard's parts by verb (the id and our own words, STANDARD.md "Quoting"); the practice the unit
+  teaches, named by its group; what is carried through the unit: the anchor program, algorithm or dataset (its name, the
+  day it is shown whole, the day it is withdrawn, the day students first build alone); the unit's unplugged days,
+  counted.
+- Field 8: each tool with its day, mark, job and verdict; devices needed per pair; the paper stand-in for every device
+  day; the few-device and one-screen versions (STANDARD.md "Devices and rooms").
 
-## Questions in this draft
+**Section plan.**
+- Field 1: the notional-machine point (what the computer does with each line, in order) or, in a unit with no code, the
+  adult-level background; the common bug and what it shows; the practice, its day and its task.
+- Field 3: each day's evidence in the form set under "The form of daily evidence".
+- Field 4: each expected error as a wrong example beside a right one: a wrong program for code, a wrong statement for a
+  systems, data or society idea.
+- Field 5: what is carried and what happens to it: the whole worked program, then the same program with blanks or
+  shuffled lines, then modified by students, then withdrawn; the key moments and the tool that serves each; what a room
+  with nothing does.
+- Field 6: one row a day: kind in this page's words; how the day opens and for how long; who holds the worked program
+  (teacher, pair, student); tool part, mark, job and minutes at the device; work away from the device; the evidence
+  number.
+- Field 7: two or three planned questions, at least one of the form "what will happen if"; one written or spoken task
+  ("what I tested and what I changed"); its look-fors. Pair roles (driver, navigator) and the time they switch go here.
+- Field 8: practice that returns: a three-minute trace or debug of an earlier unit's construct, the unit named. No
+  fluency target.
+- Field 9: English learners, access, check accommodations, reading load and extension, as set under "Supports".
+- Field 10: two rooms: one child at home; one screen in the room (STANDARD.md "Devices and rooms").
+- Field 11: what is not in the section, still to make, and the "from memory" marks.
 
-- Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per grade K to 12, and the UK
-  computing curriculum as a partial base for K to 8 (STANDARD.md section 2).
-- Settled 2026-11-16 (Cory, Desk card q-later-followups-1): one session a week in K to 5, two to three a week in 6 to 12.
+**Teacher page for a unit with code** carries: the idea at adult level; a finished, tested solution to every program
+students write; each common bug as a wrong program beside a right one with what it shows; the exact message the tool
+shows for each bug; and "if you are stuck" steps a teacher can follow without writing code. A teacher is never asked to
+debug a student's program on the fly.
+
+## Supports (section field 9)
+
+- **English learners.** Each unit names five to eight words taught in depth (for example step, repeat, if, variable,
+  bug), each with a picture or a traced example, and two sentence frames: "First the program ___, then it ___" and "I
+  predict ___ because line ___ says ___". Words with an everyday meaning (run, loop, bug, sort, cloud, mouse) are taught
+  as two meanings. A student may answer a trace in numbers, arrows or the home language. Each key says which wrong
+  answers can come from reading the words rather than from the idea, so a language gap is not marked as a content gap.
+- **Access.** Every tool works by keyboard alone, needs no colour to tell things apart (shape or label as well),
+  enlarges text without breaking, has no flashing, and offers a typed or list choice wherever it offers drag and drop;
+  every block program has a text view. For a student who cannot see the screen, the unplugged version uses cards and
+  objects they can feel, and code is read aloud one line at a time. No tool task is timed.
+- **Reading load.** Grades K to 2: no code read alone (icons, read aloud). Grades 3 to 5: up to ten lines. Grades 6 to 12:
+  up to twenty lines (ours, untested). Error messages are plain words we write.
+- **Check accommodations.** Read aloud, oral explanation, a scribe, extra time at the device, the paper version.
+- **Extension.** On the same standard: a second bug, a new case the program must handle, an explanation of why a second
+  solution is clearer. Never the next grade's construct.
+
+## Pacing
+
+Each course frame states weeks, sessions a week and minutes a session. Because K to 5 meet once a week, every session
+opens with the three-minute retrieval trace and every unit ends with a respond day. Ours, untested: kindergarten to
+grade 2 spend about two thirds of the time away from a device; grades 3 to 5 about half; grades 6 to 12 at least one
+unplugged day in every unit. A K to 5 unit lets two or three ids share one anchor program, so one id is not one
+session. Which ids a high school year owns is set in STANDARD.md "Ownership of MS and HS ids".
+
+## Honest limits
+
+The order of days (read and predict, then modify, then make) is ours and untested; it rests on published practice that
+has not been re-read for Curio Class (from memory). No page claims that learning to program improves thinking in general
+or school results. The course has not been tried with children. A one-page logic model is owed at course level. Sources
+read for this page: none yet; each one added is listed with how much of it was read.
+
+## Settled
+
+- 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per grade K to 12, and the UK computing
+  curriculum as a partial base for K to 8 (STANDARD.md section 2).
+- 2026-11-16 (Cory, Desk card q-later-followups-1): one session a week in K to 5, two to three a week in 6 to 12.
+
+## Open for Cory
+
+Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-cs-1): yes to this approach page as the layer 3 page for
+computer science. The other open picks (S1 ids in grades 11 and 12, the generated-text day, our own editor, society cases
+naming government bodies and courts but not companies) are in STANDARD.md.
