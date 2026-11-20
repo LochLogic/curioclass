@@ -9,175 +9,176 @@
 # note: standards: S1 functional health information; S2 analyze influences; S3 access valid and reliable resources; S4 interpersonal communication; S5 decision-making; S6 goal-setting; S7 practices and behaviors; S8 advocacy.
 # note: CDC HECAT health topics are in hecat-topics.txt. HECAT 2021 is keyed to the 2007 standards (2nd edition), not to this set; our mapping is in docs/standards-notes/health-2007-to-2024.md.
 # note: added 2026-11-16. Reuse terms read at source: the free page shows no reuse terms and an "All Rights Reserved" footer, so ids only. Band coverage map and sensitive-unit rule: docs/courses/health/STANDARD.md.
-NHES.S1.2.1
-NHES.S1.2.2
-NHES.S1.2.3
-NHES.S1.2.4
-NHES.S1.2.5
-NHES.S1.2.6
-NHES.S1.2.7
-NHES.S1.5.1
-NHES.S1.5.2
-NHES.S1.5.3
-NHES.S1.5.4
-NHES.S1.5.5
-NHES.S1.5.6
-NHES.S1.5.7
-NHES.S1.8.1
-NHES.S1.8.2
-NHES.S1.8.3
-NHES.S1.8.4
-NHES.S1.8.5
-NHES.S1.8.6
-NHES.S1.8.7
-NHES.S1.12.1
-NHES.S1.12.2
-NHES.S1.12.3
-NHES.S1.12.4
-NHES.S1.12.5
-NHES.S1.12.6
-NHES.S1.12.7
-NHES.S1.12.8
-NHES.S1.12.9
-NHES.S2.2.1
-NHES.S2.2.2
-NHES.S2.2.3
-NHES.S2.5.1
-NHES.S2.5.2
-NHES.S2.5.3
-NHES.S2.5.4
-NHES.S2.8.1
-NHES.S2.8.2
-NHES.S2.8.3
-NHES.S2.8.4
-NHES.S2.12.1
-NHES.S2.12.2
-NHES.S2.12.3
-NHES.S2.12.4
-NHES.S2.12.5
-NHES.S3.2.1
-NHES.S3.2.2
-NHES.S3.2.3
-NHES.S3.5.1
-NHES.S3.5.2
-NHES.S3.5.3
-NHES.S3.5.4
-NHES.S3.8.1
-NHES.S3.8.2
-NHES.S3.8.3
-NHES.S3.8.4
-NHES.S3.8.5
-NHES.S3.12.1
-NHES.S3.12.2
-NHES.S3.12.3
-NHES.S3.12.4
-NHES.S3.12.5
-NHES.S4.2.1
-NHES.S4.2.2
-NHES.S4.2.3
-NHES.S4.2.4
-NHES.S4.2.5
-NHES.S4.5.1
-NHES.S4.5.2
-NHES.S4.5.3
-NHES.S4.5.4
-NHES.S4.5.5
-NHES.S4.5.6
-NHES.S4.5.7
-NHES.S4.8.1
-NHES.S4.8.2
-NHES.S4.8.3
-NHES.S4.8.4
-NHES.S4.8.5
-NHES.S4.8.6
-NHES.S4.8.7
-NHES.S4.8.8
-NHES.S4.8.9
-NHES.S4.8.10
-NHES.S4.12.1
-NHES.S4.12.2
-NHES.S4.12.3
-NHES.S4.12.4
-NHES.S4.12.5
-NHES.S4.12.6
-NHES.S4.12.7
-NHES.S4.12.8
-NHES.S4.12.9
-NHES.S4.12.10
-NHES.S5.2.1
-NHES.S5.2.2
-NHES.S5.2.3
-NHES.S5.2.4
-NHES.S5.5.1
-NHES.S5.5.2
-NHES.S5.5.3
-NHES.S5.5.4
-NHES.S5.5.5
-NHES.S5.8.1
-NHES.S5.8.2
-NHES.S5.8.3
-NHES.S5.8.4
-NHES.S5.8.5
-NHES.S5.8.6
-NHES.S5.12.1
-NHES.S5.12.2
-NHES.S5.12.3
-NHES.S5.12.4
-NHES.S5.12.5
-NHES.S5.12.6
-NHES.S5.12.7
-NHES.S5.12.8
-NHES.S6.2.1
-NHES.S6.2.2
-NHES.S6.2.3
-NHES.S6.2.4
-NHES.S6.2.5
-NHES.S6.2.6
-NHES.S6.5.1
-NHES.S6.5.2
-NHES.S6.5.3
-NHES.S6.5.4
-NHES.S6.5.5
-NHES.S6.5.6
-NHES.S6.8.1
-NHES.S6.8.2
-NHES.S6.8.3
-NHES.S6.8.4
-NHES.S6.8.5
-NHES.S6.8.6
-NHES.S6.12.1
-NHES.S6.12.2
-NHES.S6.12.3
-NHES.S6.12.4
-NHES.S6.12.5
-NHES.S6.12.6
-NHES.S7.2.1
-NHES.S7.2.2
-NHES.S7.5.1
-NHES.S7.5.2
-NHES.S7.8.1
-NHES.S7.8.2
-NHES.S7.8.3
-NHES.S7.12.1
-NHES.S7.12.2
-NHES.S7.12.3
-NHES.S7.12.4
-NHES.S8.2.1
-NHES.S8.2.2
-NHES.S8.2.3
-NHES.S8.5.1
-NHES.S8.5.2
-NHES.S8.5.3
-NHES.S8.5.4
-NHES.S8.8.1
-NHES.S8.8.2
-NHES.S8.8.3
-NHES.S8.8.4
-NHES.S8.8.5
-NHES.S8.12.1
-NHES.S8.12.2
-NHES.S8.12.3
-NHES.S8.12.4
-NHES.S8.12.5
-NHES.S8.12.6
-NHES.S8.12.7
+# words: added 2026-11-19. After each id, a tab and one line in Curio Class's own words (ours, not the publisher's; never quoted on a page). Written from the free page above.
+NHES.S1.2.1	Students tell which of their own strengths help them stay healthy.
+NHES.S1.2.2	Students list the parts of wellness, such as body, mind and relationships.
+NHES.S1.2.3	Students tell how to lower the chance of getting sick or hurt.
+NHES.S1.2.4	Students describe things people do that keep them healthy.
+NHES.S1.2.5	Students say why being healthy and feeling well is important.
+NHES.S1.2.6	Students tell how home, school and neighborhood surroundings touch health.
+NHES.S1.2.7	Students say when a visit to a doctor or nurse is a good idea.
+NHES.S1.5.1	Students explain how to grow the strengths they already have to stay healthy.
+NHES.S1.5.2	Students describe a healthy action for each part of wellness.
+NHES.S1.5.3	Students explain ways to make illness and injury less likely.
+NHES.S1.5.4	Students show healthy routines, including how people look after a health condition.
+NHES.S1.5.5	Students examine how knowing how to find and use health information helps wellness.
+NHES.S1.5.6	Students examine how surroundings shape the health of a person and a community.
+NHES.S1.5.7	Students explain when to get health care and the reasons for it.
+NHES.S1.8.1	Students analyze how strengths can raise wellness for one person or a whole group.
+NHES.S1.8.2	Students analyze how habits support each part of wellness.
+NHES.S1.8.3	Students analyze behaviors that keep illness and injury from happening or lessen them.
+NHES.S1.8.4	Students analyze healthy routines, including living with a health condition.
+NHES.S1.8.5	Students analyze how skill with health information links to how healthy people are.
+NHES.S1.8.6	Students analyze how personal, social, community and environmental factors each affect health.
+NHES.S1.8.7	Students explain the ways health care services help keep a person healthy.
+NHES.S1.12.1	Students apply ways to build strengths that help both individual and shared health.
+NHES.S1.12.2	Students analyze how the parts of wellness connect to health results.
+NHES.S1.12.3	Students evaluate behaviors for how well they prevent or cut down illness and injury.
+NHES.S1.12.4	Students evaluate habits that support health, including care of ongoing conditions.
+NHES.S1.12.5	Students examine how health information skills of people and of organizations shape health results.
+NHES.S1.12.6	Students analyze how factors at many levels connect and together shape health results.
+NHES.S1.12.7	Students analyze what helps and what gets in the way of various health behaviors.
+NHES.S1.12.8	Students examine how confidence in one's ability and sense of risk change health behavior.
+NHES.S1.12.9	Students analyze how getting to health care relates to overall wellness.
+NHES.S2.2.1	Students name things that make a person more or less healthy.
+NHES.S2.2.2	Students describe how those things touch their own health and well-being.
+NHES.S2.2.3	Students explain how the same things can touch other people's health.
+NHES.S2.5.1	Students describe how various things shape a person's health and well-being.
+NHES.S2.5.2	Students work out how these things affect their own health and others' health.
+NHES.S2.5.3	Students explain why one factor can affect people and communities in different ways.
+NHES.S2.5.4	Students use tools and resources to deal with the things that affect wellness.
+NHES.S2.8.1	Students study how different influences link to and act on each other.
+NHES.S2.8.2	Students examine personal, group, community, society and environment factors behind behaviors, results and fair health.
+NHES.S2.8.3	Students analyze why influences land differently on groups and communities.
+NHES.S2.8.4	Students put methods and tools into practice to deal with what affects wellness.
+NHES.S2.12.1	Students judge how influences and behaviors act on each other and on well-being.
+NHES.S2.12.2	Students assess how social conditions such as income and neighborhood shape behaviors, results and equity in health.
+NHES.S2.12.3	Students appraise how factors from the personal to the environmental affect fairness in health.
+NHES.S2.12.4	Students design plans to handle the influences on their health and wellness.
+NHES.S2.12.5	Students use the resources available to them to manage influences on well-being.
+NHES.S3.2.1	Students recognize what makes an adult or other person a trustworthy helper for wellness.
+NHES.S3.2.2	Students show when and how to ask for help from people at home, school or in the community.
+NHES.S3.2.3	Students find the people who help with health at school and nearby.
+NHES.S3.5.1	Students choose which adults, people and health resources suit different situations.
+NHES.S3.5.2	Students find wellness resources at home, at school and in the community.
+NHES.S3.5.3	Students judge whether health facts, products and services are correct and can be trusted.
+NHES.S3.5.4	Students describe how wrong or misleading health claims can hurt people.
+NHES.S3.8.1	Students identify situations where they need a trusted adult or a health professional.
+NHES.S3.8.2	Students name what makes it easier or harder to reach reliable health information and help.
+NHES.S3.8.3	Students get health information, products and services from credible sources.
+NHES.S3.8.4	Students assess whether a health resource is correct, trustworthy and within reach.
+NHES.S3.8.5	Students use strategies for handling false and misleading health messages.
+NHES.S3.12.1	Students examine how easy it is to reach trusted adults, professionals and resources for wellness.
+NHES.S3.12.2	Students study what opens or blocks access to trustworthy health information and services.
+NHES.S3.12.3	Students rate health resources on accuracy, trustworthiness and availability.
+NHES.S3.12.4	Students choose accurate, trustworthy health sources and services and use them.
+NHES.S3.12.5	Students use approaches that push back on misinformation and deliberate disinformation.
+NHES.S4.2.1	Students share what they feel, want and need in ways that are good for health.
+NHES.S4.2.2	Students practice listening carefully in different places.
+NHES.S4.2.3	Students show what to say or do when something feels wrong, unsafe or hurtful.
+NHES.S4.2.4	Students identify ways to speak about personal limits and to honor their own and others'.
+NHES.S4.2.5	Students act with kindness and care toward other people.
+NHES.S4.5.1	Students communicate clearly what they think and need, in ways that help health.
+NHES.S4.5.2	Students use careful listening skills in a variety of situations.
+NHES.S4.5.3	Students show how to ask for help and how to give it.
+NHES.S4.5.4	Students show how to set personal limits and respect the limits of others.
+NHES.S4.5.5	Students show how to refuse in a variety of situations.
+NHES.S4.5.6	Students show ways to stay out of, handle and settle conflicts.
+NHES.S4.5.7	Students show how to speak and act with care and kindness.
+NHES.S4.8.1	Students communicate well in several ways, for their own good and others'.
+NHES.S4.8.2	Students listen carefully in many face-to-face situations.
+NHES.S4.8.3	Students use methods to seek support and to give it.
+NHES.S4.8.4	Students show how to state boundaries and say whether they agree to an activity.
+NHES.S4.8.5	Students use ways to turn down requests in many situations.
+NHES.S4.8.6	Students apply methods to prevent, handle and end conflicts.
+NHES.S4.8.7	Students work well with others in different settings.
+NHES.S4.8.8	Students use negotiation and compromise in different contexts.
+NHES.S4.8.9	Students show how to talk with people whose views or values differ from theirs.
+NHES.S4.8.10	Students show how to express understanding and concern for other people.
+NHES.S4.12.1	Students communicate effectively through many channels and media to support well-being.
+NHES.S4.12.2	Students use communication skills across many kinds of relationships and exchanges.
+NHES.S4.12.3	Students show how to ask for and give help for health.
+NHES.S4.12.4	Students use skills to state limits, give or take back consent, and set boundaries in varied situations.
+NHES.S4.12.5	Students use ways to say no across different circumstances.
+NHES.S4.12.6	Students use methods to prevent, manage and settle conflicts.
+NHES.S4.12.7	Students show skills for working as a team in many settings.
+NHES.S4.12.8	Students show negotiation and compromise skills in different settings.
+NHES.S4.12.9	Students change how they communicate to suit people with other views and values.
+NHES.S4.12.10	Students express understanding and concern for other people.
+NHES.S5.2.1	Students notice when there is a health choice to make.
+NHES.S5.2.2	Students recognize when they need someone's help with a health decision.
+NHES.S5.2.3	Students name the options and what could follow from each.
+NHES.S5.2.4	Students pick the option that is best for their health.
+NHES.S5.5.1	Students identify situations that call for careful thinking before choosing.
+NHES.S5.5.2	Students decide whether a health decision needs help or teamwork.
+NHES.S5.5.3	Students compare the options and what each is likely to lead to.
+NHES.S5.5.4	Students choose the option that supports health.
+NHES.S5.5.5	Students think about how a health decision turned out for them and others.
+NHES.S5.8.1	Students explain how following a decision process affects health.
+NHES.S5.8.2	Students decide when a health situation calls for a careful decision process.
+NHES.S5.8.3	Students use a process done alone, with help or in a group to protect health.
+NHES.S5.8.4	Students judge how each option could affect health at personal and wider levels.
+NHES.S5.8.5	Students name the supports and obstacles shaping a decision at different levels.
+NHES.S5.8.6	Students assess how a health decision worked out for them and others.
+NHES.S5.12.1	Students consider how health decisions look to different people and communities.
+NHES.S5.12.2	Students determine when and why a health situation needs a careful decision process.
+NHES.S5.12.3	Students use a process done alone, with support or in a group to stay healthy.
+NHES.S5.12.4	Students weigh the options against their priorities and likely results.
+NHES.S5.12.5	Students examine how a decision could affect health at several levels.
+NHES.S5.12.6	Students create an action plan for carrying out a health decision.
+NHES.S5.12.7	Students judge how supports and barriers shape decisions at various levels.
+NHES.S5.12.8	Students measure how well their health decisions worked.
+NHES.S6.2.1	Students pick a health behavior to change or to keep doing.
+NHES.S6.2.2	Students name a goal that is good for health and well-being.
+NHES.S6.2.3	Students identify who can help them reach a health goal.
+NHES.S6.2.4	Students describe the steps that lead toward a health goal.
+NHES.S6.2.5	Students act on a health goal.
+NHES.S6.2.6	Students look back on how setting their goal went.
+NHES.S6.5.1	Students set a goal and explain how it helps health.
+NHES.S6.5.2	Students decide whether a health goal needs help or teamwork.
+NHES.S6.5.3	Students make a plan listing actions, resources and ways to check progress.
+NHES.S6.5.4	Students identify what helps and what blocks progress toward a goal.
+NHES.S6.5.5	Students keep track of progress toward a health goal.
+NHES.S6.5.6	Students reflect on how goal setting went and what resulted.
+NHES.S6.8.1	Students assess their own health to pick areas to set goals in.
+NHES.S6.8.2	Students decide when to set goals alone, with help or in a group.
+NHES.S6.8.3	Students write a goal and explain its link to health.
+NHES.S6.8.4	Students build a plan that deals with supports and barriers.
+NHES.S6.8.5	Students monitor progress and decide whether to keep or change the goal or plan.
+NHES.S6.8.6	Students examine how setting the goal affected their health and well-being.
+NHES.S6.12.1	Students assess their own health and the factors that bear on pursuing a goal.
+NHES.S6.12.2	Students use a goal process done alone, with support or together, whichever fits.
+NHES.S6.12.3	Students write a goal and analyze how it supports health and well-being.
+NHES.S6.12.4	Students carry out a plan that deals with supports and barriers.
+NHES.S6.12.5	Students monitor progress and revise the goal or plan when needed.
+NHES.S6.12.6	Students evaluate how the goal process went and what it did for health.
+NHES.S7.2.1	Students name healthy habits that help themselves and other people.
+NHES.S7.2.2	Students do healthy habits for their own good and others'.
+NHES.S7.5.1	Students look closely at healthy habits that help themselves and others.
+NHES.S7.5.2	Students practice those healthy habits.
+NHES.S7.8.1	Students study what supports healthy habits and what stands in the way.
+NHES.S7.8.2	Students break down which habits improve personal and community wellness.
+NHES.S7.8.3	Students carry out habits that support personal and community wellness.
+NHES.S7.12.1	Students assess what makes healthy behaviors easier or harder.
+NHES.S7.12.2	Students judge how habits and other factors support wellness for people and groups.
+NHES.S7.12.3	Students change habits as personal and group wellness needs change.
+NHES.S7.12.4	Students show a range of habits that support the wellness of people and groups.
+NHES.S8.2.1	Students ask other people for help that supports their wellness.
+NHES.S8.2.2	Students name ways to help others make healthy choices.
+NHES.S8.2.3	Students encourage others to make healthy choices.
+NHES.S8.5.1	Students notice when speaking up could help their own or another person's health.
+NHES.S8.5.2	Students describe how teamwork and good communication make advocacy stronger.
+NHES.S8.5.3	Students name advocacy skills and approaches that support wellness.
+NHES.S8.5.4	Students show how to speak up for health and wellness.
+NHES.S8.8.1	Students examine chances to speak up for the health of individuals, families and communities.
+NHES.S8.8.2	Students decide whether to advocate alone or in a group for a given situation.
+NHES.S8.8.3	Students fit advocacy approaches to the audience and setting.
+NHES.S8.8.4	Students practice advocacy methods that improve wellness for themselves and others.
+NHES.S8.8.5	Students judge whether advocacy really made health better.
+NHES.S8.12.1	Students study the many factors that shape advocacy at every level of life.
+NHES.S8.12.2	Students take up a health issue, alone or with others.
+NHES.S8.12.3	Students adjust advocacy methods to suit different groups and settings.
+NHES.S8.12.4	Students show how to speak up for their own health needs.
+NHES.S8.12.5	Students demonstrate advocacy that reaches relationships, communities, society and the environment.
+NHES.S8.12.6	Students assess how advocacy was carried out, what it achieved and how far it reached.
+NHES.S8.12.7	Students examine how a varied group of community members can work together on a local health problem.

@@ -242,8 +242,9 @@ works studied and the showing. **Confidence:** likely for the instruments, thin 
 ### 3. Health
 
 **Rests on.** The federal Health Education Curriculum Analysis Tool, 2021. The writer read the overview and the
-first halves of chapters 4 and 5; the expert read both chapters in full. Nobody has read the topic modules, where
-coverage is scored.
+first halves of chapters 4 and 5; the expert read both chapters in full. The topic modules, where coverage is
+scored, are not read in full; one (Sexual Health) was read in part 2026-11-16 (docs/courses/health/STANDARD.md
+section 3).
 
 1. [I] Each unit names the healthy behaviours it is for, and every lesson ties to one.
 2. [I] Facts are basic, accurate and useful for a decision. Facts alone fail.
@@ -261,7 +262,7 @@ coverage is scored.
    includes students assessing themselves.
 9. [I] Materials are inclusive: they fit students' cultures and the conditions they live in, avoid blame, and guide
    the teacher on their own bias.
-10. [I, topics unread] A band coverage map shows which topics and healthy behaviour outcomes in
+10. [I, one module read in part] A band coverage map shows which topics and healthy behaviour outcomes in
     data/standards/hecat-topics.txt each band teaches, and where.
 
 **Fails if:** scare tactics; fact recall as the end-of-unit assessment; skills named and never rehearsed; outdated figures; no
@@ -277,12 +278,12 @@ across; the first standard was reworded. Decided 2026-11-11 (card q-standards-cu
 kept, with a written mapping to the older-keyed review tool.
 
 **Scope and sequence states:** the coverage map. **Section plan fills:** the behaviour outcome and the skill steps.
-**Confidence:** likely, until the writer has read the second half of chapter 5 and one topic module.
+**Confidence:** likely; the other eight modules' span tables are read by each band's planner.
 
 ### 4. Physical education
 
 **Rests on.** The federal Physical Education Curriculum Analysis Tool, 2019 (preliminary analyses and directions
-read; grade tables not read) and Oregon's 2025 criteria, read in full by the writer only.
+read; all grade tables read 2026-11-16 and 2026-11-19, later.csv L46) and Oregon's 2025 criteria, read in full by the writer only.
 
 1. [I, federal tool] For every standard in every grade of the band there is a stated outcome, content that teaches
    it, and an assessment of it.
@@ -295,7 +296,7 @@ read; grade tables not read) and Oregon's 2025 criteria, read in full by the wri
 7. [I, Oregon] Assessment is of skill, knowledge and conduct, and reports growth against the student's own earlier
    work, not rank.
 8. [O, from memory] No exercise as punishment and no elimination games. Oregon requires the profession's
-   appropriate practice guidelines; nobody here has read them.
+   appropriate practice guidelines, read in part 2026-11-16 (docs/courses/physical-education/STANDARD.md section 4).
 
 **Fails if:** a year of games with no outcomes; long lines and waiting. Ours: grading on dress or attendance;
 fitness tests used as grades.
@@ -563,7 +564,7 @@ every row but social studies waits behind the core work unless it is complementa
 | AP and psychology topics (26), in whichever subject they sit | The AP topics have no standards file; psychology's standard is data/standards/apa-hs-psych-2022.txt. Mark them now as not yet standards-checked. **Do not lose this note (Cory): the course framework is loaded when that course's scope and sequence is written** | Agent |
 | Arts (20) | Done 2026-11-16 (docs/courses/arts/STANDARD.md): the band-year rule (K to 8 by grade; high school levels I to III by what a student has done), reuse terms read at source, revision watch set (May and November). Lens, base-text scout and APPROACH draft written. Music strand (a full composition and theory course plus an ensemble companion page, docs/reviews/arts-hs-music-and-levels-2026-11-16.md), pacing and the levels rule settled 2026-11-16 (Desk cards q-later-*); music strand ids now pass scripts/standards.py. Full music course confirmed (Desk card q-later-followups-1). Owed: the approach page's yes; load the 63 strand ids when the high school music frame is written | Cory, then agent |
 | Health (4) | Done 2026-11-16 (docs/courses/health/STANDARD.md): one topic module read in part, band coverage map drafted, sensitive-unit removal rule, 2007 to 2024 note and header (2026-11-11). Lens, scout and APPROACH draft written. Owed: each band's planner reads its modules; the health expert agent read in place of a paid read, and pacing, settled 2026-11-16 (Desk card q-later-arts-health-pe) | Agent |
-| Physical education (4) | Done 2026-11-16 (docs/courses/physical-education/STANDARD.md): the five-to-four map (2026-11-11), appropriate practice read in part, grade-outcome rule, review tool's K to 5 tables read in part. Lens, scout and APPROACH draft written. Pacing (elementary 2 to 3 sessions a week) settled 2026-11-16 (Desk cards q-later-*). Owed: the rest of the review tool's tables, read by each band's planner (later.csv L46); the approach page's yes | Agent |
+| Physical education (4) | Done 2026-11-16 (docs/courses/physical-education/STANDARD.md): the five-to-four map (2026-11-11), appropriate practice read in part, grade-outcome rule, review tool's K to 5 tables read in part. Lens, scout and APPROACH draft written. Pacing (elementary 2 to 3 sessions a week) settled 2026-11-16 (Desk cards q-later-*). Review tool's tables all read 2026-11-19 (L46). Owed: the approach page's yes | Agent |
 | Computer science (13) | Done 2026-11-16: header and the 135 Specialty ids (2026-11-11); all 331 statements under the standards' own licence (data/standards/csta-2026-statements.txt, CC BY-NC-SA, planning only, LICENSE-CONTENT). STANDARD, lens, scout and APPROACH draft in docs/courses/computer-science/. One course per grade K to 12 and the UK partial base (checked unit by unit, rephrased for an American audience) settled 2026-11-16 (Desk cards q-later-*). Minutes (one a week K to 5, two to three 6 to 12) settled (Desk card q-later-followups-1). Owed: the approach page's yes | Cory |
 | Career education (2) | Done 2026-11-16: the 2024 career-ready practices read and set out in our own words in the file header; what a school adds listed (docs/courses/career-education/STANDARD.md). Lens, scout and APPROACH draft written. The 2024 national career development guidelines (own goals as fallback) and one-year courses settled 2026-11-16 (Desk cards q-later-*). Owed: the approach page's yes | Cory |
 | Personal finance (1) | No longer a course: Economics teaches it, lightly integrated (settled 2026-11-14) | None |
@@ -665,7 +666,7 @@ loaded: docs/reviews/standards-currency-2026-11-11.md.
 | Texas IMRA, languages rubric, 2026 | https://sboe.texas.gov/state-board-of-education/imra/sboe-approved-lote-quality-rubric.pdf | State document | Writer, in full, 22 pp |
 | California, arts materials criteria, K-8 | https://www.cde.ca.gov/BE/cc/cd/documents/artsadoptionevalcriteria4c.docx | State document | Writer, five categories in full |
 | Oklahoma, fine arts rubric, 2024 | https://oklahoma.gov/content/dam/ok/en/osde/documents/services/standards-learning/hqim/hqim-rubrics/Fine-Arts-HQIM-Rubric-2024.pdf | State document | Expert, in full, 23 pp |
-| CDC, Health Education Curriculum Analysis Tool, 2021 | https://www.cdc.gov/healthy-youth/hecat/pdfs/hecat_chapter-04.pdf and hecat_chapter-05.pdf; overview at https://www.cdc.gov/healthy-youth/hecat/2021-edition.html | US government work | Expert, chapters 4 and 5 in full. Writer, overview and first halves. Topic topics unread |
+| CDC, Health Education Curriculum Analysis Tool, 2021 | https://www.cdc.gov/healthy-youth/hecat/pdfs/hecat_chapter-04.pdf and hecat_chapter-05.pdf; overview at https://www.cdc.gov/healthy-youth/hecat/2021-edition.html | US government work | Expert, chapters 4 and 5 in full. Writer, overview and first halves. Topic modules: Sexual Health in part (2026-11-16), the rest unread |
 | CDC, Physical Education Curriculum Analysis Tool, 2019 | https://www.cdc.gov/physical-activity-education/media/pdfs/2025/04/18_300595-A_PECAT_042619_508tagged_CR2025-04-07_revised-clean.pdf | US government work | Writer and expert, preliminary analyses and directions. Grade tables unread |
 | Oregon, physical education criteria, 2025 | https://www.oregon.gov/ode/educator-resources/teachingcontent/instructional-materials/Documents/2025PhysicalEducationIMCriteria.pdf | State document | Writer, in full, 7 pp |
 | Ohio, computer science and technology rubric, 2025 | https://education.ohio.gov/getattachment/Topics/Learning-in-Ohio/OLS-Graphic-Sections/Resources/High-Quality-Instructional-Material/HQIM-Rubrics/Computer-Science-Technology-Rubric.pdf.aspx?lang=en-US | State document | Expert, in full, 24 pp. Writer, gateway 1 |

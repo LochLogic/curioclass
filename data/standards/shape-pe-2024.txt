@@ -7,213 +7,214 @@
 # note: standards: S1 develops a variety of motor skills; S2 applies knowledge related to movement and fitness concepts; S3 develops social skills through movement; S4 develops personal skills, identifies personal benefits of movement, and chooses to engage in physical activity.
 # note: added 2026-11-11. CDC's PECAT (2019) is keyed to the earlier five standards (2013; the book with grade-level outcomes is dated 2014), not to these four; our mapping is in docs/standards-notes/pe-2014-to-2024.md.
 # note: added 2026-11-16. Reuse terms read at source: the free page shows no reuse terms and an "All Rights Reserved" footer, so ids only. Grade-outcome rule and appropriate practice points: docs/courses/physical-education/STANDARD.md.
-SHAPE.S1.2.1
-SHAPE.S1.2.2
-SHAPE.S1.2.3
-SHAPE.S1.2.4
-SHAPE.S1.2.5
-SHAPE.S1.2.6
-SHAPE.S1.2.7
-SHAPE.S1.2.8
-SHAPE.S1.2.9
-SHAPE.S1.2.10
-SHAPE.S1.2.11
-SHAPE.S1.2.12
-SHAPE.S1.2.13
-SHAPE.S1.2.14
-SHAPE.S1.2.15
-SHAPE.S1.2.16
-SHAPE.S1.2.17
-SHAPE.S1.5.1
-SHAPE.S1.5.2
-SHAPE.S1.5.3
-SHAPE.S1.5.4
-SHAPE.S1.5.5
-SHAPE.S1.5.6
-SHAPE.S1.5.7
-SHAPE.S1.5.8
-SHAPE.S1.5.9
-SHAPE.S1.5.10
-SHAPE.S1.5.11
-SHAPE.S1.5.12
-SHAPE.S1.5.13
-SHAPE.S1.5.14
-SHAPE.S1.5.15
-SHAPE.S1.5.16
-SHAPE.S1.5.17
-SHAPE.S1.5.18
-SHAPE.S1.5.19
-SHAPE.S1.5.20
-SHAPE.S1.5.21
-SHAPE.S1.5.22
-SHAPE.S1.8.1
-SHAPE.S1.8.2
-SHAPE.S1.8.3
-SHAPE.S1.8.4
-SHAPE.S1.8.5
-SHAPE.S1.8.6
-SHAPE.S1.8.7
-SHAPE.S1.8.8
-SHAPE.S1.8.9
-SHAPE.S1.8.10
-SHAPE.S1.8.11
-SHAPE.S1.8.12
-SHAPE.S1.8.13
-SHAPE.S1.8.14
-SHAPE.S1.8.15
-SHAPE.S1.8.16
-SHAPE.S1.8.17
-SHAPE.S1.8.18
-SHAPE.S1.8.19
-SHAPE.S1.8.20
-SHAPE.S1.12.1
-SHAPE.S1.12.2
-SHAPE.S1.12.3
-SHAPE.S1.12.4
-SHAPE.S1.12.5
-SHAPE.S1.12.6
-SHAPE.S1.12.7
-SHAPE.S1.12.8
-SHAPE.S1.12.9
-SHAPE.S2.2.1
-SHAPE.S2.2.2
-SHAPE.S2.2.3
-SHAPE.S2.2.4
-SHAPE.S2.2.5
-SHAPE.S2.2.6
-SHAPE.S2.2.7
-SHAPE.S2.2.8
-SHAPE.S2.2.9
-SHAPE.S2.2.10
-SHAPE.S2.2.11
-SHAPE.S2.2.12
-SHAPE.S2.5.1
-SHAPE.S2.5.2
-SHAPE.S2.5.3
-SHAPE.S2.5.4
-SHAPE.S2.5.5
-SHAPE.S2.5.6
-SHAPE.S2.5.7
-SHAPE.S2.5.8
-SHAPE.S2.5.9
-SHAPE.S2.5.10
-SHAPE.S2.5.11
-SHAPE.S2.5.12
-SHAPE.S2.5.13
-SHAPE.S2.5.14
-SHAPE.S2.5.15
-SHAPE.S2.5.16
-SHAPE.S2.5.17
-SHAPE.S2.5.18
-SHAPE.S2.8.1
-SHAPE.S2.8.2
-SHAPE.S2.8.3
-SHAPE.S2.8.4
-SHAPE.S2.8.5
-SHAPE.S2.8.6
-SHAPE.S2.8.7
-SHAPE.S2.8.8
-SHAPE.S2.8.9
-SHAPE.S2.8.10
-SHAPE.S2.8.11
-SHAPE.S2.8.12
-SHAPE.S2.8.13
-SHAPE.S2.8.14
-SHAPE.S2.8.15
-SHAPE.S2.8.16
-SHAPE.S2.8.17
-SHAPE.S2.8.18
-SHAPE.S2.8.19
-SHAPE.S2.8.20
-SHAPE.S2.8.21
-SHAPE.S2.8.22
-SHAPE.S2.12.1
-SHAPE.S2.12.2
-SHAPE.S2.12.3
-SHAPE.S2.12.4
-SHAPE.S2.12.5
-SHAPE.S2.12.6
-SHAPE.S2.12.7
-SHAPE.S2.12.8
-SHAPE.S2.12.9
-SHAPE.S2.12.10
-SHAPE.S2.12.11
-SHAPE.S2.12.12
-SHAPE.S2.12.13
-SHAPE.S2.12.14
-SHAPE.S2.12.15
-SHAPE.S2.12.16
-SHAPE.S2.12.17
-SHAPE.S3.2.1
-SHAPE.S3.2.2
-SHAPE.S3.2.3
-SHAPE.S3.2.4
-SHAPE.S3.2.5
-SHAPE.S3.2.6
-SHAPE.S3.2.7
-SHAPE.S3.2.8
-SHAPE.S3.2.9
-SHAPE.S3.2.10
-SHAPE.S3.5.1
-SHAPE.S3.5.2
-SHAPE.S3.5.3
-SHAPE.S3.5.4
-SHAPE.S3.5.5
-SHAPE.S3.5.6
-SHAPE.S3.5.7
-SHAPE.S3.8.1
-SHAPE.S3.8.2
-SHAPE.S3.8.3
-SHAPE.S3.8.4
-SHAPE.S3.8.5
-SHAPE.S3.8.6
-SHAPE.S3.8.7
-SHAPE.S3.8.8
-SHAPE.S3.8.9
-SHAPE.S3.8.10
-SHAPE.S3.12.1
-SHAPE.S3.12.2
-SHAPE.S3.12.3
-SHAPE.S3.12.4
-SHAPE.S3.12.5
-SHAPE.S3.12.6
-SHAPE.S3.12.7
-SHAPE.S3.12.8
-SHAPE.S4.2.1
-SHAPE.S4.2.2
-SHAPE.S4.2.3
-SHAPE.S4.2.4
-SHAPE.S4.2.5
-SHAPE.S4.2.6
-SHAPE.S4.2.7
-SHAPE.S4.2.8
-SHAPE.S4.2.9
-SHAPE.S4.2.10
-SHAPE.S4.5.1
-SHAPE.S4.5.2
-SHAPE.S4.5.3
-SHAPE.S4.5.4
-SHAPE.S4.5.5
-SHAPE.S4.5.6
-SHAPE.S4.5.7
-SHAPE.S4.5.8
-SHAPE.S4.5.9
-SHAPE.S4.5.10
-SHAPE.S4.8.1
-SHAPE.S4.8.2
-SHAPE.S4.8.3
-SHAPE.S4.8.4
-SHAPE.S4.8.5
-SHAPE.S4.8.6
-SHAPE.S4.8.7
-SHAPE.S4.8.8
-SHAPE.S4.8.9
-SHAPE.S4.12.1
-SHAPE.S4.12.2
-SHAPE.S4.12.3
-SHAPE.S4.12.4
-SHAPE.S4.12.5
-SHAPE.S4.12.6
-SHAPE.S4.12.7
-SHAPE.S4.12.8
-SHAPE.S4.12.9
+# words: added 2026-11-19. After each id, a tab and one line in Curio Class's own words (ours, not the publisher's; never quoted on a page). Written from the free page above.
+SHAPE.S1.2.1	Move in several ways from place to place while keeping track of space, effort and other people.
+SHAPE.S1.2.2	Jump and land in a fixed spot where nothing around changes.
+SHAPE.S1.2.3	Shift weight onto a number of different body parts.
+SHAPE.S1.2.4	Do in-place movements while staying aware of space, effort and other people.
+SHAPE.S1.2.5	Hold a still balance on different body parts with nothing changing around you.
+SHAPE.S1.2.6	Bounce a ball in several in-place practice tasks.
+SHAPE.S1.2.7	Roll a ball in several in-place practice tasks.
+SHAPE.S1.2.8	Catch in several in-place practice tasks.
+SHAPE.S1.2.9	Throw in several in-place practice tasks.
+SHAPE.S1.2.10	Kick a ball in several in-place practice tasks.
+SHAPE.S1.2.11	Dribble a ball with the feet in several in-place practice tasks.
+SHAPE.S1.2.12	Hit objects with the hands in several in-place practice tasks.
+SHAPE.S1.2.13	Hit objects with a short-handled tool in several in-place practice tasks.
+SHAPE.S1.2.14	Hit objects with a long-handled tool in several in-place practice tasks.
+SHAPE.S1.2.15	Do traveling, in-place and object-handling moves taken from a range of dance styles.
+SHAPE.S1.2.16	Jump rope in a fixed spot with nothing changing around you.
+SHAPE.S1.2.17	Show basic water safety skills, and simple swimming where a pool is available.
+SHAPE.S1.5.1	Join different traveling movements into a chain over several practice tasks.
+SHAPE.S1.5.2	Move weight from the feet onto the hands and back, staying in place.
+SHAPE.S1.5.3	Do body rolls in a fixed spot with nothing changing around you.
+SHAPE.S1.5.4	Join jumps, rolls, balances and feet-to-hands weight shifts into one in-place sequence.
+SHAPE.S1.5.5	Link traveling, in-place and object-handling moves into a sequence in several dance styles.
+SHAPE.S1.5.6	Jump rope through several practice tasks.
+SHAPE.S1.5.7	Jump and land while staying in place.
+SHAPE.S1.5.8	Balance on different body parts while staying in place.
+SHAPE.S1.5.9	Roll a ball from a fixed spot.
+SHAPE.S1.5.10	Throw in several practice tasks.
+SHAPE.S1.5.11	Hit with a long-handled tool in several practice tasks.
+SHAPE.S1.5.12	Catch in several practice tasks.
+SHAPE.S1.5.13	Hit with the hands above waist level in several practice tasks.
+SHAPE.S1.5.14	Hit with the hands below waist level in several practice tasks.
+SHAPE.S1.5.15	Serve an object from a fixed spot.
+SHAPE.S1.5.16	Hit an object with a short-handled tool in several practice tasks.
+SHAPE.S1.5.17	Pass an object and gather in a pass in several practice tasks.
+SHAPE.S1.5.18	Kick a ball with the laces in several practice tasks.
+SHAPE.S1.5.19	Bounce a ball with the hands, both in place and on the move.
+SHAPE.S1.5.20	Dribble a ball with the feet in several practice tasks.
+SHAPE.S1.5.21	Combine handling an object with moving to send it at a target, in several practice tasks.
+SHAPE.S1.5.22	Show basic water safety skills, and simple swimming where a pool is available.
+SHAPE.S1.8.1	Use good form in several outdoor activities.
+SHAPE.S1.8.2	Do movement sequences in a range of dance styles.
+SHAPE.S1.8.3	Use sound technique in a variety of health-building fitness activities.
+SHAPE.S1.8.4	Use sound technique in exercises that build skill-related fitness.
+SHAPE.S1.8.5	Swing a long-handled tool to hit, with a mature pattern.
+SHAPE.S1.8.6	Roll, and throw underhand, sidearm and overhand, with good form in drills and modified target games.
+SHAPE.S1.8.7	Strike a self-dropped or tossed ball with a tool into open space in drills and small games.
+SHAPE.S1.8.8	Catch with good form, with or without gear, in drills and small-sided games.
+SHAPE.S1.8.9	Throw with accuracy, distance and power in drills and small-sided games.
+SHAPE.S1.8.10	Hit a serve with the hand, underhand and overhand, in drills and modified games.
+SHAPE.S1.8.11	Hit a serve with a short or long tool, underhand and overhand, in drills and modified games.
+SHAPE.S1.8.12	Hit forehand and backhand strokes with a short or long tool in drills and modified games.
+SHAPE.S1.8.13	Volley with a short or long tool in drills and modified net and wall games.
+SHAPE.S1.8.14	Pass and receive while moving in small-sided games.
+SHAPE.S1.8.15	Use a dribbling skill in drills and small-sided games.
+SHAPE.S1.8.16	Dribble an object using a tool in drills and small games.
+SHAPE.S1.8.17	Shoot at a goal, with or without a tool, in drills and small games.
+SHAPE.S1.8.18	Use a few different moves to get open while attacking, in drills and small games.
+SHAPE.S1.8.19	Get into a ready defensive position in drills and small games.
+SHAPE.S1.8.20	Practice water safety, and show simple swimming where a pool is available.
+SHAPE.S1.12.1	Do the key skills of several sports and activities you can keep doing for life.
+SHAPE.S1.12.2	Do the key moves of different casual recreation and backyard games.
+SHAPE.S1.12.3	Do the key moves of a range of outdoor activities.
+SHAPE.S1.12.4	Perform and design movement sequences in one or more dance styles.
+SHAPE.S1.12.5	Use correct form in endurance (aerobic) training.
+SHAPE.S1.12.6	Use correct form in strength and muscle endurance training.
+SHAPE.S1.12.7	Use correct technique when stretching to build flexibility.
+SHAPE.S1.12.8	Use correct technique when training the skill-related fitness parts.
+SHAPE.S1.12.9	Show water safety, and simple swimming where a pool is available.
+SHAPE.S2.2.1	Know how much space is yours and where to go in open space.
+SHAPE.S2.2.2	Name basic tactics for chasing and fleeing games.
+SHAPE.S2.2.3	Name the key ideas behind traveling, staying in place and handling objects.
+SHAPE.S2.2.4	Show you understand traveling, in-place and object-handling skills while you move.
+SHAPE.S2.2.5	Show you understand in-place and traveling movement ideas used in dance and rhythms.
+SHAPE.S2.2.6	Name activities that build fitness.
+SHAPE.S2.2.7	Say why stretching helps before and after exercise.
+SHAPE.S2.2.8	Say that the heart is a muscle that gets stronger with exercise.
+SHAPE.S2.2.9	Understand that being active often is good for your health.
+SHAPE.S2.2.10	Notice what changes in your body as you move.
+SHAPE.S2.2.11	Pick out foods and drinks that give energy for activity.
+SHAPE.S2.2.12	Show you understand water safety and basic swimming.
+SHAPE.S2.5.1	Use movement ideas and tactics to stay safe where the setting keeps changing.
+SHAPE.S2.5.2	Explain how to attack in small-group play where teams move into the other team's area.
+SHAPE.S2.5.3	Explain how to defend in small-group play where teams move into the other team's area.
+SHAPE.S2.5.4	Understand which movement ideas make object-handling skills work well.
+SHAPE.S2.5.5	Show ways of solving problems that come up in games and activities.
+SHAPE.S2.5.6	Use movement ideas in dance, gymnastics, rhythms and individual activities.
+SHAPE.S2.5.7	Describe, with examples, activities that build the health-related fitness parts.
+SHAPE.S2.5.8	Set goals for improving your fitness.
+SHAPE.S2.5.9	Describe how frequency, intensity, time and type can be used to improve a skill or fitness.
+SHAPE.S2.5.10	Describe and show activities that build the skill-related fitness parts.
+SHAPE.S2.5.11	Tell when a warm-up and cool-down are needed for different activities.
+SHAPE.S2.5.12	Find your pulse and name activities that raise your heart rate.
+SHAPE.S2.5.13	Describe the benefits of being physically active.
+SHAPE.S2.5.14	Notice and describe how activity changes your body.
+SHAPE.S2.5.15	Name the key parts of a skill done correctly.
+SHAPE.S2.5.16	Name technology that can help you meet activity goals.
+SHAPE.S2.5.17	Explain how what you eat and drink affects activity.
+SHAPE.S2.5.18	Show you understand water safety and basic swimming.
+SHAPE.S2.8.1	Name how to use movement ideas well when the setting keeps changing.
+SHAPE.S2.8.2	Explain attacking moves that create space in invasion games.
+SHAPE.S2.8.3	Explain defending moves that close space and block opponents in invasion games.
+SHAPE.S2.8.4	Pick and use the right shot and technique in net and wall games.
+SHAPE.S2.8.5	Explain attacking tactics in striking and fielding games.
+SHAPE.S2.8.6	Explain where to place defenders in striking and fielding games.
+SHAPE.S2.8.7	Use problem-solving methods in many games and activities.
+SHAPE.S2.8.8	Use movement ideas to change up different dance and rhythm forms.
+SHAPE.S2.8.9	Name the health-related and skill-related fitness parts and tell them apart.
+SHAPE.S2.8.10	Choose a personal fitness test and use it to track progress toward your goals.
+SHAPE.S2.8.11	Use FITT, progression, overload and specificity across different activities.
+SHAPE.S2.8.12	Use what you know about skill-related fitness in different activities.
+SHAPE.S2.8.13	Describe how aerobic fitness relates to how hard activity feels.
+SHAPE.S2.8.14	Use dynamic and static stretches in warm-ups, cool-downs and training.
+SHAPE.S2.8.15	Understand heart rate and what it shows about aerobic fitness.
+SHAPE.S2.8.16	List ways to stay active.
+SHAPE.S2.8.17	Analyze how rest changes the way your body responds to exercise.
+SHAPE.S2.8.18	Break a skill into its key parts to analyze how it is done.
+SHAPE.S2.8.19	Judge how useful technology is for reaching activity and fitness goals.
+SHAPE.S2.8.20	Describe how eating, exercise and well-being fit together.
+SHAPE.S2.8.21	Show you understand safety steps for outdoor activities the teacher picks.
+SHAPE.S2.8.22	Show you understand water safety and basic swimming.
+SHAPE.S2.12.1	Show you understand tactics in sports and activities you can keep doing for life.
+SHAPE.S2.12.2	Show you understand tactics in casual recreation and backyard games.
+SHAPE.S2.12.3	Show you understand tactics in outdoor activities.
+SHAPE.S2.12.4	Use movement sequences to create or join in dance forms.
+SHAPE.S2.12.5	Examine how fitness and health shape quality of life after high school.
+SHAPE.S2.12.6	Set a goal for a skill you choose and plan practice to reach it.
+SHAPE.S2.12.7	Apply exercise principles to the lifelong activities you choose.
+SHAPE.S2.12.8	Make and follow a plan that mixes endurance, strength and flexibility training.
+SHAPE.S2.12.9	Rate how hard you feel you are working and adjust your effort.
+SHAPE.S2.12.10	Use what you know about heart rate to train safely and build health-related fitness.
+SHAPE.S2.12.11	Discuss the benefits of an active lifestyle in early adulthood.
+SHAPE.S2.12.12	Build rest into your regular activity schedule.
+SHAPE.S2.12.13	Use ideas about force, motion and rotation to check and improve how a skill is done.
+SHAPE.S2.12.14	Discuss how games, sports and dance have shaped societies and cultures over time.
+SHAPE.S2.12.15	Examine and use technology that supports an active, healthy life.
+SHAPE.S2.12.16	Name foods that help or hurt performance, recovery and enjoyment of activity.
+SHAPE.S2.12.17	Show you understand water safety and basic swimming.
+SHAPE.S3.2.1	Notice how classmates feel during different kinds of movement play.
+SHAPE.S3.2.2	Encourage and cheer on classmates.
+SHAPE.S3.2.3	Use talking and listening to share space and equipment with others.
+SHAPE.S3.2.4	Respond in a fitting way to the teacher's directions and feedback.
+SHAPE.S3.2.5	Act kindly so that moving together stays positive.
+SHAPE.S3.2.6	Explain how following rules keeps everyone safe and treats people fairly.
+SHAPE.S3.2.7	Choose safe ways to handle and use gym equipment.
+SHAPE.S3.2.8	With teacher help, talk over problems in an activity and suggest fixes.
+SHAPE.S3.2.9	With teacher guidance, make fair choices.
+SHAPE.S3.2.10	Name and take part in movement activities from different cultures.
+SHAPE.S3.5.1	Explain how other people see a situation in different activities.
+SHAPE.S3.5.2	Talk with others to decide who does what in an activity.
+SHAPE.S3.5.3	Act kindly so that group activity stays positive.
+SHAPE.S3.5.4	Stay safe on your own with few reminders.
+SHAPE.S3.5.5	Work through problems alone, with a partner or in a small team.
+SHAPE.S3.5.6	Make fair decisions that fit the customs of the activity.
+SHAPE.S3.5.7	Show movement activities from cultures around the world.
+SHAPE.S3.8.1	Understand and welcome the differences among classmates in different activities.
+SHAPE.S3.8.2	Show care for others and contribute helpfully to the team.
+SHAPE.S3.8.3	Talk over game plans and strategies with teammates.
+SHAPE.S3.8.4	Give and take useful feedback when the teacher sets it up and supports it.
+SHAPE.S3.8.5	Explain why an activity matters in a particular culture.
+SHAPE.S3.8.6	Follow game rules in different movement settings.
+SHAPE.S3.8.7	Name and practice safe, suitable behavior during activity and with equipment.
+SHAPE.S3.8.8	Settle disagreements with teammates and with opponents.
+SHAPE.S3.8.9	Use and respect the norms of good conduct during activity.
+SHAPE.S3.8.10	Describe how communication, feedback, teamwork and courtesy connect to leading.
+SHAPE.S3.12.1	Be aware of how others feel and think during activity.
+SHAPE.S3.12.2	Show courtesy, respect and teamwork while being active.
+SHAPE.S3.12.3	Encourage and support others in activity.
+SHAPE.S3.12.4	Offer feedback on others' performance without waiting for the teacher to ask.
+SHAPE.S3.12.5	Examine how one activity is valued in different cultures.
+SHAPE.S3.12.6	Follow safe habits: prevent injury, give space, drink water, care for gear, follow rules, protect skin from sun.
+SHAPE.S3.12.7	Reason through challenges alone and in teams during activity.
+SHAPE.S3.12.8	Judge how well leadership works in different activity settings.
+SHAPE.S4.2.1	Name movement activities where you can express yourself.
+SHAPE.S4.2.2	Point out movement activities that let you be with others.
+SHAPE.S4.2.3	Name ways that moving helps you feel well.
+SHAPE.S4.2.4	Pick out favorite activities that fit what you like.
+SHAPE.S4.2.5	Notice personal difficulties that come up while moving.
+SHAPE.S4.2.6	Make clear goals you can see and reach soon.
+SHAPE.S4.2.7	Notice what you do well in movement and where more practice would help.
+SHAPE.S4.2.8	See chances to be active during PE class.
+SHAPE.S4.2.9	Use calming steps, such as breathing or counting, to manage feelings and behavior during activity.
+SHAPE.S4.2.10	Look back on PE experiences to say why they matter to you.
+SHAPE.S4.5.1	Describe how favorite activities let you express yourself.
+SHAPE.S4.5.2	Describe how favorite activities connect you with others.
+SHAPE.S4.5.3	Explain the health benefits of moving.
+SHAPE.S4.5.4	Give reasons for the activities you pick based on your interests.
+SHAPE.S4.5.5	Spot difficulties a group faces when moving together.
+SHAPE.S4.5.6	Set visible goals for a longer stretch of time.
+SHAPE.S4.5.7	Name your movement strengths and where to practice to grow.
+SHAPE.S4.5.8	Find ways to be active outside PE class.
+SHAPE.S4.5.9	Name which calming methods work best for you during activity.
+SHAPE.S4.5.10	Review PE experiences to understand what they mean to you.
+SHAPE.S4.8.1	Explain how self-expression affects how involved a person gets in activity.
+SHAPE.S4.8.2	Explain how time with others affects personal involvement in activity.
+SHAPE.S4.8.3	Take part in many kinds of activity that improve health.
+SHAPE.S4.8.4	Link choice and interests to how engaged a person becomes.
+SHAPE.S4.8.5	Closely examine challenges faced alone and as a group in movement.
+SHAPE.S4.8.6	Set participation goals based on an honest look at your own abilities.
+SHAPE.S4.8.7	Weigh the chances and obstacles for being active outside class.
+SHAPE.S4.8.8	Use several strategies to manage feelings and behavior during activity.
+SHAPE.S4.8.9	Reflect on PE experiences to see what they mean to you.
+SHAPE.S4.12.1	Choose and join activities, such as dance, yoga or aerobics, that let you express yourself.
+SHAPE.S4.12.2	Choose and join activities that offer time with others.
+SHAPE.S4.12.3	Find and join activity that improves your health.
+SHAPE.S4.12.4	Pick and join activity that matches your interests.
+SHAPE.S4.12.5	Choose activity at a fitting challenge level and do well in it.
+SHAPE.S4.12.6	Create and build movement goals tied to your interests.
+SHAPE.S4.12.7	Study what affects staying active after high school, such as life choices, money, motivation and access.
+SHAPE.S4.12.8	Examine and use chosen ways to manage emotions during activity.
+SHAPE.S4.12.9	Think over PE experiences to understand what they mean to you.

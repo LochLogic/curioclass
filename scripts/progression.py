@@ -23,6 +23,8 @@ row starts the work; a later one applies it).
 An ELA code sits in its own grade; a band code (9-10, 11-12) is owned by the band's last grade and started
 with ~CODE in the earlier one. A K to 8 math code sits in its own grade (4.NBT.B.5 in grade 4); high school math codes
 carry no grade.
+Health (NHES) and physical education (SHAPE) indicators are span-coded (S1.5.2: span ending grade 5): owned by one
+grade of the span, the grade where it is first fully met, and ~CODE in the span's other grades (added 2026-11-19).
 A (+) high school math part is covered only when named or excluded itself, not through its parent. A cross_subject
 code must be named by a row of the other subject once that subject's progression exists (added 2026-11-13).
 Lean timing (added 2026-11-13, cross-subject read finding 1): a cross_subject lean must be taught at or before the
@@ -49,14 +51,18 @@ GI = {g: i for i, g in enumerate(GRADES)}
 STD_FILES = {'social-studies': ['ma-hss-2018.txt', 'c3-indicators.txt', 'ccss-literacy-6-12.txt'],
              'math': ['ccss-math-standards.txt'],
              'ela': ['ccss-ela-standards.txt', 'ccss-ela-standards-full.txt', 'ccss-literacy-6-12.txt'],
-             'science': ['ngss-pes.txt', 'ccss-literacy-6-12.txt']}
+             'science': ['ngss-pes.txt', 'ccss-literacy-6-12.txt'],
+             # the later subjects (added 2026-11-19, health and PE pre-work): span-coded indicators, see code_grades
+             'health': ['nhes-2024.txt', 'hecat-topics.txt'],
+             'physical-education': ['shape-pe-2024.txt']}
 # the core electives' own lists (added 2026-11-16): accepted codes, and every code in them must be owned by a row
 ELECTIVE_FILES = {'math': ['curio-math-electives.txt'], 'science': ['curio-science-electives.txt'],
                   'social-studies': ['apa-hs-psych-2022.txt']}
 for _s, _fs in ELECTIVE_FILES.items():
     STD_FILES[_s] = STD_FILES[_s] + _fs
 ANCHOR = {'social-studies': 'ma-hss-2018.txt', 'science': 'ngss-pes.txt', 'ela': 'ccss-ela-standards.txt',
-          'math': 'ccss-math-standards.txt'}
+          'math': 'ccss-math-standards.txt', 'health': 'nhes-2024.txt', 'physical-education': 'shape-pe-2024.txt'}
+SPAN = {'2': ['K', '1', '2'], '5': ['3', '4', '5'], '8': ['6', '7', '8'], '12': ['9', '10', '11', '12']}
 
 
 def _lit_codes():
@@ -75,6 +81,15 @@ def code_grades(subject, code):
     if subject == 'math':
         g = code.split('.')[0]
         return ([g], [g]) if g in GI else None
+    if subject in ('health', 'physical-education'):
+        # NHES.S1.5.2 and SHAPE.S1.5.2: span end 5 = grades 3 to 5. Owned by one grade of the span (where it is
+        # first fully met; the span's last grade is the deadline), ~ in the span's other grades (health and PE
+        # STANDARD.md section 3, 2026-11-19)
+        p = code.split('.')
+        if len(p) == 4 and p[0] in ('NHES', 'SHAPE') and p[2] in SPAN:
+            band = SPAN[p[2]]
+            return band, band
+        return None
     if subject != 'ela':
         return None
     p = code.split('.')

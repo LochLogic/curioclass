@@ -8,96 +8,97 @@
 # note: 2021 module names: AOD Alcohol- and Other Drug-Use Prevention; FN Food and Nutrition; MEH Mental and Emotional Health; PHW Personal Health and Wellness; PA Physical Activity; S Safety; SH Sexual Health; T Tobacco-Use Prevention; V Violence Prevention; CHE Comprehensive Health Education.
 # note: "Healthy Eating" (HE) is not a 2021 module; the 2021 edition page lists Food and Nutrition instead. CDC's HECAT index page still lists both names; reading HE as the pre-2021 name of FN is my inference, not stated at source.
 # note: CHE is a combined module with no HBOs of its own. HBO counts (Appendix 3): AOD 8, FN 12, MEH 9, PHW 12, PA 7, S 8, SH 10, T 5, V 10 = 81.
+# words: added 2026-11-19. After each id, a tab and one line in Curio Class's own words (ours, not CDC's). Outcomes read in Appendix 3 (2021 edition, 3 pages) in a browser; nothing saved.
 # section: topics
-HECAT.AOD
-HECAT.FN
-HECAT.MEH
-HECAT.PHW
-HECAT.PA
-HECAT.S
-HECAT.SH
-HECAT.T
-HECAT.V
-HECAT.CHE
+HECAT.AOD	Alcohol and other drugs: preventing their use and misuse.
+HECAT.FN	Food and nutrition: healthy eating patterns.
+HECAT.MEH	Mental and emotional health.
+HECAT.PHW	Personal health and wellness: hygiene, sleep, illness prevention and health care.
+HECAT.PA	Physical activity for health.
+HECAT.S	Safety and injury prevention.
+HECAT.SH	Sexual health.
+HECAT.T	Tobacco and nicotine: preventing use.
+HECAT.V	Violence prevention.
+HECAT.CHE	Combined module that draws on all the topics; no outcomes of its own.
 # section: healthy behavior outcomes
-HECAT.AOD.HBO1
-HECAT.AOD.HBO2
-HECAT.AOD.HBO3
-HECAT.AOD.HBO4
-HECAT.AOD.HBO5
-HECAT.AOD.HBO6
-HECAT.AOD.HBO7
-HECAT.AOD.HBO8
-HECAT.FN.HBO1
-HECAT.FN.HBO2
-HECAT.FN.HBO3
-HECAT.FN.HBO4
-HECAT.FN.HBO5
-HECAT.FN.HBO6
-HECAT.FN.HBO7
-HECAT.FN.HBO8
-HECAT.FN.HBO9
-HECAT.FN.HBO10
-HECAT.FN.HBO11
-HECAT.FN.HBO12
-HECAT.MEH.HBO1
-HECAT.MEH.HBO2
-HECAT.MEH.HBO3
-HECAT.MEH.HBO4
-HECAT.MEH.HBO5
-HECAT.MEH.HBO6
-HECAT.MEH.HBO7
-HECAT.MEH.HBO8
-HECAT.MEH.HBO9
-HECAT.PHW.HBO1
-HECAT.PHW.HBO2
-HECAT.PHW.HBO3
-HECAT.PHW.HBO4
-HECAT.PHW.HBO5
-HECAT.PHW.HBO6
-HECAT.PHW.HBO7
-HECAT.PHW.HBO8
-HECAT.PHW.HBO9
-HECAT.PHW.HBO10
-HECAT.PHW.HBO11
-HECAT.PHW.HBO12
-HECAT.PA.HBO1
-HECAT.PA.HBO2
-HECAT.PA.HBO3
-HECAT.PA.HBO4
-HECAT.PA.HBO5
-HECAT.PA.HBO6
-HECAT.PA.HBO7
-HECAT.S.HBO1
-HECAT.S.HBO2
-HECAT.S.HBO3
-HECAT.S.HBO4
-HECAT.S.HBO5
-HECAT.S.HBO6
-HECAT.S.HBO7
-HECAT.S.HBO8
-HECAT.SH.HBO1
-HECAT.SH.HBO2
-HECAT.SH.HBO3
-HECAT.SH.HBO4
-HECAT.SH.HBO5
-HECAT.SH.HBO6
-HECAT.SH.HBO7
-HECAT.SH.HBO8
-HECAT.SH.HBO9
-HECAT.SH.HBO10
-HECAT.T.HBO1
-HECAT.T.HBO2
-HECAT.T.HBO3
-HECAT.T.HBO4
-HECAT.T.HBO5
-HECAT.V.HBO1
-HECAT.V.HBO2
-HECAT.V.HBO3
-HECAT.V.HBO4
-HECAT.V.HBO5
-HECAT.V.HBO6
-HECAT.V.HBO7
-HECAT.V.HBO8
-HECAT.V.HBO9
-HECAT.V.HBO10
+HECAT.AOD.HBO1	Take prescribed and store-bought medicines the right way.
+HECAT.AOD.HBO2	Do not misuse prescribed or store-bought medicines.
+HECAT.AOD.HBO3	Do not drink alcohol.
+HECAT.AOD.HBO4	Do not use illegal drugs.
+HECAT.AOD.HBO5	Never drive after using alcohol or other drugs.
+HECAT.AOD.HBO6	Do not ride with a driver who has used alcohol or other drugs.
+HECAT.AOD.HBO7	Stop using alcohol or other drugs if already using them.
+HECAT.AOD.HBO8	Help others stay free of alcohol and other drugs.
+HECAT.FN.HBO1	Eat in a healthy pattern that fits your needs, tastes and growth.
+HECAT.FN.HBO2	Pick a range of foods from each food group.
+HECAT.FN.HBO3	Eat plenty of fruits and vegetables.
+HECAT.FN.HBO4	Pick whole grain foods.
+HECAT.FN.HBO5	Pick low-fat or fat-free dairy, or fortified dairy swaps.
+HECAT.FN.HBO6	Drink plenty of water.
+HECAT.FN.HBO7	Stay away from sugary drinks.
+HECAT.FN.HBO8	Have fewer foods heavy in added sugar, unhealthy fats and salt.
+HECAT.FN.HBO9	Pick foods and drinks rich in nutrients when eating out.
+HECAT.FN.HBO10	Make tasty, nutrient-rich food for yourself and others.
+HECAT.FN.HBO11	Enjoy nutrient-rich food that fits your tastes, culture and budget.
+HECAT.FN.HBO12	Help others eat in healthy ways.
+HECAT.MEH.HBO1	Show feelings in healthy ways.
+HECAT.MEH.HBO2	Do things that are good for your mind and mood.
+HECAT.MEH.HBO3	Handle conflict with others in healthy ways.
+HECAT.MEH.HBO4	Head off and cope with stress and worry in healthy ways.
+HECAT.MEH.HBO5	Use self-control to make healthy choices.
+HECAT.MEH.HBO6	Get help with troubling thoughts, feelings or actions, for yourself or others.
+HECAT.MEH.HBO7	Accept that people are different.
+HECAT.MEH.HBO8	Build and keep healthy relationships.
+HECAT.MEH.HBO9	Keep habits that support mental and emotional health.
+HECAT.PHW.HBO1	Keep clean with good hygiene habits.
+HECAT.PHW.HBO2	Get enough sleep and rest.
+HECAT.PHW.HBO3	Protect your eyes and ears.
+HECAT.PHW.HBO4	Protect your skin from the sun.
+HECAT.PHW.HBO5	Act in ways that stop the spread of germs and illness.
+HECAT.PHW.HBO6	Act in ways that lower the risk of long-term illness.
+HECAT.PHW.HBO7	Act in ways that support mental and emotional health.
+HECAT.PHW.HBO8	Handle food and water safely to avoid getting sick.
+HECAT.PHW.HBO9	Manage common long-term conditions young people have, such as asthma, allergies, diabetes or epilepsy.
+HECAT.PHW.HBO10	Use health care to treat illness and manage long-term conditions.
+HECAT.PHW.HBO11	See health workers for checkups and screenings.
+HECAT.PHW.HBO12	Avoid harm from health fads and trends.
+HECAT.PA.HBO1	Be active, moderately or hard, at least an hour every day.
+HECAT.PA.HBO2	Do activities that build heart, lung and muscle fitness and flexibility.
+HECAT.PA.HBO3	Warm up before and cool down after exercise.
+HECAT.PA.HBO4	Drink water before, during and after activity.
+HECAT.PA.HBO5	Follow an activity plan that supports healthy growth.
+HECAT.PA.HBO6	Stay safe from injury while active.
+HECAT.PA.HBO7	Help others be active.
+HECAT.S.HBO1	Follow safety rules in or on a motor vehicle.
+HECAT.S.HBO2	Never drive, or ride with a driver, after alcohol or other drugs.
+HECAT.S.HBO3	Use safety gear the right way.
+HECAT.S.HBO4	Follow safety rules to avoid injury.
+HECAT.S.HBO5	Avoid hazards at home and in the community.
+HECAT.S.HBO6	Notice dangerous places and stay away.
+HECAT.S.HBO7	Get help when you or someone else is hurt or suddenly sick.
+HECAT.S.HBO8	Help others stay safe and avoid risks.
+HECAT.SH.HBO1	Understand the body changes of growing up, in yourself and others.
+HECAT.SH.HBO2	Build and keep healthy relationships.
+HECAT.SH.HBO3	Treat every person with dignity and respect, whatever their gender identity or sexual orientation.
+HECAT.SH.HBO4	Ask for and give consent, always.
+HECAT.SH.HBO5	Choose not to have sex.
+HECAT.SH.HBO6	Act to prevent or lower the risk of sexually transmitted infections, including HIV.
+HECAT.SH.HBO7	Act to prevent or lower the risk of unplanned pregnancy.
+HECAT.SH.HBO8	Help others avoid or lower sexual risks.
+HECAT.SH.HBO9	Never pressure anyone into sexual activity.
+HECAT.SH.HBO10	Use health services for sexual and reproductive health.
+HECAT.T.HBO1	Do not use or try any tobacco or nicotine product.
+HECAT.T.HBO2	Stay away from secondhand smoke and vapor.
+HECAT.T.HBO3	Support places free of tobacco.
+HECAT.T.HBO4	Help others stay free of tobacco.
+HECAT.T.HBO5	Quit tobacco if already using it.
+HECAT.V.HBO1	Settle conflicts without violence.
+HECAT.V.HBO2	Cope with strong upset without violence.
+HECAT.V.HBO3	Do not bully, stand by while others are bullied, or accept being bullied.
+HECAT.V.HBO4	Do not take part in violence of any kind, including sexual harassment, pressure, exploitation, fighting or sexual assault.
+HECAT.V.HBO5	Stay out of places where violence is likely.
+HECAT.V.HBO6	Stay away from people who take part in or urge violence or crime.
+HECAT.V.HBO7	Get help to stop violence such as harassment, abuse, bullying, hazing, fights or hate crimes.
+HECAT.V.HBO8	Get help to stop unwanted or wrong touching.
+HECAT.V.HBO9	Get help if you are being hurt or abused.
+HECAT.V.HBO10	Get help for yourself or anyone at risk of self-harm.

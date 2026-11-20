@@ -1,6 +1,6 @@
 # Physical education: the standard, made usable
 
-**DRAFT, 2026-11-16.**
+**DRAFT, 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-physical-education-read-2026-11-19.md).**
 
 Written 2026-11-16 as pre-work for physical education (four courses, one per band). It answers the PE row of
 "Before a scope and sequence in this subject" in docs/ADOPTION-BAR-SUBJECTS.md. The bar is the PE part of that
@@ -13,18 +13,22 @@ docs/courses/physical-education/APPROACH.md (draft).
 | Write the map from the tool's five standards to the loaded four | Done 2026-11-11 | docs/standards-notes/pe-2014-to-2024.md |
 | Find and read the appropriate practice guidelines | Done in part 2026-11-16 | Section 4 |
 | (Also) Outcome for each standard by grade, the bar's scope and sequence line | Rule written | Section 3 |
-| (Also) later.csv L46, read the review tool's grade tables | Done in part: K to 5 overview and standard 1 tables | Section 3 |
+| (Also) later.csv L46, read the review tool's grade tables | Done 2026-11-19: all grade tables read | Section 3 |
+| (Also) Each indicator in our own words | Done 2026-11-19 | data/standards/shape-pe-2024.txt, second column |
 
 ## 1. The standard and the review tool
 
 - **Standard:** SHAPE America National Physical Education Standards, 2024. Loaded in
-  data/standards/shape-pe-2024.txt: 210 grade-span learning indicators, ids only, `SHAPE.S<standard>.<span
+  data/standards/shape-pe-2024.txt: 210 grade-span learning indicators, each id with one line in our own words, `SHAPE.S<standard>.<span
   end>.<n>`, spans ending at grade 2, 5, 8 and 12. Four standards: motor skills; knowledge of movement and
   fitness; social skills through movement; personal skills, the benefits of movement and choosing to be active.
 - **Review tool:** CDC's Physical Education Curriculum Analysis Tool (PECAT), 2019. It is keyed to SHAPE America's
   earlier five standards (2013, with grade-level outcomes in the 2014 book). Our mapping from five to four is
   docs/standards-notes/pe-2014-to-2024.md. Both editions are named wherever the tool is used.
-- scripts/standards.py checks `SHAPE.S[1-4]` by pattern; it does not check span or number.
+- scripts/standards.py checks the standard (1 to 4), the span (2, 5, 8 or 12) and a one or two digit number; it
+  does not check that the number exists. scripts/progression.py checks ids against the file.
+- Indicator wording is never copied. Our one-line paraphrases are the file's second column; a plan cites the id
+  and states its action in our words.
 - data/standards/nspfe-2021.txt (personal finance) is not a PE file. It belongs to the personal finance course
   and is left untouched here.
 
@@ -45,27 +49,46 @@ written per span, and SHAPE says they are not meant to line up across spans. So 
 
 **The rule.**
 
-1. For each band year (K, 1, 2 in K to 2, and so on), the scope and sequence states one outcome per standard
-   (SHAPE.S1 to S4) for that grade, in our own words, and lists the span indicators that the year works on.
-2. Every span indicator is placed in at least one year of the band and is fully met by the band's last year.
-   A year that only works toward an indicator says "toward".
+1. **In the progression** (data/progressions/physical-education.csv, layer 4), a row owns an indicator in the
+   grade where the student first meets it as a pattern and can show it in a stated setting: any grade of the span.
+   Grades after it in the span carry it as `~CODE` (used in new settings); grades before it that prepare it carry
+   `~CODE` (toward). Every indicator has exactly one owner grade and is met no later than the span's last grade.
+   scripts/progression.py checks this.
+2. Every standard (SHAPE.S1 to S4) has a stated outcome in every grade, in our own words, each naming at least one
+   owned or `~` indicator. The scope and sequence copies these grade outcomes and lists the indicators each year
+   works on.
 3. Motor skills are ordered by how they develop (bar criterion 2): a skill is first met as a pattern with its key
-   parts, then used in changing settings, then combined and used in games and dance. For the order within K to
-   5, the PECAT tables are a guide. They show, for example, that underhand throwing, catching, hand and foot
+   parts, then used in changing settings, then combined and used in games and dance. Locomotor patterns and
+   balance come first in K and 1, before manipulatives that need them; weight transfer follows locomotor control.
+   A skill the PECAT tables first expect in a grade is owned there, and the grade before carries it as `~CODE`.
+   Overhand throwing is worked toward in K and 1 and owned in grade 2; continuous hand dribbling and a self-turned
+   rope are attempted in K (`~CODE`), not owned. Each placement is marked "from the tool", "from memory" or "ours,
+   untested". For the order within K to 5, the PECAT tables are a guide. They show, for example, that underhand throwing, catching, hand and foot
    dribbling, kicking, striking with a short implement and jumping rope start in kindergarten, while weight
    transfer starts in grade 1, and overhand throwing, jogging and striking with a long implement start in grade
    2. We use that order as a reference, not as wording.
 4. Each grade outcome names how it is assessed (bar criterion 7, PECAT's "outcome, content, assessment" for every
    standard in every grade).
-5. High school (9 to 12): a four-year band. Years 1 and 2 meet the span's indicators in a range of activities;
-   years 3 and 4 add choice and a personal fitness and activity plan. Grade outcomes are stated per year as for
-   K to 8.
+5. High school (9 to 12): a four-year band. Years 1 and 2 (grades 9 and 10) own the span's indicators in a range of
+   activities; years 3 and 4 own the choice and personal plan indicators (S4) and carry the rest as `~CODE`. Grade
+   outcomes are stated per year as for K to 8.
 
-**PECAT tables (L46), read in part.** The K to 5 overview and the standard 1 tables (pages 30 to 33 of the tool)
-were read on 2026-11-16. The tables score a curriculum per grade, per outcome, on three marks: the outcome is
-stated, content teaches it, and an assessment checks it. Outcomes are coded by the 2014 book (S1.E1 and so on), and
-some are not expected in some grades. The rest of the K to 5 tables and the 6 to 8 and 9 to 12 tables are read by
-the band's planner before that band's scope and sequence; the keying is the 2013 five throughout.
+**PECAT tables (L46), read 2026-11-16 and 2026-11-19.** The tables score a curriculum per grade, per outcome, on
+three marks: the outcome is stated, content teaches it, and an assessment checks it. Outcomes are coded by the 2014
+book (S1.E1 and so on) and keyed to the 2013 five standards throughout; split older outcomes by the rule in
+docs/standards-notes/pe-2014-to-2024.md. What the tables expect, read in a browser (nothing saved):
+
+- **K to 5, standard 1:** see rule 3 above; in grade 3 passing with hands, dribbling in combination, overhead
+  volleying and manipulatives combined with locomotor are not yet expected (they start in grade 4).
+- **K to 5, standards 2 to 5:** every outcome is expected in every grade, except these, which start in grade 3:
+  alignment and muscular tension, and strategies and tactics (older S2); warming up and cooling down, and
+  assessment and program planning (older S3); social interaction (older S5). The K to 2 progression rows carry
+  these as `~CODE` at most.
+- **6 to 8:** every outcome of all five standards is expected in every grade (24, 13, 18, 7 and 6 outcomes).
+- **9 to 12:** two levels, not grades; every outcome of all five standards is expected at both levels (3, 4, 14, 5
+  and 4 outcomes). Our grades 9 and 10 stand for level 1 and 11 and 12 for level 2 (rule 5).
+
+The tables give placement only, never wording.
 
 ## 4. Appropriate practice guidelines (read in part)
 

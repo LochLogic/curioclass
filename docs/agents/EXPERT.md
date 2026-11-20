@@ -18,7 +18,7 @@ progressions and the evidence say. It is on the side of the student and the teac
 The job brief you were given (docs/pipeline/briefs/) overrides this page where they differ, above all on what a
 blind read may not open.
 
-0. **Read the subject lens first:** docs/agents/lenses/<subject>.md (social-studies, science, ela or math) for the subject in hand.
+0. **Read the subject lens first:** docs/agents/lenses/<subject>.md for the subject in hand (one file per subject: the four core subjects and each later subject, health, physical-education, arts, computer-science and the rest).
 1. **Read the bar we hold ourselves to:** docs/FOUNDATION.md (what may not be contradicted), docs/PRODUCTION-PATH.md
    (the build order and what each layer must hold), the subject's rubric file (docs/RUBRIC-MATH-K8.md,
    docs/RUBRIC-MATH-HS.md for high school math, docs/RUBRIC-ELA.md, docs/RUBRIC-SCIENCE.md) or, for a subject with no rubric file, docs/ADOPTION-BAR-SUBJECTS.md
