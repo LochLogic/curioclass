@@ -71,9 +71,9 @@ Minutes: one session a week in K to 5 (a specials rotation), two to three a week
 places each MS and HS id in exactly one grade that owns it: the grade where students are first taught it to the depth
 set under "Depth" in section 1, and checked on it. Another grade of the band that uses the id again lists it as
 `~ID` (used in a new setting, contributes). Every MS id is owned by grade 8 at the latest, every HS id by grade 12.
-Starting split (ours, untested; counted from data/standards/csta-2026-ids.txt, MS 45 and HS 46): grade 6 owns about 16
-MS ids, grade 7 about 16, grade 8 about 13, by concept ALG 4/4/3, DAT 3/3/3, PRO 3/3/3, SOC 3/3/2, SYS 3/3/2 (MS
-concepts ALG 11, DAT 9, PRO 9, SOC 8, SYS 8). Each HS year owns 11 or 12 ids (HS concepts ALG 11, DAT 8, PRO 9, SOC 9,
+Starting split (ours, untested; counted from data/standards/csta-2026-ids.txt, MS 45 and HS 46): grade 6 owns about 17
+MS ids, grade 7 about 15, grade 8 about 13, by concept ALG 4/4/3, DAT 4/2/3, PRO 3/3/3, SOC 3/3/2, SYS 3/3/2 (MS
+concepts ALG 11, DAT 9, PRO 9, SOC 8, SYS 8; the split is forced, because MS-DAT-DC-21 to 24 must all come before MS-ALG-ML-07 in grade 7, which puts four DAT ids in grade 6). Each HS year owns 11 or 12 ids (HS concepts ALG 11, DAT 8, PRO 9, SOC 9,
 SYS 9), with every concept in every year. Ordering constraints, ours: MS-PRO-VD-16 before MS-ALG-PS-01 and MS-PRO-RD-17;
 MS-PRO-PD-12 before MS-PRO-RD-17; MS-PRO-RD-17 before MS-PRO-RD-18; MS-DAT-DC-23 before MS-DAT-DI-25 to 27; MS-ALG-ML-06
 before MS-ALG-ML-07 and 08; MS-DAT-DC-21 to 24 before MS-ALG-ML-07; MS-SYS-NT-34 before NT-35; MS-DAT-DI-25 owned in
