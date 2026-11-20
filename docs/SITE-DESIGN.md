@@ -157,6 +157,7 @@ load data as you browse, and the reader prints the open view only.
 
 - **The Front Office** shows the six layers as a flow with counts, a skill ladder per subject (strand by grade), every
   course by grade, and a reader drawer. Each view has its own link (`#subject/course/unit`).
+- **Show Your Work: The process** (Cory, 2026-11-20): the public form of docs/COURSE-RUN.md: the five-step loop (make, check, fix, improve, close), fixed where it began, one grade at a time, and what each layer is checked for. Arrows are CSS or hand-placed SVG; the trace diagram has a tall version under 680px.
 - **Every document reads in the drawer** (Cory, 2026-11-19: "read from the progressions and course frames all the
   way to the days"): the full skill ladder by grade (`#subject/ladder/grade`), each course frame and scope and
   sequence (`#subject/course/frame`, `/scope`), each unit plan (`/unit/plan`), section plan (`/unit/s/1.2`) and

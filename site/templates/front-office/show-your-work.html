@@ -55,6 +55,68 @@
 .syw-rev b { display: block; margin-bottom: 4px; }
 .syw-rev p { margin: 0; color: var(--muted); font-size: 15px; }
 .syw-soon { border: 2px dashed var(--line); border-radius: var(--radius); padding: 16px 18px; color: var(--muted); font-size: 15px; }
+/* The process: make, check, fix, improve, close (docs/COURSE-RUN.md, public wording) */
+.syw-loop { list-style: none; padding: 0; margin: 22px 0 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.syw-loop li { margin: 0; }
+.syw-loop .step { display: flex; align-items: center; justify-content: center; height: 48px; padding: 0 10px 0 18px; color: #fff; font: 600 16px/1 var(--sans); clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%); }
+.syw-loop li:first-child .step { clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%); padding-left: 10px; }
+.syw-loop li:last-child .step { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 14px 50%); }
+.syw-loop p { font-size: 14.5px; color: var(--muted); margin: 10px 4px 0; line-height: 1.45; }
+.syw-loop .s1 { background: var(--teal); } .syw-loop .s2 { background: var(--social); } .syw-loop .s3 { background: var(--accent-ink); } .syw-loop .s4 { background: var(--cs); } .syw-loop .s5 { background: var(--science); }
+.syw-again { display: flex; align-items: center; gap: 8px; margin: 14px 0 0; font-size: 14px; color: var(--muted); }
+.syw-again::before { content: "\21BB"; font-size: 18px; color: var(--accent-ink); }
+.syw-trace { margin: 26px 0 0; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 20px 18px; box-shadow: var(--shadow); }
+.syw-trace svg { display: block; width: 100%; height: auto; }
+.syw-trace .bx { fill: var(--paper-2); stroke: var(--line); }
+.syw-trace .bx.hot { fill: #fbe3da; stroke: #e8b5a3; }
+.syw-trace .bx.src { fill: #e7f0ef; stroke: #b9d3d0; }
+.syw-trace .lb { font: 600 15px var(--sans); fill: var(--ink); }
+.syw-trace .sm { font: 400 13px var(--sans); fill: var(--muted); }
+.syw-trace .fw { stroke: #b9b2a2; stroke-width: 2; fill: none; }
+.syw-trace .bk { stroke: var(--accent-ink); stroke-width: 2.25; fill: none; }
+.syw-trace .hd-fw { fill: #b9b2a2; } .syw-trace .hd-bk { fill: var(--accent-ink); }
+.syw-steps3 { list-style: none; padding: 0; margin: 16px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; counter-reset: f; }
+.syw-steps3 li { counter-increment: f; position: relative; padding: 0 0 0 36px; font-size: 15px; color: var(--muted); }
+.syw-steps3 li::before { content: counter(f); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-ink); color: #fff; display: grid; place-items: center; font: 600 13px/1 var(--sans); }
+.syw-steps3 b { display: block; color: var(--ink); }
+.syw-trace svg.tall { display: none; max-width: 340px; margin: 0 auto; }
+.syw-grades { margin: 20px 0 0; }
+.syw-grades .gr { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: 8px 0; padding: 0 0 26px; }
+.syw-grades .gr:not(.end)::after { content: ""; position: absolute; left: 50px; bottom: 6px; width: 0; height: 14px; border-left: 2px solid #cfc3a8; }
+.syw-grades .gr:not(.end)::before { content: ""; position: absolute; left: 45px; bottom: 0; border: 6px solid transparent; border-top: 7px solid #cfc3a8; border-bottom: 0; }
+.syw-grades .g { width: 132px; flex: none; font: 600 13px/1.2 var(--sans); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.syw-grades .chip { position: relative; display: inline-block; padding: 8px 14px; border-radius: 999px; font: 600 14px/1 var(--sans); color: #fff; white-space: nowrap; }
+.syw-grades .chip + .chip { margin-left: 30px; }
+.syw-grades .chip + .chip::before { content: ""; position: absolute; left: -26px; top: 50%; width: 15px; height: 2px; margin-top: -1px; background: #cfc3a8; }
+.syw-grades .chip + .chip::after { content: ""; position: absolute; left: -12px; top: 50%; margin-top: -5px; border: 5px solid transparent; border-left: 7px solid #cfc3a8; border-right: 0; }
+.syw-grades .pl { background: var(--social); } .syw-grades .dy { background: #d39a3f; } .syw-grades .rv { background: var(--cs); } .syw-grades .fn { background: var(--science); }
+.syw-layers { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 20px; }
+.syw-layer { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--teal); border-radius: var(--radius); padding: 16px 18px 12px; box-shadow: var(--shadow); }
+.syw-layer.gr { border-top-color: var(--social); } .syw-layer.fin { border-top-color: var(--science); }
+.syw-layer h3 { font-size: 18px; margin: 0 0 2px; }
+.syw-layer .when { font: 600 12px/1.3 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.syw-layer dl { margin: 0; display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 14.5px; }
+.syw-layer dt { font: 600 12px/1.6 var(--sans); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); display: flex; align-items: baseline; gap: 6px; }
+.syw-layer dt::before { content: ""; width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--k, var(--muted)); transform: translateY(-1px); }
+.syw-layer dd { margin: 0; }
+.k-st { --k: var(--teal); } .k-co { --k: var(--social); } .k-ac { --k: var(--science); } .k-te { --k: var(--cs); } .k-se { --k: var(--accent-ink); }
+@media (max-width: 680px) {
+  .syw-loop { grid-template-columns: 1fr; gap: 4px; }
+  .syw-loop li { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: center; }
+  .syw-loop .step, .syw-loop li:first-child .step, .syw-loop li:last-child .step { height: 52px; padding: 0 0 8px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), 50% 100%, 0 calc(100% - 10px)); }
+  .syw-loop li:last-child .step { clip-path: none; padding: 0; height: 44px; }
+  .syw-loop p { margin: 0; }
+  .syw-steps3 { grid-template-columns: 1fr; }
+  .syw-lic { white-space: normal; line-height: 1.3; }
+  .syw-trace svg { display: none; } .syw-trace svg.tall { display: block; }
+  .syw-grades .g { width: 100%; margin-bottom: 2px; }
+  .syw-grades .chip { padding: 7px 11px; font-size: 13px; }
+  .syw-grades .chip + .chip { margin-left: 24px; }
+  .syw-grades .chip + .chip::before { left: -21px; width: 11px; }
+  .syw-grades .chip + .chip::after { left: -11px; }
+  .syw-grades .gr:not(.end)::after { left: 30px; } .syw-grades .gr:not(.end)::before { left: 25px; }
+  .syw-table td { overflow-wrap: anywhere; }
+}
 @media (max-width: 860px) { .syw .syw-layout { grid-template-columns: 1fr; gap: 10px; } .syw-toc { position: static; display: none; } .syw-table { font-size: 14px; } }
 @media print { .site-head, .site-foot, .fo-draft, .syw-toc { display: none; } .syw-layout { display: block; } .syw-acc:not([open]) > :not(summary) { display: block; } }
 </style>
@@ -74,6 +136,7 @@
       <a href="#approach">The approach</a>
       <a href="#layers">The layers</a>
       <a href="#checks">The checks</a>
+      <a href="#process">The process</a>
       <a href="#standing">Where things stand</a>
       <a href="#texts">Base texts</a>
       <a href="#record">The review record</a>
@@ -113,6 +176,108 @@
           <div class="syw-card"><div class="ic">&#128279;</div><h3>Sources</h3><p>Every fact is traced to a named source, and every text is checked for its edition and rights.</p></div>
           <div class="syw-card"><div class="ic">&#9878;</div><h3>Sensitivity</h3><p>Topics about real communities are checked against that community's own published guidance.</p></div>
           <div class="syw-card"><div class="ic">&#9888;</div><h3>Safety</h3><p>Every hands-on activity is checked against named safety guides for the grade.</p></div>
+        </div>
+      </section>
+
+      <section id="process">
+        <div class="kicker">The process</div>
+        <h2>Make, check, fix, then move on.</h2>
+        <p class="intro">Every layer goes through the same five steps, in order, before the next layer starts.</p>
+        <ol class="syw-loop">
+          <li><div class="step s1">Make</div><p>The layer is written from the one above it, following fixed instructions.</p></li>
+          <li><div class="step s2">Check</div><p>Counted rules run first, then separate reads, each with one job.</p></li>
+          <li><div class="step s3">Fix</div><p>Each problem is fixed at the layer where it began.</p></li>
+          <li><div class="step s4">Improve</div><p>What the checks found goes into the instructions for the next layer.</p></li>
+          <li><div class="step s5">Close</div><p>The layer closes only when every check passes.</p></li>
+        </ol>
+        <p class="syw-again">After the last fix, every check runs again.</p>
+
+        <h3 style="font-size:22px;margin:36px 0 6px">Fixed where it began.</h3>
+        <p>Every problem is recorded with two places: where it was found, and where it began. A problem found in a lesson is often caused higher up. If a unit plan set up a practice task that gives away the exit check, the fix goes into the unit plan, and every other unit plan is checked for the same problem before more lessons are written.</p>
+        <div class="syw-trace">
+          <svg viewBox="0 0 640 150" role="img" aria-label="A problem found in a day is traced back to the unit plan where it began.">
+            <rect class="bx src" x="20" y="20" width="170" height="48" rx="10"/>
+            <text class="lb" x="105" y="42" text-anchor="middle">Unit plan</text><text class="sm" x="105" y="59" text-anchor="middle">where it began</text>
+            <rect class="bx" x="235" y="20" width="170" height="48" rx="10"/>
+            <text class="lb" x="320" y="49" text-anchor="middle">Section plan</text>
+            <rect class="bx hot" x="450" y="20" width="170" height="48" rx="10"/>
+            <text class="lb" x="535" y="42" text-anchor="middle">Day</text><text class="sm" x="535" y="59" text-anchor="middle">where it was found</text>
+            <line class="fw" x1="194" y1="44" x2="223" y2="44"/><polygon class="hd-fw" points="222,38.5 232,44 222,49.5"/>
+            <line class="fw" x1="409" y1="44" x2="438" y2="44"/><polygon class="hd-fw" points="437,38.5 447,44 437,49.5"/>
+            <path class="bk" d="M535,72 C535,124 105,124 105,84"/><polygon class="hd-bk" points="99,84 105,72 111,84"/>
+            <text class="sm" x="320" y="142" text-anchor="middle">traced back, fixed at the source</text>
+          </svg>
+          <svg class="tall" viewBox="0 0 340 290" role="img" aria-label="A problem found in a day is traced back to the unit plan where it began.">
+            <rect class="bx src" x="20" y="10" width="210" height="52" rx="10"/>
+            <text class="lb" x="125" y="33" text-anchor="middle">Unit plan</text><text class="sm" x="125" y="51" text-anchor="middle">where it began</text>
+            <rect class="bx" x="20" y="118" width="210" height="52" rx="10"/>
+            <text class="lb" x="125" y="149" text-anchor="middle">Section plan</text>
+            <rect class="bx hot" x="20" y="226" width="210" height="52" rx="10"/>
+            <text class="lb" x="125" y="249" text-anchor="middle">Day</text><text class="sm" x="125" y="267" text-anchor="middle">where it was found</text>
+            <line class="fw" x1="125" y1="66" x2="125" y2="104"/><polygon class="hd-fw" points="119.5,103 125,114 130.5,103"/>
+            <line class="fw" x1="125" y1="174" x2="125" y2="212"/><polygon class="hd-fw" points="119.5,211 125,222 130.5,211"/>
+            <path class="bk" d="M234,252 C300,252 300,36 246,36"/><polygon class="hd-bk" points="246,30.5 234,36 246,41.5"/>
+            <text class="sm" transform="translate(316,144) rotate(90)" text-anchor="middle">traced back to the source</text>
+          </svg>
+          <ol class="syw-steps3">
+            <li><b>Fix</b>The lesson and its plans are corrected. The practice changes, never the check.</li>
+            <li><b>Sweep</b>Every other plan at that layer is checked for the same problem.</li>
+            <li><b>Improve</b>The instructions that let it through gain a new check.</li>
+          </ol>
+        </div>
+
+        <h3 style="font-size:22px;margin:36px 0 6px">One grade at a time.</h3>
+        <p>The planning layers cover every grade first. Then lessons are written one grade at a time: a grade's section plans, then its days, then a review of the whole grade before the next grade begins. A lesson only builds on lessons that are already written, so nothing claims something that is not there yet. In each subject's first grade, the first unit goes all the way to finished lessons before the rest is planned in detail.</p>
+        <div class="syw-grades" role="list" aria-label="Order of work across grades">
+          <div class="gr" role="listitem"><span class="g">Kindergarten</span><span class="chip pl">Section plans</span><span class="chip dy">Days</span><span class="chip rv">Grade review</span></div>
+          <div class="gr" role="listitem"><span class="g">Grade 1</span><span class="chip pl">Section plans</span><span class="chip dy">Days</span><span class="chip rv">Grade review</span></div>
+          <div class="gr" role="listitem"><span class="g">Grade 2</span><span class="chip pl">Section plans</span><span class="chip dy">Days</span><span class="chip rv">Grade review</span></div>
+          <div class="gr end" role="listitem"><span class="g">And on</span><span class="chip fn">Finished course</span></div>
+        </div>
+
+        <h3 style="font-size:22px;margin:36px 0 6px">What each layer is checked for.</h3>
+        <p>Five kinds of check, at every layer. Each read starts fresh, without having seen the writing.</p>
+        <div class="syw-layers">
+          <div class="syw-layer"><h3>Groundwork</h3><div class="when">Once per subject</div><dl>
+            <dt class="k-st">Structure</dt><dd>Every standard code is real.</dd>
+            <dt class="k-co">Continuity</dt><dd>Links to other subjects point to skills those subjects teach.</dd>
+            <dt class="k-ac">Accuracy</dt><dd>The standard, in plain words, is checked against its sources.</dd>
+            <dt class="k-te">Teaching</dt><dd>The approach fits the ages.</dd>
+            <dt class="k-se">Sensitivity</dt><dd>Sensitive ground is named before writing starts.</dd></dl></div>
+          <div class="syw-layer"><h3>Skill ladders</h3><div class="when">Once per subject, every grade</div><dl>
+            <dt class="k-st">Structure</dt><dd>Every skill has one owner grade.</dd>
+            <dt class="k-co">Continuity</dt><dd>Each skill's earlier skills are taught first; no grade is skipped.</dd>
+            <dt class="k-ac">Accuracy</dt><dd>Every standard is placed once, or left out with a reason.</dd>
+            <dt class="k-te">Teaching</dt><dd>Examples come before students are asked to use them.</dd></dl></div>
+          <div class="syw-layer"><h3>Course frames and scope</h3><div class="when">Each course, grades in order</div><dl>
+            <dt class="k-st">Structure</dt><dd>The calendar fits, and every day has a kind.</dd>
+            <dt class="k-co">Continuity</dt><dd>Frames are read side by side through the grades.</dd>
+            <dt class="k-ac">Accuracy</dt><dd>Every skill a course owns sits in a unit.</dd>
+            <dt class="k-te">Teaching</dt><dd>Days match the time a school gives the subject, and checks are spaced.</dd></dl></div>
+          <div class="syw-layer"><h3>Unit plans</h3><div class="when">Each unit, in order</div><dl>
+            <dt class="k-st">Structure</dt><dd>Every goal has an exit check and a practice of a different shape.</dd>
+            <dt class="k-co">Continuity</dt><dd>Every review points to real earlier work.</dd>
+            <dt class="k-ac">Accuracy</dt><dd>Each unit is read against its subject's sources.</dd>
+            <dt class="k-te">Teaching</dt><dd>The exit check asks what the goal asks.</dd>
+            <dt class="k-se">Sensitivity</dt><dd>Read again wherever a topic needs it.</dd></dl></div>
+          <div class="syw-layer gr"><h3>Section plans</h3><div class="when">One grade at a time</div><dl>
+            <dt class="k-st">Structure</dt><dd>Every question asks one thing.</dd>
+            <dt class="k-co">Continuity</dt><dd>Reviews name only what earlier lessons really taught.</dd>
+            <dt class="k-ac">Accuracy</dt><dd>Every question is solved fresh, without the key, and facts are checked against sources.</dd>
+            <dt class="k-te">Teaching</dt><dd>The grade's plans are read as a whole.</dd>
+            <dt class="k-se">Sensitivity</dt><dd>Read again wherever a topic needs it.</dd></dl></div>
+          <div class="syw-layer gr"><h3>Days</h3><div class="when">One grade at a time, in order</div><dl>
+            <dt class="k-st">Structure</dt><dd>Exit checks fit their time, and every child gets a turn.</dd>
+            <dt class="k-co">Continuity</dt><dd>A lesson waits until what it builds on is written.</dd>
+            <dt class="k-ac">Accuracy</dt><dd>Each set of days is checked as it comes in.</dd>
+            <dt class="k-te">Teaching</dt><dd>A sample of each grade's days is read in full.</dd>
+            <dt class="k-se">Sensitivity</dt><dd>Read again wherever a topic needs it.</dd></dl></div>
+          <div class="syw-layer fin"><h3>Finished course</h3><div class="when">Each course</div><dl>
+            <dt class="k-st">Structure</dt><dd>Every check runs again.</dd>
+            <dt class="k-co">Continuity</dt><dd>Every review in every grade is matched to the lesson it names.</dd>
+            <dt class="k-ac">Accuracy</dt><dd>The whole course is read against its subject's measure of quality.</dd>
+            <dt class="k-te">Teaching</dt><dd>Units and the seams between them are read as one course.</dd>
+            <dt class="k-se">Safety</dt><dd>A final sensitivity and safety read.</dd></dl></div>
         </div>
       </section>
 
