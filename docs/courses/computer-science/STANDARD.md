@@ -95,8 +95,7 @@ its task already does what the S1 statement and boundary ask (for example a unit
 may claim an AI S1 id). No unit is lengthened to reach a Specialty id, and no S2 id is claimed in a Foundational
 course. Decided (Cory, 2026-11-20, Desk q-prework-cs-1): grades 11 and 12 claim a short named list of
 S1 ids as in-course standards, taught and checked in full and counted so bar criterion C1's 10 percent is not reached;
-no new courses; S2 stays out. Pending(data/progressions/computer-science.csv#S1-): the list is chosen and named in
-the grade 11 and 12 rows. Specialty courses (a pathway of one or two courses per area, as CSTA suggests) are not on the course list;
+no new courses; S2 stays out. The list is eight S1 ids, four in grade 11 (S1-AIN-DD-02, S1-DSC-VZ-11, S1-CYB-TS-08, S1-SWD-TR-07) and four in grade 12 (S1-AIN-HR-09, S1-DSC-PP-13, S1-SWD-PP-08, S1-SWD-UX-05), each taught inside a row that already teaches the topic. S1 days count as days outside the course's own standards under C1, so each grade's scope and sequence keeps them, with any other such days, under 10 percent of its teaching days. Specialty courses (a pathway of one or two courses per area, as CSTA suggests) are not on the course list;
 adding any is Cory's call.
 
 **The 2017 codes** are the superseded set. Tool specs may show them beside 2026 ids as a crosswalk; they never stand

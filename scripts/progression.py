@@ -55,8 +55,9 @@ STD_FILES = {'social-studies': ['ma-hss-2018.txt', 'c3-indicators.txt', 'ccss-li
              # the later subjects (added 2026-11-19, health and PE pre-work): span-coded indicators, see code_grades
              'health': ['nhes-2024.txt', 'hecat-topics.txt'],
              'physical-education': ['shape-pe-2024.txt'],
-             # computer science (added 2026-11-19, CS pre-work): Foundational ids only; specialty ids wait on Cory
-             'computer-science': ['csta-2026-ids.txt'],
+             # computer science (added 2026-11-19, CS pre-work): Foundational ids anchor; S1 Specialty ids are accepted
+             # but never required, and only in grades 11 and 12 (Cory, 2026-11-20); S2 ids fail (see code_grades)
+             'computer-science': ['csta-2026-ids.txt', 'csta-2026-specialty-ids.txt'],
              # arts (added 2026-11-19, arts pre-work): NCAS performance standards, one file for the five disciplines
              'arts': ['ncas-performance-standards.txt']}
 # the core electives' own lists (added 2026-11-16): accepted codes, and every code in them must be owned by a row
@@ -106,6 +107,10 @@ def code_grades(subject, code):
             return ['K'], ['K']
         if len(b) == 2 and b[0] == 'E' and b[1] in '12345':
             return [b[1]], [b[1]]
+        if b == 'S1':
+            return ['11', '12'], ['11', '12']
+        if b == 'S2':
+            return [], []  # S2 is out of the course list: any use fails (see check)
         if b in ('MS', 'HS'):
             band = BAND['6-8' if b == 'MS' else '9-12']
             return band, band
@@ -226,6 +231,9 @@ def check(subject):
             if not cg:
                 continue
             allowed = cg[1] if raw.startswith('~') else cg[0]
+            if not allowed:
+                fails.append('%s names %s: Specialty II ids are not taught (Cory, 2026-11-20)' % (sid, raw.lstrip('~')))
+                continue
             if grade_of[sid] not in allowed:
                 fails.append('%s (grade %s) %s %s: belongs in grade(s) %s' % (
                     sid, grade_of[sid], 'contributes to' if raw.startswith('~') else 'owns', raw.lstrip('~'), ', '.join(allowed)))
