@@ -55,8 +55,8 @@ Read on the coalition's own copyright guidelines (nationalartsstandards.org, "NC
   the performance standards. The eleven anchors may be quoted in their real wording. Decided (Cory, 2026-11-20, Desk q-prework-arts-1):
   a one-line words file for the 1,114 taught ids (id, tab, at most 14 words of what the student does, never a
   re-sentence of the standards' phrasing), written by one agent and read by a second, in the public repository; the
-  63 strand ids join it when they load. Pending(data/standards/ncas-performance-standards-words.txt): until the file
-  exists, a plan cites the id and writes the action in its own one line.
+  63 strand ids join it when they load. The file now exists (data/standards/ncas-performance-standards-words.txt,
+  written 2026-11-20): a plan cites the id and uses the file's line for the action.
 
 ## 3. The band-year rule
 
