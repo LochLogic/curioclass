@@ -126,7 +126,9 @@ without breaking the course. The rule:
    that go with it, what the course still meets without it, who is affected by leaving it out (for growing-up
    content, children whose bodies change early), and that the school or family decides. Correct body part names
    are first taught in non-sensitive terms in Personal health and wellness, K to 2, so leaving out a sexual health
-   unit never removes them; this is the one place the sensitive-unit rule is eased. A family note
+   unit never removes them; this is the one place the sensitive-unit rule is eased, and the easing covers one plain
+   sentence of names and the idea of private, nothing more. The family note for that row lists the words, says there
+   are no pictures, and offers preview. For a sensitive unit, a family note
    (English and Spanish) goes home before it, with the outline and how to opt out, in the school's own process.
 6. **Day counts.** A sensitive unit's days are counted as optional. A school that leaves it out has those days free;
    the scope and sequence names a non-sensitive unit to extend.
