@@ -71,21 +71,23 @@ read; it is checked against each module's span tables when the band's units are 
 
 | Topic | K to 2 | 3 to 5 | 6 to 8 | 9 to 12 |
 |---|---|---|---|---|
-| Personal health and wellness (PHW) | 1, 2, 3, 4, 5, 11 | 1 to 11 | All | All |
-| Food and nutrition (FN) | 1, 2, 3, 6, 7 | 1 to 8, 10, 12 | 1 to 9, 11, 12 | All |
+| Personal health and wellness (PHW) | 1, 2, 3, 4, 5, 11 | 1 to 11 | All | 1, 2, 5 to 7, 9 to 13 (3, 4, 8 met in 6 to 8) |
+| Food and nutrition (FN) | 1, 2, 3, 6, 7 | 1 to 8, 10, 12 | 1 to 9, 11, 12 | 1, 8, 10 to 13 (2 to 7, 9 met in 6 to 8) |
 | Mental and emotional health (MEH) | 1, 2, 3, 4, 5, 7 | 1 to 5, 7 to 9 | All; 6 in a sensitive unit (s) | All; 6 in a sensitive unit (s) |
-| Physical activity (PA) | 1, 4, 6 (with PE) | 1 to 7 (with PE) | All (with PE) | All (with PE) |
-| Safety (S) | 1, 3 to 8 | 1, 3 to 8 | All | All |
+| Physical activity (PA) | 1, 4, 6 (with PE) | 1 to 7 (with PE) | 1, 2, 5, 7, 8; 3, 4, 6 taught in PE | 1, 2, 5 to 8 (with PE; 3, 4 met in 6 to 8) |
+| Safety (S) | 1, 3 to 8 | 1, 3 to 8 | All | 1 to 6, 8, 9 (7 met in 6 to 8) |
 | Violence prevention (V) | 1, 3, 7; 8 in body safety (s) | 1, 2, 3, 5, 7; 8, 9 in body safety (s) | 1 to 3, 5 to 7; 4, 8, 9, 10 in a sensitive unit (s) | All; 4, 8, 9, 10 in a sensitive unit (s) |
-| Tobacco (T) | 1, 2 | 1, 2, 3, 4 | All | All |
+| Tobacco (T) | 1, 2 | 1, 2, 3, 4 | All | 1, 3 to 6 (2 met in 6 to 8) |
 | Alcohol and other drugs (AOD) | 1 (medicine safety) | 1, 2, 3 | 1 to 4, 6, 8 | All |
 | Sexual health (SH) | 1, 2, 3 (s) | 1, 2, 3, 4, 6 (s) | 1 to 10 (s) | All (s) |
 
 Key: a number listed in a sensitive part of a cell is taught only in the sensitive unit. MEH 6 is not taught
 before grade 6; a grade 3 to 5 mental health unit teaches getting help for sad or worried feelings under the
 help-seeking outcome, which the planner confirms from our outcome wording. Care-seeking (PHW 10 and 11) starts in
-K to 2 because the NHES care indicators do; PHW 12 (fads) is judged in grade 7 (progression read, 2026-11-19). In the 9 to 12 column, an outcome 6 to 8 already teaches is a
-revisit (a short practice unit), not taught again in full.
+K to 2 because the NHES care indicators do; PHW 12 (fads) is judged in grade 7 (progression read, 2026-11-19). The 9 to 12 column lists what the semester carries; an outcome named "met in 6 to 8" is not
+taught again there, and any other outcome 6 to 8 already teaches is a revisit (a short review inside another unit),
+not taught again in full (Cory, 2026-11-20, Desk q-prework-health-pe-2). Physical activity 3, 4 and 6 in grades 6
+to 8 are taught by moving in PE; health names the PE rows instead of planning the same lessons (same card).
 
 Standards by band: every band teaches all eight NHES standards across its topics, and every skill standard
 (2 to 8) is practised in at least two topics in the band. Each band's scope and sequence carries the full map in
@@ -93,9 +95,12 @@ this shape, with unit names in the cells, plus a second table of NHES standards 
 
 **Years within a band.** NHES indicators are written per span, not per grade. Bands K to 2, 3 to 5 and 6 to 8
 are three grade years each: the scope and sequence names each grade's units, and each topic is claimed at least
-in alternate years. Each year touches all eight standards. Band 9 to 12 is one course of one semester: it teaches
-in full the outcomes not met by grade 8 and revisits the rest. If the 9 to 12 map cannot fit a semester even so,
-the planner brings it to Cory rather than dropping outcomes. Topics return each year at more depth; a topic is
+in alternate years. Each year touches all eight standards. Band 9 to 12 is one course of one semester, in grade 9: it teaches
+in full the outcomes not met by grade 8 and revisits the rest. Its pace, about twice that of earlier grades, is
+accepted (Cory, 2026-11-20, Desk q-prework-health-pe-2): the frame runs the goal rows as one weekly thread and names
+short units of two to four days. If the semester still cannot hold its outcomes, review gives first: outcomes met
+in 6 to 8 become short reviews inside other units, so every new 9 to 12 outcome keeps its time; only if that still
+does not fit does a list go to Cory (Desk q-prework-health-pe-1). Topics return each year at more depth; a topic is
 never a one-off lesson (bar criterion 5).
 
 **In the progression** (data/progressions/health.csv): each indicator has exactly one owner grade, the grade where
@@ -173,6 +178,6 @@ expert agent". No paid read and no spend. Criterion 7 is met this way:
 
 ## 9. Existing topic stubs
 
-The 21 health stubs in data/modules.csv are placeholders. Each band's scope and sequence keeps, renames or drops
+The 21 health stubs in data/modules.csv are stand-ins from before the plan. Each band's scope and sequence keeps, renames or drops
 each with its reason: body-systems content is used from science, not retaught; digital wellness sits inside MEH, S
 and V as skills; first aid sits in Safety.

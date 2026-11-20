@@ -122,6 +122,5 @@ read for this page: none yet; each one added is listed with how much of it was r
 
 ## Open for Cory
 
-Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-cs-1): yes to this approach page as the layer 3 page for
-computer science. The other open picks (S1 ids in grades 11 and 12, the generated-text day, our own editor, society cases
-naming government bodies and courts but not companies) are in STANDARD.md.
+Cory said yes to this page as the layer 3 page for computer science once the cold read's fixes were in (2026-11-20,
+Desk q-prework-cs-1); they are. Still open: our own editor (STANDARD.md).

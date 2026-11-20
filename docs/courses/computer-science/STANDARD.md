@@ -93,9 +93,10 @@ Its source goes in the day's credit; no company name appears in student, teacher
 **Specialty standards.** The four high school courses teach all 46 Foundational ids between them. A unit may also claim an S1 id when
 its task already does what the S1 statement and boundary ask (for example a unit that trains and tests a classifier
 may claim an AI S1 id). No unit is lengthened to reach a Specialty id, and no S2 id is claimed in a Foundational
-course. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-cs-1): grades 11 and 12 may claim a short named list of
+course. Decided (Cory, 2026-11-20, Desk q-prework-cs-1): grades 11 and 12 claim a short named list of
 S1 ids as in-course standards, taught and checked in full and counted so bar criterion C1's 10 percent is not reached;
-no new courses; S2 stays out. Specialty courses (a pathway of one or two courses per area, as CSTA suggests) are not on the course list;
+no new courses; S2 stays out. Pending(data/progressions/computer-science.csv#S1-): the list is chosen and named in
+the grade 11 and 12 rows. Specialty courses (a pathway of one or two courses per area, as CSTA suggests) are not on the course list;
 adding any is Cory's call.
 
 **The 2017 codes** are the superseded set. Tool specs may show them beside 2026 ids as a crosswalk; they never stand
@@ -155,13 +156,13 @@ idea and the course record marks the id "part met without a device"; the course 
 Evaluating generated output (MS-PRO-RD-18, HS-PRO-RD-18, HS-ALG-PS-05) is met on supplied material: Curio Class supplies
 saved outputs and code samples, some right and some flawed, and students judge them for accuracy and use. No tool
 asks a student to use a live generated-text tool, make an account or send anything off the device. For MS-ALG-PS-05,
-which asks students to use one: Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-cs-1): no live tool in Curio
+which asks students to use one (Cory, 2026-11-20, Desk q-prework-cs-1): no live tool in Curio
 Class; the day is teacher-run on one screen with a tool the school has already approved and no student accounts, and
 the course marks the id "part met" where a school has none.
 
 ### Our own editor
 
-Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-cs-1): build one small browser editor of our own (blocks and a
+Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-1): build one small browser editor of our own (blocks and a
 text view, with a step-through trace), a single file with no account, starting with grades 3 to 5, rather than pointing
 teachers to a third-party tool; it also settles the text language for grades 7 to 12.
 
@@ -188,5 +189,5 @@ a 2018 study found it wrong more often for darker-skinned women" (example only, 
 before use). The teacher page gives the date and the source's title and publisher in a source line, which is a citation
 and not a promotion. If a case cannot be understood without the name, choose another case or use a court or government
 record's own description. A society day gives two views and one dated source for each.
-Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-cs-1): student and teacher copy may name government bodies and
+Decided (Cory, 2026-11-20, Desk q-prework-cs-1): student and teacher copy may name government bodies and
 courts but never companies, with sources only in the teacher source line.

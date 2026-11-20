@@ -29,8 +29,8 @@ approach page is docs/courses/arts/APPROACH.md (draft).
   course (criterion 1).
 - scripts/standards.py checks NCAS codes by a closed pattern on discipline, process and anchor, and accepts the
   strand letter and the grade or level (read 2026-11-19). It does not check that an id exists in the file.
-  Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-arts-1): the standards gate that checks a plan's ids
-  against the file's lines is a worker's job, owed; until it exists, each scope and sequence states its id count
+  The standards gate that checks a plan's ids against the file's lines is a worker's job, owed (data/plans/later.csv);
+  until it exists, each scope and sequence states its id count
   against the table in section 3.2 and a reader spot-checks ten.
 - Music is loaded for pre-kindergarten to grade 8 general music only. The 63 ids of the high school composition
   and theory strand load by hand when the high school music frame is written (section 3.3).
@@ -52,10 +52,11 @@ Read on the coalition's own copyright guidelines (nationalartsstandards.org, "NC
   questions are written fresh. A page that names the standards gives the citation line in the notice's form.
 - The model cornerstone assessments are not adapted. Our end-of-unit assessments are our own.
 - A plan names a performance standard by id and states its action in one line of our own words. It never quotes
-  the performance standards. The eleven anchors may be quoted in their real wording. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-arts-1):
-  the one-line words file for the 1,114 taught ids and the 63 strand ids (id, tab, at most 14 words of what the
-  student does, written by one agent and read by a second) waits on Cory, who decides it because the repo is
-  public. Until it is written, a plan cites the id and writes the action in its own one line.
+  the performance standards. The eleven anchors may be quoted in their real wording. Decided (Cory, 2026-11-20, Desk q-prework-arts-1):
+  a one-line words file for the 1,114 taught ids (id, tab, at most 14 words of what the student does, never a
+  re-sentence of the standards' phrasing), written by one agent and read by a second, in the public repository; the
+  63 strand ids join it when they load. Pending(data/standards/ncas-performance-standards-words.txt): until the file
+  exists, a plan cites the id and writes the action in its own one line.
 
 ## 3. The band-year rule
 
@@ -105,12 +106,12 @@ state frameworks that turn them into yearlong courses.
 - Advanced is claimed by assessed work, not by finishing Level 3. A student who ends Level 3 at "partly" has
   Level 4 to reach it.
 - One level is a complete course and is enough for Proficient. The bar does not ask a school to offer all four.
-- Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-arts-1): a short path for high school levels waits on
-  Cory. Proposal: each level's scope and sequence marks an 80-day path (a semester or a rotation) that keeps every
+- Short path (Cory, 2026-11-20, Desk q-prework-arts-1): each level's scope and sequence marks an 80-day path (a semester or a rotation) that keeps every
   unit and every id by merging the marked days. Level 1 opens with a bridge unit of at most 12 days that teaches the
   discipline's grade 8 ids; Levels 2 and 3 open with a review unit of at most 6 days that doubles as placement.
   Bridge and review days count as inside the standards for the bar's 10 percent limit and are listed as bridge or
-  review days in the frame. The numbers 12 and 6 are ours, untested.
+  review days in the frame. The numbers 12 and 6 are ours, untested. The short path adds build work to the 15 high
+  school courses, so many schools that cannot give an arts course every day can still use the course.
 
 ### Ids owned by each course-year (counted from the id file, 2026-11-19; pre-kindergarten excluded)
 
@@ -188,9 +189,9 @@ school. No draft date is given.
 
 ## 5. Left out, and why
 
-- What a school may leave out. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-arts-1): a school or
-  family may leave out a unit or a work for its community's reasons (for example, a unit that uses dance, masks or
-  play-acting); each course page states which units stand alone. This waits on Cory.
+- What a school may leave out (Cory, 2026-11-20, Desk q-prework-arts-1): a school or family may leave out a unit
+  or a work for its community's reasons (for example, a unit that uses dance, masks or play-acting); each such unit
+  stands alone, and each course page says so plainly and names those units.
 - Pre-kindergarten ids: no pre-kindergarten courses.
 - The high school ensemble, harmonizing instrument and music technology strands (3.3).
 - Enduring understandings, essential questions, model cornerstone assessments and the glossary: permission

@@ -6,6 +6,8 @@ which is stale, fix it and say so.
 
 ## State now
 
+- **2026-11-20: after-core pre-work answers applied** (side work, Desk q-prework-arts-1, q-prework-health-pe-1 and -2, q-prework-cs-1; DESK-ANSWERS.md). Health, PE and computer science pages and progressions carry Cory's calls; arts own-words file is next (later.csv L82 to L85). Open on Desk q-prework-open-1: the health and PE approach yes, our own coding editor, and the SEL reader's calls. SEL pre-work continues (read: docs/reviews/prework-sel-read-2026-11-19.md).
+
 - **Done 2026-11-19: the science ladder test (later.csv L81).** Kindergarten to grade 3, initial dirty pass: ledger (scripts/ledger.py, data/plans/ledgers/science.csv), section plans, plan data and 328 days (K 64, grade 1 68, grade 2 76, grade 3 120), all committed, then a read-only sample of 40 days. Result: 1.4 FIRM faults a day, nearly none gate-visible; fill cost about 72k tokens a day. Report: docs/reviews/ladder-science-report-2026-11-19.md. Cory picked: fix all that can be fixed, then pause. Fixed 2026-11-19 (gates, briefs, every sample FIRM finding, all 328 days at 0 lesson.py failures): docs/reviews/ladder-science-fixes-2026-11-19.md. PAUSED for Cory; Refine 1 and grades past 3 wait. Day-stage jobs come from _scratch/ladder/gen.py. Tokens: docs/reviews/ladder-science-tokens-2026-11-18.csv.
 
 - **Done 2026-11-18: the confirm probe (L78), first for ELA and for middle school** (report

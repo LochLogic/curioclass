@@ -610,8 +610,10 @@ section:english-language-arts-grade-11:1.1,done,2026-11-18,"Confirm probe: secti
 section:english-language-arts-grade-11:1.2,active,2026-11-18,Confirm probe: section plan written and gated; days not written yet. docs/reviews/probe-confirm-2026-11-18.md
 section:science-grade-7:1.1,done,2026-11-18,"Confirm probe: section plan and days 1 to 6 written, read (answer key, expert) and fixed. docs/reviews/probe-confirm-2026-11-18.md"
 section:science-grade-7:1.2,active,2026-11-18,Confirm probe: section plan written and gated; days not written yet. docs/reviews/probe-confirm-2026-11-18.md
-pre:health-and-pe,active,2026-11-19,"Bar work written, read cold and fixed for both subjects (own words for NHES, SHAPE, HECAT; PECAT tables read); approach yes waits on Cory, Desk q-prework-health-pe-1"
-prog:health-and-pe,done,2026-11-19,"data/progressions/health.csv (206 rows) and physical-education.csv (203), read cold and fixed; eight calls on Desk q-prework-health-pe-2"
-pre:arts-and-music,active,2026-11-19,"Standard and approach read cold and fixed; own-words file, high school short path, leave-out note and approach yes wait on Cory, Desk q-prework-arts-1"
-pre:computer-science,active,2026-11-19,"Standard and approach read cold and fixed; four calls and approach yes wait on Cory, Desk q-prework-cs-1"
-prog:computer-science,done,2026-11-19,"data/progressions/computer-science.csv (202 rows), read cold and fixed; grade 12 load and career thread on Desk q-prework-cs-1"
+pre:health-and-pe,active,2026-11-20,"Cory's calls applied (Desk q-prework-health-pe-1, -2); approach yes still open, Desk q-prework-open-1"
+prog:health-and-pe,done,2026-11-20,"data/progressions/health.csv (207 rows) and physical-education.csv (203), Cory's calls applied"
+pre:arts-and-music,active,2026-11-20,Cory's calls made (Desk q-prework-arts-1); own-words file owed (later.csv L82)
+pre:computer-science,done,2026-11-20,Cory's calls made (Desk q-prework-cs-1); Specialty list L84; own editor open on Desk q-prework-open-1
+prog:computer-science,done,2026-11-20,"data/progressions/computer-science.csv (202 rows), Cory's calls applied"
+pre:social-and-emotional-learning,active,2026-11-20,Standard read cold (docs/reviews/prework-sel-read-2026-11-19.md); fixes next
+prog:social-and-emotional-learning,active,2026-11-20,Waits on SEL support in scripts/progression.py

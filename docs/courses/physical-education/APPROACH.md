@@ -88,8 +88,16 @@ Fitness concepts return in every warm-up and cool-down. Each grade's outcomes bu
 
 Settled 2026-11-16 (Cory, Desk card q-later-arts-health-pe): elementary PE (K to 5) is about 2 to 3 sessions a week.
 Middle and high school PE minutes vary widely by school; each band frame states its sessions a year and their
-length. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-health-pe-1): whether the course says openly that
-this is below the weekly minutes professional bodies recommend (from memory, about 150 in elementary).
+length. The course says openly (Cory, 2026-11-20, Desk q-prework-health-pe-1) that 2 to 3 sessions a week is below
+the weekly minutes professional bodies recommend (from memory, about 150 in elementary), and the course page, the
+teacher page and the family note offer short active breaks and home activity to help close the gap.
+
+## Water safety
+
+Curio Class gives dry-land safety and skill tasks every school can teach: a reach rescue, a throw rescue to a
+target and fastening a life jacket. In-water tasks belong to a school's own aquatics program, with a qualified
+lifeguard on site and the school's swim policy; a pool and a lifeguard are the school's call. No child is made to
+enter water. The course page says this (Cory, 2026-11-20, Desk q-prework-health-pe-2).
 
 ## What a tool may and may not do
 

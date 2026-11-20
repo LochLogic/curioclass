@@ -1570,3 +1570,34 @@ section plan and written day, cleaned of internal words first, and the footer li
 
 Same day, Cory: the Front Office documents move to the R2 bucket, so they add nothing to the static-asset file count
 as the curriculum grows. The page and its addresses are unchanged. docs/SITE-DESIGN.md, section "The Front Office".
+
+## 2026-11-20: Pre-work for arts, health, PE and computer science (q-prework-arts-1, q-prework-health-pe-1, q-prework-health-pe-2, q-prework-cs-1)
+
+Cory answered the four pre-work cards on the Desk.
+
+Arts: write our own one-line words file for the 1,114 taught performance standards now, in the public repository
+(at most 14 words of what the student does, never a re-sentence of the standards' phrasing; the standards' terms
+allow paraphrase with citation). Each high school level gets an 80-day short path (a bridge unit of at most 12 days
+in Level 1, a review unit of at most 6 days in Levels 2 and 3). Each course page says which units a school or family
+may leave out, since each such unit stands alone. The approach page is approved with the cold read's fixes in.
+docs/courses/arts/STANDARD.md sections 2, 3.2 and 5.
+
+Health and PE: the PE course says openly that 2 to 3 sessions a week is below the recommended weekly minutes and
+offers short active breaks and home activity. Correct body part names are taught in the kindergarten personal health
+row, with any reference to sensitive areas kept very minimal and a fresh sensitivity read first. If the high school
+health semester cannot hold its outcomes, review gives first (outcomes met in 6 to 8 become short reviews inside other
+units); only then does a list come to Cory. Grade 9 health keeps its pace, with the goal rows as one weekly thread and
+short units of two to four days. The 9 to 12 map cell lists what the semester really carries. Health 6 to 8 gains a
+grade 7 row on riding, safety gear and dangerous places. Physical activity outcomes 3, 4 and 6 in grades 6 to 8 go
+to PE. High school PE is two required years (grades 9 and 10, with the personal plan in short form in grade 10) and
+two elective years that deepen it. Water safety is dry-land tasks for every school, in-water tasks only in a school's
+own program with a lifeguard. Sacred or ceremonial dances and games are never used as a game or warm-up, and only
+when the source says they are open to be taught. PE kindergarten tries rope and dribbling and marks growth; grades 2
+and 1 own them. Left open: the health and PE approach pages' yes (asked again on a new Desk card).
+
+Computer science: grades 11 and 12 claim a short named list of Specialty level 1 standards, with no new courses and
+level 2 left out. No live generated-text tool: the teacher runs that day on one screen with a tool the school already
+approves, and the standard is part met where a school has none. Society units name government bodies and courts,
+never companies, with sources only in the teacher's source line. HS-DAT-IM-27 moves to grade 11 (grade 12 owns 10).
+The careers row stays in computer science. The approach page is approved with the cold read's fixes in. Left open:
+our own coding editor (asked again on a new Desk card).

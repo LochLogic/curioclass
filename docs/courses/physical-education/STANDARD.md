@@ -69,8 +69,10 @@ written per span, and SHAPE says they are not meant to line up across spans. So 
    2. We use that order as a reference, not as wording.
 4. Each grade outcome names how it is assessed (bar criterion 7, PECAT's "outcome, content, assessment" for every
    standard in every grade).
-5. High school (9 to 12): a four-year band. Years 1 and 2 (grades 9 and 10) own the span's indicators in a range of
-   activities; years 3 and 4 own the choice and personal plan indicators (S4) and carry the rest as `~CODE`. Grade
+5. High school (9 to 12): two required years and two elective years (Cory, 2026-11-20, Desk
+   q-prework-health-pe-2; most schools require one or two years). Grades 9 and 10 own every indicator of the span,
+   in a range of activities; grade 10 carries the choice and personal plan indicators (S4) in short form, so every
+   student meets them. Grades 11 and 12 are electives that deepen the plan and carry the rest as `~CODE`. Grade
    outcomes are stated per year as for K to 8.
 
 **PECAT tables (L46), read 2026-11-16 and 2026-11-19.** The tables score a curriculum per grade, per outcome, on
