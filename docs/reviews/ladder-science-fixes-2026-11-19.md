@@ -50,6 +50,9 @@ short SOFT findings and the known faults.
   not be read. Cory may want to check the terms, or leave it.
 - **G61 (wood frogs).** Rests on a search summary of the page, not the page itself (the site refused reads).
 - **Kindergarten template point.** The error-letter scheme clashes in one place; named by the K agent, left as is.
+- **units.csv rows (later.csv L71).** 63 science sections (K 13, grade 1 13, grade 2 16, grade 3 21) have no row in
+  data/units.csv, a file on the blind list; they are the only failures left in these four courses.
+- `exit: half` also settles one part of later.csv L80 (a ticket two to a sheet); the rest of L80 stays open.
 - Notes the gates print (plan numbers, set-up pieces) are readings, not failures.
 
 Tokens: docs/reviews/ladder-science-tokens-2026-11-18.csv, five fix-after-report rows (about 996k in all).

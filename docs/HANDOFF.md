@@ -1,6 +1,6 @@
 # Handoff: the current state
 
-Where the work stands and what to do next, as of 2026-11-18. The reasons behind decisions are in the decision log,
+Where the work stands and what to do next, as of 2026-11-19. The reasons behind decisions are in the decision log,
 [agents/decisions/DESK-ANSWERS.md](agents/decisions/DESK-ANSWERS.md). If another page disagrees with this one, find
 which is stale, fix it and say so.
 
@@ -15,8 +15,8 @@ which is stale, fix it and say so.
   line 35%), Watch on units (3 of 13 other units firm), On for template. Skeletons ran with no STOP and no unslotted
   hand-back; the rule kinds mostly did not return; what is left is item keys in unit data that two reads still
   catch, plus content notes and reading pace in ELA. Rules round done (section-write rules 11 to 14 and science lines,
-  plan-data Keys paragraph, DEFAULTS regenerated, measure 2 unit fixes). **Next is Cory's pick, Desk card
-  q-probe-confirm-1 (later.csv L79):** a second confirm probe (recommended) or scale a first wave. Lead: L80 (two page
+  plan-data Keys paragraph, DEFAULTS regenerated, measure 2 unit fixes). Desk card q-probe-confirm-1
+  (later.csv L79) was answered 2026-11-18: superseded by the science grade ladder (L81). Lead: L80 (two page
   gates). 2.22M tokens, 195k and 174k a finished day.
 - **Done 2026-11-18: the fourth probe, first for science and math** (Cory 2026-11-18; report
   docs/reviews/probe-science-math-2026-11-18.md). Science grade 5 and Algebra II: section plans 1.1 and 1.2, plan
