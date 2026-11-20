@@ -246,3 +246,21 @@ Confidence: Firm for each (checkable by reading two lines side by side).
 4. **A school leaving out a unit (finding 12).** Recommended: allowed, and the course page states which ids the school then does not claim for that year. Or does the course ask that every SEL id be kept?
 5. **"Healthy boundaries" title (finding 7b).** Recommended: retitle to "Saying no, setting limits" so the unit does not read as dating or sexual health. Yes or no?
 6. **Your yes on the approach page**, once findings 4 to 6 and 9 to 11 are in. It stays a draft until then.
+
+## Fixes applied (2026-11-20)
+
+1. STANDARD section 3: ownership rule written as the recommended 160-row form (owner years 2, 5, 8, 12), marked pending on Cory; scripts/progression.py left untouched.
+2. STANDARD section 3: depth ladder by band and within a band added; SO6 and SO8 stated for grades 3 and 4.
+3. STANDARD section 3: unit cap of 8 sub-skills; the 13 grade tables rebalanced by moving excess ids into units 1 to 5 (chosen by competency fit, so unit names may need a read); short path names its dropped sessions (section 2).
+4. APPROACH: every unit and section field now filled, family note moved to unit field 9, carry-out cue to section field 5, two rooms to field 10, pacing line added.
+5. Answered by the additions in 4, 6, 8 and 9 (item 9 link, fidelity checklist, student voice, carry-out cue); no separate edit.
+6. APPROACH section field 9: supports written in full.
+7. a, c: role-play and SA1/SA2 rules added (STANDARD sections 3 and 5). b: case-settings rule added; the "Healthy boundaries" retitle written as recommended and pending. d: see 2.
+8. STANDARD section 5.1: the four checks written as recommended, pending on Cory.
+9. APPROACH "Daily evidence": class sheet kept to one named day and discarded at unit end.
+10. casel-5.txt RD2, RD6, RD7, RS9, SO6, SM4 reworded; "SAFE" removed from APPROACH; "CASEL" wording in APPROACH unit field 2 changed to "sub-skill ids, in our own words".
+11. One page range (pp 1 to 3 and 20 to 35) in STANDARD; APPROACH has an Evidence and sources section and the mindset line marked from memory. The bar and the lens still carry other ranges: not in scope here.
+12. STANDARD section 5.6: leave-out rule written as recommended, pending on Cory.
+13. Stale validator notes fixed in casel-5.txt and STANDARD section 1; casel-5.txt line 7 dropped; "three" changed to "five". Left: data/courses.csv and subjects.csv (pending, STANDARD section 2), bar item tags and bar status line (not our pages).
+14. STANDARD section 2: 20, 30, 30, 40 minutes, a frame may change it with a reason.
+15. Catalogue and plan.py course grain written as recommended, pending (section 2); kindergarten unit 1 assumes nothing (unit rules); cross-subject lean note reworded.

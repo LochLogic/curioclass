@@ -14,7 +14,7 @@ review).
 |---|---|---|
 | Separate courses (decided); they may be small | Applied: four band courses, 13 grade-year frames, 64 sessions a year (settled 2026-11-16) | Section 2 |
 | Write a sequence per grade | Done as a draft, 13 grade years, every grade covering all 40 sub-skills | Section 3 |
-| The design half as the bar, marked for a deeper review | Review done (criteria paper pp 23 to 35 read in full); five gaps named; the additions are in bar part 9 (settled 2026-11-16) | Section 4 |
+| The design half as the bar, marked for a deeper review | Review done (criteria paper pp 1 to 3 and 20 to 35 read in full); five gaps named; the additions are in bar part 9 (settled 2026-11-16) | Section 4 |
 | Approach page (all ten subjects) | Draft for Cory's yes | docs/courses/sel/APPROACH.md |
 | Base text scout, lens | Done | docs/reviews/sel-open-material-2026-11-16.md; docs/agents/lenses/sel.md |
 
@@ -42,10 +42,8 @@ review).
   states restrict SEL in schools by law or rubric (the Florida rubric was reported to ask that materials leave SEL
   out; search only, docs/reviews/bar-other-subjects-2026-11-11.md). Curio Class does not claim any state's SEL
   standards. Each course page says what a school may leave out (section 5).
-- **For the lead (scripts/standards.py is not ours to edit).** The validator does not read casel-5.txt, and its
-  closed pattern `CASEL\.(Self-Awareness|...)` fully matches only the five competency codes, so a plan row coded
-  `CASEL.Self-Awareness.3` would fail validation. Before the first SEL scope, standards.py should read this file as
-  an id list, as it does for Massachusetts (later item; the competency codes in data/modules.csv stay valid).
+- **The validator.** scripts/standards.py reads this file as an id list (valid as listed), so a plan row coded
+  `CASEL.Self-Awareness.3` passes; the five competency codes in data/modules.csv remain valid.
 
 ## 2. Courses, bands and time
 
@@ -55,11 +53,14 @@ review).
   "a band taught the same way every year" is a fail (bar, Fails if).
 - **How a grade year is framed.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): each grade year gets its
   own frame and scope and sequence, 13 grade-year frames filed under the four band courses. The catalogue keeps
-  four courses.
+  four courses. Recommended: replace the one `sel-k12` row in data/courses.csv with four band rows (and drop "Light
+  shelf"), and give plan.py one course id per band (`sel-k-2`, `sel-3-5`, `sel-6-8`, `sel-9-12`) with a frame per grade
+  year under it. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-1) The catalogue grain waits on Cory.
 - **Sessions.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): two sessions a week in every grade, 32 weeks,
-  so 64 sessions a year: about 20 minutes in K to 2, 30 minutes in 3 to 8, 30 to 45 minutes in 9 to 12 (an advisory
-  period). One session a week (32 sessions) is the stated short path (C2), with named sessions to drop; it never
-  drops a unit.
+  so 64 sessions a year. A session is 20 minutes in K to 2, 30 in grades 3 to 5, 30 in grades 6 to 8 and 40 in
+  grades 9 to 12 (an advisory period); a frame may change its band's number and gives the reason. One session a week
+  (32 sessions) is the stated short path (C2): it drops the second Application session in each unit and never drops a
+  unit.
 - **Units.** Six units per grade year (section 3), each with its own readiness check and end-of-unit assessment,
   sized to the minutes chosen. "Never fewer units" is met: every sub-skill is taught, practised spaced out and
   checked every year.
@@ -71,10 +72,24 @@ review).
 
 The draft year for each grade. The theme sets the year's angle, so no two years of a band run alike. Each unit lists
 the sub-skills it teaches first that year; every later unit brings earlier sub-skills back in practice (C7). In
-every grade all 40 sub-skills are taught once and only once as a unit's own (checked by script, 2026-11-16). Depth
-grows by grade: the same code is a picture-book scene and a rehearsed step in kindergarten, a named strategy with
-reasons in grades 3 to 5, a choice weighed under real pressures in 6 to 8, and a plan the student designs and judges
-in high school.
+every grade all 40 sub-skills are taught once and only once as a unit's own. No unit teaches more than eight
+sub-skills first, so each has time to be rehearsed (about two sessions a sub-skill); a sub-skill that suits a late
+unit better comes back there in practice, not as a first teaching.
+
+**Depth ladder, by band.** K to 2: a picture or story moment, one or two pictured steps, said aloud or acted with a
+teacher; the skill is named. Grades 3 to 5: a named strategy with three or four steps and a reason, used on an
+invented case and then in a planned class moment. Grades 6 to 8: the strategy chosen among options and weighed
+against real pressures (friends, online, time), with the reason written down. Grades 9 to 12: a plan the student
+designs for an invented or chosen situation, with its trade-offs and a judgement of how well it worked. Within a
+band the first year uses cases from the school day, the second adds a second person's point of view, and the third
+adds a cost or a pressure. The progression row for each sub-skill says which of the three a year is.
+
+**Ownership, for the progression.** Recommended: one owned row per sub-skill per band, so 40 sub-skills by four
+bands is 160 owned rows. A band's owner year is its last grade (2, 5, 8 and 12), the year the sub-skill is met at
+the band's full depth; the other years of the band carry the id as `~ID` with a one-line note on how that year
+differs, and each row's `assumes` names the same sub-skill in the band before. The grade table below stays the
+placement, and every year still teaches all 40 once. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-1) The choice waits on Cory (the alternative is changing the layer 4
+gate so that each sub-skill is owned once per grade year).
 
 How each competency is practised (bar item 5): self-management and relationship skills by doing (rehearsing a
 calming routine, acting out an invented hard moment, practising an I-statement with a partner); self-awareness,
@@ -83,32 +98,49 @@ choice weighed in writing).
 
 | Grade | Year theme | Units: name, then the sub-skills taught first |
 |---|---|---|
-| Kindergarten | Me, my feelings, my class | 1. Hello, our class: RS1, RS2, RS8, SO2, SA1<br>2. Naming my feelings: SA3, SA5, SM1, SM2<br>3. Being me: SA2, SA4, SA7, SA8, SA9<br>4. Kind hearts: SO1, SO3, SO4, SO5, SA6<br>5. Playing together: RS3, RS4, RS5, RS6, RS7, RS9, SM3, SO6, SO7<br>6. Good choices: RD1, RD2, RD3, RD4, RD5, RD6, RD7, SM4, SM5, SM6, SM7, SO8 |
-| Grade 1 | Calm and kind | 1. Our class team: RS1, RS4, SO2, SA2<br>2. Calm body, calm mind: SA3, SM1, SM2, SM3<br>3. Small problems, big problems: RD3, RD4, RS5, RS6, RS8, SM6<br>4. How do they feel?: SO1, SO3, SO4, SO5, SA5, SA6, RS9<br>5. Families, friends and me: SA1, SA4, RS2, RS3, SO6, SO7, RD1<br>6. I can try, I can help: SA7, SA8, SA9, SM4, SM5, SM7, RS7, RD2, RD5, RD6, RD7, SO8 |
-| Grade 2 | Fair and friendly | 1. Rules here and there: SO6, SO7, SO8, RS1, SA4<br>2. Strong feelings, steady me: SA3, SA5, SM1, SM2, SM3<br>3. Being a good friend: RS2, RS5, RS8, SO1, SO4<br>4. Standing up, speaking up: RS6, RS9, SO3, SA6, RD4<br>5. Goals and growing: SA7, SA8, SA9, SM4, SM5, SM6, SA2, SO2, SO5<br>6. Our class helps: RS3, RS4, RS7, SM7, SA1, RD1, RD2, RD3, RD5, RD6, RD7 |
-| Grade 3 | Thinking, feeling, doing | 1. Think, feel, do: SA3, SA5, SM1, SM2, RD5<br>2. Who I am and what I bring: SA1, SA2, SA4, SA9, SO2<br>3. Walking in their shoes: SO1, SO3, SO4, SO5, SA6, RS3<br>4. When friends disagree: RS1, RS2, RS5, RS8, SO7<br>5. Saying no, choosing well: RS6, RS9, RD1, RD2, RD3, RD4, SO6<br>6. Goals that stretch me: SA7, SA8, SM3, SM4, SM5, SM6, SM7, RS4, RS7, RD6, RD7, SO8 |
-| Grade 4 | Working together | 1. Team rules we make: RS1, RS4, SO6, SO7, SA4<br>2. Plans and steps: SM3, SM4, SM5, SM6, SA7, RD5<br>3. Many ways to be: SA1, SA2, RS3, SO1, SO2, SA6<br>4. Feelings at work: SA3, SA5, SM1, SM2, SO3, SO4, SO5<br>5. Leading and following: RS7, RS2, RS5, RS8, RS6, RS9, SM7<br>6. Thinking it through: RD1, RD2, RD3, RD4, RD6, RD7, SA8, SA9, SO8 |
-| Grade 5 | Ready for change | 1. Changes ahead: SA3, SA5, SM1, SM2, SO7<br>2. What drives me: SA7, SA8, SA9, SM3, SM4, SM5<br>3. Who shapes what we do: SO6, SO8, RD2, RD5, SA6<br>4. Friends through change: RS1, RS2, RS5, RS6, RS8, SO1, SO3, SO4<br>5. My voice, our group: SM6, SM7, RS4, RS7, RS9, SO5, SO2<br>6. Choices with reach: RD1, RD3, RD4, RD6, RD7, SA1, SA2, SA4, RS3 |
-| Grade 6 | New school, new me | 1. Finding my way: SM5, SM3, SO7, RS8, SA7<br>2. Who am I now?: SA1, SA2, SA4, SA9, SA3, SA5<br>3. Stress and strong feelings: SM1, SM2, SA8, RD5<br>4. Friendships that change: RS1, RS2, RS5, RS6, SO1, SO4, SO3<br>5. Online and offline norms: SO6, SO8, RD1, RD2, RD4, SA6<br>6. Goals and our team: SM4, SM6, SM7, RS3, RS4, RS7, RS9, SO2, SO5, RD3, RD6, RD7 |
-| Grade 7 | Pressure and belonging | 1. Belonging and our groups: SA1, SA2, SA9, RS2, RS3, SO2<br>2. Under pressure: RS6, SO7, SO8, RD4, SM3<br>3. Snap judgements: SA6, SO1, SO6, RD1, RD2<br>4. Big feelings, steady choices: SA3, SA5, SM1, SM2, SA4, SA7, SA8<br>5. Repair and conflict: RS1, RS5, RS8, SO3, SO4, SO5<br>6. Taking the lead: SM4, SM5, SM6, SM7, RS4, RS7, RS9, RD3, RD5, RD6, RD7 |
-| Grade 8 | Choices that count | 1. How I decide: RD1, RD2, RD4, RD5, SA5<br>2. Values and integrity: SA4, SA1, SA2, SA6, RS6, SO7<br>3. Stress, focus and rest: SA3, SA8, SM1, SM2, SM3, SM5<br>4. Understanding others: SO1, SO3, SO4, SO6, RS3, SO2<br>5. Communication and conflict: RS1, RS2, RS5, RS8, SO5<br>6. Making a difference: SA7, SA9, SM4, SM6, SM7, RS4, RS7, RS9, RD3, RD6, RD7, SO8 |
-| Grade 9 | Finding my footing | 1. A new start: SM5, SM3, SO7, RS8, SA7, SA9<br>2. Stress and coping: SA3, SM1, SM2, SA5, SA8<br>3. Identity and assets: SA1, SA2, SA4, SA6, RS3<br>4. Relationships that are good for me: RS1, RS2, RS5, RS6, SO3, SO4<br>5. Norms, media and influence: SO6, SO8, RD1, RD2, RD4, RD5<br>6. Goals with others: SM4, SM6, SM7, RS4, RS7, RS9, SO1, SO2, SO5, RD3, RD6, RD7 |
-| Grade 10 | Respect and relationships | 1. Listening to understand: RS1, SO1, SO4, SA5<br>2. Hard conversations: RS5, RS8, SM1, SM2, SA3<br>3. Culture and respect: RS3, SO6, SA1, SA2, SA6, SO2<br>4. Healthy boundaries: RS2, RS6, SA4, SO7, RD4<br>5. Teams that work: RS4, RS7, SM3, SM4, SM5, SM6, SO3, SO5<br>6. Fair to everyone: RS9, SM7, SO8, SA7, SA8, SA9, RD1, RD2, RD3, RD5, RD6, RD7 |
-| Grade 11 | Purpose and plans | 1. What matters to me: SA9, SA4, SA5, SA1, SA2<br>2. Plans and setbacks: SM4, SM5, SM3, SA7, SA8, SM2, SM1, SA3<br>3. Weighing evidence for choices: RD1, RD2, RD4, RD5, SA6<br>4. Working with others: RS1, RS3, RS4, RS5, SO1, SO2, SO7<br>5. Help, support and pressure: RS8, RS2, RS6, SO3, SO4, SO5<br>6. Acting on what matters: SM6, SM7, RS7, RS9, SO6, SO8, RD3, RD6, RD7 |
+| Kindergarten | Me, my feelings, my class | 1. Hello, our class: RS1, RS2, RS8, SO2, SA1<br>2. Naming my feelings: SA3, SA5, SM1, SM2, SM7, SM6, SM5, SM3<br>3. Being me: SA2, SA4, SA7, SA8, SA9<br>4. Kind hearts: SO1, SO3, SO4, SO5, SA6, SO8<br>5. Playing together: RS3, RS4, RS5, RS6, RS7, RS9, SO6, SO7<br>6. Good choices: RD1, RD2, RD3, RD4, RD5, RD6, RD7, SM4 |
+| Grade 1 | Calm and kind | 1. Our class team: RS1, RS4, SO2, SA2<br>2. Calm body, calm mind: SA3, SM1, SM2, SM3, SM7, SM5<br>3. Small problems, big problems: RD3, RD4, RS5, RS6, RS8, SM6, RS7<br>4. How do they feel?: SO1, SO3, SO4, SO5, SA5, SA6, RS9, SO8<br>5. Families, friends and me: SA1, SA4, RS2, RS3, SO6, SO7, RD1<br>6. I can try, I can help: SA7, SA8, SA9, SM4, RD2, RD5, RD6, RD7 |
+| Grade 2 | Fair and friendly | 1. Rules here and there: SO6, SO7, SO8, RS1, SA4, SO5<br>2. Strong feelings, steady me: SA3, SA5, SM1, SM2, SM3, SA1, SM7<br>3. Being a good friend: RS2, RS5, RS8, SO1, SO4, RS7<br>4. Standing up, speaking up: RS6, RS9, SO3, SA6, RD4<br>5. Goals and growing: SA7, SA8, SA9, SM4, SM5, SM6, SA2, SO2<br>6. Our class helps: RS3, RS4, RD1, RD2, RD3, RD5, RD6, RD7 |
+| Grade 3 | Thinking, feeling, doing | 1. Think, feel, do: SA3, SA5, SM1, SM2, RD5, RD6<br>2. Who I am and what I bring: SA1, SA2, SA4, SA9, SO2<br>3. Walking in their shoes: SO1, SO3, SO4, SO5, SA6, RS3, SO8<br>4. When friends disagree: RS1, RS2, RS5, RS8, SO7, RS7<br>5. Saying no, choosing well: RS6, RS9, RD1, RD2, RD3, RD4, SO6, RD7<br>6. Goals that stretch me: SA7, SA8, SM3, SM4, SM5, SM6, SM7, RS4 |
+| Grade 4 | Working together | 1. Team rules we make: RS1, RS4, SO6, SO7, SA4<br>2. Plans and steps: SM3, SM4, SM5, SM6, SA7, RD5<br>3. Many ways to be: SA1, SA2, RS3, SO1, SO2, SA6<br>4. Feelings at work: SA3, SA5, SM1, SM2, SO3, SO4, SO5, SO8<br>5. Leading and following: RS7, RS2, RS5, RS8, RS6, RS9, SM7<br>6. Thinking it through: RD1, RD2, RD3, RD4, RD6, RD7, SA8, SA9 |
+| Grade 5 | Ready for change | 1. Changes ahead: SA3, SA5, SM1, SM2, SO7<br>2. What drives me: SA7, SA8, SA9, SM3, SM4, SM5<br>3. Who shapes what we do: SO6, SO8, RD2, RD5, SA6<br>4. Friends through change: RS1, RS2, RS5, RS6, RS8, SO1, SO3, SO4<br>5. My voice, our group: SM6, SM7, RS4, RS7, RS9, SO5, SO2, RS3<br>6. Choices with reach: RD1, RD3, RD4, RD6, RD7, SA1, SA2, SA4 |
+| Grade 6 | New school, new me | 1. Finding my way: SM5, SM3, SO7, RS8, SA7<br>2. Who am I now?: SA1, SA2, SA4, SA9, SA3, SA5<br>3. Stress and strong feelings: SM1, SM2, SA8, RD5, RD6<br>4. Friendships that change: RS1, RS2, RS5, RS6, SO1, SO4, SO3, SO5<br>5. Online and offline norms: SO6, SO8, RD1, RD2, RD4, SA6, SO2, RD7<br>6. Goals and our team: SM4, SM6, SM7, RS3, RS4, RS7, RS9, RD3 |
+| Grade 7 | Pressure and belonging | 1. Belonging and our groups: SA1, SA2, SA9, RS2, RS3, SO2, RS4<br>2. Under pressure: RS6, SO7, SO8, RD4, SM3<br>3. Snap judgements: SA6, SO1, SO6, RD1, RD2<br>4. Big feelings, steady choices: SA3, SA5, SM1, SM2, SA4, SA7, SA8<br>5. Repair and conflict: RS1, RS5, RS8, SO3, SO4, SO5, RS9, RS7<br>6. Taking the lead: SM4, SM5, SM6, SM7, RD3, RD5, RD6, RD7 |
+| Grade 8 | Choices that count | 1. How I decide: RD1, RD2, RD4, RD5, SA5, RD7<br>2. Values and integrity: SA4, SA1, SA2, SA6, RS6, SO7, SA9, SA7<br>3. Stress, focus and rest: SA3, SA8, SM1, SM2, SM3, SM5<br>4. Understanding others: SO1, SO3, SO4, SO6, RS3, SO2, SO8<br>5. Communication and conflict: RS1, RS2, RS5, RS8, SO5<br>6. Making a difference: SM4, SM6, SM7, RS4, RS7, RS9, RD3, RD6 |
+| Grade 9 | Finding my footing | 1. A new start: SM5, SM3, SO7, RS8, SA7, SA9<br>2. Stress and coping: SA3, SM1, SM2, SA5, SA8, RD3<br>3. Identity and assets: SA1, SA2, SA4, SA6, RS3<br>4. Relationships that are good for me: RS1, RS2, RS5, RS6, SO3, SO4, SO5<br>5. Norms, media and influence: SO6, SO8, RD1, RD2, RD4, RD5, RD7, RD6<br>6. Goals with others: SM4, SM6, SM7, RS4, RS7, RS9, SO1, SO2 |
+| Grade 10 | Respect and relationships | 1. Listening to understand: RS1, SO1, SO4, SA5, SO8<br>2. Hard conversations: RS5, RS8, SM1, SM2, SA3, SM7<br>3. Culture and respect: RS3, SO6, SA1, SA2, SA6, SO2, SA9<br>4. Healthy boundaries: RS2, RS6, SA4, SO7, RD4, RS9<br>5. Teams that work: RS4, RS7, SM3, SM4, SM5, SM6, SO3, SO5<br>6. Fair to everyone: SA7, SA8, RD1, RD2, RD3, RD5, RD6, RD7 |
+| Grade 11 | Purpose and plans | 1. What matters to me: SA9, SA4, SA5, SA1, SA2<br>2. Plans and setbacks: SM4, SM5, SM3, SA7, SA8, SM2, SM1, SA3<br>3. Weighing evidence for choices: RD1, RD2, RD4, RD5, SA6<br>4. Working with others: RS1, RS3, RS4, RS5, SO1, SO2, SO7<br>5. Help, support and pressure: RS8, RS2, RS6, SO3, SO4, SO5, SO8<br>6. Acting on what matters: SM6, SM7, RS7, RS9, SO6, RD3, RD6, RD7 |
 | Grade 12 | Leading and leaving | 1. Looking back, looking ahead: SA1, SA2, SA9, SA7, SA5<br>2. Steady under change: SA3, SM1, SM2, SM3, SM5, SA8<br>3. Leading well: RS7, RS4, RS1, SO2, SO7, SM6<br>4. Communities and systems: SO6, SO8, RD6, RD7, SM7, RS9, SA6, RS3<br>5. Hard choices: RD1, RD2, RD3, RD4, RD5, SA4, RS6<br>6. Support after school: RS8, RS2, RS5, SO1, SO3, SO4, SO5, SM4 |
+
+Unit rules:
+
+- **Kindergarten unit 1 assumes nothing.** Its readiness item checks only what a five-year-old arrives with
+  (naming a classmate, taking a turn), and no later unit is assumed by it.
+- **Cases stay in school, friend, family-chore, sport and online settings.** No invented case names self-harm, a
+  diagnosis, dating, sex or a substance. The units that sit next to health ("Stress and strong feelings",
+  "Stress, focus and rest", "Stress and coping", "Relationships that are good for me", "Healthy boundaries" and
+  "Help, support and pressure") name the health unit in the teacher notes and hand those topics to it.
+- **Grade 10 unit 4, "Healthy boundaries".** Recommended: retitle it "Saying no, setting limits", so the title does not read
+  as dating or sexual health. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-1) The retitle waits on Cory.
 
 Placement notes, by sub-skill, where the grade matters most:
 
+
 - **SA6 (own snap judgements) and SO6 (norms that have been unfair)** start in kindergarten and grade 1 as fairness
   at play ("everyone can join"), and reach unfair rules of the past in grade 5 and later, taught from settled facts
-  (see section 5). Grade 7 ("Snap judgements") and grade 10 ("Culture and respect") are their main years.
+  (see section 5). In grades 3 and 4 SO6 is a rule in a class, club or game that leaves someone out, on invented
+  cases; SO8 is how a school's or a town's rules and signs shape what people do. Grade 7 ("Snap judgements") and grade 10 ("Culture and respect") are their main years.
 - **SA8 (ability grows)** is taught as "practice and help make you better", never as a promise that belief alone
-  raises grades: the evidence for short mindset lessons is mixed (lens, sources).
+  raises grades: the evidence for short mindset lessons is mixed (lens, sources; from memory).
 - **SO8 (systems shape behaviour)** starts as "why our class has rules" and grows to media and online norms in grade
   6 and to communities and systems in grade 12.
 - **RS6 (saying no to pressure)** is taught as a skill on invented cases. The topics where pressure matters most in
   6 to 12 (substances, sex, dating violence) are health's; SEL rehearses the refusal skill and points to the health
   unit by name in the teacher notes.
+- **Role play of refusal and standing up (RS6, RS9).** The teacher or a card plays the pressure or the unkind act; no
+  student plays a person who pressures or is unkind.
+- **SA1 and SA2 (groups you belong to, strengths from your culture)** use an invented character first. A child may share
+  or make one up; a family or culture is never asked about by name in a check.
 - **RS9 (speaking up for others)** stays inside school life: an upstander in bullying or exclusion, a student who
   gets help for a friend. It is not a cause the course picks (section 5).
 - **Transition years** carry the theme: grade 5 "Ready for change", grade 6 "New school, new me", grade 9 "Finding
@@ -116,7 +148,7 @@ Placement notes, by sub-skill, where the grade matters most:
 
 ## 4. The deeper review of the design half (Cory, 2026-11-11: "mark this for a deeper review")
 
-Read in full for this review: the criteria paper, pp 23 to 35 (design criteria, design updates, implementation
+Read in full for this review: the criteria paper, pp 1 to 3 and 20 to 35 (design criteria, design updates, implementation
 criteria, final designation). Already on file: the EEF primary SEL guidance (six recommendations, SAFE),
 Durlak and others 2011 and Cipriano and others 2023 (abstracts only), Oregon's transformative SEL tool
 (docs/reviews/bar-other-subjects-2026-11-11.md).
@@ -151,7 +183,7 @@ ADOPTION-BAR-SUBJECTS part 9 (items 9 to 13).
 - **C. Sessions and monitoring.** Addition: the scope and sequence states sessions a year (it will, section 2). For
   monitoring, promise 2 rules out tracking students; a paper fidelity checklist for the teacher (did the session
   run as planned, which part was cut) and the class record sheet of skill checks meet the purpose without
-  student data. Behaviour ratings of individual children are not collected.
+  student data. Behaviour ratings of individual children are not collected; the class sheet marks a step seen on one named day, not the child.
 - **D. Equity strategies.** Translation: family notes in English and Spanish; student pages English only for now
   (section 2). Students as agents of change: under the values rule, SEL
   gives student voice in class and school life (class norms, a school improvement the class proposes and carries
@@ -163,7 +195,7 @@ ADOPTION-BAR-SUBJECTS part 9 (items 9 to 13).
   and not claimed as such.
 
 **Verdict of the review.** The design half is a sound bar for these courses: it is specific (SAFE, practice by
-doing, grade sequence, all competencies) and checkable on paper. It is not enough alone in three places (B, C, D), and the
+doing, grade sequence, all competencies) and checkable on paper. It is not enough alone in five places (A to E), and the
 additions close them within the promises. The evidence half stays unmet and is said so on every course page (bar
 item 8): no study has tried these courses. The registry rates a program by the lower of the two halves, so
 Curio Class must never call its SEL courses "evidence-based" or use the registry's rating words.
@@ -185,11 +217,17 @@ Applied to SEL:
    reflection stays with the student; the teacher may read it only if the student offers it. Checks score a skill
    (naming the steps of a calming routine, choosing a fair next step in an invented case), never a feeling, a
    trait or a home life. No student surveys about feelings, family or mental health.
+   Four sub-skills are about the inside of the child (SA3, SA4, SA7, SA9). Recommended: each is checked as a skill on
+   an invented case or a plan the student keeps. SA3: name a character's feeling and the clue. SA4: choose the true
+   action in a case and say what it costs. SA7: name two steps a character could take and one place to ask for help.
+   SA9: a private list the student keeps, checked only for "the steps were followed", never for its content. The course
+   never records a student's own answer to SA7 or SA9. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-1) This waits on Cory.
 2. **No disclosure is asked for.** Prompts use invented characters and cases, or "a time you choose to share, or
    make one up". No activity asks a child to rank, sort or reveal their identity, family situation or past harm
    (no privilege walks, no "step forward if" games).
 3. **Role play stays safe.** Students rehearse a skill in an invented, low-stakes moment. No role play that puts a
-   child in a victim's or perpetrator's place, or casts a real classmate (the same rule as social studies).
+   child in a victim's or perpetrator's place, or casts a real classmate (the same rule as social studies). Where a skill needs pressure to rehearse against (saying no,
+   speaking up), the teacher or a card plays the pressure; no student plays a person who pressures or is unkind.
 4. **SEL is not therapy.** No diagnosis, no clinical words used of a child, no claim that a course treats anxiety or
    depression. Calming routines are breathing, movement and pause, taught as plain body skills with no religious or
    spiritual framing. Each unit's teacher notes say: if a child discloses harm or risk, follow the school's
@@ -199,8 +237,10 @@ Applied to SEL:
    disputes are not SEL content. Grade sets the case: playground fairness in K to 2, unfair rules of the past from
    grade 5.
 6. **Families.** Every family note says what the unit teaches, the words it uses and how to practise at home, in
-   English and Spanish. Each SEL unit can be left out by a school without breaking the course (as health's
-   sensitive units can), and the course page says so ("Acceptability is local", ADOPTION-BAR-SUBJECTS).
+   English and Spanish. Recommended: a school may leave out an SEL unit (as with health's sensitive units),
+   the school is told which sub-skills that year then does not teach, a later unit never assumes the left-out one (its
+   readiness item rests on the previous year's owner row), and the course page says the course does not claim those
+   sub-skills that year ("Acceptability is local", ADOPTION-BAR-SUBJECTS). Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-1) Whether a school may leave a unit out waits on Cory.
 7. **No product names, no rating words.** No program, app or registry name in public copy; no claim of being
    reviewed, approved, "evidence-based" or rated.
 
@@ -221,7 +261,7 @@ Applied to SEL:
 - **Health (NHES 2024, data/standards/nhes-2024.txt).** NHES S4 (interpersonal communication), S5 (decision making)
   and S6 (goal setting) overlap RS1, RS5, RS6, RD2 to RD4 and SM4. Rule: SEL teaches the skill on everyday cases;
   health applies it to health topics. When both courses run in a grade, the health frame names the SEL unit as
-  "builds on" and does not reteach the steps. To check when health's frames are written.
+  "builds on" and does not reteach the steps. A one-line gate when health's frames are written.
 - **ELA (data/progressions/ela.csv).** The discussion rows (ek-discussion to e5-discussion, e6-collab-discussion to
   e8-collab-discussion, e9-sl-discussion, e10-sl-seminar and on) carry turn-taking, listening and building on
   others' ideas. SEL's RS1 uses the same norms and words, so a class meets one set of talk rules.
