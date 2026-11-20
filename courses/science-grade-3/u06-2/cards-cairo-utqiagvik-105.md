@@ -8,7 +8,7 @@ credit: ours
 
 # Cairo and Utqiagvik cards (day 105)
 
-Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children. Teacher reads each card aloud once. Cold is told in months below freezing. Numbers are rounded.
+Each card says "rounded and edited by Curio Class" in small letters at the bottom. Plain line drawings, no brands, no names of real children. Teacher reads each card aloud once. Cold is told in months below freezing. Numbers are rounded.
 
 ## Atlas card: Cairo
 

@@ -11,11 +11,15 @@ credit: ours
 
 Each exit has picture cards every child touches and a spoken stem read once. Drawing style: plain black line drawing on white, thick lines, no shading, no brand names, no printed words except where a card says so. Children in any picture are of different ages, skin tones and hair, shown as simple figures. Say aloud that every picture is invented for practice, and print "invented for practice" beneath each one. The teacher hears a rotating six.
 
-## Day 48 exit: three pots of parsley
+## Day 48 exit: three pots of parsley and a bucket on the lawn
 
 **Picture:** three pots of parsley, same cups, soil and start, labelled P1, P2 and P3. P1 in the sun, watered, new leaves. P2 in the shade, watered, leaves falling. P3 in the sun, no water, drooping.
 **Say:** "Join two pairs of pots that make a fair test: one pair for light and one pair for water."
 **Key (teacher):** P1 with P2 for light, P1 with P3 for water. Error A is joining P2 with P3.
+
+**Picture (b):** a lawn after a bucket that lay upside down on it for a week was lifted: a round pale patch where the bucket was, green grass all around.
+**Say (b):** "A bucket lay on the grass for a week. Say what you see."
+**Key (teacher):** a pale or yellow patch where the bucket was, and green grass around it. A cause ("it was cold") answers a different question.
 
 ## Day 49 exit: three bean cups, dated February 6
 
@@ -33,8 +37,9 @@ Each exit has picture cards every child touches and a spoken stem read once. Dra
 
 ## Day 51 exit: sunflower pairs
 
-**Picture:** pair M, two young sunflowers in matching cups with the same soil and water, one in the sun and one under a cover. Pair N, two young sunflowers in different cups and soil, one in the sun and one under a cover.
+**Picture:** pair M, two young sunflowers in matching cups with the same soil and water, one in a bright window and one in a dim corner. Pair N, two young sunflowers in different cups with different spoonfuls of water, one in a bright window and one in a dim corner.
 **Say (a):** "Pip says the taller plant is the healthier one. Touch the pair that checks Pip's idea fairly."
 **Key (teacher):** pair M. Error A is touching pair N.
-**Say (b):** "What would you look at besides how tall it is?"
-**Key (teacher):** leaf colour, number of leaves, or the stem. Error B is "the taller one, so it is healthier".
+**Picture (b):** one card of a sunflower that grew under a cover, tall and pale with thin leaves, and three small cards: its height (a ruler), its colour and leaves, the colour of its cup.
+**Say (b):** "Pip will look at it again next week. Touch the one thing that could show Pip's idea is wrong."
+**Key (teacher):** the colour and leaves card. Error B is its height, "taller means healthier". The cup colour has nothing to do with it.

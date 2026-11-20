@@ -37,10 +37,13 @@ Every written day fills `shows` in its days.csv row: each piece of the goal, the
 
 A phrase is words copied from the goal; the ids after ` = ` are exits of that day or end-of-unit items of its
 unit. The gate splits the goal at commas, "and" and "or" and fails a piece that no phrase covers, a phrase not in
-the goal, an id that is not an exit of the day or an end item of the unit, and a teaching day that names no exit.
-It notes a piece shown by no exit of the day (only by the assessment) and a day that names no end item (the
-assessment does not see that goal). An assessment day names its own end items, and they must cover every part of
-the unit in parts.csv. Naming an item is a claim that it asks for that piece: the cheap read checks the claim.
+the goal, an id that is not an exit of the day or an end item of the unit, and a teaching day that names no exit
+(a teaching day that holds unit assessment items itself, a product judged that day, needs none). It notes a piece
+shown by no exit of the day (only by the assessment) and a day that names no end item (the assessment does not see
+that goal). An assessment day names its own end items. A unit assessment may run over several days, so the end
+items every day of the unit names must cover every part of the unit in parts.csv, read on the unit's last
+assessment day (science ladder report, 2026-11-19). Course-level days (`stretch` C) sit at points across the year
+and need not have consecutive numbers. Naming an item is a claim that it asks for that piece: the cheap read checks the claim. A goal piece that is set-up (start a living record, observe the class animals) and that no question can honestly show is written `phrase = none`; the gate reads it as a note, and a reader asks whether it is really set-up.
 
 ## The commands
 

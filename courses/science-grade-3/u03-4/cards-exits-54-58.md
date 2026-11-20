@@ -20,12 +20,14 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 ## Day 58 (unscored transfer)
 
-Mustard M: day 0 seed containing a new plant, day 4 seedling, day 30 flowering adult, day 48 pod containing new seeds, day 70 first mustard dead. One new seed begins growing on day 52 and is a seedling on day 56.
+On the half sheet. Mustard M: seed, seedling, flowering adult, pod with new seeds, then dies. One new seed begins growing.
 
-Lacewing L: day 0 egg, day 6 larva, day 20 pupa, day 31 adult, day 42 new eggs, day 65 first lacewing dead. A young one hatches on day 48.
+Lacewing L: egg, larva, pupa, adult, new eggs, then dies. A young one hatches.
 
-Mustard parents and all five offspring have yellow flowers. Offspring leaf widths: narrow 2, wide 3. Lacewing parents and all four offspring have green bodies. Offspring wing lengths: short 3, long 1.
+All five mustard offspring have yellow flowers like their parents. Offspring leaf widths: narrow 2, wide 3.
 
 Same-family mustard, matched conditions: 16 and 18 centimetres with enough water, 9 and 10 with too little.
 
-Dates describe these individuals. They are not life spans for a whole kind.
+Said aloud, no sheet: a plant is measured with the ruler's zero at the soil. Its top is level with the 26 mark.
+
+The stages describe these individuals. They are not life spans for a whole kind.

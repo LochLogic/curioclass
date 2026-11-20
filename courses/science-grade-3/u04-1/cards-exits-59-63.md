@@ -20,9 +20,9 @@ Invented for practice. White pelicans swim in a line. They push fish into shallo
 
 ## Day 61
 
-Invented for practice. A bar graph shows fish trips out of 10. One gull: 3. Two gulls: 5. Three gulls: 6. Six gulls: 2, because gulls grab scraps from each other. Is a bigger group always better? Use the graph.
+Invented for practice. A bar graph shows fish trips out of 10. One gull: 4. Two gulls: 6. Three gulls: 8. Six gulls: 3. Would you add more gulls to a group of three? Use the graph.
 
-Picture: a bar graph, one bar for each group of gulls. The bars are 3, 5, 6 and 2 squares tall.
+Picture: a bar graph, one bar for each group of gulls. The bars are 4, 6, 8 and 3 squares tall.
 
 ## Day 62
 

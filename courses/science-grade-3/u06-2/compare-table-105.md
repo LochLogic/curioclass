@@ -15,7 +15,7 @@ Pair: ______
 | Months below freezing | | |
 | Wet months | | |
 | Warm or cold? | | |
-| Wet or dry? | | |
+| Wet or dry? (wet is 6 or more wet months of 12) | | |
 
 Comparison 1: ______ has more ______ than ______. The numbers are ______ and ______.
 

@@ -30,6 +30,19 @@
    piece we make). A row you cannot check is cut, with its passage. The day skeleton STOPs on any source left
    unchecked, as a backstop only: day writers never set a status themselves.
 
+5. Checks before the days lean on the data (science ladder report, 2026-11-19: wrong keys were one firm fault in
+   seven, and plan numbers the data overruled went unmarked):
+   - **Rule 4 on the pieces.** No shared piece (picture page, card, story, sheet) shows the case, picture or numbers
+     of an exit or end item of these days, and no exit or end item reuses a case a lower grade's ledger lists
+     (`python -X utf8 scripts/ledger.py show <subject> --before {course} --term "<word>"`, filtered).
+   - **Plan against data.** Where a source or a key overruled a number or fact in a section plan, correct the plan's
+     `## Day N` block to the data and list each change; never leave the two disagreeing.
+   - **Sources.** Every animal, plant, place, weather or other fact a piece or item states rests on a checked source
+     row; list any fact you reworded or cut because no source supports it.
+   - **Answer-key read.** Before the unit's days are queued, a fresh agent runs docs/pipeline/briefs/sensitivity-read.md
+     with kind `answer-key` on this unit's items.csv rows, solving every exit and end item cold; every mismatch is
+     fixed in the data before any day is written.
+
 Gates: `python -X utf8 scripts/plan.py check` and `python -X utf8 scripts/lesson.py check` (failures only because
 the days are not written yet are expected; list them). When this job ends, the unit's days are queued.
 

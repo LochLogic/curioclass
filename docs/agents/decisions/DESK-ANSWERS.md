@@ -1552,3 +1552,10 @@ The test is science kindergarten to grade 3, initial dirty pass only:
 
 Because of capacity, the run pauses after each grade of section plans and each grade of days. Cory continues it by
 hand. later.csv L81.
+
+## 2026-11-19: After the science ladder test (q-ladder-science-1)
+
+Cory, in chat, on the report docs/reviews/ladder-science-report-2026-11-19.md: fix all that can be fixed now, both
+what the test found and what it showed outside its own days, then pause. So the gate and template points, the new
+cheap gates and the answer-key check go into the scripts and briefs, the faults the 40-day sample found go into the
+kindergarten to grade 3 days, and the work stops there for Cory's next call. Refine 1 and the climb past grade 3 wait.

@@ -17,6 +17,6 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 
 ## Day 61 (section exit, response, not scored): a spilling bin
 
-**Picture.** An open school bin with its lid up, paper spilling out and drifting toward a pond edge. No arrows.
+**Picture.** An open school bin with its lid up, paper spilling out and drifting toward a pond edge. A row of shrubs stands along the pond edge. No arrows.
 **Spoken 61a:** "Invented for practice. Draw a change that keeps the paper in." **Key:** a feasible action, such as a grown-up closing the lid or a cover on the bin. Paper tucked under the shrubs is error C.
 **Spoken 61b:** "Tell why it helps." **Key:** "If we ___, then less paper reaches the water." "A nice border shows people what to do" is error D.

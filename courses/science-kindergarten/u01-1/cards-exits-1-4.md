@@ -12,10 +12,10 @@ Each exit has picture cards that every child marks (points to, or places a count
 ## Day 1 cards: the cushion
 
 **Card 1a.** A square cushion sitting on a floor. A hand presses on its side. A small arrow shows the cushion starting to slide.
-**Card 1b.** A hand held well away from a cushion, with a gap. The cushion has motion lines behind it as if already sliding.
+**Card 1b.** A hand held well away from a cushion, behind a line, palm turned away, with a wide gap. No motion lines anywhere; the cushion sits plain. The hand is not drawn as having just let go.
 **Card 1c.** A cushion alone on the floor with a curved arrow beside it. No hand.
 
-**Spoken:** "A cushion sat still on the floor. Then it slid. Touch the picture that shows what made it slide." **Key:** card 1a. Wrong 1b or 1c is error C.
+**Spoken:** "A cushion sat still on the floor. Then it slid. Touch the picture that shows what made it slide." **Key:** card 1a. Wrong 1b or 1c is error C (the motion begins with no touch).
 
 ## Day 2 cards: two prams
 

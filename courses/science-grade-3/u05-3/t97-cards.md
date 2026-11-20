@@ -8,12 +8,14 @@ credit: ours
 
 # Day 97 transfer cards (unscored)
 
+Both cards print as the two questions of one half sheet, the day 97 exit ticket.
+
 Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children.
 
 ## Card 1
 
-Invented for practice. An undisturbed cliff. The low layer has fern prints 15 centimetres long. A guide says ferns grow in damp shade. The high layer has bone pieces of a grazing animal. A guide says grazers feed on open grass. The class log shows one frosty week. Which layer is older? What was the place like each time? Why can the frost week not tell us?
+Invented for practice. An undisturbed cliff. Low layer: lily-leaf prints 30 centimetres across (a guide: still water). High layer: prints of a dry-soil shrub (a guide: dry ground). The class log shows one frosty week. Which layer is older? What was the place like each time? Why can one week not tell us?
 
 ## Card 2
 
-Invented for practice. A dry spell lowers a pond. Goal: at least 5 of 8 reed clumps back, within 5 tokens. A shallow ditch costs 3 tokens, and 6 of 8 return. A deep pump costs 8 tokens, and 8 of 8 return. Which has merit?
+Invented for practice. Rain washes soil from a hillside into a gully. Goal: at least 5 of 8 saplings stay, within 5 tokens. A brush fence costs 3 tokens, and 6 of 8 stay. A concrete channel costs 8 tokens, and 8 of 8 stay. Which has merit?

@@ -24,3 +24,7 @@ A child puts a bottle in the bin that the accepted-materials picture shows (the 
 ## How the class chooses
 
 The teacher holds up the three pictures beside the day 55 tally rows. Each is tied to the kind of litter counted most. Children choose by hand, the teacher touching each hand once; a tie goes to the pick-up routine.
+
+## Repair picture for error C: the shrubs
+
+Used on day 57 for children who say litter is safe in the shrubs. A row of shrubs at the edge of a field, a nest among the branches, a wrapper pushed under the shrubs (the child is the actor). Beside it, the same edge with an adult in gloves bagging the wrapper. **Caption:** not under the shrubs.

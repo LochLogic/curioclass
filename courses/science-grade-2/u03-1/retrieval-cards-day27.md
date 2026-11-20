@@ -32,4 +32,4 @@ Three cards, shown one at a time while you read the line aloud. These are earlie
 
 ## Unit 2 planning
 
-Hold up the class's unit 2 fair-test sentence from the wall, "Everything stays the same except one thing," and read it aloud. Ask the class to say it back.
+Say the unit 2 words from day 16, "keep the same, change one thing, watch one thing," aloud. Ask the class to say them back. (Kindergarten had them as keep, change, watch.)

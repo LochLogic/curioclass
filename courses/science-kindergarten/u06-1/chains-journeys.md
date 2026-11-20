@@ -26,7 +26,7 @@ Invented for practice, said aloud first. Plain black line drawings on white, thi
 
 ## Chain 4: a turtle and a plastic ring (living things)
 
-**Frame 1.** A turtle on a pond bank, a plastic ring lying in the grass. **Frame 2.** The turtle's leg is caught in the ring (the turtle is the only actor). **Frame 3.** A grown-up kneels and frees the turtle.
+**Frame 1.** A turtle on a pond bank, a plastic ring lying in the grass. **Frame 2.** The turtle's leg is caught in the ring (the turtle is the only actor). The chain ends here.
 **Spoken:** "Litter can hurt a living thing. A plastic ring can catch a turtle's leg." **Marks:** living things.
 
 ## On the class drawing

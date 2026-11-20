@@ -29,6 +29,6 @@ Keep these out of sight until each day's exit. Say "this is invented for practic
 
 ## Day 51 (items s06-X51a and s06-X51b)
 
-**X51a.** Two cards of a trial pair, each showing a near mark and a farther mark. In the first, the same card and the same signal (two quick dashes) appear at both marks. In the second, two quick dashes at the near mark and one long dash at the farther mark. Spoken: "Touch the pair that shows whether distance changes what the friend gets." **Key:** the first pair. The second pair is error D.
+**X51a.** Two cards of a trial pair, each showing a near mark and a farther mark. In the first, two quick dashes at the near mark and one long dash at the farther mark. In the second, the same card and the same signal (two quick dashes) appear at both marks. Spoken: "Touch the pair that shows whether distance changes what the friend gets." **Key:** the second pair. The first pair is error D.
 
-**X51b.** Pip the puppet and a device that worked at the near mark. Three cards: Pip tries the same device and signal at the farther mark; Pip says it works anywhere and sits down; Pip changes the signal and tries far away. Spoken: "Touch what Pip should do to find out about the farther mark." **Key:** the first card. Stopping is error C; changing the signal is error D.
+**X51b.** Pip the puppet and a flap light that worked at the near mark. Three cards: Pip says it works anywhere and sits down; Pip changes the signal and tries far away; Pip tries the same flap light and signal at the farther mark. Spoken: "Touch what Pip should do to find out about the farther place." **Key:** the third card. Stopping is error C; changing the signal is error D.

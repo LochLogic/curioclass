@@ -35,10 +35,11 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 **Spoken 47a:** "Invented for practice. Touch the cover that keeps the sun off the patch." **Key:** the plain roof over the patch. The striped roof, "it is nearer", is error D. "It is prettier" is error E.
 **Spoken 47b:** "Same pictures. Point to the part that keeps the sunlight off." **Key:** the roof overhead. The stripes, "the colours do it", is error E.
 
-## Day 48: garden path
+## Day 48: wood in sun and shade
 
-**Picture 48a.** A garden path with two flat stones, one in the sun and one in the shade. Caption read aloud: "The sunny stone was warmer."
-**Spoken 48a:** "Invented for practice. Touch the stone the card says was warmer." **Key:** the sunny stone. A wrong touch is shown with help, no letter.
-**Picture 48b.** A shallow tub of water in the sun and one in the shade, clouds across the sky. Caption read aloud: "About the same." Three cards: the sunny water warmer, the shaded water warmer, about the same (two equal marks).
-**Spoken 48b:** "Touch what the card says." **Key:** about the same. "Water cannot warm in the sun" is error B.
-**Spoken 48c:** "Finish our sentence: sunlight ___ surfaces." **Key:** warms, taken from the stone card and not from the tie. "Does not warm, the water was the same" is error A.
+**Picture 48a.** A wooden garden step in the sun and a matching step in the shade, set out together. No warm marks.
+**Spoken 48a:** "Invented for practice. A wooden garden step sits in the sun, and the same kind of step sits in the shade, both put out at the same time. Touch the one you think feels warmer." **Key:** the sunny step. A touch on the shaded step is shown with help, no letter.
+**Picture 48b.** Two tubs of water side by side, one in the sun and one in the shade, with the same warm mark drawn over each. Three cards: the sunny water warmer, the shaded water warmer, about the same (two equal marks).
+**Spoken 48b:** "Invented for practice. Two tubs of water sit side by side, one in the sun and one in the shade. The same warm mark is drawn over each tub. Touch the card that says what the marks show." **Key:** about the same. The sunny or shaded card is shown with help, no letter. "Water cannot warm in the sun" is error B.
+**Picture 48c.** A wooden fence post in the sun with a warm mark over it, and a matching post in the shade with no mark.
+**Spoken 48c:** "Invented for practice. A wooden fence post stands in the sun with a warm mark over it, and a matching post stands in the shade with no warm mark. Finish the sentence: the sun ___ the post." **Key:** warms. "Does not warm" is error A.

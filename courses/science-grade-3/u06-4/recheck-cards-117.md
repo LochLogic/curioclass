@@ -8,7 +8,7 @@ credit: ours
 
 # Recheck cards (day 117, unscored, fresh)
 
-Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children. One card for each group. Alone, on paper, 5 minutes.
+Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children. Cards A and E print as the two questions of one quarter sheet, the exit ticket for everyone, alone, on paper. Cards B, C and D are read aloud to their group and answered aloud. 5 minutes in all.
 
 ## Card A: a display
 

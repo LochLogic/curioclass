@@ -18,11 +18,11 @@ One bar for a whole day, midnight at the left end to midnight at the right end, 
 | Date | Place | Season word | Sunrise | Sunset | Light part, cm from the left (1 cm to the hour) | Light part length, cm | Used |
 |---|---|---|---|---|---|---|---|
 | Sept. 10, 2025 | Denver | fall | 05:37 | 18:16 | 5.6 to 18.3 | 12.7 | day 9 teaching strip |
-| Oct. 1, 2025 | Denver | fall | 05:57 | 17:42 | 6.0 to 17.7 | 11.7 | class archive, days 62 and 63 |
+| Oct. 1, 2025 | Denver | fall | 05:57 | 17:42 | 6.0 to 17.7 | 11.8 | class archive, days 62 and 63 |
 | Nov. 3, 2025 | Denver | fall | 06:31 | 16:55 | 6.5 to 16.9 | 10.4 | class archive, day 62 |
 | Dec. 1, 2025 | Denver | winter | 07:02 | 16:36 | 7.0 to 16.6 | 9.6 | class archive, day 62 |
 | Jan. 5, 2026 | Denver | winter | 07:21 | 16:50 | 7.3 to 16.8 | 9.5 | class archive, days 62 and 63 |
-| Feb. 2, 2026 | Denver | winter | 07:07 | 17:21 | 7.1 to 17.4 | 10.3 | class archive, day 62 |
+| Feb. 2, 2026 | Denver | winter | 07:07 | 17:21 | 7.1 to 17.4 | 10.2 | class archive, day 62 |
 | Mar. 2, 2026 | Denver | spring | 06:31 | 17:53 | 6.5 to 17.9 | 11.4 | class archive, days 62 and 63 |
 | Sept. 18, 2025 | Denver | fall | 05:44 | 18:03 | 5.7 to 18.1 | 12.4 | exit, day 9 |
 | Sept. 4, 2025 | Denver | fall | 05:31 | 18:26 | 5.5 to 18.4 | 12.9 | exit, day 9, if the lesson date is within three days of Sept. 18 |
@@ -45,4 +45,4 @@ One bar for a whole day, midnight at the left end to midnight at the right end, 
 
 ## Checks before printing
 
-Every bar has the same total length. Day 63 class strips (Oct. 1, Jan. 5, Mar. 2) have light parts of 11.8, 9.5 and 11.4 cm at 1 cm to the hour, so winter is about 2.3 cm shorter than fall and 1.9 cm shorter than spring: the gap shows. The day 63 exit pair (Oct. 25 and Jan. 25: 10.8 and 10.0 cm) is closer, so print the exit strips large. Nov. 3 (10.4 cm) is shorter than Oct. 1 and still fall; Feb. 2 (10.2 cm) is winter and nearly as long as Nov. 3, so on day 62 children compare each group's strips, not one pair.
+Every bar has the same total length. Each strip is drawn from the exact times (the Oct. 1 light part is 11.75 cm, read as 11.8; the Feb. 2 light part is 10.23 cm, read as 10.2). Day 63 class strips (Oct. 1, Jan. 5, Mar. 2) have light parts of 11.8, 9.5 and 11.4 cm at 1 cm to the hour, so winter is about 2.3 cm shorter than fall and 1.9 cm shorter than spring: the gap shows. The day 63 exit pair (Oct. 25 and Jan. 25: 10.8 and 10.0 cm) is closer, so print the exit strips large. Nov. 3 (10.4 cm) is shorter than Oct. 1 and still fall; Feb. 2 (10.2 cm) is winter and nearly as long as Nov. 3, so on day 62 children compare each group's strips, not one pair.

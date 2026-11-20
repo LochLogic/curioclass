@@ -11,8 +11,8 @@ Held back. Not shown, handled or taught from before day 66. Plain black line dra
 
 ## Day 66: seeing and materials
 
-- **Tent looks.** A toy in a tent: look 1, flap shut and no lamp; look 2, a lamp outside shining in. A headlamp in a dark tent with no other light.
-- **Piece sets.** Per group: a lamp, a screen, a stand and four pieces cut with taped edges: a clear folder piece, a coffee filter, an egg-carton piece, and a plastic mirror. Piece cards to sort under bright patch, dim patch and dark shadow. A record of a mirror beside the beam with a patch on a side screen, and the same side screen with no mirror and no patch. A record of a cardboard piece with a dark shadow.
+- **Closet looks.** A toy on a closet shelf: look 1, door shut and no lamp; look 2, door open with a hall lamp shining on it. A headlamp in a dark tent with no other light is the second case. A headlamp in a dark tent with no other light.
+- **Piece sets.** Per group: a lamp, a screen, a stand and four pieces cut with taped edges: a clear folder piece, a coffee filter, an egg-carton piece, and a plastic mirror. Piece cards to sort under bright patch, dim patch and dark shadow. A record of a mirror beside the beam with a patch on a side screen, and the same side screen with no mirror and no patch. A record of a folded towel square with a dark shadow and no patch.
 
 ## Day 67: message, sources and daylight
 

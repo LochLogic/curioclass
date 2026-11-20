@@ -16,7 +16,7 @@ A dry valley of sand and bare rock. No plant grows. In the rock wall are rows of
 
 ## Guide card
 
-Whales and shells like these live in the sea today. The valley is a desert now.
+Whales and shells live in the sea today. The valley is a desert now.
 
 ## Two finds for the table of finds
 

@@ -318,6 +318,8 @@ def check_home(d, items, row, lab):
             if i['day'] == h.get('day') and i['check'] == 'end' and i['item_id'] not in labels                     and i.get('path', '') != 'spoken':
                 f.append('%s: end item %s is not on the student page, so the At home view cannot say where it is'
                          % (lab, i['item_id']))
+    elif not exits and any(i['day'] == h.get('day') and i['check'] == 'end' for i in items):
+        pass   # a teaching day that holds unit assessment items itself has no exit ticket (plan.py, 2026-11-19)
     else:
         last = parts[-1]
         if not re.search(r'exit ticket', last[1], re.I):
@@ -347,7 +349,9 @@ def check_day(d, items, days):
     row = next((x for x in days if x['day'] == h.get('day')), None)
     if row is None:
         return f + ['%s: day %s has no row in days.csv' % (lab, h.get('day'))]
-    if row['unit'] != h.get('unit'):
+    # a course-level day (unit C) has no section: days.csv leaves unit blank, the header says C (science ladder
+    # report, 2026-11-19)
+    if row['unit'] != h.get('unit') and not (row.get('stretch') == 'C' and not row['unit'] and h.get('unit') == 'C'):
         f.append('%s: header unit (section) %s, but days.csv says %s' % (lab, h.get('unit'), row['unit']))
     want = [s for s in TEACHER if s != 'At home' or 'At home' in d['order']]   # a missing block is reported below
     got = [s for s in d['order'] if s in want]
@@ -640,7 +644,73 @@ def check_day(d, items, days):
     f += check_home(d, items, row, lab)
     f += check_reads3(d, items, row, lab, nf)
     f += check_reads4(d, items, row, days, lab, nf)
+    f += check_review_named(d, lab)
+    f += check_plan_numbers(d, items, lab)
     return f
+
+
+PLAN_NUM = re.compile(r'(?<![\w.:/-])(\d+(?:\.\d+)?)(?![\w-])(?!\s*(?:min|minutes|seconds|sec\b|s\b|days?\b|%|percent))')
+
+
+def check_plan_numbers(d, items, lab):
+    """A NOTE when a number in the section plan's "## Day N" block appears nowhere in the day or its items: the data
+    may have overruled a stale plan, or the day lost a fact (science ladder report, 2026-11-19: grade 3 E74 1 versus 2
+    of 10, the lizard card 9:4 versus 9:5). Minutes, day and part numbers and numbers up to 12 are left out."""
+    h = d['head']
+    sp = ROOT / 'docs' / 'courses' / h.get('course', '') / (d['path'].parent.name + '.md')
+    if not sp.exists() or not h.get('day', '').isdigit():
+        return []
+    m = re.search(r'^## Day %d\b.*?\n(.*?)(?=^## |\Z)' % int(h['day']), sp.read_text(encoding='utf-8'), re.M | re.S)
+    if not m:
+        return []
+    blk = re.sub(r'\b(?:[Dd]ays?|[Uu]nits?|[Ss]ections?|[Gg]rades?|[Pp]arts?|[Ss]ides?|[Ee]rrors?|[Ss]teps?|[Rr]ows?)\s*'
+                 r'\d+(?:\.\d+)?(?:\s*(?:to|and|-)\s*\d+)?', '', m[1])
+    blk = re.sub(r'\[\[[^\]]*\]\]|`[^`]*`|\b[\w-]*\d[\w-]*-[\w-]+\b|\b[A-Z]\d+\w*', '', blk)
+    nums = {x for x in PLAN_NUM.findall(blk) if not (x.isdigit() and int(x) <= 12)}
+    have = set(re.findall(r'\d+(?:\.\d+)?', d['teacher'] + d['student'] + ' '.join(
+        i['stem'] + ' ' + i['answer'] + ' ' + i.get('samples', '') for i in items if i['day'] == h['day'])))
+    miss = sorted(nums - have, key=float)
+    return ['NOTE %s: the section plan\'s day %s block names %s, which the day and its items never use; if the data '
+            'overruled the plan, correct the plan' % (lab, h['day'], ', '.join(miss))] if miss else []
+
+
+# ------------------------------------------------------------------ review is said on the page (science ladder, 2026-11-19)
+REVIEW_MARK = re.compile(r'\breview|\bagain\b|\bremember|\blast year|\b(?:in|from) (?:kindergarten|grade \d+)|\bearlier\b'
+                         r'|\balready\b|\brecall', re.I)
+_LEDGER = {}
+
+
+def ledger_rows(course):
+    """The subject ledger's rows for a course (scripts/ledger.py), or [] when the course climbs no ledger."""
+    import ledger
+    subj = next((k for k, v in ledger.LADDER.items() if course in v), None)
+    if subj is None or not ledger.path(subj).exists():
+        return []
+    if subj not in _LEDGER:
+        _LEDGER[subj] = ledger.rows(subj)
+    return [r for r in _LEDGER[subj] if r['course'] == course]
+
+
+def check_review_named(d, lab):
+    """A term, model, case or routine the ledger records as review of a lower grade is said as review on the page
+    ("review", "again", "in kindergarten", "remember"...) in the paragraph that uses it. The ladder sample found days
+    teaching a lower grade's idea as new, the ledger saying review and the page not (science ladder report, 2026-11-19)."""
+    h = d['head']
+    c = h.get('course', '')
+    rows = [r for r in ledger_rows(c) if r['day'] == h.get('day') and r['note'].lower().startswith('review of')
+            and c not in r['note']]
+    if not rows:
+        return []
+    paras = re.split(r'\n\s*\n', d['teacher'] + '\n\n' + d['student'])
+    miss = []
+    for r in rows:
+        ws = [w for w in re.findall(r'[A-Za-z]{4,}', r['entry']) if w.lower() not in ('with', 'from', 'that', 'this',
+                                                                                     'each', 'every', 'their')][:2]
+        hit = [p for p in paras if ws and all(re.search(r'\b%s' % re.escape(w[:max(4, len(w) - 2)]), p, re.I) for w in ws)]
+        if hit and not any(REVIEW_MARK.search(p) for p in hit):
+            miss.append('"%s" (%s)' % (r['entry'], r['note'][len('review of '):].strip()))
+    return ['%s: the ledger records %s as review of a lower grade, but the page teaches it as new; say it is review '
+            'where it is used ("you learned ... in kindergarten", "review")' % (lab, '; '.join(miss))] if miss else []
 
 
 REASON = re.compile(r'\b(?:why|because|how I know|how do you know|what went wrong|explain|I notice|reason)\b', re.I)
@@ -920,7 +990,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
 .frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
-.slip { border: 1px dashed #000; height: 4.75in; width: 48%; display: inline-block; box-sizing: border-box; padding: .18in; margin: 0 1% .15in 0; vertical-align: top; font-size: 12pt; line-height: 1.3; overflow: hidden; } .slip p { margin: .22em 0; } .slip .foot { font-size: 7pt; line-height: 1.25; margin-top: .3em; padding-top: .2em; }
+.slip { border: 1px dashed #000; height: 4.75in; width: 48%; display: inline-block; box-sizing: border-box; padding: .18in; margin: 0 1% .15in 0; vertical-align: top; font-size: 12pt; line-height: 1.3; overflow: hidden; } .slip.half { width: 98%; } .slip p { margin: .22em 0; } .slip .foot { font-size: 7pt; line-height: 1.25; margin-top: .3em; padding-top: .2em; }
 .screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
@@ -1892,12 +1962,18 @@ def cols_state(spec, k):
 
 
 def slip_html(h, ex, foot):
-    """One exit ticket: a quarter of a sheet, four printed to a page."""
-    return '<div class="slip"><p>Name ______________ Day %s</p>%s%s</div>' % (h['day'], ''.join(
-        slip_item(k, i) for k, i in enumerate(ex)), foot)
+    """One exit ticket: a quarter of a sheet, four printed to a page; a header `exit: half` makes it half a sheet, two
+    to a page, for a multi-part judged exit that cannot fit a quarter (science ladder report, 2026-11-19)."""
+    return '<div class="slip%s"><p>Name ______________ Day %s</p>%s%s</div>' % (
+        ' half' if half_slip(h) else '', h['day'], ''.join(slip_item(k, i) for k, i in enumerate(ex)), foot)
+
+
+def half_slip(h):
+    return h.get('exit', '').strip().lower() == 'half'
 
 
 SLIP_W, SLIP_H = 3.504, 4.75   # inches: a slip is 48% of the 7.3 in page and 4.75 in tall (CSS .slip), two rows a page
+SLIP_HALF_W = 7.154            # a half-sheet slip (header `exit: half`) is 98% of the page wide, two to a page
 
 
 def slip_fits(d, course, items):
@@ -1916,7 +1992,7 @@ def slip_fits(d, course, items):
     tmp = Path(tempfile.gettempdir()) / ('curio-%s-%s-exit.html' % (course, d['path'].stem))
     css = ('<style>@page { size: %.3fin %.2fin; margin: 0; } body { max-width: none; } .slip { width: 100%% '
            '!important; height: auto !important; margin: 0 !important; overflow: visible !important; }</style>'
-           % (SLIP_W, SLIP_H + 0.02))
+           % (SLIP_HALF_W if half_slip(h) else SLIP_W, SLIP_H + 0.02))
     put(tmp, page('check', css + slip_html(h, ex, foot), 'student'))
     note = print_sides(tmp)
     m = re.match(r'(\d+) side', note)
@@ -2132,7 +2208,8 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     ex = [i for i in mine if i['check'] == 'exit' and i.get('path', '') in ('', 'paper')]
     if ex and row['kind'] != 'Check':
         one = slip_html(h, ex, foot)
-        put(out / (name + '-exit.html'), page(title + ': exit tickets', one * 4, 'student'), encoding='utf-8')
+        put(out / (name + '-exit.html'), page(title + ': exit tickets', one * (2 if half_slip(h) else 4), 'student'),
+            encoding='utf-8')
     # display, in the order the teacher page runs: part by part, each [[id]], [[steps:id]] and **Ask.** where it
     # first appears (a worked example with its figure, then its steps one screen at a time; a fix with the wrong
     # working beside the right; a challenge); a plain sum's answers; a part's "check your answers" screen only when
@@ -3124,8 +3201,12 @@ def main(a):
         drow = next((x for x in days if x['day'] == d['head'].get('day')), None)
         fit = slip_fits(d, c, items) if drow and drow['kind'] != 'Check' else None
         if fit and not fit[0]:
-            fails.append('%s: the exit ticket runs past its quarter page (%s at %.2f by %.2f in), so its foot is cut '
-                         'off; shorten it or give its box less room' % (lab, fit[1].split(' FAIL')[0], SLIP_W, SLIP_H))
+            half = half_slip(d['head'])
+            fails.append('%s: the exit ticket runs past its %s page (%s at %.2f by %.2f in), so its foot is cut off; '
+                         'shorten it or give its box less room%s' % (
+                             lab, 'half' if half else 'quarter', fit[1].split(' FAIL')[0],
+                             SLIP_HALF_W if half else SLIP_W, SLIP_H,
+                             '' if half else ', or, for a multi-part judged exit, set "exit: half" in the header'))
         hp = home_parts(d)
         print('%s: teacher %d words, student %d words (%d frame, %d questions), %d min, %s, %s, %d failure(s)' % (
             lab, words(teacher_prose(d)), words(d['student']) + stem_words(d, byid), words(d['student']),

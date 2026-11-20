@@ -13,6 +13,13 @@ day {next}'s row in days.csv and the plan will do; if day {next} is already writ
 The shared pieces in the section folders exist; name the ones you use in `leans_on`. A tool that is not built is
 named only as "when it exists:" with its paper path.
 
+In a course on a subject ledger (scripts/ledger.py), look up every term, model, case and routine the day uses with
+`python -X utf8 scripts/ledger.py show <subject> --before {course} --term "<word>"` (filtered: the whole ledger is
+cut off when read in one piece). What a lower grade taught is said as review where the day uses it, in that grade's
+words; an earlier case comes back as a reminder, never as an exit or check. After the day, add a ledger row for what
+it teaches (`ledger.py add`). Never bend a day to pass a gate: if a gate rule does not fit, write the day right, leave
+that one failure and name it.
+
 Fill your day's `shows` cell in data/plans/{course}/days.csv (the goal-to-item trace, data/plans/README.md).
 
 Gates: `python -X utf8 scripts/plan.py check` and `python -X utf8 scripts/lesson.py check`. You may leave a failure

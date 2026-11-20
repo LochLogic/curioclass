@@ -17,8 +17,8 @@ s01-X6,Marks a dot without checking what the key says.,,,B,
 s01-X7,Claim Y: only page P shows water.,,,C,
 s01-X7,"Claim X, with marks from only one page.",,,F,
 s01-X10,Marks the colour page because it is my favourite.,,,A,
-s01-X10,"Snow is not water, so it is left off.",,,C,
-s01-X10,Marks only the pool and does not use the close-up of the snow.,,,F,
+s01-X10,"Ice is not water, so it is left off.",,,C,
+s01-X10,Marks only the pool and does not use the close-up of the ice.,,,F,
 s01-X10b,The model has no key.,,,B,
 s01-X10b,"Only the water is drawn, with no ridge.",,,D,
 s01-X10b,The stream goes over the top of the ridge.,,,E,
@@ -29,7 +29,7 @@ s01-E1,"I chose only record A, because one record is enough.",,,F,
 s01-E2,"Snow is not water, so it is left off the chart.",,,C,
 s01-E2,All six places are marked liquid.,,,x,solid and liquid are not told apart; ask what the open mark in the key of record A means
 s01-E3,"Water is always low, in every place.",,,x,a pattern from two records is stated as a rule for every place; ask what the records show for Pine Coast only
-s01-E3,The liquid water is high and the solid water is low.,,,x,the pattern is reversed; ask the child to point to the ice on record A
+s01-E3,The liquid water is on the ridge and the solid water is in the ocean.,,,x,the places are reversed; ask the child to point to the ice on record A
 s01-E4,The model has no key.,,,B,
 s01-E4,The hills are left off because they do not matter.,,,D,
 s01-E4,The ocean is left off because it is outside the area.,,,G,
@@ -71,6 +71,7 @@ s02-X14,"No, because nobody saw it change.",,,A,
 s02-X15a,"Neither, because erosion is always slow.",,,B,
 s02-X15b,The tray shows how long a real change took.,,,F,"points to card 1 or card 3 and says the tray cannot show that, or says the tray can time a real change"
 s02-X16,"No, because the cup was the same, so the start does not matter.",,,E,
+s02-X16b,"5 centimeters, because I counted the marks.",,,x,"the strip is read by counting marks, not from zero; ask where the first mark sits on the ruler"
 s02-X17,"The big picture of the fence, because it shows the fence best.",,,C,
 s02-X18,"The bar that says the chips lost the least, so they have no weakness.",,,D,
 s02-X18,"The tidy picture, because the chips look good.",,,C,
@@ -80,6 +81,7 @@ s02-X20a,Sketches the shapes but draws every wind arrow straight through them.,,
 s02-X20b,Pick the one that looks stronger.,,,C,
 s02-X20b,"Test them on different ground, or with the fan at a different distance.",,,E,
 s02-X21,"The close picture of the tubes, because they are tallest.",,,C,
+s02-X21,"The tubes lost less, because 6 and 7 are the bigger bars.",,,x,a longer bar is read as better; ask what a bar shows (sand lost) and which bar is shorter
 s02-X22,"Hedge H, because it lost the least land at first and so has no weakness.",,,D,
 s02-X26a,"The rocky surface is not changing, because it looks the same.",,,A,
 s02-X26a,"Both are slow, because erosion is always slow.",,,B,
@@ -104,7 +106,8 @@ s02-E10,Q has no weakness because I chose it.,,,D,
 s02-E11,"P is under both times, because its first run was the smallest.",,,D,the second run of P is left out
 s02-E12,I choose P because it lost the least in the first run.,,,D,the second run is left out; the choice is made from half the record
 s02-E12,I choose Q because it looks like the strongest screen.,,,C,
-s03-X27,"Yes, they are both blue, so they feel and bend the same.",,,B,
+s03-X27,"Look at the colour, because they are both blue, so they feel the same.",,,B,
+s03-X27,"Look at the size, because the bigger one is softer.",,,x,guesses a property from how big it looks; ask how we find out how soft it is
 s03-X28,"Plan 2, because moving the flashlight closer lets us see the light better.",,,D,
 s03-X29,"Yes, ice is ice and water is water, so the ice is not water.",,,C,
 s03-X30,"Strip K, because nothing climbed, so it took in the most.",,,F,
@@ -141,8 +144,10 @@ s03-E14,Y is best for every job because it is my favourite.,,,E,
 s03-E15,Any block will do because wood comes from a tree.,,,x,no link from the job to a test; ask what we would test the wood for
 s03-X34b,"Lining N, because it looks rougher.",,,x,"a slip: texture stands in for the slope test; a note, no letter; the picture shows the block, not the feel"
 s04-X39,"Yes, it looks different, so it needed new cars.",,,A,
-s04-X40,"Any piece, because they all do the same job.",,,E,"nearest letter: the piece and its use are not linked; the exit asks for shape, not stiffness"
-s04-X40,"The round piece, because it is the biggest.",,,E,nearest letter: size stands in for the shape that suits the use
+s04-X40a,"A new piece, because the gate is a different thing.",,,A,arrangement is mistaken for new pieces; string from each block to its place
+s04-X40a,"Piece a, because it is the first one.",,,A,"a guess, not a match; ask which pieces made the bridge and which show on the gate"
+s04-X40b,"Any piece, because they all do the same job.",,,F,a piece's shape does not decide its use; ask which one covers the whole top
+s04-X40b,"The tall thin post, because it is the tallest.",,,F,height stands in for the shape that suits the use
 s04-X41,"Yes, they are the same size, so they work the same.",,,E,
 s04-X42,"The first two, because it froze, so it went back.",,,D,
 s04-X43,"Yes, cooling fixes it.",,,C,
@@ -171,15 +176,20 @@ s04-E19,"Returned, because cooling always fixes it.",,,C,
 s04-E21,Cooling always makes things go back to the start.,,,C,
 s04-E22,"Yes, it melted, so it will go back.",,,D,
 s05-X48,P2 with P3 makes a fair test.,,,A,
+s05-X48b,The grass under the bucket is green like the rest.,,,x,the pale patch is not seen; ask the child to touch where the bucket was
+s05-X48b,It is pale because it was too cold under the bucket.,,,x,a cause is given where only what is seen was asked; ask what the picture shows
 s05-X49a,"Change nothing, because B and C are fine as they are.",,,A,
 s05-X49a,Darken C.,,,A,
 s05-X49b,"The height is enough, so the other boxes can stay empty.",,,E,
 s05-X50,A height with nothing else: 8 centimeters.,,,E,
 s05-X51a,Pair N checks it fairly.,,,A,
-s05-X51b,"The taller one, so it is healthier.",,,B,
+s05-X51b,"Its height, because taller means healthier.",,,B,
+s05-X51b,"The colour of its cup, because that is what is different.",,,x,the evidence is not tied to the plant; ask which thing shows how healthy the plant looks
 s05-X52a,"Yes, it looks fine, so plants do not need light.",,,C,
 s05-X52b,"Yes, it is standing up, so sunlight is all it needs.",,,D,
-s05-X53,"No, because the height is the same.",,,B,
+s05-X53a,"The pot card, because both pots are the same.",,,x,"the same pot is fair-test evidence, not evidence of health; ask which card shows how healthy the plant looks"
+s05-X53a,"The ruler card, because the shaded plant is taller.",,,B,height stands in for health; ask what the leaves and stem show
+s05-X53b,"No, because the height is the same.",,,B,
 s05-X56a,Dark with water beside sun with no water.,,,A,
 s05-X56b,"The dark one is taller, so it is healthier.",,,B,
 s05-X56b,Water is all a plant needs.,,,C,
@@ -210,7 +220,7 @@ s05-E15,"P got water, so a plant does not need light.",,,C,
 s05-E16,"Q was in the sun, so a plant does not need water.",,,D,
 s06-X60a,The seed.,,,A,
 s06-X60b,"An arrow that stops halfway, or none.",,,,"an omission; descriptive feedback, no register letter"
-s06-X61a,A prettier face on the mitten.,,,B,
+s06-X61a,Paint the mitten red.,,,B,
 s06-X61b,"The model shows everything, so nothing is missing.",,,,"an omission; descriptive feedback, no register letter"
 s06-X61c,"18 centimeters, counting the zero mark as 1.",,,,"a slip in this look-for; no register letter fits, note it on the sheet"
 s06-X62a,Every seed sticks to fuzzy cloth.,,,D,

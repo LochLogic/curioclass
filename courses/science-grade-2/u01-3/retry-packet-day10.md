@@ -18,7 +18,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Page 2: the close-up
 
-**Picture:** A close view of snow lying on the top of the ridge.
+**Picture:** A close view of a flat sheet of ice on a small pond at the foot of the ridge, low down beside the stream.
 
 ## Page 3: the colour page
 
@@ -30,4 +30,4 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Key (teacher)
 
-Step 1: pool and stream liquid; snow solid; the colour page is not a source. Step 2: ridge and hollow with the pool, the stream low and away from the ridge, a key. Step 3: I know the stream is low because the picture shows it below the hollow and the ridge.
+Step 1: pool and stream liquid; the ice on the pond solid (low, not high);  the colour page is not a source. Step 2: ridge and hollow with the pool, the stream low and away from the ridge, a key. Step 3: I know the stream is low because the picture shows it below the hollow and the ridge.

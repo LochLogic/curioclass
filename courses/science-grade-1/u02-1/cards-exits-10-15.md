@@ -37,7 +37,7 @@ Keep these out of sight until each day's exit. None is used in a hook, a read-al
 
 ## Day 14
 
-**Item s02-X14a.** A duck at a pond's edge. A fox shape appears at the bank. The duck swims away. Touch cards: fox to eyes; feet to eyes. Spoken: "Touch the first arrow." **Key:** fox to eyes. A wrong touch is shown with help.
+**Item s02-X14a.** A duck at a pond's edge. A fox shape appears at the bank. The duck swims away. Touch cards: the fox; the eyes; the feet. Spoken: "Touch the card that goes in the first box of the chain." **Key:** the fox. A wrong touch is shown with help.
 
 **Item s02-X14b.** The same card. Touch cards: eyes; feet; beak. Spoken: "Touch the part that moves the duck away." **Key:** the feet. Wrong: the eyes is error C.
 

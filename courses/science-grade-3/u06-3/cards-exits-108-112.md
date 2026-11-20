@@ -24,7 +24,7 @@ Invented for practice. Goal: an awning stays on in at least 2 of 3 trials. Limit
 
 ## Day 111
 
-Invented for practice. A model barn. Goal: at most 4 of 10 roof squares damaged. Limit: 10 tokens. Rod, wire and ground cost 9 tokens. Damaged squares: 3, 2, 3. With nothing: 8, 8, 7. Dev says a rod means lightning will never hit the barn. What do the records show?
+Invented for practice. A model greenhouse in a hail box. Goal: at most 3 of 10 glass squares cracked. Limit: 9 tokens. Nothing: 8, 9 and 8 cracked. Net alone, 4 tokens: 5, 5 and 6. Net with frame and slope, 8 tokens: 2, 3 and 2. Solid roof, 12 tokens: 0, 0 and 1. Which design has merit? What do the records not show?
 
 ## Day 112
 

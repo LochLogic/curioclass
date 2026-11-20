@@ -66,7 +66,7 @@ s02-X12a,Touches the fallen leaf.,,,x,"a first idea, shown with help"
 s02-X12b,Still straight: the plant stays the same.,,,B,treats a plant as unable to respond
 s02-X13a,Touches the legs or the mouth.,,,x,"a first idea, shown with help"
 s02-X13b,The eyes carry it under the stone.,,,C,treats the part that senses as the part that moves
-s02-X14a,Touches feet to eyes.,,,x,"a first idea, shown with help"
+s02-X14a,Touches the eyes.,,,x,"a first idea, shown with help"
 s02-X14b,The eyes move the duck away.,,,C,treats the part that senses as the part that moves
 s02-X15a,"The petals, because they are pretty.",,,D,takes appearance for a shape that does the job
 s02-X15b,Draw a beetle on the bag so it is safe.,,,D,takes a stuck-on picture for a working shape
@@ -133,11 +133,9 @@ s03-X24b,That makes them different animals.,,,B,treats a difference as making a 
 s03-X24b,They look exactly the same.,,,A,treats a shared feature as identity
 s03-X25a,"Touches the first grouping, because the little one is a different thing since it is smaller.",,,B,a difference in size takes it out of its kind
 s03-X25a,Touches the first grouping with no reason.,,,x,unsupported; shown with help
-s03-X25b,The small maple does not go with the big one because plants do not have babies.,,,C,limits young to animals
-s03-X25b,The cat with the white tail is not like the other.,,,B,a difference takes it out of its kind
+s03-X25b,The small willow does not go with the big one because plants do not have babies.,,,C,limits young to animals
+s03-X25b,The pig with the black ear is not like the other.,,,B,a difference takes it out of its kind
 s03-X25b,Because they look nice together.,,,x,no observation; shown with help
-s03-X25c,Lays the blades with the bases apart.,,,x,"tips are not compared; shown with help, no letter"
-s03-X25c,Lays the parent blade first.,,,x,orders by the grown-up first rather than by length
 s03-X27a,"That is not its young, plants have no babies.",,,C,limits young to animals
 s03-X27a,Points to how short the young leaf is.,,,x,"names a difference, not a shared feature"
 s03-X27b,"The young one looks different, so it is another kind.",,,B,treats a difference as making a different kind
@@ -153,25 +151,25 @@ s03-E26a,Names the oak and the pine and says nothing about what is seen.,,,x,nam
 s03-E26b,"They are exact copies, they all look the same.",,,A,treats a shared feature as identity
 s03-E26b,A different patch means it cannot be a rabbit.,,,B,treats a difference as making a different kind
 s03-E26b,Names the rabbits and the fish and says nothing about what is seen.,,,x,naming earns no point; stays incomplete
-s04-X28,Touches the one harder tap.,,,x,does not separate the hand from the spoon; shown with help
-s04-X28,Touches the spoon alone with nothing done.,,,x,no comparison is made; shown with help
+s04-X28,Touches the hand and says the hand makes the sound.,,,x,Pip's first idea; the hand is not the part moving while the sound is heard; shown with help
+s04-X28,Touches the table.,,,x,the table is not moving that the child can see; shown with help
 s04-X29,Touches the comb lying still with the plucked teeth.,,,x,a still comb does not test the idea that moving makes sound; shown with help
 s04-X29,Touches the comb lying still with the comb swept slowly.,,,x,a still comb does not test the idea; shown with help
 s04-X30,Touches the one much harder tap.,,,x,changes the tap instead of repeating it; shown with help
 s04-X30,Touches a different tray.,,,x,changes the thing tested; shown with help
 s04-X30,The tray keeps ringing when it is held still.,,,A,"a source keeps producing sound after its vibration is stopped; volunteered, met first on day 31"
 s04-X31a,Touches ring it harder.,,,x,does not stop the body; shown with help
-s04-X31a,Touches watch the handle only.,,,x,no comparison of the body free and held; shown with help
+s04-X31a,Touches a soft ring with the body free and a hard ring with the body held.,,,x,changes two things at once; shown with help
 s04-X31b,It would still ring loudly when it is held.,,,A,a source keeps producing sound after its vibration is stopped
 s04-X31b,It would sound the same.,,,x,no reason from the band or drum records; shown with help
 s04-X32,Sound cannot move foil.,,,B,denies that sound can make another material vibrate
 s04-X32,Touches the hand pressing the foil.,,,C,accepts touching as a sound-only test
 s04-X32,Touches the card waving with the speaker off.,,,x,"tests the card, not the sound; shown with help"
-s04-X34a,Touches the record with the hand near the fringe.,,,C,accepts a hand near the fringe as a sound-only test
-s04-X34a,"Sound cannot do that, so neither record is fair.",,,B,denies that sound can make another material vibrate
-s04-X34b,The arrow is unproven because sound cannot move things.,,,B,denies that sound can make another material vibrate
+s04-X34a,Touches yes.,,,C,accepts a record with a fan also blowing as a sound-only test
+s04-X34a,Touches no and says sound cannot move things.,,,B,denies that sound can make another material vibrate
+s04-X34b,Says sound cannot move things.,,,B,denies that sound can make another material vibrate
 s04-X34b,"Touches it shakes, so it sounds.",,,x,the other arrow; shown with help
-s04-X34c,The held drum still sounds.,,,A,a source keeps producing sound after its vibration is stopped
+s04-X34c,The held cup still sounds.,,,A,a source keeps producing sound after its vibration is stopped
 s04-X34c,"Touches it sounds, so it makes things shake.",,,x,the other arrow; shown with help
 s04-E33a,The ruler keeps making sound after it is held still.,,,A,a source keeps producing sound after its vibration is stopped
 s04-E33a,Names the ruler and the drum and says nothing about what was compared.,,,x,naming earns no point; stays incomplete

@@ -20,7 +20,11 @@ Invented for practice. Atlas card: Region R is hot all year. Its map is brown, a
 
 ## Day 105
 
-Invented for practice. Region V is warm all year: 0 months below freezing, 2 months with rain. Region W has 6 months below freezing and 4 months with rain. Which region has fewer months with rain? Which is colder? Use the numbers.
+Invented for practice. Region V: the atlas says desert. The station says 0 months below freezing, 1 wet month. Region W: the atlas says mountain town. The station says 6 months below freezing, 5 wet months. It rained today in V. Which is colder? Which is drier? Name the card and numbers.
+
+## Day 106
+
+Invented for practice. Atlas card: Region M is a cold, high plateau. Station card: over 30 years, M has 7 months below freezing and 2 wet months. This year it had 3 wet months. Write one sentence about M's climate that uses both cards. Does this year change it? Why?
 
 ## Day 107
 

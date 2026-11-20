@@ -22,7 +22,7 @@ Female finches of one kind choose between males. Ten of 12 females chose the bri
 
 ## Hawk card
 
-In a bare field, hawks found bright males more often than dull males.
+Invented for practice. In a bare field, hawks found bright males more often than dull males.
 
 ## Chick card
 

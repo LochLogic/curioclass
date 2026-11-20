@@ -19,7 +19,7 @@ the rest.
 | **Teacher page** | The teacher, the night before | Written, plus a header and tables generated from data | 15 words of prose a minute of the day at most (900 at 60 minutes) on a teaching day, 500 on an assessment day (see "What changes by subject"). Generated tables do not count |
 | **At home view** | A parent teaching one child | Written: the teacher page's At home block. Built as `dNNN-home.html`, each question it names pulled from data with its answer | 170 words at most, counted apart from the teacher prose cap |
 | **Student page** | Each student | Written frame; every question pulled from data | One sheet, both sides of US Letter at most. Words a student reads counts everything printed for the student, questions included; the cap is set per course in DEFAULTS.md (grade 4 math: 350, ours, untested), and the gate reports frame and questions apart. No sentence over 15 words in grades 3 to 5. 18 point type in kindergarten to grade 2, with a line telling the teacher what to read aloud; 14 point in grades 3 to 5; 12 point from grade 6 |
-| **Exit ticket** | Each student, then the teacher | Generated from data: the paper path's exit rows | A quarter page, four to a sheet |
+| **Exit ticket** | Each student, then the teacher | Generated from data: the paper path's exit rows | A quarter page, four to a sheet. A multi-part judged exit that cannot fit sets `exit: half` in the header: half a sheet, two to a sheet. A teaching day that holds unit assessment items itself (a product judged that day) has no exit ticket |
 | **Answer key** | The teacher | Generated from data: every answer on both exit paths, its equation or working, and what each wrong answer means | Usually one side |
 | **Display page** | The class, on the projector | Generated from data, in the order the teacher page runs, part by part. For each worked example, the question with its labelled figure, then the steps one screen at a time; for each wrong answer to fix, their working beside the right working; one screen per **Ask.**; a challenge screen; the answers to a plain sum; a "check your answers" screen only where a part names a partner or self check (a `Check: ...` line in the part gives its sentence); on an assessment day, the answers screen and one screen per group in the respond part; the sentence frames last | No words of its own |
 | **Slides** | Nobody | **None.** The display page and the tool's own screen do this job; a slide deck would be a second copy of the teacher page to write and keep right | 0 |
@@ -47,7 +47,7 @@ are read"). The caps hold it down; real counts (first from grade 4 math, docs/pi
 
 One source file a day: `courses/<course>/u<unit>-<section>/d<day>.md` (day 90 of grade 4 math is
 `courses/math-4/u11-1/d090.md`). The teacher page and the student page are both in it, so they cannot drift apart:
-a header block, then `## Teacher page` with its fixed `###` headings, then `## Student page` with `### Side 1` and,
+a header block (a course-level day, unit C in days.csv, has `unit: C`), then `## Teacher page` with its fixed `###` headings, then `## Student page` with `### Side 1` and,
 where needed, `### Side 2`.
 The questions are not: every question a student answers on the day (worked examples, the tool's notes, practice,
 wrong answers to fix, the exit) is a row in `data/plans/<course>/items.csv`, and its key is computed there. A day
@@ -207,7 +207,8 @@ what to swap; on grade 4 math days 89 to 93 it took 110 to 137 words.
   projector (point at the page), no grid paper, no tiles, no class set, no device.
 - **Skip.** One `**Skip.**` line: what the class does that home leaves out (the facts check, the tool, a third
   rectangle, the groups).
-- **The exit ticket last** on a teaching day, naming the paper ticket's rows. The child answers alone.
+- **The exit ticket last** on a teaching day, naming the paper ticket's rows. The child answers alone. A teaching
+  day that holds unit assessment items itself has no exit ticket, so its last part may be any part.
 - **Cap.** 170 words, counted apart from the 900-word teacher prose cap.
 - **Plain words.** No teacher terms without a gloss, no timer without a grounded purpose, no grades or scores.
 - **The view** gives a worked example's steps and a judged row's look-fors, names a question inside an example
@@ -280,7 +281,12 @@ home on a day that does not print it; an adapted credit or `source` with no lice
 NonCommercial, ShareAlike or NoDerivatives terms. Notes: "under the camera" on a day with no document camera; a
 strip, card or sheet handled and not listed; a "from day N" material day N never names; an opener sheet listed for
 the day that the day never names; the student page running in another order than the day (unless the part says to
-turn back).
+turn back); a number in the section plan's `## Day N` block that the day and its items never use (correct the plan
+when the data overruled it). In a course on a subject ledger (scripts/ledger.py), a term, model, case or routine the
+ledger records as review of a lower grade that the page uses without saying so ("review", "again", "remember", "in
+kindergarten", "in grade N", "earlier", "already", "recall" in the same paragraph) fails: the ladder sample found
+days teaching a lower grade's idea as new (science ladder report, 2026-11-19). Correct a wrong ledger row with
+`ledger.py note`, never by hand.
 
 **Tomorrow and the next day.** A Tomorrow that the next day's file does not pick up; an error letter or "near you"
 in Tomorrow that the next day does not name; a teacher-judged practice row the next day does not hand back (unless

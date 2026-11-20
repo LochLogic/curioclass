@@ -1,7 +1,8 @@
 """The subject ledger: what each grade of a subject actually taught, carried up the ladder.
 
     python -X utf8 scripts/ledger.py add <subject> <course> <where> <day> <kind> "<entry>" ["<note>"]
-    python -X utf8 scripts/ledger.py show <subject> [--before <course>] [--kind <kind>]
+    python -X utf8 scripts/ledger.py show <subject> [--before <course>] [--kind <kind>] [--term <text>] [--course <course>]
+    python -X utf8 scripts/ledger.py note <subject> <course> <day> "<entry>" "<new note>"
     python -X utf8 scripts/ledger.py check <subject>
 
 Built 2026-11-18 for the science kindergarten to grade 3 ladder test (later.csv L81,
@@ -69,11 +70,15 @@ def add(subject, course, where, day, kind, entry, note=''):
     print('added: %s %s day %s %s: %s' % (course, where, day or '-', kind, entry.strip()))
 
 
-def show(subject, before=None, kind=None):
+def show(subject, before=None, kind=None, term=None, course=None):
+    """--term keeps rows whose entry or note holds the text (any case); --course keeps one course. A whole show runs to
+    hundreds of KB and is cut off when read in one piece (science ladder report, 2026-11-19): filter it."""
     order = LADDER[subject]
     stop = order.index(before) if before in order else len(order)
     keep = set(order[:stop + 1]) if before else set(order)
-    out = [r for r in rows(subject) if r['course'] in keep and (not kind or r['kind'] == kind)]
+    t = (term or '').lower()
+    out = [r for r in rows(subject) if r['course'] in keep and (not kind or r['kind'] == kind)
+           and (not course or r['course'] == course) and (not t or t in (r['entry'] + ' ' + r['note']).lower())]
     if not out:
         print('(the %s ledger is empty so far)' % subject)
         return
@@ -86,6 +91,20 @@ def show(subject, before=None, kind=None):
         # must not mistake kindergarten's u02-1 for grade 1's (found 2026-11-18, grade 1 unit 3).
         print('- %s %s %s %s: %s%s' % (r['course'], r['where'],('day ' + r['day']) if r['day'] else '(planned)', r['kind'],
                                      r['entry'], (' (' + r['note'] + ')') if r['note'] else ''))
+
+
+def renote(subject, course, day, entry, note):
+    """Correct one row's note (a row tagged new that a lower grade taught, or review that is new): the only edit."""
+    rs = rows(subject)
+    hit = [r for r in rs if r['course'] == course and r['day'] == day and r['entry'] == entry.strip()]
+    if len(hit) != 1:
+        sys.exit('ledger note: %d rows match %s day %s "%s"; need exactly one' % (len(hit), course, day, entry))
+    hit[0]['note'] = note.strip()
+    with open(path(subject), 'w', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=COLS, lineterminator='\n')
+        w.writeheader()
+        w.writerows(rs)
+    print('note set: %s day %s %s: %s' % (course, day, entry.strip(), note.strip()))
 
 
 def check(subject):
@@ -102,7 +121,7 @@ def check(subject):
 
 
 def main(a):
-    if not a or a[0] not in ('add', 'show', 'check'):
+    if not a or a[0] not in ('add', 'show', 'check', 'note'):
         print(__doc__)
         return 2
     if a[0] == 'add':
@@ -110,9 +129,14 @@ def main(a):
             sys.exit('ledger add: subject course where day kind entry [note]')
         add(*a[1:9])
         return 0
+    if a[0] == 'note':
+        if len(a) != 6:
+            sys.exit('ledger note: subject course day entry note')
+        renote(*a[1:6])
+        return 0
     flags = dict(zip(a[2::2], a[3::2])) if len(a) > 2 else {}
     if a[0] == 'show':
-        show(a[1], flags.get('--before'), flags.get('--kind'))
+        show(a[1], flags.get('--before'), flags.get('--kind'), flags.get('--term'), flags.get('--course'))
         return 0
     return check(a[1])
 

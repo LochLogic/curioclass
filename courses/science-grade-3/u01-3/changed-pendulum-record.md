@@ -23,7 +23,7 @@ The string is now 40 cm. The releaser holds four washers at the 10 cm mark and l
 | 5 | | |
 | 6 | | |
 
-Tick L, C, R for at least two cycles, with the centre crossings. Write the mark at turn 4 and at turn 6. A turn too quick to read stays blank. Never guess a turn.
+Tick L, C, R for at least two cycles, with the centre crossings. Write the mark at turn 3 and at turn 5, the far turns. A turn too quick to read stays blank. Never guess a turn.
 
 Mark the repeating order. The next turning side after my last turn will be ______.
 

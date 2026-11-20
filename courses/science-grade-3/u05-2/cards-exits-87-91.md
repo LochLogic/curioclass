@@ -24,7 +24,7 @@ Invented for practice. A dam stops minnows reaching an egg pool. Goal: at least 
 
 ## Day 90
 
-Invented for practice. Tall reeds shade the edge of a small pond. The reeds are cut, and the edge water warms by 3 degrees. Cold-water insect larvae at the edge fall from 9 to 2. Warm-water snails rise from 2 to 8. A card says larvae need cool water and snails need warm shallow water. Why did they change in different ways?
+Invented for practice. A bare stretch of a small stream gets new trees. Two years on, its water is 4 degrees cooler. Cold-water fish counted there rise from 1 to 5. Warm-water snails fall from 8 to 3. A card says the fish need cool water and the snails need warm, sunny water. What changed first? Why did the fish and the snails change in different ways?
 
 ## Day 91
 

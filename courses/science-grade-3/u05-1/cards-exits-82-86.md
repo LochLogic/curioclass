@@ -24,9 +24,9 @@ Invented for practice. A desert quarry has prints of broad leaves 20 centimetres
 
 ## Day 85
 
-Invented for practice. (a) A landslide turned a rock block upside down. Now a seed-pod layer is on the bottom and a bone layer is on top. Is the seed-pod layer the older one?
+Invented for practice. (a) A landslide turned a rock block upside down. A seed-pod layer is now below a bone layer. Is the seed-pod layer the older one?
 
-(b) A card says a certain shell kind lives in other lakes. None are found in Lake Pine. Is that kind extinct?
+(b) A card says one shell kind lives in other lakes. None are in Lake Pine. Is that kind extinct?
 
 ## Day 86
 

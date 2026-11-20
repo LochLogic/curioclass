@@ -15,4 +15,4 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 **Picture:** A picture of a bay with a tall hill on the left and flat ground on the right, and a stream that runs down to the ocean. A key box is empty.
 
-**Read:** Make a picture model. Where does the rain water go? Use a dotted arrow for any route you did not see.
+**Read:** Make a picture model of a second invented bay with its own shapes. Where does the rain water go? Show one pattern that differs from the bay on this page.

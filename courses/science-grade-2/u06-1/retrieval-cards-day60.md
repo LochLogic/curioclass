@@ -15,6 +15,6 @@ Two cards, one ask each, marked in turn, about two minutes each. A miss gets a m
 
 **Card 1:** three coverings in a row: a fuzzy wool cloth drawn with tiny loops, a smooth sheet of shiny plastic, and a smooth stone slab. Ask: "Mark the covering that could catch a hook."
 **Key (teacher):** the fuzzy cloth with loops. A miss is modelled with the grade 1 picture of a part of nature copied for a job, and the teacher says: here a model copies what the animal does, not its parts.
-**Card 2:** five picture cards, each with one picture and one word: define (a child pointing at a problem), sketch (a pencil and paper), build (hands joining pieces), test (a model being tried), compare (two results side by side). They are laid face up out of order.
-Ask: "Show the pictures in order, marking one at a time: define, sketch, build, test, compare."
-**Key (teacher):** define, sketch, build, test, compare. A miss is modelled against the unit 2 design-cycle chart.
+**Card 2:** five picture cards, each with one picture and one word: problem (a child pointing at a problem), sketch (a pencil and paper), build (hands joining pieces), test (a model being tried), compare (two results side by side). They are laid face up out of order.
+Ask: "Show the pictures in order, marking one at a time: problem, sketch, build, test, compare."
+**Key (teacher):** problem, sketch, build, test, compare. A miss is modelled against the unit 2 design-cycle chart.

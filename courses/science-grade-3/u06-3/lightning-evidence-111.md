@@ -16,7 +16,7 @@ A building with a pointed metal rod on its roof, labelled "rod". A thick wire ru
 
 ## What each part does
 
-The rod is where a strike lands. The wire carries it down. The ground lets it spread out into the earth. The rod does not stop a strike. The three parts work together.
+A strike may land on the rod. The wire carries it down. The ground lets it spread out into the earth. The rod does not stop a strike. The three parts work together.
 
 ## The invented records
 

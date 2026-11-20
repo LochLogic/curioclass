@@ -35,15 +35,13 @@ A white cat and a white kitten, both with triangular ears, fur, four legs and a 
 
 ## Day 25: V25E
 
-A maple family and a cat family. Maple parent VP has a blade 75 by 65 mm; young VY1 30 by 25 and VY2 60 by 50; another maple adult VA 85 by 72. All have five pointed lobes. A seed path runs from VP to each young plant. Cat parent VC is black with white paws; young VK1 is black with a white muzzle and VK2 black with a white chest; another cat adult VCA is black with a white tail tip. All cats have triangular ears, fur, four legs and a long tail.
+A pig family and a willow family, new to the class. Pig parent PP is pink with a black ear; young PY1 is pink with a black patch on the back and PY2 pink with a black patch on a back leg; another pig adult PA is pink with a black spot on the nose. All have a snout, four legs and a curly tail. Willow parent WP has a long narrow blade 110 by 15 mm; young WY1 45 by 7 and WY2 80 by 11; another willow adult WA 130 by 17. All have long narrow blades with pointed tips. A seed path runs from WP to each young plant. No pig or willow card is used in any teaching day.
 
-Two printed groupings, both shown and neither a model to revise. **Grouping 1:** eight boxes, each plant and each cat alone in its own box, headed because each looks a little different. **Grouping 2:** two boxes, the four maples together and the four cats together. Give each child the loose blades VY1, VY2 and VP and a tape line.
+Two printed groupings, both shown and neither a model to revise. **Grouping 1:** eight boxes, each plant and each pig alone in its own box, with no heading. **Grouping 2:** two boxes, the four willows together and the four pigs together.
 
-**Item s03-X25a.** Spoken: "Touch the grouping that is better." **Key:** grouping 2. Wrong: grouping 1, "the little one is a different thing because it is smaller," is error B.
+**Item s03-X25a.** Spoken: "Touch the grouping that puts the same kind together." **Key:** grouping 2. Wrong: grouping 1, "the little one is a different thing because it is smaller," is error B.
 
-**Item s03-X25b.** Spoken: "Tell me why you chose your grouping." **Key:** the maples share five pointed lobes and the cats share triangular ears, fur, four legs and a long tail, though the blades differ in length and the cats differ in markings. Wrong: "the small maple does not go with the big one because plants do not have babies" is error C; "the cat with the white tail is not like the other" is error B.
-
-**Item s03-X25c.** Spoken: "Lay the three blades with their bases together, from shortest to longest." **Key:** VY1, VY2, VP. A row with the bases apart is shown with help.
+**Item s03-X25b.** Spoken: "Tell me why you chose your grouping." **Key:** the willows share long narrow blades with pointed tips and the pigs share a snout, four legs and a curly tail, though the blades differ in length and the pigs differ in markings. Wrong: "the small willow does not go with the big one because plants do not have babies" is error C; "the pig with the black ear is not like the other" is error B.
 
 ## Day 27: P27E and A27E (unscored)
 

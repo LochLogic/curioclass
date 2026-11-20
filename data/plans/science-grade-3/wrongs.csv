@@ -30,15 +30,15 @@ s01-X11,"The right side again, it stays there.",,,E,stays on a side instead of t
 s01-X11,"Yes, it always goes the same.",,,F,takes a pattern past its evidence
 s01-X12,"Yes, it started on the left.",,,E,the start is taken as the pattern
 s01-X12,"Nothing, it worked.",,,H,one trial taken as proof
-s01-X13,"Yes, two pushes start it.",,,B,two equal pushes read as a start
-s01-X13,"No force is on it, it is still.",,,A,rest read as no force
-s01-X13b,"The far end, it stays there.",,,E,stays at one place instead of the order
-s01-X13c,"Yes, the old pattern still tells us.",,,G,prediction without new observation
-s01-X13c,The long arrow means it goes far.,,,C,arrow length read as distance
-s01-X16,One arrow only.,,,A,a resting box drawn with one push or none
-s01-X16,The box moves.,,,B,two equal pushes read as a start
-s01-X16b,"Far left, because I like left.",,,G,a liking in place of the record
-s01-X16b,"Far left, it stays there.",,,E,stays at one place instead of the order
+s01-X13d,"Yes, two pushes start it.",,,B,two equal pushes read as a start
+s01-X13d,"No force is on it, it is still.",,,A,rest read as no force
+s01-X13d,"The far end, it stays there.",,,E,stays at one place instead of the order
+s01-P13-5,"Yes, the old pattern still tells us.",,,G,prediction without new observation
+s01-P13-5,The long arrow means it goes far.,,,C,arrow length read as distance
+s01-X16c,One arrow only.,,,A,a resting box drawn with one push or none
+s01-X16c,The box moves.,,,B,two equal pushes read as a start
+s01-X16c,"Far left, because I like left.",,,G,a liking in place of the record
+s01-X16c,"Far left, it stays there.",,,E,stays at one place instead of the order
 s01-E1,Every turn written on the side it began.,,,E,no alternating order recorded
 s01-E1,Every mark written as exactly the same number.,,,F,a pattern stretched past what was read
 s01-E1,A turn the child did not see is filled in to match the pattern.,,,x,"guessed data; a reading never made is left blank, not filled; no credit for that turn"
@@ -209,10 +209,10 @@ s03-X53,Different lengths mean they cannot be related.,,,F,variation taken as no
 s03-X54,The cress differences are all inherited.,,,C,water missed; only the watering was changed
 s03-X54,The chicks inherited dropping nuts.,,,D,a learned response taken as inherited
 s03-X54,The big garden made the vines longer.,,,E,photographs taken to prove a cause; name one condition not kept the same
-s03-X58,Mustard dies and starts again as the same plant.,,,A,the same individual taken to return; label the new plant apart
-s03-X58,The pods prove the mustard reproduced.,,,B,a pod taken as reproduction; a seed that begins to grow is the new plant
-s03-X58,All the height differences are inherited.,,,C,water missed; compare the two watering rows
-s03-X58,Offspring must match in every feature.,,,F,young taken to match in every feature; the tallies differ
+s03-X58c,Mustard dies and starts again as the same plant.,,,A,the same individual taken to return; label the new plant apart
+s03-X58c,The pods prove the mustard reproduced.,,,B,a pod taken as reproduction; a seed that begins to grow is the new plant
+s03-X58c,All the height differences are inherited.,,,C,water missed; compare the two watering rows
+s03-X58c,Offspring must match in every feature.,,,F,young taken to match in every feature; the tallies differ
 s03-E1,The height differences are all inherited.,,,C,water missed in the matched records; compare the two watering rows
 s03-E2,The chicks inherited knowing the card.,,,D,a learned response taken as inherited; set the before and after side by side
 s03-E3,All the height differences are inherited.,,,C,surroundings left out; compare the two watering rows of one family
@@ -297,7 +297,7 @@ s04-X59,"No, nothing can live on the tundra.",,,G,one kind's limit taken for eve
 s04-X60,All birds need a line to eat.,,,B,a benefit that holds for pelicans taken as a need of all birds; set the moose card beside the group cards
 s04-X60,The line always gets fish.,,,C,a pattern taken as certain; find the one trip in the heron record that does not follow it
 s04-X61,More gulls always means more fish.,,,C,a pattern taken as certain; read the bar for six gulls aloud
-s04-X61,One gull cannot catch fish.,,,B,a group taken as a need; one gull still had 3 trips of 10
+s04-X61,One gull cannot catch fish.,,,B,a group taken as a need; one gull still had 4 trips of 10
 s04-X62,All animals need groups.,,,B,a benefit taken as a need; set the lone moose card beside the group cards
 s04-X62,The warning always saves every one.,,,C,a pattern taken as certain; the card says only that they were warned
 s04-X63,Every animal needs a group.,,,B,a benefit taken as a need; put the owl card beside the mice card and mark where each got food
@@ -355,15 +355,15 @@ s05-X83,"There is no pond here now, so there never was one.",,,A,present taken a
 s05-X83,A 3 centimetre wing shows it was hot.,,,F,size taken as climate; pair the size with the guide card
 s05-X84,"It is a desert, so a forest could never grow here.",,,A,present taken as past; read the print and the card first
 s05-X84,Leaves that big prove it was boiling hot.,,,F,"size taken as climate; the guide card says wet, not hot"
-s05-X85,"Yes, the bottom layer is always older.",,,C,the undisturbed condition dropped; lay the intact stack beside the flipped one
-s05-X85b,"Yes, none live here, so it is extinct.",,,B,local absence taken as extinction; read the card that names the other lakes
+s05-X85c,"Yes, the bottom layer is always older.",,,C,the undisturbed condition dropped; lay the intact stack beside the flipped one
+s05-X85c,"Yes, none live here, so it is extinct.",,,B,local absence taken as extinction; read the card that names the other lakes
 s05-X86,"It is dry now, so it was always dry.",,,A,present taken as past; read what the snails and tracks need
 s05-X87,"The wind changed both, so both did the same.",,,D,all taken alike; trace one need for each plant
 s05-X88,"The wide bridge, because 10 is the most.",,,E,the biggest count taken as best; check the limit box first
 s05-X88,Every animal will use the tube.,,,D,all taken alike; the record covers marked model toads only
 s05-X89,"The long ramp, because 10 is the biggest.",,,E,the biggest count taken as best; check the limit box first
 s05-X89,The channel will help every creek animal.,,,D,all taken alike; the record names minnows only
-s05-X90,The warmer water made all the animals do worse.,,,D,all taken alike; read the snail count going up
+s05-X90,The cooler water made every animal do better.,,,D,all taken alike; read the snail count going down
 s05-X91,The vine harmed every plant and animal the same way.,,,D,all taken alike; trace the mouse food link only
 s05-X91,"Whole-patch removal is best, because its counts are largest.",,,E,the biggest count taken as best; check the limit box first
 s05-X92,"Plot R, because 9 is the most.",,,E,the biggest count taken as best; check the limit box first
@@ -371,10 +371,10 @@ s05-X92,Every animal gets its food back the same way.,,,D,all taken alike; the p
 s05-X93,"Yes, the log shows it is cold, so it always was.",,,A,present taken as past; set the one-week strip beside the layer
 s05-X94,"The ridges are the way they are today, so they always were.",,,A,present taken as past; read the coral and tree finds first
 s05-X94,All the pond animals will do well.,,,D,all taken alike; the trial counts plants and larvae only
-s05-X97,"The ferns are big, so it was tropical.",,,F,size taken as climate; read the guide card
-s05-X97,"It is frosty now, so it was always frosty.",,,A,present taken as past; one week is a short record
-s05-X97b,"The pump, because 8 is the most.",,,E,the biggest count taken as best; check the limit box first
-s05-X97b,All the pond animals will do well.,,,D,all taken alike; the record covers reeds only
+s05-X97c,"The lily leaves are big, so it was tropical.",,,F,size taken as climate; read the guide card
+s05-X97c,"It is frosty now, so it was always frosty.",,,A,present taken as past; one week is a short record
+s05-X97c,"The channel, because 8 is the most.",,,E,the biggest count taken as best; check the limit box first
+s05-X97c,All the gully animals will do well.,,,D,all taken alike; the record covers saplings only
 s05-E1,"It is grassland now, so it always was.",,,A,present taken as past; match the fish to lake water
 s05-E3,"The trunk piece is 80 centimetres, so the place was hot.",,,F,size taken as climate; a piece gives at least the size of the whole
 s05-E4,The bottom layer is always older.,,,C,the undisturbed condition dropped; the stack must be in order
@@ -456,19 +456,23 @@ s05-P97-4,Every animal moved away.,,,D,all taken alike; each follows its own nee
 s05-P97-5,The biggest number wins.,,,E,biggest count taken over the limit; read the limit box first
 s05-P97-6,The wind is cold. A goal and a limit are the same.,,,x,a goal is what we want; a limit is what we may not pass; find the dated row
 s06-X98,"Yes, she saw it.",,,B,one day taken for the season; lay the odd day beside ten season rows
-s06-X98,"Yes, winter weather is the same every day.",,,B,variation ignored; compare the odd day with many records
+s06-X98,"Yes, summer weather is the same every day.",,,B,variation ignored; compare the odd day with many records
 s06-X99,"Yes, dry, because nothing was written.",,,B,a blank taken as a dry day; blank means not recorded
 s06-X99,"6, one for every row.",,,x,"counts rows, not rainy days; read the rain column only"
 s06-X100,"3, one day for each umbrella.",,,A,the key is ignored; one umbrella is 2 days
 s06-X100,"4, the number of the line.",,,A,the scale is ignored; read the number printed on the line
-s06-X102,6 pictures and 2 pictures.,,,A,the picture key is ignored; one picture is 2 days
-s06-X102,Tomorrow will be cold and rainy.,,,B,one day taken to guarantee the next; many summer records say otherwise
+s06-X101,Tomorrow will be cool for sure.,,,B,a season taken to guarantee the day; 2 of 10 autumn rows were mild
+s06-X101,Autumn and winter are the same.,,,x,the two counts are not compared; read cool and cold
+s06-X102,Tomorrow will be warm.,,,B,one day taken to guarantee the next; most of the 30 days were cold
+s06-X102,"No, the usual never changes.",,,x,a rule taken as fixed; 20 of 30 days is more than half
 s06-X103,"Yes, 18 is our climate.",,,C,one year taken as the climate; place it beside the 30-year range
 s06-X103,"Yes, it is what we saw.",,,C,a short record taken as the climate
 s06-X104,R is hot all year.,,,D,the second card is left out; link the station card
 s06-X104,R has few rainy days.,,,D,the first card is left out; link the atlas card
-s06-X105,W is drier because it is cold.,,,D,a belief used in place of the count; read months with rain
-s06-X105,"W had snow today, so W is wet.",,,C,one day taken as the climate
+s06-X105,W is drier because it is cold.,,,D,"a belief used in place of the count; underline the number in each card, then answer from the number"
+s06-X105,V is wet because it rained today.,,,C,one day taken as the climate; V has 1 wet month of 12
+s06-X106,"M is wet, because this year had 3 wet months.",,,C,one year taken as the climate; 3 is one year among 30
+s06-X106,"M is cold, because the atlas says so.",,,D,one source left out; add the station card numbers
 s06-X107,T has 12 rainy days in September.,,,C,one year taken as the whole climate; the range is 11 to 25
 s06-X107,T is warm all year.,,,D,the station card is left out
 s06-X108,"Yes, getting ready stops the wind.",,,E,"hazard and harm confused; draw hazard, getting ready, less harm"
@@ -478,11 +482,14 @@ s06-X109,So every street with a ditch is safe.,,,G,a model trial taken as real p
 s06-X110,"C, it is the strongest.",,,F,the limit is ignored; C uses 4 pieces of tape
 s06-X110,B will stay on in any storm.,,,G,a model trial taken as real protection
 s06-X110,B stops the wind.,,,E,hazard and harm confused
-s06-X111,Dev is right.,,,E,"the design taken as stopping the hazard; a rod gives a path, it does not stop strikes"
-s06-X111,So every real barn is safe.,,,G,a model trial taken as real protection
+s06-X111,The net means hail never cracks the glass.,,,E,"the design taken as stopping the hazard; the net lessened the cracks, it did not stop the hail"
+s06-X111,So every real greenhouse is safe.,,,G,a model trial taken as real protection
+s06-X111,"The solid roof, because 0, 0 and 1 is the least.",,,x,"the fewest cracked taken as best; read the limit box first, 12 is over 9"
 s06-X112,The fastening stops wind.,,,E,hazard and harm confused; wind still happens
 s06-X112,Cost does not matter if it works.,,,F,the limit is ignored
 s06-X112,It will protect real roofs from any storm.,,,G,a model trial taken as real protection; stronger wind was not tested
+s06-X113,"Yes, Harlow is hotter now.",,,C,one year taken as the climate; 11 is one July among 30
+s06-X113,So every real playground is safe.,,,G,a model trial taken as real protection
 s06-X114,Bars drawn 8 and 4 squares tall with no scale.,,,A,the scale is ignored; one square is 2 days
 s06-X114,One dry summer day shows summers are dry.,,,B,one day taken for the season
 s06-X114,"Last summer had 9 rainy days, so summers are rainy.",,,C,one year taken as the climate; the range is 2 to 9
@@ -490,13 +497,13 @@ s06-X114,Summers are warm.,,,D,the station card is left out
 s06-X114,The shelter stops the storm.,,,E,hazard and harm confused
 s06-X114,"It is best because it keeps the most markers, whatever it costs.",,,F,the limit is ignored
 s06-X114,"It worked in the model, so real places are safe.",,,G,a model trial taken as real protection
-s06-X117,"Spring drawn 16 squares tall, one square for each day.",,,A,the scale of 2 is ignored; one square is 2 days
-s06-X117b,"Yes, it was stormy.",,,B,one day taken for the season
-s06-X117c,"Yes, last January is our climate.",,,C,one year taken as the climate
-s06-X117d,X is cold in winter.,,,D,the station card is left out
-s06-X117e,It stops the rain.,,,E,hazard and harm confused
-s06-X117e,Cost does not matter.,,,F,the limit is ignored
-s06-X117e,Real bus stops are safe.,,,G,a model trial taken as real protection
+s06-X117f,"Spring drawn 16 squares tall, one square for each day.",,,A,the scale of 2 is ignored; one square is 2 days
+s06-P117-7,"Yes, it was stormy.",,,B,one day taken for the season
+s06-P117-8,"Yes, last January is our climate.",,,C,one year taken as the climate
+s06-P117-9,X is cold in winter.,,,D,the station card is left out
+s06-X117f,It stops the rain.,,,E,hazard and harm confused
+s06-X117f,Cost does not matter.,,,F,the limit is ignored
+s06-X117f,Real bus stops are safe.,,,G,a model trial taken as real protection
 s06-E3,"Bars at 5, 2, 1 and 4 read as days.",,,A,the scale is ignored; each unit is 2 days
 s06-E4,No scale on the side.,,,A,the scale is not stated
 s06-E6,Autumn is always dry because yesterday was dry.,,,B,one day taken for the season
@@ -543,12 +550,12 @@ c1-E35c,"Claim E is right, because both washers are metal.",,,I,every metal is t
 c1-E35d,One arrow drawn along the whole swing of the hung magnet.,,,D,"the arrow is drawn along the path travelled, not on the magnet"
 c1-E35d,Both arrows point toward the second magnet.,,,x,the push is drawn as a pull; show red facing red
 c1-E35e,I change the gap and the kind of magnet together.,,,A,two things change at once
-c1-X36a,"It stays still because nothing is pushing it, so no arrows.",,,C,a still object is taken to have no force on it
-c1-X36a,One long arrow drawn along the drawer from front to back.,,,D,"the arrow is drawn along the path, not on the drawer"
-c1-X36b,"Level, because it was level last.",,,E,the next turn is taken to be the one just seen
-c1-X36b,"Yes, the next up turn will be exactly 36 cm.",,,F,a repeating record is taken to repeat to the centimetre
-c1-X36c,Which magnet is strongest?,,,H,a question about which is best has no one thing to change
-c1-X36d,Two magnets and tape.,,,x,a materials list is given for the need; say who needs what so that
+c1-X36e,"It stays still because nothing is pushing it, so no arrows.",,,C,a still object is taken to have no force on it
+c1-X36e,One long arrow drawn along the drawer from front to back.,,,D,"the arrow is drawn along the path, not on the drawer"
+c1-P36-3,"Level, because it was level last.",,,E,the next turn is taken to be the one just seen
+c1-P36-3,"Yes, the next up turn will be exactly 36 cm.",,,F,a repeating record is taken to repeat to the centimetre
+c1-P36-4,Which magnet is strongest?,,,H,a question about which is best has no one thing to change
+c1-X36e,Two magnets and tape.,,,x,a materials list is given for the need; say who needs what so that
 c2-E79a,"Cosmos: seed, flower, dead. (no new seeds)",,,x,a stage of the cycle is missing; point to the day 75 and day 70 lines on the cards
 c2-E79b,"The two lives are the same, stage for stage, because both have stages.",,,K,two cycles are taken to match stage for stage
 c2-E79c,The adult turns back into a young hopper after it dies.,,,J,the adult is taken to return as its own young
@@ -563,17 +570,17 @@ c2-E80d,"A flock does not help, since one bird can eat alone.",,,x,the numbers o
 c2-E80e,"A flock keeps every bird safe, always.",,,P,a group is taken to guarantee every member's survival
 c2-E80f,"The lagoon shrinks, so the flock is no help.",,,x,the group action on the card is not used; reread the dry spell line
 c2-E80g,"Both flocks have watchers, so they are the same.",,,Q,group size and jobs are taken not to matter
-c2-X81a,The adult turns back into a baby newt.,,,J,the adult is taken to return as its own young
-c2-X81a,"The newt cycle looks just like the frog cycle, stage for stage.",,,K,two cycles are taken to match stage for stage
-c2-X81b,"The seedlings are not like the parents, because the leaves differ.",,,L,young are taken to need to be exact copies
-c2-X81b,The 10 cm one is another kind of tulip.,,,M,a difference is taken to mean a different kind
-c2-X81c,"The seeds decide the stems, and the place does not matter.",,,N,a trait is taken to come from the family alone
-c2-X81c,"The pup knows the button at birth, because its mother does.",,,O,a learned response is taken to be inherited
-c2-X81d,A flock keeps every goose safe.,,,P,a group is taken to guarantee every member's survival
-c2-X81d,"The flock size does not matter, any geese will do.",,,Q,group size and jobs are taken not to matter
+c2-X81e,The adult turns back into a baby newt.,,,J,the adult is taken to return as its own young
+c2-X81e,"The newt cycle looks just like the frog cycle, stage for stage.",,,K,two cycles are taken to match stage for stage
+c2-P81-2,"The seedlings are not like the parents, because the leaves differ.",,,L,young are taken to need to be exact copies
+c2-P81-2,The 10 cm one is another kind of tulip.,,,M,a difference is taken to mean a different kind
+c2-P81-3,"The seeds decide the stems, and the place does not matter.",,,N,a trait is taken to come from the family alone
+c2-P81-3,"The pup knows the button at birth, because its mother does.",,,O,a learned response is taken to be inherited
+c2-X81e,A flock keeps every goose safe.,,,P,a group is taken to guarantee every member's survival
+c2-X81e,"The flock size does not matter, any geese will do.",,,Q,group size and jobs are taken not to matter
 c3-E118a,"The basin was always dry, because it is dry now.",,,R,dry now is taken to mean always dry
 c3-E118b,"Yes, the whole basin was a lake.",,,S,a few places are taken to show the whole region
-c3-E118c,The tree was 30 cm long.,,,T,the length of a piece is taken to be the size of the whole tree
+c3-E118c,The tree was 45 cm long.,,,T,the length of a piece is taken to be the size of the whole tree
 c3-E118d,"The trees came first, because trees are big.",,,x,size is used in place of the layers; point to the undisturbed layers and the word lower
 c3-E118e,"Yes, no fish live in the dry basin now, so all of them are extinct.",,,U,"missing from here is taken to mean extinct, or all bones to be one kind"
 c3-E118f,"Mia is right, because it is dry now.",,,R,dry now is taken to mean always dry
@@ -582,6 +589,7 @@ c3-E118h,All 48 died.,,,x,moving and dying are not told apart; reread the creek 
 c3-E118i,The arrows go from the iris and the tadpoles to the water.,,,x,arrows start at the wrong end; the water acts on each
 c3-E118j,"Only trial B, because it has 9 iris patches.",,,x,only one count is read; check the tadpole count too
 c3-E118k,"Trial C, because it costs only 3 and it works.",,,V,a limit is taken to be breakable if the solution works
+c3-E118k,"Trial B, because it costs 4 and the line is clear.",,,V,"a limit taken as the whole test; B also has to meet the goal, and its tadpole count is 4 of 10"
 c3-E118l,"Yes, all of them are saved, because it worked.",,,W,a model result is taken to guarantee every living thing benefits
 c3-E119a,Spring 22 is crossed out and 12 is written.,,,x,"a right number is changed; check each number against the card, one at a time"
 c3-E119b,Only the summer rainy days are fixed. The winds are left.,,,x,the winds are not checked against the card; read each wind line
@@ -589,9 +597,9 @@ c3-E119c,"Bars at 4, 8, 5 and 6, as drawn.",,,x,the summer bar is not corrected;
 c3-E119d,"The bars show it, so no scale is needed.",,,X,a graph is taken to need no stated scale
 c3-E119e,Summer is hotter than winter. (no rain or wind),,,x,only one of the three records is used; add the rainy days and the winds
 c3-E119f,Every summer day will be exactly 34 and rainy.,,,Y,one season is taken to fix every day
-c3-X120a,"The bar is fine, and a graph needs no scale or title.",,,X,a graph is taken to need no stated scale
-c3-X120a,"The bar is fine. It is a winter graph, so it is right for every winter.",,,Y,one season is taken to fix every day
-c3-X120b,"Sam is right, because the canyon is dry now.",,,R,dry now is taken to mean always dry
-c3-X120b,The bone shows the whole country was lake.,,,S,a few places are taken to show the whole region
-c3-X120c,"Yes, every plant and animal in the marsh will be saved.",,,W,a model result is taken to guarantee every living thing benefits
-c3-X120c,"It does not count, even if it has merit, because 4 of 5 tokens is too many.",,,V,a limit is read wrongly; 4 is inside the limit of 5
+c3-X120d,"The bar is fine, and a graph needs no scale or title.",,,X,a graph is taken to need no stated scale
+c3-X120d,"The bar is fine. It is a winter graph, so it is right for every winter.",,,Y,one season is taken to fix every day
+c3-X120d,"Sam is right, because the canyon is dry now.",,,R,dry now is taken to mean always dry
+c3-X120d,The bone shows the whole country was lake.,,,S,a few places are taken to show the whole region
+c3-P120-4,"Yes, every plant and animal in the marsh will be saved.",,,W,a model result is taken to guarantee every living thing benefits
+c3-P120-4,"It does not count, even if it has merit, because 4 of 5 tokens is too many.",,,V,a limit is read wrongly; 4 is inside the limit of 5

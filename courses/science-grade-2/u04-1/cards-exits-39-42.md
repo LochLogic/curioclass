@@ -16,11 +16,15 @@ Each exit has picture cards every child marks, and a spoken stem read once. Draw
 **Say:** "Pip says the curving line needed new cars. Is Pip right? Point to yes or no."
 **Key (teacher):** No, with the words that it is the same five cars in a new arrangement. Yes is error A.
 
-## Day 40 exit card: a round piece and a flat piece
+## Day 40 exit card: a bridge, a gate and a roof
 
-**Picture:** Two pieces drawn side by side: a round piece and a long flat piece. A toy stage with no floor drawn behind them.
-**Say:** "Pip is building a toy stage and wants a flat floor for it. Touch the piece Pip should use."
-**Key (teacher):** The long flat piece, because its flat shape makes a floor and the round one rolls. Any piece, or the round piece, is error E (nearest letter).
+**Picture, part a:** Card 1: four lettered pieces, a to d, drawn as a toy bridge (a and b cubes as the posts, c a long brick on top, d a half-round arch underneath). Card 2: the same pieces rebuilt as a toy gate: a, b and c show, and a flap covers a fourth place. Under the flap, nothing is drawn.
+**Say (part a):** "These four pieces made the bridge. Then the same four made the gate, and one piece is under the flap. Touch the piece that is under the flap."
+**Key (teacher):** Piece d, the one piece the gate does not show. Any other piece, or a new piece, is error A.
+
+**Picture, part b:** A tall thin post and a wide flat plank side by side, and a toy doghouse with no roof drawn behind them.
+**Say (part b):** "Pip is building a toy doghouse and needs a roof that covers the whole top. Touch the piece Pip should use."
+**Key (teacher):** The wide flat plank, because its wide flat shape covers the top. Any piece, or the tall thin post, is error F.
 
 ## Day 41 exit card: two bookends
 

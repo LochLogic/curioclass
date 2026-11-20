@@ -14,9 +14,9 @@ Print "invented for practice" under each card. No people in any picture. Cards s
 
 **Picture:** Three cards in a row. Card 1: a row of tall cardboard tubes standing in sand, drawn large. Card 2: four bars from matched fan tests, one square for each centimeter, labelled tubes and flat board: tubes 6 and 7, flat board 3 and 3. Card 3: a close picture of the tubes, tidy and bright.
 
-**Say:** "Pip says the tall tubes will protect best because they are tallest. Which card decides? Point."
+**Say:** "Pip says the tall tubes protect best. Which lost less sand, the tubes or the flat board? Point to a card and say the numbers."
 
-**Key (teacher):** Card 2, the matched fan-test bars. Card 3 or card 1, because the tubes look strong, is error C.
+**Key (teacher):** The flat board lost less: 3 and 3, against 6 and 7 for the tubes, from card 2. Card 3 or card 1, because the tubes look strong, is error C. Choosing the tubes because 6 and 7 are bigger bars reads a bar as better, not sand lost.
 
 ## Day 22 exit card: hedge and fence
 

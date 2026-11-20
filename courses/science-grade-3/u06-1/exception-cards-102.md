@@ -16,7 +16,7 @@ Summer record, Oakfield: 28 warm days, 2 cool days. One cool day had rain.
 
 ## Card 2
 
-Summer record, Harbor Reach: 25 dry days, 5 rainy days. One dry week was in the middle.
+Summer record, Harbor Reach: 25 dry days, 5 rainy days. Five rainy days came in one week.
 
 ## Card 3
 

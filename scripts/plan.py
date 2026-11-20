@@ -437,6 +437,11 @@ def trace(course, days, items, parts, wrongs, fails, notes):
                 fails.append('%s: shows phrase "%s" is not in the goal "%s"' % (lab, ph, goal))
             else:
                 spans.append((at, at + len(ph)))
+            if ids == ['none'] and not check_day:
+                # a set-up piece of the goal (start a living record, observe the class animals) that no question can
+                # honestly show: named, and read as a note (science ladder report, 2026-11-19: grade 3 days 18, 37)
+                notes.append('%s: the goal piece "%s" is set-up, shown by no item; is it really set-up?' % (lab, ph))
+                continue
             if not ids:
                 fails.append('%s: shows phrase "%s" names no item' % (lab, ph))
             ok = []
@@ -457,7 +462,15 @@ def trace(course, days, items, parts, wrongs, fails, notes):
                 notes.append('%s: the goal piece "%s" is shown by no exit of the day, only by %s; does the exit '
                              'check the goal?' % (lab, ph, ', '.join(i['item_id'] for i in ok)))
         if check_day:
-            got = {(i['code'], p) for i in named for p in partset(i)}
+            # a unit assessment may run over several days (a check day, a product day): the parts are covered by the
+            # end items every day of the unit names, read on the unit's last check day (science ladder report,
+            # 2026-11-19: kindergarten day 18 holds weather, day 19 holds forecasts)
+            if n != max(int(x['day']) for x in days if x['stretch'] == d['stretch'] and x['kind'] == 'Check'):
+                continue
+            ids = [r for x in days if x['stretch'] == d['stretch']
+                   for c in x.get('shows', '').split(';') if ' = ' in c for r in c.split(' = ', 1)[1].split()]
+            got = {(byid[r]['code'], p) for r in ids if r in byid and byid[r]['check'] == 'end'
+                   for p in partset(byid[r])}
             miss = [p for p in parts if p['stretch'] == d['stretch'] and (p['code'], p['part']) not in got]
             if miss:
                 fails.append('%s: the items shows names miss part(s) %s of parts.csv' % (
@@ -466,7 +479,7 @@ def trace(course, days, items, parts, wrongs, fails, notes):
         for a, b, txt in goal_clauses(goal):
             if not any(s < b and a < e for s, e in spans):
                 fails.append('%s: the goal piece "%s" names no item in shows' % (lab, txt.strip()))
-        if named and not any(i['check'] == 'exit' for i in named):
+        if named and not any(i['check'] == 'exit' or (i['check'] == 'end' and i['day'] == d['day']) for i in named):
             fails.append('%s: shows names no exit of the day; the exit ticket must check the goal' % lab)
         if named and not any(i['check'] == 'end' for i in named):
             notes.append('%s: shows names no end-of-unit item; the unit assessment does not see this goal' % lab)
@@ -977,8 +990,16 @@ def check(course):
         # 4. days
         sd = sorted((d for d in days if d['stretch'] == s), key=lambda d: int(d['day']))
         nums = [int(d['day']) for d in sd]
-        if nums and nums != list(range(nums[0], nums[0] + len(nums))):
-            fails.append('unit %s: day numbers are not consecutive: %s' % (s, nums))
+        # course-level days (unit C) sit at points across the year by design (science ladder report, 2026-11-19)
+        run = lambda xs: xs == list(range(xs[0], xs[0] + len(xs)))
+        if nums and s != 'C' and not run(nums):
+            # one early opener day that starts a long record, the rest of the unit in a row later (grade 1 science:
+            # unit 8 starts its daylight chart on day 9 and returns on day 62) is a design, read as a note
+            if len(nums) > 2 and run(nums[1:]):
+                notes.append('unit %s: day %d opens the unit early, the rest runs %d to %d; is the early start meant?'
+                             % (s, nums[0], nums[1], nums[-1]))
+            else:
+                fails.append('unit %s: day numbers are not consecutive: %s' % (s, nums))
         for u in sorted({d['unit'] for d in sd} if s != 'C' else ()):   # course-level days have no section
             # a teaching section is "9.2"; a cumulative check or its respond day is named as in units.csv ("check-2")
             uid = '%s-u%02d-%s' % (course, int(u.split('.')[0]), u.split('.')[1]) if '.' in u else '%s-%s' % (course, u)
@@ -1020,7 +1041,9 @@ def check(course):
                         lab, tot, DAY_MIN if lo_min == DAY_MIN else '%d to %d' % (lo_min, DAY_MIN)))
                 if not any(i['check'] == 'end' and i['day'] == d['day'] for i in items):
                     fails.append('%s: an assessment day with no unit assessment items' % lab)
-            elif not any(i['check'] == 'exit' and i['day'] == d['day'] for i in items):
+            # a teaching day that holds part of the unit assessment itself (a product judged that day) is checked by
+            # those items and needs no exit (science ladder report, 2026-11-19: kindergarten days 41 and 52)
+            elif not any(i['check'] in ('exit', 'end') and i['day'] == d['day'] for i in items):
                 fails.append('%s: no exit question in items.csv' % lab)
         # 3c. a reserved number (a unit assessment stem's number) made by a product in a taught row's answer or in the
         # day's prose; the compute-only gate cannot see it (expert, day 4: 4 x 20 = 80 taught, 80 an end number)

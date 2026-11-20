@@ -10,11 +10,14 @@ credit: ours
 
 Held back. Not shown, handled or taught from before day 57. Drawing style: plain black line drawing on white, thick lines, no shading, no brand names, no printed words except a date or where a card says so. Children in any picture are of different ages, skin tones and hair, shown as simple figures. Say aloud that every picture is invented for practice, and print "invented for practice" beneath each one. Three sealed sets for day 57 and one for day 58.
 
-## Day 57: Tern Coast, Fox Valley and two warm bowls
+## Day 57: Tern Coast, Fox Valley, the snowball and the noodle
 
-- **Tern Coast.** A plain picture of a coast with a hill, a river, a lake and the ocean, and a caption read aloud.
-- **Fox Valley.** Three cards: the map card (a keyed map), the caption card (a few lines about a spring and a frozen pond) and the poster card (a poster of a favourite pond, with no facts).
-- **Two warm bowls.** A snowball and a noodle, each in a before, heated or cooled and after picture, dated.
+Printed one card sheet a child: side 1 holds Tern Coast in a box; side 2 holds the three Fox Valley cards as three small boxes labelled map, caption and poster, and the snowball and noodle records as two strips of three small pictures. The day 58 set stays sealed.
+
+- **Tern Coast.** A picture of a coast: a long high hill on the left, flat land in the middle with a bending river and a lake in a hollow beside it, and the ocean on the right. Caption: Rain that falls on the long hill ends up in the ocean.
+- **Fox Valley.** Three cards. The map card: a keyed map with a blue line (the river), a blue patch (a pond) and a white patch (a snowfield). The caption card: In winter the top of the pond is solid ice and the river still flows. The poster card: a poster for the Fox Valley Fair that shows a prize cow, with no facts about water.
+- **Snowball record.** Three small dated pictures: a snowball on a plate, a puddle on the plate after a day in a warm room, and a sheet of ice on the plate after a cold night outside.
+- **Noodle record.** Three small dated pictures: a hard dry noodle, the noodle soft after a grown-up heated it in a bowl of hot water, and the soft noodle after the bowl cooled.
 
 ## Day 58: Marl Point, two barriers and a cover
 

@@ -23,11 +23,11 @@ Each exit has picture cards every child touches and a spoken stem read once. The
 
 ## Day 61 exit: a mitten model and a ruler
 
-**Picture:** a fuzzy mitten model with a card seed that keeps slipping off. Two cards: more fuzzy cloth where the seed touches, and a mitten with a prettier face drawn on it. A ruler drawn in whole centimeters from 0 at a taped line, with a card seed's edge stopping at the 17 mark.
-**Say (a):** "Touch the idea that could help it hold."
-**Key (teacher):** more fuzzy cloth where the seed touches. Error B is touching the prettier face.
-**Say (b):** "Say or draw one thing this mitten model cannot show."
-**Key (teacher):** whether the seed would grow, or a real animal's walk. An omission gets descriptive feedback.
+**Picture:** a smooth plastic mitten model with a card seed that keeps sliding off. Two cards: swap in fuzzy cloth where the seed touches, and paint the mitten red. Also a paper bird on a string, wings up. A ruler drawn in whole centimeters from 0 at a taped line, with a card seed's edge stopping at the 17 mark.
+**Say (a):** "Touch what to change."
+**Key (teacher):** swap in fuzzy cloth where the seed touches. Error B is touching paint it red.
+**Say (b):** "Say or draw one thing this paper bird model cannot show."
+**Key (teacher):** anything it leaves out: how a real bird flies, its weight, what it eats. An omission gets descriptive feedback.
 **Say (c):** "Read where the edge stops, to the whole centimeter."
 **Key (teacher):** 17 centimeters. A misread ruler gets descriptive feedback and no letter.
 

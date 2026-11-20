@@ -25,9 +25,9 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Page 3
 
-**Picture:** Group C: a drawing of snow on a step beside a drawing of a puddle of melted water on the same step.
+**Picture:** Group C: a drawing of a cup of ice beside a drawing of a cup of melted water on the same step.
 
-**Read:** Snow and the puddle are both water. Which is solid and which is liquid?
+**Read:** The ice and the melted water are both water. Which is solid and which is liquid?
 
 ## Page 4
 

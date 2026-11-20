@@ -12,7 +12,7 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 ## Day 98
 
-Invented for practice. Fenmoor had one warm, sunny winter day on Monday. Pia says all of Fenmoor's winter is warm. Is she right? Say why.
+Invented for practice. (a) Fenmoor had one cold, rainy day in July. Pia says all of Fenmoor's summer is cold. Is she right? Say why. (b) Fenmoor's winter log: cold, cold, snow, cold, mild, cold. What weather should Fenmoor expect in winter? Use the word usually.
 
 ## Day 99
 
@@ -22,6 +22,10 @@ Invented for practice. Ashby, six autumn days. Rain: yes, no, yes, no, yes, blan
 
 Invented for practice. (a) A picture graph key says 1 umbrella is 2 rainy days. A row shows 3 umbrellas. How many rainy days? (b) A bar graph counts 0, 2, 4, 6, 8, 10. A bar reaches the fourth line above 0. How many rainy days?
 
+## Day 101
+
+Invented for practice. Brightwater has ten autumn rows: 8 cool days and 2 mild days. Its ten winter rows: 9 cold days and 1 cool day. Compare the two seasons. What will tomorrow likely be in autumn? What could still happen?
+
 ## Day 102
 
-Invented for practice. A spring record has 6 rainy days. A summer record has 2. Summer winds are usually west. (a) Show the rain counts in a pictograph. One picture is 2 days. (b) One summer day was cold and rainy. What is a summer day usually like?
+Invented for practice. Ridgeway's winter record has 27 cold days and 3 warm days. (a) One winter day was warm. What is a Ridgeway winter day usually like? (b) In another town's 30-day record, 20 days were odd. Does the town change its mind about the usual? Say why.

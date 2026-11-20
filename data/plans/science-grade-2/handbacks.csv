@@ -18,7 +18,7 @@ from_day,to_day,what,where,minutes,error,note
 7,10,s01-X7,Repair by letter groups,0,F,the slips are read before day 10 and the child joins the group with A (minutes counted under s01-E1)
 8,10,s01-E1,Repair by letter groups,3,A,"group A with F, three minutes with the teacher on a fresh invented repair set"
 8,10,s01-E1,Repair by letter groups,0,F,in the same three minutes as group A
-8,10,s01-E2,Repair by letter groups,3,C,"group C, a snow photograph beside its melted puddle"
+8,10,s01-E2,Repair by letter groups,3,C,"group C, a cup of ice beside its cup of melted water"
 8,10,day 8 packet record,Return and read feedback,0,,each child gets their record with one written next step for one component
 9,10,s01-E4,Repair by letter groups,3,B,"group B with D and G, three minutes with the teacher"
 9,10,s01-E4,Repair by letter groups,0,D,in the same three minutes as group B
@@ -41,7 +41,7 @@ from_day,to_day,what,where,minutes,error,note
 14,15,s02-X14,Return and repair,5,A,order the older and later drawings and point to what differs
 15,16,s02-X15b,Return and repair,4,F,lay a pour record beside a flood-cut bank card; say what each shows and what neither can show; the four minutes go to whichever of F or B more children missed
 15,16,s02-X15a,Return and repair,0,B,in the same four minutes when B is the more missed; otherwise a picture card at the table
-16,17,s02-X16,Return and repair,5,E,"reset two trays to the slope card together, then pour"
+16,17,s02-X16 s02-X16b,Return and repair,5,E,"reset two trays to the slope card together, then pour"
 17,18,s02-X17,Return and repair,5,C,put the result bar next to each barrier before choosing
 18,19,s02-X18,Return and repair,5,D,mark one thing the chosen design does poorly in its own record
 19,20,s02-X19,Return and repair,5,G,lay a ruler along the limit line and read each bar as over or under
@@ -94,7 +94,8 @@ from_day,to_day,what,where,minutes,error,note
 37,38,day 37 packet,Return and read feedback,0,,each child gets their packet with one written next step for one component
 34,35,s03-X34b,Return and repair,0,,a slip about grip gets a note and no letter; the child touches the lining where the block stayed on the pictured slope
 39,40,s04-X39,Return and repair,5,A,the castle and boat pictures; string from each block to its place in the boat; the one letter most children made takes the five minutes
-40,41,s04-X40,Return and repair,5,E,"a stiff and a floppy strip held up as a sign; the class says which stays standing; nearest letter, a piece and its use"
+40,41,s04-X40b,Return and repair,5,F,the flat and the round piece held up; the class says which one makes a floor
+40,41,s04-X40a,Return and repair,0,A,in the same five minutes: string from each block of the castle to its place in the boat
 41,42,s04-X41,Return and repair,5,E,a stiff and a floppy strip held up as a sign; the class says which stays standing
 42,43,s04-X42,Return and repair,5,D,"two cards of a cup of water and a third card face down; the class says what it needs to see, then the teacher turns the card"
 43,44,s04-X43,Return and repair,5,C,the egg before cooking and after cooking and cooling; the class says whether cooling undid the cooking
@@ -118,7 +119,8 @@ from_day,to_day,what,where,minutes,error,note
 52,53,s05-X52a,Return and repair,3,C,the day 51 Day 1 card beside the Day 12 card; touch the pale plant
 52,53,s05-X52b,Return and repair,3,D,"a dry plant beside a watered plant, side by side"
 52,53,day 52 record,Revise the day 52 records,0,,each child revises their day 52 line on paper from the written feedback
-53,56,s05-X53,Repair by letter groups,3,B,"group B, the day 53 oat case beside the day 51 corn case"
+53,56,s05-X53b,Repair by letter groups,3,B,"group B, the day 53 oat case beside the day 51 corn case"
+53,56,s05-X53a,Repair by letter groups,0,B,"in the same three minutes as group B: the June 2 cards, touch what shows how healthy each plant looks"
 54,56,s05-E3,Repair by letter groups,3,A,"group A with E, three minutes with the teacher; the proposed watered sunlight plant and what differs for each pair"
 54,56,s05-E6,Repair by letter groups,0,A,in the same three minutes as group A
 54,56,s05-E7,Repair by letter groups,0,A,in the same three minutes as group A

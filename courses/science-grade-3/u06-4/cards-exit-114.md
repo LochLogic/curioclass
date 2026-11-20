@@ -15,3 +15,9 @@ Invented for practice. Marlow, a new town. Spring: 20 degrees Celsius, 8 rainy d
 (a) Make a table of the weather. Graph the rainy days with a scale of 2. Say what summer is usually like.
 
 (b) Draw arrows for the shelter. Write a merit claim and one limit of the evidence.
+
+# Exit card (day 113)
+
+Invented for practice. Read aloud once.
+
+Harlow's 30 Julys had 3 to 9 hot days. This July had 11. A model shade sail cut scorched benches from 7 to 2 for 5 tokens. The limit is 6. (a) Does this July change Harlow's climate? Why? (b) What do the records show, and not show?

@@ -33,11 +33,11 @@ from_day,to_day,what,where,minutes,error,note
 12,13,written task: day 12 changed pendulum record,revise the record,7,,returned with written feedback; revised in a second colour with the original observations kept
 12,14,s01-E1,Launch and transitions,0,E,the revised day 12 record is scored on day 14 outside lesson minutes
 12,14,s01-E2,Launch and transitions,0,E,the revised day 12 record is scored on day 14 outside lesson minutes
-13,16,s01-X13,Return and repair,2,A,hold a box still between two hands and draw both arrows
-13,16,s01-X13,Return and repair,2,C,label strength and distance as two different things
+13,16,s01-X13d,Return and repair,2,A,hold a box still between two hands and draw both arrows
+13,16,s01-P13-5,Return and repair,2,C,label strength and distance as two different things
 14,16,day 14 record,Return and repair,1,,component feedback goes back on the fresh transfer record
-16,17,s01-X16,Retrieve,2,,the resting parcel with two equal opposing arrows is drawn again and the cancelling said aloud
-16,17,s01-X16b,Retrieve,1,,the swinging bead is recalled in one sentence
+16,17,s01-X16c,Retrieve,2,,the resting parcel with two equal opposing arrows is drawn again and the cancelling said aloud
+16,17,s01-X16c,Retrieve,1,,the swinging bead is recalled in one sentence
 17,18,s02-X17,Return and repair,2,A,lay a ruler across the gap and trace the arrow along it; say what none seen means
 18,19,s02-X18,Return and repair,2,D,cross out every change but one in a proposed test
 19,20,s02-X19,Return and repair,2,A,lay a ruler across the gap and trace the arrow along it; say what none seen means
@@ -88,7 +88,7 @@ from_day,to_day,what,where,minutes,error,note
 35,36,c1-E35a,Repair groups,3,G,"group 4, 3 minutes with the teacher; board 1 records beside claim A"
 35,36,c1-E35b,Repair groups,0,H,in the same 3 minutes as group 4 letter G; turn which is best into one thing to change
 35,36,c1-E35c,Repair groups,0,I,in the same 3 minutes as group 4 letter G; sort the steel and brass washers
-36,38,s03-R1,Readiness,10,F,match one shared feature and circle one difference on a fresh pair: alike in ___; different in ___
+36,38,s03-R1,Support: like parents,10,F,match one shared feature and circle one difference on a fresh pair: alike in ___; different in ___
 36,42,s03-R2,Readiness,4,F,"say why a height difference does not rule out the same kind, citing the matching leaf shape"
 37,38,s03-X37,Return and repair,2,A,"redraw one cycle in two colours: the adult in one, the new individual in the other"
 38,39,s03-X38,Return and repair,2,B,sort picked ears and a seed beginning to grow into harvest and new plant
@@ -194,9 +194,9 @@ from_day,to_day,what,where,minutes,error,note
 82,83,s05-X82,Return and repair,2,A,"the leaf print beside the dry hill, read aloud"
 83,84,s05-X83,Return and repair,2,F,commonest letter of A and F; the stump beside the guide card
 84,85,s05-X84,Return and repair,2,A,commonest letter of A and F; the desert valley beside the whale bones
-85,86,s05-X85,Return and repair,1,C,the two stacks in hand
-85,86,s05-X85b,Return and repair,1,B,"extinct means none alive anywhere, with the guide statement"
-85,97,s05-X85,Four six-minute groups,6,C,the B and C group; the two stacks in hand
+85,86,s05-X85c,Return and repair,1,C,the two stacks in hand
+85,86,s05-X85c,Return and repair,1,B,"extinct means none alive anywhere, with the guide statement"
+85,97,s05-X85c,Four six-minute groups,6,C,the B and C group; the two stacks in hand
 86,87,s05-X86,Retrieval and repair,2,A,"fossils of water plants show water was here, beside ""it is dry now, so it always was"""
 86,93,written task: product F feedback,Product F revision,0,,"component feedback written after day 86, handed back within the 8 minutes"
 86,93,written task: product F revision,Product F revision,8,,"the revision from the written feedback, in a second colour"
@@ -209,7 +209,7 @@ from_day,to_day,what,where,minutes,error,note
 87,88,s05-X87,Return and repair,2,D,the highway pair read aloud; each pair traces one need
 88,89,s05-X88,Return and repair,2,E,commonest letter of E and D; the goal and limit boxes on the cards
 89,90,s05-X89,Return and repair,2,E,commonest letter of E and D; the goal and limit boxes on the cards
-90,91,s05-X90,Return and repair,2,D,the pond pair read aloud; each pair traces one need
+90,91,s05-X90,Return and repair,2,D,the new-trees pair read aloud; each pair traces one need
 91,92,s05-X91,Return and repair,2,E,commonest letter of D and E; the goal and limit boxes on the cards
 91,94,written task: product S feedback,Product S revision,0,,"component feedback written after day 91, handed back within the 8 minutes"
 91,94,written task: product S revision,Product S revision,8,,"the revision from the written feedback, in a second colour"
@@ -227,7 +227,7 @@ from_day,to_day,what,where,minutes,error,note
 95,97,day 95 records,Return components,2,,"item F scored product and fresh work, handed back with the component to work on"
 96,97,day 96 records,Return components,2,,"item S scored product and fresh work, handed back with the component to work on"
 97,98,"retrieval misses, day 97",Return and repair,3,,a highlighted wind row or matched goal and limit cards for the children who missed the day 97 retrieval
-97,98,s05-X97 s05-X97b,Return and repair,0,,the day 97 exit tickets go back with one short note each
+97,98,s05-X97c,Return and repair,0,,the day 97 exit tickets go back with one short note each
 97,109,"retrieval misses, day 97 goal and limit",Retrieval and repair,2,,matched goal and limit cards for the children who missed the day 97 retrieval
 98,99,s06-X98,Return and repair,5,B,lay the odd day beside ten season rows
 99,100,s06-X99,Return and repair,3,B,"a highlighted blank box said ""not recorded"""
@@ -235,8 +235,9 @@ from_day,to_day,what,where,minutes,error,note
 100,101,s06-X100,Return and repair,5,A,rebuild one bar with counters grouped by the key
 101,102,written task: product W feedback,product W revision,0,,"component feedback written after day 101, handed back within the 6 minutes"
 101,102,written task: product W revision,product W revision,6,B,"the revision from the written feedback, in a second colour; a 2-minute whole-class example of the commonest letter first"
-102,103,s06-X102,Return and repair,3,A,"a pictograph key read aloud, then one row rebuilt"
-102,103,s06-X102,Return and repair,2,B,the one cold day laid beside the summer record
+101,102,s06-X101,product W revision,0,B,the same commonest-letter example covers this ticket
+102,103,s06-X102,Return and repair,3,,the usual taken as never changing; count 20 odd days of 30
+102,103,s06-X102,Return and repair,2,B,the one warm day laid beside the winter record
 102,115,s06-E1,Directions,0,,the revised product is scored after day 115 outside lesson minutes
 102,115,s06-E2,Directions,0,,the revised product is scored after day 115 outside lesson minutes
 102,115,s06-E3,Directions,0,A,the revised product is scored after day 115 outside lesson minutes
@@ -245,10 +246,11 @@ from_day,to_day,what,where,minutes,error,note
 102,115,s06-E6,Directions,0,B,the revised product is scored after day 115 outside lesson minutes
 103,104,s06-X103,Return and repair,5,C,the class year laid beside the many-year strip
 104,105,s06-X104,Return and repair,5,D,link one detail from each card
-105,106,s06-X105,Return and repair,2,C,"this year laid beside the many-year strip, then the reading part opens with the same pair"
-105,106,s06-X105,Return and repair,1,D,link one detail from each card
+105,106,s06-X105,Return and repair,2,C,"this year laid beside the many-year strip, then the reading part opens with the first example"
+105,106,s06-X105,Return and repair,1,D,"underline the number in each card, then answer from the number"
 106,107,written task: product C feedback,product C revision,0,,"component feedback written after day 106, handed back within the 6 minutes"
 106,107,written task: product C revision,product C revision,6,C,"the revision from the written feedback, in a second colour; the commonest letter shown first for 2 minutes"
+106,107,s06-X106,product C revision,0,C,the same commonest-letter example covers this ticket; C and D
 107,108,s06-X107,Return and repair,3,C,one year laid beside the many-year range
 107,108,s06-X107,Return and repair,2,D,link one detail from each card
 107,115,s06-E7,Directions,0,D,the revised product is scored after day 115 outside lesson minutes
@@ -264,8 +266,8 @@ from_day,to_day,what,where,minutes,error,note
 110,111,s06-X110,Return and repair,2,E,"one hazard, design, harm chain drawn on the board"
 110,111,s06-X110,Return and repair,2,F,"the limit box first, on one goal card and one limit card"
 110,111,s06-X110,Return and repair,1,G,name one condition not tested for each record
-111,112,s06-X111,Return and repair,1,E,"one hazard, design, harm chain drawn on the board"
-111,112,s06-X111,Return and repair,2,G,name one condition not tested
+111,112,s06-X111,"Return and repair, directions",1,E,"one hazard, design, harm chain drawn on the board"
+111,112,s06-X111,"Return and repair, directions",1,G,name one condition not tested
 111,112,s06-X111,Design practice,2,G,the design practice opens with the example
 112,113,s06-X112,Return and repair,1,E,"one hazard, design, harm chain drawn on the board"
 112,113,s06-X112,Return and repair,1,F,the limit box before any count
@@ -278,6 +280,8 @@ from_day,to_day,what,where,minutes,error,note
 113,116,s06-E16,Directions,0,,the revised product is scored after day 116 outside lesson minutes
 113,116,s06-E17,Directions,0,E,the revised product is scored after day 116 outside lesson minutes
 113,116,s06-E18,Directions,0,G,the revised product is scored after day 116 outside lesson minutes
+113,114,s06-X113,Transfer practice,0,C,the class range strip beside one July
+113,114,s06-X113,Transfer practice,0,G,name one condition not tested
 114,117,s06-X114,four groups,7,A,the A group; rebuild one bar with counters grouped by the key
 114,117,s06-X114,four groups,4,B,the B and C group; the odd day beside the season records
 114,117,s06-X114,four groups,3,C,the B and C group; the range over many years beside one year

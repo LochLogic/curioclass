@@ -11,7 +11,7 @@ Three cards, printed one set for each group of five and one large set for the te
 
 ## Card A: free beside held (error A)
 
-The drum record, tapped and then gently held, laid beside the day 31 free-and-held strip. Wrong, read aloud: "The held drum keeps sounding." Right, read aloud: "When we held it still, the sound got quiet." Children repeat the free-and-held pair on the held-back record and say "I held it, I heard ___".
+The day 33 ruler record, flicked free and then gently held, laid beside the day 31 free-and-held strip. Wrong, read aloud: "The held ruler keeps sounding." Right, read aloud: "When we held it still, the sound got quiet." Children lay the free-and-held pair on the day 33 ruler record and say "I held it, I heard ___".
 
 ## Card B: off beside on (error B)
 
@@ -19,7 +19,7 @@ The fixed-paper sound-off and sound-on records laid side by side. Wrong, read al
 
 ## Card C: no touch (error C)
 
-The no-touch record beside the hand-near record. Wrong, read aloud: "I held it while it played and it moved, so sound did it." Right, read aloud: "We did not touch it, and it moved only when the sound was on." Children repeat the no-touch comparison and name what stayed the same.
+The day 33 ribbon record with nothing touching, beside the ribbon with a hand pressing it. Wrong, read aloud: "I held it while it played and it moved, so sound did it." Right, read aloud: "We did not touch it, and it moved only when the sound was on." Children lay the no-touch comparison and name what stayed the same.
 
 ## Picture directions
 

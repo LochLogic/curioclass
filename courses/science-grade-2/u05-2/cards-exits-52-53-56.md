@@ -20,10 +20,14 @@ Each exit has picture cards every child touches and a spoken stem read once. Dra
 **Say:** "Pip says the sunlit plant looks fine with no water, so sunlight is all it needs. Is Pip right yet? Say yes or not yet."
 **Key (teacher):** not yet; keep recording. Error D is saying yes.
 
-## Day 53 exit: four basil cards
+## Day 53 exit: basil cards
 
-**Picture:** a basil light test with equal water. June 2: sunlit plant 7 centimeters with four green upright leaves; shaded plant 10 centimeters with two pale leaves and a leaning stem. The shaded plant is moved into the sun. June 9: sunlit plant 8 centimeters with five green leaves; the moved plant still 10 centimeters with four green leaves and a firmer stem.
-**Say:** "Did the moved plant get healthier? Say yes or no."
+**Picture (a):** the June 2 basil cards: the shaded plant 10 centimeters with two pale leaves and a leaning stem, the sunlit plant 7 centimeters with four green upright leaves; three small cards: a ruler, the leaves and stem, the pot.
+**Say (a):** "Pip says the shaded basil is healthier because it is taller. Touch the card that shows Pip is wrong."
+**Key (teacher):** the leaves and stem card. The ruler card is error B.
+
+**Picture (b):** a basil light test with equal water. June 2: sunlit plant 7 centimeters with four green upright leaves; shaded plant 10 centimeters with two pale leaves and a leaning stem. The shaded plant is moved into the sun. June 9: sunlit plant 8 centimeters with five green leaves; the moved plant still 10 centimeters with four green leaves and a firmer stem.
+**Say (b):** "Did the moved plant get healthier? Say yes or no."
 **Key (teacher):** yes; more green leaves and a firmer stem, though its height did not change. Error B is no, because the height is the same.
 
 ## Day 56 exit: three spinach cards

@@ -9,11 +9,12 @@ credit: ours
 
 Each exit has picture cards that every child marks or touches and a spoken question heard from the day's rotating six. Plain black line drawings on white, thick lines, no shading, no printed words except a caption, no brand names. Children in the pictures are of many skin tones, hair and abilities. Say aloud first that every case is invented for practice. Do not reuse the toy animal, the rock cover or the pairs touched in class. Mark on the one scale. Days 52 and 53 have no separate exit: the end-of-unit items are their evidence.
 
-## Day 49: a seed tray
+## Day 49: a seed tray and two crates
 
-**Picture.** A seed tray with its plants growing in a box. Cover 1: a roof on posts over the whole tray, the posts standing outside the box. Cover 2: a roof whose posts stand in the planted box among the plants. Cover 3: a roof leaning against the side of the tray, beside it, the plants in the open.
-**Spoken 49a:** "Invented for practice. Touch the cover that shades the tray and keeps the plants clear." **Key:** cover 1. Cover 3, "near is enough", is error D. Cover 2 is shown with help, no letter.
-**Spoken 49b:** "Touch when the covered part will feel less warm: as soon as the cover goes on, or after both sit in the sun the same time." Two cards, a clock at the start and a clock showing a later hour. **Key:** after both sit in the sun the same time. The first card, "as soon as it goes on", is error F.
+**Picture 49a.** A seed tray with its plants growing in a box. Cover 1: a roof on posts over the whole tray. Cover 2: a roof on posts over the empty path beside the tray, the plants in the open. Cover 3: a roof leaning against the side of the tray, beside it, the plants in the open.
+**Picture 49b.** A wooden crate under a roof on posts, and a matching crate in the open, with a clock at the start showing the same hour beside each.
+**Spoken 49a:** "Invented for practice. A seed tray has its plants in a box. Cover 1 is a roof on posts over the whole tray. Cover 2 is a roof on posts over the empty path beside the tray, with the plants in the open. Cover 3 leans against the side of the tray. Touch the cover that shades the tray." **Key:** cover 1. Cover 2 or cover 3, "near is enough", is error D.
+**Spoken 49b:** "Invented for practice. A wooden crate sits under a roof, and a matching crate sits in the open. Both were put out together and will sit in the sun the same time. Which crate will feel less warm? Say: I think the ___ crate, because ___." **Key:** the crate under the roof, because the roof keeps the sun off it. "It was cool the moment the roof went on" is error F. Naming the open crate is shown with help, no letter.
 
 ## Day 50: a balcony
 

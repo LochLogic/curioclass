@@ -14,11 +14,11 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Record A: Pine Coast survey
 
-**Picture:** A keyed map of a coast seen from above. Along the bottom edge is the ocean. A river runs from a high ridge down to the ocean. Ice lies in the high valley, drawn with an open dot. The ocean and river each carry a filled dot. Key box: filled dot = liquid water, open dot = solid water.
+**Picture:** A keyed map of a coast seen from above. Along the bottom edge is the ocean. A river begins in a low valley and runs to the ocean. Ice lies on the top of the high ridge, drawn with an open dot. The ocean and river each carry a filled dot. Key box: filled dot = liquid water, open dot = solid water. The key on this record tells the dots on record B too.
 
 ## Record B: Pine Coast observations
 
-**Picture:** A picture log of the same coast: a lake in a low hollow near the coast (filled dot), a small pond in a low hollow beside the road (filled dot), and snow on the high ridge (open dot). Captions under each: Lake. Pond. Snow.
+**Picture:** A picture log of the same coast: a lake in a low hollow near the coast (filled dot), a small pond in a low hollow beside the road (filled dot), and snow on the high ridge (open dot). Captions under each: Lake. Pond. Snow. A line under the log: "The key on record A tells these dots too."
 
 ## Record C: Other Cove observations
 
@@ -26,8 +26,8 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Directions
 
-**Read:** "Record A shows the ocean, the river and the ice in Pine Coast. Record B shows a lake, a pond and snow in Pine Coast. Record C is a different place. Choose the records that tell about Pine Coast. Fill in the chart. Then say what the records show."
+**Read:** "Here are three records. A record is a page that tells what someone saw. Look at each one. Choose the records that tell where water is in Pine Coast. Fill in the chart. Then say what the records show." The headings on the records carry the evidence; the directions name no record and no place on any record.
 
 ## Key (teacher)
 
-E1: records A and B (C is Other Cove). E2: ocean A liquid; river A liquid; ice A solid; lake B liquid; pond B liquid; snow B solid. E3: in Pine Coast the liquid water is low and the solid water is high up; this is what these two records show, not a rule for every place.
+E1: records A and B (C is Other Cove). E2: ocean A liquid; river A liquid; ice A solid; lake B liquid; pond B liquid; snow B solid. E3: in Pine Coast the liquid water is the ocean at the coast, the river, the lake and the pond; the solid water is the ice and snow on the high ridge; this is what these two records show, not a rule for every place. A child who says "low" for the liquid and "high" for the solid is also right; the pattern is not required.

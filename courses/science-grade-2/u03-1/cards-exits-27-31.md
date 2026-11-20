@@ -12,9 +12,9 @@ Each exit has a picture card every child marks, and a spoken stem read once. Dra
 
 ## Day 27 exit card: two blue squares
 
-**Picture:** Two squares side by side, each the same shade of blue. The left one is labelled felt, with a soft fuzzy edge drawn with short strokes. The right one is labelled foam, with a spongy edge drawn with small holes. Under them, two circles: yes, no.
-**Say:** "Pip says they are both blue, so they feel and bend the same. Is Pip right? Point to yes or no."
-**Key (teacher):** No, with the words that colour tells only the colour, so we feel and bend each one. Yes is error B.
+**Picture:** A blue sponge and a blue board side by side, the same shade of blue. Under them, three cards: a colour swatch (look at the colour), a finger pressing down (press), and a ruler beside a square (look at the size).
+**Say:** "Pip wants to know which one is softer. Which test tells: look at the colour, press, or look at the size? Point."
+**Key (teacher):** Press, with the words that colour tells only the colour. Look at the colour is error B. Look at the size tells how big, not how soft.
 
 ## Day 28 exit card: two light plans
 

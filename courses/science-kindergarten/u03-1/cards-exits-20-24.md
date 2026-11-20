@@ -32,6 +32,7 @@ Each exit has picture cards that every child marks and a spoken question heard f
 
 ## Day 24 (two questions)
 
-**Pictures.** A toy truck and a garage square. Picture one: a card bumper stands beside the truck's path, not touching it, and the path is a straight dotted line. Picture two: the path bends at the bumper, where the truck touches it, and ends in the square.
-**Spoken 24a:** "Invented for practice. A toy truck must turn into a garage square. In picture one, a bumper stands beside the truck's path, not touching it, and the path is straight. In picture two, the path bends at the bumper. Touch the picture where the bumper made the truck turn." **Key:** picture two. Picture one, "the wall was close", is error D.
-**Spoken 24b:** "Invented for practice. Same pictures of the toy truck and the bumper. Touch the place on the path where the truck began to turn." **Key:** the touch, on picture two. A spot before the touch, near the bumper, is error D.
+**Pictures for 24a.** A toy truck and a garage square, with a card bumper beside the truck's path. Picture one: the truck's path bends in open floor, with a clear gap between the bend and the bumper. Picture two: the path bends exactly where the truck's nose touches the bumper. Both pictures show a bend.
+**Picture for 24b.** A third picture: the truck's path turns at a card bumper. Three small marks on the path: one well before the bumper, one at the touch, one far after.
+**Spoken 24a:** "Invented for practice. Two pictures of a toy truck rolling toward a garage square, with a card bumper beside its path. Touch the picture where the bumper made the truck turn." **Key:** picture two. Picture one, "the bumper was close", is error D.
+**Spoken 24b:** "Invented for practice. A toy truck rolled toward a card bumper and turned. Three marks are on its path: one well before the bumper, one where the truck meets the bumper, one far after. Touch the mark where the truck began to turn." **Key:** the mark at the touch. The mark before the bumper, near it, is error D.

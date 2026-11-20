@@ -16,5 +16,5 @@ Printed for each table. Two matched oat seedlings, equally watered, one in a sha
 **Day 1:** both seedlings the same size, 5 centimeters, two green leaves.
 **Day 7:** the shaded one is 18 centimeters, pale, bent, with two thin leaves. The lit one is 15 centimeters, green, upright, with four leaves.
 **Day 14:** the shaded one is 22 centimeters, falling over, with two pale leaves. The lit one is 20 centimeters, with five green leaves, firm.
-**Say:** "Mark what changed, what stayed the same and what is watched. Why might the taller plant be less healthy?"
-**Key (teacher):** the water stayed the same; the light is what differs; the colour, leaves and stem are what is watched. The shaded plant is taller but pale and weak, so taller is not healthier. Pip says "the taller plant is the healthier plant" (error B); check the line against the Day 14 card.
+**Say:** "This is the fair test from unit 2. Mark we kept the same, we changed and we watch. Why might the taller plant be less healthy?"
+**Key (teacher):** we kept the same: the water, cup and soil; we changed: the light; we watch: the colour, leaves and stem. The shaded plant is taller but pale and weak, so taller is not healthier. Pip says "the taller plant is the healthier plant" (error B); check the line against the Day 14 card.

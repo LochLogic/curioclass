@@ -19,7 +19,6 @@ Four repair sets for day 81 and the exit cards. Plain line drawings, no brand na
 
 ## Exit cards (answered alone, read aloud twice)
 
-- **X81a.** A newt cycle in four pictures with a line of days, and Sam's arrow from the dead adult back to the young.
-- **X81b.** Two parent tulips with red cup flowers and four seedlings with leaf rulers at 6, 9, 7 and 10 cm.
-- **X81c.** Cress stems in light and in shade, with rulers; an otter pushing a button, and its pup beside it.
-- **X81d.** A goose alone looking up, and a flock of geese with one looking up.
+- **X81e.** First question: a newt cycle in four pictures with a line of days, and Sam's arrow from the dead adult back to the young. Second question: a goose alone looking up, and a flock of geese with one looking up.
+- **P81-2, said aloud.** Two parent tulips with red cup flowers and four seedlings with leaf rulers at 6, 9, 7 and 10 cm.
+- **P81-3, said aloud.** Cress stems in light and in shade, with rulers; an otter pushing a button, and its pup beside it.

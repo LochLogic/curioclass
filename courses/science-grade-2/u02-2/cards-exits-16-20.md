@@ -18,7 +18,11 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 **Say:** "Pip poured the same cup on both and they lost different amounts. Does it matter that one was dry and one was damp? Point to yes or no."
 
-**Key (teacher):** Yes, with the words that the start must be the same. No, because the cup was the same, is error E.
+**Picture, part b (item 16b):** A paper strip with a centimeter ruler beneath it. The first pencil mark is at 0 and the second pencil mark is at 4. Labelled sand edge before and after.
+
+**Say (part b):** "The sand edge was at 0. After the pour it was at the second mark. How far did the edge move back? Write the number."
+
+**Key (teacher):** Yes, with the words that the start must be the same. No, because the cup was the same, is error E. Part b: 4 centimeters. Reading the second mark without starting at 0, or giving a number that is not 4, is not yet seen (no letter).
 
 ## Day 17 exit card: the fence
 
