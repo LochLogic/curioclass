@@ -1559,3 +1559,11 @@ Cory, in chat, on the report docs/reviews/ladder-science-report-2026-11-19.md: f
 what the test found and what it showed outside its own days, then pause. So the gate and template points, the new
 cheap gates and the answer-key check go into the scripts and briefs, the faults the 40-day sample found go into the
 kindergarten to grade 3 days, and the work stops there for Cory's next call. Refine 1 and the climb past grade 3 wait.
+
+## 2026-11-19: The Front Office reads every document, and is linked
+
+Cory, in chat: link The Front Office from the site so it can be reached naturally, and make every document readable
+there, nicely formatted; "the intent is for someone to be able to read from the progressions and course frames all
+the way to the days." So the drawer now opens the full skill ladder, each frame, scope and sequence, unit plan,
+section plan and written day, cleaned of internal words first, and the footer links the page. It stays a draft
+(banner, noindex). docs/SITE-DESIGN.md, section "The Front Office"; later.csv L70.

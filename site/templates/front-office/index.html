@@ -134,21 +134,67 @@
 .fo-written { font: 600 10px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--teal); }
 .fo-note { background: #fff4d6; border: 1px solid #ecd9a3; border-radius: 12px; padding: 12px 14px; font-size: 14px; color: #6b5310; }
 .fo-loading { color: var(--muted); padding: 30px 0; }
+
+/* Reading links */
+.fo-reads { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 18px; }
+.fo-read { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--c, var(--fo-rule)); color: var(--ink); background: var(--card); border-radius: 999px; padding: 8px 14px; font: 600 14px/1 var(--sans); text-decoration: none; cursor: pointer; }
+.fo-read::before { content: ""; width: 10px; height: 12px; border: 1.5px solid currentColor; border-radius: 2px; opacity: .6; }
+.fo-read:hover { background: var(--paper-2); }
+.fo-section .fo-read { margin: 10px 16px 6px; padding: 6px 12px; font-size: 13px; }
+a.fo-day { color: inherit; text-decoration: none; }
+a.fo-day:hover { background: var(--paper-2); }
+a.fo-day .dn::after { content: " \203A"; color: var(--c); }
+.fo-ladder .fo-read { margin-top: 12px; }
+
+/* Documents */
+.fo-reader.wide { width: min(980px, 100%); }
+.fo-doc { font-size: 16px; line-height: 1.6; max-width: 76ch; }
+.fo-doc h1, .fo-doc h2 { font-size: 26px; margin: 34px 0 10px; }
+.fo-doc h3 { font-size: 20px; margin: 28px 0 8px; }
+.fo-doc h4 { font: 600 16px/1.3 var(--sans); margin: 22px 0 6px; color: var(--c); }
+.fo-doc h5, .fo-doc h6 { font: 600 14px/1.3 var(--sans); margin: 18px 0 4px; }
+.fo-doc ul, .fo-doc ol { padding-left: 22px; margin: 0 0 12px; }
+.fo-doc li { margin: 0 0 6px; }
+.fo-doc blockquote { margin: 0 0 14px; padding: 4px 0 4px 16px; border-left: 3px solid var(--fo-rule); color: var(--muted); }
+.fo-tw { overflow-x: auto; margin: 0 0 16px; border: 1px solid var(--fo-rule); border-radius: 10px; background: var(--card); max-width: none; }
+.fo-doc table { border-collapse: collapse; font-size: 14px; line-height: 1.45; min-width: 100%; }
+.fo-doc th, .fo-doc td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--fo-rule); }
+.fo-doc th { background: var(--paper-2); font-weight: 600; }
+.fo-doc tr:last-child td { border-bottom: 0; }
+.fo-mat { background: var(--card); border: 1px solid var(--fo-rule); border-left: 5px solid var(--c); border-radius: 12px; padding: 12px 16px; margin: 0 0 18px; font-size: 15px; }
+.fo-mat p:last-child { margin: 0; }
+.fo-pager { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin: 34px 0 0; padding-top: 16px; border-top: 1px solid var(--fo-rule); }
+.fo-pager a { font: 600 14px/1.3 var(--sans); color: var(--ink); text-decoration: none; border: 1px solid var(--fo-rule); background: var(--card); border-radius: 12px; padding: 10px 14px; max-width: 48%; }
+.fo-pager a small { display: block; color: var(--muted); font-weight: 500; font-size: 12px; }
+.fo-pager a.next { margin-left: auto; text-align: right; }
+.fo-pager a:hover { box-shadow: var(--shadow); }
+.fo-doclist { display: grid; gap: 6px; margin: 0 0 12px; }
+
+/* Full skill ladder */
+.fo-gtabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; }
+.fo-gtabs a { min-width: 38px; text-align: center; border: 1px solid var(--fo-rule); border-radius: 999px; padding: 7px 10px; font: 600 13px/1 var(--sans); color: var(--ink); text-decoration: none; background: var(--card); }
+.fo-gtabs a[aria-current="true"] { background: var(--c); border-color: var(--c); color: #fff; }
+.fo-skill { background: var(--card); border: 1px solid var(--fo-rule); border-radius: 12px; padding: 12px 14px; margin: 0 0 10px; font-size: 15px; }
+.fo-skill .std { display: inline-block; font: 600 12px/1 var(--sans); background: var(--paper-2); border-radius: 999px; padding: 5px 9px; margin: 0 6px 6px 0; }
+.fo-skill p { margin: 6px 0 0; }
+.fo-skill .on { font-size: 13px; color: var(--muted); }
+.fo-skill details summary { cursor: pointer; color: var(--muted); font-size: 13px; margin-top: 6px; }
 @media print {
   .site-head, .site-foot, .fo-draft, .fo-scrim, main > .fo > :not(.fo-reader), .fo-reader header { display: none !important; }
   .fo-reader { position: static; transform: none; box-shadow: none; width: auto; }
   .fo-body { overflow: visible; padding: 0; }
   .fo-section { break-inside: avoid; } .fo-section:not([open]) > :not(summary) { display: block; }
+  .fo-pager, .fo-reads { display: none !important; } .fo-doc { max-width: none; } .fo-tw { overflow: visible; }
 }
 </style>
 {% endblock %}
 {% block main %}
 <div class="fo">
-  <div class="fo-draft">Draft for review. Not linked from the site yet, and still growing as each layer is written.</div>
+  <div class="fo-draft">Draft for review, still growing as each layer is written. Every planning document opens here to read.</div>
   <section class="wrap fo-hero">
     <div class="eyebrow">The Front Office</div>
     <h1>The whole curriculum, top to bottom.</h1>
-    <p class="lede">Every subject, course, unit, section and day of Curio Class, and how each layer leads into the next. Open anything to read it.</p>
+    <p class="lede">Every subject, course, unit, section and day of Curio Class, and how each layer leads into the next. Read any of it, from the skill ladders and course frames down to each written day.</p>
     <div class="links">
       <a class="fo-btn primary" href="#board">Browse the curriculum</a>
       <a class="fo-btn" href="/front-office/show-your-work/">Show Your Work: how it was built</a>
@@ -248,7 +294,8 @@
     $('fo-board-body').innerHTML = '<p class="fo-loading">Loading ' + esc(s.label) + '...</p>';
     return load(id).then(function (d) {
       var h = '<div class="fo-ladder"><h3>' + esc(s.label) + ' skill ladder</h3><p>' + d.progressions.skills.toLocaleString() +
-        ' skills, by strand and grade. Darker means more skills taught that year.</p>' + heat(d.progressions, s.color) + '</div>';
+        ' skills, by strand and grade. Darker means more skills taught that year.</p>' + heat(d.progressions, s.color) +
+        '<a class="fo-read" style="--c: var(--' + s.color + ')" href="#' + id + '/ladder">Read the full skill ladder</a></div>';
       h += '<div class="fo-legend"><span><i></i>Done</span><span><i class="half"></i>Under way</span><span><i class="off"></i>Not yet</span><span>Bars, left to right: frame, scope and sequence, unit plans, sections, days</span></div>';
       var most = 0; GRADES.forEach(function (g) { most = Math.max(most, d.courses.filter(function (c) { return c.g === g; }).length); });
       h += '<div class="fo-grades' + (most > 1 ? ' wide' : '') + '">';
@@ -267,11 +314,103 @@
     });
   }
   function find(d, slug) { return d.courses.filter(function (c) { return c.slug === slug; })[0]; }
-  function crumbs(s, c, u) {
+  function crumbs(s, c, u, leaf) {
+    var sep = ' <span>&rsaquo;</span> ';
     var h = '<a href="#' + s.id + '">' + esc(s.label) + '</a>';
-    if (c) h += ' <span>&rsaquo;</span> ' + (u ? '<a href="#' + s.id + '/' + c.slug + '">' + esc(c.t) + '</a>' : '<span>' + esc(c.t) + '</span>');
-    if (u) h += ' <span>&rsaquo;</span> <span>Unit ' + u.n + '</span>';
+    if (c) h += sep + ((u || leaf) ? '<a href="#' + s.id + '/' + c.slug + '">' + esc(c.t) + '</a>' : '<span>' + esc(c.t) + '</span>');
+    if (u) h += sep + (leaf ? '<a href="#' + s.id + '/' + c.slug + '/' + u.n + '">Unit ' + u.n + '</a>' : '<span>Unit ' + u.n + '</span>');
+    if (leaf) h += sep + '<span>' + esc(leaf) + '</span>';
     $('fo-crumbs').innerHTML = h;
+  }
+  function readLink(href, label) { return '<a class="fo-read" href="#' + href + '">' + esc(label) + '</a>'; }
+  var docCache = {};
+  function loadDoc(slug, file) {
+    var k = slug + '/' + file;
+    if (docCache[k]) return Promise.resolve(docCache[k]);
+    return fetch('/front-office/docs/' + slug + '/' + file + '.json').then(function (r) { if (!r.ok) throw new Error('missing'); return r.json(); })
+      .then(function (d) { docCache[k] = d; return d; });
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function pager(prev, next) {
+    if (!prev && !next) return '';
+    return '<nav class="fo-pager" aria-label="Previous and next">' +
+      (prev ? '<a href="#' + prev[0] + '"><small>&lsaquo; Previous</small>' + esc(prev[1]) + '</a>' : '') +
+      (next ? '<a class="next" href="#' + next[0] + '"><small>Next &rsaquo;</small>' + esc(next[1]) + '</a>' : '') + '</nav>';
+  }
+  function docPage(eyebrow, title, html, extra) {
+    return '<div class="eyebrow">' + eyebrow + '</div><h2>' + esc(title) + '</h2>' + (extra || '') + '<div class="fo-doc">' + html + '</div>';
+  }
+  /* Every written day in the course, in order, for the day pager. */
+  function writtenDays(c) {
+    var out = [];
+    c.units.forEach(function (u) { u.sections.forEach(function (sec) { sec.days.forEach(function (x) { if (x.w) out.push({ u: u.n, d: x.d, g: x.g }); }); }); });
+    return out.sort(function (a, b) { return a.d - b.d; });
+  }
+  function frameDoc(s, d, c, key) {
+    return loadDoc(c.slug, 'course').then(function (doc) {
+      var x = doc[key], base = s.id + '/' + c.slug;
+      if (!x) return '<p class="fo-note">This document is not written yet.</p>';
+      var label = key === 'frame' ? 'Course frame' : 'Scope and sequence';
+      var other = key === 'frame' ? (c.docs.scope ? [base + '/scope', 'Scope and sequence'] : null) : [base + '/frame', 'Course frame'];
+      var first = c.units[0] && c.units[0].plan ? [base + '/1/plan', 'Unit 1 plan: ' + c.units[0].t] : null;
+      return docPage(esc(c.t) + ' &middot; ' + label, label, x.h) +
+        pager(key === 'frame' ? null : other, key === 'frame' ? (other || first) : first);
+    });
+  }
+  function unitDoc(s, d, c, u, kind, id) {
+    return loadDoc(c.slug, 'u' + pad(u.n)).then(function (doc) {
+      var base = s.id + '/' + c.slug + '/' + u.n, h;
+      var secs = Object.keys(doc.sections), nu = c.units.filter(function (x) { return x.n === u.n + 1; })[0];
+      if (kind === 'plan') {
+        if (!doc.plan) return '<p class="fo-note">The plan for this unit is not written yet.</p>';
+        h = docPage(esc(c.t) + ' &middot; Unit ' + u.n, 'Unit plan: ' + u.t, doc.plan.h,
+          secs.length ? '<div class="fo-reads">' + secs.map(function (k) { return readLink(base + '/s/' + k, 'Section ' + k); }).join('') + '</div>' : '');
+        return h + pager([base, 'Unit ' + u.n + ' overview'], secs.length ? [base + '/s/' + secs[0], 'Section ' + secs[0] + ' plan'] : (nu && nu.plan ? [s.id + '/' + c.slug + '/' + nu.n + '/plan', 'Unit ' + nu.n + ' plan'] : null));
+      }
+      if (kind === 's') {
+        var x = doc.sections[id];
+        if (!x) return '<p class="fo-note">This section plan is not written yet.</p>';
+        var sec = u.sections.filter(function (q) { return q.id === id; })[0];
+        var dl = sec ? sec.days.filter(function (q) { return q.w; }) : [];
+        var i = secs.indexOf(id);
+        h = docPage(esc(c.t) + ' &middot; Unit ' + u.n, 'Section ' + id + (x.t ? ': ' + x.t.replace(/^Section [\d.]+:\s*/, '') : ''), x.h,
+          dl.length ? '<div class="fo-reads">' + dl.map(function (q) { return readLink(base + '/d/' + q.d, 'Day ' + q.d); }).join('') + '</div>' : '');
+        var nxt = dl.length ? [base + '/d/' + dl[0].d, 'Day ' + dl[0].d] : (i < secs.length - 1 ? [base + '/s/' + secs[i + 1], 'Section ' + secs[i + 1] + ' plan'] : null);
+        return h + pager(i > 0 ? [base + '/s/' + secs[i - 1], 'Section ' + secs[i - 1] + ' plan'] : (doc.plan ? [base + '/plan', 'Unit ' + u.n + ' plan'] : null), nxt);
+      }
+      var day = doc.days[id];
+      if (!day) return '<p class="fo-note">This day is not written yet.</p>';
+      var all = writtenDays(c), j = all.map(function (q) { return String(q.d); }).indexOf(String(id));
+      var link = function (q) { return q ? [s.id + '/' + c.slug + '/' + q.u + '/d/' + q.d, 'Day ' + q.d + (q.g ? ': ' + q.g : '')] : null; };
+      var sid = (u.sections.filter(function (q) { return q.days.some(function (z) { return String(z.d) === String(id); }); })[0] || {}).id;
+      var top = sid && doc.sections[sid] ? '<div class="fo-reads">' + readLink(base + '/s/' + sid, 'Section ' + sid + ' plan') + (doc.plan ? readLink(base + '/plan', 'Unit ' + u.n + ' plan') : '') + '</div>' : '';
+      return docPage(esc(c.t) + ' &middot; Unit ' + u.n + (sid ? ' &middot; Section ' + esc(sid) : ''), day.t || ('Day ' + id), day.h, top) +
+        pager(link(all[j - 1]), link(all[j + 1]));
+    });
+  }
+  var ladders = {};
+  function ladderView(s, g) {
+    var p = ladders[s.id] ? Promise.resolve(ladders[s.id]) : fetch('/front-office/data/' + s.id + '-ladder.json').then(function (r) { return r.json(); }).then(function (x) { ladders[s.id] = x; return x; });
+    return p.then(function (L) {
+      var grade = L.filter(function (x) { return x.g === g; })[0] || L[0];
+      var h = '<div class="eyebrow">' + esc(s.label) + ' &middot; Skill ladder</div><h2>' + gradeName(grade.g) + '</h2>' +
+        '<p class="lede">Every skill this grade teaches, by strand: the standard it serves, its key words, what it builds on from earlier grades, and notes on how it is taught.</p>' +
+        '<nav class="fo-gtabs" aria-label="Grade">' + L.map(function (x) { return '<a href="#' + s.id + '/ladder/' + x.g + '" aria-current="' + (x.g === grade.g) + '">' + x.g + '</a>'; }).join('') + '</nav>';
+      grade.strands.forEach(function (st) {
+        h += '<h3>' + esc(st.name) + '</h3>';
+        st.skills.forEach(function (k) {
+          var stds = (k.std || '').split(/;\s*/).filter(Boolean);
+          var first = (k.notes || '').split(/(?<=[.!?])\s+/), rest = first.slice(1).join(' ');
+          h += '<div class="fo-skill">' + stds.map(function (x) { return '<span class="std">' + esc(x) + '</span>'; }).join('') +
+            (first[0] ? '<p>' + esc(first[0]) + '</p>' : '') +
+            (rest ? '<details><summary>More notes</summary><p>' + esc(rest) + '</p></details>' : '') +
+            (k.words ? '<p class="on"><b>Words:</b> ' + esc(k.words.replace(/;\s*/g, ', ')) + '</p>' : '') +
+            (k.on.length ? '<p class="on"><b>Builds on:</b> ' + k.on.map(function (o) { return esc(o.std) + ' (' + (o.g === 'K' ? 'kindergarten' : 'grade ' + o.g) + ')'; }).join('; ') + '</p>' : '') + '</div>';
+        });
+      });
+      var i = L.indexOf(grade), lk = function (x) { return x ? [s.id + '/ladder/' + x.g, gradeName(x.g)] : null; };
+      return { html: h + pager(lk(L[i - 1]), lk(L[i + 1])), g: grade.g };
+    });
   }
   function layerRow(on, label, note) {
     return '<li><span class="dot ' + on + '"></span><span>' + label + '</span><small>' + note + '</small></li>';
@@ -280,6 +419,9 @@
     var st = c.status, sh = c.shape;
     var link = function (slug) { var x = find(d, slug); return x ? '<a href="#' + s.id + '/' + slug + '">' + esc(x.t) + '</a>' : ''; };
     var h = '<div class="eyebrow">' + esc(s.label) + ' &middot; ' + gradeName(c.g) + '</div><h2>' + esc(c.t) + '</h2><p class="lede">' + esc(c.lede) + '</p>';
+    h += '<div class="fo-reads">' + (c.docs.frame ? readLink(s.id + '/' + c.slug + '/frame', 'Course frame') : '') +
+      (c.docs.scope ? readLink(s.id + '/' + c.slug + '/scope', 'Scope and sequence') : '') +
+      readLink(s.id + '/ladder/' + c.g, gradeName(c.g) + ' skills') + '</div>';
     h += '<div class="fo-stats"><div><b>' + c.n_units + '</b><span>units</span></div><div><b>' + c.days + '</b><span>days, ' + esc(sh.per_week) + '</span></div><div><b>' + esc(sh.minutes.replace(' minutes', '')) + '</b><span>minutes a day</span></div><div><b>' + sh.weeks + '</b><span>weeks, ' + esc(sh.term) + '</span></div></div>';
     if (c.before.length || c.after.length) {
       h += '<p>' + (c.before.length ? '<b>Comes after:</b> ' + c.before.map(link).join(', ') + '. ' : '') + (c.after.length ? '<b>Leads to:</b> ' + c.after.map(link).join(', ') + '.' : '') + '</p>';
@@ -300,6 +442,8 @@
   function unitView(s, d, c, u) {
     var h = '<div class="eyebrow">' + esc(c.t) + ' &middot; Unit ' + u.n + '</div><h2>' + esc(u.t) + '</h2>';
     if (u.q) h += '<p class="fo-q">' + esc(u.q) + '</p>';
+    var base = s.id + '/' + c.slug + '/' + u.n;
+    if (u.plan) h += '<div class="fo-reads">' + readLink(base + '/plan', 'Read the unit plan') + '</div>';
     h += '<div class="fo-stats"><div><b>' + u.days + '</b><span>days</span></div>' + (u.weeks ? '<div><b>' + u.weeks[0] + (u.weeks[1] !== u.weeks[0] ? '&ndash;' + u.weeks[1] : '') + '</b><span>weeks of the year</span></div>' : '') +
       '<div><b>' + u.sections.filter(function (x) { return /^\d/.test(x.id); }).length + '</b><span>sections</span></div></div>';
     if (u.learn) h += '<h3>What students learn</h3><p>' + esc(u.learn) + '</p>';
@@ -311,15 +455,18 @@
     u.sections.forEach(function (sec, i) {
       var first = sec.days[0].d, last = sec.days[sec.days.length - 1].d;
       h += '<details class="fo-section"' + (i === 0 ? ' open' : '') + '><summary>' + (/^\d/.test(sec.id) ? 'Section ' + esc(sec.id) : esc(sec.id)) + '<small>Days ' + first + (last !== first ? '&ndash;' + last : '') + '</small></summary>';
+      if (u.sp.indexOf(sec.id) > -1) h += readLink(base + '/s/' + sec.id, 'Read the section plan');
       sec.days.forEach(function (x) {
-        h += '<div class="fo-day"><div class="dn">Day ' + x.d + (x.w ? '<small class="fo-written">Written</small>' : '') + '</div><div>' + kindChip(x.k) + esc(x.g || 'Planned.') + '</div></div>';
+        var inner = '<div class="dn">Day ' + x.d + (x.w ? '<small class="fo-written">Written</small>' : '') + '</div><div>' + kindChip(x.k) + esc(x.g || 'Planned.') + '</div>';
+        h += x.w ? '<a class="fo-day" href="#' + base + '/d/' + x.d + '">' + inner + '</a>' : '<div class="fo-day">' + inner + '</div>';
       });
       h += '</details>';
     });
     return h;
   }
-  function open(html, s) {
+  function open(html, s, wide) {
     $('fo-body').innerHTML = html; $('fo-body').scrollTop = 0;
+    $('fo-reader').classList.toggle('wide', !!wide);
     $('fo-reader').style.setProperty('--c', 'var(--' + s.color + ')');
     $('fo-reader').classList.add('open'); $('fo-scrim').classList.add('open');
     $('fo-reader').setAttribute('aria-hidden', 'false');
@@ -335,13 +482,31 @@
     if (!s) { if (!current) { current = SUBJECTS[0].id; board(current); } close(); return; }
     var p = s.id === current ? Promise.resolve() : board(s.id);
     current = s.id;
+    var want = location.hash;
+    var show = function (html, wide) { if (location.hash === want) open(html, s, wide); };
+    var fail = function () { show('<p class="fo-note">This document could not be loaded. Try again in a moment.</p>', false); };
     p.then(function () { return load(s.id); }).then(function (d) {
+      if (parts[1] === 'ladder') {
+        open('<p class="fo-loading">Loading the skill ladder...</p>', s, true);
+        return ladderView(s, parts[2]).then(function (r) { crumbs(s, null, null, 'Skill ladder, ' + gradeName(r.g).toLowerCase()); show(r.html, true); });
+      }
       var c = parts[1] && find(d, parts[1]);
       if (!c) { close(); return; }
+      if (parts[2] === 'frame' || parts[2] === 'scope') {
+        crumbs(s, c, null, parts[2] === 'frame' ? 'Course frame' : 'Scope and sequence');
+        open('<p class="fo-loading">Loading...</p>', s, true);
+        return frameDoc(s, d, c, parts[2]).then(function (h) { show(h, true); });
+      }
       var u = parts[2] && c.units.filter(function (x) { return String(x.n) === parts[2]; })[0];
+      if (u && parts[3]) {
+        var kind = parts[3], id = parts[4];
+        crumbs(s, c, u, kind === 'plan' ? 'Unit plan' : kind === 's' ? 'Section ' + id : 'Day ' + id);
+        open('<p class="fo-loading">Loading...</p>', s, true);
+        return unitDoc(s, d, c, u, kind, id).then(function (h) { show(h, true); });
+      }
       crumbs(s, c, u);
       open(u ? unitView(s, d, c, u) : courseView(s, d, c), s);
-    });
+    }).catch(fail);
   }
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-go]'), b = e.target.closest('.fo-subj');

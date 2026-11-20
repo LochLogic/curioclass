@@ -55,7 +55,11 @@ if ignore.exists() and 'courses/*' in ignore.read_text(encoding='utf-8').split()
     for name in ('sitemap.xml', 'search-index.json'):
         if (DIST / name).exists() and '/courses/' in (DIST / name).read_text(encoding='utf-8'):
             broken.setdefault('/courses/ (hidden, but listed)', name)
-files = [f for f in DIST.rglob('*') if f.is_file()]
+# Count what a deploy uploads: files matched by .assetsignore stay on disk but never reach the host's 20000 cap.
+import fnmatch  # noqa: E402
+skip = [p for p in (ignore.read_text(encoding='utf-8').split() if ignore.exists() else []) if p]
+files = [f for f in DIST.rglob('*') if f.is_file()
+         and not any(fnmatch.fnmatchcase(f.relative_to(DIST).as_posix(), p) for p in skip)]
 big = [f.relative_to(DIST).as_posix() for f in files if f.stat().st_size > 25 * 2 ** 20]  # Cloudflare's asset limits
 print(f'{pages} pages checked, {len(redirects)} redirects ({splats} splat), {len(broken)} broken internal links, {len(external)} external loads, '
       f'{len(files)} files (limit 20000), {len(big)} over 25 MiB')

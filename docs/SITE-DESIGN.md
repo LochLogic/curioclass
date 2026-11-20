@@ -153,20 +153,27 @@ check_site.py fails if any other page, the sitemap or the search index points in
 
 For administrators and policy readers, from a state department of education down to a teacher: the whole curriculum
 top to bottom, and how it is built. Not a teacher or student page, so the print-and-offline rule bends here: the pages
-load data as you browse (one JSON per subject), and the reader prints the open course or unit only.
+load data as you browse, and the reader prints the open view only.
 
 - **The Front Office** shows the six layers as a flow with counts, a skill ladder per subject (strand by grade), every
-  course by grade, and a reader drawer for each course, unit, section and day. Each view has its own link
-  (`#subject/course/unit`).
-- **Show Your Work** walks through the approach, the layers, the checks, an honest status (not yet taught with
-  students, no working teacher has read it, most days not yet written), the base texts with their licences, the
-  review record and corrections.
+  course by grade, and a reader drawer. Each view has its own link (`#subject/course/unit`).
+- **Every document reads in the drawer** (Cory, 2026-11-19: "read from the progressions and course frames all the
+  way to the days"): the full skill ladder by grade (`#subject/ladder/grade`), each course frame and scope and
+  sequence (`#subject/course/frame`, `/scope`), each unit plan (`/unit/plan`), section plan (`/unit/s/1.2`) and
+  written day (`/unit/d/12`), formatted, with previous and next links that walk the layers in order. Days not yet
+  written show as planned. The blind-list courses have no documents here.
+- **Cleaned before posting.** scripts/front_office_docs.py drops internal sections, day front matter (materials and
+  print stay), file paths, dates of production, skill and item ids and sentences naming internal steps, then a last
+  gate drops any line with an internal word. `check` fails the build on anything that gets past it.
 - **Wording:** describe checks, never checkers. No mention of who or what did the work, and nothing that implies it
   was human made. Review summaries are cleaned before they are posted; base texts are cited here properly.
-- **Page count:** six files in all. Every layer opens in the drawer, so new courses, units and days add no pages.
-- **Built by** scripts/front_office.py on every build. `check` scans the output for internal names and process words.
-- **Draft for now:** a draft banner, `noindex, nofollow`, and no sitemap, search or menu entry. Later drafts get more
-  buttons and functionality (later.csv L70).
+- **Files:** the two pages, one JSON per subject, one ladder JSON per subject, and per course one `course.json` plus
+  one JSON per unit that has documents (about 465 in all). Days add no files: each lives in its unit's JSON. The
+  host cap counts uploaded files only (scripts/check_site.py skips what .assetsignore keeps back).
+- **Built by** scripts/front_office.py on every build.
+- **Draft, now linked:** linked from the site footer (About column) since 2026-11-19. Still a draft banner,
+  `noindex, nofollow`, and no sitemap or search entry. When to drop the banner and noindex is Cory's call (later.csv
+  L70).
 
 ## Decided at the home check (Cory, 2026-11-12)
 

@@ -4,11 +4,12 @@ r"""The Front Office and Show Your Work: the whole curriculum, top to bottom, fo
     python -X utf8 scripts/front_office.py build [DIR]    write the pages into DIR (default: CURIO_DIST or dist/)
     python scripts/build_site.py                          also builds them, inside every whole-site build
 
-Writes 6 files, on purpose (the host's file cap; docs/SITE-DESIGN.md): /front-office/ (the map, one page),
-/front-office/show-your-work/ (the method, one page) and /front-office/data/<subject>.json (one per core subject).
-Every course, unit, section and day opens in the map's reader from that data, so no page is made per layer.
+Writes /front-office/ (the map, one page), /front-office/show-your-work/ (the method, one page),
+/front-office/data/<subject>.json and <subject>-ladder.json, and through scripts/front_office_docs.py one
+docs/<course>/course.json plus one docs/<course>/u<NN>.json per unit with documents (docs/SITE-DESIGN.md). Every
+course, unit, section and day opens in the map's reader from that data, so no page is made per layer.
 
-A DRAFT: noindex, out of the sitemap and search, linked from no menu. Who did the work is never said either way
+A DRAFT: noindex, out of the sitemap and search, linked only from the site footer (2026-11-19). Who did the work is never said either way
 (no tool or model names, no "expert" or "teacher" readers implied); the checks are described, not the checkers.
 
 Reads: data/plans/frames.csv and the frames (through course_pages.load, which already drops planning language),
@@ -25,6 +26,7 @@ from collections import Counter, defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import course_pages as cp  # noqa: E402
+import front_office_docs as fod  # noqa: E402
 
 from pathlib import Path
 ROOT = Path(cp.ROOT)
@@ -34,6 +36,7 @@ PROG_FILE = {'ela': 'ela', 'math': 'math', 'science': 'science', 'social-studies
 FORBIDDEN = re.compile(r'\b(?:AI|A\.I\.|Claude|Codex|GPT|Sonnet|Opus|Haiku|Gemini|agents?|model(?:s)? (?:wrote|read)|'
                        r'LLM|Cory|Sara|Desk|card q-|later\.csv|BASELINE)\b|\.md\b|\.csv\b|—|\bCurio\b(?! Class)')
 STRAND_LABEL = {}
+fod.FORBIDDEN = FORBIDDEN
 
 
 def clean_goal(g):
@@ -98,7 +101,7 @@ def progressions(subject):
                          for k, v in sorted(strands.items(), key=lambda kv: -sum(kv[1].values()))])
 
 
-def build_data():
+def build_data(docdir=None):
     courses = cp.load()
     out = {}
     totals = Counter()
@@ -108,13 +111,17 @@ def build_data():
             st = layer_status(c['slug'])
             days = days_for(c['slug'])
             written = set(st['written'])
+            have = fod.course_docs(ROOT, c['slug'], days, docdir) if docdir and not BLIND.search(c['slug']) else None
+            hu = (have or {}).get('units', {})
             by_unit = defaultdict(lambda: defaultdict(list))
             for d in days:
                 by_unit[d['u']][d['s']].append(dict(d=d['d'], k=d['k'], g=d['g'], w=d['d'] in written))
             units = []
             for u in c['units']:
                 secs = by_unit.get(u['n'], {})
+                hx = hu.get(u['n'], {})
                 units.append(dict(n=u['n'], t=u['title'], q=u['question'], days=u['days'],
+                                  plan=hx.get('plan', False), sp=hx.get('sections', []),
                                   weeks=list(u['weeks']) if u['weeks'] else None, learn=u['learn'], why=u['why'],
                                   std=[s['code'] for s in u['standards']],
                                   checks=[x['label'] for x in u['checks']],
@@ -125,6 +132,7 @@ def build_data():
             cs.append(dict(slug=c['slug'], t=c['title'], g=c['grade'], term=c['term'], days=c['days'],
                            n_units=c['n_units'], lede=c['lede'], shape=c['shape'],
                            before=[x['slug'] for x in c['before']], after=[x['slug'] for x in c['after']],
+                           docs=dict(frame=bool(have and have['frame']), scope=bool(have and have['scope'])),
                            status=dict(frame=st['frame'], scope=st['scope'], unit_plans=st['unit_plans'],
                                        unit_state=plan_state, sections=n_sections, planned=len(days),
                                        written=len(st['written'])),
@@ -139,6 +147,11 @@ def build_data():
             totals['days'] += len(days)
             totals['written'] += len(st['written'])
         prog = progressions(subj)
+        if docdir:
+            rows = list(csv.DictReader(open(ROOT / 'data' / 'progressions' / ('%s.csv' % PROG_FILE[subj]),
+                                            encoding='utf-8')))
+            (docdir.parent / 'data' / ('%s-ladder.json' % subj)).write_text(json.dumps(
+                fod.ladder(rows, cp.GRADE_ORDER), ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
         totals['skills'] += prog['skills']
         out[subj] = dict(subject=subj, label=label, color=color, progressions=prog, courses=cs)
     return out, totals
@@ -195,9 +208,9 @@ def base_texts():
 def build(dist, env=None, render=None):
     from pathlib import Path
     dist = Path(dist)
-    data, totals = build_data()
     ddir = dist / 'front-office' / 'data'
     ddir.mkdir(parents=True, exist_ok=True)
+    data, totals = build_data(dist / 'front-office' / 'docs')
     for subj, d in data.items():
         (ddir / ('%s.json' % subj)).write_text(json.dumps(d, separators=(',', ':'), ensure_ascii=False),
                                                encoding='utf-8')
