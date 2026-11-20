@@ -216,7 +216,14 @@ def build(dist, env=None, render=None):
                                                encoding='utf-8')
     subjects = [dict(id=s, label=l, color=c, courses=len(data[s]['courses']),
                      skills=data[s]['progressions']['skills']) for s, l, c in cp.SUBJECTS]
-    ctx = dict(totals=dict(totals), subjects=subjects, reviews=reviews(), base_texts=base_texts())
+    # One hash of every document: the page asks for /front-office/docs/...?v=<hash>, so the Worker and browsers may
+    # cache each document for a year and a new build is never served stale (worker/index.js, scripts/sync_media.py).
+    import hashlib
+    h = hashlib.sha1()
+    for p in sorted((dist / 'front-office' / 'docs').rglob('*.json')):
+        h.update(p.relative_to(dist).as_posix().encode())
+        h.update(p.read_bytes())
+    ctx = dict(totals=dict(totals), subjects=subjects, reviews=reviews(), base_texts=base_texts(), docv=h.hexdigest()[:12])
     if render is None:
         env = env or cp.make_env()
         out = dist / 'front-office'

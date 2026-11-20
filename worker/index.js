@@ -4,6 +4,10 @@
 // scripts/sync_media.py uploads new pictures before a deploy; build_site.py writes dist/.assetsignore so they skip the asset upload.
 const MEDIA = /^\/((?:library\/[^/]+\/art\/[^/]+\.jpg)|(?:topics\/[^/]+\/words\/art\/[^/]+\.webp))$/;
 const r2key = p => p.replace(/^topics\//, 'modules/');
+// The Front Office documents (scripts/front_office_docs.py) live in the same bucket under their own path, so the
+// whole curriculum costs the static-asset limit nothing. The page asks for them with ?v=<build hash>: that exact URL
+// never changes, so it caches for a year; without ?v= they cache for five minutes.
+const DOCS = /^\/(front-office\/docs\/[a-z0-9-]+\/[a-z0-9-]+\.json)$/;
 
 export default {
   async fetch(request, env, ctx) {
@@ -11,19 +15,21 @@ export default {
     let path;
     try { path = decodeURIComponent(url.pathname); } catch { path = url.pathname; }
     if (path === '/api/message') return message(request, env);
-    const m = MEDIA.exec(path);
-    if (!m || !['GET', 'HEAD'].includes(request.method)) return env.ASSETS.fetch(request);
+    const m = MEDIA.exec(path), d = DOCS.exec(path);
+    if (!(m || d) || !['GET', 'HEAD'].includes(request.method)) return env.ASSETS.fetch(request);
 
     const cache = caches.default;
-    const key = new Request(url.origin + url.pathname, { method: 'GET' });
+    const versioned = d && /^\?v=[a-f0-9]{6,40}$/.test(url.search);
+    const key = new Request(url.origin + url.pathname + (versioned ? url.search : ''), { method: 'GET' });
     let res = await cache.match(key);
     if (!res) {
-      const obj = await env.MEDIA.get(r2key(m[1]));
+      const obj = await env.MEDIA.get(m ? r2key(m[1]) : d[1]);
       if (!obj) return env.ASSETS.fetch(request);  // not in R2: the asset 404 page
       const headers = new Headers();
       obj.writeHttpMetadata(headers);
       headers.set('etag', obj.httpEtag);
-      headers.set('cache-control', 'public, max-age=604800');
+      headers.set('cache-control', m ? 'public, max-age=604800' : versioned ? 'public, max-age=31536000, immutable' : 'public, max-age=300');
+      if (d) headers.set('x-robots-tag', 'noindex, nofollow');
       res = new Response(obj.body, { headers });
       ctx.waitUntil(cache.put(key, res.clone()));
     }

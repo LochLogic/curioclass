@@ -260,6 +260,7 @@ a.fo-day .dn::after { content: " \203A"; color: var(--c); }
 <script>
 (function () {
   var SUBJECTS = {{ subjects|tojson }};
+  var DOCV = {{ docv|tojson }};  /* the documents' build hash: they are served from storage and cached by it */
   var GRADES = ['K','1','2','3','4','5','6','7','8','9','10','11','12'];
   var cache = {}, current = null;
   var $ = function (id) { return document.getElementById(id); };
@@ -327,7 +328,7 @@ a.fo-day .dn::after { content: " \203A"; color: var(--c); }
   function loadDoc(slug, file) {
     var k = slug + '/' + file;
     if (docCache[k]) return Promise.resolve(docCache[k]);
-    return fetch('/front-office/docs/' + slug + '/' + file + '.json').then(function (r) { if (!r.ok) throw new Error('missing'); return r.json(); })
+    return fetch('/front-office/docs/' + slug + '/' + file + '.json?v=' + DOCV).then(function (r) { if (!r.ok) throw new Error('missing'); return r.json(); })
       .then(function (d) { docCache[k] = d; return d; });
   }
   function pad(n) { return (n < 10 ? '0' : '') + n; }

@@ -167,9 +167,13 @@ load data as you browse, and the reader prints the open view only.
   gate drops any line with an internal word. `check` fails the build on anything that gets past it.
 - **Wording:** describe checks, never checkers. No mention of who or what did the work, and nothing that implies it
   was human made. Review summaries are cleaned before they are posted; base texts are cited here properly.
-- **Files:** the two pages, one JSON per subject, one ladder JSON per subject, and per course one `course.json` plus
-  one JSON per unit that has documents (about 465 in all). Days add no files: each lives in its unit's JSON. The
-  host cap counts uploaded files only (scripts/check_site.py skips what .assetsignore keeps back).
+- **Files:** the two pages, one JSON per subject and one ladder JSON per subject are static assets (about 10 files
+  however large the curriculum grows). The documents (one `course.json` per course, one JSON per unit with
+  documents; days live inside their unit's JSON) are stored in the R2 bucket beside the pictures (Cory, 2026-11-19):
+  dist/.assetsignore keeps them out of the asset upload, scripts/sync_media.py uploads changed ones and deletes
+  removed ones (data/docs-manifest.txt, by content hash), and worker/index.js serves them at the same addresses.
+  The page asks for `?v=<build hash>`, so each copy caches for a year and a new build is never stale. The host cap
+  counts uploaded files only (scripts/check_site.py skips what .assetsignore keeps back).
 - **Built by** scripts/front_office.py on every build.
 - **Draft, now linked:** linked from the site footer (About column) since 2026-11-19. Still a draft banner,
   `noindex, nofollow`, and no sitemap or search entry. When to drop the banner and noindex is Cory's call (later.csv

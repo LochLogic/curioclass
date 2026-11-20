@@ -1053,8 +1053,10 @@ for _r in _redir:
 # Content Signals (contentsignals.org): Cory allows search, AI answers and AI training (2026-10-28).
 (DIST / 'robots.txt').write_text(f'User-agent: *\nContent-Signal: search=yes, ai-input=yes, ai-train=yes\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n', encoding='utf-8')
 # Pictures are served from R2 by worker/index.js (the static-asset file limit); keep them out of the asset upload.
-# scripts/sync_media.py uploads the same two patterns. Keep the patterns here, there and in the Worker in step.
-(DIST / '.assetsignore').write_text('.assetsignore\nlibrary/*/art/*.jpg\ntopics/*/words/art/*.webp\n', encoding='utf-8')
+# scripts/sync_media.py uploads the same patterns, and the Front Office documents too. Keep the patterns here, there
+# and in the Worker in step.
+(DIST / '.assetsignore').write_text('.assetsignore\nlibrary/*/art/*.jpg\ntopics/*/words/art/*.webp\nfront-office/docs/*\n',
+                                    encoding='utf-8')
 if COURSES_LIVE:  # the hidden course pages: noindex header and kept out of the upload (written after _headers above)
     course_pages.hide(DIST)
 print(f'{pages} pages, {len(built)} built tools, {len(bench)} on the bench, {len(sitemap)} in sitemap -> dist/')

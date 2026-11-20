@@ -1567,3 +1567,6 @@ there, nicely formatted; "the intent is for someone to be able to read from the 
 the way to the days." So the drawer now opens the full skill ladder, each frame, scope and sequence, unit plan,
 section plan and written day, cleaned of internal words first, and the footer links the page. It stays a draft
 (banner, noindex). docs/SITE-DESIGN.md, section "The Front Office"; later.csv L70.
+
+Same day, Cory: the Front Office documents move to the R2 bucket, so they add nothing to the static-asset file count
+as the curriculum grows. The page and its addresses are unchanged. docs/SITE-DESIGN.md, section "The Front Office".
