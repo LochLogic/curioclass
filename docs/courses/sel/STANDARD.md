@@ -1,6 +1,7 @@
 # Social and emotional learning: the standard, made usable
 
-**DRAFT, 2026-11-16.**
+**Settled calls in (Cory, 2026-11-21, Desk q-prework-open-1); stage 1 fix pass 2026-11-21
+(docs/reviews/prework-sel-fixes-2026-11-20.md). Written 2026-11-16.**
 
 Written 2026-11-16 as the pre-work owed for social and emotional learning (docs/ADOPTION-BAR-SUBJECTS.md, "Before a
 scope and sequence in this subject", the SEL row), in the shape of docs/courses/social-studies/STANDARD.md. Core
@@ -15,7 +16,7 @@ review).
 | Separate courses (decided); they may be small | Applied: four band courses, 13 grade-year frames, 64 sessions a year (settled 2026-11-16) | Section 2 |
 | Write a sequence per grade | Done as a draft, 13 grade years, every grade covering all 40 sub-skills | Section 3 |
 | The design half as the bar, marked for a deeper review | Review done (criteria paper pp 1 to 3 and 20 to 35 read in full); five gaps named; the additions are in bar part 9 (settled 2026-11-16) | Section 4 |
-| Approach page (all ten subjects) | Draft for Cory's yes | docs/courses/sel/APPROACH.md |
+| Approach page (all ten subjects) | Approved by Cory 2026-11-21 (Desk q-prework-open-1) | docs/courses/sel/APPROACH.md |
 | Base text scout, lens | Done | docs/reviews/sel-open-material-2026-11-16.md; docs/agents/lenses/sel.md |
 
 ## 1. The standard and its terms
@@ -47,20 +48,20 @@ review).
 
 ## 2. Courses, bands and time
 
-- **The catalogue.** data/courses.csv has one SEL track row (`sel-k12`); docs/COURSES-STATUS.md counts four band
-  courses: K to 2, 3 to 5, 6 to 8, 9 to 12. The bar asks for a sequence for each grade, and the registry gives a
+- **The catalogue.** data/courses.csv has four SEL band rows (`sel-k-2`, `sel-3-5`, `sel-6-8`, `sel-9-12`; Cory,
+  2026-11-21, "Light shelf" dropped), as docs/COURSES-STATUS.md counts them. The bar asks for a sequence for each grade, and the registry gives a
   single lesson set for a band its lower design rating. So each band course holds one distinct year per grade, and
   "a band taught the same way every year" is a fail (bar, Fails if).
 - **How a grade year is framed.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): each grade year gets its
-  own frame and scope and sequence, 13 grade-year frames filed under the four band courses. The catalogue keeps
-  four courses. Recommended: replace the one `sel-k12` row in data/courses.csv with four band rows (and drop "Light
-  shelf"), and give plan.py one course id per band (`sel-k-2`, `sel-3-5`, `sel-6-8`, `sel-9-12`) with a frame per grade
-  year under it. Settled (Cory, 2026-11-21): four band rows, "Light shelf" dropped.
+  own frame and scope and sequence, 13 grade-year frames filed under the four band courses. plan.py takes one
+  course id per band (the four catalogue ids), with a frame per grade year under it.
 - **Sessions.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): two sessions a week in every grade, 32 weeks,
   so 64 sessions a year. A session is 20 minutes in K to 2, 30 in grades 3 to 5, 30 in grades 6 to 8 and 40 in
-  grades 9 to 12 (an advisory period); a frame may change its band's number and gives the reason. One session a week
-  (32 sessions) is the stated short path (C2): it drops the second Application session in each unit and never drops a
-  unit.
+  grades 9 to 12 (an advisory period); a frame may change its band's number and gives the reason. The registry's
+  criteria ask that sessions a year be stated and set no number (criteria paper p 25, section 4), so the course page
+  states ours with no national figure to compare. One session a week (32 sessions) is the stated short path (C2), and
+  it never drops a unit. What it cuts is open (Desk question, stage 1 fix pass): dropping one Application session a
+  unit takes off 6 sessions, not 32.
 - **Units.** Six units per grade year (section 3), each with its own readiness check and end-of-unit assessment,
   sized to the minutes chosen. "Never fewer units" is met: every sub-skill is taught, practised spaced out and
   checked every year.
@@ -73,7 +74,8 @@ review).
 The draft year for each grade. The theme sets the year's angle, so no two years of a band run alike. Each unit lists
 the sub-skills it teaches first that year; every later unit brings earlier sub-skills back in practice (C7). In
 every grade all 40 sub-skills are taught once and only once as a unit's own. No unit teaches more than eight
-sub-skills first, so each has time to be rehearsed (about two sessions a sub-skill); a sub-skill that suits a late
+sub-skills first, so each has time to be rehearsed (at 64 sessions a unit has about ten, fewer than two a
+sub-skill in an eight-skill unit; how a unit shares its sessions is open with the short path, section 2); a sub-skill that suits a late
 unit better comes back there in practice, not as a first teaching.
 
 **Depth ladder, by band.** K to 2: a picture or story moment, one or two pictured steps, said aloud or acted with a
@@ -82,7 +84,8 @@ invented case and then in a planned class moment. Grades 6 to 8: the strategy ch
 against real pressures (friends, online, time), with the reason written down. Grades 9 to 12: a plan the student
 designs for an invented or chosen situation, with its trade-offs and a judgement of how well it worked. Within a
 band the first year uses cases from the school day, the second adds a second person's point of view, and the third
-adds a cost or a pressure. The progression row for each sub-skill says which of the three a year is.
+adds a cost or a pressure; grade 12, the fourth year of 9 to 12, adds a setting past school (work, community, life
+after school). The progression row for each sub-skill says which step a year is.
 
 **Ownership, for the progression** (settled 2026-11-21: Cory asked for a pedagogical check of the recommendation and
 its use if it held; it held with two fixes, docs/reviews/sel-ownership-check-2026-11-21.md). One owned row per
@@ -94,8 +97,10 @@ that year differs. Each row's `assumes` names the same sub-skill in the year bef
 kindergarten assumes nothing for it), so a band's later years build on its earlier ones and the first year of a band
 builds on the previous band's owner row, with a note on the step up. The grade table below stays the placement, and
 every year still teaches all 40 once. Other subjects' leans name the SEL row of the grade whose depth they need.
-The gate needs the codes() fix in scripts/progression.py (split on the tab only) before the first SEL check, since
-24 sub-skill names contain spaces.
+Before the first SEL check, scripts/progression.py needs four changes: sel in STD_FILES and ANCHOR
+(casel-5.txt); codes() split on the tab only, since 24 sub-skill names contain spaces; a sel rule in code_grades
+(owners in grades 2, 5, 8 and 12, `~` rows in any grade); and an ownership check that wants each id owned once in
+each of those four grades, since today it fails any id owned by more than one grade.
 
 How each competency is practised (bar item 5): self-management and relationship skills by doing (rehearsing a
 calming routine, acting out an invented hard moment, practising an I-statement with a partner); self-awareness,
@@ -123,16 +128,17 @@ Unit rules:
 - **Kindergarten unit 1 assumes nothing.** Its readiness item checks only what a five-year-old arrives with
   (naming a classmate, taking a turn), and no later unit is assumed by it.
 - **Cases stay in school, friend, family-chore, sport and online settings.** No invented case names self-harm, a
-  diagnosis, dating, sex or a substance. The units that sit next to health ("Stress and strong feelings",
-  "Stress, focus and rest", "Stress and coping", "Relationships that are good for me", "Saying no, setting limits" and
-  "Help, support and pressure") name the health unit in the teacher notes and hand those topics to it.
+  diagnosis, dating, sex or a substance. The units that sit next to health, every grade 6 to 12 unit that teaches
+  SM2 (coping with stress) or RS6 (saying no to pressure) first (among them "Stress and strong feelings", "Under
+  pressure", "Stress and coping", "Saying no, setting limits", "Help, support and pressure" and "Steady under
+  change"), name the health unit in the teacher notes and hand those topics to it.
 - **Grade 10 unit 4, "Saying no, setting limits"** (retitled from "Healthy boundaries", Cory, 2026-11-21), so the
   title does not read as dating or sexual health.
 
 Placement notes, by sub-skill, where the grade matters most:
 
 
-- **SA6 (own snap judgements) and SO6 (norms that have been unfair)** start in kindergarten and grade 1 as fairness
+- **SA6 (own snap judgements) and SO6 (norms that have been unfair)** start in K to 2 as fairness
   at play ("everyone can join"), and reach unfair rules of the past in grade 5 and later, taught from settled facts
   (see section 5). In grades 3 and 4 SO6 is a rule in a class, club or game that leaves someone out, on invented
   cases; SO8 is how a school's or a town's rules and signs shape what people do. Grade 7 ("Snap judgements") and grade 10 ("Culture and respect") are their main years.
@@ -208,8 +214,9 @@ Curio Class must never call its SEL courses "evidence-based" or use the registry
 
 ## 5. Sensitive ground: FOUNDATION's promises and the values rule
 
-SEL touches family, identity and mental health, so these rules hold in every SEL unit, read at the Finish check by
-the fresh sensitivity agent (FOUNDATION promise 7, BASELINE rules 5, 6 and 8).
+SEL touches family, identity and mental health, so these rules hold in every SEL unit, read by the fresh
+sensitivity agent on every unit plan and day and at the Finish check (docs/pipeline/briefs/sensitivity-read.md,
+"When these reads run"; FOUNDATION promise 7, BASELINE rules 5, 6 and 8).
 
 **The values rule, in order** (Cory, DESK-ANSWERS 2026-11-12, as social studies applies it): (a) where a court has
 ruled, side with the higher court; (b) facts and backed sources decide claims; (c) people are taught with dignity,
@@ -236,8 +243,9 @@ Applied to SEL:
    speaking up), the teacher or a card plays the pressure; no student plays a person who pressures or is unkind.
 4. **SEL is not therapy.** No diagnosis, no clinical words used of a child, no claim that a course treats anxiety or
    depression. Calming routines are breathing, movement and pause, taught as plain body skills with no religious or
-   spiritual framing. Each unit's teacher notes say: if a child discloses harm or risk, follow the school's
-   reporting policy and refer to the counselor. Suicide prevention, substances and sexual health belong to health.
+   spiritual framing. Each unit's teacher notes carry health's steps for when a child discloses harm or risk
+   (docs/courses/health/APPROACH.md, "If a student tells you something": the school's duty to report and the
+   counselor, and the home route for a parent teaching one child). Suicide prevention, substances and sexual health belong to health.
 5. **Hard facts plain, at the right age.** SO6 "norms that have been unfair" uses settled history the courts have
    ruled on (school segregation struck down in 1954 is the model case) and facts, not opinion; current political
    disputes are not SEL content. Grade sets the case: playground fairness in K to 2, unfair rules of the past from
@@ -269,7 +277,7 @@ Applied to SEL:
   health applies it to health topics. When both courses run in a grade, the health frame names the SEL unit as
   "builds on" and does not reteach the steps. A one-line gate when health's frames are written.
 - **ELA (data/progressions/ela.csv).** The discussion rows (ek-discussion to e5-discussion, e6-collab-discussion to
-  e8-collab-discussion, e9-sl-discussion, e10-sl-seminar and on) carry turn-taking, listening and building on
+  e8-collab-discussion, e9-sl-discussion, e10-sl-seminar, e11-seminar and e12-seminar) carry turn-taking, listening and building on
   others' ideas. SEL's RS1 uses the same norms and words, so a class meets one set of talk rules.
 - **Social studies (data/progressions/social-studies.csv).** ssk-rules-why, ssk-talk-together, ss1-group-rules and
   ss1-community-problems overlap SO8, RS1 and RD3 in K and 1. SEL takes the personal side (how I act in a group);

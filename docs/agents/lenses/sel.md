@@ -28,8 +28,8 @@ Checks score a skill, never a feeling, a trait or a home life. No surveys, no sc
 promise 2).
 
 **SEL is not therapy.** Plain body and thinking skills, with no clinical words used of a child and no claim to
-treat anything. A disclosure of harm or risk goes to the school's reporting route and counselor, named in every
-unit's teacher notes. Mental health topics, substances and sexual health are health's.
+treat anything. A disclosure of harm or risk follows health's steps (docs/courses/health/APPROACH.md, "If a student
+tells you something"): the school's reporting route and counselor, named in every unit's teacher notes. Mental health topics, substances and sexual health are health's.
 
 **The values rule, in order** (DESK-ANSWERS 2026-11-12, as social studies applies it). (a) Where a court has
 ruled, side with the higher court. (b) Facts and backed sources decide claims. (c) Dignity, respect, kindness and

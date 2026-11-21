@@ -7,7 +7,7 @@
 ## What a good SEL session does
 
 - **Teaches one skill by name, with steps.** "Stop, breathe, name it" is a skill; "be kind" is not. The skill has a
-  name the class keeps all year, two to four steps, and a reason it helps (explicit: said plainly, not left to be guessed).
+  name the class keeps all year, two to four steps (one or two in K to 2, STANDARD section 3), and a reason it helps (explicit: said plainly, not left to be guessed).
 - **Shows it, then has every student do it.** The teacher models the skill on an invented case, thinking aloud. Then
   students rehearse it: with a partner, in a short scene with invented characters, or as a body routine. Practice
   by doing is the core of the session, not an extra (bar item 5).
@@ -23,7 +23,7 @@
 |---|---|
 | Understanding | Name the skill, see it modelled on an invented case, say why it helps and when to use it. |
 | Fluency | Rehearse the skill until the steps come easily: partner rehearsal, a body routine, sentence frames for an I-statement. |
-| Application | Use the skill in a new invented case, a scene card or a planned class moment (a group task where the skill is needed). |
+| Application | Use the skill in a new invented case, a scene card or a planned class moment (a group task where the skill is needed). Student voice sits here: class norms, or a school improvement the class proposes and carries out. |
 | Check | The end-of-unit assessment: a rehearsal against a look-for list and scenario items (what would a good next step be, and why). |
 | Respond | Return to the skill where the checks showed gaps: reteach the steps, then rehearse again. |
 
@@ -38,11 +38,14 @@ paper class sheet as "seen / not yet", to plan the Respond day. The sheet holds 
 rating of the child; it is the teacher's own working paper, is not shared outside the class and is thrown away at the end
 of the unit. It is never a rating of a child's feelings, character or home life, never a survey, and never kept as
 student data (promise 2). A private journal page may close a
-session; it stays with the student.
+session; it stays with the student. Once a unit, a self-check page (C8): the student marks which steps of the
+unit's skill they can do alone and names the one they will practise next. It checks steps only, never a feeling or
+a trait, stays with the student and is not collected.
 
 ## What SEL adds to the unit and section plan fields
 
-Proposed, to be tried on the first SEL unit plans (after the core subjects):
+Proposed, to be tried on the first SEL unit plans (after the core subjects). The shared part of every field stands
+as UNIT-PLAN.md writes it; the lines below add only what SEL fills, under UNIT-PLAN.md's numbers.
 
 - Header: sessions by kind; sessions a week and minutes, as the frame states them (pass rule, smaller courses).
   Pacing: as STANDARD section 2.
@@ -52,8 +55,11 @@ Proposed, to be tried on the first SEL unit plans (after the core subjects):
 - Unit field 3 (where it sits): builds on (the same sub-skill one year before, handoff strong or weak); leads to; comes
   back; and the one link to this grade's core courses a teacher may use (an ELA discussion routine, a social studies
   civics row), named by its row id.
-- Unit field 4 (readiness): one scenario item on the skills the unit builds on; the ten-minute reteach is the earlier
-  skill modelled again.
+- Unit field 4 (readiness): every unit's sub-skills were used the year before or earlier the same year, so the
+  field is `Retrieval only:` (UNIT-PLAN field 4): one scenario item on the same sub-skill at its earlier depth,
+  inside the session's five-minute opening, and on a miss the earlier skill modelled again. A `Given:` readiness
+  check only where a left-out unit puts the last use two or more grades back (STANDARD section 5, item 6).
+  Kindergarten unit 1: `Start-of-year check:` on what a child arrives with (STANDARD section 3).
 - Unit field 5 (end-of-unit assessment): a rehearsal with look-fors and scenario items, each teacher-judged item with
   two sample answers. Nothing personal in any item.
 - Unit field 6 (error register): the misreadings of the skill (for example "calming down means hiding the feeling",
@@ -62,22 +68,25 @@ Proposed, to be tried on the first SEL unit plans (after the core subjects):
   marked by hands up. Groups for the Respond day come from the class sheet's "not yet" cells by step, at most four
   groups; the others rehearse in pairs from the step card. Marking time is stated as minutes.
 - Unit field 8 (tools and supplies): scene cards, pictures, stories by title and record; no product or program names.
-  No tool collects feelings, answers or names, and none scores a child (C15). The teacher's fidelity checklist is a
+  A tool may show a step card, or invented cases to sort or choose a next step with feedback on the steps. No tool
+  collects feelings, answers or names, none scores a child (C15), and none stands in for rehearsal with people
+  (bar item 5). The teacher's fidelity checklist is a
   paper page: did the session run as planned, and which part was cut.
 - Unit field 9 (family note): in English and Spanish: the skill's name and steps, the words the class uses, and one
   thing to try at home (the family activity).
 - Unit field 10 (sources): a sources table with what was read and how much, what is from memory, no claim of effect,
-  and a line pointing to the course-level logic model (C16). Student voice (class norms, or a school improvement the
-  class proposes and carries out) is placed in the unit's Application sessions.
-- Section field 1: before you teach: the skill as an adult uses it, and one thing to model (STANDARD section 4, E).
-  The sensitive topics the section touches, named, and the school's reporting route if a child discloses harm.
-- Section field 2 (where it sits): what the section builds on and leads to, in the unit.
+  what is still to make, and a line pointing to the course-level logic model (C16).
+- Section field 1 (what the teacher page must explain), so every unit's teacher pages open with it: before you
+  teach: the skill as an adult uses it, and one thing to model (STANDARD section 4, E). The sensitive topics the
+  section touches, named, and the steps if a child discloses harm (STANDARD section 5, item 4).
+- Section field 2 (where it sits): the section just before and just after in the unit, and the unit's field 4
+  retrieval items this section uses.
 - Section field 3: the day's evidence as above, with its look-fors.
 - Section field 4 (expected errors): each as a wrong example beside a right one (for example an I-statement that
   blames), with the day it is shown and the five to ten minute response if many made it.
 - Section field 5 (what is carried): the skill's step card, plus the carry-out cue for the school day. The teacher holds
   the model on the first session; pairs hold the card on the second; the card is withdrawn on the first Application
-  session, which the plan names, and the check is taken without it. K to 2 use the same steps as three or four
+  session, which the plan names, and the check is taken without it. K to 2 use their one or two steps as
   pictured words said aloud.
 - Section field 6: kind of day; how it opens (a calm start routine or a retrieval question on an earlier skill, five
   minutes at most); the invented case used. In K to 5 a new skill is taught before it is tried.
