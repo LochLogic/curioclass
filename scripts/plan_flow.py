@@ -1,5 +1,5 @@
-"""Builds the Review Desk's plan flow: every step of docs/PRODUCTION-PATH.md, from pre-work to the last day and
-tool, as nodes that light up as the work is done.
+"""Builds the Review Desk's plan flow: the seven stages of docs/COURSE-RUN.md (pre-work to course finish), the same
+for every subject, as nodes that light up as the work is done. The core four are drawn bright, every other course faint.
 
 Run: python -X utf8 scripts/plan_flow.py out.json   (then ArtifactData set stats/plan from out.json)
 
@@ -10,10 +10,12 @@ and steps can be added in this file without touching the page.
 Where the states come from:
 - data/plans/flow-status.csv, one row per node that has moved (node, state, date, note). The lead adds or edits a
   row when a step starts (active) or ends (done). A node with no row is still to do.
-- days, unit plans and tools are counted from the repo through scripts/course_status.py.
+- unit plans and tools are counted from the repo through scripts/course_status.py; section plans from the plan
+  files, items.csv and the answer-key reads; days from courses/<course>/u*/dNNN.md, done once the grade's sample
+  read (docs/reviews/ladder-sample-<course>-a-*.md) is filed.
 States: . to do, a active, d done, e on file from before the 2026-11-13 plan (to be re-read in its turn).
 """
-import csv, io, json, os, re, subprocess, sys, tempfile, datetime
+import csv, glob, io, json, os, re, subprocess, sys, tempfile, datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ORDER = ['Social Studies', 'Science', 'English Language Arts', 'Math']   # build order; math last
@@ -71,36 +73,68 @@ def stage(id_, title, sub, lanes): bands.append(dict(type='stage', id=id_, title
 def mile(id_, title, sub): bands.append(dict(type='milestone', id=id_, title=title, sub=sub, s=st(id_)))
 def N(id_, label, default='.'): return [id_, label, st(id_, default)]
 
-stage('pre', 'Pre-work', 'Groundwork before any course is planned. Make the social studies standard usable, pick a base text, set the measures, and prove the expert reader is good enough.', [
+# The seven stages of docs/COURSE-RUN.md (draft 3, adopted 2026-11-20), the same for every subject. Each stage is
+# one band with a lane per subject: the four core subjects bright, then the core electives and the other subjects
+# faint (lane `faint`), every count an estimate until a frame sets it. Node ids are kept from the earlier
+# PRODUCTION-PATH flow, so every state in flow-status.csv still lights the same step.
+SUBJ_ORDER = ['Social Studies', 'Science', 'English Language Arts', 'Math']   # how the lanes are listed
+electives = [c for n in SUBJ_ORDER for c in courses(n) if not c.get('core')]
+others = [s_ for s_ in CS['subjects'] if s_['name'] not in SUBJ_ORDER]
+AFTER = ([('core-electives', 'Core electives', electives, False)] if electives else []) + \
+        [(slug(s_['name']), s_['name'] + (' (shelved)' if s_['name'] == 'World Languages' else ''), s_['courses'], True) for s_ in others]
+def sname(n): return SHORT.get(n, n)
+
+def prog_default(name, g):
+    return 'e' if name == 'Math' and g in ('3', '4', '5') else '.'
+def frame_default(c): return 'e' if c.get('days_total') else '.'
+
+def day_files(c):
+    """Day numbers written for a course: courses/<course>/u*/dNNN.md."""
+    out = set()
+    for f in glob.glob(os.path.join(ROOT, 'courses', fid(c), 'u*', 'd[0-9][0-9][0-9].md')):
+        out.add(int(os.path.basename(f)[1:4]))
+    return out
+def grade_closed(c):
+    """A grade closes when its sample read is filed (COURSE-RUN stage 6: two fresh readers, 10 days)."""
+    return bool(glob.glob(os.path.join(ROOT, 'docs', 'reviews', 'ladder-sample-%s-a-*.md' % fid(c))))
+
+# 1. Pre-work
+stage('pre', '1. Pre-work', 'Once per subject: the standard in our own words, the approach, a base text, the expert reader and its bar, the course list and shape, the dose. The expert must catch planted faults before it is trusted.', [
     dict(title='Social studies standard', nodes=[N('P1a', 'Load the Massachusetts standards'), N('P1b', 'Redraw the course list'),
          N('P1c', 'Name the check states'), N('P1d', 'Design the replaced state-study year'), N('P1e', 'Psychology and electives')]),
     dict(title='Base text and rules', nodes=[N('P2', 'Scout a social studies base text'), N('P3', 'Replace rule 25'),
          N('P4', 'Set probe and guard measures')]),
     dict(title='The expert reader', nodes=[N('P5a', 'Subject lenses'), N('P5b', 'Science and social studies bars'),
          N('P5c', 'Briefs for the new layers'), N('P5d', 'Calibration test, expert and Codex')]),
-])
+] + [dict(title=t, faint=True, nodes=[N(f'pre:{i}', 'Pre-work')]) for i, t, cs, pre in AFTER if pre])
 
-def prog_default(name, g):
-    return 'e' if name == 'Math' and g in ('3', '4', '5') else '.'
-stage('prog', 'Progressions', 'For each subject, what every grade owns, assumes from the grade before and hands on to the next, K to 12. Each subject is written, read twice and fixed; then one read checks all four together.', [
-    dict(title=SHORT.get(n, n), nodes=[N(f'prog:{slug(n)}:{g}', f'{SHORT.get(n, n)}, grade {g}', prog_default(n, g)) for g in GRADES]
-         + [N(f'prog-review:{slug(n)}', f'{SHORT.get(n, n)}: expert read')]) for n in ORDER
-] + [dict(title='Across subjects', nodes=[N('prog-review:all', 'One read across all four')])])
+# 2. Progression
+stage('prog', '2. Progression', 'Once per subject, all grades: what every grade owns, assumes from the grade before and hands on, written blind by band, then stitched and read. The subject ledger is seeded here.', [
+    dict(title=sname(n), nodes=[N(f'prog:{slug(n)}:{g}', f'{sname(n)}, grade {g}', prog_default(n, g)) for g in GRADES]
+         + [N(f'prog-review:{slug(n)}', f'{sname(n)}: expert read')]) for n in SUBJ_ORDER
+] + [dict(title='Across subjects', nodes=[N('prog-review:all', 'One read across all four')])]
+  + [dict(title=t, faint=True, nodes=[N(f'prog:{i}', 'Progression')]) for i, t, cs, pre in AFTER if pre])
 
-def frame_default(c): return 'e' if c.get('days_total') else '.'
-stage('frames', 'Course frames', 'One page per core course: its grades, the standards and skills it owns, its number of days, its unit list and a map of the base text. Three checks then review the whole structure and the website.', [
-    dict(title=SHORT.get(n, n), nodes=[N(f'frame:{slug(c["title"])}', c['title'], frame_default(c)) for c in core(n)]) for n in ORDER
-] + [dict(title='Checks', nodes=[N('b1:review', 'Whole-structure review'), N('b1:site', 'Website design check'), N('b1:codex', 'Codex read'), N('b1:pages', 'Course pages from the frames')])])
-mile('baseline1', 'Baseline 1', 'Every progression and course frame has been reviewed. The website matches the plan from subject down to course.')
+# 3. Course frames, then scopes and sequences
+lanes3 = []
+for n in SUBJ_ORDER:
+    cs = core(n)
+    lanes3.append(dict(title=sname(n) + ' frames', nodes=[N(f'frame:{slug(c["title"])}', c['title'], frame_default(c)) for c in cs]))
+    lanes3.append(dict(title=sname(n) + ' scopes and sequences', nodes=[N(f'ss:{slug(c["title"])}', c['title'], 'e' if c.get('days_total') else '.') for c in cs]
+                       + [N(f'ss-review:{slug(n)}', 'Review')]))
+lanes3.append(dict(title='Checks', nodes=[N('b1:review', 'Whole-structure review'), N('b1:site', 'Website design check'), N('b1:codex', 'Codex read'),
+                                          N('b1:pages', 'Course pages from the frames'), N('baseline1', 'Baseline 1: frames reviewed')]))
+lanes3.append(dict(title='Gate: owner approves the baseline', nodes=[N(f'gate3:{slug(n)}', sname(n)) for n in SUBJ_ORDER]))
+for i, t, cs, pre in AFTER:
+    lanes3.append(dict(title=t, faint=True, nodes=[N(f'frame:{slug(c["title"])}', c['title']) for c in cs]
+                       + [N(f'ss:{slug(c["title"])}', c['title']) for c in cs] + [N(f'ss-review:{i}', 'Review')]))
+stage('frames', '3. Course frames, then scopes and sequences', 'Per course, grades in order, pilot course first. A frame holds the owned skills, dose, session count, units and source map; the scope and sequence holds every day in order, the checks and the calendar fit.', lanes3)
 
-MILE = {'Social Studies': ('baseline2', 'Baseline 2', 'Social studies is reviewed from the progression down and its probe is read. Any fix to the day template is made here once, for every subject.'),
-        'Science': ('m-science', 'Science reviewed', 'Science is reviewed from the progression down and its probe is read.'),
-        'English Language Arts': ('m-ela', 'ELA reviewed', 'ELA is reviewed from the progression down and its probe is read.'),
-        'Math': ('m-math', 'Math reviewed', 'The older math work is converted to the new plan. Then math is reviewed from the progression down and its probe is read.')}
-for n in ORDER:
-    s, cs = slug(n), core(n)
+# 4. Unit plans
+lanes4 = []
+for n in SUBJ_ORDER:
     unit_lanes = []
-    for c in cs:
+    for c in core(n):
         k = slug(c['title']); tot, est = units_of(c)
         have = c.get('units') or 0
         cells = ''.join(st(f'unit:{k}:{i + 1}', 'e' if i < have else '.') for i in range(tot))
@@ -117,107 +151,104 @@ for n in ORDER:
             f = os.path.join('docs', 'courses', fid(c), name)
             if os.path.exists(os.path.join(ROOT, f)):
                 flinks[node] = ['The ' + ('scope and sequence' if name.startswith('scope') else 'course frame'), f]
-    stage(f'cycle:{s}', SHORT.get(n, n), 'Each course gets its scope and sequence (the units in order), then a plan for every unit, each reviewed. A probe then writes a few real days to test the plans.', [
-        dict(title='Scope and sequence', nodes=[N(f'ss:{slug(c["title"])}', c['title'], 'e' if c.get('days_total') else '.') for c in cs]
-             + [N(f'ss-review:{s}', 'Review')]),
-        dict(title='Unit plans', group=True, rows=unit_lanes),
-        dict(title='Review and probe', nodes=[N(f'units-review:{s}', 'Units review'), N(f'probe:{s}', 'Probe: a few days written and read')]),
-    ])
-    mile(*MILE[n])
-mile('final', 'Final review', 'Every core course is reviewed from the progressions down. Codex reads a sample as a second check.')
-
-stage('guard', 'The guard', 'A few days in each subject are written from the unit plans and measured. Full writing starts only once they pass.', [
-    dict(title='Guard', nodes=[N(f'guard:{slug(n)}', SHORT.get(n, n)) for n in ORDER])])
-
-# section plans (PRODUCTION-PATH step 7): one cell a section, from days.csv's `unit` column (the section id, 5.2).
-# A unit not yet split into sections holds one placeholder `N.1` section longer than six days; it is drawn as an
-# estimate of one section per five days. A section's plan is docs/courses/<course>/u<uu>-<s>.md; a flow-status row
-# section:<course>:<u>.<s> overrides the state (the probe sections are under correction).
-srows = []
-for n in ORDER:
-    for c in core(n):
-        k, p = slug(c['title']), os.path.join(ROOT, 'data', 'plans', fid(c), 'days.csv')
-        secs, est = {}, False
-        if os.path.exists(p):
-            for r in csv.DictReader(io.open(p, encoding='utf-8')):
-                u = (r.get('unit') or '').strip()
-                if re.fullmatch(r'\d+\.\d+', u):
-                    secs[u] = secs.get(u, 0) + 1
-        cells = ''
-        for u, n_d in secs.items():
-            a, b = u.split('.')
-            if b == '1' and n_d > 6 and not any(x.startswith(a + '.') and x != u for x in secs):
-                cells += '.' * max(1, round(n_d / 5)); est = True
-                continue
-            f = os.path.join(ROOT, 'docs', 'courses', fid(c), 'u%02d-%s.md' % (int(a), b))
-            cells += led.get(f'section:{k}:{u}', 'd' if os.path.exists(f) else '.')
-        if not secs:
-            cells, est = '.' * round(days_of(c)[0] / 5), True
-        srows.append(dict(title=c['title'], group=SHORT.get(n, n), est=est, cells=cells))
-bands.append(dict(type='rows', id='sections', title='Section plans', noun='sections', tip='row:sections',
-                  sub='Each section (1 to 6 days) gets a plan: its days, timed parts, questions with keys, words and supports. Plans stay one section ahead of day writing. Dashed cells are an estimate until a unit is split into sections.', rows=srows))
-
-rows = []
-for n in ORDER:
-    for c in core(n):
-        strip = strips.get(c['title'])
-        if strip:
-            cells = ''.join('e' if x in ('written', 'cheap', 'read', 'taught') else '.' for x in strip['days'])
-        n_days, est = days_of(c)
-        if not strip:
-            cells = '.' * n_days
-        else:
-            cells = (cells + '.' * n_days)[:n_days]
-        # a day's state beyond what the repo shows (for example active writing) comes from day:<course>:<n> rows
-        cells = ''.join(led.get(f'day:{slug(c["title"])}:{i + 1}', ch) for i, ch in enumerate(cells))
-        rows.append(dict(title=c['title'], group=SHORT.get(n, n), est=est, cells=cells))
-bands.append(dict(type='rows', id='days', title='Sections, days and lessons',
-                  sub='Every teaching day of every core course, written and then read by the cheap and expert readers. Courses are finished whole, not a few days at a time.', rows=rows))
-
-tool_rows = []
-for n in ORDER:
-    r = summ[n]
-    total, live = (r.get('spec') or 0) + (r.get('built') or 0) + (r.get('live') or 0), r.get('live') or 0
-    tool_rows.append(dict(title=SHORT.get(n, n), group='Tools', cells='e' * live + '.' * (total - live)))
-bands.append(dict(type='rows', id='tools', title='Tools', sub='Interactive tools, built or rebuilt only for the sections that call for them, then checked live. Tools live today wait on the shelf until a section names them.', rows=tool_rows, dots=True))
-
-# after the core (Cory 2026-11-14: "build out the after the core subjects into our core framework so i can better
-# visualize the massive workload ahead"): the same steps as a core subject, drawn faint, every count an estimate until
-# a frame sets it. The core electives come first, then each other subject in the catalog's order.
-def after_cycle(id_, title, cs, sub, pre=True):
-    lanes = []
-    if pre:
-        lanes.append(dict(title='Pre-work', nodes=[N(f'pre:{id_}', 'Bar work owed'), N(f'prog:{id_}', 'Progression')]))
-    lanes += [dict(title='Course frames', nodes=[N(f'frame:{slug(c["title"])}', c['title']) for c in cs]),
-              dict(title='Scope and sequence', nodes=[N(f'ss:{slug(c["title"])}', c['title']) for c in cs] + [N(f'ss-review:{id_}', 'Review')])]
+    lanes4.append(dict(title=sname(n), group=True, rows=unit_lanes))
+lanes4.append(dict(title='Reads', nodes=[N(f'units-review:{slug(n)}', sname(n)) for n in SUBJ_ORDER]))
+lanes4.append(dict(title='Gate: cold read, then owner approval', nodes=[N(f'gate4:{slug(n)}', sname(n)) for n in SUBJ_ORDER]))
+for i, t, cs, pre in AFTER:
     urows = []
     for c in cs:
         tot, est = units_of(c)
-        urows.append(dict(title=c['title'], est=est, cells=''.join(st(f'unit:{slug(c["title"])}:{i + 1}') for i in range(tot)), k=slug(c['title'])))
-    lanes.append(dict(title='Unit plans', group=True, rows=urows))
-    lanes.append(dict(title='Review and probe', nodes=[N(f'units-review:{id_}', 'Units review'), N(f'probe:{id_}', 'Probe')]))
-    bands.append(dict(type='stage', id=f'after:{id_}', title=title, sub=sub, lanes=lanes, faint=True))
-    group = title.replace('After the core: ', '').replace(' (shelved)', '')
-    return [(group[0].upper() + group[1:], c) for c in cs]   # each course with its subject, for the days groups
+        urows.append(dict(title=c['title'], est=est, cells=''.join(st(f'unit:{slug(c["title"])}:{j + 1}') for j in range(tot)), k=slug(c['title'])))
+    lanes4.append(dict(title=t, group=True, rows=urows, faint=True))
+    lanes4.append(dict(title=t + ': reads', faint=True, nodes=[N(f'units-review:{i}', 'Units review')]))
+stage('units', '4. Unit plans', 'Per course, units in order. Each goal names its exit kind, a practice of a different shape and review entries that point at earlier ledger rows. One cold read from the progression down, then owner approval.', lanes4)
 
-after_cs = []
-electives = [c for n in ORDER for c in courses(n) if not c.get('core')]
-if electives:
-    after_cs += after_cycle('electives', 'After the core: core electives', electives,
-                            'Precalculus, statistics, calculus, earth and space science, environmental science and psychology: the first courses after the core, built on the progressions of the core subjects.', pre=False)
-for s_ in CS['subjects']:
-    if s_['name'] in ORDER:
-        continue
-    shelved = s_['name'] == 'World Languages'
-    after_cs += after_cycle(slug(s_['name']), 'After the core: ' + s_['name'] + (' (shelved)' if shelved else ''), s_['courses'],
-                            ('Shelved 2026-11-11; counted so the whole is visible. ' if shelved else '')
-                            + 'The same steps as a core subject: the bar work this subject owes first, then its progression, frames, scopes and sequences and unit plans. Counts are estimates until each frame is written.')
-n_after = len(after_cs)
-arows = []
-for grp, c in after_cs:     # grouped by subject so each gets its own days bar on the Desk
-    n_days, est = days_of(c)
-    arows.append(dict(title=c['title'], group=grp, est=est, cells=''.join(st(f'day:{slug(c["title"])}:{i + 1}') for i in range(n_days))))
-bands.append(dict(type='rows', id='after-days', title='After the core: days', sub='Every teaching day of the other %d courses, at about %d days a course until each frame sets its count.' % (n_after, EST_DAYS), rows=arows, faint=True))
+# 5. Section plans, plan data and keys: one cell a section, from days.csv's `unit` column (the section id, 5.2).
+# A section is done when its plan (docs/courses/<course>/u<uu>-<s>.md), its plan data (items.csv rows for the
+# section) and its unit's answer-key read (docs/reviews/answer-key-<course>-u<uu>-*.md) are all in; under way once
+# the plan is written. A unit not yet split holds one placeholder `N.1` section longer than six days, drawn as an
+# estimate of one section per five days. A flow-status row section:<course>:<u>.<s> overrides the state.
+def section_cells(c):
+    k, p = slug(c['title']), os.path.join(ROOT, 'data', 'plans', fid(c), 'days.csv')
+    secs, est = {}, False
+    if os.path.exists(p):
+        for r in csv.DictReader(io.open(p, encoding='utf-8')):
+            u = (r.get('unit') or '').strip()
+            if re.fullmatch(r'\d+\.\d+', u):
+                secs[u] = secs.get(u, 0) + 1
+    data = set()
+    p = os.path.join(ROOT, 'data', 'plans', fid(c), 'items.csv')
+    if os.path.exists(p):
+        for r in csv.DictReader(io.open(p, encoding='utf-8')):
+            data.add((r.get('unit') or '').strip())
+    keys = {int(m.group(1)) for f in glob.glob(os.path.join(ROOT, 'docs', 'reviews', 'answer-key-%s-u*.md' % fid(c)))
+            for m in [re.search(r'-u(\d+)-', os.path.basename(f))] if m}
+    cells = ''
+    for u, n_d in secs.items():
+        a, b = u.split('.')
+        if b == '1' and n_d > 6 and not any(x.startswith(a + '.') and x != u for x in secs):
+            cells += '.' * max(1, round(n_d / 5)); est = True
+            continue
+        f = os.path.join(ROOT, 'docs', 'courses', fid(c), 'u%02d-%s.md' % (int(a), b))
+        s = ('d' if (u in data and int(a) in keys) else 'a') if os.path.exists(f) else '.'
+        cells += led.get(f'section:{k}:{u}', s)
+    if not secs:
+        cells, est = '.' * round(days_of(c)[0] / 5), True
+    return cells, est
+srows = []
+for n in SUBJ_ORDER:
+    for c in core(n):
+        cells, est = section_cells(c)
+        srows.append(dict(title=c['title'], group=sname(n), est=est, cells=cells))
+for i, t, cs, pre in AFTER:
+    for c in cs:
+        srows.append(dict(title=c['title'], group=t, est=True, faint=True, cells='.' * round(days_of(c)[0] / 5)))
+bands.append(dict(type='rows', id='sections', title='5. Section plans, plan data and keys', noun='sections', tip='row:sections',
+                  sub='Per grade, units in order: section plans, then plan data (items, wrong answers, sources, pieces), then a fresh key read per unit. In a subject\'s first grade, unit 1 goes all the way through days first (the probe). Then the kit is frozen for the grade.',
+                  lanes=[dict(title='Unit 1 probes', nodes=[N(f'probe:{slug(n)}', sname(n)) for n in SUBJ_ORDER])], rows=srows))
+
+# 6. Days: one cell a day. A written day (courses/<course>/u*/dNNN.md) is under way until its grade closes with a
+# sample read, then done. Days on file from before the 2026-11-13 plan (grade 4 math) stay "on file".
+rows = []
+close_lanes = []
+for n in SUBJ_ORDER:
+    cl = []
+    for c in core(n):
+        n_days, est = days_of(c)
+        have, closed = day_files(c), grade_closed(c)
+        strip = strips.get(c['title'])
+        old = [x in ('written', 'cheap', 'read', 'taught') for x in strip['days']] if strip else []
+        cells = ''
+        for d_ in range(1, n_days + 1):
+            if d_ in have: ch = 'd' if closed else 'a'
+            elif d_ <= len(old) and old[d_ - 1]: ch = 'e'
+            else: ch = '.'
+            cells += led.get(f'day:{slug(c["title"])}:{d_}', ch)
+        rows.append(dict(title=c['title'], group=sname(n), est=est, cells=cells))
+        cl.append(N(f'close:{slug(c["title"])}', c['title'], 'd' if closed else ('a' if have else '.')))
+    close_lanes.append(dict(title=sname(n) + ': grade close', nodes=cl))
+for i, t, cs, pre in AFTER:
+    for c in cs:
+        n_days, est = days_of(c)
+        rows.append(dict(title=c['title'], group=t, est=est, faint=True, cells=''.join(st(f'day:{slug(c["title"])}:{j + 1}') for j in range(n_days))))
+bands.append(dict(type='rows', id='days', title='6. Days',
+                  sub='Per grade, in order, 4 to 6 days a job, each job waiting until its ledger rows are written. A written day is under way until its grade closes: a cleanup job, then a sample read of 10 days by two fresh readers. Faint rows are the other subjects, at about %d days a course until each frame sets its count.' % EST_DAYS,
+                  lanes=close_lanes, rows=rows))
+
+# 7. Course finish: per course, the checks read as one assessment plan, a coherence pass, English learner supports,
+# art and voice and the tools the sections name; then the cross-grade continuity pass, a whole-course cold read and
+# owner sign-off. Tools are drawn here as dots, one a tool, lit when live.
+lanes7 = [dict(title=sname(n), nodes=[N(f'finish:{slug(c["title"])}', c['title']) for c in core(n)] + [N(f'continuity:{slug(n)}', 'Continuity pass')])
+          for n in SUBJ_ORDER]
+lanes7 += [dict(title=t, faint=True, nodes=[N(f'finish:{slug(c["title"])}', c['title']) for c in cs]) for i, t, cs, pre in AFTER]
+tool_rows = []
+for n in SUBJ_ORDER:
+    r = summ[n]
+    total, live = (r.get('spec') or 0) + (r.get('built') or 0) + (r.get('live') or 0), r.get('live') or 0
+    tool_rows.append(dict(title=sname(n) + ' tools', group='Tools', cells='e' * live + '.' * (total - live)))
+bands.append(dict(type='rows', id='finish', title='7. Course finish', dots=True,
+                  sub='Per course: the checks read as one assessment plan, a coherence pass over units and seams, English learner supports, art and voice, and the tools the sections name. Then the cross-grade continuity pass, a whole-course cold read and owner sign-off. Dots are tools, lit when live.',
+                  lanes=lanes7, rows=tool_rows))
 
 def rle(cs):
     out, i = [], 0
@@ -262,19 +293,18 @@ ABOUT = {
     'ss': "The scope and sequence for this course: its units in order, each with what it teaches and roughly how many days.",
     'ss-review': "The expert reads every scope and sequence in this subject together; one fix pass follows.",
     'units-review': "The expert reads this subject's unit plans together before any days are written.",
-    'probe': "A few real days are written from the unit plans and read, to test the plans before full writing.",
-    'guard': "A few days written from the unit plans and measured against set lines. Full writing in this subject starts only once they pass.",
-    'after': "A course outside the four core subjects. It starts once the core is done.",
+    'probe': "Unit 1 of the subject's first grade goes all the way through section plans, plan data, keys and days first, and is read, before the rest of the grade. The kit is retooled once after it.",
+    'gate3': "Stage 3 gate: Cory approves this subject's baseline (frames and scopes and sequences), scope changes only.",
+    'gate4': "Stage 4 gate: one cold read from the progression down across every course of the subject, then Cory approves the unit plans.",
+    'close': "This grade's days close: one cleanup job for faults across days, then a sample read of 10 days by two fresh readers, then a retool before the next grade.",
+    'finish': "Course finish: the checks read as one assessment plan, a coherence pass, English learner supports, art and voice, the tools the sections name; then a whole-course cold read, final sensitivity and safety reads, and Cory's sign-off.",
+    'continuity': "The cross-grade continuity pass: the ledger check re-run across all grades and every review claim confirmed against the written day, one fix job per grade.",
+    'pre': "This subject's pre-work: the standard in our own words, the approach, a base text, the expert's lens and bar, the course list and shape, the dose, cross-subject leans and sensitive ground.",
     'baseline1': "A checkpoint: every progression and course frame reviewed, and the website matches the plan.",
-    'baseline2': "A checkpoint: social studies reviewed top to bottom and its probe read. Any fix to the day template is made here, once.",
-    'm-science': "A checkpoint: science reviewed from the progression down, probe read.",
-    'm-ela': "A checkpoint: ELA reviewed from the progression down, probe read.",
-    'm-math': "A checkpoint: older math work converted to the new plan, then reviewed from the progression down, probe read.",
-    'final': "A checkpoint: every core course reviewed from the progressions down; Codex reads a sample.",
     'row:units': "The unit plans for this course, one cell a unit. Dashed cells are an estimate until the course frame sets the count.",
-    'row:days': "Every teaching day of this course, one cell a day: written, then read by the cheap and the expert readers.",
-    'row:sections': "The section plans for this course, one cell a section (1 to 6 days): the days, timed parts, questions with keys, words and supports the day writer works from. Dashed cells are an estimate until the unit is split.",
-    'row:tools':"The interactive tools in this subject, one dot a tool. Lit dots are live and verified.",
+    'row:days': "Every teaching day of this course, one cell a day. Amber: written, its grade not yet closed. Green: the grade closed with a cleanup and a sample read.",
+    'row:sections': "The sections of this course, one cell a section (1 to 6 days). Amber: the section plan is written. Green: its plan data and its unit's answer-key read are in too. Dashed cells are an estimate until the unit is split.",
+    'row:tools': "The interactive tools in this subject, one dot a tool. Lit dots are live; a tool is rebuilt or checked when a section names it.",
 }
 info = {}
 p = os.path.join(ROOT, 'data', 'plans', 'flow-status.csv')
@@ -326,7 +356,7 @@ for n_, v_ in LINKS_EXTRA.items():
 REPO = 'https://github.com/LochLogic/curioclass/blob/main/'
 flinks = {n_: [v_[0], REPO + v_[1].replace(os.sep, '/')] for n_, v_ in flinks.items()}
 out = dict(names=names, links=flinks, at=datetime.datetime.now().isoformat(timespec='minutes'), bands=bands, later=later, about=ABOUT, info=info, found=found,
-           note='From docs/PRODUCTION-PATH.md (draft 5). Day and unit counts marked "about" are estimates until each course frame sets them.')
+           note='From docs/COURSE-RUN.md (draft 3): seven stages, the same for every subject. Day and unit counts marked "about" are estimates until each course frame sets them.')
 io.open(sys.argv[1], 'w', encoding='utf-8').write(json.dumps(strip_cells(out), separators=(',', ':')))
 # A Desk document holds at most 256 KB, so the plan also goes out as parts: <out>.parts/plan-c<i>.json, each
 # {"stamp", "i", "n", "s"} with s a slice of the JSON text. The Desk joins the parts that share a stamp once all n

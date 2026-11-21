@@ -84,7 +84,8 @@ time, before more days are written.
   coverage (BASELINE rule 26).
 
 By course: [COURSES-STATUS.md](COURSES-STATUS.md) (generated; never edit by hand). By step: the Desk Dashboard's
-plan flow, data/plans/flow-status.csv. Parked work: data/plans/later.csv.
+plan flow, drawn as the seven stages of [COURSE-RUN.md](COURSE-RUN.md) for all 105 active courses (core bright,
+core electives and other subjects faint), node states in data/plans/flow-status.csv. Parked work: data/plans/later.csv.
 
 ## Next steps, in order
 
