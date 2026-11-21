@@ -1723,3 +1723,10 @@ cte-pathways 10.
 Cory took both recommended picks. (1) Yes to downloading and reading the music composition and theory strand, the arts
 associations' opportunity-to-learn files and the 2026 CSTA standards PDF, kept outside the repository, ids, figures and
 structure only. (2) The arts bridge unit is at most 12 days on the full 160-day year (6 on the short path).
+
+## 2026-11-21: Computer science calls from the standards PDF (q-fix-cs-2)
+
+Cory took all three recommended picks. (1) The boundary statements' text is not stored; the depth stays in our own
+words in each owner row's notes. (2) Our own editor gets an offline version history with branch, review and merge;
+S1-SWD-PP-08 is part met until it exists. (3) Lists stay in grades 7 and 8, counted as days outside the standards
+under C1's 10 percent.

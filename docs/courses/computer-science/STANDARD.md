@@ -19,7 +19,7 @@ where one is needed this page recommends and says so.
 | Load the 135 Specialty standards | Done 2026-11-11 (ids); wording 2026-11-16 | data/standards/csta-2026-specialty-ids.txt; statements file |
 | High school teaches the Foundational set, claims a Specialty id only where a topic already goes that far | Decided (Cory, 2026-11-11); restated in section 3 | This page |
 | Approach page | Approved 2026-11-20 (Cory, Desk q-prework-cs-1); fields placed 2026-11-21 | docs/courses/computer-science/APPROACH.md |
-| From the PDF: the sub-concept key, the practices table, every owner row checked against its boundary statement | Done 2026-11-21 (PDF read once, Desk q-fix-downloads-1). A stored copy of the boundary statements is not made: a question for Cory | Section 1 "Depth" and "Sub-concept codes"; section 3; data/progressions/computer-science.csv |
+| From the PDF: the sub-concept key, the practices table, every owner row checked against its boundary statement | Done 2026-11-21 (PDF read once, Desk q-fix-downloads-1). The boundary statements' text is not stored: the depth lives in our own words in each owner row's notes (Cory, 2026-11-21, Desk q-fix-cs-2; the PDF's CC BY-NC-SA licence does not mix with a public CC BY repository) | Section 1 "Depth" and "Sub-concept codes"; section 3; data/progressions/computer-science.csv |
 
 ## 1. The standard and its terms
 
@@ -230,6 +230,10 @@ text view, with a step-through trace), a single file with no account, starting w
 teachers to a third-party tool. The text language for grades 6 to 12 is Python, run in this editor (Cory, 2026-11-21,
 Desk q-fix-cs-1): the K to 8 partial base teaches Python in its middle years, so its units adapt directly, and it is
 the most common first text language in high school.
+
+The editor also keeps a small offline version history with branch, review and merge, so grade 12's team project
+meets S1-SWD-PP-08 in full; until that exists, the standard is part met and the course page says so (Cory, 2026-11-21,
+Desk q-fix-cs-2). It is an ask for the editor's own build list when the editor is specced.
 
 ### Blocks to text
 
