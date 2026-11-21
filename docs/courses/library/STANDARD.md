@@ -13,9 +13,10 @@ says which), never fewer units (Cory, 2026-11-11 and 2026-11-15).
 | Owed | State | Where |
 |---|---|---|
 | Relabel the file to the second edition (2025) | Done 2026-11-11 (label in the header); edition confirmed at source 2026-11-16 | data/standards/aasl-2018.txt |
-| Open the continuum's grade lists | Grades 3 to 5 read in full 2026-11-16; PK to 2, 6 to 8 and 9 to 12 owed before the progression | Section 2 |
-| Our own words for the 68 | Owed: data/standards/aasl-words.txt, one skill phrase per id | Section 1 |
-| Progression gate support | Owed: scripts/progression.py has no library entry yet, and data/progressions/library-excluded.csv is not written | Sections 3 and 4 |
+| Open the continuum's grade lists | Done: grades 3 to 5 read in full 2026-11-16; PK to 2, 6 to 8 and 9 to 12 read in full 2026-11-21 (downloaded with Cory's yes, Desk q-fix-library-1) | Section 2 |
+| Our own words for the 68 | Done 2026-11-21 against the second edition chart | data/standards/aasl-words.txt |
+| Progression gate support | Owed: scripts/progression.py has no library entry yet, and data/progressions/library-excluded.csv (the five ids of section 4) is not written | Sections 3 and 4 |
+| Catalogue | Done 2026-11-21: eight course rows in data/courses.csv, grade_subjects.csv and modules.csv (Cory, 2026-11-21, Desk q-fix-library-1); owed: scripts/course_status.py still names the old `library` id | Section 3 |
 | Approach page | Approved 2026-11-21 (Cory, Desk q-prework-open-2) | docs/courses/library/APPROACH.md |
 
 ## 1. The standard and its terms
@@ -30,10 +31,12 @@ says which), never fewer units (Cory, 2026-11-11 and 2026-11-15).
 - **Terms** (standards.aasl.org/permissions, read 2026-11-16): one competency may be excerpted into a lesson or unit
   plan for non-commercial education; the whole framework or a substantial part needs ALA permission. So the repo holds
   ids and our own words, never the competency text, and pages never claim AASL alignment approved by anyone.
-- **Our own words (owed):** data/standards/aasl-words.txt, the id, a tab, and one skill phrase of 8 to 15 words (an
+- **Our own words:** data/standards/aasl-words.txt, the id, a tab, and one skill phrase of 8 to 15 words (an
   action and an object, not a rewording of the sentence), for example `AASL.IV.B.3`, "Question each source's maker
   and purpose before trusting what it says." Written without asking ALA for permission, since a phrase names the
-  skill and follows no sentence (Cory, 2026-11-21).
+  skill and follows no sentence (Cory, 2026-11-21). All 68 written 2026-11-21 against the second edition chart, read
+  once from a copy kept outside the repo (S:\CurioClass-sources\library\aasl-2026-11-21; Cory, 2026-11-21, Desk
+  q-fix-library-1).
 - **What it lacks:** AASL competencies are not set by grade. The same 68 apply K to 12. The bar's criterion 2 asks for
   named priority skills per grade, so a grade sequence must come from elsewhere.
 
@@ -43,18 +46,26 @@ says which), never fewer units (Cory, 2026-11-11 and 2026-11-15).
   hosted by Monroe One BOCES School Library System (libguides.monroe.edu/ESIFC; band files dated 2019; continuum page
   last updated 2019-10-23). Four anchor standards: inquiry and design thinking, multiple literacies, social and civic
   responsibility, personal growth and agency (the guide's framework page, read 2026-11-21; no author named there).
-  Six phases inside the inquiry standard (connect, wonder, investigate, construct, express, reflect), from memory of
-  the 2019 guide (the framework page names no phases): to be confirmed against the band files before this line is
-  used in any public source line. Each
-  phase has indicators with a cell per grade, and the priority skills for each grade are marked in bold and gathered
-  in a "priority skills" box per phase.
-- **Read 2026-11-16:** the grades 3 to 5 band file in full. Example of the grain, in our own words: grade 3 uses a
-  teacher-given source for background and simple note-making; grade 4 picks an interesting part of a broad topic and
-  compares primary and secondary sources the teacher chose; grade 5 judges which questions facts can answer, weighs
-  print, video and online sources for relevance and builds a bibliography to a model. The PK to 2, 6 to 8 and 9 to 12
-  files have the same shape (structure seen on the continuum page; not read cell by cell). They are read in full
-  before the progression is drafted, and the result goes in a table here: for each grade, the priority skills in our
-  words, and a row for each place our list differs.
+  Six phases inside the inquiry standard (connect, wonder, investigate, construct, express, reflect), confirmed in
+  all four band files 2026-11-21, followed by a design thinking standard inside the same anchor. Each phase has
+  indicators with a cell per grade column, the priority skills marked in bold in the cells and gathered in a
+  "priority skills" box per phase for the whole band.
+- **Grade columns, by band file** (checked 2026-11-21): PK to 2 has PK, K, 1 and 2 (no Curio Class course uses the
+  PK column); 3 to 5 has 3, 4 and 5; 6 to 8 has 6, 7 and 8; 9 to 12 has only two columns, 9-10 and 11-12. So a
+  grade 9 or 10 progression row is checked against the 9-10 cell and an 11 or 12 row against the 11-12 cell, and the
+  progression says how grade 9 differs from 10 and 11 from 12, since the continuum does not. The four band names the
+  pages use (K to 2, 3 to 5, 6 to 8, 9 to 12) match the files, K to 2 being the file's PK to 2 without PK.
+- **Read in full:** the grades 3 to 5 band file 2026-11-16; the PK to 2, 6 to 8 and 9 to 12 files 2026-11-21, from
+  copies kept outside the repo (S:\CurioClass-sources\library\aasl-2026-11-21, read once, ids and figures only).
+  Example of the grain, in our own words: grade 3 uses a teacher-given source for background and simple
+  note-making; grade 4 picks an interesting part of a broad topic and compares primary and secondary sources the
+  teacher chose; grade 5 judges which questions facts can answer, weighs print, video and online sources for
+  relevance and builds a bibliography to a model. In K to 2 the bold skills include finding picture books by their
+  labels and shelf order, looking a book up in the catalogue by author, title or key word, naming who made a site,
+  and crediting authors; in 6 to 8, citing every source in a set style and deciding what fair use allows; in 9 to
+  12, reading laterally for background, search filters and operators, and copyright, open licences and asking a
+  maker's permission. The result goes in a table here when the progression is drafted: for each grade, the
+  priority skills in our words, and a row for each place our list differs.
 - **Terms:** no licence or copyright line on the guide pages or in the band file. Unclear, so reference only: used to
   place skills in grades and to check our list, never copied.
 - **Use (recommended, ours):** each course's progression names priority skills per grade in our own words, tagged
@@ -67,7 +78,8 @@ Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per g
 grades 6 to 8 and one for grades 9 to 12, eight courses. The K to 5 courses each plan one year, so the skills grow
 every year. The 6 to 8 and 9 to 12 courses spread across their grades, about one session every two weeks, taught
 alongside other classes so research skills come back each year. Settled 2026-11-16 (Cory, Desk card q-later-followups-1).
-Course ids: `library-k`, `library-1` to `library-5`, `library-6-8`, `library-9-12`.
+Course ids: `library-k`, `library-1` to `library-5`, `library-6-8`, `library-9-12`, one row each in data/courses.csv
+in the band-split form of health, PE and arts (Cory, 2026-11-21, Desk q-fix-library-1).
 
 **Ownership** (ours, untested). Each of the 68 ids is owned by exactly one grade, the school year where it is first
 met at the depth a check can score on its own (not the "with help" level); every other year where a course returns
@@ -84,10 +96,10 @@ row per school year.
 
 | Courses | AASL | Priority skill emphasis (ours, to be set at the progression) |
 |---|---|---|
-| K, 1 and 2 (one course each) | All six foundations, mostly at the "with help" level (carried as `~`, owned only where the grade checks an id alone: Ownership, above) | Asking a question, finding a book by its parts, retelling what a source says, saying where it came from, sharing with the class |
+| K, 1 and 2 (one course each) | All six foundations, mostly at the "with help" level (carried as `~`, owned only where the grade checks an id alone: Ownership, above) | Asking a question, finding a book by its label and shelf order, retelling what a source says, saying who made it and where it came from, sharing with the class (checked against the PK to 2 band file, 2026-11-21) |
 | 3, 4 and 5 (one course each) | All six | Key words, searching a catalogue and a chosen site, note-making, primary and secondary sources, a simple bibliography, first lateral checks of a site |
 | Grades 6 to 8 (one course) | All six | Search strategy, lateral reading, judging evidence and who is behind it, paraphrase and quotation, citation in one style, fair use basics, checking text made by a machine like any other source (who made it, what it cites) |
-| Grades 9 to 12 (one course) | All six | Research question design, databases and open sources, lateral reading on hard cases, synthesis across sources, full citation, copyright, licences and fair use, checking and disclosing the use of machine-made text, sharing a research product |
+| Grades 9 to 12 (one course) | All six | Research question design, databases, search operators and filters, and open sources, lateral reading on hard cases, synthesis across sources, full citation, copyright, licences, fair use and asking a maker's permission (checked against the 9 to 12 band file, 2026-11-21), checking and disclosing the use of machine-made text, sharing a research product |
 
 **Partial bases for 6 to 12.** Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): the CC BY
 online-reasoning lessons and the open web-literacy book named in docs/reviews/library-open-material-2026-11-16.md
@@ -103,14 +115,35 @@ social studies source question, an ELA research piece. Each also carries a stand
 - The AASL school librarian and school library frameworks: they describe adults and programmes, not learners.
 - Reading promotion and literature appreciation (the continuum's multiple literacies standard) beyond what a research
   unit needs: ELA owns reading; library units may use the same books.
-- The continuum's design thinking strand: science and computer science own design; library leans on them.
+- The continuum's design thinking strand: science and computer science own the design cycle; library leans on them
+  and keeps only self-chosen making inside a research product (V.B.2, below).
 - **By id.** The gate and bar criterion C1 work on ids, not themes. Each of the 68 is either excluded with a reason in
   `data/progressions/library-excluded.csv`, or owned once by a library row and carried as `~` in other years
   (section 3, Ownership); the owner row meets it through a research task (for example II.B.2, weighing
   perspectives, on the day two sources disagree; III.C.1, feedback, on the revise day of a research product).
-  Carrying an id as `~` never stands in for its one owner row. Excluded, each owned instead by the subject named: V.B.1 and V.C.2
-  (science and computer science design cycles), V.A.1 (ELA wide reading), V.D.1 and V.D.2 (SEL self-management),
-  III.A.1 and III.D.2 (SEL relationship skills). Everything else is met through a research task (Cory, 2026-11-21).
+  Carrying an id as `~` never stands in for its one owner row. Everything not placed below is met through a
+  research task (Cory, 2026-11-21).
+- **The eight ids checked against the second edition chart** (Cory, 2026-11-21, Desk q-fix-library-1: an id that
+  belongs elsewhere goes to its receiving subject and is never dropped). Three stay in library, owned by a library
+  row: III.A.1 (choosing to widen and deepen a question by researching with others: a group inquiry day), V.C.2
+  (working out with others a new way to find something out, such as a class survey or an observation plan: an
+  inquiry day) and V.B.2 (keeping going on a self-chosen making product through trial and error: the made product of
+  a research unit). Five are placed in a receiving subject, listed in library-excluded.csv with that subject as the
+  reason, and named there by the receiving subject's own page:
+
+| Id | Receiving subject and course band | Why there |
+|---|---|---|
+| V.B.1 | Science, K to 12: the engineering design rows and the `design-cycle` model (from `sk-define-problem`, K-2-ETS1-1) | The design, test and improve cycle is engineering design, which science teaches every year; computer science uses the same loop |
+| V.A.1 | ELA, K to 12: the range of reading and writing rows (RL and RI .10, W.10: `ek-group-reading`, `e3-reading-range` onward, `e3-writing-tasks` onward) | Reading widely in many forms and writing for many purposes is ELA's own range standard |
+| V.D.1 | SEL, all four bands (`sel-k-2` to `sel-9-12`): SM3, keeping on task and pushing yourself | Trying again when a task gets hard is self-management, taught on everyday cases |
+| V.D.2 | SEL, all four bands: SA8, skill grows with effort, practice and help | The growth view of skill is a self-awareness sub-skill |
+| III.D.2 | SEL, all four bands: RS4, working as a team | Treating the group's learning as one's own job is a teamwork skill, taught where SEL teaches teams |
+
+- **What a school may swap or leave out** (Cory, 2026-11-21, Desk q-fix-library-1; the same rule as SEL, PE and
+  arts, docs/courses/arts/STANDARD.md section 5): a school or family may swap a case or leave out a unit for its
+  community's reasons. Swapping a case for another keeps the unit's ids met; leaving out a unit means the course page
+  and the unit's family note name the ids not claimed that year. K to 5 case sets stay neutral: no politics,
+  elections, religion, identity groups or conflict (APPROACH.md, "Sensitive ground", item 1).
 
 ## 5. Cross-subject leans
 

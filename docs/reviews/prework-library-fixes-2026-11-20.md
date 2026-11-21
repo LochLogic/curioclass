@@ -81,3 +81,18 @@ stay settled.
   current state (approach approved; owed: own-words file, three bands, gate entry, excluded csv).
 
 Lead, 2026-11-21: the library row of the bar's owed table updated (part of F6); F1 to F5 and the rest of F6 are on the lead's list, F2 waiting on a download yes. The three questions are on the Desk (q-fix-library-1).
+
+## Cory's answers applied (2026-11-21, Desk q-fix-library-1)
+
+- Q1, the excluded ids: checked against the second edition chart (downloaded). III.A.1, V.C.2 and V.B.2 stay in library; V.B.1 (science), V.A.1 (ELA), V.D.1, V.D.2 and III.D.2 (SEL) are placed in a receiving subject with band and reason: STANDARD.md section 4 (the eight-id table) and section 4's design thinking line. The 68 own-words lines: data/standards/aasl-words.txt (new); STANDARD.md section 1 and owed table. Receiving-subject lines are follow-ups for the lead (below).
+- Q2, the catalogue: data/courses.csv now has library-k, library-1 to library-5, library-6-8 and library-9-12 in the health, PE and arts form; data/grade_subjects.csv points each grade to its course; data/modules.csv module ids kept, course ids moved by band (K to 2 modules on library-k, 3 to 5 on library-3); data/modules/electives.txt has no library lines. scripts/check_worksheets.py: the library FILES entry lists the eight courses, and, for library only, the stem strip for -k and -1 to -5, the title split for per-grade titles and a module lookup by subject and grade so each K to 5 grade keeps its band's modules. STANDARD.md section 3 and owed table.
+- Q3, swap and leave out: STANDARD.md section 4 (the arts wording) plus the K to 5 neutral-case limit; APPROACH.md Sensitive ground item 1 and unit field 9.
+- Q4, the downloads: done, into S:\CurioClass-sources\library\aasl-2026-11-21\ (four folders and README.txt). Bands checked: phases confirmed; the 9 to 12 file has two columns (9-10, 11-12), not one per grade; K to 2 and 9 to 12 emphasis cells and the lens's honest-use bands (fair use basics in 6 to 8) brought to the files. STANDARD.md section 2 and section 3 table; the lens; APPROACH.md Evidence and sources.
+
+Follow-ups for the lead, from these answers:
+- data/progressions/science.csv, row sk-define-problem, notes: add "Also meets AASL.V.B.1, the design cycle, which library places in science (docs/courses/library/STANDARD.md section 4)."
+- data/progressions/ela.csv, rows ek-group-reading and e3-writing-tasks, notes: add "Also meets AASL.V.A.1, wide reading and writing for many purposes, which library places in ELA (docs/courses/library/STANDARD.md section 4)."
+- docs/courses/sel/STANDARD.md section 7, new bullet: "**Library and research skills (docs/courses/library/STANDARD.md section 4).** Library places three AASL ids in SEL, taught in every band: V.D.1 (trying again when a task gets hard) with SM3, V.D.2 (skill grows with practice and help) with SA8, and III.D.2 (the group's learning as one's own job) with RS4. Library research units use these sub-skills and do not teach them first."
+- data/progressions/library-excluded.csv (F3): five rows, V.B.1, V.A.1, V.D.1, V.D.2 and III.D.2, each reason naming its receiving subject as in STANDARD.md section 4.
+- scripts/course_status.py: PER_GRADE (line 25) and its docstring still key on the old course id `library`; repoint to the eight ids.
+- data/modules.csv: grades 1, 2, 4 and 5 have no module rows of their own (they share the band rows on library-k and library-3); split into per-grade modules only if a course page needs them.

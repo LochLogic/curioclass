@@ -55,7 +55,8 @@ sequence records both.
 - Unit field 8 (tools and supplies): printed source sets, invented pages and search results, the research notebook;
   no product or service names.
 - Unit field 9 (family note): in English and Spanish: the skill's name and steps and one thing to try together at
-  home (checking who is behind a page you both use).
+  home (checking who is behind a page you both use); if a school leaves the unit out, the ids not claimed that
+  year (STANDARD.md section 4).
 - Unit field 10 (sources): what was read and how much, what is from memory, no claim of effect; the record of whose
   work and voices the unit's source set shows (C12; Sensitive ground, item 5); a line pointing to the course-level
   logic model (C16).
@@ -107,9 +108,12 @@ student searches for or types, give a verdict on a real site, or write the stude
 
 Each read is a fresh-agent read (docs/pipeline/briefs/sensitivity-read.md, kind `sensitivity`), on the unit's case set.
 
-1. **Cases about politics, health, elections, religion, identity groups or conflict.** Cases are invented or chosen
-   evenly across views; hoax or hate pages are described or shown in an invented form, never reproduced. Read: every
-   unit's case set, 6 to 12.
+1. **Cases about politics, health, elections, religion, identity groups or conflict.** K to 5 case sets stay neutral:
+   no politics, elections, religion, identity groups or conflict (Cory, 2026-11-21, Desk q-fix-library-1). In 6 to
+   12, cases are invented or chosen evenly across views; hoax or hate pages are described or shown in an invented
+   form, never reproduced. A school may swap a case or leave out a unit by the SEL, PE and arts rule (STANDARD.md
+   section 4: a swapped case keeps its ids met; a left-out unit's ids are named as not claimed that year on the
+   course page and in the family note). Read: every unit's case set, K to 12.
 2. **Unsafe or upsetting search results** (adult content, violence, scams). Students use a closed set or a
    teacher-checked list; no child is sent into open search without the stop rule (close the page, tell the adult, no
    blame), and the teacher page and the home note say what the adult does if one appears (section fields 1 and 10).
@@ -139,8 +143,9 @@ the article was not re-read), so the 9 to 12 course holds at least that much lat
 
 ## Evidence and sources
 
-What rests on what: the AASL framework (both editions read for ids, 2026-11-20); the continuum's grades 3 to 5 band
-file read in full, the other bands not yet (STANDARD.md section 2); the open lessons named in the base-text scout
+What rests on what: the AASL framework (both editions read for ids, 2026-11-20; the second edition chart read
+again for our own words, 2026-11-21); all four of the continuum's band files read in full (3 to 5 on 2026-11-16,
+the rest on 2026-11-21; STANDARD.md section 2); the open lessons named in the base-text scout
 (docs/reviews/library-open-material-2026-11-16.md). No claim of effect is made for any course, and none has been
 tried with children; each course has a one-page logic model on its course page (C16).
 

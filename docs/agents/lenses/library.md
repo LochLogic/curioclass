@@ -23,7 +23,9 @@ change the search. Library catalogues, databases, reference works and the open w
 good at.
 
 **Honest use of others' work, every band.** Saying where an idea came from (K to 2), a simple list of sources (3 to 5),
-paraphrase, quotation and one citation style (6 to 8), copyright, licences, fair use and AI-made text (9 to 12).
+paraphrase, quotation, one citation style and fair use basics (6 to 8), copyright, open licences, fair use in depth,
+asking a maker's permission and AI-made text (9 to 12); bands checked against the continuum's band files
+(Cory, 2026-11-21, Desk q-fix-library-1).
 
 **Making and sharing.** Research ends in a product for a real audience, and students judge their own process.
 
@@ -57,8 +59,9 @@ adapted (BASE-TEXTS.md and the scout).
 ## Sources, read into our own words
 
 - AASL, National School Library Standards, second edition, learner framework (2025; structure confirmed 2026-11-16;
-  competency text not quoted).
-- Stripling, Empire State Information Fluency Continuum (2019; the 3 to 5 band read 2026-11-16).
+  the chart read 2026-11-21 for our own words; competency text not quoted).
+- Stripling, Empire State Information Fluency Continuum (2019; the 3 to 5 band read 2026-11-16, the PK to 2, 6 to 8 and
+  9 to 12 bands 2026-11-21).
 - Digital Inquiry Group, Civic Online Reasoning (licence page and lesson list read 2026-11-16; lessons not read).
 - Wineburg and McGrew on lateral reading by professional fact-checkers; Wineburg and others, the 2022 district field
   study in high school government classes (from memory, not re-read).

@@ -294,4 +294,8 @@ Applied to SEL:
   ss1-community-problems overlap SO8, RS1 and RD3 in K and 1. SEL takes the personal side (how I act in a group);
   social studies the civic side (why a community makes rules). The K and 1 SEL frames cite those rows as
   context links.
+- **Library and research skills (docs/courses/library/STANDARD.md section 4).** Library places three AASL ids in SEL,
+  taught in every band: V.D.1 (trying again when a task gets hard) with SM3, V.D.2 (skill grows with practice and
+  help) with SA8, and III.D.2 (the group's learning as one's own job) with RS4. Library research units use these
+  sub-skills and do not teach them first (Cory, 2026-11-21, Desk q-fix-library-1).
 - These leans are noted here for the frames; the core progressions are not edited.

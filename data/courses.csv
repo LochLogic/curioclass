@@ -53,11 +53,11 @@ pe-k-2,health-pe,"Physical Education, grades K to 2",k-2,,y,"SHAPE; four courses
 pe-3-5,health-pe,"Physical Education, grades 3 to 5",3-5,,y,"SHAPE; four courses, one per band; one frame per grade year (Cory, 2026-11-21)"
 pe-6-8,health-pe,"Physical Education, grades 6 to 8",6-8,,y,"SHAPE; four courses, one per band; one frame per grade year (Cory, 2026-11-21)"
 pe-9-12,health-pe,"Physical Education, grades 9 to 12",9-12,,y,"SHAPE; four courses, one per band; one frame per grade year; grades 9 and 10 required, 11 and 12 electives (Cory, 2026-11-20 and 2026-11-21)"
-cs-k12,computer-science,Computer Science,k-12,,n,CSTA bands K-2 3-5 6-8 9-10 11-12
+cs-k12,computer-science,Computer Science,k-12,,n,2026 CSTA PK-12 standards; one course per grade K-12
 spanish,world-languages,Spanish (proficiency levels),k-12,,n,Modules keyed by level not grade
 french,world-languages,French (proficiency levels),6-12,,n,Same level modules as Spanish; language-specific content added in Phase 2
-cte-explore,cte,Career Exploration,6-8,,n,
-cte-pathways,cte,Career Pathways,9-12,,n,
+cte-explore,cte,Career Exploration,6-8,8,n,
+cte-pathways,cte,Career Pathways,9-12,10,n,
 personal-finance,cte,Personal Finance,9-12,11,n,"Required for graduation in a growing number of states; taught inside Economics, lightly integrated (Cory, 2026-11-14), so no core course of its own"
 sel-k-2,sel,"Social and Emotional Learning, grades K to 2",k-2,,n,"CASEL; one frame per grade year (Cory, 2026-11-21)"
 sel-3-5,sel,"Social and Emotional Learning, grades 3 to 5",3-5,,n,"CASEL; one frame per grade year (Cory, 2026-11-21)"
@@ -68,4 +68,11 @@ eld-k-2,eld,"English Language Development, grades K to 2",k-2,,n,"WIDA grade clu
 eld-3-5,eld,"English Language Development, grades 3 to 5",3-5,,n,"WIDA grade clusters; for English learners; one frame per grade year (Cory, 2026-11-21)"
 eld-6-8,eld,"English Language Development, grades 6 to 8",6-8,,n,"WIDA grade clusters; for English learners; one frame per grade year (Cory, 2026-11-21)"
 eld-9-12,eld,"English Language Development, grades 9 to 12",9-12,,n,"WIDA grade clusters; for English learners; one frame per grade year (Cory, 2026-11-21)"
-library,library,Library and Research Skills,k-12,,n,AASL Shared Foundations
+library-k,library,"Library and Research Skills, kindergarten",k,,n,"AASL; eight courses, one per grade K to 5, then grades 6 to 8 and 9 to 12; one frame per grade year (Cory, 2026-11-16 and 2026-11-21)"
+library-1,library,"Library and Research Skills, grade 1",1,,n,"AASL; eight courses, one per grade K to 5, then grades 6 to 8 and 9 to 12; one frame per grade year (Cory, 2026-11-16 and 2026-11-21)"
+library-2,library,"Library and Research Skills, grade 2",2,,n,"AASL; eight courses, one per grade K to 5, then grades 6 to 8 and 9 to 12; one frame per grade year (Cory, 2026-11-16 and 2026-11-21)"
+library-3,library,"Library and Research Skills, grade 3",3,,n,"AASL; eight courses, one per grade K to 5, then grades 6 to 8 and 9 to 12; one frame per grade year (Cory, 2026-11-16 and 2026-11-21)"
+library-4,library,"Library and Research Skills, grade 4",4,,n,"AASL; eight courses, one per grade K to 5, then grades 6 to 8 and 9 to 12; one frame per grade year (Cory, 2026-11-16 and 2026-11-21)"
+library-5,library,"Library and Research Skills, grade 5",5,,n,"AASL; eight courses, one per grade K to 5, then grades 6 to 8 and 9 to 12; one frame per grade year (Cory, 2026-11-16 and 2026-11-21)"
+library-6-8,library,"Library and Research Skills, grades 6 to 8",6-8,,n,"AASL; eight courses, one per grade K to 5, then grades 6 to 8 and 9 to 12; one frame per grade year (Cory, 2026-11-16 and 2026-11-21)"
+library-9-12,library,"Library and Research Skills, grades 9 to 12",9-12,,n,"AASL; eight courses, one per grade K to 5, then grades 6 to 8 and 9 to 12; one frame per grade year (Cory, 2026-11-16 and 2026-11-21)"

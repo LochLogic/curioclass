@@ -11,7 +11,7 @@ The 93 catalog pages (subject by grade or band) are a different count and are no
 Run: python -X utf8 scripts/course_status.py [out.json]
 With a path, also writes the Review Desk document (then ArtifactData set stats/courses).
 """
-import csv, glob, io, json, os, sys, collections, datetime
+import csv, glob, io, json, os, re, sys, collections, datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def rows(p): return list(csv.DictReader(io.open(os.path.join(ROOT, p), encoding='utf-8')))
@@ -22,7 +22,8 @@ BY_GRADE = {'math-k8', 'ela-k12', 'science-k5', 'science-ms', 'ss-k5'}
 GRADES = ['k'] + [str(i) for i in range(1, 13)]
 BAND_OF = {'k': 'k-2', '1': 'k-2', '2': 'k-2', '3': '3-5', '4': '3-5', '5': '3-5'}
 BANDS = ['k-2', '3-5', '6-8', '9-12']
-PER_GRADE = {'cs-k12': GRADES, 'library': GRADES[:6]}   # course id -> grades that are courses of their own
+PER_GRADE = {'cs-k12': GRADES}   # course id -> grades that are courses of their own
+SPLIT = re.compile(r'-(k|[1-9]|1[0-2]|k-2|3-5|6-8|9-12)$')   # a catalogue row already split by grade or band
 ONE_ROW = {'world-languages'}          # keyed by level, not grade: one course per language
 SHORT = {'math': 'Math', 'ela': 'English language arts', 'science': 'Science', 'social-studies': 'Social studies'}
 
@@ -52,6 +53,8 @@ def place(m):
             return 'shared', f'{s}-{g}', f'{SHORT[s]}, topics shared across grades {bname(g)}', (0, g)
         return 'course', c, courses[c]['title'], (20 + int(courses[c]['typical_grade'] or 9), c)
     title = courses[c]['title']
+    if SPLIT.search(c):
+        return 'course', c, title, (BANDS.index(band_of(g)) if g in GRADES else (BANDS.index(g) if g in BANDS else 9), SPLIT.sub('', c), GRADES.index(g) if g in GRADES else 0)
     if s in ONE_ROW:
         return 'course', c, title.split(' (')[0] + ', all levels', (0, c)
     if c in PER_GRADE:
@@ -79,6 +82,11 @@ for c, gs in PER_GRADE.items():
             info[key] = dict(kind='course', title=f"{courses[c]['title']}, {gname(g)}", subject=courses[c]['subject'],
                              sort=(BANDS.index(band_of(g)), c, GRADES.index(g)), mods=0, tools=collections.Counter(),
                              core=courses[c]['core'] == 'y')
+for c, r in courses.items():   # split rows exist even where no catalog page sits on them yet
+    if SPLIT.search(c) and c not in info:
+        g = SPLIT.search(c).group(1)
+        info[c] = dict(kind='course', title=r['title'], subject=r['subject'], mods=0, tools=collections.Counter(),
+                       sort=(BANDS.index(band_of(g)) if g in GRADES else BANDS.index(g), SPLIT.sub('', c), GRADES.index(g) if g in GRADES else 0), core=r['core'] == 'y')
 for t in tools:
     info[modmap[t['module']]['_key']]['tools'][t['stage']] += 1
 
