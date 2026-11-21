@@ -275,17 +275,17 @@ choice: A changemaker is a person who
 
 ## Main: Place 6 changemakers
 timeline: 1750 2025 25
-  - 1776 | Benjamin Franklin helps write and signs the Declaration of Independence.
-  - 1849 | Harriet Tubman escapes slavery, then goes back to lead others to freedom.
-  - 1881 | Clara Barton starts the American Red Cross to help people after disasters.
-  - 1947 | Jackie Robinson becomes the first Black player in modern Major League Baseball.
-  - 1955 | Rosa Parks will not give up her seat on a bus and helps start a bus boycott.
-  - 2014 | Malala Yousafzai wins the Nobel Peace Prize for speaking up for girls' schooling.
+  - 1776 | Benjamin Franklin helps write the paper that starts a new country.
+  - 1849 | Harriet Tubman gets free, then goes back to help others get free.
+  - 1881 | Clara Barton starts the Red Cross to help people after fires and floods.
+  - 1947 | Jackie Robinson is the first Black player in Major League Baseball.
+  - 1955 | Rosa Parks will not give up her seat on a bus. This helps change an unfair rule.
+  - 2014 | Malala Yousafzai wins a big prize for speaking up for girls to go to school.
 fill:
   - Who on the timeline came first? {Benjamin Franklin}
   - Who on the timeline came last? {Malala Yousafzai}
-  - Which two changemakers' years are closest together? {Jackie Robinson} and {Rosa Parks}
-  - How many years after Harriet Tubman's escape did Clara Barton start the Red Cross? {32}
+  - Who came right after Clara Barton? {Jackie Robinson}
+  - Who came right before Malala Yousafzai? {Rosa Parks}
 
 ## Stretch: Make a change
 write: Pick one changemaker. What did they change, and how did it help other people?
