@@ -5,7 +5,7 @@ a way of seeing, not a bar: the bar is the PE part of docs/ADOPTION-BAR-SUBJECTS
 America, 2024 (data/standards/shape-pe-2024.txt, four standards), reviewed with CDC's PECAT 2019, which is keyed to
 the earlier five (docs/standards-notes/pe-2014-to-2024.md). The grade-outcome rule and the appropriate practice
 points are in docs/courses/physical-education/STANDARD.md. The approach page is
-docs/courses/physical-education/APPROACH.md (draft).
+docs/courses/physical-education/APPROACH.md (approved 2026-11-21).
 
 ## What good teaching of PE looks like
 

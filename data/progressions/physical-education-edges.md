@@ -1,6 +1,6 @@
 # Physical education progression: skills that pass between bands
 
-One file for all grades, so every handoff is written in the csv (assumes and hands_on). These are the ones that cross a band line (rebuilt from the csv after the cold read fixes, 2026-11-19).
+One file for all grades, so every handoff is written in the csv (assumes and hands_on). These are the ones that cross a band line (rebuilt from the csv after the cold read fixes, 2026-11-19; one line added 2026-11-20, docs/reviews/prework-physical-education-fixes-2026-11-20.md).
 
 ## K-2 to 3-5
 - g1-heart-muscle gives g3-benefits
@@ -47,6 +47,7 @@ One file for all grades, so every handoff is written in the csv (assumes and han
 - g7-effort-aerobic gives g9-effort-heart-rate
 - g7-skill-fitness-use gives g10-skill-fitness-training
 - g7-rest gives g10-rest
+- g7-dance-ideas gives g9-dance-forms
 - g7-eat-move-well gives g10-food
 - g8-water gives g10-water
 - g8-striking-fielding-play gives g9-lifetime-sport-skills

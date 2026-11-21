@@ -1,11 +1,12 @@
 # Physical education: the standard, made usable
 
-**DRAFT, 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-physical-education-read-2026-11-19.md).**
+**DRAFT, 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-physical-education-read-2026-11-19.md)
+and 2026-11-20 after the second-model read (docs/reviews/prework-physical-education-fixes-2026-11-20.md).**
 
 Written 2026-11-16 as pre-work for physical education (four courses, one per band). It answers the PE row of
 "Before a scope and sequence in this subject" in docs/ADOPTION-BAR-SUBJECTS.md. The bar is the PE part of that
 page. The lens is docs/agents/lenses/physical-education.md. The approach page is
-docs/courses/physical-education/APPROACH.md (draft).
+docs/courses/physical-education/APPROACH.md (approved 2026-11-21, Desk q-prework-open-1).
 
 | Owed | State | Where |
 |---|---|---|
@@ -60,9 +61,10 @@ written per span, and SHAPE says they are not meant to line up across spans. So 
 3. Motor skills are ordered by how they develop (bar criterion 2): a skill is first met as a pattern with its key
    parts, then used in changing settings, then combined and used in games and dance. Locomotor patterns and
    balance come first in K and 1, before manipulatives that need them; weight transfer follows locomotor control.
-   A skill the PECAT tables first expect in a grade is owned there, and the grade before carries it as `~CODE`.
-   Overhand throwing is worked toward in K and 1 and owned in grade 2; continuous hand dribbling and a self-turned
-   rope are attempted in K (`~CODE`), not owned. Each placement is marked "from the tool", "from memory" or "ours,
+   By default, a skill the PECAT tables first expect in a grade is owned there, and the grade before carries it as
+   `~CODE`. Overhand throwing is worked toward in K and 1 and owned in grade 2. Two settled exceptions: continuous
+   hand dribbling and a self-turned rope are attempted in K (`~CODE`, with growth marked) and owned in grades 1 and 2
+   (Cory, 2026-11-20, Desk q-prework-health-pe-2). Each placement is marked "from the tool", "from memory" or "ours,
    untested". For the order within K to 5, the PECAT tables are a guide. They show, for example, that underhand throwing, catching, hand and foot
    dribbling, kicking, striking with a short implement and jumping rope start in kindergarten, while weight
    transfer starts in grade 1, and overhand throwing, jogging and striking with a long implement start in grade
@@ -71,8 +73,8 @@ written per span, and SHAPE says they are not meant to line up across spans. So 
    standard in every grade).
 5. High school (9 to 12): two required years and two elective years (Cory, 2026-11-20, Desk
    q-prework-health-pe-2; most schools require one or two years). Grades 9 and 10 own every indicator of the span,
-   in a range of activities; grade 10 carries the choice and personal plan indicators (S4) in short form, so every
-   student meets them. Grades 11 and 12 are electives that deepen the plan and carry the rest as `~CODE`. Grade
+   in a range of activities; grade 10 owns the choice and personal plan indicators (S4) in short form, teaching every
+   part of each, so every student meets them. Grades 11 and 12 are electives that deepen the plan and carry the rest as `~CODE`. Grade
    outcomes are stated per year as for K to 8.
 
 **PECAT tables (L46), read 2026-11-16 and 2026-11-19.** The tables score a curriculum per grade, per outcome, on
@@ -84,8 +86,10 @@ docs/standards-notes/pe-2014-to-2024.md. What the tables expect, read in a brows
   volleying and manipulatives combined with locomotor are not yet expected (they start in grade 4).
 - **K to 5, standards 2 to 5:** every outcome is expected in every grade, except these, which start in grade 3:
   alignment and muscular tension, and strategies and tactics (older S2); warming up and cooling down, and
-  assessment and program planning (older S3); social interaction (older S5). The K to 2 progression rows carry
-  these as `~CODE` at most.
+  assessment and program planning (older S3); social interaction (older S5). In K to 2 these ideas are met only
+  at the depth the K to 2 indicators ask: SHAPE.S2.2.2, S2.2.7 and S4.2.2 (naming a chasing tactic, saying why we
+  stretch, pointing out activities with others) are owned in grade 1 or 2; tactics in play, warm-up routines,
+  program planning and social interaction as the tables mean them start in grade 3.
 - **6 to 8:** every outcome of all five standards is expected in every grade (24, 13, 18, 7 and 6 outcomes).
 - **9 to 12:** two levels, not grades; every outcome of all five standards is expected at both levels (3, 4, 14, 5
   and 4 outcomes). Our grades 9 and 10 stand for level 1 and 11 and 12 for level 2 (rule 5).
@@ -115,6 +119,9 @@ components" document (2026) and its position statements. In our words, the point
 - **Grading.** On defined outcomes aligned to the standards. Never on effort alone, dress, attendance, or a single
   fitness test.
 
+How these points meet PE's sensitive ground (bodies, food, injury and medical conditions, water, cultural dance
+and games, emotions) is on the approach page, "Sensitive ground".
+
 ## 5. Left out, and why
 
 - Pre-kindergarten: no pre-kindergarten course.
@@ -125,12 +132,17 @@ components" document (2026) and its position statements. In our words, the point
 ## 6. Leans on the core progressions and other subjects
 
 - **Health:** the physical activity topic is shared (HECAT PA outcomes). PE teaches the moving and in-class fitness
-  knowledge; health teaches planning, goals and influences. Units name each other.
+  knowledge; health teaches planning, goals and influences. In grades 6 to 8, HECAT PA 3, 4 and 6 (warm-up and
+  cool-down, water during activity, staying safe while active) are taught in PE (Cory, 2026-11-20, Desk
+  q-prework-health-pe-2); the health map names them so. Units name each other.
 - **Arts, dance:** PE dance units (rhythm, locomotor patterns, simple sequences) and the dance course name each
   other so the same thing is not taught twice in a year.
-- **Science:** heart rate, muscles and energy lean on the life science progression (body systems, grades 4 to
-  7); PE uses the idea, science teaches the model.
-- **Math:** heart-rate zones, pacing and personal data (graphs of one's own progress) lean on ratio and data
-  (grades 6 to 7).
+- **Science:** heart rate, muscles, energy and force lean on science (body structures in grade 4, body systems and
+  food for energy in grade 7, force and motion in grade 8); PE uses the idea, science teaches the model.
+- **Math:** personal data and heart-rate counts lean on graphing in grade 5 and on ratio and data in grade 6.
+- **Social studies:** why a game, sport or dance matters to a culture leans on regional cultures (grade 4) and
+  complex societies (grade 6); the course pages name each other.
 - **SEL:** PE's social standard (SHAPE.S3) overlaps with SEL's relationship skills; the two course pages name each
   other.
+- Each lean's code is in the progression's cross_subject column (data/progressions/physical-education.csv); a
+  same-year lean carries the frame's "if later" line (docs/pipeline/briefs/frame-write.md).
