@@ -65,3 +65,20 @@ data/standards/hecat-topics.txt; every owner-row claim was checked against our w
 ## Follow-ups done 2026-11-21
 
 - Expert calibration minors #18 to #22: not done. Their text is only in the reader's report in the calibration folder, which this pass may not open; the calibration review lists them by number only. No health page or progression row changed.
+
+## Fresh minor read (2026-11-21, replaces calibration #18 to #22)
+
+A new read of STANDARD.md, APPROACH.md, health.csv and nhes-2024.txt (the lens first, then this log), done because the five calibration findings were never saved. Checked by walking every `assumes` and `hands_on` pair, every NHES, HECAT and row id cited, every `~` id against the row its sensitive unit names as still meeting it, the coverage map against the Serves tags, the indicator counts in the nhes header, and the hour and session figures. The map, the counts, the id citations and the 207 rows' grade handoffs all stood. `progression.py check health`: 0 failures after the fixes.
+
+1. g9-phw-strengths-wellness-links said "Revisits the grade 6 strengths row" twice. Fixed: one sentence left (health.csv).
+2. g9-fn-habits-groups said the same revisit three ways. Fixed: one sentence, then the skip note (health.csv).
+3. g5-v-body-safety named two rows (g5-phw-when-to-get-care, g5-s-online-safety) as still meeting its `~` skills, but they carry neither ~S4.5.4 nor ~S4.5.6; it also repeated "leave-out note and family note". Fixed: names g4-v-limits-and-respect and g5-v-conflict-steps for the skills, keeps the two help rows, repeat removed (health.csv).
+4. g4-v-body-safety named only help rows for its `~S4.5.4` limits skill. Fixed: adds g4-v-limits-and-respect (health.csv).
+5. g7-meh-self-harm-help named g7-s-online-boundaries as meeting its `~` skills; that row carries neither ~S3.8.1 nor ~S4.8.3. Fixed: g6-phw-adult-or-professional (owns S3.8.1) in its place (health.csv).
+6. g5-sh-consent-and-health is a puberty review but its leave-out note did not name children whose bodies change early (STANDARD.md section 5 rule 5). Fixed: sentence added in the wording g4-sh-body-changes already uses (health.csv).
+7. g4-v-speak-up-notice listed speak-up-plan as a model coming in, but g4-phw-advocacy-teams is the row that says it introduces it. Fixed: model_in emptied on g4-v-speak-up-notice, model_out kept (health.csv). Which of the two rows introduces it first is the grade 4 frame's call.
+8. g8-meh-different-views said "a food, a faith-neutral and a screen-time example", unclear to a teacher. Fixed: three plain examples, the middle one a belief or custom worded to stay neutral on faith (health.csv).
+9. Short id forms "~S8.2.1" (k-s-trusted-helpers) and "~S1.5.3" (g5-s-choose-safe-option) and "PHW11" (g2-phw-doctor-nurse-visit) against the full forms used everywhere else. Fixed to ~NHES.S8.2.1, ~NHES.S1.5.3 and "PHW 11" (health.csv).
+10. g7-phw-write-goal-link allows "a self-chosen healthy behaviour", while APPROACH.md (supports) says personal goals come from a short safe list. Left: whether older students may choose their own goal is an audience call; the row already bars weight, calories and shape. Question for Cory.
+11. Mixed US and UK spelling across the four files (analyze and practise, behaviour and neighborhood, colour). Left: a repo-wide style call, no rule in AGENTS.md. Question for Cory.
+12. Follow-up of 2026-11-20 about the lens "(draft)" mark: already shows "approved 2026-11-21". Done, nothing to change here.
