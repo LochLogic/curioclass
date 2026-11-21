@@ -15,8 +15,8 @@ says which), never fewer units (Cory, 2026-11-11 and 2026-11-15).
 | Relabel the file to the second edition (2025) | Done 2026-11-11 (label in the header); edition confirmed at source 2026-11-16 | data/standards/aasl-2018.txt |
 | Open the continuum's grade lists | Grades 3 to 5 read in full 2026-11-16; PK to 2, 6 to 8 and 9 to 12 owed before the progression | Section 2 |
 | Our own words for the 68 | Owed: data/standards/aasl-words.txt, one skill phrase per id | Section 1 |
-| Progression gate support | Owed: scripts/progression.py has no library entry yet | Section 3 |
-| Approach page | Draft, waiting on Cory's yes | docs/courses/library/APPROACH.md |
+| Progression gate support | Owed: scripts/progression.py has no library entry yet, and data/progressions/library-excluded.csv is not written | Sections 3 and 4 |
+| Approach page | Approved 2026-11-21 (Cory, Desk q-prework-open-2) | docs/courses/library/APPROACH.md |
 
 ## 1. The standard and its terms
 
@@ -41,9 +41,11 @@ says which), never fewer units (Cory, 2026-11-11 and 2026-11-15).
 
 - **What it is:** a PK to 12 continuum by Barbara Stripling for New York City and New York State school libraries,
   hosted by Monroe One BOCES School Library System (libguides.monroe.edu/ESIFC; band files dated 2019; continuum page
-  last updated 2019-10-23). Four anchor standards and six phases inside the inquiry standard (connect, wonder,
-  investigate, construct, express, reflect), from memory of the 2019 guide: to be confirmed against the band files
-  before this line is used in any public source line. Each
+  last updated 2019-10-23). Four anchor standards: inquiry and design thinking, multiple literacies, social and civic
+  responsibility, personal growth and agency (the guide's framework page, read 2026-11-21; no author named there).
+  Six phases inside the inquiry standard (connect, wonder, investigate, construct, express, reflect), from memory of
+  the 2019 guide (the framework page names no phases): to be confirmed against the band files before this line is
+  used in any public source line. Each
   phase has indicators with a cell per grade, and the priority skills for each grade are marked in bold and gathered
   in a "priority skills" box per phase.
 - **Read 2026-11-16:** the grades 3 to 5 band file in full. Example of the grain, in our own words: grade 3 uses a
@@ -71,8 +73,10 @@ Course ids: `library-k`, `library-1` to `library-5`, `library-6-8`, `library-9-1
 met at the depth a check can score on its own (not the "with help" level); every other year where a course returns
 to it carries `~ID` with a one-line note on how that year differs. Grades 6 to 8 and 9 to 12 get a progression row
 per school year (6, 7, 8; 9, 10, 11, 12) even though each is one course: the progression's grades are the school
-years, the course is how they are taught. Each row's `assumes` names the earlier library row or the ELA or social
-studies row it builds on (section 5). The gate then needs library in scripts/progression.py: the standards file, the
+years, the course is how they are taught. Each row's `assumes` names only the earlier library row it builds on
+(empty in kindergarten; each school year's row assumes the library row of the year before, so no grade is skipped),
+since the gate accepts only rows of the same file there; an ELA or social studies row it builds on goes in
+`cross_subject` (section 5). The gate then needs library in scripts/progression.py: the standards file, the
 anchor, an id that carries no grade (any grade may own it, and the one-owner check does the work), and
 `data/progressions/library-excluded.csv` for the ids section 4 excludes. Settled (Cory, 2026-11-21): own once, at
 the school year where the id is first checked alone; `library-6-8` stays one course across grades 6 to 8, with a
@@ -80,7 +84,7 @@ row per school year.
 
 | Courses | AASL | Priority skill emphasis (ours, to be set at the progression) |
 |---|---|---|
-| K, 1 and 2 (one course each) | All six foundations, at the "with help" level | Asking a question, finding a book by its parts, retelling what a source says, saying where it came from, sharing with the class |
+| K, 1 and 2 (one course each) | All six foundations, mostly at the "with help" level (carried as `~`, owned only where the grade checks an id alone: Ownership, above) | Asking a question, finding a book by its parts, retelling what a source says, saying where it came from, sharing with the class |
 | 3, 4 and 5 (one course each) | All six | Key words, searching a catalogue and a chosen site, note-making, primary and secondary sources, a simple bibliography, first lateral checks of a site |
 | Grades 6 to 8 (one course) | All six | Search strategy, lateral reading, judging evidence and who is behind it, paraphrase and quotation, citation in one style, fair use basics, checking text made by a machine like any other source (who made it, what it cites) |
 | Grades 9 to 12 (one course) | All six | Research question design, databases and open sources, lateral reading on hard cases, synthesis across sources, full citation, copyright, licences and fair use, checking and disclosing the use of machine-made text, sharing a research product |
@@ -88,7 +92,8 @@ row per school year.
 **Partial bases for 6 to 12.** Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): the CC BY
 online-reasoning lessons and the open web-literacy book named in docs/reviews/library-open-material-2026-11-16.md
 are partial bases for the 6 to 8 and 9 to 12 courses. Only items under an open licence are adapted, in our voice,
-with the source in the day's credit; no company or product name appears in student, teacher or family copy.
+with the source in the day's credit, and each item's licence is re-read at source when it is first adapted (the
+scout's reading of 2026-11-16 is the only one on file); no company or product name appears in student, teacher or family copy.
 
 Every unit names host tasks from the grade's other courses (bar criterion 4): research for a science investigation, a
 social studies source question, an ELA research piece. Each also carries a stand-alone host task (APPROACH.md).
@@ -99,33 +104,37 @@ social studies source question, an ELA research piece. Each also carries a stand
 - Reading promotion and literature appreciation (the continuum's multiple literacies standard) beyond what a research
   unit needs: ELA owns reading; library units may use the same books.
 - The continuum's design thinking strand: science and computer science own design; library leans on them.
-- **By id.** The gate and bar criterion C1 work on ids, not themes. Each of the 68 is either owned by a library row,
-  carried as `~` on a research task (for example II.B.2, weighing perspectives, on the day two sources disagree;
-  III.C.1, feedback, on the revise day of a research product), or excluded with a reason in
-  `data/progressions/library-excluded.csv`. Excluded, each owned instead by the subject named: V.B.1 and V.C.2
+- **By id.** The gate and bar criterion C1 work on ids, not themes. Each of the 68 is either excluded with a reason in
+  `data/progressions/library-excluded.csv`, or owned once by a library row and carried as `~` in other years
+  (section 3, Ownership); the owner row meets it through a research task (for example II.B.2, weighing
+  perspectives, on the day two sources disagree; III.C.1, feedback, on the revise day of a research product).
+  Carrying an id as `~` never stands in for its one owner row. Excluded, each owned instead by the subject named: V.B.1 and V.C.2
   (science and computer science design cycles), V.A.1 (ELA wide reading), V.D.1 and V.D.2 (SEL self-management),
   III.A.1 and III.D.2 (SEL relationship skills). Everything else is met through a research task (Cory, 2026-11-21).
 
 ## 5. Cross-subject leans
 
-**Who teaches what first.** ELA owns the research cycle and the writing of it (core skill `research-cycle`; rows
-`e1-shared-research` to `e12-research`), the first source list (grade 4, `e4-research`), locating print and digital
+**Who teaches what first.** ELA owns the research cycle and the writing of it (the model `research-cycle`; rows
+`ek-shared-research` and `e1-shared-research` to `e12-research`), the first source list (grade 4, `e4-research`), locating print and digital
 sources with key words (grade 5, `e5-locate-sources`), source credibility in writing (grade 6, `e6-short-research`)
 and a standard citation format (grade 7, `e7-research-questions`). Social studies owns sourcing and corroboration
-(`source-sourcing`, `corroboration`, from grade 2) and news reading (`ss8-news-literacy`, grade 8;
+(the models `source-sourcing` and `corroboration`, from the grade 2 rows `ss2-source-maker` and `ss2-two-accounts`)
+and news reading (`ss8-news-literacy`, grade 8;
 `us1-news-reading`, grade 11). Library owns what neither does: searching as a skill (changing a query, catalogues
 and databases, choosing among results), leaving the page to check who is behind it (lateral reading, the first time
-it is taught as a method), going upstream to the first source, honest use of others' work across media (not only in
-writing), and choosing among tools. Where a library row meets an ELA or social studies skill it names that row in
-`cross_subject` (for example `ela:e5-locate-sources`) and either assumes it or is assumed by it; the progression says
-which came first in each grade. Before the progression is drafted, the 3 to 5 and 6 to 8 emphasis cells above are
+it is taught as a method: owned by a library row before grade 8, where `ss8-news-literacy` uses it on news), going upstream to the first source, honest use of others' work across media (not only in
+writing), and choosing among tools. Where a library row meets an ELA or social studies skill it names that row's id in
+`cross_subject` (for example `ela:e5-locate-sources`; never a model name, and never in `assumes`, section 3); the
+progression says which came first in each grade. Before the progression is drafted, the 3 to 5 and 6 to 8 emphasis cells above are
 re-read against ELA grades 4 to 7.
 
 - **ELA:** the research writing standards W.7 and W.8 from kindergarten and W.9 from grade 4, and informational
   reading.
 - **Social studies:** C3 dimension 3 (sources and evidence) and Massachusetts news and media literacy (NML), from
   grade 8 (`ss8-news-literacy`). Library owns the lateral reading method; social studies uses it on its sources.
-- **Science:** no science progression row names judging information, so library names host investigations from the
-  grade's science course instead of a skill id.
+- **Science:** science rows obtain and combine information from texts, maps and media (for example `s2-water-where`,
+  `s3-climates`, `s4-energy-resources`, `s5-protect-resources`; `s8-human-trait-technology` asks for reliable
+  sources), but none teaches judging a source as a method. Library names such rows as host tasks and teaches the
+  judging.
 - **Computer science:** computer science owns how machine-made text tools work, in its own rows; library owns
   checking what they produce, and assumes no computer science row.
