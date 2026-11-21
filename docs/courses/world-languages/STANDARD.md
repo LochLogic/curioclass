@@ -124,7 +124,9 @@ states it from data/courses.csv when it opens. If Option B is chosen, data/cours
 `spanish-4` and `asl-1` to `asl-4`, grades `k-12` each, and the two existing rows are replaced; French stays one row
 until Question 2 is answered.
 
-**Recommendation: Option B** (Question 1). It gives a stated target per course, stays near what a school can staff,
+**Cory chose Option D** (2026-11-21, Desk q-prework-open-2): four levels per language plus an early-years
+companion for Levels 1 and 2, 12 courses for Spanish and ASL, settled for when the pass opens. The recommendation had
+been Option B. It gives a stated target per course, stays near what a school can staff,
 and leaves Advanced for a later pass. Each course's exit target is a sublevel (Level 1 exits at Novice Mid, Level 2 at
 Novice High, Level 3 at Intermediate Mid, Level 4 at Intermediate High; these four exits are ours, from ACTFL
 published norms for school programmes read from memory, not checked).
@@ -153,7 +155,7 @@ is harder (the ELD pattern, docs/courses/eld/STANDARD.md section 2). Specificall
   excluded with the reason "a proficiency scale used to name each level's exit target, not a skill". Strands (sounds
   and spelling; the seven ASL parameters) get their own id file, one id each, owned by the level that first teaches
   them. For the gate, Level 1 to Level 4 map to positions 1 to 4 in a level list that replaces the grade list for
-  these two subjects. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+  these two subjects (Cory, 2026-11-21).
 - **What scripts/progression.py would need** (read by the cold reader, lines 51 to 112): a `world-languages` entry in
   STD_FILES and ANCHOR (actfl-wrs.txt with the `ACTFL.*` ids filtered out or listed as exclusions), a per-language
   split, a level list in place of the grade list, and a code_grades rule that returns all four levels as the span for
@@ -194,7 +196,25 @@ is harder (the ELD pattern, docs/courses/eld/STANDARD.md section 2). Specificall
 - **Video for ASL:** decided, not planned (Cory 2026-10-27).
 - **Immersion, study abroad, exchanges, pen pals:** out of scope for a free site.
 
-## Questions for Cory
+## Cory's answers (2026-11-21, Desk q-prework-open-2)
+
+World languages stay shelved; these answers settle the pre-work pages only.
+
+- Level split: Option D, four levels plus an early-years form (section 5).
+- French: it can be added, listed behind Spanish and ASL. The bar's wording is corrected only when the pass opens.
+- Ownership: each language its own progression (section 6).
+- ASL standard: World-Readiness and the ACTFL scale, plus our parameters strand; Clerc noted only.
+- Who checks ASL pages: no answer yet (question 4 stays open).
+- Time: three sessions a week of 35 minutes, 36 weeks, about 63 hours a level (APPROACH.md, "Pacing and dose").
+- Early start: an early-years companion now, as part of Option D.
+- Heritage speakers: a path inside each Spanish level.
+- Can-do statements: paraphrase only, with the note; Cory sends one short note to NCSSFL and ACTFL asking whether
+  paraphrase in a free tool set is acceptable (data/plans/later.csv).
+- Base text: yes for Spanish (open college-level books for reference and sequence); the ASL research is done again
+  (docs/reviews/world-languages-asl-material-2026-11-21.md).
+- Approach page: yes, as pre-work.
+
+## Questions for Cory (as asked)
 
 1. **Level split.** Recommended: Option B, four levels per language with a sublevel exit target each (Novice Mid,
    Novice High, Intermediate Mid, Intermediate High). Alternatives A, C, D in section 5.

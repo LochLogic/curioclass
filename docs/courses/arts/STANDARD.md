@@ -191,7 +191,9 @@ school. No draft date is given.
 
 - What a school may leave out (Cory, 2026-11-20, Desk q-prework-arts-1): a school or family may leave out a unit
   or a work for its community's reasons (for example, a unit that uses dance, masks or play-acting); each such unit
-  stands alone, and each course page says so plainly and names those units.
+  stands alone, and each course page says so plainly and names those units. That includes a unit that studies a
+  sacred or ceremonial tradition: one line on each course page (Cory, 2026-11-21, Desk q-prework-open-1); the
+  standards are still met elsewhere in the year.
 - Pre-kindergarten ids: no pre-kindergarten courses.
 - The high school ensemble, harmonizing instrument and music technology strands (3.3).
 - Enduring understandings, essential questions, model cornerstone assessments and the glossary: permission

@@ -1,7 +1,7 @@
-# Physical education: approach (DRAFT, for Cory's yes)
+# Physical education: approach
 
-**DRAFT, 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-physical-education-read-2026-11-19.md).
-Not in force until Cory says yes.** This is the layer 3 approach page for physical education.
+**Approved by Cory 2026-11-21 (Desk q-prework-open-1). Written 2026-11-16, fixed 2026-11-19 after a cold read
+(docs/reviews/prework-physical-education-read-2026-11-19.md).** This is the layer 3 approach page for physical education.
 It fills the section plan's subject slots (docs/courses/UNIT-PLAN.md) under the shared page docs/APPROACH.md. The
 standard, the grade-outcome rule and the appropriate practice points are in
 docs/courses/physical-education/STANDARD.md; the bar is the PE part of docs/ADOPTION-BAR-SUBJECTS.md; the lens is

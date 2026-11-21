@@ -1,6 +1,6 @@
 # The Curio Class approach to teaching social and emotional learning
 
-**DRAFT for Cory's yes (2026-11-16).** Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-1) The yes waits on Cory. Short by design. It fills the subject slots of the unit plan and the section plan
+**Approved by Cory 2026-11-21 (Desk q-prework-open-1), with the cold read's fixes in (docs/reviews/prework-sel-read-2026-11-19.md). Written 2026-11-16.** Short by design. It fills the subject slots of the unit plan and the section plan
 (docs/courses/UNIT-PLAN.md) for SEL. The standard, the grade sequence and the sensitive-ground rules are in
 [STANDARD.md](STANDARD.md); the lens is docs/agents/lenses/sel.md.
 

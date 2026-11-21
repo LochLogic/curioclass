@@ -1,6 +1,6 @@
 # The Curio Class approach to teaching English language development
 
-**DRAFT for Cory's yes (2026-11-16; Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)). Read cold 2026-11-20 (docs/reviews/prework-eld-read-2026-11-20.md) and fixed.** Short by design. Building waits until C11 is proven in the core courses
+**Approved by Cory 2026-11-21 (Desk q-prework-open-2). Written 2026-11-16, read cold 2026-11-20 (docs/reviews/prework-eld-read-2026-11-20.md) and fixed.** Short by design. Building waits until C11 is proven in the core courses
 ([STANDARD.md](STANDARD.md), section 6). It fills the subject slots of the unit plan and the section plan
 (docs/courses/UNIT-PLAN.md) for ELD. The lens is docs/agents/lenses/eld.md.
 
@@ -93,7 +93,7 @@ Proposed, to be tried on the first ELD unit plans (after the gate):
 Teacher notes on how a home language does the same thing are written for Spanish first and read as a Spanish read
 (docs/pipeline/briefs/sensitivity-read.md, kind `spanish`). A note for another language (the California map names
 Mandarin, Cantonese, Vietnamese, Tagalog and Arabic) waits until a reader for that language exists, and the course
-page says so. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+page says so (Cory, 2026-11-21).
 
 ## Sensitive ground
 
@@ -108,7 +108,7 @@ promise secrecy, and follow the school's duty to report; at home, a child's disc
 
 **Reads.** A fresh-agent sensitivity read (brief kind `sensitivity`; community: multilingual learners and immigrant
 families) of every host text about migration, war, loss or the student's own group, the newcomer strand's first
-units, and the family notes, before a unit uses them; the Spanish notes also get a `spanish` read. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+units, and the family notes, before a unit uses them; the Spanish notes also get a `spanish` read (Cory, 2026-11-21).
 
 ## What a tool may and may not do
 
@@ -127,7 +127,7 @@ questions, read 2026-11-20). States that publish one set it higher, per search s
 135 minutes by level. Those three are checked at their pages before any is published. So the course page says
 Curio Class's period is the protected core of a student's English language development and not a replacement for the
 school's own program or for more time where a state or district asks for it. Each band frame may change the minutes
-with a reason. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+with a reason. Cory kept these minutes (2026-11-21).
 
 ## Where the evidence is thin
 

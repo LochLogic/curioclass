@@ -1,6 +1,6 @@
 # Career education: approach (layer 3)
 
-**DRAFT, 2026-11-16, for Cory's yes (Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)). Read cold 2026-11-20 (docs/reviews/prework-career-education-read-2026-11-20.md) and fixed.** Nothing here is decided until he says so. Short by design: it fills the subject
+**Approved by Cory 2026-11-21 (Desk q-prework-open-2). Written 2026-11-16, read cold 2026-11-20 (docs/reviews/prework-career-education-read-2026-11-20.md) and fixed.** Short by design: it fills the subject
 slots of the unit and section plan (docs/courses/UNIT-PLAN.md) and leans on the shared approach (docs/APPROACH.md),
 the lens (docs/agents/lenses/career-education.md) and the standard (STANDARD.md). Ours, untested.
 

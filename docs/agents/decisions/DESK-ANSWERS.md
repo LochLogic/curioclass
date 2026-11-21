@@ -1601,3 +1601,46 @@ approves, and the standard is part met where a school has none. Society units na
 never companies, with sources only in the teacher's source line. HS-DAT-IM-27 moves to grade 11 (grade 12 owns 10).
 The careers row stays in computer science. The approach page is approved with the cold read's fixes in. Left open:
 our own coding editor (asked again on a new Desk card).
+
+## 2026-11-21: After-core pre-work calls (q-prework-open-1, q-prework-open-2)
+
+Health and PE: both approach pages are approved. The kindergarten body-names row names penis, vulva, breasts and
+bottom; the family note lists them first, words only, with preview and a quiet opt-out of that one part; a person
+reads the row and the note before publishing (later.csv L89). Health keeps its default times; the course page names
+the national figure (NHES 2007, 40 and 80 hours a year) and the gap.
+
+Computer science: build one small coding editor of our own (blocks and text view, step-through), starting with
+grades 3 to 5.
+
+SEL: the ownership form was given a pedagogical check, as Cory asked, and used because it held with two fixes
+(docs/reviews/sel-ownership-check-2026-11-21.md): 160 owned rows at each band's last grade, every year a full row,
+`assumes` naming the year before, leans naming the grade row they need. SA3, SA4, SA7 and SA9 are checked on an
+invented case or a private plan, never on the student's own feelings. Four band rows replace sel-k12 in the
+catalogue (later.csv L90). A school may leave out a unit, with the ids named. Grade 10 unit 4 is retitled "Saying no,
+setting limits". The approach page is approved.
+
+Arts: a school may leave out a unit that studies a sacred or ceremonial tradition, one line on each course page.
+
+Calibration: the per-subject pass line in docs/pipeline/CALIBRATION.md is approved (at least 8 of 10 planted majors
+caught, at most 2 false major alarms, the top finding a planted major).
+
+Library: library-6-8 stays one course. Each AASL id is owned once, where first checked alone. Seven ids are excluded
+and left to other subjects. The own-words file is short glosses, with no permission request. No real site is named.
+Default times kept. The approach page is approved.
+
+ELD: 13 grade frames under four band courses (catalogue rows later.csv L90). Minutes kept, with the course page saying
+it is the protected core. Home-language notes: Spanish first, others when a reader is found. A sensitivity read before
+use on the newcomer strand, migration, war and loss texts and the family notes. The approach page is approved.
+
+Career education: owns the 7 Career Development and Academic and Lifelong Learning goals, the SEL goals are leans; the
+guidelines PDF is saved (ids follow a terms read, later.csv L91). Pathways goes broad: all 14 clusters, any sub-cluster
+open through its cluster (Cory: more opportunity for kids, even if harder to keep current). Exploration owns 14
+sub-clusters, and Pathways owns the other 58, so none is excluded. The personal finance and economics modules retag to
+Economics (L90). The military is one honest route, no recruiter material on a student page. The approach page is
+approved.
+
+World languages (still shelved; these settle pre-work pages only): four levels plus an early-years companion
+(Option D); French may be added, listed behind Spanish and ASL; each language its own progression; World-Readiness
+plus our ASL parameters strand; 3 sessions of 35 minutes; a heritage path inside each Spanish level; can-do
+paraphrase only, with a note Cory sends (L92); Spanish base text yes, ASL research redone; the approach page approved
+as pre-work. Left open: who reads ASL pages (L93).

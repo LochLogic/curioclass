@@ -1,6 +1,6 @@
 # Library and research skills: approach (layer 3)
 
-**DRAFT, 2026-11-16, for Cory's yes (Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)).** Nothing here is decided until he says so. Short by design: it fills the subject
+**Approved by Cory 2026-11-21 (Desk q-prework-open-2). Written 2026-11-16, read cold and fixed 2026-11-20.** Short by design: it fills the subject
 slots of the unit and section plan (docs/courses/UNIT-PLAN.md) and leans on the shared approach (docs/APPROACH.md),
 the lens (docs/agents/lenses/library.md) and the standard (STANDARD.md). Ours, untested. K to 5 courses meet one or two
 sessions a week all year (Cory, 2026-11-15); the 6 to 8 and 9 to 12 courses about one session every two weeks
@@ -74,7 +74,8 @@ sequence records both.
 Practice and check pages use invented sites, invented search results and described captures, with kinds named
 generically ("an online encyclopedia", "a fact-checking site", "a video site"). Inquiry days may use the real web
 under the teacher's guidance and the stop rule below; the student page then says "your search results" and names no
-site. A teacher page may say "swap in a current case" without naming a product. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+site. A teacher page may say "swap in a current case" without naming a product. No real site is named in any
+page (Cory, 2026-11-21).
 
 ## What a tool may and may not do
 
@@ -107,7 +108,7 @@ Each read is a fresh-agent read (docs/pipeline/briefs/sensitivity-read.md, kind 
 Settled (Cory, 2026-11-15 and 2026-11-16): K to 5 meet one or two sessions a week; 6 to 8 and 9 to 12 about one
 session every two weeks across their grades. Default time, ours and untested: K to 2, 30 sessions a year of 25
 minutes (about 12.5 hours); 3 to 5, 30 sessions of 35 minutes (about 17.5 hours); 6 to 8 and 9 to 12, 18 sessions a
-year of 45 minutes (about 13.5 hours a year). A frame may change these with a reason. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2) No national or
+year of 45 minutes (about 13.5 hours a year). Cory kept these (2026-11-21). A frame may change them with a reason. No national or
 professional body publishes a time figure for library instruction that we found (the AASL scheduling position
 statement, revised 2019, sets none; searched 2026-11-20). The one time figure behind a method here is the 2022
 lateral reading field study (about 500 high school students, six 50-minute lessons, from the Stanford news release;

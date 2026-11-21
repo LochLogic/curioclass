@@ -1,7 +1,6 @@
 # The Curio Class approach to teaching world languages (Spanish and American Sign Language)
 
-**World languages are SHELVED (Cory, 2026-11-11; restated 2026-11-20). This page is pre-work only.** DRAFT for Cory's
-yes (2026-11-20; see "Questions for Cory" in [STANDARD.md](STANDARD.md); Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)). Read cold 2026-11-20 (docs/reviews/prework-world-languages-read-2026-11-20.md) and fixed. Short by design. It fills the subject slots of
+**World languages are SHELVED (Cory, 2026-11-11; restated 2026-11-20). This page is pre-work only.** Approved as pre-work by Cory 2026-11-21 (Desk q-prework-open-2; answers in [STANDARD.md](STANDARD.md)). Read cold 2026-11-20 (docs/reviews/prework-world-languages-read-2026-11-20.md) and fixed. Short by design. It fills the subject slots of
 the unit plan and the section plan (docs/courses/UNIT-PLAN.md) for world languages when the pass opens. The lens is
 docs/agents/lenses/world-languages.md. Nothing here starts a frame, scope and sequence, unit, day or tool.
 
@@ -15,7 +14,7 @@ docs/agents/lenses/world-languages.md. Nothing here starts a frame, scope and se
   English are a fail (bar part 6). Learner-facing instructions are in the target language with a picture, a gesture
   or a model. The adult's note (the "before you teach" block and the family note) is in English and Spanish and says
   what to say or sign. English for the learner is allowed only to name a word's meaning on first use, said so on the
-  page. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+  page.
 - **Teaches the three modes in every unit.** Interpretive (understand a text), interpersonal (a real two-way exchange
   with a gap in information) and presentational (say or sign something to an audience). Every unit ends with one linked
   task across all three (bar part 6, item 6). A scripted dialogue does not count as interpersonal.
@@ -189,7 +188,7 @@ Settled by no one yet (question 7 in STANDARD.md). Published figures, read 2026-
 - A hours-to-proficiency lead (a University of Oregon CASLS page, https://casls.uoregon.edu/wp-content/uploads/pdfs/tenquestions/TBQHoursToReachIH.pdf)
   was found by search and not opened (not checked).
 
-**Dose by level** (draft, Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)). Default: 36 weeks a year, three sessions a week of 35 minutes, about 63 hours a
+**Dose by level** (Cory, 2026-11-21). Default: 36 weeks a year, three sessions a week of 35 minutes, about 63 hours a
 level (Levels 1 to 4); a K to 5 learner has the same course at the same dose. This clears ACTFL's floor for elementary
 and middle school (more than twice a week, at least 90 minutes a week; ACTFL, 29 July 2012); no national figure was
 found for high school, and none is claimed. The course page says the hours are not shown to reach the exit sublevels,

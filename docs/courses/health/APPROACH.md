@@ -1,7 +1,7 @@
-# Health: approach (DRAFT, for Cory's yes)
+# Health: approach
 
-**DRAFT, 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-health-read-2026-11-19.md). Not in
-force until Cory says yes.** This is the layer 3 approach page for health. It fills the
+**Approved by Cory 2026-11-21 (Desk q-prework-open-1). Written 2026-11-16, fixed 2026-11-19 after a cold read
+(docs/reviews/prework-health-read-2026-11-19.md).** This is the layer 3 approach page for health. It fills the
 section plan's subject slots (docs/courses/UNIT-PLAN.md) under the shared page docs/APPROACH.md. The standard,
 coverage map and sensitive-unit rule are in docs/courses/health/STANDARD.md; the bar is the health part of
 docs/ADOPTION-BAR-SUBJECTS.md; the lens is docs/agents/lenses/health.md.
@@ -125,8 +125,9 @@ ours and untested: K to 5 about 30 sessions a year of 30 minutes; 6 to 8 about 4
 is in STANDARD.md section 4. The national figure: the National Health Education Standards (second edition, 2007,
 page 76, Joint Committee on National Health Education Standards) recommend at least 40 hours a year in pre-K to
 grade 2 and 80 hours a year in grades 3 to 12. Our defaults come to about 15 hours a year in K to 5, 34 in 6 to 8
-and 60 in the high school semester, so they are below it, and the course page says so. Whether to raise them is
-Cory's call (Desk q-prework-open-2).
+and 60 in the high school semester, so they are below it. Cory kept ours (2026-11-21, Desk q-prework-open-2):
+health shares the day with every other subject, so the course page names the national figure and the gap so a school
+can add time.
 
 ## What a tool may and may not do
 

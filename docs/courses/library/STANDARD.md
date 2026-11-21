@@ -33,7 +33,7 @@ says which), never fewer units (Cory, 2026-11-11 and 2026-11-15).
 - **Our own words (owed):** data/standards/aasl-words.txt, the id, a tab, and one skill phrase of 8 to 15 words (an
   action and an object, not a rewording of the sentence), for example `AASL.IV.B.3`, "Question each source's maker
   and purpose before trusting what it says." Written without asking ALA for permission, since a phrase names the
-  skill and follows no sentence. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+  skill and follows no sentence (Cory, 2026-11-21).
 - **What it lacks:** AASL competencies are not set by grade. The same 68 apply K to 12. The bar's criterion 2 asks for
   named priority skills per grade, so a grade sequence must come from elsewhere.
 
@@ -74,7 +74,9 @@ per school year (6, 7, 8; 9, 10, 11, 12) even though each is one course: the pro
 years, the course is how they are taught. Each row's `assumes` names the earlier library row or the ELA or social
 studies row it builds on (section 5). The gate then needs library in scripts/progression.py: the standards file, the
 anchor, an id that carries no grade (any grade may own it, and the one-owner check does the work), and
-`data/progressions/library-excluded.csv` for the ids section 4 excludes. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+`data/progressions/library-excluded.csv` for the ids section 4 excludes. Settled (Cory, 2026-11-21): own once, at
+the school year where the id is first checked alone; `library-6-8` stays one course across grades 6 to 8, with a
+row per school year.
 
 | Courses | AASL | Priority skill emphasis (ours, to be set at the progression) |
 |---|---|---|
@@ -102,7 +104,7 @@ social studies source question, an ELA research piece. Each also carries a stand
   III.C.1, feedback, on the revise day of a research product), or excluded with a reason in
   `data/progressions/library-excluded.csv`. Excluded, each owned instead by the subject named: V.B.1 and V.C.2
   (science and computer science design cycles), V.A.1 (ELA wide reading), V.D.1 and V.D.2 (SEL self-management),
-  III.A.1 and III.D.2 (SEL relationship skills). Everything else is met through a research task. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+  III.A.1 and III.D.2 (SEL relationship skills). Everything else is met through a research task (Cory, 2026-11-21).
 
 ## 5. Cross-subject leans
 

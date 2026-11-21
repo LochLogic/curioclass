@@ -66,7 +66,7 @@ every other course are C11, not this course (bar part 10).
 - **Grain.** Each band course is written as one frame per grade year, 13 frames in all, each of 160 days at the
   band's minutes. A frame takes its host units from that grade's own core courses. A mixed-grade group uses the frame
   of its youngest grade, and the teacher page says so. The catalogue (data/courses.csv) then replaces `eld-k12` with
-  four band rows, `eld-k-2`, `eld-3-5`, `eld-6-8`, `eld-9-12`. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+  four band rows, `eld-k-2`, `eld-3-5`, `eld-6-8`, `eld-9-12` (Cory, 2026-11-21).
 - **Ownership** (settled by the expert reader, 2026-11-20, ours, untested). The ELD progression has one owned row per
   id in data/standards/wida-2020.txt, 104 in all. A cluster's owner year is its last grade: K for K, 1 for 1, 3 for
   2-3, 5 for 4-5, 8 for 6-8, 12 for 9-12. The other grades of the cluster carry the id as `~ID`, each with a one-line

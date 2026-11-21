@@ -161,7 +161,7 @@ the course marks the id "part met" where a school has none.
 
 ### Our own editor
 
-Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-1): build one small browser editor of our own (blocks and a
+Settled (Cory, 2026-11-21, Desk q-prework-open-1): build one small browser editor of our own (blocks and a
 text view, with a step-through trace), a single file with no account, starting with grades 3 to 5, rather than pointing
 teachers to a third-party tool; it also settles the text language for grades 7 to 12.
 

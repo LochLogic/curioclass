@@ -55,7 +55,7 @@ review).
   own frame and scope and sequence, 13 grade-year frames filed under the four band courses. The catalogue keeps
   four courses. Recommended: replace the one `sel-k12` row in data/courses.csv with four band rows (and drop "Light
   shelf"), and give plan.py one course id per band (`sel-k-2`, `sel-3-5`, `sel-6-8`, `sel-9-12`) with a frame per grade
-  year under it. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-1) The catalogue grain waits on Cory.
+  year under it. Settled (Cory, 2026-11-21): four band rows, "Light shelf" dropped.
 - **Sessions.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): two sessions a week in every grade, 32 weeks,
   so 64 sessions a year. A session is 20 minutes in K to 2, 30 in grades 3 to 5, 30 in grades 6 to 8 and 40 in
   grades 9 to 12 (an advisory period); a frame may change its band's number and gives the reason. One session a week
@@ -84,12 +84,18 @@ designs for an invented or chosen situation, with its trade-offs and a judgement
 band the first year uses cases from the school day, the second adds a second person's point of view, and the third
 adds a cost or a pressure. The progression row for each sub-skill says which of the three a year is.
 
-**Ownership, for the progression.** Recommended: one owned row per sub-skill per band, so 40 sub-skills by four
-bands is 160 owned rows. A band's owner year is its last grade (2, 5, 8 and 12), the year the sub-skill is met at
-the band's full depth; the other years of the band carry the id as `~ID` with a one-line note on how that year
-differs, and each row's `assumes` names the same sub-skill in the band before. The grade table below stays the
-placement, and every year still teaches all 40 once. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-1) The choice waits on Cory (the alternative is changing the layer 4
-gate so that each sub-skill is owned once per grade year).
+**Ownership, for the progression** (settled 2026-11-21: Cory asked for a pedagogical check of the recommendation and
+its use if it held; it held with two fixes, docs/reviews/sel-ownership-check-2026-11-21.md). One owned row per
+sub-skill per band, so 40 sub-skills by four bands is 160 owned rows. A band's owner year is its last grade (2, 5, 8
+and 12), the year the sub-skill is met at the band's full depth. Every grade year still has its own row for all 40
+sub-skills (520 rows in all), and the other years of the band carry the id as `~ID`. A `~` row is a full teaching
+row, not a lesser one: it has its own words, steps and exit ticket at its year's depth, and a one-line note on how
+that year differs. Each row's `assumes` names the same sub-skill in the year before (a `~` row or an owner row;
+kindergarten assumes nothing for it), so a band's later years build on its earlier ones and the first year of a band
+builds on the previous band's owner row, with a note on the step up. The grade table below stays the placement, and
+every year still teaches all 40 once. Other subjects' leans name the SEL row of the grade whose depth they need.
+The gate needs the codes() fix in scripts/progression.py (split on the tab only) before the first SEL check, since
+24 sub-skill names contain spaces.
 
 How each competency is practised (bar item 5): self-management and relationship skills by doing (rehearsing a
 calming routine, acting out an invented hard moment, practising an I-statement with a partner); self-awareness,
@@ -120,8 +126,8 @@ Unit rules:
   diagnosis, dating, sex or a substance. The units that sit next to health ("Stress and strong feelings",
   "Stress, focus and rest", "Stress and coping", "Relationships that are good for me", "Healthy boundaries" and
   "Help, support and pressure") name the health unit in the teacher notes and hand those topics to it.
-- **Grade 10 unit 4, "Healthy boundaries".** Recommended: retitle it "Saying no, setting limits", so the title does not read
-  as dating or sexual health. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-1) The retitle waits on Cory.
+- **Grade 10 unit 4, "Saying no, setting limits"** (retitled from "Healthy boundaries", Cory, 2026-11-21), so the
+  title does not read as dating or sexual health.
 
 Placement notes, by sub-skill, where the grade matters most:
 
@@ -217,11 +223,11 @@ Applied to SEL:
    reflection stays with the student; the teacher may read it only if the student offers it. Checks score a skill
    (naming the steps of a calming routine, choosing a fair next step in an invented case), never a feeling, a
    trait or a home life. No student surveys about feelings, family or mental health.
-   Four sub-skills are about the inside of the child (SA3, SA4, SA7, SA9). Recommended: each is checked as a skill on
+   Four sub-skills are about the inside of the child (SA3, SA4, SA7, SA9). Settled (Cory, 2026-11-21): each is checked as a skill on
    an invented case or a plan the student keeps. SA3: name a character's feeling and the clue. SA4: choose the true
    action in a case and say what it costs. SA7: name two steps a character could take and one place to ask for help.
    SA9: a private list the student keeps, checked only for "the steps were followed", never for its content. The course
-   never records a student's own answer to SA7 or SA9. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-1) This waits on Cory.
+   never records a student's own answer to SA7 or SA9.
 2. **No disclosure is asked for.** Prompts use invented characters and cases, or "a time you choose to share, or
    make one up". No activity asks a child to rank, sort or reveal their identity, family situation or past harm
    (no privilege walks, no "step forward if" games).
@@ -237,10 +243,10 @@ Applied to SEL:
    disputes are not SEL content. Grade sets the case: playground fairness in K to 2, unfair rules of the past from
    grade 5.
 6. **Families.** Every family note says what the unit teaches, the words it uses and how to practise at home, in
-   English and Spanish. Recommended: a school may leave out an SEL unit (as with health's sensitive units),
-   the school is told which sub-skills that year then does not teach, a later unit never assumes the left-out one (its
-   readiness item rests on the previous year's owner row), and the course page says the course does not claim those
-   sub-skills that year ("Acceptability is local", ADOPTION-BAR-SUBJECTS). Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-1) Whether a school may leave a unit out waits on Cory.
+   English and Spanish. Settled (Cory, 2026-11-21): a school may leave out an SEL unit (as with health's sensitive units),
+   the school is told which sub-skills that year then does not teach, a later unit never assumes the left-out one (its readiness item rests on the previous year's row for that sub-skill, or, if that unit was left out too,
+   the nearest earlier year that was taught, and checks only the one-step form), and the course page says the course does not claim those
+   sub-skills that year ("Acceptability is local", ADOPTION-BAR-SUBJECTS), naming the ids.
 7. **No product names, no rating words.** No program, app or registry name in public copy; no claim of being
    reviewed, approved, "evidence-based" or rated.
 

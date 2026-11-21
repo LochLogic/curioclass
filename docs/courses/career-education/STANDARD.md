@@ -50,7 +50,8 @@ no copyright or reuse statement seen in it): three domains, eleven goals, about 
 in three stages that are not tied to an age. Its third domain is Social Emotional Learning (four goals, about a third
 of the indicators), which the SEL courses already teach. So career education owns the Career Development and the
 Academic and Lifelong Learning goals (seven goals), and the Social Emotional Learning goals are leans on the SEL
-courses. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2) Saving the PDF and loading the file waits on Cory's yes (a download), then a read of NCDA's terms page.
+courses (Cory, 2026-11-21). Cory said yes to saving the PDF (2026-11-21); loading the file follows a read of NCDA's
+terms page.
 
 ## 3. How the standard maps to our courses (recommended, ours)
 
@@ -63,23 +64,26 @@ Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): each course is o
 grade 7 or 8, Career Pathways in grade 9 or 10), at two or three sessions a week. The frames say which grade and
 how many sessions.
 
-**Pathways' width.** Pathways builds field tasks and dated data sheets for a fixed menu of six clusters, and a student
-chooses two or three of them. A student may name a seventh cluster only for the general plan and portfolio pieces,
-using the course's task template and the student's own sources. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+**Pathways' width** (Cory, 2026-11-21: go broad, so students see more of what is open to them, even though it is
+harder to keep current). Pathways builds field tasks and a dated data sheet for all 14 clusters, and a student
+chooses two or three of them. Any of the 72 sub-clusters is open through its cluster's field tasks and the course's
+task template. Each data sheet carries its date and a line telling the teacher to check the figures that year.
 
 **Course list** (settled by the expert reader, 2026-11-20). Two courses: `cte-explore` (grades 6 to 8 in the
 catalogue, taught in grade 7 or 8) and `cte-pathways` (grades 9 to 12, taught in grade 9 or 10). Personal finance is
 not a course (Economics, 2026-11-14). The progression file is data/progressions/cte.csv (subject code `cte`). The
 catalogue's personal finance row and the five tool modules tagged to Exploration (three personal finance, two
-economics) are for Cory: the recommendation is to retag them to Economics. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+economics) are retagged to Economics, and "personal finance" leaves the subject description (Cory, 2026-11-21);
+the catalogue edit is a later step (data/plans/later.csv).
 
 **Ownership** (settled by the expert reader, ours, untested). The progression has one row per owned item. For the gate,
 a course's owner grade is its later grade (Exploration 8, Pathways 10), as health and physical education use the span's
 last grade; the frame may place a course a year earlier with a reason. Exploration owns the 14 clusters and 14 named
-sub-clusters, one per cluster, fixed in the frame. Pathways owns the sub-clusters of its six-cluster menu. Every other
-sub-cluster is excluded with the reason "student choice; met only through the general task template". The 12 practices
+sub-clusters, one per cluster, fixed in the frame (Cory, 2026-11-21: a smaller number here, as long as breadth is
+given somewhere). Pathways gives the breadth: it owns the other 58 sub-clusters, each met through its cluster's field
+tasks and data sheet, so no sub-cluster is excluded. The 12 practices
 are owned by Exploration, where each is first taught in a task, and Pathways carries each as a `~` row with the field
-task that practises it at higher demand. The learner goals, once loaded, are owned the same way. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+task that practises it at higher demand. The learner goals, once loaded, are owned the same way.
 
 **What the gate needs** (a note for the progression retool; scripts/progression.py is not edited here): ids split on
 the tab only, keeping the whole first field as scripts/standards.py does (the same split also cuts the SEL competency
@@ -119,8 +123,8 @@ Job models use invented workers drawn from many groups, and a student's own resu
 - **Disability at work:** disabled workers shown doing the work, with workplace rights stated plainly.
 - **Paths:** no route is the default (apprenticeship, a certificate, two-year or four-year study, starting work, the
   military). The military is one real route with its costs and returns, neither promoted nor condemned, with no
-  recruiter material on a student page; a teacher-page note says the school's own policy governs recruiter visits.
-  Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+  recruiter material on a student page; a teacher-page note says the school's own policy governs recruiter visits
+  (Cory, 2026-11-21).
 - **Clusters that touch other subjects:** Behavioral and Mental Health (health's ground), Emergency Response and
   Judicial Systems and Public Safety (violence, force, trauma), Resource Extraction and Environmental Protection (a
   live public dispute), Entrepreneurship and Regulation (political), Financial Services (left to Economics).
