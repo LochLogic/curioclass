@@ -1,6 +1,7 @@
 # Career education: the standard, made usable
 
-**DRAFT, 2026-11-16. Read cold 2026-11-20 (docs/reviews/prework-career-education-read-2026-11-20.md) and fixed.**
+**DRAFT, 2026-11-16. Read cold 2026-11-20 (docs/reviews/prework-career-education-read-2026-11-20.md) and fixed;
+second-model read and calibration findings fixed 2026-11-21 (docs/reviews/prework-career-education-fixes-2026-11-20.md).**
 
 Written 2026-11-16 as the subject's pre-work (docs/PRODUCTION-PATH.md, "After the core subjects"; the owed row in
 docs/ADOPTION-BAR-SUBJECTS.md, "Before a scope and sequence in this subject"). The model is
@@ -14,10 +15,10 @@ integrated (Cory, 2026-11-14), so it is not planned here.
 |---|---|---|
 | Read the 2024 career-ready practices wording | Done 2026-11-16, from a state's reproduction (the publisher's page was not reachable); described in our own words | data/standards/cte-career-clusters-2024.txt header; section 1 |
 | List what a school adds | Done | Section 4 |
-| A learner standard for the two courses | Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library); the guidelines PDF is reachable now; the file, our own words and a read of its terms are owed | Section 2 |
+| A learner standard for the two courses | Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library); the guidelines PDF is saved; a read of its terms, then the ids file in our own words, are owed (data/plans/later.csv L91) | Section 2 |
 | A second state's rubric (the bar's "to firm it") | Owed | docs/ADOPTION-BAR-SUBJECTS.md part 7 |
 | Progression gate support | Owed: scripts/progression.py reads ids up to the first space, so every id here becomes `CTE.Career`; it also has no entry for the subject | Section 3 |
-| Approach page | Draft, waiting on Cory's yes | docs/courses/career-education/APPROACH.md |
+| Approach page | Approved by Cory 2026-11-21 (Desk q-prework-open-2) | docs/courses/career-education/APPROACH.md |
 
 ## 1. The standard and its terms
 
@@ -50,8 +51,8 @@ no copyright or reuse statement seen in it): three domains, eleven goals, about 
 in three stages that are not tied to an age. Its third domain is Social Emotional Learning (four goals, about a third
 of the indicators), which the SEL courses already teach. So career education owns the Career Development and the
 Academic and Lifelong Learning goals (seven goals), and the Social Emotional Learning goals are leans on the SEL
-courses (Cory, 2026-11-21). Cory said yes to saving the PDF (2026-11-21); loading the file follows a read of NCDA's
-terms page.
+courses (Cory, 2026-11-21). The PDF is saved in S:\CurioClass-sources\career-education\ncdg-2024\ (Cory's yes,
+2026-11-21); data/standards/ncdg-2024.txt follows a read of NCDA's terms page (data/plans/later.csv L91).
 
 ## 3. How the standard maps to our courses (recommended, ours)
 
@@ -81,14 +82,22 @@ a course's owner grade is its later grade (Exploration 8, Pathways 10), as healt
 last grade; the frame may place a course a year earlier with a reason. Exploration owns the 14 clusters and 14 named
 sub-clusters, one per cluster, fixed in the frame (Cory, 2026-11-21: a smaller number here, as long as breadth is
 given somewhere). Pathways gives the breadth: it owns the other 58 sub-clusters, each met through its cluster's field
-tasks and data sheet, so no sub-cluster is excluded. The 12 practices
+tasks and data sheet, so no sub-cluster is excluded (Cory, 2026-11-21). Owned here
+means the course supplies each sub-cluster's teaching, task and check for the students who choose its cluster; one
+student meets the sub-clusters of the two or three clusters chosen, and the course page says so. The 12 practices
 are owned by Exploration, where each is first taught in a task, and Pathways carries each as a `~` row with the field
 task that practises it at higher demand. The learner goals, once loaded, are owned the same way.
 
+**Handoffs** (ours, untested). Each Pathways `~` practice row assumes Exploration's row for that practice, and each
+Pathways sub-cluster row assumes its cluster's row in Exploration, with the matching `hands_on` at the other end. The
+handoff skips grade 9 because no career education course owns there; each such row's notes say so.
+
 **What the gate needs** (a note for the progression retool; scripts/progression.py is not edited here): ids split on
 the tab only, keeping the whole first field as scripts/standards.py does (the same split also cuts the SEL competency
-names, which hold spaces); `cte` in STD_FILES with this file and the learner-goals file, and in ANCHOR with the
-learner-goals file; and a code_grades case that returns no grade for `CTE.` ids.
+names, which hold spaces); `cte` in STD_FILES with this file and the learner-goals file; both files required, since
+ANCHOR holds one file per subject: this file in ANCHOR and the learner-goals file through the route ELECTIVE_FILES
+uses (every code in it must be owned), or ANCHOR widened to a list; and a code_grades case that returns no grade for
+`CTE.` ids or the learner-goal ids.
 
 Data the courses use: the US Bureau of Labor Statistics Occupational Outlook Handbook and wage data (public domain,
 credit asked) and the O*NET database (CC BY 4.0, with its required attribution in the credit line only). See the scout.
@@ -109,7 +118,9 @@ The course page says this plainly. A school adds:
 
 - Technical courses inside one cluster (a welding or nursing course): not on the course list, and the bar's part 7
   notes the framework "would not fit a technical one".
-- Personal finance (Economics, 2026-11-14); practice 9 leans on Economics' personal finance standards.
+- Personal finance (Economics, 2026-11-14). Economics comes later (grade 12), so practice 9 is taught here as looking
+  after an employer's money and materials and comparing a wage with costs, with the grade 7 math leans in section 7,
+  and leans on no Economics row.
 - The older 16-cluster framework (superseded; noted in the file).
 
 ## 6. Sensitive ground
@@ -127,7 +138,8 @@ Job models use invented workers drawn from many groups, and a student's own resu
   (Cory, 2026-11-21).
 - **Clusters that touch other subjects:** Behavioral and Mental Health (health's ground), Emergency Response and
   Judicial Systems and Public Safety (violence, force, trauma), Resource Extraction and Environmental Protection (a
-  live public dispute), Entrepreneurship and Regulation (political), Financial Services (left to Economics).
+  live public dispute), Entrepreneurship and Regulation (political). Financial Services is taught as a cluster like
+  any other (its jobs, training and tasks); only personal finance is Economics'.
 - **Interview and resume tasks:** no question an employer may not lawfully ask, and no mock interview that asks a
   student something private.
 - **Hands-on tasks:** on paper or a simulation unless the school adds the lab; the unit's tools line names the safety
@@ -135,13 +147,16 @@ Job models use invented workers drawn from many groups, and a student's own resu
 
 **Reads.** Every unit gets the fresh-agent sensitivity read (docs/pipeline/briefs/sensitivity-read.md, kind
 `sensitivity`). Units on the Military and National Security, Behavioral and Mental Health, Judicial Systems, Emergency
-Response and Resource Extraction sub-clusters, and the pay-gap unit, name that community or topic in the read's
-community slot.
+Response, Public Safety, Resource Extraction and Environmental Protection sub-clusters, the pay-gap unit and any unit
+that shows disabled workers, name that community or topic in the read's community slot.
 
 ## 7. Cross-subject leans
 
 Exploration is placed in grade 8 for the gate, so it may lean on grade 7 and 8 core rows; Pathways is placed in grade
-10 and may lean on grade 9 and 10 rows. A resume or a cover letter is informative writing aimed at a reader, not one
+10 and may lean on grade 9 and 10 rows. A frame that places Exploration in grade 7 or Pathways in grade 9 swaps
+each later-grade lean for its row of that grade (`e7-informative-writing`, `e7-revise-purpose-audience`,
+`e7-present-salient`, `e7-collab-discussion`; `e9-w-informative`, `e9-sl-presentation`) and treats the grade 7 math
+rows as taught alongside, not before. A resume or a cover letter is informative writing aimed at a reader, not one
 of the writing standards' own text types.
 
 - **ELA:** `e8-informative-writing` and `e8-revise-purpose-audience` (resume lines, an email to an employer),
@@ -149,10 +164,13 @@ of the writing standards' own text types.
   portfolio defence).
 - **Math:** `m7-percent-problems` and `m7-unit-rate-fractions` (wages, a budget), `m7-compare-populations` (reading a
   data display).
-- **Social studies:** `ss8-public-budget` and the grade's economics rows (labour markets); Economics carries personal
-  finance.
-- **Computer science:** the data strand rows, for the Digital Technology cluster.
-- **Library:** judging a source by lateral reading (AASL.IV.B.3, owned in the library progression).
+- **Social studies:** `ss8-public-budget` (reading public budget and price data). No grade 8 or grade 10 social studies
+  row teaches labour markets (that is grade 12 Economics), so the course teaches what it needs of them from its own
+  dated data sheets.
+- **Computer science:** for the Digital Technology cluster, `g7-viz-choices`, `g8-relationships` and
+  `g8-investigation-summary` (Exploration); `g9-data-dictionary` and `g10-visual-data` (Pathways).
+- **Library:** judging a source by lateral reading (AASL.IV.B.3), named by row id once the library progression is
+  written.
 - **SEL:** the SEL courses' sub-skills for self-knowledge and goals (SEL STANDARD.md, self-awareness and self-management), named by progression row id when this subject's progression is written.
 
 Each lean is rechecked against the owner grade when the career education progression is written.
