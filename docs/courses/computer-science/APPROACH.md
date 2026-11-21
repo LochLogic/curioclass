@@ -1,10 +1,12 @@
 # Computer science: approach (layer 3)
 
-**DRAFT, 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-computer-science-read-2026-11-19.md), for
-Cory's yes.** Nothing here is decided until he says so. It fills the subject slots of the unit and section plan
-(docs/courses/UNIT-PLAN.md) and leans on the shared approach (docs/APPROACH.md), the lens
+**Approved by Cory 2026-11-20 (Desk q-prework-cs-1). Written 2026-11-16, fixed 2026-11-19 after a cold read
+(docs/reviews/prework-computer-science-read-2026-11-19.md); fields placed by number and sensitive ground gathered
+2026-11-21 (docs/reviews/prework-computer-science-fixes-2026-11-20.md).** It fills the subject slots of the unit and
+section plan (docs/courses/UNIT-PLAN.md) and leans on the shared approach (docs/APPROACH.md), the lens
 (docs/agents/lenses/computer-science.md) and the standard (STANDARD.md), which holds the rules this page points to:
-ownership of MS and HS ids, devices and rooms, privacy and safety, blocks to text, real cases, quoting. Ours, untested.
+ownership of MS and HS ids, depth, devices and rooms, privacy and safety, blocks to text, real cases, quoting. Ours,
+untested.
 
 ## The kinds of day, in computer science's words
 
@@ -15,7 +17,7 @@ The `kind` column keeps the shared words; the goal says the activity.
 | Understanding | Unplugged or trace day | An idea taught with cards, paper or movement, or a given program traced and predicted before it is run |
 | Fluency | Modify day | Students change a working program or algorithm in small, checked steps; short practice with the construct |
 | Application | Make day, design day or society day | Students design and build their own program or artifact against criteria, or audit a real system or case with evidence |
-| Check | Assessment day | End-of-unit assessment: read and trace items plus a short build or debug task. The task has look-fors and two sample programs, one that meets them and one that does not (UNIT-PLAN unit field 5), and a paper version for a class with no device, marked as in STANDARD.md "Devices and rooms" |
+| Check | Assessment day | The end-of-unit assessment (unit field 5, below) |
 | Respond | Respond day | Fixes from the assessment, by error letter |
 
 Order inside a unit: understanding before modify before make. A make day never comes before a trace or modify day on
@@ -40,8 +42,9 @@ minutes.
 - **Modify and make days:** the program itself, checked against two or three stated look-fors, plus one line from the
   student: what they tested and what they changed. A tool checks the look-fors it can (does the program do these three
   things on the tests?) and shows the student a "yes" or "not yet" for each; the teacher reads the open part for a
-  rotating third of the class each day, so every student is read at least once a week and twice if the exit ticket
-  shows a gap.
+  rotating third of the class each session, so every student is read at least once in every three sessions (in K to
+  5, which meets once a week, that is once in three weeks), and at the next session as well if the exit ticket shows
+  a gap.
 - **Unplugged days:** the paper artifact (the sorted cards, the drawn path, the encoded message) with one written
   question (K to 2: said or pointed).
 - **Society days:** a short claim and two views, each with one dated source (STANDARD.md "Real cases in society days").
@@ -49,23 +52,40 @@ minutes.
 
 ## What computer science adds to the plan fields
 
+Numbered as in docs/courses/UNIT-PLAN.md. Fields not named here (unit fields 1, 3, 4, 7 and 9; section fields 2 and 11)
+are filled as UNIT-PLAN.md says, with nothing added for computer science.
+
 **Unit plan.**
-- Field 2: each standard's parts by verb (the id and our own words, STANDARD.md "Quoting"); the practice the unit
-  teaches, named by its group; what is carried through the unit: the anchor program, algorithm or dataset (its name, the
-  day it is shown whole, the day it is withdrawn, the day students first build alone); the unit's unplugged days,
-  counted.
-- Field 8: each tool with its day, mark, job and verdict; devices needed per pair; the paper stand-in for every device
-  day; the few-device and one-screen versions (STANDARD.md "Devices and rooms").
+- Field 2: each standard's parts by verb (the id and our own words, STANDARD.md "Quoting"); the limits: the depth
+  taught to and what is left out (STANDARD.md "Depth"); the practice the unit teaches, named by its group; what is
+  carried through the unit: the anchor program, algorithm or dataset (its name, the day it is shown whole, the day it
+  is withdrawn, the day students first build alone); the unit's unplugged days, counted.
+- Field 5: read and trace items plus a short build or debug task (a society unit: a short audit or claim task). The
+  task has look-fors and two sample programs or pieces, one that meets them and one that does not, and a paper version
+  for a class with no device, marked as in STANDARD.md "Devices and rooms".
+- Field 6: the unit's common bugs and notional-machine errors are lettered here with the other errors, one mistake
+  per letter, each with what it shows.
+- Field 8: each tool with its day, mark, job and verdict, and a link to the course's TOOL-ASKS.md; devices needed per
+  pair; the supplies list, with the optional board's cost where one is used (STANDARD.md section 5); one line for the
+  school's technical staff (a common browser, one file, nothing installed, no account, nothing sent off the device).
+  **What a tool may and may not do:** a tool may step through a program line by line, run stated tests on a student
+  program and show "yes" or "not yet" for each look-for, show blocks and text views of one program, and run a toy
+  network, model or security system built into the page. Everything a tool may not do is set in STANDARD.md section
+  5 ("Privacy and safety", "Generated-text tools") and under "The form of daily evidence" (the teacher reads the open
+  part).
+- Field 10: for a unit taken from the partial base, the base unit and its third-party check (STANDARD.md section 2,
+  "Partial base for K to 8"); for each society case, its dated source (STANDARD.md "Real cases in society days").
 
 **Section plan.**
 - Field 1: the notional-machine point (what the computer does with each line, in order) or, in a unit with no code, the
-  adult-level background; the common bug and what it shows; the practice, its day and its task.
+  adult-level background; the practice, its day and its task; in a section on sensitive ground, its teacher note (see
+  "Sensitive ground").
 - Field 3: each day's evidence in the form set under "The form of daily evidence".
 - Field 4: each expected error as a wrong example beside a right one: a wrong program for code, a wrong statement for a
   systems, data or society idea.
 - Field 5: what is carried and what happens to it: the whole worked program, then the same program with blanks or
   shuffled lines, then modified by students, then withdrawn; the key moments and the tool that serves each; what a room
-  with nothing does.
+  with nothing does: the few-device and no-device versions of each device day (STANDARD.md "Devices and rooms").
 - Field 6: one row a day: kind in this page's words; how the day opens and for how long; who holds the worked program
   (teacher, pair, student); tool part, mark, job and minutes at the device; work away from the device; the evidence
   number.
@@ -74,8 +94,9 @@ minutes.
 - Field 8: practice that returns: a three-minute trace or debug of an earlier unit's construct, the unit named. No
   fluency target.
 - Field 9: English learners, access, check accommodations, reading load and extension, as set under "Supports".
-- Field 10: two rooms: one child at home; one screen in the room (STANDARD.md "Devices and rooms").
-- Field 11: what is not in the section, still to make, and the "from memory" marks.
+- Field 10: two rooms: one child at home, where the parent takes the other pair role (driver or navigator) and they
+  switch when field 7 says; one screen in the room, the one-screen version of each device day (STANDARD.md "Devices
+  and rooms").
 
 **Teacher page for a unit with code** carries: the idea at adult level; a finished, tested solution to every program
 students write; each common bug as a wrong program beside a right one with what it shows; the exact message the tool
@@ -99,6 +120,28 @@ debug a student's program on the fly.
 - **Extension.** On the same standard: a second bug, a new case the program must handle, an explanation of why a second
   solution is clearer. Never the next grade's construct.
 
+## Sensitive ground
+
+These rules gather what the computer science pages and progression rows already say. A section that touches one
+carries its teacher note in section field 1: what may come up in the room, and how to keep the talk on how a system
+was built, tested and used, never on a group or a classmate. Units with cultural, Native or disability content are
+read by the sensitivity agent before they go live (docs/FOUNDATION.md section 7; docs/pipeline/briefs/sensitivity-read.md).
+
+- **Bias, exclusion and access.** Who a system serves, leaves out or treats worse (for example E4-ALG-IM-03,
+  E5-SOC-HI-16, MS-ALG-IM-10 and 11, MS-SYS-IM-37, MS-SOC-ET-41 and 42, HS-ALG-IM-10, HS-SOC-ET-41). Cases follow
+  STANDARD.md "Real cases in society days": what happened, two views, a dated source for each, no company named.
+- **Data about people and communities.** Personal data, large-scale collection and data sovereignty (MS-DAT-IM-28,
+  HS-DAT-IM-27 and 28). Class data follows STANDARD.md "Privacy and safety"; a case about a Native nation's or other
+  community's data gets the sensitivity read above.
+- **Online safety and personal information.** Accounts, sharing and online actions (E1-SYS-SE-12, E2-SYS-SE-12,
+  E3-SYS-SE-13, MS-SOC-HU-43) are taught as STANDARD.md "Privacy and safety" sets: a pretend page or a paper account.
+- **Work and automation.** Jobs made or replaced by automation (MS-SOC-CE-45) can touch a student's family; the
+  teacher note says so.
+- **If a student tells you something.** Computer science uses health's steps, word for word
+  (docs/courses/health/APPROACH.md, "If a student tells you something"); every teacher page of an online safety or
+  personal information section carries them, as PE's do (Cory, 2026-11-21, Desk q-fix-pe-1).
+- **What a school may leave out:** open for Cory.
+
 ## Pacing
 
 Each course frame states weeks, sessions a week and minutes a session. Because K to 5 meet once a week, every session
@@ -119,8 +162,11 @@ read for this page: none yet; each one added is listed with how much of it was r
 - 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per grade K to 12, and the UK computing
   curriculum as a partial base for K to 8 (STANDARD.md section 2).
 - 2026-11-16 (Cory, Desk card q-later-followups-1): one session a week in K to 5, two to three a week in 6 to 12.
+- 2026-11-20 (Cory, Desk q-prework-cs-1): this page approved as the layer 3 page for computer science, with the cold
+  read's fixes in.
+- 2026-11-21 (Cory, Desk q-prework-open-1): our own editor (STANDARD.md "Our own editor").
 
 ## Open for Cory
 
-Cory said yes to this page as the layer 3 page for computer science once the cold read's fixes were in (2026-11-20,
-Desk q-prework-cs-1); they are. Still open: our own editor (STANDARD.md).
+The default minutes a session and sessions a year (Pacing); what a school may leave out (Sensitive ground); the text
+language for grades 7 to 12 (STANDARD.md "Blocks to text").

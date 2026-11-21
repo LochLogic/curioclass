@@ -6,7 +6,7 @@
 # note: 135 ids: S1 73, S2 62. Per area (S1/S2): AIN Artificial Intelligence 14/10, CYB Cybersecurity 15/12, DSC Data Science 14/15, GMD Game Development 9/8, PHY Physical Computing 8/8, SWD Software Development 8/9, XCS X + CS (computer science inside another subject) 5/0.
 # note: extracted from the PDF text by code pattern on 2026-11-11. Every id appears exactly twice in the PDF (its own standard page and the progressions appendix); numbering is contiguous from 01 inside each tier and area. The PDF prints no total, so 135 is our count; it equals the count in docs/reviews/standards-currency-2026-11-11.md.
 # note: the same pattern finds exactly the 196 Foundational ids of csta-2026-ids.txt and nothing else, so the PDF holds 331 ids in all.
-# note: the high school course teaches the Foundational set. Claim a Specialty id only where a module already goes that far (Cory, 2026-11-11). No module in data/modules.csv carries one yet, and the checkers do not read this file yet.
+# note: the four high school courses teach the Foundational set; grades 11 and 12 claim only the eight S1 ids named in docs/courses/computer-science/STANDARD.md section 2 (Cory, 2026-11-20); S2 and the X + CS ids are not claimed in a computer science course. scripts/standards.py and scripts/progression.py read this file.
 S1-AIN-DD-01
 S1-AIN-DD-02
 S1-AIN-DD-03

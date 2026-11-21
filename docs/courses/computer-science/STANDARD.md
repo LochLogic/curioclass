@@ -1,7 +1,8 @@
 # Computer science: the standard, made usable
 
-**DRAFT, 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-computer-science-read-2026-11-19.md).**
-Stays a draft for Cory's yes.
+**Written 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-computer-science-read-2026-11-19.md)
+and 2026-11-21 after the second-model read (docs/reviews/prework-computer-science-fixes-2026-11-20.md).** Its calls
+are Cory's, logged in docs/agents/decisions/DESK-ANSWERS.md and named where they apply.
 
 Written 2026-11-16 as the subject's pre-work (docs/PRODUCTION-PATH.md, "After the core subjects"; the owed row in
 docs/ADOPTION-BAR-SUBJECTS.md, "Before a scope and sequence in this subject"). The model is
@@ -16,7 +17,8 @@ where one is needed this page recommends and says so.
 | The standards' wording, under its own licence line | Done 2026-11-16: all 331 statements, CC BY-NC-SA 4.0 line in the file header | data/standards/csta-2026-statements.txt |
 | Load the 135 Specialty standards | Done 2026-11-11 (ids); wording 2026-11-16 | data/standards/csta-2026-specialty-ids.txt; statements file |
 | High school teaches the Foundational set, claims a Specialty id only where a topic already goes that far | Decided (Cory, 2026-11-11); restated in section 3 | This page |
-| Approach page | Draft, fixed 2026-11-19, waiting on Cory's yes | docs/courses/computer-science/APPROACH.md |
+| Approach page | Approved 2026-11-20 (Cory, Desk q-prework-cs-1); fields placed 2026-11-21 | docs/courses/computer-science/APPROACH.md |
+| From the PDF: a store of the boundary statements, the sub-concept key, the practices table | Owed from whoever holds the PDF | Section 1 "Depth" and "Sub-concept codes"; section 3 |
 
 ## 1. The standard and its terms
 
@@ -44,9 +46,11 @@ where one is needed this page recommends and says so.
 - **Quoting.** A plan cites each standard by its id and states its action as one verb or a short phrase in our own words
   (the computer science form of UNIT-PLAN rule 15); the statement and boundary statement are never quoted. The
   statement lives in data/standards/csta-2026-statements.txt for the planner, not on the page.
-- **Depth.** Boundary statements are not stored anywhere in the repository. Until a store exists, the planner takes the
-  depth from the one-line statement and the PDF (whoever holds the PDF), and every plan writes the depth it teaches
-  to, and what it leaves out, in our own words. A K to 5 course never teaches an id at its next band's depth.
+- **Depth.** Boundary statements are not stored anywhere in the repository yet; a store (planning only, under the
+  statements' licence, never copied into a page) is owed. Until it exists, a planner without the PDF has only the
+  one-line statement, which does not set the depth: the progression rows were written from the one-line statements, so
+  when the store lands every owner row is checked again against its boundary statement. Every plan writes the depth it
+  teaches to, and what it leaves out, in our own words. A K to 5 course never teaches an id at its next band's depth.
 - **Sub-concept codes** (PD, RD, TR, VD, PS, ML, IM, DC, DI, HW, SE, NT, HI, HU, CE, ET and the rest) are named in the
   PDF's concept pages. A key (code, name, our one-line meaning) is owed from whoever holds the PDF; nobody guesses it.
   A code names a strand inside one concept: DAT-IM and ALG-IM are different strands.
@@ -65,7 +69,7 @@ Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per g
 | Computer Science, grades 6, 7 and 8 (one course each) | MS | 45 across the three | CSTA writes one band and no grade split; the progression gives each id one owner grade (see "Ownership of MS and HS ids") |
 | Computer Science, grades 9 to 12 (one course each) | HS Foundational | 46 across the four | One owner grade each, by the same rule; Specialty ids claimed only where a unit already goes that far (Cory, 2026-11-11) |
 
-Minutes: one session a week in K to 5 (a specials rotation), two to three a week in 6 to 12 (a real elective). Settled 2026-11-16 (Cory, Desk card q-later-followups-1).
+Sessions a week: one in K to 5 (a specials rotation), two to three in 6 to 12 (a real elective). Settled 2026-11-16 (Cory, Desk card q-later-followups-1). Minutes a session and sessions a year are not yet set (open for Cory; APPROACH.md "Pacing").
 
 **Ownership of MS and HS ids.** The course progression (layer 4, docs/PRODUCTION-PATH.md), not the scope and sequence,
 places each MS and HS id in exactly one grade that owns it: the grade where students are first taught it to the depth
@@ -73,8 +77,8 @@ set under "Depth" in section 1, and checked on it. Another grade of the band tha
 `~ID` (used in a new setting, contributes). Every MS id is owned by grade 8 at the latest, every HS id by grade 12.
 Starting split (ours, untested; counted from data/standards/csta-2026-ids.txt, MS 45 and HS 46): grade 6 owns about 17
 MS ids, grade 7 about 15, grade 8 about 13, by concept ALG 4/4/3, DAT 4/2/3, PRO 3/3/3, SOC 3/3/2, SYS 3/3/2 (MS
-concepts ALG 11, DAT 9, PRO 9, SOC 8, SYS 8; the split is forced, because MS-DAT-DC-21 to 24 must all come before MS-ALG-ML-07 in grade 7, which puts four DAT ids in grade 6). Each HS year owns 11 or 12 ids (HS concepts ALG 11, DAT 8, PRO 9, SOC 9,
-SYS 9), with every concept in every year. Ordering constraints, ours: MS-PRO-VD-16 before MS-ALG-PS-01 and MS-PRO-RD-17;
+concepts ALG 11, DAT 9, PRO 9, SOC 8, SYS 8; the split is forced, because MS-DAT-DC-21 to 24 must all come before MS-ALG-ML-07 in grade 7, which puts four DAT ids in grade 6). Grades 9, 10 and 11 own 12 HS ids each and grade 12 owns 10 (HS concepts ALG 11, DAT 8, PRO 9, SOC 9,
+SYS 9; HS-DAT-IM-27 moved to grade 11, Cory, 2026-11-20, Desk q-prework-cs-1), with every concept in every year. Ordering constraints, ours: MS-PRO-VD-16 before MS-ALG-PS-01 and MS-PRO-RD-17;
 MS-PRO-PD-12 before MS-PRO-RD-17; MS-PRO-RD-17 before MS-PRO-RD-18; MS-DAT-DC-23 before MS-DAT-DI-25 to 27; MS-ALG-ML-06
 before MS-ALG-ML-07 and 08; MS-DAT-DC-21 to 24 before MS-ALG-ML-07; MS-SYS-NT-34 before NT-35; MS-DAT-DI-25 owned in
 grade 8 unless the math frame teaches association earlier (from memory). HS: HS-PRO-VD-16 before HS-ALG-PS-01;
@@ -116,7 +120,10 @@ alone.
 ## 4. Cross-subject leans on the core progressions
 
 CSTA prints interdisciplinary links for each Foundational standard (to CCSS, NGSS, the arts, health, library and
-career standards). Our own reading of where the course leans:
+career standards). Our own reading of where the course leans is below; the skill ids of each lean on a core
+progression are in the progression's `cross_subject` column (data/progressions/computer-science.csv), where the
+check tests them. Library and career education (the last two lines) are not core subjects, so they are named here
+only, not as progression leans.
 
 - **Math:** sequence and pattern (K to 2), coordinate grids and angles for movement tasks (grades 4 to 6), variables
   and expressions (grade 6 on), data displays and statistics (DAT throughout), Boolean conditions as true and false
@@ -163,7 +170,8 @@ the course marks the id "part met" where a school has none.
 
 Settled (Cory, 2026-11-21, Desk q-prework-open-1): build one small browser editor of our own (blocks and a
 text view, with a step-through trace), a single file with no account, starting with grades 3 to 5, rather than pointing
-teachers to a third-party tool; it also settles the text language for grades 7 to 12.
+teachers to a third-party tool. The text language for grades 7 to 12 is the one this editor runs; it is not yet named
+(open for Cory).
 
 ### Blocks to text
 

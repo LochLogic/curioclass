@@ -2,6 +2,7 @@
 # version: 2026 CSTA PK-12 Computer Science Standards, Computer Science Teachers Association, published summer 2026 (DOI 10.1145/3820482)
 # licence: THIS FILE IS NOT CC BY. It holds the standards' own statement text, (c) 2026 Computer Science Teachers Association, licensed CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/). Attribution: Computer Science Teachers Association. (2026). 2026 CSTA PK-12 computer science standards. https://csteachers.org/pk12standards/. Unchanged except whitespace (PDF line breaks joined). Any adaptation of these lines is shared under the same licence. Curio Class's own pages and data stay CC BY: they cite ids and say things in our own words, never copy these lines.
 # fetched: 2026-11-16. Statements taken by script from the PDF's standard pages (the text before each "Boundary Statement"), one per id; boundary statements, practices and dispositions not stored.
+# repair: 2026-11-21, four words split at a line break in the PDF rejoined (large-scale twice, device-to-device, human-centered); no other change.
 # level: one standard per line, <id><TAB><statement>. 331 lines: the 196 Foundational ids in csta-2026-ids.txt order, then the 135 Specialty ids in csta-2026-specialty-ids.txt order.
 # note: scripts/standards.py does not read this file; the two id files stay the code registry. Every id here is in one of them and every id there is here (checked 2026-11-16).
 E1-ALG-IM-03	Explain how a change to an algorithm leads to a different outcome.
@@ -126,7 +127,7 @@ HS-DAT-DC-23	Use a computational tool to clean and organize text-based data.
 HS-DAT-DC-24	Evaluate different approaches to verifying consistency and compliance with expected data types, values, and ranges.
 HS-DAT-DI-25	Create a data visualization of a multivariate dataset to answer a question or make a classification or prediction.
 HS-DAT-DI-26	Evaluate a data simulation or visualization to answer a data question, inform decision-making, and identify potential limitations.
-HS-DAT-IM-27	Evaluate the societal, environmental, and ethical implications of large- scale data collection and processing, including within AI applications.
+HS-DAT-IM-27	Evaluate the societal, environmental, and ethical implications of large-scale data collection and processing, including within AI applications.
 HS-DAT-IM-28	Debate the efficacy of a policy or regulation to ensure responsible data use.
 HS-PRO-PD-12	Create a modular program that uses procedures, external libraries, or objects to improve reusability and readability.
 HS-PRO-PD-13	Use documentation, libraries, application programming interfaces (APIs), and other tools in program development.
@@ -252,7 +253,7 @@ S1-GMD-PP-08	Analyze the ethical implications of copyright and intellectual prop
 S1-GMD-PP-09	Develop a game project collaboratively within a diverse team.
 S1-GMD-PX-05	Create a user-friendly interface for a game, considering accessibility, usability, and aesthetics.
 S1-GMD-PX-06	Optimize basic game usability through user testing and identifying actionable design revisions.
-S1-PHY-CI-04	Use IoT devices to collect sensor data and transmit it locally using device- to-device or device-to-gateway communication.
+S1-PHY-CI-04	Use IoT devices to collect sensor data and transmit it locally using device-to-device or device-to-gateway communication.
 S1-PHY-CI-05	Implement IoT communication by connecting physical devices with protocols, applying security practices.
 S1-PHY-DD-03	Develop software to control a physical device using an iterative design process.
 S1-PHY-HC-01	Construct an electrical circuit to power and control a physical computing device.
@@ -267,7 +268,7 @@ S1-SWD-PP-08	Collaborate to develop software that reflects diverse perspectives.
 S1-SWD-TR-06	Use AI-assisted IDE tools or features to understand unfamiliar code and identify errors during debugging.
 S1-SWD-TR-07	Design a test plan that exercises program functionality, including edge cases, error conditions, and varied user inputs.
 S1-SWD-UX-04	Refine a user interface design using accessibility and responsive design tools.
-S1-SWD-UX-05	Create software that serves intended users and contexts using human- centered design principles.
+S1-SWD-UX-05	Create software that serves intended users and contexts using human-centered design principles.
 S1-XCS-XC-01	Explain connections between CS concepts and practices and those from a non-CS discipline (X).
 S1-XCS-XC-02	Formulate a computational solution to a problem in a non-CS discipline (X) using computational thinking.
 S1-XCS-XC-03	Analyze a computer science technology or approach used in a non-CS discipline (X).
@@ -305,7 +306,7 @@ S2-DSC-CC-04	Choose appropriate data to collect for a data science project based
 S2-DSC-MI-08	Evaluate the performance of models using established metrics.
 S2-DSC-MI-09	Analyze the trade-offs between interpretability, accuracy, and generalizability as they relate to model complexity.
 S2-DSC-MI-10	Analyze how adding or removing variables affects model behavior and performance.
-S2-DSC-PP-13	Evaluate ethical, legal, and social considerations when working with large- scale datasets, predictive models, and emerging technologies.
+S2-DSC-PP-13	Evaluate ethical, legal, and social considerations when working with large-scale datasets, predictive models, and emerging technologies.
 S2-DSC-PP-14	Evaluate protective measures in data collection, usage, and governance for privacy, security, and fairness.
 S2-DSC-PP-15	Translate technical results for diverse audiences in professional communication artifacts.
 S2-DSC-VZ-11	Create a visualization that accurately represents data and avoids misleading design choices.
