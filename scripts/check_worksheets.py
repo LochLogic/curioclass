@@ -45,8 +45,8 @@ FILES = {
                        ('us-hist-8', 'course'), ('world-hist-hs', 'course'), ('world-hist-2', 'course'),
                        ('us-hist-1', 'course'), ('us-hist-hs', 'course'),
                        ('government', 'course'), ('economics', 'course'), ('psychology', 'course')],
-    'visual-arts': [('visual-arts', 'grades')], 'media-arts': [('media-arts', 'grades')],
-    'music': [('music', 'grades')], 'theater': [('theater', 'grades')], 'dance': [('dance', 'grades')],
+    'visual-arts': [('visual-arts-k-2', 'grades'), ('visual-arts-3-5', 'grades'), ('visual-arts-6-8', 'grades'), ('visual-arts-9-12', 'grades')], 'media-arts': [('media-arts-k-2', 'grades'), ('media-arts-3-5', 'grades'), ('media-arts-6-8', 'grades'), ('media-arts-9-12', 'grades')],
+    'music': [('music-k-2', 'grades'), ('music-3-5', 'grades'), ('music-6-8', 'grades'), ('music-9-12', 'grades')], 'theater': [('theater-k-2', 'grades'), ('theater-3-5', 'grades'), ('theater-6-8', 'grades'), ('theater-9-12', 'grades')], 'dance': [('dance-k-2', 'grades'), ('dance-3-5', 'grades'), ('dance-6-8', 'grades'), ('dance-9-12', 'grades')],
     'health': [('health-k-2', 'grades'), ('health-3-5', 'grades'), ('health-6-8', 'grades'), ('health-9-12', 'grades')],
     'pe': [('pe-k-2', 'grades'), ('pe-3-5', 'grades'), ('pe-6-8', 'grades'), ('pe-9-12', 'grades')],
     'computer-science': [('cs-k12', 'grades')], 'library': [('library', 'grades')],
@@ -81,8 +81,8 @@ def units():
                                 modules=[m['title'] for m in mine])
             elif mode == 'grades':
                 stem = cid.split('-k')[0] if cid.endswith(('-k12', '-k5', '-k8')) else cid
-                if cid.startswith(('sel-', 'eld-', 'health-', 'pe-')):  # band courses keep the old per-grade unit ids (2026-11-21)
-                    stem = cid.split('-')[0]
+                if re.search(r'-(k-2|3-5|6-8|9-12)$', cid):  # band courses keep the old per-grade unit ids (2026-11-21)
+                    stem = re.sub(r'-(k-2|3-5|6-8|9-12)$', '', cid)
                 for g in sorted(span(c['grades']), key=GRADES.index):
                     title = c['title'].split(', grades')[0] if cid not in ('math-k8', 'science-k5', 'ss-k5') else \
                         {'math-k8': 'Math', 'science-k5': 'Science', 'ss-k5': 'Social Studies'}[cid]

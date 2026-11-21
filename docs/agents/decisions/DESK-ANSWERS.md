@@ -1669,3 +1669,15 @@ changing in front of others, and PE hazard units get a safety read (PE APPROACH.
 docs/FOUNDATION.md section 7). (4) Dose defaults, ours and untested: K to 2 80 x 30 minutes, 3 to 5 80 x 35, 6 to 8
 96 x 45, 9 to 12 80 x 45 per year taken, short paths 60 to 64; a frame may change them with a reason (PE APPROACH.md,
 "Pacing").
+
+## 2026-11-21: Arts fix pass calls (q-fix-arts-1)
+
+Cory took all six recommended picks. (1) The 63 high school music composition and theory ids load now, with own-words
+lines and music 9 to 12 progression rows. (2) The Level 1 bridge unit teaches grade 8 techniques and words as
+readiness, claims no grade 8 id, and is 6 days on the 80-day short path. (3) Leave-out follows SEL and PE: swapping a
+work keeps the ids met; a left-out unit's ids are named as not claimed that year on the course page and in the
+family note. (4) The five K to 12 arts rows in data/courses.csv become 20 band rows (visual-arts-k-2 to
+media-arts-9-12), none core; module ids and worksheet unit ids are kept. (5) High school lessons are 45 minutes; each
+course page names its national association's recommended weekly time, once read at source, and our gap. (6) No arts
+task asks about a student's own diet, weight or body; every personal-tie task has an invented or public option;
+sections carry health's steps for when a student tells you something (arts APPROACH.md).
