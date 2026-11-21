@@ -8,12 +8,13 @@ docs/courses/eld/STANDARD.md. Web facts below were read on 2026-11-20 unless mar
 
 | Owed (ADOPTION-BAR-SUBJECTS, world languages) | State | Where |
 |---|---|---|
-| Split each language into levels, with a target each | Options and a pick written; Cory decides when the pass opens | Section 5 |
+| Split each language into levels, with a target each | Option D chosen (Cory, 2026-11-21); catalogue rows drawn when the pass opens | Section 5 |
 | Load the 2026 can-do statements after a licence check | Licence read; nothing loaded; paraphrase-only plan | Section 3 |
 | Load American Sign Language standards | Sources found; nothing loaded | Section 4 |
 | Decide the video source for American Sign Language | Already decided: graphics only, no video, no photos of people (Cory 2026-10-27) | APPROACH.md |
 | Course count above 105 | Counted for each option | Section 5 |
-| Approach page, lens, base-text scout | Draft for Cory's yes; lens and scout written | APPROACH.md; docs/agents/lenses/world-languages.md; docs/reviews/world-languages-open-material-2026-11-20.md |
+| Approach page, lens, base-text scout | Approach approved as pre-work (Cory, 2026-11-21); lens and two scouts written | APPROACH.md; docs/agents/lenses/world-languages.md; docs/reviews/world-languages-open-material-2026-11-20.md; docs/reviews/world-languages-asl-material-2026-11-21.md |
+| Strand id files (Spanish sounds and spelling; the seven ASL parameters) and the check entries | Not made; owed before stage 2 | Sections 1 and 6 |
 
 ## 1. The standard and its terms
 
@@ -26,7 +27,8 @@ docs/courses/eld/STANDARD.md. Web facts below were read on 2026-11-20 unless mar
 - **Levels.** ACTFL Proficiency Guidelines, 2024 edition: Novice, Intermediate, Advanced, each split Low, Mid, High,
   then Superior and Distinguished (no sublevels). Checked on the ISBE copy of the 2024 guidelines and on ACTFL's
   overview page by search summary 2026-11-20; the Distinguished name was added in 2012 and a note says some find the
-  top names lofty. Whether the 2024 text keeps Distinguished unchanged is not checked.
+  top names lofty. A search summary of the ISBE copy (2026-11-21) lists Distinguished among the 2024 text's five
+  major levels; the text itself was not opened, so its wording is not checked.
 - **The file.** data/standards/actfl-wrs.txt holds the 11 standard ids (`WRS.<goal area>.<n.n>`) and the 11 level names
   (`ACTFL.<level>`), ids only. It is unchanged by this pre-work.
 - **Do the 2015 pages print the numbers 1.1 to 5.2?** Checked 2026-11-20: **no.** The two-page ACTFL summary PDF
@@ -44,18 +46,20 @@ docs/courses/eld/STANDARD.md. Web facts below were read on 2026-11-20 unless mar
   - The standards themselves are for sale on ACTFL's site (the summary page links a purchase page).
   - The proficiency levels are a published scale; their descriptions are ACTFL's. We name the levels and write our
     own descriptions.
-- **Validator.** scripts/standards.py reads actfl-wrs.txt as an id list, so every full id is valid as listed (the
-  file was loaded 2026-10-27; this pre-work did not re-run the gate).
+- **Validator.** scripts/standards.py does not read actfl-wrs.txt as a list yet. Its closed patterns accept only bare
+  goal-area names (`WRS.Communication`) and the nine Novice to Advanced sublevels, so the 11 numbered `WRS` ids,
+  `ACTFL.Superior` and `ACTFL.Distinguished` fail the check today (13 of 22; tested 2026-11-21). Before any
+  world languages row cites an id, the file is added to the script's listed files.
 
 ## 2. What is in the catalogue, and a mismatch to report
 
-- data/courses.csv has three rows with track `world-languages`: `spanish` (k-12, "Modules keyed by level not
+- data/courses.csv has three rows with subject `world-languages`: `spanish` (k-12, "Modules keyed by level not
   grade"), `french` (6-12, "Same level modules as Spanish; language-specific content added in Phase 2") and `asl` (k-12,
   "tools reviewed by Deaf educators before release"). None is core.
 - The adoption bar part 6 and the owed row say **two** courses: Spanish and American Sign Language ("2 shelf foreign
   languages", ADOPTION-BAR-SUBJECTS, Decided, item 2; the course count line "120 courses, 2 world languages
-  shelved"). The catalogue has **three**. **Reported, not fixed.** French is the extra row. This is a question for
-  Cory (section 8, question 2).
+  shelved"). The catalogue has **three**. French is the extra row. Cory's answer (question 2, "Cory's answers"):
+  French may be added, listed behind Spanish and ASL; the bar's wording is corrected when the pass opens.
 
 ## 3. The 2026 can-do statements
 
@@ -74,16 +78,17 @@ docs/courses/eld/STANDARD.md. Web facts below were read on 2026-11-20 unless mar
   only, never the statements' text, each page carrying a note that they are our paraphrase of the NCSSFL-ACTFL
   can-do statements and not endorsed by either body, and a world-language teacher and a Deaf ASL teacher are asked
   to check them when a contact turns one up.** Nothing is loaded now: no copy of the 2026 text sits in the repo, and
-  this pre-work did not download any. Whether to ask NCSSFL and ACTFL in writing is question 5 in section 8.
+  this pre-work did not download any. Cory sends one short note to NCSSFL and ACTFL asking whether paraphrase in a
+  free tool set is acceptable (question 5; data/plans/later.csv L92), before any page uses a paraphrase.
 
 ## 4. American Sign Language: what standards exist
 
 Search only; nothing downloaded; links in section 7.
 
 - **K-12 ASL Content Standards** (Clerc Center, Gallaudet University; developed 2014 to 2017 with a consortium and
-  the California School for the Deaf at Fremont, per the search summary). Five anchor standards with grade-level
-  benchmarks for **students learning ASL as a first language** (academic ASL). The Clerc Center page returned a 403
-  when fetched, so the licence and the exact structure are **not checked**. It is the right fit for Deaf children
+  the California School for the Deaf at Fremont, per the search summary). Written for **students learning ASL as a
+  first language** (academic ASL); the search summary describes five anchor standards with grade-level benchmarks.
+  The Clerc Center page returned a 403 when fetched, so the licence and the structure are **not checked**. It is the right fit for Deaf children
   who sign from home, not for a hearing child learning ASL as a second language.
 - **Standards for Learning American Sign Language** (ASLTA, 2014), cited in the Massachusetts ASL framework guidance.
   Structure and licence not seen (not checked).
@@ -95,18 +100,18 @@ Search only; nothing downloaded; links in section 7.
   itself says "signed"), the ACTFL level scale (ACTFL has applied its guidelines to ASL; from memory, not checked) and
   our own ASL strand of parameters (handshape, location, movement, palm orientation, non-manual markers, use of
   space, classifiers: bar part 6, item 9). A Deaf first-language path (the Clerc standards) is a separate course
-  idea, out of scope (section 6). The ASL standard to load is question 3 in section 8.
+  idea, out of scope (section 8). Cory chose this reading (question 3, "Cory's answers").
 - **Culture and people.** Sources agree Deaf culture belongs in ASL teaching; the Illinois Association of the Deaf
   (2018) states a strong position that Deaf and native ASL users should teach ASL and that hearing teachers replacing
   them is cultural appropriation (found by search; position text not read in full). It bears on who reads and
-  checks our ASL pages. See APPROACH.md and question 4.
+  checks our ASL pages. See APPROACH.md, "Sensitive ground", and question 4 (still open, data/plans/later.csv L93).
 
 ## 5. How the standard maps to the courses
 
 **Levels, not grades.** The bar says "Modules keyed by level not grade" (courses.csv) and "each level names a target
-proficiency level" (part 6, item 1). A child of any age starts at the first level; a grade 3 learner and a grade 9
-learner at the same level use the same course, with age-tuned topics and tasks (heritage and age notes in
-APPROACH.md). Hours decide the pace: a student cannot meet an Intermediate target in a year of 90 minutes a week
+proficiency level" (part 6, item 1). A learner of any age starts at the first level. Under Option D (below) a young
+learner takes the early-years companion of Level 1 or 2, which targets the same level as the main course; which
+grades take a companion is set with the catalogue rows when the pass opens (heritage and age notes in APPROACH.md). Hours decide the pace: a student cannot meet an Intermediate target in a year of 90 minutes a week
 (the span is large; ACTFL's own time figure and a hours-to-proficiency lead are in APPROACH.md, "Pacing").
 
 **Options for the split. The split is Cory's call when the pass opens; nothing here decides it.**
@@ -120,14 +125,14 @@ APPROACH.md). Hours decide the pace: a student cannot meet an Intermediate targe
 
 Adding French at the same levels adds 4 (B) courses. The counts above are net of the 2 shelved rows. Which catalogue
 total is current (the plan's 105 active, or the bar's own line of 118 active) is not settled on this page; the pass
-states it from data/courses.csv when it opens. If Option B is chosen, data/courses.csv gets rows `spanish-1` to
-`spanish-4` and `asl-1` to `asl-4`, grades `k-12` each, and the two existing rows are replaced; French stays one row
-until Question 2 is answered.
+states it from data/courses.csv when it opens. Under Option D, data/courses.csv gets 12 rows for Spanish and ASL
+(four levels and two early-years companions each) in place of the two all-level rows; their ids and grade ranges are
+drawn when the pass opens. French is listed behind Spanish and ASL (Cory's answers) and stays one row until then.
 
 **Cory chose Option D** (2026-11-21, Desk q-prework-open-2): four levels per language plus an early-years
 companion for Levels 1 and 2, 12 courses for Spanish and ASL, settled for when the pass opens. The recommendation had
-been Option B. It gives a stated target per course, stays near what a school can staff,
-and leaves Advanced for a later pass. Each course's exit target is a sublevel (Level 1 exits at Novice Mid, Level 2 at
+been Option B, for a stated target per course, near what a school can staff, with Advanced
+left for a later pass; Option D keeps all of that and adds the companions. Each course's exit target is a sublevel (Level 1 exits at Novice Mid, Level 2 at
 Novice High, Level 3 at Intermediate Mid, Level 4 at Intermediate High; these four exits are ours, from ACTFL
 published norms for school programmes read from memory, not checked).
 
@@ -151,15 +156,20 @@ is harder (the ELD pattern, docs/courses/eld/STANDARD.md section 2). Specificall
 - **Ownership for the gate** (from the cold read, docs/reviews/prework-world-languages-read-2026-11-20.md; ours, untested). Each language is its own subject key in
   the progression (`spanish`, `asl`), so each owns the 11 `WRS` ids once. A WRS id is owned by Level 1 of that
   language as "met at Novice depth"; Levels 2 to 4 carry it as `~ID` with a one-line note naming the harder function,
-  context, text type and control (the depth ladder, which is the real progression). The 11 `ACTFL.*` level ids are
+  context, text type and control (the depth ladder, which is the real progression; not written yet, it is written
+  with the progression once the 2024 guidelines are read at source). An early-years companion targets the same level
+  as its Level 1 or 2 course (Option D), so it uses that level's rows. The 11 `ACTFL.*` level ids are
   excluded with the reason "a proficiency scale used to name each level's exit target, not a skill". Strands (sounds
   and spelling; the seven ASL parameters) get their own id file, one id each, owned by the level that first teaches
   them. For the gate, Level 1 to Level 4 map to positions 1 to 4 in a level list that replaces the grade list for
   these two subjects (Cory, 2026-11-21).
-- **What scripts/progression.py would need** (read by the cold reader, lines 51 to 112): a `world-languages` entry in
-  STD_FILES and ANCHOR (actfl-wrs.txt with the `ACTFL.*` ids filtered out or listed as exclusions), a per-language
-  split, a level list in place of the grade list, and a code_grades rule that returns all four levels as the span for
-  a WRS id (owner Level 1). The script has no world-languages entry today.
+- **What scripts/progression.py would need** (read by the cold reader, lines 51 to 112): one entry per language
+  key (`spanish`, `asl`), not one `world-languages` entry, in STD_FILES and ANCHOR (actfl-wrs.txt with the `ACTFL.*`
+  ids filtered out or listed as exclusions, plus the language's strand id file), a level list in place of the grade
+  list, a code_grades rule that returns all four levels as the span for a WRS id (owner Level 1), and a lean-timing
+  rule for level-keyed rows: the script fails a lean to a skill taught after the leaning row's grade, and a level has
+  no grade, so for these rows it checks the lean rule below instead. The script has no entry for either language
+  today.
 - **Cross-subject leans** (each names a core skill; ids checked 2026-11-20 by a one-line grep for a row whose
   skill_id column matches, in data/progressions/*.csv):
   - ELA: `ek-discussion` and `e3-word-strategies` (a spoken exchange and word-part work), `e5-figurative` (Level 3 and 4
@@ -215,6 +225,9 @@ World languages stay shelved; these answers settle the pre-work pages only.
 - Approach page: yes, as pre-work.
 
 ## Questions for Cory (as asked)
+
+Kept as a record. All were answered 2026-11-21 ("Cory's answers", above) except question 4 (later.csv L93); where an
+answer differs from the recommendation below (questions 1 and 8: Option D), the answer holds.
 
 1. **Level split.** Recommended: Option B, four levels per language with a sublevel exit target each (Novice Mid,
    Novice High, Intermediate Mid, Intermediate High). Alternatives A, C, D in section 5.

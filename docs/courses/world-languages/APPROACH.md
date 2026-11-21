@@ -1,6 +1,6 @@
 # The Curio Class approach to teaching world languages (Spanish and American Sign Language)
 
-**World languages are SHELVED (Cory, 2026-11-11; restated 2026-11-20). This page is pre-work only.** Approved as pre-work by Cory 2026-11-21 (Desk q-prework-open-2; answers in [STANDARD.md](STANDARD.md)). Read cold 2026-11-20 (docs/reviews/prework-world-languages-read-2026-11-20.md) and fixed. Short by design. It fills the subject slots of
+**World languages are SHELVED (Cory, 2026-11-11; restated 2026-11-20). This page is pre-work only.** Approved as pre-work by Cory 2026-11-21 (Desk q-prework-open-2; answers in [STANDARD.md](STANDARD.md)). Read cold 2026-11-20 (docs/reviews/prework-world-languages-read-2026-11-20.md) and fixed; second-model read fixed 2026-11-21 (docs/reviews/prework-world-languages-fixes-2026-11-20.md). Short by design. It fills the subject slots of
 the unit plan and the section plan (docs/courses/UNIT-PLAN.md) for world languages when the pass opens. The lens is
 docs/agents/lenses/world-languages.md. Nothing here starts a frame, scope and sequence, unit, day or tool.
 
@@ -49,40 +49,50 @@ scores are stored (promise 2).
 Proposed, to be tried on the first unit plans after the pass opens:
 
 - Header: days by kind; minutes; the level and its target sublevel; the language (Spanish or ASL).
-- Unit field 2: the World-Readiness standards the unit teaches, in our own words; the theme and its real-world task;
-  the structures, words and (ASL) parameters taught; what is carried (frame, word cards, sign set).
+- Unit field 2: each world language standard the unit teaches, by id, with its parts in our own words (the
+  standard's wording is not quoted, so rule 15's quoted verb does not apply; STANDARD.md section 1); the limits (the
+  structures, time frames and text types kept out of this level); the theme and its real-world task; the structures,
+  words and (ASL) parameters taught; what is carried (frame, word cards, sign set), the day it is shown and the day it
+  is withdrawn: the unit's second Application day at Level 1 and 2, its first at Level 3 and 4.
 - Unit field 3: builds on (the same mode one unit earlier, strong or weak); leads to; comes back; one cross-subject link
   by row id (STANDARD section 6).
-- Unit field 4: a short understand-and-reply task on the words and structures the unit builds on; the reteach is the
-  earlier structure modelled again.
+- Unit field 4: the first line and the timing as UNIT-PLAN.md field 4 sets them; a short understand-and-reply task on
+  the words and structures the unit builds on; the reteach is the earlier structure modelled again.
 - Unit field 5: an understand task, a two-way task with a real information gap, a presentation task, with look-fors and
   two sample answers each (one meets, one does not), and the linked end task across the three modes.
 - Unit field 6: the error register (see below).
-- Unit field 7: the exchange and presentation tasks are judged by the teacher against look-fors, so nothing is marked by
-  hands up. Groups come from the sheet's "not yet" cells by structure; at most four groups; the rest rehearse in pairs
-  from the frame. Marking time stated in minutes, about one minute a learner for each judged task. The withdrawal day
-  for a frame is the unit's second Application day at Level 1 and 2, its first at Level 3 and 4.
-- Unit field 8: word cards, frames, the model text by title and record, or the sign chart; no product or program
-  names; the room (a class, a small group, a home table).
+- Unit field 7: marking time and response time named separately, and where the response happens (the Check day or a
+  later Respond day), counted once. Short understand items are marked with the shared marking step (UNIT-PLAN.md
+  field 7). The exchange and presentation tasks are judged by the teacher against look-fors, so they are not marked
+  by hands up. Groups come from the sheet's "not yet" cells by structure; at most four groups; the rest rehearse in
+  pairs from the frame. Marking time stated in minutes, about one minute a learner for each judged task.
+- Unit field 8: each tool with its day, mark, job, verdict and a link to the course's TOOL-ASKS.md; the supplies:
+  word cards, frames, the model text by title and record, or the sign chart; no product or program names.
 - Unit field 9: the family note in English and Spanish (decided): what the class learned, one phrase to use at home, and
   one thing to try in any language the family chooses. A signing unit's note shows signs as drawings (see "ASL" below).
 - Unit field 10: sources, what was read and how much, from memory marked, no claim of effect, a pointer to the course
   logic model (C16).
-- Section field 1: before you teach: the structure explained for the teacher; the sound or parameter at issue; any
-  sensitive ground.
-- Section field 2: the task goal; what comes just before and after; readiness items used.
-- Section field 3: the day's evidence as above, with look-fors per level.
+- Section field 1: the standard ids and this section's share, in our own words; the limits that bite here;
+  connections; before you teach: the structure explained for the teacher; the sound or parameter at issue; any
+  sensitive ground, with the steps for when a learner tells you something (see "Sensitive ground").
+- Section field 2: what comes just before and after; the readiness items used, and where this section's results go.
+- Section field 3: the numbers of the unit assessment items this section owns, then the day's evidence as above, with
+  look-fors per level.
 - Section field 4: expected errors, a wrong turn beside a right one, the day shown, a five to ten minute response.
-- Section field 5: the model, who holds it, the day the frame is withdrawn.
-- Section field 6: days: goal, kind, opening (see "How a day opens" below), work by hand, tool by part, evidence.
+- Section field 5: what is carried (the model, frame, word cards or sign set) and what happens to it, with its
+  withdrawal day (unit field 2); each key moment with the ideal instrument and the spec judged against it; what a room
+  with nothing does (the printed model, frame and chart).
+- Section field 6: days: goal in student words, kind, opening (see "How a day opens" below), who holds what is carried,
+  tool by part with mark, job and minutes, or "None", work by hand, evidence by its number in field 3.
 - Section field 7: two or three planned questions, one exchange task and one presentation, with look-fors.
 - Section field 8: practice that returns: one earlier structure used again for three minutes on new content.
 - Section field 9: help for a learner who needs more (frame, picture, partner), extension on the same standard
   (longer text, less help), access notes (see "ASL" below), and a heritage speaker note; see "Supports" below.
 - Section field 10 (two rooms): a parent and one child at the table (read the model together, say or sign it back, do the
-  exchange together even if the parent does not know the language, using the page's model; or a mixed class);
-  one projector (model on screen, frame on the board, partner talk). In ASL home-table days the adult and child share
-  the printed chart and sign together; no exchange is claimed when no one in the room signs.
+  exchange together using the page's model; or a mixed class); one projector (model on screen, frame on the board,
+  partner talk). In ASL home-table days the adult and child share the printed chart and sign together. When only one
+  person at the table speaks or signs the language, the page's model is rehearsal and no unrehearsed exchange is
+  claimed, in Spanish as in ASL.
 - Section field 11: what is left out, and what is still to make.
 
 ## How a day opens
@@ -92,8 +102,10 @@ the day's model.
 
 ## Supports
 
-Six to eight words a unit are taught in depth with a picture. Reading load: a text of at most the level's stated
-length, with a picture for every line at Level 1. Check accommodations: a point-or-sign or oral answer in place of
+Six to eight words a unit are taught in depth with a picture. Reading load: a text of at most the length the course
+frame states for the level (not set yet), with a picture for every line at Level 1. Each key says which answers show
+a gap in form that does not block the message (the task is met; the form is worked on) and which show the task or the
+idea missed (C11). Check accommodations: a point-or-sign or oral answer in place of
 writing, extra time, a partner to read the prompt. A learner with no home-language support in English or Spanish gets
 the picture and model route, never a translation. Extension on the same standard: a longer text, less help, a second
 person's view; never the next level's structure.
@@ -120,8 +132,8 @@ Peninsular forms appear as a noted variety in cultural units. Accent marks, soun
 **No video and no photos of people (Cory, 2026-10-27; do not re-pitch video).** So signs, handshape, location, movement,
 palm orientation, non-manual markers, use of space and classifiers are shown as drawings and labelled parameter charts,
 storyboard panels showing movement with arrows and numbered frames, and rendered figures (not photographs of a person).
-Every drawing is checked by a Deaf signer for correct form, because a drawing can mislead about movement or face
-(question 4). Paper path: a printable sign chart. Each sign set is taught with its parameters named.
+A drawing can mislead about movement or face, so every drawing is checked for correct form (who checks: see
+"Sensitive ground", Reads). Paper path: a printable sign chart. Each sign set is taught with its parameters named.
 
 - **Parameters taught directly** in every unit and practised (bar part 6, item 9).
 - **No spoken English during signing practice.** Voice-off is the Deaf community norm for the class (Massachusetts ASL
@@ -132,7 +144,8 @@ Every drawing is checked by a Deaf signer for correct form, because a drawing ca
 - **Deaf culture and people.** Deaf community, history and the Deaf perspective are part of the course, taught by what the
   community says about itself (the community's own voice first, see the sensitive-read brief). Hearing and Deaf learners
   are not assumed.
-- **Access.** A learner who is Deaf or hard of hearing is a signer first; a learner who cannot see well needs tactile
+- **Access.** A learner who is Deaf or hard of hearing may already sign or may not; the page assumes neither (see
+  "Sensitive ground", hearing status). A learner who cannot see well needs tactile
   alternatives (a tactile chart of the handshape set). A learner with limited hand use is offered an adapted way
   to produce the sign, never a lowered goal.
 
@@ -149,8 +162,9 @@ account. Spanish audio uses a stated variety and is checked by a fresh agent rea
 
 Errors are unit field 6. Typical kinds: a false friend (a word that looks the same and means differently), word order
 carried over from English, a gender or number mismatch, a verb form missing, a sound the learner maps to English, in
-ASL a handshape or movement swap that changes the sign, a face left out where grammar needs it. Each has why (often
-transfer from the home language) and a remedy. Transfer is a reason, never a fault. Each is "from memory" until a source
+ASL a handshape or movement swap that changes the sign, a face left out where grammar needs it. Each has what it shows
+(often transfer from the home language) and its source; the wrong example beside a right one and the five to ten
+minute response sit in section field 4. Transfer is a reason, never a fault. Each is "from memory" until a source
 is read.
 
 ## Sensitive ground and which reads it needs
@@ -169,15 +183,19 @@ is read.
 - **Contested Deaf history** (the oralism era, cochlear implants) is shown as the Deaf community tells it, with both
   views stated and no verdict; no taboo sign is taught, and name signs are explained, not assigned by the page.
 - **A learner's hearing status** is never asked or assumed.
+- **If a learner tells you something** (about home, family, status or harm): the teacher page carries health's steps
+  (docs/courses/health/APPROACH.md, "Standards and the teacher page").
 - **Reads** (docs/pipeline/briefs/sensitivity-read.md): a `sensitivity` read for each unit's cultural texts (community:
-  the speakers of the variety or the Deaf community); a `spanish` read for all Spanish text and the family notes; a
-  `text` read for authentic texts. A person (a Deaf ASL teacher; a Spanish-speaking teacher) reads before anything
-  ASL becomes public (question 4), as the brief itself can only stand in for outside readers. ASL drawings and Deaf
-  cultural text: a Deaf signer reads before use; the agent `sensitivity` read checks wording only.
+  the speakers of the variety or the Deaf community); a `spanish` read for all Spanish text and the family notes (an
+  agent read, docs/FOUNDATION.md section 7; Spanish audio also gets the short listen in "What a tool may and may not
+  do"); a `text` read and a `rights` read for each authentic text, recording and outside image. ASL drawings and Deaf
+  cultural text: the agent `sensitivity` read checks wording only, since it cannot judge a sign's form. Who reads ASL
+  pages before they are public is open (STANDARD.md question 4; data/plans/later.csv L93); the recommendation is a
+  Deaf ASL teacher, and no ASL page is public before that is answered.
 
 ## Pacing and dose
 
-Settled by no one yet (question 7 in STANDARD.md). Published figures, read 2026-11-20:
+Published figures, read 2026-11-20:
 
 - ACTFL, *Early Language Learning*, position statement, dated 29 July 2012 (https://www.actfl.org/news/early-language-learning):
   benefits come from instruction that is continuous through the year, connected from grade to grade, **more than twice a
@@ -189,11 +207,12 @@ Settled by no one yet (question 7 in STANDARD.md). Published figures, read 2026-
   was found by search and not opened (not checked).
 
 **Dose by level** (Cory, 2026-11-21). Default: 36 weeks a year, three sessions a week of 35 minutes, about 63 hours a
-level (Levels 1 to 4); a K to 5 learner has the same course at the same dose. This clears ACTFL's floor for elementary
+level (Levels 1 to 4); the early-years companions (Option D) take the same dose. This clears ACTFL's floor for elementary
 and middle school (more than twice a week, at least 90 minutes a week; ACTFL, 29 July 2012); no national figure was
 found for high school, and none is claimed. The course page says the hours are not shown to reach the exit sublevels,
 and the exit targets are ours until the hours page is read. A frame may change the dose with a reason, as health does;
-the course page says what a school may combine or leave out.
+the course page says what a school may combine or leave out, and a left-out unit's ids are named as not claimed that
+year on the course page and in the family note (as in arts, PE and SEL).
 
 ## Where the evidence is thin
 
@@ -205,7 +224,8 @@ it. Curio Class says so on the course page. No claim of effect is made.
 
 Read in full: the ACTFL two-page World-Readiness summary (extracted text, Utah copy), the ACTFL standards summary
 page (also fetched by the cold reader, 2026-11-20) and the ACTFL *Early Language Learning* page. Read in part: the
-ACTFL can-do statements page, the open-material pages in the scout (docs/reviews/world-languages-open-material-2026-11-20.md), the Texas
+ACTFL can-do statements page, the open-material pages in the two scouts (docs/reviews/world-languages-open-material-2026-11-20.md and
+docs/reviews/world-languages-asl-material-2026-11-21.md), the Texas
 languages rubric (read by the bar's writer only, bar part 6). From search summary only: the ACTFL target-language and
 heritage position statements, the Indiana and Massachusetts ASL pages, the Illinois Association of the Deaf position.
 From memory: the research claims above. To read before the pass opens: the full 2015 standards volume, the 2024

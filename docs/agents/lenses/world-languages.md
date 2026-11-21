@@ -35,7 +35,7 @@ a path that builds on what they already know.
 **ASL is a language, not a gesture set.** The parameters (handshape, location, movement, palm orientation, non-manual
 markers, use of space, classifiers) are taught directly and practised each unit. Face and body are grammar. Deaf culture
 and the Deaf community's own voice are part of the course. Materials are drawings and storyboards (no video, no photos of
-people: Cory, 2026-10-27), and a Deaf signer checks them.
+people: Cory, 2026-10-27), and who checks them is open (later.csv L93).
 
 ## Errors reviewers catch
 
