@@ -3,7 +3,7 @@
 **DRAFT, 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-health-read-2026-11-19.md) and
 2026-11-20 after the second-model read (docs/reviews/prework-health-fixes-2026-11-20.md).**
 
-Written 2026-11-16 as pre-work for health (four courses, one per band). It answers the health row of "Before a
+Written 2026-11-16 as pre-work for health (four courses, one per band: `health-k-2`, `health-3-5`, `health-6-8` and `health-9-12` in data/courses.csv, the last one semester, typically grade 9; Cory, 2026-11-21). It answers the health row of "Before a
 scope and sequence in this subject" in docs/ADOPTION-BAR-SUBJECTS.md. The bar is the health part of that page. The
 lens is docs/agents/lenses/health.md. The approach page is docs/courses/health/APPROACH.md (approved 2026-11-21).
 

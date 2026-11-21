@@ -1652,3 +1652,8 @@ now reads "the top finding is a planted major, or a real major the lead confirms
 The seven expert passes from run 1 stand after the brief change, since the change only adds checks. (Cory picked
 the card's earlier wording, which had Codex rereading every set; Gemini 4 Neon read the latest set for all nine
 subjects with the new brief and passed in each, docs/reviews/calibration-<subject>-gemini-2026-11-20.md.)
+
+## 2026-11-21: Health catalogue split (q-fix-health-1)
+
+Health becomes four band courses in data/courses.csv: health-k-2, health-3-5, health-6-8 and health-9-12 (one
+semester, typically grade 9), as SEL and ELD were split. Module ids and worksheet unit ids are kept (later.csv L90).
