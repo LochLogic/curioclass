@@ -8,29 +8,29 @@ docs/courses/health/STANDARD.md. The approach page is docs/courses/health/APPROA
 
 ## What good teaching of health looks like
 
-**It aims at behaviour.** Every unit is for named healthy behaviours, and every day ties to one. Knowing about
+**It aims at behavior.** Every unit is for named healthy behaviors, and every day ties to one. Knowing about
 health is the means. A unit that ends with students who know more and do nothing different has missed.
 
 **Facts are few, accurate and useful.** Students learn the facts a decision needs, not everything known. Each
 figure is current and dated. Medical words are correct for the age (the tool expects correct body part names from
 the start).
 
-**Skills are taught like any skill.** A skill (refusing, asking for help, deciding, setting a goal, analysing an
-influence) is explained, broken into steps, modelled, practised on real-feeling situations and given feedback.
+**Skills are taught like any skill.** A skill (refusing, asking for help, deciding, setting a goal, analyzing an
+influence) is explained, broken into steps, modeled, practiced on real-feeling situations and given feedback.
 Then it comes back in other topics. A skill named once on a poster is not taught.
 
 **Norms and pressure are worked on directly.** Students often think more of their peers take risks than really do.
-Good lessons show the real figures, look at where pressure comes from (friends, media, ads, family) and practise
+Good lessons show the real figures, look at where pressure comes from (friends, media, ads, family) and practice
 answering it.
 
-**No fear, no shame.** Scare tactics and shock images do not change behaviour and can harm. Lessons are warm,
+**No fear, no shame.** Scare tactics and shock images do not change behavior and can harm. Lessons are warm,
 direct and non-judgmental. They never single out a student, a family type or a culture.
 
-**Families and trusted adults are in the loop.** Units send something home, and students practise talking with an
+**Families and trusted adults are in the loop.** Units send something home, and students practice talking with an
 adult. Every unit names where to find help.
 
 **Inclusive and safe to learn in.** Students differ in family, culture, body, identity, means and experience.
-Scenarios vary, language is inclusive, and no task asks a student to disclose their own behaviour or history.
+Scenarios vary, language is inclusive, and no task asks a student to disclose their own behavior or history.
 Teachers get a note on their own bias where it matters.
 
 **Enough time, spread out.** Topics return across years at more depth. A one-time assembly or single lesson on a
@@ -40,7 +40,7 @@ topic is not health education.
 
 ### Scope and sequence
 
-- A band that does not reach all eight standards, or a skill standard practised in only one topic.
+- A band that does not reach all eight standards, or a skill standard practiced in only one topic.
 - No coverage map, or a map whose cells name no units.
 - A topic taught once in a band with nothing after it.
 - A sensitive unit that is not removable: a skill only taught there, a later unit that needs it, or no leave-out
@@ -50,10 +50,10 @@ topic is not health education.
 
 ### Unit
 
-- No named behaviour outcome, or days that tie to none.
+- No named behavior outcome, or days that tie to none.
 - A fact-recall test as the end-of-unit assessment.
 - A skill named with no steps, no model or no practice.
-- Scare tactics, shock images, worst cases as the norm, or moralising.
+- Scare tactics, shock images, worst cases as the norm, or moralizing.
 - Figures with no source or year, or out of date.
 - Content above or below the age (check against the tool's span expectations).
 - No link home and no family note where one is needed.
@@ -79,7 +79,7 @@ topic is not health education.
 - Medical and scientific accuracy as a full check: that is the expert read below (criterion 7), a separate pass
   with its own dated record.
 - Local law and policy on sensitive topics (consent rules, opt-out law): the school's.
-- Counselling and crisis response: the school's staff.
+- Counseling and crisis response: the school's staff.
 
 ## The expert read (bar criterion 7)
 
@@ -105,10 +105,10 @@ a unit or day after its read sends it back for a new read.
 
 - SHAPE America, National Health Education Standards, 2024: the eight standards and their span indicators (free
   page, all rights reserved).
-- CDC, HECAT 2021: Appendix 3 (all 81 behaviour outcomes), Appendix 5 (using the tool to build a scope and
+- CDC, HECAT 2021: Appendix 3 (all 81 behavior outcomes), Appendix 5 (using the tool to build a scope and
   sequence, the coverage map), and the Sexual Health module in part (instructions, PreK-2 and 3-5 knowledge
   expectations, scoring).
 - The bar's own reading of HECAT chapters 4 and 5, as recorded on docs/ADOPTION-BAR-SUBJECTS.md: the
-  characteristics of effective health education (behaviour focus, skills, norms, no scare tactics, enough time).
+  characteristics of effective health education (behavior focus, skills, norms, no scare tactics, enough time).
 - From memory, not opened for this lens: research on fear appeals and on norm misperception in adolescent risk
-  behaviour, and safe messaging guidance on suicide. Treat these as background, not cited claims.
+  behavior, and safe messaging guidance on suicide. Treat these as background, not cited claims.

@@ -12,12 +12,12 @@ docs/ADOPTION-BAR-SUBJECTS.md; the lens is docs/agents/lenses/health.md. Fields 
 
 - **The standards**: each NHES id with its action in our own words (STANDARD.md sections 1 and 2; the indicator's
   wording is never quoted).
-- **The behaviour outcomes** it is for (HECAT 2021 numbers; our wording is in data/standards/hecat-topics.txt).
+- **The behavior outcomes** it is for (HECAT 2021 numbers; our wording is in data/standards/hecat-topics.txt).
   Every day ties to one (bar criterion 1).
 - **Three objectives**: one knowing, one valuing (what the student thinks matters, in a character's case or as a
   belief about what most peers do) and one doing (criterion 8).
-- **The skill** it teaches or practises: one of NHES standards 2 to 8 (influences, resources, communication,
-  decisions, goals, practising behaviours, advocacy), with its steps written out.
+- **The skill** it teaches or practices: one of NHES standards 2 to 8 (influences, resources, communication,
+  decisions, goals, practicing behaviors, advocacy), with its steps written out.
 - **The facts that matter for the decision**: short, accurate and dated (criterion 2). A unit lists its figures
   with their source and year, so they can be checked when they go stale.
 - **The situations**: three to five realistic scenarios at the students' age, used for practice and the check.
@@ -28,14 +28,14 @@ docs/ADOPTION-BAR-SUBJECTS.md; the lens is docs/agents/lenses/health.md. Fields 
   for its age group, with its source and year; below grade 6, where no national use survey of the age exists, the
   unit states the norm in plain words and may give the nearest figure, named for its age group (that national youth use
   surveys begin at grade 6 is from memory, checked at the STANDARD.md section 6 read); that students tend to
-  overestimate risk behaviour is from memory and not yet read), and the influences on a choice (criterion 4). Ends
+  overestimate risk behavior is from memory and not yet read), and the influences on a choice (criterion 4). Ends
   in a decision or a belief, not a list of facts.
 - **Fluency.** A skill taught in the five steps the bar names: why it matters, the steps, a model, practice on
   real situations, feedback (criterion 3). Short scripted rehearsals in pairs: a refusal, an "I" statement,
   asking an adult for help.
 - **Application.** The skill used on a new scenario, or on the student's own life: a goal plan, a decision
   worked through, an advocacy piece for a real audience, a talk with a family member (criterion 6).
-- **Check.** A performance task: the student uses the skill on a scenario not practised in class, or shows a
+- **Check.** A performance task: the student uses the skill on a scenario not practiced in class, or shows a
   finished plan or advocacy piece, scored with a guide on the skill steps. Never a fact-recall test as the
   end-of-unit assessment.
 - **Respond.** Acts on the check: re-rehearse the step marked "not yet" with a new scenario.
@@ -55,7 +55,7 @@ come from the class record sheet.
 
 A tool may give practice with feedback on facts that support a decision, on reading a label or a source, and on
 sorting scenarios; it may give a private self-check. It may not collect any student's health information, ask
-about a student's own behaviour, stand in for the rehearsal with people, or give medical advice.
+about a student's own behavior, stand in for the rehearsal with people, or give medical advice.
 
 ## Family note (unit field 9)
 
@@ -71,7 +71,7 @@ A unit's field 10 names the source and year of every figure it lists, and points
 
 ## Standards and the teacher page (section field 1)
 
-Each section names the NHES standard and indicator ids it works on, and the behaviour outcome. A section that
+Each section names the NHES standard and indicator ids it works on, and the behavior outcome. A section that
 gives facts names the decision the facts are for. What the teacher page must explain:
 
 - **Which lines of "What a health day never does"** (below) matter most in the unit.
@@ -103,7 +103,7 @@ gives facts names the decision the facts are for. What the teacher page must exp
   (criterion 8).
 
 The teacher sorts into met, partly and not yet, with no mark. No evidence asks a student to disclose their own
-behaviour, health or family. Scenarios are about characters, and personal plans stay with the student unless
+behavior, health or family. Scenarios are about characters, and personal plans stay with the student unless
 they choose to share.
 
 ## What is carried (section field 5)
@@ -138,7 +138,8 @@ Each topic returns in the next year at more depth. Getting help from a trusted a
 - Sensitive units follow STANDARD.md section 5: their own units, a leave-out note, a family note before them.
 - **Personal goals** come from a short, safe list (sleep, water, handwashing, time outside, screen breaks, a kind
   act, asking for help), never about weight, body shape, food restriction or calories; a character's goal is always
-  an option.
+  an option. From grade 7 a student may instead choose their own healthy behavior as a goal, under the same limit
+  (Cory, 2026-11-21, Desk q-fix-health-2).
 - **English learners** (C11): each unit teaches six to ten health words in depth, with correct body part names
   from the start, and gives a sentence frame for each skill step (for example "I won't do that. I'm going to ...").
   A key line says: the right idea in another language or by pointing is a language gap; a wrong idea is a content
@@ -162,7 +163,7 @@ course page names the national figure and the gap so a school can add time.
 
 ## Evidence and sources (C13, C16)
 
-Curio Class names the behaviours a unit is for. It does not claim students will change them, and it has not been
+Curio Class names the behaviors a unit is for. It does not claim students will change them, and it has not been
 tried with children. Each course has a one-page logic model. What this page rests on: HECAT 2021 chapters 4 and 5
 (read in full by the expert reader), its Appendix 3 and 5 and the Sexual Health module in part (STANDARD.md section
 3), the NHES 2024 indicators (our wording in data/standards/nhes-2024.txt); everything else is from memory and

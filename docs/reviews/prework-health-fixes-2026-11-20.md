@@ -82,3 +82,8 @@ A new read of STANDARD.md, APPROACH.md, health.csv and nhes-2024.txt (the lens f
 10. g7-phw-write-goal-link allows "a self-chosen healthy behaviour", while APPROACH.md (supports) says personal goals come from a short safe list. Left: whether older students may choose their own goal is an audience call; the row already bars weight, calories and shape. Question for Cory.
 11. Mixed US and UK spelling across the four files (analyze and practise, behaviour and neighborhood, colour). Left: a repo-wide style call, no rule in AGENTS.md. Question for Cory.
 12. Follow-up of 2026-11-20 about the lens "(draft)" mark: already shows "approved 2026-11-21". Done, nothing to change here.
+
+## Cory's answers applied (2026-11-21, Desk q-fix-health-2)
+
+- Finding 10, self-chosen goals: allowed from grade 7 under the same limit; APPROACH.md Supports, Personal goals. The g7-phw-write-goal-link row already says so.
+- Finding 11, spelling: US spelling project-wide (AGENTS.md); STANDARD.md, APPROACH.md, the health lens and health.csv converted (72 words).

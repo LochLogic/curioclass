@@ -9,7 +9,7 @@ lens is docs/agents/lenses/health.md. The approach page is docs/courses/health/A
 
 | Owed | State | Where |
 |---|---|---|
-| Read one topic module | Done in part 2026-11-16: the Sexual Health module's description, instructions, PreK-2 and 3-5 knowledge expectations and scoring pages; Appendix 3 (all behaviour outcomes) and Appendix 5 (building a scope and sequence) | Section 3 |
+| Read one topic module | Done in part 2026-11-16: the Sexual Health module's description, instructions, PreK-2 and 3-5 knowledge expectations and scoring pages; Appendix 3 (all behavior outcomes) and Appendix 5 (building a scope and sequence) | Section 3 |
 | Write the band coverage map | Done (draft, ours) | Section 4 |
 | Write the 2007 to 2024 note | Done 2026-11-11 | docs/standards-notes/health-2007-to-2024.md |
 | Fix the file header to "SHAPE America, 2024" | Done 2026-11-11 | data/standards/nhes-2024.txt header |
@@ -22,10 +22,10 @@ lens is docs/agents/lenses/health.md. The approach page is docs/courses/health/A
 - **Standard:** National Health Education Standards, 2024, SHAPE America (it calls this the third edition).
   Always named "SHAPE America, 2024". Loaded in data/standards/nhes-2024.txt: 172 indicators, each id with our own words (below),
   `NHES.S<standard>.<span end>.<n>`, spans ending at grade 2, 5, 8 and 12. Eight standards: use health
-  information; analyse influences; find valid and reliable resources; communicate with others; decide; set goals;
-  practise healthy behaviours; advocate.
+  information; analyze influences; find valid and reliable resources; communicate with others; decide; set goals;
+  practice healthy behaviors; advocate.
 - **Review tool:** CDC's Health Education Curriculum Analysis Tool (HECAT), 2021 edition. Topics and healthy
-  behaviour outcomes are in data/standards/hecat-topics.txt (9 topics with 81 outcomes, plus the combined module).
+  behavior outcomes are in data/standards/hecat-topics.txt (9 topics with 81 outcomes, plus the combined module).
   The tool is keyed to the 2007 standards; our mapping is docs/standards-notes/health-2007-to-2024.md. Both
   editions are named wherever the tool is used.
 - scripts/standards.py checks the standard (1 to 8), the span end (2, 5, 8 or 12) and a one or two digit number; it
@@ -52,7 +52,7 @@ From the Sexual Health module and appendices 3 and 5 (our words):
 
 - Each module lists knowledge expectations by span, each tagged to the outcomes it serves, then skill
   expectations under standards 2 to 8. A curriculum is scored on how much of each list it covers. Standards 2 to 8
-  get two scores: whether the skill is named, and whether students practise it.
+  get two scores: whether the skill is named, and whether students practice it.
 - Users are told to add, drop or revise expectations to fit local needs. That is the tool's own room for a
   school to leave out a unit.
 - Expectations deepen by span. In this module the early span has a handful (body part names, families, safe and
@@ -92,7 +92,7 @@ not taught again in full (Cory, 2026-11-20, Desk q-prework-health-pe-2). Physica
 to 8 are taught by moving in PE; health names the PE rows instead of planning the same lessons (same card).
 
 Standards by band: every band teaches all eight NHES standards across its topics, and every skill standard
-(2 to 8) is practised in at least two topics in the band. Each band's scope and sequence carries the full map in
+(2 to 8) is practiced in at least two topics in the band. Each band's scope and sequence carries the full map in
 this shape, with unit names in the cells, plus a second table of NHES standards by unit.
 
 **Years within a band.** NHES indicators are written per span, not per grade. Bands K to 2, 3 to 5 and 6 to 8
@@ -119,7 +119,7 @@ without breaking the course. The rule:
    safety, meaning unwanted touch and abuse (V 8 from K, V 9 from grade 3; K to 5); sexual violence, abuse and dating violence (V 4, 8, 9;
    6 to 12); suicide and self-harm (MEH 6, V 10; 6 to 12). No sensitive content sits inside a non-sensitive unit.
 2. **No skill lives only in a sensitive unit.** Each NHES indicator claimed in a sensitive unit is also claimed
-   in a non-sensitive unit of the same band. A sensitive unit practises a skill already taught elsewhere.
+   in a non-sensitive unit of the same band. A sensitive unit practices a skill already taught elsewhere.
 3. **Getting help is taught twice.** How to tell a trusted adult and where to find help is taught in a
    non-sensitive unit (safety or mental health) in every band, so leaving out a sensitive unit never leaves a
    student without it.
@@ -179,9 +179,9 @@ expert agent". No paid read and no spend. Criterion 7 is met this way:
   7); a health unit uses that model and does not reteach it. Germs, vaccines, puberty and body part names are needed
   before or outside the science course, so health states those plain facts itself, with their source.
 - **Each lean's core code** is in the cross_subject column of data/progressions/health.csv.
-- **Math:** reading food labels, serving sizes and simple data on behaviour lean on ratio and statistics (grades
+- **Math:** reading food labels, serving sizes and simple data on behavior lean on ratio and statistics (grades
   6 to 7); health uses the skill, math teaches it.
-- **ELA:** analysing influences (standard 2) and finding valid sources (standard 3) lean on the reading information
+- **ELA:** analyzing influences (standard 2) and finding valid sources (standard 3) lean on the reading information
   and research standards; advocacy (standard 8) leans on argument writing and speaking.
 - **SEL:** communication, decision and goal skills overlap with the SEL courses; the SEL course page and this one
   name each other so a skill is not taught twice in the same year.

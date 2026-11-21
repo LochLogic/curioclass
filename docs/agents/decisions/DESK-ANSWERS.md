@@ -1730,3 +1730,9 @@ Cory took all three recommended picks. (1) The boundary statements' text is not 
 words in each owner row's notes. (2) Our own editor gets an offline version history with branch, review and merge;
 S1-SWD-PP-08 is part met until it exists. (3) Lists stay in grades 7 and 8, counted as days outside the standards
 under C1's 10 percent.
+
+## 2026-11-21: Health calls from a fresh minor read (q-fix-health-2)
+
+Cory took both recommended picks. (1) From grade 7 a student may choose their own healthy behavior as a goal, never
+about weight, calories or shape (health APPROACH.md, Supports). (2) Curio Class uses US spelling; UK spellings are fixed
+in a page when it is next edited, no separate pass (AGENTS.md). The health pages were converted on 2026-11-21.
