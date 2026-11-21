@@ -24,9 +24,10 @@ approach page is docs/courses/arts/APPROACH.md (approved 2026-11-20, Desk q-prew
 ## 1. The standard
 
 - National Core Arts Standards, 2014 (National Coalition for Core Arts Standards), the performance standards.
-- Loaded in data/standards/ncas-performance-standards.txt as ids only, no wording: 1,201 ids across the five
-  disciplines (visual arts 195, music 201, theater 298, dance 273, media arts 234), from the 2021-11 "at a glance"
-  handouts, fetched 2026-10-27. Format `DIS:<process><anchor>.<standard>.<grade><letter>`, for example
+- Loaded in data/standards/ncas-performance-standards.txt as ids only, no wording: 1,264 ids across the five
+  disciplines (visual arts 195, music 264, theater 298, dance 273, media arts 234), from the 2021-11 "at a glance"
+  handouts, fetched 2026-10-27, and the 2021-11 music composition and theory strand handout, downloaded and read
+  2026-11-21 (Cory, Desk q-fix-downloads-1). Format `DIS:<process><anchor>.<standard>.<grade><letter>`, for example
   `DA:Cr1.1.2a`. High school levels are `.Ia`, `.IIa`, `.IIIa` (media arts cells with one statement carry no
   letter, as `MA:Re9.1.I`).
 - Eleven anchor standards in four artistic processes: creating (Cr1 to Cr3), performing, presenting or producing
@@ -37,8 +38,8 @@ approach page is docs/courses/arts/APPROACH.md (approved 2026-11-20, Desk q-prew
   The standards gate that checks a plan's ids against the file's lines is a worker's job, owed (data/plans/later.csv);
   until it exists, each scope and sequence states its id count
   against the table in section 3.2 and a reader spot-checks ten.
-- Music is loaded for pre-kindergarten to grade 8 general music. The 63 ids of the high school composition and
-  theory strand load now (Cory, 2026-11-21, Desk q-fix-arts-1), as section 3.3 says.
+- Music is loaded for pre-kindergarten to grade 8 general music and for the high school composition and theory
+  strand (63 ids, loaded 2026-11-21; Cory, Desk q-fix-arts-1 and q-fix-downloads-1), as section 3.3 says.
 
 ## 2. Reuse terms (read at source, 2026-11-16)
 
@@ -58,9 +59,9 @@ Read on the coalition's own copyright guidelines (nationalartsstandards.org, "NC
 - The model cornerstone assessments are not adapted. Our end-of-unit assessments are our own.
 - A plan names a performance standard by id and states its action in one line of our own words. It never quotes
   the performance standards. The eleven anchors may be quoted in their real wording. Decided (Cory, 2026-11-20, Desk q-prework-arts-1):
-  a one-line words file for the 1,113 taught ids (id, tab, at most 14 words of what the student does, never a
+  a one-line words file for the taught ids (id, tab, at most 14 words of what the student does, never a
   re-sentence of the standards' phrasing), written by one agent and read by a second, in the public repository; the
-  63 strand ids join it when they load. The file now exists (data/standards/ncas-performance-standards-words.txt,
+  63 strand ids joined it 2026-11-21, so it holds all 1,176 taught ids. The file now exists (data/standards/ncas-performance-standards-words.txt,
   written 2026-11-20): a plan cites the id and uses the file's line for the action.
 
 ## 3. The band-year rule
@@ -123,28 +124,30 @@ state frameworks that turn them into yearlong courses.
   it is at most 12 days in the full year and 6 days on the 80-day short path, and its days count toward the bar's 10
   percent limit on days outside the course's standards (6 of 80 is 7.5 percent). Levels 2 and 3 open with a review
   unit of at most 6 days that doubles as placement; review days count as inside the standards. The frame lists them
-  as bridge or review days. The numbers 12 for the full-year bridge and 6 for review are ours, untested. The short
+  as bridge or review days. The bridge's at most 12 days in the full 160-day year is settled (Cory, 2026-11-21, Desk
+  q-fix-downloads-1): the same 7.5 percent share as its 6 days on the short path. The 6 days for review are ours,
+  untested. The short
   path adds build work to the 15 high
   school levels (three in each of the five 9 to 12 courses), so many schools that cannot give an arts course every
   day can still use the course.
 
-### Ids owned by each course-year (counted from the id file, 2026-11-19; pre-kindergarten excluded)
+### Ids owned by each course-year (counted from the id file, 2026-11-19, music 9 to 12 on 2026-11-21; pre-kindergarten excluded)
 
 | Discipline | K to 2 (K, 1, 2) | 3 to 5 | 6 to 8 | 9 to 12, per level (`.Ia`, `.IIa`, `.IIIa`; Level 4 repeats `.IIIa`) |
 |---|---|---|---|---|
 | Visual arts (VA) | 15 + 15 + 15 = 45 | 45 | 45 | 15 |
-| Music (MU) | 18 + 20 + 20 = 58 | 63 | 63 | 21 each, strand `.C`, 63 in all, outside the file (3.3) |
+| Music (MU) | 18 + 20 + 20 = 58 | 63 | 63 | 21 each, strand `.C`, 63 in all (3.3) |
 | Theater (TH) | 17 + 24 + 24 = 65 | 72 | 72 | 24 |
 | Dance (DA) | 21 + 21 + 21 = 63 | 63 | 63 | 21 |
 | Media arts (MA) | 18 + 18 + 18 = 54 | 54 | 54 | 18 |
 
 An id is one lettered statement (`DA:Cr1.1.2a`). A year's scope and sequence claims every id of its grade in its
-discipline, counted in this table. The file holds 1,201 ids: 1,113 taught (K to 8 and the high school levels) and 88
-pre-kindergarten, not taught. Totals of taught ids: visual arts 180, music 184, theater 281, dance 252, media arts
+discipline, counted in this table. The file holds 1,264 ids: 1,176 taught (K to 8 and the high school levels) and 88
+pre-kindergarten, not taught. Totals of taught ids: visual arts 180, music 247, theater 281, dance 252, media arts
 216. The header's "per grade" figures are unlettered standards and are not the count. Music and theater
-kindergarten are uneven (music K 19, grades 1 and 2 20, grades 3 to 8 21; theater K 17, grade 1 on 24), so no
+kindergarten are uneven (music K 18, grades 1 and 2 20, grades 3 to 8 21; theater K 17, grade 1 on 24), so no
 year is counted by an even spread. High school music is one of the 20 courses, not an extra one; its 63 ids are
-not in the file.
+in the file since 2026-11-21.
 
 ### 3.3 Music in high school: composition and theory (Cory 2026-11-16, Desk card q-later-arts-health-pe)
 
@@ -163,13 +166,12 @@ The reasons and sources are in docs/reviews/arts-hs-music-and-levels-2026-11-16.
   school or community ensemble, a practice log and self-check, how an assignment can be written for the
   student's own instrument or section, and a plain note that ensemble standards are met and assessed by that
   ensemble.
-- Ids: 21 per level, 63 in all, format `MU:Cr1.1.C.Ia` (the strand letter `C` before the level).
-  scripts/standards.py accepts the strand letter (read 2026-11-19). Decided (Cory, 2026-11-21, Desk q-fix-arts-1):
-  they load now, ids only, read at source by a web page fetch with nothing downloaded, each with its line in the
-  words file (same form and limits), and data/progressions/arts.csv then gets the music Level 1 to 4 rows in the
-  form of the other disciplines' rows (3.2). Pending(data/standards/ncas-performance-standards.txt#MU:Cr1.1.C.Ia):
-  the coalition and the music association publish the strand only as a file to download (checked 2026-11-21), so
-  the load waits on a source page that can be read without one; until then the counts in 3.2 leave it out.
+- Ids: 21 per level, 63 in all, format `MU:Cr1.1.C.Ia` (the strand letter `C` before the level); the connecting
+  ids keep the handout's anchor `.0` (`MU:Cn10.0.C.Ia`, `MU:Cn11.0.C.Ia`). scripts/standards.py accepts the strand
+  letter (read 2026-11-19). Loaded 2026-11-21 (Cory, Desk q-fix-arts-1 and q-fix-downloads-1), ids only, from the
+  coalition's strand handout downloaded and read once; each has its line in the words file (same form and limits),
+  and data/progressions/arts.csv has the music Level 1 to 4 rows (`mu-g9-invent` to `mu-g12-connect`) in the form
+  of the other disciplines' rows (3.2). The counts in 3.2 include them.
 
 ### 3.4 Pacing (settled 2026-11-16)
 
@@ -181,11 +183,19 @@ the 120 hours of the national level descriptor (3.2), and 60 hours on the 80-day
 q-fix-arts-1). The 160 in docs/GLOSSARY.md is the school year, not a course's days, so nothing there changes.
 
 National time figures (Cory, 2026-11-21, Desk q-fix-arts-1): each K to 8 course page names its national arts
-association's recommended weekly time, read at source by a web page fetch with nothing downloaded, and our gap
-(80 minutes a week, 40 on the short path), as health and physical education do, so a school can add time. A figure
-that cannot be read that way stays off the page. Checked 2026-11-21: the music, visual and media arts, dance and
-theater associations' figures sit only in files to download (their opportunity-to-learn standards), so no course
-page names one yet.
+association's recommended weekly time, read at source on the association's own site (a downloaded file is allowed,
+Cory, 2026-11-21, Desk q-fix-downloads-1), and our gap (80 minutes a week, 40 on the short path), as health and
+physical education do, so a school can add time. A figure not read at source stays off the page. Read 2026-11-21,
+each from the association's opportunity-to-learn standards:
+
+| Discipline | Recommended weekly time, K to 8 | Our gap (80 minutes a week; 40 on the short path) | Source |
+|---|---|---|---|
+| Dance | K to 2: at least 60 minutes (90 at the quality level); 3 to 5 and 6 to 8: at least 90 minutes | K to 2: 20 minutes over the 60 (20 short of it on the short path) and 10 short of the 90; 3 to 8: 10 minutes short (50 on the short path) | dance educators' association, opportunity-to-learn standards, 2017 revision, posted on nationalartsstandards.org |
+| Visual arts and media arts | No figure: the standards ask for regular weekly time enough for the basic program, with no minutes named | none to state | visual arts educators' association, opportunity-to-learn standards for visual and media arts, 2025 posting on arteducators.org |
+| Music | General music, basic level: at least 90 minutes in each of K to 2, 3 to 5 and 6 to 8 | 10 minutes short (50 on the short path) | music educators' association, National Opportunity to Learn Standards, 2020, on nafme.org (read in a browser 2026-11-21, nothing saved) |
+| Theater | No figure: the theater association has no page giving one | none to state | none found |
+
+The course pages carry the dance and music rows' figures and gaps; visual arts, media arts and theater name none, since their associations give no minutes.
 
 On the 32-session path each unit keeps four things, in this order and no fewer: the demonstration with a step card,
 opened by the look or listen at a work that carries the unit's response to another artist's work and its

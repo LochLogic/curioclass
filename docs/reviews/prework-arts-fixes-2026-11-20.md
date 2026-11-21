@@ -115,3 +115,13 @@ All four follow-ups done by the lead 2026-11-21: MU:Re9.1.Kb removed from the id
    beside every Cn10 personal tie; health's steps for when a student tells you something). Progression notes for
    da-g4-technique to da-g11-technique carry the teacher note; the grade 8, Level 1 and Level 2 wording no longer
    asks for the student's own food or eating plan.
+
+## Downloads read and loaded (2026-11-21, Desk q-fix-downloads-1)
+
+Files saved outside the repository in S:\CurioClass-sources\arts\downloads-2026-11-21\ (one folder each, README.txt), read once for ids and figures only.
+
+1. Strand loaded: the 63 composition and theory ids (`MU:Cr1.1.C.Ia` to `MU:Cn11.0.C.IIIa`; the handout prints the connecting anchors as `.0`, kept so) are in data/standards/ncas-performance-standards.txt, with own-words lines in the words file and 28 progression rows `mu-g9-invent` to `mu-g12-connect` (eight per level, Level 4 contributing only); the mu-g8 rows now hand on to Level 1. STANDARD.md 1, 2, 3.2 and 3.3 give the new counts (1,264 ids, 1,176 taught, music 247 taught) and the Pending marker is gone. `progression.py check arts`: 498 rows, 0 failures.
+2. Weekly time: STANDARD.md 3.4 holds a table. Dance: at least 60 minutes a week in K to 2 (90 at the quality level), at least 90 in grades 3 to 8. Visual and media arts: no minutes named. Music: the file refused an automated download (403), not read, no figure. Theater: the association gives no figure.
+3. Bridge: STANDARD.md 3.2 states the full-year bridge's at most 12 days as settled (Cory, 2026-11-21, Desk q-fix-downloads-1); the five Level 1 bridge rows in arts.csv now say "at most 12 days in the full year, 6 on the 80-day short path".
+
+4. Music weekly time, read by the lead 2026-11-21 in a browser (nothing saved): the music educators' association's 2020 opportunity-to-learn standards give, at the basic level, at least 90 minutes of general music a week in K to 2, 3 to 5 and 6 to 8. STANDARD.md 3.4's music row now names it and our gap (10 minutes short, 50 on the short path).

@@ -11,12 +11,14 @@
 # anchors: 7-9 Responding (Re7 perceive/analyze, Re8 interpret intent/meaning, Re9 apply criteria to evaluate)
 # anchors: 10-11 Connecting (Cn10 synthesize/relate knowledge and experience, Cn11 relate to societal, cultural, historical context)
 # note: performance standards per grade: DA 11, MA 11, MU 15, TH 12 (Cn11.1 and Cn11.2), VA 15 (Cr1.1, Cr1.2, Cr2.1, Cr2.2, Cr2.3, Re7.1, Re7.2 ...). Grade cells: DA 143, MA 143, MU 150, TH 156, VA 195 (all present).
-# note: MUSIC = the PK-8 general music strand only (MU:...PK to .8; no HS levels in that strand). The HS music strands (Traditional and Emerging Ensembles, Harmonizing Instruments, Composition and Theory, Technology; Novice to Advanced) are NOT included.
+# note: MUSIC = the PK-8 general music strand plus, since 2026-11-21, the high school Composition and Theory strand (63 ids, MU:...C.Ia to .C.IIIb, docs/courses/arts/STANDARD.md 3.3). The other HS music strands (Traditional and Emerging Ensembles, Harmonizing Instruments, Technology) are NOT included.
 # note: letters were derived by parsing the handouts' cell layout (positions of the a./b./c. markers), not copied from a published list; NCCAS publishes no letter-level total. Cross-check: b and c item counts equal the raw PDF text counts for DA, MA, TH; for MU the raw text undercounts (spot-checked cells MU:Cr3.1.6-8 by hand). VA prints every code with its letter (all "a").
 # note: Media Arts prints single-statement cells with no letter (e.g. MA:Cr1.1.5), so those lines carry no letter; multi-statement MA cells are lettered (MA:Cr3.1.5a, MA:Cr3.1.5b).
 # note: HS spelled .Ia/.IIa/.IIIa as in the VA, DA, MA and TH handouts. Some state adoptions write theatre/dance HS as HSI/HSII/HSIII (e.g. TH:Cr1.1.HSI); not verified at source, so not used.
 # note: handout typos normalised: DA:Re.7.1 and VA:Re.7.x -> Re7; VA "Pka" -> PKa; TH:Cr2-PK -> TH:Cr2.1.PK; TH:Cr.1.1.5 -> TH:Cr1.1.5; TH:Cn11.2.-1 -> TH:Cn11.2.1; MA:Re9.1.HS.I -> MA:Re9.1.I; music handout's "(MA:Cr3.1.PK)" -> MU:Cr3.1.PK.
 # note: added 2026-11-16. Reuse terms read at source (NCAS Copyright Guidelines, 2025 posting): performance standards are all rights reserved (rights administered by Young Audiences, Inc.); only the anchor standards and framework matrix are free; paraphrase with citation is allowed. This file keeps ids only. Band-year rule and revision watch: docs/courses/arts/STANDARD.md.
+# source: https://www.nationalartsstandards.org/sites/default/files/2021-11/Music%20Theory%20and%20Composition%20Strand%20at%20a%20Glance.pdf (high school composition and theory strand, downloaded and read 2026-11-21, Cory, Desk q-fix-downloads-1)
+# note: composition and theory strand ids are as the handout prints them, every cell lettered; its connecting ids print anchor .0 (MU:Cn10.0.C.Ia, MU:Cn11.0.C.Ia), unlike the PK-8 handout's .1, and are kept as printed.
 DA:Cr1.1.PKa
 DA:Cr1.1.PKb
 DA:Cr1.1.Ka
@@ -725,6 +727,69 @@ MU:Cn11.1.5a
 MU:Cn11.1.6a
 MU:Cn11.1.7a
 MU:Cn11.1.8a
+MU:Cr1.1.C.Ia
+MU:Cr1.1.C.IIa
+MU:Cr1.1.C.IIIa
+MU:Cr2.1.C.Ia
+MU:Cr2.1.C.Ib
+MU:Cr2.1.C.IIa
+MU:Cr2.1.C.IIb
+MU:Cr2.1.C.IIIa
+MU:Cr2.1.C.IIIb
+MU:Cr3.1.C.Ia
+MU:Cr3.1.C.IIa
+MU:Cr3.1.C.IIIa
+MU:Cr3.2.C.Ia
+MU:Cr3.2.C.Ib
+MU:Cr3.2.C.IIa
+MU:Cr3.2.C.IIb
+MU:Cr3.2.C.IIIa
+MU:Cr3.2.C.IIIb
+MU:Pr4.1.C.Ia
+MU:Pr4.1.C.IIa
+MU:Pr4.1.C.IIIa
+MU:Pr4.2.C.Ia
+MU:Pr4.2.C.IIa
+MU:Pr4.2.C.IIIa
+MU:Pr4.3.C.Ia
+MU:Pr4.3.C.IIa
+MU:Pr4.3.C.IIIa
+MU:Pr5.1.C.Ia
+MU:Pr5.1.C.Ib
+MU:Pr5.1.C.Ic
+MU:Pr5.1.C.IIa
+MU:Pr5.1.C.IIb
+MU:Pr5.1.C.IIc
+MU:Pr5.1.C.IIIa
+MU:Pr5.1.C.IIIb
+MU:Pr5.1.C.IIIc
+MU:Pr6.1.C.Ia
+MU:Pr6.1.C.Ib
+MU:Pr6.1.C.IIa
+MU:Pr6.1.C.IIb
+MU:Pr6.1.C.IIIa
+MU:Pr6.1.C.IIIb
+MU:Re7.1.C.Ia
+MU:Re7.1.C.IIa
+MU:Re7.1.C.IIIa
+MU:Re7.2.C.Ia
+MU:Re7.2.C.IIa
+MU:Re7.2.C.IIIa
+MU:Re8.1.C.Ia
+MU:Re8.1.C.IIa
+MU:Re8.1.C.IIIa
+MU:Re9.1.C.Ia
+MU:Re9.1.C.Ib
+MU:Re9.1.C.IIa
+MU:Re9.1.C.IIb
+MU:Re9.1.C.IIIa
+MU:Re9.1.C.IIIb
+MU:Cn10.0.C.Ia
+MU:Cn10.0.C.IIa
+MU:Cn10.0.C.IIIa
+MU:Cn11.0.C.Ia
+MU:Cn11.0.C.IIa
+MU:Cn11.0.C.IIIa
 TH:Cr1.1.PKa
 TH:Cr1.1.PKb
 TH:Cr1.1.Ka

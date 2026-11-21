@@ -108,3 +108,43 @@ Lead, 2026-11-21: follow-ups 1 to 3 done (subjects.csv standards name, the bar l
 4. Catalogue: STANDARD.md section 2 says the one `cs-k12` row stays, with the lead's corrected notes; no page described the old notes.
 
 APPROACH.md "Settled" lists all four; "Open for Cory" now says nothing is open.
+
+## CSTA standards PDF read (2026-11-21, Desk q-fix-downloads-1)
+
+Follow-up 4, the parts that wait on the PDF. The PDF was downloaded from csteachers.org into
+S:\CurioClass-sources\computer-science\csta-2026-11-21\ (README there: read once, ids and structure only, not for the
+public site), and its text taken by script. Licence printed in the PDF: CC BY-NC-SA 4.0, reuse and adaptation allowed
+with credit, non-commercial, same licence; nothing from it was copied into a page.
+
+- Ids and statements: the PDF holds the same 331 ids as csta-2026-ids.txt and csta-2026-specialty-ids.txt, and every
+  statement in csta-2026-statements.txt matches it apart from whitespace, quote marks and hyphen forms (checked line added
+  to the statements file header).
+- Sub-concept key: done, STANDARD.md section 1 (codes and names from the PDF's naming tables, our one-line meanings).
+- Practices table: done, STANDARD.md section 3 (codes ESR1 to HCD12, our labels, the bar item each serves).
+- Boundary statements against the progression: every owner row of data/progressions/computer-science.csv read against
+  its boundary statement; 34 rows fixed. Past the limit: g4-written-algorithm taught the flowchart, which E4-ALG-PS-01
+  says is not expected (now numbered sentences; the flowchart moves to g5-visual-algorithm, which E5-ALG-PS-01 allows);
+  g2-algorithm-peers and g4-algorithm-groups asked students to design a fairer rule (not expected in E2 or E4;
+  removed); g6-procedures listed parameter (not expected in MS-PRO-PD-12; removed). Below the depth the boundary sets,
+  one clause added each: g1-data-questions, g2-explain-build, g2-data-questions, g3-make-improve, g3-data-groups,
+  g4-data-people, g5-use-or-not, g6-precision-metadata, g6-packets, g7-viz-choices, g7-personal-data (the cross-border
+  sense of sovereignty), g8-ml-evaluate (model card), g8-evaluate-ai-code, g9-computing-history, g10-design-hcd,
+  g10-clean-text, g10-network-of-networks, g10-apis-docs, g10-breach-causes, g11-infrastructure-impact,
+  g11-data-scale-ethics, g12-data-policy-debate, g12-law-policy, g12-diverse-teams (published accounts of
+  professionals). Specialty I rows brought to their S1 boundary: g11-multivariate-viz, g11-evaluate-vs-spec,
+  g11-fix-security-flaw, g12-evaluate-ai-output, g12-refine-with-users. `progression.py check computer-science`: 0
+  failures.
+- Boundary-statement store: not made (the README limits the PDF to ids and structure). Depth now sits in each owner
+  row's notes; STANDARD.md "Depth" says so. Whether to store the boundary text: question for Cory 5.
+- STANDARD.md owed row closed; lens and APPROACH.md unit field 2 point to the owner row's notes and the practice codes.
+
+Questions for Cory (new): 5, store the boundary statements and each standard's practice and disposition pairing in
+data/standards/ under CSTA's licence, planning only (recommended yes); 6, S1-SWD-PP-08 asks for a version-control
+workflow (branching, review, merging) that g12-team-workflow leaves out (recommended: a small offline version history
+with branch and merge in our own editor, the id marked part met until it exists); 7, g7-lists and g8-text-project
+teach lists, which MS-PRO-VD-16 and MS-ALG-PS-01 say are not expected in middle school (recommended: keep them and count
+the list days as days outside the standards under C1, since Python's list is the natural first structure and the HS
+rows build on it).
+
+Still open from follow-up 4: one open pedagogy source for APPROACH.md "Honest limits" and docs/APPROACH-SOURCES.md
+(not a PDF task; lead's list).

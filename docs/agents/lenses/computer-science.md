@@ -46,7 +46,8 @@ common bugs and what each shows, and never assume the teacher can debug on the f
 - Middle school assumes text code when elementary taught only blocks, with no bridge.
 
 **Course frame and scope and sequence**
-- A CSTA id taught below its boundary statement, or claimed by a day that only mentions it.
+- A CSTA id taught below its boundary statement, or past what it says is not expected (a K to 5 id at the next
+  grade's depth), or claimed by a day that only mentions it. The owner row's notes in the progression carry the depth.
 - A Specialty id claimed in the Foundational course where the unit does not already go that far, or an S2 id claimed.
 - AI as one late unit with no data or algorithm work under it.
 - No unplugged path in a unit (bar criterion 5).
@@ -83,7 +84,7 @@ source may be adapted (BASE-TEXTS.md). Tool code quality (the tool steps in BASE
 
 From the writer's knowledge unless marked; check the source before a finding rests on it.
 - CSTA, 2026 PK-12 Computer Science Standards (opened 2026-11-16: structure, concepts, practices, dispositions, the
-  specialty pages).
+  specialty pages; boundary statements, practices and the sub-concept tables read 2026-11-21).
 - K-12 Computer Science Framework, 2016 (concepts and practices; the 2026 standards' predecessor frame).
 - Sentance and Waite, PRIMM; Lytle and others, use-modify-create (published papers, not re-read).
 - du Boulay on the notional machine; Sorva's review of notional machines (not re-read).

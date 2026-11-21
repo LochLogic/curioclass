@@ -255,6 +255,8 @@ responding standards.
 | California's five arts categories | in full by the bar's writer |
 | Oklahoma's fine arts rubric, 2024 | in full by the expert |
 | National Core Arts Standards, 2014 | ids and the free anchors (STANDARD.md); music handout rechecked 2026-11-21 |
+| Music composition and theory strand handout, 2021-11 | downloaded and read once 2026-11-21, ids only (STANDARD.md 3.3) |
+| Opportunity-to-learn standards of the dance and the visual and media arts associations | downloaded and read once 2026-11-21, weekly figures only (STANDARD.md 3.4); the music association's file was not read, the theater association gives no figure |
 | NCAS "Standards Process Updates for the Field", March 2026 | read 2026-11-16 (STANDARD.md section 4) |
 | NAfME descriptors for high school levels | in full, 2026-11-16 (docs/reviews/arts-hs-music-and-levels-2026-11-16.md) |
 | Open material for the works studied | docs/reviews/arts-open-material-2026-11-16.md |

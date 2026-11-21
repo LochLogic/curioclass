@@ -1717,3 +1717,9 @@ its ids named as not claimed. (2) Flagged sections and the pay-gap unit point to
 family work question gets invented, public and trusted-adult options. (4) Guideline indicators are owned where first
 taught, carried in Pathways, and adult-only ones left out with a reason. (5) Typical grades: cte-explore 8,
 cte-pathways 10.
+
+## 2026-11-21: Pre-work sources that are only files (q-fix-downloads-1)
+
+Cory took both recommended picks. (1) Yes to downloading and reading the music composition and theory strand, the arts
+associations' opportunity-to-learn files and the 2026 CSTA standards PDF, kept outside the repository, ids, figures and
+structure only. (2) The arts bridge unit is at most 12 days on the full 160-day year (6 on the short path).

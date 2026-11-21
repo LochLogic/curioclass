@@ -88,7 +88,10 @@ class. Plans put the doing with people and the tool in a supporting role.
 ## Sources, read into our own words
 
 - National Core Arts Standards, 2014: the four processes and eleven anchors (the free part), and the at-a-glance
-  handouts behind our id file. Copyright guidelines read 2026-11-16 (STANDARD.md 2).
+  handouts behind our id file, with the high school music composition and theory strand handout (read 2026-11-21).
+  Copyright guidelines read 2026-11-16 (STANDARD.md 2).
+- The arts associations' opportunity-to-learn standards, for recommended weekly time (STANDARD.md 3.4, read
+  2026-11-21).
 - NCAS "Standards Process Updates for the Field", March 2026: the revision's five aims.
 - NAfME, appendix to the 2014 music standards, the descriptors for the three high school levels.
 - The bar's instruments, as read by the bar's writer: Texas fine arts rubric (2025), California's five categories,

@@ -57,7 +57,8 @@ are filled as UNIT-PLAN.md says, with nothing added for computer science.
 
 **Unit plan.**
 - Field 2: each standard's parts by verb (the id and our own words, STANDARD.md "Quoting"); the limits: the depth
-  taught to and what is left out (STANDARD.md "Depth"); the practice the unit teaches, named by its group; what is
+  taught to and what is left out (STANDARD.md "Depth", from the owner row's notes); the practice the unit teaches,
+  named by its code and our label (STANDARD.md section 3); what is
   carried through the unit: the anchor program, algorithm or dataset (its name, the day it is shown whole, the day it
   is withdrawn, the day students first build alone); the unit's unplugged days, counted.
 - Field 5: read and trace items plus a short build or debug task (a society unit: a short audit or claim task). The

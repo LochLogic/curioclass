@@ -1,7 +1,8 @@
 # Computer science: the standard, made usable
 
 **Written 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-computer-science-read-2026-11-19.md)
-and 2026-11-21 after the second-model read (docs/reviews/prework-computer-science-fixes-2026-11-20.md).** Its calls
+and 2026-11-21 after the second-model read and the reading of the standards PDF
+(docs/reviews/prework-computer-science-fixes-2026-11-20.md).** Its calls
 are Cory's, logged in docs/agents/decisions/DESK-ANSWERS.md and named where they apply.
 
 Written 2026-11-16 as the subject's pre-work (docs/PRODUCTION-PATH.md, "After the core subjects"; the owed row in
@@ -18,7 +19,7 @@ where one is needed this page recommends and says so.
 | Load the 135 Specialty standards | Done 2026-11-11 (ids); wording 2026-11-16 | data/standards/csta-2026-specialty-ids.txt; statements file |
 | High school teaches the Foundational set, claims a Specialty id only where a topic already goes that far | Decided (Cory, 2026-11-11); restated in section 3 | This page |
 | Approach page | Approved 2026-11-20 (Cory, Desk q-prework-cs-1); fields placed 2026-11-21 | docs/courses/computer-science/APPROACH.md |
-| From the PDF: a store of the boundary statements, the sub-concept key, the practices table | Owed from whoever holds the PDF | Section 1 "Depth" and "Sub-concept codes"; section 3 |
+| From the PDF: the sub-concept key, the practices table, every owner row checked against its boundary statement | Done 2026-11-21 (PDF read once, Desk q-fix-downloads-1). A stored copy of the boundary statements is not made: a question for Cory | Section 1 "Depth" and "Sub-concept codes"; section 3; data/progressions/computer-science.csv |
 
 ## 1. The standard and its terms
 
@@ -46,16 +47,51 @@ where one is needed this page recommends and says so.
 - **Quoting.** A plan cites each standard by its id and states its action as one verb or a short phrase in our own words
   (the computer science form of UNIT-PLAN rule 15); the statement and boundary statement are never quoted. The
   statement lives in data/standards/csta-2026-statements.txt for the planner, not on the page.
-- **Depth.** Boundary statements are not stored anywhere in the repository yet; a store (planning only, under the
-  statements' licence, never copied into a page) is owed. Until it exists, a planner without the PDF has only the
-  one-line statement, which does not set the depth: the progression rows were written from the one-line statements, so
-  when the store lands every owner row is checked again against its boundary statement. Every plan writes the depth it
-  teaches to, and what it leaves out, in our own words. A K to 5 course never teaches an id at its next band's depth.
-- **Sub-concept codes** (PD, RD, TR, VD, PS, ML, IM, DC, DI, HW, SE, NT, HI, HU, CE, ET and the rest) are named in the
-  PDF's concept pages. A key (code, name, our one-line meaning) is owed from whoever holds the PDF; nobody guesses it.
-  A code names a strand inside one concept: DAT-IM and ALG-IM are different strands.
+- **Depth.** Each standard's boundary statement (in the PDF) says what students do and what is not expected, and so
+  sets the depth. The boundary statements are not stored in the repository. The PDF was read once on 2026-11-21 and
+  every owner row in data/progressions/computer-science.csv was checked against its boundary statement then, so each
+  owner row's notes carry the depth in our own words, including what is left out. Every plan writes the depth it
+  teaches to, and what it leaves out, in our own words, from its owner row. A K to 5 course never teaches an id at its
+  next band's depth: for example, grade 4 writes an algorithm in words, and the flowchart is grade 5's.
+- **Sub-concept codes** are the third part of an id. A code names a strand inside one concept or area: DAT-IM and
+  ALG-IM are different strands. The key below (read from the PDF's naming tables, 2026-11-21) gives each code, its name
+  and our one-line meaning.
 - **The word AI.** Student copy may name artificial intelligence and machine learning as subjects of study. It never says
   how Curio Class was made.
+
+**Sub-concept key, Foundational.**
+
+| Concept | Code | Name | Our meaning |
+|---|---|---|---|
+| ALG | PS | Algorithmic problem solving | Planning, writing and checking step-by-step solutions |
+| ALG | ML | Machine learning | Systems that find patterns in data to classify, predict or make things |
+| ALG | IM | Impacts of algorithms and design | Who an algorithm or a design helps, leaves out or harms |
+| PRO | PD | Program development | Building, improving and sharing programs, alone and in teams |
+| PRO | VD | Variables and data storage | How a program holds, changes and organizes values |
+| PRO | RD | Reading and documenting | Reading, explaining and commenting code |
+| PRO | TR | Testing and refining | Testing, debugging and improving a program |
+| DAT | DC | Data collection and preparation | Gathering, organising, checking and cleaning data |
+| DAT | DI | Data investigation | Asking a question of data, finding patterns, showing results |
+| DAT | IM | Impacts of data science | How collecting and using data affects people |
+| SYS | HW | Hardware and software | The parts of a computing system and how they work together |
+| SYS | SE | Security | Keeping devices, accounts and information safe |
+| SYS | NT | Networks | How devices connect and send information |
+| SYS | IM | Impacts of computing systems | How systems affect lives, access and the environment |
+| SOC | HI | History of computing | How computing came to be and what it changed |
+| SOC | ET | Emerging technologies | New technologies, their limits and their effects |
+| SOC | HU | Humans and computing | What people and machines each do, and the choices people make |
+| SOC | CE | Career exploration | Computing in work and in students' own plans |
+
+**Sub-concept key, Specialty** (high school; tiers S1 and S2). AIN (artificial intelligence): DD design and
+development, DS data science for AI, HR human responsibility, PP professional practice. CYB (cybersecurity): ND network
+theory and design, NO network operations, TS threats and security measures, CP cybersecurity policies, PP professional
+practice. DSC (data science): CC creation and curation, AM analysis and modeling techniques, MI model interpretation and
+reasoning, VZ visualization, PP professional practice. GMD (game development): DD design and development, PX player
+experience, AR architecture, PP professional practice. PHY (physical computing): HC hardware and circuit design, IO
+inputs and outputs, DD design and development, CI connectivity and the internet of things, PP professional practice.
+SWD (software development): DD design and development, UX user experience, TR testing and refining, PP professional
+practice. XCS (X + CS): XC, computer science inside another subject. In every area PP means the habits and ethics of
+working in the field.
 
 ## 2. How the standards map to our courses
 
@@ -117,10 +153,26 @@ alone.
 - The X + CS standards (XCS) as computer science days: they describe computer science inside other subjects, so
   they are leans for those subjects' units, not this course's.
 - Boundary statements as text: never copied (licence and our own voice). Plans restate the depth in our own words.
-- Practices and dispositions have no ids in data/standards; units name the practice by its group and our own words,
-  and every unit names at least one practice it teaches, with its day and task (bar criterion 2). The twelve practices
-  are not yet listed here: a table (name from the PDF, our one-line meaning, and which of the bar's four items it
-  serves, or none) is owed from whoever holds the PDF.
+- Practices and dispositions have no ids in data/standards; units name the practice by its code and our own words,
+  and every unit names at least one practice it teaches, with its day and task (bar criterion 2). The PDF pairs each
+  standard with one or two practices and one or two dispositions; that pairing is not stored. The twelve practices,
+  numbered 1 to 12 across four groups (read from the PDF 2026-11-21; labels ours), and which of the bar's four items
+  (working together, testing and fixing, abstraction, explaining) each serves:
+
+| Code | Group | Our label | Bar item |
+|---|---|---|---|
+| ESR1 | Ethics and social responsibility | Use computing for good: weigh who gains and who is harmed | none |
+| ESR2 | Ethics and social responsibility | Respect people: credit others' work, protect users' data | none |
+| IC3 | Inclusive collaboration | Explain computing ideas, give and take feedback | explaining |
+| IC4 | Inclusive collaboration | Run a project: shared goals, tasks, milestones, documented work | working together |
+| IC5 | Inclusive collaboration | Be a reliable, respectful teammate and reflect on the team's work | working together |
+| CT6 | Computational thinking | Define the problem: criteria, limits, smaller parts | abstraction |
+| CT7 | Computational thinking | Abstract: find patterns, make reusable parts, model and simulate | abstraction |
+| CT8 | Computational thinking | Build: compare approaches, plan, then code or train | none |
+| CT9 | Computational thinking | Test, debug and refine | testing and fixing |
+| HCD10 | Human-centered design | Learn from and include different users | none |
+| HCD11 | Human-centered design | Prototype, test and refine for use and access | testing and fixing |
+| HCD12 | Human-centered design | Keep users informed and in control | none |
 
 ## 4. Cross-subject leans on the core progressions
 
