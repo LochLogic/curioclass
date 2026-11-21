@@ -15,7 +15,7 @@ integrated (Cory, 2026-11-14), so it is not planned here.
 |---|---|---|
 | Read the 2024 career-ready practices wording | Done 2026-11-16, from a state's reproduction (the publisher's page was not reachable); described in our own words | data/standards/cte-career-clusters-2024.txt header; section 1 |
 | List what a school adds | Done | Section 4 |
-| A learner standard for the two courses | Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library); the guidelines PDF is saved; a read of its terms, then the ids file in our own words, are owed (data/plans/later.csv L91) | Section 2 |
+| A learner standard for the two courses | Done 2026-11-21: terms read, 130 indicator ids loaded with our own words, each placed (data/plans/later.csv L91) | data/standards/ncdg-2024.txt and ncdg-2024-words.txt; sections 2 and 3 |
 | A second state's rubric (the bar's "to firm it") | Owed | docs/ADOPTION-BAR-SUBJECTS.md part 7 |
 | Progression gate support | Owed: scripts/progression.py reads ids up to the first space, so every id here becomes `CTE.Career`; it also has no entry for the subject | Section 3 |
 | Approach page | Approved by Cory 2026-11-21 (Desk q-prework-open-2) | docs/courses/career-education/APPROACH.md |
@@ -45,14 +45,19 @@ plan, labour market data, career tasks (resume, interview, portfolio), hands-on 
 **The learner goals.** Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): the National Career
 Development Guidelines (National Career Development Association, 2024 revision: three domains, goals and leveled
 indicators) are the learner goals, with the clusters and practices as content. Fallback: if its terms bar ids and
-our own words, Curio Class writes its own learning goals per course, marked "ours". Still owed: the guidelines file
-and a read of its terms. The 2024 framework PDF is reachable (ncda.org, read in text by the cold reader 2026-11-20,
-no copyright or reuse statement seen in it): three domains, eleven goals, about 228 indicators coded like `CD1.K1`,
-in three stages that are not tied to an age. Its third domain is Social Emotional Learning (four goals, about a third
+our own words, Curio Class writes its own learning goals per course, marked "ours". The fallback is not needed: the
+PDF (04/2024, read in text 2026-11-20 and 2026-11-21) has no copyright or reuse notice; NCDA's site legal notice
+(read 2026-11-21) reserves all rights in site content and bars reproducing it without written permission, and its
+framework page names writing lessons and tracking work by indicator code among the uses. So the ids are kept as
+printed and every line about them is ours; no indicator sentence is copied (file headers). The guidelines have
+three domains, eleven goals and 228 indicators coded like `CD1.K1`, in three stages (K, A, R) that are not tied to
+an age. Its third domain is Social Emotional Learning (four goals, about a third
 of the indicators), which the SEL courses already teach. So career education owns the Career Development and the
 Academic and Lifelong Learning goals (seven goals), and the Social Emotional Learning goals are leans on the SEL
-courses (Cory, 2026-11-21). The PDF is saved in S:\CurioClass-sources\career-education\ncdg-2024\ (Cory's yes,
-2026-11-21); data/standards/ncdg-2024.txt follows a read of NCDA's terms page (data/plans/later.csv L91).
+courses (Cory, 2026-11-21), so their 93 indicators are not in the ids file. The PDF is saved in
+S:\CurioClass-sources\career-education\ncdg-2024\ (Cory's yes, 2026-11-21). The 135 Career Development and Academic
+and Lifelong Learning indicators are in data/standards/ncdg-2024.txt (130 owned; 5 left out, section 3), with our own
+line for each owned one in data/standards/ncdg-2024-words.txt.
 
 ## 3. How the standard maps to our courses (recommended, ours)
 
@@ -94,13 +99,35 @@ each indicator is owned in the course where it is first taught (Exploration, gra
 in Pathways as a `~` row where Exploration owns it, and an indicator written only for adults already at work is left
 out with a reason (section 5).
 
+**Learner goal placement** (ours, untested, 2026-11-21; ids in data/standards/ncdg-2024.txt). Of the 135 indicators,
+Exploration owns 66, Pathways owns 64 and 5 are left out. The pattern: knowing (K) in Exploration; doing (A) in
+Exploration where its tasks do it (the first plan, the job study with dated figures, the short interview practice),
+else Pathways; judging (R) in Pathways, except re-examining goals, which Exploration's plan days do.
+
+- **Exploration owns (66):** CD1.K1, A1, K2, A2, K3, R3, K4, K5, A5; CD2.K1, A1, K2, A2, K3, A3, K4, A4, K5, K6, K7,
+  K8, K9, A9; CD3.K1, A1, K2, A2, K3, A3, K4, A4, K5, A5, K6; CD4.K1, K2, K3, A3, K4, K5, K6; CD5.K1, K2, K3;
+  ALL1.K1, K2, A2, K3, A3, K4, A4, K5, A5, K6, A6, K7, K8; ALL2.K1, K2, K3, A3, K4, A4, K5, K6, K7.
+- **Pathways owns (64):** CD1.R1, R2, A3, A4, R4, R5; CD2.R1, R2, R3, R4, A5, R5, A6, R6, A7, R7, A8, R8, R9;
+  CD3.R1, R2, R3, R4, R5, A6; CD4.A1, R1, A2, R2, R3, A4, R4, A5, R5, A6, R6, K7, A7; CD5.A1, A2, A3; ALL1.A1, R1,
+  R2, R3, R4, R5, R6, A7, R7, A8, R8; ALL2.A1, R1, A2, R2, R3, R4, A5, R5, A6, R6, A7, R7.
+- **Carried:** every one of the 66 Exploration indicators is a `~` row in Pathways, with the field task or plan step
+  that uses it at higher demand; the handoff notes say grade 9 is skipped (as for the practices).
+- **Left out, adult-only (5):** CD3.R6 (it judges what holding a job uncommon for one's group has done to a career,
+  so it needs someone employed in one); CD4.R7 (it judges how a person has presented themselves inside a workplace
+  they already work in); CD5.R1, CD5.R2, CD5.R3 (each judges the results of one's own career management over years
+  against social, economic or hiring change, which a student does not yet have). Their A-stage partners stay in
+  Pathways as plan work.
+- **Notes:** CD2.A6 (experience shaping a choice) is answered from school or work, or for an invented worker, never
+  from family circumstances (section 6). ALL1.K4, A4 and R4 name "learning style"; our lines teach the strategies
+  and conditions that help a student learn, with no fixed learning-style label.
+
 **Handoffs** (ours, untested). Each Pathways `~` practice row assumes Exploration's row for that practice, and each
 Pathways sub-cluster row assumes its cluster's row in Exploration, with the matching `hands_on` at the other end. The
 handoff skips grade 9 because no career education course owns there; each such row's notes say so.
 
 **What the gate needs** (a note for the progression retool; scripts/progression.py is not edited here): ids split on
 the tab only, keeping the whole first field as scripts/standards.py does (the same split also cuts the SEL competency
-names, which hold spaces); `cte` in STD_FILES with this file and the learner-goals file; both files required, since
+names, which hold spaces); `cte` in STD_FILES with this file and the learner-goals file (ncdg-2024.txt); both files required, since
 ANCHOR holds one file per subject: this file in ANCHOR and the learner-goals file through the route ELECTIVE_FILES
 uses (every code in it must be owned), or ANCHOR widened to a list; and a code_grades case that returns no grade for
 `CTE.` ids or the learner-goal ids.
@@ -128,7 +155,9 @@ The course page says this plainly. A school adds:
   after an employer's money and materials and comparing a wage with costs, with the grade 7 math leans in section 7,
   and leans on no Economics row.
 - The older 16-cluster framework (superseded; noted in the file).
-- Learner-goal indicators written only for adults already at work, each with its reason (section 3).
+- Learner-goal indicators written only for adults already at work: CD3.R6, CD4.R7, CD5.R1, CD5.R2, CD5.R3, each with
+  its reason (section 3, "Learner goal placement"). The guidelines' Social Emotional Learning goals are leans, not
+  owned (section 2).
 - What a school or family may leave out (Cory, 2026-11-21, Desk q-fix-career-1), as for SEL, physical education
   and the arts: a unit on a sensitive sub-cluster (Military and National Security, Behavioral and Mental Health,
   Emergency Response, Judicial Systems, Public Safety, Resource Extraction). Every cluster has other sub-clusters, so

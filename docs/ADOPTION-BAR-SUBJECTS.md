@@ -358,7 +358,8 @@ Two courses today, each "all levels".
 7. [I] Interpersonal tasks have a real information gap. A scripted dialogue does not count.
 8. [I] Supports hold the communicative goal steady, and heritage speakers have a path.
 9. [I] American Sign Language: handshape, location, movement, palm orientation, non-manual markers, use of space
-   and classifiers, each taught directly and practised in every unit. [O] Materials are video.
+   and classifiers, each taught directly and practised in every unit. [O] Materials are graphics only: drawings,
+   labelled parameter charts and storyboard panels, no video and no photos of people (Cory, 2026-10-27).
 
 **Fails if:** word lists and conjugation drills; instructions in English; textbook-made texts only; no unrehearsed
 two-way task; one course for all levels.
@@ -376,7 +377,8 @@ American Sign Language standards are not loaded.
 Career Exploration (grades 6 to 8), Career Pathways (grades 9 to 12).
 
 **Rests on.** Texas career and technical rubric (2025), all 7 pages read by the writer only. It is the one materials
-rubric found. *To firm it:* a second state's rubric, and the 2024 career-ready practices wording.
+rubric found. *To firm it:* a second state's rubric, and a check of the practices' 2024 order on careertech.org
+itself (the wording was read in a state's copy, 2026-11-16).
 
 1. [I] Knowledge and skills are tied to a named field, taught directly, and grow harder.
 2. [I] Academic, technical and employability skills are taught together.
@@ -392,8 +394,10 @@ rubric found. *To firm it:* a second state's rubric, and the 2024 career-ready p
 **Unsupported.** Quality lies mostly outside materials (equipment, employers, work-based learning). The course page
 says what a school adds.
 
-**Standards.** data/standards/cte-career-clusters-2024.txt: cluster names and twelve practices by number only. It
-fits exploration courses and would not fit a technical one.
+**Standards.** data/standards/cte-career-clusters-2024.txt: the 14 cluster names, the 72 sub-clusters and the twelve
+practices by number only. It fits exploration courses and would not fit a technical one. The learner goals (the
+National Career Development Guidelines, 2024) go in data/standards/ncdg-2024.txt once their terms are read
+(data/plans/later.csv L91).
 
 **Scope and sequence states:** the fields studied. **Section plan fills:** the applied task and its data source.
 **Confidence:** thin.
@@ -440,23 +444,23 @@ other courses by the nature of the subject (see the pass rule for what that mean
 6. [I] Focused and explicit: set time, and each lesson names its skill.
 7. [I] Guidance for the adult, and a way to carry the skill beyond the lesson.
 8. [O] The course page states that no study stands behind the course.
-9. [I] Each unit names one link to that grade's core courses (a discussion routine, a civics row) the teacher may
+9. [O] Each unit names one link to that grade's core courses (a discussion routine, a civics row) the teacher may
    use. A lean, not a strand. (Items 9 to 13 added 2026-11-16, Cory, Desk card q-later-sel-eld, from the deeper
    review in docs/courses/sel/STANDARD.md section 4.)
-10. [I] Each unit carries the skill past the session: a "carry it out" cue for the school day and a family activity
+10. [O] Each unit carries the skill past the session: a "carry it out" cue for the school day and a family activity
     in the family note. Community is optional.
-11. [I] The scope and sequence states sessions a year. A paper fidelity checklist for the teacher (did the session
+11. [O] The scope and sequence states sessions a year. A paper fidelity checklist for the teacher (did the session
     run as planned, what was cut) and the class record of skill checks; no ratings of individual children.
-12. [I] Equity within the promises: family notes in English and Spanish; student voice in class and school life;
+12. [O] Equity within the promises: family notes in English and Spanish; student voice in class and school life;
     bias taught as noticing and checking one's own snap judgements on invented cases, never as blame of a group.
-13. [I] Each unit's teacher page opens with a short "before you teach" note: the skill as an adult uses it, and one
+13. [O] Each unit's teacher page opens with a short "before you teach" note: the skill as an adult uses it, and one
     thing to model. Not training, and not claimed as such.
 
 **Fails if:** posters and discussion with no practice; two of five areas; a band taught the same way every year.
 
 **Unsupported.** The registry tests evidence first. The bar for these courses is the design half; the evidence half
-is stated as unmet on the course page. Decided 2026-11-11: the design half is the bar, **marked for a deeper
-review**.
+is stated as unmet on the course page. Decided 2026-11-11: the design half is the bar; the deeper review was done 2026-11-16
+(docs/courses/sel/STANDARD.md section 4).
 
 **Standards.** data/standards/casel-5.txt, the same framework.
 
@@ -528,9 +532,10 @@ Decided 2026-11-11: these stay separate courses. The bar below is our own, named
 The courses may be smaller than other courses by the nature of the subject (see the pass rule for what that
 means).
 
-**Rests on.** No materials instrument exists. Built from the Empire State continuum (introduction page only), the
-national school library standards (not re-opened) and one trial of lateral reading known through a press notice.
-*To firm it:* open the continuum's grade lists and the trial itself.
+**Rests on.** No materials instrument exists. Built from the Empire State continuum (all four band files read in
+full: 3 to 5 on 2026-11-16, PK to 2, 6 to 8 and 9 to 12 on 2026-11-21), the national school library standards
+(second edition chart read 2026-11-21) and one trial of lateral reading known through a press notice.
+*To firm it:* read the trial itself.
 
 1. [O] An inquiry cycle is taught in every band: ask, find, judge, use, share, reflect.
 2. [O] Each grade has named priority skills, each with a check.
@@ -544,7 +549,8 @@ national school library standards (not re-opened) and one trial of lateral readi
 
 **Unsupported.** Everything beyond the trial. No evidence for the elementary grades.
 
-**Standards.** data/standards/aasl-2018.txt: the codes match the second edition (2025); the label is stale.
+**Standards.** data/standards/aasl-2018.txt: the second edition's 68 ids (unchanged from 2018; the file name and
+the `AASL-2018` tag stay as names, the header says why). Our own words: data/standards/aasl-words.txt.
 
 **Scope and sequence states:** the host tasks from other courses. **Section plan fills:** the check per skill.
 **Confidence:** thin.
@@ -563,7 +569,7 @@ every row but social studies waits behind the core work unless it is complementa
 | Arts (20) | Done 2026-11-16 (docs/courses/arts/STANDARD.md): the band-year rule (K to 8 by grade; high school levels I to III by what a student has done), reuse terms read at source, revision watch set (May and November). Lens, base-text scout and APPROACH draft written. Music strand (a full composition and theory course plus an ensemble companion page, docs/reviews/arts-hs-music-and-levels-2026-11-16.md), pacing and the levels rule settled 2026-11-16 (Desk cards q-later-*); music strand ids now pass scripts/standards.py. Full music course confirmed (Desk card q-later-followups-1). Read cold and fixed 2026-11-19 (docs/reviews/prework-arts-read-2026-11-19.md). Approach yes, own-words file, high school short path and leave-out note decided 2026-11-20 (Desk q-prework-arts-1). Own-words file written and read 2026-11-20 (data/standards/ncas-performance-standards-words.txt). Progression data/progressions/arts.csv drafted, read cold and fixed 2026-11-20. Owed: the standards gate (later.csv L83); load the 63 strand ids when the high school music frame is written. Stage 1 second-model read and fix pass 2026-11-21 (docs/reviews/prework-arts-fixes-2026-11-20.md) | Agent |
 | Health (4) | Done 2026-11-16 (docs/courses/health/STANDARD.md): one topic module read in part, band coverage map drafted, sensitive-unit removal rule, 2007 to 2024 note and header (2026-11-11). Lens, scout and APPROACH draft written. Pacing settled 2026-11-16 (Desk card q-later-arts-health-pe). Read cold and fixed 2026-11-19; own words for NHES and HECAT; progression data/progressions/health.csv read and fixed 2026-11-19. Cory's eight calls applied 2026-11-20 (Desk q-prework-health-pe-1 and -2). Owed: each band's planner reads its modules; the body-names sensitivity read (later.csv L85). Approach page approved 2026-11-21 (Desk q-prework-open-1); stage 1 second-model read and fix pass 2026-11-20 (docs/reviews/prework-health-fixes-2026-11-20.md) | Agent |
 | Physical education (4) | Done 2026-11-16 (docs/courses/physical-education/STANDARD.md): the five-to-four map (2026-11-11), appropriate practice read in part, grade-outcome rule, review tool's K to 5 tables read in part. Lens, scout and APPROACH draft written. Pacing (elementary 2 to 3 sessions a week) settled 2026-11-16 (Desk cards q-later-*). Review tool's tables all read 2026-11-19 (L46). Read cold and fixed 2026-11-19; progression data/progressions/physical-education.csv read and fixed 2026-11-19. Cory's calls applied 2026-11-20 (two required years plus two electives, water safety, sacred dances). Approach page approved 2026-11-21 (Desk q-prework-open-1); stage 1 second-model read and fix pass 2026-11-20 (docs/reviews/prework-physical-education-fixes-2026-11-20.md) | Agent |
-| Computer science (13) | Done 2026-11-16: header and the 135 Specialty ids (2026-11-11); all 331 statements under the standards' own licence (data/standards/csta-2026-statements.txt, CC BY-NC-SA, planning only, LICENSE-CONTENT). STANDARD, lens, scout and APPROACH draft in docs/courses/computer-science/. One course per grade K to 12 and the UK partial base (checked unit by unit, rephrased for an American audience) settled 2026-11-16 (Desk cards q-later-*). Minutes (one a week K to 5, two to three 6 to 12) settled (Desk card q-later-followups-1). Read cold and fixed 2026-11-19 (docs/reviews/prework-computer-science-read-2026-11-19.md); progression data/progressions/computer-science.csv read and fixed 2026-11-19. Approach yes and the calls decided 2026-11-20 (Desk q-prework-cs-1). Specialty level 1 list done 2026-11-20 (eight S1 ids, later.csv L84); our own editor decided (Desk q-prework-open-1). Stage 1 second-model read and fix pass 2026-11-21 (docs/reviews/prework-computer-science-fixes-2026-11-20.md). Owed: the boundary statements, sub-concept key and practices table from the standards PDF | Agent |
+| Computer science (13) | Done 2026-11-16: header and the 135 Specialty ids (2026-11-11); all 331 statements under the standards' own licence (data/standards/csta-2026-statements.txt, CC BY-NC-SA, planning only, LICENSE-CONTENT). STANDARD, lens, scout and APPROACH draft in docs/courses/computer-science/. One course per grade K to 12 and the UK partial base (checked unit by unit, rephrased for an American audience) settled 2026-11-16 (Desk cards q-later-*). Minutes (one a week K to 5, two to three 6 to 12) settled (Desk card q-later-followups-1). Read cold and fixed 2026-11-19 (docs/reviews/prework-computer-science-read-2026-11-19.md); progression data/progressions/computer-science.csv read and fixed 2026-11-19. Approach yes and the calls decided 2026-11-20 (Desk q-prework-cs-1). Specialty level 1 list done 2026-11-20 (eight S1 ids, later.csv L84); our own editor decided (Desk q-prework-open-1). Stage 1 second-model read and fix pass 2026-11-21 (docs/reviews/prework-computer-science-fixes-2026-11-20.md). From the standards PDF, read 2026-11-21 (Desk q-fix-downloads-1): the sub-concept key and the practices table are in STANDARD.md, and every owner row was checked against its boundary statement; the boundary text is not stored, its depth lives in each owner row's notes (Desk q-fix-cs-2) | Agent |
 | Career education (2) | Done 2026-11-16: the 2024 career-ready practices read and set out in our own words in the file header; what a school adds listed (docs/courses/career-education/STANDARD.md). Lens, scout and APPROACH draft written. The 2024 national career development guidelines (own goals as fallback) and one-year courses settled 2026-11-16 (Desk cards q-later-*). Approach page approved (Desk q-prework-open-1, 2026-11-21); stage 1 second-model read and fix pass 2026-11-21 (docs/reviews/prework-career-education-fixes-2026-11-20.md). Owed: the guidelines' terms read and file (later.csv L91), the gate retool (L94), the second state rubric; five calls (Desk q-fix-career-1) | Agent |
 | Personal finance (1) | No longer a course: Economics teaches it, lightly integrated (settled 2026-11-14) | None |
 | SEL (4) | Done 2026-11-16 (docs/courses/sel/STANDARD.md): a draft sequence for 13 grade years, every grade teaching all 40 sub-skills; the design half's deeper review (five gaps, each with a proposal); our own words for all 40 ids. Lens, scout and APPROACH draft written. Frames, minutes, the five bar additions (part 9) and family-notes-only Spanish settled 2026-11-16 (Desk cards q-later-*); site-wide Spanish parked (later.csv L60). Read cold 2026-11-19 (docs/reviews/prework-sel-read-2026-11-19.md). Read fixed, approach page approved (Desk q-prework-open-1, 2026-11-21); stage 1 second-model read and fix pass 2026-11-21 (docs/reviews/prework-sel-fixes-2026-11-20.md). Owed: the progression and its check in scripts/progression.py; the session arithmetic call (Desk q-fix-sel-1) | Agent |
@@ -572,9 +578,11 @@ every row but social studies waits behind the core work unless it is complementa
 
 **World languages (2): shelved, 2026-11-11. Owed when unshelved, not before.** Split each language into levels
 with a target each. Load the 2026 can-do statements after a licence check (agreed on card q-standards-currency,
-and waiting with the shelved courses). Load American Sign Language standards. Decide the video source for
-American Sign Language, which may mean people on camera. Splitting into levels would raise the course count above
-105. Cory decides the split and the video when the pass opens; the agent's work follows.
+and waiting with the shelved courses). Load American Sign Language standards. American Sign Language is taught in
+graphics only, no video and no photos of people (Cory, 2026-10-27). The split is Option D (Cory, 2026-11-21, Desk
+q-prework-open-2): four levels per language plus an early-years companion for Levels 1 and 2, 12 courses for Spanish
+and American Sign Language, which raises the course count above 105; the catalogue rows are drawn when the pass
+opens, and the agent's work follows (docs/courses/world-languages/STANDARD.md section 5).
 
 ## Decided, Cory, 2026-11-11 (Desk card q-bar-subjects)
 
@@ -669,8 +677,8 @@ loaded: docs/reviews/standards-currency-2026-11-11.md.
 | Oregon, physical education criteria, 2025 | https://www.oregon.gov/ode/educator-resources/teachingcontent/instructional-materials/Documents/2025PhysicalEducationIMCriteria.pdf | State document | Writer, in full, 7 pp |
 | Ohio, computer science and technology rubric, 2025 | https://education.ohio.gov/getattachment/Topics/Learning-in-Ohio/OLS-Graphic-Sections/Resources/High-Quality-Instructional-Material/HQIM-Rubrics/Computer-Science-Technology-Rubric.pdf.aspx?lang=en-US | State document | Expert, in full, 24 pp. Writer, gateway 1 |
 | CFPB, Youth Financial Education Curriculum Review Tool, 2015 | https://files.consumerfinance.gov/f/documents/cfpb_youth-financialeducation-curriculum-review.pdf | US government work | Writer, in part |
-| CASEL, Criteria Updates and Rationale, 2020 | https://files.casel.org/11_CASEL-Program-Criteria-Rationale.pdf | Copyright CASEL | Writer, pp 23 to 25; expert, pp 21 to 27 |
+| CASEL, Criteria Updates and Rationale, 2020 | https://files.casel.org/11_CASEL-Program-Criteria-Rationale.pdf | Copyright CASEL | pp 1 to 3 and 20 to 35 in full |
 | California, criteria map, specialized ELD | https://www.cde.ca.gov/ci/rl/im/documents/evalcritmapprogtype5.docx | State document | Writer, in full, 2026-11-16 (docs/courses/eld/STANDARD.md) |
 | WIDA PRIME 2020, Rubric and Portfolio Workbook | https://prime.wceruw.org/instructionalMaterials/index.aspx (local copy in S:\CurioClass-sources\WIDA) | WIDA copyright, local use | Writer, in full, 54 pp, 2026-11-16 (docs/RUBRIC-ELD.md) |
-| Empire State Information Fluency Continuum, 2019 | https://libguides.monroe.edu/ESIFC/Intro | Not seen | Writer, introduction page only |
+| Empire State Information Fluency Continuum, 2019 | https://libguides.monroe.edu/ESIFC/Intro | Not seen | Writer: all four band files read in full (3 to 5 on 2026-11-16, the rest 2026-11-21) |
 | AASL standards; K-12 Computer Science Framework; California health and languages criteria; Oregon SEL tool; subject evidence | Addresses in the search report | As listed there | Search report |

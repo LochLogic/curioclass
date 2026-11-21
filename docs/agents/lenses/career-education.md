@@ -61,7 +61,8 @@ source may be adapted (BASE-TEXTS.md and the scout).
 - Advance CTE, Modernized National Career Clusters Framework and Career Ready Practices, 2024 (clusters from the 2025
   guidebook, practices read 2026-11-16 in North Dakota CTE's copy).
 - Texas career and technical instructional materials rubric, 2025 (the bar's source, read 2026-11-11).
-- National Career Development Association, National Career Development Guidelines (the older domains from memory; the
-  2024 revision not read).
+- National Career Development Association, 2024 National Career Development Guidelines (04/2024), read in text
+  2026-11-20 and 2026-11-21; NCDA's terms (site legal notice and framework page) read 2026-11-21. Ids and our own
+  words in data/standards/ncdg-2024.txt and ncdg-2024-words.txt.
 - BLS Occupational Outlook Handbook; O*NET (as data, licence pages opened 2026-11-16).
 - Holland's interest types and career construction ideas (from memory; never presented as a sorting test).

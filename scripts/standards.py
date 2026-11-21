@@ -120,6 +120,16 @@ CLOSED = {
     'AP Calculus': re.compile(r'AP-CALC\.U([1-9]|10)'),
 }
 
+# --- National Core Arts Standards: a performance-standard id must also be on the official list (added 2026-11-21),
+# and an anchor code (VA:Cr1) must head at least one id on it. The pattern above still applies first.
+NCAS_IDS = {l.split('\t')[0].strip() for l in (DATA / 'ncas-performance-standards.txt').read_text(encoding='utf-8').splitlines()
+            if l.strip() and not l.startswith('#')}
+NCAS_ANCHORS = {i.split('.')[0] for i in NCAS_IDS}
+
+
+def ncas_listed(code):
+    return code in NCAS_IDS if '.' in code else code in NCAS_ANCHORS
+
 
 def validate(code):
     if ccss_math(code):
@@ -138,5 +148,7 @@ def validate(code):
         return LISTED_IDS[code]
     for name, rx in CLOSED.items():
         if rx.fullmatch(code):
+            if name == 'NCAS' and not ncas_listed(code):
+                return None
             return name
     return None

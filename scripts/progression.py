@@ -24,7 +24,13 @@ An ELA code sits in its own grade; a band code (9-10, 11-12) is owned by the ban
 with ~CODE in the earlier one. A K to 8 math code sits in its own grade (4.NBT.B.5 in grade 4); high school math codes
 carry no grade.
 Health (NHES) and physical education (SHAPE) indicators are span-coded (S1.5.2: span ending grade 5): owned by one
-grade of the span, the grade where it is first fully met, and ~CODE in the span's other grades (added 2026-11-19).
+grade of the span, the grade where it is first fully met, and ~CODE in the span's other grades (added 2026-11-19);
+a physical education span 12 indicator is owned only in grade 9 or 10.
+The later subjects (added 2026-11-21): SEL ids are owned once in each of grades 2, 5, 8 and 12 and may be ~ in any
+grade; an ELD id is owned by its cluster's last grade (K, 1, 3, 5, 8, 12) and ~ in the cluster's other grades, SI K-3
+owned in 3 and SI 4-12 owned in 4 (~ in 5 to 12); library and career education ids carry no grade (one owner, any
+grade). Computer science takes only the eight listed Specialty I ids, each in its own grade. A standards file id is
+the whole first tab-separated field, spaces included.
 A (+) high school math part is covered only when named or excluded itself, not through its parent. A cross_subject
 code must be named by a row of the other subject once that subject's progression exists (added 2026-11-13).
 Lean timing (added 2026-11-13, cross-subject read finding 1): a cross_subject lean must be taught at or before the
@@ -59,15 +65,32 @@ STD_FILES = {'social-studies': ['ma-hss-2018.txt', 'c3-indicators.txt', 'ccss-li
              # but never required, and only in grades 11 and 12 (Cory, 2026-11-20); S2 ids fail (see code_grades)
              'computer-science': ['csta-2026-ids.txt', 'csta-2026-specialty-ids.txt'],
              # arts (added 2026-11-19, arts pre-work): NCAS performance standards, one file for the five disciplines
-             'arts': ['ncas-performance-standards.txt']}
-# the core electives' own lists (added 2026-11-16): accepted codes, and every code in them must be owned by a row
+             'arts': ['ncas-performance-standards.txt'],
+             # SEL, ELD, library and career education (added 2026-11-21; owner rules in code_grades)
+             'sel': ['casel-5.txt'], 'eld': ['wida-2020.txt'], 'library': ['aasl-2018.txt'],
+             'cte': ['cte-career-clusters-2024.txt']}
+# the core electives' own lists (added 2026-11-16): accepted codes, and every code in them must be owned by a row.
+# Career education's learner goals (NCDG 2024) take the same route (career-education STANDARD.md, "What the gate needs")
 ELECTIVE_FILES = {'math': ['curio-math-electives.txt'], 'science': ['curio-science-electives.txt'],
-                  'social-studies': ['apa-hs-psych-2022.txt']}
+                  'social-studies': ['apa-hs-psych-2022.txt'], 'cte': ['ncdg-2024.txt']}
+# files that may not be written yet: skipped with a note while absent
+OPTIONAL_FILES = {'ncdg-2024.txt'}
 for _s, _fs in ELECTIVE_FILES.items():
     STD_FILES[_s] = STD_FILES[_s] + _fs
 ANCHOR = {'social-studies': 'ma-hss-2018.txt', 'science': 'ngss-pes.txt', 'ela': 'ccss-ela-standards.txt',
           'math': 'ccss-math-standards.txt', 'health': 'nhes-2024.txt', 'physical-education': 'shape-pe-2024.txt',
-          'computer-science': 'csta-2026-ids.txt', 'arts': 'ncas-performance-standards.txt'}
+          'computer-science': 'csta-2026-ids.txt', 'arts': 'ncas-performance-standards.txt',
+          'sel': 'casel-5.txt', 'eld': 'wida-2020.txt', 'library': 'aasl-2018.txt',
+          'cte': 'cte-career-clusters-2024.txt'}
+# subjects whose ids are owned once in each of several grades (SEL: once per band, at its last grade)
+MULTI_OWNER = {'sel': ['2', '5', '8', '12']}
+# computer science Specialty I: only these eight, each in its own grade (computer science STANDARD.md, Specialty)
+CS_S1 = {'S1-AIN-DD-02': '11', 'S1-DSC-VZ-11': '11', 'S1-CYB-TS-08': '11', 'S1-SWD-TR-07': '11',
+         'S1-AIN-HR-09': '12', 'S1-DSC-PP-13': '12', 'S1-SWD-PP-08': '12', 'S1-SWD-UX-05': '12'}
+# ELD cluster -> (owner grade, cluster grades); SI uses K-3 and 4-12 (eld STANDARD.md, Ownership)
+ELD_CLUSTER = {'K': ('K', ['K']), '1': ('1', ['1']), '2-3': ('3', ['2', '3']), '4-5': ('5', ['4', '5']),
+               '6-8': ('8', ['6', '7', '8']), '9-12': ('12', ['9', '10', '11', '12'])}
+ELD_SI = {'K-3': ('3', ['K', '1', '2', '3']), '4-12': ('4', ['4', '5', '6', '7', '8', '9', '10', '11', '12'])}
 # anchor codes no row is asked to own: arts pre-K ids (no pre-K course; arts STANDARD.md section 3)
 ANCHOR_SKIP = {'arts': re.compile(r'\.PK[a-z]?$')}  # media arts ids may carry no letter
 LEVEL = {'I': '9', 'II': '10', 'III': '11'}
@@ -97,8 +120,21 @@ def code_grades(subject, code):
         p = code.split('.')
         if len(p) == 4 and p[0] in ('NHES', 'SHAPE') and p[2] in SPAN:
             band = SPAN[p[2]]
+            if subject == 'physical-education' and p[2] == '12':
+                # grades 9 and 10 own every span 12 indicator; 11 and 12 carry them as ~ (PE STANDARD.md 3, rule 5)
+                return ['9', '10'], band
             return band, band
         return None
+    if subject == 'sel':
+        # CASEL.Self-Awareness.3: owned once per band at its last grade, ~ in any grade (sel STANDARD.md, Ownership)
+        return (MULTI_OWNER['sel'], GRADES) if code.startswith('CASEL.') else None
+    if subject == 'eld':
+        # WIDA.ELD-LA.2-3.Inform.Expressive: owned by the cluster's last grade, ~ in its other grades
+        p = code.split('.')
+        if len(p) < 4 or p[0] != 'WIDA':
+            return None
+        own, band = (ELD_SI if p[1] == 'ELD-SI' else ELD_CLUSTER).get(p[2], (None, None))
+        return ([own], band) if own else None
     if subject == 'computer-science':
         # E3-ALG-IM-03: EK = K, E1 to E5 = own grade; MS and HS ids are owned by one grade of the band and may be
         # ~ in its other grades (computer science STANDARD.md, 2026-11-19)
@@ -108,7 +144,9 @@ def code_grades(subject, code):
         if len(b) == 2 and b[0] == 'E' and b[1] in '12345':
             return [b[1]], [b[1]]
         if b == 'S1':
-            return ['11', '12'], ['11', '12']
+            if code not in CS_S1:
+                return [], []  # not on the eight-id list: any use fails (see check)
+            return [CS_S1[code]], ['11', '12']
         if b == 'S2':
             return [], []  # S2 is out of the course list: any use fails (see check)
         if b in ('MS', 'HS'):
@@ -152,7 +190,19 @@ def codes(fname):
     for line in open(os.path.join(ROOT, 'data', 'standards', fname), encoding='utf-8'):
         if line.startswith('#') or not line.strip():
             continue
-        out.append(line.split('\t')[0].split()[0].strip())
+        out.append(line.split('\t')[0].strip())  # the whole first field: SEL and CTE ids hold spaces
+    return out
+
+
+def std_codes(subject, missing=None):
+    """Every code in a subject's standards files; an absent optional file is skipped (and listed in missing)."""
+    out = set()
+    for f in STD_FILES.get(subject, []):
+        if f in OPTIONAL_FILES and not os.path.exists(os.path.join(ROOT, 'data', 'standards', f)):
+            if missing is not None:
+                missing.append(f)
+            continue
+        out.update(codes(f))
     return out
 
 
@@ -193,9 +243,10 @@ def check(subject):
     if rows and list(rows[0].keys()) != COLS:
         fails.append('columns must be: ' + ', '.join(COLS))
         return fails, notes, len(rows)
-    known = set()
-    for f in STD_FILES.get(subject, []):
-        known.update(codes(f))
+    absent = []
+    known = std_codes(subject, absent)
+    for f in absent:
+        notes.append('data/standards/%s not written yet: its codes are not checked' % f)
     by_id, grade_of = {}, {}
     for n, r in enumerate(rows, 2):
         sid = (r['skill_id'] or '').strip()
@@ -232,7 +283,11 @@ def check(subject):
                 continue
             allowed = cg[1] if raw.startswith('~') else cg[0]
             if not allowed:
-                fails.append('%s names %s: Specialty II ids are not taught (Cory, 2026-11-20)' % (sid, raw.lstrip('~')))
+                if raw.lstrip('~').startswith('S1-'):
+                    fails.append('%s names %s: not one of the eight listed Specialty I ids (computer science '
+                                 'STANDARD.md, Specialty standards)' % (sid, raw.lstrip('~')))
+                else:
+                    fails.append('%s names %s: Specialty II ids are not taught (Cory, 2026-11-20)' % (sid, raw.lstrip('~')))
                 continue
             if grade_of[sid] not in allowed:
                 fails.append('%s (grade %s) %s %s: belongs in grade(s) %s' % (
@@ -252,7 +307,7 @@ def check(subject):
         plus_codes = set()
         for line in open(os.path.join(ROOT, 'data', 'standards', ANCHOR[subject]), encoding='utf-8'):
             if not line.startswith('#') and '(+)' in line:
-                plus_codes.add(line.split('	')[0].split()[0].strip())
+                plus_codes.add(line.split('	')[0].strip())
         kids = {}
         for code in anchor:
             if parent(code):
@@ -270,8 +325,27 @@ def check(subject):
             if not named:
                 fails.append('%s named by no skill' % code)
         for code, gs in owners.items():
+            if subject in MULTI_OWNER:
+                continue  # checked below: once in each owner grade
             if (code.startswith('MA.') or subject != 'social-studies') and len(gs) > 1:
                 fails.append('%s owned by grades %s' % (code, ', '.join(sorted(gs, key=GI.get))))
+        if subject in MULTI_OWNER:
+            want = MULTI_OWNER[subject]
+            per = {}
+            for sid, r in by_id.items():
+                for code in split(r['standard']):
+                    if not code.startswith('~'):
+                        per.setdefault((code, grade_of[sid]), []).append(sid)
+            for (code, g), sids in sorted(per.items()):
+                if len(sids) > 1:
+                    fails.append('%s owned twice in grade %s (%s)' % (code, g, ', '.join(sids)))
+            for code in anchor:
+                if code in excl or code not in owners:
+                    continue  # excluded, or already failed as named by no skill
+                gap = [g for g in want if g not in owners[code]]
+                if gap:
+                    fails.append('%s not owned in grade(s) %s (owned once in each of grades %s)' % (
+                        code, ', '.join(gap), ', '.join(want)))
     for f in ELECTIVE_FILES.get(subject, []):
         if os.path.exists(os.path.join(ROOT, 'data', 'standards', f)):
             for code in codes(f):
@@ -366,6 +440,7 @@ def check(subject):
                 fails.append('%s cross_subject %r is not subject:code' % (sid, x))
                 continue
             subj, ref = [s.strip() for s in x.split(':', 1)]
+            full = ref
             ref = ref.split(' ')[0] if ref else ref
             if subj == 'lit':
                 # an also-met literacy standard (RH, RST, WHST: data/standards/ccss-literacy-6-12.txt), cited without an
@@ -385,9 +460,9 @@ def check(subject):
                 continue
             other = load(subj)
             other_ids = {o['skill_id'] for o in other} if other else set()
-            other_codes = set()
-            for f in STD_FILES[subj]:
-                other_codes.update(codes(f))
+            other_codes = std_codes(subj)
+            if full in other_codes:
+                ref = full  # an id holding spaces (CASEL.Social Awareness.1, CTE.Career Clusters.Construction)
             if ref in other_ids:
                 lean_timing(sid, x, ref, other_grade(other, ref))
                 continue

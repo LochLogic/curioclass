@@ -61,3 +61,7 @@ data/standards/hecat-topics.txt; every owner-row claim was checked against our w
 - Expert calibration minor real-page findings #18 to #22 (docs/reviews/calibration-health-2026-11-20.md): their text
   is not in the repository; read them from the calibration report and send any that stand to the next health fix.
 - No PE change is needed from this pass: the health map still names PA 3, 4 and 6 in grades 6 to 8 as taught in PE.
+
+## Follow-ups done 2026-11-21
+
+- Expert calibration minors #18 to #22: not done. Their text is only in the reader's report in the calibration folder, which this pass may not open; the calibration review lists them by number only. No health page or progression row changed.

@@ -32,7 +32,7 @@ equipment follows STANDARD.md section 6 ("Hands-on tasks").
 ## What career education adds to the plan fields
 
 - Unit field 1: sessions by kind, sessions a week and minutes as the frame states them (see "Pacing").
-- Unit field 2: the clusters and sub-clusters studied, the practices taught and, once loaded, the learner-goal ids,
+- Unit field 2: the clusters and sub-clusters studied, the practices taught and the learner-goal ids (data/standards/ncdg-2024.txt),
   each with what the student does in our own words (STANDARD.md section 1); the data sources with their year; what
   is carried across the year (the plan and the portfolio) and the day a model is withdrawn.
 - Unit field 3 (where it sits): builds on (the earlier unit's plan line), with the handoff marked strong or weak; leads to; comes back (the plan and
@@ -115,7 +115,7 @@ cited, and the course page says so. Each frame may change these numbers with a r
 ## Evidence and sources
 
 Read: the 2024 cluster framework and practices (a state's reproduction of the practices; the publisher's own page did
-not answer); the 2024 career development guidelines in text (2026-11-20, terms not yet read); the base-text scout's
+not answer); the 2024 career development guidelines in text (2026-11-20 and 2026-11-21; NCDA's terms read 2026-11-21, STANDARD.md section 2); the base-text scout's
 data sources (public domain labour statistics, CC BY occupational data). No claim of effect is made for any course.
 
 ## Questions in this draft

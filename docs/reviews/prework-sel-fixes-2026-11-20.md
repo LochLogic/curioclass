@@ -78,3 +78,7 @@ Lead, 2026-11-21: follow-up 3 done (the lens points to health's steps) and the S
 
 1. Session arithmetic and the short path: STANDARD section 2, new bullet "How the sessions add up" (64 = four units of 11 and two of 10; 32 = four units of 5 and two of 6; grouped sub-skills, each group introduced then rehearsed; the short path joins Understanding with Fluency, makes one Application session a unit and joins Check with Respond); the "open" marker removed from "Sessions" and from section 3's opening paragraph; APPROACH "Kinds of day", the section line.
 2. Family note names the left-out ids: STANDARD section 5, item 6 (course page and family note, the arts rule); APPROACH unit field 9.
+
+## Follow-ups done 2026-11-21
+
+- Follow-up 4 (dose figures): the foundation's toolkit entry for social and emotional learning, read 2026-11-21, gives sessions up to 45 minutes twice a week as the most successful structure; "two 30-minute sessions a week" is not on it or on the primary guidance web page, so it stays unused; the guidance report itself is a download, unread. STANDARD section 2, "Sessions", now states the toolkit finding with its read date. The "8 to 140 sessions" range is not the foundation's and stays unused.

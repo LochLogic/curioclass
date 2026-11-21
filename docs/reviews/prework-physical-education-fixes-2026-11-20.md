@@ -79,3 +79,7 @@ All four answered 2026-11-21 (Desk q-fix-pe-1): the recommended pick each time, 
 - Health (not edited here): no change is needed; the health map's PA 3, 4 and 6 in PE for 6 to 8 now matches the PE
   page. If question 3's disclosure steps are taken for PE, point PE to the health approach page's section field 1
   wording rather than copying it.
+
+## Follow-ups done 2026-11-21
+
+- data/standards/shape-pe-2024.txt, SHAPE.S3.5.7 (line 164): the indicator's verb is Describe, not Show (SHAPE America's 2024 standards web page, read 2026-11-21). Our paraphrase now says Describe; the row g4-world-activities already asks students to describe, so no progression change.

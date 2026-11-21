@@ -59,7 +59,11 @@ review).
   so 64 sessions a year. A session is 20 minutes in K to 2, 30 in grades 3 to 5, 30 in grades 6 to 8 and 40 in
   grades 9 to 12 (an advisory period); a frame may change its band's number and gives the reason. The registry's
   criteria ask that sessions a year be stated and set no number (criteria paper p 25, section 4), so the course page
-  states ours with no national figure to compare. One session a week (32 sessions) is the stated short path (C2), and
+  states ours with no national figure to compare. The Education Endowment Foundation's toolkit entry for social and
+  emotional learning finds shorter sessions, up to 45 minutes, twice a week, the most successful structure for
+  interventions (web page, read 2026-11-21); our minutes sit inside that. "Two 30-minute sessions a week" is not on
+  that entry or on the primary guidance report's web page (read 2026-11-21) and is not used; the report itself is a
+  file to download, unread. One session a week (32 sessions) is the stated short path (C2), and
   it never drops a unit.
 - **How the sessions add up** (Cory, 2026-11-21, Desk q-fix-sel-1). Related sub-skills are taught together, so a
   unit splits its sub-skills (up to eight) into two or three groups, one section each. Each group is introduced

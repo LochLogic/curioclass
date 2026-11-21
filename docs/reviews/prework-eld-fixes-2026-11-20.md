@@ -89,3 +89,7 @@ Lead, 2026-11-21: follow-up 2 done (the bar's ELD row); 1, 3, 4 and 5 are on the
 2. Swap and leave-out, as SEL, PE and arts, plus the family-note preview for migration, war or loss host texts. STANDARD section 3 (new bullet, arts wording); APPROACH, unit field 9.
 3. English learners with disabilities in bar item 5. docs/ADOPTION-BAR-SUBJECTS.md part 10 item 5; STANDARD section 4, 1.23 row marked done.
 4. Planning-only own-words file for all 104 ids, written from structure only. New data/standards/wida-2020-words.txt (header in the arts words file style); pointed to from STANDARD section 1 (File) and APPROACH unit field 2.
+
+## Follow-ups done 2026-11-21
+
+- Arizona and Rhode Island minute figures (APPROACH, Pacing): both read at the state's own web page 2026-11-21. Arizona confirmed: 120 minutes a day in K to 5 and 100 in 6 to 12 as the floor for structured English immersion models (A.R.S. 15-756.01, subsection A). Rhode Island corrected: the 45 minutes is the length of a period, not a dedicated-period floor for all; the count of periods and how many must be dedicated depends on proficiency level, in full from 2030-31 (200-RICR-20-30-3, sections 3.2 and 3.8). Sources and read dates are on the page.

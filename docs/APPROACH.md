@@ -5,7 +5,13 @@ This page says how Curio Class teaches, in every subject, and why. It is layer 3
 adds its own page, which says how the subject carries out each principle. Mathematics and English language arts have pages,
 [APPROACH-MATH.md](APPROACH-MATH.md) and [APPROACH-ELA.md](APPROACH-ELA.md); for science and social studies,
 the subject lens (docs/agents/lenses/) plus its rubric stands in through the scopes and sequences and unit plans, and
-a short approach page per subject is written before days (Cory, 2026-11-14).
+a short approach page per subject is written before days (Cory, 2026-11-14). The subjects after the core have pages
+in their course folders: [health](courses/health/APPROACH.md),
+[physical education](courses/physical-education/APPROACH.md), [arts](courses/arts/APPROACH.md),
+[computer science](courses/computer-science/APPROACH.md), [social and emotional learning](courses/sel/APPROACH.md),
+[library and research skills](courses/library/APPROACH.md), [English language development](courses/eld/APPROACH.md),
+[career education](courses/career-education/APPROACH.md) and
+[world languages](courses/world-languages/APPROACH.md) (shelved).
 
 Two honest notes. Nothing in Curio Class has been tried with children yet, so this page makes no claim about
 results; it explains choices, and its rules are rules for section plans, not descriptions of lessons that exist.

@@ -143,9 +143,12 @@ talk with a partner. The talk routine is people.
 Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): a protected period of 30 minutes in K to 5 and 45 minutes in 6
 to 12, 160 days, 80 and 120 hours a year. No national body sets a figure for ELD time (federal guidance gives none,
 from memory). California sets no minimum (California Department of Education, instructional services questions, read
-2026-11-20). States that publish one set it higher, per search summaries not yet opened: Arizona, 120 minutes a day
-in K to 5 and 100 in 6 to 12; Rhode Island, a 45 minute dedicated period as a floor, with more periods at lower
-levels. Both are checked at their pages before either is published. No Montana figure is given: two reads disagreed
+2026-11-20). States that publish one set it higher. Arizona: its structured English immersion models must give at
+least 120 minutes a day in K to 5 and 100 in 6 to 12 (statute A.R.S. 15-756.01, subsection A, Arizona Legislature
+web page, read 2026-11-21). Rhode Island: a period is at least 45 consecutive minutes a day; entering and emerging
+students get at least three periods a day and developing students two, at least one of them dedicated English
+language development, and expanding students one, dedicated or integrated, in full from school year 2030-31
+(200-RICR-20-30-3, sections 3.2 and 3.8, Secretary of State regulations web page, read 2026-11-21). No Montana figure is given: two reads disagreed
 (minutes by level, or minutes left to districts) and its page could not be opened (2026-11-21). So the course page says
 Curio Class's period is the protected core of a student's English language development and not a replacement for the
 school's own program or for more time where a state or district asks for it. Each band frame may change the minutes

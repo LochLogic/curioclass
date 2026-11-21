@@ -1,6 +1,7 @@
 # The rubric on file: English language development, kindergarten to grade 12
 
-First draft, 2026-11-16. Not yet read by the curriculum expert. A planning reference: it is what bar part 10
+First draft, 2026-11-16. Read by the curriculum expert (second model) 2026-11-20 in the ELD stage 1 read
+(docs/reviews/prework-eld-gemini-2026-11-20.md). A planning reference: it is what bar part 10
 (docs/ADOPTION-BAR-SUBJECTS.md, "10. English language development") leans on, and what a finished Curio Class ELD
 course is checked against, in private. It is the ELD sibling of [RUBRIC-ELA.md](RUBRIC-ELA.md) and
 [RUBRIC-SCIENCE.md](RUBRIC-SCIENCE.md). The course's own planning page is
@@ -23,8 +24,10 @@ course is checked against, in private. It is the ELD sibling of [RUBRIC-ELA.md](
   self-rating, which the workbook allows, is not the seal and is never presented as one. WIDA itself says the
   seal speaks to alignment only, not overall quality, and is not an endorsement.
 - **How much was read:** all 54 pages, by the writer of this page, 2026-11-16, from a text extract. The criteria
-  cite page numbers in the 2020 Framework itself; those pages were not opened (Curio Class holds only the
-  framework's ids, in data/standards/wida-2020.txt).
+  cite page numbers in the 2020 Framework itself. Of the Framework, Appendix C (all 104 ids) was read in full
+  2026-11-20 (docs/courses/eld/APPROACH.md, "Evidence and sources"); the other pages the criteria cite were not
+  opened. Curio Class holds only the framework's ids, in data/standards/wida-2020.txt, with our own words in
+  data/standards/wida-2020-words.txt.
 
 ## How it works
 

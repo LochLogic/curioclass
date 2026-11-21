@@ -92,3 +92,13 @@ Lead, 2026-11-21: the bar's career row updated (part of the bar follow-up); the 
    adult-only indicators listed in section 5.
 5. Typical grades 8 and 10: STANDARD.md intro, section 3 table, settled-year paragraph, "Course list" and
    "Ownership" (owner grade = typical grade); APPROACH.md "Questions in this draft". L90 retag still held.
+
+## Learner goals loaded 2026-11-21
+
+- NCDA terms read 2026-11-21: the PDF has no notice; the site legal notice reserves all rights; the framework page
+  names lesson writing and tracking by indicator code among its uses. Ids kept as printed, our own words only.
+- data/standards/ncdg-2024.txt (130 owned CD and ALL indicator ids) and ncdg-2024-words.txt (one line each, ours).
+  The SEL goals are leans and are not listed.
+- STANDARD.md: owed row done; section 2 terms finding; section 3 "Learner goal placement" (Exploration 66, Pathways
+  64, all 66 carried in Pathways, 5 left out as adult-only with reasons); section 5 names the five.
+- APPROACH.md unit field 2 and "Evidence and sources"; the lens "Sources" line.
