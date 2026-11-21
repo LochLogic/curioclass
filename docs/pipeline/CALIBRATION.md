@@ -79,8 +79,9 @@ subject outside the core gets its own small set before its expert reads are trus
 - **The reader:** a fresh expert agent with the subject lens and the normal brief for the piece, cold; a second model reads
   the same set: Codex by script (scripts/codex_read.py), or Gemini 4 Neon at medium effort in Antigravity, pasted by
   Cory from S:\CurioClass-gemini (Cory, 2026-11-20, for the after-core subjects).
-- **The line, recommended, for Cory's yes:** at least 8 of the 10 majors caught; at most 2 false major alarms; the
-  top finding is a planted major. A reader under the line is not used alone for that subject: its lens is changed
+- **The line** (approved by Cory, Desk q-prework-open-2; reworded 2026-11-21, q-calibration-subjects-1): at least 8
+  of the 10 majors caught; at most 2 false major alarms; the top finding is a planted major, or a real major the
+  lead confirms. A reader under the line is not used alone for that subject: its lens is changed
   and a fresh set is read again.
 - **The result** goes in docs/reviews/calibration-<subject>-<date>.md, and the subject's stage 1 gate opens only when
   the expert passes.

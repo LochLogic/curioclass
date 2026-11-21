@@ -9,7 +9,7 @@ with the career-education lens and the changed brief. Scored by the lead against
 
 ## Verdict
 
-9 of 10 majors and no false major alarm: the catch and false-alarm lines pass, and the changed brief caught the plan-field fault every run 1 reader missed. The top finding is not a planted fault but a real major already on the record (later.csv L94), ranked above every planted minor. The line as written asks for a planted major on top, so whether this passes is put to Cory (Desk q-calibration-1). Pending(docs/agents/decisions/DESK-ANSWERS.md#q-calibration-subjects-1)
+9 of 10 majors and no false major alarm: the catch and false-alarm lines pass, and the changed brief caught the plan-field fault every run 1 reader missed. The top finding is not a planted fault but a real major already on the record (later.csv L94), ranked above every planted minor. Cory ruled that this passes and reworded the line to "a planted major, or a real major the lead confirms" (2026-11-21, Desk q-calibration-subjects-1). PASS.
 
 ## Scoring (fault ids from the key; #n is the reader's finding number)
 

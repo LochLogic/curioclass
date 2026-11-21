@@ -1644,3 +1644,11 @@ World languages (still shelved; these settle pre-work pages only): four levels p
 plus our ASL parameters strand; 3 sessions of 35 minutes; a heritage path inside each Spanish level; can-do
 paraphrase only, with a note Cory sends (L92); Spanish base text yes, ASL research redone; the approach page approved
 as pre-work. Left open: who reads ASL pages (L93).
+
+## 2026-11-21: Calibration of the after-core subjects (q-calibration-subjects-1)
+
+Career run 2 passes: its top finding was a real major the lead confirmed, not a planted one. The calibration line
+now reads "the top finding is a planted major, or a real major the lead confirms" (docs/pipeline/CALIBRATION.md).
+The seven expert passes from run 1 stand after the brief change, since the change only adds checks. (Cory picked
+the card's earlier wording, which had Codex rereading every set; Gemini 4 Neon read the latest set for all nine
+subjects with the new brief and passed in each, docs/reviews/calibration-<subject>-gemini-2026-11-20.md.)
