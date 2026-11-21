@@ -155,10 +155,18 @@ session. Which ids a high school year owns is set in STANDARD.md "Ownership of M
 
 ## Honest limits
 
-The order of days (read and predict, then modify, then make) is ours and untested; it rests on published practice that
-has not been re-read for Curio Class (from memory). No page claims that learning to program improves thinking in general
-or school results. The course has not been tried with children. A one-page logic model is owed at course level. Sources
-read for this page: none yet; each one added is listed with how much of it was read.
+The order of days (read and predict, then modify, then make) follows PRIMM (predict, run, investigate, modify, make),
+read for this page on 2026-11-21. What that evidence supports, and no more: one quasi-experimental study (2018, about
+500 students aged 11 to 14 in English schools, 8 to 12 weeks of Python lessons on sequence, selection and iteration,
+against classes taught the same topics the school's usual way) found higher post-test scores for the PRIMM classes,
+and interviews with teachers found they valued the shared structure and the talk about code. The groups were not
+randomised, the evidence is for ages 11 to 14 in text-based Python, and the authors say which parts make the difference
+is still unknown. Our use in kindergarten to grade 5 (block and unplugged days) and our session counts are ours and
+untested. Two ideas from the same sources are already in this page and are now grounded: reading and tracing code before
+writing it, and pair or small-group talk about a given program away from the device. No page claims that learning to
+program improves thinking in general or school results. The course has not been tried with children. A one-page logic
+model is owed at course level. Sources read for this page are listed in docs/APPROACH-SOURCES.md "Computer science
+approach reads, 2026-11-21".
 
 ## Settled
 

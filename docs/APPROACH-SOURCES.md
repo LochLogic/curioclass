@@ -487,3 +487,21 @@ nothing was copied. Science and math high school entries are in the tables above
   https://www.nrcs.usda.gov/conservation-basics/animals/insects-pollinators (animals seeking food move pollen), and the
   National Center for Home Food Preservation freezing FAQ, https://nchfp.uga.edu/faqs/fruits/category/faq-freezing
   (frozen and thawed fruit keeps an observable, lasting change in texture).
+
+## Computer science approach reads, 2026-11-21
+
+Downloaded with Cory's yes to S:/CurioClass-sources/computer-science/primm-2019/ (README.txt there). For
+docs/courses/computer-science/APPROACH.md "Honest limits".
+
+- Raspberry Pi Foundation, Pedagogy Quick Read 11, Using PRIMM to structure programming lessons (V4, 2023),
+  https://static.raspberrypi.org/files/curriculum/quickreads/11-Pedagogy_Summary_PRIMM_V4_2023.pdf. Read in full
+  (2 pages). The five stages, starter programs shared before students own code, talk in pairs away from the device.
+- Sentance, S. (2021), Teaching programming with PRIMM: the importance of classroom talk, Raspberry Pi Foundation
+  Research Seminar proceedings vol 1, https://www.raspberrypi.org/app/uploads/2022/08/Teaching_Programming_with_PRIMM-1.pdf.
+  Read in full (13 pages). Summarises the 2018 study (non-equivalent control group post-test design, about 500 students
+  aged 11 to 14, 8 to 12 weeks, significant post-test difference for PRIMM classes) and a 20-teacher interview study on
+  classroom talk; states that which elements matter is still unknown.
+- Sentance, Waite and Kallia (2019), Teaching computer programming with PRIMM: a sociocultural perspective, Computer
+  Science Education 29(2-3) 136-176, doi 10.1080/08993408.2019.1608781. Not read: the open author copies on core.ac.uk
+  and qmro.qmul.ac.uk refused automated download (403, 404) on 2026-11-21. Its result is cited only through the
+  seminar paper's summary.

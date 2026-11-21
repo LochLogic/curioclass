@@ -46,10 +46,8 @@ docs/courses/eld/STANDARD.md. Web facts below were read on 2026-11-20 unless mar
   - The standards themselves are for sale on ACTFL's site (the summary page links a purchase page).
   - The proficiency levels are a published scale; their descriptions are ACTFL's. We name the levels and write our
     own descriptions.
-- **Validator.** scripts/standards.py does not read actfl-wrs.txt as a list yet. Its closed patterns accept only bare
-  goal-area names (`WRS.Communication`) and the nine Novice to Advanced sublevels, so the 11 numbered `WRS` ids,
-  `ACTFL.Superior` and `ACTFL.Distinguished` fail the check today (13 of 22; tested 2026-11-21). Before any
-  world languages row cites an id, the file is added to the script's listed files.
+- **Check.** scripts/standards.py reads actfl-wrs.txt as a listed file (since 2026-11-21): all 22 ids pass, the 11
+  numbered `WRS` ids and `ACTFL.Superior` and `ACTFL.Distinguished` included.
 
 ## 2. What is in the catalogue, and a mismatch to report
 

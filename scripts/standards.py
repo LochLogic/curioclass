@@ -101,6 +101,9 @@ LISTED = {(name, l.split('	')[0].strip()) for name, f in (('CASEL', 'casel-5.txt
           ('APA-HS-Psych-2022', 'apa-hs-psych-2022.txt'), ('Curio Class math electives', 'curio-math-electives.txt'),
           ('Curio Class science electives', 'curio-science-electives.txt'))
           for l in (DATA / f).read_text(encoding='utf-8').splitlines() if l.strip() and not l.startswith('#')}
+# World-Readiness Standards and ACTFL proficiency levels (world languages, added 2026-11-21): every id in the file
+LISTED |= {('ACTFL' if l.startswith('ACTFL.') else 'World-Readiness', l.split('	')[0].strip())
+           for l in (DATA / 'actfl-wrs.txt').read_text(encoding='utf-8').splitlines() if l.strip() and not l.startswith('#')}
 LISTED_IDS = {i: n for n, i in LISTED}
 
 CLOSED = {

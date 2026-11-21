@@ -102,3 +102,9 @@ already L93.
    (later.csv L93), matching APPROACH.md "Sensitive ground", Reads.
 
 Lead, 2026-11-21: follow-up 5 done (the lens says who checks ASL pages is open, L93); 1 to 4 are filed in later.csv L97. No questions for Cory, so the pre: row is done; the subject stays shelved.
+
+## Follow-up 1 done (2026-11-21)
+
+scripts/standards.py now reads actfl-wrs.txt as a listed file (WRS ids as World-Readiness, levels as ACTFL): all 22 ids
+pass, and an id not in the file still fails. STANDARD.md section 1 and the file's header note say so. The course stays
+shelved.
