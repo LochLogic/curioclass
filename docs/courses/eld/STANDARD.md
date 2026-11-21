@@ -1,6 +1,6 @@
 # English language development: the standard, made usable
 
-**DRAFT, 2026-11-16. Read cold 2026-11-20 (docs/reviews/prework-eld-read-2026-11-20.md) and fixed.**
+**DRAFT, 2026-11-16. Read cold 2026-11-20 (docs/reviews/prework-eld-read-2026-11-20.md) and fixed; second-model read fixed 2026-11-21 (docs/reviews/prework-eld-fixes-2026-11-20.md).**
 
 Written 2026-11-16 as the pre-work owed for English language development (docs/ADOPTION-BAR-SUBJECTS.md, "Before a
 scope and sequence in this subject", the ELD row), in the shape of docs/courses/social-studies/STANDARD.md. Core
@@ -13,7 +13,7 @@ every other course are C11, not this course (bar part 10).
 | Read the California map in full | Done: all five categories read end to end (2026-11-16); what it adds to bar part 10 is in section 4 | Section 4 |
 | Open the WIDA rubric file | Done 2026-11-16: the PRIME 2020 rubric and workbook, requested by Cory, read in full; bar part 10 firmed from it | docs/RUBRIC-ELD.md |
 | Build after C11 is proven in core courses | Recorded as the gate, with its test (settled 2026-11-16) | Section 6 |
-| Approach page (all ten subjects) | Draft for Cory's yes | docs/courses/eld/APPROACH.md |
+| Approach page (all ten subjects) | Approved by Cory 2026-11-21 (Desk q-prework-open-2) | docs/courses/eld/APPROACH.md |
 | Base text scout, lens | Done | docs/reviews/eld-open-material-2026-11-16.md; docs/agents/lenses/eld.md |
 | How ELD leans on the ELA progression | Recorded | Section 5 |
 | Progression gate support | Owed: scripts/progression.py has no ELD entry yet (ownership rule in section 2) | Section 2 |
@@ -48,16 +48,16 @@ every other course are C11, not this course (bar part 10).
 
 ## 2. Courses, bands and time
 
-- **The catalogue.** data/courses.csv has one ELD track row (`eld-k12`, "WIDA grade clusters"); docs/COURSES-STATUS.md
-  counts four band courses: K to 2, 3 to 5, 6 to 8, 9 to 12. WIDA's clusters do not line up with them: K to 2 spans
+- **The catalogue.** data/courses.csv holds four ELD band rows, `eld-k-2`, `eld-3-5`, `eld-6-8`, `eld-9-12` (Cory,
+  2026-11-21): K to 2, 3 to 5, 6 to 8, 9 to 12. WIDA's clusters do not line up with them: K to 2 spans
   clusters K, 1 and half of 2-3; 3 to 5 spans the other half of 2-3 and 4-5. Each band course plans each grade
   against its own cluster's ids, so grade 2 and grade 3 both use 2-3, at different content.
 - **Course shape.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): four band courses, each with three points
   of entry (by proficiency: levels 1 and 2, 3 and 4, 5 and 6) and a short newcomer strand for students in their first
   months in English. Students move between entry points on the school's own progress checks (bar item 7; California
   map 1.26: several levels and points of entry and exit).
-- **Time.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): a protected daily period, about 30 minutes in K to
-  5 and a 45 minute period in 6 to 12, 160 days. Bar item 8 and California 1.26 both ask for designated time that is
+- **Time.** Settled 2026-11-16 (Cory, Desk card q-later-sel-eld): a protected daily period, 30 minutes in K to 5
+  and 45 minutes in 6 to 12, 160 days (APPROACH.md, "Pacing"). Bar item 8 and California 1.26 both ask for designated time that is
   not ELA time.
 - **Placement and exit** use the school's proficiency score (bar part 10, Unsupported). Curio Class gives no
   placement test and keeps no scores. The course page says that Curio Class's period is the protected core of a
@@ -65,19 +65,19 @@ every other course are C11, not this course (bar part 10).
   state or district asks for it (APPROACH.md, "Pacing").
 - **Grain.** Each band course is written as one frame per grade year, 13 frames in all, each of 160 days at the
   band's minutes. A frame takes its host units from that grade's own core courses. A mixed-grade group uses the frame
-  of its youngest grade, and the teacher page says so. The catalogue (data/courses.csv) then replaces `eld-k12` with
-  four band rows, `eld-k-2`, `eld-3-5`, `eld-6-8`, `eld-9-12` (Cory, 2026-11-21).
-- **Ownership** (settled by the expert reader, 2026-11-20, ours, untested). The ELD progression has one owned row per
-  id in data/standards/wida-2020.txt, 104 in all. A cluster's owner year is its last grade: K for K, 1 for 1, 3 for
-  2-3, 5 for 4-5, 8 for 6-8, 12 for 9-12. The other grades of the cluster carry the id as `~ID`, each with a one-line
-  note on how that year differs (a harder text or task, the next key language use added). The social and
-  instructional ranges are the exception, because students need that language from the day they enter: SI K-3 is
-  owned by grade 3 and carried as `~` in K to 2; SI 4-12 is owned by grade 4 and carried as `~` in grades 5 to 12. A
-  row names the Interpretive id and the Expressive id as two ids, so the gate counts both. No id is excluded. The
-  gate then needs ELD in scripts/progression.py: the standards file, the anchor, and a cluster-to-grade map beside
-  the span map, with the owner rule above.
-- **Newcomer strand** (settled by the expert reader, ours, untested): the first 20 days of each band, on the SI ids
-  and the cluster's Inform only. A student moves to entry points 1 and 2 when the teacher judges the strand's
+  of its youngest grade, and the teacher page says so.
+- **Ownership** (settled by the expert reader, 2026-11-20, ours, untested). The ELD progression covers all 104 ids in
+  data/standards/wida-2020.txt in 56 owned rows: 8 SI rows, one id each, and 48 content rows, each naming the
+  Interpretive id and the Expressive id of one standard, cluster and key language use as two ids, so the gate counts
+  all 104. No id is excluded. A cluster's owner year is its last grade: K for K, 1 for 1, 3 for 2-3, 5 for 4-5, 8 for
+  6-8, 12 for 9-12, and 3 for SI K-3. The other grades of the cluster carry the ids as `~ID`, each with a one-line
+  note on how that year differs (a harder text or task, the next key language use added). SI 4-12 is the one
+  exception, because students need that language from the day they enter grade 4: it is owned by grade 4 and carried
+  as `~` in grades 5 to 12. The gate then needs ELD in scripts/progression.py: the standards file, the anchor, and a
+  cluster-to-grade map beside the span map, with the owner rule above.
+- **Newcomer strand** (settled by the expert reader, ours, untested): the first 20 days of each band, on the band's
+  SI ids and the cluster's Inform. From cluster 2-3 up only ELD-LA has an Inform id; ELD-MA, ELD-SC and ELD-SS have
+  Inform in K and 1 only. A student moves to entry points 1 and 2 when the teacher judges the strand's
   look-fors "seen" on two days in a row, or on the school's own check where there is one.
 
 ## 3. How the course is built (for the frames, after the gate)
@@ -94,7 +94,8 @@ every other course are C11, not this course (bar part 10).
 - **Home language as a help** (bar item 6; California 4.1, 4.3a): cognates, contrast between the home language and
   English (where the teacher page has a note for that language), and talk in the home language before writing in
   English.
-- **Newcomers and long-term English learners** get named notes in every unit (bar item 5; California 1.23).
+- **Newcomers, long-term English learners and English learners with disabilities** get named notes in every unit
+  (bar item 5; California 1.23).
 
 ## 4. What the California map adds to bar part 10
 
@@ -105,12 +106,12 @@ full on 2026-11-16. Our reading, in our own words. The map covers grades 4 to 8;
 | Map criterion | What it asks | Proposal |
 |---|---|---|
 | 1.23 a to j | Teach to each level and each learner type (newcomer, long-term English learner, English learners with disabilities); conversational and academic language; oral language stressed | Add "English learners with disabilities" to item 5's notes |
-| 1.26 | A designated period, entry and exit plans, checks built into the course, several entry points, all four modes joined, routines, texts from other subjects, at least two grades | Already items 7 and 8; adopt "all four modes in every unit" as a check |
+| 1.26 | A designated period, entry and exit plans, checks built into the course, several entry points, all four modes joined, routines, texts from other subjects, at least two grades | Already items 7, 8 and 11; adopt "all four domains (listening, speaking, reading, writing) in every unit, across both modes" as a check |
 | 2.9 to 2.12 | New information controlled per lesson; formative checks; collaborative talk guidance | Section plan fields (APPROACH.md) |
 | 3.3 | Help telling a language need apart from a disability | Teacher page note per unit; shared with C11's "language gap or content gap" |
 | 3.5 | Students judge their own language progress | A student self-check page per unit (kept by the student) |
 | 4.1 | Scaffolds withdrawn as proficiency grows; talk about how languages work; comparing languages | Item 3 and C7's withdrawal day |
-| 5.7 | Language goals stated for each lesson, with a progression | Section field 2 |
+| 5.7 | Language goals stated for each lesson, with a progression | Section field 1 (the section's share of the ids) and section field 6 (each day's goal in student words) |
 | 5.19 | Family materials in several languages | Family notes in English and Spanish (decided); more languages is a cost call |
 | 5.25 | Transfer charts for the common home languages (Spanish, Mandarin, Cantonese, Vietnamese, Tagalog, Arabic, and varieties of English) | Teacher reference per language; start with Spanish |
 | 5.27 | Why a skill is hard, with remedies | Unit field 6 (error register) |
@@ -128,10 +129,10 @@ alongside the ELA unit. No row of ela.csv names ELD in its cross_subject column 
 
 | WIDA part | Leans on these ELA rows (per grade) |
 |---|---|
-| ELD-LA Narrate | Narrative writing (ek-narrate, e1 to e5 narrative, e6 to e8 narrative-writing, e9 to e12 narrative rows) and the reading-literature rows |
-| ELD-LA Inform | Informative writing (ek-inform, e1 to e5 informative, e6 to e8 informative-writing, e9 to e12 informative rows) and reading-informational rows |
-| ELD-LA Argue (from 4-5) | Opinion writing in K to 5 (ek-opinion to e5 opinion) and argument writing from grade 6 (argument-writing, e9-w-argument and on) |
-| ELD-SI (all four uses) | Speaking and listening: the discussion rows (ek-discussion to e5-discussion, e6 to e8 collab-discussion, e9-sl-discussion, e10 to e12 seminar) and the presenting rows |
+| ELD-LA Narrate | Narrative writing (`ek-narrate`, `e1-narrative` to `e5-narrative`, `e6-narrative-writing` to `e8-narrative-writing`, `e9-w-narrative`, `e10-w-narrative`, `e11-narrative`, `e12-narrative`) and the reading-literature rows |
+| ELD-LA Inform | Informative writing (`ek-inform`, `e1-informative` to `e5-informative`, `e6-informative-writing` to `e8-informative-writing`, `e9-w-informative`, `e10-w-informative`, `e11-informative`, `e12-informative`) and the reading-informational rows |
+| ELD-LA Argue (from 4-5) | Opinion writing in grades 4 and 5 (`e4-opinion`, `e5-opinion`) and argument writing from grade 6 (`e6-argument-writing` to `e8-argument-writing`, `e9-w-argument`, `e10-w-argument`, `e11-argument`, `e12-argument`) |
+| ELD-SI (all four uses) | Speaking and listening: the discussion rows (`ek-discussion` to `e5-discussion`, `e6-collab-discussion` to `e8-collab-discussion`, `e9-sl-discussion`, `e10-sl-seminar`, `e11-seminar`, `e12-seminar`) and the presenting rows. In K to 3, where ELD-LA has no Argue id, opinion writing (`ek-opinion` to `e3-opinion`) leans on ELD-SI K-3 Argue |
 | Forms of English (bar item 3) | The language strand: grammar, sentences and word relationships in K to 2, word strategies, forms and conventions in 3 to 5, the grade rows of 6 to 8 (pronouns, phrases and clauses, verbals), and syntax, word strategies and academic words in 9 to 12 |
 | Foundational skills (K to 5) | ELD does not teach phonics; newcomers in grades 3 and up who need it use the ELA K to 2 foundational rows, with a note, as the California map's newcomer guidance allows |
 | ELD-MA, ELD-SC, ELD-SS | No ELA lean: these use the host unit from the math, science or social studies progression that same month |
