@@ -1,11 +1,14 @@
 # Arts: the standard, made usable
 
 Status: pre-work, its questions settled by Cory (Desk q-later-arts-health-pe, q-later-followups-1, q-prework-arts-1,
-q-prework-open-1); fixed 2026-11-19 after a cold read (docs/reviews/prework-arts-read-2026-11-19.md) and 2026-11-21
+q-prework-open-1, q-fix-arts-1); fixed 2026-11-19 after a cold read (docs/reviews/prework-arts-read-2026-11-19.md) and 2026-11-21
 after the second-model read (docs/reviews/prework-arts-fixes-2026-11-20.md).
 
 Written 2026-11-16 as pre-work for the arts (visual arts, music, theater, dance, media arts; 20 courses, five
-disciplines by four bands). It answers the arts row of "Before a scope and sequence in this subject" in
+disciplines by four bands: `visual-arts-k-2`, `visual-arts-3-5`, `visual-arts-6-8`, `visual-arts-9-12`, `music-k-2`,
+`music-3-5`, `music-6-8`, `music-9-12`, `theater-k-2`, `theater-3-5`, `theater-6-8`, `theater-9-12`, `dance-k-2`,
+`dance-3-5`, `dance-6-8`, `dance-9-12`, `media-arts-k-2`, `media-arts-3-5`, `media-arts-6-8` and `media-arts-9-12` in
+data/courses.csv, none of them core; Cory, 2026-11-21, Desk q-fix-arts-1). It answers the arts row of "Before a scope and sequence in this subject" in
 docs/ADOPTION-BAR-SUBJECTS.md. The bar is the arts part of that page. The lens is docs/agents/lenses/arts.md. The
 approach page is docs/courses/arts/APPROACH.md (approved 2026-11-20, Desk q-prework-arts-1).
 
@@ -34,8 +37,8 @@ approach page is docs/courses/arts/APPROACH.md (approved 2026-11-20, Desk q-prew
   The standards gate that checks a plan's ids against the file's lines is a worker's job, owed (data/plans/later.csv);
   until it exists, each scope and sequence states its id count
   against the table in section 3.2 and a reader spot-checks ten.
-- Music is loaded for pre-kindergarten to grade 8 general music only. The 63 ids of the high school composition
-  and theory strand load by hand when the high school music frame is written (section 3.3).
+- Music is loaded for pre-kindergarten to grade 8 general music. The 63 ids of the high school composition and
+  theory strand load now (Cory, 2026-11-21, Desk q-fix-arts-1), as section 3.3 says.
 
 ## 2. Reuse terms (read at source, 2026-11-16)
 
@@ -115,10 +118,13 @@ state frameworks that turn them into yearlong courses.
   student's grade: every frame, scope and sequence and page names the level. A row lists only the ids it owns or
   contributes to; earlier ids that return as practice are not listed.
 - Short path (Cory, 2026-11-20, Desk q-prework-arts-1): each level's scope and sequence marks an 80-day path (a semester or a rotation) that keeps every
-  unit and every id by merging the marked days. Level 1 opens with a bridge unit of at most 12 days that teaches the
-  discipline's grade 8 ids; Levels 2 and 3 open with a review unit of at most 6 days that doubles as placement.
-  Bridge and review days count as inside the standards for the bar's 10 percent limit and are listed as bridge or
-  review days in the frame. The numbers 12 and 6 are ours, untested. The short path adds build work to the 15 high
+  unit and every id by merging the marked days. Level 1 opens with a bridge unit (Cory, 2026-11-21, Desk
+  q-fix-arts-1): it teaches the grade 8 techniques and words Level 1 needs, as readiness, and claims no grade 8 id;
+  it is at most 12 days in the full year and 6 days on the 80-day short path, and its days count toward the bar's 10
+  percent limit on days outside the course's standards (6 of 80 is 7.5 percent). Levels 2 and 3 open with a review
+  unit of at most 6 days that doubles as placement; review days count as inside the standards. The frame lists them
+  as bridge or review days. The numbers 12 for the full-year bridge and 6 for review are ours, untested. The short
+  path adds build work to the 15 high
   school levels (three in each of the five 9 to 12 courses), so many schools that cannot give an arts course every
   day can still use the course.
 
@@ -127,7 +133,7 @@ state frameworks that turn them into yearlong courses.
 | Discipline | K to 2 (K, 1, 2) | 3 to 5 | 6 to 8 | 9 to 12, per level (`.Ia`, `.IIa`, `.IIIa`; Level 4 repeats `.IIIa`) |
 |---|---|---|---|---|
 | Visual arts (VA) | 15 + 15 + 15 = 45 | 45 | 45 | 15 |
-| Music (MU) | 18 + 20 + 20 = 58 | 63 | 63 | 21 each, strand `.C`, 63 in all, not in the file |
+| Music (MU) | 18 + 20 + 20 = 58 | 63 | 63 | 21 each, strand `.C`, 63 in all, outside the file (3.3) |
 | Theater (TH) | 17 + 24 + 24 = 65 | 72 | 72 | 24 |
 | Dance (DA) | 21 + 21 + 21 = 63 | 63 | 63 | 21 |
 | Media arts (MA) | 18 + 18 + 18 = 54 | 54 | 54 | 18 |
@@ -158,16 +164,28 @@ The reasons and sources are in docs/reviews/arts-hs-music-and-levels-2026-11-16.
   student's own instrument or section, and a plain note that ensemble standards are met and assessed by that
   ensemble.
 - Ids: 21 per level, 63 in all, format `MU:Cr1.1.C.Ia` (the strand letter `C` before the level).
-  scripts/standards.py accepts the strand letter (read 2026-11-19). They load into the id file by hand, ids only,
-  when the high school music frame is written.
+  scripts/standards.py accepts the strand letter (read 2026-11-19). Decided (Cory, 2026-11-21, Desk q-fix-arts-1):
+  they load now, ids only, read at source by a web page fetch with nothing downloaded, each with its line in the
+  words file (same form and limits), and data/progressions/arts.csv then gets the music Level 1 to 4 rows in the
+  form of the other disciplines' rows (3.2). Pending(data/standards/ncas-performance-standards.txt#MU:Cr1.1.C.Ia):
+  the coalition and the music association publish the strand only as a file to download (checked 2026-11-21), so
+  the load waits on a source page that can be read without one; until then the counts in 3.2 leave it out.
 
 ### 3.4 Pacing (settled 2026-11-16)
 
 The bar fails a plan that needs a daily arts period (criterion 9). A K to 8 arts year is 64 course days (two
 sessions a week over 32 weeks, docs/courses/CALENDAR.md). Session length is 40 minutes (ours, untested); every
 section plan states the set-up and clean-up minutes inside it. A school that meets once a week keeps every unit and
-every standard on 32 days by merging the days each unit marks. High school levels are 160 course days (3.2). The
-160 in docs/GLOSSARY.md is the school year, not a course's days, so nothing there changes.
+every standard on 32 days by merging the days each unit marks. High school levels are 160 course days of 45 minutes,
+the 120 hours of the national level descriptor (3.2), and 60 hours on the 80-day short path (Cory, 2026-11-21, Desk
+q-fix-arts-1). The 160 in docs/GLOSSARY.md is the school year, not a course's days, so nothing there changes.
+
+National time figures (Cory, 2026-11-21, Desk q-fix-arts-1): each K to 8 course page names its national arts
+association's recommended weekly time, read at source by a web page fetch with nothing downloaded, and our gap
+(80 minutes a week, 40 on the short path), as health and physical education do, so a school can add time. A figure
+that cannot be read that way stays off the page. Checked 2026-11-21: the music, visual and media arts, dance and
+theater associations' figures sit only in files to download (their opportunity-to-learn standards), so no course
+page names one yet.
 
 On the 32-session path each unit keeps four things, in this order and no fewer: the demonstration with a step card,
 opened by the look or listen at a work that carries the unit's response to another artist's work and its
@@ -202,8 +220,9 @@ school. No draft date is given.
 - What a school may leave out (Cory, 2026-11-20, Desk q-prework-arts-1): a school or family may leave out a unit
   or a work for its community's reasons (for example, a unit that uses dance, masks or play-acting); each such unit
   stands alone, and each course page says so plainly and names those units. That includes a unit that studies a
-  sacred or ceremonial tradition: one line on each course page (Cory, 2026-11-21, Desk q-prework-open-1); the
-  standards are still met elsewhere in the year.
+  sacred or ceremonial tradition: one line on each course page (Cory, 2026-11-21, Desk q-prework-open-1). Swapping
+  a work for another keeps the unit's ids met; leaving out a unit means the course page and the unit's family note
+  name the ids not claimed that year (Cory, 2026-11-21, Desk q-fix-arts-1).
 - Pre-kindergarten ids: no pre-kindergarten courses.
 - The high school ensemble, harmonizing instrument and music technology strands (3.3).
 - Enduring understandings, essential questions, model cornerstone assessments and the glossary: permission

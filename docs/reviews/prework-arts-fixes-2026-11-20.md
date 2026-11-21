@@ -95,3 +95,23 @@ Counts: fixed 21, not a fault 5, settled with no change 2, questions for Cory 6,
    second-model read and fix pass (docs/reviews/prework-arts-fixes-2026-11-20.md)" as the health row does.
 
 All four follow-ups done by the lead 2026-11-21: MU:Re9.1.Kb removed from the id file, the words file and mu-k-respond, with STANDARD.md counts updated (1,201 ids, 1,113 taught); the bar line and owed row and the lens line fixed. The six questions are on the Desk (q-fix-arts-1).
+
+## Answers applied (Cory, 2026-11-21, Desk q-fix-arts-1)
+
+1. Load the 63 high school music ids now: decided, held. The strand is published at source only as files to download
+   (nationalartsstandards.org/sites/default/files/2021-11/Music%20Theory%20and%20Composition%20Strand%20at%20a%20Glance.pdf;
+   nafme.org/wp-content/uploads/2023/04/2014-Music-Standards-Composition-Theory-Strand.pdf), and the coalition's
+   customize-handbook page reaches it only through a form, so nothing was loaded and no music Level 1 to 4 rows were
+   added. STANDARD.md 1 and 3.3 state the decision, with a Pending marker on the load; counts stay 1,201 ids, 1,113 taught.
+2. Bridge unit: STANDARD.md 3.2 (readiness, no grade 8 id, 6 days on the 80-day short path, counted toward the 10
+   percent limit); the four Level 1 rows in arts.csv (va-g9-ideas, th-g9-imagine, da-g9-ideas, ma-g9-ideas) say the same.
+3. Leave-out: STANDARD.md 5 (swap keeps the ids; a left-out unit's ids are named on the course page and in the
+   unit's family note); APPROACH.md "Family note" points there.
+4. Catalogue split (done by the lead): STANDARD.md names the 20 course ids, none core.
+5. High school minutes: STANDARD.md 3.4 (45 minutes, 120 hours; 60 on the short path) and the rule for national
+   time figures. No association's weekly figure could be read by page fetch (the music, visual and media arts,
+   dance and theater opportunity-to-learn standards are files to download), so none is named.
+6. Sensitive ground: new APPROACH.md "Sensitive ground" section (diet, weight and body; an invented or public option
+   beside every Cn10 personal tie; health's steps for when a student tells you something). Progression notes for
+   da-g4-technique to da-g11-technique carry the teacher note; the grade 8, Level 1 and Level 2 wording no longer
+   asks for the student's own food or eating plan.

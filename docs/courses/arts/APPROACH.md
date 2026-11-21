@@ -132,7 +132,8 @@ memory".
 ## Family note (unit field 9)
 
 Each finished unit carries a family note, in English and Spanish. It is where the family's yes is asked for a
-showing outside class (see "Rights").
+showing outside class (see "Rights"), and, for a unit a school leaves out, where the ids not claimed that year are
+named (STANDARD.md 5).
 
 ## Sources (unit field 10)
 
@@ -218,9 +219,24 @@ come back in every response. Each year revisits the year before's grade ids as p
 One child at home is in STANDARD.md 3.4 (the parent is the audience and the critique partner). One projector or none:
 every day runs from printed step cards, and a screen only shows a work, a step or a playback.
 
+## Sensitive ground
+
+These rules hold in every arts course (Cory, 2026-11-21, Desk q-fix-arts-1). A section that touches one carries its
+teacher note in section field 1.
+
+- **Diet, weight and body.** No task asks about a student's own diet, weight or body. The dance health-habit ids
+  (`DA:Pr5.1.4b` to `DA:Pr5.1.IIIb`) study food choices, eating plans and body care through an invented dancer or
+  dancers in general; a student's own habits come in only as warm-up, rest and safe practice, by the student's choice.
+- **Ties to the student's own life.** Every task that ties art to the student's own life (Cn10) offers an invented
+  or public option beside it, such as an invented person, a story character or a public figure, and the option is
+  marked the same.
+- **If a student tells you something.** Each section carries health's steps (docs/courses/health/APPROACH.md, "If a
+  student tells you something") on its teacher page.
+
 ## Pacing
 
-See STANDARD.md 3.4: the days, the 40-minute session, the 32-session path and the ordinary room.
+See STANDARD.md 3.4: the days, the 40-minute session (45 minutes in 9 to 12), the 32-session path, the national
+time figures and the ordinary room.
 
 ## High school levels and music
 
