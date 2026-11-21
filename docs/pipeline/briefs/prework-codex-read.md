@@ -15,6 +15,10 @@ Check, against stage 1's list:
 3. The approach page fills the plan fields the other finished approach pages fill (compare
    docs/courses/health/APPROACH.md and docs/courses/sel/APPROACH.md as finished examples): kinds of day, daily
    evidence, the plan fields, pacing and dose, what a tool may and may not do, sensitive ground.
+   Then check placement, field by field: every unit field and section field the page names sits where
+   docs/courses/UNIT-PLAN.md puts it ("The unit plan: fields, in order" and "The section plan: fields, in order"),
+   on the right page (teacher, student or family) and under the right number. A field dropped, merged into
+   another, renumbered or sent to another plan or page is a fault, even when its content still appears somewhere.
 4. The course list and course shape are stated and consistent with data/courses.csv rows for this subject (read
    only the rows for this subject).
 5. The dose by band is stated, and where a national or professional body publishes a time figure, it is cited.
@@ -23,7 +27,15 @@ Check, against stage 1's list:
 7. Ownership: the progression gate (scripts/progression.py, read STD_FILES and code_grades only) needs every
    standard owned by exactly one grade or excluded with a reason. Say whether the page gives a writer an unambiguous
    rule for that, and what the gate would need.
-8. Sensitive ground is named, with what needs a sensitivity read (docs/pipeline/briefs/sensitivity-read.md).
+   Then check handoffs one pair at a time, in both directions: for every `assumes`, `hands_on` and `~` carry
+   (rows, or the page's stated rules), the earlier side is the grade, year or level just before and the later side
+   picks it up, with no grade or level skipped (unless the row's notes give the reason, which the gate allows) and
+   no rule that names a different year than the general rule. Also
+   check every owner row teaches every part of each id it owns (read the id's statement in the standards file
+   against the row's notes and words); an id met only in part is a fault.
+8. Sensitive ground is named, with what needs a sensitivity read (docs/pipeline/briefs/sensitivity-read.md). Check each
+   place that touches sensitive ground (a row, a unit rule, a day kind, a family note) still carries its teacher note,
+   leave-out and reporting route where the page's own rule asks for one.
 9. Anything that is a question of scope, audience, money or people: list it as a question for Cory with a
    recommended pick, never decide it.
 
