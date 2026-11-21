@@ -3,7 +3,7 @@
 Pre-work, 2026-11-16. The expert reads this before any arts course frame, scope and sequence, unit plan or day
 in visual arts, music, theater, dance or media arts. It is a way of seeing, not a bar: the bar is the arts part
 of docs/ADOPTION-BAR-SUBJECTS.md. The standard and the band-year rule are in docs/courses/arts/STANDARD.md
-(National Core Arts Standards, 2014, ids only). The approach page is docs/courses/arts/APPROACH.md (draft).
+(National Core Arts Standards, 2014, ids only). The approach page is docs/courses/arts/APPROACH.md (approved 2026-11-20).
 
 ## What good teaching of the arts looks like
 

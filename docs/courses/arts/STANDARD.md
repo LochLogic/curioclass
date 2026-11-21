@@ -1,11 +1,13 @@
 # Arts: the standard, made usable
 
-Status: DRAFT, for Cory's yes; fixed 2026-11-19 after a cold read (docs/reviews/prework-arts-read-2026-11-19.md).
+Status: pre-work, its questions settled by Cory (Desk q-later-arts-health-pe, q-later-followups-1, q-prework-arts-1,
+q-prework-open-1); fixed 2026-11-19 after a cold read (docs/reviews/prework-arts-read-2026-11-19.md) and 2026-11-21
+after the second-model read (docs/reviews/prework-arts-fixes-2026-11-20.md).
 
 Written 2026-11-16 as pre-work for the arts (visual arts, music, theater, dance, media arts; 20 courses, five
 disciplines by four bands). It answers the arts row of "Before a scope and sequence in this subject" in
 docs/ADOPTION-BAR-SUBJECTS.md. The bar is the arts part of that page. The lens is docs/agents/lenses/arts.md. The
-approach page is docs/courses/arts/APPROACH.md (draft).
+approach page is docs/courses/arts/APPROACH.md (approved 2026-11-20, Desk q-prework-arts-1).
 
 | Piece | State | Where |
 |---|---|---|
@@ -19,8 +21,8 @@ approach page is docs/courses/arts/APPROACH.md (draft).
 ## 1. The standard
 
 - National Core Arts Standards, 2014 (National Coalition for Core Arts Standards), the performance standards.
-- Loaded in data/standards/ncas-performance-standards.txt as ids only, no wording: 1,202 ids across the five
-  disciplines (visual arts 195, music 202, theater 298, dance 273, media arts 234), from the 2021-11 "at a glance"
+- Loaded in data/standards/ncas-performance-standards.txt as ids only, no wording: 1,201 ids across the five
+  disciplines (visual arts 195, music 201, theater 298, dance 273, media arts 234), from the 2021-11 "at a glance"
   handouts, fetched 2026-10-27. Format `DIS:<process><anchor>.<standard>.<grade><letter>`, for example
   `DA:Cr1.1.2a`. High school levels are `.Ia`, `.IIa`, `.IIIa` (media arts cells with one statement carry no
   letter, as `MA:Re9.1.I`).
@@ -53,7 +55,7 @@ Read on the coalition's own copyright guidelines (nationalartsstandards.org, "NC
 - The model cornerstone assessments are not adapted. Our end-of-unit assessments are our own.
 - A plan names a performance standard by id and states its action in one line of our own words. It never quotes
   the performance standards. The eleven anchors may be quoted in their real wording. Decided (Cory, 2026-11-20, Desk q-prework-arts-1):
-  a one-line words file for the 1,114 taught ids (id, tab, at most 14 words of what the student does, never a
+  a one-line words file for the 1,113 taught ids (id, tab, at most 14 words of what the student does, never a
   re-sentence of the standards' phrasing), written by one agent and read by a second, in the public repository; the
   63 strand ids join it when they load. The file now exists (data/standards/ncas-performance-standards-words.txt,
   written 2026-11-20): a plan cites the id and uses the file's line for the action.
@@ -75,6 +77,8 @@ standards are written grade by grade to grade 8, then in three high school level
   and assessed in that year. The unit of count is the lettered id, one statement (`DA:Cr1.1.2a`); the table in
   3.2 gives each year's count. A year may revisit the year before's ids as practice that returns, but it claims
   only its own grade.
+- Music's connecting ids (`MU:Cn10.1`, `MU:Cn11.1`) are one statement repeated in every grade, so their words lines
+  match from K to 8; each grade meets them with its own music and words, and the progression row says what changes.
 - Pre-kindergarten ids are not taught. A kindergarten unit may use one as a readiness reference.
 - Mixed-grade classes are common in the arts. A school that teaches a band as one mixed class runs the three
   years in turn. Each year still claims only its grade's ids, so a student's record shows which grade's standards
@@ -106,26 +110,31 @@ state frameworks that turn them into yearlong courses.
 - Advanced is claimed by assessed work, not by finishing Level 3. A student who ends Level 3 at "partly" has
   Level 4 to reach it.
 - One level is a complete course and is enough for Proficient. The bar does not ask a school to offer all four.
+- In data/progressions/arts.csv only, the `grade` column writes Level 1 as `9`, Level 2 as `10`, Level 3 as `11` and
+  Level 4 as `12` (`~` only, on `.IIIa` ids), the key scripts/progression.py reads. It is a data key, never a
+  student's grade: every frame, scope and sequence and page names the level. A row lists only the ids it owns or
+  contributes to; earlier ids that return as practice are not listed.
 - Short path (Cory, 2026-11-20, Desk q-prework-arts-1): each level's scope and sequence marks an 80-day path (a semester or a rotation) that keeps every
   unit and every id by merging the marked days. Level 1 opens with a bridge unit of at most 12 days that teaches the
   discipline's grade 8 ids; Levels 2 and 3 open with a review unit of at most 6 days that doubles as placement.
   Bridge and review days count as inside the standards for the bar's 10 percent limit and are listed as bridge or
   review days in the frame. The numbers 12 and 6 are ours, untested. The short path adds build work to the 15 high
-  school courses, so many schools that cannot give an arts course every day can still use the course.
+  school levels (three in each of the five 9 to 12 courses), so many schools that cannot give an arts course every
+  day can still use the course.
 
 ### Ids owned by each course-year (counted from the id file, 2026-11-19; pre-kindergarten excluded)
 
 | Discipline | K to 2 (K, 1, 2) | 3 to 5 | 6 to 8 | 9 to 12, per level (`.Ia`, `.IIa`, `.IIIa`; Level 4 repeats `.IIIa`) |
 |---|---|---|---|---|
 | Visual arts (VA) | 15 + 15 + 15 = 45 | 45 | 45 | 15 |
-| Music (MU) | 19 + 20 + 20 = 59 | 63 | 63 | 21 each, strand `.C`, 63 in all, not in the file |
+| Music (MU) | 18 + 20 + 20 = 58 | 63 | 63 | 21 each, strand `.C`, 63 in all, not in the file |
 | Theater (TH) | 17 + 24 + 24 = 65 | 72 | 72 | 24 |
 | Dance (DA) | 21 + 21 + 21 = 63 | 63 | 63 | 21 |
 | Media arts (MA) | 18 + 18 + 18 = 54 | 54 | 54 | 18 |
 
 An id is one lettered statement (`DA:Cr1.1.2a`). A year's scope and sequence claims every id of its grade in its
-discipline, counted in this table. The file holds 1,202 ids: 1,114 taught (K to 8 and the high school levels) and 88
-pre-kindergarten, not taught. Totals of taught ids: visual arts 180, music 185, theater 281, dance 252, media arts
+discipline, counted in this table. The file holds 1,201 ids: 1,113 taught (K to 8 and the high school levels) and 88
+pre-kindergarten, not taught. Totals of taught ids: visual arts 180, music 184, theater 281, dance 252, media arts
 216. The header's "per grade" figures are unlettered standards and are not the count. Music and theater
 kindergarten are uneven (music K 19, grades 1 and 2 20, grades 3 to 8 21; theater K 17, grade 1 on 24), so no
 year is counted by an even spread. High school music is one of the 20 courses, not an extra one; its 63 ids are
@@ -161,8 +170,9 @@ every standard on 32 days by merging the days each unit marks. High school level
 160 in docs/GLOSSARY.md is the school year, not a course's days, so nothing there changes.
 
 On the 32-session path each unit keeps four things, in this order and no fewer: the demonstration with a step card,
-one making or rehearsal day with a critique, the showing (the check), and one respond day. Fluency days fold into
-the openers. The frame marks which days merge.
+opened by the look or listen at a work that carries the unit's response to another artist's work and its
+connecting sentence; one making or rehearsal day with a critique; the showing (the check); and one respond day.
+Fluency days fold into the openers. The frame marks which days merge.
 
 **The ordinary room (bar criterion 14).** A class of thirty needs a clear floor or tables, paper, pencils, found
 material and the voice; nothing is bought, and every unit lists a cheap stand-in. A tool day has a printed version
@@ -203,21 +213,26 @@ school. No draft date is given.
 
 ## 6. Leans on the core progressions
 
-These are places where an arts unit leans on, or gives to, a core course. Each is checked against the core
-progression when the arts frame is written; the arts unit does not reteach the core skill.
+These are places where an arts unit leans on, or gives to, a core course. The arts unit does not reteach the core
+skill. Each lean is named, with the core row or code it needs, in the `cross_subject` column of
+data/progressions/arts.csv, which scripts/progression.py checks against the core files; the codes below are those
+rows.
 
-- Music and math: beat, note values and measures lean on fractions (grade 3 and 4 math). A music unit on note
-  values is placed after the math week that teaches fractions (data/plans/calendar.csv), or uses beat counts
-  only.
-- Visual arts and math: shape, symmetry, scale and proportion lean on geometry and ratio (grades 4 to 7).
-- Theater and ELA: script reading and character lean on the reading literature standards; performing leans on the
-  speaking and listening standards. Responding in every art uses ELA's claim-and-evidence writing.
-- Dance and physical education: locomotor and nonlocomotor movement lean on the PE motor skills (SHAPE.S1). Dance
+- Music and math: beat, note values and measures lean on fractions (math 3.NF.A.1, 4.NF.A.1, 5.NF.A.1). A music
+  unit on note values is placed after the math week that teaches fractions (data/plans/calendar.csv), or uses beat
+  counts only.
+- Visual arts and math: shape, symmetry, scale and proportion lean on geometry and ratio (math 4.G.A.3, 7.G.A.1).
+- Theater and ELA: script reading and character lean on the reading literature standards (RL.K.3 to RL.7.3);
+  performing leans on the speaking and listening standards (SL.K.6 to SL.8.4). Responding in every art uses ELA's
+  class talk and claim-and-evidence writing (SL.3.1, SL.6.1, W.5.1 to W.11-12.1).
+- Dance and physical education: locomotor and nonlocomotor movement lean on the PE motor skills (SHAPE.S1; the PE
+  rows physical-education:k-in-place to g9-dance-design, one per grade of dance technique). Dance
   in arts is the art: making, performing, responding to and connecting dance. Dance in physical education is
   movement skill, fitness and teamwork. Arts dance units do not teach the motor skill; PE dance units do not teach
   choreography, performing for an audience or response to dance. Each pair of units names the other in its
   connections line.
 - Media arts and computer science: media arts teaches the one idea of privacy or copyright its unit needs, in a
-  short step of the unit, and notes the computer science unit that goes deeper; it does not wait for it.
+  short step of the unit, and notes the computer science unit that goes deeper
+  (computer-science:g8-attribution); it does not wait for it.
 - All arts and social studies: works are taught with their time and place (bar criterion 7), using social
-  studies' sourcing habits.
+  studies' sourcing habits (social-studies:ss6-paleolithic-neolithic, ss6-silk-roads-exchange).
