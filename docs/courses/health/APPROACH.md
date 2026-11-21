@@ -122,7 +122,11 @@ Each topic returns in the next year at more depth. Getting help from a trusted a
 Settled 2026-11-16 (Cory, Desk card q-later-arts-health-pe): high school health is one semester. Default time,
 ours and untested: K to 5 about 30 sessions a year of 30 minutes; 6 to 8 about 45 sessions a year of 45 minutes;
 9 to 12 about 80 days of 45 minutes. Each band frame may change these with a reason. How a band splits into grades
-is in STANDARD.md section 4.
+is in STANDARD.md section 4. The national figure: the National Health Education Standards (second edition, 2007,
+page 76, Joint Committee on National Health Education Standards) recommend at least 40 hours a year in pre-K to
+grade 2 and 80 hours a year in grades 3 to 12. Our defaults come to about 15 hours a year in K to 5, 34 in 6 to 8
+and 60 in the high school semester, so they are below it, and the course page says so. Whether to raise them is
+Cory's call (Desk q-prework-open-2).
 
 ## What a tool may and may not do
 

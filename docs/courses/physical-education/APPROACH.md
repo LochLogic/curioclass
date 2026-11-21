@@ -89,8 +89,9 @@ Fitness concepts return in every warm-up and cool-down. Each grade's outcomes bu
 Settled 2026-11-16 (Cory, Desk card q-later-arts-health-pe): elementary PE (K to 5) is about 2 to 3 sessions a week.
 Middle and high school PE minutes vary widely by school; each band frame states its sessions a year and their
 length. The course says openly (Cory, 2026-11-20, Desk q-prework-health-pe-1) that 2 to 3 sessions a week is below
-the weekly minutes professional bodies recommend (from memory, about 150 in elementary), and the course page, the
-teacher page and the family note offer short active breaks and home activity to help close the gap.
+the weekly minutes the national body recommends: SHAPE America's guidelines (shapeamerica.org/standards/guidelines)
+set 150 minutes a week in elementary school and 225 in middle and high school, for the whole year. The course page,
+the teacher page and the family note offer short active breaks and home activity to help close the gap.
 
 ## Water safety
 

@@ -42,7 +42,7 @@ the rest is scored.
   every criterion from C1 to C16 and every criterion of the subject part still applies, and what is measured is
   the number of units and days the scope and sequence itself sets out, not the size of a math or science course. Being small
   waives no criterion. **Smaller means fewer minutes a week, never fewer units** (Cory 2026-11-15, later.csv L43): each
-  SEL and library course runs the whole year at one or two sessions a week (its frame states which), so every standard
+  SEL and library course runs the whole year at one or two sessions a week, or about one every two weeks in the two library band courses (its frame states which), so every standard
   of its framework is still taught, practised spaced out over the year and checked. This fits how schools staff these
   subjects (a counselor or librarian seeing a class once a week).
 - **Beyond the three units,** the reviewer reads: for C1, the whole coverage table, tracing ten standards of the
@@ -599,7 +599,7 @@ The numbers are those of the eleven choices the second draft put to him. His wor
 8. **Professional learning.** "8 i agree for now but this is a future area of growth." None is offered for now.
    It is not ruled out for later.
 9. **The library bar.** "9 yes and it might be small and thats okay." The library part is our own bar, named as
-   ours, and four courses can proceed on it. It may be small.
+   ours, and four courses can proceed on it (eight since 2026-11-16, docs/courses/library/STANDARD.md section 3). It may be small.
 10. **The design half for SEL and personal finance.** "10 yes but mark this for a deeper review." The design half
     is the bar, with the evidence half stated as unmet on each course page. **Marked for a deeper review.**
 11. **Family notes.** "11, agreed" Family notes are written in English and Spanish, for all courses, when a unit

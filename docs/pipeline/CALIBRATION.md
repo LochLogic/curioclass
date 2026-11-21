@@ -62,3 +62,24 @@ reader cannot learn the set.
 - The set is small; a reader can pass it and still miss a kind of fault the set does not hold. New fault kinds
   found in real reads are added to the next set.
 - Planted faults are cleaner than real ones. Real past findings (part 5) are there to keep the test honest.
+
+## Per subject, at stage 1 (added 2026-11-20)
+
+Run 1 tested the expert on the core subjects only. COURSE-RUN stage 1 gates every subject on calibration, so each
+subject outside the core gets its own small set before its expert reads are trusted, read with that subject's lens.
+
+- **The set:** built from the subject's own pages, correct first: excerpts of its STANDARD.md and APPROACH.md, and a
+  progression slice of 20 to 25 rows where the subject has a progression. Then 10 major faults and 2 minor ones are
+  planted, drawn from these kinds, each at least once: a code that does not exist or sits in the wrong grade; a
+  standard taught only in part; a skill owned twice; a handoff that skips a grade; a dose figure wrong or with no
+  source; a cross-subject lean to a skill not taught by then; sensitive ground with no teacher note or leave-out; a
+  tool allowed to collect student information; a plan field missing or sent to the wrong place; a values-rule miss.
+  Kept at `S:\CurioClass-sources\_calibration\subjects\<subject>\` (`set\` and `key\faults.csv`), outside the
+  repository.
+- **The reader:** a fresh expert agent with the subject lens and the normal brief for the piece, cold; Codex reads
+  the same set by script (scripts/codex_read.py).
+- **The line, recommended, for Cory's yes:** at least 8 of the 10 majors caught; at most 2 false major alarms; the
+  top finding is a planted major. A reader under the line is not used alone for that subject: its lens is changed
+  and a fresh set is read again.
+- **The result** goes in docs/reviews/calibration-<subject>-<date>.md, and the subject's stage 1 gate opens only when
+  the expert passes.
