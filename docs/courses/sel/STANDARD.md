@@ -60,8 +60,18 @@ review).
   grades 9 to 12 (an advisory period); a frame may change its band's number and gives the reason. The registry's
   criteria ask that sessions a year be stated and set no number (criteria paper p 25, section 4), so the course page
   states ours with no national figure to compare. One session a week (32 sessions) is the stated short path (C2), and
-  it never drops a unit. What it cuts is open (Desk question, stage 1 fix pass): dropping one Application session a
-  unit takes off 6 sessions, not 32.
+  it never drops a unit.
+- **How the sessions add up** (Cory, 2026-11-21, Desk q-fix-sel-1). Related sub-skills are taught together, so a
+  unit splits its sub-skills (up to eight) into two or three groups, one section each. Each group is introduced
+  (Understanding) and then rehearsed (Fluency, Application), and every session rehearses. Full year, 64 = four units
+  of 11 and two of 10: a three-group unit is 3 groups of 3 sessions (Understanding, Fluency, Application) plus a
+  Check and a Respond, 11; a two-group unit is 2 groups of 4 (Understanding, two Fluency, Application) plus a Check
+  and a Respond, 10. The frame says which four units take three groups (most often those with the most sub-skills)
+  and may move a session between units if the year stays 64. Short path, 32 = four units of 5 and two of 6, all six
+  units and every group kept, fewer minutes a unit, never fewer units: each group's Understanding and Fluency share
+  one session, the unit's Application sessions become one, and the Check and Respond share one. A three-group unit
+  is 3 + 1 + 1 = 5; a two-group unit keeps a second rehearsal per group, 2 x 2 + 1 + 1 = 6. So the short path cuts
+  Fluency and Application sessions and joins the Check with the Respond; it drops no sub-skill, group or unit.
 - **Units.** Six units per grade year (section 3), each with its own readiness check and end-of-unit assessment,
   sized to the minutes chosen. "Never fewer units" is met: every sub-skill is taught, practised spaced out and
   checked every year.
@@ -74,8 +84,8 @@ review).
 The draft year for each grade. The theme sets the year's angle, so no two years of a band run alike. Each unit lists
 the sub-skills it teaches first that year; every later unit brings earlier sub-skills back in practice (C7). In
 every grade all 40 sub-skills are taught once and only once as a unit's own. No unit teaches more than eight
-sub-skills first, so each has time to be rehearsed (at 64 sessions a unit has about ten, fewer than two a
-sub-skill in an eight-skill unit; how a unit shares its sessions is open with the short path, section 2); a sub-skill that suits a late
+sub-skills first, so each has time to be rehearsed (a unit has 10 or 11 sessions, its sub-skills taught in two or
+three groups of related skills, each group introduced then rehearsed: section 2, "How the sessions add up"); a sub-skill that suits a late
 unit better comes back there in practice, not as a first teaching.
 
 **Depth ladder, by band.** K to 2: a picture or story moment, one or two pictured steps, said aloud or acted with a
@@ -253,8 +263,9 @@ Applied to SEL:
 6. **Families.** Every family note says what the unit teaches, the words it uses and how to practise at home, in
    English and Spanish. Settled (Cory, 2026-11-21): a school may leave out an SEL unit (as with health's sensitive units),
    the school is told which sub-skills that year then does not teach, a later unit never assumes the left-out one (its readiness item rests on the previous year's row for that sub-skill, or, if that unit was left out too,
-   the nearest earlier year that was taught, and checks only the one-step form), and the course page says the course does not claim those
-   sub-skills that year ("Acceptability is local", ADOPTION-BAR-SUBJECTS), naming the ids.
+   the nearest earlier year that was taught, and checks only the one-step form), and the course page and the unit's
+   family note say the course does not claim those sub-skills that year ("Acceptability is local",
+   ADOPTION-BAR-SUBJECTS), naming the ids, the same leave-out rule as arts (Cory, 2026-11-21, Desk q-fix-sel-1).
 7. **No product names, no rating words.** No program, app or registry name in public copy; no claim of being
    reviewed, approved, "evidence-based" or rated.
 

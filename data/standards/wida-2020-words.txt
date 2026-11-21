@@ -1,0 +1,110 @@
+# source: data/standards/wida-2020.txt (the 104 official reference codes) and the framework's structure: its five standards, two modes, grade-level clusters and four key language uses.
+# version: WIDA English Language Development Standards Framework, 2020 Edition. Companion to wida-2020.txt: same ids, same order.
+# written: 2026-11-21, from the structure of each id only (standard, mode, grade-level cluster, key language use). Nothing was downloaded for this file.
+# licence: WIDA's terms at wida.wisc.edu/policies (read 2026-11-16) bar copying or modifying its content without written permission from WCER and the University of Wisconsin Board of Regents. So no framework sentence is copied or modified here, and no Language Expectation, proficiency level descriptor or indicator is restated.
+# words: after each id, a tab and one line in Curio Class's own words (ours, not WIDA's), a bare verb phrase. Every line is structural: it says what the id's standard, mode, cluster and key language use ask in general, not the framework's own expectation. The unit writer states the unit's share in unit field 2 (docs/courses/eld/APPROACH.md). Decided by Cory 2026-11-21 (Desk q-fix-eld-1).
+# use: FOR PLANNING ONLY. Never shown on a public page, never quoted in student, teacher or family copy. Public pages say "English language development standards" with the id. Plan: docs/courses/eld/STANDARD.md.
+WIDA.ELD-SI.K-3.Narrate	Use the language of class life, in talk and writing with others, to tell a story or a run of events (grades K to 3).
+WIDA.ELD-SI.K-3.Inform	Use the language of class life, in talk and writing with others, to share facts (grades K to 3).
+WIDA.ELD-SI.K-3.Explain	Use the language of class life, in talk and writing with others, to say how or why (grades K to 3).
+WIDA.ELD-SI.K-3.Argue	Use the language of class life, in talk and writing with others, to give an opinion with reasons (grades K to 3).
+WIDA.ELD-SI.4-12.Narrate	Use the language of class life, in talk and writing with others, to tell a story or a run of events (grades 4 to 12).
+WIDA.ELD-SI.4-12.Inform	Use the language of class life, in talk and writing with others, to share facts (grades 4 to 12).
+WIDA.ELD-SI.4-12.Explain	Use the language of class life, in talk and writing with others, to say how or why (grades 4 to 12).
+WIDA.ELD-SI.4-12.Argue	Use the language of class life, in talk and writing with others, to give an opinion with reasons (grades 4 to 12).
+WIDA.ELD-LA.K.Narrate.Interpretive	Listen, read and view in English language arts to make sense of a story or a run of events (kindergarten).
+WIDA.ELD-LA.K.Narrate.Expressive	Say, write or show in English language arts: a story or a run of events (kindergarten).
+WIDA.ELD-LA.K.Inform.Interpretive	Listen, read and view in English language arts to make sense of facts about a topic (kindergarten).
+WIDA.ELD-LA.K.Inform.Expressive	Say, write or show in English language arts: facts about a topic (kindergarten).
+WIDA.ELD-LA.1.Narrate.Interpretive	Listen, read and view in English language arts to make sense of a story or a run of events (grade 1).
+WIDA.ELD-LA.1.Narrate.Expressive	Say, write or show in English language arts: a story or a run of events (grade 1).
+WIDA.ELD-LA.1.Inform.Interpretive	Listen, read and view in English language arts to make sense of facts about a topic (grade 1).
+WIDA.ELD-LA.1.Inform.Expressive	Say, write or show in English language arts: facts about a topic (grade 1).
+WIDA.ELD-LA.2-3.Narrate.Interpretive	Listen, read and view in English language arts to make sense of a story or a run of events (grades 2 and 3).
+WIDA.ELD-LA.2-3.Narrate.Expressive	Say, write or show in English language arts: a story or a run of events (grades 2 and 3).
+WIDA.ELD-LA.2-3.Inform.Interpretive	Listen, read and view in English language arts to make sense of facts about a topic (grades 2 and 3).
+WIDA.ELD-LA.2-3.Inform.Expressive	Say, write or show in English language arts: facts about a topic (grades 2 and 3).
+WIDA.ELD-LA.4-5.Narrate.Interpretive	Listen, read and view in English language arts to make sense of a story or a run of events (grades 4 and 5).
+WIDA.ELD-LA.4-5.Narrate.Expressive	Say, write or show in English language arts: a story or a run of events (grades 4 and 5).
+WIDA.ELD-LA.4-5.Inform.Interpretive	Listen, read and view in English language arts to make sense of facts about a topic (grades 4 and 5).
+WIDA.ELD-LA.4-5.Inform.Expressive	Say, write or show in English language arts: facts about a topic (grades 4 and 5).
+WIDA.ELD-LA.4-5.Argue.Interpretive	Listen, read and view in English language arts to make sense of an opinion or claim about a text or topic, with reasons (grades 4 and 5).
+WIDA.ELD-LA.4-5.Argue.Expressive	Say, write or show in English language arts: an opinion or claim about a text or topic, with reasons (grades 4 and 5).
+WIDA.ELD-LA.6-8.Narrate.Interpretive	Listen, read and view in English language arts to make sense of a story or a run of events (grades 6 to 8).
+WIDA.ELD-LA.6-8.Narrate.Expressive	Say, write or show in English language arts: a story or a run of events (grades 6 to 8).
+WIDA.ELD-LA.6-8.Inform.Interpretive	Listen, read and view in English language arts to make sense of facts about a topic (grades 6 to 8).
+WIDA.ELD-LA.6-8.Inform.Expressive	Say, write or show in English language arts: facts about a topic (grades 6 to 8).
+WIDA.ELD-LA.6-8.Argue.Interpretive	Listen, read and view in English language arts to make sense of an opinion or claim about a text or topic, with reasons (grades 6 to 8).
+WIDA.ELD-LA.6-8.Argue.Expressive	Say, write or show in English language arts: an opinion or claim about a text or topic, with reasons (grades 6 to 8).
+WIDA.ELD-LA.9-12.Narrate.Interpretive	Listen, read and view in English language arts to make sense of a story or a run of events (grades 9 to 12).
+WIDA.ELD-LA.9-12.Narrate.Expressive	Say, write or show in English language arts: a story or a run of events (grades 9 to 12).
+WIDA.ELD-LA.9-12.Inform.Interpretive	Listen, read and view in English language arts to make sense of facts about a topic (grades 9 to 12).
+WIDA.ELD-LA.9-12.Inform.Expressive	Say, write or show in English language arts: facts about a topic (grades 9 to 12).
+WIDA.ELD-LA.9-12.Argue.Interpretive	Listen, read and view in English language arts to make sense of an opinion or claim about a text or topic, with reasons (grades 9 to 12).
+WIDA.ELD-LA.9-12.Argue.Expressive	Say, write or show in English language arts: an opinion or claim about a text or topic, with reasons (grades 9 to 12).
+WIDA.ELD-MA.K.Inform.Interpretive	Listen, read and view in mathematics to make sense of facts about numbers, shapes or amounts (kindergarten).
+WIDA.ELD-MA.K.Inform.Expressive	Say, write or show in mathematics: facts about numbers, shapes or amounts (kindergarten).
+WIDA.ELD-MA.1.Inform.Interpretive	Listen, read and view in mathematics to make sense of facts about numbers, shapes or amounts (grade 1).
+WIDA.ELD-MA.1.Inform.Expressive	Say, write or show in mathematics: facts about numbers, shapes or amounts (grade 1).
+WIDA.ELD-MA.2-3.Explain.Interpretive	Listen, read and view in mathematics to make sense of how a math idea or a solution works (grades 2 and 3).
+WIDA.ELD-MA.2-3.Explain.Expressive	Say, write or show in mathematics: how a math idea or a solution works (grades 2 and 3).
+WIDA.ELD-MA.2-3.Argue.Interpretive	Listen, read and view in mathematics to make sense of a math claim, with reasons that back it (grades 2 and 3).
+WIDA.ELD-MA.2-3.Argue.Expressive	Say, write or show in mathematics: a math claim, with reasons that back it (grades 2 and 3).
+WIDA.ELD-MA.4-5.Explain.Interpretive	Listen, read and view in mathematics to make sense of how a math idea or a solution works (grades 4 and 5).
+WIDA.ELD-MA.4-5.Explain.Expressive	Say, write or show in mathematics: how a math idea or a solution works (grades 4 and 5).
+WIDA.ELD-MA.4-5.Argue.Interpretive	Listen, read and view in mathematics to make sense of a math claim, with reasons that back it (grades 4 and 5).
+WIDA.ELD-MA.4-5.Argue.Expressive	Say, write or show in mathematics: a math claim, with reasons that back it (grades 4 and 5).
+WIDA.ELD-MA.6-8.Explain.Interpretive	Listen, read and view in mathematics to make sense of how a math idea or a solution works (grades 6 to 8).
+WIDA.ELD-MA.6-8.Explain.Expressive	Say, write or show in mathematics: how a math idea or a solution works (grades 6 to 8).
+WIDA.ELD-MA.6-8.Argue.Interpretive	Listen, read and view in mathematics to make sense of a math claim, with reasons that back it (grades 6 to 8).
+WIDA.ELD-MA.6-8.Argue.Expressive	Say, write or show in mathematics: a math claim, with reasons that back it (grades 6 to 8).
+WIDA.ELD-MA.9-12.Explain.Interpretive	Listen, read and view in mathematics to make sense of how a math idea or a solution works (grades 9 to 12).
+WIDA.ELD-MA.9-12.Explain.Expressive	Say, write or show in mathematics: how a math idea or a solution works (grades 9 to 12).
+WIDA.ELD-MA.9-12.Argue.Interpretive	Listen, read and view in mathematics to make sense of a math claim, with reasons that back it (grades 9 to 12).
+WIDA.ELD-MA.9-12.Argue.Expressive	Say, write or show in mathematics: a math claim, with reasons that back it (grades 9 to 12).
+WIDA.ELD-SC.K.Inform.Interpretive	Listen, read and view in science to make sense of facts about things in the natural world (kindergarten).
+WIDA.ELD-SC.K.Inform.Expressive	Say, write or show in science: facts about things in the natural world (kindergarten).
+WIDA.ELD-SC.K.Explain.Interpretive	Listen, read and view in science to make sense of how or why something in nature happens (kindergarten).
+WIDA.ELD-SC.K.Explain.Expressive	Say, write or show in science: how or why something in nature happens (kindergarten).
+WIDA.ELD-SC.1.Inform.Interpretive	Listen, read and view in science to make sense of facts about things in the natural world (grade 1).
+WIDA.ELD-SC.1.Inform.Expressive	Say, write or show in science: facts about things in the natural world (grade 1).
+WIDA.ELD-SC.1.Explain.Interpretive	Listen, read and view in science to make sense of how or why something in nature happens (grade 1).
+WIDA.ELD-SC.1.Explain.Expressive	Say, write or show in science: how or why something in nature happens (grade 1).
+WIDA.ELD-SC.2-3.Explain.Interpretive	Listen, read and view in science to make sense of how or why something in nature happens (grades 2 and 3).
+WIDA.ELD-SC.2-3.Explain.Expressive	Say, write or show in science: how or why something in nature happens (grades 2 and 3).
+WIDA.ELD-SC.2-3.Argue.Interpretive	Listen, read and view in science to make sense of a claim about a science question, with evidence (grades 2 and 3).
+WIDA.ELD-SC.2-3.Argue.Expressive	Say, write or show in science: a claim about a science question, with evidence (grades 2 and 3).
+WIDA.ELD-SC.4-5.Explain.Interpretive	Listen, read and view in science to make sense of how or why something in nature happens (grades 4 and 5).
+WIDA.ELD-SC.4-5.Explain.Expressive	Say, write or show in science: how or why something in nature happens (grades 4 and 5).
+WIDA.ELD-SC.4-5.Argue.Interpretive	Listen, read and view in science to make sense of a claim about a science question, with evidence (grades 4 and 5).
+WIDA.ELD-SC.4-5.Argue.Expressive	Say, write or show in science: a claim about a science question, with evidence (grades 4 and 5).
+WIDA.ELD-SC.6-8.Explain.Interpretive	Listen, read and view in science to make sense of how or why something in nature happens (grades 6 to 8).
+WIDA.ELD-SC.6-8.Explain.Expressive	Say, write or show in science: how or why something in nature happens (grades 6 to 8).
+WIDA.ELD-SC.6-8.Argue.Interpretive	Listen, read and view in science to make sense of a claim about a science question, with evidence (grades 6 to 8).
+WIDA.ELD-SC.6-8.Argue.Expressive	Say, write or show in science: a claim about a science question, with evidence (grades 6 to 8).
+WIDA.ELD-SC.9-12.Explain.Interpretive	Listen, read and view in science to make sense of how or why something in nature happens (grades 9 to 12).
+WIDA.ELD-SC.9-12.Explain.Expressive	Say, write or show in science: how or why something in nature happens (grades 9 to 12).
+WIDA.ELD-SC.9-12.Argue.Interpretive	Listen, read and view in science to make sense of a claim about a science question, with evidence (grades 9 to 12).
+WIDA.ELD-SC.9-12.Argue.Expressive	Say, write or show in science: a claim about a science question, with evidence (grades 9 to 12).
+WIDA.ELD-SS.K.Inform.Interpretive	Listen, read and view in social studies to make sense of facts about people, places and events (kindergarten).
+WIDA.ELD-SS.K.Inform.Expressive	Say, write or show in social studies: facts about people, places and events (kindergarten).
+WIDA.ELD-SS.1.Inform.Interpretive	Listen, read and view in social studies to make sense of facts about people, places and events (grade 1).
+WIDA.ELD-SS.1.Inform.Expressive	Say, write or show in social studies: facts about people, places and events (grade 1).
+WIDA.ELD-SS.1.Argue.Interpretive	Listen, read and view in social studies to make sense of a claim about a past or present issue, with evidence (grade 1).
+WIDA.ELD-SS.1.Argue.Expressive	Say, write or show in social studies: a claim about a past or present issue, with evidence (grade 1).
+WIDA.ELD-SS.2-3.Explain.Interpretive	Listen, read and view in social studies to make sense of how or why a past or present change happened (grades 2 and 3).
+WIDA.ELD-SS.2-3.Explain.Expressive	Say, write or show in social studies: how or why a past or present change happened (grades 2 and 3).
+WIDA.ELD-SS.2-3.Argue.Interpretive	Listen, read and view in social studies to make sense of a claim about a past or present issue, with evidence (grades 2 and 3).
+WIDA.ELD-SS.2-3.Argue.Expressive	Say, write or show in social studies: a claim about a past or present issue, with evidence (grades 2 and 3).
+WIDA.ELD-SS.4-5.Explain.Interpretive	Listen, read and view in social studies to make sense of how or why a past or present change happened (grades 4 and 5).
+WIDA.ELD-SS.4-5.Explain.Expressive	Say, write or show in social studies: how or why a past or present change happened (grades 4 and 5).
+WIDA.ELD-SS.4-5.Argue.Interpretive	Listen, read and view in social studies to make sense of a claim about a past or present issue, with evidence (grades 4 and 5).
+WIDA.ELD-SS.4-5.Argue.Expressive	Say, write or show in social studies: a claim about a past or present issue, with evidence (grades 4 and 5).
+WIDA.ELD-SS.6-8.Explain.Interpretive	Listen, read and view in social studies to make sense of how or why a past or present change happened (grades 6 to 8).
+WIDA.ELD-SS.6-8.Explain.Expressive	Say, write or show in social studies: how or why a past or present change happened (grades 6 to 8).
+WIDA.ELD-SS.6-8.Argue.Interpretive	Listen, read and view in social studies to make sense of a claim about a past or present issue, with evidence (grades 6 to 8).
+WIDA.ELD-SS.6-8.Argue.Expressive	Say, write or show in social studies: a claim about a past or present issue, with evidence (grades 6 to 8).
+WIDA.ELD-SS.9-12.Explain.Interpretive	Listen, read and view in social studies to make sense of how or why a past or present change happened (grades 9 to 12).
+WIDA.ELD-SS.9-12.Explain.Expressive	Say, write or show in social studies: how or why a past or present change happened (grades 9 to 12).
+WIDA.ELD-SS.9-12.Argue.Interpretive	Listen, read and view in social studies to make sense of a claim about a past or present issue, with evidence (grades 9 to 12).
+WIDA.ELD-SS.9-12.Argue.Expressive	Say, write or show in social studies: a claim about a past or present issue, with evidence (grades 9 to 12).

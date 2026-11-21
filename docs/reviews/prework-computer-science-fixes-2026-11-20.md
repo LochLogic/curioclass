@@ -99,3 +99,12 @@ a ban on tools grading open explanations beyond what the daily evidence already 
 7. docs/APPROACH.md opening paragraph: list the after-core subject approach pages (computer science among them).
 
 Lead, 2026-11-21: follow-ups 1 to 3 done (subjects.csv standards name, the bar lines, the four rejoined words in the statements file). Follow-up 4 needs a download of the standards PDF and waits for Cory; 5 to 7 are on the lead's list. The four questions are on the Desk (q-fix-cs-1).
+
+## Cory's answers applied (2026-11-21, Desk q-fix-cs-1)
+
+1. Default minutes and sessions: STANDARD.md section 2, the sessions line (K to 2, 32 of 30; 3 to 5, 32 of 40; 6 to 12, 64 of 45; a frame may change them with its reason; each band's scope and sequence names its short path); APPROACH.md "Pacing" points there.
+2. Swap and leave-out: STANDARD.md section 3, new bullet in PE's and the arts' wording; APPROACH.md "Sensitive ground" points there.
+3. Text language: STANDARD.md "Our own editor" names Python for grades 6 to 12, "Blocks to text" names Python at each grade step.
+4. Catalogue: STANDARD.md section 2 says the one `cs-k12` row stays, with the lead's corrected notes; no page described the old notes.
+
+APPROACH.md "Settled" lists all four; "Open for Cory" now says nothing is open.

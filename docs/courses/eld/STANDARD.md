@@ -27,7 +27,10 @@ every other course are C11, not this course (bar part 10).
   viewing; expressive: speaking, writing, representing; social and instructional language has no mode segment). Proficiency level descriptors run from level 1 to level 6.
 - **File.** data/standards/wida-2020.txt: 104 official reference codes, one Language Expectation each, ids only.
   The header says which standards, clusters and key language uses exist (WIDA writes expectations only for the most
-  prominent key language uses per cluster).
+  prominent key language uses per cluster). Its planning-only companion, data/standards/wida-2020-words.txt, gives
+  each of the 104 ids one line in our own words, written from the id's structure (standard, mode, cluster, key
+  language use) with no framework sentence copied or modified; it is never shown on a public page (Cory, 2026-11-21,
+  Desk q-fix-eld-1).
 - **Reuse terms, checked at source 2026-11-16.** wida.wisc.edu/policies: personal, non-commercial use only; no
   copying, changing or sharing without written permission from WCER and the University of Wisconsin Board of
   Regents. So: ids and our own words only. No Language Expectation, proficiency level descriptor or WIDA "can do"
@@ -75,8 +78,10 @@ every other course are C11, not this course (bar part 10).
   exception, because students need that language from the day they enter grade 4: it is owned by grade 4 and carried
   as `~` in grades 5 to 12. The gate then needs ELD in scripts/progression.py: the standards file, the anchor, and a
   cluster-to-grade map beside the span map, with the owner rule above.
-- **Newcomer strand** (settled by the expert reader, ours, untested): the first 20 days of each band, on the band's
-  SI ids and the cluster's Inform. From cluster 2-3 up only ELD-LA has an Inform id; ELD-MA, ELD-SC and ELD-SS have
+- **Newcomer strand** (ours, untested): a 20-day on-ramp beside each grade frame, not inside its 160 days (Cory,
+  2026-11-21, Desk q-fix-eld-1). A newcomer arriving at any point in the year takes it and then joins the class's
+  current unit; the frame keeps all 160 days and its host-unit pairings whole. The strand works on the grade's SI
+  ids and the cluster's Inform. From cluster 2-3 up only ELD-LA has an Inform id; ELD-MA, ELD-SC and ELD-SS have
   Inform in K and 1 only. A student moves to entry points 1 and 2 when the teacher judges the strand's
   look-fors "seen" on two days in a row, or on the school's own check where there is one.
 
@@ -96,6 +101,11 @@ every other course are C11, not this course (bar part 10).
   English.
 - **Newcomers, long-term English learners and English learners with disabilities** get named notes in every unit
   (bar item 5; California 1.23).
+- **Swapping a host text, leaving out a unit** (Cory, 2026-11-21, Desk q-fix-eld-1), the same rule as SEL, PE and
+  arts (docs/courses/arts/STANDARD.md section 5): a school or family may swap a host text for another, and the swap
+  keeps the unit's ids met; leaving out a unit means the course page and the unit's family note name the ids not
+  claimed that year. The family note for a unit whose host text is about migration, war or loss also previews the
+  topic and says how to ask for the other text (APPROACH.md, unit field 9).
 
 ## 4. What the California map adds to bar part 10
 
@@ -105,7 +115,7 @@ full on 2026-11-16. Our reading, in our own words. The map covers grades 4 to 8;
 
 | Map criterion | What it asks | Proposal |
 |---|---|---|
-| 1.23 a to j | Teach to each level and each learner type (newcomer, long-term English learner, English learners with disabilities); conversational and academic language; oral language stressed | Add "English learners with disabilities" to item 5's notes |
+| 1.23 a to j | Teach to each level and each learner type (newcomer, long-term English learner, English learners with disabilities); conversational and academic language; oral language stressed | Done: item 5 names English learners with disabilities beside newcomers and long-term English learners (Cory, 2026-11-21, Desk q-fix-eld-1) |
 | 1.26 | A designated period, entry and exit plans, checks built into the course, several entry points, all four modes joined, routines, texts from other subjects, at least two grades | Already items 7, 8 and 11; adopt "all four domains (listening, speaking, reading, writing) in every unit, across both modes" as a check |
 | 2.9 to 2.12 | New information controlled per lesson; formative checks; collaborative talk guidance | Section plan fields (APPROACH.md) |
 | 3.3 | Help telling a language need apart from a disability | Teacher page note per unit; shared with C11's "language gap or content gap" |

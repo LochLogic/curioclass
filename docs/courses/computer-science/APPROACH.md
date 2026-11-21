@@ -140,11 +140,13 @@ read by the sensitivity agent before they go live (docs/FOUNDATION.md section 7;
 - **If a student tells you something.** Computer science uses health's steps, word for word
   (docs/courses/health/APPROACH.md, "If a student tells you something"); every teacher page of an online safety or
   personal information section carries them, as PE's do (Cory, 2026-11-21, Desk q-fix-pe-1).
-- **What a school may leave out:** open for Cory.
+- **What a school may swap or leave out:** STANDARD.md section 3 (Cory, 2026-11-21, Desk q-fix-cs-1), the same rule
+  as PE and the arts.
 
 ## Pacing
 
-Each course frame states weeks, sessions a week and minutes a session. Because K to 5 meet once a week, every session
+Each course frame states weeks, sessions a week and minutes a session; the defaults and the short path are in
+STANDARD.md section 2 (Cory, 2026-11-21, Desk q-fix-cs-1). Because K to 5 meet once a week, every session
 opens with the three-minute retrieval trace and every unit ends with a respond day. Ours, untested: kindergarten to
 grade 2 spend about two thirds of the time away from a device; grades 3 to 5 about half; grades 6 to 12 at least one
 unplugged day in every unit. A K to 5 unit lets two or three ids share one anchor program, so one id is not one
@@ -165,8 +167,10 @@ read for this page: none yet; each one added is listed with how much of it was r
 - 2026-11-20 (Cory, Desk q-prework-cs-1): this page approved as the layer 3 page for computer science, with the cold
   read's fixes in.
 - 2026-11-21 (Cory, Desk q-prework-open-1): our own editor (STANDARD.md "Our own editor").
+- 2026-11-21 (Cory, Desk q-fix-cs-1): default minutes and sessions a year (STANDARD.md section 2); the swap and
+  leave-out rule (STANDARD.md section 3); Python as the text language for grades 6 to 12 (STANDARD.md "Our own
+  editor"); the one `cs-k12` catalogue row.
 
 ## Open for Cory
 
-The default minutes a session and sessions a year (Pacing); what a school may leave out (Sensitive ground); the text
-language for grades 7 to 12 (STANDARD.md "Blocks to text").
+Nothing at present.

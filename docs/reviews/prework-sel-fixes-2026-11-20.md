@@ -73,3 +73,8 @@ Counts: 17 fixed, 5 not a fault, 2 questions for Cory, 4 follow-ups for the lead
    search only.
 
 Lead, 2026-11-21: follow-up 3 done (the lens points to health's steps) and the SEL status row in follow-up 2 updated; the rest of 2, and 1 and 4, are on the lead's list. The two questions are on the Desk (q-fix-sel-1).
+
+## Cory's answers applied (2026-11-21, Desk q-fix-sel-1)
+
+1. Session arithmetic and the short path: STANDARD section 2, new bullet "How the sessions add up" (64 = four units of 11 and two of 10; 32 = four units of 5 and two of 6; grouped sub-skills, each group introduced then rehearsed; the short path joins Understanding with Fluency, makes one Application session a unit and joins Check with Respond); the "open" marker removed from "Sessions" and from section 3's opening paragraph; APPROACH "Kinds of day", the section line.
+2. Family note names the left-out ids: STANDARD section 5, item 6 (course page and family note, the arts rule); APPROACH unit field 9.

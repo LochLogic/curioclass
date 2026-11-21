@@ -82,3 +82,10 @@ Counts: 19 fixed, 2 not a fault (one of them settled), 4 questions, 5 follow-ups
    checks them before any is published.
 
 Lead, 2026-11-21: follow-up 2 done (the bar's ELD row); 1, 3, 4 and 5 are on the lead's list. The four questions are on the Desk (q-fix-eld-1).
+
+## Cory's answers applied (2026-11-21, Desk q-fix-eld-1)
+
+1. Newcomer strand: a 20-day on-ramp beside each grade frame, frame keeps 160 days and its pairings. STANDARD section 2, Newcomer strand; APPROACH, Sensitive ground (Reads line).
+2. Swap and leave-out, as SEL, PE and arts, plus the family-note preview for migration, war or loss host texts. STANDARD section 3 (new bullet, arts wording); APPROACH, unit field 9.
+3. English learners with disabilities in bar item 5. docs/ADOPTION-BAR-SUBJECTS.md part 10 item 5; STANDARD section 4, 1.23 row marked done.
+4. Planning-only own-words file for all 104 ids, written from structure only. New data/standards/wida-2020-words.txt (header in the arts words file style); pointed to from STANDARD section 1 (File) and APPROACH unit field 2.

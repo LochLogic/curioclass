@@ -60,7 +60,8 @@ where one is needed this page recommends and says so.
 ## 2. How the standards map to our courses
 
 Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per grade, K to 12, 13 courses under the
-`cs-k12` track.
+`cs-k12` track. The catalogue keeps that one `cs-k12` row, noted "2026 CSTA PK-12 standards; one course per grade
+K-12" (Cory, 2026-11-21, Desk q-fix-cs-1).
 
 | Our course | CSTA band | Ids | Note |
 |---|---|---|---|
@@ -69,7 +70,7 @@ Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): one course per g
 | Computer Science, grades 6, 7 and 8 (one course each) | MS | 45 across the three | CSTA writes one band and no grade split; the progression gives each id one owner grade (see "Ownership of MS and HS ids") |
 | Computer Science, grades 9 to 12 (one course each) | HS Foundational | 46 across the four | One owner grade each, by the same rule; Specialty ids claimed only where a unit already goes that far (Cory, 2026-11-11) |
 
-Sessions a week: one in K to 5 (a specials rotation), two to three in 6 to 12 (a real elective). Settled 2026-11-16 (Cory, Desk card q-later-followups-1). Minutes a session and sessions a year are not yet set (open for Cory; APPROACH.md "Pacing").
+Sessions a week: one in K to 5 (a specials rotation), two to three in 6 to 12 (a real elective). Settled 2026-11-16 (Cory, Desk card q-later-followups-1). Defaults (Cory, 2026-11-21, Desk q-fix-cs-1): K to 2, 32 sessions of 30 minutes; 3 to 5, 32 of 40; 6 to 12, 64 of 45 (two a week) for each year. A course frame may change them with its reason, as PE's defaults allow, and each band's scope and sequence names its short path (bar C2). Why two a week in 6 to 12: each high school year owns only 10 to 12 ids, and three a week would push the days outside the standards past the bar's 10 percent limit.
 
 **Ownership of MS and HS ids.** The course progression (layer 4, docs/PRODUCTION-PATH.md), not the scope and sequence,
 places each MS and HS id in exactly one grade that owns it: the grade where students are first taught it to the depth
@@ -108,6 +109,10 @@ alone.
 ## 3. What is left out, and why
 
 - Pre-K: no Curio Class course. The EK set is taught whole in kindergarten.
+- What a school may swap or leave out (Cory, 2026-11-21, Desk q-fix-cs-1; the same rule as PE and the arts): a school
+  may swap or leave out a named unit for its community's reasons. Each course page names these units, and it claims no
+  standard that no remaining unit teaches; leaving out a unit means the course page and the unit's family note name
+  the ids not claimed that year.
 - Specialty II in the Foundational course (see above), and Specialty courses as courses (not on the list).
 - The X + CS standards (XCS) as computer science days: they describe computer science inside other subjects, so
   they are leans for those subjects' units, not this course's.
@@ -170,14 +175,16 @@ the course marks the id "part met" where a school has none.
 
 Settled (Cory, 2026-11-21, Desk q-prework-open-1): build one small browser editor of our own (blocks and a
 text view, with a step-through trace), a single file with no account, starting with grades 3 to 5, rather than pointing
-teachers to a third-party tool. The text language for grades 7 to 12 is the one this editor runs; it is not yet named
-(open for Cory).
+teachers to a third-party tool. The text language for grades 6 to 12 is Python, run in this editor (Cory, 2026-11-21,
+Desk q-fix-cs-1): the K to 8 partial base teaches Python in its middle years, so its units adapt directly, and it is
+the most common first text language in high school.
 
 ### Blocks to text
 
-Kindergarten to grade 5: block code with a text view of the same program. Grade 6: blocks and text side by side. Grade 7:
-text for new programs, blocks as a stand-in. Grade 8 on: text. One text language for grades 7 to 12, named as a subject
-term on teacher pages, chosen so it runs in a common browser with nothing installed. Ours, untested.
+Kindergarten to grade 5: block code with a text view of the same program. Grade 6: blocks and Python text side by
+side. Grade 7: written Python for new programs, blocks as a stand-in. Grade 8 on: Python. Python is named as a subject
+term on teacher pages and runs in our own editor in a common browser with nothing installed. The language is Cory's
+(above); the grade steps are ours, untested.
 
 ### Privacy and safety
 

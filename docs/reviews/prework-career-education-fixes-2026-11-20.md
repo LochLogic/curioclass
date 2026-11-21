@@ -78,3 +78,17 @@ Counts: 20 fixed (one of them a settled call the page now states clearly), 1 not
 - docs/COURSES-STATUS.md shows three career courses; regenerate after the L90 retag.
 
 Lead, 2026-11-21: the bar's career row updated (part of the bar follow-up); the rest are on the lead's list. The five questions are on the Desk (q-fix-career-1).
+
+## Cory's answers applied (2026-11-21, Desk q-fix-career-1)
+
+1. Leave-out with a same-cluster swap: STANDARD.md section 5 (new bullet, the six sub-clusters, ids named as not
+   claimed on the course page and family note); APPROACH.md unit field 9 names the left-out ids; "Sensitive ground"
+   points to section 5.
+2. Health's "If a student tells you something" steps: STANDARD.md section 6 (new bullet, four sections plus the
+   pay-gap unit); APPROACH.md section field 1 (teacher page).
+3. Family note question widened (any trusted adult, an invented worker, a public interview or profile): APPROACH.md
+   unit field 9; STANDARD.md section 6 (new bullet).
+4. Placement rule for the guidelines' indicators: STANDARD.md section 3, "Ownership" (replaces "owned the same way");
+   adult-only indicators listed in section 5.
+5. Typical grades 8 and 10: STANDARD.md intro, section 3 table, settled-year paragraph, "Course list" and
+   "Ownership" (owner grade = typical grade); APPROACH.md "Questions in this draft". L90 retag still held.

@@ -484,8 +484,8 @@ that PRIME criterion; a criterion with none is California's or ours.
    or phrase. [Depth.ELD, Depth.LE, Depth.PLD]
 4. [I] Each unit plans structured talk, with frames, including the language of working together: routines, asking,
    agreeing and disagreeing, negotiating, solving a problem as a group. [Match.ELD.1, Match.ELD.2-5, Depth.ELD]
-5. [I] Work is set at more than one proficiency level, with notes for newcomers and long-term English learners.
-   [Match.PLD, Depth.PLD]
+5. [I] Work is set at more than one proficiency level, with notes for newcomers, long-term English learners and
+   English learners with disabilities (California 1.23; Cory, 2026-11-21, Desk q-fix-eld-1). [Match.PLD, Depth.PLD]
 6. [I] The home language, culture and experience of the student are used as a help and a way into the content.
    [Match.ELD.1, Depth.ELD]
 7. [I] Progress checks are tied to the language standard, with more than one point of entry and exit. Growth is

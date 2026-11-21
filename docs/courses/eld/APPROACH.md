@@ -43,7 +43,7 @@ Proposed, to be tried on the first ELD unit plans (after the gate):
 
 - Header: days by kind; minutes; the host unit (course and unit) the content comes from.
 - Unit field 2 (standards, limits, and what is carried): the ELD standard ids the unit plans to (our own words for
-  each, both modes named); the key language use; the forms and words taught; the limits (what this unit leaves to a
+  each, both modes named, starting from the planning-only data/standards/wida-2020-words.txt); the key language use; the forms and words taught; the limits (what this unit leaves to a
   later unit or cluster); what is carried (frames, word cards) and the day each is withdrawn.
 - Unit field 3 (where it sits): builds on (the same standard and key language use in an earlier unit this year or in
   the year before, never skipping a grade, handoff strong or weak; where a key language use first appears in a
@@ -67,7 +67,9 @@ Proposed, to be tried on the first ELD unit plans (after the gate):
 - Unit field 8 (tools and supplies): word cards, frames and the model text by title and record; no product or
   program names; the setting (a mixed group in one room, or a pull-out group).
 - Unit field 9 (family note): in English and Spanish: the language goal in plain words, the frame the class uses, and
-  one thing to try at home in any language the family chooses.
+  one thing to try at home in any language the family chooses. For a unit whose host text is about migration, war or
+  loss, the note previews the topic and says how to ask for the other text; a left-out unit's note names the ids not
+  claimed that year (the swap and leave-out rule, STANDARD.md section 3; Cory, 2026-11-21, Desk q-fix-eld-1).
 - Unit field 10 (sources): what was read and how much, what is from memory, no claim of effect, and a line pointing
   to the course logic model (C16).
 - Section field 1 (standards and practices): the section's share of the unit's ELD standard ids (our own words) and
@@ -126,8 +128,8 @@ carries health's steps (docs/courses/health/APPROACH.md, "If a student tells you
 too.
 
 **Reads.** A fresh-agent sensitivity read (brief kind `sensitivity`; community: multilingual learners and immigrant
-families) of every host text about migration, war, loss or the student's own group, the newcomer strand's first
-units, and the family notes, before a unit uses them; the Spanish notes also get a `spanish` read (Cory, 2026-11-21).
+families) of every host text about migration, war, loss or the student's own group, the newcomer strand (a 20-day
+on-ramp beside each grade frame, STANDARD.md section 2), and the family notes, before a unit uses them; the Spanish notes also get a `spanish` read (Cory, 2026-11-21).
 
 ## What a tool may and may not do
 

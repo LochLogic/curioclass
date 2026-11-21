@@ -5,8 +5,8 @@ second-model read and calibration findings fixed 2026-11-21 (docs/reviews/prewor
 
 Written 2026-11-16 as the subject's pre-work (docs/PRODUCTION-PATH.md, "After the core subjects"; the owed row in
 docs/ADOPTION-BAR-SUBJECTS.md, "Before a scope and sequence in this subject"). The model is
-docs/courses/social-studies/STANDARD.md. Two courses: Career Exploration (`cte-explore`, one year in grade 7 or 8) and
-Career Pathways (`cte-pathways`, one year in grade 9 or 10), section 3. Personal finance is not a course: Economics teaches it, lightly
+docs/courses/social-studies/STANDARD.md. Two courses: Career Exploration (`cte-explore`, one year, typically grade 8) and
+Career Pathways (`cte-pathways`, one year, typically grade 10), section 3. Personal finance is not a course: Economics teaches it, lightly
 integrated (Cory, 2026-11-14), so it is not planned here.
 
 ## The owed row, and where it stands
@@ -58,12 +58,12 @@ courses (Cory, 2026-11-21). The PDF is saved in S:\CurioClass-sources\career-edu
 
 | Course | Clusters | Practices | Plan and tasks |
 |---|---|---|---|
-| Career Exploration, grade 7 or 8 | All 14 clusters surveyed, with a sub-cluster in each studied through real jobs and data | All 12 introduced, each practised in a task | An interest and strengths inventory, a first education and career plan, a job study with labour market figures, a short interview practice |
-| Career Pathways, grade 9 or 10 | Two or three clusters the student picks, studied at sub-cluster depth, with a program of study (courses, training, credentials) | All 12 practised on field tasks | A full plan to a first credential, a resume, a mock interview, a portfolio, an applied project from a chosen field defended with data |
+| Career Exploration, typically grade 8 | All 14 clusters surveyed, with a sub-cluster in each studied through real jobs and data | All 12 introduced, each practised in a task | An interest and strengths inventory, a first education and career plan, a job study with labour market figures, a short interview practice |
+| Career Pathways, typically grade 10 | Two or three clusters the student picks, studied at sub-cluster depth, with a program of study (courses, training, credentials) | All 12 practised on field tasks | A full plan to a first credential, a resume, a mock interview, a portfolio, an applied project from a chosen field defended with data |
 
 Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): each course is one year (Career Exploration in
-grade 7 or 8, Career Pathways in grade 9 or 10), at two or three sessions a week. The frames say which grade and
-how many sessions.
+grade 7 or 8, Career Pathways in grade 9 or 10), at two or three sessions a week. The typical grades are 8 and 10
+(see "Course list"); the frames say how many sessions.
 
 **Pathways' width** (Cory, 2026-11-21: go broad, so students see more of what is open to them, even though it is
 harder to keep current). Pathways builds field tasks and a dated data sheet for all 14 clusters, and a student
@@ -71,22 +71,28 @@ chooses two or three of them. Any of the 72 sub-clusters is open through its clu
 task template. Each data sheet carries its date and a line telling the teacher to check the figures that year.
 
 **Course list** (settled by the expert reader, 2026-11-20). Two courses: `cte-explore` (grades 6 to 8 in the
-catalogue, taught in grade 7 or 8) and `cte-pathways` (grades 9 to 12, taught in grade 9 or 10). Personal finance is
+catalogue, typical grade 8) and `cte-pathways` (grades 9 to 12, typical grade 10). The catalogue's typical grades are
+set to 8 and 10 (Cory, 2026-11-21, Desk q-fix-career-1); a frame may place a course a year earlier with a reason
+(section 7). Personal finance is
 not a course (Economics, 2026-11-14). The progression file is data/progressions/cte.csv (subject code `cte`). The
 catalogue's personal finance row and the five tool modules tagged to Exploration (three personal finance, two
 economics) are retagged to Economics, and "personal finance" leaves the subject description (Cory, 2026-11-21);
-the catalogue edit is a later step (data/plans/later.csv).
+that catalogue edit is a later step (data/plans/later.csv L90).
 
 **Ownership** (settled by the expert reader, ours, untested). The progression has one row per owned item. For the gate,
-a course's owner grade is its later grade (Exploration 8, Pathways 10), as health and physical education use the span's
-last grade; the frame may place a course a year earlier with a reason. Exploration owns the 14 clusters and 14 named
+a course's owner grade is its typical grade (Exploration 8, Pathways 10), as health and physical education use the
+span's last grade; the frame may place a course a year earlier with a reason. Exploration owns the 14 clusters and 14 named
 sub-clusters, one per cluster, fixed in the frame (Cory, 2026-11-21: a smaller number here, as long as breadth is
 given somewhere). Pathways gives the breadth: it owns the other 58 sub-clusters, each met through its cluster's field
 tasks and data sheet, so no sub-cluster is excluded (Cory, 2026-11-21). Owned here
 means the course supplies each sub-cluster's teaching, task and check for the students who choose its cluster; one
 student meets the sub-clusters of the two or three clusters chosen, and the course page says so. The 12 practices
 are owned by Exploration, where each is first taught in a task, and Pathways carries each as a `~` row with the field
-task that practises it at higher demand. The learner goals, once loaded, are owned the same way.
+task that practises it at higher demand. Placement rule for the learner goals (Cory, 2026-11-21, Desk q-fix-career-1),
+the same rule as for the 12 practices: when the 2024 National Career Development Guidelines indicators are loaded,
+each indicator is owned in the course where it is first taught (Exploration, grade 8, or Pathways, grade 10), carried
+in Pathways as a `~` row where Exploration owns it, and an indicator written only for adults already at work is left
+out with a reason (section 5).
 
 **Handoffs** (ours, untested). Each Pathways `~` practice row assumes Exploration's row for that practice, and each
 Pathways sub-cluster row assumes its cluster's row in Exploration, with the matching `hands_on` at the other end. The
@@ -122,6 +128,12 @@ The course page says this plainly. A school adds:
   after an employer's money and materials and comparing a wage with costs, with the grade 7 math leans in section 7,
   and leans on no Economics row.
 - The older 16-cluster framework (superseded; noted in the file).
+- Learner-goal indicators written only for adults already at work, each with its reason (section 3).
+- What a school or family may leave out (Cory, 2026-11-21, Desk q-fix-career-1), as for SEL, physical education
+  and the arts: a unit on a sensitive sub-cluster (Military and National Security, Behavioral and Mental Health,
+  Emergency Response, Judicial Systems, Public Safety, Resource Extraction). Every cluster has other sub-clusters, so
+  a swap to one of the same cluster is offered; leaving out a unit means the course page and the unit's family note
+  name its ids as not claimed that year.
 
 ## 6. Sensitive ground
 
@@ -140,6 +152,13 @@ Job models use invented workers drawn from many groups, and a student's own resu
   Judicial Systems and Public Safety (violence, force, trauma), Resource Extraction and Environmental Protection (a
   live public dispute), Entrepreneurship and Regulation (political). Financial Services is taught as a cluster like
   any other (its jobs, training and tasks); only personal finance is Economics'.
+- **If a student tells you something** (Cory, 2026-11-21, Desk q-fix-career-1): every section on Behavioral and
+  Mental Health, Emergency Response, Judicial Systems or Public Safety, and every section of the pay-gap unit, carries
+  health's steps on its teacher page (docs/courses/health/APPROACH.md, "If a student tells you something"), as SEL,
+  physical education and the arts do.
+- **The family note's question** (Cory, 2026-11-21, Desk q-fix-career-1): the question about a person's own work may
+  be asked of a family member or instead of any trusted adult, answered for an invented worker, or answered from a
+  public interview or profile, so no student is made to reveal a family's work status (APPROACH.md, unit field 9).
 - **Interview and resume tasks:** no question an employer may not lawfully ask, and no mock interview that asks a
   student something private.
 - **Hands-on tasks:** on paper or a simulation unless the school adds the lab; the unit's tools line names the safety

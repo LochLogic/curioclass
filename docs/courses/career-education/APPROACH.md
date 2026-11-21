@@ -54,15 +54,19 @@ equipment follows STANDARD.md section 6 ("Hands-on tasks").
 - Unit field 8 (tools and supplies): see "What a tool may and may not do"; every tool day has a paper path; any task
   with equipment names its safety step (STANDARD.md section 6).
 - Unit field 9 (family note): in English and Spanish: what the unit explores, what a student may take home (the job
-  card, the plan page), one question to ask a family member about their own work, and a line that sharing is the
-  student's choice.
+  card, the plan page), one question about a person's own work, to ask a family member or instead any trusted adult,
+  or to answer for an invented worker or from a public interview or profile, so no student is made to reveal a
+  family's work status (Cory, 2026-11-21, Desk q-fix-career-1); a line that sharing is the student's choice; and,
+  for a unit the school leaves out, its ids not claimed that year (STANDARD.md section 5).
 - Unit field 10 (sources): a sources table (read status, what is from memory), the data sources with their year, and
   a line that no study stands behind the course and that the logic model is on the course page (C16).
 - Section field 1: the id of the cluster, sub-cluster, practice or learner goal, the share of it the section carries,
   what the student does in our own words (cluster ids are names, not verbs, and the practice text is never quoted,
   STANDARD.md section 1), and the data source with its year. The teacher's note on the field (what the work is,
   training routes, conditions) goes in the section's before-you-teach text, with any note STANDARD.md section 6 asks
-  for on a cluster it names.
+  for on a cluster it names. A section on Behavioral and Mental Health, Emergency Response, Judicial Systems or Public
+  Safety, or in the pay-gap unit, carries health's steps on its teacher page (docs/courses/health/APPROACH.md, "If a
+  student tells you something"; Cory, 2026-11-21, Desk q-fix-career-1).
 - Section field 2 (where it sits): what comes just before and just after; the readiness items it uses, and where its
   own results go.
 - Section field 3: the numbers of the end-of-unit assessment items this section owns, then each day's evidence in the
@@ -94,7 +98,9 @@ answers off the device, score a person, or tell a student what job to do.
 
 ## Sensitive ground
 
-See STANDARD.md section 6: what no task asks, the paths, the clusters that touch other subjects, and the reads.
+See STANDARD.md section 6: what no task asks, the paths, the clusters that touch other subjects, the steps when a
+student tells you something, the family note's question, and the reads. What a school or family may leave out, with
+the same-cluster swap, is STANDARD.md section 5.
 
 ## Pacing
 
@@ -116,4 +122,5 @@ data sources (public domain labour statistics, CC BY occupational data). No clai
 
 - Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): the 2024 national career development guidelines
   as learner goals, our own as the fallback; each course one year (Exploration grade 7 or 8, Pathways 9 or 10), two
-  or three sessions a week (STANDARD.md sections 2 and 3).
+  or three sessions a week (STANDARD.md sections 2 and 3). Typical grades 8 and 10 (Cory, 2026-11-21, Desk
+  q-fix-career-1).

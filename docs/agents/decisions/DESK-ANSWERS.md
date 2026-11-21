@@ -1681,3 +1681,39 @@ media-arts-9-12), none core; module ids and worksheet unit ids are kept. (5) Hig
 course page names its national association's recommended weekly time, once read at source, and our gap. (6) No arts
 task asks about a student's own diet, weight or body; every personal-tie task has an invented or public option;
 sections carry health's steps for when a student tells you something (arts APPROACH.md).
+
+## 2026-11-21: Computer science fix pass calls (q-fix-cs-1)
+
+Cory took all four recommended picks. (1) Default doses, ours and untested: K to 2 32 sessions of 30 minutes, 3 to 5
+32 of 40, 6 to 12 64 of 45; a frame may change them with a reason. (2) Leave-out follows PE and arts. (3) The text
+language for grades 6 to 12 is Python, in Curio Class's own browser editor. (4) One cs-k12 catalogue row stays, its
+notes corrected to the 2026 standards.
+
+## 2026-11-21: SEL fix pass calls (q-fix-sel-1)
+
+Cory took both recommended picks. (1) SEL keeps 64 sessions a year and the 32-session short path; related sub-skills
+are grouped so every session rehearses, and the short path keeps all six units with fewer sessions each. (2) SEL
+family notes name a left-out unit's ids, as arts does.
+
+## 2026-11-21: Library fix pass calls (q-fix-library-1)
+
+(1) Cory: ids that belong to other subjects must reach the subject they belong to and not be dropped; this is part of
+cross-curricular work. Each of the seven library ids is checked at source and either kept in library or placed in the
+receiving subject's pages. (2) The library row in data/courses.csv becomes eight rows (library-k, library-1 to
+library-5, library-6-8, library-9-12). (3) Leave-out follows SEL, PE and arts, and K to 5 case sets stay neutral. (4)
+Yes to downloading and reading the national school library standards PDF and the continuum band files.
+
+## 2026-11-21: ELD fix pass calls (q-fix-eld-1)
+
+Cory took all four recommended picks. (1) The 20-day newcomer strand is an on-ramp beside each grade frame; the frame
+keeps its 160 days. (2) ELD follows the shared leave-out and swap rule, and a unit whose host text is about
+migration, war or loss previews it in the family note with how to ask for the other text. (3) Bar item 5 (part 10)
+names English learners with disabilities. (4) A planning-only own-words file for all 104 WIDA ids.
+
+## 2026-11-21: Career education fix pass calls (q-fix-career-1)
+
+Cory took all five recommended picks. (1) A sensitive sub-cluster unit may be left out, with a same-cluster swap and
+its ids named as not claimed. (2) Flagged sections and the pay-gap unit point to health's disclosure steps. (3) The
+family work question gets invented, public and trusted-adult options. (4) Guideline indicators are owned where first
+taught, carried in Pathways, and adult-only ones left out with a reason. (5) Typical grades: cte-explore 8,
+cte-pathways 10.

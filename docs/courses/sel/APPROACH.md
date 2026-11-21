@@ -27,8 +27,9 @@
 | Check | The end-of-unit assessment: a rehearsal against a look-for list and scenario items (what would a good next step be, and why). |
 | Respond | Return to the skill where the checks showed gaps: reteach the steps, then rehearse again. |
 
-A section is usually two to four sessions at the minutes in STANDARD section 2: one Understanding, then Fluency and
-Application, often in the same session in K to 2.
+A section is one group of related sub-skills, two or three a unit, three or four sessions on the full year and one
+or two on the short path (STANDARD section 2, "How the sessions add up"; Cory, 2026-11-21, Desk q-fix-sel-1): one
+Understanding, then Fluency and Application, often in the same session in K to 2.
 
 ## Daily evidence
 
@@ -73,7 +74,8 @@ as UNIT-PLAN.md writes it; the lines below add only what SEL fills, under UNIT-P
   (bar item 5). The teacher's fidelity checklist is a
   paper page: did the session run as planned, and which part was cut.
 - Unit field 9 (family note): in English and Spanish: the skill's name and steps, the words the class uses, and one
-  thing to try at home (the family activity).
+  thing to try at home (the family activity). Where a school leaves a unit out, that unit's family note names
+  the sub-skill ids the year then does not cover (STANDARD section 5, item 6; Cory, 2026-11-21, Desk q-fix-sel-1).
 - Unit field 10 (sources): a sources table with what was read and how much, what is from memory, no claim of effect,
   what is still to make, and a line pointing to the course-level logic model (C16).
 - Section field 1 (what the teacher page must explain), so every unit's teacher pages open with it: before you
