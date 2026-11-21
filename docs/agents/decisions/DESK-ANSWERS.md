@@ -1657,3 +1657,15 @@ subjects with the new brief and passed in each, docs/reviews/calibration-<subjec
 
 Health becomes four band courses in data/courses.csv: health-k-2, health-3-5, health-6-8 and health-9-12 (one
 semester, typically grade 9), as SEL and ELD were split. Module ids and worksheet unit ids are kept (later.csv L90).
+
+## 2026-11-21: PE fix pass calls (q-fix-pe-1)
+
+Cory took all four recommended picks. (1) PE becomes four band courses in data/courses.csv: pe-k-2, pe-3-5, pe-6-8
+and pe-9-12 (grades 9 and 10 required, 11 and 12 electives), as health, SEL and ELD were split; module ids and
+worksheet unit ids are kept, and the 6 to 12 peer coaching module gets a 9 to 12 twin. (2) A school or family may
+swap or leave out a named PE unit or activity, and the course page then claims no standard no remaining unit teaches
+(PE STANDARD.md 5). (3) PE teacher pages carry health's disclosure steps, changing follows school policy with no one
+changing in front of others, and PE hazard units get a safety read (PE APPROACH.md, "Sensitive ground";
+docs/FOUNDATION.md section 7). (4) Dose defaults, ours and untested: K to 2 80 x 30 minutes, 3 to 5 80 x 35, 6 to 8
+96 x 45, 9 to 12 80 x 45 per year taken, short paths 60 to 64; a frame may change them with a reason (PE APPROACH.md,
+"Pacing").

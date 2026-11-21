@@ -48,6 +48,8 @@ after the fixes.
 
 ## Questions for Cory
 
+All four answered 2026-11-21 (Desk q-fix-pe-1): the recommended pick each time, applied the same day.
+
 1. Catalogue rows (item 21): split the single k-12 pe row in data/courses.csv into four band rows (pe-k-2, pe-3-5,
    pe-6-8, pe-9-12, one frame per grade year, grades 11 and 12 electives), as was done for SEL and ELD.
 2. Leave-out (item 10): may a school or family leave out a PE unit, and which (in-water tasks are already the

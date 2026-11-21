@@ -150,12 +150,20 @@ live (docs/FOUNDATION.md section 7; docs/pipeline/briefs/sensitivity-read.md).
 - **Gender.** No activity is split by gender, and the language is gender neutral (STANDARD.md 4).
 - **Emotions.** Calming steps are offered, never a punishment, and a student may step out for a reset with a role.
   PE does not treat mental health conditions; the teacher page names the school counselor.
+- **If a student tells you something.** PE uses health's steps, word for word (docs/courses/health/APPROACH.md, "If
+  a student tells you something"); every PE teacher page carries them (Cory, 2026-11-21, Desk q-fix-pe-1).
+- **Changing clothes.** Changing follows the school's own policy, and no task asks a student to change in front of
+  others (Cory, 2026-11-21, Desk q-fix-pe-1).
+- **Hazards.** A unit with striking tools, mats, climbing, resistance training or an outdoor trip is read by the
+  safety agent before it goes live (docs/FOUNDATION.md section 7; Cory, 2026-11-21, Desk q-fix-pe-1).
 
 ## Pacing
 
 Settled 2026-11-16 (Cory, Desk card q-later-arts-health-pe): elementary PE (K to 5) is about 2 to 3 sessions a week.
-Middle and high school PE minutes vary widely by school; each band frame states its sessions a year and their
-length, and each band's scope and sequence names its short path (bar C2). The course says openly (Cory, 2026-11-20,
+Middle and high school PE minutes vary widely by school. Defaults (ours, untested; Cory, 2026-11-21, Desk
+q-fix-pe-1): K to 2, 80 sessions of 30 minutes; 3 to 5, 80 of 35; 6 to 8, 96 of 45; 9 to 12, 80 of 45 for each year
+taken; short paths of 60 to 64 sessions. A band frame may change these with its reason, and each band's scope and
+sequence names its short path (bar C2). The course says openly (Cory, 2026-11-20,
 Desk q-prework-health-pe-1) that 2 to 3 sessions a week is below the weekly minutes the national body recommends:
 SHAPE America's guidelines (shapeamerica.org/standards/guidelines) set 150 minutes a week in elementary school and
 225 in middle and high school, for the whole year. The course page, the teacher page and the family note offer

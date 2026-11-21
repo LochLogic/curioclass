@@ -34,7 +34,10 @@ health-k-2,health-pe,"Health, grades K to 2",k-2,,y,"NHES; four courses, one per
 health-3-5,health-pe,"Health, grades 3 to 5",3-5,,y,"NHES; four courses, one per band; one frame per grade year (Cory, 2026-11-21)"
 health-6-8,health-pe,"Health, grades 6 to 8",6-8,,y,"NHES; four courses, one per band; one frame per grade year (Cory, 2026-11-21)"
 health-9-12,health-pe,"Health, grades 9 to 12",9-12,9,y,"NHES; four courses, one per band; one semester course, typically taken in grade 9 (Cory, 2026-11-21)"
-pe,health-pe,Physical Education,k-12,,y,
+pe-k-2,health-pe,"Physical Education, grades K to 2",k-2,,y,"SHAPE; four courses, one per band; one frame per grade year (Cory, 2026-11-21)"
+pe-3-5,health-pe,"Physical Education, grades 3 to 5",3-5,,y,"SHAPE; four courses, one per band; one frame per grade year (Cory, 2026-11-21)"
+pe-6-8,health-pe,"Physical Education, grades 6 to 8",6-8,,y,"SHAPE; four courses, one per band; one frame per grade year (Cory, 2026-11-21)"
+pe-9-12,health-pe,"Physical Education, grades 9 to 12",9-12,,y,"SHAPE; four courses, one per band; one frame per grade year; grades 9 and 10 required, 11 and 12 electives (Cory, 2026-11-20 and 2026-11-21)"
 cs-k12,computer-science,Computer Science,k-12,,n,CSTA bands K-2 3-5 6-8 9-10 11-12
 spanish,world-languages,Spanish (proficiency levels),k-12,,n,Modules keyed by level not grade
 french,world-languages,French (proficiency levels),6-12,,n,Same level modules as Spanish; language-specific content added in Phase 2

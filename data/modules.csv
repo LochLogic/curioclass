@@ -253,14 +253,14 @@ health-pe-9-12-nutrition-and-fitness-planning,health-pe,9-12,health-9-12,Health,
 health-pe-9-12-first-aid-and-cpr,health-pe,9-12,health-9-12,Health,First Aid and CPR,Emergency response basics,NHES.S7,NHES-2024,electives.txt
 health-pe-9-12-accessing-valid-health-information,health-pe,9-12,health-9-12,Health,Accessing Valid Health Information,"Evaluate sources, products and services",NHES.S3;NHES.S2,NHES-2024,electives.txt
 health-pe-9-12-mental-health-and-wellness,health-pe,9-12,health-9-12,Health,Mental Health and Wellness,"Disorders, stigma and supporting others",NHES.S1;NHES.S8;NHES.S4,NHES-2024,electives.txt
-health-pe-k-2-locomotor-skills,health-pe,k-2,pe,Physical Education,Locomotor Skills,"Running, hopping, skipping and galloping",SHAPE.S1,SHAPE-PE-2024,electives.txt
-health-pe-k-2-throwing-and-catching,health-pe,k-2,pe,Physical Education,Throwing and Catching,Manipulative skill basics,SHAPE.S1,SHAPE-PE-2024,electives.txt
-health-pe-3-5-game-strategies,health-pe,3-5,pe,Physical Education,Game Strategies,"Offense, defense and space in games",SHAPE.S2;SHAPE.S3,SHAPE-PE-2024,electives.txt
-health-pe-3-5-fitness-components,health-pe,3-5,pe,Physical Education,Fitness Components,"Cardio, strength, flexibility and heart rate",SHAPE.S2,SHAPE-PE-2024,electives.txt
-health-pe-6-8-sport-skills-and-rules,health-pe,6-8,pe,Physical Education,Sport Skills and Rules,"Invasion, net and striking games",SHAPE.S1;SHAPE.S2,SHAPE-PE-2024,electives.txt
-health-pe-6-8-personal-fitness-plans,health-pe,6-8,pe,Physical Education,Personal Fitness Plans,Set goals and track activity,SHAPE.S2;SHAPE.S4,SHAPE-PE-2024,electives.txt
-health-pe-9-12-lifetime-fitness,health-pe,9-12,pe,Physical Education,Lifetime Fitness,Design and evaluate a personal fitness program,SHAPE.S2;SHAPE.S4,SHAPE-PE-2024,electives.txt
-health-pe-9-12-sportsmanship-and-leadership,health-pe,9-12,pe,Physical Education,Sportsmanship and Leadership,Responsible behavior and teamwork,SHAPE.S3,SHAPE-PE-2024,electives.txt
+health-pe-k-2-locomotor-skills,health-pe,k-2,pe-k-2,Physical Education,Locomotor Skills,"Running, hopping, skipping and galloping",SHAPE.S1,SHAPE-PE-2024,electives.txt
+health-pe-k-2-throwing-and-catching,health-pe,k-2,pe-k-2,Physical Education,Throwing and Catching,Manipulative skill basics,SHAPE.S1,SHAPE-PE-2024,electives.txt
+health-pe-3-5-game-strategies,health-pe,3-5,pe-3-5,Physical Education,Game Strategies,"Offense, defense and space in games",SHAPE.S2;SHAPE.S3,SHAPE-PE-2024,electives.txt
+health-pe-3-5-fitness-components,health-pe,3-5,pe-3-5,Physical Education,Fitness Components,"Cardio, strength, flexibility and heart rate",SHAPE.S2,SHAPE-PE-2024,electives.txt
+health-pe-6-8-sport-skills-and-rules,health-pe,6-8,pe-6-8,Physical Education,Sport Skills and Rules,"Invasion, net and striking games",SHAPE.S1;SHAPE.S2,SHAPE-PE-2024,electives.txt
+health-pe-6-8-personal-fitness-plans,health-pe,6-8,pe-6-8,Physical Education,Personal Fitness Plans,Set goals and track activity,SHAPE.S2;SHAPE.S4,SHAPE-PE-2024,electives.txt
+health-pe-9-12-lifetime-fitness,health-pe,9-12,pe-9-12,Physical Education,Lifetime Fitness,Design and evaluate a personal fitness program,SHAPE.S2;SHAPE.S4,SHAPE-PE-2024,electives.txt
+health-pe-9-12-sportsmanship-and-leadership,health-pe,9-12,pe-9-12,Physical Education,Sportsmanship and Leadership,Responsible behavior and teamwork,SHAPE.S3,SHAPE-PE-2024,electives.txt
 computer-science-k-step-by-step,computer-science,k,cs-k12,Algorithms and Programming,Step-by-Step,Follow and create sequences of commands; spot a step that goes wrong,EK-ALG-PS-01;EK-PRO-PD-04;EK-PRO-TR-07;EK-PRO-RD-06,CSTA-2026,electives.txt
 computer-science-k-count-and-decide,computer-science,k,cs-k12,Data and Analysis,Count and Decide,Collect data in the classroom to answer a question,EK-DAT-DC-08;EK-DAT-DI-09;EK-DAT-IM-10,CSTA-2026,electives.txt
 computer-science-k-public-or-private,computer-science,k,cs-k12,Systems and Security,Public or Private?,Which information is OK to share,EK-SYS-SE-12;EK-SYS-IM-13;AASL.Engage,CSTA-2026;AASL-2018,electives.txt
@@ -407,9 +407,10 @@ health-pe-3-5-bullying-and-upstanders,health-pe,3-5,health-3-5,Health,Bullying a
 health-pe-3-5-worries-and-coping,health-pe,3-5,health-3-5,Health,Worries and Coping,"Size up worries, choose coping tools, set a coping goal and know when to tell an adult",NHES.S1;NHES.S6;NHES.S7,NHES-2024,electives.txt
 health-pe-3-5-safety-at-home-and-online,health-pe,3-5,health-3-5,Health,Safety at Home and Online,"Hazards with medicine, chemicals, fire and online messages; choosing safe actions",NHES.S5;NHES.S7,NHES-2024,electives.txt
 health-pe-k-2-health-goals-at-home,health-pe,k-2,health-k-2,Health,Health Goals at Home,"Pick a health goal, notice what helps or gets in the way, and name who can help",NHES.S2;NHES.S3;NHES.S6,NHES-2024,electives.txt
-health-pe-k-2-cooperative-games,health-pe,k-2,pe,Physical Education,Cooperative Games,"Work together, take turns and follow rules in parachute games; notice how moving feels",SHAPE.S3;SHAPE.S4,SHAPE-PE-2024,electives.txt
-health-pe-3-5-juggling-and-practice-habits,health-pe,3-5,pe,Physical Education,Juggling and Practice Habits,"Learn scarf juggling in steps, check yourself against cues and keep practicing",SHAPE.S1;SHAPE.S4,SHAPE-PE-2024,electives.txt
-health-pe-6-12-peer-skill-coaching,health-pe,6-12,pe,Physical Education,Peer Skill Coaching,Analyze a partner's skill against cues and give respectful feedback,SHAPE.S1;SHAPE.S3,SHAPE-PE-2024,electives.txt
+health-pe-k-2-cooperative-games,health-pe,k-2,pe-k-2,Physical Education,Cooperative Games,"Work together, take turns and follow rules in parachute games; notice how moving feels",SHAPE.S3;SHAPE.S4,SHAPE-PE-2024,electives.txt
+health-pe-3-5-juggling-and-practice-habits,health-pe,3-5,pe-3-5,Physical Education,Juggling and Practice Habits,"Learn scarf juggling in steps, check yourself against cues and keep practicing",SHAPE.S1;SHAPE.S4,SHAPE-PE-2024,electives.txt
+health-pe-6-12-peer-skill-coaching,health-pe,6-12,pe-6-8,Physical Education,Peer Skill Coaching,Analyze a partner's skill against cues and give respectful feedback,SHAPE.S1;SHAPE.S3,SHAPE-PE-2024,electives.txt
+health-pe-9-12-peer-skill-coaching,health-pe,9-12,pe-9-12,Physical Education,Peer Skill Coaching,Analyze a partner's skill against cues and give respectful feedback,SHAPE.S1;SHAPE.S3,SHAPE-PE-2024,electives.txt
 sel-k-2-making-and-keeping-friends,sel,k-2,sel-k-2,SEL,Making and Keeping Friends,"Ask to join, share, take turns and fix small friend problems",CASEL.Relationship Skills,CASEL,electives.txt
 sel-9-12-bias-and-first-impressions,sel,9-12,sel-9-12,SEL,Bias and First Impressions,"Notice snap judgments, take others' perspectives and check your own biases",CASEL.Self-Awareness;CASEL.Social Awareness,CASEL,electives.txt
 math-k-counting-to-100,math,k,math-k8,Counting and Cardinality,Counting to 100,Count by ones and tens; know number names and sequence,K.CC.A.1;K.CC.A.2;K.CC.A.3,CCSS-Math,math.txt

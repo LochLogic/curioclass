@@ -48,7 +48,7 @@ FILES = {
     'visual-arts': [('visual-arts', 'grades')], 'media-arts': [('media-arts', 'grades')],
     'music': [('music', 'grades')], 'theater': [('theater', 'grades')], 'dance': [('dance', 'grades')],
     'health': [('health-k-2', 'grades'), ('health-3-5', 'grades'), ('health-6-8', 'grades'), ('health-9-12', 'grades')],
-    'pe': [('pe', 'grades')],
+    'pe': [('pe-k-2', 'grades'), ('pe-3-5', 'grades'), ('pe-6-8', 'grades'), ('pe-9-12', 'grades')],
     'computer-science': [('cs-k12', 'grades')], 'library': [('library', 'grades')],
     'sel': [('sel-k-2', 'grades'), ('sel-3-5', 'grades'), ('sel-6-8', 'grades'), ('sel-9-12', 'grades')],
     'eld': [('eld-k-2', 'grades'), ('eld-3-5', 'grades'), ('eld-6-8', 'grades'), ('eld-9-12', 'grades')],
@@ -81,7 +81,7 @@ def units():
                                 modules=[m['title'] for m in mine])
             elif mode == 'grades':
                 stem = cid.split('-k')[0] if cid.endswith(('-k12', '-k5', '-k8')) else cid
-                if cid.startswith(('sel-', 'eld-', 'health-')):  # band courses keep the old per-grade unit ids (2026-11-21)
+                if cid.startswith(('sel-', 'eld-', 'health-', 'pe-')):  # band courses keep the old per-grade unit ids (2026-11-21)
                     stem = cid.split('-')[0]
                 for g in sorted(span(c['grades']), key=GRADES.index):
                     title = c['title'].split(', grades')[0] if cid not in ('math-k8', 'science-k5', 'ss-k5') else \

@@ -3,7 +3,7 @@
 **DRAFT, 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-physical-education-read-2026-11-19.md)
 and 2026-11-20 after the second-model read (docs/reviews/prework-physical-education-fixes-2026-11-20.md).**
 
-Written 2026-11-16 as pre-work for physical education (four courses, one per band). It answers the PE row of
+Written 2026-11-16 as pre-work for physical education (four courses, one per band: `pe-k-2`, `pe-3-5`, `pe-6-8` and `pe-9-12` in data/courses.csv, grades 9 and 10 required and 11 and 12 electives; Cory, 2026-11-21, Desk q-fix-pe-1). It answers the PE row of
 "Before a scope and sequence in this subject" in docs/ADOPTION-BAR-SUBJECTS.md. The bar is the PE part of that
 page. The lens is docs/agents/lenses/physical-education.md. The approach page is
 docs/courses/physical-education/APPROACH.md (approved 2026-11-21, Desk q-prework-open-1).
@@ -128,6 +128,11 @@ and games, emotions) is on the approach page, "Sensitive ground".
 - State PE standards and state fitness-test requirements: a school adds them; the course page says so.
 - Adapted physical education plans for individual students: the school's specialists. Our lessons carry
   adaptations for a range of needs (bar criterion 6), not individual plans.
+- What a school or family may swap or leave out (Cory, 2026-11-21, Desk q-fix-pe-1): a PE unit or activity for its
+  community's or place's reasons, for example a cultural dance or game (swapped for one whose source says it is
+  open to be taught) or an outdoor activity that does not fit the place. In-water tasks are already the school's
+  own call (APPROACH.md, "Water safety"). Each course page names these units, and it claims no standard that no
+  remaining unit teaches.
 
 ## 6. Leans on the core progressions and other subjects
 

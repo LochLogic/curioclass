@@ -131,7 +131,7 @@ Decided 2026-11-11 (Cory), from the discussion recorded in docs/agents/decisions
    |---|---|---|
    | The expert agent (was a working teacher on the pilot unit) | Reads every plan and the probe and guard days against the subject lens and rubric | Every unit plan; the probe and the guard |
    | The answer-key agent (was a math content reviewer) | Solves every item of one whole course's checks cold and compares with the key, beside the script check | Before a math course is called finished |
-   | The safety agent (was a science teacher) | Safety and materials of every investigation, against published school science safety guidance | Before a science course is called finished |
+   | The safety agent (was a science teacher) | Safety and materials of every investigation, against published school science safety guidance; and every PE unit with striking tools, mats, climbing, resistance training or an outdoor trip, against published school PE safety guidance (Cory, 2026-11-21) | Before a science course is called finished; before such a PE unit goes live |
    | The rights agent (was a second reader on rights) | The licence and source of every text a course teaches from | Before an ELA text is taught |
    | The Spanish agent (was a native Spanish reader) | Family notes, and student materials if they are made | Before Spanish is published in a course |
    | The sensitivity agent (was a health specialist) | The sensitive health topics, against public health guidance | Before those units go live |

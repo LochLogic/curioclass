@@ -52,14 +52,14 @@ k-2|health-k-2|Health|Safety|Fire, traffic, water and stranger safety|NHES.S1;NH
 9-12|health-9-12|Health|First Aid and CPR|Emergency response basics|NHES.S7
 9-12|health-9-12|Health|Accessing Valid Health Information|Evaluate sources, products and services|NHES.S3;NHES.S2
 9-12|health-9-12|Health|Mental Health and Wellness|Disorders, stigma and supporting others|NHES.S1;NHES.S8;NHES.S4
-k-2|pe|Physical Education|Locomotor Skills|Running, hopping, skipping and galloping|SHAPE.S1
-k-2|pe|Physical Education|Throwing and Catching|Manipulative skill basics|SHAPE.S1
-3-5|pe|Physical Education|Game Strategies|Offense, defense and space in games|SHAPE.S2;SHAPE.S3
-3-5|pe|Physical Education|Fitness Components|Cardio, strength, flexibility and heart rate|SHAPE.S2
-6-8|pe|Physical Education|Sport Skills and Rules|Invasion, net and striking games|SHAPE.S1;SHAPE.S2
-6-8|pe|Physical Education|Personal Fitness Plans|Set goals and track activity|SHAPE.S2;SHAPE.S4
-9-12|pe|Physical Education|Lifetime Fitness|Design and evaluate a personal fitness program|SHAPE.S2;SHAPE.S4
-9-12|pe|Physical Education|Sportsmanship and Leadership|Responsible behavior and teamwork|SHAPE.S3
+k-2|pe-k-2|Physical Education|Locomotor Skills|Running, hopping, skipping and galloping|SHAPE.S1
+k-2|pe-k-2|Physical Education|Throwing and Catching|Manipulative skill basics|SHAPE.S1
+3-5|pe-3-5|Physical Education|Game Strategies|Offense, defense and space in games|SHAPE.S2;SHAPE.S3
+3-5|pe-3-5|Physical Education|Fitness Components|Cardio, strength, flexibility and heart rate|SHAPE.S2
+6-8|pe-6-8|Physical Education|Sport Skills and Rules|Invasion, net and striking games|SHAPE.S1;SHAPE.S2
+6-8|pe-6-8|Physical Education|Personal Fitness Plans|Set goals and track activity|SHAPE.S2;SHAPE.S4
+9-12|pe-9-12|Physical Education|Lifetime Fitness|Design and evaluate a personal fitness program|SHAPE.S2;SHAPE.S4
+9-12|pe-9-12|Physical Education|Sportsmanship and Leadership|Responsible behavior and teamwork|SHAPE.S3
 # Computer Science (2026 CSTA PK-12 Standards: grade-level K-5, bands 6-8 and 9-12)
 k|cs-k12|Algorithms and Programming|Step-by-Step|Follow and create sequences of commands; spot a step that goes wrong|EK-ALG-PS-01;EK-PRO-PD-04;EK-PRO-TR-07;EK-PRO-RD-06
 k|cs-k12|Data and Analysis|Count and Decide|Collect data in the classroom to answer a question|EK-DAT-DC-08;EK-DAT-DI-09;EK-DAT-IM-10
@@ -216,8 +216,9 @@ k-2|media-arts|Media Arts|Media Messages|Find the parts and messages in media an
 3-5|health-3-5|Health|Worries and Coping|Size up worries, choose coping tools, set a coping goal and know when to tell an adult|NHES.S1;NHES.S6;NHES.S7
 3-5|health-3-5|Health|Safety at Home and Online|Hazards with medicine, chemicals, fire and online messages; choosing safe actions|NHES.S5;NHES.S7
 k-2|health-k-2|Health|Health Goals at Home|Pick a health goal, notice what helps or gets in the way, and name who can help|NHES.S2;NHES.S3;NHES.S6
-k-2|pe|Physical Education|Cooperative Games|Work together, take turns and follow rules in parachute games; notice how moving feels|SHAPE.S3;SHAPE.S4
-3-5|pe|Physical Education|Juggling and Practice Habits|Learn scarf juggling in steps, check yourself against cues and keep practicing|SHAPE.S1;SHAPE.S4
-6-12|pe|Physical Education|Peer Skill Coaching|Analyze a partner's skill against cues and give respectful feedback|SHAPE.S1;SHAPE.S3
+k-2|pe-k-2|Physical Education|Cooperative Games|Work together, take turns and follow rules in parachute games; notice how moving feels|SHAPE.S3;SHAPE.S4
+3-5|pe-3-5|Physical Education|Juggling and Practice Habits|Learn scarf juggling in steps, check yourself against cues and keep practicing|SHAPE.S1;SHAPE.S4
+6-12|pe-6-8|Physical Education|Peer Skill Coaching|Analyze a partner's skill against cues and give respectful feedback|SHAPE.S1;SHAPE.S3
+9-12|pe-9-12|Physical Education|Peer Skill Coaching|Analyze a partner's skill against cues and give respectful feedback|SHAPE.S1;SHAPE.S3
 k-2|sel-k-2|SEL|Making and Keeping Friends|Ask to join, share, take turns and fix small friend problems|CASEL.Relationship Skills
 9-12|sel-9-12|SEL|Bias and First Impressions|Notice snap judgments, take others' perspectives and check your own biases|CASEL.Self-Awareness;CASEL.Social Awareness
