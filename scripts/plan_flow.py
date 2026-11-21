@@ -126,8 +126,10 @@ lanes3.append(dict(title='Checks', nodes=[N('b1:review', 'Whole-structure review
                                           N('b1:pages', 'Course pages from the frames'), N('baseline1', 'Baseline 1: frames reviewed')]))
 lanes3.append(dict(title='Gate: owner approves the baseline', nodes=[N(f'gate3:{slug(n)}', sname(n)) for n in SUBJ_ORDER]))
 for i, t, cs, pre in AFTER:
-    lanes3.append(dict(title=t, faint=True, nodes=[N(f'frame:{slug(c["title"])}', c['title']) for c in cs]
-                       + [N(f'ss:{slug(c["title"])}', c['title']) for c in cs] + [N(f'ss-review:{i}', 'Review')]))
+    lanes3.append(dict(title=t + ' frames', faint=True, nodes=[N(f'frame:{slug(c["title"])}', c['title']) for c in cs]))
+    lanes3.append(dict(title=t + ' scopes and sequences', faint=True, nodes=[N(f'ss:{slug(c["title"])}', c['title']) for c in cs]
+                       + [N(f'ss-review:{i}', 'Review')]))
+    lanes3.append(dict(title=t + ': gate', faint=True, nodes=[N(f'gate3:{i}', 'Owner approves the baseline')]))
 stage('frames', '3. Course frames, then scopes and sequences', 'Per course, grades in order, pilot course first. A frame holds the owned skills, dose, session count, units and source map; the scope and sequence holds every day in order, the checks and the calendar fit.', lanes3)
 
 # 4. Unit plans
@@ -161,6 +163,7 @@ for i, t, cs, pre in AFTER:
         urows.append(dict(title=c['title'], est=est, cells=''.join(st(f'unit:{slug(c["title"])}:{j + 1}') for j in range(tot)), k=slug(c['title'])))
     lanes4.append(dict(title=t, group=True, rows=urows, faint=True))
     lanes4.append(dict(title=t + ': reads', faint=True, nodes=[N(f'units-review:{i}', 'Units review')]))
+    lanes4.append(dict(title=t + ': gate', faint=True, nodes=[N(f'gate4:{i}', 'Cold read, then owner approval')]))
 stage('units', '4. Unit plans', 'Per course, units in order. Each goal names its exit kind, a practice of a different shape and review entries that point at earlier ledger rows. One cold read from the progression down, then owner approval.', lanes4)
 
 # 5. Section plans, plan data and keys: one cell a section, from days.csv's `unit` column (the section id, 5.2).
