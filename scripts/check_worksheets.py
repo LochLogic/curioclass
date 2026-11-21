@@ -49,7 +49,8 @@ FILES = {
     'music': [('music', 'grades')], 'theater': [('theater', 'grades')], 'dance': [('dance', 'grades')],
     'health': [('health', 'grades')], 'pe': [('pe', 'grades')],
     'computer-science': [('cs-k12', 'grades')], 'library': [('library', 'grades')],
-    'sel': [('sel-k12', 'grades')], 'eld': [('eld-k12', 'grades')],
+    'sel': [('sel-k-2', 'grades'), ('sel-3-5', 'grades'), ('sel-6-8', 'grades'), ('sel-9-12', 'grades')],
+    'eld': [('eld-k-2', 'grades'), ('eld-3-5', 'grades'), ('eld-6-8', 'grades'), ('eld-9-12', 'grades')],
     'world-languages': [('spanish', 'levels'), ('french', 'levels'), ('asl', 'levels')],
     'cte': [('cte-explore', 'grades'), ('cte-pathways', 'course'), ('personal-finance', 'course')],
 }
@@ -79,8 +80,10 @@ def units():
                                 modules=[m['title'] for m in mine])
             elif mode == 'grades':
                 stem = cid.split('-k')[0] if cid.endswith(('-k12', '-k5', '-k8')) else cid
+                if cid[:4] in ('sel-', 'eld-'):  # band courses keep the old per-grade unit ids (2026-11-21)
+                    stem = cid[:3]
                 for g in sorted(span(c['grades']), key=GRADES.index):
-                    title = c['title'] if cid not in ('math-k8', 'science-k5', 'ss-k5') else \
+                    title = c['title'].split(', grades')[0] if cid not in ('math-k8', 'science-k5', 'ss-k5') else \
                         {'math-k8': 'Math', 'science-k5': 'Science', 'ss-k5': 'Social Studies'}[cid]
                     out[f'{stem}-{g}'] = dict(label=f'{LABEL[g]} {title}', file=f, course=cid, grade=g,
                                               modules=[m['title'] for m in mine if g in span(m['grade'])])

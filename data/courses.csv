@@ -38,7 +38,13 @@ french,world-languages,French (proficiency levels),6-12,,n,Same level modules as
 cte-explore,cte,Career Exploration,6-8,,n,
 cte-pathways,cte,Career Pathways,9-12,,n,
 personal-finance,cte,Personal Finance,9-12,11,n,"Required for graduation in a growing number of states; taught inside Economics, lightly integrated (Cory, 2026-11-14), so no core course of its own"
-sel-k12,sel,Social and Emotional Learning,k-12,,n,Light shelf; not a build priority
+sel-k-2,sel,"Social and Emotional Learning, grades K to 2",k-2,,n,"CASEL; one frame per grade year (Cory, 2026-11-21)"
+sel-3-5,sel,"Social and Emotional Learning, grades 3 to 5",3-5,,n,"CASEL; one frame per grade year (Cory, 2026-11-21)"
+sel-6-8,sel,"Social and Emotional Learning, grades 6 to 8",6-8,,n,"CASEL; one frame per grade year (Cory, 2026-11-21)"
+sel-9-12,sel,"Social and Emotional Learning, grades 9 to 12",9-12,,n,"CASEL; one frame per grade year (Cory, 2026-11-21)"
 asl,world-languages,American Sign Language (proficiency levels),k-12,,n,Same ACTFL levels as Spanish; tools reviewed by Deaf educators before release
-eld-k12,eld,English Language Development,k-12,,n,WIDA grade clusters; for English learners
+eld-k-2,eld,"English Language Development, grades K to 2",k-2,,n,"WIDA grade clusters; for English learners; one frame per grade year (Cory, 2026-11-21)"
+eld-3-5,eld,"English Language Development, grades 3 to 5",3-5,,n,"WIDA grade clusters; for English learners; one frame per grade year (Cory, 2026-11-21)"
+eld-6-8,eld,"English Language Development, grades 6 to 8",6-8,,n,"WIDA grade clusters; for English learners; one frame per grade year (Cory, 2026-11-21)"
+eld-9-12,eld,"English Language Development, grades 9 to 12",9-12,,n,"WIDA grade clusters; for English learners; one frame per grade year (Cory, 2026-11-21)"
 library,library,Library and Research Skills,k-12,,n,AASL Shared Foundations

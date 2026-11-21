@@ -123,14 +123,14 @@ k-12|spanish|Novice|Food and Ordering|Foods, likes and dislikes, restaurants|ACT
 9-12|personal-finance|Personal Finance|Investing Basics|Stocks, bonds, index funds and risk|NSPFE.Investing
 9-12|personal-finance|Personal Finance|Insurance and Protecting Yourself|Insurance types; identity theft and scams|NSPFE.Managing Risk
 # SEL (CASEL five competencies)
-k-2|sel-k12|SEL|Naming Feelings|Recognize and name emotions|CASEL.Self-Awareness
-k-2|sel-k12|SEL|Calm Down Strategies|Breathing and self-regulation tools|CASEL.Self-Management
-3-5|sel-k12|SEL|Perspective Taking|Understand others' feelings and points of view|CASEL.Social Awareness;CASEL.Responsible Decision-Making
-3-5|sel-k12|SEL|Growth Mindset and Goals|Set goals and learn from mistakes|CASEL.Self-Management;CASEL.Self-Awareness
-6-8|sel-k12|SEL|Conflict Resolution|Communicate and solve problems together|CASEL.Relationship Skills
-6-8|sel-k12|SEL|Responsible Decisions|Weigh consequences and make choices|CASEL.Responsible Decision-Making
-9-12|sel-k12|SEL|Stress and Resilience|Manage stress and build resilience|CASEL.Self-Management
-9-12|sel-k12|SEL|Leadership and Community|Lead, collaborate and contribute|CASEL.Relationship Skills;CASEL.Responsible Decision-Making
+k-2|sel-k-2|SEL|Naming Feelings|Recognize and name emotions|CASEL.Self-Awareness
+k-2|sel-k-2|SEL|Calm Down Strategies|Breathing and self-regulation tools|CASEL.Self-Management
+3-5|sel-3-5|SEL|Perspective Taking|Understand others' feelings and points of view|CASEL.Social Awareness;CASEL.Responsible Decision-Making
+3-5|sel-3-5|SEL|Growth Mindset and Goals|Set goals and learn from mistakes|CASEL.Self-Management;CASEL.Self-Awareness
+6-8|sel-6-8|SEL|Conflict Resolution|Communicate and solve problems together|CASEL.Relationship Skills
+6-8|sel-6-8|SEL|Responsible Decisions|Weigh consequences and make choices|CASEL.Responsible Decision-Making
+9-12|sel-9-12|SEL|Stress and Resilience|Manage stress and build resilience|CASEL.Self-Management
+9-12|sel-9-12|SEL|Leadership and Community|Lead, collaborate and contribute|CASEL.Relationship Skills;CASEL.Responsible Decision-Making
 
 # Gap fill 2026-10-27 (cs): see docs/agents/gapfill/cs/notes.md
 k-2|cs-k12|Computing and Society|Computing Then and Now|How everyday computing changed over time and the people who designed it|EK-SOC-HI-14;EK-SOC-HU-15;E1-SOC-HI-14;E2-SOC-HI-14;E2-SOC-HU-15
@@ -219,5 +219,5 @@ k-2|health|Health|Health Goals at Home|Pick a health goal, notice what helps or 
 k-2|pe|Physical Education|Cooperative Games|Work together, take turns and follow rules in parachute games; notice how moving feels|SHAPE.S3;SHAPE.S4
 3-5|pe|Physical Education|Juggling and Practice Habits|Learn scarf juggling in steps, check yourself against cues and keep practicing|SHAPE.S1;SHAPE.S4
 6-12|pe|Physical Education|Peer Skill Coaching|Analyze a partner's skill against cues and give respectful feedback|SHAPE.S1;SHAPE.S3
-k-2|sel-k12|SEL|Making and Keeping Friends|Ask to join, share, take turns and fix small friend problems|CASEL.Relationship Skills
-9-12|sel-k12|SEL|Bias and First Impressions|Notice snap judgments, take others' perspectives and check your own biases|CASEL.Self-Awareness;CASEL.Social Awareness
+k-2|sel-k-2|SEL|Making and Keeping Friends|Ask to join, share, take turns and fix small friend problems|CASEL.Relationship Skills
+9-12|sel-9-12|SEL|Bias and First Impressions|Notice snap judgments, take others' perspectives and check your own biases|CASEL.Self-Awareness;CASEL.Social Awareness

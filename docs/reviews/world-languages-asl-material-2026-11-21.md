@@ -1,0 +1,69 @@
+# World languages: American Sign Language material, second scout (2026-11-21)
+
+**World languages are SHELVED. This is pre-work only: it plans no frames, units, days or tools and changes no status.**
+Cory (the owner) said "yes for spanish, we can redo the research for ASL". This redoes the ASL part of
+docs/reviews/world-languages-open-material-2026-11-20.md more thoroughly. The bar is docs/sources/BASE-TEXTS.md (CC BY
+4.0, public domain, or UK OGL v3.0). Curio Class uses graphics only for ASL: no video, no photos of people.
+Method: web search and page reading only; nothing was downloaded. Licences are quoted as each page states them. "Search
+only" means seen in a search summary and not opened. "Not checked" means the page could not be opened (403, 404, 405 or
+409 errors).
+
+## What was searched
+
+About 18 searches: open ASL second-language curricula and OER with CC BY; ASL open textbooks for high school; OER Commons
+ASL units; openly licensed ASL line drawings or sign illustrations; NAD, WFD and ASLTA positions on who teaches ASL; ASLTA
+and SLPI proficiency descriptors; Ohio ASL can-do statements; the Open Course Library ASL course; Deaf-community concerns
+about hearing-made curricula; SignWriting symbol licence; Wikimedia Commons manual-alphabet drawings; Indiana 2026 ASL
+standards licence; Georgia ASL sample units; Lifeprint terms. Pages opened: Boise State Pathways (403), LibreTexts ASL
+shelf, BMCC OER list, Ontario ASL downloads page (navigation only), Open Course Library ASL 121 and 122, OER Commons
+OpenWA group (403), Clerc Center standards (403), Yale ASL Signbank (certificate error), Open Book Publishers lexicon (405),
+IAD statement (409), Ohio ASL page, Delaware ASL paper (PDF, text unreadable), Wikimedia Commons file, movementwriting.org,
+WFD paper, NAD page 17995 (404), Lifeprint copyright page (404).
+
+## Finds
+
+| Name | Link | Maker | Scope | Licence as stated | Fit (K-12, graphics only) |
+|---|---|---|---|---|---|
+| ASL 121, 122, 123 (American Sign Language I to III), Open Course Library | http://opencourselibrary.org/asl-121/ , /asl-122/ , /asl-123/ | Washington State Colleges (Open Course Library) | College introductory ASL, three sequential courses. The pages show only a course description (hands, body, face, eyes and space; "listening with your eyes"). No syllabus, units, hours, textbook or video are listed on the pages read. The 123 page was not opened. | "Creative Commons Attribution 3.0 Unported License" (page footer; "unless otherwise specified") | **Only openly CC BY ASL course found, but its content is unseen.** CC BY 3.0, not 4.0, so Cory should confirm that counts. The course packages (syllabus, lessons) were not reachable from the pages read; they may link third-party video or a commercial text, which carry their own rights. Worth one more look at the full course files before any use. College level, so grade-fitting needed. |
+| Let's Chat! American Sign Language, Hoye, Arispe, Lacar (Boise State), also Pathways ASL at boisestate.pressbooks.pub/pathwaysasl | https://open.umn.edu/opentextbooks/textbooks/1665 | Boise State | Novice and intermediate interpersonal activities | CC BY-NC-SA on the record (read 2026-11-20); the Pathways page itself was not checked (403) | Not usable as a base. Idea reference only. |
+| ASL 101 and ASL 102 OER, Christopher Pinto (Citrus College, eCampusOntario) | https://yc-prod-openlibrary-repo.ecampusontario.ca/jspui/bitstream/123456789/971/3/ASL%20101%20OER_CPinto.pdf | Pinto | College; Google Doc of videos | CC BY-NC-ND 4.0 for instructor-created content; borrowed videos used by permission (search only) | Not usable. |
+| ASL 101 OER lists, Lake Tahoe Community College | https://ltcconline.net/greenl/OER/AS101OER.html | Lake Tahoe Community College | Link list to YouTube and free sites | Not stated; the page itself says some linked items may not be openly licensed (read via the BMCC list, not opened directly) | Not usable. Not checked directly. |
+| LibreTexts ASL shelf: Fingerspelling, A Mindful Approach (Johnston); Integrated and Open Interpreter Education (Maroney et al.); A Survey of American Sign Language (Bentley-Sassaman, Minor); ASL-131 workbook (Roedel and Roedel) | https://human.libretexts.org/Bookshelves/Languages/American_Sign_Language | Named authors | Fingerspelling practice; interpreter education; survey; one college workbook | Shelf page: "not declared license", none stated per book. A search summary said the fingerspelling book is CC BY and the interpreter text is CC BY-NC. | Not usable until each book's own page states a licence. The fingerspelling book is the one worth opening (search only). |
+| ASL Signbank, Yale (Haskins) | https://aslsignbank.haskins.yale.edu/about/copyright/ | Yale | Video lexicon | CC BY-NC-SA 4.0 (search only; page would not open) | Not usable. |
+| Ontario "American Sign Language as a Second Language" curriculum, 2021 | https://www.dcp.edu.gov.on.ca/en/curriculum/american-sign-language-as-a-second-language/downloads | Ontario Ministry of Education | Secondary curriculum document | No licence seen (page read showed only navigation) | Curriculum document, not a course. Reference only; not opened in full. |
+| Manitoba ASL framework, grades 9 to 12 (2015) | https://www.edu.gov.mb.ca/k12/cur/languages/asl/framework/full_doc.pdf | Manitoba Education | Framework | Not stated; not opened | Reference only. Not checked. |
+| K-12 ASL Content Standards | https://clerccenter.gallaudet.edu/resources/asl-content-standards/ | Clerc Center, Gallaudet | First-language ASL standards | Not checked (403) | Standard, not a course. |
+| 2026 Indiana Academic Standards, World Languages, ASL K-12 and Secondary | https://secure.in.gov/doe/files/2026-Indiana-Academic-Standards-World-Languages-ASL-K-12.pdf | Indiana Department of Education, with Indiana School for the Deaf support | Standards by grade band (K-2, 3-5, 6-8, 9-10, 11-12), built on ACTFL; for deaf, hard of hearing and second-language learners (search summary) | No licence seen (search only) | Best shape reference for a K-12 ASL second-language progression. Not a course. |
+| Ohio ASL model curriculum page | https://education.ohio.gov/Topics/Learning-in-Ohio/World-Languages-and-Cultures/Model-Curriculum-for-World-Languages-and-Cultures/Instruction-and-Assessment/American-Sign-Language | Ohio Department of Education | ASL can-do statements (communication Novice Low to Advanced Low; culture Novice, Intermediate, Advanced), ASL rubrics, a list of authentic resources, links to external lessons | The page states no copyright or licence | Descriptors exist but terms are unstated, so treat as reference only. Wording not read (PDFs not opened). Dated 2016 per file names, so check currency. |
+| Delaware, Considerations for American Sign Language (Dec 2025) | https://education.delaware.gov/legacy/wp-content/uploads/sites/4/2026/02/Considerations-for-American-Sign-Language-121825.pdf | Delaware Department of Education | Guidance pointing to the Ohio can-do sets | None readable | Reference pointer only. |
+| SLPI rating scale (revised January 2025), NTID at RIT | https://www.rit.edu/ntid/sites/rit.edu.ntid/files/slpi/B-SLPI%20Rating%20Scale%20and%20Analyzing%20Function%20Revised%20%201-25.pdf | NTID, RIT | Proficiency interview scale from no functional skills to Superior Plus | Not opened; no terms known | Level descriptors for adults, search only. Reference only, and the rating is a trademarked interview. |
+| ASLTA level descriptions | none found | ASLTA | Not found in any search | Not checked | Nothing to report. ASLTA is described by others as the certifying body for ASL teaching. |
+| Sign graphics: Asl_alphabet_gallaudet_ann.svg on Wikimedia Commons | https://commons.wikimedia.org/wiki/File:Asl_alphabet_gallaudet_ann.svg | Marnanel (vector), from earlier images by Dancor and Ds13 | Fingerspelling alphabet chart | "release this work into the public domain" (page read) | **Usable for the manual alphabet only**, public domain. A chain of derived images, so the original source is worth tracing. Other Commons letter SVGs in search results came from a clip-art site with unverified terms. |
+| SignWriting symbols and ISWA 2010 downloads (SVG, EPS), Valerie Sutton | https://movementwriting.org/symbolbank/ | Sutton Movement Writing | A written notation for sign, not pictures of signs | Symbols "free to use under the SIL Open Font License (OFL)"; the site's other sections are Creative Commons Attribution-ShareAlike 3.0 | The licence is not CC BY or public domain, and the symbols are a notation that students would have to learn. It does not meet the bar and is not a sign-picture set. Not usable as the base; a notation lesson could be a later question. |
+| Simplified Sign System lexicon, Open Book Publishers | https://books.openbookpublishers.com/10.11647/obp.0220.pdf | Open Book Publishers | Line drawings for a different sign system, not ASL | CC BY 4.0 (search summary; page returned 405, not checked) | Not ASL. Not usable for ASL content. |
+| Lyon 1891 sign phonetics illustrations, University of South Florida ClipArt | https://etc.usf.edu/clipart/sitemap/lyon_phonetics.php | USF ClipArt | 129 historical illustrations | No licence in search summary; not opened | Not checked; unlikely to be ASL. |
+| Commercial clip art sets (Creative Market, Tes, Alamy, Black Illustrations) | various | Various | ASL alphabet and word icons | Personal or standard stock licences | Not usable (not open). |
+| ASL University (Lifeprint), Bill Vicars | https://www.lifeprint.com | Vicars | Free lessons with video | Copyrighted, no Creative Commons licence (per a library guide and a forum post, search only; the copyright page returned 404) | Not usable. Not checked. |
+
+## Deaf-community guidance (for respecting it, not for reuse)
+
+| Statement | Link | What it says, in our words | Terms |
+|---|---|---|---|
+| World Federation of the Deaf, Position Paper on the primacy of deaf people in the development and teaching of national sign languages | https://wfdeaf.org/resources/position-paper-on-the-primacy-of-deaf-people-in-the-development-and-teaching-of-national-sign-languages/ | Deaf people should have the chance to teach their own sign languages, and their lived experience comes first. It worries about hearing people and businesses taking these roles. It accepts there are not enough deaf teachers to cover every class. It points to a 2007 agreement giving Deaf organisations primacy in developing sign languages, including teaching materials, and says training and teaching should not go ahead without qualified deaf people taking part. Undated on the page. | No reuse terms stated. Quote only names. |
+| Illinois Association of the Deaf, position on ASL instructors | https://iadeaf.org/position-statement-on-american-sign-language-instructors | From a search summary: it asks for qualified Deaf and native ASL users to teach at secondary and college level, with ASLTA certification preferred. Page returned 409, not checked. | Not checked. |
+| National Association of the Deaf | https://www.nad.org/about-us/position-statements/ | From a search summary: its bilingual education guidance asks for educators with measured fluency in ASL and English; a separate NAD statement asks that teaching sign language on social media be done by heritage signers. Not opened in full, and no NAD statement setting a classroom rule was found. | Not checked. |
+| RID, Misuse of RID Certifications to Teach ASL (2024) | https://rid.org/wp-content/uploads/2024/02/Misuse-of-RID-Certifications-to-Teach-ASL_2024.pdf | From a search summary: interpreter certification does not show teaching ability; ASLTA is the certifying body for ASL teaching. | Not checked. |
+| Minnesota Commission of Deaf, DeafBlind and Hard of Hearing Minnesotans, ASL teacher licensure | https://mn.gov/deaf-commission/advocacy-issues/education/teacher-licensure/index.jsp | From a search summary: raises concern that a portfolio route does not fit the cultural standards of the Deaf community. | Not checked. |
+
+## Verdict
+
+1. **No open base text for K-12 ASL.** The one openly licensed (CC BY 3.0) full course found, Open Course Library ASL 121 to 123, is college level and its real contents were not reachable; treat it as a partial base at best, after a further look.
+2. **Graphics: only the manual alphabet is clearly free** (public domain). There is no open set of sign line drawings for vocabulary, phrases or grammar, and the sign-notation set is OFL and ShareAlike.
+3. **Curio Class would have to write the course itself**, with signs redrawn by a Deaf artist or signer, and use Ohio and Indiana material only as shape references for levels and can-do statements. The Deaf-community papers also ask for Deaf people to take part in teaching and in making the materials.
+
+## Questions for Cory
+
+1. If ASL is ever built, is it a course made with Deaf people in the lead (a Deaf signer to write or check every sign and drawing), or do we skip ASL? Recommended: no ASL course unless a Deaf maker is paid or credited as a co-author, following the WFD paper; a people and money decision.
+2. May we do one more look at the full Open Course Library ASL files, as reference, when the pass opens, to see if they hold a usable syllabus and drawings? Recommended: yes, later, in the first world-languages job, and confirm whether CC BY 3.0 counts under the BASE-TEXTS bar.
+3. Is a fingerspelling-and-numbers-only graphics start (public domain alphabet chart) enough for a small first scope, with all other signs waiting for a Deaf artist? Recommended: yes, as the only no-cost graphic path; scope stays Cory's call.
+4. Should Curio Class say on ASL pages who made the signs and that hearing people did not decide them? Recommended: yes, a short plain credit naming the Deaf contributors by role, never claiming anyone's endorsement (audience question).
