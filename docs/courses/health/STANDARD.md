@@ -1,10 +1,11 @@
 # Health: the standard, made usable
 
-**DRAFT, 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-health-read-2026-11-19.md).**
+**DRAFT, 2026-11-16, fixed 2026-11-19 after a cold read (docs/reviews/prework-health-read-2026-11-19.md) and
+2026-11-20 after the second-model read (docs/reviews/prework-health-fixes-2026-11-20.md).**
 
 Written 2026-11-16 as pre-work for health (four courses, one per band). It answers the health row of "Before a
 scope and sequence in this subject" in docs/ADOPTION-BAR-SUBJECTS.md. The bar is the health part of that page. The
-lens is docs/agents/lenses/health.md. The approach page is docs/courses/health/APPROACH.md (draft).
+lens is docs/agents/lenses/health.md. The approach page is docs/courses/health/APPROACH.md (approved 2026-11-21).
 
 | Owed | State | Where |
 |---|---|---|
@@ -19,7 +20,7 @@ lens is docs/agents/lenses/health.md. The approach page is docs/courses/health/A
 ## 1. The standard and the review tool
 
 - **Standard:** National Health Education Standards, 2024, SHAPE America (it calls this the third edition).
-  Always named "SHAPE America, 2024". Loaded in data/standards/nhes-2024.txt: 172 indicators, ids only,
+  Always named "SHAPE America, 2024". Loaded in data/standards/nhes-2024.txt: 172 indicators, each id with our own words (below),
   `NHES.S<standard>.<span end>.<n>`, spans ending at grade 2, 5, 8 and 12. Eight standards: use health
   information; analyse influences; find valid and reliable resources; communicate with others; decide; set goals;
   practise healthy behaviours; advocate.
@@ -71,20 +72,21 @@ read; it is checked against each module's span tables when the band's units are 
 
 | Topic | K to 2 | 3 to 5 | 6 to 8 | 9 to 12 |
 |---|---|---|---|---|
-| Personal health and wellness (PHW) | 1, 2, 3, 4, 5, 11 | 1 to 11 | All | 1, 2, 5 to 7, 9 to 13 (3, 4, 8 met in 6 to 8) |
-| Food and nutrition (FN) | 1, 2, 3, 6, 7 | 1 to 8, 10, 12 | 1 to 9, 11, 12 | 1, 8, 10 to 13 (2 to 7, 9 met in 6 to 8) |
+| Personal health and wellness (PHW) | 1, 2, 3, 4, 5, 11 | All | All | 1, 2, 5 to 7, 9 to 12 (3, 4, 8 met in 6 to 8) |
+| Food and nutrition (FN) | 1, 2, 3, 6, 7 | 1 to 8, 10, 12 | 1 to 9, 11, 12 | 1, 8, 10, 11 (2 to 7, 9, 12 met in 6 to 8) |
 | Mental and emotional health (MEH) | 1, 2, 3, 4, 5, 7 | 1 to 5, 7 to 9 | All; 6 in a sensitive unit (s) | All; 6 in a sensitive unit (s) |
-| Physical activity (PA) | 1, 4, 6 (with PE) | 1 to 7 (with PE) | 1, 2, 5, 7, 8; 3, 4, 6 taught in PE | 1, 2, 5 to 8 (with PE; 3, 4 met in 6 to 8) |
-| Safety (S) | 1, 3 to 8 | 1, 3 to 8 | All | 1 to 6, 8, 9 (7 met in 6 to 8) |
+| Physical activity (PA) | 1, 4, 6 (with PE) | 1 to 7 (with PE) | 1, 2, 5, 7; 3, 4, 6 taught in PE | 1, 2, 5 to 7 (with PE; 3, 4 met in 6 to 8) |
+| Safety (S) | 1, 3 to 8 | 1, 3 to 8 | All | 1 to 6, 8 (7 met in 6 to 8) |
 | Violence prevention (V) | 1, 3, 7; 8 in body safety (s) | 1, 2, 3, 5, 7; 8, 9 in body safety (s) | 1 to 3, 5 to 7; 4, 8, 9, 10 in a sensitive unit (s) | All; 4, 8, 9, 10 in a sensitive unit (s) |
-| Tobacco (T) | 1, 2 | 1, 2, 3, 4 | All | 1, 3 to 6 (2 met in 6 to 8) |
+| Tobacco (T) | 1, 2 | 1, 2, 3, 4 | All | 1, 3 to 5 (2 met in 6 to 8) |
 | Alcohol and other drugs (AOD) | 1 (medicine safety) | 1, 2, 3 | 1 to 4, 6, 8 | All |
 | Sexual health (SH) | 1, 2, 3 (s) | 1, 2, 3, 4, 6 (s) | 1 to 10 (s) | All (s) |
 
 Key: a number listed in a sensitive part of a cell is taught only in the sensitive unit. MEH 6 is not taught
 before grade 6; a grade 3 to 5 mental health unit teaches getting help for sad or worried feelings under the
-help-seeking outcome, which the planner confirms from our outcome wording. Care-seeking (PHW 10 and 11) starts in
-K to 2 because the NHES care indicators do; PHW 12 (fads) is judged in grade 7 (progression read, 2026-11-19). The 9 to 12 column lists what the semester carries; an outcome named "met in 6 to 8" is not
+help-seeking outcome, which the planner confirms from our outcome wording. Care-seeking for checkups (PHW 11) starts
+in K to 2 because NHES.S1.2.7 does; using care to treat illness (PHW 10) starts in grade 5. PHW 12 (fads) is first
+met in grade 5 (claims that hurt) and judged in grade 7 (progression read, 2026-11-19). The 9 to 12 column lists what the semester carries; an outcome named "met in 6 to 8" is not
 taught again there, and any other outcome 6 to 8 already teaches is a revisit (a short review inside another unit),
 not taught again in full (Cory, 2026-11-20, Desk q-prework-health-pe-2). Physical activity 3, 4 and 6 in grades 6
 to 8 are taught by moving in PE; health names the PE rows instead of planning the same lessons (same card).
@@ -100,8 +102,8 @@ in full the outcomes not met by grade 8 and revisits the rest. Its pace, about t
 accepted (Cory, 2026-11-20, Desk q-prework-health-pe-2): the frame runs the goal rows as one weekly thread and names
 short units of two to four days. If the semester still cannot hold its outcomes, review gives first: outcomes met
 in 6 to 8 become short reviews inside other units, so every new 9 to 12 outcome keeps its time; only if that still
-does not fit does a list go to Cory (Desk q-prework-health-pe-1). Topics return each year at more depth; a topic is
-never a one-off lesson (bar criterion 5).
+does not fit does a list go to Cory (Desk q-prework-health-pe-1). Topics return at more depth, at least in alternate
+years as above; a topic is never a one-off lesson (bar criterion 5).
 
 **In the progression** (data/progressions/health.csv): each indicator has exactly one owner grade, the grade where
 it is first fully met, in any grade of its span, and is met no later than the span's last grade; other grades of
@@ -114,7 +116,7 @@ Decided 2026-11-11: Curio Class carries all of the tool's sensitive topics, and 
 without breaking the course. The rule:
 
 1. **Sensitive content lives in its own units.** These units are sensitive: sexual health (every band); body
-   safety, meaning unwanted touch and abuse (V 8, 9; K to 5); sexual violence, abuse and dating violence (V 4, 8, 9;
+   safety, meaning unwanted touch and abuse (V 8 from K, V 9 from grade 3; K to 5); sexual violence, abuse and dating violence (V 4, 8, 9;
    6 to 12); suicide and self-harm (MEH 6, V 10; 6 to 12). No sensitive content sits inside a non-sensitive unit.
 2. **No skill lives only in a sensitive unit.** Each NHES indicator claimed in a sensitive unit is also claimed
    in a non-sensitive unit of the same band. A sensitive unit practises a skill already taught elsewhere.
@@ -136,6 +138,8 @@ without breaking the course. The rule:
    the scope and sequence names a non-sensitive unit to extend.
 7. **Content.** Sensitive units are medically accurate, age-matched to the tool's span expectations, inclusive,
    free of scare tactics and shame, and dated.
+8. **Sensitivity read.** Each sensitive unit is also read by the sensitivity agent before it goes live
+   (docs/FOUNDATION.md section 7; docs/pipeline/briefs/sensitivity-read.md), beside the read in section 6.
 
 ## 6. The expert read (bar criterion 7)
 
@@ -171,8 +175,10 @@ expert agent". No paid read and no spend. Criterion 7 is met this way:
 
 - **Physical education:** the physical activity topic is shared. Health teaches why and planning (PA outcomes
   as knowledge and goal-setting); PE teaches the moving. Units in each name the other.
-- **Science:** body systems, puberty, germs and disease, nutrition chemistry lean on the life science progression;
-  a health unit does not reteach the science model, it uses it.
+- **Science:** body systems lean on the life science progression (science:MS-LS1-1 in grade 6, MS-LS1-3 in grade
+  7); a health unit uses that model and does not reteach it. Germs, vaccines, puberty and body part names are needed
+  before or outside the science course, so health states those plain facts itself, with their source.
+- **Each lean's core code** is in the cross_subject column of data/progressions/health.csv.
 - **Math:** reading food labels, serving sizes and simple data on behaviour lean on ratio and statistics (grades
   6 to 7); health uses the skill, math teaches it.
 - **ELA:** analysing influences (standard 2) and finding valid sources (standard 3) lean on the reading information

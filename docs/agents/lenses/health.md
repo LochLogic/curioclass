@@ -4,7 +4,7 @@ Pre-work, 2026-11-16. The expert reads this before any health course frame, scop
 It is a way of seeing, not a bar: the bar is the health part of docs/ADOPTION-BAR-SUBJECTS.md. The standard is
 SHAPE America, 2024 (data/standards/nhes-2024.txt), reviewed with CDC's HECAT 2021, which is keyed to the 2007
 standards (docs/standards-notes/health-2007-to-2024.md). The coverage map and sensitive-unit rule are in
-docs/courses/health/STANDARD.md. The approach page is docs/courses/health/APPROACH.md (draft).
+docs/courses/health/STANDARD.md. The approach page is docs/courses/health/APPROACH.md (approved 2026-11-21).
 
 ## What good teaching of health looks like
 
