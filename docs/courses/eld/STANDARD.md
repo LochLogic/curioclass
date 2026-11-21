@@ -1,6 +1,6 @@
 # English language development: the standard, made usable
 
-**DRAFT, 2026-11-16.**
+**DRAFT, 2026-11-16. Read cold 2026-11-20 (docs/reviews/prework-eld-read-2026-11-20.md) and fixed.**
 
 Written 2026-11-16 as the pre-work owed for English language development (docs/ADOPTION-BAR-SUBJECTS.md, "Before a
 scope and sequence in this subject", the ELD row), in the shape of docs/courses/social-studies/STANDARD.md. Core
@@ -16,6 +16,7 @@ every other course are C11, not this course (bar part 10).
 | Approach page (all ten subjects) | Draft for Cory's yes | docs/courses/eld/APPROACH.md |
 | Base text scout, lens | Done | docs/reviews/eld-open-material-2026-11-16.md; docs/agents/lenses/eld.md |
 | How ELD leans on the ELA progression | Recorded | Section 5 |
+| Progression gate support | Owed: scripts/progression.py has no ELD entry yet (ownership rule in section 2) | Section 2 |
 
 ## 1. The standard and its terms
 
@@ -23,7 +24,7 @@ every other course are C11, not this course (bar part 10).
   instructional language (SI) and the language of language arts (LA), mathematics (MA), science (SC) and social
   studies (SS). Four key language uses: narrate, inform, explain, argue. Language Expectations by grade-level
   cluster (K, 1, 2-3, 4-5, 6-8, 9-12; SI uses K-3 and 4-12), each in two modes (interpretive: listening, reading,
-  viewing; expressive: speaking, writing, representing). Proficiency level descriptors run from level 1 to level 6.
+  viewing; expressive: speaking, writing, representing; social and instructional language has no mode segment). Proficiency level descriptors run from level 1 to level 6.
 - **File.** data/standards/wida-2020.txt: 104 official reference codes, one Language Expectation each, ids only.
   The header says which standards, clusters and key language uses exist (WIDA writes expectations only for the most
   prominent key language uses per cluster).
@@ -42,11 +43,8 @@ every other course are C11, not this course (bar part 10).
   roughly to WIDA: Emerging about WIDA 1 and 2, Expanding about 3 and 4, Bridging about 5 and 6 (our reading,
   approximate; no official crosswalk was read). Curio Class plans to WIDA and states the rough match for California
   schools.
-- **For the lead (scripts/standards.py is not ours to edit).** The validator does not read wida-2020.txt. Its
-  closed pattern for WIDA fully matches only `WIDA.ELD-1` to `WIDA.ELD-5` and `WIDA.Narrate` and the other key
-  language uses, as data/modules.csv uses them. A plan row coded `WIDA.ELD-LA.4-5.Argue.Expressive` would fail.
-  Before the first ELD scope, standards.py should read this file as an id list (later item; the coarse codes in
-  data/modules.csv stay valid). The header's note maps ELD-1 to ELD-5 onto SI, LA, MA, SC and SS.
+- **Validator.** scripts/standards.py reads this file as an id list, so every full id is valid as listed; the
+  coarse codes in data/modules.csv remain valid. The header's note maps ELD-1 to ELD-5 onto SI, LA, MA, SC and SS.
 
 ## 2. Courses, bands and time
 
@@ -62,7 +60,25 @@ every other course are C11, not this course (bar part 10).
   5 and a 45 minute period in 6 to 12, 160 days. Bar item 8 and California 1.26 both ask for designated time that is
   not ELA time.
 - **Placement and exit** use the school's proficiency score (bar part 10, Unsupported). Curio Class gives no
-  placement test and keeps no scores.
+  placement test and keeps no scores. The course page says that Curio Class's period is the protected core of a
+  student's English language development, not a replacement for the school's own program or for more time where a
+  state or district asks for it (APPROACH.md, "Pacing").
+- **Grain.** Each band course is written as one frame per grade year, 13 frames in all, each of 160 days at the
+  band's minutes. A frame takes its host units from that grade's own core courses. A mixed-grade group uses the frame
+  of its youngest grade, and the teacher page says so. The catalogue (data/courses.csv) then replaces `eld-k12` with
+  four band rows, `eld-k-2`, `eld-3-5`, `eld-6-8`, `eld-9-12`. Pending(docs/agents/decisions/DESK-ANSWERS.md#q-prework-open-2)
+- **Ownership** (settled by the expert reader, 2026-11-20, ours, untested). The ELD progression has one owned row per
+  id in data/standards/wida-2020.txt, 104 in all. A cluster's owner year is its last grade: K for K, 1 for 1, 3 for
+  2-3, 5 for 4-5, 8 for 6-8, 12 for 9-12. The other grades of the cluster carry the id as `~ID`, each with a one-line
+  note on how that year differs (a harder text or task, the next key language use added). The social and
+  instructional ranges are the exception, because students need that language from the day they enter: SI K-3 is
+  owned by grade 3 and carried as `~` in K to 2; SI 4-12 is owned by grade 4 and carried as `~` in grades 5 to 12. A
+  row names the Interpretive id and the Expressive id as two ids, so the gate counts both. No id is excluded. The
+  gate then needs ELD in scripts/progression.py: the standards file, the anchor, and a cluster-to-grade map beside
+  the span map, with the owner rule above.
+- **Newcomer strand** (settled by the expert reader, ours, untested): the first 20 days of each band, on the SI ids
+  and the cluster's Inform only. A student moves to entry points 1 and 2 when the teacher judges the strand's
+  look-fors "seen" on two days in a row, or on the school's own check where there is one.
 
 ## 3. How the course is built (for the frames, after the gate)
 
@@ -83,7 +99,8 @@ every other course are C11, not this course (bar part 10).
 ## 4. What the California map adds to bar part 10
 
 The map (Program Type 5, specialized ELD, grades 4 to 8; approved 2025-11-06; 91 pages; five categories) was read in
-full on 2026-11-16. Our reading, in our own words. Bar items 1 to 8 hold. The map adds:
+full on 2026-11-16. Our reading, in our own words. The map covers grades 4 to 8; Curio Class uses it in K to 3 and
+9 to 12 too, as our own extension. Bar items 1 to 14 hold. The map adds:
 
 | Map criterion | What it asks | Proposal |
 |---|---|---|

@@ -67,7 +67,7 @@ testing (the school's). Whether a source may be adapted (BASE-TEXTS.md). Spanish
 
 Read 2026-11-16 or earlier in this repo; check the source before a finding rests on it.
 - WIDA English Language Development Standards Framework, 2020 Edition (the parts, codes and clusters; all rights
-  reserved, ids only), and the WIDA PRIME 2020 web pages (the rubric file itself was not opened: behind a form).
+  reserved, ids only), and the WIDA PRIME 2020 web pages (the rubric and workbook, requested through WIDA's form, were read in full 2026-11-16: docs/RUBRIC-ELD.md).
 - California Department of Education, criteria map for instructional materials, Program Type 5, specialized ELD,
   grades 4 to 8 (approved 2025-11-06), read in full 2026-11-16.
 - National Academies of Sciences, Engineering, and Medicine, Promoting the Educational Success of Children and Youth
