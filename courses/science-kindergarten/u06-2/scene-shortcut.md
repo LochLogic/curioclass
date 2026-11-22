@@ -15,7 +15,7 @@ A schoolyard with a school door on the left and a gate on the right. Between the
 
 ## What the teacher asks
 
-T1a: "Touch what people do here." T1b: "Touch what changes." T2a: "Draw a solution for this place." T2b: "Draw what it would change." T3: "Tell your partner why your solution helps. Use your drawing." Any feasible solution with a defensible link between the action and less harm is accepted, not only the example in the key.
+T1a: "Touch what people do to the bed of plants." T1b: "Touch what changes." T2a: "Draw a solution for this place." T2b: "Draw what it would change." T3: "Tell your partner why your solution helps. Use your drawing." Any feasible solution with a defensible link between the action and less harm is accepted, not only the example in the key.
 
 ## Large action pictures
 

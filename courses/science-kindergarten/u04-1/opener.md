@@ -33,7 +33,7 @@ Each day is 30 minutes and uses one rhythm: a short return and repair for the da
 
 ## Safety
 
-The teacher alone handles pots, watering and soil; children look. No tasting or sniffing anything unknown, wash hands after soil, and check for allergies before a plant is chosen. Both plants are spider plants, checked as non-toxic to pets and people, and are inspected for mould the day before. No plant is left to suffer: the shelf plant is back in light before day 32. No food is brought in and no animal is handled.
+The teacher alone handles pots, watering and soil; children look. No tasting or sniffing anything unknown, wash hands after soil, and check for allergies before a plant is chosen. Both plants are spider plants, checked as non-toxic to pets and people, and are inspected for mold the day before. No plant is left to suffer: the shelf plant is back in light before day 32. No food is brought in and no animal is handled.
 
 ## Supplies
 

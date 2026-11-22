@@ -17,7 +17,7 @@ Teacher only. Never print this page; it answers the printed piece cards-exits-13
 
 ## Day 14 cards: July in Denver
 
-- 14a. Spoken: thirteen (the teacher says the total, over ten). Fourteen or fifteen, with a square touched twice, is error B.
+- 14a. Spoken: one touch per square as you count; you say the total, thirteen, since it is over ten. A square touched twice, so the count runs to fourteen or fifteen, is error B.
 - 14b: one day. Two days is error C.
 - 14c: more sunny days; the teacher says the totals, fourteen and eight, after the answer. "More rainy days" is a slip in reading the rows: no register letter, record "shown with help".
 

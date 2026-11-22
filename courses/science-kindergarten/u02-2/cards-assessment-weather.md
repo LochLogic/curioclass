@@ -13,8 +13,8 @@ For the day 18 observation only. Never show, teach from or send home before day 
 
 ## W1a: one day in September
 
-A day square for 4 September 2024 with three sky squares clipped to it: cloudy, rainy and windy. A fourth, sunny, square sits beside it unclipped.
-**Spoken:** "Here is one day in September in Denver, made from another observer's record. Touch every weather picture that is true for this day."
+A day square for 4 September 2024 showing its afternoon record: a cloud, rain drops and wind lines. Four sky squares lie loose in a row beside it: sunny, cloudy, rainy, windy.
+**Spoken:** "Here is one day in September in Denver, made from another observer's record. Touch every weather picture that is true for this day in the afternoon."
 
 ## W1b: the rainy days of September
 
@@ -23,7 +23,7 @@ Six rain squares in a row with date numerals: 4, 5, 15, 17, 21 and 22 September 
 
 ## W2: three days, morning and afternoon
 
-Three day cards, 16, 17 and 18 September 2024, each with a morning panel and an afternoon panel and a warmth mark between them. 16 September: the morning sky sunny, the afternoon sky cloudy, an arrow up. 17 September: the morning sky sunny, the afternoon sky cloudy, an arrow down. 18 September: sunny in both, an arrow up.
+Three day cards, 16, 17 and 18 September 2024, each with a morning panel and an afternoon panel and a warmth mark between them. 16 September: the morning sky part sun, part cloud, the afternoon sky cloudy, an arrow up. 17 September: the morning sky part sun, part cloud, the afternoon sky cloudy, an arrow down. 18 September: sunny in both, an arrow up.
 **Spoken:** "Here are three days in Denver, each with a morning picture and an afternoon picture, made from another observer's record. Is the afternoon the warmer time on all three days? Touch yes or no."
 
 ## W3a and W3b: two months

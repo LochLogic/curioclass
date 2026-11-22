@@ -11,7 +11,7 @@ Small square cards the same size as the class chart squares. One set for each gr
 
 **Sky squares.**
 - **Sunny:** a round sun with straight rays and no cloud.
-- **Cloudy:** a flat grey-outlined cloud covering most of the square.
+- **Cloudy:** a flat gray-outlined cloud covering most of the square.
 - **Rainy:** a cloud with six short slanted rain strokes under it.
 - **Windy:** two long curved lines streaming sideways with a small leaf blowing along.
 

@@ -13,18 +13,19 @@ Held back, never taught from. Plain black line drawings on white, thick lines, n
 
 A young plant beside a stone with soil packed around it; the same plant later with its roots grown and the soil pushed aside toward damp ground. Card: a cloud (not evidence).
 **C1a:** "Invented for practice. Touch the picture that shows the roots changed the place."
-**C1b:** "What does that help the plant get?"
+**C1b:** "What does the plant reach?"
 
 ## Sequence C2. A fox and a bank
 
 A fox starts to dig; soil comes out in a pile; the bank has a den opening.
-**C2a:** "Touch what the animal changed."
+**C2a:** "Touch the picture that shows the change the animal made."
 **C2b:** "What does the animal get from that?"
 
 ## Sequence C3. A channel for a garden
 
 A dry garden of food plants; people digging a channel from a stream; water running along the channel to a green garden.
-**C3a:** "Touch the land the people changed."
+**C3 routes.** A fourth picture: the garden and the stream drawn twice, side by side. Route 1 crosses a bare strip; route 2 crosses a patch of plants; both lines are the same length.
+**C3a:** "Touch what the people made."
 **C3b:** "Two routes for the channel bring the same water. One crosses a bare strip. The other crosses a patch of plants. Touch the route that leaves more living things in place."
 **C3c:** "Why that one?"
 

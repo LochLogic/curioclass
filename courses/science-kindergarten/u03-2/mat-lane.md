@@ -8,7 +8,7 @@ credit: ours
 # Lane response mat (days 27 and 28)
 
 <div>Name ______________</div>
-<table style="width:100%;border-collapse:collapse"><tr><td style="border:2px solid #000;height:1.6in;width:100%;vertical-align:bottom;text-align:center;font-size:18pt">where the push stopped</td></tr></table>
+<table style="width:100%;border-collapse:collapse"><tr><td style="border:2px solid #000;height:1.6in;width:78%;vertical-align:bottom;text-align:center;font-size:18pt">where the push stopped</td><td style="border:6px solid #000;height:1.6in;width:22%;vertical-align:bottom;text-align:center;font-size:18pt">bay</td></tr></table>
 <table style="width:100%;border-collapse:collapse"><tr><td style="border:2px solid #000;height:1.6in;width:100%;vertical-align:bottom;text-align:center;font-size:18pt">what people want</td></tr></table>
 <table style="width:100%;border-collapse:collapse"><tr><td style="border:2px solid #000;height:1.6in;width:100%;vertical-align:bottom;text-align:center;font-size:18pt">the path of the ball</td></tr></table>
 <table style="width:100%;border-collapse:collapse"><tr><td style="border:2px solid #000;height:1.3in;width:50%;vertical-align:bottom;text-align:center;font-size:18pt">gentle push</td><td style="border:2px solid #000;height:1.3in;width:50%;vertical-align:bottom;text-align:center;font-size:18pt">harder push</td></tr></table>

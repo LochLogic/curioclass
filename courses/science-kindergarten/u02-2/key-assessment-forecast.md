@@ -14,8 +14,8 @@ Teacher only. Never print this page; it answers the printed piece cards-assessme
 
 - First picture (F1): the page is the outlook for the day: storms in the afternoon and evening, and an outing at risk.
 - Timing picture (F2a): afternoon and evening.
-- F1 spoken: any question the page can answer: when, how strong, what to do. A question the page cannot answer (what was the weather yesterday) is kept on the not-on-this-page card, marked "shown", never an error; asking about yesterday is error E.
-- F2a spoken: the clock for the afternoon and evening. "They will come" is error D; the morning clock is error E.
+- F1 spoken: any question about what may come: when, or what to do (the page shows no strength). A question the page cannot answer (what was the weather yesterday) is kept on the not-on-this-page card, marked "shown", never an error; asking about yesterday is error E.
+- F2a spoken: the clock for the afternoon and evening. "They will come" is error D; the morning clock is error E. Record "could" when the child offers it; a silent correct touch is not marked down.
 
 ## The June 2023 rows
 
@@ -25,5 +25,5 @@ Teacher only. Never print this page; it answers the printed piece cards-assessme
 
 ## F3a and F3b: cards
 
-- F3a spoken: card one. Card two is error F.
+- F3a spoken: card one. Card two is error F. Thunder is the signal to go in at once; getting ready before the afternoon is the better plan.
 - F3b spoken: the school building. The tree is error H.

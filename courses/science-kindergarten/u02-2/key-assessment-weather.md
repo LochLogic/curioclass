@@ -12,8 +12,8 @@ Teacher only. Never print this page; it answers the printed piece cards-assessme
 
 ## W1a: one day in September
 
-- Day square, 4 September 2024: cloudy, rainy and windy are true for this day.
-- Spoken: cloudy, rainy, windy.
+- Day square, 4 September 2024, afternoon: cloudy, rainy and windy are true; sunny is not.
+- Spoken: cloudy, rainy, windy. Touching sunny as well is shown with help, no letter: the morning had few clouds.
 
 ## W1b: the rainy days of September
 

@@ -26,13 +26,13 @@ Before the unit, at a school place withheld from teaching, the teacher collects 
 
 **W1a.** "The exhibit is invented for practice; the dated records are real. Our exhibit keeper asks whether sunlight changes warmth. Touch the fair pair." Offer card S beside card U.
 **W1b.** "Mark which sand sample felt warmer at the morning look." Read the morning caption on card S aloud once first.
-**W2a to W2d.** Read each card's dated caption aloud once before the children mark that row. "For sand (then soil, rock, water), mark the sunny one, the shaded one or about the same, first for the morning card and then for the afternoon card."
-**W3a.** Read each caption on card T aloud once first. "For each sunny sample, touch the earlier look or the later look, whichever its record says was warmer. Touch both looks if the record says about the same."
-**W3b and W3c.** "Touch the pair that shows the sun did it." then "Say why that pair shows the sun did it."
+**W2a to W2d.** Read each card's dated caption aloud once before the children mark that row. "For sand (then soil, rock, water), mark which felt warmer: the sunny one, the shaded one or about the same, first for the morning card and then for the afternoon card."
+**W3a.** Read each caption on card T aloud once first. "For each sunny sample, touch the look where it felt warmer than its shaded match. Touch both looks if both say so, and neither if neither does."
+**W3b and W3c.** "Touch a pair where the sunny one felt warmer, to show the sun did it." then "Say why that pair shows the sun did it."
 
 ## The keys follow the records
 
-A key for W1b, W2 and W3 is whatever the caption on the real card says. If the teacher's pairs show a tie, the key is a tie. Write the key for each card on the teacher copy before the day, from the caption, and never change the caption to fit an answer.
+A key for W1b, W2 and W3 is whatever the caption on the real card says: accept the mark the caption gives, a tie when the caption says tie; a mark against the caption is shown with help. If the teacher's pairs show a tie, the key is a tie. Write the key for each card on the teacher copy before the day, from the caption, and never change the caption to fit an answer.
 
 ## A room with nothing
 

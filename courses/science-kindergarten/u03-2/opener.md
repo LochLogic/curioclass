@@ -26,7 +26,7 @@ Each day is 30 minutes. Days 25 and 26 open with a short return and repair. On d
 ## The errors, in plain words
 
 - **A:** "Build a wall now." Put the want before the idea.
-- **B:** A favourite tool in place of the want.
+- **B:** A favorite tool in place of the want.
 - **C:** "It went farther so it was faster." Watch the start.
 - **D:** "It was close so it turned." It turned where it touched.
 - **E:** "It looks neat so it worked." Match the result to the want, yes or no.

@@ -13,7 +13,7 @@ In this unit we look at the litter on our school playground, count it, and ask w
 
 Your child does not need to read or write. They can point, draw, act it out or tell you in any language.
 
-One easy thing to try: on a walk, look at a patch of ground together and ask, "What do you see? Where might that go if the wind blew?" Any answer is a good answer. Please do not pick up anything sharp or unknown. There is nothing to send back to school.
+One easy thing to try: on a walk, out a window or in a picture, look at a patch of ground together and ask, "What do you see? Where might that go if the wind blew?" Any answer is a good answer. Please do not pick up anything sharp or unknown. There is nothing to send back to school.
 
 ## Spanish
 

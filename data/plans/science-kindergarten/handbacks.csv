@@ -12,6 +12,9 @@ from_day,to_day,what,where,minutes,error,note
 8,9,s01-E4,Return and repair,0,F,"repair cards (same ball, two tape marks) unless this is the largest group"
 8,9,s01-E5,Return and repair,0,D,"repair cards (order of come close, touch, changed) unless this is the largest group"
 8,9,s01-E6,Return and repair,0,E,repair cards (keep both tries) unless this is the largest group; the day 8 score is never changed
+8,9,s01-E2,Return and repair,0,A,"repair cards (same object, different object) unless this is the largest group"
+8,9,s01-E2b,Return and repair,0,E,repair cards (keep both tries) unless this is the largest group
+8,9,s01-E3,Return and repair,0,A,"repair cards (same object, different object) unless this is the largest group"
 11,12,s02-X11b,Warm-up,5,A,"lay a class chart row where the afternoon was cooler or the same beside one where it was warmer; the class says it varies, so we check each day; if the chart has no such row, say we have not seen every day yet"
 12,13,s02-X12,Warm-up,5,A,"the same repair with a second chart row; the class says it varies, so we check each day"
 13,14,s02-X13,Warm-up,5,B,five squares in a line; each child's partner slides a square into a box as it is counted; the last number says how many
@@ -75,7 +78,7 @@ from_day,to_day,what,where,minutes,error,note
 52,54,s05-W3c,Return and repair,0,H,"same look, in the same five minutes"
 53,54,s05-D1a,Return and repair,0,D,"placement, in the same five minutes"
 53,54,s05-D2b,Return and repair,0,E,"a separate evidence repair, in the same five minutes"
-53,54,s05-D2c,Return and repair,0,F,"a separate evidence repair, in the same five minutes"
+53,54,s05-D2d,Return and repair,0,F,"a separate evidence repair, in the same five minutes"
 55,56,s06-X55b,Return and repair,2,A,trace a might arrow on a sequence of three pictures
 56,57,s06-X56b,Return and repair,2,C,"the shrub picture (cards-actions), then the bagged litter"
 57,58,s06-X57b,Return and repair,2,B,"one sheet, blank side up, beside a fresh sheet; one and a half minutes in the plan"

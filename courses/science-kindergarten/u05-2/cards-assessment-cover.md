@@ -27,7 +27,7 @@ The pile on the table: flat cardboard pieces, folded cardboard strips, paper, ma
 
 **D2a:** "Build your cover over your patch." Supplies per child: cardboard pieces, paper, masking tape, blunt scissors shared with the group. The teacher makes the hard cuts the day before and pre-stages large easy-fold pieces; no shape is shown and no template is given. The teacher visits each child for about 30 seconds with the three-look-for checklist: the roof is over the patch; the cover stands on its own; the side is open to look.
 **D2b:** "Show how your cover helps this patch."
-**D2c:** "After both sit out in the sun, will your covered patch be warmer or less warm than the open patch?"
+**D2c:** "Will your covered patch be warmer or less warm than the open patch?" **D2d:** "When will we know?"
 
 ## After the build
 

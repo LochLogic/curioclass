@@ -3,7 +3,7 @@ large soft ball,1,1 2 4 5 6 8 9 20 21 22 23 24 26 27 28,lane bin,group,"large en
 masking tape,1,1 2 3 4 5 6 7 8 9 11 20 21 22 23 24 26 27 28 29 30 49 50 51 53 54,teacher tape roll,room,"start line, stop pieces, lane edges and the two X marks; thick tape for low vision"
 box and string,3,3 4 7 8 9 29 30,shelf,group,a light cardboard box with a short thick string the teacher alone attaches; no loops; day 4 uses it for the pulled-toward-each-X demonstration; five on days 8 and 9
 large soft block,7,7,inside the box,group,one block that stays inside the box
-fitted eye protection,1,1 2 3 4 5 6 7 8 9 20 21 22 23 24 26 27 28 29 30,storage box,student,worn by everyone present for all moving-object work; the teacher collects and cleans it after class; stock is unconfirmed (unit plan field 8)
+fitted eye protection,1,1 2 3 4 5 6 7 8 9 20 21 22 23 24 26 27 28 29 30 45 46 48 50 53 54,storage box,student,"child-sized, splash-rated and marked Z87.1; worn by everyone present, the teacher too, for moving-object work and every sand, soil or water station; fit-over goggles for children with glasses; a child who cannot wear it records from behind the line; wiped and dried between children; stock is unconfirmed (unit plan field 8)"
 crayons,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54,tray,student,"for strips, guesses and the mat"
 paper strips,1,1 2 3 4 5 6 7,tray,student,"plain strips for the dot strip, the path strip and drawing; scrap paper is fine"
 hand wipes,1,1 2 3 4 5 6 7 8 9 12 21 22 23 24 26 32 33 34 35 44 45 46 48 49 50 51,wipe bin,student,one wipe each at clean-up into a bin
@@ -101,10 +101,10 @@ model response mat,42,42 43,child folder,student,courses/science-kindergarten/u0
 change sequences and kite card,43,43,teacher folder,group,"courses/science-kindergarten/u04-3/cards-assessment-argument.md; held back, never taught from"
 argument response mat,43,43,child folder,student,courses/science-kindergarten/u04-3/mat-argument.md
 caption strips A to J,41,42 43 44,teacher folder,room,courses/science-kindergarten/u04-3/caption-strips.md
-sand,44,44 45 46 48 53 54,teacher tub,group,matched shallow samples; the teacher fills and clears them; about $3 for the unit
-soil,44,44 45 46 48 53 54,teacher tub,group,matched shallow samples; no tasting or sniffing; wash hands after soil
+sand,44,44 45 46 48 53 54,teacher tub,group,"washed play sand made for children, low dust, kept damp; matched shallow samples; the teacher fills and clears them and keeps the bag label and safety data sheet with the purchase date; about $3 for the unit"
+soil,44,44 45 46 48 53 54,teacher tub,group,"bagged potting soil, never dug from the yard; matched shallow samples; the teacher keeps the bag label and safety data sheet; no tasting or sniffing; gloves for the teacher; wash hands with soap after soil"
 smooth rocks,44,44 45 46 48 49 50 51 53 54,teacher tub,group,matched pairs of about one size; large enough not to be a choking hazard and too large to mouth; kept low
-shallow plastic water trays,44,44 45 46 48 50 53 54,teacher tub,group,matched pairs of the same depth; reused food containers do as well, washed with soap and water and checked to be allergen-free; the teacher fills and empties them
+shallow plastic water trays,44,44 45 46 48 50 53 54,teacher tub,group,"matched pairs of the same depth; reused food containers do as well, washed with soap and water and checked to be allergen-free; the teacher fills and empties them"
 cardboard shade (household stand-in),44,44 45 46 48 53 54,teacher tub,group,held or propped over the shaded sample by the teacher
 sun response mat,44,44 45 46 47 48 50 51,child folder,student,courses/science-kindergarten/u05-1/mat-sun.md
 "exit cards, days 44 to 48",44,44 45 46 47 48,teacher folder,room,courses/science-kindergarten/u05-1/cards-exits-44-48.md
@@ -114,7 +114,7 @@ shade structure picture cards,47,47,teacher folder,group,courses/science-kinderg
 cardboard (household stand-in),47,47 49 50 51,teacher tub,group,ten pieces a group; the teacher makes the hard cuts the day before
 large toy animal,47,47 49 50 51,teacher tub,group,the spot to be shaded; any large soft toy
 construction paper,49,49 50 51 53 54,teacher tub,group,five sheets a group for covers
-blunt child-safe scissors,49,49 50 51 53 54,teacher tub,group,two a group; one cutter at a time; the teacher makes the hard cuts
+blunt child-safe scissors,49,49 50 51 53 54,teacher tub,group,"two a group, with left-handed pairs; paper and card only; carried closed, tips down; one cutter at a time; the teacher makes the hard cuts"
 "exit cards, days 49 to 54",49,49 50 51 54,teacher folder,room,courses/science-kindergarten/u05-2/cards-exits-49-54.md
 unfamiliar matched-surface evidence cards,52,52,teacher folder,group,"courses/science-kindergarten/u05-2/cards-assessment-warmth.md; held back, never taught from; the dated captions are real records"
 warmth response mat,52,52,child folder,student,courses/science-kindergarten/u05-2/mat-warmth.md
@@ -143,8 +143,8 @@ shortcut scene,60,60 61,teacher folder,room,"courses/science-kindergarten/u06-2/
 picture response mat,60,60 61 62 63 64,child folder,student,"courses/science-kindergarten/u06-2/mat-response.md; thirty mats, five in use at a time"
 sticker strip,60,60 61,teacher folder,room,courses/science-kindergarten/u06-2/sticker-cards.md
 record sheet,55,55 56 57 58 59 60 61 62 63 64,teacher folder,room,courses/science-kindergarten/u06-1/record.md for days 55 to 61 (one record across days 60 and 61); courses/science-kindergarten/u06-2/record-year-end.md for days 62 to 64
-large toy car,29,29,lane bin,lane,a wheeled toy large enough not to be a choking hazard; five lanes on day 29
+large toy car,29,29,lane bin,lane,a wheeled toy larger than a fist with no part that fits a toilet-paper tube; no battery or lights; checked the day before for loose wheels; five lanes on day 29
 mid-year check cards,29,29 30 31,teacher folder,room,"courses/science-kindergarten/u03-2/cards-check-mid.md; held back, never taught from"
 year-end check cards,62,62 63 64,teacher folder,room,"courses/science-kindergarten/u06-2/cards-check-end.md; held back, never taught from"
 class year weather chart,1,31 63 64,class wall,room,the class's own dated picture squares kept since school day 1; a key is written from it before day 63
-large toy van,30,30,lane bin,lane,a wheeled toy van large enough not to be a choking hazard; five lanes on day 30
+large toy van,30,30,lane bin,lane,a wheeled toy van larger than a fist with no part that fits a toilet-paper tube; no battery or lights; checked the day before for loose wheels; five lanes on day 30

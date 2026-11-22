@@ -11,7 +11,7 @@ Held back. Not shown, handled or taught from before day 62. Plain black line dra
 
 ## Day 62: needs and a place
 
-- **Water cards.** A sparrow at a puddle, a seedling under a watering can, a child filling a cup, a smooth pebble.
+- **Water cards.** A sparrow at a puddle, a seedling under a watering can, a child drinking from a cup, a smooth pebble.
 - **Light pair.** Two bean plants, both with a water drop: one on a bright shelf and green, one in a closed cupboard and pale.
 - **Meal cards.** A goose with pondweed, a hedgehog with a beetle, a child with an apple, a bean plant in soil. Three meal cards: pondweed, a beetle, an apple. For N4 show the goose, the hedgehog and the child alone, without their food.
 - **Meadow map.** A sunny wet bank by a stream, grassy, with a hollow in its side; a dark cave; a dry stony top; a stand of trees; a house on the hill. Small marks beside each place show what it gives: a sun, a blue drop, a swirl for air, a brown patch for soil, and a grass tuft on the bank. Cards to place: a bean plant, a hare, people. A crayon line from a card to a resource.

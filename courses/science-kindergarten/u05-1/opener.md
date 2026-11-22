@@ -9,7 +9,7 @@ credit: ours
 
 ## What the section does
 
-Five days, 44 to 48. The unit asks one question: why is the slide in the sun warmer than the one under the tree? On day 44 the class touches a sunny and a shaded surface at recess and starts a picture of the sun reaching the warm one. Day 45 plans fair pairs of sand and soil, and day 46 adds rock and water. Day 47 asks what a shade must do and tries cardboard shadows over a toy animal. Day 48 checks the pattern at a second spot. The build is in section 5.2.
+Five days, 44 to 48. The unit asks one question: why is the slide in the sun warmer than the one under the tree? If your playground has no shade or slide, use a bench, a wall or the building's edge in sun and in shade; never ask which children live near a park. On day 44 the class touches a sunny and a shaded surface at recess and starts a picture of the sun reaching the warm one. Day 45 plans fair pairs of sand and soil, and day 46 adds rock and water. Day 47 asks what a shade must do and tries cardboard shadows over a toy animal. Day 48 checks the pattern at a second spot. The build is in section 5.2.
 
 ## How the days run
 

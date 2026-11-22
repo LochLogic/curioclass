@@ -12,12 +12,12 @@ Invented for practice, said aloud first. Plain black line drawings on white, thi
 ## Chain 1: a tree and paper (land, living things)
 
 **Frame 1.** A tall tree in a wood, a bird's nest on a branch. **Frame 2.** A worker with a saw cuts the tree (the worker is the only actor). **Frame 3.** A stump and bare ground, the nest gone.
-**Spoken:** "A tree can be cut to make paper. When a tree is cut, the land is bare and the bird loses a place to live." **Marks:** land and living things.
+**Spoken:** "A tree can be cut to make paper. When a tree is cut, the land is bare and the bird loses a place to live. People also plant new trees." **Marks:** land and living things.
 
 ## Chain 2: making a bottle (air)
 
-**Frame 1.** A pile of raw material going into a factory building (the factory is the only actor). **Frame 2.** The same building with a grey haze above its chimney and over the nearby sky. **Caption:** a bottle comes out.
-**Spoken:** "Making a bottle uses materials, and a factory can make the air hazy." The haze is a can. **Marks:** air.
+**Frame 1.** A pile of raw material going into a factory building (the factory is the only actor). **Frame 2.** The same building with a gray haze above its chimney and over the nearby sky. **Caption:** a bottle comes out.
+**Spoken:** "Making a bottle uses materials, and a factory can make the air hazy, and many people work to make it cleaner." The haze is a can. **Marks:** air.
 
 ## Chain 3: a wrapper in the wind (water)
 

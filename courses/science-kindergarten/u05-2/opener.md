@@ -19,7 +19,7 @@ Each day is 30 minutes. On days 49 to 51 the class works in groups of five, each
 
 - **A covered patch is read against its open match.** Same material, started alike, out the same time, the open one beyond the cover's shadow.
 - **A cover keeps sunlight off; it need not make a spot cold.** Warm less is the result to look for. No clear difference is a result too.
-- **The roof does the job.** Colour and stripes do not. Say what the evidence says, not what looks nice.
+- **The roof does the job.** Color and stripes do not. Say what the evidence says, not what looks nice.
 - **It takes time.** A cover is not cool the moment it goes on.
 - **One change, then retest.** Where did the sun still reach?
 - **Day 52's captions are real.** The dated cards are records from a place we did not study. They are never changed to fit an answer.

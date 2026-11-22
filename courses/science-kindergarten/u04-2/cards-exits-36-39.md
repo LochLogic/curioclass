@@ -26,7 +26,7 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 **Pictures.** A fence with no vine, then the same fence covered by a vine, its leaves drawn turned up toward a small sun above the fence.
 **Spoken 38a:** "Invented for practice. A fence with no vine, then the same fence covered by a vine, its leaves reaching up toward the sun. Say: I think the vine ___ to get ___, because I saw ___."
 **Pictures.** Tall grass; a goose pulling at the grass; short grass with the goose standing by. Cards: the goose, a person with a mower, a kite.
-**Spoken 38b:** "Touch what made the grass shorter in the picture."
+**Spoken 38b:** "Touch what changed this place in the pictures."
 
 ## Day 39 (section exit)
 

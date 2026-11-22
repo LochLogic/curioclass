@@ -21,4 +21,5 @@ Teacher only. Never print this page; it answers the printed piece cards-assessme
 ## D2a and D2b: the build
 
 - D2b: the roof blocks the sunlight. "The colors make it work" is error E.
-- D2c: less warm. "It will be cool as soon as it is on" is error F.
+- D2c: less warm, the roof keeps the sunlight off.
+- D2d: after both sit out in the sun the same time. "It will be cool as soon as it is on" is error F.

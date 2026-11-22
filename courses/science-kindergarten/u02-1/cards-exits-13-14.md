@@ -25,7 +25,7 @@ Four rows of squares for the whole month of July, side by side on a wide sheet, 
 - **Rainy row:** eight squares. (Dates 2, 13, 15, 16, 20, 21, 27, 28.)
 - **Windy row:** thirteen squares. (Dates 1, 3, 6, 7, 15, 16, 17, 19, 20, 25, 26, 27, 28.)
 
-**14a. Spoken:** "A whole month of days in Denver, in picture rows. Touch each windy day once. Say the last number."
+**14a. Spoken:** "A whole month of days in Denver, in picture rows. Touch each windy day once while I count."
 
 **14b.** The 15th of July sits in the rainy row and in the windy row, marked with a ring. **Spoken:** "In the same record, the ringed square sits in the rainy row and in the windy row. Is that one day or two days? Say one or two."
 

@@ -9,7 +9,7 @@ credit: ours
 
 ## English
 
-In our weather unit we ask: why do we need coats at morning recess but not after lunch? We look at the sky, mark whether it feels warmer or cooler, and sort picture squares of sunny, cloudy, rainy and windy days into rows. We count each day once. Later we read pretend and real weather pages and ask questions about what might happen, so our school can get ready before a storm.
+In our weather unit we ask: why do we need coats at morning recess but not after lunch? If a coat is hard to find, tell the teacher; the room has spares. We look at the sky, mark whether it feels warmer or cooler, and sort picture squares of sunny, cloudy, rainy and windy days into rows. We count each day once. Later we read pretend and real weather pages and ask questions about what might happen, so our school can get ready before a storm.
 
 Your child does not need to read or write. They can point, draw, act it out or tell you in any language.
 

@@ -11,11 +11,11 @@ Held back, never taught from. Plain black line drawings on white, thick lines, n
 
 ## The map
 
-An imaginary place on one page: a sunny bed with wet soil; a grassy bank with a burrow hole; a pond; wind swirls for air; a patch of trees; a garden plot; a house with a door and a stack of wood beside it. Small marks beside the pieces: a sun, a blue drop, a swirl, a brown patch. The sunny bed and the garden plot each carry all four marks (sun, drop, swirl, brown patch). The grassy bank carries a swirl and a brown patch only (it is dry). The pond carries a drop and a swirl only. The patch of trees carries a swirl and a brown patch (it is shaded, no sun mark). The house carries a swirl only. The burrow mouth carries none.
+An imaginary place on one page: a sunny bed with wet soil; a grassy bank with a burrow hole; a pond; wind swirls for air; a patch of trees; a garden plot; a house with a door and a stack of wood beside it. Small marks beside the pieces: a sun, a blue drop, a swirl, a brown patch. The sunny bed and the garden plot each carry all four marks (sun, drop, swirl, brown patch). The grassy bank carries a swirl, a brown patch and green grass tufts, and no drop (it is dry); the pond sits beside it. The pond carries a drop and a swirl only. The patch of trees carries a swirl and a brown patch (it is shaded, no sun mark). The house carries a swirl only. The burrow mouth carries none.
 
 ## The cards
 
-A plant card (a small red-flowered plant), a prairie dog card (a round animal, side view, alone on a plain ground line), a people card (two adults and a child, no faces) and the resource marks.
+A plant card (a small red-flowered plant), a prairie dog card (a round animal, side view, alone on a plain ground line), a people card (a grandparent, an adult and a child, no faces) and the resource marks.
 
 ## Items
 

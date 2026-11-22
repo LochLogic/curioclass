@@ -23,7 +23,7 @@ Teacher only. Never print this page; it answers the printed piece cards-exits-36
 ## Day 38
 
 - Spoken 38a: the vine covered the fence to get light, because the leaves reach up to the sun. "Nothing changed" is error G; "I like the vine" is error I.
-- Spoken 38b: the goose. The person is error H. The kite is a card that is not evidence.
+- Spoken 38b: the goose (the middle picture shows it pulling at the grass). The person is error H. The kite is a card that is not evidence.
 
 ## Day 39 (section exit)
 

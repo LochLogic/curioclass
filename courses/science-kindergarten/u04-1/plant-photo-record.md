@@ -17,7 +17,7 @@ One row for each date: the date written large, a photograph of the window plant,
 
 Say aloud on days 32, 33 and 41: "These are these two plants over these weeks. They are not every plant." If the photographs show a clear difference, say what it is and no more. If nothing clear shows, say: "We do not see a clear difference. That is a result too," and do not keep any plant in the dark longer to get one.
 
-## If nothing clear shows: the invented second record
+## If nothing clear shows: the invented practice record
 
 A second record, made by us and said aloud to be invented: two pots of the same bean seedling, both watered each day, one by a bright window and one in a closed box. Photograph one, after a week: the window seedling stands green; the boxed seedling is pale and bent. Photograph two, after a week in light: the boxed seedling is greener. Caption on the page: "Invented to show what a record looks like." This card is only used when the real photographs show nothing clear, and the teacher says so.
 

@@ -27,5 +27,5 @@ Teacher only. Never print this page; it answers the printed piece cards-assessme
 
 ## Panel N4. The meal tags
 
-- Spoken N4a: seeds to the mouse, the lettuce leaf to the turtle, rice and fish to the child.
+- Spoken N4a: seeds to the mouse, the lettuce leaf to the turtle, rice and fish to the child, as the meal records show. Seeds to the turtle on a first try is shown with help, no letter.
 - Spoken N4b: no. Yes is error D.
