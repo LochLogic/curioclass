@@ -1,0 +1,1837 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Infinite Hike</title>
+<meta name="description" content="Infinite Hike: a calm walk on a trail that never ends, through forest, meadow and mountains. A free Recess game on Curio Class.">
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0f0a; overflow: hidden; font-family: Georgia, 'Iowan Old Style', 'Times New Roman', serif; color: #f1ecdf; -webkit-user-select: none; user-select: none; }
+  #c { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; transition: filter .6s; }
+  #c.blur { filter: blur(7px) brightness(.72) saturate(.9); }
+  #load { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; background: #0b0f0a; transition: opacity .45s; z-index: 5; }
+  #load.off { opacity: 0; pointer-events: none; }
+  #load span { letter-spacing: .32em; text-transform: uppercase; font-size: 13px; opacity: .7; }
+  #track { width: 220px; height: 2px; background: #ffffff22; }
+  #bar { width: 0; height: 100%; background: #d8c98f; transition: width .3s; }
+  #msg { display: none; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); max-width: 420px; text-align: center; line-height: 1.5; z-index: 9; }
+  #menu { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 4; }
+  #menu.on { display: flex; }
+  .panel { text-align: center; padding: 20px 30px; max-width: 520px; text-shadow: 0 1px 14px #000a; }
+  /* Barrio (Omnibus-Type, SIL Open Font License 1.1), cut down to the letters of the title and embedded */
+  @font-face { font-family: 'Barrio'; src: url(data:font/woff;base64,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) format('woff'); font-display: block; }
+  h1 { font-family: 'Barrio', Georgia, serif; font-weight: normal; font-size: clamp(40px, 7.5vw, 76px); letter-spacing: .04em; line-height: 1.05; margin: 0 0 10px; }
+  .sub { font-style: italic; opacity: .85; margin-bottom: 28px; font-size: 17px; }
+  button { font: inherit; color: inherit; background: #ffffff14; border: 1px solid #ffffff55; border-radius: 3px; cursor: pointer; }
+  #go { font-size: 19px; letter-spacing: .14em; text-transform: uppercase; padding: 13px 34px; background: #d8c98f; color: #1b1a12; border-color: #d8c98f; }
+  #go:hover { background: #eadc9f; }
+  table { margin: 28px auto 20px; border-collapse: collapse; font-size: 14.5px; font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; }
+  td { padding: 3px 10px; text-align: left; opacity: .92; } td:first-child { text-align: right; opacity: .65; }
+  .qs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; font: 13px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; opacity: .9; }
+  .credit { margin-top: 26px; font: 13px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; letter-spacing: .04em; }
+  .credit a { color: inherit; opacity: .7; text-underline-offset: 3px; } .credit a:hover { opacity: 1; }
+  .q { padding: 5px 12px; } .q.sel { background: #f1ecdf; color: #1b1a12; }
+  #hud, #stats, #toast { position: fixed; font: 13px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; letter-spacing: .04em; text-shadow: 0 1px 6px #000c; pointer-events: none; z-index: 3; }
+  #hud { left: 84px; bottom: 15px; opacity: .85; white-space: pre; }
+  .ib { position: fixed; bottom: 9px; width: 28px; height: 28px; padding: 5px; border-radius: 50%; z-index: 3; opacity: .6; line-height: 0; }
+  .ib:hover { opacity: 1; } #bs { left: 12px; } #ba { left: 46px; }
+  .ib svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  #bs .x { display: none; } #bs.off .x { display: inline; } #bs.off .w { display: none; } #bs.off { opacity: .45; }
+  #ba.on { background: #d8c98f; color: #1b1a12; border-color: #d8c98f; opacity: .95; }
+  #stats { right: 18px; bottom: 14px; display: none; opacity: .8; }
+  #toast { left: 50%; top: 9%; transform: translateX(-50%); font-size: 16px; opacity: 0; transition: opacity .5s; letter-spacing: .12em; text-transform: uppercase; }
+  #toast.on { opacity: .95; }
+  #mbtn { position: fixed; right: 14px; top: 12px; width: 36px; height: 36px; font-size: 18px; z-index: 3; opacity: .55; }
+  .tb { position: fixed; right: 22px; width: 64px; height: 64px; border-radius: 50%; font-size: 24px; z-index: 3; display: none; touch-action: none; }
+  #tf { bottom: 110px; } #tb { bottom: 34px; }
+  @media (pointer: coarse) { .tb { display: block; } }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="hud"></div><div id="stats"></div><div id="toast"></div>
+<button id="mbtn" title="Menu">≡</button>
+<button id="bs" class="ib" title="Sound on / off (M)" tabindex="-1"><svg viewBox="0 0 16 16"><path d="M2.5 6h2.6L8.5 3v10L5.1 10H2.5z" fill="currentColor" stroke="none"/><path class="w" d="M10.6 5.6a3.4 3.4 0 0 1 0 4.8M12.4 3.8a6 6 0 0 1 0 8.4"/><path class="x" d="M10.5 6l4 4M14.5 6l-4 4"/></svg></button>
+<button id="ba" class="ib" title="Auto-walk on / off (Space)" tabindex="-1"><svg viewBox="0 0 16 16"><path d="M3.5 3.5L8 8l-4.5 4.5M8.5 3.5L13 8l-4.5 4.5"/></svg></button>
+<button id="tf" class="tb">▲</button><button id="tb" class="tb">▼</button>
+<div id="menu"><div class="panel">
+  <h1>Infinite Hike</h1>
+  <div class="sub">A trail that never ends. Forest, meadow, mountain, and back again.</div>
+  <button id="go">Start hiking</button>
+  <table>
+    <tr><td>W / S or ↑ / ↓</td><td>walk forward / back</td></tr>
+    <tr><td>Space</td><td>auto-walk on / off</td></tr>
+    <tr><td>Shift</td><td>jog</td></tr>
+    <tr><td>Drag, or A / D</td><td>look around</td></tr>
+    <tr><td>T &nbsp; L</td><td>time of day, headlamp at night</td></tr>
+    <tr><td>M &nbsp; H &nbsp; Esc</td><td>sound, stats, this menu</td></tr>
+  </table>
+  <div class="qs" style="margin-bottom:10px">Start in <button class="q sp sel">Anywhere</button><button class="q sp">Forest</button><button class="q sp">Autumn forest</button><button class="q sp">Meadow</button><button class="q sp">Alpine</button></div>
+  <div class="qs">Detail <button class="q">Low</button><button class="q">Medium</button><button class="q">High</button></div>
+  <div class="credit"><a href="https://github.com/Noniv/abyssal-garden" target="_blank" rel="noopener">Inspired by Abyssal Garden</a></div>
+</div></div>
+<div id="load"><span>Growing the forest</span><div id="track"><div id="bar"></div></div></div>
+<div id="msg"></div>
+<script type="module">
+// ============================================================================
+// math, noise and procedural mesh builders (everything in the world is made here, no asset files)
+// ============================================================================
+const { sin, cos, abs, min, max, floor, sqrt, PI, pow, exp, hypot, atan2, round } = Math;
+const TAU = PI * 2;
+const clamp = (x, a, b) => (x < a ? a : x > b ? b : x);
+const sst = (a, b, x) => { const t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+const mix = (a, b, t) => a + (b - a) * t;
+
+// seeded random numbers (mulberry32)
+function RNG(seed) {
+  let s = seed >>> 0;
+  return () => { s = (s + 0x6D2B79F5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+// integer lattice hash -> [0, 1)
+function h2(x, y) {
+  let h = (Math.imul(x | 0, 374761393) + Math.imul(y | 0, 668265263)) | 0;
+  h = Math.imul(h ^ (h >>> 13), 1274126177); h ^= h >>> 16;
+  return (h >>> 0) / 4294967296;
+}
+// 2D value noise and fractal sums
+function vn(x, y) {
+  const xi = floor(x), yi = floor(y); let fx = x - xi, fy = y - yi;
+  fx = fx * fx * (3 - 2 * fx); fy = fy * fy * (3 - 2 * fy);
+  const a = h2(xi, yi), b = h2(xi + 1, yi), c = h2(xi, yi + 1), d = h2(xi + 1, yi + 1);
+  return a + (b - a) * fx + (c - a) * fy + (a - b - c + d) * fx * fy;
+}
+function fbm(x, y, n) {
+  let a = 0.5, s = 0;
+  for (let i = 0; i < n; i++) { s += a * vn(x, y); const t = x * 1.6 + y * 1.2 + 11.3; y = y * 1.6 - x * 1.2 + 11.3; x = t; a *= 0.5; }
+  return s;
+}
+// ridged noise for mountain crests
+function ridge(x, y) {
+  let a = 0.5, s = 0, w = 1;
+  for (let i = 0; i < 5; i++) {
+    let n = 1 - abs(2 * vn(x, y) - 1); n *= n; s += n * a * w; w = clamp(n * 1.6, 0, 1);
+    const t = x * 1.6 + y * 1.2 + 5.7; y = y * 1.6 - x * 1.2 + 3.1; x = t; a *= 0.5;
+  }
+  return s;
+}
+
+// tiny vector helpers (used only while building meshes)
+const vsub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+const vadd = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
+const vmul = (a, s) => [a[0] * s, a[1] * s, a[2] * s];
+const vcrs = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+const vnrm = (a) => { const l = hypot(a[0], a[1], a[2]) || 1; return [a[0] / l, a[1] / l, a[2] / l]; };
+const perp = (d) => vnrm(vcrs(d, abs(d[1]) < 0.9 ? [0, 1, 0] : [1, 0, 0]));
+
+// Solid vertex: pos3 normal3 sway kind (8 floats). kind's fraction is the radius of a twig that melts away with distance.
+// Card vertex: pos3 normal3 uv2 sway shape+rand centre3 morph (14 floats). morph says how the card resizes about its
+// centre as the tree recedes: 0 never, 1 grows 40% and 2 shrinks away over 70-95 m, 3 shrinks away over 225-250 m.
+const CS = 14;
+const newMesh = () => ({ v: [], i: [] });
+
+// a tapered tube through pts [x, y, z, radius, sway]
+function limb(M, pts, sides, kind, melt = false) {
+  const b = M.v.length / 8, n = pts.length;
+  for (let k = 0; k < n; k++) {
+    const p = pts[k], d = vnrm(vsub(pts[min(k + 1, n - 1)], pts[max(k - 1, 0)])), u = perp(d), w = vcrs(d, u);
+    for (let s = 0; s < sides; s++) {
+      const t = (s / sides) * TAU, cs = cos(t), sn = sin(t);
+      const nx = u[0] * cs + w[0] * sn, ny = u[1] * cs + w[1] * sn, nz = u[2] * cs + w[2] * sn;
+      M.v.push(p[0] + nx * p[3], p[1] + ny * p[3], p[2] + nz * p[3], nx, ny, nz, p[4], kind + (melt ? min(p[3], 0.9) : 0));
+    }
+  }
+  for (let k = 0; k < n - 1; k++) for (let s = 0; s < sides; s++) {
+    const a = b + k * sides + s, c = b + k * sides + ((s + 1) % sides);
+    M.i.push(a, c, a + sides, c, c + sides, a + sides);
+  }
+}
+// a flat card (quad) centred at p, facing n, shaded with normal sn
+function card(C, p, n, sn, size, shape, rnd, sw, morph = 0) {
+  const u = perp(n), w = vcrs(n, u), h = size / 2, b = C.v.length / CS, sr = shape + min(rnd, 0.99) * 0.99;
+  const P = (a, c, uu, vv) => C.v.push(p[0] + u[0] * a + w[0] * c, p[1] + u[1] * a + w[1] * c, p[2] + u[2] * a + w[2] * c, sn[0], sn[1], sn[2], uu, vv, sw, sr, p[0], p[1], p[2], morph);
+  P(-h, -h, 0, 0); P(h, -h, 1, 0); P(h, h, 1, 1); P(-h, h, 0, 1);
+  C.i.push(b, b + 1, b + 2, b, b + 2, b + 3);
+}
+// a ribbon of quads along pts [x,y,z], half width hw(t), side axis ax; uv.y runs along it
+function strip(C, pts, ax, hw, sn, shape, rnd, sw0, sw1, morph = 0, ctr = [0, 0, 0]) {
+  const b = C.v.length / CS, n = pts.length, sr = shape + min(rnd, 0.99) * 0.99;
+  for (let k = 0; k < n; k++) {
+    const t = k / (n - 1), p = pts[k], w = hw(t), sw = mix(sw0, sw1, t);
+    C.v.push(p[0] - ax[0] * w, p[1] - ax[1] * w, p[2] - ax[2] * w, sn[0], sn[1], sn[2], 0, t, sw, sr, ctr[0], ctr[1], ctr[2], morph);
+    C.v.push(p[0] + ax[0] * w, p[1] + ax[1] * w, p[2] + ax[2] * w, sn[0], sn[1], sn[2], 1, t, sw, sr, ctr[0], ctr[1], ctr[2], morph);
+  }
+  for (let k = 0; k < n - 1; k++) { const a = b + k * 2; C.i.push(a, a + 1, a + 3, a, a + 3, a + 2); }
+}
+
+// unit icosphere: { p: [[x,y,z]...], f: [[a,b,c]...] }
+function icosphere(sub) {
+  const t = (1 + sqrt(5)) / 2;
+  let p = [[-1, t, 0], [1, t, 0], [-1, -t, 0], [1, -t, 0], [0, -1, t], [0, 1, t], [0, -1, -t], [0, 1, -t], [t, 0, -1], [t, 0, 1], [-t, 0, -1], [-t, 0, 1]].map(vnrm);
+  let f = [[0, 11, 5], [0, 5, 1], [0, 1, 7], [0, 7, 10], [0, 10, 11], [1, 5, 9], [5, 11, 4], [11, 10, 2], [10, 7, 6], [7, 1, 8], [3, 9, 4], [3, 4, 2], [3, 2, 6], [3, 6, 8], [3, 8, 9], [4, 9, 5], [2, 4, 11], [6, 2, 10], [8, 6, 7], [9, 8, 1]];
+  for (let s = 0; s < sub; s++) {
+    const cache = new Map(), nf = [];
+    const mid = (a, b) => { const k = a < b ? a * 65536 + b : b * 65536 + a; let m = cache.get(k); if (m === undefined) { m = p.length; p.push(vnrm(vadd(p[a], p[b]))); cache.set(k, m); } return m; };
+    for (const [a, b, c] of f) { const ab = mid(a, b), bc = mid(b, c), ca = mid(c, a); nf.push([a, ab, ca], [b, bc, ab], [c, ca, bc], [ab, bc, ca]); }
+    f = nf;
+  }
+  return { p, f };
+}
+// push a deformed icosphere with smooth normals; fn maps a unit direction to [pos, sway]
+function blob(M, sub, kind, fn) {
+  const { p, f } = icosphere(sub), b = M.v.length / 8, q = p.map(fn), nr = p.map(() => [0, 0, 0]);
+  for (const [a, c, d] of f) { const n = vcrs(vsub(q[c][0], q[a][0]), vsub(q[d][0], q[a][0])); for (const k of [a, c, d]) { nr[k][0] += n[0]; nr[k][1] += n[1]; nr[k][2] += n[2]; } }
+  q.forEach((v, k) => { let n = vnrm(nr[k]); if (n[0] * p[k][0] + n[1] * p[k][1] + n[2] * p[k][2] < 0) n = vmul(n, -1); M.v.push(v[0][0], v[0][1], v[0][2], n[0], n[1], n[2], v[1], kind); });
+  for (const [a, c, d] of f) M.i.push(b + a, b + c, b + d);
+}
+
+// ---------------------------------------------------------------- trees
+// A broadleaf tree grown by recursive branching. lod 0: full; lod 1: main limbs and half of the (larger) leaf
+// cards; lod 2: a lumpy crown for the distance. All three come from the same random sequence, so they line up.
+function buildTree(seed, P, lod) {
+  const S = newMesh(), C = newMesh(), rng = RNG(seed), H = P.h, crown = [0, H * P.cc, 0];
+  let nc = 0, sr = 0, sy = 0, sy2 = 0;
+  const sway = (q, depth) => pow(max(q[1], 0) / H, 1.5) * 0.55 + (hypot(q[0], q[2]) / H) * 0.5 + depth * 0.02;
+  const leaves = (pts, n) => {
+    for (let k = 0; k < n; k++) {
+      const t = 0.15 + 0.85 * rng(), fi = t * (pts.length - 1), k0 = min(floor(fi), pts.length - 2), u = fi - k0;
+      const a = pts[k0], b = pts[k0 + 1], sp = P.ls * 0.7;
+      const p = [mix(a[0], b[0], u) + (rng() - 0.5) * sp, mix(a[1], b[1], u) + (rng() - 0.5) * sp, mix(a[2], b[2], u) + (rng() - 0.5) * sp];
+      const out = vnrm(vsub(p, crown)), n1 = vnrm([out[0] * 0.5 + rng() - 0.5, out[1] * 0.5 + 0.55 + (rng() - 0.5) * 0.6, out[2] * 0.5 + rng() - 0.5]);
+      const size = P.ls * (0.75 + 0.6 * rng()), rnd = rng();
+      sr += hypot(p[0], p[2]); sy += p[1]; sy2 += p[1] * p[1];
+      nc++;
+      if (lod === 2 || (lod === 1 && nc % 2)) continue;
+      card(C, p, n1, vnrm([out[0] * 0.8 + n1[0] * 0.35, out[1] * 0.8 + n1[1] * 0.35 + 0.15, out[2] * 0.8 + n1[2] * 0.35]), lod ? size * 1.4 : size, 0, rnd, sway(p, 3) + 0.03, lod ? 3 : nc % 2 ? 2 : 1);
+    }
+  };
+  const grow = (p, dir, len, rad, depth) => {
+    const ns = depth === 0 ? 6 : depth < 3 ? 3 : 2, pts = [], last = depth >= P.depth;
+    let q = p.slice(), d = dir.slice();
+    for (let k = 0; k <= ns; k++) {
+      const t = k / ns;
+      pts.push([q[0], q[1], q[2], rad * (1 - t * (depth ? 0.5 : 0.45)), sway(q, depth)]);
+      const bd = depth ? P.bend : P.bend * 0.35;
+      d = vnrm([d[0] + (rng() - 0.5) * bd, d[1] + (rng() - 0.5) * bd * 0.5 + (depth ? (last ? P.droop : P.lift) : 0), d[2] + (rng() - 0.5) * bd]);
+      q = vadd(q, vmul(d, len / ns));
+    }
+    if (lod === 0 || (lod === 1 && depth < 2) || (lod === 2 && depth === 0)) limb(S, pts, depth === 0 ? (lod ? 5 : 8) : depth === 1 ? (lod ? 3 : 5) : 3, P.kind, depth >= 2);
+    if (last) { leaves(pts, P.lv); return; }
+    const nch = depth === 0 ? P.f0 : 2 + (rng() < P.f3 ? 1 : 0), az0 = rng() * TAU;
+    for (let c = 0; c < nch; c++) {
+      const t = depth === 0 ? P.t0 + (1 - P.t0) * ((c + rng() * 0.7) / nch) : 0.4 + 0.6 * ((c + 1) / nch);
+      const fi = min(t, 1) * ns, k0 = min(floor(fi), ns - 1), u = fi - k0, a = pts[k0], b = pts[k0 + 1];
+      const pos = [mix(a[0], b[0], u), mix(a[1], b[1], u), mix(a[2], b[2], u)], r = mix(a[3], b[3], u);
+      const d0 = vnrm(vsub(b, a)), u1 = perp(d0), w1 = vcrs(d0, u1);
+      const az = az0 + c * 2.4 + rng() * 0.8, top = depth === 0 && c === nch - 1;
+      const ang = P.ang * (0.7 + 0.6 * rng()) * (top ? 0.3 : 1), sa = sin(ang), ca = cos(ang);
+      const cd = vnrm([d0[0] * ca + (u1[0] * cos(az) + w1[0] * sin(az)) * sa, d0[1] * ca + (u1[1] * cos(az) + w1[1] * sin(az)) * sa, d0[2] * ca + (u1[2] * cos(az) + w1[2] * sin(az)) * sa]);
+      const cl = depth === 0 ? H * P.l1 * (0.75 + 0.5 * rng()) * (1 - (t - P.t0) * 0.35) : len * P.lr * (0.8 + 0.4 * rng());
+      grow(pos, cd, cl, depth === 0 ? rad * 0.5 * (1.1 - t * 0.5) : r * 0.68, depth + 1);
+    }
+    if (depth === P.depth - 1) leaves(pts, P.lv >> 1);
+  };
+  grow([0, -0.4, 0], [0, 1, 0], H * P.trunk, P.r, 0);
+  if (lod === 2) {
+    const cy = sy / nc, rr = (sr / nc) * 1.25, ry = max(sqrt(max(sy2 / nc - cy * cy, 0.1)) * 2.1, rr * 0.8), r2 = RNG(seed + 5);
+    const ph = [r2() * 6, r2() * 6, r2() * 6];
+    blob(S, 1, 3, (d) => {
+      const k = 1 + 0.2 * sin(d[0] * 3.1 + ph[0]) * sin(d[2] * 3.3 + ph[1]) + 0.14 * sin(d[1] * 4.3 + ph[2]);
+      const y = cy + d[1] * ry * k;
+      return [[d[0] * rr * k, y, d[2] * rr * k], pow(max(y, 0) / H, 1.5) * 0.55];
+    });
+  }
+  return { S, C };
+}
+// a spruce / fir: straight trunk and whorls of drooping needle boughs (cards)
+function buildConifer(seed, P, lod) {
+  const S = newMesh(), C = newMesh(), rng = RNG(seed), H = P.h;
+  const sw = (y) => pow(y / H, 1.6) * 0.5;
+  if (lod === 2) {
+    limb(S, [[0, -0.4, 0, P.r, 0], [0, H * 0.16, 0, P.r * 0.8, 0]], 4, 0);
+    const pts = []; for (let k = 0; k <= 5; k++) { const t = k / 5, y = H * (0.13 + 0.87 * t); pts.push([0, y, 0, P.R * (1 - t) * (1 - 0.25 * t) + 0.08, sw(y)]); }
+    limb(S, pts, 7, 4);
+    return { S, C };
+  }
+  const tp = []; for (let k = 0; k <= 5; k++) { const t = k / 5; tp.push([0, -0.4 + (H + 0.4) * t, 0, P.r * (1 - t * 0.93), sw(H * t)]); }
+  limb(S, tp, lod ? 4 : 7, 0);
+  // a dark inner cone so the sky never shows through the middle of the tree
+  const core = []; for (let k = 0; k <= 4; k++) { const t = k / 4, y = H * (0.16 + 0.8 * t); core.push([0, y, 0, P.R * 0.36 * (1 - t) + 0.05, sw(y)]); }
+  limb(S, core, 6, 4);
+  // boughs: one simple drooping blade each, identical at lod 0 and 1 so the tree never changes shape up close
+  const nw = P.nw; let rot = 0;
+  for (let w = 0; w < nw; w++) {
+    const t = w / (nw - 1), y = H * (0.14 + 0.84 * t), R = P.R * pow(1 - t, 0.85) * (0.85 + 0.3 * rng()) + 0.25, nb = max(4, round(P.nb * (1 - t * 0.45)));
+    rot += 1.1 + rng();
+    for (let b = 0; b < nb; b++) {
+      const az = rot + (b / nb) * TAU + (rng() - 0.5) * 0.5, dx = cos(az), dz = sin(az), dr = P.droop * (0.7 + 0.6 * rng()) * (1.3 - t), rnd = rng(), rise = 0.1 * rng();
+      const pts = [];
+      for (let k = 0; k <= 3; k++) { const f = 0.03 + 0.97 * (k / 3); pts.push([dx * R * f, y + R * (rise * f - dr * 0.55 * pow(f, 1.7)), dz * R * f]); }
+      strip(C, pts, [-dz, 0, dx], () => R * 0.4, vnrm([dx * 0.6, 0.75, dz * 0.6]), 1, rnd, sw(y) + 0.02, sw(y) + R * 0.02, lod ? 3 : 0, [0, y, 0]);
+    }
+  }
+  return { S, C };
+}
+// rocks: an icosphere dented by noise and cut by a few random planes
+function buildRock(seed) {
+  const S = newMesh(), rng = RNG(seed), cuts = [];
+  for (let k = 0; k < 5; k++) cuts.push([vnrm([rng() - 0.5, rng() - 0.3, rng() - 0.5]), 0.62 + 0.3 * rng()]);
+  const o = rng() * 50;
+  blob(S, 2, 2, (d) => {
+    let r = 1 + 0.5 * (fbm(d[0] * 1.6 + d[2] * 0.7 + o, d[1] * 1.6 - d[2] * 0.9 + o, 3) - 0.5);
+    let p = vmul(d, r);
+    for (const [n, c] of cuts) { const e = p[0] * n[0] + p[1] * n[1] + p[2] * n[2] - c; if (e > 0) p = vsub(p, vmul(n, e)); }
+    return [[p[0], p[1] * 0.72, p[2]], 0];
+  });
+  return { S };
+}
+// ---------------------------------------------------------------- undergrowth (all cards)
+function buildFern(seed) {
+  const C = newMesh(), rng = RNG(seed), n = 9;
+  for (let k = 0; k < n; k++) {
+    const az = (k / n) * TAU + rng() * 0.5, dx = cos(az), dz = sin(az), L = 0.55 + 0.4 * rng(), up = 0.5 + 0.4 * rng(), pts = [];
+    for (let j = 0; j <= 3; j++) { const t = j / 3; pts.push([dx * L * t, up * L * (t * 1.5 - t * t * 1.25) + 0.02, dz * L * t]); }
+    strip(C, pts, [-dz, 0, dx], () => L * 0.2, vnrm([dx * 0.4, 1, dz * 0.4]), 2, rng(), 0, 0.05);
+  }
+  return { C };
+}
+function buildBush(seed) {
+  const C = newMesh(), rng = RNG(seed);
+  for (let k = 0; k < 44; k++) {
+    const d = vnrm([rng() - 0.5, rng() * 0.9 + 0.05, rng() - 0.5]), r = 0.2 + 0.4 * rng(), p = [d[0] * r, d[1] * r * 0.85 + 0.1, d[2] * r];
+    card(C, p, vnrm([d[0] + rng() - 0.5, d[1] + 0.4, d[2] + rng() - 0.5]), vnrm([d[0], d[1] + 0.4, d[2]]), 0.2 + 0.12 * rng(), 0, rng() * 0.5, 0.03);
+  }
+  return { C };
+}
+// a small clump of flowers: thin crossed stems and either flat heads (daisy-like) or upright spikes (lupine-like)
+function buildFlowers(seed, spike) {
+  const C = newMesh(), rng = RNG(seed), n = spike ? 3 : 5;
+  for (let k = 0; k < n; k++) {
+    const x = (rng() - 0.5) * 0.3, z = (rng() - 0.5) * 0.3, h = spike ? 0.3 + 0.2 * rng() : 0.22 + 0.3 * rng(), lx = (rng() - 0.5) * 0.12, lz = (rng() - 0.5) * 0.12, rnd = rng();
+    const pts = [[x, 0, z], [x + lx, h, z + lz]];
+    strip(C, pts, [0.007, 0, 0], (t) => 1, [0, 1, 0], 4, rnd, 0, 0.04);
+    strip(C, pts, [0, 0, 0.007], (t) => 1, [0, 1, 0], 4, rnd, 0, 0.04);
+    if (spike) {
+      const top = [[x + lx, h * 0.8, z + lz], [x + lx * 1.4, h + 0.3 + 0.12 * rng(), z + lz * 1.4]];
+      strip(C, top, [0.05, 0, 0], () => 1, [0, 1, 0], 6, rnd, 0.04, 0.07);
+      strip(C, top, [0, 0, 0.05], () => 1, [0, 1, 0], 6, rnd, 0.04, 0.07);
+    } else {
+      const n1 = vnrm([lx * 3 + (rng() - 0.5) * 0.5, 1, lz * 3 + (rng() - 0.5) * 0.5]);
+      card(C, [x + lx, h + 0.005, z + lz], n1, [0, 1, 0], 0.11 + 0.06 * rng(), 3, rnd, 0.045);
+    }
+  }
+  return { C };
+}
+
+// ---------------------------------------------------------------- animals (solid meshes; forward is +x)
+// Built from soft ellipsoids and tapered limbs. The 'sway' slot of each vertex holds a body part and a weight
+// (0 body, 1 head, 2 / 3 the two diagonal leg pairs, 4 tail, 5 ears; the fraction is how far along the part),
+// which the vertex shader uses to move legs, flick tails and twitch ears. Kinds 5-9 are fur colours.
+const ell = (M, c, r, kind, code, sub = 1) => blob(M, sub, kind, (d) => [[c[0] + d[0] * r[0], c[1] + d[1] * r[1], c[2] + d[2] * r[2]], code]);
+function buildBear() {
+  const S = newMesh();
+  ell(S, [0, 0.78, 0], [0.82, 0.5, 0.46], 5, 0, 2); ell(S, [0.45, 0.92, 0], [0.42, 0.42, 0.4], 5, 0, 1); ell(S, [-0.82, 0.86, 0], [0.09, 0.08, 0.08], 5, 0, 1);
+  ell(S, [0.98, 0.98, 0], [0.3, 0.27, 0.27], 5, 1.9, 2); ell(S, [1.24, 0.9, 0], [0.17, 0.115, 0.13], 8, 1.9, 1); ell(S, [1.4, 0.93, 0], [0.045, 0.04, 0.05], 9, 1.9, 1);
+  for (const z of [-1, 1]) {
+    ell(S, [0.9, 1.24, z * 0.2], [0.085, 0.095, 0.06], 5, 1.9, 1); ell(S, [1.19, 1.03, z * 0.13], [0.03, 0.035, 0.03], 9, 1.9, 1);
+    for (const x of [0.5, -0.5]) { const pt = (x > 0) === (z > 0) ? 2 : 3; limb(S, [[x, 0.66, z * 0.27, 0.18, pt], [x, 0.3, z * 0.27, 0.155, pt + 0.5], [x + 0.03, -0.03, z * 0.27, 0.14, pt + 0.99]], 6, 5); }
+  }
+  return { S };
+}
+function buildSquirrel() {
+  const S = newMesh();
+  ell(S, [0, 0.085, 0], [0.1, 0.065, 0.055], 6, 0, 2); ell(S, [0.045, 0.07, 0], [0.06, 0.05, 0.046], 8, 0, 1);
+  ell(S, [0.12, 0.135, 0], [0.055, 0.05, 0.045], 6, 1.9, 2); ell(S, [0.172, 0.128, 0], [0.011, 0.01, 0.012], 9, 1.9, 1);
+  // tail: one smooth upright plume, slimmer at the base and leaning back a little toward the tip
+  blob(S, 2, 6, (d) => { const h = (d[1] + 1) / 2, w = 0.6 + 0.4 * sin(h * PI * 0.8 + 0.35); return [[-0.115 - 0.05 * h * h + d[0] * 0.05 * w, 0.06 + h * 0.3, d[2] * 0.048 * w], 4 + min(h, 0.99)]; });
+  for (const z of [-1, 1]) {
+    ell(S, [0.15, 0.15, z * 0.035], [0.012, 0.013, 0.01], 9, 1.9, 1); ell(S, [0.1, 0.185, z * 0.03], [0.015, 0.025, 0.012], 6, 1.9, 1);
+    for (const x of [0.06, -0.06]) { const pt = (x > 0) === (z > 0) ? 2 : 3; limb(S, [[x, 0.06, z * 0.045, 0.02, pt], [x + 0.01, -0.005, z * 0.05, 0.016, pt + 0.99]], 4, 6); }
+  }
+  return { S };
+}
+function buildRabbit() {
+  const S = newMesh();
+  ell(S, [0, 0.13, 0], [0.17, 0.125, 0.11], 7, 0, 2); ell(S, [-0.07, 0.125, 0], [0.12, 0.12, 0.12], 7, 0, 1); ell(S, [-0.19, 0.16, 0], [0.05, 0.05, 0.05], 8, 0, 1);
+  ell(S, [0.17, 0.25, 0], [0.085, 0.08, 0.075], 7, 1.9, 2); ell(S, [0.25, 0.237, 0], [0.013, 0.012, 0.016], 9, 1.9, 1);
+  for (const z of [-1, 1]) {
+    ell(S, [0.2, 0.275, z * 0.06], [0.017, 0.018, 0.012], 9, 1.9, 1);
+    limb(S, [[0.15, 0.31, z * 0.035, 0.028, 5], [0.12, 0.43, z * 0.05, 0.032, 5.5], [0.1, 0.54, z * 0.055, 0.012, 5.99]], 5, 7);
+    limb(S, [[0.1, 0.1, z * 0.05, 0.026, 2], [0.12, -0.005, z * 0.05, 0.022, 2.99]], 4, 7);
+    ell(S, [-0.05, 0.03, z * 0.085], [0.09, 0.03, 0.035], 7, 3.5, 1);
+  }
+  return { S };
+}
+
+// ============================================================================
+// the world: an endless trail, the land around it, and what grows there
+// ============================================================================
+// The trail runs roughly along +z forever. Everything is a pure function of position, so walking back shows the
+// same places again. The land is stored in chunks of CL metres of trail; a ring of NCH chunks follows the hiker.
+const CL = 40, NCH = 56, HALF = NCH / 2, ROWS = 20, RS = CL / ROWS, COLS = 129, CH = 64;
+// distance of each terrain column from the trail: 0.6 m apart at the path, ~50 m apart at the far ridges (1.1 km)
+const DCOL = new Float32Array(COLS);
+for (let i = 0; i < COLS; i++) { const u = i - CH; DCOL[i] = u * 0.6 + 0.0042 * u * u * u; }
+
+// Where the trail is (x) at distance z, and its slope dx/dz. Two long swings set the general wander; two short
+// ones add S-bends, and `twist` fades those in and out so some stretches run nearly straight and others wind.
+// The waves never line up the same way twice, so no stretch repeats. (mirrored in WGSL: trailX())
+const twist = (z) => { const s = 0.5 + 0.5 * sin(z * 0.0019 + 0.7); return 0.25 + 0.75 * s * s; };
+const trailX = (z) => 38 * sin(z * 0.0061 + 0.5) + 17 * sin(z * 0.0173 + 2.1) + twist(z) * (11 * sin(z * 0.043 + 4.0) + 5 * sin(z * 0.083 + 1.3));
+const trailDX = (z) => trailX(z + 0.5) - trailX(z - 0.5);
+// biome weights at z: o = [forest, meadow, alpine, autumn]. One cycle is ~1.4 km. (mirrored in WGSL: biome())
+const bphase = (z) => z * 0.0045 + 0.5 * sin(z * 0.0013);
+function biome(z, o) {
+  const th = bphase(z);
+  const f = sst(0.2, 0.75, cos(th)), m = sst(0.2, 0.75, cos(th - 2.0944)), a = sst(0.2, 0.75, cos(th - 4.1888)), s = 1 / (f + m + a);
+  o[0] = f * s; o[1] = m * s; o[2] = a * s; o[3] = sst(0.3, 0.7, 0.5 + 0.5 * sin(z * 0.0011 + 4.0));
+}
+// height of the trail at z: rolling, and climbing into the alpine stretches
+const elev = (z) => 10 * sin(z * 0.0031 + 1) + 6 * sin(z * 0.0079 + 2.2) + 2.2 * sin(z * 0.019) + 30 * sst(-0.3, 1, cos(bphase(z) - 4.1888));
+const elevD = (z) => (elev(z + 0.5) - elev(z - 0.5));
+
+// height of the land d metres to the side of the trail, for the row set by rowSet(z)
+// RC: the land is laid out in strips along z, so where the trail runs at an angle, sideways distances are scaled
+// by RC to keep the path the same width
+let RX = 0, RE = 0, RZ = 0, RC = 1; const RB = new Float64Array(4);
+function rowSet(z) { RZ = z; RX = trailX(z); RE = elev(z); RC = 1 / hypot(1, trailDX(z)); biome(z, RB); }
+function hgt(d) {
+  const a = abs(d), fl = sst(1.3, 7, a * RC);
+  if (fl <= 0) return RE;
+  const x = RX + d, z = RZ;
+  let h = RE + (fbm(x * 0.022, z * 0.022, 4) - 0.5) * (5 + 9 * min(a / 80, 1)) * fl;
+  h += (fbm(x * 0.11, z * 0.11, 3) - 0.5) * 1.1 * fl * (0.4 + RB[2] * 1.3);
+  h += clamp(d, -250, 250) * 0.06 * sin(z * 0.0021 + 1.3) * fl;
+  const mw = sst(50, 650, a);
+  if (mw > 0) h += mw * (ridge(x * 0.0016 + 3.1, z * 0.0016 + 1.7) * (70 * RB[0] + 45 * RB[1] + 520 * RB[2]) + RB[2] * 60 * mw);
+  return h;
+}
+
+// ---------------------------------------------------------------- chunk generation
+// scratch: heights of the chunk being generated (one border row on each side), trail x and height per row
+const HG = new Float32Array((ROWS + 3) * COLS), RXR = new Float64Array(ROWS + 3), RER = new Float64Array(ROWS + 3);
+const TVB = new Float32Array((ROWS + 1) * COLS * 8);
+const NTREE = 512, NROCK = 160, NUG = 4096, NGRASS = 40000;
+const TREEV = 5, UGV = 4, ROCKV = 3; // tree kinds (0-2 broadleaf, 3-4 conifer), undergrowth kinds, rock shapes
+const ITB = new Float32Array(NTREE * 8), ISC = new Float32Array(NUG * 8), IKEY = new Uint8Array(NUG), IOUT = new Float32Array(NUG * 8);
+const GBUF = new ArrayBuffer(NGRASS * 16), GF = new Float32Array(GBUF), G8 = new Uint8Array(GBUF);
+const BB = new Float64Array(4), CNT = new Int32Array(32);
+const TXZ = new Float32Array(NTREE * 3); let ntxz = 0; // trunks of the chunk being built (x, z, radius), for the bear to avoid
+
+function fillHeights(ci) {
+  const z0 = ci * CL;
+  for (let j = 0; j < ROWS + 3; j++) {
+    rowSet(z0 + (j - 1) * RS); RXR[j] = RX; RER[j] = RE;
+    for (let i = 0, o = j * COLS; i < COLS; i++) HG[o + i] = hgt(DCOL[i]);
+  }
+}
+function genTerrain(ci) {
+  fillHeights(ci);
+  const z0 = ci * CL; let o = 0;
+  for (let j = 0; j <= ROWS; j++) {
+    const r = (j + 1) * COLS, bx = RXR[j + 2] - RXR[j], bz = 2 * RS;
+    for (let i = 0; i < COLS; i++) {
+      const i0 = max(i - 1, 0), i1 = min(i + 1, COLS - 1), h = HG[r + i];
+      const ax = DCOL[i1] - DCOL[i0], ay = HG[r + i1] - HG[r + i0], by = HG[r + COLS + i] - HG[r - COLS + i];
+      let nx = -bz * ay, ny = bz * ax, nz = bx * ay - by * ax; const l = 1 / hypot(nx, ny, nz);
+      TVB[o++] = RXR[j + 1] + DCOL[i]; TVB[o++] = h; TVB[o++] = z0 + j * RS;
+      TVB[o++] = nx * l; TVB[o++] = ny * l; TVB[o++] = nz * l;
+      TVB[o++] = DCOL[i]; TVB[o++] = h - RER[j + 1];
+    }
+  }
+}
+// fractional column of lateral distance d, then height / x on the generated grid (so things sit on the mesh)
+function colOf(d) {
+  let lo = 0, hi = COLS - 1;
+  while (hi - lo > 1) { const m = (lo + hi) >> 1; if (DCOL[m] <= d) lo = m; else hi = m; }
+  return lo + (d - DCOL[lo]) / (DCOL[hi] - DCOL[lo]);
+}
+let LX = 0, LY = 0, LE = 0;
+function place(d, zl) {
+  const fi = colOf(d), i = min(floor(fi), COLS - 2), u = fi - i, fj = zl / RS, j = min(floor(fj), ROWS - 1), v = fj - j, o = (j + 1) * COLS + i;
+  LY = mix(mix(HG[o], HG[o + 1], u), mix(HG[o + COLS], HG[o + COLS + 1], u), v);
+  LX = mix(RXR[j + 1], RXR[j + 2], v) + d; LE = mix(RER[j + 1], RER[j + 2], v);
+}
+// bucket the n scratch instances by key into IOUT and record [start, count] pairs in grp
+function bucket(n, nk, grp) {
+  CNT.fill(0);
+  for (let k = 0; k < n; k++) CNT[IKEY[k]]++;
+  let s = 0;
+  for (let k = 0; k < nk; k++) { grp[k * 2] = s; grp[k * 2 + 1] = CNT[k]; s += CNT[k]; CNT[k] = grp[k * 2]; }
+  for (let k = 0; k < n; k++) { const o = CNT[IKEY[k]]++ * 8, i = k * 8; for (let e = 0; e < 8; e++) IOUT[o + e] = ISC[i + e]; }
+}
+const put = (n, x, y, z, s, yaw, seed, tint, key) => { const o = n * 8; ISC[o] = x; ISC[o + 1] = y; ISC[o + 2] = z; ISC[o + 3] = s; ISC[o + 4] = yaw; ISC[o + 5] = seed; ISC[o + 6] = tint; ISC[o + 7] = 0; IKEY[n] = key; };
+
+// trees: three bands by distance from the trail (0: <56 m, 1: <160 m, 2: far clumps to 700 m), each bucketed by side
+// of the trail (0 left, 1 right) and kind, so a whole side or band can be skipped when it cannot be seen
+const BAND = [3.4, 45, 160, 700], BANDN = [100, 130, 170];
+function genTrees(c, dens) {
+  const ci = c.ci, z0 = ci * CL, rng = RNG(ci * 7919 + 17);
+  biome(z0 + CL / 2, BB);
+  const fd = BB[0] + BB[1] * 0.045 + BB[2] * 0.42, pc = 0.05 + 0.92 * sst(0.12, 0.6, BB[2]);
+  let n = 0, y0 = 1e9, y1 = -1e9;
+  for (let b = 0; b < 3; b++) {
+    const want = round(BANDN[b] * fd * dens), n0 = n;
+    for (let k = 0; k < want * 2 && n - n0 < want && n < NTREE; k++) {
+      const d = (rng() < 0.5 ? -1 : 1) * mix(BAND[b], BAND[b + 1], b ? rng() : pow(rng(), 0.85)) * (b ? 1 : 1.25), zl = rng() * CL;
+      const r1 = rng(), r2 = rng(), r3 = rng(), r4 = rng(), r5 = rng();
+      place(d, zl);
+      if (BB[2] > 0.25 && LY - LE > 70 + r1 * 70) continue; // treeline
+      if (b === 0) { let ok = true; for (let q = n0; q < n; q++) { const dx = ISC[q * 8] - LX, dz = ISC[q * 8 + 2] - (z0 + zl); if (dx * dx + dz * dz < 9) { ok = false; break; } } if (!ok) continue; }
+      const con = r2 < pc, v = con ? 3 + (r3 < 0.5 ? 1 : 0) : r3 < 0.22 ? 2 : r3 < 0.62 ? 0 : 1;
+      const tint = con ? r4 * 0.15 : clamp(BB[3] * (0.25 + 0.75 * r4) + r5 * 0.16, 0, 1);
+      put(n++, LX, LY, z0 + zl, (0.72 + 0.6 * r5) * (b === 2 ? 1.5 : 1), r1 * TAU, r4, tint, (b * 2 + (d < 0 ? 0 : 1)) * TREEV + v);
+      ISC[(n - 1) * 8 + 7] = abs(d); y0 = min(y0, LY); y1 = max(y1, LY);
+    }
+  }
+  ntxz = n; for (let i = 0; i < n; i++) { TXZ[i * 3] = ISC[i * 8]; TXZ[i * 3 + 1] = ISC[i * 8 + 2]; TXZ[i * 3 + 2] = 0.45 * ISC[i * 8 + 3]; }
+  bucket(n, 6 * TREEV, c.tg);
+  // within each bucket, nearest the trail first (c.td keeps those distances), so a draw can stop at a distance
+  for (let g = 0; g < 6 * TREEV; g++) {
+    const s0 = c.tg[g * 2], e = s0 + c.tg[g * 2 + 1];
+    for (let i = s0 + 1; i < e; i++) {
+      for (let k = 0; k < 8; k++) ISC[k] = IOUT[i * 8 + k];
+      let j = i - 1;
+      for (; j >= s0 && IOUT[j * 8 + 7] > ISC[7]; j--) for (let k = 0; k < 8; k++) IOUT[(j + 1) * 8 + k] = IOUT[j * 8 + k];
+      for (let k = 0; k < 8; k++) IOUT[(j + 1) * 8 + k] = ISC[k];
+    }
+  }
+  for (let i = 0; i < n; i++) c.td[i] = IOUT[i * 8 + 7];
+  c.ty0 = n ? y0 : 0; c.ty1 = n ? y1 : 0;
+  return n;
+}
+function genRocks(c, dens) {
+  const ci = c.ci, z0 = ci * CL, rng = RNG(ci * 4513 + 91);
+  biome(z0 + CL / 2, BB);
+  let n = 0; const want = round((7 + 4 * BB[1] + 70 * BB[2]) * dens);
+  for (let k = 0; k < want && n < NROCK - 6; k++) {
+    const s = 0.12 + pow(rng(), 3) * (1.2 + 2.2 * BB[2]), zl = rng() * CL, d = (rng() < 0.5 ? -1 : 1) * ((1.3 + s) * hypot(1, trailDX(z0 + zl)) + pow(rng(), 1.6) * 70);
+    place(d, zl);
+    put(n++, LX, LY - s * 0.25, z0 + zl, s, rng() * TAU, rng(), 0, floor(rng() * ROCKV));
+  }
+  if (BB[2] > 0.45 && ci % 3 === 0) { // a cairn beside the trail
+    const d = (rng() < 0.5 ? -1.9 : 1.9) * hypot(1, trailDX(z0 + 20)); place(d, 20); let y = LY - 0.05;
+    for (let k = 0; k < 5; k++) { const s = 0.3 - k * 0.05; put(n++, LX + (rng() - 0.5) * 0.06, y + s * 0.5, z0 + 20 + (rng() - 0.5) * 0.06, s, rng() * TAU, rng(), 0, k % ROCKV); y += s * 1.15; }
+  }
+  // Animals share the rock buffer (groups 3 bear, 4 squirrel, 5 rabbit). They are rare: at most one kind in a
+  // chunk, and most chunks have none. They keep their distance: bears 26-58 m from the trail, squirrels 8-18 m,
+  // rabbits 9-22 m. Each gets the slope of the ground along the short line it wanders.
+  const zoo = qs.has('zoo'), ra = zoo ? 2 : rng(), pB = 0.05 * (BB[0] + 0.7 * BB[2]), pS = 0.11 * BB[0], pR = 0.12 * (BB[1] + 0.4 * BB[0]);
+  // is the straight walk from (x, z) along (ux, uz), half length hl, clear of this chunk's trunks and rocks by `gap`?
+  const clearWalk = (x, z, ux, uz, hl, gap) => {
+    const hit = (px, pz, r) => { const t = clamp((px - x) * ux + (pz - z) * uz, -hl, hl), ex = px - x - ux * t, ez = pz - z - uz * t; return ex * ex + ez * ez < (r + gap) * (r + gap); };
+    for (let i = 0; i < ntxz; i++) if (hit(TXZ[i * 3], TXZ[i * 3 + 1], TXZ[i * 3 + 2])) return false;
+    for (let i = 0; i < n; i++) if (ISC[i * 8 + 3] > 0.35 && hit(ISC[i * 8], ISC[i * 8 + 2], ISC[i * 8 + 3])) return false;
+    return true;
+  };
+  const animal = (sp, near, far, s0, s1) => {
+    // the bear is big enough that walking through a tree shows, so it gets up to 16 tries at a clear line (and is
+    // left out if there is none); its walk is 3.2 m each way plus its own length
+    for (let attempt = 0; attempt < (sp === 1 ? 16 : 1); attempt++) {
+      const zl = zoo ? 7 : (sp === 1 ? 9 + rng() * 22 : 6 + rng() * 28), d = (rng() < 0.5 ? -1 : 1) * (near + rng() * (far - near)), sc = mix(s0, s1, rng());
+      // they are shy: the line they wander runs alongside the trail (within about 20 degrees), never toward it
+      const tx = trailDX(z0 + zl), yaw = Math.atan2(-1, tx) + (rng() < 0.5 ? PI : 0) + (rng() - 0.5) * 0.7, seed = rng();
+      place(d, zl); const x = LX, y = LY;
+      if (sp === 1 && !clearWalk(x, z0 + zl, cos(yaw), -sin(yaw), 3.2 + 1.7 * sc, 0.75 * sc)) continue;
+      const dzw = -sin(yaw), zz = clamp(zl + dzw, 0, CL); place(d + cos(yaw) - trailDX(z0 + zl) * dzw, zz);
+      put(n++, x, y, z0 + zl, sc, yaw, seed, clamp(LY - y, -0.3, 0.3), ROCKV + sp - 1); ISC[(n - 1) * 8 + 7] = sp;
+      return;
+    }
+  };
+  if (zoo) { const k = ((ci % 3) + 3) % 3; if (k === 0) animal(1, 4, 4.5, 0.9, 1.15); else if (k === 1) animal(2, 1.2, 1.4, 1.5, 1.9); else animal(3, 1.2, 1.4, 1.1, 1.4); } // ?zoo: one beside the trail in every chunk, for checking them
+  else if (ra < pB) animal(1, 26, 58, 0.9, 1.15);
+  else if (ra < pB + pS) animal(2, 8, 18, 1.5, 1.9);
+  else if (ra < pB + pS + pR) { animal(3, 9, 22, 1.1, 1.4); if (rng() < 0.4) animal(3, 9, 22, 1.0, 1.3); }
+  bucket(n, ROCKV + 3, c.rg);
+  return n;
+}
+// undergrowth: 0 ferns, 1 bushes, 2 flower clumps, 3 flower spikes
+function genUnder(c, dens) {
+  const ci = c.ci, z0 = ci * CL, rng = RNG(ci * 3331 + 5);
+  biome(z0 + CL / 2, BB);
+  let n = 0;
+  const add = (key, want, near, far, sc0, sc1) => {
+    for (let k = 0; k < want && n < NUG; k++) {
+      const zl = rng() * CL, d = (rng() < 0.5 ? -1 : 1) * (near * hypot(1, trailDX(z0 + zl)) + pow(rng(), 1.7) * far), r1 = rng(), r2 = rng();
+      place(d, zl);
+      if (BB[2] > 0.3 && LY - LE > 150) continue;
+      if (key === 3 && vn(LX * 0.045 + 7, (z0 + zl) * 0.045) < 0.5) continue; // spikes grow in drifts
+      const tint = key >= 2 ? (floor(vn(LX * 0.06 + key * 9, (z0 + zl) * 0.06) * 6 + r2 * 1.4) % 5) / 5 + 0.1 : clamp(BB[3] * r2, 0, 1);
+      put(n++, LX, LY, z0 + zl, mix(sc0, sc1, r1), r2 * TAU, r1, tint, key);
+    }
+  };
+  add(0, round(520 * BB[0] * dens), 1.4, 34, 0.55, 1.15);
+  add(1, round((90 * BB[0] + 70 * BB[2]) * dens), 2.2, 45, 0.7, 1.4);
+  add(2, round((2600 * BB[1] + 160 * BB[0] + 420 * BB[2]) * dens), 1.0, 38, 0.5, 0.95);
+  add(3, round((800 * BB[1] + 60 * BB[2]) * dens), 1.3, 40, 0.6, 1.1);
+  bucket(n, UGV, c.ug);
+  return n;
+}
+// grass blades: position + 4 bytes (height, facing, yellowness, random)
+function genGrass(c, dens) {
+  const ci = c.ci, z0 = ci * CL, rng = RNG(ci * 1223 + 3);
+  biome(z0 + CL / 2, BB);
+  const want = round(NGRASS * dens * (BB[0] * 0.5 + BB[1] + BB[2] * 0.85)), hs = BB[0] * 0.3 + BB[1] * 0.62 + BB[2] * 0.2;
+  let n = 0;
+  for (let k = 0; k < want; k++) {
+    const a = 0.75 + pow(rng(), 1.9) * 36, zl = rng() * CL, d = (rng() < 0.5 ? -1 : 1) * (a + 0.75 * (hypot(1, trailDX(z0 + zl)) - 1)), r1 = rng(), r2 = rng(), r3 = rng();
+    place(d, zl);
+    const tall = sst(0.75, 2.2, a) * (0.45 + 0.55 * vn(LX * 0.21, (z0 + zl) * 0.21));
+    const o = n * 16, f = n * 4;
+    GF[f] = LX; GF[f + 1] = LY - 0.02; GF[f + 2] = z0 + zl;
+    G8[o + 12] = clamp(hs * tall * (0.5 + r1) * (1 + a * 0.012), 0.03, 1) * 255;
+    G8[o + 13] = r2 * 255;
+    G8[o + 14] = clamp(BB[1] * 0.35 + BB[2] * 0.3 + BB[3] * 0.4 + vn(LX * 0.07 + 40, (z0 + zl) * 0.07) * 0.5 - 0.15 + r3 * 0.2, 0, 1) * 255;
+    G8[o + 15] = r3 * 255;
+    n++;
+  }
+  return n;
+}
+
+// ============================================================================
+// WGSL shaders
+// ============================================================================
+const S_G = /*wgsl*/`
+struct G {
+  vp: mat4x4f, sm: mat4x4f,
+  cam: vec4f,    // xyz eye, w time
+  sun: vec4f,    // xyz direction to the sun (the moon at night), w night amount
+  sunC: vec4f,   // sun colour * intensity
+  skyZ: vec4f,   // zenith colour
+  skyH: vec4f,   // horizon colour
+  fwd: vec4f,    // xyz, w near plane
+  right: vec4f,  // xyz, w tan(half fov x)
+  up: vec4f,     // xyz, w tan(half fov y)
+  res: vec4f,    // w, h, 1/w, 1/h of the scene target
+  bio: vec4f,    // forest, meadow, alpine, autumn at the camera
+  wind: vec4f,   // xz direction, strength, headlamp brightness
+  shc: vec4f,    // shadow map centre xyz, radius
+  bird: vec4f,   // centre of the bird flock
+  misc: vec4f,   // exposure, light shaft density, fog density, dusk
+};
+@group(0) @binding(0) var<uniform> g: G;
+fn sat(x: f32) -> f32 { return clamp(x, 0., 1.); }
+fn ss(a: f32, b: f32, x: f32) -> f32 { let t = sat((x - a) / (b - a)); return t * t * (3. - 2. * t); }
+fn h21(p: vec2f) -> f32 { var q = fract(p.xyx * vec3f(.1031, .1030, .0973)); q += dot(q, q.yzx + 33.33); return fract((q.x + q.y) * q.z); }
+fn h11(x: f32) -> f32 { return fract(sin(x * 127.1) * 43758.5453); }
+fn vn(p: vec2f) -> f32 {
+  let i = floor(p); var f = p - i; f = f * f * (3. - 2. * f);
+  return mix(mix(h21(i), h21(i + vec2f(1., 0.)), f.x), mix(h21(i + vec2f(0., 1.)), h21(i + vec2f(1., 1.)), f.x), f.y);
+}
+fn fbm(p0: vec2f, n: i32) -> f32 {
+  var p = p0; var a = .5; var s = 0.;
+  for (var i = 0; i < n; i++) { s += a * vn(p); p = vec2f(p.x * 1.6 + p.y * 1.2, p.y * 1.6 - p.x * 1.2) + 11.3; a *= .5; }
+  return s;
+}
+fn ign(p: vec2f) -> f32 { return fract(52.9829189 * fract(dot(p, vec2f(.06711056, .00583715)))); }
+// biome weights along the trail (same as biome() in world.js): forest, meadow, alpine, autumn
+fn biome(z: f32) -> vec4f {
+  let th = z * .0045 + .5 * sin(z * .0013);
+  let w = vec3f(ss(.2, .75, cos(th)), ss(.2, .75, cos(th - 2.0944)), ss(.2, .75, cos(th - 4.1888)));
+  return vec4f(w / (w.x + w.y + w.z), ss(.3, .7, .5 + .5 * sin(z * .0011 + 4.)));
+}
+// the trail's sideways position along z (same as trailX() in world.js)
+fn trailX(z: f32) -> f32 {
+  let s = .5 + .5 * sin(z * .0019 + .7);
+  return 38. * sin(z * .0061 + .5) + 17. * sin(z * .0173 + 2.1) + (.25 + .75 * s * s) * (11. * sin(z * .043 + 4.) + 5. * sin(z * .083 + 1.3));
+}
+// leaf colour from summer green (0) through gold and orange to red (1)
+fn pal(t: f32) -> vec3f {
+  var c = mix(vec3f(.05, .12, .016), vec3f(.13, .23, .03), sat(t * 5.));
+  c = mix(c, vec3f(.50, .36, .03), ss(.25, .5, t));
+  c = mix(c, vec3f(.52, .17, .02), ss(.5, .75, t));
+  return mix(c, vec3f(.33, .045, .02), ss(.78, 1., t));
+}
+// clear sky without clouds or the sun disc
+fn sky(rd: vec3f) -> vec3f {
+  let h = max(rd.y, 0.);
+  let mu = max(dot(rd, g.sun.xyz), 0.);
+  // at dusk the horizon glows only on the sun's side and cools to violet away from it
+  let side = ss(-.5, 1., dot(normalize(rd.xz + 1e-5), normalize(g.sun.xz)));
+  let hz = mix(g.skyH.rgb, mix(vec3f(.16, .13, .27), g.skyH.rgb, side * side), g.misc.w);
+  var c = mix(hz, g.skyZ.rgb, 1. - exp(-h * mix(3.2, 4.5, g.misc.w)));
+  c = mix(c, vec3f(.5, .3, .42) * (.4 + .6 * side), g.misc.w * .45 * exp(-abs(h - .16) * 9.));
+  return c + g.sunC.rgb * (pow(mu, 5.) * .018 + pow(mu, 40.) * .05);
+}
+// aerial haze: thicker low down, fully closed by 1.08 km (where the generated land ends)
+fn fog(c: vec3f, wp: vec3f) -> vec3f {
+  let v = wp - g.cam.xyz; let d = length(v); let rd = v / d;
+  let k = .006 * v.y;
+  let hf = select((1. - exp(-k)) / k, 1., abs(k) < 1e-3);
+  var T = exp(-g.misc.z * d * hf);
+  T *= 1. - ss(820., 1080., length(v.xz));
+  let fc = sky(normalize(vec3f(rd.x, max(rd.y, 0.) * .5 + .03, rd.z)));
+  return mix(fc, c, T);
+}
+fn amb(n: vec3f) -> vec3f { return mix(g.skyH.rgb * .22 + vec3f(.03, .035, .015) * (1. - .85 * g.sun.w), g.skyZ.rgb * .6 + g.skyH.rgb * .3, n.y * .5 + .5); }
+// The headlamp: a warm cone of light from the eye along the view, with a bright centre, a soft edge, a faint wide
+// spill so things beside you are not pitch black, and a falloff with distance. wrap softens it for thin foliage.
+fn lamp(wp: vec3f, n: vec3f, wrap: f32) -> vec3f {
+  if (g.wind.w < .001) { return vec3f(0.); }
+  let v = g.cam.xyz - wp; let d = length(v); let l = v / d;
+  let ca = dot(-l, g.fwd.xyz);
+  let cone = ss(.80, .95, ca) * (.55 + .45 * ss(.95, .995, ca)) + .05 * ss(.2, .8, ca);
+  return vec3f(1., .9, .74) * (g.wind.w * cone * mix(sat(dot(n, l)), 1., wrap) / (1. + .014 * d * d));
+}
+fn windAt(p: vec3f) -> vec2f {
+  let ph = dot(p.xz, g.wind.xy) * .07 - g.cam.w * .8;
+  return g.wind.xy * (g.wind.z * (.5 + .5 * sin(ph) * sin(ph * .37 + 1.7) + .15 * sin(ph * 2.3)));
+}
+// Level of detail is chosen per tree, not per chunk: every tree mesh carries its level (0 near, 1 middle, 2 far,
+// 3 always) and collapses to nothing outside its own distance range. The distance is nudged by the tree's seed so
+// neighbours change at different moments. Nothing switches in one frame: over 70-95 m the near mesh morphs into
+// exactly the middle one (half its leaf cards shrink away, the rest grow, twigs melt into their branches), and
+// over 225-250 m the middle mesh's leaves shrink while the far crown swells out from the trunk.
+fn lodDist(ia: vec4f, ib: vec4f) -> f32 { return length(ia.xyz - g.cam.xyz) + (ib.y - .5) * 26.; }
+fn lodKeep(lod: f32, d: f32) -> f32 {
+  if (lod < .5) { return step(d, 95.); }
+  if (lod < 1.5) { return step(95., d) * step(d, 250.); }
+  if (lod < 2.5) { return step(225., d); }
+  return 1.;
+}
+fn rotY(v: vec3f, a: f32) -> vec3f { let c = cos(a); let s = sin(a); return vec3f(c * v.x + s * v.z, v.y, c * v.z - s * v.x); }
+// fullscreen triangle, just in front of the far plane (depth is reversed: far = 0)
+@vertex fn vsF(@builtin(vertex_index) i: u32) -> @builtin(position) vec4f { return vec4f(f32(i32(i & 1u) * 4 - 1), f32(i32(i >> 1u) * 4 - 1), 1e-6, 1.); }
+`;
+
+// shadow map lookups (group 1; not bound while the shadow map itself is drawn)
+const S_SH = /*wgsl*/`
+@group(1) @binding(0) var tSh: texture_depth_2d;
+@group(1) @binding(1) var sSh: sampler_comparison;
+fn shUV(p: vec3f) -> vec3f { let s = g.sm * vec4f(p, 1.); return vec3f(s.x * .5 + .5, .5 - s.y * .5, s.z); }
+fn shFade(p: vec3f) -> f32 { return ss(g.shc.w * .78, g.shc.w * .97, length(p.xz - g.shc.xz)); }
+fn shadow1(p: vec3f, far: f32) -> f32 {
+  let s = shUV(p);
+  return mix(textureSampleCompareLevel(tSh, sSh, s.xy, s.z - .0012), far, shFade(p));
+}
+fn shadow9(p: vec3f, n: vec3f, far: f32) -> f32 {
+  let s = shUV(p + n * .07); let tx = 1.3 / f32(textureDimensions(tSh).x);
+  var v = 0.;
+  for (var y = -1; y <= 1; y++) { for (var x = -1; x <= 1; x++) { v += textureSampleCompareLevel(tSh, sSh, s.xy + vec2f(f32(x), f32(y)) * tx, s.z - .0009); } }
+  return mix(v / 9., far, shFade(p));
+}
+fn shadow4(p: vec3f, n: vec3f, far: f32) -> f32 {
+  let s = shUV(p + n * .1); let tx = .9 / f32(textureDimensions(tSh).x);
+  var v = 0.;
+  for (var k = 0; k < 4; k++) { v += textureSampleCompareLevel(tSh, sSh, s.xy + vec2f(f32(k & 1) * 2. - 1., f32(k >> 1) * 2. - 1.) * tx, s.z - .0012); }
+  return mix(v * .25, far, shFade(p));
+}
+// shade under the canopy where the shadow map does not reach
+fn farShade(z: f32) -> f32 { return 1. - .62 * biome(z).x; }
+`;
+
+const W_SCENE = (AA) => S_G + S_SH + /*wgsl*/`
+// ---------------------------------------------------------------- terrain
+struct TO { @builtin(position) cp: vec4f, @location(0) wp: vec3f, @location(1) n: vec3f, @location(2) dr: vec2f };
+@vertex fn vsT(@location(0) p: vec3f, @location(1) n: vec3f, @location(2) dr: vec2f) -> TO {
+  var o: TO; o.cp = g.vp * vec4f(p, 1.); o.wp = p; o.n = n; o.dr = dr; return o;
+}
+@fragment fn fsT(i: TO) -> @location(0) vec4f {
+  let wp = i.wp; let ad = abs(i.dr.x); let rise = i.dr.y;
+  let dist = length(wp - g.cam.xyz);
+  let b = biome(wp.z);
+  let det = sat(1. - dist / 60.); let det2 = sat(1. - dist / 240.);
+  let lf = fbm(wp.xz * .06, 3);
+  let mf = mix(.5, vn(wp.xz * .9), det2);
+  let hf = mix(.5, vn(wp.xz * 6.5), det);
+  let ff = mix(.5, vn(wp.xz * 23.), det * det);
+  let gn = normalize(i.n);
+  let n = normalize(gn + vec3f(mf - .5, 0., hf - .5) * .5 * det + vec3f(hf - .5, 0., ff - .5) * .5 * det);
+  let slope = 1. - gn.y;
+  // ground cover per biome
+  let litter = ss(.35, .62, lf + (hf - .5) * .4);
+  var forest = mix(vec3f(.055, .095, .022), vec3f(.115, .075, .036), litter * .8);
+  forest = mix(forest, vec3f(.26, .14, .035), b.w * litter * (.5 + .5 * ff));
+  let meadow = mix(vec3f(.085, .17, .03), vec3f(.19, .21, .05), ss(.3, .7, lf));
+  let alpine = mix(vec3f(.10, .13, .045), vec3f(.19, .17, .085), lf);
+  var alb = (forest * b.x + meadow * b.y + alpine * b.z) * (.7 + .6 * mf) * (.85 + .3 * ff);
+  // rock on steep ground and high up
+  let rock = vec3f(.24, .23, .22) * (.5 + .55 * mf + .35 * hf) * (.8 + .4 * ff);
+  let rw = max(ss(.2, .4, slope + (lf - .5) * .25), b.z * ss(40., 190., rise + lf * 90.) * .9);
+  alb = mix(alb, rock, rw);
+  // far beyond the planted trees the hills are painted with canopy
+  let cano = ss(640., 720., ad) * (1. - rw) * (.55 + .7 * vn(wp.xz * .11));
+  alb = mix(alb, pal(b.w * .55 + .08) * .8, cano * b.x);
+  alb = mix(alb, vec3f(.03, .06, .03), cano * b.z * (1. - ss(60., 140., rise)));
+  let snow = b.z * ss(250., 340., rise + lf * 110.) * ss(.62, .3, slope);
+  alb = mix(alb, vec3f(.86, .89, .95), snow);
+  // the trail: packed earth, gravel in the mountains
+  let tsl = trailX(wp.z + .5) - trailX(wp.z - .5); // where the trail runs at an angle, measure its width square to it
+  let tw = 1. - ss(.62, 1.2, ad / sqrt(1. + tsl * tsl) + (vn(vec2f(wp.z * .35, 3.)) - .5) * .5 + (hf - .5) * .35 * det);
+  var dirt = mix(vec3f(.21, .14, .085), vec3f(.33, .245, .16), mf) * (.72 + .5 * hf) * (.8 + .4 * ff);
+  dirt = mix(dirt, vec3f(.17, .16, .145) * (.6 + .5 * hf + .4 * ff), b.z * .75);
+  dirt = mix(dirt, forest * 1.5, b.x * ss(.5, .75, ff + lf * .3) * .6);
+  alb = mix(alb, dirt, tw);
+  let sh = shadow9(wp, gn, farShade(wp.z));
+  let ao = mix(1., .62, b.x * ss(1.5, 10., ad) * (1. - cano));
+  let c = alb * (g.sunC.rgb * sat(dot(n, g.sun.xyz)) * sh + amb(n) * ao + lamp(wp, n, .15));
+  return vec4f(fog(c, wp), 1.);
+}
+
+// ---------------------------------------------------------------- solid meshes: trunks, rocks, distant crowns
+struct SO { @builtin(position) cp: vec4f, @location(0) wp: vec3f, @location(1) n: vec3f, @location(2) lp: vec3f, @location(3) k: vec4f };
+@vertex fn vsS(@location(0) p: vec3f, @location(1) n: vec3f, @location(2) aux: vec2f, @location(3) ia: vec4f, @location(4) ib: vec4f) -> SO {
+  var o: SO;
+  let lod = floor(aux.y * .1 + .01); let kf = aux.y - lod * 10.; let kind = floor(kf); let d = lodDist(ia, ib);
+  var q = p - n * ((kf - kind) * ss(70., 95., d));
+  if (lod > 1.5 && lod < 2.5 && kind > 2.5) { let gw = ss(225., 250., d); q = vec3f(q.x * gw, q.y, q.z * gw); }
+  var wp: vec3f; var yaw = ib.x; var swy = aux.x;
+  if (kind > 4.5) { // an animal
+    let t = g.cam.w; let part = i32(aux.x); let fr = aux.x - f32(part);
+    // wanders back and forth along a short line, pausing at each end and turning round while paused
+    var rate = .16; var len = 3.2; var hop = 0.; var hopLen = 1.; var leg = .2;
+    if (ib.w > 2.5) { rate = .45; len = 1.7; hop = .1; hopLen = .5; leg = .03; } else if (ib.w > 1.5) { rate = .7; len = 1.3; hop = .04; hopLen = .32; leg = .025; }
+    let u = t * rate + ib.y * 40.;
+    let s0 = clamp(sin(u) * 1.7, -1., 1.);
+    let mv = sat(abs(clamp(sin(u + .02) * 1.7, -1., 1.) - s0) * 60.); // 0 resting, 1 moving
+    let trav = s0 * len;
+    yaw += ss(-.25, .25, -cos(u)) * 3.14159;
+    let ph = trav * 3.4;
+    if (part == 2) { q.x += sin(ph) * leg * fr * mv; q.y += max(cos(ph), 0.) * leg * .25 * fr * mv; }
+    else if (part == 3) { q.x -= sin(ph) * leg * fr * mv; q.y += max(-cos(ph), 0.) * leg * .25 * fr * mv; }
+    else if (part == 1) { q.y += (sin(t * 1.1 + ib.y * 9.) * .012 + sin(ph * 2.) * .012 * mv) * fr; }
+    else if (part == 4) { q.z += sin(t * 7. + ib.y * 30.) * .035 * fr * (1. - mv) * ss(.2, .9, sin(t * .7 + ib.y * 50.)); q.x -= .04 * fr * mv; }
+    else if (part == 5) { q.z += ss(.8, 1., sin(t * 1.3 + ib.y * 20.)) * sin(t * 14.) * .012 * fr; }
+    q.y *= 1. + .012 * sin(t * 2.2 + ib.y * 6.);
+    let hy = abs(sin(trav / hopLen * 3.14159)) * hop * mv;
+    wp = rotY(q * ia.w, yaw) + ia.xyz + vec3f(cos(ib.x) * trav, ib.z * trav + hy, -sin(ib.x) * trav);
+    swy = 0.;
+  } else {
+    wp = rotY(q * (ia.w * lodKeep(lod, d)), ib.x) + ia.xyz;
+    let w = windAt(ia.xyz) * (1. + .3 * sin(g.cam.w * 2.1 + ib.y * 40.));
+    wp += vec3f(w.x, 0., w.y) * aux.x;
+  }
+  o.cp = g.vp * vec4f(wp, 1.); o.wp = wp; o.n = rotY(n, yaw); o.lp = p * ia.w + ib.y * 7.; o.k = vec4f(kind, ib.z, ib.y, swy);
+  return o;
+}
+@fragment fn fsS(i: SO) -> @location(0) vec4f {
+  let kind = i32(i.k.x + .5); let lp = i.lp;
+  var n = normalize(i.n);
+  let fn0 = normalize(cross(dpdx(i.wp), dpdy(i.wp)));
+  let dist = length(i.wp - g.cam.xyz); let det = sat(1. - dist / 90.);
+  let b = biome(i.wp.z);
+  var alb = vec3f(.2); var tr = 0.;
+  if (kind == 0) { // bark
+    let s = fbm(vec2f((lp.x + lp.z) * 5., lp.y * 1.1), 3);
+    alb = mix(vec3f(.085, .065, .048), vec3f(.21, .17, .13), ss(.3, .7, s)) * mix(1., .6 + .8 * vn(vec2f((lp.x - lp.z) * 22., lp.y * 5.)), det);
+    alb = mix(alb, vec3f(.07, .12, .03), ss(.5, .75, fbm(lp.xz * 2. + lp.y * .6, 2)) * sat(1.2 - (i.wp.y - g.cam.y + 1.7) * .25) * .7 * b.x);
+  } else if (kind == 1) { // birch
+    let m = vn(vec2f((lp.x + lp.z) * 4., lp.y * 16.));
+    alb = mix(vec3f(.72, .70, .64), vec3f(.07, .06, .05), ss(.66, .8, m) * det + (1. - det) * .15) * (.8 + .3 * vn(lp.xy * 3.));
+  } else if (kind == 2) { // rock
+    n = normalize(mix(n, select(fn0, -fn0, dot(fn0, n) < 0.), .55));
+    let s = fbm(lp.xz * 2.5 + lp.y * 1.7, 3);
+    alb = vec3f(.31, .295, .28) * (.45 + .9 * s) * mix(1., .7 + .6 * vn(lp.xy * 30. + lp.z * 17.), det);
+    alb = mix(alb, vec3f(.36, .37, .22), ss(.62, .7, vn(lp.xz * 9. + lp.y * 5.)) * .5);
+    alb = mix(alb, vec3f(.06, .11, .028), ss(.45, .8, n.y + (s - .5)) * (b.x * .85 + b.y * .3));
+  } else if (kind == 3) { // distant broadleaf crown
+    let s = vn(lp.xz * 1.1) * .6 + vn(lp.xy * 1.3 + 3.) * .4;
+    alb = pal(i.k.y + (s - .5) * .12) * (.35 + .7 * s); tr = .3;
+    n = normalize(n + vec3f(vn(lp.yz * 1.2) - .5, .15, vn(lp.xy * 1.2 + 7.) - .5) * .8);
+  } else if (kind == 4) { // distant conifer
+    let s = vn(vec2f(lp.x + lp.z, lp.y * 3.));
+    alb = vec3f(.02, .046, .024) * (.45 + s); n = normalize(n + vec3f(0., .6, 0.));
+  } else { // animal fur: 5 bear, 6 squirrel, 7 rabbit, 8 pale muzzle / belly / tail, 9 eyes and nose
+    var fur = array<vec3f, 5>(vec3f(.075, .046, .028), vec3f(.30, .125, .04), vec3f(.26, .2, .145), vec3f(.52, .46, .37), vec3f(.012, .011, .012));
+    alb = fur[clamp(kind - 5, 0, 4)] * mix(1., .75 + .5 * vn(lp.xy * 55. + lp.z * 37.), det * f32(kind < 9));
+  }
+  let sh = shadow9(i.wp + n * select(0., .6, kind == 3 || kind == 4), n, mix(farShade(i.wp.z), 1., sat(i.k.w * 3.)));
+  let V = normalize(i.wp - g.cam.xyz); let back = sat(dot(V, g.sun.xyz));
+  var c = alb * (g.sunC.rgb * sat(dot(n, g.sun.xyz)) * sh + amb(n) * mix(.6, 1., sat(i.k.w * 3. + .3 - b.x * .3)) + lamp(i.wp, n, .25));
+  c += alb * vec3f(1.3, 1.2, .4) * g.sunC.rgb * (tr * sh * (.15 + .5 * back * back));
+  return vec4f(fog(c, i.wp), 1.);
+}
+
+// ---------------------------------------------------------------- cards: leaves, needles, ferns, flowers
+struct CO { @builtin(position) cp: vec4f, @location(0) wp: vec3f, @location(1) n: vec3f, @location(2) uv: vec2f, @location(3) k: vec4f };
+@vertex fn vsC(@location(0) p: vec3f, @location(1) n: vec3f, @location(2) uv: vec2f, @location(5) sr: vec2f, @location(6) mc: vec4f, @location(3) ia: vec4f, @location(4) ib: vec4f) -> CO {
+  var o: CO;
+  let lod = floor(sr.y * .1); let d = lodDist(ia, ib);
+  var ks = 1.;
+  if (mc.w > 2.5) { ks = 1. - ss(225., 250., d); } else if (mc.w > 1.5) { ks = 1. - ss(70., 95., d); } else if (mc.w > .5) { ks = 1. + .4 * ss(70., 95., d); }
+  var wp = rotY((mc.xyz + (p - mc.xyz) * ks) * (ia.w * lodKeep(lod, d)), ib.x) + ia.xyz;
+  let w = windAt(ia.xyz) * (1. + .3 * sin(g.cam.w * 2.1 + ib.y * 40.));
+  let rnd = fract(sr.y);
+  let fl = sin(g.cam.w * (3.5 + rnd * 3.) + rnd * 50. + wp.x * 1.3) * (.02 + .05 * g.wind.z) * sat(sr.x * 20.);
+  wp += vec3f(w.x + fl * (rnd - .3), fl * .6, w.y + fl * (.7 - rnd)) * max(sr.x, .02) * vec3f(1., sat(sr.x * 30.), 1.);
+  o.cp = g.vp * vec4f(wp, 1.); o.wp = wp; o.n = rotY(n, ib.x); o.uv = uv; o.k = vec4f(floor(sr.y) - lod * 10., rnd, ib.z, ib.y);
+  return o;
+}
+fn leafRing(p: vec2f, a0: f32, N: f32, R: f32, rnd: f32) -> f32 {
+  let r = length(p); let a = atan2(p.y, p.x) + a0;
+  let k = 6.2832 / N; let s = floor(a / k + .5); let la = a - s * k;
+  let L = R * (.7 + .3 * h11(s * 3.1 + rnd * 17. + N));
+  let t = r * cos(la) / L;
+  let hw = L * .62 * sqrt(sat(t)) * pow(sat(1. - t), .65);
+  return hw - abs(r * sin(la));
+}
+// x > 0 inside the shape (in uv units); y is a free parameter for colouring; z is a coarse outline for the distance
+fn shapeA(uv: vec2f, sh: i32, rnd: f32) -> vec3f {
+  let p = uv - .5; let x = abs(p.x) * 2.; let y = uv.y; let r = length(p);
+  if (sh == 0) { return vec3f(max(leafRing(p, rnd * 6.28, 7., .5, rnd), leafRing(p, rnd * 9.1 + .4, 5., .29, rnd + .3)), r * 2., .36 - r); }
+  if (sh == 1) { // conifer bough: a solid tapered blade with a coarse toothed edge (no fine detail to shimmer)
+    let env = pow(sat(sin(3.1416 * sat(y * .9 + .08))), .6) * .98;
+    let e = (env * (.74 + .26 * abs(fract(y * 6. + rnd * 3.) * 2. - 1.)) - x) * .5;
+    return vec3f(e, x, (env * .87 - x) * .5);
+  }
+  if (sh == 2) {
+    let e = (pow(sat(sin(3.1416 * sat(y * .86 + .12))), .8) * (1. - y * .25) - x) * .5;
+    let tw = abs(fract((y - x * .22) * 13.) - .5);
+    return vec3f(min(e, max((.34 - tw) / 13., .03 - x * .5)), x, e - .08);
+  }
+  if (sh == 3) { let a = atan2(p.y, p.x); return vec3f(.47 * (.6 + .4 * abs(cos(a * 4.5 + rnd * 6.))) - r, r * 2., .42 - r); }
+  if (sh == 6) {
+    let e = (((1. - y) * .62 + .1) * ss(0., .1, y) - x) * .5;
+    return vec3f(min(e, (.43 - length(fract(vec2f(x * 1.6 + floor(y * 10.) * .5, y * 10.)) - .5)) / 10.), y, e);
+  }
+  return vec3f(1., y, 1.);
+}
+fn cardAlpha(i: CO) -> vec2f {
+  let sh = i32(i.k.x + .5);
+  let s = shapeA(i.uv, sh, i.k.y);
+  let a0 = sat(s.x / max(fwidth(s.x), 1e-5) + .5);
+  // far away the fine pattern would shimmer, so it fades to the outline (sooner for the finely toothed shapes)
+  let cov = 1.; var f0 = .1;
+  if (sh == 2 || sh == 6) { f0 = .02; }
+  let a1 = sat(s.z / max(fwidth(s.z), 1e-5) + .5) * cov;
+  return vec2f(mix(a0, a1, ss(f0, f0 * 3., fwidth(i.uv.x) + fwidth(i.uv.y))), s.y);
+}
+@fragment fn fsC(i: CO, @builtin(front_facing) ff: bool) -> @location(0) vec4f {
+  let a = cardAlpha(i);
+  ${AA > 1 ? '' : 'if (a.x < .5) { discard; }'}
+  let sh = i32(i.k.x + .5); let rnd = i.k.y;
+  var n = normalize(i.n);
+  var alb = vec3f(.1); var tr = .6;
+  if (sh == 0) { alb = pal(i.k.z + (rnd - .5) * .16) * (.65 + .7 * rnd) * (1. - .25 * a.y); }
+  else if (sh == 1) { alb = mix(vec3f(.012, .034, .019), vec3f(.034, .072, .028), rnd) * (.5 + .7 * a.y) * (.75 + .25 * i.uv.y); tr = .15; }
+  else if (sh == 2) { alb = mix(vec3f(.05, .14, .025), vec3f(.11, .22, .04), rnd); }
+  else if (sh == 3) {
+    var fc = array<vec3f, 5>(vec3f(.82, .82, .76), vec3f(.85, .58, .04), vec3f(.75, .16, .38), vec3f(.30, .18, .70), vec3f(.80, .13, .03));
+    alb = mix(vec3f(.75, .5, .03), fc[i32(i.k.z * 4.99)], ss(.22, .3, a.y)); tr = .3;
+  } else if (sh == 6) {
+    alb = mix(vec3f(.26, .12, .62), vec3f(.62, .2, .55), sat(i.k.z * 1.2 + (a.y - .5) * .5)) * (.6 + .6 * a.y); tr = .3;
+  } else { alb = vec3f(.07, .16, .035); }
+  let V = normalize(i.wp - g.cam.xyz); let back = sat(dot(V, g.sun.xyz));
+  let shd = shadow4(i.wp, n, mix(farShade(i.wp.z), 1., ss(3., 9., i.wp.y - g.cam.y)));
+  let wrap = sat((dot(n, g.sun.xyz) + .35) / 1.35);
+  var c = alb * (g.sunC.rgb * wrap * shd + amb(n) * (.55 + .45 * sat(n.y + .5)) + lamp(i.wp, n, .75));
+  c += alb * vec3f(1.5, 1.35, .35) * g.sunC.rgb * (tr * shd * (.12 + .75 * back * back));
+  return vec4f(fog(c, i.wp), a.x);
+}
+@fragment fn fsCS(i: CO) { if (cardAlpha(i).x < .5) { discard; } }
+
+// ---------------------------------------------------------------- grass blades (9-vertex strips built in the shader)
+struct GO { @builtin(position) cp: vec4f, @location(0) wp: vec3f, @location(1) n: vec3f, @location(2) k: vec3f };
+@vertex fn vsG(@builtin(vertex_index) vi: u32, @location(0) a: vec3f, @location(1) b: vec4f) -> GO {
+  var o: GO;
+  let lv = f32(min(vi >> 1u, 4u)) * .25; let sd = select(f32(vi & 1u) * 2. - 1., 0., vi == 8u);
+  let dist = length(a - g.cam.xyz);
+  let keep = 1. - ss(45., 80., dist + b.w * 22.);
+  let h = (.05 + b.x * .95) * keep;
+  let w = (.011 + .013 * b.w) * (1. + dist * .05) * (1. - lv * .88) * keep * clamp(h * 3.5, .45, 1.);
+  let ya = b.y * 6.2832; let dr = vec2f(cos(ya), sin(ya));
+  let fl = sin(g.cam.w * 2.6 + a.x * .9 + a.z * .7 + b.w * 6.) * .08;
+  let bend = (vec2f(-dr.y, dr.x) * (.18 + b.w * .35) + windAt(a) * 1.1 + g.wind.xy * fl) * (lv * lv * h);
+  let wp = a + vec3f(dr.x * sd * w + bend.x, lv * h * (1. - .25 * length(bend) / max(h, .01)), dr.y * sd * w + bend.y);
+  o.cp = g.vp * vec4f(wp, 1.); o.wp = wp; o.n = normalize(vec3f(bend.x * 2.5, 1., bend.y * 2.5)); o.k = vec3f(b.z, b.w, lv);
+  return o;
+}
+@fragment fn fsG(i: GO) -> @location(0) vec4f {
+  let lv = i.k.z; let b = biome(i.wp.z);
+  let tip = mix(vec3f(.13, .27, .04), vec3f(.40, .37, .11), i.k.x);
+  let root = (vec3f(.055, .095, .022) * b.x + vec3f(.07, .14, .025) * b.y + vec3f(.08, .11, .04) * b.z) * .8;
+  let alb = mix(root, tip, lv * lv * .8 + lv * .2) * (.75 + .5 * i.k.y);
+  let n = normalize(i.n);
+  let sh = shadow1(i.wp + g.sun.xyz * .3 + vec3f(0., .08, 0.), farShade(i.wp.z));
+  let V = normalize(i.wp - g.cam.xyz); let back = sat(dot(V, g.sun.xyz));
+  let c = alb * (g.sunC.rgb * sh * (sat(dot(n, g.sun.xyz)) * .75 + (.25 + .9 * back * back) * lv) + amb(n) * (.35 + .65 * lv) + lamp(i.wp, n, .7) * (.5 + .5 * lv));
+  return vec4f(fog(c, i.wp), 1.);
+}
+
+// ---------------------------------------------------------------- birds, butterflies and falling leaves
+struct KO { @builtin(position) cp: vec4f, @location(0) c: vec3f, @location(1) uv: vec2f, @location(2) wp: vec3f, @location(3) k: f32 };
+@vertex fn vsK(@builtin(vertex_index) vi: u32, @location(0) s: vec4f) -> KO {
+  var o: KO; let t = g.cam.w; let ty = i32(s.w + .5);
+  let tri = vi / 3u; let k = vi % 3u;
+  var p = g.cam.xyz - g.fwd.xyz * 10.; var c = vec3f(.02); var uv = vec2f(.5);
+  let lightc = g.sunC.rgb * .45 + g.skyZ.rgb;
+  if (ty == 0) {
+    let dirs = select(-1., 1., s.z > .5);
+    let ang = t * (.1 + s.y * .09) * dirs + s.x * 6.2832; let rad = 22. + s.y * 75.;
+    let ctr = g.bird.xyz + vec3f(cos(ang) * rad, 26. + s.z * 34. + sin(t * .31 + s.x * 9.) * 5., sin(ang) * rad);
+    let dv = vec3f(-sin(ang), 0., cos(ang)) * dirs; let sv = vec3f(dv.z, 0., -dv.x);
+    let ph = t * (6.5 + s.y * 3.) + s.x * 20.;
+    let flap = sin(ph) * (.35 + .65 * ss(-.2, .4, sin(ph * .13 + s.x * 5.)));
+    var l = vec3f(0.);
+    if (tri < 2u) { let sg = f32(tri) * 2. - 1.; if (k == 0u) { l = vec3f(.2, 0., 0.); } else if (k == 1u) { l = vec3f(-.14, 0., 0.); } else { l = vec3f(-.06, flap * .5, sg * .66); } }
+    else if (tri == 2u) { if (k == 0u) { l = vec3f(.4, 0., 0.); } else if (k == 1u) { l = vec3f(-.34, .02, .07); } else { l = vec3f(-.34, .02, -.07); } }
+    p = ctr + (dv * l.x + vec3f(0., l.y, 0.) + sv * l.z) * 1.4;
+    c = vec3f(.025, .025, .03) * lightc;
+  } else if (ty == 1) {
+    let V = vec3f(26., 2.4, 26.);
+    let q = s.xyz * V + vec3f(sin(t * .23 + s.x * 40.) * 3., sin(t * 1.9 + s.y * 30.) * .3, cos(t * .19 + s.z * 40.) * 3.);
+    let rel = (fract((q - g.cam.xyz) / V + .5) - .5) * V;
+    let ctr = g.cam.xyz + vec3f(rel.x, rel.y - .55, rel.z);
+    let ya = s.x * 30. + sin(t * .4 + s.z * 20.) * 2.; let dv = vec3f(cos(ya), 0., sin(ya)); let sv = vec3f(-dv.z, 0., dv.x);
+    let fa = abs(sin(t * (11. + s.y * 5.) + s.x * 9.)) * 1.25;
+    var l = vec3f(0.);
+    if (tri < 2u) { let sg = f32(tri) * 2. - 1.; if (k == 0u) { l = vec3f(.035, 0., 0.); } else if (k == 1u) { l = vec3f(-.035, 0., 0.); } else { l = vec3f(-.01, sin(fa), sg * cos(fa)) * vec3f(1., .05, .05); } }
+    let sc = ss(.08, .35, g.bio.y) * step(s.y, .2 + g.bio.y);
+    p = ctr + (dv * l.x + vec3f(0., l.y, 0.) + sv * l.z) * sc;
+    var bc = array<vec3f, 4>(vec3f(.85, .35, .04), vec3f(.85, .85, .8), vec3f(.2, .38, .85), vec3f(.9, .75, .1));
+    c = bc[i32(s.z * 3.99)] * lightc * .35;
+  } else {
+    let V = vec3f(26., 13., 26.);
+    let q = s.xyz * V + vec3f(sin(t * .5 + s.x * 30.) * 1.4 + g.wind.x * t * .5, -t * (.55 + s.y * .5), cos(t * .4 + s.z * 30.) * 1.4 + g.wind.y * t * .5);
+    let rel = (fract((q - g.cam.xyz) / V + .5) - .5) * V;
+    let ctr = g.cam.xyz + vec3f(rel.x, rel.y + 3.5, rel.z);
+    let a1 = t * (1.5 + s.x * 2.) + s.x * 50.;
+    let u = normalize(vec3f(cos(a1), .5 * sin(a1 * 1.3), sin(a1)));
+    let w = normalize(cross(u, vec3f(sin(a1 * .7), 1., cos(a1 * .7))));
+    let sc = .055 * ss(.15, .5, g.bio.x) * step(fract(s.y * 7.3), .12 + .88 * g.bio.w);
+    if (tri < 2u) {
+      var cr = vec2f(-1., -1.);
+      if (vi == 1u) { cr = vec2f(1., -1.); } else if (vi == 2u || vi == 3u) { cr = vec2f(1., 1.); } else if (vi == 4u) { cr = vec2f(-1., 1.); }
+      p = ctr + (u * cr.x + w * cr.y) * sc; uv = cr * .5 + .5;
+    }
+    c = pal(mix(.12, .35 + .6 * s.z, g.bio.w)) * lightc * .5;
+  }
+  o.cp = g.vp * vec4f(p, 1.); o.c = c; o.uv = uv; o.wp = p; o.k = s.w;
+  return o;
+}
+@fragment fn fsK(i: KO) -> @location(0) vec4f {
+  if (i.k > 1.5) { let p = i.uv - .5; let t = p.y + .5; if (.3 * sqrt(sat(t)) * pow(sat(1. - t), .6) * 1.6 - abs(p.x) < 0.) { discard; } }
+  return vec4f(fog(i.c, i.wp), 1.);
+}
+
+// ---------------------------------------------------------------- pollen and dust motes that light up in the sun
+struct MO { @builtin(position) cp: vec4f, @location(0) uv: vec2f, @location(1) c: vec3f };
+@vertex fn vsM(@builtin(vertex_index) vi: u32, @location(0) s: vec4f) -> MO {
+  var o: MO; let t = g.cam.w; let V = vec3f(34., 13., 34.);
+  let q = s.xyz * V + vec3f(sin(t * .11 + s.w * 40.), sin(t * .07 + s.w * 70.) * .6, cos(t * .09 + s.w * 50.)) * 1.3 + vec3f(g.wind.x, -.03, g.wind.y) * (t * .3);
+  let rel = (fract((q - g.cam.xyz) / V + .5) - .5) * V;
+  let wp = g.cam.xyz + rel + vec3f(0., 2.5, 0.); let dist = length(wp - g.cam.xyz);
+  let lit = shadow1(wp, farShade(wp.z) * .6);
+  let px = dist * 2. * g.res.w * g.up.w;
+  let r0 = .004 + .007 * s.w; let sz = max(r0, px * .9);
+  let cr = vec2f(f32(vi & 1u), f32(vi >> 1u)) * 2. - 1.;
+  o.cp = g.vp * vec4f(wp + (g.right.xyz * cr.x + g.up.xyz * cr.y) * sz, 1.);
+  let mu = sat(dot(normalize(wp - g.cam.xyz), g.sun.xyz));
+  let fade = (1. - ss(11., 16., dist)) * ss(.25, 1., dist) * (.55 + .45 * sin(t * 2.7 + s.w * 90.));
+  let br = lit * (.08 + 1.6 * pow(mu, 5.)) * fade;
+  o.c = (g.sunC.rgb * br + lamp(wp, g.fwd.xyz, 1.) * (fade * .5)) * (1. * .11 * (r0 * r0) / (sz * sz) * 3.); o.uv = cr;
+  return o;
+}
+@fragment fn fsM(i: MO) -> @location(0) vec4f { return vec4f(i.c * sat(1. - dot(i.uv, i.uv)), 0.); }
+
+// ---------------------------------------------------------------- sky: gradient, sun and drifting clouds
+@fragment fn fsSky(@builtin(position) fc: vec4f) -> @location(0) vec4f {
+  let nd = vec2f(fc.x * g.res.z * 2. - 1., 1. - fc.y * g.res.w * 2.);
+  let rd = normalize(g.fwd.xyz + g.right.xyz * (nd.x * g.right.w) + g.up.xyz * (nd.y * g.up.w));
+  var c = sky(rd);
+  let mu = dot(rd, g.sun.xyz);
+  let stars = max(g.misc.w, g.sun.w);
+  if (stars > .01 && rd.y > .02) { // a few first stars at dusk; at night two layers of them and a faint band of the galaxy
+    let up = ss(.02, mix(.55, .2, g.sun.w), rd.y);
+    let sp = rd.xz / (rd.y + .35) * 46.; let ci = floor(sp); let hs = h21(ci);
+    let dd = length(fract(sp) - .15 - .7 * vec2f(h21(ci + 7.), h21(ci + 13.)));
+    let thr = mix(.95, .9, g.sun.w);
+    var st = ss(.13, 0., dd) * step(thr, hs) * (hs - thr + .02) * mix(34., 20., g.sun.w) * (.65 + .35 * sin(g.cam.w * 2.5 + hs * 90.));
+    if (g.sun.w > .01) {
+      let sp2 = rd.xz / (rd.y + .35) * 110. + 31.; let c2 = floor(sp2); let h2 = h21(c2);
+      let d2 = length(fract(sp2) - .2 - .6 * vec2f(h21(c2 + 5.), h21(c2 + 11.)));
+      st += g.sun.w * ss(.2, 0., d2) * step(.86, h2) * (h2 - .8) * 3.;
+      let band = rd.x * .55 + rd.z * .3 - rd.y * .45;
+      c += vec3f(.5, .56, .75) * (g.sun.w * .012 * exp(-band * band * 14.) * (.4 + fbm(rd.xz * 5. + rd.y * 3., 4)) * up);
+    }
+    c += mix(vec3f(.9, .95, 1.), vec3f(1., .92, .8), h21(ci + 3.)) * (st * stars * up);
+  }
+  c += g.sunC.rgb * (ss(.99982, .99994, mu) * 25. + pow(max(mu, 0.), 900.) * 1.5);
+  if (rd.y > .005) {
+    let uv = rd.xz / (rd.y + .1) * .55 + g.cam.w * vec2f(.004, .0022) + g.cam.xz * .00012;
+    let n1 = fbm(uv * 1.4, 5);
+    let cov = ss(.56, .8, n1 + .1 * fbm(uv * 6., 3));
+    let n2 = fbm(uv * 1.4 + g.sun.xz * .11, 3);
+    let lit = sat(.55 + (n1 - n2) * 5.);
+    let cc = mix(g.skyH.rgb * .6 + g.skyZ.rgb * .2, g.sunC.rgb * .15 + g.skyH.rgb * .35, lit) * (1. + pow(max(mu, 0.), 12.) * .8);
+    c = mix(c, cc, cov * ss(.0, .16, rd.y) * .9);
+  }
+  return vec4f(c, 1.);
+}
+`;
+
+// ---------------------------------------------------------------- volumetric light shafts (half resolution)
+const W_RAYS = (AA, RAYN) => S_G + /*wgsl*/`
+@group(0) @binding(1) var tSh: texture_depth_2d;
+@group(0) @binding(2) var sSh: sampler_comparison;
+@group(0) @binding(3) var tDp: texture_depth${AA > 1 ? '_multisampled' : ''}_2d;
+@fragment fn fs(@builtin(position) fc: vec4f) -> @location(0) vec4f {
+  let dp = textureLoad(tDp, vec2i(fc.xy) * 2, 0);
+  let uv = fc.xy * 2. * g.res.zw;
+  let nd = vec2f(uv.x * 2. - 1., 1. - uv.y * 2.);
+  let rv = g.fwd.xyz + g.right.xyz * (nd.x * g.right.w) + g.up.xyz * (nd.y * g.up.w);
+  let rl = length(rv); let rd = rv / rl;
+  let zl = min(g.fwd.w / max(dp, 1e-6), 2e4); // capped: the sky must stay finite in a 16-bit float
+  let tm = min(zl * rl, 120.);
+  let dt = tm / ${RAYN}.; let j = ign(fc.xy);
+  let farV = 1. - .7 * g.bio.x;
+  var acc = 0.;
+  for (var n = 0; n < ${RAYN}; n++) {
+    let t = (f32(n) + j) * dt; let p = g.cam.xyz + rd * t;
+    let s = g.sm * vec4f(p, 1.);
+    let v = textureSampleCompareLevel(tSh, sSh, vec2f(s.x * .5 + .5, .5 - s.y * .5), s.z - .0008);
+    acc += mix(v, farV, ss(g.shc.w * .78, g.shc.w * .97, length(p.xz - g.shc.xz))) * exp(-t * .014);
+  }
+  let mu = dot(rd, g.sun.xyz);
+  let ph = .1 + .032 * .4816 / pow(1.5184 - 1.44 * mu, 1.5);
+  return vec4f(g.sunC.rgb * (acc * dt * g.misc.y * ph), zl);
+}
+`;
+// depth-aware 3x3 blur of the half-res shafts (hides the sampling dither)
+const W_RBLUR = /*wgsl*/`
+@group(0) @binding(0) var tR: texture_2d<f32>;
+@vertex fn vsF(@builtin(vertex_index) i: u32) -> @builtin(position) vec4f { return vec4f(f32(i32(i & 1u) * 4 - 1), f32(i32(i >> 1u) * 4 - 1), 0., 1.); }
+@fragment fn fs(@builtin(position) fc: vec4f) -> @location(0) vec4f {
+  let p = vec2i(fc.xy); let mx = vec2i(textureDimensions(tR)) - 1;
+  let c = textureLoad(tR, p, 0);
+  var acc = vec3f(0.); var ws = 0.;
+  for (var y = -1; y <= 1; y++) { for (var x = -1; x <= 1; x++) {
+    let r = textureLoad(tR, clamp(p + vec2i(x, y), vec2i(0), mx), 0);
+    let w = 1. / (.03 + abs(r.a - c.a) / c.a);
+    acc += r.rgb * w; ws += w;
+  } }
+  return vec4f(acc / ws, c.a);
+}
+`;
+// bloom chain
+const W_BLIT = /*wgsl*/`
+@group(0) @binding(0) var sL: sampler;
+@group(0) @binding(1) var tI: texture_2d<f32>;
+@vertex fn vsF(@builtin(vertex_index) i: u32) -> @builtin(position) vec4f { return vec4f(f32(i32(i & 1u) * 4 - 1), f32(i32(i >> 1u) * 4 - 1), 0., 1.); }
+fn tap(uv: vec2f) -> vec3f { return textureSampleLevel(tI, sL, uv, 0.).rgb; }
+@fragment fn fsD0(@builtin(position) fc: vec4f) -> @location(0) vec4f {
+  let tx = 1. / vec2f(textureDimensions(tI)); let uv = fc.xy * 2. * tx;
+  var acc = vec3f(0.); var ws = 0.;
+  for (var k = 0; k < 4; k++) {
+    let c = min(tap(uv + (vec2f(f32(k & 1), f32(k >> 1)) * 2. - 1.) * tx), vec3f(60.));
+    let w = 1. / (1. + max(c.r, max(c.g, c.b))); acc += c * w; ws += w;
+  }
+  return vec4f(acc / ws, 1.);
+}
+@fragment fn fsD(@builtin(position) fc: vec4f) -> @location(0) vec4f {
+  let tx = 1. / vec2f(textureDimensions(tI)); let uv = fc.xy * 2. * tx;
+  return vec4f((tap(uv + vec2f(-1., -1.) * tx) + tap(uv + vec2f(1., -1.) * tx) + tap(uv + vec2f(-1., 1.) * tx) + tap(uv + vec2f(1., 1.) * tx)) * .25, 1.);
+}
+@fragment fn fsU(@builtin(position) fc: vec4f) -> @location(0) vec4f {
+  let tx = 1. / vec2f(textureDimensions(tI)); let uv = fc.xy * .5 * tx;
+  return vec4f((tap(uv + vec2f(-.5, -.5) * tx) + tap(uv + vec2f(.5, -.5) * tx) + tap(uv + vec2f(-.5, .5) * tx) + tap(uv + vec2f(.5, .5) * tx)) * .25, 1.);
+}
+`;
+// final composite: shafts, bloom, exposure, tone curve, grade
+const W_POST = (AA) => S_G + /*wgsl*/`
+@group(0) @binding(1) var sL: sampler;
+@group(0) @binding(2) var tS: texture_2d<f32>;
+@group(0) @binding(3) var tR: texture_2d<f32>;
+@group(0) @binding(4) var tB: texture_2d<f32>;
+@group(0) @binding(5) var tDp: texture_depth${AA > 1 ? '_multisampled' : ''}_2d;
+fn tmap(x: vec3f) -> vec3f { return clamp((x * (2.51 * x + .03)) / (x * (2.43 * x + .59) + .14), vec3f(0.), vec3f(1.)); }
+@fragment fn fs(@builtin(position) fc: vec4f) -> @location(0) vec4f {
+  let px = vec2i(fc.xy); let uv = fc.xy * g.res.zw;
+  let zf = min(g.fwd.w / max(textureLoad(tDp, px, 0), 1e-6), 2e4);
+  let h = fc.xy * .5 - .5; let b = floor(h); let f = h - b; let bi = vec2i(b);
+  let mx = vec2i(textureDimensions(tR)) - 1;
+  var acc = vec3f(0.); var ws = 0.;
+  for (var k = 0; k < 4; k++) {
+    let o = vec2i(k & 1, k >> 1);
+    let r = textureLoad(tR, clamp(bi + o, vec2i(0), mx), 0);
+    let bw = mix(1. - f.x, f.x, f32(o.x)) * mix(1. - f.y, f.y, f32(o.y));
+    let w = (bw + .02) / (.02 + abs(r.a - zf) / zf);
+    acc += r.rgb * w; ws += w;
+  }
+  var c = textureLoad(tS, px, 0).rgb + acc / ws;
+  let bl = textureSampleLevel(tB, sL, uv, 0.).rgb;
+  c = mix(c, bl, .07) + bl * .035;
+  c *= g.misc.x;
+  let q = uv - .5;
+  c *= 1. - dot(q, q) * .45;
+  c = tmap(c);
+  let l0 = dot(c, vec3f(.2126, .7152, .0722));
+  c = mix(vec3f(l0), c, 1.12);
+  c = pow(max(c, vec3f(0.)), vec3f(1. / 2.2));
+  return vec4f(c + (ign(fc.xy) - .5) / 255., 1.);
+}
+`;
+
+// ============================================================================
+// audio: a synthesized outdoor soundscape (no sample files)
+// ============================================================================
+// A fixed Web Audio graph built on the first click, steered by a 10 Hz timer (not the frame loop).
+// Layers: wind, leaf rustle, birdsong (several kinds), a woodpecker, meadow insects, a hawk in the mountains,
+// and footsteps that follow the walking pace and the ground underfoot.
+let AC = null, OUT = null, STEP = null, muted = false;
+const VOL = 0.8;
+function mkSound(ac) {
+  const sr = ac.sampleRate, rnd = Math.random, rr = (a, b) => a + (b - a) * rnd();
+  const N = (C, o, ...to) => { const n = new C(ac, o); for (const d of to) n.connect(d); if (n.start) n.start(); return n; };
+  const Gn = (gain, ...to) => N(GainNode, { gain }, ...to);
+  const BQ = (type, frequency, Q, ...to) => N(BiquadFilterNode, { type, frequency, Q }, ...to);
+  const lfo = (frequency, depth, to) => N(OscillatorNode, { frequency }, Gn(depth, to));
+  const noise = (secs, f) => { const n = (sr * secs) | 0, b = new AudioBuffer({ length: n, numberOfChannels: 2, sampleRate: sr }); f(b.getChannelData(0), n); f(b.getChannelData(1), n); return b; };
+  // seamless noise loops: pink-ish for wind, white for leaves and steps
+  const loopN = (secs, step) => noise(secs, (d, n) => { let b = 0; const X = 4096; for (let i = 0; i < n + X; i++) { const v = step(b); b = v; if (i < n) d[i] = v; else { const k = (i - n) / X; d[i - n] = d[i - n] * k + v * (1 - k); } } });
+  const nbrown = loopN(41, (b) => (b + 0.03 * (rnd() * 2 - 1)) / 1.03), nwhite = loopN(13, () => rnd() * 2 - 1);
+  // a soft outdoor reverb: short, bright, with a pre-delay
+  const ir = noise(1.6, (d, n) => { for (let i = 0; i < n; i++) { const t = i / sr; d[i] = (rnd() * 2 - 1) * exp(-t * 4.5) * (t < 0.02 ? 0 : 1) * (1 + 2 * exp(-t * 30)); } });
+  const lim = N(DynamicsCompressorNode, { threshold: -8, knee: 8, ratio: 12, attack: 0.004, release: 0.25 }, ac.destination);
+  const out = OUT = Gn(0, lim), wet = N(ConvolverNode, { buffer: ir }, Gn(0.5, out));
+  const src = (buffer, playbackRate, ...to) => N(AudioBufferSourceNode, { buffer, loop: true, playbackRate }, ...to);
+
+  // wind: a low body and a wandering whistle band, from one 41 s noise loop played at two unrelated speeds
+  // (the pair only lines up again after about half an hour). Gusts are not a cycle: the timer below picks a new
+  // random strength and pitch every few seconds and glides there.
+  const wind = Gn(0.025, out), gust = Gn(0.5, wind);
+  src(nbrown, 1, BQ('lowpass', 420, 0.5, Gn(7, gust)));
+  const wf = BQ('bandpass', 620, 1.1, Gn(2.2, gust)); src(nbrown, 0.737, wf);
+  lfo(0.11, 0.06, gust.gain);
+  // leaves: a soft, breathy rustle rather than a hiss. It uses the wind's own dark noise, played faster so it sits
+  // around 1-3 kHz, with the top rounded off; it stays well under the wind and swells with the same gusts.
+  const leaf = Gn(0, out), lg = Gn(0.3, leaf);
+  src(nbrown, 3.1, BQ('bandpass', 1700, 0.6, BQ('lowpass', 3200, 0.5, Gn(2, lg))));
+  src(nbrown, 4.3, BQ('bandpass', 2600, 0.9, Gn(1.2, lg)));
+  // meadow insects: a few crickets, each with its own pitch, place and loudness. Nothing here runs on a cycle: the
+  // timer below gives each one bouts of chirps (2-4 quick pulses each) with uneven gaps, then a rest of random length.
+  const bug = Gn(0, out);
+  const crickets = Array.from({ length: 4 }, (_, k) => {
+    const p = N(StereoPannerNode, { pan: rr(-0.9, 0.9) }, bug), g = Gn(0, p), f = rr(3900, 4900);
+    N(OscillatorNode, { frequency: f }, g); N(OscillatorNode, { frequency: f * 1.031 }, Gn(0.5, g));
+    return { g, next: 0, left: 0, vol: 0, rate: 0, pulses: 3, first: 1 + k * 2.5 };
+  });
+  const shim = Gn(0.05, bug); src(nwhite, 1.3, BQ('bandpass', 7800, 9, shim));
+  // pooled voices for bird calls: oscillator -> envelope -> pan -> dry + reverb
+  const pool = (n, type) => Array.from({ length: n }, () => { const p = N(StereoPannerNode, {}, out, wet), g = Gn(0, p); return { p, g, o: N(OscillatorNode, { type }, g) }; });
+  const birds = pool(5, 'sine'), harsh = pool(2, 'sawtooth');
+  // one note on voice v: pitch glides f0 -> f1 over dur
+  const note = (v, t, f0, f1, dur, vol, att = 0.012) => {
+    const f = v.o.frequency, g = v.g.gain;
+    f.setValueAtTime(f0, t); f.exponentialRampToValueAtTime(f1, t + dur);
+    g.setValueAtTime(0, t); g.linearRampToValueAtTime(vol, t + att); g.setValueAtTime(vol, t + dur * 0.7); g.linearRampToValueAtTime(0, t + dur);
+  };
+  const take = (vs, pan) => { const v = vs.shift(); vs.push(v); v.p.pan.setValueAtTime(pan, ac.currentTime); return v; };
+  // birdsong, each returns its length in seconds. d = distance (quieter and further off-axis sounds the same here)
+  const SONGS = [
+    (t, v, d) => { const f = rr(3300, 4100); note(v, t, f, f * 0.98, 0.34, 0.05 * d); note(v, t + 0.42, f * 0.84, f * 0.83, 0.4, 0.05 * d); return 0.9; }, // two-note whistle
+    (t, v, d) => { const n = 7 + (rnd() * 8 | 0), f = rr(2600, 3600), dt = rr(0.07, 0.1); for (let k = 0; k < n; k++) note(v, t + k * dt, f * (1 + 0.5 * (k % 2)), f * 1.5, dt * 0.8, 0.035 * d, 0.006); return n * dt; }, // trill
+    (t, v, d) => { let tt = t; const n = 4 + (rnd() * 4 | 0); for (let k = 0; k < n; k++) { const f = rr(1900, 3400), l = rr(0.09, 0.2); note(v, tt, f, f * rr(0.7, 1.5), l, 0.045 * d); tt += l + rr(0.03, 0.12); } return tt - t; }, // warbling phrase
+    (t, v, d) => { const f = rr(4200, 5200); for (let k = 0; k < 3; k++) note(v, t + k * 0.16, f, f * 0.72, 0.1, 0.03 * d, 0.004); return 0.5; }, // thin "tsee tsee tsee"
+    (t, v, d) => { note(v, t, 690, 670, 0.22, 0.06 * d, 0.03); note(v, t + 0.34, 545, 530, 0.3, 0.06 * d, 0.03); return 0.7; }, // cuckoo
+    (t, v, d) => { const f = rr(1500, 2100), n = 3 + (rnd() * 3 | 0); for (let k = 0; k < n; k++) note(v, t + k * 0.28, f, f * 1.25, 0.2, 0.04 * d, 0.05); return n * 0.28; }, // rising coos
+  ];
+  // footsteps: two noise bursts (heel, toe) through a filter that depends on the ground
+  const stepG = Gn(0, out), stepF = BQ('bandpass', 900, 0.8, stepG), stepL = BQ('lowpass', 260, 0.7, Gn(1.3, stepG));
+  src(nwhite, 1.21, stepF, stepL);
+  STEP = (pace) => {
+    const t = ac.currentTime + 0.01, f = 700 * BIO[0] + 480 * BIO[1] + 1900 * BIO[2], v = (0.05 + 0.03 * min(pace / 6, 1)) * (0.8 + 0.4 * rnd()) * (1 + 0.6 * BIO[2]);
+    stepF.frequency.setValueAtTime(f * rr(0.85, 1.2), t); stepF.Q.setValueAtTime(0.6 + 1.2 * BIO[2], t);
+    const g = stepG.gain; g.cancelScheduledValues(t); g.setValueAtTime(0, t); g.linearRampToValueAtTime(v, t + 0.012); g.exponentialRampToValueAtTime(v * 0.25, t + 0.07);
+    g.linearRampToValueAtTime(v * 0.6, t + 0.1); g.exponentialRampToValueAtTime(0.0005, t + 0.24); g.setValueAtTime(0, t + 0.25);
+  };
+  // woodpecker: a quick run of knocks
+  const knockG = Gn(0, N(StereoPannerNode, { pan: -0.4 }, out, wet)); src(nwhite, 0.9, BQ('bandpass', 1150, 5, knockG));
+  let tGust = 0, lt = ac.currentTime, tBird = lt + 2, tBird2 = lt + rr(8, 20), tPeck = lt + rr(40, 120), tHawk = lt + rr(40, 120), tOwl = lt + rr(15, 60);
+  out.gain.setTargetAtTime(VOL, lt, 0.8);
+  return () => {
+    const now = ac.currentTime, t = now + 0.06; if (now <= lt) return; lt = now;
+    const F = BIO[0], M = BIO[1], A = BIO[2], NT = TC[16]; // NT: how far into night
+    wind.gain.setTargetAtTime(0.25 * (0.075 + 0.04 * M + 0.2 * A + 0.012 * min(abs(spd), 6)), t, 1.5); // wind alone, halved twice from its first level
+    if (t > tGust) { // next gust or lull: mostly gentle, now and then a strong one; the leaves follow the same swell
+      const lvl = 0.2 + 0.8 * pow(rnd(), 1.7), tc = rr(1.2, 4);
+      gust.gain.setTargetAtTime(lvl, t, tc); lg.gain.setTargetAtTime(0.2 + 0.75 * lvl, t + rr(0, 0.6), tc);
+      wf.frequency.setTargetAtTime(rr(380, 700) + 380 * lvl, t, tc * 1.5); wf.Q.setTargetAtTime(rr(0.7, 1.8), t, 3);
+      tGust = t + rr(2.5, 11);
+    }
+    leaf.gain.setTargetAtTime(0.085 * F + 0.025 * M + 0.01 * A, t, 1.5); // a quiet background rustle
+    bug.gain.setTargetAtTime(0.6 * max(M * M, NT * (0.5 - 0.3 * A)), t, 2); // crickets sing everywhere after dark
+    if (M > 0.05 || NT > 0.3) for (const c of crickets) {
+      if (!c.next) c.next = t + c.first;
+      if (t < c.next) continue;
+      if (c.left <= 0) { // start a new bout: how many chirps, how loud, how fast, how many pulses per chirp
+        c.left = 3 + (rnd() * 14 | 0); c.vol = rr(0.006, 0.02); c.rate = rr(0.028, 0.04); c.pulses = 2 + (rnd() * 3 | 0);
+      }
+      const g = c.g.gain;
+      for (let k = 0; k < c.pulses; k++) { const tt = t + k * c.rate * rr(0.94, 1.06); g.setValueAtTime(0, tt); g.linearRampToValueAtTime(c.vol * rr(0.7, 1), tt + 0.004); g.linearRampToValueAtTime(0, tt + c.rate * 0.6); }
+      c.left--;
+      c.next = t + c.pulses * c.rate + (c.left > 0 ? rr(0.25, 0.75) : rr(8, 48)); // a short gap, or a long rest after the bout
+    }
+    // animal sounds are occasional details, not a constant chorus: long, uneven gaps between them
+    const life = (F + 0.7 * M + 0.12 * A) * (1 - 0.94 * NT); // how much birdsong (the birds sleep at night)
+    if (t > tBird) { if (rnd() < life) { const d = rr(0.35, 1); const l = SONGS[(rnd() * (F > 0.4 ? 6 : 4)) | 0](t, take(birds, rr(-0.8, 0.8)), d); tBird = t + l + rr(1.6, 14) / max(life, 0.2); } else tBird = t + rr(4, 16); }
+    if (t > tBird2) { if (rnd() < life) { const d = rr(0.2, 0.6); SONGS[(rnd() * 4) | 0](t, take(birds, rr(-0.9, 0.9)), d); } tBird2 = t + rr(12, 36); }
+    if (t > tPeck) { if (F > 0.5 && NT < 0.5) { const g = knockG.gain, n = 9 + (rnd() * 8 | 0); for (let k = 0; k < n; k++) { const tt = t + k * 0.047; g.setValueAtTime(0.5 * (1 - k / n * 0.5), tt); g.exponentialRampToValueAtTime(0.001, tt + 0.03); } } tPeck = t + rr(72, 200); }
+    if (t > tOwl) { if (NT > 0.6 && F + A > 0.4) { const v = take(birds, rr(-0.7, 0.7)), f = rr(360, 430), d = rr(0.4, 1); note(v, t, f, f * 0.96, 0.34, 0.07 * d, 0.07); note(v, t + 0.62, f * 1.02, f * 0.97, 0.2, 0.06 * d, 0.05); note(v, t + 0.9, f, f * 0.93, 0.5, 0.07 * d, 0.07); } tOwl = t + rr(40, 140); }
+    if (t > tHawk) { if (NT < 0.5 && A + M * 0.4 > 0.5) { const v = take(harsh, rr(-0.5, 0.5)); note(v, t, 2700, 1750, 0.95, 0.02, 0.06); } tHawk = t + rr(100, 240); }
+  };
+}
+function audioStart() {
+  if (!AC) { try { AC = new AudioContext({ latencyHint: 'playback' }); setInterval(mkSound(AC), 100); } catch (e) { console.warn('audio unavailable', e); AC = null; return; } }
+  if (AC.state === 'suspended') AC.resume();
+}
+function audioStep(pace) { if (STEP && !muted && !quiet) STEP(pace); }
+// everything goes silent while muted or while the menu is up
+let quiet = false;
+const setLevel = () => { if (AC) { OUT.gain.cancelScheduledValues(AC.currentTime); OUT.gain.setTargetAtTime(muted || quiet ? 0 : VOL, AC.currentTime, 0.08); } };
+function audioMute() { if (!AC) return; muted = !muted; setLevel(); toast(muted ? 'Sound off' : 'Sound on'); }
+function audioQuiet(q) { quiet = q; setLevel(); }
+document.addEventListener('visibilitychange', () => { if (AC) document.hidden ? AC.suspend() : AC.resume(); });
+
+// ============================================================================
+// renderer, streaming, camera and input
+// ============================================================================
+const $ = (id) => document.getElementById(id);
+const canvas = $('c'), qs = new URLSearchParams(location.search);
+const bar = (f) => { $('bar').style.width = (f * 100).toFixed(0) + '%'; };
+const fail = (m) => { $('msg').textContent = m; $('msg').style.display = 'block'; $('load').style.display = 'none'; throw new Error(m); };
+const tick = () => new Promise((r) => setTimeout(r, 0));
+
+// FAST changes nothing that is drawn: it only skips work whose result could not have reached the screen (see
+// drawTrees), and adds GPU time and triangle counts to the stats. Set it to false to draw everything the plain way.
+const FAST = true;
+let CULL = FAST && qs.get('cull') !== '0';
+// detail levels: anti-aliasing, pixel budget, plant density, shadow map size, light shaft steps
+const QL = [
+  { name: 'Low', aa: 1, pix: 1.0e6, dens: 0.5, sh: 2048, rays: 12 },
+  { name: 'Medium', aa: 4, pix: 2.3e6, dens: 0.8, sh: 2048, rays: 16 },
+  { name: 'High', aa: 4, pix: 4.1e6, dens: 1, sh: 4096, rays: 24 },
+];
+let qi = 1;
+try { const s = localStorage.getItem('hikeQ'); if (s !== null) qi = +s; } catch (e) { }
+if (qs.has('q')) qi = +qs.get('q');
+qi = clamp(qi | 0, 0, 2);
+const Q = QL[qi], AA = Q.aa;
+
+if (!navigator.gpu) fail('This hike needs WebGPU. Try the newest version of your web browser.');
+const adapter = await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' });
+if (!adapter) fail('No WebGPU adapter was found on this device.');
+const TSQ = FAST && adapter.features.has('timestamp-query');
+const device = await adapter.requestDevice(TSQ ? { requiredFeatures: ['timestamp-query'] } : undefined);
+device.lost.then((i) => { $('msg').textContent = 'The graphics device was lost (' + i.message + '). Reload to continue.'; $('msg').style.display = 'block'; });
+const ctx = canvas.getContext('webgpu'), CF = navigator.gpu.getPreferredCanvasFormat();
+ctx.configure({ device, format: CF, alphaMode: 'opaque' });
+const DQ = device.queue, HDR = 'rgba16float', DEPTH = 'depth32float';
+const TU = GPUTextureUsage, BU = GPUBufferUsage, SS = GPUShaderStage;
+const buf = (size, usage) => device.createBuffer({ size: (size + 3) & ~3, usage });
+const bufOf = (arr, usage) => { const b = buf(arr.byteLength, usage | BU.COPY_DST); DQ.writeBuffer(b, 0, arr); return b; };
+const tex = (w, h, format, usage, samples = 1) => device.createTexture({ size: [w, h], format, usage, sampleCount: samples });
+
+// ---------------------------------------------------------------- uniforms, layouts, pipelines
+const UB = new Float32Array(88), UBS = new Float32Array(88);
+const ubo = buf(352, BU.UNIFORM | BU.COPY_DST), uboS = buf(352, BU.UNIFORM | BU.COPY_DST);
+const bgl0 = device.createBindGroupLayout({ entries: [{ binding: 0, visibility: SS.VERTEX | SS.FRAGMENT, buffer: {} }] });
+const bgl1 = device.createBindGroupLayout({ entries: [{ binding: 0, visibility: SS.VERTEX | SS.FRAGMENT, texture: { sampleType: 'depth' } }, { binding: 1, visibility: SS.VERTEX | SS.FRAGMENT, sampler: { type: 'comparison' } }] });
+const plScene = device.createPipelineLayout({ bindGroupLayouts: [bgl0, bgl1] }), plShadow = device.createPipelineLayout({ bindGroupLayouts: [bgl0] });
+const tShadow = tex(Q.sh, Q.sh, DEPTH, TU.RENDER_ATTACHMENT | TU.TEXTURE_BINDING), vShadow = tShadow.createView();
+const sCmp = device.createSampler({ compare: 'less', magFilter: 'linear', minFilter: 'linear' });
+const sLin = device.createSampler({ magFilter: 'linear', minFilter: 'linear' });
+const bg0 = device.createBindGroup({ layout: bgl0, entries: [{ binding: 0, resource: { buffer: ubo } }] });
+const bg0S = device.createBindGroup({ layout: bgl0, entries: [{ binding: 0, resource: { buffer: uboS } }] });
+const bg1 = device.createBindGroup({ layout: bgl1, entries: [{ binding: 0, resource: vShadow }, { binding: 1, resource: sCmp }] });
+
+const mod = async (code, name) => {
+  const m = device.createShaderModule({ code });
+  const info = await m.getCompilationInfo();
+  for (const e of info.messages) if (e.type === 'error') console.error(name + ':' + e.lineNum + ': ' + e.message + '\n' + (code.split('\n')[e.lineNum - 1] || ''));
+  return m;
+};
+const mScene = await mod(W_SCENE(AA), 'scene'), mRays = await mod(W_RAYS(AA, Q.rays), 'rays'), mBlur = await mod(W_RBLUR, 'blur'), mBlit = await mod(W_BLIT, 'blit'), mPost = await mod(W_POST(AA), 'post');
+const A = (shaderLocation, offset, format) => ({ shaderLocation, offset, format });
+const VB_T = [{ arrayStride: 32, attributes: [A(0, 0, 'float32x3'), A(1, 12, 'float32x3'), A(2, 24, 'float32x2')] }];
+const VB_I = { arrayStride: 32, stepMode: 'instance', attributes: [A(3, 0, 'float32x4'), A(4, 16, 'float32x4')] };
+const VB_S = [{ arrayStride: 32, attributes: [A(0, 0, 'float32x3'), A(1, 12, 'float32x3'), A(2, 24, 'float32x2')] }, VB_I];
+const VB_C = [{ arrayStride: 56, attributes: [A(0, 0, 'float32x3'), A(1, 12, 'float32x3'), A(2, 24, 'float32x2'), A(5, 32, 'float32x2'), A(6, 40, 'float32x4')] }, VB_I];
+const VB_G = [{ arrayStride: 16, stepMode: 'instance', attributes: [A(0, 0, 'float32x3'), A(1, 12, 'unorm8x4')] }];
+const VB_P = [{ arrayStride: 16, stepMode: 'instance', attributes: [A(0, 0, 'float32x4')] }];
+const ADD = { color: { srcFactor: 'one', dstFactor: 'one' }, alpha: { srcFactor: 'one', dstFactor: 'one' } };
+const scenePipe = (vs, fs, buffers, o = {}) => device.createRenderPipeline({
+  layout: plScene, vertex: { module: mScene, entryPoint: vs, buffers }, fragment: { module: mScene, entryPoint: fs, targets: [{ format: HDR, blend: o.blend }] },
+  primitive: { topology: o.topo || 'triangle-list', cullMode: 'none' },
+  depthStencil: { format: DEPTH, depthWriteEnabled: !o.nowrite, depthCompare: o.cmp || 'greater' },
+  multisample: { count: AA, alphaToCoverageEnabled: !!o.a2c && AA > 1 },
+});
+const shadowPipe = (vs, fs, buffers) => device.createRenderPipeline({
+  layout: plShadow, vertex: { module: mScene, entryPoint: vs, buffers }, fragment: fs ? { module: mScene, entryPoint: fs, targets: [] } : undefined,
+  primitive: { topology: 'triangle-list', cullMode: 'none' },
+  depthStencil: { format: DEPTH, depthWriteEnabled: true, depthCompare: 'less', depthBias: 2, depthBiasSlopeScale: 2.5 },
+});
+const pTerr = scenePipe('vsT', 'fsT', VB_T), pSolid = scenePipe('vsS', 'fsS', VB_S), pCard = scenePipe('vsC', 'fsC', VB_C, { a2c: true });
+const pGrass = scenePipe('vsG', 'fsG', VB_G, { topo: 'triangle-strip' }), pCrit = scenePipe('vsK', 'fsK', VB_P);
+const pMote = scenePipe('vsM', 'fsM', VB_P, { topo: 'triangle-strip', blend: ADD, nowrite: true });
+const pSky = scenePipe('vsF', 'fsSky', [], { nowrite: true, cmp: 'greater-equal' });
+const pTerrS = shadowPipe('vsT', null, VB_T), pSolidS = shadowPipe('vsS', null, VB_S), pCardS = shadowPipe('vsC', 'fsCS', VB_C);
+const fsPipe = (m, fs, format, blend) => device.createRenderPipeline({ layout: 'auto', vertex: { module: m, entryPoint: 'vsF' }, fragment: { module: m, entryPoint: fs, targets: [{ format, blend }] } });
+const pRays = fsPipe(mRays, 'fs', HDR), pBlur = fsPipe(mBlur, 'fs', HDR), pPost = fsPipe(mPost, 'fs', CF);
+const pD0 = fsPipe(mBlit, 'fsD0', HDR), pD = fsPipe(mBlit, 'fsD', HDR), pU = fsPipe(mBlit, 'fsU', HDR, ADD);
+bar(0.08); await tick();
+
+// ---------------------------------------------------------------- meshes
+const SV = [], SI = [], CV = [], CI = [];
+// each mesh is stamped with its level of detail (0-2 for trees, 3 = always drawn) in a vertex field (solids: kind, cards: shape): +10 per level
+const addTo = (V, I, M, stride, fld, lod) => { const m = { first: I.length, count: M.i.length, base: V.length / stride }; for (let k = 0; k < M.v.length; k++) V.push(k % stride === fld ? M.v[k] + lod * 10 : M.v[k]); for (let k = 0; k < M.i.length; k++) I.push(M.i[k]); return m; };
+const addS = (M, lod = 3) => addTo(SV, SI, M, 8, 7, lod), addC = (M, lod = 3) => addTo(CV, CI, M, CS, 9, lod);
+const TPAR = [
+  { h: 15, cc: 0.66, trunk: 0.42, r: 0.4, depth: 4, f0: 6, t0: 0.5, l1: 0.4, lr: 0.66, ang: 0.95, bend: 0.5, lift: 0.06, droop: -0.05, lv: 15, ls: 0.8, f3: 0.5, kind: 0 },
+  { h: 21, cc: 0.68, trunk: 0.62, r: 0.36, depth: 4, f0: 6, t0: 0.45, l1: 0.3, lr: 0.64, ang: 0.8, bend: 0.4, lift: 0.1, droop: 0, lv: 14, ls: 0.8, f3: 0.45, kind: 0 },
+  { h: 13, cc: 0.66, trunk: 0.8, r: 0.17, depth: 3, f0: 9, t0: 0.35, l1: 0.22, lr: 0.7, ang: 0.7, bend: 0.5, lift: 0.08, droop: -0.3, lv: 22, ls: 0.6, f3: 0.5, kind: 1 },
+];
+const CPAR = [{ h: 19, r: 0.3, R: 3.4, nw: 22, nb: 8, droop: 0.9 }, { h: 14, r: 0.24, R: 2.9, nw: 17, nb: 7, droop: 0.6 }];
+const TREES = [];
+for (let v = 0; v < TREEV; v++) {
+  const t = { s: [], c: [] };
+  for (let lod = 0; lod < 3; lod++) {
+    const m = v < 3 ? buildTree(101 + v * 31, TPAR[v], lod) : buildConifer(401 + v * 17, CPAR[v - 3], lod);
+    t.s.push(addS(m.S, lod)); t.c.push(m.C.i.length ? addC(m.C, lod) : null);
+  }
+  TREES.push(t);
+  bar(0.1 + 0.03 * v); await tick();
+}
+const ROCKS = [0, 1, 2].map((k) => addS(buildRock(900 + k * 13).S));
+ROCKS.push(addS(buildBear().S), addS(buildSquirrel().S), addS(buildRabbit().S)); // animals ride along with the rocks
+const UGM = [addC(buildFern(11).C), addC(buildBush(12).C), addC(buildFlowers(13, false).C), addC(buildFlowers(14, true).C)];
+const vbS = bufOf(new Float32Array(SV), BU.VERTEX), ibS = bufOf(new Uint32Array(SI), BU.INDEX);
+const vbC = bufOf(new Float32Array(CV), BU.VERTEX), ibC = bufOf(new Uint32Array(CI), BU.INDEX);
+// terrain grid indices (shared by every chunk)
+const NTI = ROWS * (COLS - 1) * 6, TI = new Uint16Array(NTI);
+for (let j = 0, o = 0; j < ROWS; j++) for (let i = 0; i < COLS - 1; i++) { const a = j * COLS + i, b = a + COLS; TI[o++] = a; TI[o++] = b; TI[o++] = a + 1; TI[o++] = a + 1; TI[o++] = b; TI[o++] = b + 1; }
+const ibT = bufOf(TI, BU.INDEX);
+// seeds for the flying things: xyz random, w type (0 bird, 1 butterfly, 2 falling leaf), and for the dust motes
+const NBIRD = 26, NBFLY = 60, NLEAF = 220, NCRIT = NBIRD + NBFLY + NLEAF, NMOTE = Q.aa > 1 ? 3600 : 1800;
+const seeds = (n, ty) => { const a = new Float32Array(n * 4), r = RNG(n * 31 + 7); for (let k = 0; k < n; k++) { a[k * 4] = r(); a[k * 4 + 1] = r(); a[k * 4 + 2] = r(); a[k * 4 + 3] = ty ? ty(k) : r(); } return a; };
+const vbCrit = bufOf(seeds(NCRIT, (k) => (k < NBIRD ? 0 : k < NBIRD + NBFLY ? 1 : 2)), BU.VERTEX), vbMote = bufOf(seeds(NMOTE), BU.VERTEX);
+
+// ---------------------------------------------------------------- chunk ring
+const VU = BU.VERTEX | BU.COPY_DST;
+const chunks = Array.from({ length: NCH }, () => ({
+  ci: -1e9, ready: false, stage: 0, xc: 0, x0: 0, x1: 0, ty0: 0, ty1: 0, gn: 0, tg: new Int32Array(60), td: new Float32Array(NTREE), rg: new Int32Array(12), ug: new Int32Array(8),
+  vbT: buf(TVB.byteLength, VU), vbI: buf(NTREE * 32, VU), vbR: buf(NROCK * 32, VU), vbU: buf(NUG * 32, VU), vbG: buf(NGRASS * 16, VU),
+}));
+// builds one stage of chunk c per call (terrain, then trees / rocks / undergrowth, then grass)
+function genStep(c) {
+  if (c.stage === 0) { genTerrain(c.ci); DQ.writeBuffer(c.vbT, 0, TVB); c.xc = trailX(c.ci * CL + CL / 2); c.stage = 1;
+    c.x0 = 1e9; c.x1 = -1e9; for (let j = 0; j < ROWS + 3; j++) { c.x0 = min(c.x0, RXR[j]); c.x1 = max(c.x1, RXR[j]); } // sideways reach of the trail in this chunk
+    return false; }
+  if (c.stage === 1) {
+    let n = genTrees(c, Q.dens); if (n) DQ.writeBuffer(c.vbI, 0, IOUT, 0, n * 8);
+    n = genRocks(c, Q.dens); if (n) DQ.writeBuffer(c.vbR, 0, IOUT, 0, n * 8);
+    n = genUnder(c, Q.dens); if (n) DQ.writeBuffer(c.vbU, 0, IOUT, 0, n * 8);
+    c.stage = 2; return false;
+  }
+  c.gn = genGrass(c, Q.dens); if (c.gn) DQ.writeBuffer(c.vbG, 0, GBUF, 0, c.gn * 16);
+  c.stage = 3; c.ready = true; return true;
+}
+let gen = null;
+// keeps the ring centred on the hiker: finds the nearest missing chunk and builds it one stage per frame
+function stream(z) {
+  if (!gen) {
+    const c0 = floor(z / CL);
+    for (let k = 0; k < NCH; k++) {
+      const ci = c0 + ((k & 1) ? -((k + 1) >> 1) : (k >> 1)), c = chunks[((ci % NCH) + NCH) % NCH];
+      if (c.ci !== ci) { c.ci = ci; c.ready = false; c.stage = 0; gen = c; break; }
+    }
+  }
+  if (gen && genStep(gen)) gen = null;
+  return gen !== null;
+}
+
+// ---------------------------------------------------------------- camera state (preallocated; the frame loop allocates nothing)
+// time of day presets: sun elevation, azimuth, colour, intensity, zenith, horizon, fog, exposure, shaft strength, dusk (sunset sky and stars), night
+const TOD = [
+  { name: 'Morning', v: [0.50, -0.75, 1.0, 0.84, 0.62, 5.2, 0.12, 0.30, 0.72, 0.56, 0.67, 0.80, 0.0011, 0.62, 1.0, 0, 0] },
+  { name: 'Midday', v: [1.05, -0.5, 1.0, 0.96, 0.88, 5.6, 0.10, 0.27, 0.75, 0.52, 0.68, 0.88, 0.0008, 0.56, 0.7, 0, 0] },
+  { name: 'Golden hour', v: [0.17, -0.95, 1.0, 0.52, 0.2, 4.6, 0.14, 0.22, 0.50, 0.88, 0.54, 0.32, 0.0015, 0.75, 1.3, 0, 0] },
+  { name: 'Early evening', v: [0.035, -1.05, 1.0, 0.36, 0.16, 2.6, 0.035, 0.065, 0.2, 0.8, 0.4, 0.24, 0.0013, 1.3, 1.2, 1, 0] },
+  // night: the 'sun' is a dim blue moon, the sky is nearly black, and the headlamp does the work (L switches it)
+  { name: 'Night', v: [0.85, -0.55, 0.6, 0.72, 1.0, 0.085, 0.004, 0.007, 0.018, 0.012, 0.018, 0.034, 0.0011, 1.25, 0.4, 0, 1] },
+];
+let tod = clamp(+(qs.get('t') || 0) | 0, 0, TOD.length - 1);
+const TC = Float64Array.from(TOD[tod].v);
+const FOVY = 62 * PI / 180, TANY = Math.tan(FOVY / 2), NEAR = 0.15, SHR = 85;
+let W = 2, H = 2, TANX = TANY;
+// where a hike can begin: 0 anywhere, 1 summer forest, 2 autumn forest, 3 meadow, 4 alpine. Picks a random spot
+// in the first 20 km, then walks forward to the heart of the next stretch of the wanted kind.
+function findStart(kind) {
+  let z = Math.random() * 20000;
+  if (!kind) return z;
+  for (let k = 0; k < 6000; k++, z += 10) {
+    biome(z, BIO);
+    if (kind === 1 ? BIO[0] > 0.97 && BIO[3] < 0.1 : kind === 2 ? BIO[0] > 0.97 && BIO[3] > 0.9 : BIO[kind - 2] > 0.97) break;
+  }
+  return z + 40 + Math.random() * 120;
+}
+const BIO = new Float64Array(4), BC = new Float64Array(3), SUN = new Float64Array(3), SC = new Float64Array(3);
+let Z = qs.has('z') ? +qs.get('z') : findStart(0), spd = 0, auto = false, lookY = +(qs.get('yaw') || 0), lookP = +(qs.get('pitch') || 0), yawS = atan2(trailDX(Z), 1), pitS = 0, bob = 0, lastLook = -10, walked = 0;
+let T = +(qs.get('time') || 0), last = 0, started = false, paused = true, turn = 0;
+let CX = 0, CY = 0, CZ = 0, FX = 0, FY = 0, FZ = 1, RTX = 1, RTZ = 0, UX = 0, UY = 1, UZ = 0, pitch = 0;
+let lampOn = true, lampK = 1;
+const keys = { f: 0, b: 0, run: 0, l: 0, r: 0 }, TSPD = +(qs.get('speed') || 0); // test hook: walking speed
+
+function camera(dt) {
+  const want = clamp(keys.f - keys.b + (auto ? 1 : 0), -1, 1), target = want * (TSPD || (keys.run ? 6.5 : 2.3));
+  spd += (target - spd) * min(1, dt * 3.5);
+  const dx = trailDX(Z), sl = elevD(Z), ds = spd * dt;
+  Z += ds / hypot(1, dx, sl); walked += abs(ds);
+  const b0 = floor(bob / PI); bob += abs(ds) * 1.95;
+  if (floor(bob / PI) !== b0 && started) audioStep(abs(spd));
+  const amp = min(1, abs(spd) / 2.3);
+  let d = atan2(dx, 1) - yawS; yawS += d * min(1, dt * 2.2);
+  pitS += (Math.atan(sl) * 0.7 - 0.02 - pitS) * min(1, dt * 2);
+  lookY += (keys.r - keys.l) * dt * 1.4;
+  if (keys.r || keys.l) lastLook = T;
+  if (T - lastLook > 3 && abs(spd) > 0.3) { const k = exp(-dt * 0.6); lookY *= k; lookP *= k; }
+  const yaw = yawS + lookY; pitch = clamp(pitS + lookP, -1.35, 1.35);
+  const cp = cos(pitch);
+  FX = sin(yaw) * cp; FY = sin(pitch); FZ = cos(yaw) * cp; RTX = cos(yaw); RTZ = -sin(yaw);
+  UX = FY * RTZ; UY = FZ * RTX - FX * RTZ; UZ = -FY * RTX; // up = fwd x right
+  CX = trailX(Z) + RTX * sin(bob) * 0.018 * amp; CY = elev(Z) + 1.68 + sin(bob * 2) * 0.024 * amp; CZ = Z + RTZ * sin(bob) * 0.018 * amp;
+  biome(Z, BIO);
+}
+// 4x4 matrices are written column-major straight into the uniform array
+function setRow(M, o, r, x, y, z, w) { M[o + r] = x; M[o + 4 + r] = y; M[o + 8 + r] = z; M[o + 12 + r] = w; }
+function uniforms(dt) {
+  const tv = TOD[tod].v, k = min(1, dt * 0.9);
+  for (let i = 0; i < 17; i++) TC[i] += (tv[i] - TC[i]) * k;
+  const el = TC[0], az = TC[1];
+  SUN[0] = sin(az) * cos(el); SUN[1] = sin(el); SUN[2] = cos(az) * cos(el);
+  const f = 1 / TANY, fa = f * H / W;
+  setRow(UB, 0, 0, RTX * fa, 0, RTZ * fa, -(RTX * CX + RTZ * CZ) * fa);
+  setRow(UB, 0, 1, UX * f, UY * f, UZ * f, -(UX * CX + UY * CY + UZ * CZ) * f);
+  setRow(UB, 0, 2, 0, 0, 0, NEAR);
+  setRow(UB, 0, 3, FX, FY, FZ, -(FX * CX + FY * CY + FZ * CZ));
+  // shadow map: an orthographic box looking down the sun, centred ahead of the hiker and snapped to whole texels
+  const fl = hypot(FX, FZ) || 1, sx = CX + FX / fl * SHR * 0.55, sz = CZ + FZ / fl * SHR * 0.55, sy = CY;
+  const L0 = SUN[0], L1 = SUN[1], L2 = SUN[2], rl = hypot(L2, L0), r0 = L2 / rl, r2 = -L0 / rl; // r = up x L
+  const u0 = L1 * r2, u1 = L2 * r0 - L0 * r2, u2 = -L1 * r0; // u = L x r
+  const tx = 2 * SHR / Q.sh;
+  const cr = round((sx * r0 + sz * r2) / tx) * tx, cu = round((sx * u0 + sy * u1 + sz * u2) / tx) * tx, cl = sx * L0 + sy * L1 + sz * L2;
+  const DN = 320, DF = 160, id = 1 / (DN + DF);
+  setRow(UB, 16, 0, r0 / SHR, 0, r2 / SHR, -cr / SHR);
+  setRow(UB, 16, 1, u0 / SHR, u1 / SHR, u2 / SHR, -cu / SHR);
+  setRow(UB, 16, 2, -L0 * id, -L1 * id, -L2 * id, (DN + cl) * id);
+  setRow(UB, 16, 3, 0, 0, 0, 1);
+  SC[0] = r0 * cr + u0 * cu + L0 * cl; SC[1] = u1 * cu + L1 * cl; SC[2] = r2 * cr + u2 * cu + L2 * cl;
+  const wind = 0.34 + 0.2 * sin(T * 0.13) + 0.12 * sin(T * 0.31 + 1) + 0.25 * BIO[2];
+  let o = 32;
+  UB[o++] = CX; UB[o++] = CY; UB[o++] = CZ; UB[o++] = T;
+  UB[o++] = L0; UB[o++] = L1; UB[o++] = L2; UB[o++] = TC[16];
+  UB[o++] = TC[2] * TC[5]; UB[o++] = TC[3] * TC[5]; UB[o++] = TC[4] * TC[5]; UB[o++] = 0;
+  UB[o++] = TC[6]; UB[o++] = TC[7]; UB[o++] = TC[8]; UB[o++] = 0;
+  UB[o++] = TC[9]; UB[o++] = TC[10]; UB[o++] = TC[11]; UB[o++] = 0;
+  UB[o++] = FX; UB[o++] = FY; UB[o++] = FZ; UB[o++] = NEAR;
+  UB[o++] = RTX; UB[o++] = 0; UB[o++] = RTZ; UB[o++] = TANX;
+  UB[o++] = UX; UB[o++] = UY; UB[o++] = UZ; UB[o++] = TANY;
+  UB[o++] = W; UB[o++] = H; UB[o++] = 1 / W; UB[o++] = 1 / H;
+  UB[o++] = BIO[0]; UB[o++] = BIO[1]; UB[o++] = BIO[2]; UB[o++] = BIO[3];
+  lampK += ((lampOn ? 1 : 0) - lampK) * min(1, dt * 8);
+  UB[o++] = 0.8; UB[o++] = 0.6; UB[o++] = wind; UB[o++] = 5.5 * lampK * sst(0.25, 0.8, TC[16]); // the headlamp comes on as night falls
+  UB[o++] = SC[0]; UB[o++] = SC[1]; UB[o++] = SC[2]; UB[o++] = SHR;
+  const bk = min(1, dt * 0.2);
+  BC[0] += (CX + sin(yawS) * 90 - BC[0]) * bk; BC[1] += (CY - BC[1]) * bk; BC[2] += (CZ + cos(yawS) * 90 - BC[2]) * bk;
+  UB[o++] = BC[0]; UB[o++] = BC[1]; UB[o++] = BC[2]; UB[o++] = 0;
+  UB[o++] = TC[13]; UB[o++] = TC[14] * (0.0012 + 0.026 * BIO[0] + 0.003 * BIO[2]); UB[o++] = TC[12] * (1 + 0.5 * BIO[0]); UB[o++] = TC[15];
+  UBS.set(UB); for (let i = 0; i < 16; i++) UBS[i] = UB[16 + i];
+  DQ.writeBuffer(ubo, 0, UB); DQ.writeBuffer(uboS, 0, UBS);
+}
+
+// test hook (?cap): draw into a texture instead of the page and hand the pixels to window.__grab()
+const CAP = qs.has('cap');
+if (CAP) window.__grab = async () => {
+  const bpr = (W * 4 + 255) & ~255, b = buf(bpr * H, BU.COPY_DST | BU.MAP_READ), e = device.createCommandEncoder();
+  e.copyTextureToBuffer({ texture: tCap }, { buffer: b, bytesPerRow: bpr }, [W, H]); DQ.submit([e.finish()]);
+  await b.mapAsync(GPUMapMode.READ);
+  const src = new Uint8Array(b.getMappedRange()), out = new Uint8Array(W * H * 4);
+  for (let y = 0; y < H; y++) out.set(src.subarray(y * bpr, y * bpr + W * 4), y * W * 4);
+  b.unmap(); b.destroy();
+  let s = ''; for (let i = 0; i < out.length; i += 32768) s += String.fromCharCode.apply(null, out.subarray(i, i + 32768));
+  return { w: W, h: H, bgra: CF === 'bgra8unorm', data: btoa(s) };
+};
+// ---------------------------------------------------------------- render targets (rebuilt on resize)
+let targets = [], tCap = null, passScene, passRays, passBlur, passPost, bgRays, bgBlur, bgPost, bloomPass = [], bloomBG = [];
+const NB = 5, passShadow = { colorAttachments: [], depthStencilAttachment: { view: vShadow, depthClearValue: 1, depthLoadOp: 'clear', depthStoreOp: 'store' } };
+const colorAtt = (view, clear) => ({ view, clearValue: [0, 0, 0, 1], loadOp: clear ? 'clear' : 'load', storeOp: 'store' });
+function resize() {
+  const dpr = min(devicePixelRatio || 1, 2), cw = max(8, floor(innerWidth * dpr)), ch = max(8, floor(innerHeight * dpr)), s = min(1, sqrt(Q.pix / (cw * ch)));
+  const w = max(8, floor(cw * s) & ~1), h = max(8, floor(ch * s) & ~1);
+  if (w === W && h === H) return;
+  W = w; H = h; TANX = TANY * W / H; canvas.width = W; canvas.height = H;
+  for (const t of targets) t.destroy();
+  const RT = TU.RENDER_ATTACHMENT | TU.TEXTURE_BINDING;
+  const tScene = tex(W, H, HDR, RT), tDepth = tex(W, H, DEPTH, RT, AA), tMS = AA > 1 ? tex(W, H, HDR, TU.RENDER_ATTACHMENT, AA) : null;
+  const tRays = tex(W / 2, H / 2, HDR, RT), tRaysB = tex(W / 2, H / 2, HDR, RT), bl = [];
+  for (let i = 0; i < NB; i++) bl.push(tex(max(1, W >> (i + 1)), max(1, H >> (i + 1)), HDR, RT));
+  targets = [tScene, tDepth, tRays, tRaysB, ...bl]; if (tMS) targets.push(tMS);
+  if (CAP) { tCap = tex(W, H, CF, TU.RENDER_ATTACHMENT | TU.COPY_SRC); targets.push(tCap); }
+  const vScene = tScene.createView(), vDepth = tDepth.createView(), vb = bl.map((t) => t.createView());
+  passScene = {
+    colorAttachments: [AA > 1 ? { view: tMS.createView(), resolveTarget: vScene, clearValue: [0, 0, 0, 1], loadOp: 'clear', storeOp: 'discard' } : colorAtt(vScene, true)],
+    depthStencilAttachment: { view: vDepth, depthClearValue: 0, depthLoadOp: 'clear', depthStoreOp: 'store' },
+  };
+  passRays = { colorAttachments: [colorAtt(tRays.createView(), true)] };
+  passBlur = { colorAttachments: [colorAtt(tRaysB.createView(), true)] };
+  passPost = { colorAttachments: [colorAtt(null, true)] };
+  if (TSQ) passPost.timestampWrites = { querySet: tsSet, endOfPassWriteIndex: 1 };
+  const U = { binding: 0, resource: { buffer: ubo } };
+  bgRays = device.createBindGroup({ layout: pRays.getBindGroupLayout(0), entries: [U, { binding: 1, resource: vShadow }, { binding: 2, resource: sCmp }, { binding: 3, resource: vDepth }] });
+  bgBlur = device.createBindGroup({ layout: pBlur.getBindGroupLayout(0), entries: [{ binding: 0, resource: tRays.createView() }] });
+  bgPost = device.createBindGroup({ layout: pPost.getBindGroupLayout(0), entries: [U, { binding: 1, resource: sLin }, { binding: 2, resource: vScene }, { binding: 3, resource: tRaysB.createView() }, { binding: 4, resource: vb[0] }, { binding: 5, resource: vDepth }] });
+  // bloom: NB steps down, then NB-1 steps back up (added onto the larger level)
+  bloomPass = []; bloomBG = [];
+  const blit = (p, src) => device.createBindGroup({ layout: p.getBindGroupLayout(0), entries: [{ binding: 0, resource: sLin }, { binding: 1, resource: src }] });
+  for (let i = 0; i < NB; i++) { bloomPass.push({ pipe: i ? pD : pD0, desc: { colorAttachments: [colorAtt(vb[i], true)] }, bg: blit(i ? pD : pD0, i ? vb[i - 1] : vScene) }); }
+  for (let i = NB - 1; i > 0; i--) { bloomPass.push({ pipe: pU, desc: { colorAttachments: [colorAtt(vb[i - 1], false)] }, bg: blit(pU, vb[i]) }); }
+}
+
+// ---------------------------------------------------------------- drawing
+// chunks in view this frame, nearest first
+const VIS = new Array(NCH).fill(null), VISD = new Int32Array(NCH); let nvis = 0;
+// is the strip x in [xc - w, xc + w], z in [z0, z1] possibly in view? (corner test against three planes)
+function inView(xc, w, z0, z1, m = 30) {
+  const fl = hypot(FX, FZ) || 1, fx = FX / fl, fz = FZ / fl, th = TANX / max(cos(pitch), 0.3) + 0.2;
+  let behind = 0, left = 0, right = 0;
+  for (let k = 0; k < 4; k++) {
+    const vx = xc + ((k & 1) ? w : -w) - CX, vz = ((k & 2) ? z1 : z0) - CZ, al = vx * fx + vz * fz, sd = vx * fz - vz * fx;
+    if (al < -m) behind++; if (sd < -(al * th + m)) left++; if (sd > al * th + m) right++;
+  }
+  return behind < 4 && left < 4 && right < 4;
+}
+// which levels of detail chunk `adc` chunks away may need (the shader hides each tree outside its own range)
+// (full detail to ~95 m, half the leaves to ~250 m, a simple crown beyond; bands are 0-56, 45-160 and 160-700 m from the trail)
+const lodDrawn = (band, lod, adc) => (lod === 0 ? band < 2 && adc <= (band ? 2 : 3) : lod === 1 ? adc <= (band === 2 ? 6 : 7) : band === 2 || adc >= 3);
+// ---- exact culling (FAST build). Each test only rejects a group when none of it could be drawn:
+// nearest / farthest horizontal distance from the camera to the rectangle xa..xb, z0..z1
+let DMIN = 0, DMAX = 0, tris = 0;
+function rectDist(xa, xb, z0, z1) {
+  const dx = max(xa - CX, 0, CX - xb), dz = max(z0 - CZ, 0, CZ - z1); DMIN = hypot(dx, dz);
+  DMAX = hypot(max(CX - xa, xb - CX), max(CZ - z0, z1 - CZ));
+}
+// is the box outside the shadow map? (its 8 corners against the map's sides and depth range)
+function outOfShadow(xa, xb, ya, yb, z0, z1) {
+  let l = 0, r = 0, b = 0, t = 0, n = 0, f = 0;
+  for (let k = 0; k < 8; k++) {
+    const x = (k & 1) ? xb : xa, y = (k & 2) ? yb : ya, z = (k & 4) ? z1 : z0;
+    const sx = UB[16] * x + UB[20] * y + UB[24] * z + UB[28], sy = UB[17] * x + UB[21] * y + UB[25] * z + UB[29], sz = UB[18] * x + UB[22] * y + UB[26] * z + UB[30];
+    if (sx < -1) l++; if (sx > 1) r++; if (sy < -1) b++; if (sy > 1) t++; if (sz < 0) n++; if (sz > 1) f++;
+  }
+  return l === 8 || r === 8 || b === 8 || t === 8 || n === 8 || f === 8;
+}
+const BIN = [0, 40, 155], BOUT = [57, 162, 702], PAD = 24; // band edges (m from the trail) and the widest crown
+function drawTrees(r, c, adc, cards, shadow) {
+  r.setVertexBuffer(1, c.vbI);
+  const z0 = c.ci * CL - PAD, z1 = z0 + CL + 2 * PAD;
+  for (let b = 0; b < 3; b++) for (let sd = 0; sd < 2; sd++) {
+    let near = 0, far = 1e9, off = 0, dzn = 0;
+    if (CULL) {
+      // a tree d metres from the trail on this side is at least d + off away sideways, and dzn away along the trail
+      off = sd ? c.x0 - CX : CX - c.x1; dzn = max(c.ci * CL - CZ, 0, CZ - c.ci * CL - CL);
+      const xa = sd ? c.x0 + BIN[b] - PAD : c.x0 - BOUT[b] - PAD, xb = sd ? c.x1 + BOUT[b] + PAD : c.x1 - BIN[b] + PAD;
+      if (shadow ? outOfShadow(xa, xb, c.ty0 - 2, c.ty1 + 46, z0, z1) : !inView((xa + xb) / 2, (xb - xa) / 2, z0, z1, 0)) continue;
+      rectDist(xa, xb, z0, z1); near = DMIN - PAD - 13; far = hypot(DMAX, max(abs(c.ty0 - CY), abs(c.ty1 - CY)) + 2) + PAD + 13;
+    }
+    for (let lod = 0; lod < 3; lod++) {
+      if (!lodDrawn(b, lod, adc)) continue;
+      if (lod === 0 ? near >= 95 : lod === 1 ? far < 95 || near >= 250 : far < 225) continue; // no tree here is in this level's range
+      for (let v = 0; v < TREEV; v++) {
+        const g = ((b * 2 + sd) * TREEV + v) * 2; let n = c.tg[g + 1]; if (!n) continue;
+        const m = cards ? TREES[v].c[lod] : TREES[v].s[lod]; if (!m) continue;
+        if (CULL && lod < 2) { // trees are sorted by distance from the trail: stop where they must be beyond this level's range
+          const lim = lod ? 263 : 108, reach = lim > dzn ? sqrt(lim * lim - dzn * dzn) - off : -1, s0 = c.tg[g];
+          while (n > 0 && c.td[s0 + n - 1] >= reach) n--;
+          if (!n) continue;
+        }
+        r.drawIndexed(m.count, n, m.first, m.base, c.tg[g]); tris += m.count / 3 * n;
+      }
+    }
+  }
+}
+function drawGroups(r, vb, grp, meshes) {
+  r.setVertexBuffer(1, vb);
+  for (let v = 0; v < meshes.length; v++) { const n = grp[v * 2 + 1]; if (n) { r.drawIndexed(meshes[v].count, n, meshes[v].first, meshes[v].base, grp[v * 2]); tris += meshes[v].count / 3 * n; } }
+}
+function render() {
+  const c0 = floor(CZ / CL);
+  nvis = 0;
+  for (let k = 0; k < NCH; k++) {
+    const off = (k & 1) ? -((k + 1) >> 1) : (k >> 1), ci = c0 + off, c = chunks[((ci % NCH) + NCH) % NCH];
+    if (c.ci !== ci || !c.ready) continue;
+    if (inView(c.xc, 1180, ci * CL, ci * CL + CL)) { VIS[nvis] = c; VISD[nvis++] = abs(off); }
+  }
+  const e = device.createCommandEncoder();
+  tris = 0;
+  // shadow map: everything near the shadow centre
+  let r = e.beginRenderPass(passShadow);
+  r.setBindGroup(0, bg0S);
+  const s0 = floor((SC[2] - SHR - 40) / CL), s1 = floor((SC[2] + SHR + 40) / CL);
+  r.setPipeline(pTerrS); r.setIndexBuffer(ibT, 'uint16');
+  for (let ci = s0; ci <= s1; ci++) { const c = chunks[((ci % NCH) + NCH) % NCH]; if (c.ci === ci && c.ready) { r.setVertexBuffer(0, c.vbT); r.drawIndexed(NTI); tris += NTI / 3; } }
+  r.setPipeline(pSolidS); r.setVertexBuffer(0, vbS); r.setIndexBuffer(ibS, 'uint32');
+  for (let ci = s0; ci <= s1; ci++) { const c = chunks[((ci % NCH) + NCH) % NCH]; if (c.ci === ci && c.ready) { drawTrees(r, c, abs(ci - c0), false, true); if (!CULL || !outOfShadow(c.x0 - 88, c.x1 + 88, c.ty0 - 30, c.ty1 + 30, ci * CL - 5, ci * CL + CL + 5)) drawGroups(r, c.vbR, c.rg, ROCKS); } }
+  r.setPipeline(pCardS); r.setVertexBuffer(0, vbC); r.setIndexBuffer(ibC, 'uint32');
+  for (let ci = s0; ci <= s1; ci++) { const c = chunks[((ci % NCH) + NCH) % NCH]; if (c.ci === ci && c.ready) drawTrees(r, c, abs(ci - c0), true, true); }
+  r.end();
+
+  r = e.beginRenderPass(passScene);
+  r.setBindGroup(0, bg0); r.setBindGroup(1, bg1);
+  r.setPipeline(pSolid); r.setVertexBuffer(0, vbS); r.setIndexBuffer(ibS, 'uint32');
+  for (let k = 0; k < nvis; k++) { const c = VIS[k]; drawTrees(r, c, VISD[k], false, false); if (VISD[k] <= 10 && (!CULL || inView((c.x0 + c.x1) / 2, (c.x1 - c.x0) / 2 + 88, c.ci * CL - 5, c.ci * CL + CL + 5, 0))) drawGroups(r, c.vbR, c.rg, ROCKS); }
+  r.setPipeline(pTerr); r.setIndexBuffer(ibT, 'uint16');
+  for (let k = 0; k < nvis; k++) { r.setVertexBuffer(0, VIS[k].vbT); r.drawIndexed(NTI); tris += NTI / 3; }
+  r.setPipeline(pCard); r.setVertexBuffer(0, vbC); r.setIndexBuffer(ibC, 'uint32');
+  for (let k = 0; k < nvis; k++) { const c = VIS[k]; if (VISD[k] <= 7) drawTrees(r, c, VISD[k], true, false); if (VISD[k] <= 3 && (!CULL || inView((c.x0 + c.x1) / 2, (c.x1 - c.x0) / 2 + 60, c.ci * CL - 2, c.ci * CL + CL + 2, 0))) drawGroups(r, c.vbU, c.ug, UGM); }
+  r.setPipeline(pGrass);
+  for (let k = 0; k < nvis; k++) {
+    const c = VIS[k]; if (VISD[k] > 2 || !c.gn) continue;
+    if (CULL) { // blades are gone by 80 m; the strip of grass is within 70 m of the trail
+      const xa = c.x0 - 70, xb = c.x1 + 70, z0 = c.ci * CL - 2, z1 = z0 + CL + 4;
+      rectDist(xa, xb, z0, z1); if (DMIN >= 80 || !inView((xa + xb) / 2, (xb - xa) / 2, z0, z1, 0)) continue;
+    }
+    r.setVertexBuffer(0, c.vbG); r.draw(9, c.gn); tris += 7 * c.gn;
+  }
+  r.setPipeline(pCrit); r.setVertexBuffer(0, vbCrit); r.draw(12, NCRIT);
+  r.setPipeline(pSky); r.draw(3);
+  r.setPipeline(pMote); r.setVertexBuffer(0, vbMote); r.draw(4, NMOTE);
+  r.end();
+
+  r = e.beginRenderPass(passRays); r.setPipeline(pRays); r.setBindGroup(0, bgRays); r.draw(3); r.end();
+  r = e.beginRenderPass(passBlur); r.setPipeline(pBlur); r.setBindGroup(0, bgBlur); r.draw(3); r.end();
+  for (let i = 0; i < bloomPass.length; i++) { const b = bloomPass[i]; r = e.beginRenderPass(b.desc); r.setPipeline(b.pipe); r.setBindGroup(0, b.bg); r.draw(3); r.end(); }
+  passPost.colorAttachments[0].view = (CAP ? tCap : ctx.getCurrentTexture()).createView();
+  r = e.beginRenderPass(passPost); r.setPipeline(pPost); r.setBindGroup(0, bgPost); r.draw(3); r.end();
+  if (TSQ) { e.resolveQuerySet(tsSet, 0, 2, tsBuf, 0); if (!tsBusy) e.copyBufferToBuffer(tsBuf, 0, tsRead, 0, 16); }
+  DQ.submit([e.finish()]);
+  if (TSQ && !tsBusy) { tsBusy = true; tsRead.mapAsync(GPUMapMode.READ).then(() => { const a = new BigInt64Array(tsRead.getMappedRange()), ms = Number(a[1] - a[0]) / 1e6; if (ms > 0 && ms < 1000) gpuMs += (ms - gpuMs) * (gpuMs ? 0.08 : 1); tsRead.unmap(); tsBusy = false; }); }
+}
+// GPU time of a whole frame (shadow pass start to composite end), where the browser allows timestamp queries
+let tsSet = null, tsBuf = null, tsRead = null, tsBusy = false, gpuMs = 0;
+if (TSQ) {
+  tsSet = device.createQuerySet({ type: 'timestamp', count: 2 });
+  tsBuf = buf(16, BU.QUERY_RESOLVE | BU.COPY_SRC); tsRead = buf(16, BU.COPY_DST | BU.MAP_READ);
+  passShadow.timestampWrites = { querySet: tsSet, beginningOfPassWriteIndex: 0 };
+}
+
+// ---------------------------------------------------------------- frame loop, HUD
+const BNAME = ['Forest', 'Meadow', 'Alpine'];
+let hudT = 0, hudS = '', fps = 60, statsOn = qs.has('stats');
+const FIXDT = +(qs.get('dt') || 0); // test hook: fixed time step
+const FRMAX = +(qs.get('frames') || 0); let frameN = 0; // test hook: stop after N frames
+// The loop sleeps while the menu is up: nothing is drawn, so the GPU idles and the last frame stays on screen.
+// wake(n) draws n more frames (after a resize, a jump to a new place, or on leaving the menu) and then, if the menu
+// is still up, the loop stops again.
+let rafId = 0, still = 2;
+function wake(n = 2) { still = max(still, n); if (!rafId) { last = performance.now(); rafId = requestAnimationFrame(frame); } }
+function frame(now) {
+  rafId = 0;
+  if (FRMAX && ++frameN >= FRMAX) { window.__done = true; return; }
+  if (!paused || --still > 0) rafId = requestAnimationFrame(frame);
+  const dt = FIXDT || min((now - last) / 1000, 0.1); last = now;
+  if (!paused) T += dt;
+  resize();
+  camera(paused ? 0 : dt);
+  stream(Z);
+  uniforms(dt);
+  render();
+  fps += (1 / max(dt, 1e-3) - fps) * 0.05;
+  if (now - hudT > 300) {
+    hudT = now;
+    const b = BIO[0] > BIO[1] ? (BIO[0] > BIO[2] ? 0 : 2) : (BIO[1] > BIO[2] ? 1 : 2);
+    const s = (walked / 1000).toFixed(2) + ' km  ·  ' + BNAME[b] + (b === 0 && BIO[3] > 0.5 ? ' in autumn' : '') + '  ·  ' + round(240 + elev(Z)) + ' m' + (auto ? '  ·  auto-walk' : '');
+    if (s !== hudS) { hudS = s; $('hud').textContent = s; }
+    syncButtons();
+    if (statsOn) $('stats').textContent = fps.toFixed(0) + ' fps  ·  ' + W + '×' + H + '  ·  ' + Q.name + '  ·  ' + nvis + ' chunks' + (FAST ? '  ·  ' + (tris / 1e6).toFixed(2) + 'M tris' + (TSQ ? '  ·  GPU ' + gpuMs.toFixed(1) + ' ms' : '') + '  ·  culling ' + (CULL ? 'on' : 'off') + ' (O)' : '');
+  }
+}
+
+// ---------------------------------------------------------------- input
+const setKey = (code, v) => {
+  if (code === 'KeyW' || code === 'ArrowUp') keys.f = v; else if (code === 'KeyS' || code === 'ArrowDown') keys.b = v;
+  else if (code === 'ShiftLeft' || code === 'ShiftRight') keys.run = v; else if (code === 'KeyA' || code === 'ArrowLeft') keys.l = v; else if (code === 'KeyD' || code === 'ArrowRight') keys.r = v;
+  else return false;
+  return true;
+};
+function openMenu(open) { paused = open; wake(); audioQuiet(open); $('menu').classList.toggle('on', open); canvas.classList.toggle('blur', open); if (open) { keys.f = keys.b = keys.run = keys.l = keys.r = 0; } $('go').textContent = started ? 'Keep walking' : 'Start hiking'; }
+function start() { started = true; openMenu(false); audioStart(); }
+addEventListener('keydown', (e) => {
+  if (e.repeat) return;
+  if (e.code === 'Escape') { if (started) openMenu(!paused); return; }
+  if (paused) { if (e.code === 'Enter' || e.code === 'Space') { start(); e.preventDefault(); } return; }
+  if (setKey(e.code, 1)) { e.preventDefault(); if (e.code === 'KeyS' || e.code === 'ArrowDown') auto = false; return; }
+  if (e.code === 'Space') { auto = !auto; e.preventDefault(); }
+  else if (e.code === 'KeyM') audioMute();
+  else if (e.code === 'KeyT') { tod = (tod + 1) % TOD.length; toast(TOD[tod].name); }
+  else if (e.code === 'KeyO' && FAST) { CULL = !CULL; toast('Culling ' + (CULL ? 'on' : 'off')); }
+  else if (e.code === 'KeyL') { lampOn = !lampOn; toast('Headlamp ' + (lampOn ? 'on' : 'off')); }
+  else if (e.code === 'KeyH') { statsOn = !statsOn; $('stats').style.display = statsOn ? 'block' : 'none'; }
+});
+addEventListener('keyup', (e) => { setKey(e.code, 0); });
+addEventListener('blur', () => { keys.f = keys.b = keys.run = keys.l = keys.r = 0; });
+let drag = false, px0 = 0, py0 = 0;
+canvas.addEventListener('pointerdown', (e) => { drag = true; px0 = e.clientX; py0 = e.clientY; canvas.setPointerCapture(e.pointerId); });
+canvas.addEventListener('pointermove', (e) => { if (!drag) return; lookY += (e.clientX - px0) * 0.0035; lookP = clamp(lookP - (e.clientY - py0) * 0.0035, -1.2, 1.2); px0 = e.clientX; py0 = e.clientY; lastLook = T; });
+const endDrag = () => { drag = false; };
+canvas.addEventListener('pointerup', endDrag); canvas.addEventListener('pointercancel', endDrag);
+canvas.addEventListener('wheel', (e) => { e.preventDefault(); }, { passive: false });
+let toastT = 0;
+function toast(s) { const t = $('toast'); t.textContent = s; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 1800); }
+$('go').addEventListener('click', start);
+// the two small corner buttons: sound and auto-walk (they never take keyboard focus, so Space keeps its meaning)
+function syncButtons() { $('bs').classList.toggle('off', muted); $('ba').classList.toggle('on', auto); }
+for (const [id, fn] of [['bs', () => audioMute()], ['ba', () => { if (started && !paused) auto = !auto; }]]) {
+  $(id).addEventListener('pointerdown', (e) => e.preventDefault());
+  $(id).addEventListener('click', () => { fn(); syncButtons(); });
+}
+$('mbtn').addEventListener('click', () => openMenu(true));
+// touch buttons: hold to walk
+for (const [id, key] of [['tf', 'f'], ['tb', 'b']]) {
+  const el = $(id);
+  el.addEventListener('pointerdown', (e) => { keys[key] = 1; auto = false; el.setPointerCapture(e.pointerId); e.preventDefault(); });
+  el.addEventListener('pointerup', () => { keys[key] = 0; }); el.addEventListener('pointercancel', () => { keys[key] = 0; });
+}
+document.querySelectorAll('.q:not(.sp)').forEach((b, i) => {
+  b.classList.toggle('sel', i === qi);
+  b.addEventListener('click', () => { if (i === qi) return; try { localStorage.setItem('hikeQ', i); } catch (e) { } const u = new URL(location.href); u.searchParams.delete('q'); u.searchParams.set('z', Z.toFixed(0)); location.href = u.href; });
+});
+document.addEventListener('visibilitychange', () => { last = performance.now(); });
+addEventListener('resize', () => wake());
+
+// ---------------------------------------------------------------- build the ring around the hiker (at load, and after a jump)
+async function buildRing() {
+  for (let t0 = performance.now(); ;) {
+    const busy = stream(Z);
+    let done = 0; for (const c of chunks) if (c.ready) done++;
+    if (!busy && done === NCH) break;
+    if (performance.now() - t0 > 30) { bar(0.25 + 0.75 * done / NCH); await tick(); t0 = performance.now(); }
+  }
+}
+// start somewhere else: the loading screen covers the swap
+let jumping = false;
+async function jumpTo(kind) {
+  if (jumping) return; jumping = true;
+  document.querySelectorAll('.sp').forEach((b, i) => b.classList.toggle('sel', i === kind));
+  $('load').classList.remove('off'); bar(0.25);
+  await new Promise((r) => setTimeout(r, 450));
+  Z = findStart(kind); spd = 0; lookY = lookP = 0; pitS = 0; yawS = atan2(trailDX(Z), 1); auto = false;
+  for (const c of chunks) { c.ci = -1e9; c.ready = false; } gen = null;
+  camera(0); BC[0] = CX; BC[1] = CY; BC[2] = CZ + 90;
+  await buildRing();
+  bar(1); $('load').classList.add('off'); jumping = false; wake(3);
+}
+document.querySelectorAll('.sp').forEach((b, i) => b.addEventListener('click', () => jumpTo(i)));
+resize(); camera(0); BC[0] = CX; BC[1] = CY; BC[2] = CZ + 90;
+await buildRing();
+bar(1);
+last = performance.now();
+uniforms(0.016); render();
+await DQ.onSubmittedWorkDone();
+$('load').classList.add('off'); canvas.classList.add('blur');
+openMenu(true);
+if (qs.has('go')) { start(); if (qs.has('auto')) auto = true; }
+if (statsOn) $('stats').style.display = 'block';
+window.__ready = true;
+
+</script>
+</body>
+</html>

@@ -1748,3 +1748,9 @@ checked against what the lower grade really wrote (docs/reviews/ladder-ss-ela-re
 
 Cory took the recommended pick: fix the 95 sampled FIRM faults now, as with science, with one fresh fix agent per course,
 plus the L99 must-fix items (the ELA grade 1 tale sensitivity read, the key-line pieces, the Maathai line). L87 follows.
+
+## 2026-11-21: Infinite Hike hosted on the Recess shelf
+
+Cory asked the maker of Infinite Hike (xmetal) on Reddit if Curio Class could feature it; the maker said yes and asked for no
+citation beyond a small, unlinked "Originally written by xmetal". Recess now allows hosted games shared with written permission;
+the rule and the permission record are in docs/GAMES.md (Hosted games).

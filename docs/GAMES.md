@@ -15,7 +15,7 @@ there are no gates or passes; watching them is the parent's or teacher's call.
 | Curiosity | An instrument shaped around a real thing; the standard is a side effect | No score, no finish (light touch, rule 19) |
 | Recess game | A real game where the thinking is the fun | Yes: levels, stars, best scores |
 
-Original games only. A genre's mechanic (match-3, untangle, Sokoban, tower defense, programming puzzles) is fine; a
+Original games only, except hosted games shared by their makers with written permission (Hosted games, below). A genre's mechanic (match-3, untangle, Sokoban, tower defense, programming puzzles) is fine; a
 specific game's name, characters, art or levels never are.
 
 ## Design rules
@@ -114,6 +114,17 @@ sensitivity check on its roots (China, Japan, Korea) like any cultural tool.
   replaces the placeholder box as soon as it exists. Once one game is live, the shelf joins the nav, the footer, search
   and the sitemap; until then it stays noindex and out of the nav. `build_site.py --recess` also counts
   `tool.draft.json`, for a local preview before Sign-off. Recess games sit on the build board under their own heading.
+
+## Hosted games
+
+A game an outside maker shares with Curio Class, with their written permission, sits on the shelf like our own: same
+folder pattern (`tools/<id>/<id>.html`, `tool.json` with `"recess": true`, `notes.md`), but it keeps its own look and
+does not use the Recess shell. Before it goes in, read the whole file: no outside loads, no tracking, no AI or company
+names in what kids see. Credit it the way the maker asks; record the permission and the licence here and in `tool.json`.
+
+| Game | Maker | Permission | Licence | Our changes |
+|---|---|---|---|---|
+| Infinite Hike (`infinite-hike`) | xmetal (github.com/xmetal/infinite-hike, commit 4ec10c4) | Given by the author on Reddit, 2026-11-21, in reply to Cory's request ("grab the latest index.html file from the GitHub and enjoy"). The author needs no citation; a small plain-text mention "Originally written by xmetal", no link, is what was agreed. | No licence file in the repository; used with the author's written permission. Its title font, Barrio, is SIL OFL 1.1, embedded by the author. | Added a meta description; the no-WebGPU message no longer names browser brands. Nothing loads from outside; it saves only its detail setting on the device. |
 
 ## Open questions
 
