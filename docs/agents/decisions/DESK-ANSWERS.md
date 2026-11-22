@@ -1828,5 +1828,5 @@ The music maker is named Ripple, picked in chat after Ripple Strings was turned 
 
 Cory: commit data/grade_subjects.csv as build_db.py generates it. That file is derived from courses.csv, so the
 hand-set "n" for pe-9-12 grades 11 and 12 (2026-11-21) could not hold. Core describes the course; the grades 9 and 10
-required, 11 and 12 elective rule lives in the pe-9-12 note in courses.csv and in its course frame. No per-grade flag
+required, 11 and 12 elective rule lives in the pe-9-12 note in courses.csv and goes into its course frame when PE is framed. No per-grade flag
 until something needs one.
