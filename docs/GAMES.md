@@ -124,7 +124,7 @@ names in what kids see. Credit it the way the maker asks; record the permission 
 
 | Game | Maker | Permission | Licence | Our changes |
 |---|---|---|---|---|
-| Infinite Hike (`infinite-hike`) | xmetal (github.com/xmetal/infinite-hike, commit 4ec10c4) | Given by the author on Reddit, 2026-11-21, in reply to Cory's request ("grab the latest index.html file from the GitHub and enjoy"). The author needs no citation; a small plain-text mention "Originally written by xmetal", no link, is what was agreed. | No licence file in the repository; used with the author's written permission. Its title font, Barrio, is SIL OFL 1.1, embedded by the author. | Added a meta description; the no-WebGPU message no longer names browser brands. Nothing loads from outside; it saves only its detail setting on the device. |
+| Infinite Hike (`infinite-hike`) | xmetal (github.com/xmetal/infinite-hike, commit 4ec10c4) | Given by the author on Reddit, 2026-11-21, in reply to Cory's request ("grab the latest index.html file from the GitHub and enjoy"). The author needs no citation; a small plain-text mention "Originally written by xmetal", no link, is what was agreed. | No licence file in the repository; used with the author's written permission. Its title font, Barrio, is SIL OFL 1.1, embedded by the author. | Added a meta description; the no-WebGPU message no longer names browser brands; its menu credit "Inspired by Abyssal Garden" stays as plain text, no longer a link off the site (Cory, 2026-11-21). Cover art is a frame rendered from the game itself. Nothing loads from outside; it saves only its detail setting on the device. |
 
 ## Open questions
 
