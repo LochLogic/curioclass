@@ -111,10 +111,8 @@ that year differs. Each row's `assumes` names the same sub-skill in the year bef
 kindergarten assumes nothing for it), so a band's later years build on its earlier ones and the first year of a band
 builds on the previous band's owner row, with a note on the step up. The grade table below stays the placement, and
 every year still teaches all 40 once. Other subjects' leans name the SEL row of the grade whose depth they need.
-Before the first SEL check, scripts/progression.py needs four changes: sel in STD_FILES and ANCHOR
-(casel-5.txt); codes() split on the tab only, since 24 sub-skill names contain spaces; a sel rule in code_grades
-(owners in grades 2, 5, 8 and 12, `~` rows in any grade); and an ownership check that wants each id owned once in
-each of those four grades, since today it fails any id owned by more than one grade.
+scripts/progression.py checks this form (MULTI_OWNER: one owner per id in each of grades 2, 5, 8 and 12); it has
+supported SEL since 2026-11-21, and data/progressions/sel.csv passes it.
 
 How each competency is practised (bar item 5): self-management and relationship skills by doing (rehearsing a
 calming routine, acting out an invented hard moment, practising an I-statement with a partner); self-awareness,
