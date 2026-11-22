@@ -24,6 +24,8 @@ their own work, and do so only while nobody holds the turn (`turn.py status` say
 - Never use em dashes (use a comma, a colon, a period or "to"). Write "Curio Class" in full, never "Curio" alone.
 - Use US spelling (behavior, color, practice as verb and noun, analyze). Fix UK spellings in a page when it is next
   edited; no separate pass (Cory, 2026-11-21, Desk q-fix-health-2).
+- A student 18 or over (some grade 12 students) gets the family note themselves and makes their own leave-out or
+  consent choice, in every subject; the school's own rules still apply (Cory, 2026-11-22, Desk q-prog-sel-1).
 - No company or product names in anything a student, teacher or family reads. No claim that anything was reviewed,
   approved or endorsed by anyone, and no claim that it meets a rubric.
 - Use the locked words in docs/GLOSSARY.md (unit, section, scope and sequence, end-of-unit assessment, exit ticket,

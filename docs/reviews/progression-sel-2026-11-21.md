@@ -340,3 +340,9 @@ each changed file.
     g2-rds-solve-problems.
 
 Left for Cory, unchanged: the 18-and-over rule and g12-sm-have-a-say.
+
+## Cory's answers applied (2026-11-22, Desk q-prog-sel-1)
+
+1. A student 18 or over gets the family note and makes their own leave-out or consent choice, one rule for every subject, written once in AGENTS.md ("Rules that bind every job"); the school's own rules still apply.
+2. g12-sm-have-a-say now plans voice for an invented recent graduate; nothing is carried out in a real public body, and the school board example is gone. Real civic action stays in the government course (gov-local-action).
+3. The grade 12 RS9 row stays a school case with the written carry to a first job. No change.

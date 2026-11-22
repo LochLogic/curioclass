@@ -1781,3 +1781,11 @@ Kew, USGS, Cornell and the Smithsonian often do) is no longer cut on sight. The 
 "browser check", each job lists it, and the lead opens every such page in Claude in Chrome at the grade's close
 (retool-stop step 0). No scraper or other way around a site's block (Firecrawl was weighed and passed over). Written into
 AGENTS.md, docs/COURSE-RUN.md stage 5 and the kit (docs/pipeline/kit/RETOOL.md).
+
+## 2026-11-22: SEL progression calls (q-prog-sel-1)
+
+- **18 or over:** a student 18 or over gets the family note and makes their own leave-out or consent choice, in every
+  subject, with the school's own rules still applying. One rule, in AGENTS.md.
+- **g12-sm-have-a-say:** planned on an invented graduate's case; real public action stays in the government course.
+- **Grade 12 RS9:** stays a school case with a written carry to work.
+SEL's progression is done (data/progressions/sel.csv, 520 rows).
