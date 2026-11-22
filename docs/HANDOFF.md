@@ -45,13 +45,13 @@ core electives and other subjects faint), node states in data/plans/flow-status.
 Every course now runs by [COURSE-RUN.md](COURSE-RUN.md) (since 2026-11-20). PRODUCTION-PATH.md keeps the record of
 why the core was planned top down; its steps 7 and 8 are superseded by COURSE-RUN stages 5 and 6.
 
-1. **Unit plans back to the stage 4 bar: the Goal map (later.csv L102).** Since L87 a unit plan counts as done only
-   once field 5 has its Goal map (docs/courses/UNIT-PLAN.md), checked by `scripts/unitplan.py check` (`FAIL exit-kind:`
-   and `FAIL practice-shape:`); the Desk shows a done plan without one as on file. Math K to 3 is done (33 plans,
-   commit dc16d5cc6 is the model). Left on 2026-11-22: 364 plans in 48 courses, every other core course. Where days
-   are written (social studies, ELA and science K to 3) the map is read from the written days, and an exit that does
-   not fit its goal is a day fault to log; elsewhere it comes from the scope and sequence. Social studies 4, 5 and
-   World Geography I come first: their run (step 2) needs them.
+1. **Unit plans back to the stage 4 bar: done 2026-11-22 (later.csv L102).** Every core unit plan now has field 5's
+   Goal map (docs/courses/UNIT-PLAN.md): 364 plans in 48 courses, 5,354 rows, filled by one gated agent job per course
+   (scripts/goalmap.py brief, insert and audit); `scripts/unitplan.py check` prints no exit-kind or practice-shape
+   line. Where days are written (social studies, ELA and science K to 3) each row was read from the written day and
+   its exit cards; an exit that does not measure its goal is logged in data/plans/defects.csv (found_by cheap, kind
+   alignment, ref "later.csv L102"): 375 open, 253 of them day faults in the K to 3 written days, 122 in plan
+   exits. They are fixed in each course's refine or day fix, and the row states the goal's target exit to fix toward.
 2. **The next course run, two lanes side by side** (DESK-ANSWERS 2026-11-20): math K to 3, and social studies grades 4
    and 5 with World Geography I. Each subject's first grade starts with a unit 1 probe. The queue comes from
    `scripts/coursegen.py` and the kit in docs/pipeline/kit/; day jobs are ledger-gated (`scripts/ledger.py gate`);

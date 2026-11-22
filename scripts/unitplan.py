@@ -435,7 +435,7 @@ def subject_checks(course, unit, rows, lines, spans, bad):
 NEW_TAGS = ('exit-kind', 'practice-shape')
 PRODUCE = {'explain', 'describe', 'draw', 'write', 'build', 'make', 'solve', 'compose', 'construct', 'create', 'argue',
            'justify', 'tell', 'say', 'compare', 'retell', 'summarize', 'summarise', 'design', 'model', 'predict', 'revise',
-           'plan', 'calculate', 'compute', 'show', 'give', 'state', 'report', 'present', 'perform', 'read aloud'}
+           'plan', 'calculate', 'compute', 'sketch', 'rehearse', 'show', 'give', 'state', 'report', 'present', 'perform', 'read aloud'}
 RECOGNISE = {'identify', 'recognise', 'recognize', 'choose', 'select', 'match', 'circle', 'point', 'notice', 'spot', 'sort',
              'pick', 'tell apart', 'distinguish'}
 # 'find' and 'locate' are in neither list: in math "find the sum" or "locate 3/4 on a number line" asks the child to
@@ -496,15 +496,16 @@ def new_gates(path, course, unit):
             out.append('exit-kind: %s:%d: day %d exit kind "%s" is neither produce nor recognise' % (path, ln, d, kind))
         else:
             # A goal with two verbs ("choose and explain") names both, joined by "and" or a comma; the exit kind
-            # agrees with the goal when it agrees with any listed verb (2026-11-22).
-            vs = [w.split()[0] for w in re.split(r'\s*(?:,|\band\b)\s*', verb) if w.strip()] if verb else []
+            # agrees with the goal when it agrees with any of them. A verb in neither list (find, locate, rehearse ...)
+            # may be either, so it fails only when every verb is listed under the other kind (2026-11-22). A listed
+            # two-word verb ("tell apart", "read aloud") is read whole.
+            parts = [w.strip() for w in re.split(r'\s*(?:,|\band\b)\s*', verb) if w.strip()] if verb else []
+            vs = [w if w in PRODUCE or w in RECOGNISE else w.split()[0] for w in parts]
             k = 'recognise' if kind.startswith('recogni') else 'produce'
-            own = PRODUCE if k == 'produce' else RECOGNISE
             other = RECOGNISE if k == 'produce' else PRODUCE
-            v = vs[0] if vs else ''
-            if vs and not any(x in own for x in vs) and any(x in other for x in vs):
+            if vs and all(x in other for x in vs):
                 out.append('exit-kind: %s:%d: day %d goal verb "%s" asks to %s but the exit kind is %s'
-                           % (path, ln, d, verb, 'recognise' if v in RECOGNISE else 'produce', k))
+                           % (path, ln, d, verb, 'recognise' if k == 'produce' else 'produce', k))
         if not ps:
             out.append('practice-shape: %s:%d: day %d names no practice shape' % (path, ln, d))
         elif not es:

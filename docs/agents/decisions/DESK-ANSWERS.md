@@ -1830,3 +1830,11 @@ Cory: commit data/grade_subjects.csv as build_db.py generates it. That file is d
 hand-set "n" for pe-9-12 grades 11 and 12 (2026-11-21) could not hold. Core describes the course; the grades 9 and 10
 required, 11 and 12 elective rule lives in the pe-9-12 note in courses.csv and goes into its course frame when PE is framed. No per-grade flag
 until something needs one.
+
+## 2026-11-22: Goal map verb rule widened (L102, chat)
+
+Cory asked for every core unit plan to reach the stage 4 bar by filling the Goal map. The lead's call while doing it:
+the exit-kind check failed any goal verb on neither list (trace, defend, test), which pushed writers to swap the
+goal's own verb for a listed one. Now a verb on neither list may take either kind, "sketch" and "rehearse" are produce,
+and a listed two-word verb ("tell apart") is read whole; the check fails a row only when every listed verb in its cell
+is of the other kind. UNIT-PLAN.md field 5 says so.

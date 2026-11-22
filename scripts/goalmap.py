@@ -86,8 +86,42 @@ def written(course, day):
     return out
 
 
+def exit_items(course):
+    """day -> exit items of data/plans/<course>/items.csv: the cards a written day's exit names by id."""
+    p = os.path.join(ROOT, 'data', 'plans', course, 'items.csv')
+    out = {}
+    if not os.path.exists(p):
+        return out
+    for r in csv.DictReader(open(p, encoding='utf-8')):
+        if r.get('check') == 'exit' and r.get('day', '').isdigit():
+            out.setdefault(int(r['day']), []).append('  - item %s (%s): %s Answer: %s' % (
+                r['item_id'], r.get('path') or r.get('judged') or '', words(r['stem'], 70), words(r['answer'], 25)))
+    return out
+
+
+def audit(course):
+    """For plans that have a Goal map: each row beside the day's goal, written exit part and exit items."""
+    items = exit_items(course)
+    out = ['# Goal map audit: %s' % course, '']
+    for p in plans(course):
+        text = open(p, encoding='utf-8').read()
+        unit = int(os.path.basename(p)[1:3])
+        rows = {int(m.group(1)): m.group(0) for m in re.finditer(r'^\| (\d+) \| [^|]+ \| (?:produce|recognise) \|.*$', text, re.M)}
+        out.append('## plan s%02d' % unit)
+        for r in teach_days(course, unit):
+            d = int(r['day'])
+            out.append('### day %d: %s' % (d, r['goal']))
+            out.append('MAP: ' + rows.get(d, '(none)'))
+            w = [x for x in (written(course, d) or []) if 'exit' in x.lower()[:40]]
+            out.extend(w)
+            out.extend(items.get(d, []))
+        out.append('')
+    return '\n'.join(out)
+
+
 def brief(course):
     out = ['# Goal map brief: %s' % course, '']
+    items = exit_items(course)
     for p in plans(course):
         text = open(p, encoding='utf-8').read()
         if HEAD.split('.')[0] in text and '| Exit kind |' in text:
@@ -107,6 +141,7 @@ def brief(course):
             if w:
                 out.append('WRITTEN DAY:')
                 out.extend(w)
+                out.extend(items.get(d, []))
             else:
                 got = notes.get(d, [])[:4]
                 out.extend('- ' + s for s in got)
@@ -152,6 +187,11 @@ if __name__ == '__main__':
             print('%s: %d lines, %d words' % (a[1], s.count('\n'), len(s.split())))
         else:
             print(s)
+    elif len(a) >= 2 and a[0] == 'audit':
+        s = audit(a[1])
+        open(a[a.index('--out') + 1], 'w', encoding='utf-8').write(s) if '--out' in a else print(s)
+        if '--out' in a:
+            print('%s: %d lines, %d words' % (a[1], s.count('\n'), len(s.split())))
     elif len(a) == 3 and a[0] == 'insert':
         insert(a[1], a[2])
     else:
