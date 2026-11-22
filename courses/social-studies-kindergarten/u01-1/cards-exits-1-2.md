@@ -13,7 +13,7 @@ Each exit has a picture card that every child marks (circle or point) and a spok
 
 **Picture:** One wide, high-angle drawing of a classroom, with four spots each ringed by a thick circle so a child can mark one: the sink with a tap, a row of cubbies with small hooks, a window with a plant on the sill, and a rug with a few blocks on it. A plain line drawing on white, no people, no printed words. It is a view of the whole room, not a close-up of any one thing.
 
-**Mark:** Circle the picture you most wonder about. **Spoken:** "What do you wonder about our room? Why does our big question matter to you?"
+**Mark:** Circle the picture you most wonder about. **Spoken, heard from the six:** "Why does our big question matter to you?"
 
 ## Day 2 exit card: two classmates
 
@@ -22,7 +22,3 @@ Each exit has a picture card that every child marks (circle or point) and a spok
 **Mark:** Circle what both classmates need. **Spoken:** "What do both need in their shared room? Why does that matter to you?"
 
 Print "invented for practice" beneath the picture. Never ask a child which classmate they are like.
-
-## Key (teacher)
-
-- Day 2: the clear table space; both need space, and materials may be added in speech. The brush alone and the clay alone each fit only one child.

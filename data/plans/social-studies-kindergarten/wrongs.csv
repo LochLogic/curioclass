@@ -2,25 +2,19 @@ item_id,shown,compute,value,error,note
 s01-R1,That is a bird.,,,x,"a description, not a question; it shows where to model questioning; no register letter for an access observation"
 s01-R2,The puzzle is mine.,,,x,keeps the thing for one puppet and gives no reason for both; a place to model sharing; no register letter for an access observation
 s01-R3,The child names a choice before the teacher has spoken and does not respond to hers.,,,x,a turn without a response; a place to model a turn cue; no register letter for an access observation
-s01-X1,Because you told us to.,,,A,
-s01-X1,I have to find out because it is school.,,,A,
+s01-X1,Circles nothing and says it is all the same.,,,x,no spot chosen; a place to offer two choices
 s01-X2,They do not need the same things.,,,K,
 s01-X2,The painter needs a room and the clay one does not.,,,K,
 s01-X2,It matters because you said.,,,A,
 s01-X3,Because the teacher says so.,,,B,
 s01-X4,Because grown-ups said so.,,,B,
 s01-X4,Children can open it if they want.,,,H,
-s01-X5,"It is fine, it is a rule.",,,B,
-s01-X5,I would just change it so I go first.,,,x,"a self-serving change, not skipping the people who share the rule"
-s01-X5,I would change the rule myself and not say.,,,J,
-s01-X5,It is fair because it is fair.,,,E,
+s01-X5,Circles the red hat picture because the hat is bright.,,,x,no fairness idea in the choice; a place to act the rule with puppets
 s01-X6,Marks the picture of sitting perfectly still as the one that answers.,,,C,
 s01-X6,I want to talk about dinosaurs.,,,I,
 s01-X7,The listening puppet is wrong.,,,D,
 s01-X7,Drawing is best because it is best.,,,E,
-s01-X8,It is best because it is best.,,,E,
-s01-X8,The partner asks what color the bucket is and never asks about the claim.,,,F,
-s01-X8,"Asked why, the child says only Take turns.",,,L,
+s01-X8,Circles the picture of one child holding the bucket.,,,x,no shared use; a place to act the turn rule with the bucket
 s01-X10,It is a rule.,,,B,
 s01-X10,It is good because it is good.,,,E,
 s01-E1,Because you asked.,,,A,no personal importance yet
@@ -37,16 +31,16 @@ s01-E8,"Asked why, repeats the claim.",,,L,
 s02-R11,I do not know.,,,x,a missing reason is repaired with two puppets inside today's work; no score
 s02-X11,"Nothing, she painted already.",,,A,
 s02-X11,The teacher will do it.,,,A,
-s02-X12,Takes a card from the partner without asking to finish quickly.,,,H,
-s02-X12,Sorts the cards and leaves them on the table: I am done.,,,A,
+s02-X12,A token on the picture with cards left on the table.,,,A,
 s02-X13,The one who talks loudest picks.,,,G,
 s02-X13,"They vote, then everybody likes it.",,,B,
 s02-X14,"Draws the vote and says: we picked it, with nothing done.",,,J,
 s02-X14,Circles doing the step before the count: we did it first.,,,x,order of steps; no register letter
+s02-X14,"Says: we all wanted the same, so we voted.",,,B,
+s02-X14,Says: the puppet who wanted the other way is wrong.,,,I,
 s02-X15,She is caring because her apron is pretty.,,,D,
 s02-X15,The tall one is fair.,,,D,
 s02-X16,"The child with the book is in charge, she has it.",,,D,
-s02-X16,The child who passed it made the card-order rule.,,,E,
 s02-X17,"Yes, it worked because we picked it.",,,C,
 s02-X17,It helped because it helps.,,,F,
 s02-X19,The teacher is in charge because she is biggest.,,,D,
@@ -67,8 +61,6 @@ s02-K13-1,Bibi picks because she spoke first.,,,G,
 s02-P13-1,Picks the name from the shorter tower.,,,x,tower height not read; no register letter
 s02-P13-2,The problem is the child at the edge.,,,x,a person blamed; no register letter
 s02-P14-1,I want it because I want it.,,,F,
-s02-X14,"Says: we all wanted the same, so we voted.",,,B,
-s02-X14,Says: the puppet who wanted the other way is wrong.,,,I,
 s02-K15-1,Teo is fair because he has freckles.,,,D,
 s02-P15-1,The tall one did a good job because she is tall.,,,D,
 s02-K16-1,She is responsible because she is small and cute.,,,D,
@@ -76,3 +68,351 @@ s02-P16-1,Pia is caring because she has a puff of hair.,,,D,
 s02-P16-2,"Yes, the lion is in charge because he is the biggest.",,,D,
 s02-P16-3,The girl with the crayons is in charge.,,,x,a child picked by what she holds; no register letter
 s02-P16-4,Nell made the clear-table rule by clearing the table.,,,E,
+s03-X20,"Circles the child beside the drum only: she is between, she is next to the drum.",,,J,
+s03-X20,Says next to the easel for the child in the middle.,,,J,one reference place named; between needs two
+s03-X21,"Circles the gate, the first thing from the left.",,,x,the middle is not found; a place to count the positions with fingers
+s03-X22,The flat one is a different Earth.,,,B,
+s03-X22,"The flat one is just a small place, like our town.",,,I,
+s03-X23,"Yes, the island moved when the map changed.",,,B,
+s03-X23,The map with the island in the middle is only the island's place.,,,I,
+s03-X24,"The rectangle is a real shed, you can go in it.",,,C,
+s03-X24,"The diamond is a kite, said without a look at the key.",,,H,
+s03-X25,Circles the middle block because it is the nicest.,,,D,
+s03-X26,"The triangle, because it looks like a swing.",,,H,
+s03-X26,You find it because it is there.,,,G,
+s03-X28,Points to the whole state as the school's place.,,,F,
+s03-X30,"The crescent is the bridge, it curves like one.",,,H,
+s03-X30,People cross because they cross.,,,G,
+s03-X30a,The bell is between.,,,J,one reference place named
+s03-X30a,The hat is left of the sock.,,,K,
+s03-X30b,The flat one is a different Earth.,,,B,
+s03-X30b,A flat map shows only a small place.,,,I,
+s03-X30c,Three plate pictures and no fork row.,,,L,
+s03-X30c,Draws a fork because every table has one.,,,D,
+s03-X30e,Points to the whole state as the school's place.,,,F,
+s03-X30e,Elm Street is the town.,,,E,
+s03-E1,The school is right of the pond.,,,K,
+s03-E1,The bench is between.,,,J,between named with no second reference place
+s03-E2,Points to land on the globe and says the flat map has no water.,,,x,one map is left out; a place to point to both together
+s03-E3,"The little picture on my map is the real place, you can go inside it.",,,C,
+s03-E3,"Names a place that is not near school, from the child's own imagination.",,,D,a feature not checked against observation
+s03-E3b,The star means pond.,,,H,the key assigns the star to the garden
+s03-E3b,The path is there because it is there.,,,G,
+s03-E3b,The triangle is a real school building.,,,C,
+s03-E4,I added a pond because every playground has one.,,,D,
+s03-E4b,Four marks for the three trees.,,,L,example counts; compare with the class count
+s03-E4b,One mark for two rocks.,,,L,example counts; compare with the class count
+s03-E6,Points to the whole state for the school's place.,,,F,
+s03-E6,Uses the town map's title as the school's location.,,,F,
+s03-E7,Maps help because maps help.,,,G,
+s03-E7,It shows where because it shows where.,,,G,
+s03-X27,Cedar Road is the town.,,,E,
+s03-X27,Pine Town is the street.,,,E,
+s03-X27,Oregon is the country.,,,E,
+s03-X30d,Aster Court is the town.,,,E,
+s03-X30d,Fairview is the street.,,,E,
+s03-X30d,Texas is the country.,,,E,
+s03-E5,Meadow Lane is the town.,,,E,
+s03-E5,Clearwater is the street.,,,E,
+s03-E5,Clearwater is the country.,,,E,
+s04-X34a,The butterfly gets one dot because it is the prettiest.,,,A,
+s04-X34a,"Butterfly one dot, chrysalis two dots, caterpillar three dots.",,,H,the order is reversed
+s04-X34b,"On the yesterday square, because it is the next one to the left.",,,H,
+s04-X34b,"On today's square, because it is the nearest one.",,,B,no reference to which side of today
+s04-X34c,"The butterfly is first, it is the nicest.",,,A,
+s04-X34c,"Last the caterpillar, first the butterfly.",,,H,
+s04-X35a,"The mat, because long ago is the small picture.",,,B,
+s04-X35a,"The mat, because the rope came after it.",,,H,
+s04-X35b,"The token on the rope, because next week is before today.",,,H,
+s04-X35b,The token on the rope because it is the big picture.,,,B,
+s04-X35c,Because it is new.,,,B,
+s04-X35c,Because it is before today.,,,H,
+s04-X36a,"The bowl card first, because I like that one.",,,A,
+s04-X36a,"Bowl, boiling, washing, left to right.",,,H,
+s04-X36b,"Boiling, the pot is big.",,,A,
+s04-X36b,"Putting the beans in the bowl, it is the last card so it is first.",,,H,
+s04-X36c,"Washing, it is the last one on my strip.",,,H,
+s04-X36c,"Boiling, because the pot is the biggest.",,,A,
+s04-X37a,Waves a hand over the whole picture and says everyone went on buses.,,,F,
+s04-X37a,Points to the gray of the picture.,,,C,"appearance, not the pictured detail"
+s04-X37b,All kids went to school on buses long ago.,,,F,
+s04-X37b,It shows how all children got to school.,,,F,
+s04-X37c,"It is gray, so it is old.",,,C,
+s04-X37c,It looks old.,,,C,"looks, not the record"
+s04-X38a,"Circles the cook and the pot too: nobody cooks on wood now, it all changed.",,,D,
+s04-X38a,These drawings show how everybody cooks.,,,F,
+s04-X38b,"The old stove was bad, so the old cook was sad.",,,G,
+s04-X38b,Nothing stayed the same: it is all new.,,,D,
+s04-X38c,"It all changed, nothing is the same.",,,D,
+s04-X38c,People long ago did it the bad way.,,,G,
+s04-X40a,"The tower first, because it is the biggest.",,,A,
+s04-X40a,"Box, tower, take out.",,,H,
+s04-X40b,"On the last month side, because it is a big card.",,,H,
+s04-X40b,"Right on today, because the show is soon.",,,B,no after-today anchor
+s04-X40c,Nobody carries chairs by hand now.,,,D,
+s04-X40c,The old way was bad.,,,G,
+s04-X40d,Points to the whole frame and says it is all clues.,,,x,no single detail chosen; a place to point at one jar or one child
+s04-E1,Puts the young bird first because it is the nicest.,,,A,
+s04-E1,"Jo returned the mitten, then Jo found it, then Ari dropped it.",,,H,
+s04-E1,Making a Path: people use the path first.,,,H,
+s04-E1b,People use the finished path.,,,H,a later event named as the one before
+s04-E1b,The card with the most stones.,,,A,
+s04-E2,Circles taking the pictures down because it is the last card.,,,B,
+s04-E2b,Tomorrow afternoon.,,,H,
+s04-E2b,"Now, it is happening.",,,B,a time word with no event or calendar anchor
+s04-E3,Says lunch pails and stops.,,,F,names an object and says nothing learned from it
+s04-E3,Points to the whole picture and says it shows everything.,,,F,
+s04-E3b,"Nobody stores food on shelves now, or nobody walks to school now.",,,D,
+s04-E3b,People long ago had a bad way.,,,G,
+s04-E3c,It shows how everybody lived.,,,F,
+s04-E3c,"Nothing, it shows it all.",,,F,
+s04-E4,The cold shelf was best because it was best.,,,E,
+s04-E4,Everybody long ago lived badly.,,,G,
+s04-X35a,"The gym class, because it is behind the marker.",,,B,near behind taken for long ago; the rope is far behind
+s05-X41a,"Circles the pot of food at a big table, because it is a day for a big meal.",,,A,the honoring purpose is missing
+s05-X41a,Circles the fireworks because they are bright.,,,A,
+s05-X41b,It is a day we do not go to school.,,,A,
+s05-X41b,It remembers them because they were the best.,,,G,
+s05-X42a,"Circles the costume card, because holidays are about fun.",,,A,
+s05-X42b,It is a day for a party and no school.,,,A,
+s05-X42b,It thanks them because they are the best.,,,G,
+s05-X42c,Only the English settlers.,,,,"no register letter fits; show the record card again, both groups named"
+s05-X42c,"Wampanoag people long ago, and they are gone now.",,,,no register letter fits; say the Wampanoag nations live in Massachusetts today
+s05-X43a,"Circles the grown-up putting up the sign, because the sign is the rule.",,,x,mark only; a rule made by one person alone; the spoken part is the evidence
+s05-X43a,"Circles the children in line, because they follow the rule.",,,x,mark only; following is not changing; the spoken part is the evidence
+s05-X43b,Because he was the nicest man.,,,G,
+s05-X43b,So we get a day off.,,,A,
+s05-X44a,"Memorial Day first on the left, Presidents' Day on the right.",,,,"order reversed; no register letter fits, place both by the school-year strip"
+s05-X44b,A day off from school.,,,A,
+s05-X44b,Memorial Day is for all the veterans.,,,H,
+s05-X45a,"A token on a stripe, because stripes are the states we have now.",,,C,
+s05-X45b,"Yes, the law said it.",,,J,
+s05-X46a,Circles the shield.,,,,mark only; no register letter fits
+s05-X46b,"Eagles are big and fast, so it is our bird.",,,D,
+s05-X46b,It is just a pretty picture.,,,B,
+s05-X46c,"I do not need the book, I just know.",,,I,
+s05-X47a,Circles turns only for children who say the words.,,,L,
+s05-X47a,Circles all must say the words together before any turn.,,,E,
+s05-X47b,"Yes, if lots of people like it.",,,K,
+s05-X48a,A token on the soup.,,,O,"one difference named, the shared feature missing"
+s05-X48b,Hill Town is doing it wrong.,,,M,
+s05-X48b,Every town makes soup.,,,F,
+s05-X49a,Circles every family.,,,F,
+s05-X49b,One is fried and one is candy.,,,O,a difference only
+s05-X49c,That one is strange.,,,M,
+s05-X51a,"A token on the thank-you poster, because both are for all the veterans.",,,H,
+s05-X51a,A token on the folded flag because it is a day off.,,,A,
+s05-X51b,They were the best.,,,G,
+s05-X51c,I know because I guessed.,,,I,
+s05-X51c,It is just a pretty picture.,,,B,
+s05-X51d,The stripes are the states we have now.,,,C,
+s05-X51e,The law said white means purity.,,,J,
+s05-X51f,It has sharp eyes so it became our bird.,,,D,
+s05-X51g,"If everybody sings it, it becomes the anthem.",,,K,
+s05-X51h,"Yes, only children who say the words may be line leader.",,,L,
+s05-X51h,Everyone has to say the words.,,,E,
+s05-X51i,It says the words fast.,,,N,
+s05-X51j,Kites in one and jam in the other.,,,O,a difference only
+s05-X51j,Farm Town is doing it wrong.,,,M,
+s05-X51j,Every town does it.,,,F,
+s05-E1,It is a day off from school.,,,A,
+s05-E2,It is just no school.,,,A,
+s05-E2,They are the best.,,,G,
+s05-E3,"I do not need to ask, I know.",,,I,
+s05-E4,I know because I guessed.,,,I,
+s05-E4,It is just a pretty picture.,,,B,
+s05-E5,Points to the handle of the press and says it is the bird.,,,x,no bird found; a place to point to the bird beside the seal
+s05-E6,The stripes are the states we have now.,,,C,
+s05-E7,The stars are the first states.,,,C,first and present states swapped
+s05-E8,The law said red means bravery.,,,J,
+s05-E9,It became the anthem because everyone liked it.,,,K,
+s05-E10,Says the words fast and cannot say what they mean.,,,N,
+s05-E10,Everybody has to say it.,,,E,
+s05-E10,Only people who say it deserve fairness.,,,L,
+s05-E11,They are the same because everyone celebrates the same way.,,,F,
+s05-E11,Names a difference only.,,,O,
+s05-E12,One of them is strange.,,,M,
+s05-E13,We remember them because they are the best.,,,G,
+s06-X52a,"Circles only the window cleaner, because that one is paid.",,,A,
+s06-X52a,Circles the swing as well as the two work cards.,,,x,"a guess about play, no register letter; ask who the swing helps and look again"
+s06-X52b,"No, nobody pays.",,,A,
+s06-X53a,Points to the stop sign or to the walking picture for what she knows.,,,B,
+s06-X53a,Points to the hammer or the loaf of bread.,,,x,"a guess, no register letter; read the page again"
+s06-X53b,Points to the stop sign for what she does.,,,B,
+s06-X53c,Points to the head picture for what she uses.,,,x,"knowing and using are mixed; no register letter, read the page again"
+s06-X53d,A stop sign.,,,B,
+s06-X53d,She is a crossing helper.,,,B,
+s06-X53e,"Circles the flower bed, which stayed the same.",,,x,"stayed is mixed with changed; no register letter, look at the strip again"
+s06-X54a,Circles the ribbon or the lantern.,,,C,
+s06-X54b,Because I want it.,,,C,
+s06-X54b,Everybody needs the same kind of bed.,,,J,
+s06-X55a,"A dot on a poster, because it is best.",,,D,
+s06-X55b,The bird is best.,,,D,
+s06-X56a,"Points to the blanket, because the person touches it.",,,F,
+s06-X56b,"Points to the person walking the dog, because she holds the leash.",,,F,
+s06-X56c,It was just there.,,,G,
+s06-X57a,"Circles the bucket, because someone carried it.",,,F,
+s06-X57b,A dot on the man.,,,E,
+s06-X57c,The tokens.,,,E,
+s06-X58a,"A dot on one item, because it is best.",,,D,
+s06-X58b,The windmill is best.,,,D,
+s06-X59a,A ferry.,,,B,
+s06-X59a,Because people work.,,,H,
+s06-E1,Only the gardener works because only that person gets money.,,,A,
+s06-E1,Says the names of the jobs and no action.,,,x,"a job name alone describes no work; no register letter, model one action"
+s06-E2,I do not know.,,,x,"no link made; no register letter, point to the classroom job chart and ask again"
+s06-E3,Only the gardener works because only that person gets money.,,,A,
+s06-E3,"The one at home is not work, because work at home is never paid.",,,I,
+s06-E4,A bakery.,,,x,"names the place, not the work; no register letter, ask what the people are doing"
+s06-E5,A baker uses pans.,,,B,
+s06-E5,A baker is a baker.,,,B,
+s06-E6,Pie tins.,,,B,
+s06-E7,Points to a person.,,,x,"a worker is not a tool; no register letter, ask what the worker holds or uses"
+s06-E8,"Puts the crown on the need mat, because I want it.",,,C,
+s06-E9,"Everybody needs mittens, so we all need the same things.",,,J,
+s06-E10,Wanting something makes it a need.,,,C,
+s06-E11,The puppet is best.,,,D,
+s06-E12,It is the best.,,,D,
+s06-E13,That is a notebook.,,,x,"a description, not a question; no register letter, model a question"
+s06-E14,Then he takes the dinosaur.,,,K,
+s06-E15,The shopkeeper is the buyer.,,,E,
+s06-E15,Buying and selling are the same.,,,E,
+s06-E16,A token on the bicycle repair.,,,F,
+s06-E17,"A token on the wooden spoon, because someone carried it.",,,F,
+s06-E18,Money appears when we need it.,,,G,
+s06-E19,People work because they work.,,,H,
+s06-E20,Names no card and says I just know.,,,H,
+s06-X61a,"No, nobody pays.",,,A,
+s06-X61b,A cart.,,,B,
+s06-X61b,She is a librarian.,,,B,
+s06-X61c,"A token on the sticker, because I want it.",,,C,
+s06-X61d,The whale puzzle is best.,,,D,
+s06-X61e,A dot on the girl.,,,E,
+s06-X61f,"A dot on the umbrella, because the person holds it.",,,F,
+s06-X61g,It was just there.,,,G,
+s06-X61h,People work because that is what people do.,,,H,
+s06-X61i,Work at home is never paid.,,,I,
+s06-X61j,Everybody needs the same things.,,,J,
+s06-X61k,Takes the fan from the teacher without asking.,,,x,"taking, not asking; a place to act asking and waiting with the fan and frog"
+s06-X61l,"Yes, he has little money, so he did not work hard.",,,L,
+s06-K57-1,The seller gets the drawing.,,,E,
+s06-P57-1,The star is the real shelf.,,,x,symbol mistaken for the place; no register letter
+s06-P57-2,Lays a tag without counting.,,,x,counting not done; no register letter
+s06-P58-1,I give the hat and I get the tokens.,,,E,
+s06-P58-2,The map is right because the symbol is pretty.,,,x,looks of a symbol replace its place; no register letter
+s06-P59-1,People work because they work.,,,H,
+sc1-E1,The teacher made the rule.,,,A,
+sc1-E1,Because it is the rule.,,,B,
+sc1-E1,Token on card one.,,,x,marks the chair left out; ask the child to look at the walkway
+sc1-E2,Token on the walking feet sign.,,,x,the sign is not the unsafe spot; a place to ask what could go wrong on the tiles
+sc1-E3,I think the rain song.,,,D,
+sc1-E3,I think the clap song because I think the clap song.,,,B,
+sc1-E4,The plant shelf is between the sink.,,,E,
+sc1-E4,The coat hooks are right of the door.,,,F,
+sc1-E5,The rug is next to the coat hooks.,,,F,the middle of the map is read as the corner; ask the child to trace from the hooks
+sc1-E5,Everything is near the door because it is one room.,,,x,near and far not yet used on a map
+sc1-E6,The globe.,,,x,the globe is picked for its shape; a place to turn the globe and then the map
+sc1-E7,They are different Earths.,,,H,
+sc1-E7,Both show land and water.,,,x,"true of a globe and a world map, not of this room map; ask what the room map shows"
+sc1-E8,The land moved to the middle.,,,H,
+sc1-E8,This one is a different Earth.,,,H,
+sc1-X33a,The shell is between the plant.,,,E,
+sc1-X33a,The stone is left of the plant.,,,F,
+sc1-X33b,The art table is next to the door.,,,F,top and bottom of the page mixed up; ask the child to trace from the door
+sc1-X33c,"The globe, because it is round.",,,G,
+sc1-X33d,The teacher said to.,,,A,
+sc1-X33d,Because it is the rule.,,,B,
+sc1-X33e,A park has no rules because it is not school.,,,C,
+sc1-X33e,Because the sign says so.,,,A,
+sc1-X33f,I think the sailboat.,,,D,
+sc1-X33f,I think the sailboat because it is the sailboat.,,,B,
+sc2-E1,Wave goodbye is put first.,,,I,
+sc2-E1,The cards are put in the order the child likes the pictures.,,,I,
+sc2-E2,They put the crayons in the box.,,,I,"names the first event, not the one just before"
+sc2-E2,They lined up.,,,I,repeats the event asked about
+sc2-E3,The snack is put first.,,,I,
+sc2-E3,Walking home is put second.,,,I,
+sc2-E4,The photographs are put in today because they are photographs.,,,K,a photograph is taken to be now; ask the child about the year read aloud
+sc2-E4,Everything is put in long ago.,,,J,nothing is seen as today; ask the child for the year read aloud on each
+sc2-E5,Nothing changed.,,,J,
+sc2-E5,Everything is different.,,,J,
+sc2-E6,Everything is different.,,,J,
+sc2-E6,Nothing stayed the same.,,,J,
+sc2-E7,It tells us everything about how everybody lived long ago.,,,K,
+sc2-E7,It helps because it helps.,,,B,
+sc2-E8,The square is the fountain.,,,L,
+sc2-E8,The arch is the bike rack.,,,L,
+sc2-E9,The picnic table is between the fountain.,,,E,
+sc2-E9,The fountain is in front of the bike rack.,,,F,front and behind swapped; ask the child to put a finger on the top edge of the page
+sc2-E10,I think it is for pouring.,,,D,a claim with no reason
+sc2-E10,I think it is for pouring because it is a funnel.,,,B,
+sc2-E11,A token on the spinning top.,,,M,
+sc2-E11,A token on the blanket only.,,,x,water not seen as a need; ask what a person drinks to stay well
+sc2-E12,Because I like it so I need it.,,,M,
+sc2-E12,Because it is a want.,,,B,
+sc2-E13,A token on the snack table.,,,N,
+sc2-E13,A token on the wooden bucket.,,,N,
+sc2-E14,"Both, I want both.",,,x,the limit is not heard; say again there is clay for only one
+sc2-E15,The shop just has money.,,,O,
+sc2-E15,Money comes from the bank machine.,,,O,"where the money is kept, not where it comes from"
+sc2-E16,A trade is when you take something.,,,P,
+sc2-E16,A dot on card one.,,,P,the tokens card is a buy
+sc2-E17,We remember them because they were the best.,,,Q,
+sc2-E17,Veterans Day is only for people who died.,,,Q,Memorial Day is mixed with Veterans Day
+sc2-X64a,Watching it float is put first.,,,I,
+sc2-X64b,Nothing changed.,,,J,
+sc2-X64b,The boot is long ago so it is not a shoe.,,,J,
+sc2-X64c,The ring is the bench.,,,L,
+sc2-X64c,The bench is between the birdbath.,,,E,
+sc2-X64d,I think it is for cleaning.,,,D,
+sc2-X64d,I think it is for cleaning because it is a sponge.,,,B,
+sc2-X64e,A token on the paper hat.,,,M,
+sc2-X64f,A token on the bar of soap.,,,N,
+sc2-X64g,The money was just there.,,,O,
+sc2-X64h,We remember them because they were the best.,,,Q,
+sc2-X64h,People who are alive and served.,,,Q,Veterans Day is mixed with Memorial Day
+s01-X1b,Because you told us to.,,,A,
+s01-X1b,I have to find out because it is school.,,,A,
+s01-X5b,"It is fine, it is a rule.",,,B,
+s01-X5b,It is fair because it is fair.,,,E,
+s01-X5c,I would just change it so I go first.,,,x,"a self-serving change, not skipping the people who share the rule"
+s01-X5c,I would change the rule myself and not say.,,,J,
+s01-X8b,It is best because it is best.,,,E,
+s01-X8b,"Asked why, the child says only Take turns.",,,L,
+s01-X8c,The partner asks what color the bucket is and never asks about the claim.,,,F,
+s01-E3b,"Nothing would happen, it is just a rule.",,,B,
+s02-X12b,Takes a card from the partner without asking to finish quickly.,,,H,
+s02-X12b,Sorts the cards and leaves them on the table: I am done.,,,A,
+s02-X16b,Teacher Okoro brought the book back because she is in charge.,,,x,a promise is mixed up with the job of deciding; a place to name who promised
+s02-X16c,The child who passed it made the card-order rule.,,,E,
+s02-X16d,"Circles the page where the class agrees, saying it is the one doing the passing.",,,E,
+s02-E1c,"Move, it is my shelf.",,,H,
+s03-X21b,The gate is right of the slide.,,,K,
+s03-X21b,Turns the card and says: left is the way my hand points.,,,A,
+s03-X25b,That block is a real tree.,,,C,
+s03-X25b,I picked the nicest block.,,,D,
+s03-X25b,Because it is.,,,G,
+s03-X25c,Puts a finger on the cup row.,,,L,a mark for each counted thing; the spoon row is the one with a mark for nothing
+s03-X25d,It is the short row.,,,x,"names the row by its length, not by the missing spoons"
+s03-X28b,Circles the street named Oak Street as the school.,,,x,"a street is marked, not the school; a place to find the school symbol first"
+s03-X28c,Birch Street is the town.,,,E,
+s03-E2b,Every map shows only a small place.,,,I,
+s03-E2c,Every map shows only a small place.,,,I,
+s03-E2d,Both maps have the same middle.,,,x,the middles differ; a place to turn the two maps side by side
+s03-E2e,These show different Earths because the middle changed.,,,B,
+s03-E4c,The model is a real hill you can climb.,,,C,
+s04-X40e,"It shows how everyone kept food, or how everyone went to school.",,,F,
+s04-X40e,The picture shows everything about that time.,,,F,
+s04-E2c,A token on hanging the pictures: last week is near.,,,B,
+s04-E2d,Puts next month behind today as the past.,,,H,
+s05-E5b,Every eagle is our emblem because it flies.,,,D,
+s05-E5b,Points to the bird and says nothing more.,,,x,pointing alone is not an explanation; no register letter fits
+s06-E20b,Because people just do.,,,H,
+s06-X61m,"Gives no choice, says give me the fan, or grabs for it.",,,K,
+sc1-E2b,There are no rules at a pool because it is not school.,,,C,
+sc1-E2b,Because the lifeguard says so.,,,A,
+sc1-E2b,Because it is a rule.,,,B,
+sc1-E6b,"The globe, because it shows everything.",,,G,
+sc1-E6b,"The map, because it is a map.",,,B,
+sc1-X33g,The cubby shelf is far from the door.,,,F,top and bottom of the page mixed up; ask the child to trace from the door
+sc2-E14b,"The turtle, because it is the best.",,,B,a pick with no reason from the card

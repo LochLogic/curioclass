@@ -1,0 +1,807 @@
+item_id,shown,compute,value,error,note
+s01-X1,"He writes a word first, then sorts the cards.",,,A,the order is reversed against the card
+s01-X2,Mira waits by the sink.,,,A,the wrong person at the place; the card puts Mira at her desk
+s01-X3,Leo is shy.,,,B,a trait with no action
+s01-X3,Leo is a good friend.,,,B,a trait with no action
+s01-X4,There is a tree outside.,,,A,a setting the picture does not show
+s01-X4,It is a tent.,,,C,repeats the words and names no picture detail
+s01-X5,She wants to dance.,,,A,an action the card does not say
+s01-X5,Because Ada is mean.,,,A,a reason the card does not give
+s01-X6,He leaves the line and goes home.,,,A,the two responses are reversed or invented
+s01-X7,The crate is brown.,,,C,names a picture feature with no contribution
+s01-X8,She throws the ribbon away and leaves her paper.,,,A,contradicts both actions
+s01-X9,My bag is green.,,,I,a comment unrelated to the last one
+s01-X10,Reads all three sentences in one breath with no pause.,,,O,rushing hides the sentences' meaning
+s01-A1,What color was the sign?,,,A,a detail the text does not give
+s01-A2,Mira's old class made it.,,,A,contradicts the text
+s01-A3,A bookshelf.,,,A,a thing the text does not give
+s01-A4,To the lunchroom.,,,A,a place the text does not name
+s01-A5,On Friday morning.,,,A,a time that contradicts the text
+s01-A6,Because Leo asked her to.,,,A,contradicts the text
+s01-A7,She asked the teacher to move the table.,,,A,contradicts the text
+s01-A8,She is kind.,,,B,a trait with no response
+s01-A9,The picture is pretty.,,,C,explains no contribution of the picture
+s01-X12,Mira is friendly.,,,B,a trait with no response
+s01-X12a,On the floor.,,,A,a place the card does not name
+s01-X12c,The picture has chairs.,,,C,names a feature with no contribution
+s01-X13,It is about bags.,,,N,loses the key ideas
+s01-X14,It has mats.,,,C,names a feature with no contribution
+s01-X15,"Wash, then store, then draw.",,,A,contradicts the order
+s01-A10,What do they eat at lunch?,,,A,a detail the text does not give
+s01-A11,The teacher reads alone.,,,A,contradicts the text
+s01-A12,A game.,,,A,contradicts the text
+s01-A13,At the door.,,,A,contradicts the text
+s01-A14,Every morning.,,,A,contradicts the text
+s01-A15,So one can rest.,,,A,contradicts the text
+s01-A16,They skip it.,,,A,contradicts the text
+s01-A17,Books are nice.,,,D,no topic that explains partners
+s01-A17,Reading partners read on Fridays in the gym.,,,E,facts the source does not give
+s01-A18,Reading partners choose books. A partner works with another person.,,,G,no conclusion
+s01-A19,Talks over a speaker.,,,H,interrupts a turn
+s01-A20,A lunch comment after a reading comment.,,,I,a comment unrelated to the last one
+s01-A21,Nods and says OK to They moved it over there.,,,J,accepts an unclear remark
+s01-A22,What is your favourite food?,,,K,a question that ignores the speaker
+s01-A23,It is about school.,,,N,no key meaning
+s01-A24,Runs two sentences together with no pause.,,,O,rushing hides the meaning
+s01-A25,Looks at the picture and says flowers.,,,P,the picture replaces reading the letters
+s01-A26,Marks kit and kite the same.,,,L,gives long and short vowels one sound
+s01-A27,Marks hop and hope the same.,,,L,gives long and short vowels one sound
+s01-A28,Matches snail to short a.,,,M,a taught vowel team gets the wrong sound
+s01-A29,It is about school.,,,N,no key meaning
+s01-A30,Runs two sentences together with no pause.,,,O,rushing hides the meaning
+s01-A31,Looks at the picture and says spades.,,,P,the picture replaces reading the letters
+s01-A32,Uses a country word with no meaning given.,,,F,a needed word is left undefined
+s01-A33,The coach fills a pal.,,,Q,the learned pattern ai is not carried over
+s01-A34,Copies seat from a partner without opening the page.,,,R,spelling copied without the reference
+s01-A35,It is about school.,,,N,no key meaning
+s01-A36,Runs two sentences together with no pause.,,,O,rushing hides the meaning
+s01-A37,Looks at the picture and says beans.,,,P,the picture replaces reading the letters
+s01-A38,What color is the shelf?,,,A,a detail the text does not give
+s01-A39,The teacher.,,,A,contradicts the text
+s01-A40,Pencils.,,,A,contradicts the text
+s01-A41,Under a table.,,,A,contradicts the text
+s01-A42,Before lunch.,,,A,contradicts the text
+s01-A43,So the books look new.,,,A,contradicts the text
+s01-A44,The teacher buys a new book.,,,A,contradicts the text
+s01-A45,It is about cards.,,,N,loses the key ideas
+s01-A46,Arrows are lines.,,,C,explains no contribution of the image
+s01-A47,She is happy.,,,B,a trait with no response
+s01-A48,There are cups.,,,C,joins no words to picture evidence
+s01-X16,A kind of bag.,,,E,the meaning contradicts the card
+s01-X17,Tables are nice.,,,D,no topic that explains anything
+s01-X20,I like apples.,,,E,an ending that ignores the facts
+s01-X20,Said so fast that the words run together and the ending is lost.,,,O,rushing hides the meaning
+s01-X20a,Hats.,,,A,contradicts the card
+s01-X20d,Aprons are fun.,,,D,no topic that explains anything
+s01-X20f,Pegs are good.,,,F,says the word and gives no meaning
+s01-X20g,Aprons are red.,,,G,an ending that does not follow from the facts
+s01-X21,Read in a rush with no pause at the line ends.,,,O,rushing hides the meaning
+s01-X22,The star.,,,A,contradicts the card
+s01-X23,Both keep the globe on a shelf.,,,A,contradicts the second card and the photograph
+s01-X23,The second globe sits on a table.,,,A,a place the photograph does not show
+s01-X24,A hard box with a lid.,,,E,the meaning contradicts the card
+s01-X25,Nods or says OK and asks nothing.,,,J,accepts an unclear word without asking
+s01-X25,I like the bell.,,,I,an unrelated comment that links to nothing
+s01-X27,The first sentence.,,,E,the page is not supported by that line
+s01-X28,A stencil: a bucket with a handle.,,,E,the meaning contradicts the card
+s01-X29,The umbrellas are all red.,,,E,adds a fact the draft does not give
+s01-X32,Jo leaves the papers on the floor.,,,A,contradicts the card
+s01-X32,It is about papers.,,,N,loses the key idea
+s01-X32,The picture has a folder.,,,C,names a feature with no contribution
+s01-X32d,Notices are fun.,,,D,no topic that explains anything
+s01-X32d,Notices are red.,,,E,a fact the card does not give
+s01-X32d,A magnet is a notice.,,,F,a wrong meaning for the word
+s01-X32d,I like boards.,,,G,an ending that does not follow from the facts
+s01-X32h,Talks over the speaker before the speaker has finished.,,,H,does not wait for the speaker
+s01-X32h,My hat is red.,,,I,an unrelated comment
+s01-X32h,OK.,,,J,accepts an unclear word without asking
+s01-X32h,What is your favourite colour?,,,K,a question that ignores the speaker
+s01-X32l,The word ship.,,,L,gives the long and short vowels one sound
+s01-X32l,Reads the word as shep.,,,M,the team ee is read with a short vowel
+s01-X32q,Copies gote from the draft and does not use the entry.,,,R,spelling copied without the reference
+s01-X32q,The sope is on the sink.,,,Q,the learned pattern oa is not carried over
+s02-X33,"She reads the label first, then draws the shape, then notices it.",,,B,the event order is reversed against the card
+s02-X34,The beginning is that Idris labels the drawing.,,,A,"the finished action is named as the introduction, which reverses its function"
+s02-X35,Mary learned fossil collecting from a teacher at school.,,,B,"the detail contradicts the card, which says her father"
+s02-X35,Where did Mary find her first fossil?,,,,"a question the card cannot answer; no register letter, record not yet seen and note it"
+s02-X36,The ending is that Kemi starts a blank page.,,,A,"the beginning is named as the conclusion, which reverses the functions"
+s02-X37,A sorter is a person who mixes the finds up.,,,I,the known root meaning is lost
+s02-X37,A sorter is a machine that plays music.,,,G,a meaning that does not fit the sentence is chosen
+s02-X38,The ending starts the search for the sketch.,,,A,"the final search is named as the closing, which reverses the functions"
+s02-X39,Arlo numbers them because he likes numbers.,,,B,"a reason the card does not give, which contradicts the card"
+s02-X40,A visitor smudges the label at the end.,,,B,the action is contradicted by the card
+s02-X41,Raj draws the fossil outdoors after lunch.,,,B,place and time contradict the card
+s02-X41,Where does Raj eat lunch?,,,,"a question the card cannot answer; no register letter, record not yet seen and note it"
+s02-X42,Pia takes all the labels off the drawings.,,,B,the action contradicts the card
+s02-X43,Anning felt eager to look closely at a picture.,,,AJ,a feeling is given to the real person with no source
+s02-X43,Anning wondered how she noticed tiny details.,,,AJ,a thought is given to the real person with no source
+s02-X44,Reads every word at once without pausing at the full stops or the question mark.,,,W,rushing hides the meaning from the listener
+s02-X45,Then we had a picnic.,,,P,an ending unrelated to the event gives no closure
+s02-X46,Ferns.,,,C,one paragraph focus is used as the whole topic
+s02-X46b,Fossil clues in rock.,,,x,the topic is given for one paragraph
+s02-X47,Look under the subheading Shell Shapes.,,,E,a useful feature is ignored in the search
+s02-X47b,The caption.,,,E,the wrong feature is used for a key word
+s02-X47c,The subheading.,,,E,the wrong feature is used for a picture
+s02-X48,The author wants to sell pencils.,,,D,a purpose the card does not support
+s02-X48b,Explain how.,,,D,a purpose the card does not support: there are no steps
+s02-X49,The glossary.,,,E,the glossary tells what a word means and does not say where to look
+s02-X49,"The bag icon in the menu, page 2.",,,E,the label route is taken for track facts
+s02-X49b,"The index, page 2.",,,E,"the index says where to look, not what a word means"
+s02-X49c,"The paw icon, Tracks.",,,E,the wrong icon is chosen
+s02-X50,Unfinished means finished again.,,,H,the prefix meaning is mistaken (un- read as again)
+s02-X51,A book made of grass.,,,J,the parts are joined with a meaning that does not fit the sentence
+s02-X51b,"One, a tool for writing with ink.",,,G,the first meaning is chosen without checking the sentence
+s02-X52,Photographs.,,,C,one paragraph focus is used as the whole topic
+s02-X52b,Ways to record a find.,,,x,the whole topic is given for one paragraph
+s02-X52b,A drawing shows the shape.,,,x,the first paragraph is named
+s02-X53,It is meant to sell cameras.,,,D,a purpose the card does not support
+s02-X53b,Every page.,,,E,the child searches every page instead of using the subheading
+s02-X53b,The glossary.,,,x,"a feature that tells what a word means, not what a part is about"
+s02-A1,The beginning is when the class hears all her notes.,,,A,the ending is named as the introduction
+s02-A2,The ending starts the wind problem.,,,A,the opening and ending functions are confused
+s02-A3,Her teacher catches the pages.,,,B,the detail contradicts the text
+s02-A4,She wants to read a story.,,,B,the detail contradicts the text
+s02-A5,In the classroom.,,,B,the place contradicts the text
+s02-A6,Tuesday afternoon.,,,B,the time contradicts the text
+s02-A7,She lets every page blow away.,,,B,the detail contradicts the passage
+s02-A8,She reads all the pages at once in the wind.,,,B,the detail contradicts the passage
+s02-A9,The whole text is only about bags.,,,C,one paragraph detail is named as the whole topic
+s02-A10,Sediment is mud or sand.,,,C,one detail of the paragraph is named as its focus
+s02-A11,The paragraph is about a bag.,,,C,one detail of the paragraph is named as its focus
+s02-A12,Footprints are in soft sediment.,,,C,one detail of the paragraph is named as its focus
+s02-A13,To persuade us to buy a bag.,,,D,an author purpose is unsupported by the text
+s02-A14,The price of a bag.,,,D,a detail the text does not give is used for the purpose
+s02-A15,The last picture.,,,E,the caption is ignored in the search
+s02-A16,Cast.,,,F,a mold is confused with a cast; the bold print was not matched to the hollow
+s02-A17,Keeping a Shape.,,,E,a useful feature is ignored during the search
+s02-A18,A copy of a shape.,,,E,the glossary entry is not located; a different entry is read
+s02-A19,Turns every page looking for notebook.,,,E,the index is ignored; the child searches page by page
+s02-A20,"The shell icon, page 1.",,,E,the wrong menu link is chosen for tracks
+s02-A21,The material that fills the hollow.,,,F,a mold is confused with a cast
+s02-A22,A hard cover that protects a broken bone.,,,G,a word meaning that does not fit this sentence is chosen
+s02-A23,Marked again.,,,H,the prefix meaning is mistaken (un- read as again)
+s02-A24,A person who scatters them.,,,I,the known root meaning is lost
+s02-A25,A book that makes musical sounds.,,,J,the compound parts are joined with a meaning that does not fit
+s02-A26,A copy of a shape.,,,G,"a different entry is read, and a meaning that does not belong to trace is given"
+s02-A27,A hard cover that protects a broken bone.,,,G,the bone-cover sense is chosen for this paragraph
+s02-A28,A hard cover that protects a broken bone.,,,G,the bone-cover sense is chosen for this paragraph
+s02-A29,The whole text is about mud.,,,C,one paragraph detail is named as the whole topic
+s02-A30,The wind and rain are strong.,,,C,one detail of the paragraph is named as its focus
+s02-A31,Water seeps through the mud.,,,C,one detail of the paragraph is named as its focus
+s02-A32,A walker looks at the surface.,,,C,one detail of the paragraph is named as its focus
+s02-A33,The beginning is when the shell picture is whole.,,,A,the ending is named as the introduction
+s02-A34,The last sentence introduces the missing piece.,,,A,the ending is named as the introduction
+s02-A35,There was a stone. It was nice.,,,K,no elaborated event
+s02-A35,I felt worried about the smudge. At last the label was clear.,,,L,no actions of the character
+s02-A35,First I saw the smudge. Next I cleaned it. At last it was clear.,,,M,no thought
+s02-A35,First I saw the smudge. Was it a line? Next I cleaned it. At last it was clear.,,,N,no feeling
+s02-A35,I saw the smudge. I wondered about it. I felt curious. I cleaned it. The label was clear.,,,O,no time words
+s02-A35,First I saw the smudge. I wondered about it. I felt curious. Next I cleaned it.,,,P,no closure
+s02-A35,The fossil label said a shell becomes a fossil in one day.,,,B,a science detail contradicts the unit articles
+s02-A36,The people walked.,,,Q,no collective noun; a plural noun replaces it
+s02-A37,Two foots left a track.,,,R,an irregular plural is regularized
+s02-A38,Jo asked himself a question.,,,S,the reflexive pronoun mismatches its referent
+s02-A39,Jo taked a closer look.,,,T,an irregular past verb is regularized
+s02-A40,The label wrote clearly.,,,U,an adverb is used where an adjective is wanted
+s02-A41,She wrote clear.,,,U,an adjective modifies the action in place of an adverb
+s02-A42,Adds a paragraph about an unrelated picnic.,,,V,the revision loses the narrative focus
+s02-A43,When Jo carried.,,,AD,a sentence is incomplete
+s02-A44,While Jo waited.,,,AD,a sentence is incomplete
+s02-A54,With her teacher.,,,AD,a sentence is incomplete
+s02-A55,Looked at the stone with her teacher.,,,AD,a sentence is incomplete
+s02-A56,And the teacher opened the case.,,,AD,a sentence is incomplete
+s02-A57,And Jo waited.,,,AD,a sentence is incomplete
+s02-A45,Leaves a marked capital letter uncorrected.,,,AE,a proper name is left lowercase (file under the convention's own letter AE to AH)
+s02-A46,arbor day,,,AE,a proper name is left lowercase
+s02-A47,cardiff,,,AE,a proper name is left lowercase
+s02-A48,quillwick,,,AE,a proper name is left lowercase
+s02-A49,Dear Sam,,,AF,the greeting lacks its comma
+s02-A50,Best wishes,,,AF,the closing lacks its comma
+s02-A51,noras,,,AG,a possessive apostrophe is omitted
+s02-A52,didnt,,,AH,a contraction apostrophe is omitted
+s02-A53,Watches without contributing to the production.,,,AI,a child observes publishing without contributing
+s02-X54a,Dogs.,,,Q,a plural noun is given where a word for the whole group was asked
+s02-X54b,Two womans waved.,,,R,an irregular plural is regularized
+s02-X54b,Two womens waved.,,,R,an irregular plural is regularized with an extra -s
+s02-X55a,Tam.,,,S,a reflexive pronoun is matched to the other person
+s02-X55a,Her friend.,,,S,a reflexive pronoun is matched to the other person
+s02-X55b,Bea hided a shell. Then she telled Tam.,,,T,an irregular past verb is regularized
+s02-X56,Calm.,,,U,an adjective is chosen for an action
+s02-X56b,Cheerfully.,,,x,an adverb is chosen for a thing
+s02-X57,The frame of sticks.,,,C,the focus of the other paragraph is given for this one
+s02-X58,Buckled again.,,,H,a prefix meaning is mistaken
+s02-X59,Tess sees a nest.,,,P,the ending is not named; the opening is repeated
+s02-X59,Tess likes birds.,,,P,an ending unrelated to the event gives no closure
+s02-X59b,"He wonders, Is it a bone?",,,x,a part that does belong to the find is named
+s02-X59b,He brushes it clean.,,,x,a part that does belong to the find is named
+s02-X60,While Pru holds the lamp.,,,AD,a sentence is incomplete
+s02-X60b,Leo painted a door.,,,x,the sentence is repeated with no detail added
+s02-X60b,a red door,,,AD,"a group of words is given, not a whole sentence"
+s02-X60c,Omar found a claw.,,,x,the detail in the mud is dropped
+s02-X60c,"In the mud, Omar found a claw.",,,x,the sentence is repeated with the detail still first
+s02-X61a,She lifted the lid.,,,M,an action is given where a thought was asked
+s02-X61b,She lifted the lid.,,,N,an action is given where a feeling was asked
+s02-X61c,She felt scared.,,,L,a feeling is given where an action was asked
+s02-X61c,Was something moving inside?,,,L,a thought is given where an action was asked
+s02-X62,She checked the rock and she traced the line.,,,O,the actions have no time words
+s02-X62b,Nia found a shell.,,,O,the opening jumps to the find with no place or time
+s02-X62b,Nia walked along the beach.,,,O,the opening names a place but no time
+s02-X63,Ivo had a sandwich for lunch.,,,P,a closing unrelated to the find gives no closure
+s02-X63,The coin was an old button.,,,O,the closing has no time word
+s02-X64,I like cake.,,,V,the added sentence leaves the narrative focus
+s02-X64b,She brushed it clean.,,,V,a sentence that belongs to the find is taken out
+s02-X65,"lake huron, earth day, flinkbrush",,,AE,special names are left in lowercase
+s02-X66a,Dear Wes,,,AF,the greeting lacks its comma
+s02-X66a,"Dear wes,",,,AE,a name is left lowercase
+s02-X66b,See you soon,,,AF,the closing lacks its comma
+s02-X67a,Finns,,,AG,a possessive apostrophe is omitted
+s02-X67b,"h, a, v, e, n, t",,,AH,a contraction apostrophe is omitted
+s02-X68,The ending is the gap in the fence.,,,A,the opening is named as the ending
+s02-X69,Ned tripped on a cord.,,,P,the ending leaves the problem unfinished
+s02-X70,Across the yard.,,,AD,a sentence is incomplete
+s02-X71,bakers lamp,,,AG,a possessive apostrophe is omitted
+s02-X72,I just watched.,,,AI,a child observes publishing without contributing
+s02-X73,A hand drops the tile in a bin.,,,B,the picture detail contradicts the sentence
+s02-X74,Not planted.,,,H,a prefix meaning is mistaken
+s03-X78,Sam sets out water. A sparrow drinks.,,,B,two statements said with no word that joins them
+s03-X78,"The sparrow drinks, so Sam sets out water.",,,C,the link runs the wrong way and contradicts the card
+s03-X78b,Pollination.,,,x,"the moving is named, not the animal that moves pollen"
+s03-X78b,Pollen.,,,x,"the powder is named, not the animal that moves it"
+s03-X79,The tassel. The pollen. The silk. The kernels.,,,B,steps said as a list with no order words or links
+s03-X79b,Because the wind carries the kernels.,,,A,moving the kernels is mistaken for moving pollen
+s03-X79c,Points to the title.,,,C,the title does not say where the pollen lands
+s03-X79c,Points to The wind shakes the tassel and pollen floats out.,,,C,the line does not say where the pollen lands
+s03-X80,Reads flower as plant.,,,S,a word is guessed from the picture instead of the letters
+s03-X80b,Seeds.,,,A,seed travel is mistaken for pollen travel
+s03-X80b,Nectar.,,,C,the card does not say she carried nectar to the second flower
+s03-X81,Points to the arrow that goes into the first flower.,,,C,the arrow does not match the words of the card
+s03-X81b,The bee flies home.,,,C,the card does not say the bee goes home
+s03-X81b,Seeds fly.,,,A,seeds are named where the card names pollen
+s03-X82,Dictionary strip.,,,AB,"no strip is printed for this word, so no clue is named that fits"
+s03-X82,I just know it.,,,AB,no strategy is named
+s03-X82b,Uncurls means curls.,,,AL,the prefix un- is treated as if it meant nothing
+s03-X82c,Uncurls. Dusts. Flies. Brushes.,,,B,the steps are a list with no links
+s03-X82d,The moth carries seeds.,,,A,seeds are named where the card names pollen
+s03-X84,The bee carries the seeds.,,,A,seeds are named where the card names pollen
+s03-X84,Pollen sticks. She flies. Some rubs off.,,,B,the steps are said with no word that links them
+s03-X84b,On the bee.,,,C,"the answer contradicts the card: the pollen rubs off on the flower, not on the bee"
+s03-X85,Bumpy is bumpy.,,,P,the word is repeated with no real place
+s03-X85b,Because it is bumpy.,,,P,the word is used as its own reason
+s03-X85c,Shows the same speed for both.,,,Q,two near words are treated as the same
+s03-X85d,They are both the same.,,,Q,two near words are treated as the same
+s03-X85e,They both mean cold.,,,Q,the two words are not told apart
+s03-X86,A slowly slug.,,,R,a word that describes an action is put on the thing
+s03-X86,A green leaf.,,,R,"the describing word is given to the leaf, not the slug"
+s03-X86b,It crawls slow.,,,R,the describing word for the thing is used for the action
+s03-X86b,A slimy crawl.,,,R,an adjective is used to modify the action
+s03-X88,a seed sleeps in a jar,,,E,a fact from the card that does not answer the question
+s03-X88,"A bean seed sleeps in a dry jar. When it gets wet, it swells.",,,D,the sentence is copied word for word
+s03-X88b,"The text card, for a note that says water and warmth.",,,AE,warmth is only on the picture caption card
+s03-X89,Where ants live.,,,AB,a subheading that does not lead to the fact asked is chosen
+s03-X89,Read the whole page.,,,AB,the subheadings are not used to find the fact
+s03-X90,It is about where ants keep their food.,,,AC,one detail is named for the whole paragraph
+s03-X91,The seed gets wet. Then it swells.,,,B,then gives the order but not why
+s03-X91,"The seed swells, so it gets wet.",,,B,the link runs backwards
+s03-X93,"Yes, it matches.",,,C,a note that contradicts the source is accepted
+s03-X93b,Bees like flowers.,,,E,a fact that does not fix the wrong word
+s03-X93c,Points to the note instead of the source.,,,AE,the note is read as if it were the source
+s03-X96,"Yes, they support it.",,,C,the unsupported wing claim is kept
+s03-X96b,Leaves it as it is.,,,C,the note that the picture does not support is kept
+s03-X96c,It shows the pollen reaching the next flower.,,,C,the photograph shows no second flower
+s03-X97,"Says nothing, or says a fact.",,,M,no question is asked
+s03-X97,I like drawing.,,,L,a reply that does not link to what the partner said
+s03-X97b,Insects are big.,,,N,the answer ignores the question asked
+s03-X97c,My partner told me.,,,AE,the answer is tagged to the wrong source
+s03-X98,Points to It walks across the flower and eats.,,,AF,a fact is taken for the definition
+s03-X98,Points to the first sentence.,,,F,the opening sentence is taken for the definition
+s03-X98b,The definition is just another fact.,,,AF,the definition is not seen to have a job
+s03-X98c,It is one more fact.,,,G,no ending is named
+s03-A1,"Seeds travel from flower to flower, and that is pollination.",,,A,seed travel is taken for pollination
+s03-A1,New plants. New food. Nectar.,,,B,facts listed with no links
+s03-A2,It says new plants grow with no seeds.,,,C,the retelling contradicts the card
+s03-A3,One bee flies along every arrow.,,,C,the card says the diagram does not show one insect flight
+s03-A4,A seed.,,,C,the card does not call nectar a seed
+s03-A5,Points to A seed can grow into a new plant.,,,E,a sentence that does not say what nectar is
+s03-A6,Starts reading from the top of the card.,,,AB,the heading is ignored
+s03-A7,Reads the New plants paragraph aloud instead.,,,AB,the heading that leads to the fact is ignored
+s03-A8,It is about nectar.,,,AC,one paragraph focus is given as the whole topic
+s03-A9,It is about visiting insects.,,,E,a fact the paragraph does not hold
+s03-A10,It is about seeds.,,,AC,the first focus is given for the second paragraph
+s03-A11,Stored means thrown out.,,,AP,a meaning the printed clue does not support
+s03-A12,The word has a picture.,,,AB,"no clue is named, or the needed reference is skipped"
+s03-A13,Replant means throw away.,,,AP,a meaning the printed clue does not support
+s03-A14,It is a short word.,,,AB,"no clue is named, or the needed reference is skipped"
+s03-A15,Useful means not able to be used.,,,AP,a meaning the printed clue does not support
+s03-A16,The word looks hard.,,,AB,"no clue is named, or the needed reference is skipped"
+s03-A17,Sunlight means a lamp inside.,,,AP,a meaning the printed clue does not support
+s03-A18,It is in the sentence.,,,AB,"no clue is named, or the needed reference is skipped"
+s03-A19,A tendril is a kind of seed.,,,C,a meaning the printed clue does not support
+s03-A20,Guess from the sentence.,,,AB,"no clue is named, or the needed reference is skipped"
+s03-A21,nibbel,,,AN,the last letters of the ending are out of order
+s03-A22,fidle,,,Y,the final spelling is left out
+s03-A23,Because Rob has a pin in his hand.,,,C,the answer contradicts the card
+s03-A24,cattel,,,AN,the draft is copied back unchanged
+s03-A24,Looks at a neighbor and copies the spelling.,,,J,"the spelling is copied, not checked in the entry"
+s03-A25,poodel,,,AN,the last letters of the ending are out of order
+s03-A26,sizle,,,Y,the final spelling is left out
+s03-A27,Sam stops the robot with a smile.,,,C,the answer contradicts the card
+s03-A28,twinkel,,,AN,the draft is copied back unchanged
+s03-A28,Copies the spelling from a partner.,,,J,"the spelling is copied, not checked in the entry"
+s03-A29,panick,,,Y,the final spelling is written as a different ending
+s03-A30,resett,,,Y,the taught final spelling is not written
+s03-A31,He buys a new lamp.,,,C,the answer contradicts the card
+s03-A32,mimick,,,Y,the draft is copied back unchanged
+s03-A32,Writes mimic after looking at a neighbor.,,,J,"the spelling is copied, not checked in the entry"
+s03-A33,Un- adds nothing to the word.,,,AL,the prefix is treated as meaningless
+s03-A34,Re- is just the first part of the word.,,,AL,the prefix is treated as meaningless
+s03-A35,nuge,,,Y,the final spelling is left out
+s03-A36,bulj,,,Y,the final spelling is left out
+s03-A37,On a bird.,,,C,the answer contradicts the card
+s03-A38,sponje,,,Y,the draft is copied back unchanged
+s03-A38,Copies the spelling from a partner.,,,J,"the spelling is copied, not checked in the entry"
+s03-A39,stich,,,Y,the final spelling is left out
+s03-A40,cruch,,,Y,the final spelling is left out
+s03-A41,On a chick.,,,C,the answer contradicts the card
+s03-A42,punsh,,,Y,the draft is copied back unchanged
+s03-A42,Copies the spelling from a partner.,,,J,"the spelling is copied, not checked in the entry"
+s03-A43,-er is just letters at the end.,,,AL,the ending is treated as meaningless
+s03-A44,-est is just letters at the end.,,,AL,the ending is treated as meaningless
+s03-A45,edibel,,,AN,the last letters of the ending are out of order
+s03-A46,terribel,,,AN,the last letters of the ending are out of order
+s03-A47,We throw them away.,,,C,the answer contradicts the card
+s03-A48,edibel,,,AN,the draft is copied back unchanged
+s03-A48,Copies the spelling from a partner.,,,J,"the spelling is copied, not checked in the entry"
+s03-A49,-able means nothing.,,,AL,the ending is treated as meaningless
+s03-A50,jau,,,AO,a vowel-team spelling is swapped for another with the same sound
+s03-A51,sawce,,,AO,a vowel-team spelling is swapped for another with the same sound
+s03-A52,The saucer.,,,C,the answer contradicts the card
+s03-A53,hawnt,,,AO,the draft is copied back unchanged
+s03-A53,Copies the spelling from a partner.,,,J,"the spelling is copied, not checked in the entry"
+s03-A54,Cub.,,,T,the vowel sound is misread
+s03-A55,Reads oak as ock.,,,T,the vowel team is read as a short vowel
+s03-A56,Reads head with a long e.,,,AM,an irregular word is read as if it were regular
+s03-A57,Reads friend like fried.,,,AM,an irregular word is read as if it were regular
+s03-A58,Reads the same words with the same stops.,,,S,no word is corrected from its letters
+s03-A59,Names a word that was never misread.,,,S,no word was fixed from its letters
+s03-A59b,The picture told me the word.,,,S,the word is taken from the picture
+s03-A60,Says nothing; the notes were copied from the neighbor.,,,D,copying with no own contribution
+s03-A61,A bee has wings.,,,E,a true fact that does not answer the question
+s03-A61,Shaking drops pollen on its head.,,,C,the note contradicts the card
+s03-A62,Butterfly Visit.,,,AE,the note is tagged to the wrong card
+s03-A63,The butterfly has wings.,,,E,a true fact that does not answer the question
+s03-A64,Bee Visit.,,,AE,the note is tagged to the wrong card
+s03-A65,Each of them flies to a flower.,,,E,a shared fact that does not tell how they differ
+s03-A66,The one my teacher told me to write.,,,AD,"the fact was chosen by the adult, not the child"
+s03-A67,Points to a fact that does not name the topic.,,,F,no topic is introduced
+s03-A68,Points to a fact; the paragraph just stops.,,,G,no conclusion
+s03-A69,Points to a fact; no word is explained.,,,H,no definition
+s03-A70,It is just another fact.,,,AF,the job of the definition is not seen
+s03-A71,Copies the same draft out again.,,,I,the revision is a recopy; no content is changed
+s03-A72,wege,,,Y,the final spelling is left out
+s03-A73,Copies a neighbor's spelling.,,,J,"the spelling is copied, not checked in the entry"
+s03-A74,Talks over the speaker.,,,K,interrupting
+s03-A75,I like drawing.,,,L,a reply that does not link
+s03-A76,"Says nothing, or tells a fact.",,,M,no clarifying question
+s03-A77,Bees are big.,,,N,the answer ignores the speaker
+s03-A78,Silent copying with no own part.,,,D,"copying, no own contribution"
+s03-A79,A fact that is true but not about the poster question.,,,E,an irrelevant fact
+s03-A79,A fact the source does not say.,,,C,the fact contradicts or goes beyond the source
+s03-A79b,Names a source the fact is not from.,,,AE,a wrong source tag
+s03-A80,Because pollen on the leg.,,,O,a fragment is given instead of a whole sentence
+s03-A81,On the flower.,,,O,a fragment is given instead of a whole sentence
+s03-A82,To the next flower.,,,O,a fragment is given instead of a whole sentence
+s03-A83,Dusty is when it is dusty.,,,P,the word is repeated with no real connection
+s03-A84,The word again with no real situation.,,,P,the word is repeated with no real connection
+s03-A85,Slender means slender.,,,P,the word is repeated with no real connection
+s03-A86,The word again with no real situation.,,,P,the word is repeated with no real connection
+s03-A87,Settle is to settle.,,,P,the word is repeated with no real connection
+s03-A88,The word again with no real situation.,,,P,the word is repeated with no real connection
+s03-A89,Glide and swoop mean the same.,,,Q,two related words are treated as identical
+s03-A90,Warm and hot are the same.,,,Q,two related words are treated as identical
+s03-A91,Drift and dart mean the same.,,,Q,two related words are treated as identical
+s03-A92,Cool and cold are the same.,,,Q,two related words are treated as identical
+s03-A93,Creep and rush mean the same.,,,Q,two related words are treated as identical
+s03-A94,Big and huge are the same.,,,Q,two related words are treated as identical
+s03-A95,The bee lands dusty.,,,R,an adjective is used to describe the action
+s03-A95b,The bee flies.,,,Z,no word tells how it moves
+s03-A96,The stem sways slender.,,,R,an adjective is used to describe the action
+s03-A96b,The bee flies.,,,Z,no word tells how it moves
+s03-A97,The bee flies tiny.,,,R,an adjective is used to describe the action
+s03-A97b,The bee flies.,,,Z,no word tells how it moves
+s03-A98,The bee plants seeds in the ground.,,,A,seed planting is taken for pollination
+s03-A99,The bee is sad because it is alone.,,,AP,a meaning the words do not support
+s03-A99b,The bee is scared at the end.,,,AP,a meaning the words do not support
+s03-A100,Nectar. Pollen. Flying. Next flower.,,,B,steps listed with no links
+s03-A101,"Names a picture, not the word on the card.",,,S,a picture guess replaces decoding
+s03-A101,Reads the first vowel as a short vowel.,,,T,a taught long vowel is misread
+s03-A102,"Names a picture, not the word on the card.",,,S,a picture guess replaces decoding
+s03-A102,Reads the first vowel as a short vowel.,,,T,a taught long vowel is misread
+s03-A103,"Names a picture, not the word on the card.",,,S,a picture guess replaces decoding
+s03-A103,Reads the first vowel as a short vowel.,,,T,a taught long vowel is misread
+s03-A104,Pollen. Flowers. A bee. Legs.,,,B,disconnected facts
+s03-A104,A story with events but no descriptive detail.,,,Z,no descriptive detail
+s03-A104,A story told too softly to hear.,,,AA,inaudible
+s03-A105,Tells the story live; no recording is saved.,,,U,live telling instead of audio
+s03-A106,A drawing of a house that is not in the story.,,,V,the drawing does not clarify
+s03-A107,On my legs.,,,O,a fragment is given instead of a whole sentence
+s03-A108,I watched my partner do it.,,,W,watching without contributing
+s03-A109,Because pollen is.,,,O,a fragment
+s03-A110,I am a bee. Flowers.,,,AG,no action is narrated
+s03-A111,Flowers. Nectar.,,,AH,no thought is told
+s03-A112,The bee flew.,,,AI,no feeling is told
+s03-A113,A flower. A leaf.,,,AJ,no temporal words
+s03-A114,Pollen. Pollen.,,,AK,no closure
+s03-A115,The bee flew.,,,Z,no descriptive detail
+s03-A116,Remember the visit? It was so cool! is bad English.,,,X,a home variety is ranked as inferior
+s03-A117,Only the first line is correct English.,,,X,a home variety is ranked as inferior
+s03-X99,Its body touches the pollen.,,,F,one fact stands in for the topic of the paragraph
+s03-X99,The flower is pale.,,,E,a fact that is not what the moth does for flowers
+s03-X99,A moth.,,,O,"a fragment, no sentence"
+s03-X100,Moths are helpers for flowers.,,,I,the draft is said again with new words and no new content
+s03-X100,Moths are gray.,,,E,a fact that does not answer the feedback
+s03-X101,"l, a, c, h.",,,J,the caption spelling is said back with no look at the entry
+s03-X101,"l, a, t, h.",,,Y,the c of the final tch is left out
+s03-X101b,The first letter.,,,Y,the missing t of the final -tch is not seen
+s03-X102,Card X.,,,AE,the fact is taken from the card that does not answer the question
+s03-X102b,It goes in the nest.,,,E,a fact from neither card
+s03-X102b,It sticks to its body.,,,AE,the other card's fact is given
+s03-X103,Pollen sticks to its body.,,,B,a fact with no connection to the next flower
+s03-X103,It drops it in a hole.,,,C,a fact the source does not give
+s03-X104,I fly to a pink flower. Pollen sticks to my body.,,,B,the sentences are out of order
+s03-X104,On the pink flower.,,,O,a fragment
+s03-X104,I went to a flower.,,,Z,no detail
+s03-X105,Points to Butterflies sleep at night.,,,C,a fact in neither source
+s03-X105b,Points to night.,,,C,a label for the fact the sources do not give
+s03-X106,Pollen sticks to body.,,,O,"a fragment, the plan words said in a row"
+s03-X106,A moth eats the pollen.,,,C,a fact the plan words do not give
+s03-X107,A dusk bug rests on the plant.,,,S,dusty is read from its first letters
+s03-X107,A dusty bug roots on the plant.,,,T,the vowel of rests is misread
+s03-X108,The bee takes dust.,,,I,the line is said again unchanged
+s03-X108,The bee eats the pollen.,,,C,"a fact the sources do not give, with no word from Source B"
+s03-X109,What is your favourite colour?,,,M,a question that does not ask about the speaker's detail
+s03-X109,I like beetles.,,,L,"a remark, not a question"
+s03-X110,The beetle came to the flower.,,,Z,said again with no new word
+s03-X110b,The slowly beetle came to the flower.,,,R,a word for the coming is put on the beetle
+s03-X111,The second line.,,,Z,the choice leaves out what a stranger needs to be told
+s03-X111b,The other is bad English.,,,X,a home way of talking is ranked as inferior
+s03-X111b,Because it is first.,,,Z,no reason about the listener
+s03-X112,The garden view.,,,V,the drawing does not show what the story says
+s03-X112b,I like it.,,,E,a reason that is not about the story
+s03-X112b,It is a pretty sunset.,,,V,"the reason is about colour, not the story"
+s03-X113,On its body.,,,O,a fragment
+s03-X113,It carries seeds.,,,A,a fact that contradicts the note
+s03-X114,Scratchy is when it is scratchy.,,,P,the word is repeated with no real situation
+s03-X114,Scratchy is something to eat.,,,AP,a meaning the word does not have
+s03-X115,It rests. It flies. Pollen falls.,,,B,the steps are a list with no connections
+s03-X115,The moth plants seeds.,,,A,a fact that contradicts the card
+s03-X116,At the flower.,,,O,a fragment
+s03-X116,The pollen is yellow.,,,E,a fact that does not answer the feedback
+s03-X117,Next I flew to a red flower.,,,AI,"an event, no feeling"
+s03-X117,Then the water dried.,,,AI,"an event, no feeling"
+s03-X118,"Hey, wait till you hear this!",,,Z,said again with nothing added for a stranger
+s03-X118,That way of talking is wrong.,,,X,a home way of talking is ranked as inferior
+s03-X118b,Nothing.,,,Z,no change for the listener
+s03-A119,"Names a picture, not the word on the card.",,,S,a picture guess replaces decoding
+s03-A120,"Names a picture, not the word on the card.",,,S,a picture guess replaces decoding
+s03-A121,"Names a picture, not the word on the card.",,,S,a picture guess replaces decoding
+s03-A119,Reads the first vowel as a short vowel.,,,T,a taught long vowel is misread
+s03-A120,Reads the first vowel as a short vowel.,,,T,a taught long vowel is misread
+s03-A121,Reads the first vowel as a short vowel.,,,T,a taught long vowel is misread
+s04-X119,"building, gathering, rain",,,A,the first two events are swapped
+s04-X119,"rain, gathering, building",,,A,the last event is put first
+s04-X119b,Rain is last because its picture is the biggest.,,,A,"the order comes from a picture, not from the story"
+s04-X120,the picture of Jay eating,,,B,"the lesson is fastened to the result, not to the getting ready"
+s04-X120b,Jay was hungry.,,,B,a feeling is named that does not support the lesson
+s04-X121,the picture of the hand giving a crumb,,,D,"the gift is in both versions, so the difference is left out"
+s04-X121b,Robin asks Wren for a crumb.,,,D,a line found in both versions is named as the difference
+s04-X122,the picture with the leaf in one scene only,,,E,the leaf that both versions share is left out
+s04-X122b,Nothing changes.,,,D,the difference is left out
+s04-X123,the picture of Ana at the start of the long road,,,,"the card claims more than the source says; no register letter, the teacher records not yet seen"
+s04-X123b,Ana made up the tale first.,,,,a beginning is claimed that the card does not state; no register letter
+s04-X124,the cave with the smile sign,,,C,Owl's view is given to Mouse
+s04-X124b,The cave is safe.,,,C,another character's view is given to Mouse
+s04-X125,the picture of the waiting snail,,,C,Snail's want is given to Beetle
+s04-X125b,To move before the rain.,,,C,Beetle's want is given to Snail
+s04-X126,the picture of the cricket sitting still,,,,the picture does not fit the words; no register letter
+s04-X126b,It repeats.,,,O,the device is named and its effect is left out
+s04-X126b,The line is the same twice.,,,O,the device is named and its effect is left out
+s04-X127,the picture of the sleeping pup,,,,the picture does not fit the words; no register letter
+s04-X127b,They rhyme.,,,O,the device is named and its effect is left out
+s04-X128,the picture of the agreeing pair,,,D,the change is left out
+s04-X128b,Cross now.,,,D,a line found in both versions is named as the change
+s04-X128b,Frog and Toad want the same thing.,,,C,two characters are given one view
+s04-X131,the picture of the uncovered basket,,,B,"the event that spoils Hare's basket is marked, so the lesson is fastened to the wrong event"
+s04-X131b,Turtles are slow.,,,B,an unrelated lesson that no event supports
+s04-X132,the picture of the child in the grey jacket,,,G,a picture is attached to the wrong point
+s04-X132b,A bright jacket is warm.,,,G,a reason the article does not give
+s04-X133,the picture of the radish sprout,,,G,the reason for planting is attached to the point about watering
+s04-X133b,Radishes sprout fast.,,,G,the reason for the first point is attached to the second point
+s04-X134,the picture of the brush washing a dish,,,F,a detail only article A gives replaces the point both share
+s04-X134b,Wash the dish each week.,,,F,a detail from article A alone replaces the shared point
+s04-X135,the strip with a topic label only,,,I,a topic is named and no opinion can be stated
+s04-X135,neither strip marked,,,H,no topic is chosen
+s04-X135b,Our school should put up a walking sign. The floor is slippery.,,,K,the reason has no linking word
+s04-X135b,The floor is slippery.,,,I,a fact is said and no opinion is stated
+s04-X136,the picture of bare soil,,,,the picture does not support the opinion; no register letter
+s04-X136b,I like herbs.,,,J,"the reason is about the speaker, not the window box"
+s04-A1,Sparrow reached the cherries. Then she sat down.,,,A,the ending is told before the start
+s04-A1,Finch said try one hop. Then Sparrow wanted the cherries.,,,A,the events are told out of order
+s04-A2,Birds like cherries.,,,B,a lesson that no event supports
+s04-A2,The one who runs fastest wins.,,,B,a lesson that no event supports
+s04-A3,Both lines read in the same voice.,,,C,two characters are given one voice and one view
+s04-A4,Sparrow thinks the branch is easy.,,,C,Finch's view is given to Sparrow
+s04-A5,Finch thinks it is too far.,,,C,Sparrow's view is given to Finch
+s04-A5,Sparrow and Finch think the same thing.,,,C,two characters are given one view
+s04-A6,They are different.,,,E,no similarity is named
+s04-A6,Nothing in the Both box.,,,E,no similarity is named
+s04-A7,Both have Hen.,,,D,a shared detail is named and no difference is found
+s04-A7,Nothing in the Only one box.,,,D,no difference is named
+s04-A8,Because it is another page.,,,D,no detail from the versions supports the difference
+s04-A9,Moths and bats visit flowers at night.,,,G,a reason from card N is attached to card M's point
+s04-A9,Night visitors make plants suited to local soil.,,,G,a reason is attached to the wrong point
+s04-A10,The plants are adapted to the local climate and soil.,,,G,a reason from card M is attached to card N's point
+s04-A11,Night flowers help moths.,,,G,the reason belongs to card N
+s04-A12,They are not alike.,,,E,no similarity is named
+s04-A13,M says climate and N says bats.,,,F,single details stand in for the two main points
+s04-A13,Both say include plants.,,,D,no difference is named
+s04-A14,I like the garden. (the draft never names native plants or night flowers),,,H,the topic is never introduced
+s04-A14,A blank page.,,,H,the topic is never introduced
+s04-A15,Native plants are plants. Night-blooming flowers open at night.,,,I,facts are written and no position is taken
+s04-A16,My shoes are blue.,,,J,the reason has nothing to do with the opinion
+s04-A16,Because I like it.,,,J,the reason is not from the sources
+s04-A17,Our garden should include native plants. They fit our climate.,,,K,the reason is not joined by a linking word
+s04-A18,The draft stops after the last reason.,,,L,the piece has no conclusion
+s04-A19,"The same draft is copied again, neater.",,,M,copying replaces revising the content
+s04-A20,The marked word is left as it was.,,,N,a flagged convention is left unedited
+s04-A21,It is a steady beat.,,,O,the device is named and its effect is left out
+s04-A21,Talks only about the other devices and skips the beat.,,,AF,a required sound device is left out
+s04-A22,"It is grow, fro and row.",,,O,the device is named and its effect is left out
+s04-A22,Talks only about the other devices and skips the rhyme.,,,AF,a required sound device is left out
+s04-A23,It is busy bees.,,,O,the device is named and its effect is left out
+s04-A23,Talks only about the other devices and skips the alliteration.,,,AF,a required sound device is left out
+s04-A24,It is the first line again.,,,O,the device is named and its effect is left out
+s04-A24,Talks only about the other devices and skips the repeating.,,,AF,a required sound device is left out
+s04-A25,It is a steady beat.,,,O,the device is named and its effect is left out
+s04-A25,Talks only about the other devices and skips the beat.,,,AF,a required sound device is left out
+s04-A26,"It is grow, fro and row.",,,O,the device is named and its effect is left out
+s04-A26,Talks only about the other devices and skips the rhyme.,,,AF,a required sound device is left out
+s04-A27,It is busy bees.,,,O,the device is named and its effect is left out
+s04-A27,Talks only about the other devices and skips the alliteration.,,,AF,a required sound device is left out
+s04-A28,It is the first line again.,,,O,the device is named and its effect is left out
+s04-A28,Talks only about the other devices and skips the repeating.,,,AF,a required sound device is left out
+s04-A29,Duck carried water back. Then she splashed.,,,A,the ending is told before the start
+s04-A29,The pond got low. Then Duck splashed in it.,,,A,the events are told out of order
+s04-A30,Never swim.,,,B,a lesson that no event supports
+s04-A31,Both lines read in the same voice.,,,C,two characters are given one voice and one view
+s04-A32,Heron wants to splash.,,,C,Duck's want is given to Heron
+s04-A33,Duck wants the reeds kept watered.,,,C,Heron's want is given to Duck
+s04-A33,Both want to splash.,,,C,two characters are given one view
+s04-A34,The reeds.,,,P,a fragment is given when a sentence is asked for
+s04-A35,V3 ends with thanks and V4 ends with Fox leaving.,,,E,only differences are given and no similarity
+s04-A35,They are not alike.,,,E,no similarity is named
+s04-A36,Both have Fox in a well.,,,D,a shared detail is named and no difference is found
+s04-A37,They are different.,,,E,no similarity is named
+s04-A38,Both explain food.,,,D,no difference is named
+s04-A38,Q says far apart and R says generation.,,,F,single details stand in for the two main points
+s04-A39,Clumps feed caterpillars because all leaves suit every caterpillar.,,,G,a reason from the other card is attached to the point
+s04-A40,"Flowers in a clump are easy to find, so we need host plants.",,,G,a reason from card Q is attached to the point of card R
+s04-A41,The component is missing from the packet.,,,H,the topic is never introduced
+s04-A42,The component is missing from the packet.,,,I,no opinion is stated
+s04-A43,Plant it because my shoes are blue.,,,J,a reason is irrelevant to the opinion
+s04-A44,The component is missing from the packet.,,,K,reasons have no linking words
+s04-A45,The component is missing from the packet.,,,L,the piece has no conclusion
+s04-A46,Reads another word that starts with the same letter.,,,Q,a first letter supplies a guess
+s04-A46,Reads a different word for the printed word.,,,AE,the printed word is read incorrectly
+s04-A47,Reads the word for another word with the same first letter.,,,Q,a first letter supplies a guess
+s04-A47,Reads the word without its changed or joined part.,,,AE,the printed word is read incorrectly
+s04-A48,Points to the first letter only.,,,Q,a first letter supplies a guess
+s04-A48,Sounds the word out letter by letter and says a sound the word does not have.,,,AE,the printed word is read incorrectly
+s04-A49,Reads it alone and misses it in the passage.,,,AE,the printed word is read incorrectly
+s04-A50,May gives the berries to the babies.,,,AB,the answer contradicts the passage
+s04-A51,Reads straight across the sentence ends so the meaning changes.,,,AC,phrasing hides the meaning
+s04-A52,Says the puppet is right.,,,AD,a misreading is left unconfirmed after checking
+s04-A52,Says it is right because it starts the same.,,,Q,a first letter supplies a guess
+s04-A53,babys for the word that needs the changed pattern,,,R,the taught spelling pattern is not transferred
+s04-A54,The puppys stay by the trays.,,,R,the taught spelling pattern is not transferred
+s04-A55,partys is left as it was.,,,S,the spelling is not checked with the reference
+s04-A56,Reads another word that starts with the same letter.,,,Q,a first letter supplies a guess
+s04-A56,Reads a different word for the printed word.,,,AE,the printed word is read incorrectly
+s04-A57,Reads the word for another word with the same first letter.,,,Q,a first letter supplies a guess
+s04-A57,Reads the word without its changed or joined part.,,,AE,the printed word is read incorrectly
+s04-A58,Points to the first letter only.,,,Q,a first letter supplies a guess
+s04-A58,Sounds the word out letter by letter and says a sound the word does not have.,,,AE,the printed word is read incorrectly
+s04-A59,Reads it alone and misses it in the passage.,,,AE,the printed word is read incorrectly
+s04-A60,Jan leaves food out.,,,AB,the answer contradicts the passage
+s04-A61,Reads straight across the sentence ends so the meaning changes.,,,AC,phrasing hides the meaning
+s04-A62,Says the puppet is right.,,,AD,a misreading is left unconfirmed after checking
+s04-A62,Says it is right because it starts the same.,,,Q,a first letter supplies a guess
+s04-A63,dyslike for the word that needs the changed pattern,,,R,the taught spelling pattern is not transferred
+s04-A64,The balloon can dflate.,,,R,the taught spelling pattern is not transferred
+s04-A65,affraid is left as it was.,,,S,the spelling is not checked with the reference
+s04-A66,Reads another word that starts with the same letter.,,,Q,a first letter supplies a guess
+s04-A66,Reads a different word for the printed word.,,,AE,the printed word is read incorrectly
+s04-A67,Reads the word for another word with the same first letter.,,,Q,a first letter supplies a guess
+s04-A67,Reads the word without its changed or joined part.,,,AE,the printed word is read incorrectly
+s04-A68,Points to the first letter only.,,,Q,a first letter supplies a guess
+s04-A68,Sounds the word out letter by letter and says a sound the word does not have.,,,AE,the printed word is read incorrectly
+s04-A69,Reads it alone and misses it in the passage.,,,AE,the printed word is read incorrectly
+s04-A70,Len eats before lunch.,,,AB,the answer contradicts the passage
+s04-A71,Reads straight across the sentence ends so the meaning changes.,,,AC,phrasing hides the meaning
+s04-A72,Says the puppet is right.,,,AD,a misreading is left unconfirmed after checking
+s04-A72,Says it is right because it starts the same.,,,Q,a first letter supplies a guess
+s04-A73,inperfect for the word that needs the changed pattern,,,R,the taught spelling pattern is not transferred
+s04-A74,The camel is inpatient.,,,R,the taught spelling pattern is not transferred
+s04-A75,sevven is left as it was.,,,S,the spelling is not checked with the reference
+s04-A76,Reads another word that starts with the same letter.,,,Q,a first letter supplies a guess
+s04-A76,Reads a different word for the printed word.,,,AE,the printed word is read incorrectly
+s04-A77,Points to the first letter only.,,,Q,a first letter supplies a guess
+s04-A77,Sounds the word out letter by letter and says a sound the word does not have.,,,AE,the printed word is read incorrectly
+s04-A78,Reads it alone and misses it in the passage.,,,AE,the printed word is read incorrectly
+s04-A79,The plate is too strong to break.,,,AB,the answer contradicts the passage
+s04-A80,Reads straight across the sentence ends so the meaning changes.,,,AC,phrasing hides the meaning
+s04-A81,"Reads decorate, agreeing with the puppet.",,,AD,a misreading is left unconfirmed after checking
+s04-A81,Reads decorate because it starts the same.,,,Q,a first letter supplies a guess
+s04-A82,locat for the word that needs the changed pattern,,,R,the taught spelling pattern is not transferred
+s04-A83,We can decorat a small room.,,,R,the taught spelling pattern is not transferred
+s04-A84,pryvate is left as it was.,,,S,the spelling is not checked with the reference
+s04-A85,Reads another word that starts with the same letter.,,,Q,a first letter supplies a guess
+s04-A85,Reads a different word for the printed word.,,,AE,the printed word is read incorrectly
+s04-A86,Points to the first letter only.,,,Q,a first letter supplies a guess
+s04-A86,Sounds the word out letter by letter and says a sound the word does not have.,,,AE,the printed word is read incorrectly
+s04-A87,Reads it alone and misses it in the passage.,,,AE,the printed word is read incorrectly
+s04-A88,They check under the bed.,,,AB,the answer contradicts the passage
+s04-A89,Reads straight across the sentence ends so the meaning changes.,,,AC,phrasing hides the meaning
+s04-A90,Says the puppet is right.,,,AD,a misreading is left unconfirmed after checking
+s04-A90,Says it is right because it starts the same.,,,Q,a first letter supplies a guess
+s04-A91,male-box for the word that needs the changed pattern,,,R,the taught spelling pattern is not transferred
+s04-A92,A snow man stands by the play ground.,,,R,the taught spelling pattern is not transferred
+s04-A93,rainbowe is left as it was.,,,S,the spelling is not checked with the reference
+s04-A94,Reads another word that starts with the same letter.,,,Q,a first letter supplies a guess
+s04-A94,Reads a different word for the printed word.,,,AE,the printed word is read incorrectly
+s04-A95,Points to the first letter only.,,,Q,a first letter supplies a guess
+s04-A95,Sounds the word out letter by letter and says a sound the word does not have.,,,AE,the printed word is read incorrectly
+s04-A96,Reads it alone and misses it in the passage.,,,AE,the printed word is read incorrectly
+s04-A97,Kim adds another chair.,,,AB,the answer contradicts the passage
+s04-A98,Reads straight across the sentence ends so the meaning changes.,,,AC,phrasing hides the meaning
+s04-A99,Says the puppet is right.,,,AD,a misreading is left unconfirmed after checking
+s04-A99,Says it is right because it starts the same.,,,Q,a first letter supplies a guess
+s04-A100,circal for the word that needs the changed pattern,,,R,the taught spelling pattern is not transferred
+s04-A101,A magical icical fell.,,,R,the taught spelling pattern is not transferred
+s04-A102,bicycal is left as it was.,,,S,the spelling is not checked with the reference
+s04-A103,Reads another word that starts with the same letter.,,,Q,a first letter supplies a guess
+s04-A103,Reads a different word for the printed word.,,,AE,the printed word is read incorrectly
+s04-A104,Points to the first letter only.,,,Q,a first letter supplies a guess
+s04-A104,Sounds the word out letter by letter and says a sound the word does not have.,,,AE,the printed word is read incorrectly
+s04-A105,Reads it alone and misses it in the passage.,,,AE,the printed word is read incorrectly
+s04-A106,The cactus gives directions.,,,AB,the answer contradicts the passage
+s04-A107,Reads straight across the sentence ends so the meaning changes.,,,AC,phrasing hides the meaning
+s04-A108,Says the puppet is right.,,,AD,a misreading is left unconfirmed after checking
+s04-A108,Says it is right because it starts the same.,,,Q,a first letter supplies a guess
+s04-A109,famus for the word that needs the changed pattern,,,R,the taught spelling pattern is not transferred
+s04-A110,The generus child saw a walrus.,,,R,the taught spelling pattern is not transferred
+s04-A111,viruss is left as it was.,,,S,the spelling is not checked with the reference
+s04-X138,sentence B,,,X,near words treated as the same: tossed taken for set
+s04-X138,both marked,,,X,near words treated as the same
+s04-X138b,tossed,,,X,the word of the other sentence; set and tossed are treated as the same
+s04-X142,strip 1,,,K,the reason has no linking word
+s04-X142b,Flowers can offer food.,,,L,the reason is said again and no ending is added
+s04-X142b,Our pot is pink because pink is nice.,,,J,a reason that is not on the card
+s04-X143,the picture of the brush with thick paint,,,Z,the rinse step has no explained effect
+s04-X143b,Because it is next.,,,Z,"order stated, no connection"
+s04-X143b,Because it is on the list.,,,Z,"order stated, no connection"
+s04-X144,fact B,,,J,a fact that does not help the opinion
+s04-X144b,The mat is blue.,,,J,an irrelevant fact given as the help
+s04-X145,strip B,,,L,the reason is said again and no ending is added
+s04-X145b,Our class should make a suggestion box. A box can hold good ideas.,,,K,the reason has no linking word
+s04-X145b,Our class should make a suggestion box because I like blue.,,,J,a reason that is not on the card
+s04-X146,step C,,,Z,the order is guessed with no connection
+s04-X146b,Because it is on the list.,,,Z,"order stated, no connection"
+s04-X146b,Because it is next.,,,Z,"order stated, no connection"
+s04-X147,only the first word capitalised and no commas,,,,capitals and commas not seen
+s04-X147,park left small,,,,the place name is not capitalised
+s04-X147b,because it is big,,,,"a reason about size, not about a name"
+s04-X148,layout 1,,,,the room line is left small
+s04-X148b,My partner typed it.,,,AA,watching the work replaces making a choice
+s04-X149,Gull's line,,,C,the characters are given the same viewpoint
+s04-X149b,both lines in one voice,,,C,the characters are given the same viewpoint
+s04-X149b,the two voices swapped,,,C,the eager and waiting voices are on the wrong animals
+s04-X150,step D (tape the sign to the shelf),,,Z,the order is guessed with no connection
+s04-X150,step A (write the shelf name in pencil),,,Z,the order is guessed with no connection
+s04-X150b,Because it is next.,,,Z,"order stated, no connection"
+s04-X150b,Because it is on the list.,,,Z,"order stated, no connection"
+s04-X151,strip B,,,P,a requested sentence is a fragment
+s04-X151b,A red kite.,,,P,a requested sentence is a fragment
+s04-X151b,Because.,,,P,a requested sentence is a fragment
+s04-X151b,It is my packet.,,,W,the answer ignores the question
+s04-X152,pitter and patter,,,,two words that sound alike inside a line are taken for the end rhyme
+s04-X152b,Pane and lane rhyme.,,,O,a sound device is named without its effect
+s04-X157,fact B,,,J,a fact that does not help the choice
+s04-X157b,We should set a shallow water dish. Pollinators need a safe place to sip.,,,K,the reason has no linking word
+s04-X157b,Because they sip.,,,P,a requested sentence is a fragment
+s04-X157b,We should set a shallow water dish because it is round.,,,J,fact B given as the reason
+c1-A75a,I have one at home.,,,K,"an answer from the child own life, not from the title"
+c1-A75a,I like it.,,,S,"a liking, not something to find out"
+c1-A75b,"says mud for mat, from the first letter",,,A,"a word from its first letter or shape, not its letters"
+c1-A75c,The floor is dry.,,,R,"one detail or nothing, not the topic"
+c1-A75d,"says it is fine without looking back, after reading cashes for catches",,,C,a misread left unchecked
+c1-A75e,reads each word on its own at one pitch with a stop between,,,B,"word by word, no phrasing"
+c1-A75f,says spin for spine,,,D,a long vowel said short
+c1-A75g,says wast for waist,,,D,a vowel team said as two letters
+c1-A75h,says mop for mopped,,,E,an ending dropped
+c1-A75i,says breed for bread,,,F,the usual sound used for an unusual one
+c1-A75j,"says sho-e for shoe, letter by letter",,,G,an unusual word sounded out
+c1-A76a,I have one at home.,,,K,"an answer from the child own life, not from the title"
+c1-A76a,I like it.,,,S,"a liking, not something to find out"
+c1-A76b,"says cost for coat, from the first letter",,,A,"a word from its first letter or shape, not its letters"
+c1-A76c,They are hooks.,,,R,"one detail or nothing, not the topic"
+c1-A76d,"says it is fine without looking back, after reading cot for coat",,,C,a misread left unchecked
+c1-A76e,reads each word on its own at one pitch with a stop between,,,B,"word by word, no phrasing"
+c1-A76f,says strid for stride,,,D,a long vowel said short
+c1-A76g,says stree for stray,,,D,a vowel team said as two letters
+c1-A76h,says nap for napped,,,E,an ending dropped
+c1-A76i,says sweet for sweat,,,F,the usual sound used for an unusual one
+c1-A76j,"says sky for ski, from the first letters",,,G,an unusual word sounded out or swapped for another
+c1-A75k,prays for praise,,,H,the spelling stops at the sound and misses the pattern
+c1-A75k,lone for loan,,,H,a long vowel spelled with silent e where a team is needed
+c1-A75l,writes cold for colt and leaves cheak,,,I,a right word is changed and a wrong spelling left
+c1-A76k,Do you like art?,,,J,"no question word, and the story does not answer it"
+c1-A76l,Is school fun?,,,J,"no question word, and the article does not answer it"
+c1-A76m,Can I bring a toy?,,,J,"no question word, and the message does not answer it"
+c1-A76n,Cora,,,T,"a person from the story, but not the one asked"
+c1-A76o,She was sad.,,,L,"an answer to how, not where"
+c1-A76p,To come inside.,,,T,the job of the first bell
+c1-A76q,To go home.,,,L,"an answer to what, not when"
+c1-A76r,Because it is cold.,,,K,a reason the message does not give
+c1-A76s,So it is easy to carry.,,,L,"an answer to why, not how"
+c1-A76t,Cora is a nice girl.,,,M,"a trait, not what she does"
+c1-A76u,wear boots and bring a toy,,,N,one right thing and one the message did not say
+c1-A76u,wear boots,,,N,one thing only
+c1-X77a,reads each word on its own at one pitch,,,B,"word by word, no phrasing"
+c1-X77a,says a loud croak,,,T,"a detail from the text, but not what they saw"
+c1-X77b,"says spoyl for spoil, as two letters",,,D,a vowel team said as two letters
+c1-X77c,says snap for snapped,,,E,an ending dropped
+c1-X77d,"says pinnt for pint, letter by letter",,,G,an unusual word sounded out
+c1-X77e,builds clok for cloak,,,H,the build stops at the sound and misses the pattern
+c1-X77f,Do you like rabbits?,,,J,"no question word, and the note does not answer it"
+c2-A158a,It is a good card.,,,S,"a liking, not what the reader gets"
+c2-A158b,It is about my school.,,,K,"an answer from the child own life, not from the text"
+c2-A158b,Otto.,,,R,"a name only, not what happens"
+c2-A158c,Chalk.,,,R,"one word, not the topic"
+c2-A158d,"says slats for slates, from the first letters",,,A,"a word from its first letter or shape, not its letters"
+c2-A158e,says it is fine without looking back,,,C,a misread left unchecked
+c2-A158f,reads each word on its own at one pitch with a stop between,,,B,"word by word, no phrasing"
+c2-A158g,"says plan for plank, the n dropped",,,D,a vowel pattern or letter dropped
+c2-A158h,says spraul for sprawl,,,D,a vowel team said as two letters
+c2-A158i,says tadpol for tadpole,,,D,a long vowel or part dropped
+c2-A158j,says impart for imprint,,,W,a prefix dropped or read as part of another word
+c2-A158k,says hurry for hurries,,,E,an ending dropped or changed
+c2-A158l,says threet for threat,,,F,the usual sound used for an unusual one
+c2-A158m,"says is-land, sounding the s",,,G,an unusual word sounded out
+c2-A159a,It is a good card.,,,S,"a liking, not what the reader gets"
+c2-A159b,It is about my school.,,,K,"an answer from the child own life, not from the text"
+c2-A159b,Otto.,,,R,"a name only, not what happens"
+c2-A159c,Chalk.,,,R,"one word, not the topic"
+c2-A159d,"says paper for puddle, from the first letters",,,A,"a word from its first letter or shape, not its letters"
+c2-A159e,says it is fine without looking back,,,C,a misread left unchecked
+c2-A159f,reads each word on its own at one pitch with a stop between,,,B,"word by word, no phrasing"
+c2-A159g,"says blim for blimp, the p dropped",,,D,a vowel pattern or letter dropped
+c2-A159h,says baw for bawl,,,D,a vowel team said as two letters
+c2-A159i,says inhal for inhale,,,D,a long vowel or part dropped
+c2-A159j,says distant for disgust,,,W,a prefix dropped or read as part of another word
+c2-A159k,says pat for patted,,,E,an ending dropped or changed
+c2-A159l,says pleesant for pleasant,,,F,the usual sound used for an unusual one
+c2-A159m,"says gee for guy, letter by letter",,,G,an unusual word sounded out
+c2-A158n,pleg for pledge,,,H,the spelling stops at the sound and misses the pattern
+c2-A158n,thach for thatch,,,H,the spelling stops at the sound and misses the pattern
+c2-A158o,writes mouth for mouse and leaves akorn,,,I,a right word is changed and a wrong spelling left
+c2-A159n,The lights went out. It was dark. We were in class.,,,O,"no actions, thoughts or feelings, only a setting"
+c2-A159n,The lights went out and the teacher came and we sat and it was fun.,,,P,"no time words, the events run together"
+c2-A159n,First the lights went out. I felt scared. Then we waited.,,,Q,"no ending, the event stops"
+c2-X160a,We should put a jar at each table. It saves a long walk.,,,U,the reason has no link word
+c2-X160a,We should put a jar at each table because it has a blue lid.,,,U,fact B given as the reason
+c2-X160b,Beans need water.,,,V,"one card only, no likeness or difference"
+c2-X160c,reads each word on its own at one pitch,,,B,"word by word, no phrasing"
+c2-X160c,says packed the paddles,,,T,"an event from the text, but not the last one"
+c2-X160d,says unfar for unfair,,,W,a prefix dropped or read as part of another word
+c2-X160e,says vacat for vacate,,,D,a long vowel or part dropped
+c2-X160f,builds spul for spool,,,H,the build stops at the sound and misses the pattern

@@ -1736,3 +1736,10 @@ under C1's 10 percent.
 Cory took both recommended picks. (1) From grade 7 a student may choose their own healthy behavior as a goal, never
 about weight, calories or shape (health APPROACH.md, Supports). (2) Curio Class uses US spelling; UK spellings are fixed
 in a page when it is next edited, no separate pass (AGENTS.md). The health pages were converted on 2026-11-21.
+
+## 2026-11-21: Ledger-gated scheduling for course runs (from the social studies and ELA ladder run)
+
+Cory chose option 3 on 2026-11-20: a day job in grade N starts only when every ledger entry it cites from a lower grade is at stage
+written, never only planned. Cory accepts the slower run in return for fewer tokens, fewer rewrites and better quality. It is built at
+L87, not during the run. The run's capstone pass supports it: 7 of 257 social studies claims and 29 of 302 ELA claims had drifted when
+checked against what the lower grade really wrote (docs/reviews/ladder-ss-ela-report-2026-11-19.md).

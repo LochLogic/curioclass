@@ -32,10 +32,3 @@ Day 9 has no exit card. Each card is marked by every child (circle, point or dra
 **Picture:** A small pretend museum with glass cases. A cluster of visitors of many ages looks at a model sailboat in a case. Beside it, a sign picture shows a hand hovering over a boat, crossed by a line. Below: three pictures in circles. (a) A whole model sailboat in its case. (b) A pair of shoes. (c) The museum door.
 
 **Mark:** Circle what the rule protects. **Spoken:** "Why this rule?" This is the fresh try; recheck other missed parts with a new two-view or claim card.
-
-## Key (teacher)
-
-- Day 6: (a); (b) is the still-sitting picture (error C); (c) changes the subject.
-- Day 7: Moss (round head) to the paper ready, drawing first; Wren (curl) to the quiet room, listening first. Both want to start with something; accept that wording.
-- Day 8: (a), take turns so both can use the bucket; the partner asks a why-question and the child answers with a because.
-- Day 10: (a), the whole model sailboat; the objects stay whole and others can still see them.

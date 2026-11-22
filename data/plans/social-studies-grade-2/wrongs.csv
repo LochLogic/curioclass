@@ -1,0 +1,859 @@
+item_id,shown,compute,value,error,note
+s01-R1,It is a square.,,,,"names the shape, not what it stands for; a place to model what a symbol stands for"
+s01-R2,Over there.,,,,points without a direction word; a place to model north
+s01-R3,"The drawing, because it has a castle and a rainbow.",,,N,"chooses by looks, not by the job"
+s01-R4,The river is circled.,,,,"land and water swapped; an access look, no score"
+s01-R5,The hill is boxed.,,,,"land and water swapped; an access look, no score"
+s01-R6,It is old.,,,,says old but gives no reason tied to the map being a record of its place
+s01-X1,"The world map, because it is bigger.",,,N,"chooses by size, not by the job"
+s01-X1,"The world map, because it has more color.",,,N,"chooses by looks, not by the job"
+s01-X1b,Because it is prettier.,,,N,"a reason about looks, not about the paths"
+s01-X1c,Which map is the prettiest?,,,N,"a question about looks, not about the job"
+s01-X2,The title is circled.,,,A,gives the title the key's job
+s01-X2,The compass rose is circled.,,,A,gives the rose the key's job
+s01-X2,The scale bar is circled.,,,A,gives the scale bar the key's job
+s01-X2b,It tells what the diamond means.,,,A,gives the title the key's job
+s01-X3,West.,,,B,"reads the left side of the page, not the rose"
+s01-X3,North.,,,B,"reads the top of the page, not the rose"
+s01-X3,East.,,,B,"reads the right side of the page, not the rose"
+s01-X3b,Left on the page is west.,,,B,uses the page instead of the rose
+s01-X4,6 blocks.,,,C,counts the lengths and ignores the label
+s01-X4,9 blocks.,,,C,adds one length of three to six
+s01-X4b,It tells how many marks there are.,,,C,counts marks without reading the label
+s01-X5,The bare hill is circled.,,,D,circles a place where nothing has been done
+s01-X5,The open water is circled.,,,D,circles a feature people did nothing to
+s01-X5,The rock is circled.,,,D,circles a feature people did nothing to
+s01-X5b,There is water.,,,D,names a feature and no action
+s01-X5c,The title is pointed to.,,,A,gives the title the key's job
+s01-P5-1,"river, written beside the river",,,D,"names a feature people did not change, with no action"
+s01-X6,A date that is not printed is written.,,,M,guesses a date
+s01-X6b,Points to the label on the box it is kept in.,,,E,takes the keeper for the maker
+s01-X6b,"Says it was a photographer, guessing a name.",,,M,guesses a maker that is not printed
+s01-X6c,Points to the classroom in the picture.,,,J,takes the place shown for the place made
+s01-X6c,Says it was made in the library.,,,M,names a place that is not printed
+s01-X7,The check token is on both statements.,,,F,treats everything printed as checkable
+s01-X7b,It cannot help because it has an opinion on it.,,,L,throws out the card because of the opinion
+s01-X8,The label that says where it is kept is circled.,,,E,takes the keeper for the maker
+s01-X8b,The check token is on both statements.,,,F,treats everything printed as checkable
+s01-X8c,Points to the room in the picture.,,,J,takes the place shown for the place made
+s01-X8c,Says it was made in a library.,,,M,names a place that is not printed
+s01-X9,The balloon is circled.,,,G,takes a round skin as able to lie flat unchanged
+s01-X9,The salad bowl is circled.,,,G,takes a round skin as able to lie flat unchanged
+s01-X9b,Earth would get holes.,,,Q,treats the model's opening as a change to Earth
+s01-X10,Yes is circled.,,,G,takes drawn size as proof
+s01-X10b,It looks bigger so it is bigger.,,,G,takes drawn size as proof
+s01-X11,"The other card is circled, because the first map is useless.",,,K,throws out a map for every job
+s01-X11b,The coastline data made it.,,,E,takes the holder of the data for the maker
+s01-X11b,It was made in the world it shows.,,,J,takes the place shown for the place made
+s01-X12,North America is written at the country arrow.,,,H,takes the continent for a country
+s01-X12,Brazil is written at the country arrow.,,,H,takes a word from another continent for a country on this one
+s01-X12,Amazon River is written at the river arrow.,,,H,takes a river from another continent for one on this one
+s01-X12b,The triangles are the river.,,,A,reads one symbol as another feature
+s01-X13,No mark is added.,,,O,leaves the graph unmatched to the counts
+s01-X13,Four marks are added.,,,O,marks that do not match the counts
+s01-X13b,Any order is fine.,,,I,treats the map as decoration
+s01-X14,The title is circled.,,,P,misses that a key is what is missing
+s01-X14,The compass rose is circled.,,,P,misses that a key is what is missing
+s01-X14,The scale bar is circled.,,,P,misses that a key is what is missing
+s01-X14b,The prettiest map helps with every job.,,,N,"chooses by looks, not by the job"
+s01-X16,7 paces.,,,C,counts one length and ignores the label
+s01-X16,9 paces.,,,C,adds the two lengths to seven
+s01-X16b,Points to the keeper's label.,,,E,takes the keeper for the maker
+s01-X16c,Points to the park.,,,J,takes the place shown for the place made
+s01-E1,It tells me what the circle means.,,,A,gives the title the key's job
+s01-E2,The key tells me which way is north.,,,A,gives the key the rose's job
+s01-E3,North is always the top of the page.,,,B,uses the page instead of the rose
+s01-E4,It tells how many bars there are.,,,C,counts marks without reading the label
+s01-E5,Three paces.,,,C,counts the lengths and ignores the label
+s01-E6,There is a stream.,,,D,names a feature and no action
+s01-E7,They are the same map.,,,G,takes every flat map as keeping the same things
+s01-E8,Nothing; it is useless.,,,K,throws out a map for every job
+s01-E8,Nothing; it keeps everything the globe does.,,,G,takes a flat map as keeping everything
+s01-E9,It keeps everything the globe does.,,,G,takes a flat map as keeping everything
+s01-E10,"The Mercator map, because it looks bigger.",,,G,takes drawn size as proof
+s01-E11,Because it is the prettier map.,,,N,"chooses by looks, not by the job"
+s01-E12,Nothing; it is just right.,,,G,takes a flat map as keeping everything the globe does
+s01-E13,A picture of a room with no key or rose.,,,P,a decorated picture without working parts
+s01-E13,Features set in any order that looks nice.,,,I,feature positions that were not seen
+s01-E14,Equal rows of marks for unequal counts.,,,O,marks that do not match the counts
+s01-E15,Points to the archive that holds it.,,,E,takes the keeper for the maker
+s01-E16,Says a year that is not printed.,,,M,guesses a date
+s01-E17,"Says Vermont, because the map shows Vermont.",,,J,takes the place shown for the place made
+s01-E18,Both are facts because they are printed.,,,F,treats everything printed as checkable
+s01-E19,None of it is usable because of the opinion.,,,L,throws out the whole source for one opinion
+s01-E20,It shows that everyone thinks the garden is the nicest.,,,F,treats an opinion as something the map can establish
+s01-X10c,It keeps everything the globe does.,,,G,takes a flat map as keeping everything
+s01-X10c,It keeps all the sizes right.,,,x,takes the Mercator map for the map that keeps sizes
+s01-X8d,Says it was made a long time ago.,,,M,guesses a date that is not printed
+s01-E21,I think the prettiest map is best for every job.,,,N,"chooses by looks, not by the job"
+s01-E22,North is the top of the card.,,,B,uses the card instead of the rose
+s02-X17,A shape in Asia is circled.,,,,lands swapped; no letter in the register: record not yet seen and repair with the north arrow on day 18
+s02-X17b,The box is round Africa.,,,,"repeats the first mark; no letter: record not yet seen, repair with the arrow"
+s02-X17b,The box is round the land south of Africa.,,,,north and south reversed; no letter in the register: repair with the arrow
+s02-X17c,Points to a land in Asia.,,,,lands swapped; no letter: record not yet seen
+s02-X17d,North.,,,,"north and south reversed; no letter in the register: record not yet seen, repair with the arrow"
+s02-X17e,It is a country.,,,A,calls a continent a country
+s02-X18,The position in the east of South America is circled.,,,J,misplaces the feature on the wrong side
+s02-X18,The position on the edge of Africa is circled.,,,J,puts the feature on another continent
+s02-X18b,Points to a river in Africa.,,,J,puts the feature on another continent
+s02-X18c,South.,,,J,misplaces the feature within its continent
+s02-X19,The inland position is circled.,,,J,puts a sea feature on the land
+s02-X19,The offshore west position is circled.,,,J,misplaces the feature on the wrong side
+s02-X19b,Points to the feature on a different continent.,,,J,puts the feature on another continent
+s02-X19c,"Water, for a mountain feature.",,,,land and water swapped; no letter: record not yet seen
+s02-X20,The thin left-hand shape is left unnamed.,,,B,treats the map edge as the end of the Pacific
+s02-X20,Only four oceans are named.,,,M,omits an ocean
+s02-X20c,We go to the beach on holiday.,,,C,names only a holiday use
+s02-X20d,"Apart, they are five pools.",,,L,treats the oceans as separate pools
+s02-X21,C beside the first sentence.,,,D,calls one day a climate
+s02-X21,C beside the third sentence.,,,D,calls one day a climate
+s02-X21b,"It was dry one day, so it is always dry.",,,D,takes one day as the pattern
+s02-X22,Low Birch is circled.,,,O,supposes high places are warmer
+s02-X22b,It is closer to the Sun.,,,O,says high places are warmer because they are closer to the Sun
+s02-X22c,"No, every desert is hot.",,,K,confuses dry with hot
+s02-X22d,"Yes, the sea makes it rain.",,,E,turns the sea into a rule for every coast
+s02-X23,Country is circled.,,,,area words swapped; no letter in the register: record not yet seen
+s02-X23b,"Yes, everyone there is a farmer.",,,F,treats a place as choosing every job
+s02-X23c,They are in the same country.,,,,"names a place word, not a shared condition; no letter"
+s02-X24,The hill is circled.,,,,names what stayed; no letter: record not yet seen
+s02-X24b,The trees stayed the same.,,,,names what changed; no letter
+s02-X24c,The picture shows why.,,,H,takes the picture as the cause
+s02-X24d,Cultural.,,,G,takes a physical change for the second kind of change
+s02-X24e,The 1995 picture shows the forest today.,,,N,treats the earlier date as now
+s02-X24f,Points to Asia.,,,,continent misplaced; no letter: record not yet seen
+s02-X25,The stall is circled.,,,,names what stayed; no letter: record not yet seen
+s02-X25b,The footbridge.,,,,names what is new; no letter
+s02-X25c,Points to another continent.,,,,continent misplaced; no letter: record not yet seen
+s02-X25d,The footbridge is new.,,,G,takes a built change for a physical one
+s02-X25e,It is smaller because they built the bridge.,,,H,makes up a cause the card does not give
+s02-X25f,The 1980 picture shows the town today.,,,N,treats the earlier date as now
+s02-X25g,The smaller pond.,,,G,takes a physical change for a cultural one
+s02-X25h,The harbour changed.,,,,names a thing that stayed; no letter: record not yet seen
+s02-X26,The ship is circled.,,,,"names trade, not homes; no letter: record not yet seen"
+s02-X26b,Oceans matter because I like them.,,,I,"gives a liking, not a picture on the card"
+s02-X26c,A museum made it.,,,,guesses a maker; the credit line says Curio Class
+s02-X26d,The picture.,,,I,names no card
+s02-X27,No picture is circled.,,,,no picture marked; record not yet seen
+s02-X27b,I choose it because it is nice.,,,I,"gives a liking, not a picture on the card"
+s02-X27c,A card.,,,I,names no card
+s02-X29,The label is circled.,,,,no picture circled; record not yet seen
+s02-X29b,I did not look at it.,,,,no part named; record not yet seen
+s02-X29c,I choose it because I like it.,,,I,"gives a liking, not a picture on the card"
+s02-X29d,A card.,,,I,names no card
+s02-X29e,A museum made it.,,,,guesses a maker; the credit line says Curio Class
+s02-E1,Egypt is matched to the shape for Africa.,,,A,puts a country where a continent belongs
+s02-E2,The dot in the north of Asia is circled.,,,J,misplaces the feature within its continent
+s02-E2,The dot in Europe is circled.,,,J,puts the feature on another continent
+s02-E3,The dot in South America is circled.,,,J,puts the feature on another continent
+s02-E4,One Pacific edge shape is left blank.,,,B,treats the map edge as the end of the Pacific
+s02-E4,The shape round Antarctica is left blank.,,,M,omits an ocean
+s02-E5,No is circled.,,,L,treats the oceans as separate pools
+s02-E6,The family on a beach holiday is circled.,,,C,names only a holiday use
+s02-E6,The sailing race is circled.,,,C,names only a fun use
+s02-E7,The first sentence is circled.,,,D,takes today as the pattern
+s02-E8,It rains there because it is by the sea.,,,E,turns the sea into a rule that every coast is rainy
+s02-E8,"It rains today, so it always rains.",,,D,takes today as the pattern
+s02-E9,The valley is dry because it is hot.,,,K,confuses dry with hot
+s02-E10,Tall forest is circled.,,,,"plants swapped; no letter, record not yet seen"
+s02-E11,Yes is circled.,,,K,confuses dry with hot
+s02-E12,People there need nothing different.,,,,"no effect named; no letter, record not yet seen"
+s02-E13,Farmers need rain boots.,,,,an effect of much rain given for little rain; no letter
+s02-E14,The same job is circled.,,,F,treats one place as giving everyone one job
+s02-E15,Yes is circled.,,,F,treats one place as giving everyone one job
+s02-E16,The foot of the slope is circled.,,,O,supposes high places are warmer
+s02-E17,Asia is circled.,,,,"continent misplaced; no letter, record not yet seen"
+s02-E18,Europe is circled.,,,,"continent misplaced; no letter, record not yet seen"
+s02-E19,The lake is bigger is circled.,,,,"the two dates read the wrong way round; no letter, record not yet seen"
+s02-E20,The shops are circled.,,,,names what stayed; no letter
+s02-E21,Physical is circled.,,,G,takes a built change for a land one
+s02-E22,The tram is boxed.,,,,names what is new; no letter
+s02-E23,The picture shows people took the water.,,,H,makes up a cause the card does not give
+s02-E24,Yes is circled.,,,N,treats the earlier date as now
+s02-E25,Neither place is circled.,,,,no choice marked; record not yet seen
+s02-E26,I choose it because it is best.,,,I,"gives a liking, not a reason from a source"
+s02-E27,A book.,,,I,names no source from the sitting
+s02-E28,The teacher.,,,I,guesses a maker the card does not print
+s02-E29,Cultural is circled.,,,G,takes a water change for a built one
+s02-P18-2,The Rocky Mountains lie in the east of North America.,,,J,misplaces the feature on the wrong side
+s02-X18d,Points to mountains in South America.,,,J,puts the feature on another continent
+s02-X18d,Points to the east of North America.,,,J,misplaces the feature on the wrong side
+s02-P20-1,Pacific is written again.,,,,names a water already named; no letter: record not yet seen
+s02-P20-2,Oceans matter because we swim in them on holiday.,,,C,names only a holiday use
+s02-X20e,All the other water.,,,,no letter: record not yet seen
+s02-X20f,"Nothing, ships only sail for holidays.",,,C,names only a holiday use
+s02-P21-2,Marsh Town had wind on Monday.,,,D,gives one day as the pattern
+s02-X22e,Cold.,,,,no letter: record not yet seen
+s02-P22-2,Granite Peak is dry.,,,O,"matches the high card to dry, not to cold"
+s02-X23d,A farmer might buy a rain coat.,,,F,ties the work to the wrong condition
+s02-X18e,Points to lakes in South America.,,,J,puts the feature on another continent
+s02-P24-1,The boat ramp is under changed.,,,,a thing that stayed is put under changed; record not yet seen
+s02-P24-3,The pictures show why.,,,H,takes the pictures as the cause
+s02-P25-2,Only the clock is moved.,,,,one wrong place left; record not yet seen
+s02-P26-2,Oceans matter.,,,I,copies no reason and no card
+s02-P27-1,Yes is circled.,,,I,takes a liking as a detail
+s02-P27-3,It is nice.,,,I,"gives a liking, not a detail on the card"
+s02-P27-4,A book.,,,I,names no card
+s02-P27-5,The teacher.,,,,guesses a maker; the credit line says Curio Class
+s02-P29-1,The label stays in Europe.,,,J,leaves the feature on the wrong continent
+s02-P29-2,Both strips are under one day.,,,D,takes one day as the pattern
+s02-P29-3,The crane is in the 1975 picture.,,,N,treats the earlier date as the later one
+s02-P29-4,I choose it because it is the best.,,,I,"gives a liking, not a picture on the card"
+s02-P29-5,A book.,,,I,names no card
+s03-X30,The pink sunset is circled.,,,B,a view taken for a reason
+s03-X30b,It is a field.,,,P,names the thing and not what it did
+s03-X31,The cap with ear flaps is circled.,,,A,adapting taken for changing the land
+s03-X31b,It only adapted.,,,A,only one of the two
+s03-X32,The oats field is circled.,,,C,a farm taken to need nothing from elsewhere
+s03-X32b,"None of it, it is all from near.",,,C,all of it taken to come from near
+s03-X33,The wet library floor is circled.,,,D,"damage only, no effect on a person"
+s03-X33b,The bridge is broken.,,,D,"names the damaged thing, not a person"
+s03-X34,Poster 2 is circled.,,,K,a say-so taken for a check
+s03-X34b,Points to the first line.,,,K,a line on another topic
+s03-X35,The third line is circled.,,,K,a line on a nearby topic
+s03-X35b,How many voted for it.,,,E,a choice taken for an outcome
+s03-X36,No picture is circled.,,,,a record of what happened with no wrong answer; a child with no circle is not yet seen
+s03-X36b,We already voted.,,,E,the vote taken for the outcome
+s03-X37,The line ends at the baker.,,,O,a resource joined to the wrong job
+s03-X37b,The stonecutter is pointed to.,,,O,a resource joined to the wrong job
+s03-X37c,The baker.,,,O,a resource joined to the wrong job
+s03-X37d,They all make baskets.,,,F,a place taken to decide every job
+s03-X38,The wire is circled.,,,G,renewable taken to mean it cannot run out
+s03-X38b,"Yes, new metal was dug out of the ground.",,,L,reuse taken for new ore
+s03-X38c,"Yes, the dock made new fuel.",,,N,refilling taken for making
+s03-X39,The orchard is circled.,,,M,a near stage taken for the far one
+s03-X39b,"The orchard makes it all, in town.",,,C,everything taken to be made in one place
+s03-X40,A box is drawn round the repairs.,,,H,a service taken for a good
+s03-X40b,The cloth is pointed to.,,,H,a good taken for a service
+s03-X40c,Only what the buyer pays.,,,I,the buyer's price taken for the making cost
+s03-X41,The smoker is circled.,,,J,a tool taken for the learning
+s03-X41b,It knows how to calm bees.,,,J,a tool taken to hold the knowing
+s03-X42,The vote cup is circled.,,,E,doing taken for working
+s03-X42b,"Nothing, it worked because we voted.",,,E,the vote taken for the outcome
+s03-X43,Adapt is circled.,,,A,changing the land taken for adapting
+s03-X43b,Change is circled.,,,A,adapting taken for changing the land
+s03-X43c,Change is circled.,,,A,the overlap left out
+s03-X43d,They dig the ditch.,,,A,changing the land taken for adapting
+s03-X45,The rainbow is circled.,,,B,a view taken for a reason
+s03-X45b,It is a wall.,,,P,names the thing and not what it did
+s03-X45c,The milk jug arrow is circled.,,,C,direction and distance mixed up
+s03-X45d,"It worked for everyone, because we voted.",,,E,"the vote taken for the outcome, or one slip taken for everyone"
+s03-X45e,The coal pile is circled.,,,G,renewable taken to mean it cannot run out
+s03-X45f,The loom is circled.,,,J,a tool taken for the learning
+s03-X45g,The first claim is circled.,,,K,a liking taken for evidence
+s03-X45h,Nothing.,,,,no letter in the register; tag the day 44 letter that was repaired
+s03-E1,Because it is pretty.,,,B,a view taken for a reason
+s03-E2,They dig the bay deeper.,,,,a change to the land given for a change in travel; no letter
+s03-E3,It is a pier.,,,P,names the pier and not what it changed
+s03-E4,The pier is by the marsh.,,,P,names the pier and not what it changed
+s03-E5,Adapt is circled.,,,A,only one of the two
+s03-E6,The farm gets nothing from far away.,,,C,a farm taken to need nothing from elsewhere
+s03-E7,The city gets everything from far away.,,,C,one side of near and far left out
+s03-E8,They are the same.,,,,no letter in the register; recorded as not yet seen
+s03-E9,A drawing of a wet building and the word bad.,,,D,damage with no effect on people
+s03-E10,No help is drawn or said.,,,,a help left out; no letter
+s03-E11,No card is named.,,,,the source left out; no letter
+s03-E12,Clay is circled.,,,O,a resource joined to the wrong work
+s03-E13,Forest.,,,,a place named for a job; no letter
+s03-E14,Everyone near the forest builds boats.,,,F,a place taken to decide every job
+s03-E15,Coal is circled.,,,G,renewable taken to mean it cannot run out
+s03-E16,It can never run out.,,,G,renewable taken to mean it cannot run out
+s03-E17,It does not connect.,,,O,location taken to have no link to work
+s03-E18,It does not connect.,,,O,location taken to have no link to work
+s03-E19,A box is drawn round the boat repair.,,,H,a service taken for a good
+s03-E20,A circle is drawn round the boats.,,,H,a good taken for a service
+s03-E21,A box is drawn round the animal health advice.,,,H,a service taken for a good
+s03-E22,A circle is drawn round the blankets.,,,H,a good taken for a service
+s03-E23,Cedar Inlet makes them all.,,,M,goods taken to be made only nearby
+s03-E24,What the buyer pays for the boat.,,,I,the buyer's price taken for the making cost
+s03-E25,The wheel stand is circled.,,,J,a tool taken for the learning
+s03-E26,The thought bubble is circled.,,,J,the learning taken for equipment
+s03-E27,The potter learned the stand.,,,J,a tool taken to hold the learning
+s03-E28,The stand knows how to make bowls.,,,J,a tool taken to hold the knowing
+s03-E29,Nothing is circled.,,,,no choice made; no letter
+s03-E30,I choose both because I like it.,,,K,a liking taken for evidence
+s03-E31,I do not know.,,,,the maker left out; no letter
+s03-P30-1,Grass.,,,,names neither land nor water; record not yet seen
+s03-F30-1,The dam.,,,P,names the thing and not what it did
+s03-F30-2,It looks pretty.,,,B,a view taken for a reason
+s03-P30-4,Card 6 is under Marlow.,,,B,a pretty sight taken for a reason to settle
+s03-K30-4,It is a dam.,,,P,names the thing and not what it did
+s03-P31-1,It is pretty.,,,B,a view taken for a reason
+s03-F31-1,It only adapts.,,,A,only one of the two
+s03-P31-4,Only the tunnel is moved.,,,A,the porch left under change the land
+s03-P32-1,The roof changes the land.,,,A,adapting taken for changing the land
+s03-F32-1,The farm gets it all from its fields.,,,C,a farm taken to need nothing from elsewhere
+s03-P32-5,"Far, near.",,,C,near and far swapped
+s03-F33-1,The buildings.,,,D,"damage only, no effect on a person"
+s03-P33-3,A wet street.,,,D,"damage only, no effect on a person"
+s03-F34-1,It is a good rule.,,,K,a say-so taken for a check
+s03-P34-1,The road is wet.,,,D,"names the damaged thing, not a person"
+s03-P35-1,The nice rule is checked.,,,K,a liking taken for a check
+s03-F35-1,The message worked.,,,E,a choice taken for an outcome
+s03-P36-1,The vote is people answered.,,,E,a choice taken for an outcome
+s03-K36-1,It is a good rule.,,,K,a say-so taken for a check
+s03-P33-1,Both are near.,,,C,everything taken to come from near
+s03-P31-2,The road.,,,P,names the thing and not the change
+s03-P34-7,Only two are fixed.,,,K,the lawn chairs message left on a line
+s03-P35-9,Only one is moved.,,,K,a message left on a line that says something else
+s03-P37-1,"These places share fish, so everyone fishes.",,,F,a shared resource taken to give everyone one job
+s03-P37-2,A baker.,,,x,a different worker named
+s03-P37-3,The net.,,,x,a made thing taken for something from nature
+s03-K37-1,"The first box, fish.",,,x,the resource box pointed to for the industry
+s03-P37-4,A box round wheat farmer.,,,x,the job box taken for the industry
+s03-P37-5,Mining is underlined.,,,x,the industry taken for the job
+s03-P37-6,Logger is circled.,,,x,the job taken for the resource
+s03-F37-1,"Yes, they all fish.",,,F,a place taken to decide every job
+s03-P37-7,It names the county.,,,x,the place taken for the resource
+s03-P37-8,Berry picker in the first box.,,,x,the job put where the resource goes
+s03-P38-1,The saw.,,,O,a resource and its route left out of the job
+s03-P38-2,"Nothing, the tree stays.",,,x,a cut tree taken for a standing one
+s03-K38-1,Non-renewable.,,,x,trees sorted as non-renewable
+s03-K38-2,Renewable.,,,G,renewable taken to mean it cannot run out
+s03-F38-1,"Yes, renewable never runs out.",,,G,renewable taken to mean it cannot run out
+s03-F38-2,"Yes, melting makes ore.",,,L,reuse taken for new ore
+s03-F38-3,"Yes, the station makes oil.",,,N,refilling taken for making
+s03-P38-3,The young tree in non-renewable.,,,x,a card in the wrong bin
+s03-P38-4,Because I think so.,,,x,no reason from renewal or from digging
+s03-P38-5,Only the fisher.,,,F,a place taken to decide every job
+s03-P39-1,Woodlot A.,,,G,renewable taken to mean it cannot run out
+s03-K39-1,The shop.,,,x,a later stage named for the grower
+s03-K39-2,The bakery.,,,x,a seller named for the buyer
+s03-K39-3,Near.,,,M,a far stage taken for near
+s03-K39-4,Far.,,,x,a near stage taken for far
+s03-F39-1,"Yes, it is all made here.",,,M,goods taken to be made only nearby
+s03-P39-3,Shop before the cheese maker.,,,x,the chain put out of order
+s03-P39-4,The dairy farm.,,,C,everything taken to be made in one place
+s03-P39-5,Near.,,,M,a far stage taken for near
+s03-P39-6,A back arrow ticked.,,,x,an arrow read the wrong way
+s03-P39-7,A new mine.,,,L,reuse taken for new ore
+s03-P39-8,The station.,,,N,refilling taken for making
+s03-P40-1,The shop.,,,M,a near stop taken for where it is made
+s03-K40-1,Work done for you.,,,H,a good taken for a service
+s03-K40-2,A thing you can hold.,,,H,a service taken for a good
+s03-F40-1,"Yes, you can hold a haircut.",,,H,a service taken for a good
+s03-P40-2,The help line in things you can hold.,,,H,a service sorted as a good
+s03-K40-3,The flour.,,,x,a material taken for equipment
+s03-K40-4,The helpers.,,,x,workers taken for materials
+s03-F40-2,"Yes, only the price.",,,I,the buyer's price taken for the making cost
+s03-P40-3,The price of the shoes in a box.,,,I,the buyer's price taken for the making cost
+s03-P40-4,The short arrow.,,,C,a near arrow taken for the far one
+s03-P41-1,The haircut in things.,,,H,a service sorted as a good
+s03-P41-2,The price under maker.,,,I,the buyer's price taken for the making cost
+s03-P41-3,A farmer.,,,x,a different worker named
+s03-P41-4,A cost.,,,x,income taken for what a maker pays
+s03-K41-1,Learned skill.,,,J,a tool taken for the learning
+s03-K41-2,Equipment.,,,J,a learned skill taken for equipment
+s03-F41-1,"Yes, the machine knows how.",,,J,a tool taken to hold the knowing
+s03-P41-5,A tractor in the first box.,,,J,a tool put where the learning goes
+s04-X48,A box is drawn round the whole crop.,,,A,a continent-sized area taken for the country
+s04-X48b,The dashed border line is circled.,,,B,a border line taken for a river; the key was not read
+s04-X48c,A country.,,,A,a continent taken for a country
+s04-X48d,Points to the map with more colours.,,,B,colour taken for the key
+s04-X49,Trail Club is circled.,,,C,a flag and members taken for a country
+s04-X49,Three Reef Islands is circled.,,,C,people and land taken for a country with no shared government
+s04-X49b,A country has a flag.,,,C,a flag taken for the missing thing
+s04-X50,Country Tor is circled.,,,D,a voting country taken for a family one
+s04-X50b,The queen.,,,M,a ceremonial role taken for governing
+s04-X50c,It puts up street lights.,,,N,a service named with no purpose
+s04-X51,The sentence about the finest craft is circled.,,,Q,a printed opinion taken for a checkable fact
+s04-X51b,It is 2020.,,,P,a missing date guessed
+s04-X51c,"Yes, everyone in Tarn makes rope.",,,E,one example taken for everyone
+s04-X52,G is written under the pattern work.,,,G,work taken for an object
+s04-X52b,The glaze pot is empty.,,,F,a missing thing taken for the only reason
+s04-X52c,"No, only things can be traded.",,,G,only objects thought to cross a border
+s04-X52d,The workshop has no clay.,,,F,a missing thing taken for the only reason
+s04-X53,The arrow starts in the United States.,,,H,where it is sold taken for where it was made
+s04-X53b,A finger from Italy to the United States.,,,O,the direction reversed
+s04-X53c,The United States has no baskets at all.,,,F,a country with nothing taken for the only reason
+s04-X53d,It comes from Vietnam.,,,R,a place name taken for the link
+s04-X53d,The shop made it.,,,I,the seller taken for the maker
+s04-X54,The poster is circled.,,,J,the least wanted taken for the best other thing
+s04-X54,All three are circled.,,,J,everything wanted taken for the one given up
+s04-X54b,They are one country now.,,,L,a shared rule taken for a union
+s04-X55,The screws are circled.,,,G,the object taken for the only thing traded
+s04-X55b,Points to the card that says everyone knows.,,,K,an unsupported saying taken for a source
+s04-X55c,Screws.,,,G,the object taken for what the payment buys
+s04-X57,OUT is circled.,,,O,the direction reversed
+s04-X57b,It comes in.,,,O,the buyer's view taken for the maker's
+s04-X57c,"It is a truck, no purpose.",,,N,a service named with no purpose
+s04-E1,The map with more colours.,,,B,colour taken for the key
+s04-E2,The blue map.,,,B,colour taken for the key
+s04-E3,Africa is a big country and Botswana is a small country.,,,A,a continent taken for a country
+s04-E4,Japan has a flag.,,,C,a symbol taken for the definition
+s04-E5,It is a water pipe.,,,N,a service named with no purpose
+s04-E6,"Yes, every leader is voted for.",,,D,every leader thought elected
+s04-E7,The king runs the government.,,,M,a ceremonial role taken for governing
+s04-E8,"Yes, everyone in Japan does these things.",,,E,examples taken for everyone
+s04-E9,Japan has puppets and Saudi Arabia has none.,,,E,a culture row that gives one country none or everyone one thing
+s04-E9,Government: they are different because I think so.,,,K,a row with no card pointed to
+s04-E10,"The United States has nothing, so it buys.",,,F,a country with nothing taken for the only reason
+s04-E11,"Peru has nothing, so it buys.",,,F,a country with nothing taken for the only reason
+s04-E12,You cannot pay for work from another country.,,,G,only objects thought to cross a border
+s04-E13,The arrow starts in the United States.,,,H,where it is sold taken for where it was made
+s04-E14,The arrow runs from Peru to the United States.,,,O,the direction reversed
+s04-E15,The pump.,,,O,in and out reversed
+s04-E16,The cap.,,,O,in and out reversed
+s04-E17,The cap comes from Peru.,,,R,a place name taken for the link
+s04-E18,The shop in the United States made it.,,,I,the seller taken for the maker
+s04-E19,I like trade.,,,K,a liking taken for a reason
+s04-E20,I just know it.,,,K,a say-so taken for a source
+s04-E21,A farmer in Peru made it.,,,P,a missing maker guessed
+s04-F48-1,Yes.,,,A,Africa taken for a country
+s04-F49-1,Yes.,,,C,a flag taken for enough
+s04-F50-1,Nothing.,,,N,a service named with no purpose
+s04-F50-2,Yes.,,,D,every leader taken as elected
+s04-P52-1,Bead-stringing is the best craft.,,,Q,a printed opinion taken for a checkable fact
+s04-P52-2,It was made in 2020.,,,P,a missing credit guessed
+s04-P52-3,"Yes, everyone in Kelda goes.",,,E,a card taken for everyone
+s04-P52-6,Kelda has nothing at all.,,,F,a missing thing taken for having nothing
+s04-P52-10,Kelda has nothing.,,,F,a missing thing taken for having nothing
+s04-P53-1,The Orrin paper.,,,x,the dearer paper pointed to
+s04-P53-2,A bag of things.,,,G,work taken for an object
+s04-P53-3,In 2020.,,,P,a missing date guessed
+s04-P53-4,Canada.,,,H,where it is sold taken for where it was made
+s04-P53-6,The counter slides from the United States to Turkey.,,,O,the direction reversed
+s04-P53-7,The lamp goes in the IN bin.,,,O,the direction reversed
+s04-P53-8,"Made in Turkey, so the United States has nothing.",,,F,a missing thing taken for having nothing
+s04-P53-9,The shop drawn four times.,,,I,the seller taken for the maker
+s04-P54-1,Tarn.,,,H,where it is sold taken for where it was made
+s04-P54-2,"The clerk, the potter, the driver, the child.",,,I,the seller taken for the maker
+s04-P54-4,The thick border line.,,,x,a political map use named for a physical map
+s04-P54-6,We chose nails and gave up everything else.,,,J,the cost taken for every wish
+s04-P54-7,One.,,,L,two governments taken for one
+s04-P54-8,I think the sailor pays for advice because I like boats.,,,K,a liking given where a source belongs
+s04-P54-9,Japan is better because I like it.,,,K,a liking given where a source belongs
+s04-P55-1,Both cards are in we gave up.,,,J,the chosen thing counted as given up
+s04-P55-2,One.,,,L,two countries taken for one
+s04-P55-4,In 2026.,,,P,a missing date guessed
+s04-P55-5,I think they need each other because I like maps.,,,K,a liking given where a source belongs
+s04-P55-6,I think they need each other because I like maps.,,,K,a liking given where a source belongs
+s04-P57-1,The thick line is matched to water.,,,B,a key symbol read for the wrong meaning
+s04-P57-2,"The market stall, the farmer, the boat crew, the cook.",,,I,the seller taken for the maker
+s04-P57-3,The library with the ship.,,,N,a public job named with no purpose
+s04-P57-4,Both countries are in the voting box.,,,D,every leader taken as voted for
+s04-P57-5,The kettle counter slides from Spain to Ghana.,,,O,the direction reversed
+s04-P57-6,The kettle is in the IN box.,,,O,the buyer's view taken for the maker's
+s04-P57-8,In 2026.,,,P,a missing date guessed
+s04-P57-9,I think shops sell drums because I like drums.,,,K,a liking given where a source belongs
+s04-P57-11,The clinic with the smoke.,,,N,a public job named with no purpose
+s04-P57-12,From Germany to the Philippines.,,,H,where it is sold taken for where it was made
+s04-P57-13,I think kites are best.,,,K,a liking given where a source belongs
+s05-X58,A storm is circled.,,,K,a reason the card does not give
+s05-X58,A visit is circled.,,,K,a reason the card does not give
+s05-X58b,Everyone moves for work.,,,A,one reason treated as the only reason
+s05-X58b,"Work, because the card says work.",,,K,"repeats the card, gives none that it does not give"
+s05-X59,Card 2 is circled.,,,C,a forced move called chosen
+s05-X59b,The cousin's visits.,,,K,a reason the card gives no line for
+s05-X59c,"Tavi planted a field, so Tavi moved.",,,B,the chain runs backward
+s05-X59c,Tavi wanted to be near the sea.,,,K,a reason the card does not say
+s05-X60,Sailed for fun is circled.,,,K,a picture the card does not show
+s05-X60,Lived in a palace is circled.,,,K,a picture the card does not show
+s05-X60b,Smith chose it.,,,C,imposed work called chosen
+s05-X61,Chosen is circled.,,,C,a forced move called chosen
+s05-X61b,The Seminole Nation is gone.,,,M,a living nation treated as past
+s05-X62,The arrows run from Luxembourg back to Syria.,,,I,the route reversed
+s05-X62,An arrow runs from Syria to Luxembourg only.,,,I,the middle stop missed
+s05-X62b,They went to see Luxembourg.,,,A,a reason the card does not give
+s05-X62b,They chose to go.,,,C,unsafe staying called a choice
+s05-X63,Native is circled.,,,D,an arrival from abroad called Native
+s05-X63b,It shows everyone came like Wei.,,,J,one example taken for every arrival
+s05-X64,Yes is circled.,,,D,a nation moved by force called immigrants
+s05-X64b,"Yes, they immigrated.",,,J,forced arrival called free arrival
+s05-X64c,Only in the past.,,,M,a living nation treated as past
+s05-X65,A boat is circled.,,,E,travel in place of what she wanted
+s05-X65,A hat is circled.,,,K,a choice with no line of the card
+s05-X65b,He came by plane.,,,E,travel in place of what he hopes
+s05-X65b,The same as Anna.,,,L,two different hopes taken for one feeling
+s05-X66,Lin's wish is circled.,,,N,being held taken for part of choosing
+s05-X66b,Lin chose to be held.,,,N,being held taken for part of choosing
+s05-X66b,Lin came by ship and she came by plane.,,,E,travel in place of hopes
+s05-X67,Paragraph 2 is circled.,,,L,two tellers taken for one
+s05-X67b,She expected the city to be beautiful and clean.,,,L,the other teller statement
+s05-X67b,She came by plane.,,,E,travel in place of what she said
+s05-X67c,"Ships then, planes now.",,,E,travel in place of hopes
+s05-X67c,They felt the same.,,,L,different tellers taken for one feeling
+s05-X68,No uniforms is circled.,,,K,a detail only one card says
+s05-X68,Nothing is circled.,,,K,no line pointed to
+s05-X68b,Both say ribbons.,,,K,a shared detail taken for the extra
+s05-X68c,"Yes, it lied.",,,F,leaving out taken for lying
+s05-X69,Three is circled.,,,G,a copy counted as a witness
+s05-X69,One is circled.,,,G,independent tellers not yet met
+s05-X69b,Both are true because I like them.,,,H,a liking taken for a fact
+s05-X71,Three is circled.,,,G,a copy counted as a teller
+s05-X71b,It is the prettiest.,,,H,an opinion taken for a checkable part
+s05-E1,Forced is pointed to.,,,O,a hard but chosen move called forced
+s05-E2,Chosen is pointed to.,,,C,a forced move called chosen
+s05-E3,A ship took them.,,,K,no line of the account named
+s05-E3,I think so.,,,K,no line of the account named
+s05-E4,They wanted to go.,,,C,a forced move called chosen
+s05-E5,An arrow runs from Boston to Europe.,,,I,the route reversed
+s05-E5,An arrow runs from Europe to Hamburg only.,,,I,the ocean crossing and Boston left out
+s05-E6,They flew.,,,K,a way the account does not give
+s05-E7,To find gold.,,,A,a reason the account does not give
+s05-E7,Everyone moves for work.,,,A,one reason taken for all
+s05-E8,Everyone moves for work.,,,A,one reason taken for all
+s05-E9,Seeing new sights is pointed to.,,,K,chosen with no line of the account
+s05-E10,I think so.,,,K,no line of the account named
+s05-E11,The card does not say.,,,K,the maker not read off the card
+s05-E12,"Father met them, so they sailed.",,,B,the chain runs backward
+s05-E13,The visitor card is pointed to.,,,P,a visitor counted as an immigrant
+s05-E13,The born-here card is pointed to.,,,P,a person born here counted as an immigrant
+s05-E14,The born-here card is pointed to.,,,P,a person born here counted as an immigrant
+s05-E14,The visitor card is pointed to.,,,P,a visitor counted as an immigrant
+s05-E15,The Antin card is pointed to.,,,D,an arrival from abroad taken for a nation that was here first
+s05-E16,The Tao card is pointed to.,,,J,a chosen arrival taken for a forced one
+s05-E17,Everyone freely came.,,,J,forced arrival and prior nations erased
+s05-E18,She came by ship.,,,E,travel in place of what she wanted
+s05-E19,She came by plane.,,,E,travel in place of what she wanted; the card does not say how she traveled
+s05-E20,They felt the same.,,,L,two tellers taken for one feeling
+s05-E20,"Ships then, planes now.",,,E,travel in place of wants
+s05-E21,Mary felt excited is pointed to.,,,K,a detail only one card says
+s05-E22,Father met them in Boston is pointed to.,,,K,a shared detail taken for the extra
+s05-E23,Yes is pointed to.,,,G,a retelling taken for a second witness
+s05-E23,Antin B lied.,,,F,leaving out taken for lying
+s05-E24,No is pointed to.,,,G,an eyewitness not recognized
+s05-E25,Antin A with Antin B is pointed to.,,,G,a copy counted as a second teller
+s05-E26,Three tellers wrote them.,,,G,copies counted as witnesses
+s05-E26,Two tellers wrote them.,,,G,copies counted as witnesses
+s05-P58-1,She left North America and arrived in Europe.,,,I,the route reversed
+s05-P58-2,Everyone moves for work.,,,A,one reason treated as the only reason
+s05-P58-2,"Juno moved for a better life, because I think so.",,,K,no line of the card named
+s05-P58-3,Nell: work. Orla: work. Bram: work.,,,A,one reason treated as the only reason
+s05-P58-4,A possible reason is a better life. I think so.,,,K,no line of the card named
+s05-P59-1,Everyone moves for work.,,,A,one reason treated as the only reason
+s05-P59-2,"Wes moved for a better life, because I think so.",,,K,no line of the card named
+s05-P59-4,"Ravi learns at the big school, so they moved.",,,B,the chain runs backward
+s05-P59-5,"Yes, they rode away so they chose.",,,C,a forced move called chosen
+s05-P59-6,"I think a big city, because I like it.",,,K,no line of the card named
+s05-P59-7,"Learns to fish, lake town, cheaper house.",,,B,the chain runs backward
+s05-P59-8,"They live in a camp, so they left.",,,B,the chain runs backward
+s05-P60-2,To sail for fun.,,,K,a wish the card does not give
+s05-P60-3,He worked to buy a boat.,,,K,a detail the card does not give
+s05-P60-4,"a S, b S, c S, d S, e S, f S.",,,C,imposed acts called Smith's choice
+s05-P60-5,I think Smith liked it.,,,K,no line of the card named
+s05-P60-6,"Gym, drive, smoke.",,,B,the chain runs backward
+s05-P60-7,"Both chosen, they rode in a car.",,,C,a forced move called chosen
+s05-P61-1,"They rode on a boat, so they chose.",,,C,a forced move called chosen
+s05-P61-2,"Ming wanted a holiday, I think.",,,K,no line of the card named
+s05-P61-3,The Cherokee Nation is gone.,,,M,a living nation treated as past
+s05-P61-4,The Cherokee people chose to go.,,,C,imposed departure called chosen
+s05-P61-6,Only forced out; it is gone.,,,M,a living nation treated as past
+s05-P61-7,"N, N, O.",,,M,homes today misplaced
+s05-P62-1,The Cherokee are gone.,,,M,a living nation treated as past
+s05-P62-2,"They rode a bus, so both chose.",,,C,travel taken for choosing
+s05-P62-3,A person who visits another country.,,,A,a reason the word does not give
+s05-P62-4,"Safe, another country, fighting.",,,B,the chain runs backward
+s05-P62-5,"Yes, they chose to go.",,,C,unsafe staying called a choice
+s05-P62-6,They wanted to see the west.,,,A,a reason the card does not give
+s05-P62-7,From North America to Europe.,,,I,the route reversed
+s05-P62-8,An arrow runs from North America to Europe.,,,I,the route reversed
+s05-P63-1,An arrow runs from the farm to the sea.,,,I,the route reversed
+s05-P63-2,"They both moved, so both chose.",,,C,moving taken for choosing
+s05-P63-3,They went to see the dry town.,,,A,a reason the card does not give
+s05-P63-4,"No, only citizens belong.",,,x,belonging taken for citizenship alone
+s05-P63-5,They all have to speak and do the same things.,,,x,sharing taken for sameness
+s05-P63-6,Wren is under immigrant.,,,P,a visitor called an immigrant
+s05-P63-7,Starts in North America.,,,I,the route reversed
+s05-P63-8,A person who visits and then goes home.,,,P,a visitor called an immigrant
+s05-P63-9,It is about one family.,,,J,one example taken for the whole phrase
+s05-P64-1,Native people lived long ago and are gone.,,,M,a living nation treated as past
+s05-P64-2,The nation.,,,D,a nation that was here first called an immigrant
+s05-P64-3,Points to the line about where its homeland is.,,,K,a line that does not answer the question
+s05-P64-4,Points to the line about the Trail of Tears.,,,M,an old event taken for the nation today
+s05-P64-5,The Eastern Band came from another country.,,,D,a nation that was here first called newcomers
+s05-P64-6,Neither; both chose.,,,J,forced arrival called free arrival
+s05-P64-7,Everyone chose to come.,,,J,forced arrival called free arrival
+s05-P64-8,Sel is under chose to come.,,,J,forced arrival called free arrival
+s05-P64-8,Eastern Band is under chose to come.,,,D,a nation that was here first called newcomers
+s05-P64-9,Tam is an immigrant.,,,P,a visitor called an immigrant
+s05-P65-1,The nation is only in the past.,,,M,a living nation treated as past
+s05-P65-2,Everyone chose.,,,J,forced arrival called free arrival
+s05-P65-3,"2000, 1950, 1900.",,,x,dates in reverse order
+s05-P65-4,She told it in 1920.,,,x,the move and the telling taken for one date
+s05-P65-5,It is when he was taken.,,,x,the printing date taken for the date of the move
+s05-P65-6,Anna felt: crossed the sea.,,,E,travel in place of what she felt
+s05-P66-1,Both could have stayed.,,,C,unsafe staying called a choice
+s05-P66-2,Dani came by train.,,,E,travel in place of what Dani hoped
+s05-P66-3,Ming wanted a holiday.,,,K,a reason the card does not give
+s05-P66-4,Points to the same place twice.,,,x,the two islands not told apart
+s05-P66-5,"Held, law, aunt.",,,B,the chain runs backward
+s05-P66-6,Kai hoped to be held.,,,N,being held taken for part of choosing
+s05-P66-7,She hoped to be held.,,,N,being held taken for part of choosing
+s05-P66-8,Held in 1984.,,,x,the move and the telling taken for one date
+s05-P67-1,Ria chose to be held.,,,N,being held taken for part of choosing
+s05-P67-2,Everybody felt the same about moving.,,,L,different hopes taken for one feeling
+s05-P67-3,It is what she thinks today.,,,x,a dated account taken for today's view
+s05-P67-4,Both came by boat.,,,E,travel in place of what each said
+s05-P67-4,They felt the same.,,,L,different tellers taken for one feeling
+s05-P68-1,"Wen came by bus, so that is how Wen felt.",,,E,how they traveled taken for how they felt
+s05-P68-2,The card does not say who made it.,,,x,the maker not found on the card
+s05-P68-3,"Account B lied, because it left out the scared.",,,F,leaving out taken for lying
+s05-P68-4,The retelling lied.,,,F,leaving out taken for lying
+s05-P68-5,Dirty streets.,,,K,no card named
+s05-P68-6,Only Anna's card says her mother and aunt met her.,,,x,a shared detail put in the wrong column
+s05-P68-7,They felt the same.,,,L,two hopes taken for one
+s05-P69-1,The short card lied because it left out the books.,,,F,leaving out taken for lying
+s05-P69-2,The flyer to the balloon.,,,G,a copy treated as a teller who saw it
+s05-P69-3,Lee's note and Kit's flyer.,,,G,a copy counted as a second teller
+s05-P69-4,I do not need a card for my claim.,,,K,no card named
+s05-P69-4,It is true because I like the hospital.,,,H,a liking taken for a reason
+s05-P69-5,Everyone moves for work because I think so.,,,K,no card named
+s05-P69-6,I do not need a card for my claim.,,,K,no card named
+s05-P69-7,"Yes, two papers that agree are two witnesses.",,,G,a copy counted as a witness
+s05-P71-1,"Forced, because the road was hard.",,,O,a hard move taken for a forced move
+s05-P71-2,"Chosen, because they packed.",,,C,packing taken for choosing
+s05-P71-3,"Swim, sea, climb.",,,B,the effect put before the reason
+s05-P71-4,The arrow runs from the river city to the mountain.,,,I,the journey run backward
+s05-P71-5,Everyone moves for work.,,,A,one reason taken for every move
+s05-P71-6,All six chose to come.,,,J,everyone taken as freely coming
+s05-P71-7,They felt the same.,,,L,two hopes taken for one
+s05-P71-8,The flyer and the poster saw the whale too.,,,G,copies counted as tellers
+s05-P71-9,The best bridge in town.,,,H,an opinion taken for a checkable part
+s06-X72,The token is on the stew.,,,A,a thing you can hold chosen; culture taken to be only objects
+s06-X72,The token is on the painted tile.,,,A,a thing you can hold chosen; culture taken to be only objects
+s06-X72b,Everyone keeps it the same way.,,,G,a whole group taken to be alike
+s06-X72b,One family's way is better.,,,K,one way of keeping a holiday ranked above another
+s06-X73,The card Why did you come here? is circled.,,,B,the four topics mixed up; a why question taken for a when question
+s06-X73,The card How did you get here? is circled.,,,B,the four topics mixed up; a how question taken for a when question
+s06-X73b,What is your favorite color?,,,D,a question that does not ask about the move
+s06-X73b,How did you get here?,,,B,a different one of the four topics asked
+s06-X74,The note about a big factory is circled.,,,C,a detail the teller never said
+s06-X74,The note about a train is circled.,,,C,a detail changed from what the teller said
+s06-X74b,What is your favorite food?,,,D,a question about something the teller did not say
+s06-X74b,How old are you?,,,D,a question about something the teller did not say
+s06-X75,Where are you from? That is all.,,,B,one question taken to cover all four topics
+s06-X75,A topic a partner already asked is asked again and one topic is left out.,,,B,"a topic repeated, so the four topics are not all covered"
+s06-X75b,Do you like pizza?,,,D,a question that does not follow what the teller said
+s06-X75b,Thank you. (no follow-up asked),,,D,no question asked about the teller's words
+s06-X75c,A detail the teller did not say is written.,,,C,a guessed detail added to the note
+s06-X75c,A guessed year is written where the teller passed.,,,C,a gap filled by guessing
+s06-X76,The skate park card is put at a year on the strip.,,,C,a date the teller never gave is invented
+s06-X76b,The shop card comes first.,,,J,"the cards put in the order they were told, not by year"
+s06-X76c,It tells how everyone felt.,,,I,more taken from the source than it says
+s06-X76c,What is your favorite color?,,,D,"a question, not a limit of the memory"
+s06-X76d,"Three, because three notes and people say it.",,,E,copies counted as people who saw it
+s06-X77,The teapot is circled.,,,A,only things in a bag taken to travel
+s06-X77,The rug is circled.,,,A,only things in a bag taken to travel
+s06-X77,The rolled map is circled.,,,A,only things in a bag taken to travel
+s06-X77b,The folktale came in her bag.,,,A,only things in a bag taken to travel
+s06-X77b,The neighbors already knew it before she came.,,,H,a claim the card does not support
+s06-X77c,The folktale is better than the cooking.,,,K,one practice ranked above another
+s06-X77c,Only the cook has culture; the neighbor just lives there.,,,M,culture seen only in the newcomer
+s06-X78,The token is on card 1.,,,L,the nation passed over; its present-day work not seen
+s06-X78,The token is on card 2.,,,L,the nation passed over; its present-day work not seen
+s06-X78,The token is on card 4.,,,H,a card that shows no group adding anything chosen
+s06-X78b,"Nothing, they just live there.",,,M,the long-time families seen as having no culture to add
+s06-X78c,"The place did not change, only the family did.",,,F,only the newcomers taken to change
+s06-X78c,Nothing changed in Eddyford.,,,F,only the newcomers taken to change
+s06-X79,The token is on the Orsas saying the street's words.,,,F,a change in the newcomers taken for something kept
+s06-X79,The token is on the neighbors singing the new song.,,,F,a change in the place taken for something kept
+s06-X79b,I think everything changed because I like it.,,,H,a claim with no named evidence
+s06-X79b,The Orsa card shows the Orsas were sad.,,,H,a claim the card does not support
+s06-X81,The token is on the neighbors' words.,,,F,the direction of a change mixed up: what the writer learned taken for what was brought
+s06-X81b,What is your favorite color?,,,D,a question that does not ask about the source or the move
+s06-X81b,It shows everyone learned weaving.,,,I,"a claim given in place of a question, more than the source says"
+s06-E1,A place the teller did not say is written.,,,C,an answer invented to fill the box
+s06-E1,No line for where and nothing written.,,,B,the topic where not covered
+s06-E2,A way of traveling the teller did not say is written.,,,C,an answer invented to fill the box
+s06-E2,No line for how and nothing written.,,,B,the topic how not covered
+s06-E3,A reason the teller did not say is written.,,,C,an answer invented to fill the box
+s06-E3,No line for why and nothing written.,,,B,the topic why not covered
+s06-E4,A year the teller did not say is written.,,,C,an answer invented to fill the box
+s06-E4,No line for when and nothing written.,,,B,the topic when not covered
+s06-E5,Where are you from? That is all.,,,B,one question taken to cover all four topics
+s06-E6,A question about something the teller did not say.,,,D,a follow-up that does not follow the teller's words
+s06-E6,No follow-up question recorded.,,,D,no follow-up asked
+s06-E7,The later date is pointed to.,,,J,events put in the wrong order by date
+s06-E7,An event is placed after a later one.,,,J,events put in the wrong order by date
+s06-E8,What is your favorite color?,,,D,a question that does not ask about the source or the move
+s06-E8,Why do people like poems?,,,D,a question that does not ask about the source or the move
+s06-E9,P shows what the children said.,,,I,more taken from the photograph than it shows
+s06-E9,M tells how everyone in the family felt.,,,I,more taken from the memory than it says
+s06-E10,P proves the children spoke English.,,,I,spoken language taken from a photograph
+s06-E10,It can tell us everything.,,,I,no limit of the source named
+s06-E11,The store.,,,A,a place named instead of a part of culture
+s06-E11,A suitcase.,,,A,an object named instead of a part of culture
+s06-E12,The store.,,,A,a place named instead of a part of culture
+s06-E12,A bag or a trunk.,,,A,an object named instead of a part of culture
+s06-E13,A bag and a trunk.,,,A,only objects counted as what people bring
+s06-E14,They did not change.,,,F,one-sided change; the newcomers seen as unchanged
+s06-E15,The place did not change.,,,F,only the newcomers taken to change
+s06-E16,Newcomers only learn from the town and add nothing.,,,F,one-sided change; newcomers seen as adding nothing
+s06-E17,"Nothing, they just live there.",,,M,the long-time families seen as having no culture to add
+s06-E17,Only the newcomers have culture.,,,M,culture seen only in the newcomers
+s06-E18,Native nations are gone.,,,L,a living nation spoken of as past
+s06-E18,Native nations lived long ago.,,,L,a living nation spoken of as past
+s06-E19,The newcomers should decide because their way is better.,,,K,one group's way ranked above the other
+s06-E19,The long-time families should decide because their way is better.,,,K,one group's way ranked above the other
+s06-E20,Moving is good because I say so.,,,H,a claim with no named evidence
+s06-E20,Their old culture was worse.,,,K,one culture ranked above another
+s06-P72-1,Only the pancakes and the mat are put on the chart; the rest are left off.,,,A,only things you can hold taken as culture
+s06-P73-1,Where are you from? That is all.,,,B,one question taken to cover all four topics
+s06-P73-1,How old are you?,,,D,a question that does not ask about the move
+s06-P73-2,Nothing; one question is enough.,,,B,"one question treated as covering where, how, why and when"
+s06-P74-1,A mark is put in a box the visitor did not answer.,,,C,a guessed answer where the visitor said nothing
+s06-P74-2,He said his sister has a big house.,,,C,a detail he never said
+s06-P75-1,The ferry ticket is joined to when.,,,B,the four topics mixed up
+s06-P75-2,How old are you?,,,D,a question that is not about the move
+s06-P76-1,The library card 2022 is put before the mailbox 2010.,,,J,"the cards put in the order they were told, not by year"
+s06-P77-1,A game rhyme can be packed in a bag.,,,A,only things in a bag taken to travel
+s06-P77-2,"Because it had a reading corner, the class moved.",,,x,the chain turned round
+s06-P78-1,Only the new people have songs.,,,M,culture seen only in the newcomers
+s06-P78-2,He did not like long gatherings.,,,H,a reason the card does not give
+s06-P79-1,I think moving is good because I like it.,,,H,a claim with no named evidence
+s06-P79-1,I think the Cherokee language class is better than the garage gatherings.,,,K,one culture ranked above another
+s06-P79-1,"I think only the new family changed, because Mr. Posadas moved.",,,F,change taken for one direction only
+s06-P81-1,Why is missing.,,,x,a declined answer taken for a missing question
+s06-P81-1,Nothing is missing.,,,B,a missing topic not seen
+s06-P81-2,"Keep them, a boat is probably blue.",,,C,a guess kept as the teller said it
+s06-P81-3,The 2012 event goes first.,,,J,the later year placed first
+s06-P81-4,The photograph shows the children were happy and it can tell what they said.,,,I,a feeling or speech taken from a photograph
+s06-P81-4,It shows a market stall; it cannot tell the color of the awning.,,,D,"a limit that is visible in the picture, not a limit of the source"
+s06-P81-5,The writer brought knitting hats.,,,F,what the writer learned taken for what was brought
+s06-P81-5,"A jar, in a bag.",,,A,only things that fit in a bag
+s06-P81-6,I think moving is good because I say so.,,,H,a claim with no named evidence
+s06-P81-6,I think bee keepers are better than knitters.,,,K,one culture ranked above another
+s06-P81-7,Only line 1 has a token.,,,M,culture seen only in the newcomers
+s06-P81-7,Line 3 has no token because the nation was here long ago.,,,L,the nation passed over
+s07-X82,The token is on the flag.,,,A,"a corner flag chosen, which does not ask about land, work or people"
+s07-X82b,I like their flag.,,,A,"a remark about a flag, not a question about land, water, work or people"
+s07-X82b,I only want to see the animals.,,,C,the report is taken to be only animals
+s07-X83,The token is on the pencil question.,,,A,a question with no link to how people live
+s07-X83,The token is on the number question.,,,A,a question with no link to how people live
+s07-X83b,It is a question.,,,A,a question counted as helpful for being a question
+s07-X84,The token is on the visitor's note.,,,B,"chosen for the feeling in it, not for what it can show"
+s07-X84,The token is on the border.,,,B,chosen because it looks nice
+s07-X84b,The nicest picture.,,,B,a picture is taken for the maker
+s07-X84c,The colors.,,,B,a color is taken for a helping part
+s07-X85,The token is on the wavy line.,,,G,"a symbol chosen by how it looks, not by the key"
+s07-X85b,A river is always wavy.,,,G,the key ignored; a looks-like meaning used
+s07-X85c,I just wrote it.,,,H,no source named for the fact
+s07-X86,The token is on the chair.,,,I,the made thing taken for the resource
+s07-X86b,The chair is the resource.,,,I,the made thing taken for the resource
+s07-X87,The token is on everyone.,,,E,one example taken for everyone
+s07-X87b,Everyone there tells stories.,,,E,one example taken for everyone
+s07-X88,The token is on the first card.,,,D,a fact taken for a claim
+s07-X88b,Boats carry vegetables.,,,D,"the fact repeated, with no answer to the question"
+s07-X89,The token is on the border.,,,H,a decoration taken for a source label
+s07-X89b,My country has a flag.,,,D,a fact with no answer to the big question
+s07-X89c,One fact only.,,,D,one fact given for two
+s07-X89d,I watched Mo's screen.,,,F,watching taken for making a digital entry
+s07-X90,The token is on the first panel.,,,D,a title and a drawing taken for an answer
+s07-X90b,My country has a flag.,,,D,a fact with no answer to the big question
+s07-X90c,One fact only.,,,D,one fact given for two
+s07-X90d,I watched Mo's screen.,,,F,watching taken for making a digital entry
+s07-X91,The token is on the paper color question.,,,H,a question that does not ask where a fact came from
+s07-X91,The token is on the talk length question.,,,H,a question that does not ask where a fact came from
+s07-X91b,It asks about the paper.,,,H,attribution not seen as the reason
+s07-X93,The token is on the flower picture.,,,B,chosen because it is the nicest picture
+s07-X93b,People grow pears.,,,D,one fact given as a claim
+s07-E1,The fact is about the animals I like.,,,C,a report of animals only
+s07-E2,The fact names a bowl as the resource.,,,I,a made thing taken for the resource
+s07-E3,Everyone there does this.,,,E,one practice taken for everyone
+s07-E4,The fact has no source named.,,,H,attribution missing
+s07-E5,A symbol is chosen because it looks like water.,,,G,the key ignored
+s07-E6,Only the title is underlined.,,,A,a title taken for a fact; the place named with no link to the questions
+s07-E7,A fish fact is matched to the land and water card.,,,A,the supporting question not linked to the fact
+s07-E8,A fish fact is matched to the people today card.,,,A,the supporting question not linked to the fact
+s07-E9,Both answers are Iceland.,,,A,the place named with no link to the big question
+s07-E10,Postcard P is circled for the picture.,,,B,chosen for color or picture
+s07-E11,The picture is pointed to.,,,B,a picture taken for the maker
+s07-E12,The colors are circled.,,,B,a color taken for a helping part
+s07-E13,The mountain line is underlined.,,,B,"an irrelevant fact, chosen from the wrong source"
+s07-E14,A country title is pointed to.,,,D,a topic title taken for a claim
+s07-E15,One fact is pointed to.,,,D,one fact for two
+s07-E16,I just wrote it.,,,H,attribution missing
+s07-E17,My country is the best.,,,D,a ranking in place of an answer backed by facts
+s07-E18,The page says there is a river.,,,D,the fact repeated with no link to the claim
+s07-E19,I watched Mo's screen.,,,F,watching another child taken for a digital entry
+s07-X88,The token is on card 1.,,,D,a fact taken for a claim
+s07-X90,The token is on panel 1.,,,D,a title and a drawing taken for an answer
+s07-P82-1,It is another question.,,,A,"a question counted as helping for being a question, with no link to how people live"
+s07-P82-2,A drawing of the flag.,,,A,"a flag drawn, which does not ask about land, work or people"
+s07-R83-1,Both help because they are questions.,,,A,a question counted as helpful for being a question
+s07-K83-4,"Yes, every question helps.",,,A,every question taken to help
+s07-P83-1,All six cards are put in helps.,,,A,every question taken to help
+s07-R84-1,Both help because they are questions.,,,A,a question counted as helpful for being a question
+s07-K84-2,I pick the picture sheet because it is pretty.,,,B,a source picked for how it looks
+s07-P84-1,The People Today page because it is pretty.,,,B,"a source picked for how it looks, and it does not fit land and water"
+s07-R85-1,I pick the note because it says lovely.,,,B,a source picked for the feeling in it
+s07-K85-1,The star is a hill because stars are bright.,,,G,"a symbol read by how it looks, not by the key"
+s07-P85-1,"Two facts about animals, no stickers.",,,H,"facts with no source named, and none about land or water"
+s07-R86-1,The token is on the cross.,,,G,"a symbol chosen by how it looks, not by the key"
+s07-R86-2,The notes are left as they are.,,,H,no source named
+s07-R86-3,All six notes are on the animals card.,,,C,the report taken to be only animals
+s07-K86-1,The wall is the resource.,,,I,the made thing taken for the resource
+s07-P86-1,A fact about a flag with no sticker.,,,H,no source named
+s07-R87-1,The loaf is put in from nature.,,,I,a made thing taken for a resource
+s07-K87-1,All three are three tellers.,,,E,a copy counted as another teller
+s07-K87-2,Oakfield is better.,,,E,one practice ranked as the norm
+s07-P87-1,Everyone there speaks one language.,,,E,one example taken for everyone
+s07-R88-1,Yes.,,,D,a view with no reason
+s07-K88-1,The sea matters.,,,D,"the claim repeated, no facts named"
+s07-K88-2,How do people live today?,,,A,the supporting question not linked to the facts
+s07-P88-1,"Here are my facts: rivers, rice, cities.",,,D,a list of facts taken for a claim
+s07-P88-1,Two facts both from the same box with no claim.,,,A,the facts not linked to different supporting questions
+s07-R88-2,Everyone in Marlow does both.,,,E,one practice taken for everyone
+s07-R89-1,A well. A pond. A school.,,,D,a list taken for a claim
+s07-R89-2,The choice is left as it was.,,,B,the written note not used to choose by maker and helping part
+s07-K89-1,The label slot is pointed to.,,,x,the label slot taken for the claim box
+s07-K89-2,A fact box is pointed to.,,,x,a fact box taken for the label slot
+s07-P89-1,"A map only, with no key, and a list of facts.",,,C,a report with parts missing
+s07-P89-1,A fact with no sticker.,,,H,attribution missing
+s07-R90-1,The facts are left without labels.,,,H,attribution missing
+s07-K90-1,I just know it.,,,H,no page named for the fact
+s07-P90-1,My country has a flag.,,,D,a fact with no answer to the big question
+s07-P90-2,The report is left as it was.,,,C,the feedback note not used
+s07-P90-2,A fact still has no label.,,,H,attribution missing
+s07-R91-1,Watching is enough.,,,F,watching taken for a digital entry
+s07-R91-2,Nothing.,,,x,the note card not used
+s07-K91-1,Is it a good report?,,,H,a judgment instead of a question about the source
+s07-P91-1,My country is the best.,,,D,a ranking in place of a claim backed by facts
+s07-R93-1,Nothing.,,,x,the note not used
+s07-P93-1,Nothing is missing.,,,C,a report of animals only taken for a whole report
+s07-P93-2,"Nothing, the fact is true.",,,H,attribution missing
+s07-P93-3,The token is on the flag.,,,G,the key ignored
+s07-P93-4,Both help because they are questions.,,,A,the question not linked to how people live
+s07-P93-5,I pick the note because it says lovely.,,,B,chosen for a feeling word
+s07-P93-6,One fact only.,,,D,one fact given for a claim
+s07-P93-7,I watched Mo's screen.,,,F,watching taken for a digital entry
+s07-P93-8,The mat is the resource.,,,I,a made thing taken for the resource
+s07-P93-9,Everyone goes to the fair.,,,E,one practice taken for everyone
+sc1-E1,The title says who drew it.,,,A,title taken for the maker
+sc1-E2,The round blue mark looks like a pond.,,,B,mark read by its look
+sc1-E3,The shed is west.,,,C,east and west swapped
+sc1-E4,Three paces.,,,D,"lengths counted, not turned into paces"
+sc1-E4,Nine paces.,,,D,lengths and paces added
+sc1-E5,The land is pretty.,,,E,a liking for a use
+sc1-E6,Africa is beside the Arctic water.,,,F,land and water swapped
+sc1-E7,The Atlantic is beside the Pacific number.,,,F,two oceans swapped
+sc1-E8,The Alps lie on North America.,,,G,feature on the wrong continent
+sc1-E9,The Andes lie on Europe.,,,G,feature on the wrong continent
+sc1-E10,You can swim in it.,,,H,a liking for a reason
+sc1-E11,Fennick made it.,,,I,the place taken for the maker
+sc1-E12,A long time ago.,,,J,no date from the note
+sc1-E13,Nothing is written.,,,K,no choice made
+sc1-E14,"Because it is hot, which the card does not say.",,,L,a detail the card does not show
+sc1-E14,Because it is nice.,,,K,a liking for a picture
+sc1-E15,I just know.,,,M,no card named
+sc1-X47,Five is circled.,,,D,"lengths counted, not turned into paces"
+sc1-X47,Eight is circled.,,,D,lengths and paces added
+sc1-X47b,It tells which way is north.,,,C,scale taken for the rose
+sc1-X47c,The first claim is circled.,,,M,a liking with no card
+sc1-X47d,I choose Mossy Row because it is nice.,,,K,a liking for a picture
+sc2-E1,Both say eleven boats.,,,N,a detail only the Notice says taken as in both
+sc2-E2,The Letter says the water reached the second fence post.,,,N,a shared detail taken as only the Letter
+sc2-E3,Both say the second fence post.,,,O,no difference found
+sc2-E3,The Notice is wrong.,,,O,a difference taken as a lie
+sc2-E4,"No, she was told.",,,P,the teller who saw it taken as told
+sc2-E5,"Yes, he wrote it.",,,P,writing taken for seeing
+sc2-E6,They wanted a new school.,,,Q,a cause not on the card
+sc2-E7,The hills got dry.,,,R,a cause named as an effect
+sc2-E8,Dellmouth grew because it is nice.,,,S,a liking with no facts
+sc2-E9,I read it somewhere.,,,T,no card named
+sc2-E10,Dellmouth made them.,,,T,the place taken for the maker
+sc2-E11,Because coffee is tasty.,,,U,a liking for a reason to trade
+sc2-E12,She brought a bicycle.,,,V,a thing not in the memory
+sc2-E13,She was sad.,,,V,a feeling for what it added
+sc2-X96a,A cart is circled.,,,N,a detail only Note 2 says taken as in both
+sc2-X96b,The harbor is good.,,,S,a claim with no detail or card

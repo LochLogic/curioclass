@@ -1,0 +1,1172 @@
+item_id,shown,compute,value,error,note
+s01-R1,Jo was famous.,,,H,"a name or a quality with no action; a place to model before, action and after"
+s01-R1,Jo is nice.,,,H,a quality with no action
+s01-R2,Jo was in charge.,,,H,names the leader and not the change
+s01-R3,Jo is a good leader.,,,H,a title with no action named
+s01-E1,Rae lived by the old bridge.,,,H,"a place or a name, not an action"
+s01-E1,Rae is kind.,,,H,a quality with no action
+s01-E1b,I like old bridges.,,,O,a liking in place of a change
+s01-E2,I like bikes.,,,O,a liking and no other person
+s01-E2b,Because bikes are fun.,,,O,a liking in place of a use
+s01-E2c,North.,,,J,treats a map direction as an opinion
+s01-E2c,Rack.,,,,names a thing and not a word with two readings
+s01-E3,The Indian Ocean is circled as Asia.,,,A,an ocean labelled as a continent
+s01-E3b,Asia is circled as the Indian Ocean.,,,A,a continent labelled as an ocean
+s01-E3c,The globe is bigger.,,,,a size claim that does not name what a flat map must do
+s01-E4,Atlantic.,,,A,an ocean given as the continent
+s01-E4,Northern.,,,A,a hemisphere given as the continent
+s01-E4b,Southern.,,,,places the dot on the wrong side of the equator line
+s01-E4c,Eastern.,,,,places the dot on the wrong side of the prime meridian line
+s01-E5,3C.,,,L,"the number first, then the letter"
+s01-E5,C2.,,,L,the row counted from the north edge
+s01-E5b,Longitude.,,,,the two kinds of line swapped
+s01-E6,M.,,,,the pole and the equator swapped
+s01-E6b,"Yes, the equator is always wet.",,,E,latitude alone decides rain
+s01-E7,The blue square is circled.,,,B,picks the symbol by colour and not by the legend
+s01-E7b,North.,,,C,the top of the page taken as north
+s01-E7c,Two steps.,,,D,a count of bars read as footsteps
+s01-E8,Six steps.,,,D,bars read as footsteps
+s01-E8b,The gate.,,,,names something people made
+s01-E8c,It is the blue one.,,,B,colour taken as the meaning
+s01-E8c,The title.,,,,the title given the legend's job
+s01-E9,The town was founded for the trains.,,,G,a reason the caption does not give
+s01-E9,A railroad boss built it.,,,G,a builder the caption does not name
+s01-E10,"Well on the left, gate on the right.",,,L,positions swapped on the grid
+s01-E10b,Blue and red are the only legend.,,,B,colour alone as the meaning
+s01-E10c,No arrow is drawn.,,,C,direction left to the top of the page
+s01-E10d,A bar marked 5 steps.,,,D,a ground distance read as footsteps
+s01-E11,Missouri.,,,F,the state's own name given as the region
+s01-E11,The Plains.,,,F,a landform given as the region
+s01-E11b,The list with the same colour as our state is circled.,,,B,political-map colour taken as the region
+s01-E12,The Great Lakes.,,,F,a landform given in place of a state
+s01-E12,One touching state and stops.,,,S,one state named when more touch
+s01-E13,Southwest is written on a state.,,,F,a region name used as a state
+s01-E13,Rocky Mountains is written on a state.,,,F,a landform used as a state
+s01-E13,Only Texas and Arizona are labelled.,,,S,some of the four states and then stops
+s01-E14,A bay.,,,F,a cape called a bay
+s01-E14,It is the green one.,,,B,colour in place of the key
+s01-E14b,A cape.,,,F,a bay called a cape
+s01-E14c,Fenmark.,,,F,a state or place name given as a landform
+s01-E14d,A lake.,,,F,a river called a lake
+s01-E15,Everyone came for the water.,,,G,a map feature taken as proof of why everyone came
+s01-E15,"There is a river, a bridge and a hill.",,,P,a list of features with no link
+s01-E16,The rain made it; people did not change anything.,,,Q,the land taken as unchanged by people
+s01-E16,"Pavement, plants, rain.",,,P,a list of features with no action
+s01-E16b,They wanted it to look pretty.,,,,a purpose the card does not give
+s01-E17,The families changed nothing.,,,Q,people shown as making no change
+s01-E17,"Seeds, yard, beds.",,,P,a list of features and no practice
+s01-E17b,"Yard, beds, seeds.",,,P,a list with no link between the practice and the beds
+s01-E18,In 1900 nothing was there.,,,I,an unmarked place taken as empty land
+s01-E18,Everything is new.,,,R,one change taken to end everything before
+s01-E18b,The pond is gone.,,,R,a new feature taken to erase the old one
+s01-E19,The ramp was built for wheelchairs and everyone uses it.,,,G,a reason and a use the sources cannot tell
+s01-E19b,The map and the photograph say it.,,,K,sources named with no detail from either
+s01-E20,My favourite colour.,,,O,an unrelated preference given as a needed fact
+s01-E20b,North.,,,J,a map direction taken as an opinion
+s01-E21,The map proves the town began for the market.,,,G,a map taken to prove the reason
+s01-E21b,A and B prove it.,,,K,sources named with no detail
+s01-E22,Five steps.,,,D,bars read as footsteps
+s01-E24,South.,,,C,the bottom of the page taken as south
+s01-Q1,The red mark is circled.,,,B,a mark picked by colour and not by the legend
+s01-Q1b,Up is north.,,,C,the top of the page taken as north
+s01-Q1c,About 9 steps.,,,D,bars read as footsteps
+s01-Q2,"Entrance A3, pond A1, pavilion C1.",,,L,rows or positions reversed
+s01-Q2b,A key of three colours with no words.,,,B,colour alone as the meaning
+s01-Q2c,No arrow is drawn.,,,C,direction left to chance
+s01-Q2d,A bar marked 15 steps.,,,D,a ground distance read as footsteps
+s01-Q2e,Map.,,,,a title that does not name the place
+s01-Q2f,Features piled in one corner.,,,L,positions not placed by direction and distance
+s01-Q2g,No bar and no arrow.,,,D,scale and direction left off
+s01-Q3,Southern.,,,A,a hemisphere given as a continent
+s01-Q3,Indian Ocean.,,,A,an ocean given as a continent
+s01-Q3b,Northern.,,,A,the two halves swapped
+s01-Q3b,Africa.,,,A,a continent given as a hemisphere
+s01-Q3c,Western.,,,,the two halves swapped
+s01-Q3d,2D.,,,L,"the number first, then the letter"
+s01-Q3e,They get more rain.,,,E,rain given as the reason for warmth
+s01-Q3f,"They are at the same latitude, so they get the same rain.",,,E,same latitude taken as same rain
+s01-Q4,One state is circled as the region.,,,F,a state taken for a region
+s01-Q4b,The Appalachians.,,,F,mountains named as a river
+s01-Q4c,Cape Cod.,,,F,a cape named as a lake
+s01-Q4d,A state line is traced.,,,F,a border taken for a shoreline
+s01-Q4e,Vermont.,,,F,a state named as a mountain range
+s01-Q4f,Cape Cod is a bay.,,,F,a cape called a bay
+s01-Q5,A region name or landform is written on a state.,,,F,a region or landform used as a state
+s01-Q5,Five states are labelled and the rest are left.,,,S,some states named and then stops
+s01-Q6,A different place is circled in each.,,,,the views not matched to one feature
+s01-Q6b,"There is a river, a bridge and a hill.",,,P,a list of features with no link
+s01-Q6b,Everyone came because of the water.,,,G,the map taken to prove why every resident came
+s01-Q7,All Native nations treat the land the same way.,,,N,one nation's practice taken for every nation
+s01-Q7,Native people never change the land.,,,Q,people shown as making no change
+s01-Q7b,The tribe only watched.,,,,the tribe left out of the work
+s01-Q7c,They did nothing.,,,Q,people shown as making no change
+s01-Q8,Nothing was here before the roads.,,,I,a blank place taken as empty land
+s01-Q8b,New roads ended all ways of life.,,,R,a development taken to end everything before
+s01-Q8c,The river was new.,,,R,a change taken to make everything new
+s01-Q8d,The tribe left the river.,,,R,a change taken to end the tribe's ties
+s01-Q8e,Only people in the past lived along the river.,,,M,a nation placed only in the past
+s01-Q8f,Nothing changed.,,,R,a custom shown as unchanged
+s01-Q8g,The parade ended when the bridge came.,,,R,a new development taken to end the custom
+s01-Q9,I like rivers.,,,K,a preference with no detail from a source
+s01-Q9b,P1 only.,,,K,two sources named but evidence from one
+s01-Q9c,P1 says it.,,,K,a title with no detail
+s01-Q9d,P2 says it.,,,K,a title with no detail
+s01-Q10,I do.,,,O,no other person named
+s01-Q10b,I like it.,,,O,a liking and no use
+s01-Q11,North could be south if I want.,,,J,a map direction taken as an opinion
+s01-Q12,What is my favourite colour?,,,O,an unrelated question
+s01-Q12b,We need crayons.,,,O,an unrelated need
+s01-Q12c,Favourite colour.,,,O,an unrelated preference
+s01-Q13,It helps because it helps.,,,O,a question named as a question with no link
+s01-R16,The stream made it; people did not change anything.,,,Q,the land taken as unchanged by people
+s01-R16,"Bridge, stream, people.",,,P,a list with no action
+s01-P16,They wanted food.,,,x,"the purpose given again, not a second effect"
+s01-P16b,Nature made it.,,,Q,a made thing taken as nature's
+s01-P16c,The nation lived here long ago.,,,M,a Native nation placed only in the past
+s01-P16c,All Native nations look after the land this way.,,,N,one nation made to stand for all
+s01-P17,All Native nations do this.,,,N,one nation made to stand for all
+s01-P17,It lived here long ago.,,,M,a Native nation placed only in the past
+s01-P17b,The shop stayed.,,,x,"a thing the card says changed, named as kept"
+s01-P17b,Nothing stayed; it is all new.,,,R,one change taken to end everything before
+s01-P18,Nothing was here before.,,,I,a blank place taken as empty land
+s01-P18,Everything is new now.,,,R,one change taken to end everything before
+s01-P18b,Nothing was here.,,,I,a blank place taken as empty land
+s01-P19,I think people arrive by bus because the map and the photograph say so.,,,K,sources named with no detail from either
+s01-P19,"I think the bus is always late, because people are waiting.",,,G,a claim past what the pair shows
+s01-P20,What is my favourite colour?,,,O,an unrelated question given as a supporting question
+s01-P20b,My favourite food and a pencil.,,,O,unrelated things given as needed facts
+s01-P20c,North.,,,J,a map direction taken as a word with two readings
+s01-P20d,Help could mean whatever I like.,,,J,a reading with nothing to check it against
+s01-P20e,Knowing the map helps because it is a map.,,,K,a source named with no detail
+s01-P21,I like our town.,,,O,an opinion given as the claim
+s01-P21,The maps prove people came here for the river.,,,G,a claim past what the maps show
+s01-P21b,The map says it.,,,K,a title with no detail
+s01-P21c,The early map says nothing was here.,,,I,a blank place taken as empty land
+s01-P21d,The maps tell everything.,,,G,a source taken to show more than it does
+s01-P22,I changed it.,,,x,no real change named
+s02-R1,Sam was the leader.,,,X,a title with no action
+s02-R2,Sam was in charge.,,,X,a title in place of the change
+s02-R3,Sam was a leader.,,,X,a title with no quality or action
+s02-R4,Ren.,,,x,the smaller count taken as the winner
+s02-R5,They are the same.,,,P,a person and a matter not told apart
+s02-R6,"Yes, if that child is the leader.",,,O,extra ballots for a leader
+s02-R7,To finish first.,,,x,speed taken as the shared goal
+s02-R8,Only the leader helps.,,,N,only the leader taken as contributing
+s02-E25,I like buses.,,,W,"a liking, with no affected person or need"
+s02-E25,I do not ride a bus.,,,W,the child own use in place of an affected person
+s02-E25,Only grown-ups who vote care.,,,D,voters taken as the only people a rule reaches
+s02-E26,Nobody else.,,,W,no affected group named
+s02-E26,Only people old enough to vote.,,,D,voters taken as the only people with a say
+s02-E26,I like markets.,,,W,a liking in place of a group
+s02-E26b,Because they like markets.,,,W,a liking in place of a reason tied to the plan
+s02-E27,The mayor tests it.,,,A,one official taken to do every job at every level
+s02-E27,Governments are only for people who vote.,,,D,voters taken as the only people governments serve
+s02-E27,The state is more important.,,,A,"levels ranked by worth, not by the size of the need"
+s02-P26a,I like rules.,,,W,a liking in place of an affected group
+s02-P26b,I like the rule.,,,V,a liking in place of a fact
+s02-P26c,Fair means what I like.,,,V,a liking taken as one of the meanings of fair
+s02-P26c,"Everyone votes, or everyone votes on every rule.",,,x,one meaning said twice
+s02-P26d,It is a good question.,,,W,no link to the big question
+s02-T26,The mayor is for the whole country.,,,A,offices not matched to their places
+s02-T26,The President runs the city.,,,A,one official taken to do every job at every level
+s02-T26b,Voting.,,,x,"an act, not a service"
+s02-T26c,"They cannot, they are new.",,,D,membership taken to belong to voters only
+s02-T26c,"Nothing, they are not voters.",,,D,membership taken to belong to voters only
+s02-T26d,Only voters can help.,,,D,contribution taken to belong to voters only
+s02-T27,Only the United States does.,,,x,one country left without a government
+s02-E28,"Cole, the governor, makes all the laws.",,,A,one official taken to hold every power
+s02-E28,All three make the laws.,,,A,the three jobs not told apart
+s02-E28b,Brynn does.,,,A,lawmaking and carrying out not told apart
+s02-E28b,Tali does.,,,A,carrying out and deciding cases not told apart
+s02-E28c,Cole decides them.,,,A,carrying out and deciding cases not told apart
+s02-E29,Marit is the mayor.,,,B,a mayor-led model taken for every town
+s02-E29,Ezra is the manager.,,,A,the two jobs not told apart
+s02-E29b,She votes on town laws.,,,A,the manager given the council job
+s02-E29b,Both of them make the laws.,,,A,the two jobs not told apart
+s02-E30,Rex is on it.,,,A,a building leader taken for a committee member
+s02-E30b,Rex is the superintendent.,,,A,a building leader taken for the superintendent
+s02-E30b,The committee runs the buses each day.,,,A,policy taken for daily running
+s02-E31,The state spent it.,,,x,collector and spender not told apart
+s02-E31b,"Nothing, the government has its own money.",,,C,provision taken to cost nothing
+s02-E31b,People gave it as a gift.,,,L,tax taken for a voluntary gift
+s02-E32,The visitors vote.,,,K,a person who speaks or watches taken to cast the deciding vote
+s02-E32b,"The council, like the other town.",,,B,one town form taken for every town
+s02-E32b,Everyone who comes votes on every rule.,,,K,a person who speaks or watches taken to cast the deciding vote
+s02-P32a,The mayor makes every rule.,,,B,one model taken for every town
+s02-P32b,The council runs it.,,,A,the two jobs not told apart
+s02-P32c,Only voters can take part.,,,D,voters taken as the only people who take part
+s02-P32d,Both towns do it the same way.,,,B,one model taken for every town
+s02-T32,The red mark.,,,x,"a symbol picked by colour, not the legend"
+s02-E33,Nobody made it; rules were always there.,,,S,a rule taken to have no maker or reason
+s02-E33,The teacher made it because people were bad.,,,S,a rule taken to come from a maker with no problem to answer
+s02-E33b,It protects the music.,,,x,the rule taken to protect the thing it limits
+s02-E34,Each person may talk any time.,,,x,a freedom named in place of a duty
+s02-E34b,Only the leader's.,,,N,only the leader taken to count
+s02-E34c,"Yes, take his turns away for good.",,,M,a right taken as a prize for obeying
+s02-E35,The leaders already know everything.,,,Y,leaders taken to know every need without asking
+s02-E35,Only voters letters count.,,,D,voters taken as the only people who take part
+s02-E36,It is always easy.,,,E,cooperation taken to be always easy
+s02-E36b,People just do not get along.,,,Z,one general difficulty named for every setting
+s02-E36b,"No difficulty, governments are easy.",,,E,cooperation taken to be always easy
+s02-E37,Tuesday's.,,,P,a vote on a matter taken for an election
+s02-E37b,Whether to change the bell schedule.,,,P,a vote on a matter taken for an election
+s02-P34a,The group agreed to be good.,,,x,"a wish, not a rule"
+s02-P34b,Each person's duty is to win.,,,x,a duty not tied to the rule
+s02-P34c,This protects my prize for being good.,,,M,rights taken as prizes for obeying
+s02-P34d,They lose the right.,,,M,rights taken as prizes for obeying
+s02-P36a,It is easy.,,,E,cooperation taken to be always easy
+s02-P36b,It is hard when people do not get along.,,,Z,one general difficulty named for every setting
+s02-P36c,It is hard when people do not get along.,,,Z,one general difficulty named for every setting
+s02-P36d,It is hard when people do not get along.,,,Z,one general difficulty named for every setting
+s02-P36e,It is hard when people do not get along.,,,Z,one general difficulty named for every setting
+s02-P37a,They choose a person.,,,P,a matter vote taken for an election
+s02-P37b,The speakers decide.,,,K,a person who speaks taken to cast the deciding vote
+s02-P37c,They vote on a sign.,,,P,a matter vote taken for an election
+s02-T35,The person was famous.,,,X,a name or a quality in place of an action
+s02-T35b,The person was in charge.,,,X,a name or a title in place of a change
+s02-E38,"I will not say Ben's reason, I agree with Ana.",,,G,refuses to restate because of disagreeing
+s02-E38,Ben is boring.,,,Q,a different view taken to mean a bad person
+s02-E38,Ben's idea is silly.,,,AC,mocking a view in place of restating it
+s02-E38b,Ana's idea is silly.,,,AC,mocking a view in place of giving a reason
+s02-E39,She likes books.,,,x,a liking in place of the experience
+s02-E39b,She cares about the door.,,,x,a place in place of the value
+s02-E39c,A classmate who disagrees does not care about safety.,,,Q,a different view taken to mean a bad person
+s02-E40,"Yes, fair, because Hugo is popular.",,,O,extra ballots for a popular friend
+s02-E40,"Yes, because Hugo's friends asked the loudest.",,,F,the loudest voice taken to count
+s02-E40b,Count it three times for friends.,,,O,extra ballots for a popular friend
+s02-T38,Nobody likes the board.,,,W,a liking that does not link to the question
+s02-T38b,The bigger group takes it.,,,F,the strongest taken to win
+s02-P39a,I want it.,,,W,a liking with no reason
+s02-P39b,My dad says so.,,,x,a source outside the room
+s02-P39c,Mari is wrong.,,,Q,a different view taken to mean a bad person
+s02-P39d,(blank),,,x,no partner mark
+s02-E41,A constitution is a list of rules for kids.,,,H,a constitution taken as a rule list
+s02-E41,The council can do anything because people chose it.,,,AB,a government taken to have no limits
+s02-E42,It protects only people who follow every rule.,,,M,a right taken as a prize for obeying
+s02-E42b,"Yes, you must earn it.",,,M,a right taken as a prize for obeying
+s02-E42c,"Yes, every state wrote the same plan in 1780.",,,R,one state year taken for every state
+s02-E43,"Yes, every government has the same three parts.",,,U,a three-branch template taken for every government
+s02-E43b,They had a government long ago.,,,T,a nation taken as past only
+s02-E43b,The tribe is part of the town.,,,I,a nation taken as a town
+s02-P41a,Congress ignored it.,,,x,the maker taken wrongly
+s02-P41b,Nobody voted on it.,,,AD,a plan taken to have no makers
+s02-P41c,It protects a long recess.,,,x,a different idea named
+s02-P42a,"Every state, 1780.",,,R,one state year taken for every state
+s02-P42b,The governor does everything.,,,A,one leader taken to do every job
+s02-P42c,You must earn the right.,,,M,a right taken as a prize
+s02-P43a,The mayor does all.,,,A,one leader taken to do every job
+s02-P43b,Nobody wrote it; it was always there.,,,AD,a plan taken to have no makers
+s02-P43c,It is a town.,,,I,a nation taken as a town
+s02-T41,A list of class rules.,,,H,a constitution taken as a rule list
+s02-T41b,It collects the trash.,,,x,a service named in place of a branch job
+s02-T42,Makes the laws.,,,A,the three jobs not told apart
+s02-T43,It lists the school rules.,,,H,a constitution taken as a rule list
+s02-E44,The dock has many boards.,,,W,a fact with no link to the question
+s02-E44,"I like the dock, so children should decide.",,,V,a liking in place of a link
+s02-E45,Card A and Card B say it.,,,J,two titles with no details
+s02-E45,"I think the mayor, because I like him.",,,V,a liking in place of a claim
+s02-E46,Everyone who spoke.,,,K,a person who speaks taken to cast the deciding vote
+s02-P44a,What is the best pizza?,,,W,a question that does not link
+s02-P44b,A record.,,,J,a title with no detail
+s02-P44c,It is a good question.,,,W,no link
+s02-P45a,I like the mayor.,,,V,a liking in place of a claim
+s02-P45b,The Local record says it.,,,J,a title with no detail
+s02-P45c,Same as the Local record.,,,J,a title with no detail
+s02-F48a,The mayor decided everything.,,,A,one official taken to do every job
+s02-F48b,The rink pays itself.,,,C,a service taken to cost nothing
+s02-F48c,"Yes, only grown-ups should take part.",,,D,only some people taken to count
+s02-F48d,Only grown-ups can take part.,,,D,only some people taken to count
+s02-F48e,The loudest name wins.,,,F,the loudest voice taken to count
+s02-F48f,The loudest name wins.,,,F,the loudest voice taken to count
+s02-F48g,The club can do anything it wants.,,,AB,a government taken to have no limits
+s02-F48h,The club has no limits.,,,AB,a government taken to have no limits
+s02-Q1,To tell everyone what to like.,,,x,a liking in place of a purpose
+s02-Q1b,Every official does the same job.,,,A,officials not told apart
+s02-Q1c,Every official does the same job.,,,A,officials not told apart
+s02-Q1d,Only voters can take part.,,,D,voters taken as the only people who take part
+s02-Q2,Every leader makes any law anywhere.,,,A,every leader taken to have the same power
+s02-Q2b,The judges.,,,A,carrying out and deciding cases not told apart
+s02-Q2c,The council.,,,A,lawmaking and deciding not told apart
+s02-Q2d,The mayor leads the country.,,,A,levels not told apart
+s02-Q3,It costs nothing.,,,C,a service taken to cost nothing
+s02-Q3b,People gave a gift.,,,L,tax or fee taken for a gift
+s02-Q3c,Nobody; it is free.,,,C,a service taken to cost nothing
+s02-Q4,Laws have always existed.,,,S,a rule taken to have no maker
+s02-Q4b,The teacher made it because people were bad.,,,S,a rule taken to have no problem behind it
+s02-Q4c,It protects the carts.,,,x,the rule taken to protect the thing it limits
+s02-Q5,Leaders already know every need.,,,Y,leaders taken to know every need without asking
+s02-Q5b,Children can do nothing.,,,D,only voters taken as the people who take part
+s02-Q6,Every state adopted it in 1780.,,,R,one state year taken for every state
+s02-Q6b,You must earn the right.,,,M,a right taken as a prize for obeying
+s02-Q7,The governor does everything.,,,A,one leader taken to do every job
+s02-Q7b,Nobody wrote it; it was always there.,,,AD,a plan taken to have no makers
+s02-Q8,My favourite person should decide.,,,V,a liking in place of evidence
+s02-Q8b,"Local record, Class record.",,,J,two titles with no details
+s02-Q9,A right is a prize for obeying.,,,M,a right taken as a prize
+s02-Q10,One pair for every setting.,,,Z,one pair for all five
+s02-Q11,Elections and issue votes are the same.,,,P,vote kinds not told apart
+s02-Q12,That idea is silly.,,,AC,mocking a view
+s02-Q13,We voted at once.,,,AA,voting with no reasons heard
+s02-Q14,A different view means a bad person.,,,Q,a view taken to mean a bad person
+s02-Q15,Nobody wrote it; it was always there.,,,AD,a plan taken to have no makers
+s02-Q16,A tribal nation is a town.,,,I,a nation taken as a town
+s02-Q17,I like rules.,,,W,a liking with no link
+s02-Q18,Whatever I like.,,,V,a liking in place of two readings
+s02-Q19,"Both are questions, no link.",,,W,no link
+s02-E29b,She is called the manager.,,,X,a title in place of the job
+s02-E26c,Nobody made it; rules were always there.,,,S,a rule taken to have no maker or reason
+s02-E26c,Because the park likes being strict.,,,x,a liking in place of a reason tied to the rule
+s02-P25a,I like dogs.,,,W,a liking in place of a need
+s02-P25a,Only voters need the path.,,,D,voters taken as the only people a rule reaches
+s02-P25b,I like pizza.,,,W,an unrelated answer to a question about who decides
+s02-P26e,Safe.,,,x,the safety reason in place of the settle reason
+s02-P26f,Danger.,,,x,a word that does not name what the rule protects
+s02-P26g,I like this way better.,,,V,a liking taken as a good thing
+s02-P26h,Nothing is hard.,,,x,no hard thing named
+s02-P26i,I like this way better.,,,V,a liking taken as a good thing
+s02-P26j,Nothing is hard.,,,x,no hard thing named
+s02-P27a,Power.,,,x,a duty (must) taken for a power (may)
+s02-P27b,Duty.,,,x,a power (may) taken for a duty (must)
+s02-P27c,The country.,,,A,one level taken to look after every need
+s02-P27d,The state.,,,A,one level taken to look after every need
+s02-P27e,The town.,,,A,one level taken to look after every need
+s02-P27f,The mayor.,,,A,one official taken to do every job at every level
+s02-P27g,Because there is a town hall.,,,x,a government taken to be a building
+s02-P27g,Only voters need one.,,,D,voters taken as the only people governments serve
+s02-P28a,It carries out the laws.,,,A,lawmaking and carrying out not told apart
+s02-P28a,It decides cases.,,,A,lawmaking and deciding cases not told apart
+s02-P28b,It makes the laws.,,,A,carrying out and lawmaking not told apart
+s02-P28b,It decides cases.,,,A,carrying out and deciding cases not told apart
+s02-P28c,"Yes, Congress does every job.",,,A,one body taken to hold every job
+s02-P28d,It carries out laws.,,,A,lawmaking and carrying out not told apart
+s02-P28e,It makes laws.,,,A,deciding cases and lawmaking not told apart
+s02-P28f,The Nation is a town.,,,I,a tribal nation taken for a town
+s02-P28f,The Nation used to have a government.,,,T,a nation taken to exist only in the past
+s02-P29a,The mayor makes every rule.,,,B,one model taken for every town
+s02-P29b,The council runs it.,,,A,the two jobs not told apart
+s02-P29c,The Town Meeting runs it.,,,A,the two jobs not told apart
+s02-P29d,Select Board and Town Meeting.,,,B,one form taken for another
+s02-P29e,Mayor and council.,,,B,one form taken for another
+s02-P29f,"Yes, every town has a mayor and a council.",,,B,one model taken for every town
+s02-P29g,Elected.,,,x,chosen to do a job taken for chosen by voters
+s02-P30a,The committee's.,,,A,a building leader and the committee not told apart
+s02-P30a,The teacher's.,,,A,a classroom decision taken for a whole-building one
+s02-P30b,The teacher's.,,,A,a classroom decision taken for a district one
+s02-P30b,The principal's.,,,A,a building leader taken for the district
+s02-P30c,The committee drives the buses.,,,A,policy taken for daily running
+s02-P30d,The superintendent votes on policy.,,,A,daily running taken for policy
+s02-P30f,Voters elect one.,,,x,hired taken for elected
+s02-P30h,The superintendent.,,,A,policy taken for daily running
+s02-P31a,It costs nothing.,,,C,provision taken to cost nothing
+s02-P31b,Tax.,,,x,a fee for one service taken for a tax
+s02-P31c,Fee.,,,x,a tax paid by many taken for a fee
+s02-P31d,"Yes, people give it freely.",,,L,tax taken for a voluntary gift
+s02-P31e,The street sweeper.,,,C,payers and workers not told apart
+s02-P31f,The street sweeper.,,,x,collector and worker not told apart
+s02-P31g,Nobody spends it.,,,C,provision taken to cost nothing
+s02-P33a,It was always there.,,,S,a rule taken to have no maker or reason
+s02-P33b,Nobody made it.,,,S,a rule taken to have no maker
+s02-P33d,It protects the bicycles.,,,x,the rule taken to protect the thing it limits
+s02-P33e,They can never use the hall again.,,,M,a right taken away for a broken rule
+s02-P34e,Win a prize.,,,x,a duty not tied to the rule
+s02-P34f,This protects my prize.,,,M,rights taken as prizes for obeying
+s02-P35b,Hollis was nice.,,,X,a quality in place of an action
+s02-P35e,"Nothing, only voters can.",,,D,only voters taken to take part
+s02-P35f,Nothing changed.,,,Y,leaders taken to know the need without hearing it
+s02-P38a,Make Sam stay in at recess.,,,x,a punishment aimed at one child in place of a class choice
+s02-P40a,Mari is wrong.,,,Q,a different view taken to mean a bad person
+s02-P40b,I just want it.,,,W,a liking with no reason
+s02-P40c,(blank),,,x,no partner mark
+s02-E43c,Congress.,,,x,the lawmaking part taken for the leader
+s02-R9c,Nothing; Jo can have both.,,,x,both things taken as bought
+s02-R9c,Everything else.,,,x,giving up taken as every other thing
+s02-R10,The money is gone.,,,x,saving taken as money disappearing
+s02-R10b,A bank only gives gifts.,,,x,a bank taken as only giving gifts
+s03-E49,Only the patients.,,,T,only the people directly served are named; no other affected group
+s03-E49b,Because I like clinics.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P49a,Nobody.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P49b,Only the principal.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P49c,An arrow from the pupil to the office.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P49d,Nobody made it.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P49e,I need to know.,,,T,only the people directly served are named; no other affected group
+s03-P49f,What is your favorite color?,,,x,an answer that misses the point of the item (no register letter fits)
+s03-E50,"The plumber, because people pay.",,,V,a good and a service taken as the same kind of output
+s03-E50b,Both are goods.,,,V,a good and a service taken as the same kind of output
+s03-P50a,What is the best snack?,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P50b,It is a good question.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P50c,Needs means needs.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P50d,I like it.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P50e,A good.,,,V,a good and a service taken as the same kind of output
+s03-P50f,The boat.,,,U,manufactured equipment taken for a natural resource
+s03-E51,The water.,,,A,equipment confused with money
+s03-E51b,"The wrench, because it is metal.",,,U,manufactured equipment taken for a natural resource
+s03-E51c,The wrench.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P51a,Flour is natural.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P51b,The coin.,,,A,equipment confused with money
+s03-P51c,Capital.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P51d,Natural.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P51e,Natural.,,,U,manufactured equipment taken for a natural resource
+s03-E52,The repair shop.,,,S,division of labor and specialization taken as the same
+s03-E52b,The workshop.,,,S,division of labor and specialization taken as the same
+s03-P52a,Nothing.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P52b,Everything.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P52c,The whole street.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-E53,Money makes the boots free.,,,B,money taken to mean nobody gives anything up
+s03-E53b,"Yes, it disappeared.",,,AD,saved money taken to be gone
+s03-P53a,They were all slow.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P53b,Nobody pays.,,,B,money taken to mean nobody gives anything up
+s03-P53c,Money is nice.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P53d,"In $0, Out $20.",,,AD,saved money taken to be gone
+s03-E54,"The stew, because it sells for $12.",,,M,the highest sale price taken to give the best result
+s03-E54b,$12.,,,F,sales taken as profit; costs left out
+s03-P54a,$6.,,,F,sales taken as profit; costs left out
+s03-P54b,$13.,,,F,sales taken as profit; costs left out
+s03-P54c,A seller likes it.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P54d,Nothing.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P54e,She started a school.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P54f,Nothing changed.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-E55,A good.,,,V,a good and a service taken as the same kind of output
+s03-E55b,The skill.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P55a,A business.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P55b,Money.,,,A,equipment confused with money
+s03-P55c,She will.,,,E,an incentive taken to guarantee what people do
+s03-E56,It costs $6.,,,D,the money price taken as the opportunity cost
+s03-E56b,"Nothing, she can do both.",,,Y,limited time or money taken to allow every option
+s03-E56c,She is lazy.,,,C,scarcity taken as laziness
+s03-P56a,Five counters.,,,D,the money price taken as the opportunity cost
+s03-P56b,The bird feeder.,,,D,the money price taken as the opportunity cost
+s03-P56c,Five counters.,,,D,the money price taken as the opportunity cost
+s03-P56d,Yes.,,,C,scarcity taken as laziness
+s03-E57,"The shelf, the plant and the lamp.",,,Z,every rejected choice taken as the opportunity cost
+s03-E57b,The shelf costs the most.,,,D,the money price taken as the opportunity cost
+s03-P57a,I gave up all the rest.,,,Z,every rejected choice taken as the opportunity cost
+s03-P57b,The cost is money.,,,D,the money price taken as the opportunity cost
+s03-P57c,Kept $20.,,,AD,saved money taken to be gone
+s03-P57d,It disappeared.,,,AD,saved money taken to be gone
+s03-E58,The free paddle.,,,Q,a reward and a penalty mixed up
+s03-E58b,It makes every renter come back.,,,E,an incentive taken to guarantee what people do
+s03-P58a,Penalty.,,,Q,a reward and a penalty mixed up
+s03-P58b,Reward.,,,Q,a reward and a penalty mixed up
+s03-P58c,It makes everyone obey.,,,E,an incentive taken to guarantee what people do
+s03-P58d,They are the same.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-E59,The bank.,,,W,a credit union taken to belong to someone other than its members
+s03-E59b,It keeps your savings for you.,,,AA,insurance taken as a savings account
+s03-E59c,It gives it away as gifts.,,,G,a bank taken to give only gifts
+s03-P59a,It gives gifts.,,,G,a bank taken to give only gifts
+s03-P59b,It is the same.,,,W,a credit union taken to belong to someone other than its members
+s03-P59c,Everything to the bank.,,,AA,insurance taken as a savings account
+s03-P59d,"Yes, all losses.",,,N,insurance taken to cover every loss
+s03-E60,Bank Oak.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-E60b,$103.,,,H,the whole balance taken as the interest
+s03-E60c,A free gift from the bank.,,,AB,interest taken as a free gift with no payer
+s03-P60a,She pays $106 as interest.,,,H,the whole balance taken as the interest
+s03-P60b,$3.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P60c,$105.,,,H,the whole balance taken as the interest
+s03-P60d,Nobody pays.,,,AB,interest taken as a free gift with no payer
+s03-E61,The arrow goes the other way.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-E61b,Now nobody here works.,,,I,trade taken to end local work
+s03-P61a,For fun.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P61b,A label.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P61c,The map is big.,,,K,no detail from the source; a liking or a title only
+s03-P61d,Made here.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P61e,Kept $20.,,,AD,saved money taken to be gone
+s03-E62,The beans.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-E62b,The grower stops growing.,,,I,trade taken to end local work
+s03-P62a,Only the grower.,,,P,an arrow taken to explain dependence by itself
+s03-P62b,The same way as the limes.,,,P,an arrow taken to explain dependence by itself
+s03-P62c,Nothing.,,,P,an arrow taken to explain dependence by itself
+s03-P62d,"Yes, everyone stops.",,,I,trade taken to end local work
+s03-P62e,Sellers can charge any price.,,,M,the highest sale price taken to give the best result
+s03-E63,Shape B.,,,R,today's Ghana and the old empire of the same name merged
+s03-E63b,It has the same name.,,,R,today's Ghana and the old empire of the same name merged
+s03-E63c,All traders buy peppers.,,,J,one source or market taken to speak for everyone
+s03-P63a,Nothing.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P63b,Everyone in Ghana.,,,J,one source or market taken to speak for everyone
+s03-P63c,The Record is nice.,,,K,no detail from the source; a liking or a title only
+s03-P63d,It says everything.,,,J,one source or market taken to speak for everyone
+s03-E64,Both are markets.,,,K,no detail from the source; a liking or a title only
+s03-E64,All markets have covered stalls.,,,J,one source or market taken to speak for everyone
+s03-P64a,Both are places.,,,K,no detail from the source; a liking or a title only
+s03-P64b,They are the same.,,,K,no detail from the source; a liking or a title only
+s03-P64c,It tells everything.,,,J,one source or market taken to speak for everyone
+s03-P64d,I like fish.,,,K,no detail from the source; a liking or a title only
+s03-E65,Both are places.,,,K,no detail from the source; a liking or a title only
+s03-P65a,I like our town.,,,K,no detail from the source; a liking or a title only
+s03-P65b,The record says it.,,,K,no detail from the source; a liking or a title only
+s03-P65c,The same as the first.,,,K,no detail from the source; a liking or a title only
+s03-P65d,Nothing.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P66a,Kept $15.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P66b,Bank Reed.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-P66c,$108.,,,H,the whole balance taken as the interest
+s03-P66d,$108 is the interest.,,,H,the whole balance taken as the interest
+s03-P66e,Kept $20.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-Q1,It costs $28.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-Q1b,Everything else in the shop.,,,Z,every rejected choice taken as the opportunity cost
+s03-Q1c,Lee can buy both.,,,Y,limited time or money taken to allow every option
+s03-Q1c,Lee is lazy.,,,C,scarcity taken as laziness
+s03-Q1c,There is no wood anywhere.,,,X,a claim that no resource exists anywhere
+s03-Q2,The $2 fee.,,,Q,a reward and a penalty mixed up
+s03-Q2b,The $3 off.,,,Q,a reward and a penalty mixed up
+s03-Q2c,It makes every buyer collect on time.,,,E,an incentive taken to guarantee what people do
+s03-Q3,Capital.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-Q3,"Only benches need resources, repairs do not.",,,L,services taken to need no resources
+s03-Q3b,Natural.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-Q3c,Money.,,,A,equipment confused with money
+s03-Q4,Money means nobody gives anything up.,,,B,money taken to mean nobody gives anything up
+s03-Q5,$25.,,,F,sales taken as profit; costs left out
+s03-Q5b,$10.,,,F,sales taken as profit; costs left out
+s03-Q5c,"Lee must make benches, because $25 is the highest price.",,,M,the highest sale price taken to give the best result
+s03-Q6,"A bank, because the bank owns it.",,,W,a credit union taken to belong to someone other than its members
+s03-Q6,The bank gives gifts to savers.,,,G,a bank taken to give only gifts
+s03-Q6b,Insurance.,,,AA,insurance taken as a savings account
+s03-Q6c,A savings jar.,,,AA,insurance taken as a savings account
+s03-Q6d,It covers every loss.,,,N,insurance taken to cover every loss
+s03-Q7,An arrow.,,,P,an arrow taken to explain dependence by itself
+s03-Q7b,Nothing.,,,x,an answer that misses the point of the item (no register letter fits)
+s03-Q7c,The arrow shows it.,,,P,an arrow taken to explain dependence by itself
+s03-Q8,I like workshops.,,,K,no detail from the source; a liking or a title only
+s03-Q8b,Packet A.,,,K,no detail from the source; a liking or a title only
+s03-Q8c,Packet B.,,,K,no detail from the source; a liking or a title only
+s03-Q8,Everyone in Ghana gets what they need this way.,,,J,one source or market taken to speak for everyone
+s03-Q9c,$108 is the interest.,,,H,the whole balance taken as the interest
+s03-Q9b,Moss pays more; the time does not matter.,,,O,years or amounts not held equal when comparing offers
+s03-Q9c,Interest is a gift from the bank.,,,AB,interest taken as a free gift with no payer
+s03-Q10,Only the patients.,,,T,only the people directly served are named; no other affected group
+s03-Q11,Every price is opinion.,,,AC,a checkable fact taken as only opinion
+s03-F68a,Nothing.,,,Y,limited time or money taken to allow every option
+s03-F68b,The $2 charge.,,,Q,a reward and a penalty mixed up
+s03-F68c,The weaver's coins.,,,A,equipment confused with money
+s03-F68d,Money makes it free.,,,B,money taken to mean nobody gives anything up
+s03-F68e,The lantern earns $11 and the chime $7.,,,F,sales taken as profit; costs left out
+s03-F68f,A bank gives gifts.,,,G,a bank taken to give only gifts
+s03-F68g,An arrow shows it.,,,P,an arrow taken to explain dependence by itself
+s03-F68h,Both are places.,,,K,no detail from the source; a liking or a title only
+s03-F68i,$109.,,,H,the whole balance taken as the interest
+s03-F68j,Only walkers.,,,T,only the people directly served are named; no other affected group
+s03-F68k,Too much.,,,AC,a checkable fact taken as only opinion
+s03-Q9,Bank Reed.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P72a,Bay Town and Dry Hill.,,,x,"a pair matched by being towns or by a shape, not by the rain clue"
+s04-P72b,They are both on the map.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P72c,What is the best place?,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P72d,It is a good question.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P72e,Shaped means shaped.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P72f,I like it.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-E72,Only our teacher.,,,R,only the teacher is named; no other group needs the answer
+s04-E72,"Nobody, the nation is gone.",,,K,"the nation is taken to be gone, so no one needs the answer"
+s04-E72b,Only the teacher needs to know.,,,R,the teacher alone is named again
+s04-E72b,"The nation is gone, so they do not.",,,K,the nation is taken to be gone
+s04-P73a,The pots made them.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P73b,Next week.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P73c,Whose seeds sprouted.,,,x,a detail neither record gives
+s04-P73d,Is it pretty?,,,Q,"a question about looks alone, not about the past"
+s04-E73,"Record 2, the history.",,,x,the later history chosen as primary
+s04-E73b,Because it is older.,,,D,age taken as the reason for primary
+s04-E73b,Because it must be right.,,,M,primary taken to mean always true
+s04-P74e,Which card is prettiest?,,,Q,a question about looks alone
+s04-E74,"The weather book, it looks oldest.",,,D,looks and age taken as the reason
+s04-E74b,A firsthand note is always right.,,,M,primary taken to mean always true
+s04-P75a,The state.,,,B,a state taken to be the homeland
+s04-P75b,Maine.,,,A,a state name given for a nation
+s04-P75b,Cherokee.,,,S,a worked nation from far away named for a regional one
+s04-P75c,Rhode Island.,,,A,a state name given for a nation
+s04-P75d,Massachusetts.,,,A,a state name given for a nation
+s04-E75a,"Maine, Rhode Island and Massachusetts.",,,A,state names given for nations
+s04-E75b,An X on all the shaded area.,,,T,the whole shaded park taken as the town hall
+s04-P76a,The longhouse.,,,L,"a thing listed, not the physical feature"
+s04-P76b,There is a shore.,,,L,a feature listed with no practice
+s04-P76c,Only for fun.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P76d,The river decided where they lived.,,,C,the feature alone taken to decide the place
+s04-E76,The river decided where they live.,,,C,the feature alone taken to decide the place
+s04-E76,Every nation uses canoes the same way.,,,J,one village taken for every nation
+s04-E76,There is a river there.,,,L,a feature listed with no connection
+s04-P77a,The river decided everything.,,,C,the feature alone taken to decide the place
+s04-P77b,The Penobscot Nation lived here long ago.,,,K,a present nation written as past only
+s04-P77c,It says everything.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-E77,There is a stream with fish.,,,L,a feature listed with no connection
+s04-E77,The stream alone decided where the Nation works.,,,C,the feature alone taken to decide the place
+s04-E77,"The Nation fished here long ago, and that is all.",,,K,the work taken to be past only
+s04-E77b,Long ago.,,,K,the work taken to be past only
+s04-P78a,"Georgia, the homeland.",,,T,the homeland taken to be the lands held today
+s04-P78b,"Nowhere, they all left.",,,P,everyone taken to have left the homeland
+s04-P78c,A mark on the square.,,,T,the lands held today taken to be the whole homeland
+s04-P78d,The Cherokee people chose to leave.,,,I,forced removal taken as a choice
+s04-E78,Everyone chose to leave.,,,I,forced removal taken as a choice
+s04-E78b,"Yes, every family left.",,,P,everyone taken to have left the homeland
+s04-P79a,The whole Midwest is Menominee.,,,J,one nation taken for its whole region
+s04-P79b,Florida.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P79c,They lived by a big lake.,,,x,"a feature the card never names, made up"
+s04-E79,Every Midwest nation lives the same way.,,,J,one nation taken for its whole region
+s04-E79,The lake decided where all Menominee people lived.,,,C,the feature alone taken to decide the place
+s04-E79b,"Yes, all Menominee people lived there.",,,J,one lake taken for where all the people lived
+s04-P80a,A mountain.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P80b,"Nothing, there is water.",,,L,a feature listed with no practice
+s04-P80c,The river alone decided it.,,,C,the feature alone taken to decide the place
+s04-P80d,At a town department.,,,F,a tribal government taken for a town department
+s04-E80,"Colorado, Arizona and Texas.",,,x,states named that the passage does not give
+s04-E80b,"Yes, the state edges are the homeland edges.",,,B,the state border taken as the homeland edge
+s04-P81a,A canoe.,,,L,"a thing listed, not the feature"
+s04-P81b,There is a shore.,,,L,a feature listed with no practice
+s04-P81c,Nothing is missing.,,,C,the feature alone taken to decide the place
+s04-E81,The bay alone decided it.,,,C,the feature alone taken to decide the place
+s04-E81,Every group lives by a bay.,,,J,one case taken for every group
+s04-E81b,There is a bay.,,,L,a feature listed with no practice
+s04-P82a,There is a shore.,,,L,a feature listed with no practice
+s04-P82b,There is a river.,,,L,a feature listed with no practice
+s04-P82c,All nations lived the same way.,,,J,one nation taken for every nation
+s04-P82d,"Yes, Cherokee, Navajo and Menominee are our region.",,,S,worked nations taken for the regional ones
+s04-E82,There is clay.,,,L,a feature listed with no practice
+s04-E82,The land alone decided everything.,,,C,the feature alone taken to decide the place
+s04-E82b,There is grass.,,,L,a feature listed with no practice
+s04-E82b,The grass alone decided everything.,,,C,the feature alone taken to decide the place
+s04-P83a,She gives the same things as every nation.,,,G,"a contribution not on the page, or one taken as every nation's"
+s04-P83b,"Food, any nation.",,,G,contributions treated as belonging to every nation
+s04-P83c,A craft made by everyone.,,,G,contributions treated as belonging to every nation
+s04-P83d,Native peoples gave nothing useful.,,,U,contributions denied
+s04-P83e,They shared it long ago.,,,O,a contribution taken to be past only
+s04-P83f,I like it.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-E83,All nations shared the same things.,,,G,contributions treated as belonging to every nation
+s04-E83,"Native peoples shared nothing, so no source.",,,U,contributions denied
+s04-E83,"They shared names long ago, and that is all.",,,O,a contribution taken to be past only
+s04-E83b,A book.,,,G,no source named from the card
+s04-P84a,A club that a town runs.,,,F,a tribal government taken for a club or town department
+s04-P84b,A town manager.,,,F,a tribal government taken for a town department
+s04-P84c,Only the town.,,,F,a tribal government taken for a town department
+s04-P84d,It is a department of the town.,,,F,a tribal government taken for a town department
+s04-E84,It is a department of the town or state.,,,F,a tribal government taken for a town department
+s04-E84b,"Yes, a law changed.",,,x,a claim the notice does not support
+s04-P85a,Which page is prettier?,,,Q,a question about looks alone
+s04-P85b,"Two copies agree, so it is proved.",,,x,two copies of one account taken for independent confirmation
+s04-P85c,They tell the same.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P85d,"No, two copies of one account.",,,x,two copies of one account taken for independent confirmation
+s04-P85e,They all happened on one day.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-E85,Which picture is prettier?,,,Q,a question about looks alone
+s04-E85,"I asked why, so I know why.",,,E,asking taken as corroborating without comparing the evidence
+s04-E85b,"The note came first, because it counts more boats.",,,x,the note taken as earlier because it holds more boats
+s04-P86a,Nation.,,,x,a word with only one reading
+s04-P86b,It means what it means.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P86c,I like it.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P86d,The cards prove my answer.,,,H,a claim with no detail from either record
+s04-P86e,Both details are from the River card.,,,V,two details from one source counted as two sources
+s04-P86f,You are wrong.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-P86g,I think it because the cards show it.,,,H,"titles only, no detail"
+s04-P86h,Nothing.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-E86,The map and the account prove my answer.,,,H,a claim with no detail
+s04-E86,Rivers are nice.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-E86b,Card A is a map.,,,H,"a title only, no detail"
+s04-P86i,Another detail from card A.,,,V,two details from one source counted as two sources
+s04-P87a,Only the teacher needs to know.,,,R,only the teacher is named; no other group needs the answer
+s04-P87b,"Maine, Rhode Island, Massachusetts.",,,A,state names given for nations
+s04-P87c,"Primary, because it is old.",,,D,age taken as the reason for primary
+s04-P87d,There is a shore.,,,L,a feature listed with no practice
+s04-P87e,"Corn, from every nation.",,,G,contributions treated as belonging to every nation
+s04-E87,The markers are the whole homeland.,,,T,present markers taken to be the whole homeland
+s04-E87b,The three markers.,,,T,present markers taken to be the whole homeland
+s04-Q1,They are all alike.,,,J,nations taken to be the same
+s04-Q1,Both are gone.,,,K,nations taken to be gone
+s04-Q1b,The town runs it.,,,F,a tribal government taken for a town department
+s04-Q2,"Maine, Rhode Island and Massachusetts.",,,A,state names given for nations
+s04-Q2,"Cherokee, Navajo and Maine.",,,S,far-away worked nations given for regional ones
+s04-Q3,The state border.,,,B,the state border taken as the homeland edge
+s04-Q3b,All the shading around the bay.,,,T,today's place taken to cover the whole homeland
+s04-Q4,Winter.,,,x,a season the record does not give
+s04-Q4b,There is a creek.,,,L,a feature listed with no activity
+s04-Q4b,Only the creek decided.,,,C,the feature alone taken to decide the place
+s04-Q5,Native peoples gave nothing useful.,,,U,contributions denied
+s04-Q5,"Corn and beans, from every nation.",,,G,contributions treated as belonging to every nation with no source
+s04-Q5b,A book.,,,G,no source named from the packet
+s04-Q6,Far inland.,,,x,a place the record does not give
+s04-Q6b,There is a creek.,,,L,resources listed with no explanation
+s04-Q6b,The creek alone decided.,,,C,the feature alone taken to decide the place
+s04-Q7,How neat is the handwriting?,,,Q,a question about looks alone
+s04-Q7b,Secondary.,,,x,the wrong kind named for a record made for the agreement
+s04-Q7c,Because it is old.,,,D,age taken as the reason for primary
+s04-Q7c,Because it must be true.,,,M,primary taken to mean always true
+s04-Q7d,Which page looks nicer?,,,Q,a question about looks alone
+s04-Q7e,"Primary, because it is online.",,,D,format taken as the reason for primary
+s04-Q7f,Because it is long.,,,x,an answer that misses the point of the item (no register letter fits)
+s04-Q8,A and B prove my answer.,,,H,a claim with no relevant detail
+s04-Q8b,The title of A.,,,H,"a title only, no detail"
+s04-Q8c,A second detail from A.,,,V,two details from one source counted as two sources
+s04-Q9,Only the teacher.,,,R,only the teacher is named; no other group needs the answer
+s04-Q9b,Only the teacher needs to know.,,,R,only the teacher is named again
+s04-F89a,They are all alike.,,,J,nations taken to be the same
+s04-F89a,Both are gone.,,,K,nations taken to be gone
+s04-F89b,Both are town departments.,,,F,a tribal government taken for a town department
+s04-F89c,"Maine, Massachusetts and Rhode Island.",,,A,state names given for nations
+s04-F89c,"Makah, Menominee and Maine.",,,S,far-away worked nations given for regional ones
+s04-F89d,The county line.,,,B,a county line taken as the park edge
+s04-F89e,All the shaded park.,,,T,the town hall taken to be the whole shaded park
+s04-F89f,Winter.,,,x,a season the card does not give
+s04-F89g,There is a river mouth.,,,L,a feature listed with no activity
+s04-F89h,The river alone decided it.,,,C,the feature alone taken to decide the place
+s04-F89h,There is a river.,,,L,a feature listed with no explanation
+s04-F89i,Native peoples gave no useful knowledge.,,,U,contributions denied
+s04-F89i,A general food list.,,,G,a general list with no nation or source
+s04-F89j,A book.,,,G,no source named from the card
+s04-F89k,Is the drawing pretty?,,,Q,a question about looks alone
+s04-F89l,"Primary, it is older.",,,D,age taken as the reason for primary
+s04-F89m,It must be right.,,,M,primary taken to mean always true
+s04-F89n,The cards prove my answer.,,,H,a claim with no detail
+s04-F89o,Card 1.,,,H,a title only
+s04-F89p,A second detail from card 1.,,,V,two details from one source counted as two sources
+s04-F89q,Only the teacher.,,,R,only the teacher is named; no other group needs the answer
+s04-F89r,Only the teacher needs to know.,,,R,only the teacher is named again
+s04-P72g,Our own class and ourselves.,,,R,only the class itself is named; no one beyond it
+s04-P72h,The guide likes pencils.,,,x,a reason that has nothing to do with what the group needs
+s04-P73e,Card 3.,,,x,"the card made by the reporter, not the baker"
+s04-P73f,Card 5.,,,x,"the card made by the baker, not the reporter"
+s04-P73g,"A, who took part.",,,D,one question taken to be the only one the card answers
+s04-P74a,The museum.,,,x,the museum named as the maker of the interview
+s04-P74b,The museum.,,,x,the museum named as the maker of the basket
+s04-P74c,Norma Hottowe Pendleton.,,,x,the basket maker named as the writer of the label
+s04-P74d,David Grignon.,,,x,a maker from another card named
+s04-P75e,The dashed state border.,,,B,the state border taken as the homeland edge
+s04-P77d,The river decided where they lived.,,,C,the feature alone taken to decide the place
+s04-P81d,Nothing is missing.,,,x,an answer that misses the point of the item (no register letter fits)
+s05-E90,Only our teacher.,,,Y,only the teacher is named; no other group needs the answer
+s05-E90,Nobody.,,,Y,no one beyond the asker is taken to need the answer
+s05-E90b,Because.,,,x,a reason that names no link to the group
+s05-E91,"One step apart, in the next slot.",,,A,the cards are set one slot apart as if events were evenly spaced
+s05-E91,Four years.,,,x,marks counted as single years
+s05-E92,The fifteenth century.,,,AA,the 1500s counted as the fifteenth century
+s05-E92,The fifteenth.,,,AA,the 1500s counted as the fifteenth century
+s05-E93,The ship found empty land.,,,Z,the coast is taken to be empty before the newcomers
+s05-E93,The land was nobody's.,,,Z,the coast is taken to be empty before the newcomers
+s05-E94,The arrowhead is at England.,,,B,the route runs the wrong way across the water
+s05-E94,An arrow that ends at Plymouth.,,,AE,every route is made to end at Plymouth
+s05-E95,Smith knew what everyone wanted.,,,C,one explorer's account is taken to hold the whole account of the land
+s05-E95,Only Smith tells the truth.,,,C,one account is taken as complete
+s05-E96,Nothing is on both maps.,,,x,no shared feature seen
+s05-E96b,New names mean nobody lived there before.,,,Z,new labels are taken to prove no one lived there
+s05-E96b,The land was empty.,,,Z,new labels are taken to prove no one lived there
+s05-E97,The colonists' leader decided for everyone.,,,AC,one leader's authority is taken to rule everyone
+s05-E97,The Timucua had no say.,,,AC,one leader's authority is taken to rule everyone
+s05-E98,Only an explorer's page tells the whole story.,,,C,one outside account is taken to tell everything
+s05-E98,He did it for no reason.,,,x,no reason tied to the choice
+s05-E99,Paper 1 tells the whole truth.,,,C,one account is taken as complete
+s05-E99,It has no reason.,,,C,the maker's position is not seen to shape the paper
+s05-E99b,Neither paper has a reason.,,,C,the makers' positions are not seen to shape the papers
+s05-E100,Everyone crossed for the same reason.,,,AF,all passengers are taken to share one reason
+s05-E100b,Bo crossed to worship freely too.,,,AF,all passengers are taken to share one reason
+s05-E100b,Everyone on the ship was a Pilgrim.,,,M,every colonist is taken to be a Pilgrim
+s05-E101,It governed the Native nations too.,,,E,the Compact is taken to govern everyone in the land
+s05-E101,Everyone in the land.,,,E,the Compact is taken to govern everyone in the land
+s05-E102,Only men's work mattered.,,,V,only adult men are taken to do important work
+s05-E102,It does not.,,,x,no effect on the family seen
+s05-E103,It shows the gathering made peace forever.,,,D,one gathering is taken to settle all later relations
+s05-E103,It shows they were friends after.,,,D,one gathering is taken to settle all later relations
+s05-E104,"No, S replaced R at once.",,,K,a new colony is taken to end the older one
+s05-E104b,R was first.,,,K,the earlier start is taken to mean the earlier colony stopped
+s05-E106,Farms caused both losses.,,,N,one cause is taken to explain every consequence
+s05-E106,They chose to give up the meadow.,,,F,a loss under pressure is taken as a choice
+s05-E107,Governor V told Captain W what to do.,,,AC,one leader is taken to rule both
+s05-E107,One leader ruled both.,,,AC,one leader is taken to rule both
+s05-E108,Every family lived the same way.,,,G,one home is taken to show every family's life
+s05-E108,All homes had one.,,,G,one home is taken to show every family's life
+s05-E109,Both of them.,,,Q,enslavement is taken to be a term of years like service
+s05-E109,"Hester too, after the same term.",,,Q,enslavement is taken to be a term of years like service
+s05-E110,Schools were the same then and now.,,,O,schooling is taken to be identical to schooling today
+s05-E110,Nothing stayed the same.,,,x,no continuity seen
+s05-E111,"Yes, only the southern colonies had it.",,,H,slavery is taken to exist only in the southern colonies
+s05-E111b,Because the South had it.,,,H,slavery is taken to exist only in the southern colonies
+s05-E112,They accepted it and did nothing.,,,S,enslaved people are taken to have accepted it without resistance
+s05-E112,They stayed quiet.,,,S,enslaved people are taken to have accepted it without resistance
+s05-E113,Each one worked alone.,,,AD,each kind of port work is taken to stand alone
+s05-E113,They do not need each other.,,,AD,each kind of port work is taken to stand alone
+s05-E113b,Wyn cannot pay without coins.,,,I,all trade is taken to need coins
+s05-E113b,Only coins buy a boat.,,,I,all trade is taken to need coins
+s05-E114,Paid workers who chose the job.,,,T,all movement and work are taken to be voluntary
+s05-E114b,They chose to.,,,T,all movement and work are taken to be voluntary
+s05-E115,The water alone built the town.,,,W,water is taken to explain port growth by itself
+s05-E115b,Nothing; the harbor does it.,,,W,water is taken to explain port growth by itself
+s05-E116,The shore alone explains it.,,,W,geography is taken to explain a port by itself
+s05-E116,Because it was near water.,,,W,geography is taken to explain a port by itself
+s05-E117,It does not connect; it is just a fact.,,,AH,the answer is not linked to the big question
+s05-E117,It helps because it has words.,,,AH,the answer is not linked to the big question
+s05-E119,"No, the new wharf ended the ferry.",,,K,a new development is taken to end the older one
+s05-E119b,1700 to 1740.,,,K,the older span is taken to be the whole overlap
+s05-E119b,After 1740.,,,K,the new development is taken to start where the old one ends
+s05-E121,"The right answer copied, no reason.",,,AI,copying an answer is taken to fix a missed idea
+s05-E121,The same answer again.,,,AI,copying an answer is taken to fix a missed idea
+s05-E121b,Because the answer key says so.,,,AI,copying an answer is taken to fix a missed idea
+s05-P90a,Only the words of the big question copied.,,,AH,the link between the questions is missing
+s05-P100a,"To worship freely, like Ann.",,,AF,all passengers are taken to share one reason
+s05-P103a,The gathering made peace forever.,,,D,one gathering is taken to settle all later relations
+s05-P106a,The Native people chose every loss.,,,F,a loss under pressure is taken as a choice
+s05-P106a,One cause explains everything.,,,N,one cause is taken to explain every consequence
+s05-P107a,Winthrop ruled both.,,,AC,one leader is taken to rule everyone
+s05-P108a,Every family lived like this.,,,G,one home is taken to show every family's life
+s05-P110a,Home and work are the same now.,,,AB,home and work are taken to be the same then as now
+s05-P116a,Geography alone.,,,W,geography is taken to explain a port by itself
+s05-P117a,They would have shared if everyone were nice.,,,J,a wish is taken to prove what would have happened
+s05-P117b,Two details from one source.,,,AG,two details from one source are taken as two sources
+s05-P118a,Everyone should be nice because I say so.,,,J,a wish is taken to prove what would have happened
+s05-P118a,Two details from one source.,,,AG,two details from one source are taken as two sources
+s05-P119a,A ended when B began.,,,K,a new development is taken to end the older one
+s05-P119a,Cards spaced one slot apart.,,,A,the cards are set one slot apart as if events were evenly spaced
+s05-M1,All three one step apart.,,,A,equal gaps are drawn for unequal years
+s05-M1b,The fifteenth century.,,,AA,the 1500s counted as the fifteenth century
+s05-M1c,R replaced Q.,,,K,a new colony is taken to end the older one
+s05-M1c,1610 to 1625.,,,K,the span before the new colony began is taken as the overlap
+s05-M2,North America and Europe swapped.,,,x,continents confused on the map
+s05-M2b,"The land was empty, so they went.",,,Z,the land is taken to be empty before Europeans came
+s05-M2b,To see the sea.,,,x,a reason not given by the card
+s05-M3,Arrows from Quebec back to France.,,,B,the route runs the wrong way across the water
+s05-M3,The route ends at Plymouth.,,,AE,every route is made to end at Plymouth
+s05-M4,Smith's account tells all of it.,,,C,one account is taken as complete
+s05-M4b,New labels mean nobody lived there.,,,Z,new labels are taken to prove no one lived there
+s05-M5,Everyone had one reason.,,,AF,all passengers are taken to share one reason
+s05-M5,Every colonist was a Pilgrim.,,,M,every colonist is taken to be a Pilgrim
+s05-M5b,Native nations all have one history.,,,L,distinct nations are taken to share one experience
+s05-M6,"It governed everyone, Native nations too.",,,E,the Compact is taken to govern everyone in the land
+s05-M7,Only adult men faced hardships.,,,V,only adult men are taken to do important work
+s05-M8,A meal made peace permanent.,,,D,one gathering is taken to settle all later relations
+s05-Q1,"He ruled everyone, Native nations too.",,,AC,one leader is taken to rule everyone
+s05-Q1b,Because she ruled everyone there.,,,AC,one leader is taken to rule everyone
+s05-Q2,One cause explains every loss.,,,N,one cause is taken to explain every consequence
+s05-Q2,The people chose to lose it.,,,F,a loss under pressure is taken as a choice
+s05-Q2b,The dam caused it too.,,,N,one cause is taken to explain every consequence
+s05-Q3,"Enslaved workers could leave after a term, like servants.",,,Q,enslavement is taken to be a term of years like service
+s05-Q4,Home and work are the same now.,,,AB,home and work are taken to be the same then as now
+s05-Q5,"Yes, only southern colonies.",,,H,slavery is taken to exist only in the southern colonies
+s05-Q5b,All Africans were enslaved.,,,R,every person of African descent is taken to be enslaved
+s05-Q6,The water alone built it.,,,W,water is taken to explain port growth by itself
+s05-Q6b,The harbor alone made the town.,,,W,water is taken to explain port growth by itself
+s05-Q7,Everyone travelled by choice.,,,T,all movement is taken to be voluntary
+s05-Q8,Everyone should be nice because I say so.,,,J,a wish is taken to prove what would have happened
+s05-Q8b,Two details from A.,,,AG,two details from one source are taken as two sources
+s05-Q8c,Two details from one source.,,,AG,two details from one source are taken as two sources
+s05-Q8c,Titles alone.,,,AG,sources named with no link to the claim
+s05-Q8d,It helped because it had words.,,,AH,the link between the questions is missing
+s05-R1,Only the teacher.,,,Y,only the teacher is named; no other group needs the answer
+s05-R1b,Because.,,,x,a reason that names no link to the group
+s05-R2,Both questions have words.,,,AH,the link between the questions is missing
+s05-R3,A new development ended all older activity.,,,K,a new development is taken to end the older one
+s05-R4,Geography alone.,,,W,geography is taken to explain a port by itself
+s05-R5,The nation chose every loss.,,,F,a loss under pressure is taken as a choice
+s05-R6,Every family lived alike.,,,G,one home is taken to show every family's life
+s05-R7,Schools are unchanged.,,,O,schooling is taken to be identical to schooling today
+s05-R8,One leader ruled both.,,,AC,one leader is taken to rule everyone
+s05-R9,Each worked alone.,,,AD,each kind of port work is taken to stand alone
+s05-R9,Only coins pay for boats.,,,I,all trade is taken to need coins
+s05-P90b,Share means share.,,,x,only one reading is given
+s05-P90c,Only our teacher.,,,Y,only the teacher is named
+s05-P90d,Because.,,,x,a reason that names no link to the group
+s05-P91a,Field and mill one step apart.,,,A,the cards are set one slot apart as if events were evenly spaced
+s05-P91b,The three cards one step apart.,,,A,the cards are set one slot apart as if events were evenly spaced
+s05-P91c,One step.,,,A,the cards are counted as one slot apart
+s05-P92a,The three cards one step apart.,,,A,the cards are set one slot apart as if events were evenly spaced
+s05-P92b,Each card one step from the next.,,,A,the cards are set one slot apart as if events were evenly spaced
+s05-P92c,Oven to bell is one step.,,,A,tens are replaced by steps between cards
+s05-P92d,1805 under the eighteenth.,,,AA,the century is counted one too low
+s05-P92e,1650.,,,x,a year before 1700
+s05-P92f,"The eighteenth, for 1861.",,,AA,the century is counted one too low
+s05-P93a,"North America, the Atlantic, Europe.",,,B,the route runs the wrong way across the water
+s05-P93b,Land.,,,x,a reason that does not fit the hope
+s05-P93c,Riches.,,,x,a reason that does not fit the hope
+s05-P93d,The ship found empty land.,,,Z,the coast is taken to be empty
+s05-P94a,The coast was empty.,,,Z,the coast is taken to be empty
+s05-P94b,The arrowhead is at France.,,,B,the route runs the wrong way across the water
+s05-P94c,An arrow that ends at Plymouth.,,,AE,every route is made to end at Plymouth
+s05-P94c,The arrowhead is at Europe.,,,B,the route runs the wrong way across the water
+s05-P94d,East.,,,B,the direction is the wrong way round
+s05-P94e,South.,,,x,a wrong direction
+s05-P94f,North.,,,x,a wrong direction
+s05-P95a,The arrowhead is at the town.,,,B,the route runs the wrong way
+s05-P95b,Smith knew everything.,,,C,one account is taken as complete
+s05-P95c,To tell every part of the story.,,,C,one account is taken as complete
+s05-P95d,Smith owned the fields.,,,x,the page is not matched to its detail
+s05-P95e,Smith.,,,C,one account is taken to say it all
+s05-P95f,It leaves out nothing.,,,C,one account is taken as complete
+s05-P96a,Stone Point.,,,x,a label for a different place
+s05-P96b,"Nothing, the maps match.",,,x,the change is not seen
+s05-P96c,Cannot tell.,,,x,a drawn town is not read as evidence
+s05-P96d,Shows.,,,x,a name is read as proof
+s05-P96e,Nobody lived there.,,,Z,a blank space is read as an empty place
+s05-P97a,The visitor's map.,,,x,a blank space is read as a farm
+s05-P97b,"Yes, it is blank.",,,Z,a blank space is read as an empty place
+s05-P97b,"Yes, nobody was there.",,,Z,a blank space is read as an empty place
+s05-P97c,1500 and 1600.,,,x,the nearest hundred is taken for the nearest ten
+s05-P97d,The Timucua.,,,AC,one leader is taken to lead every group
+s05-P97e,The Timucua had no leader.,,,x,a blank box is read as none
+s05-P97f,The families.,,,x,the two schools are swapped
+s05-P97g,The district office.,,,AC,one leader's authority is taken to rule everyone
+s05-P98a,The members.,,,AC,one leader's authority is taken to rule everyone
+s05-P98b,The town parks office.,,,AC,one leader's authority is taken to rule everyone
+s05-P98c,About two tens.,,,x,the years between are misread on the strip
+s05-P98d,Nothing happened.,,,x,no effect is linked to the settling
+s05-P98e,Six.,,,x,the six core tribes are taken for the groups he led
+s05-P98f,He wanted nothing.,,,x,a blank box is read as none
+s05-P98f,Only an explorer's page tells it.,,,C,one outside account is taken to tell everything
+s05-P98g,Open all night.,,,x,the choice does not fit the want
+s05-P98h,Ask to close the ramp.,,,x,the choice does not fit the want
+s05-P99a,"Nothing, it tells all of it.",,,C,one account is taken as complete
+s05-P99b,"Nothing, it tells all of it.",,,C,one account is taken as complete
+s05-P99c,Fifty years.,,,x,the years between are misread on the strip
+s05-P99d,A treaty.,,,x,the 1646 treaty is taken for the 1622 event
+s05-P99e,Label 2.,,,C,one account is taken as the whole story
+s05-P99f,Shows.,,,C,a paper is taken to speak for the other side
+s05-P99g,Cannot tell.,,,x,a paper by the club is not read as the club's own view
+s05-P100a,Everyone came for the same reason.,,,AF,all passengers are taken to share one reason
+s05-P100b,"Nothing, it tells all.",,,C,one account is taken as complete
+s05-P100c,The principal made Paper 2.,,,C,the maker is not read from the label
+s05-P100d,Only Plymouth.,,,K,a new colony is taken to end the older ones
+s05-P100e,Both were Pilgrims.,,,M,every colonist is taken to be a Pilgrim
+s05-P100f,One month.,,,x,the months are counted wrong
+s05-P101a,To worship in her own way.,,,AF,all passengers are taken to share one reason
+s05-P101b,To work and earn land.,,,AF,all passengers are taken to share one reason
+s05-P101c,All five are Pilgrims.,,,M,every colonist is taken to be a Pilgrim
+s05-P101d,Fifteen years.,,,x,the years are counted wrong
+s05-P101e,The Reef Swim Club.,,,x,the made-up club is mixed up with the Compact
+s05-P101f,Everyone in the land.,,,E,the Compact is taken to govern everyone in the land
+s05-P101g,All six reach.,,,E,a rule is taken to reach everyone
+s05-P102a,All four reach.,,,E,a rule is taken to reach everyone
+s05-P102b,Only Mr. Moss did jobs.,,,V,only adult men are taken to do the work
+s05-P102c,Mr. Wick.,,,V,only adult men are taken to do the work
+s05-P102d,The roof leaked.,,,x,the record is misread
+s05-P102e,Only men had hardships.,,,V,only adult men are taken to do important work
+s05-P103b,Only Mr. Lund.,,,V,only adult men are taken to do the work
+s05-P103c,Only Mrs. Lund.,,,V,one task is taken to fall to one group
+s05-P103d,Sixty-six years.,,,x,the years are counted wrong
+s05-P103e,He was a colonist.,,,L,the two peoples are mixed together
+s05-P103f,He made the alliance.,,,x,a decision the page does not name is invented
+s05-P103g,A Wampanoag leader wrote it.,,,x,the account is credited to the wrong side
+s05-P103h,The Wabanaki story is the same as the Wampanoag story.,,,L,distinct nations are taken to share one history
+s05-P104a,Plymouth.,,,K,the newest colony is taken to be first
+s05-P104b,About one ten.,,,x,the years are counted wrong
+s05-P104c,All three met one nation.,,,L,distinct nations are taken to share one history
+s05-P104d,It shows they stayed friends.,,,D,one agreement is taken to settle all later relations
+s05-P104e,I did not change anything.,,,x,no revision made
+s05-W113a,They did nothing.,,,S,a wrong answer to this practice
+s05-W113a,They stayed quiet.,,,S,a wrong answer to this practice
+s05-W113b,They wanted money.,,,,a wrong answer to this practice
+s05-W113c,Money would not help.,,,,a wrong answer to this practice
+s05-P113c,Swap 2.,,,I,a wrong answer to this practice
+s05-P113d,The yard goes to Dora.,,,AD,a wrong answer to this practice
+s05-P113d,Each worked alone.,,,AD,a wrong answer to this practice
+s05-W114a,Pell sells to Jo.,,,AD,a wrong answer to this practice
+s05-W114a,Each worked alone.,,,AD,a wrong answer to this practice
+s05-W114b,Hana gives coins.,,,I,a wrong answer to this practice
+s05-P114c,Fish and lumber.,,,x,the direction of the trade is reversed
+s05-P114d,By paid workers.,,,T,a wrong answer to this practice
+s05-P114e,Nothing.,,,AJ,a wrong answer to this practice
+s05-P114a,At West Africa.,,,,a wrong answer to this practice
+s05-W115a,"Tools, rope and people.",,,T,people are taken to be goods
+s05-W115b,"Yes, every ship sailed the triangle.",,,AJ,a wrong answer to this practice
+s05-P115c,"1 market, 2 bay, 3 wharf.",,,W,a wrong answer to this practice
+s05-P115d,Nothing would change.,,,W,a wrong answer to this practice
+s05-P115a,Sugar and coffee.,,,,a wrong answer to this practice
+s05-W116a,The bay does everything.,,,W,a wrong answer to this practice
+s05-P116b,A trip.,,,x,a legend mark is misread
+s05-P116d,Horses and rice.,,,,a wrong answer to this practice
+s05-P116c,South.,,,x,a direction is reversed
+s05-W117a,The creek does everything.,,,W,a wrong answer to this practice
+s05-P117c,"Two, there are two cards.",,,AG,two details from one maker are taken as two sources
+s05-P117d,"One, both are about the land.",,,AG,two makers are taken as one source
+s05-P117e,Smith in both rows.,,,AG,two sources not told apart
+s05-W118a,It helps because it has words.,,,AH,a wrong answer to this practice
+s05-W118b,"Yes, they would have shared if everyone were nice.",,,J,a wrong answer to this practice
+s05-W118c,"Two, there are two cards.",,,AG,a wrong answer to this practice
+s05-P118b,Two details from Smith.,,,AG,two details from one maker are taken as two sources
+s05-P119b,"Plymouth, it is more famous.",,,K,a later colony is taken to be the earlier one
+s05-P119c,"Yes, every ship sailed the triangle.",,,AJ,a simplified picture is taken for the whole network
+s05-P119d,The same answer again.,,,AI,copying an answer is taken to fix a missed idea
+s05-P121a,The salt house ended when the cooper's yard began.,,,K,a new development is taken to end the older one
+s05-P121b,Elm Quay is the best harbor.,,,J,a wish is taken to prove a fact
+s05-P121c,One cause explains everything.,,,N,one cause is taken to explain every loss
+s05-P121d,Cobb and Teague were both enslaved.,,,Q,a servant is taken to be enslaved
+s06-RD1,The chair.,,,A,a classroom object is taken to be a national symbol
+s06-RD1b,It is a bald eagle.,,,B,naming the picture is taken to explain its meaning
+s06-E125,Only the mayor cares.,,,N,the question is taken to matter only to those in charge
+s06-E125,Because the government should be kind to the driver.,,,Q,agreement is taken to mean kindness
+s06-E126,They wanted no government at all.,,,C,independence is taken to mean rejecting every government
+s06-E126b,Marked one step after the last card whatever the years.,,,H,equal steps are taken for equal years
+s06-E127,Nothing; whoever is in charge decides.,,,T,whoever holds power is taken to need no agreement
+s06-E127b,The leader owns the people's rights.,,,O,rights are taken to be gifts the one in power can keep
+s06-E128,"Makes laws, because the judge writes the law.",,,K,one person is taken to do every job of government
+s06-E128b,The President.,,,K,the President is taken to make every decision for the courts
+s06-E129,The government can pick one faith to give rights to.,,,O,a right is taken to be a gift the government can direct
+s06-E129b,It sets up Congress.,,,E,the Bill of Rights is taken to do the Constitution's job
+s06-E130,"Yes, friends of Congress voted in state elections.",,,U,a message to a nation is taken to be a state election
+s06-E130b,No woman ever voted.,,,J,the New Jersey exception is erased
+s06-E131,"No, he cannot vote, so he is not a citizen.",,,D,citizenship and voting are taken to be the same
+s06-E131b,Who is a citizen.,,,D,a voting rule is taken to decide citizenship
+s06-E132,It is a statue of a person in the square.,,,B,naming the monument is taken to explain its meaning
+s06-E132,So everyone would salute it.,,,L,a symbol is taken to demand a salute
+s06-E132b,"Yes, the statue proves everyone was treated fairly.",,,F,a symbol is taken to prove equal liberty
+s06-E133,"X, because it is a fact.",,,G,a fact with no link to the claim is taken as evidence
+s06-E133b,The park should be kind to people.,,,Q,agreement is taken to mean kindness
+s06-E134,"The canal replaced the mill, so they never ran together.",,,M,a new development is taken to end the older one
+s06-E136,"Yes, power from the people means every person voted.",,,R,power from the people is taken to mean everyone voted
+s06-E136b,"Only the first gloss counts, so everyone voted.",,,R,power from the people is taken to mean everyone voted
+s06-Q1,They disliked all rules.,,,C,independence is taken to mean rejecting every rule
+s06-Q1b,Nothing; the ruler decides.,,,T,whoever holds power is taken to need no agreement
+s06-Q1c,The ruler.,,,T,whoever holds power is taken to need no agreement
+s06-Q2,It gives the reasons for independence.,,,E,the Constitution is taken to do the Declaration's job
+s06-Q2b,They set up Congress.,,,E,the Bill of Rights is taken to do the Constitution's job
+s06-Q2c,A gift the government can take back.,,,O,a right is taken to be a gift the government can take back
+s06-Q2d,All citizens could vote.,,,D,citizenship and voting are taken to be the same
+s06-Q2e,No woman ever voted.,,,J,the New Jersey exception is erased
+s06-Q3,They were angry.,,,S,a feeling is taken to be a virtue
+s06-Q3b,They felt sad about it.,,,S,a feeling is taken to be a principle
+s06-Q4,Both let one person make every law.,,,K,one person is taken to make every decision
+s06-Q4b,The Declaration made both plans.,,,P,the Declaration is taken to have created the plans
+s06-Q5,Consent means a kind leader.,,,Q,agreement is taken to mean kindness
+s06-Q5,Consent means everyone likes every law.,,,I,agreement is taken to mean liking every law
+s06-Q5b,The Declaration is famous.,,,G,a title or fame is taken as evidence
+s06-Q5c,It is in the packet.,,,G,a detail is named with no reasoning
+s06-Q5d,A and D both mention America.,,,G,a shared word is taken as evidence
+s06-Q5e,They both say the same thing about America.,,,G,a shared word is taken as evidence
+s06-R1,Only the rulers care.,,,N,the question is taken to matter only to those in charge
+s06-R2,The Declaration made it.,,,P,the Declaration is taken to have created the plan
+s06-R2b,The Declaration approved it.,,,P,the Declaration is taken to have created the plan
+s06-R3,"Yes, no vote means not a citizen.",,,D,citizenship and voting are taken to be the same
+s06-R4,All the cards are the same distance apart.,,,H,equal steps are taken for equal years
+s06-R4b,New Jersey voting ended when the Constitution came.,,,M,a new development is taken to end the older one
+s06-E129b,It explains independence.,,,E,the Bill of Rights is taken to do the Declaration's job
+s06-P125b,Only the shop owner.,,,N,the rule is taken to reach only the one in charge
+s06-P128b,The Governor does all three jobs.,,,K,one person is taken to do every job of government
+s07-E141,Only I care because I like it.,,,I,an opinion with no one else in it is taken as a reason
+s07-E141,Everyone in town thinks the same about who built it.,,,D,one view is taken to be everyone's
+s07-E142,"Yes, nobody lived there before 1722.",,,A,a town's founding date is taken as the start of all life there
+s07-E142,"Yes, the farm family left when the town was made.",,,A,earlier people are taken to disappear at the founding
+s07-E142b,The town record.,,,A,the record of a legal start is taken to tell who came first
+s07-E143,"Yes, the edge of the sheet is the edge of the province.",,,C,the sheet's edge is taken as the edge of the whole province
+s07-E143,"Yes, and the province has the same outline today.",,,Q,a past outline is taken to be today's
+s07-E143b,Orchard Province,,,C,the place name is taken for the extent
+s07-E144,"Yes, towns grow where there is water.",,,O,water is taken to explain growth alone
+s07-E144b,The lake.,,,O,the lake is named again as the whole reason
+s07-E145,"Chosen, because she came to work.",,,B,a forced move is taken to be a choice
+s07-E145b,She was paid like the other workers.,,,J,"enslaved people are taken to be paid, free workers"
+s07-E146,"In 2015, because that is the date.",,,N,the recording date is taken as the date remembered
+s07-E146b,"Yes, every child skated there.",,,D,one memory is taken to be everyone's
+s07-E147,It shows everyone in town believes the same thing.,,,D,one image is taken to show everyone's beliefs
+s07-E147b,"Yes, everyone was there.",,,D,one image is taken to show everyone
+s07-E148,1905 to 1950.,,,K,the two bands are merged into one long run
+s07-E148b,"Yes, the electric tram took its place.",,,K,a new development is taken to end the older one at once
+s07-E149,"A, what color did the neighbors paint the hall?",,,P,a question about looks is taken as a question about action
+s07-E149,"B, what was the first name of the neighbor who led the group?",,,P,a question about a name is taken as a question about action
+s07-E153,A group poster will fix the whole problem.,,,G,one action is taken to solve the whole problem
+s07-E153b,The group will win because we want it.,,,L,a wish is taken for a result
+s07-P153d,The group will win because we want it.,,,L,a wish is taken for a result
+s07-E158,I left it as it was.,,,E,a biography with no action-to-change link is left as it was
+s07-E158b,The claim still names two sources and no details.,,,I,a claim with source titles and no details is left as it was
+s07-P158d,"We finished, so it worked.",,,M,finishing is taken as proof of impact
+s07-E160,The library replaced the bus route in 1940.,,,K,a new development is taken to end the older one
+s07-E160b,The library proves everyone rode the bus.,,,D,one record is taken as everyone's experience
+s07-E160c,The stop proves the route caused it.,,,M,an overlap is taken as proof of cause
+s07-Q1,Founders reached empty land.,,,A,founding is taken to begin all life there
+s07-Q1b,Everyone who worked there was paid and free.,,,J,enslaved people are taken to be free workers
+s07-Q1c,C describes everyone living there today.,,,D,one memory is taken to describe everyone
+s07-Q2,The state always had today's outline.,,,Q,a past outline is taken to be today's
+s07-Q2,The map shows only today's outline.,,,C,a past map's extent is not read from its date
+s07-Q2b,Because it has water.,,,O,water is taken to explain growth alone
+s07-Q3,What color is the photograph?,,,P,a question about looks is taken as a question about change
+s07-Q4,Our poster fixes every problem.,,,G,one action is taken to solve the whole problem
+s07-Q4c,It will work because I want it to.,,,L,a wish is taken for a result
+s07-Q5,Only famous people matter because I think so.,,,I,an opinion is taken as a claim with evidence
+s07-Q5b,E is a source.,,,I,a source title is taken as a detail
+s07-Q5c,The interview is my source.,,,I,a source title is taken as a detail
+s07-Q5d,They are in the packets.,,,I,source titles and no reasoning
+s07-R1,Only I care because I like it.,,,I,an opinion with no one else in it
+s07-R2,"The town began when it was founded, so nobody was here before.",,,A,founding is taken as the start of all life there
+s07-R2b,The interview date is the date of what happened.,,,N,recording and remembered time are confused
+s07-R2c,One memory shows everyone's life.,,,D,one memory is taken as everyone's
+s07-R3b,The bridge replaced the ferry at once.,,,K,a new development is taken to end the older one
+s07-R4,What color was the club's hall?,,,P,a question about looks
+s07-R4b,What year was she born?,,,P,a question about a date
+s07-R5,She was famous and nice.,,,E,names and praise with no causal link
+s07-R5b,A list of dates in order with no reason.,,,E,time order alone is taken as an explanation
+s07-R6,"Our group made a poster, so I shared it.",,,F,partner or group work is taken as sharing beyond class
+s07-R7,A poster fixes everything.,,,G,one action is taken to solve the whole problem
+s07-R8,The majority can silence others.,,,H,democratic procedure is reduced to winning
+s07-R8b,The majority can silence others.,,,H,democratic procedure is reduced to winning
+s07-R8c,"We finished it, so it worked.",,,M,finishing is taken as proof of impact
+s07-E150,"Yes, they are two pages.",,,I,pages are counted as sources whatever their maker
+s07-E151,"A, B, C.",,,E,the order the lines are listed is taken as time order
+s07-E152,"A, partners read to each other.",,,F,partner talk is taken as sharing beyond class
+s07-E152,"B, a poster hangs in the room.",,,F,a poster in the room is taken as sharing beyond class
+s07-E154,No limit; a sign fixes every problem.,,,G,one action is taken to solve the whole problem
+s07-E155,"Yes, red has the most.",,,H,the larger number is taken to settle it
+s07-E156,"Yes, it is finished, so it worked.",,,M,finishing is taken as proof of impact
+s07-E157,"Nothing, it is a good claim.",,,I,an opinion is taken as an argument
+s07-P153e,B. Every river will be clean because we want it.,,,L,a wish is taken for a reason
+sc1-E1,The blue line circled.,,,x,"picks by the look of a mark, not the legend; ask the child to read the legend"
+sc1-E1b,East.,,,x,right of the page taken as east; turn the card with the arrow
+sc1-E1c,3 steps.,,,x,bars counted as footsteps; lay a paper strip along the bar
+sc1-E1d,The school.,,,x,a made thing named a physical feature
+sc1-E1e,The creek.,,,x,a physical feature named a landmark
+sc1-E2,2B.,,,x,number first; say letter first
+sc1-E2b,Southern.,,,x,hemisphere read from the wrong side of the equator line
+sc1-E2c,Eastern.,,,x,hemisphere read from the wrong side of the prime meridian
+sc1-E2d,L.,,,x,warm and cold swapped
+sc1-E2e,It is near the pole and the sun is strong there.,,,x,sunlight angle not used
+sc1-E3,They make laws for the whole country.,,,x,level mixed up
+sc1-E3b,The governor leads the country.,,,x,level mixed up
+sc1-E3c,The President decides every court case.,,,x,executive and courts mixed
+sc1-E4,Children get to play.,,,x,a benefit named as a cost
+sc1-E4b,It costs money.,,,x,a cost named as a benefit
+sc1-E4c,"The $20,000.",,,x,the money named instead of the choice given up
+sc1-E5,I like the library.,,,x,a liking given as a claim
+sc1-E5b,The library is big.,,,x,a detail not on the card
+sc1-E5c,A child made it.,,,x,source maker not read from the card
+sc1-P71a,Up.,,,x,top of page taken as north
+sc1-P71b,Country.,,,x,level mixed up
+sc1-P71c,The money.,,,x,money named as the opportunity cost
+sc1-P71d,The pool is nice.,,,x,a liking in place of a detail
+sc1-X71,The same answer again.,,,x,a copy is taken to be a fix
+sc1-X71b,I just think so.,,,x,no detail from the card
+sc2-E1,Secondary.,,,x,a source taken as secondary by its age
+sc2-E1d,It is old.,,,x,old taken to mean secondary instead of when it was made
+sc2-E1b,Primary.,,,x,a source about the topic taken as primary whatever its date
+sc2-E1e,It is about the bridge.,,,x,a source about the topic taken as primary whatever its date
+sc2-E1c,The bridge is nice.,,,x,a statement given instead of a question
+sc2-E2,The 1900s.,,,x,decade and century mixed
+sc2-E2b,The 1900s.,,,x,"century named from the year digits, 1887 taken as 1900s"
+sc2-E2c,"Library, bridge, founding.",,,x,order of events reversed
+sc2-E3,Their whaling rights.,,,x,what was kept named as what was given up
+sc2-E3b,To make laws for the United States.,,,x,a right not in the source
+sc2-E3c,The weather.,,,x,a fact not in the source
+sc2-E4,I like whales.,,,x,a liking given as a claim
+sc2-E4b,The treaty is old.,,,x,a detail that does not support the claim
+sc2-E4c,Congress agreed in 1859.,,,x,a detail that does not support the claim
+sc2-P124a,Secondary.,,,x,date of making not used
+sc2-P124b,The 1900s.,,,x,decade and century mixed
+sc2-P124c,The field.,,,x,given up and kept mixed
+sc2-P124d,The fair is fun.,,,x,a liking in place of a detail
+sc2-X124,The same answer again.,,,x,a copy is taken to be a fix
+sc2-X124b,I just think so.,,,x,no detail from the card
+sc3-E1,Dunmoor.,,,x,north and south mixed
+sc3-E1b,Corwen.,,,x,the star placed in the wrong state
+sc3-E1c,The wavy line is circled.,,,x,"picks by the look of a mark, not the legend"
+sc3-E1d,South.,,,x,right of the page taken as south
+sc3-E1e,4 steps.,,,x,bars counted as footsteps
+sc3-E2,The mayor makes laws for the country.,,,x,level mixed up
+sc3-E2b,The governor decides court cases.,,,x,executive and courts mixed
+sc3-E2c,The President writes the laws.,,,x,executive and legislative mixed
+sc3-E2d,The leader decides alone.,,,x,consent taken to mean a leader choosing
+sc3-E2e,They pay taxes only.,,,x,a duty named as a way to give consent
+sc3-E3,Swimmers are safer.,,,x,a benefit named as a cost
+sc3-E3b,It costs money.,,,x,a cost named as a benefit
+sc3-E3c,"The $8,000.",,,x,the money named instead of the choice given up
+sc3-E4,I like markets.,,,x,a liking given as a claim
+sc3-E4b,The book says 38 stalls.,,,x,a detail from the other source
+sc3-E4c,The clerk says 40 stalls.,,,x,a detail from the other source
+sc3-E5,Both say 40 stalls.,,,x,a difference named as agreement
+sc3-E5b,Both say May.,,,x,an agreement named as a difference
+sc3-E5c,Secondary.,,,x,a source taken as secondary by its age
+sc3-E5e,It is old.,,,x,old taken to mean secondary instead of when it was made
+sc3-E5d,Primary.,,,x,a source about the topic taken as primary whatever its date
+sc3-E5f,It is about 1924.,,,x,a source about the topic taken as primary whatever its date
+sc3-P139a,Up.,,,x,top of page taken as north
+sc3-P139b,Town.,,,x,level mixed up
+sc3-P139c,The desks.,,,x,what was chosen named as given up
+sc3-P139d,Boats are fun.,,,x,a liking in place of a detail
+sc3-X139,The same answer again.,,,x,a copy is taken to be a fix
+sc3-X139b,I just think so.,,,x,no detail from the card
+sc3-P140a,3 steps.,,,x,bars counted as footsteps
+sc3-P140b,The mayor likes it.,,,x,a liking in place of a say
+sc3-P140c,It costs money.,,,x,a cost named as a benefit
+sc3-P140d,Secondary.,,,x,date of making not used
+sc3-X140,The same answer again.,,,x,a copy is taken to be an answer
+sc3-X140b,I just think so.,,,x,no detail from the card

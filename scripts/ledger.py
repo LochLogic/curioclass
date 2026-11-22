@@ -34,7 +34,11 @@ COLS = ['course', 'where', 'day', 'kind', 'entry', 'note', 'stage']
 KINDS = ('term', 'notation', 'model', 'case', 'investigation', 'material', 'routine', 'text', 'skill')
 LADDER = {'science': ['science-kindergarten', 'science-grade-1', 'science-grade-2', 'science-grade-3',
                       'science-grade-4', 'science-grade-5', 'science-grade-6', 'science-grade-7',
-                      'science-grade-8', 'biology', 'chemistry', 'physics']}
+                      'science-grade-8', 'biology', 'chemistry', 'physics'],
+          # Social studies and ELA joined 2026-11-19 for their K to 3 ladder run; later courses join when their run starts.
+          'social-studies': ['social-studies-kindergarten', 'social-studies-grade-1', 'social-studies-grade-2',
+                             'social-studies-grade-3', 'social-studies-grade-4', 'social-studies-grade-5'],
+          'ela': ['english-language-arts-kindergarten'] + ['english-language-arts-grade-%d' % g for g in range(1, 13)]}
 
 
 def path(subject):

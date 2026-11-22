@@ -2,7 +2,7 @@ from_day,to_day,what,where,minutes,error,note
 1,2,s01-R3,supported work,10,,"readiness item 3 bridge: a partner turn with picture cues, then fade the cue"
 1,3,s01-R2,supported work,10,,"readiness item 2 bridge: enact two dolls sharing glue, contrast a helpful rule with an unexplained command"
 1,4,s01-R1,supported work,10,,"readiness item 1 bridge, small group: model a wonder with an object, contrast question and statement, invite a new wonder"
-1,2,s01-X1,reopen,3,A,two classroom uses of an answer; a small group takes the rest in supported work
+1,2,s01-X1b,reopen,3,A,two classroom uses of an answer; a small group takes the rest in supported work
 2,3,s01-X2,reopen,3,K,"one picture, one sentence; a small group takes the rest"
 3,4,s01-X3,reopen,3,B,"one picture, one sentence; a small group takes the rest"
 4,5,s01-X4,reopen,3,B,"one picture, one sentence; a small group takes the rest"
@@ -16,17 +16,116 @@ from_day,to_day,what,where,minutes,error,note
 11,12,s02-X11,warm-up,3,A,finished and not finished pair of pictures; spoken claim once as review
 12,13,written next step on each picture page,routines,0,,"read to each child privately in routines on days 13 to 15, about fifteen seconds each, outside the day's minutes"
 12,18,s02-E1,conversations,0,,later dated job attempts of days 13 to 17 are scored; the day 12 attempt stays practice
-12,13,s02-X12,reopen,3,H,"inside the opening 3 minutes: one picture, one sentence for errors A or H; the rest are seen in job routines of days 13 to 17"
+12,13,s02-X12b,reopen,3,H,"inside the opening 3 minutes: one picture, one sentence for errors A or H; the rest are seen in job routines of days 13 to 17"
 13,14,s02-X13,reconnect,2,G,inside the 2-minute reconnect: puppets give each reason first for error G
 14,15,s02-X14,warm-up,3,J,"inside the 3-minute reopen for errors B, I and J: hear reasons, keep the dissent beside the plan, match each step to an action"
 15,16,s02-X15,warm-up,3,D,point to an action with faces covered
-16,17,s02-X16,reopen,3,E,inside the 3-minute reopen; the day keeps its minutes
+16,17,s02-X16c s02-X16d,reopen,3,E,inside the 3-minute reopen; the day keeps its minutes
 14,17,Our Decision Record,reopen,2,,read aloud; dissent revisited in the perspective columns
 17,18,s02-X17,revise,3,C,each child adds or changes one mark on the day 17 card after hearing the written next step
 17,18,revised did it help judgment on the day 17 card,conversations,0,F,scored on day 18; the evening of day 17 the teacher writes a next step on each card
 14,18,Our Decision Record for s02-E2 s02-E3,conversations,0,,item 2 is read from the dated record; item 3 from the day 17 confirmation
 18,19,record sheet letters A to J,small groups,10,,at most two groups of five minutes by letter; the others work in pairs from a picture card
 18,19,s02-X19 and unfinished observations,fresh try,8,,unheard parts stay not yet observed; a participation gap meets a fresh accessible shared job and decision
-5,6,s01-X5,reopen,3,B,"one picture, one sentence each for errors B, E and J (the exit is repaired aloud, not returned); a small group takes the rest"
+5,6,s01-X5b s01-X5c,reopen,3,B,"one picture, one sentence each for errors B, E and J (the exit is repaired aloud, not returned); a small group takes the rest"
 7,8,s01-X7,reopen,4,D,"one picture, one sentence for error D, then error E: point to the paper ready and say because together"
 9,10,Garden Path for s01-E3,fresh tries,15,,the outside-setting reason for item 3 is heard on day 10 from children whose cell is blank
+20,21,s03-X20,Reopen,2,J,"a game with the day 20 words; the J contrast (one object beside a toy child, then a second); the written position-word next step is read to each pair"
+21,22,s03-X21 and s03-X21b,Reopen,2,K,if many: turn the card the same way up for everyone and name left and right on the page before the place
+22,23,s03-X22,Reopen,1,B,match the same land outline on the globe and the flat map
+22,23,s03-X22,Reopen,1,I,lay a world map beside the classroom picture map and name the area each shows
+23,24,s03-X23,Reopen,1,B,changed page position beside an unchanged place
+23,24,s03-X23,Reopen,1,I,"a world map and a room map, the area each shows"
+24,25,s03-X24,Reopen,1,C,the small printed symbol beside the real place or its photograph
+24,25,s03-X24,Reopen,0,H,traced from symbol to key and back inside the same minute; the other minute counts the patch of ground
+25,26,s03-X25b,Reopen,1,C,"a block is a small version, not a real tree; D and G contrasts in the same minute"
+25,26,s03-X25b,Reopen,0,D,"a pretend pond beside observed ground, inside the same minute"
+25,26,s03-X25b,Reopen,0,G,"a detail after because, inside the same minute"
+25,26,s03-X25c,Reopen,0,L,"fix one row: a mark for each counted thing, none for the spoon row, inside the same minute"
+25,26,feedback card on the first model and graph,Reopen,1,L,each child gets one picture and one line; an adult reads it aloud to each pair at the start of the revise block
+25,26,revised model and graph records,Supported,4,L,four of the ten supported minutes; these revised records are scored for s03-E4 and s03-E4b
+23,26,revised comparison for s03-E2b s03-E2c s03-E2e from the rotating group,Supported,2,B,"the scribed Both ___, but ___ sentence comes back with one written next step, read aloud; heard inside the group's spoken minutes"
+26,27,s03-X26,Reopen,1,H,"trace an unfamiliar symbol to the key and back, then say its place"
+26,27,s03-X26,Reopen,1,G,a different source detail after because
+26,28,map feedback card on the first drawn map,Introduce,1,D,given and read aloud as the redraw begins; a misplaced natural feature is moved to match what was seen
+27,28,s03-X27,Introduce,1,E,mixed-up address labels beside correctly nested cards
+26,28,redrawn map from the written feedback,Supported,4,D,four of the ten supported minutes; the redrawn map is scored for s03-E4
+26,29,"revised model and graph records for s03-E4, s03-E4b and s03-E4c",responses,0,L,"scored from the dated records, not from a day 29 minute"
+28,29,redrawn map for s03-E4 s03-E4c,responses,0,D,"scored from the day 28 redraw, not from a day 29 minute"
+28,29,spoken parts of s03-E3 and any s03-E2b to s03-E2e explanation still missing,Hearing,8,,confirms the explanations heard on days 24 to 28 and hears at most six children whose item 2 explanation is missing; a record column names who was heard
+29,30,"day 29 record by part, one cell for each child",Reconnect,2,,"each child sees one cell, privately"
+29,30,record sheet letters A to L,Four tables,8,,"tables named by task, never as the children who missed: Words A J K; Key B C H I; Map D L; Address E F; pairs work on G"
+29,30,s03-E7 and unfinished explanations,Fresh tries,6,G,closing claims with a named source scribed beside them; unheard parts stay not yet observed
+34,35,s04-X34a (caterpillar order),Reopen,1,A,"a new three-card set, one card after the one before; the large card is not the earlier one"
+34,35,s04-X34b and s04-X34c,Reopen,1,H,"two events on the strip, earlier on the left; say before and after for each pair"
+35,36,s04-X35a and s04-X35b,Reopen,1,B,point to today's marker and move a card to either side of it
+35,36,s04-X35c,Reopen,1,H,a next-week card put behind the marker; the class moves it ahead
+36,37,s04-X36a and s04-X36b,Reopen,1,A,link each card to the one before it
+36,37,s04-X36c,Reopen,1,H,the last card put first; the class moves it to the right end
+37,38,s04-X37c,Reopen,1,C,"the gray drawing beside the dated record again, each date read aloud"
+37,38,s04-X37a and s04-X37b,Reopen,1,F,one photograph set against everybody; name what another photograph would have to show
+36,38,"day 36 dated picture log, written feedback read aloud",Supported work,6,B,"each child revises one time relation, moving or re-circling it; the revised log is the one scored for item 2"
+38,39,revised day 36 dated picture log (item 2),Individual responses,0,,the earlier time-word evidence counts only from the revised log
+38,40,s04-X38a and s04-X38b,Four groups,1,D,claim and continuity table: a changed tool beside its continuing purpose
+38,40,s04-X38b and s04-X38c,Four groups,1,G,claim and continuity table: replace a ranking with a bounded comparison
+39,40,"day 39 record by part, one cell for each child",Reconnect,2,,"each child sees one cell, privately; the day 38 errors D and G are repaired in the claim group"
+39,40,s04-E1 and s04-E1b,Four groups,2,A,"sequence table, named by task and never by the children who missed: A H; link each event to the one before it"
+39,40,"s04-E2, s04-E2b, s04-E2c and s04-E2d",Four groups,2,B,time words table: anchor on the class calendar and move the event to either side
+39,40,s04-E3 and s04-E3c,Four groups,2,C,source and its limits table: point to the clue and name what another source would need to show; F also here
+39,40,s04-E3 and s04-E4 unfinished explanations,Fresh tries,6,E,"ten children not yet heard on items 3 and 4, one minute each; unheard parts stay not yet observed"
+41,42,day 41 saved card,Reopen,1,,"retrieval: who did it help us remember, and what helped you know"
+41,42,s05-X41a and s05-X41b,Reopen,2,A,only if many missed; a day-off picture beside the card; a card is not praise for the best
+41,42,s05-X41b,Reopen,2,G,praise sentence and a detail sentence side by side
+42,43,the two saved cards,Reopen,1,,retrieval: whom did each help us remember
+42,43,s05-X42c,Reopen,4,,"the record card shown again, both groups named; no register letter fits a wrong answer to this ask"
+43,44,the three saved holiday cards,Reopen,3,,"unit 4 review: first, next and last on the strip; the compelling question is posted"
+43,44,s05-X43b,Return,2,A,only if many missed
+43,44,s05-X43b,Return,2,G,praise and a source detail side by side
+44,45,s05-X44b,Return,4,H,only if many missed; a thank-you wall beside a quiet flag; no raised hands about family
+45,46,day 45 star and stripe,Reopen,1,,retrieval
+45,46,s05-X45a,Reopen,2,C,only if many missed; today's flag with tokens
+45,46,s05-X45b,Reopen,2,J,two new statements into the bins
+46,47,day 46 eagle page,Reopen,1,,retrieval
+46,47,s05-X46b and s05-X46c,Reopen,4,,"one repair, the one most missed of B, D and I"
+47,48,s05-X47a and s05-X47b,Return,4,,"one repair, the one most missed of K, E, L and N, if many missed; otherwise a small group"
+48,49,s05-X48a and s05-X48b,Return,3,,"one repair, the one most missed of F, O and M"
+49,50,s05-E11 and s05-E12,Fresh-source,3,,item 7 heard on 49; fresh on 50 only for a child not yet heard
+50,51,day 50 record by part,Reconnect,2,,"what the observation showed, by part, never by child"
+50,51,holiday items 1 and 13,Four,2,A,"component move: holiday (A, H, G)"
+50,51,book evidence items 3 and 4,Four,2,B,"component move: book evidence (B, I)"
+50,51,symbol items 5 to 10,Four,2,C,"component move: symbol (C, D, E, J, K, L, N); a group of many splits into two moves"
+50,51,tradition items 11 and 12,Four,2,F,"component move: tradition (F, M, O)"
+50,51,unheard parts from day 50,Fresh,10,,recorded not yet observed until heard
+12,52,Our Jobs Chart (R52),Hook,1,,retrieval: one row of the unit 2 chart inside the hook; never edited
+52,53,s06-X52a and s06-X52b,Reopen,2,A,the pretend cafe cook beside the home cook; the same 4 minutes repair I as a paid and not paid grid if many missed
+37,53,washing chart (R53),Reopen,2,,"retrieval: what changed, what stayed, which clue helps; if many missed A the 4 minutes are the repair and the chart moves into Then and now"
+53,54,s06-X53a to s06-X53d,Reopen,3,B,"a tool-only label beside know, do and use on a new worker; 4 minutes if many missed"
+54,55,s06-X54a and s06-X54b,Reopen,3,C,one snow card and one sun card sorted into need and want; repairs C and J together
+55,56,s06-X55a and s06-X55b,Reopen,2,D,"I like it beside only enough for one, so I choose this because ...; 4 minutes if many missed"
+56,57,s06-X56a to s06-X56c,Reopen,3,F,"an object card beside the action done for someone, then a chain on a new worker; repairs F and G in one slot; 4 minutes if many missed"
+26,57,day 26 map and key (R57),Reopen,2,,"retrieval: find a symbol, what does this picture stand for; redraw a key if the map is missing; 1 minute if many missed F and G"
+57,58,s06-X57a to s06-X57c,Reopen,3,E,who pays and who is paid in a new exchange by pairs; repairs E and F in one slot
+58,59,s06-X58a and s06-X58b,Reopen,3,D,"I like it beside the limit on a new pair, with K a swap that stops when one child says no; Our Store Record is pointed to inside the same 3 minutes (R59)"
+58,60,revised roster tries from day 58,Fresh tasks,0,,"heard on the child's roster turn on 58; items s06-E1 to s06-E3, s06-E11, s06-E12, s06-E19 and s06-E20 are scored only from the revised try; no extra minutes"
+59,60,revised roster tries from day 59,Fresh tasks,0,,heard on the child's roster turn on 59; only the revised try is scored; no extra minutes
+60,61,day 60 record by part,Reconnect,2,,"one cell per child, privately; the record by part, never by child, said aloud"
+60,61,"Work: items s06-E1 to s06-E7, s06-E19 and s06-E20",Three groups,2,A,"component move: Work (A, I, B, H)"
+60,61,Choice: items s06-E8 to s06-E12,Three groups,2,C,"component move: Choice (C, J, D)"
+60,61,Exchange: items s06-E13 to s06-E18,Three groups,2,E,"component move: Exchange (E, K, F, G)"
+60,61,fresh try for the part missed (s06-X61a to s06-X61l),Fresh tries,10,,one fresh card per part with a not yet seen cell; unheard parts stay not yet seen in the year-end record
+31,33,day 31 record by part,Reconnect,1,,"one cell per child, privately; the record by part, never by child, said aloud"
+32,33,day 32 record by part,Reconnect,1,,"one cell per child, privately"
+32,33,Words: items sc1-E4 and sc1-E5,Three groups,2,E,"component move: Words (E, F)"
+32,33,Maps: items sc1-E6 to sc1-E8,Three groups,2,G,"component move: Maps (G, H)"
+31,33,Because: items sc1-E1 to sc1-E3,Three groups,2,A,"component move: Because (A, B, C, D)"
+31,33,"fresh try for the part missed (sc1-X33a to sc1-X33f), children of day 31",Fresh tries,5,,one fresh card per part with a not yet seen cell; unheard parts stay not yet seen
+32,33,"fresh try for the part missed (sc1-X33a to sc1-X33f), children of day 32",Fresh tries,5,,same cards; the hearing of the six not yet heard on day 31 or 32
+62,64,day 62 record by part,Reconnect,1,,"one cell per child, privately"
+63,64,day 63 record by part,Reconnect,1,,"one cell per child, privately"
+62,64,Time: items sc2-E1 to sc2-E7,Four groups,2,I,"component move: Time (I, J, K)"
+62,64,Maps: items sc2-E8 and sc2-E9,Four groups,1,L,"component move: Maps (E, F, L)"
+63,64,Money: items sc2-E11 to sc2-E16,Four groups,2,M,"component move: Money (M, N, O, P)"
+63,64,Reasons: items sc2-E10 and sc2-E17,Four groups,1,Q,"component move: Reasons (B, D, Q)"
+62,64,"fresh try for the part missed (sc2-X64a to sc2-X64h), children of day 62",Fresh tries,5,,one fresh card per part with a not yet seen cell
+63,64,"fresh try for the part missed (sc2-X64a to sc2-X64h), children of day 63",Fresh tries,5,,same cards; unheard parts stay not yet seen in the year-end record
+63,64,year-end record for the grade 1 teacher,Record,4,,"the record by part and what day 64 changed, written for the grade 1 teacher"

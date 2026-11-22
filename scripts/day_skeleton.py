@@ -145,9 +145,11 @@ def scored_work(course, allrows, r, day):
             first[c] = min(t)
     for m in plan_csv(course, 'materials'):
         # materials.csv `per` is copies (one per student or one for the class), not authorship: a sheet made and used
-        # today is a handout. Scored work is a student's copy carried in from an earlier day (first real run, 2026-11-16)
+        # today is a handout. Scored work is a student's copy carried in from an earlier day (first real run, 2026-11-16).
+        # `room` (README vocabulary) is a shared class copy, like `class`: never scored work; a `pair` copy is a shared card,
+        # not one child's scored work. A proper `scored` flag in materials.csv is the lasting fix (ladder L81, 2026-11-20)
         used, made = nums(m.get('used_days')), nums(m.get('made_day'))
-        if day not in used or not made or m.get('per', '').strip() == 'class' or made[0] >= day:
+        if day not in used or not made or m.get('per', '').strip() in ('class', 'room', 'pair') or made[0] >= day:
             continue
         md = made[0]
         fb = [h for h in hand if nums(h.get('from_day')) and md <= nums(h['from_day'])[0] < day

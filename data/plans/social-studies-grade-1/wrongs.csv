@@ -1,0 +1,461 @@
+item_id,shown,compute,value,error,note
+s01-R1,That is paper.,,,A,"a statement, not a question; a place to model ""I wonder"""
+s01-R2,Because the club said.,,,B,a command with no reason; a place to model a reason
+s01-R3,The messenger.,,,H,a title with no action; a place to model what the job does
+s01-X1,Walks are fun.,,,A,"a statement, not a question"
+s01-X1,We walk.,,,A,"a statement, not a question"
+s01-X2,The hallway.,,,F,a place name with no link to before
+s01-X2,The wall.,,,F,a place name with no link to before
+s01-X3,Matching shirts make the group.,,,D,looking alike is taken for belonging
+s01-X3,They all look the same.,,,D,looking alike is taken for belonging
+s01-X4,Because a grown-up says.,,,B,a command with no purpose
+s01-X5,Keep it in the cupboard.,,,I,a rule that keeps members out of the telescope
+s01-X5,Because it is a rule.,,,I,no reason tied to joining
+s01-X6,The guide is the one who matters.,,,C,only the leader contributes
+s01-X6,The guide.,,,C,only the leader contributes
+s01-X7,The greeter points.,,,C,names only the person in charge
+s01-X8,The counter wears a badge.,,,H,a job title or badge in place of what the duty does
+s01-X8,He is the counter.,,,H,a title with no action
+s01-X10,Keep voices low.,,,I,a rule card with no reason
+s01-X10,Is it fun?,,,G,a question that needs no fact to find
+s01-E1,"History, because it is a long question.",,,F,a subject label with no idea that fits
+s01-E2,Is field day fun? Do I like it?,,,G,preference questions that need no supporting information
+s01-E3,My job is just wearing the helper badge.,,,H,a badge in place of what the duty does
+s01-E4,They all look the same.,,,D,appearance defines membership
+s01-E4,Do whatever the boss says.,,,B,a rule with no purpose
+s01-E5,Only the worker matters; the others just stand there.,,,C,the other members' contributions are left out
+s01-E6,Only the worker matters; the others just stand there.,,,C,the other members' contributions are left out
+s01-E7,The volunteers are the bosses.,,,C,"the worker's checking and assigning, and the volunteers' part, are mixed up"
+s01-E8,Groups are good because I like them.,,,E,a preference with no detail from the sources
+s02-X11,Both wind pictures on one square.,,,A,both pictures placed on one date
+s02-X11,It is windy every day in November.,,,G,two noted dates are taken for every day
+s02-X12,Yesterday's square.,,,B,a coming action placed in the past
+s02-X12,Yesterday the class will sing.,,,H,one verb form for every time
+s02-X12,Tomorrow the class clapped.,,,B,a coming action told in the past form
+s02-X13,"The class visit, because it was read first.",,,F,"the order the cards were read, not the order in the year"
+s02-X13,"May first, because 7 is the smallest number.",,,F,the day number with no month
+s02-X14,Photograph for both.,,,C,every printed card taken for a photograph
+s02-X14,"Yes, the map is old so it is real.",,,I,a made-up card taken for a real record
+s02-X15,"The lunch menu, because I like it.",,,D,a liking in place of what the source shows
+s02-X15,A photograph of another school's yard shows ours.,,,J,another school's record taken for ours
+s02-X16,Nothing stayed the same.,,,E,no continuing feature found
+s02-X16,Every school changed in this way.,,,K,two drawings taken for all schools
+s02-X17,"The photograph, because I like it.",,,M,a liking with no link to lessons
+s02-X17,Cedar's photograph shows our gate.,,,J,another school's record taken for ours
+s02-X19a,Both repair pictures on one square.,,,A,both pictures placed on one date
+s02-X19a,Every day.,,,G,two noted dates are taken for every day
+s02-X19b,"The photograph card, because it is on paper.",,,C,a letter taken for a photograph because it is on paper
+s02-E1,They drew leaves every day.,,,G,empty squares taken for drawing days
+s02-E2,Tomorrow they drew leaves.,,,B,tomorrow told in a past form
+s02-E2,Yesterday they will label them.,,,H,one verb form for every time
+s02-E3,December 8 first because it was read first.,,,F,card order taken for time order
+s02-E3,"Music day first, because 8 is the smallest day number.",,,F,day numbers ordered with no month
+s02-E4,Both are photographs because they are on paper.,,,C,every printed card taken for a photograph
+s02-E4,The letter shows a real past event.,,,I,a made-up card taken for a real record
+s02-E4,The children look unhappy.,,,L,feelings read from looks the caption never gives
+s02-E5,The lunch recording because I like lunch.,,,D,a liking in place of what the source tells
+s02-E5,A photograph of another school shows our school's sign.,,,J,another school's record taken for ours
+s03-X20,"Dev, because he has the badge.",,,F,a badge taken for the responsibility
+s03-X20,"She is the leader, so she is not part of the team.",,,A,the leader placed outside the group
+s03-X21,Was the clock pretty?,,,E,a liking question in place of what the leader did
+s03-X21,Do you like the clock?,,,E,"a preference, not an action"
+s03-X22,The keeper alone helped the boats.,,,D,the neighbors left out
+s03-X22,He is a good leader because everyone knows his name.,,,B,being known taken for good leadership
+s03-X23,The leader alone opened the school.,,,D,the builders and families left out
+s03-X23,Did the builders like the school?,,,E,a liking question in place of what they did
+s03-X24,The leader alone asked for the change.,,,D,the neighbors left out
+s03-X24,What color was the stair?,,,E,a detail that asks nothing about what the neighbors did
+s03-X25,The leader choosing alone shows listening.,,,D,the leader assumed to do all the deciding
+s03-X25,Everyone agreed right away.,,,O,agreement claimed that the record does not show
+s03-X25,Was the garden pretty?,,,E,a liking question about the garden
+s03-X26,"Apart, because they have different jobs.",,,N,the same quality taken to need the same job
+s03-X26,They must both shut the gate to show care.,,,N,identical jobs demanded for one quality
+s03-X27,"First they fixed it, then they noticed the broken leg.",,,C,events out of order
+s03-X27,"The bench was green, so they fixed it.",,,J,an unrelated detail told as a step
+s03-X28,She is a good leader.,,,H,the claim repeated as its own reason
+s03-X28,She listens because she listens.,,,H,the claim repeated as its own reason
+s03-X29,Asked members.,,,I,a reason with no closing
+s03-X29,This matters because brave leaders help others reach safety.,,,P,the covered model's closing copied
+s03-X29,Is famous.,,,B,fame taken for evidence
+s03-X31a,"First she checked it, then she heard the worry.",,,C,events out of order
+s03-X31a,"The member wore a red coat, so she changed the route.",,,J,an unrelated detail told as a step
+s03-X31b,She is a good leader.,,,H,a claim with no action as the reason
+s03-X31b,A good leader is Rosa.,,,Q,a name given in place of a quality
+s03-E1,The puppet leader is above the club.,,,A,the leader placed over the group
+s03-E1,The leader's job is wearing the leader's crown.,,,F,a badge or crown taken for the responsibility
+s03-E1,Everyone must do whatever the puppet leader says.,,,G,authority taken to mean unlimited obedience
+s03-E2,The monitor's job is wearing a badge.,,,F,a badge taken for the responsibility
+s03-E2,The monitor is the boss and the team must obey.,,,A,the leader placed above the group
+s03-E2,The monitor can make everyone do anything.,,,G,authority taken to mean unlimited obedience
+s03-E3,Good leaders are famous.,,,B,fame taken for a quality
+s03-E3,The monitor and the puppet leader are good too.,,,Q,leaders named with no action to support a quality
+s03-E4,A good leader is a good leader.,,,H,the claim repeated as its own reason
+s03-E4,Good leaders work with others. Addams's group helped neighbors.,,,I,a claim and a reason with no closing
+s03-E4,A good leader is Addams.,,,Q,a name given in place of a supported quality
+s03-E5,First the streets were clean. Then Addams was born.,,,C,events out of order
+s03-E5,Addams did it all alone and made the streets clean.,,,D,one person given all the credit and a result the summary does not state
+s03-E6,What is your favorite color?,,,E,a preference question in place of a question about what was done
+s03-E6,Did you like Hull House?,,,E,a liking question about the house
+s03-E7,I like blue.,,,M,a reply that does not answer the question asked
+s03-E7,Says the partner's question again and gives no answer.,,,M,a question repeated and the partner's question left unanswered
+s04-X32,The loudest member picks.,,,Q,the loudest voice allowed to decide for everyone
+s04-X32,"They vote at once, because talking never helps.",,,R,talking taken never to end a disagreement
+s04-X33,Both are elections.,,,A,a vote on a matter taken for an election
+s04-X33,Friends should get extra votes.,,,I,extra votes for some voters
+s04-X33,It is fair if the chair is kind.,,,I,a kind chair taken to excuse unequal votes
+s04-X34,Private means nobody counts it.,,,B,private marking taken for a secret count
+s04-X34,"Say nothing, because disagreeing is not allowed.",,,J,accepting a result taken to forbid disagreement
+s04-X35,The governor is in charge of a city.,,,M,the governor placed over the wrong place
+s04-X35,The governor is in charge of a country.,,,M,the governor placed over the wrong place
+s04-X35,"The librarian, because voters choose every helper.",,,D,every helper taken to be elected
+s04-X36,"Nobody pays, because the pool pays itself.",,,L,government goods taken to cost nothing
+s04-X36,The mayor pays alone.,,,K,one official taken to be the whole government
+s04-X36,"Nothing, it just runs free.",,,L,a service taken to cost nothing
+s04-X37,The mayor keeps the job because people like the mayor.,,,O,a liked leader taken to stay forever
+s04-X37,The mayor decides.,,,O,the leader taken to decide the end of a term
+s04-X38,The captain is my friend.,,,F,friendship in place of a deed
+s04-X38,Everybody says the captain is great.,,,F,a say-so in place of a deed
+s04-X39,The loudest member decided.,,,Q,the loudest voice allowed to decide
+s04-X39,The leader's friends voted twice.,,,I,extra votes for some voters
+s04-X39,Voting is always better than talking.,,,H,voting taken always to beat agreement
+s04-X39,Talking never works.,,,R,talking taken never to settle a difference
+s04-X41,Keep quiet about the count.,,,J,questioning an unfair count taken to be forbidden
+s04-X41,Keep the leader because the leader is nice.,,,O,popularity taken to cancel the end of a term
+s04-E1,Lio wins because I like that name.,,,T,"a name chosen by liking, not the higher total"
+s04-E1,Lio wins because the name is first.,,,T,"a name chosen by position, not the higher total"
+s04-E2,Both votes are elections.,,,A,a vote on a matter taken for an election
+s04-E3,The loudest person chooses.,,,Q,the loudest voice allowed to decide
+s04-E3,"Voting is always the best way, so skip talking.",,,H,voting taken always to beat agreement
+s04-E3,"Talking always settles it, so no vote is ever needed.",,,R,talking taken always to end a difference
+s04-E4,Secret means nobody counts it.,,,B,private marking taken for a secret count
+s04-E5,The captain's friends get an extra vote.,,,I,extra votes for some voters
+s04-E5,Older members get two votes.,,,I,extra votes for some voters
+s04-E6,We must never question the count.,,,J,accepting a result taken to forbid questioning
+s04-E6,The winner can do anything now.,,,C,winning taken to permit any order
+s04-E7,Keep quiet about the extra vote.,,,J,questioning an unfair count taken to be forbidden
+s04-E7,An extra vote for a friend is fine.,,,I,extra votes for some voters
+s04-E8,The governor leads every country.,,,M,an office placed over the wrong place
+s04-E8,The bus driver and the librarian are elected offices.,,,D,hired helpers taken for elected offices
+s04-E9,A captain rules the country.,,,M,an office placed over the wrong place
+s04-E9,"Government is only one person, so a captain is a government.",,,K,one person taken to be the whole government
+s04-E10,Government is only the council leader.,,,K,one official taken to be the whole government
+s04-E11,A toy shop.,,,S,a shop taken for a government good
+s04-E11,A neighbor's swing.,,,S,a family's thing taken for a government good
+s04-E12,The rubbish workers sell toys.,,,S,selling taken for a government service
+s04-E13,The bridge appears for free.,,,L,a public good taken to cost nothing
+s04-E13,Nobody pays for it.,,,L,a public good taken to cost nothing
+s04-E14,Only people who vote belong.,,,N,belonging taken to need voting
+s04-E15,Every person who lives there may vote.,,,E,residents taken all to be voters
+s04-E15,Only people who vote belong.,,,N,belonging taken to need voting
+s04-E16,A leader stays forever.,,,O,a leader taken to keep office forever
+s04-E17,Choose Nell because I like Nell.,,,F,a preference in place of a deed
+s04-E17,Re-elect Nell because everybody says so.,,,F,a say-so in place of a deed
+s04-E18,I choose Nell because everybody says Nell is great.,,,F,a say-so in place of a deed from the record
+s04-E18,I choose Nell because I like Nell.,,,F,a preference in place of a deed from the record
+s05-X44,Circles the side view of one shelf.,,,N,a side view taken for a map of the room
+s05-X44,"The map is the room, you can sit on it.",,,A,the map taken to be the place itself
+s05-X45,Circles the pond: a circle is a pond because it is round.,,,B,a shape taken to mean the same on every map
+s05-X45,A circle is a pond on every map.,,,B,a symbol read without this map's key
+s05-X46,The globe is all water.,,,S,a globe taken to show only water
+s05-X46,"The fields are natural, like the hill.",,,R,what people made taken for what was already there
+s05-X47,"Token on the shed to the right of the well, because the page right feels like east.",,,C,"north, and so east, taken from the page instead of the indicator"
+s05-X47,"The gate is east of the well, it is to the right.",,,C,a direction taken from the page right
+s05-X48,"Portland, because it is bigger.",,,G,the largest city taken to be the capital
+s05-X48,"Salem, because it has the government building.",,,L,"a capital taken to be a building, not a city"
+s05-X49,"The map shows a river, so shops grew.",,,F,a map clue taken alone as proof of why a place grew
+s05-X49,Nobody was here before the shops.,,,H,a silent record taken to mean an empty place
+s05-X49,Shops grew there because people like shops.,,,K,an opinion in place of a clue
+s05-X49,The people who lived here before are all gone now.,,,M,earlier people taken to have disappeared
+s05-X50,Circles the whole country when asked for the state.,,,Q,a state taken to be the country
+s05-X50,South America is a country.,,,D,a continent taken to be a country
+s05-X50,The blue part named Indian is a lake.,,,E,an ocean taken for a lake
+s05-X51,"Circles the river, because both are blue.",,,E,river and lake taken as the same blue shape
+s05-X51,The map shows the water is safe to drink.,,,J,a water location taken for proof of safe water
+s05-X52,"A symbol with no meaning written in the key, or a different meaning each time.",,,O,symbols given no steady meaning
+s05-X52,Circles a place where the card shows no pond.,,,P,a feature drawn where the place shows none
+s05-X53,Because Alder grew.,,,T,a claim repeated as its own reason
+s05-X53,Cities grow because of the government.,,,U,one cause taken for every city
+s05-X55,"Token on the clinic to the right of the well, because the page right feels like east.",,,C,east taken from the page right instead of the indicator
+s05-X55,It matters because it matters.,,,K,a reason with no clue from the record
+s05-E1,Every line on any map is a road.,,,B,one line shape taken to mean the same on every map
+s05-E1,"The double line is a road, like every line.",,,B,a symbol read without this map's key
+s05-E2,The squares are tiny real buildings.,,,A,a symbol taken for the real thing
+s05-E2,The map is the place itself.,,,A,the map taken to be the place
+s05-E3,A continent is a country.,,,D,a continent taken to be a country
+s05-E3,A continent is a state.,,,D,a continent taken to be a political place
+s05-E4,An ocean is a big lake.,,,E,an ocean taken for a lake
+s05-E4,An ocean is a river.,,,E,an ocean taken for a river
+s05-E5,The lake is a mountain.,,,E,feature names taken as interchangeable
+s05-E5,"The river and the lake are the same, both blue.",,,E,two water features taken as one
+s05-E6,"A globe has no cities, only land and water.",,,I,a globe taken to have no human places
+s05-E6,"No, places where people live are only on flat maps.",,,I,cities taken to belong only to flat maps
+s05-E7,"The fields grow by themselves, like the hill.",,,R,what people made taken for what was already there
+s05-E7,People made the hill and the water.,,,R,natural features taken for human ones
+s05-E8,The river built the bridge.,,,R,a human feature credited to a natural one
+s05-E8,The lake made the town.,,,R,a human feature credited to a natural one
+s05-E9,"North, because it is at the top of the page.",,,C,north taken as the page top
+s05-E9,Up.,,,C,a page direction in place of a cardinal direction
+s05-E10,"Circles the lake, because north is the top of the page.",,,C,north taken as the page top
+s05-E10,North is always up.,,,C,north taken as a page position
+s05-E11,"West, because Reed is on the left.",,,C,a page side taken for a direction
+s05-E11,"North, because Reed is at the top.",,,C,north taken as the page top
+s05-E12,It is the biggest dot.,,,G,size taken as the sign of a capital
+s05-E12,It is the first city I saw.,,,G,a choice with no key or label
+s05-E13,A capital is the government building.,,,L,a capital taken to be a building
+s05-E13,A capital is a big house for the leader.,,,L,a capital taken to be a building
+s05-E14,Our state government.,,,Q,a state government taken for the national one
+s05-E14,"Washington, D.C. is a state.",,,Q,a capital city taken for a state
+s05-E15,The national government.,,,Q,the national government taken for the state one
+s05-E15,Our town government.,,,Q,one level of government taken for another
+s05-E16,"Yes, the biggest city is always the capital.",,,G,size taken as the reason for a capital
+s05-E16,It is the capital because it has the most people.,,,G,size taken as the reason for a capital
+s05-E17,I added a pond because parks have ponds.,,,P,a feature added that the place does not show
+s05-E17,"It is my favorite place, with no water.",,,P,a drawing not checked against the photographs
+s05-E18,This star is the park here and a dog there.,,,O,one symbol given two meanings
+s05-E18,These are just my favorite things.,,,O,marks with no place or symbol meaning
+s05-E19,North is the top of the paper.,,,C,north taken as the page top
+s05-E19,"The gate is on the right, so it is east.",,,C,east taken from the page right
+s05-E20,Cities are there because cities are there. That is my reason.,,,T,a claim repeated as its own reason
+s05-E20,Every city grew because of a bridge.,,,U,one cause taken for every city
+s05-E20,Reed grew because people like shops.,,,K,an opinion in place of a clue from the record
+s05-E21,"The map shows a river, so Reed grew.",,,F,a map clue taken alone as proof of why a place grew
+s05-E21,Reed grew because people like towns.,,,K,an opinion in place of a clue
+s06-X56,Circles wearing the same clothes.,,,A,one picture taken to show everyone
+s06-X56,Circles eating the same lunch.,,,A,one picture taken to show everyone
+s06-X56,This is how everyone goes to school there.,,,A,one picture taken for a whole place
+s06-X57,Circles the rain cloud.,,,B,weather taken for a custom
+s06-X57,Circles the hill.,,,I,land taken for something people learned
+s06-X57,It is a silly way to greet.,,,H,an unfamiliar custom judged wrong before the speaker's reason
+s06-X57,That is how it is when it rains.,,,B,weather taken for the cause of a custom
+s06-X58,The snow makes them speak Japanese.,,,B,weather taken as the cause of a language
+s06-X58,The rain is why they eat what they eat.,,,B,weather taken as the cause of a custom
+s06-X58,Swaps the two tokens.,,,,"a swapped pair: read the key again, no letter"
+s06-X59,Circles the same cake.,,,C,sameness of celebration taken for what is shared
+s06-X59,Circles the same party hats.,,,C,sameness of celebration taken for what is shared
+s06-X59,"Yes, they must celebrate alike to be one town.",,,C,belonging taken to need sameness
+s06-X60,Circles a people only in old pictures.,,,F,a Native nation taken to exist only in the past
+s06-X60,Circles a nation whose people all believe the same.,,,L,belief read from a group name
+s06-X60,Native people lived long ago and are gone.,,,F,a Native nation taken to exist only in the past
+s06-X60,They chose to go.,,,J,forced removal taken for a choice
+s06-X60,They are all the same.,,,C,a count of languages taken to show sameness
+s06-X61,Circles I like Elm Town.,,,G,a preference taken for evidence
+s06-X61,Circles the neighbors speak different languages.,,,,"a detail for diversity, no letter: ask what they share and look again"
+s06-X61,Because I like Elm Town.,,,G,a preference taken for evidence
+s06-X61,The library shows they are different.,,,M,one detail taken to show both sides
+s06-X62,Matches the seal's eagle to a bird.,,,D,a name taken for the meaning
+s06-X62,Matches the White House to any house.,,,D,a name taken for the meaning
+s06-X62,Matches the flag to a decoration.,,,D,a name taken for the meaning
+s06-X62,I just know.,,,D,no detail pointed to
+s06-X63,Circles proof everyone was treated the same.,,,K,an ideal of welcome taken for equal treatment
+s06-X63,Circles a rule on a sign.,,,,"a poem taken for a rule: ask again with the poem line, no letter"
+s06-X63,The torch is just a light.,,,D,a name taken for the meaning
+s06-X63,"Yes, everyone was welcome the same.",,,K,an ideal of welcome taken for equal treatment
+s06-X64,Circles only the one who says the words.,,,E,saying the Pledge taken for belonging
+s06-X64,Circles only people who believe the same.,,,C,belonging taken to need identical beliefs
+s06-X64,They must all be the same.,,,C,belonging taken to need identical beliefs
+s06-X64,Ari must say it to be treated fairly.,,,E,saying the Pledge taken for a condition of fair treatment
+s06-X65,Matches tune and title but gives no meaning.,,,D,recognition taken for meaning
+s06-X65,Matches a meaning picture with no words.,,,D,a meaning given without its words
+s06-X65,"I know the tune, so I know what it means.",,,D,recognition taken for meaning
+s06-X65,Everyone must sing it to belong.,,,E,singing taken for belonging
+s06-X66,Circles the festivals.,,,C,sameness taken for what is shared
+s06-X66,Circles the same clothes.,,,C,sameness taken for what is shared
+s06-X66,The festivals show they are united too.,,,M,one detail taken to show both sides
+s06-X66,I like the picture.,,,G,a preference taken for evidence
+s06-X68,Circles a decoration.,,,D,a symbol taken for decoration
+s06-X68,Circles the courthouse.,,,D,a symbol taken for the building it stands beside
+s06-X68,They all greet the same.,,,C,belonging taken to need sameness
+s06-X68,The courthouse shows they are different.,,,M,one detail taken to show both sides
+s06-X68,I like the flag.,,,G,a preference taken for evidence
+s06-E1,Everyone in Japan lives in snow.,,,A,one picture taken to show a whole country
+s06-E1,Both signs are in the same language.,,,,two signs read as one: look at the writing again
+s06-E2,B children have no lunch.,,,A,a gap in one picture taken for a fact about everyone
+s06-E3,Circles yes.,,,A,one picture taken to show everyone
+s06-E3,Everyone in Japan lives in snow and eats the same food.,,,A,one picture taken to show a whole country
+s06-E4,Japanese writing is weather.,,,I,something people learned taken for a natural feature
+s06-E4,Circles the snow as a cultural feature.,,,I,a weather feature taken for something people made
+s06-E4,Singapore is farther north.,,,,"the direction read from the page, not the indicator: use the indicator again"
+s06-E5,Snow makes everyone speak Japanese.,,,B,weather taken as the cause of a language
+s06-E5,Circles the sign as an environmental feature.,,,I,something people made taken for a natural feature
+s06-E6,The flag is a decoration.,,,D,a symbol taken for decoration
+s06-E6,The flag is cloth on a pole.,,,D,a name taken for the meaning
+s06-E7,An eagle is just a bird.,,,D,a name taken for the meaning
+s06-E7,The olive branch is a decoration.,,,D,a detail taken for decoration
+s06-E8,Circles any house.,,,D,a name taken for the meaning
+s06-E8,It is any white house.,,,D,a name taken for the meaning
+s06-E9,The statue proves everyone was welcomed.,,,K,an ideal of welcome taken for equal treatment
+s06-E9,The torch is just a light.,,,D,a name taken for the meaning
+s06-E10,One means everyone must have the same beliefs.,,,C,belonging taken to need identical beliefs
+s06-E11,People who stay silent do not belong.,,,E,saying the Pledge taken for belonging
+s06-E11,Circles a song.,,,,"a phrase matched to the wrong picture: read the phrase card again, no letter"
+s06-E12,I recognize the tune but cannot explain the words.,,,D,recognition taken for meaning
+s06-E12,Both songs mean everyone must sing.,,,E,singing taken for belonging
+s06-E13,I recognize the tune but cannot explain the words.,,,D,recognition taken for meaning
+s06-E13,The song just says flag.,,,D,a name given with no detail
+s06-E14,"They all speak English, so they belong.",,,C,belonging taken to need one language
+s06-E14,I like Willow Town.,,,G,a preference taken for evidence
+s06-E15,The Constitution alone shows both unity and diversity.,,,M,one detail taken to show both sides
+s06-E16,"I like the picture, which proves my claim.",,,G,a preference taken for evidence
+s06-E16,The Constitution alone shows both unity and diversity.,,,M,one detail taken to show both sides
+s06-E16,"They all speak English, so they belong.",,,C,belonging taken to need sameness
+s07-X69,"Only citizens have rights, so Sol has none.",,,N,rights taken to need citizenship
+s07-X69,Sol cannot help because Sol is not a citizen.,,,A,belonging taken to need citizenship
+s07-X69,Omar became a citizen because he helped the most.,,,F,helping taken to earn citizenship
+s07-X69,Circles Mia.,,,,born here taken for became one later: read the cards again
+s07-X70,Circles the favorite color card.,,,M,a preference taken for a problem
+s07-X70,What is your favorite color?,,,M,a preference question taken for a fact to find out
+s07-X70,Who forgot their boots?,,,,a guess that names a person: a problem is a place or a thing
+s07-X71,Circles a tap already fixed.,,,J,a note of work underway taken for a finished repair
+s07-X71,Nobody was working on it until children noticed.,,,C,only our class helps
+s07-X72,Circles the dancer's way only.,,,D,a different view taken as the one to drop
+s07-X72,Bo is wrong because he wants something different.,,,D,a different view taken as bad
+s07-X73,Circles only one side puts in slips.,,,I,a vote taken to exclude the losing side
+s07-X73,The side that wins gets the votes.,,,I,a vote taken to exclude the losing side
+s07-X74,Circles leaving school alone to put signs outside.,,,H,a child taken to act alone
+s07-X74,Children can do anything on their own.,,,H,a child taken to act alone
+s07-X75,Circles the character who owns the most toys.,,,G,what a person has taken for what a person does
+s07-X75,The class is good because I like crayons.,,,B,a liking taken for a judgment with a detail
+s07-X75,The one with the most toys is the best member.,,,G,wealth taken to decide who is good
+s07-X76,Uses the nothing ever changed card.,,,L,efforts taken never to change
+s07-X76,A helper must be famous.,,,G,fame taken to decide who is good
+s07-X76,Places the posts painted card first.,,,,order reversed: long ago comes before now
+s07-X77,People far away cannot help themselves.,,,C,people elsewhere taken as helpless
+s07-X77,Places all three cards on near.,,,O,all problems taken as ours alone
+s07-X78,Circles every pencil is back for good.,,,E,one action taken to solve everything
+s07-X78,Circles one tidy picture.,,,K,a single picture taken to show lasting change
+s07-X78,They are good because they did it.,,,B,a judgment with no detail
+s07-X80,It is good because they should.,,,B,a judgment with no reason from the record
+s07-X80,They always kept the shelf in the garage and nothing changed.,,,L,efforts taken never to change
+s07-X80,Places the shed picture first.,,,,order reversed: the hand cart came first
+s07-E1,Ren does not belong.,,,A,belonging taken to need citizenship
+s07-E1,Only citizens have rights.,,,N,rights taken to need citizenship
+s07-E1,Ren will become a citizen by helping.,,,F,helping taken to earn citizenship
+s07-E2,The helper is good because I like the story.,,,B,a liking taken for a judgment with a detail
+s07-E2,Circles the farms were far apart.,,,,a fact about the place taken for a deed that shows a quality
+s07-E3,They always used the same wagon and nothing changed.,,,L,efforts taken never to change
+s07-E3,Places the motor picture first.,,,,order reversed: the wagon came first
+s07-E4,Only our town has problems.,,,O,problems taken to be only here
+s07-E4,The invitation proves the park is clean.,,,J,an invitation taken for a record of the work done
+s07-E5,Children should go into the river to fetch the trash.,,,H,a child taken to act alone and unsafely
+s07-E5,Our class can fix every problem everywhere.,,,P,one class taken to fix every problem in every place
+s07-E6,They should because they should.,,,B,a claim with no reason from A
+s07-E6,They should because I like books.,,,B,a liking taken for a reason from the source
+s08-X81,"Bram is not working, because nobody pays him.",,,A,unpaid work taken for not being work
+s08-X81,"Bram is employed, because he works too.",,,A,paid and unpaid work not told apart; repair A contrasts them without ranking either
+s08-X82,"Jun earns by selling, because stacking books is work.",,,A,work with no pay taken for a way of earning
+s08-X82,They all just do the same work.,,,I,different jobs taken for one kind of work
+s08-X82,Only people paid by the hour earn income.,,,J,earning taken to mean wages only
+s08-X83,"The candle, because you pay for it.",,,B,paying taken to make a thing a service
+s08-X83,"Both are goods, because the buyer pays.",,,B,a paid action taken for a good
+s08-X84,"The pencil costs more, because the picture is bigger.",,,K,picture size taken for price
+s08-X84,The 7 is the price of the pencil.,,,L,a tag taken to belong to another offer
+s08-X85,"Yes, Neri can buy both, because Neri wants both.",,,C,wanting taken to supply tokens
+s08-X85,Neri can still have both after paying for the show.,,,C,what is left not counted
+s08-X86,The marble.,,,N,the last-ranked option taken for the one given up
+s08-X86,"The top and the marble, because Dev did not get either.",,,N,every unchosen option counted
+s08-X86,"The tokens, because the chalk used them up.",,,M,the price taken for the thing given up
+s08-X87,People who pick Stall B are not nice.,,,D,a buying choice taken to show who is good
+s08-X87,Only a bad person picks the cheaper stall.,,,D,a buying choice taken to show who is good
+s08-X88,"The ticket, because it has a date.",,,O,the planned reason taken for the unplanned one
+s08-X88,The storm happened on a day we knew.,,,O,an emergency taken to have a known date
+s08-X88,Saving is only for things you want.,,,E,saving taken to be for treats only
+s08-X89,The bank owns the tokens Kemal puts in.,,,Q,a deposit taken for the bank's property
+s08-X89,A bank hands out free tokens to anyone who asks.,,,F,a bank taken to give money away
+s08-X89,"The gifts card, because banks give gifts.",,,F,a bank taken to give money away
+s08-X90,The spend jar holds the watering can money.,,,P,spend taken for save
+s08-X90,Pat can spend the saved tokens and still have them.,,,P,one token counted in two jars
+s08-X91,"Claim two, because it says buy it.",,,G,a repeated claim taken for a reason
+s08-X91,So yes.,,,G,a closing that repeats the claim
+s08-X93a,The 7 is the price of everything on the flyer.,,,L,one tag taken for every offer
+s08-X93a,The scarf costs 7.,,,L,a tag joined to the wrong offer
+s08-X93b,The sun hat's tokens.,,,M,the price taken for the thing given up
+s08-X93b,The pinwheel and the ribbon.,,,N,every unchosen option counted
+s08-X93c,All of Orla's year of pay comes on one day.,,,H,a salary taken as one lump
+s08-X93c,Only on the first month.,,,H,a salary taken as one lump
+s08-X93d,A person who picks Shop E is a bad person.,,,D,a buying choice taken to show who is good
+s08-X93d,Only a good person picks Shop F.,,,D,a buying choice taken to show who is good
+s08-X93e,Saving is only for treats for yourself.,,,E,saving taken to be for personal shopping only
+s08-X93e,Both cards are for buying something for yourself.,,,E,a gift not seen as a saving reason
+s08-X93f,"Wen keeps the tokens for good, because a bank gives money.",,,F,a loan taken for free money
+s08-X93f,The bank's savers lose their tokens when Maple Bank lends.,,,R,a saver's amount taken to vanish when the bank lends
+s08-X93g,Put 9 tokens in every jar.,,,P,one token counted in several jars
+s08-X93g,Spend the saved tokens on the stand and still keep them for the roof.,,,P,one token counted twice
+s08-X93h,"Claim two, because we should.",,,G,a repeated claim taken for a reason
+s08-X93h,"Both, because both say buy a new hose.",,,G,a claim taken for its own reason
+s08-E1a,Lee gets the whole year's pay on one day.,,,H,a salary taken as one lump
+s08-E1a,Only Dara earns income.,,,J,income taken to be hourly wages only
+s08-E1b,"Uma does not earn, because nobody pays her wages.",,,J,earning taken to mean hourly pay
+s08-E1b,Only Dara earns.,,,J,earning taken to mean hourly pay
+s08-E2a,"The repair is a good, because money buys it.",,,B,a bought action taken for a good
+s08-E2a,"All three are goods, because they all cost money.",,,B,paying taken to make an action a good
+s08-E2b,"The repair is a good, because money buys it.",,,B,a bought action taken for a good
+s08-E2b,"The seeds are a service, because they cost money.",,,B,paying taken to make a thing a service
+s08-E2c,The kite costs 9.,,,L,a price read from the wrong offer
+s08-E2c,"The kite costs more, because the picture is bigger.",,,K,picture size taken for price
+s08-E3a,"Robin can have both, because both are wanted.",,,C,wanting taken to supply money
+s08-E3a,"Enough, because 11 is a big number.",,,C,the total of both prices not counted
+s08-E3b,What Robin gives up is the 6 dollars.,,,M,the price taken for the thing given up
+s08-E3b,Robin gives up the repair and the seeds and everything else.,,,N,every unchosen option counted
+s08-E4,Only a bad person chooses the other shop.,,,D,a buying choice taken to show who is good
+s08-E4,The right buyer picks the shop with rest breaks.,,,D,one choice taken as the only right one
+s08-E5a,Only buying yourself something counts as saving.,,,E,saving taken to be for personal shopping only
+s08-E5a,The window has a date we all know.,,,O,an emergency taken to have a known date
+s08-E5b,Every future expense has a known date.,,,O,an emergency taken to have a known date
+s08-E5b,People save only to buy treats.,,,E,saving taken to be for personal shopping only
+s08-E6,Banks give anyone free money.,,,F,a loan taken for a gift
+s08-E6,Savings disappear when the bank lends.,,,R,a saver's record taken to vanish when the bank lends
+s08-E7,Put 11 tokens in every jar.,,,P,one token counted in several jars
+s08-E7,Spend 6 and keep the same 6 in save too.,,,P,one token counted twice
+s08-E8,Buy it because buy it.,,,G,a repeated claim taken for a reason
+s08-E8,"Buy the kite, because I like kites.",,,G,a liking taken for a reason from the packet
+sc1-E1,Circles Tortoises are cute.,,,A,a liking taken as a smaller question
+sc1-E1,Circles How can our class take care of a class tortoise?,,,B,the big question said again taken as a smaller one
+sc1-E1,We would ask a grown-up.,,,C,a person to ask stands in for a fact
+sc1-E1,We need to know about tortoises.,,,C,a vague topic stands in for a fact
+sc1-E2,A map.,,,J,the kind of source mixed up
+sc1-E2,A recording.,,,J,the kind of source mixed up
+sc1-E2,Everybody then sat on porches with apples.,,,K,one photograph stretched to everyone in the past
+sc1-E2,A dog sleeping by the chair.,,,L,a detail that the photograph does not show
+sc1-E3a,"Kesi hung the card first, and then asked each player.",,,D,the two deeds told out of order
+sc1-E3a,Kesi asked each player.,,,E,only one deed told
+sc1-E3b,Kesi is a good leader because I like Kesi.,,,F,"a liking given as the reason, not a deed"
+sc1-E3b,Kesi is a good leader.,,,G,a claim with no reason
+sc1-E4,Picture two.,,,I,calling out loud while watched taken as the fairer way
+sc1-E4,So nobody counts the slips.,,,H,secret taken to mean uncounted
+sc1-E4,So the teacher decides who wins.,,,x,a decider outside the vote; ask what the counters do
+sc1-X43a,Token on the recording card.,,,J,the kind of source mixed up
+sc1-X43a,The photograph tells everything about the tram.,,,K,one photograph stretched to everything
+sc1-X43b,"I think the corner is shady, because I like it.",,,F,a liking given as the reason
+sc1-X43b,I think the corner is shady.,,,G,a claim with no reason
+sc1-X43b,Circles the puzzle shelf.,,,x,a detail that does not back the claim; trace from the claim to the card
+sc2-E1,"Circles the circle, because it looks like a station.",,,M,"a symbol read by its look, key skipped"
+sc2-E1,"It is the real town, just tiny.",,,M,"the map taken as the town itself, not marks standing for places"
+sc2-E2,Token on the pond; the visitor walks east.,,,N,"east and west mixed up, arrow not used"
+sc2-E2,Token on the market; the visitor walks north.,,,N,"a direction guessed, arrow not used"
+sc2-E3,"Circles Quay City, because it is the biggest.",,,O,the biggest city taken as the capital
+sc2-E3,Marlow is the capital because it is the biggest.,,,O,size given as the reason
+sc2-E4,Because it is the capital.,,,P,a reason the record does not give; the capital is Marlow
+sc2-E4,Because it is pretty.,,,P,a reason the record does not support
+sc2-E5,Blue is land and gray is water.,,,Q,"land and water swapped, key not used"
+sc2-E5,An ocean is just a very big lake.,,,R,ocean and lake mixed up
+sc2-E6,The lake is the river.,,,R,lake and river mixed up
+sc2-E6,Circles the mountain where the river ends.,,,R,water and high land mixed up
+sc2-E7,Marks drawn for decoration with no key meaning.,,,S,symbols with no steady meaning
+sc2-E7,Water drawn where the photographs show land.,,,x,the place is not copied from the photographs
+sc2-E8,Circles different festivals.,,,T,a difference taken for what is shared
+sc2-E8,Everyone in Cottonwood is the same.,,,T,united taken to mean alike
+sc2-E9,Americans are all the same.,,,T,united taken to mean alike
+sc2-E9,"Americans are different, so they share nothing.",,,U,different taken to mean not united
+sc2-E9,Americans are united and different.,,,V,a claim with no evidence from the letter
+sc2-E10,We gave up nothing.,,,W,"nothing given up said, the cost not seen"
+sc2-E10,We gave up the way we chose.,,,W,the chosen way named as given up
+sc2-E11,We could have done both; we just did not want to.,,,Y,"limits not seen, the choice taken as a mood"
+sc2-E11,Because the teacher said.,,,x,"a decider named, not the limit; ask what we did not have enough of"
+sc2-E12,Nothing can be done.,,,Z,no way to work on the problem seen
+sc2-E12,Only one person fixes it alone.,,,Z,working together not seen
+sc2-E13,We could fix the fountain ourselves.,,,Z,an unsafe step taken alone
+sc2-E13,Only grown-ups can help.,,,Z,a class taken to have no safe way to help
+sc2-X96a,It is a tiny flag at the cove.,,,M,"the mark taken as the thing itself, key skipped"
+sc2-X96a,Circles another mark because it looks like a ramp.,,,M,"a symbol guessed, key skipped"
+sc2-X96b,I think the lamp helps boats.,,,V,a claim with no evidence from the card
+sc2-X96b,Circles the lamp is yellow.,,,x,a detail that does not back the claim; trace from the claim to the card

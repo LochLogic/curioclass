@@ -1,0 +1,10 @@
+---
+piece: blank
+course: english-language-arts-grade-1
+unit: 4.7
+version: draft, not yet taught
+credit: ours
+---
+# Cycle 24 progress sample, teacher-held
+
+Teacher-held card for day 149, taken one child at a time in the rotation. One word card is shown to be read; the card is then removed and one other word is dictated to be written. The two words are held out of days 145 to 148: they stay in your folder, are never used as practice or chain words, and are not shown before day 149. They are not printed here.

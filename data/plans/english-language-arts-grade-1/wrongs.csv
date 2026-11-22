@@ -1,0 +1,743 @@
+item_id,shown,compute,value,error,note
+s01-X1,the pencil and book picture,,,A,a job the words do not give
+s01-X2,What color is the ladder?,,,A,a detail the card does not give
+s01-X2,What does the hammer do?,,,A,"a detail from another text, not from this card"
+s01-X3,It carries water.,,,B,a word fact given to the picture
+s01-X3,There is a hose.,,,A,a detail that is in neither the words nor the picture
+s01-X4,A whisk is a thing.,,,V,no category and no use
+s01-X4,A whisk.,,,V,"the word again, with no category or use"
+s01-X5,"each word on its own, with a stop after every word",,,R,no phrasing
+s01-X6,My dog likes the mop.,,,AE,an unrelated turn; the puppet voices it
+s01-X6,I like cleaning.,,,AE,a turn that does not build on the mop
+s01-X7,It is nice.,,,AA,no fact
+s01-X7,I like it.,,,AA,"a feeling, no fact"
+s01-X9,It is green.,,,AI,a picture fact given to the words
+s01-X9,It is on the grass.,,,AI,a picture fact given to the words
+s01-X10,the kitchen picture,,,D,a place the card does not give
+s01-X11,He has a blue hat.,,,C,a picture detail with no word detail
+s01-X11,Grandpa holds the lid.,,,A,an action from another character
+s01-X12,It falls and then it is straight.,,,E,the rope event is missing
+s01-X12,Grandpa finds a rope and then the wagon falls.,,,E,the events are out of order and the fall is not first
+s01-X13,"Grandpa tells it, because he talks.",,,F,calls a speaking character the teller
+s01-X14,Grandpa is tall.,,,C,"a picture fact, not the reason the words give"
+s01-X14,Grandpa wants to fill the tire.,,,A,a reason the card does not give
+s01-X15,"one word at a time, with a pause after each",,,R,no phrasing
+s01-X16,The horn toots.,,,E,the solving event is left out; the child gives the last event
+s01-X17,Grandpa tapes it.,,,A,an action the card does not give
+s01-X18,the kitchen picture,,,D,a place the card does not give
+s01-X20,"Mr. Ray tells it, because he wipes the wheel.",,,F,calls the acting character the teller
+s01-A1,What color is the bowl?,,,A,a detail the words do not give
+s01-A1,Does it chop food?,,,A,a detail the card does not give
+s01-A2,It chops food.,,,A,a job the card does not give
+s01-A2,Flour stays in the sieve.,,,A,the flour goes through; the card says the lumps are kept back
+s01-A3,Do you like to cook?,,,A,a question the card does not answer
+s01-A4,The baker.,,,A,a person the card does not give
+s01-A4,A spoon.,,,A,"a thing from the picture, not the one who shakes"
+s01-A5,picture symbol on the lumps fact,,,B,gives a words fact to the picture
+s01-A5,word symbol on the spoon fact,,,AI,gives a picture fact to the words
+s01-A6,It is over a bowl.,,,C,a pictured detail with no word detail
+s01-A7,Why is the rug green?,,,A,a detail the words do not give
+s01-A8,A hammer.,,,A,an object the card does not give
+s01-A8,A ruler.,,,A,"the ruler is Tess's, not what Jo brings"
+s01-A9,Do you have a sofa?,,,A,"a question about home, not the story"
+s01-A10,Jo pulls it out.,,,A,"the person who brings the flashlight, not the one who pulls"
+s01-A10,The sofa.,,,A,not a person in the story
+s01-A11,Jo and Tess are in the kitchen.,,,D,a place the card does not give
+s01-A12,The car is under the sofa. Now Jo can play.,,,E,the rescue event is left out
+s01-A13,"Tess tells the second panel, because she gets the car.",,,F,calls the acting character the teller
+s01-A14,Tess says it.,,,F,gives the speech to the other character
+s01-A15,She is on a green rug.,,,C,a pictured detail with no word detail
+s01-A15b,The words say Jo shines the flashlight.,,,AI,a picture fact taken for a word fact
+s01-A16,tips as the first word,,,G,calls the last word the first
+s01-A17,"both short, they sound the same",,,H,hears no long vowel
+s01-A18,sip,,,I,drops a consonant when blending
+s01-A19,/k/ as the middle sound,,,J,gives a consonant for the vowel
+s01-A20,/st/ /a/ /m/ /p/,,,K,counts the cluster as one sound
+s01-A21,sh as /s/ then /h/,,,L,sounds the digraph as two letters
+s01-A22,ship for chip,,,M,swaps sh for ch
+s01-A23,the said with a short e as in bed,,,N,reads the irregular word as if it were regular
+s01-A24,cap for both words,,,AH,drops the plural ending
+s01-A25,b printed where d belongs,,,O,forms d as b
+s01-A26,thin for chin,,,P,spells ch with th
+s01-A27,thd,,,Q,leaves out the vowel
+s01-A28,the pup lost its toy,,,A,a reason the card does not give
+s01-A29,"each word alone, fast, with no phrasing",,,R,reads word by word
+s01-A30,"falls, taken from the picture",,,S,"guesses a word from the picture, not the print"
+s01-A31,listens and does not read,,,T,only listens
+s01-A31b,listens and does not read,,,T,only listens
+s01-A32,only tells about the picture,,,T,describes the picture without reading
+s01-A33,flour in the tool group,,,U,puts a material in the tool category
+s01-A34,a thing,,,V,no category and no attribute
+s01-A35,scoop,,,W,repeats the word with no use
+s01-A36,peek and glance both acted the same way,,,X,treats the manner verbs as the same
+s01-A37,they are the same size,,,Y,treats little and tiny as equal
+s01-A38,scoop sand,,,Z,lists the words with no relationship
+s01-A39,My scoop is nice.,,,AA,no facts
+s01-A39,Its bowl holds counters. Its handle helps me lift it.,,,AB,the topic is never named
+s01-A39,My paper scoop moves our counters. Its bowl holds counters. Its handle helps me lift it.,,,AC,stops with no closing
+s01-A40,Why is the rake red?,,,A,a detail the words do not give
+s01-A41,The rake.,,,A,"a thing, not the one who clears the path"
+s01-A42,What color is the wall?,,,A,a detail the words do not give
+s01-A43,flour,,,A,"a detail from Card A, not Card C"
+s01-A44,Who is Min?,,,A,"an event or person from Card D, not Card C"
+s01-A45,a ruler,,,A,"an object from Card B, not Card D"
+s01-A46,Min and Jo.,,,A,a character who is not in the story
+s01-A46b,They are on a green rug.,,,D,a place from Card B
+s01-A47,Leaves cover the path. The path is clear.,,,E,the raking is left out
+s01-A48,"Nana tells the second panel, because she rakes.",,,F,calls the acting character the teller
+s01-A49,Min says it.,,,F,gives the speech to the teller
+s01-A50,She has a red rake.,,,C,a pictured detail with no word detail
+s01-A51,word symbol on green sides,,,AI,gives a picture fact to the words
+s01-A52,It has green sides.,,,C,a pictured detail with no word detail
+s01-A53,speaks over a partner,,,AD,interrupts
+s01-A54,an unrelated new subject,,,AE,does not build on the partner's comment
+s01-A55,changes the subject,,,AF,does not ask to clear up the confusion
+s01-A56,asks again what the speaker already answered,,,AG,ignores the speaker's answer
+s01-X21,It is a tray.,,,AA,a name with no fact
+s01-X21,The tray is blue.,,,C,a picture fact the words do not give
+s01-X21,It carries markers.,,,A,a detail that is not on the card
+s01-X22,Its lid keeps dust inside.,,,AC,stops after the lid fact and does not close the job
+s01-X22,Chalk is for writing.,,,A,a detail that is not on the card
+s01-X23,It is good.,,,AA,a judgment with no fact
+s01-X23,It stops the balls rolling.,,,A,gives the sides' job to the handle
+s01-X23,The handle is brown.,,,C,a picture fact the words do not give
+s01-X24,The top is taped shut.,,,A,a detail the card does not give
+s01-X24,The pocket is pink.,,,C,a picture fact the words do not give
+s01-X24,It is a good pocket.,,,AA,a judgment with no fact
+s01-X25,A new sheet is nice.,,,AA,a judgment with no fact
+s01-X25,The box is brown.,,,C,a picture fact the words do not give
+s01-X25,A lid would stop them.,,,A,a detail that is not on the card
+s01-X26,Make it nicer.,,,AA,a judgment with no fact
+s01-X26,Color it red.,,,C,a picture change with no fact behind it
+s01-X26,Make it bigger.,,,A,a change with no fact behind it
+s01-X27,It is good.,,,AA,a judgment with no fact
+s01-X27,The chute is green.,,,C,a picture fact the words do not give
+s01-X27,It has wheels.,,,A,a detail that is not on the card
+s01-X28,It is good.,,,AB,the tool is never named
+s01-X28,Folded feet help it stand.,,,AB,a fact with no tool named
+s01-X28,The slots are brown.,,,C,a picture fact the words do not give
+s01-X29,It is nice.,,,AA,a judgment with no fact
+s01-X29,It is yellow.,,,C,a picture fact the words do not give
+s01-X29,It cuts paper.,,,A,a detail that is not on the card
+s01-X30,Its closed ends keep them in.,,,AC,repeats one fact and does not close the job
+s01-X30,I like the tube.,,,AA,a judgment with no fact
+s01-X30,The poster is red.,,,C,a picture fact the words do not give
+s01-X31,The second strip.,,,,"misses the capital letter or the ending mark; record which, no error letter"
+s01-X33,My tub is red.,,,AE,starts an unrelated subject instead of building on the partner
+s02-X34,"dry yard, heavy rain, light rain",,,A,the changes in reverse order
+s02-X34,"light rain, heavy rain, heavier rain",,,E,a change the note does not say: it does not say the rain kept growing
+s02-X35,the moon low over a hill,,,D,picks by the topic: both cards name the moon
+s02-X36a,the hill picture,,,E,a place the card does not give
+s02-X36b,"patching, finding, asking",,,A,the last event placed first
+s02-X37,the pile of fallen logs,,,B,gives the topic or the problem as the lesson
+s02-X37,Badger asleep in the sun,,,E,a claim nothing in the card says
+s02-X38a,"open, shut, listening together",,,A,the first two events swapped
+s02-X38b,Bear shutting the shed with Finch outside,,,B,the problem in the story given as the lesson
+s02-A1,fix,,,K,a different middle vowel
+s02-A2,jib,,,K,a different middle vowel
+s02-A2,jb,,,M,the vowel left out
+s02-X39,the hand on rough bark,,,C,takes a touch word for a feeling word
+s02-X39,the leaves on a branch,,,C,takes an object name for a feeling word
+s02-X40a,"put back, found, lost",,,A,the events in reverse order
+s02-X40b,It names a bead.,,,D,"sorts by the object named, not by what the text does"
+s02-X40b,It tells how big a mole is.,,,E,a claim the card does not make
+s02-X41a,Lin and Grandfather patching it,,,A,the last event named as the first
+s02-X41b,the room picture,,,E,a place the card does not give
+s02-X42,the stone alone,,,B,a thing in the story given as the lesson
+s02-X42,Crab asleep,,,E,a claim nothing in the card says
+s02-X43,the hand on a cheek,,,C,takes a touch word for a feeling word
+s02-X43,the house,,,G,a picture that has nothing to do with the words
+s02-A3,hin,,,K,a different middle vowel
+s02-A4,wib,,,K,a different middle vowel
+s02-A4,wb,,,M,the vowel left out
+s02-A5,"a b printed facing the wrong way, which looks like d",,,AA,reverses a letter
+s02-X44,the poem card,,,D,picks by the topic: both cards say star
+s02-X45,Ben planting seeds,,,J,guesses the last word from the picture (plants) instead of decoding digs
+s02-X45,Ben humming,,,A,points to the first event
+s02-X46,Nests.,,,B,gives the topic as the lesson
+s02-X46,Wrens sleep all day.,,,E,a claim nothing in the card says
+s02-A6,"raised, hidden, home",,,A,the first two events swapped
+s02-A7,Moon took the lantern away.,,,E,a detail the card does not give
+s02-A8,Clouds.,,,B,gives the topic as the message
+s02-A8,Moon is far away.,,,E,a claim the card does not make
+s02-A9,lantern,,,C,takes an object name for a feeling word
+s02-A9,cold mist,,,C,takes a touch phrase for a feeling word
+s02-A9b,lantern,,,C,takes an object name for a feeling word
+s02-A10,felt lonely,,,,"puts the touch sticker on the feeling words; record which, no error letter"
+s02-A11,card T,,,D,calls the tale factual because it names the moon
+s02-A12,They both name the moon.,,,D,"sorts by the topic named, not by what each text does"
+s02-A13,hop,,,L,drops the ending s
+s02-A14,jog,,,L,drops the ending s
+s02-A14,jgs,,,M,the vowel left out
+s02-X49,"lifted, found, waved",,,A,two events swapped
+s02-X49,"waved, found, lifted",,,A,the events in reverse order
+s02-X50,The moth is nice.,,,E,"a feeling, not a question to find out"
+s02-X50,What color is the lamp?,,,G,a question the picture already answers
+s02-X51,"down, high, up",,,A,the events in reverse order
+s02-X52,the fact card,,,E,takes a source for what the class observed
+s02-X53,dev watched the sun in june.,,,Q,the name begins with a small letter (the month is also lowercase)
+s02-X53,Dev watched the sun in june.,,,U,the month begins with a small letter
+s02-A15,whup,,,K,a different medial vowel
+s02-A16,pck,,,M,the vowel left out
+s02-A16,pec,,,K,the ck sound spelled with c alone
+s02-X54a,the warm bread,,,A,swaps the cause and the result
+s02-X54a,the snowman,,,E,a thing the card does not give
+s02-X54b,the card with no end mark,,,R,leaves off the sentence ending
+s02-X55,the border of stars,,,G,a drawing that does not clarify the sentence
+s02-A17,fill,,,L,drops the ending ed
+s02-A18,bzz,,,M,the vowel left out
+s02-A18,buz,,,M,the doubled final left off
+s02-A19,So the picture looks pretty.,,,E,a claim the article does not make
+s02-A20,Jo drew two different places.,,,E,a claim the log does not make
+s02-A21,only a decorated border,,,O,decoration in place of a research contribution
+s02-A22,Jo likes clouds.,,,E,a claim neither source makes
+s02-A23,A description that has nothing to do with card M.,,,E,a statement the sources do not make
+s02-A24,a decorative border and no school views,,,G,a drawing that does not clarify
+s02-A25,Clouds school.,,,H,a fragment where a sentence is required
+s02-A26,talks over the speaker,,,W,takes another speaker's turn
+s02-A27,an unrelated reply about something else,,,X,an unlinked conversational reply
+s02-A28,stays silent about the unclear detail,,,Y,leaves spoken confusion unquestioned
+s02-A29,"repeats ""Which drawing?"" instead of answering",,,Z,repeats the clarification question instead of answering it
+s02-A30,box,,,L,drops the ending es
+s02-A31,fster,,,M,the vowel left out
+s02-A31,fast,,,L,drops the ending er
+s02-A32,kick for kicked,,,L,drops the ending ed
+s02-A33,snd for sand,,,M,the vowel left out
+s02-A33,rstd for rested,,,M,the vowels left out
+s02-A34,dsk,,,M,the vowel left out
+s02-A35,only listens while the teacher reads,,,N,treats listening as child reading
+s02-A36,only listens while the teacher reads,,,N,treats listening as child reading
+s02-A37,Sun. Warm. Yellow.,,,F,lists facts instead of narrating events
+s02-A38,Sun. Warm. Yellow.,,,F,lists facts instead of narrating events
+s02-A39,changes the poem to a favorite meal,,,P,changes the topic instead of revising it
+s02-A40,"a fragment such as ""moon bright""",,,H,a fragment where a complete sentence is required
+s02-A41,"a fragment such as ""moon bright and""",,,H,a fragment where a complete sentence is required
+s02-A42,"a fragment such as ""moon bright""",,,H,a fragment where a complete sentence is required
+s02-A43,"a fragment such as ""moon bright and""",,,H,a fragment where a complete sentence is required
+s02-A44,"a fragment such as ""moon bright""",,,H,a fragment where a complete sentence is required
+s02-A45,"a fragment such as ""moon bright and""",,,H,a fragment where a complete sentence is required
+s02-A46,"a fragment such as ""moon bright""",,,H,a fragment where a complete sentence is required
+s02-A47,"a fragment such as ""moon bright and""",,,H,a fragment where a complete sentence is required
+s02-A48,mina,,,Q,leaves the name lowercase
+s02-A49,november,,,U,leaves the month lowercase
+s02-A50,no end marks,,,R,leaves off the sentence endings
+s02-A51,no end mark,,,R,leaves off the sentence ending
+s02-A52,November 14 2026,,,V,omits the comma between the day and the year
+s02-A53,bell rope pail,,,S,omits the commas in a series
+s02-A54,changes the poem to a favorite meal,,,P,changes the topic instead of revising it
+s02-A55,watches without taking part,,,T,watches digital publication without contributing
+s02-A56,A description that has nothing to do with the poem.,,,E,a statement the poem does not make
+s02-A57,a border of stars,,,G,a drawing that does not clarify
+s02-A58,Hill. Sun.,,,H,a fragment where a sentence is required
+s02-A59,The telescope makes new stars.,,,E,a claim the article does not make
+s02-A60,only a decorated border,,,O,decoration in place of a research contribution
+s02-A61,I like stars.,,,E,information no source supports
+s02-A62,"mended, torn, spread",,,A,the first two events swapped
+s02-A63,Cloth.,,,B,gives the topic as the message
+s02-A64,ribbon,,,C,takes an object name for a feeling word
+s02-A64b,ribbon,,,C,takes an object name for a feeling word
+s02-A65,worried,,,,"puts the touch sticker on the feeling word; record which, no error letter"
+s02-A66,both marked as stories because both are about the sky,,,D,"sorts by the topic, not by what each text does"
+s02-A67,They are the same because both are about the sky.,,,D,"sorts by the topic, not by what each text does"
+s02-A68,I like pizza.,,,E,talks about something other than the page
+s02-A68,Done.,,,H,a fragment where a sentence is required
+s02-X56,"the strip of one round moon, low, then higher, then high",,,E,a claim the log does not make
+s02-X57,The moon put on a hat and danced with the clouds.,,,D,both cards name the moon
+s02-X58,the lit street with two star dots,,,E,a claim the card does not make
+s02-X59a,the bright daytime pond with ducks,,,G,a picture that does not show what the sentence says
+s02-X59b,hat scarf mittens,,,S,no commas between the words
+s02-X59c,Stars above,,,H,a fragment
+s02-X60a,an empty bright sky,,,E,a picture the notebook line does not support
+s02-X60b,Stars,,,H,"one word, not a finished sentence"
+s02-X62a,a lamp inside the moon,,,E,a claim the source line does not make
+s02-X62b,moon bright,,,H,a fragment
+s02-X62c,ana,,,Q,the name left in lowercase
+s02-X62d,no mark at the end,,,R,the sentence has no end mark
+s02-X62e,a border of stars,,,G,a drawing that does not help a listener
+s02-X63,"rest, scratch, out",,,A,the events in reverse order
+s02-X64a,a plain moon above houses,,,E,a real moon called imagined
+s02-X64b,Child hanging,,,H,a fragment
+s02-X65a,"card B, a bee is yellow, small and soft",,,F,"a list of facts, not events"
+s02-X65b,Fuzzy,,,H,"one word, not a finished sentence"
+s02-X66a,"in, then sit",,,A,the events in reverse order
+s02-X66b,"Lamp, child, step",,,F,"a list of words, not events"
+s02-X67a,a girl eating at a table,,,P,a detail that changes the topic
+s02-X67b,She had dinner,,,P,a detail that changes the topic
+s02-X68a,"pick, then water",,,A,the events in reverse order
+s02-X68b,A child waters a plant,,,E,an invented part named as a fact
+s02-X69a,"curl, brush, jump",,,A,the events in reverse order
+s02-X69b,a cat,,,C,an object word taken for a feeling word
+s02-X69c,"Then, First, Last",,,A,the time words out of order
+s03-X79a,the flower alone,,,A,a detail named as the main topic
+s03-X79b,it eats seeds,,,B,a fact the card does not give
+s03-X79b,it is red,,,C,a picture detail taken for a fact in the words
+s03-X80a,the label wing,,,x,a labelled part the card does not tell about
+s03-X80b,it is white,,,C,a color seen in the picture taken for a fact in the words
+s03-X80b,it swims fast,,,B,a fact the card does not give
+s03-X81a,the cover,,,D,the cover picked in place of a text feature
+s03-X81b,the contents says they run fast,,,x,"a fact read into the contents entry, which only names a page"
+s03-X82a,the swimmer in water,,,A,a detail named as the main topic
+s03-X82b,it flies fast,,,B,a fact the card does not give
+s03-X83a,"the arrow to the thin branches, the biggest-drawn part",,,C,the biggest part in the picture chosen instead of the meaning the glossary gives
+s03-X83b,at the end of the feather,,,B,a place the glossary and the words do not give
+s03-A1,cabin,,,I,a word guessed from its first letters instead of sounded out
+s03-A2,mufn,,,M,the vowel of the second syllable left out
+s03-A3,three counters (s and n counted as one sound),,,L,a consonant cluster counted as one sound
+s03-X84a,the hen's beak,,,B,a part the card does not give a job to
+s03-X84b,so she can fly,,,B,a job the card does not give
+s03-X84b,because hens peck,,,B,a claim from outside the card
+s03-X85a,the cover,,,D,the cover picked in place of the menu route
+s03-X85a,the choice Eyes and its icon,,,x,a menu choice that leads to a different fact
+s03-X85b,parrots swim,,,B,a fact the page does not give
+s03-A4,the fringed edge alone,,,A,a detail named as the main topic
+s03-A5,the feathers help it swim,,,B,a fact the card does not give
+s03-A6,"the cover picture only, with no feature traced",,,D,the cover picked in place of a text feature
+s03-X87a,the white goose,,,C,a color seen in a picture chosen where the words give a different fact
+s03-X87b,geese eat fish,,,B,a claim from outside the card
+s03-X88a,the bird flying away,,,B,a thing the card does not say happened
+s03-X88b,I like birds,,,K,an unrelated turn in place of an answer to the partner
+s03-X88b,it flew away,,,B,a thing the card does not say happened
+s03-A7,talks while a partner is speaking,,,x,breaks the one-speaker rule
+s03-A8,I like the red bird,,,K,an unrelated turn in place of an answer to the last speaker
+s03-A9,the story is fun,,,x,gives an opinion where a question is asked
+s03-A10,I like the red bird,,,K,an unrelated turn in place of an answer to the speaker's question
+s03-A11,bed (the second part left off),,,x,reads one part of a compound word
+s03-A12,sndbx,,,M,the vowels left out
+s03-X89a,the cover,,,D,the cover picked in place of a text feature
+s03-X89b,eyes help it hear,,,B,a job for the eyes that the card does not give
+s03-X90a,the seed,,,A,the food picked in place of the body part
+s03-X90b,does it like me,,,x,a question no source can answer
+s03-X91a,the cover,,,D,the cover picked in place of a text feature
+s03-X91b,molt means the bird is sick,,,B,a meaning the glossary does not give
+s03-X92a,the fast blur,,,A,a detail named as the main topic
+s03-X92b,it nests in chimneys,,,B,a claim neither source makes
+s03-X93a,one bright color,,,A,a detail named as the main topic
+s03-X93b,peacocks crack nuts,,,B,a claim the card does not make
+s03-A13,tilip,,,I,a vowel guessed instead of sounded out
+s03-A14,momnt,,,M,the vowel of the second syllable left out
+s03-X94a,the stork's feathers,,,B,keeps the part the card does not give the job to
+s03-X94b,and then it went home,,,F,stops with no closing that returns to the topic
+s03-X95a,the small fish,,,A,a detail named as the main topic
+s03-X95b,it builds a nest,,,B,a claim the card does not make
+s03-X96a,the cover,,,D,the cover picked in place of a text feature
+s03-X96b,thin means soft,,,B,a meaning the glossary does not give
+s03-X97a,the spoonbill's wings,,,B,a part the sources do not tell about
+s03-X97b,a note with no label,,,x,a fact with no source label
+s03-X98a,a fish alone,,,x,"the food alone, with no beak in the picture"
+s03-X98b,it has a long lower beak,,,A,"names the part only, with no connection to the food"
+s03-X98b,it eats seeds,,,B,a claim the card does not make
+s03-A15,stat,,,x,reads the a short and ignores the final e
+s03-A16,cav,,,M,the final e left out
+s03-X99a,a worm alone,,,A,the food picked in place of the part
+s03-X99b,"a curved beak, found in R only",,,B,"a note found in one source only, not checked in both"
+s03-A17,rop,,,x,reads the o short and ignores the final e
+s03-A18,kit,,,M,the final e left out
+s03-A19,I like birds. They are fun.,,,E,a liking in place of a fact
+s03-A19,A sparrow has a thick beak. It cracks seeds. And then...,,,F,a list with no closing
+s03-A20,"a border and a drawing, with no fact",,,G,decoration in place of a located fact
+s03-A21,it eats worms (a feeding claim no source makes),,,B,an unsupported feeding claim
+s03-A22,the shell,,,A,the food named as the main topic
+s03-A23,it flies high,,,B,a fact the card does not give
+s03-A24,the cover picture only,,,D,the cover picked in place of a text feature
+s03-A24b,the cover picture only,,,D,the cover picked in place of a text feature
+s03-A25,cub,,,x,reads the u short and ignores the final e
+s03-A26,thes,,,M,the final e left out
+s03-A27,the branch alone,,,A,the place named as the main topic
+s03-A28,the feathers drill a hole,,,B,a fact the card does not give
+s03-A29,the cover picture only,,,D,the cover picked in place of a text feature
+s03-A30,three parts in cupcake,,,H,"counts the vowel letters u, a and e instead of vowel sounds"
+s03-A31,"a word said from a picture or a guess, not blended",,,I,a word guessed instead of blended from its parts
+s03-A32,wave for waving,,,J,the ending left off when reading
+s03-A33,three parts in cupcake,,,H,"counts the vowel letters u, a and e instead of vowel sounds"
+s03-A34,"a word said from a picture or a guess, not blended",,,I,a word guessed instead of blended from its parts
+s03-A35,rake for raking,,,J,the ending left off when reading
+s03-A36,three parts in cupcake,,,H,"counts the vowel letters u, a and e instead of vowel sounds"
+s03-A37,"a word said from a picture or a guess, not blended",,,I,a word guessed instead of blended from its parts
+s03-A38,tape for taping,,,J,the ending left off when reading
+s03-A39,hat,,,x,picks the word with the short vowel sound
+s03-A40,top,,,L,"the cluster /st/ treated as one sound, so a sound is lost"
+s03-A41,/kl/ as the first sound,,,L,the cluster taken as one sound
+s03-A42,/pl/ /u/ /mp/,,,L,two clusters taken as single sounds
+s03-A43,wav,,,x,reads the a short and ignores the final e
+s03-A44,wv,,,M,the vowels left out
+s03-A45,"the read with a short e, as in bed",,,O,a regular short-vowel reading of a mapped irregular word
+s03-A46,th,,,M,the vowel left out
+s03-A47,drp,,,M,the vowels left out
+s03-A48,the words say the toes are brown,,,C,picture evidence treated as written information
+s03-A49,it is a brown bird,,,C,a color seen in the picture given in place of the key idea
+s03-A50,it eats worms (a food the source does not name),,,B,an unsupported food claim
+s03-A50,"a thick beak (the part only, no food)",,,A,"names only the part, with no connection"
+s03-A51,a taught letter written backward,,,N,a taught letter form reversed
+s03-A52,"listens while the teacher reads, with no reading by the child",,,x,listening alone supplies no reading evidence
+s03-A53,"listens while the teacher reads, with no reading by the child",,,x,listening alone supplies no reading evidence
+s03-A54,reads the words with no sense of what the passage is about,,,x,reads without understanding
+s03-A55,reads word by word both times,,,x,no gain in pace or expression on the second reading
+s03-A56,reads on with the wrong word,,,x,does not check the word against the meaning
+s03-X100a,a pine cone alone,,,A,a detail picked in place of the topic
+s03-X100b,two or three fingers (a fact as the closing),,,F,a fact taken for the closing
+s03-X101a,the toucan's feathers,,,B,a part the card does not state
+s03-X101b,"""I like toucans.""",,,E,a liking in place of a topic sentence
+s03-X102a,the puffin swimming,,,B,a picture the card does not state
+s03-X102b,"""And then it swam away.""",,,F,no closing that returns to the topic
+s03-X103a,the coot's beak,,,B,a part the page does not state
+s03-X103b,points only at the cover,,,D,"the cover looked at, no feature used"
+s03-X106a,the merganser's wings,,,B,a part the card does not state
+s03-X106b,points only at the cover,,,D,"the cover looked at, no source line used"
+s03-X107a,a fruit alone,,,A,a detail picked in place of the topic
+s03-X107b,"""It cracks seeds.""",,,B,a fact the card does not state
+s03-X108a,the water alone,,,A,a detail picked in place of the shared topic
+s03-X108b,"""It dives for fish.""",,,B,a fact the information card does not state
+s03-X109a,"points to the cardinal picture, not a label",,,C,"the picture checked, not the label"
+s03-X109b,"""tail""",,,B,a label the sentence does not state
+s03-X110a,a plant on the ground,,,A,a detail picked in place of the bird
+s03-X110b,says U,,,x,"the source that names the part, not the one that names its work"
+s03-X111a,the albatross on a rock,,,B,an action the page does not state
+s03-X111b,points to the cover,,,D,"the cover looked at, no feature used"
+s03-X112a,the crane's wings,,,B,a part the sources do not state
+s03-X112b,says Y1,,,x,"the source that names the part, not the one that names the water"
+s03-X113a,the wing topic card,,,A,a wrong topic taken for the card
+s03-X113b,"""I like my bird.""",,,E,a liking in place of a verified fact
+s03-X114a,points to the glossary only,,,D,the glossary used to find the fact
+s03-X114b,"""It dives for fish.""",,,B,a fact the page does not state
+s03-X116a,a fish alone,,,A,a detail picked in place of the bird
+s03-X116b,"""I like fish.""",,,E,a liking in place of a verified fact
+s03-X117a,the flying picture,,,B,an action the source does not state
+s03-X117b,"""I like legs.""",,,E,a liking in place of a revised clue
+s03-X118a,the beak,,,B,a part the sentence does not state
+s03-X118b,"""green""",,,C,"a color from the picture, not a fact from the words"
+s03-X119a,a plant alone,,,A,a detail picked in place of the topic
+s03-X119b,points only at the cover,,,D,"the cover looked at, no feature used"
+s03-A57,I like oystercatchers. They are cool.,,,E,a liking in place of a fact
+s03-A57,"An oystercatcher has a long, strong beak. It pries open shells. And then.",,,F,a list with no closing
+s03-X117c,grb,,,M,the vowel left out
+s04-X120a,Ari dropping the bird in a bin,,,AB,an action the card does not give
+s04-X120a,Ari measuring the cupboard,,,AB,an action the card does not give
+s04-X120b,to measure the cupboard,,,AB,a reason the card does not give
+s04-X120c,a child picking the bird up,,,x,an unsafe action; say the rule again
+s04-X120d,the who box,,,x,a box that does not show the problem
+s04-X121a,a kitten,,,E,"the first meaning that came to mind, against the sentence clue"
+s04-X121a,a cardboard box,,,AA,a picture with no link to the words
+s04-X121b,The cook carries,,,E,words that do not tell the meaning of kit
+s04-X121c,"the robin alone, with no Ben",,,A,a look in place of what happens to Ben
+s04-X121c,Ben picking the robin up,,,AB,an event the story does not give
+s04-X122a,"prop, then fold",,,AC,the two events in reverse order
+s04-X122a,the bird standing alone,,,AB,a picture of an event the card does not give
+s04-X122b,Ari is happy,,,AA,a response that does not return to the problem
+s04-X122c,Ben and Dad giving the robin food or water,,,AB,an event the story does not give; chapter 2 says no food or water
+s04-X122c,Ben and Dad picking the robin up,,,AB,an event the story does not give
+s04-X123a,Bea hanging the signs outdoors,,,AB,an action the card does not give
+s04-X123a,Bea drawing new signs,,,AB,an action the card does not give
+s04-X123b,Bea likes signs,,,AA,a response that does not name the event
+s04-X123c,Nia picking the dove up,,,AB,an action the story does not give; Nia never touches the dove
+s04-X123c,Nia phoning the helper herself,,,AB,"Coach Lee has the phone, not Nia"
+s04-X124a,two plain blue signs side by side,,,A,what the signs look like in place of what the children do
+s04-X124a,Hana watching her sign dry alone,,,AB,an event the card does not give
+s04-X124b,both signs are blue,,,A,a look that the card does not give
+s04-X124c,Hana paints alone,,,AB,an event the card does not give
+s04-X124d,Ben picking the robin up,,,AB,an action the story does not give; Ben stays back
+s04-X124d,Ben feeding the robin,,,AB,the helper said no food or water
+s04-X125a,two children in matching blue scarves,,,A,a look in place of what the children do
+s04-X125a,two open libraries,,,AB,an event the card does not give
+s04-X125b,both have blue scarves,,,A,a look the card does not give
+s04-X125c,Ari goes inside,,,AB,an event the card does not give
+s04-X126a,a child giving advice from the ground,,,AB,a person the card does not name
+s04-X126a,Mr. Ross carrying a ladder,,,AB,an action the card does not give
+s04-X126b,the worker lives nearby,,,AB,a reason the card does not give
+s04-X126b,Mr. Ross is tall,,,AA,an unrelated response
+s04-X127a,each child waiting and then knocking,,,AC,the two events in reverse order
+s04-X127a,both children shouting,,,AB,an event the card does not give
+s04-X127b,they knock on different doors,,,AB,an event the card does not give
+s04-X127c,one of them does not wait,,,AB,an event the card does not give
+s04-X128a,the cleaner arrives first,,,AC,the events in reverse order
+s04-X128a,Ari mopping the paint alone,,,AB,an event the card does not give
+s04-X128b,Ari is tired,,,AA,a response that does not return to the problem
+s04-X130a,two zips with the same pattern,,,A,a look in place of what the children do
+s04-X130a,both children asking the same adult,,,AB,an event the card does not give
+s04-X130b,both zips are blue,,,A,a look the card does not give
+s04-X130c,Mona fixes it herself,,,AB,an event the card does not give
+s04-X131a,the same page twice,,,S,one page used for both
+s04-X131a,a closed book alone,,,AA,a picture with no link to the pages
+s04-X131b,both are pages,,,AA,a response that does not name the topic
+s04-X131c,they are both about the class,,,S,a likeness given when a difference was asked
+s04-X132a,a child sitting on a chair,,,AA,a picture of a different action
+s04-X132a,a chair lying on its side,,,AA,a picture of a different action
+s04-X132b,the chair is brown,,,C,an unrelated fact taken as a reason
+s04-X133a,the same pictures swapped between the writers,,,C,a reason given to the wrong writer
+s04-X133a,a plain blue corner,,,C,an unrelated fact taken as a reason
+s04-X133b,the path is crowded,,,C,the other writer's reason
+s04-X133c,children need to think,,,C,the other writer's reason
+s04-X134a,round pots in a row,,,C,an unrelated fact taken as a reason
+s04-X134a,a child painting,,,AA,a picture with no link to the decision
+s04-X134b,The pots are round,,,C,an unrelated fact taken as a reason
+s04-X135a,two bat animals,,,E,one meaning held against the sentence clues
+s04-X135a,two bats for hitting a ball,,,E,one meaning held against the sentence clues
+s04-X135b,the pages are different,,,AA,a response that does not name what is shared
+s04-X135c,"no difference, both are at the park",,,S,a likeness given when a difference was asked
+s04-X136a,a child alone at a plain desk,,,AA,a picture with no link to the card
+s04-X136a,a child shouting,,,AA,a picture with no link to the card
+s04-X136b,Quiet voices matter,,,C,the topic taken as the reason
+s04-X136b,the writer likes voices,,,B,a liking in place of a reason
+s04-X136c,it adds a new topic,,,AA,a response that does not return to the line
+s04-X137a,a smiling child on the stairs,,,B,a liking in place of a reason
+s04-X137a,a bag in a cupboard,,,AA,a picture with no link to the source
+s04-X137b,add I like stairs,,,B,a liking in place of a reason
+s04-X138a,the same page copied again,,,N,recopying without responding to the peer
+s04-X138a,a page about a new topic,,,AA,a page that leaves the topic
+s04-X138b,Stairs are fun,,,AA,a closing that leaves the topic
+s04-X140a,the page that repeats I like red,,,B,a liking in place of a reason
+s04-X140a,a page with a red drawing only,,,AA,a page with no reason
+s04-X140b,Red is nice,,,B,a liking in place of a reason
+s04-A1,a word guessed from its first letters,,,V,a word guessed or stopped after the first part instead of sounded out
+s04-A2,th,,,,a word written with heard sounds left out (no register letter)
+s04-A3,a word guessed from its first letters,,,V,a word guessed or stopped after the first part instead of sounded out
+s04-A4,st,,,,a word written with heard sounds left out (no register letter)
+s04-A5,a word guessed from its first letters,,,T,a word guessed or stopped after the first part instead of sounded out
+s04-A6,bd,,,,a word written with heard sounds left out (no register letter)
+s04-A7,a word guessed from its first letters,,,V,a word guessed or stopped after the first part instead of sounded out
+s04-A8,sy,,,,a word written with heard sounds left out (no register letter)
+s04-A9,q printed as p throughout,,,Z,a letter form reversed in every use
+s04-A10,both things are red,,,A,what the things look like in place of what the children do
+s04-A11,the bottle is red and the hat is blue,,,A,a look the stories do not give
+s04-A12,the sun was shining in both stories,,,AB,an event the stories do not give
+s04-A13,I like stars.,,,B,a liking with no position or reason
+s04-A14,birds live all over the world,,,C,a true detail taken for the point
+s04-A15,birds live all over the world,,,C,a fact that does not support the point
+s04-A16,birds live all over the world,,,C,a fact that does not support the point
+s04-A17,What color is it?,,,D,a question that is not about the meaning of the word
+s04-A18,it is a color,,,D,an answer unrelated to the meaning of the word
+s04-A19,it is a kind of plant,,,E,a meaning that ignores the sentence clue
+s04-A20,the building for coins,,,E,one meaning held in both sentences
+s04-A21,not any use,,,F,the affix meaning reversed
+s04-A22,full of harm,,,F,the affix meaning reversed
+s04-A23,helped has nothing to do with help,,,G,an inflected word treated as unrelated to its root
+s04-A24,they are all different words,,,G,an inflected word treated as unrelated to its root
+s04-A25,Bird sees Theo near Theo's fence.,,,H,bird used as a name
+s04-A26,The bird hop.,,,I,the verb does not match one bird
+s04-A27,The birds hops.,,,I,a singular verb with a plural subject
+s04-A28,She looks at the birds' home.,,,J,a pronoun that does not fit its noun
+s04-A29,Theo looks at his home.,,,J,their taken to mean Theo alone
+s04-A30,Can he see it?,,,J,a pronoun for one person where anyone was asked
+s04-A31,boat read with a short o,,,T,a vowel team misread as separate vowels
+s04-A32,four in sailboat,,,U,vowel letters counted in place of vowel sounds
+s04-A33,says only sun for sunset,,,V,decoding stopped after the first part
+s04-A34,Yesterday I will walk.,,,K,a future verb for a past time
+s04-A35,Today I walked.,,,K,a past verb for a present time
+s04-A36,Tomorrow I walked.,,,K,a past verb for a future time
+s04-A37,The bird small.,,,L,an adjective placed outside a complete sentence
+s04-A38,"The paper star is red, so the paper moon is red too.",,,M,a conjunction that distorts the relationship
+s04-A39,"The box is small, because the lid is big.",,,M,a conjunction that distorts the relationship
+s04-A40,Shall we make a card so draw a map?,,,M,a conjunction that distorts the relationship
+s04-A41,"The floor was wet, or we walked slowly.",,,M,a conjunction that distorts the relationship
+s04-A42,"We wear coats, or it is cold.",,,M,a conjunction that distorts the relationship
+s04-A43,boat read with a short o,,,T,a vowel team misread as separate vowels
+s04-A44,four in sailboat,,,U,vowel letters counted in place of vowel sounds
+s04-A45,says only sun for sunset,,,V,decoding stopped after the first part
+s04-A46,recopies the draft with no new detail,,,N,recopying without responding to the question
+s04-A47,These star shines.,,,O,a plural determiner with a singular noun
+s04-A48,A stars shine.,,,O,a singular determiner with a plural noun
+s04-A49,We clap during.,,,P,a preposition with no relationship to finish it
+s04-A50,The star is beyond.,,,P,a preposition with no relationship to finish it
+s04-A51,The star toward.,,,P,a preposition with no relationship to finish it
+s04-A52,the girl waters the plant,,,Q,a piece of a sentence offered as a complete sentence
+s04-A53,the girl waters,,,Q,a piece of a sentence offered as a complete sentence
+s04-A54,the ball,,,Q,a piece of a sentence offered as a complete sentence
+s04-A55,the ball,,,Q,a piece of a sentence offered as a complete sentence
+s04-A56,Shut the door.,,,Q,a piece of a sentence offered as a complete sentence
+s04-A57,Shut the door.,,,Q,a piece of a sentence offered as a complete sentence
+s04-A58,This hat is big!,,,Q,a piece of a sentence offered as a complete sentence
+s04-A59,This hat is big!,,,Q,a piece of a sentence offered as a complete sentence
+s04-A60,boat read with a short o,,,T,a vowel team misread as separate vowels
+s04-A61,four in sailboat,,,U,vowel letters counted in place of vowel sounds
+s04-A62,says only sun for sunset,,,V,decoding stopped after the first part
+s04-A63,watches an adult publish,,,R,watching counted as a contribution
+s04-A64,both have brown hair,,,A,a look the stories do not give
+s04-A65,both stories are about water,,,S,a likeness given when a difference was asked
+s04-A66,the sun was shining in both stories,,,AB,an event the stories do not give
+s04-A67,boat read with a short o,,,T,a vowel team misread as separate vowels
+s04-A68,four in sailboat,,,U,vowel letters counted in place of vowel sounds
+s04-A69,says only sun for sunset,,,V,decoding stopped after the first part
+s04-A70,watches an adult publish,,,R,watching counted as a contribution
+s04-A71,both use a pitcher,,,AA,a response not supported by both pages
+s04-A72,they are both about making a drink,,,S,a likeness given when a difference was asked
+s04-A73,a detail from one page only,,,S,support from one page only
+s04-A74,boat read with a short o,,,T,a vowel team misread as separate vowels
+s04-A75,four in sailboat,,,U,vowel letters counted in place of vowel sounds
+s04-A76,says only sun for sunset,,,V,decoding stopped after the first part
+s04-A77,boat read with a short o,,,T,a vowel team misread as separate vowels
+s04-A78,four in sailboat,,,U,vowel letters counted in place of vowel sounds
+s04-A79,says only sun for sunset,,,V,decoding stopped after the first part
+s04-A80,I like blue.,,,B,a liking with no position or reason
+s04-A81,Birds are nice.,,,X,praise in place of facts
+s04-A82,names the Observatory as the whole topic,,,Y,a detail named as the main topic
+s04-A83,a note with no page named,,,W,a research fact with no named page
+s04-A84,an unlabeled invented fact,,,W,a fact with no named source page
+s04-A85,a detail the account does not give (the boxes were put up in a park),,,AB,an event or detail the account does not give
+s04-X141a,the lid alone,,,Y,one detail taken for the whole topic
+s04-X141a,the shovel alone,,,Y,one detail taken for the whole topic
+s04-X141b,Sandboxes are the best,,,X,praise in place of a fact
+s04-X142a,the red shoes,,,C,an unrelated fact taken as the reason
+s04-X142a,the long empty hall,,,AA,a picture that does not return to the line
+s04-X142b,Halls are long,,,AA,an answer that leaves the line
+s04-X143a,"the second note, which has no page tag",,,W,a note with no page named
+s04-X143b,"the second note, which says marbles are round",,,C,an unrelated fact that does not answer the question
+s04-X144a,a hand carrying the crate,,,AA,a picture of the other part
+s04-X144a,an open empty crate,,,AA,a picture that does not show the lid's job
+s04-X144b,Both are on the crate,,,S,a likeness given where a difference was asked
+s04-X145a,the blue table,,,C,an unrelated fact taken as the reason
+s04-X145a,the smiling child,,,AA,a picture that does not return to the line
+s04-X145b,Blue is a nice color,,,AA,an answer that leaves the line
+s04-X146a,a shirt with long sleeves,,,F,-less read as full of
+s04-X146b,They are different words,,,G,an inflected word taken as unrelated to its root
+s04-X148a,the plan with the slot as the topic,,,Y,one detail taken for the whole topic
+s04-X148a,the plan with only a note drawn,,,Y,one detail taken for the whole topic
+s04-X148b,Mailboxes are the best,,,X,praise in place of a closing about the topic
+s04-X149a,the plan with a fact from neither page (clay is gray),,,W,a fact that names no source page
+s04-X149a,the plan with a fact from page A only,,,W,a plan that uses one page
+s04-X149b,Clay is gray,,,W,a fact that names no source page
+s04-X149c,Clay is gray,,,W,a fact that names no source page
+s04-X150a,the page that says I like helmets,,,X,praise in place of facts
+s04-X150a,the page about a different topic,,,AA,a page that leaves the topic
+s04-X150b,I like helmets,,,X,praise in place of a closing about the topic
+s04-X150b,Dogs like bones,,,AA,a closing that leaves the topic
+s04-X151a,the same page copied again,,,N,recopying without answering the peer
+s04-X151a,the page about a different topic,,,AA,a page that leaves the topic
+s04-X151b,Book carts are fun,,,AA,a line that does not answer the peer's question
+s04-X152a,These ribbons waves,,,I,a singular verb with a plural subject
+s04-X152a,A ribbons wave,,,O,a singular determiner with a plural noun
+s04-X152b,A ribbons wave,,,O,a singular determiner with a plural noun
+s04-X153a,two square puzzle boxes,,,A,a look named where what the children do was asked
+s04-X153b,Zara's puzzle is square,,,A,an invented look in place of what the card says
+s04-X154a,the box alone,,,Y,one detail taken for the whole topic
+s04-X154a,the coat hook,,,AA,a picture that does not return to the pages
+s04-X154b,Both have a bell,,,S,a likeness given where a difference was asked
+s04-X125d,Nia pointing at the dove,,,x,the picture from the page before anyone phones
+s04-X125d,the woman with the dove,,,AC,the picture from the page after the phone call
+s04-X126c,pick the robin up,,,AB,an action the page never gives; Ms. Torres says stay back
+s04-X126c,give it water,,,AB,an action the page never gives; no food or water
+s04-X127d,all the words in one rush with no pause,,,x,the words are right but there is no phrasing
+s04-X127e,page 3,,,AB,"the page where the helper is only phoned, not arriving"
+s04-X127e,page 1,,,x,the page where Nia fetches her coach
+s04-X128c,she gives it water,,,AB,an action the page never gives
+s04-X128c,Ben picks it up,,,AB,Ben stays back and watches
+s04-X130d,page 5 of Nia Calls for Help,,,x,"the page where the helper kneels by the dove, not on the phone"
+s04-X131d,takes the nest down,,,AA,"a different action, not a child telling an adult"
+s04-X132c,page 2,,,x,the leave-it-up page
+s04-X133d,the side that takes the nest down,,,C,a reason given to the wrong side
+s04-X134c,child one,,,x,"a likes statement, not the reason said back"
+s04-X134d,the nest is made of sticks,,,C,"a fact, not a reason the side gives"
+s04-X134e,a hawk stands beside the nest,,,C,"a picture detail, not a reason the side gives"
+s04-X135d,at the park,,,x,"the place both pages share, not the kind of bat"
+s04-X136d,they help everyone listen,,,C,the reason taken as the topic
+s04-X136d,shouting,,,AA,a word the card does not make the topic
+s04-X137c,I like stairs,,,B,a liking in place of a closing
+s04-X137c,bags can be blue,,,AA,a closing that leaves the topic
+s04-X138c,a clean brush,,,C,the topic taken as the reason
+s04-X138c,a closed paint pot,,,AA,a picture with no link to the writer's reason
+s04-X140c,that page is bad,,,x,"an unkind remark, not a question"
+s04-X140c,I like red too,,,B,a liking in place of a question about the page
+s04-X141c,the moon,,,AA,an answer that does not return to the page picture
+s04-X142c,the bird is hungry,,,AA,an answer that does not return to the page picture
+s04-X143c,a net inside the room,,,W,a way the page does not give
+s04-X144c,when it rains,,,AA,an answer that does not return to the page
+s04-X145c,birds have bright feathers,,,C,an unrelated fact taken as the reason
+s04-X145c,plants are green,,,AA,an answer that does not return to the page
+s04-X146c,crows are black,,,C,an unrelated fact taken as the reason
+s04-X146c,hawks sit on branches,,,AA,an answer that does not return to the page
+s04-X148c,page A,,,W,a fact tied to the wrong page
+s04-X157a,a brown doormat,,,C,a fact that does not explain the point
+s04-X157b,two tall towers,,,A,a look named where what the children do was asked
+s04-X157c,Ida's tower is tall,,,A,an invented look in place of what the card says
+s04-X157d,the page that repeats I like blue,,,B,a liking with no reason from the page
+c1-F76a,I have a sandbox at home,,,M,"an answer from the child own life, not from the card"
+c1-F76b,"says dig for pick, from the picture",,,A,a word from the picture or the first letter
+c1-F76b,"says ""thuh"" for the",,,F,a mapped word sounded out
+c1-F76c,reads each word on its own at one pitch,,,B,word by word with no phrasing
+c1-F76d,leaves yaks and reads on,,,C,the misread word is left
+c1-F76e,reads chest as cheest,,,D,short vowel given its long sound
+c1-F76f,reads yanked as yank,,,E,the ending is dropped
+c1-F76g,sounds said as sayd,,,F,a mapped word sounded out as if regular
+c1-F76h,holds long for tab because it is short to say,,,G,vowel length judged by the length of the word
+c1-F76i,says bisk,,,H,a cluster sound is dropped
+c1-F76j,says /d/ for the middle of drum,,,I,the first sound given where the middle or last is asked
+c1-F76k,"taps three and says f, i, k",,,H,a sound is dropped
+c1-F76l,writes plg,,,J,a sound is left out
+c1-F76m,writes dis,,,K,a mapped word spelled as it sounds
+c1-F76n,writes skuk,,,J,a sound is left out
+c1-F77a,We went camping once,,,M,"an answer from the child own life, not from the card"
+c1-F77b,"says nail for stick, from the picture",,,A,a word from the picture or the first letter
+c1-F77b,"says ""thuh"" for the",,,F,a mapped word sounded out
+c1-F77c,reads each word on its own at one pitch,,,B,word by word with no phrasing
+c1-F77d,leaves jobs and reads on,,,C,the misread word is left
+c1-F77e,reads crush as cresh,,,D,the vowel is changed
+c1-F77f,reads tucked as tuck,,,E,the ending is dropped
+c1-F77g,sounds said as sayd,,,F,a mapped word sounded out as if regular
+c1-F77h,holds short for dime because it is a small word,,,G,vowel length judged by the length of the word
+c1-F77i,says sunt,,,H,a cluster sound is dropped
+c1-F77j,says /k/ for the middle of crab,,,I,the first sound given where the middle or last is asked
+c1-F77k,"taps three and says s, a, p",,,H,a sound is dropped
+c1-F77l,writes fush,,,J,a sound is left out
+c1-F77m,writes luk,,,K,a mapped word spelled as it sounds
+c1-F77n,writes stut,,,J,a sound is left out
+c2-F158a,I like the beach,,,M,"an answer from the child own life, not from the card"
+c2-F158b,"says water for foam, from the picture",,,A,a word from the picture or the first letter
+c2-F158b,"says ""wood"" with the sound of mood for would",,,F,a mapped word sounded out
+c2-F158c,reads each word on its own at one pitch,,,B,word by word with no phrasing
+c2-F158d,leaves games and reads on,,,C,the misread word is left
+c2-F158e,reads sheep as shep,,,R,the vowel team is read as a short vowel
+c2-F158f,reads raced as racked,,,S,the ending is added without the base keeping its sound
+c2-F158g,sounds said as sayd,,,F,a mapped word sounded out as if regular
+c2-F158h,holds short for thigh because it has a th,,,G,vowel length judged by the length of the word
+c2-F158i,says sint,,,H,a cluster sound is dropped
+c2-F158j,says /sh/ for the middle of sheep,,,I,the first sound given where the middle or last is asked
+c2-F158k,"taps four and says t, e, n, ch",,,H,a sound is dropped
+c2-F158l,writes crep,,,J,a sound is left out
+c2-F158m,writes evry,,,K,a mapped word spelled as it sounds
+c2-F158n,writes cr,,,J,a sound is left out
+c2-F159a,We have a garden at home,,,M,"an answer from the child own life, not from the card"
+c2-F159b,"says fly for bug, from the picture",,,A,a word from the picture or the first letter
+c2-F159b,"says ""wood"" with the sound of mood for would",,,F,a mapped word sounded out
+c2-F159c,reads each word on its own at one pitch,,,B,word by word with no phrasing
+c2-F159d,leaves globes and reads on,,,C,the misread word is left
+c2-F159e,reads peach as pech,,,R,the vowel team is read as a short vowel
+c2-F159f,reads racing as racking,,,S,the base does not keep its sound
+c2-F159g,sounds said as sayd,,,F,a mapped word sounded out as if regular
+c2-F159h,holds long for cob because it has a b,,,G,vowel length judged by the length of the word
+c2-F159i,says gint,,,H,a cluster sound is dropped
+c2-F159j,says /p/ for the middle of peach,,,I,the first sound given where the middle or last is asked
+c2-F159k,"taps three and says p, u, k",,,H,a sound is dropped
+c2-F159l,writes drem,,,J,a sound is left out
+c2-F159m,writes wud,,,K,a mapped word spelled as it sounds
+c2-F159n,writes y,,,J,a sound is left out
+c1-T77a,Do you have pliers at home?,,,M,"a question about the child, not the text"
+c1-T77b,a nail,,,L,another detail given for the one asked
+c1-T77c,points to the jaws,,,N,a fact the words gave is taken for a picture fact
+c1-T77d,they are red,,,N,a picture detail is given for the key idea
+c1-T77e,happy,,,M,a feeling the text does not give
+c1-T77f,at the shop,,,M,a setting the text does not give
+c1-T77g,"spin, tin, frown",,,O,the events are reversed
+c1-T77h,Uncle Anan,,,N,the teller is mixed up with a character who speaks
+c1-T77i,Tavi,,,N,the speaker is mixed up with the teller
+c1-T77j,she is on a bicycle,,,N,"a picture object is named, not what it shows about feeling"
+c1-T77k,Tongs are the best.,,,P,"an opinion, not a naming"
+c1-T77l,Tongs are fun.,,,P,an opinion where facts are asked
+c1-T77m,no last line,,,P,the piece has no closing
+c2-T159a,the blades,,,L,a detail named as the topic
+c2-T159b,my grandpa has shears,,,M,an answer from the child own life
+c2-T159c,points to the contents,,,Q,the contents is taken for the heading
+c2-T159d,page 2,,,Q,the wrong line of the contents is read
+c2-T159e,points to the label on the trowel,,,Q,a label is taken for the glossary
+c2-T159f,the handle,,,Q,the label line is not followed
+c2-T159g,points to the house,,,Q,the icon is chosen without its word
+c2-T159h,Mei looks at the kickstand.,,,O,only one event
+c2-T159i,a bicycle and a wrench,,,O,a list with no time word or order
+c2-T159j,no ending,,,P,the piece has no closing
+c1-X78a,reads thrill as trill,,,H,a sound is dropped
+c1-X78b,reads dusted as dust,,,E,the ending is dropped
+c1-X78c,both readings one word at a time,,,B,word by word with no phrasing
+c1-X78d,a big hole for a tree,,,M,an answer the text does not give
+c2-X160a,reads steep as step,,,R,a long vowel spelling read as short
+c2-X160b,reads sun for sunset,,,T,the second part is not read
+c2-X160c,both readings one word at a time,,,B,word by word with no phrasing
+c2-X160d,page 2,,,Q,the wrong line of the contents is read
+c2-X160e,a spade,,,U,an opinion with no reason
+c2-X160f,it means lock again,,,V,the word part is given the wrong meaning

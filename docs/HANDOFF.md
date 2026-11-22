@@ -1,11 +1,12 @@
 # Handoff: the current state
 
-Where the work stands and what to do next, as of 2026-11-19. The reasons behind decisions are in the decision log,
+Where the work stands and what to do next, as of 2026-11-21. The reasons behind decisions are in the decision log,
 [agents/decisions/DESK-ANSWERS.md](agents/decisions/DESK-ANSWERS.md). If another page disagrees with this one, find
 which is stale, fix it and say so.
 
 ## State now
 
+- **Done 2026-11-21: the social studies and ELA ladder run (later.csv L98).** Kindergarten to grade 3, initial dirty pass, straight through: ledgers (social-studies.csv, ela.csv), section plans, plan data and 1,056 days (social studies K 64, grades 1 and 2 96, grade 3 160; ELA 160 a grade), then run-end fixes from an outside reader, a capstone cross-grade continuity pass (social studies 7 of 257 claims drifted, ELA 29 of 302, all fixed) and an 80-day read-only sample. Report docs/reviews/ladder-ss-ela-report-2026-11-19.md. Pass marks: FIRM 1.19 a day (miss; science 1.4), wrong keys down by a third (met), review not said still common (miss), 79k tokens a day (miss; target 60k). Open: L99 must-fix before live (ELA grade 1 tale sensitivity, 74 key-line pieces, the Maathai line), L100 Desk card on fixing the 95 sample FIRM findings now or at L87, L101 watch items and template points. Next: L87 alignment, now with ledger-gated scheduling (DESK-ANSWERS 2026-11-21).
 - **2026-11-20: after-core stage 1 reads done** (side work). Library, ELD, career education and world languages (still shelved, pre-work only) were each read cold and fixed (docs/reviews/prework-*-read-2026-11-20.md); health and PE cite the national dose figures; per-subject calibration added to docs/pipeline/CALIBRATION.md. Cory answered q-prework-open-1 and -2 on 2026-11-21, applied (DESK-ANSWERS.md); catalogue edits held for a step boundary of the main run (later.csv L90). Every after-core subject still owes the second-model read (later.csv L88, from 2026-11-23) and its calibration run; progressions for library, ELD and career wait on those calls and gate support in scripts/progression.py (its codes() splits ids at the first space).
 - **2026-11-20: after-core pre-work answers applied** (side work, Desk q-prework-arts-1, q-prework-health-pe-1 and -2, q-prework-cs-1; DESK-ANSWERS.md). Health, PE and computer science pages and progressions carry Cory's calls; arts own-words file is next (later.csv L82 to L85). Open on Desk q-prework-open-1: the health and PE approach yes, our own coding editor, and the SEL reader's calls. SEL pre-work continues (read: docs/reviews/prework-sel-read-2026-11-19.md).
 

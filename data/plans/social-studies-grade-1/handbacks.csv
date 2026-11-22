@@ -1,0 +1,238 @@
+from_day,to_day,what,where,minutes,error,note
+3,4,s01-R2,Return,3,B,readiness bridge: compare waiting and crowding at a doorway and give a fresh rule's reason; a small group takes the rest
+6,7,s01-R3,Return,4,H,"readiness bridge: act out a paper collector's job and connect it to a ready workspace, then explain another job"
+1,2,s01-X1,Reopen,4,A,"one repair for the day 1 exit and the readiness look s01-R1: read three cards, stand for a question and sit for a statement, then turn one statement about a school bag into a question; a small group takes the rest in the sort"
+1,2,s01-X1b,Reopen,4,A,"one repair for the day 1 exit and the readiness look s01-R1: read three cards, stand for a question and sit for a statement, then turn one statement about a school bag into a question; a small group takes the rest in the sort"
+2,3,s01-X2,Return,4,F,a before card and an after card for a door; a small group takes the rest in the sort
+3,4,s01-X3,Return,3,D,two invented groups of different ages doing one thing together
+4,5,s01-X4,Reopen,3,B,"two cards for one rule, one with a reason; a small group takes the rest in the sort"
+5,6,s01-X5,Reopen,2,I,choose between two rules by which one helps the group; a small group takes the rest
+5,6,s01-X5b,Reopen,2,I,choose between two rules by which one helps the group; a small group takes the rest
+6,7,s01-X6,Return,3,C,three cards trace a member's part to the goal
+7,8,s01-X7,Return,2,C,one card traces each child's part to the shared task
+8,10,s01-X8,Targeted,1,H,a group acts out a new job and says what it makes ready
+8,10,s01-X8b,Targeted,1,H,a group acts out a new job and says what it makes ready
+8,9,s01-E3,Paper,0,H,the day 8 tidy-up record is scored on day 9 as item 3; no class time
+8,9,s01-E3b,Paper,0,H,the day 8 tidy-up record is scored on day 9 as item 3; no class time
+9,10,s01-E1,Targeted,1,F,"group repair: connect a subject picture to the idea; at most four groups run, so the ten minutes go to the largest counts, not to every row"
+9,10,s01-E2,Targeted,1,G,group repair: name a fact and a word a question needs
+9,10,s01-E4,Targeted,1,D,group repair: compare differently composed groups; or choose a rule by its purpose
+9,10,s01-E5,Targeted,1,C,group repair: trace each member's part to the goal
+9,10,s01-E8,Targeted,1,E,group repair: point to one detail and say what it shows
+11,12,s02-X11,Reopen,2,A,"place a card on its stated date: the teacher says a date, children point to the square, then place two new picture cards on their dates; a small group takes the rest"
+11,12,s02-X11,Reopen,1,G,"point to each drawn square, then an empty one, and say the record does not say; then a new card pair"
+12,13,s02-X12,Return,3,B,"act a finished action and a coming action and place each on its square, saying the verb form aloud together"
+12,13,s02-X12b,Return,3,B,"act a finished action and a coming action and place each on its square, saying the verb form aloud together"
+12,13,s02-X12,Return,2,H,"the three-column strip with a new action: say did, do and will do and point at past, present, future"
+12,13,s02-X12b,Return,2,H,"the three-column strip with a new action: say did, do and will do and point at past, present, future"
+13,14,s02-X13,Return,4,F,"order four new dated cards by month, then by day for two in one month; a small group takes the rest"
+14,15,s02-X14,Return,2,C,"sort six new cards into kind boxes, saying each one's kind"
+14,15,s02-X14,Return,2,I,sort six cards into real and invented by the label and say what each can show
+14,15,s02-X14,Return,1,L,"look at a new picture, name three things we can see and one thing we cannot tell"
+15,16,s02-X15,Return,2,D,"match four new questions to the kind that fits, with the frame"
+15,16,s02-X15b,Return,2,D,"match four new questions to the kind that fits, with the frame"
+15,16,s02-X15,Return,2,J,read a caption aloud and ask whose school is this for two new cards
+15,16,s02-X15b,Return,2,J,read a caption aloud and ask whose school is this for two new cards
+16,17,s02-X16,Return,2,E,find a stayed row for a new then-and-now pair
+16,17,s02-X16,Return,2,K,add the unknown column to the chart for the new pair
+17,19,s02-X17,Move,1,M,"add a detail from a picture to the claim frame, with a new teaching case"
+17,19,s02-X17,Move,1,J,"read a caption aloud and ask whose school is this, with a new card"
+18,19,s02-E1,Move,1,G,point to the recorded dates and to an empty square; the record does not say; a new teaching case
+18,19,s02-E3,Move,1,F,"order four new dated cards by month, then day; the same group as item 1 (at most four groups run)"
+18,19,s02-E3b,Move,1,F,"order four new dated cards by month, then day; the same group as item 1 (at most four groups run)"
+18,19,s02-E2,Move,1,B,act a finished and a coming action and place each on its square
+18,19,s02-E2,Move,1,H,"the three-column strip with a new action, saying did, do and will do"
+18,19,s02-E4,Move,2,C,"sort a map, a photograph and a letter by kind with new cards; label first for I, look and name for L"
+18,19,s02-E5,Move,2,D,match a question to the source kind that fits its content; a new teaching case
+13,14,s02-E2,Calendar,2,,the six heard on day 13 revise one sentence from the teacher's picture feedback (group A); no class time beyond the calendar corner
+14,15,s02-E2,Calendar,2,,group B revises one sentence from picture feedback
+15,16,s02-E2,Calendar,2,,group C revises one sentence from picture feedback
+16,17,s02-E2,Calendar,2,,group D revises one sentence from picture feedback
+17,18,s02-E2,Item 2,0,,the revised sentences of days 14 to 17 are scored on day 18 as the tense evidence of item 2; no class time
+20,21,s03-X20,Reopen,2,A,lay the leader card inside the group ring with a new pair of cards and name a shared task; a small group takes the rest
+20,21,s03-X20,Reopen,2,F,"match three role cards to the action each does and why, with new cards"
+20,21,"retrieval record, day 20",Reopen,1,,recheck the I wonder questions from the retrieval record; a child who missed the question move is met at the board
+20,22,"retrieval record, day 20",Reopen,2,,recheck the I think because reasons from the retrieval record with a new picture
+21,22,s03-X21,Reopen,2,E,sort six questions into asks what someone did and asks what we like
+21,22,s03-X21b,Reopen,2,E,sort six questions into asks what someone did and asks what we like
+22,23,s03-X22,Reopen,2,B,"cover the name, read one action card and say the quality it shows"
+22,23,s03-X22,Reopen,2,D,lay the leader card and the helper card on the chart and say what each did
+23,24,s03-X23,Reopen,2,D,"the leader card and the helper card again, with the Lincoln chart row"
+23,24,s03-X23,Reopen,2,E,"sort six questions into asks what someone did and asks what we like, with new cards"
+23,24,"talk, day 23",Reopen,1,K,"say the right sentence once beside the split card; watched in talk, not scored"
+24,25,s03-X24,Reopen,2,D,"the leader card and the helper card again, with the Huerta chart row"
+24,25,s03-X24b,Reopen,2,D,"the leader card and the helper card again, with the Huerta chart row"
+24,25,s03-X24,Reopen,2,E,"sort six questions into asks what someone did and asks what we like, with new cards"
+24,25,s03-X24b,Reopen,2,E,"sort six questions into asks what someone did and asks what we like, with new cards"
+25,26,s03-X25,Reopen,2,D,"the leader card and the helper card again, with a fresh pair of cards"
+25,26,s03-X25,Reopen,2,O,read one line and sort the record says from we guess
+25,26,"talk, day 25",Reopen,1,L,"say the right sentence once beside the nation card; watched in talk, not scored"
+26,27,s03-X26,Reopen,3,N,place a new pair of different jobs under one quality card
+27,28,s03-X27,Reopen,2,C,"lay three new action cards in the wrong order, reorder them and say them with first, then, so"
+27,28,s03-X27,Reopen,2,J,strike one unrelated card from four and say why
+28,29,s03-X28,Reopen,2,H,"match a claim to an action card that supports it, from a new case"
+28,29,s03-X28b,Reopen,2,H,"match a claim to an action card that supports it, from a new case"
+28,29,day 28 pairs,Reopen,2,M,pairs answer three questions with a word from the question
+29,31,s03-X29,Return,2,I,"add a closing to a covered, unfinished piece"
+29,31,s03-X29,Return,2,P,cover the model and try a new action record
+29,31,"written piece, day 29",Return,1,,"one line of written feedback returned on each day 29 piece, with one improvement named"
+30,31,s03-E1,Reteach,1,A,group one: lay the leader card inside the ring and name a shared task
+30,31,s03-E1 s03-E2,Reteach,1,F,group one: match a role card to the action it does
+30,31,s03-E1 s03-E2,Reteach,1,G,"group one: a duty card beside a shout card, sort one new pair"
+30,31,s03-E3,Reteach,1,B,"group two: cover the name, read one action, say the quality"
+30,31,s03-E4,Reteach,1,H,group two: match a claim to an action card that supports it
+30,31,s03-E4,Reteach,1,I,group two: add a closing to an unfinished piece
+30,31,s03-E5,Reteach,1,C,"group three: reorder three new action cards and say them with first, then, so"
+30,31,s03-E5,Reteach,1,D,group three: lay the leader card and the helper card and say what each did
+30,31,s03-E6,Reteach,1,E,group four: sort questions into asks what someone did and asks what we like
+30,31,s03-E7,Reteach,1,M,group four: answer three questions with a word from the question
+30,31,s03-E7b,Reteach,1,M,group four: answer three questions with a word from the question
+30,31,s03-E3 s03-E4,Reteach,0,Q,pairs work from the written move card: explain how one named action supports the quality
+32,33,s04-X32,Warm-up,2,Q,"two puppets: the loud one, then equal turns"
+32,33,s04-X32,Warm-up,2,R,"replay the scenery and costumes case, where talk found both"
+33,34,s04-X33,Warm-up,2,A,"sort four cards, person or thing"
+33,34,s04-X33,Warm-up,1,I,line up one mark each under two names
+34,35,s04-X34,Warm-up,2,B,re-run one covered box with six ballots
+34,35,s04-X34,Warm-up,2,J,two puppets say the pair of sentences
+35,36,s04-X35,Warm-up,2,M,match three office cards to three place cards
+35,36,s04-X35c,Warm-up,2,M,match three office cards to three place cards
+35,36,s04-X35b,Warm-up,2,M,match three office cards to three place cards
+35,36,s04-X35,Warm-up,2,D,"sort four helper cards, voted or hired"
+35,36,s04-X35c,Warm-up,2,D,"sort four helper cards, voted or hired"
+35,36,s04-X35b,Warm-up,2,D,"sort four helper cards, voted or hired"
+36,37,s04-X36,Warm-up,2,K,count the helpers on a town card who share the work
+36,37,s04-X36,Warm-up,2,L,trace coins into a shared jar to the park
+37,38,s04-X37,Warm-up,3,O,mark the end of a term on the class calendar
+38,39,s04-X38,Warm-up,3,F,"sort three reason cards, a deed on the record or a say-so"
+38,39,s04-X38c,Warm-up,3,F,"sort three reason cards, a deed on the record or a say-so"
+38,39,s04-X38b,Warm-up,3,F,"sort three reason cards, a deed on the record or a say-so"
+40,41,s04-E1,Reteach,1,T,line up the marks for a new pair of names; item 1 group
+40,41,s04-E2,Reteach,0,A,"sort person or thing; item 1 group, from the written move card"
+40,41,s04-E2b,Reteach,0,A,"sort person or thing; item 1 group, from the written move card"
+40,41,s04-E3,Reteach,0,Q,"loud one then equal turns; item 1 group, from the written move card"
+40,41,s04-E3,Reteach,1,H,"talk finds a way, or only a vote can; item 1 group"
+40,41,s04-E4,Reteach,1,B,covered box and counters; item 2 group
+40,41,s04-E5,Reteach,0,I,"one mark each, equal; item 2 group, from the written move card"
+40,41,s04-E6,Reteach,0,C,"the job card bounds the captain; item 2 group, from the written move card"
+40,41,s04-E6 s04-E7,Reteach,1,J,tell the counters so they check; item 2 group
+40,41,s04-E8,Reteach,0,D,"voted or hired; item 3 group, from the written move card"
+40,41,s04-E8 s04-E9,Reteach,0,M,"office to place; item 3 group, from the written move card"
+40,41,s04-E9 s04-E10,Reteach,1,K,many helpers share the tasks; item 3 group
+40,41,s04-E13,Reteach,1,L,coins in the shared jar; item 3 group
+40,41,s04-E11 s04-E12,Reteach,0,S,"a shop is not government; item 3 group, from the written move card"
+40,41,s04-E14 s04-E15,Reteach,0,N,"belonging without voting; item 4 group, from the written move card"
+40,41,s04-E15,Reteach,0,E,"belonging and voting rules; item 4 group, from the written move card"
+40,41,s04-E17 s04-E18,Reteach,1,F,a deed on the record or a say-so; item 4 group
+40,41,s04-E16,Reteach,1,O,mark the end of a term; item 4 group
+40,41,s04-E16b,Reteach,1,O,mark the end of a term; item 4 group
+44,45,s05-X44,Reopen,2,A,a tray of objects beside its drawing; say stands for
+44,45,s05-X44b,Reopen,2,A,a tray of objects beside its drawing; say stands for
+44,45,s05-X44,Reopen,1,N,the same cup from the side and from above
+44,45,s05-X44b,Reopen,1,N,the same cup from the side and from above
+45,46,s05-X45,Retrieval,1,B,"one shape, two keys; trace symbol to key"
+46,47,s05-X46,Retrieval,0,S,"small group; paired views again, from the written repair card"
+46,47,s05-X46,Retrieval,0,R,small group; sort made by people and already there
+47,48,s05-X47,Return,3,C,rotate a map; trace the indicator to the north wall sign
+47,48,"mini map, day 47",Return,1,,"the mini map with its direction word comes back; judged on three look-fors, not scored"
+48,49,s05-X48,Return,2,G,two city dots and a caption; place the star by the caption
+48,49,s05-X48b,Return,2,G,two city dots and a caption; place the star by the caption
+48,49,s05-X48,Return,0,L,small group in supported work; a city and a building in it
+48,49,s05-X48b,Return,0,L,small group in supported work; a city and a building in it
+49,50,s05-X49,Return,3,F,a map clue card joined to a record card
+49,50,s05-X49,Return,0,H,small group in supported work; the oral summary beside the schematic
+49,50,s05-X49,Return,0,K,"small group in supported work; a clue first, then the reason"
+49,50,s05-X49,Return,0,M,small group in supported work; the nations' names and their own pages
+50,51,s05-X50,Reopen,3,Q,nested outline cards; the state card on the country card
+50,51,s05-X50,Reopen,1,D,a continent is a very large land area; our country is on one
+50,51,s05-X50,Reopen,1,E,"picture cards for river, lake and ocean"
+51,52,s05-X51,Return,2,J,where water is and whether to drink it
+51,52,s05-X51b,Return,2,J,where water is and whether to drink it
+51,52,s05-X51,Return,1,E,"river, lake, ocean and mountain cards"
+51,52,s05-X51b,Return,1,E,"river, lake, ocean and mountain cards"
+51,52,"label drawing, day 51",Return,1,,"the labelled drawing comes back; judged on three look-fors, not scored"
+52,53,s05-X52,Return,2,O,Pip's two-star map; one meaning for each symbol
+52,53,s05-X52,Return,1,P,the photograph beside the map
+52,53,day 52 practice map,Revise,5,O,each child revises the map from the written feedback; scored on day 54 as item 5
+53,54,"day 52 map, revised",Item 5,3,O,handed in as the unit assessment's made-map items; scored after the feedback and revision
+53,55,s05-X53,Reteach,0,T,a claim paired with a source detail card
+53,55,s05-X53,Reteach,0,U,"two cards, harbor and capital"
+54,55,s05-E1 s05-E2,Reteach,2,A,"item 1 group, from the written repair card"
+54,55,s05-E3 s05-E4 s05-E5 s05-E6 s05-E7 s05-E8,Reteach,2,D,"item 2 group; E, I and R go to the same group"
+54,55,s05-E9 s05-E10 s05-E11,Reteach,2,C,item 3 group; rotate a map and trace the indicator
+54,55,s05-E13 s05-E14 s05-E15 s05-E16,Reteach,1,G,item 4 group; a caption says where the government meets
+54,55,s05-E17 s05-E18 s05-E19,Reteach,1,O,item 5 group; one meaning for each symbol; P goes to the same group
+54,55,s05-E20 s05-E21,Reteach,1,T,item 6 group; a claim joined to a source detail
+56,57,s06-X56,Return,4,A,"section 6.1 plan: repair A at the whole class, one new street picture"
+56,57,s06-X56b,Return,4,A,"section 6.1 plan: repair A at the whole class, one new street picture"
+57,58,s06-X57,Return,3,H,read the speaker's words first; retry with a fresh greeting card
+57,58,s06-X57,Return,2,I,two bins; sort four new cards
+58,59,s06-X58,Return,5,B,"weather changes a coat, not a word; sort three new cards"
+59,60,s06-X59,Return,5,C,the Hazel Town cards again; a fresh town
+59,60,s06-X59b,Return,5,C,the Hazel Town cards again; a fresh town
+60,61,s06-X60,Return,2,F,a new calm line from the nation's page in our words
+60,61,s06-X60,Return,2,J,forced removal said plainly once; no picture
+60,61,s06-X60,Return,1,L,a new strip: what a count can show
+61,62,s06-X61,Return,3,G,"two new cards, a liking and a detail"
+61,62,s06-X61,Return,2,M,"a fresh card, a separate detail for each side"
+62,63,s06-X62,Return,5,D,find the detail behind a meaning; retry with a fresh symbol
+63,64,s06-X63,Return,5,K,a hope and not equal for all; sort three statements
+63,64,s06-X63b,Return,5,K,a hope and not equal for all; sort three statements
+64,65,s06-X64,Return,3,C,"belonging is shared country, not sameness"
+64,65,s06-X64,Return,2,E,the choice line; a fresh case with no words said
+65,66,s06-X65,Return,5,D,"say the words, find the detail, say what it expresses; retry with a taught phrase"
+66,68,s06-X66,Reteach,0,M,"item 6 group, from the written move card"
+66,68,s06-X66b,Reteach,0,M,"item 6 group, from the written move card"
+67,68,s06-E1 s06-E2 s06-E3,Reteach,2,A,item 1 group
+67,68,s06-E4 s06-E5,Reteach,2,B,item 2 group; I goes to the same group
+67,68,s06-E6 s06-E7 s06-E8 s06-E9,Reteach,2,D,item 3 group; K goes to the same group
+67,68,s06-E10 s06-E11,Reteach,2,C,item 4 group; E goes to the same group
+67,68,s06-E12 s06-E13,Reteach,1,E,item 5 group; D goes to the same group
+67,68,s06-E14 s06-E15 s06-E16,Reteach,1,G,item 6 group; C and M go to the same group
+69,70,s07-X69,Warm-up,5,A,"errors A, N, F: re-sort the three mats with a fresh trio, then a two-card sort of steps the law sets and ways to help"
+69,70,s07-X69b,Warm-up,5,A,"errors A, N, F: re-sort the three mats with a fresh trio, then a two-card sort of steps the law sets and ways to help"
+70,71,s07-X70,Warm-up,4,M,sort four question cards onto a fact we can look for and what someone likes
+71,72,s07-X71,Return,5,J,a fresh note on the two-sided shows and does not show card; error C: add one more adult to the helper web
+72,73,s07-X72,Warm-up,3,D,put each reason beside its view and say it back on a fresh pair
+72,73,s07-X72b,Warm-up,3,D,put each reason beside its view and say it back on a fresh pair
+73,74,s07-X73,Warm-up,3,I,rehearse one slip each with two paper boxes
+74,75,s07-X74,Warm-up,4,H,"sort safe and unsafe step cards, with the stop-and-tell rule"
+75,76,s07-X75,Warm-up,3,G,sort what a person has and what a person does; error B: match a quality card to a detail card
+76,77,s07-X76,Warm-up,4,L,two then-and-now pictures and a row for what stayed
+76,77,s07-X76b,Warm-up,4,L,two then-and-now pictures and a row for what stayed
+77,78,s07-X77,Warm-up,3,C,put the helper at each scale on the strip; errors O and J: relabel plan and record
+76,78,written task: day 76 judgment sheet with the teachers note,Return,5,B,each child changes or adds one thing; the revised sheet counts for item 2
+78,80,s07-X78,Return,3,E,lay the baseline beside the day 78 drawing; error K: ask for the date on each picture
+79,80,"marked packets, items 1 to 6",Return,2,,each child sees the packet with marks and a picture of the move for the part missed
+79,80,s07-E1 to s07-E6 by most-missed item,Reteach,10,,"groups by most-missed item; written moves A, N, F; B; L; O, J; H, P; B"
+81,82,s08-X81,Reopen,3,A,"two new cards, caring at home and a paid cleaner, work? paid?; if many missed the 3 minutes are the repair"
+81,82,s08-X81b,Reopen,3,A,"two new cards, caring at home and a paid cleaner, work? paid?; if many missed the 3 minutes are the repair"
+82,83,s08-X82,Reopen,2,I,one new three-worker chain or three pay cards; error J with it; if many missed the 2 minutes are the repair and retrieval takes 1
+83,84,s08-X83,Reopen,3,B,"an object card beside an action card, on new pairs"
+82,84,written task: My Earning Page returned with written picture feedback,Reopen,1,,item 1 record; collected at the start of 83
+82,84,written task: My Earning Page revision,Supported work,5,H,one change or addition each; if many show H the first 2 minutes are a month strip with one token card per month
+84,85,s08-X84,Reopen,2,K,two new price tags and pictures to match; error L with it
+85,86,s08-X85,Reopen,2,C,new cards and tokens
+85,86,s08-X85b,Reopen,2,C,new cards and tokens
+84,86,written task: My Flyer Page returned with written picture feedback,Reopen,1,,item 2 record; collected at the start of 85
+84,86,written task: My Flyer Page revision,Supported work,5,L,one change or addition each while the teacher circulates
+86,87,s08-X86,Reopen,4,M,"a new ranked set, price on one card, given-up on another; error N with it"
+86,88,written task: My Choice Mat returned with written picture feedback,Reopen,1,,item 3 record; collected at the start of 87
+86,88,written task: My Choice Mat revision,Supported work,4,M,"one change each, the teacher circulating"
+87,88,s08-X87,Reopen,3,D,"a new pair of shop cards, a buyer might choose A because, another B because"
+88,89,s08-X88,Reopen,4,E,"three new reason cards in three hoops, which can wait; error O with it"
+88,89,s08-X88b,Reopen,4,E,"three new reason cards in three hoops, which can wait; error O with it"
+89,90,s08-X89,Reopen,4,Q,"a record card for a new saver, a loan arrow out and a repayment arrow back; errors F and R with it"
+87,90,written task: My Two Shops Page returned with written picture feedback and revised,Supported work,5,D,item 4 record; collected at the start of 88; revised in the same five minutes as item 5
+88,90,written task: My Saving Page returned with written picture feedback and revised,Supported work,0,E,"item 5 record; collected at the start of 89; the same five minutes as item 4, so no extra minutes"
+90,91,s08-X90,Reopen,3,P,"a new set of 8 tokens, one jar each; if many missed all the repair minutes are P"
+89,91,written task: My Bank Page returned with written picture feedback,Reopen,1,,item 6 record; collected at the start of 90
+89,91,written task: My Bank Page revision,Supported work,5,F,one change each; the revised page is item 6's record
+91,92,"revised records for items 1 to 6, and the record sheet's missing spoken explanations",Missing,10,,"items 1 to 6 are scored from the revised records of days 84, 86, 88, 90 and 91; at most ten children, one minute each; scoring is 20 teacher minutes after class"
+92,93,"marked records and the day 92 packet items, with written picture feedback",Return,5,,"each child sees their own look-fors; the class sees which letters were missed most, never named children"
+92,93,s08-E1a to s08-E8 by most-missed letter,Reteach,10,,"at most four groups, most-missed letter first; letters by item: H item 1, L item 2, M item 3, D item 4, E item 5, F item 6, P item 7, G item 8"
+42,43,"marked check 1 sheets and the record, with written picture feedback",Return,5,,"each child sees their own look-fors; the class sees which letters were missed most, never named children"
+42,43,sc1-E1 to sc1-E4 by most-missed letter,Reteach,10,,"at most four groups, most-missed letter first; letters by item: A to C items 1 and 2, J to L item 3, D to G item 4, H and I item 5"
+94,96,"marked check 2 part one sheets, with written picture feedback",Return,2,,"each child sees their own look-fors; the class sees which letters were missed most, never named children"
+95,96,"marked check 2 part two sheets, with written picture feedback",Return,2,,"each child sees their own look-fors; the class sees which letters were missed most, never named children"
+94,96,sc2-E1 to sc2-E7 by most-missed letter,Reteach,5,,at most two groups here; letters M to S
+95,96,sc2-E8 to sc2-E13 by most-missed letter,Reteach,5,,at most two groups here; letters T to Z

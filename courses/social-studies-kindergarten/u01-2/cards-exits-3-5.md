@@ -26,9 +26,3 @@ Each card is marked by every child (circle or point) and a spoken question is he
 **Picture:** Four plain paper-bag puppets, all the same, sit in a row in front of a music box, told apart by a hat, a scarf, a bow and nothing; the red hat came out of a hat bag drawn at random. Below, two rule pictures in circles: (a) only the puppet with the red hat touching the music box while three puppets look on; (b) a turn card passing from puppet to puppet, with a different puppet touching the music box each time.
 
 **Mark:** Circle the picture of the fairer rule. **Spoken:** "Why is this not fair to the other puppets? What could we do instead?"
-
-## Key (teacher)
-
-- Day 3: (a), wet paintings stay on the drying rack so clothes stay clean; accept another supported proposal.
-- Day 4: the car in the lane; key the reason, it keeps children out of the car lane.
-- Day 5: (b); the others never get a choice, so take turns so all can choose.

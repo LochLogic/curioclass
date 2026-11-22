@@ -25,7 +25,3 @@ Picture: raised hands across the room, children smiling.
 Picture: three children in a line passing the book one to the next, name cards laid in order on a table.
 
 **Circle choices (after page 5).** Who is in charge: Teacher Okoro, Jun, a child in the passing line. Then two more circles: page 4 (raised hands) and page 5 (the passing line), for "Which picture shows the class agreeing? Which shows someone following it?"
-
-## Key (teacher)
-
-In charge: Teacher Okoro. Did what Jun said: Jun. The card-order rule: made on page 4, followed on page 5.

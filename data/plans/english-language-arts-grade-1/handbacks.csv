@@ -1,0 +1,282 @@
+from_day,to_day,what,where,minutes,error,note
+1,2,s01-X1,reread,4,A,one repair: reread the two sentences and point to the matching picture; each child points
+2,3,s01-X2,reread,4,A,"one repair: ask a question the two sentences answer, then point to the sentence"
+3,4,s01-X3,reread,4,B,one repair: sort one fact to the words and one to the picture
+4,5,s01-X4,join,4,V,"one repair: say a tool is a thing, then add its kind and its use"
+5,6,s01-X5,reread,4,R,"one repair: clap each phrase of the line, then say it"
+6,7,s01-X6,models,4,AE,"one repair: add to what the puppet said, on the mop"
+8,9,s01-A2,repair,4,A,"contrast lumps with chops; point to the words, then answer a fresh card"
+8,9,s01-A5,repair,4,B,contrast lumps in the words with the pictured spoon; sort one new fact
+8,9,s01-A6,repair,4,C,contrast the bowl alone with the bowl and the lumps; add a word fact to a fresh description
+9,10,s01-X9,repair,4,AI,contrast the pictured spoon with the words about lumps; find the source of one fresh pictured fact
+10,11,s01-X10,reread,4,D,one repair: point to the sentence that names the place
+11,12,s01-X11,reread,4,C,one repair: add a word detail to a picture detail
+12,13,s01-X12,reread,4,E,one repair: tell the three events with three counters
+13,14,s01-X13,evidence,4,F,one repair: track the I in a fresh panel
+14,15,s01-X14,reread,4,C,one repair: add a word detail to a picture detail
+15,16,s01-X15,reread,4,R,"one repair: clap each phrase of the line, then say it"
+16,17,s01-X16,reread,4,E,one repair: put the solving event between the two tries
+17,18,s01-X17,prepare,4,A,one repair: point to the sentence that says it
+18,20,s01-X18,repair,4,D,contrast the kitchen with the garage; mark the place in the fresh card
+19,20,s01-A11,repair,4,D,contrast the kitchen with the rug; mark the new passage's place
+19,20,s01-A12,repair,4,E,contrast a two-event sequence with a three-event one; insert the missing event
+19,20,s01-A13,repair,4,F,contrast Tess retrieving with Jo telling; track the I in a fresh panel
+20,21,s01-X20,repair,4,F,contrast Lee telling with Mr. Ray wiping; track the I in a fresh two-panel card
+21,22,s01-X21,repair,4,A,"reread the card line by line and point to the line that says it; cover the picture first if the slip was a picture fact; new card, same ask"
+22,23,s01-X22,repair,4,AC,lay the four strips in a row; point to the one that says what the tool is for; close a fresh tool
+23,24,s01-X23,repair,4,AA,"contrast ""nice"" with an observable fact; one fact per finger on a new tool"
+24,25,s01-X24,repair,4,A,reread the card and point to the sentence that gives the fact; retry on a new card
+25,26,s01-X25,repair,4,AA,"contrast ""nice"" with a fact and a change that follows it; one fact on a finger"
+26,27,s01-X26,repair,4,AA,"contrast ""nicer"" with a fact and a change that follows it; retry on a new bin"
+27,28,s01-X27,repair,4,A,reread the card; the child points to the sentence that gives the fact; cover the picture if the slip was a picture fact
+27,33,s01-A19,response,0,J,"contrast cup's first and middle sounds; identify a fresh word's vowel; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+27,33,s01-A20,response,0,K,"contrast one st counter with separate s and t counters; segment a fresh word; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+27,33,s01-A21,response,0,L,"contrast sh with separate s and h; read another taught digraph; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+27,33,s01-A22,response,0,M,"contrast chip and ship; read another ch word; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+27,33,s01-A23,response,0,N,"contrast the spoken and attempted the; remap its exceptional part and reread; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+27,33,s01-A24,response,0,AH,"contrast cap and caps; mark and read a new taught-base plural; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+27,33,s01-A25,response,0,O,"compare the forms of b and d; trace and independently print d; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+27,33,s01-A26,response,0,P,"contrast chin with thin; segment and spell a fresh ch word; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+27,33,s01-A27,response,0,Q,"contrast thd with thud; use one sound box per sound on a new word; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+27,33,s01-A28,response,0,A,"reread the card; point to the sentence that gives the reason; answer on a fresh card; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+27,33,s01-A29,response,0,R,"contrast isolated words with a phrase reading; reread another sentence meaningfully; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+27,33,s01-A30,response,0,S,"contrast falls with the printed tips; cover the picture and decode a new word; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+27,33,s01-A31,response,0,T,"contrast listening with reading one supported line; invite a fresh line; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+27,33,s01-A31b,response,0,T,"contrast listening with reading one supported line; invite a fresh line; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+28,29,s01-X28,draft,4,AB,"contrast ""It helps"" with ""My rack helps""; name the subject in a fresh opening"
+29,30,s01-X29,revise,4,A,reread the card; point to the sentence that says it; revise one fact in the draft
+29,33,s01-A33,response,0,U,"contrast flour with sieve; sort a fresh material word; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+29,33,s01-A34,response,0,V,"contrast thing with tool with a deep bowl; define another tool; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+29,33,s01-A35,response,0,W,"contrast scoop alone with scooping school sand; name a new school use; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+29,33,s01-A36,response,0,X,"contrast looking, peeking through a gap and glancing briefly; choose a manner verb for a fresh scene; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+29,33,s01-A37,response,0,Y,"contrast their pictures; order a fresh pair; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+29,33,s01-A38,response,0,Z,"contrast scoop sand with a because sentence; explain a new tool relation; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+30,31,s01-X30,edit,4,AC,lay the strips; point to the one that closes the job; close a fresh piece
+31,33,s01-A39,response,0,AA,"contrast nice with an observable bowl fact; add a supported fact to a fresh explanation; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+31,33,s01-A39,response,0,AB,"contrast It helps with My scoop helps; name the subject in a fresh opening; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+31,33,s01-A39,response,0,AC,"contrast an unfinished fact list with a final sentence about the job; close a fresh piece; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+32,33,s01-A40,response,0,A,"reread the card; point to the words that answer; ask a fresh question the card answers; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+32,33,s01-A46,response,0,A,"contrast the characters with the other card's characters; name the people in a fresh card; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+32,33,s01-A46b,response,0,D,"contrast the place with the other card's place; mark the place in a fresh card; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+32,33,s01-A47,response,0,E,"insert the missing event between the two others; tell a fresh card's events with counters; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+32,33,s01-A48,response,0,F,"contrast Nana raking with Min telling; track the I in a fresh panel; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+32,33,s01-A50,response,0,C,"add a word detail to a picture detail on a fresh card; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+32,33,s01-A51,response,0,AI,"find the source of one fresh pictured fact: the words or the picture; inside the child's own one-item retry on a fresh card; the part's 20 minutes are shared, so no extra class minutes"
+34,35,s02-X34,Compare,4,A,reread the rain log in order and place the three pictures
+35,36,s02-X35,repair,4,D,point to the story words or the fact words before naming the picture
+36,37,s02-X36b,repair,4,A,"place the three picture cards again with first, next, last"
+37,38,s02-X37,Retell,4,B,"connect one action to its result in the retell, then say a lesson"
+38,39,s02-X38a,repair,4,A,reread the time words and place the scenes
+38,39,s02-A1,Rotation,3,K,"next foundations group: isolate the spoken vowel, map it and blend again"
+39,40,s02-X39,Read,4,C,reread the card and mark the word that tells how someone feels
+40,41,s02-X40a,repair,4,A,reread the time words and place the picture cards
+41,42,s02-X41a,repair,4,A,reread the time words and place the picture cards
+42,43,s02-X42,repair,4,B,"connect one action to its result, then say a lesson"
+43,44,s02-X43,repair,4,C,reread and mark the word that tells how the speaker felt
+43,44,s02-A3,Rotation,3,K,"next foundations group: isolate the spoken vowel, map it and blend again"
+43,44,s02-A5,Rotation,0,AA,collect only the missed letter pair again in the same rotation
+44,45,s02-X44,repair,4,D,point to an event or a fact before naming the kind of text
+45,46,s02-X45,repair,4,J,"map each spelling and blend, then check with the picture"
+46,49,s02-X46,repair,0,B,"inside the day 49 response part; connect one action to its result, then say a lesson"
+47,49,s02-A6,repair,0,A,inside the day 49 response part; reread the time words and place the pictures
+48,49,s02-A9,repair,0,C,inside the day 49 response part; reread and mark the feeling word
+48,49,s02-A9b,repair,0,C,inside the day 49 response part; reread and say the feeling word
+48,49,s02-A13,Rotation,3,L,"next foundations group: read the base, add the ending, reread"
+49,50,s02-X49,repair,4,A,reread the time words and place the picture strips
+50,51,s02-X50,Reread,4,E,point to the page words before choosing a question
+51,52,s02-X51,repair,4,A,"reread first, then, last and place the pictures"
+52,53,s02-X52,repair,4,E,"point to what we saw, then to what we read"
+53,54,s02-X53,repair,4,Q,circle each name and month and capitalize its first letter
+53,54,s02-A15,Rotation,3,K,"next foundations group: isolate the spoken vowel, map it and blend again"
+54,55,s02-X54b,repair,4,R,say the purpose of the sentence and place its end mark
+55,56,s02-X55,repair,4,G,draw the detail a listener needs
+56,57,s02-X56,repair,5,E,"reread the sentence, point to the words, then connect its two details with the arrow card"
+57,58,s02-X57,repair,5,D,"point to one made-up event or one thing a person could see, then name the purpose"
+58,59,s02-X58,repair,5,E,"reread the sentence, point to the words, then connect its two details with the arrow card"
+58,59,s02-A17,Rotation,3,L,"next foundations group: read the base, add the ending, reread"
+58,59,s02-A18,Rotation,3,M,next foundations group: stretch the word and mark each sound before writing
+59,60,s02-X59a,repair,5,G,"say what the listener needs, then draw only that detail"
+59,60,s02-X59b,repair,0,S,inside the same repair when many missed it: separate the three entries with commas on a strip
+59,60,s02-X59c,repair,0,H,inside the same repair when many missed it: say who or what and what happens
+60,62,s02-X60a,repair,5,E,"reread the source line, then say only what it says"
+60,62,s02-X60b,repair,0,H,inside the same repair when many missed it: say who or what and what happens
+61,62,s02-A19,Revise,4,E,"reread the source line, then say only what it says"
+61,62,s02-A21,Revise,4,O,"point to the one located fact, then name its source"
+61,62,s02-A24,Visual,5,G,"say what the listener needs to see, then draw only that"
+61,62,s02-A25,Visual,3,H,say who or what and what happens
+61,62,s02-A26,linked,3,W,rehearse waiting with a hand signal
+61,62,s02-A27,linked,3,X,add the linking words to the partner's idea
+61,62,s02-A28,linked,3,Y,"say what is unclear, then ask"
+61,62,s02-A29,linked,3,Z,answer in a finished sentence
+62,63,s02-X62c,Rotation,3,Q,"next foundations group: find the name, circle the first letter, print the capital"
+62,63,s02-X62d,Rotation,3,R,next foundations group: point where the voice stops and add the mark
+63,64,s02-X63,repair,5,A,"reread the time words, then place two picture cards"
+63,64,s02-A30,Rotation,3,L,"next foundations group: read the base, add the ending, reread"
+63,64,s02-A31,Rotation,3,M,next foundations group: stretch the word and mark each sound before writing
+64,65,s02-X64a,repair,3,E,"point to a sky fact, then to an imagined part"
+64,65,s02-X64b,repair,2,H,"say who or what and what happens, then add one detail"
+65,66,s02-X65a,repair,3,F,"draw first and next, then add an ending"
+65,66,s02-X65b,repair,2,H,"say who or what and what happens, then add one detail"
+66,67,s02-X66a,repair,3,A,"reread the time words, then place two picture cards"
+66,67,s02-X66b,repair,2,F,"draw first and next, then add an ending"
+67,68,s02-X67a,repair,3,P,reread the peer question and add only its detail
+67,68,s02-X67b,repair,2,P,reread the peer question and add only its detail
+68,69,s02-X68a,repair,3,A,"reread the time words, then place two picture cards"
+68,69,s02-X68b,repair,2,E,"point to the article sentence, then to the imagined part"
+68,69,s02-A32,Rotation,3,L,"next foundations group: read the base, add the ending, reread"
+68,69,s02-A33,Rotation,3,M,"next foundations group: stretch the word, mark each sound, write it"
+68,69,s02-A34,Rotation,3,M,"next foundations group: stretch the word, mark each sound, write it"
+68,69,s02-A35,Rotation,2,N,next group: follow with a finger and voice the phrase
+68,69,s02-A36,Rotation,2,N,next group: follow with a finger and voice the phrase
+69,75,s02-X69a,Response,5,A,sequence group: reorder two picture cards
+69,75,s02-X69b,Response,5,C,language group: reread and mark the feeling word
+71,75,s02-A38,Response,5,F,"sequence group: draw first, next and an ending"
+73,75,s02-A54,Response,5,P,revision group: reread the peer question and add only its detail
+72,73,s02-A39,Revision,5,P,reread the peer question and add only its detail
+73,74,s02-A55,Finish,5,T,give the child one contribution to enter and check
+72,75,s02-A40,Response,0,H,"language group, inside the response allocation: the editing and sentence retries use only the missed component"
+72,75,s02-A48,Response,0,Q,"language group, inside the response allocation: the editing retry uses only the missed component"
+79,80,s03-X79a,repair,5,A,"sort two details under one topic on a fresh card, then say the topic again"
+80,81,s03-X80b,repair,5,C,mark a picture symbol or a word symbol beside each source on a fresh pair
+81,82,s03-X81a,repair,5,D,"follow the contents or menu to its heading with a finger, the cover put away, on a fresh page"
+82,83,s03-X82a,repair,5,A,"sort two details under one topic on a fresh card, then say the topic again"
+83,84,s03-X83a,repair,5,C,mark a picture symbol or a word symbol beside each source on a fresh pair
+83,84,s03-A3,Rotation,3,L,"move one counter for each sound, on four fresh words"
+84,85,s03-X84b,repair,5,B,"point to the exact source sentence before explaining, on a fresh card"
+85,87,s03-X85a,repair,5,D,"follow the contents or menu to its heading with a finger, the cover put away, on a fresh page"
+86,89,s03-A4,repair,0,A,"sort two details under one topic on a fresh card, then say the topic again"
+86,89,s03-A5,repair,0,B,"point to the exact source sentence before explaining, on a fresh card"
+86,89,s03-A6,repair,0,D,"follow the contents or menu to its heading with a finger, the cover put away, on a fresh page"
+87,89,s03-X87a,repair,0,C,mark a picture symbol or a word symbol beside each source on a fresh pair
+88,89,s03-X88b,repair,0,K,"restate the speaker's point before replying, on a fresh speaker line"
+88,89,s03-A8,repair,0,K,"restate the speaker's point before replying, on a fresh speaker line"
+88,89,s03-A10,repair,0,K,"restate the speaker's point before replying, on a fresh speaker line"
+88,89,s03-A12,Rotation,3,M,"stretch and map every sound, then write the word, on fresh taught words"
+89,90,s03-X89a,repair,5,D,"follow the contents or menu to its heading with a finger, the cover put away, on a fresh page"
+90,91,s03-X90a,repair,5,A,"sort two details under one topic on a fresh card, then say the topic again"
+91,92,s03-X91a,repair,5,D,"follow the contents or menu to its heading with a finger, the cover put away, on a fresh page"
+92,93,s03-X92a,repair,5,A,"sort two details under one topic on a fresh card, then say the topic again"
+93,94,s03-X93a,repair,5,A,"sort two details under one topic on a fresh card, then say the topic again"
+93,94,s03-A14,Rotation,3,M,"stretch and map every sound, then write the word, on fresh taught words"
+94,95,s03-X94b,repair,5,F,"end with a sentence that returns to the topic, on a fresh paragraph"
+95,96,s03-X95a,repair,5,A,"sort two details under one topic on a fresh card, then say the topic again"
+96,97,s03-X96a,repair,5,D,"follow the contents or menu to its heading with a finger, the cover put away, on a fresh page"
+97,98,s03-X97a,repair,5,B,"add one located fact to the shared answer, on a fresh pair of sources"
+98,99,s03-X98b,repair,5,A,"sort two details under one topic on a fresh card, then say the topic again"
+98,99,s03-A16,Rotation,3,M,"stretch and map every sound, then write the word, on fresh taught words"
+99,100,s03-X99b,repair,5,B,"point to the exact source sentence before explaining, on a fresh card"
+100,101,s03-X100a,repair,5,A,"name the whole topic, not one detail, on a fresh paragraph, then say the topic again"
+101,102,s03-X101b,repair,5,E,contrast a liking with a topic sentence on three fresh cards; each child says one topic sentence
+102,103,s03-X102b,repair,5,F,"say a closing that returns to the topic, on a fresh draft"
+103,106,s03-X103b,repair,5,D,"point to a heading, label or sentence before explaining, on a fresh page"
+106,107,s03-X106b,repair,5,D,"point to the source line before explaining, on a fresh card"
+107,108,s03-X107a,repair,5,A,"name the whole topic, not one detail, on a fresh card"
+108,109,s03-X108a,repair,5,A,"name the shared topic of three cards, not one detail, on a fresh set"
+109,110,s03-X109a,repair,5,C,"check a label against the sentence, not the picture, on a fresh drawing card"
+110,111,s03-X110a,repair,5,A,"name the bird both sources describe, not one detail, on fresh sources"
+111,112,s03-X111b,repair,5,D,"follow the contents line to the page before answering, on a fresh page"
+112,113,s03-X112a,repair,5,B,"draw only a part the source states, on fresh sources"
+113,114,s03-X113a,repair,5,A,"pick the topic card that holds every clue, on a fresh set of clues"
+114,116,s03-X114a,repair,5,D,"find a fact by the contents line and heading, not the glossary alone, on a fresh page"
+116,117,s03-X116b,repair,5,E,contrast a liking with a verified fact on three fresh cards; say one clue
+117,118,s03-X117b,repair,5,E,"answer the peer question with a source fact, not a liking, on a fresh strip"
+120,121,s04-X120a,repair,5,AB,"match the picture to the action words, on a fresh card"
+121,122,s04-X121b,repair,5,E,"mark the sentence clue before choosing the meaning, on a fresh card"
+122,123,s04-X122a,repair,5,AC,"order two pictures while pointing to first and next, on a fresh pair"
+123,124,s04-X123a,repair,5,AB,"match the picture to the action words, on a fresh card"
+124,125,s04-X124b,repair,5,A,"point to what each child does, not how things look, on a fresh card"
+125,126,s04-X125b,repair,5,A,"point to what each child does, not how things look, on a fresh card"
+126,127,s04-X126a,repair,5,AB,"match the picture to the words of the card, on a fresh card"
+127,128,s04-X127a,repair,5,AC,"order the paired events by first and next, on a fresh pair"
+128,130,s04-X128a,repair,5,AC,"order the strip by first and next, on a fresh strip"
+129,130,s04-A10,repair,10,A,"name what each child does, not what the things look like, on a fresh pair of stories"
+130,131,s04-X130a,repair,5,A,"sort what each child does from how things look, on strips for a new pair"
+131,132,s04-X131c,repair,5,S,judge a likeness and sort strips by what each page adds
+132,133,s04-X132b,repair,5,C,sort strips by the because test: a reason or not a reason
+133,134,s04-X133b,repair,5,C,judge a swapped reason and fix it with the because test
+134,135,s04-X134a,repair,5,C,"fix a given answer with the because test, on a new case"
+135,136,s04-X135c,opening,5,S,"name one thing each page adds, on a fresh pair of pages"
+136,137,s04-X136b,repair,5,C,"find the reason words, not the topic words, on a fresh card"
+137,138,s04-X137b,opening,5,B,"use a reason from the source, not a liking, on a fresh card"
+138,140,s04-X138a,repair,5,N,"answer the peer's question with a new line, on a fresh page"
+139,140,s04-A13,repair,10,B,"rebuild topic, position, reason and closing from four cards"
+141,142,s04-X141a,opening,3,Y,"ask which picture holds every fact before choosing, on a fresh card"
+142,143,s04-X142a,opening,3,C,"test whether the fact tells why before choosing, on a fresh card"
+143,144,s04-X143a,opening,3,W,"find the fact on a named page and stick its tag, on a fresh pair of notes"
+144,145,s04-X144b,opening,3,S,"name one thing each part adds, on a fresh card"
+145,146,s04-X145a,opening,3,C,"test whether the fact tells why before choosing, on a fresh card"
+146,148,s04-X146a,opening,3,F,"connect -less to without on a known root, on a fresh card; given on 148 because 147 is the no-help sitting"
+148,149,s04-X148a,opening,3,Y,"ask which topic holds every detail, on a fresh card"
+149,150,s04-X149a,opening,3,W,"find the fact on a named page and stick its tag, on fresh pages"
+150,151,s04-X150a,opening,3,X,"ask for something the page says, not a feeling, on a fresh draft"
+151,152,s04-X151a,opening,3,N,"answer the peer question with a new line, on a fresh page"
+152,153,s04-X152a,opening,3,I,"match the verb to the number of the noun, on a fresh caption"
+153,154,s04-X153b,opening,3,A,"point to what each child does, not how things look, on a fresh card"
+154,155,s04-X154b,opening,3,S,"name one thing each page adds, on a fresh pair of pages"
+147,157,s04-A14,repair,3,C,"test whether the fact explains the point, on a fresh card, from the 147 record"
+153,157,s04-A64,repair,3,A,"point to what each child does, not how things look, on a fresh pair of stories"
+156,157,s04-A80,repair,3,B,"rebuild topic, opinion, reason and closing from four cards"
+68,76,cycle 11 record,assessment,0,,"the cycle 11 reading and spelling record of day 68 is cited, not collected again; no child minutes"
+72,76,missing cycle 11 evidence,assessment,0,,"the day 72 gap-filling record is cited, not collected again; no child minutes"
+72,77,sentence record,assessment,0,,"the day 72 sentence record is cited, not rescored; no child minutes"
+75,77,retell and message record,assessment,0,,"the day 75 retell, message and connection records are cited, not collected again; no child minutes"
+149,158,cycle 24 record,assessment,0,,"the cycle 19 to 25 pattern record of 149 to 155 is cited, not asked again; no child minutes"
+155,158,cycle 25 record,assessment,0,,"the day 155 cycle record is cited, not asked again; no child minutes"
+147,159,author reason record,assessment,0,,"the day 147 author-reason record is cited, not tested again; no child minutes"
+153,159,comparison record,assessment,0,,"the comparison record of 153 to 154 is cited, not rescored; no child minutes"
+76,78,c1-F76a,Reteach groups,1,M,"one move, taught in the group by the gap recorded"
+76,78,c1-F76b,Reteach groups,1,A,"one move, taught in the group by the gap recorded"
+76,78,c1-F76b,Reteach groups,1,F,"one move, taught in the group by the gap recorded"
+76,78,c1-F76c,Reteach groups,1,B,"one move, taught in the group by the gap recorded"
+76,78,c1-F76d,Reteach groups,1,C,"one move, taught in the group by the gap recorded"
+76,78,c1-F76e,Reteach groups,1,D,"one move, taught in the group by the gap recorded"
+76,78,c1-F76f,Reteach groups,1,E,"one move, taught in the group by the gap recorded"
+76,78,c1-F76h,Reteach groups,1,G,"one move, taught in the group by the gap recorded"
+76,78,c1-F76i,Reteach groups,1,H,"one move, taught in the group by the gap recorded"
+76,78,c1-F76j,Reteach groups,1,I,"one move, taught in the group by the gap recorded"
+76,78,c1-F76l,Reteach groups,1,J,"one move, taught in the group by the gap recorded"
+76,78,c1-F76m,Reteach groups,1,K,"one move, taught in the group by the gap recorded"
+77,78,c1-F77a,Reteach groups,1,M,"one move, taught in the group by the gap recorded"
+77,78,c1-F77b,Reteach groups,1,A,"one move, taught in the group by the gap recorded"
+77,78,c1-F77b,Reteach groups,1,F,"one move, taught in the group by the gap recorded"
+77,78,c1-F77c,Reteach groups,1,B,"one move, taught in the group by the gap recorded"
+77,78,c1-F77d,Reteach groups,1,C,"one move, taught in the group by the gap recorded"
+77,78,c1-F77e,Reteach groups,1,D,"one move, taught in the group by the gap recorded"
+77,78,c1-F77f,Reteach groups,1,E,"one move, taught in the group by the gap recorded"
+77,78,c1-F77h,Reteach groups,1,G,"one move, taught in the group by the gap recorded"
+77,78,c1-F77i,Reteach groups,1,H,"one move, taught in the group by the gap recorded"
+77,78,c1-F77j,Reteach groups,1,I,"one move, taught in the group by the gap recorded"
+77,78,c1-F77l,Reteach groups,1,J,"one move, taught in the group by the gap recorded"
+77,78,c1-F77m,Reteach groups,1,K,"one move, taught in the group by the gap recorded"
+77,78,c1-T77b,Reteach groups,1,L,"one move, taught in the group by the gap recorded"
+77,78,c1-T77c,Reteach groups,1,N,"one move, taught in the group by the gap recorded"
+77,78,c1-T77g,Reteach groups,1,O,"one move, taught in the group by the gap recorded"
+77,78,c1-T77k,Reteach groups,1,P,"one move, taught in the group by the gap recorded"
+158,160,c2-F158a,Reteach groups,1,M,"one move, taught in the group by the gap recorded"
+158,160,c2-F158b,Reteach groups,1,A,"one move, taught in the group by the gap recorded"
+158,160,c2-F158b,Reteach groups,1,F,"one move, taught in the group by the gap recorded"
+158,160,c2-F158c,Reteach groups,1,B,"one move, taught in the group by the gap recorded"
+158,160,c2-F158d,Reteach groups,1,C,"one move, taught in the group by the gap recorded"
+158,160,c2-F158e,Reteach groups,1,R,"one move, taught in the group by the gap recorded"
+158,160,c2-F158f,Reteach groups,1,S,"one move, taught in the group by the gap recorded"
+158,160,c2-F158h,Reteach groups,1,G,"one move, taught in the group by the gap recorded"
+158,160,c2-F158i,Reteach groups,1,H,"one move, taught in the group by the gap recorded"
+158,160,c2-F158j,Reteach groups,1,I,"one move, taught in the group by the gap recorded"
+158,160,c2-F158l,Reteach groups,1,J,"one move, taught in the group by the gap recorded"
+158,160,c2-F158m,Reteach groups,1,K,"one move, taught in the group by the gap recorded"
+159,160,c2-F159a,Reteach groups,1,M,"one move, taught in the group by the gap recorded"
+159,160,c2-F159b,Reteach groups,1,A,"one move, taught in the group by the gap recorded"
+159,160,c2-F159b,Reteach groups,1,F,"one move, taught in the group by the gap recorded"
+159,160,c2-F159c,Reteach groups,1,B,"one move, taught in the group by the gap recorded"
+159,160,c2-F159d,Reteach groups,1,C,"one move, taught in the group by the gap recorded"
+159,160,c2-F159e,Reteach groups,1,R,"one move, taught in the group by the gap recorded"
+159,160,c2-F159f,Reteach groups,1,S,"one move, taught in the group by the gap recorded"
+159,160,c2-F159h,Reteach groups,1,G,"one move, taught in the group by the gap recorded"
+159,160,c2-F159i,Reteach groups,1,H,"one move, taught in the group by the gap recorded"
+159,160,c2-F159j,Reteach groups,1,I,"one move, taught in the group by the gap recorded"
+159,160,c2-F159l,Reteach groups,1,J,"one move, taught in the group by the gap recorded"
+159,160,c2-F159m,Reteach groups,1,K,"one move, taught in the group by the gap recorded"
+159,160,c2-T159a,Reteach groups,1,L,"one move, taught in the group by the gap recorded"
+159,160,c2-T159c,Reteach groups,1,Q,"one move, taught in the group by the gap recorded"
+159,160,c2-T159h,Reteach groups,1,O,"one move, taught in the group by the gap recorded"
+159,160,c2-T159j,Reteach groups,1,P,"one move, taught in the group by the gap recorded"

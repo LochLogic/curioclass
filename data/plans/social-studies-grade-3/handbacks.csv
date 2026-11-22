@@ -1,0 +1,271 @@
+from_day,to_day,what,where,minutes,error,note
+1,2,s01-R1,Return,10,H,"the library volunteer card, ten minutes, for H heard on the Jo page and on E1; whole class if more than a third missed, otherwise a small group; O from E1 goes to day 3"
+2,3,s01-E2 s01-E2b,Return,5,O,the more-missed of O and J is read from a card; the other goes to a small group
+2,3,s01-E2c,continents,5,J,sort one mapped fact and two supported priorities on cards
+3,4,s01-E3 s01-E3b,Warm,5,A,"sort continent, ocean and hemisphere labels on a fresh globe view"
+4,5,s01-E4 s01-E4c,Warm,5,A,sort the labels again
+5,6,s01-E5,Warm,5,L,"rebuild labelled columns and rows, then place a new cell"
+6,7,s01-E6b,Return,5,E,compare two rain cards at the same latitude; a small group takes it if the whole class does not
+7,8,s01-E7,Return,5,B,match three new symbols to a legend
+7,8,s01-E7b,Distances,5,C,turn paper and compass rose together
+7,8,s01-E7c,Distances,5,D,lay a paper strip along a fresh route
+8,9,s01-E8,Return,5,D,lay the strip along a fresh route and count again
+9,10,s01-E9,Return,8,G,"sort three claim cards into shows, suggests and cannot tell"
+10,11,s01-E10,Return,5,L,"rebuild labelled columns and rows, then place a new cell"
+11,12,s01-E11,Return,5,F,"lay the maps together and sort four new labels into state, region and landform"
+11,12,s01-E11b,Every,5,B,match three new symbols to a key
+12,13,s01-E12,Return,5,S,check each state on the key and place the missing labels
+13,14,s01-E13,Return,5,F,"sort labels into state, region and landform"
+14,15,s01-E14,Return,5,F,"sort six labels into state, region and landform; or match symbols to a key for B"
+15,16,s01-E15,Return,7,G,"sort three claim cards into shows, suggests and cannot tell; P gets five minutes if it is the more missed"
+16,17,s01-E16,Return,5,Q,compare a dated before-and-after pair and name the action people took
+17,18,s01-E17,Return,7,P,link one fresh feature to what people did; M or N heard in talk takes the seven minutes if more common
+18,19,s01-E18,Return,8,I,a dated map beside a short account from a nation of the place; R gets five minutes with a fresh dated pair
+19,20,s01-E19b,Return,8,K,link a detail from each of two sources to a new claim; G gets a sort of three claim cards
+20,21,s01-E20,Return,5,O,link an affected group or a needed fact to a supporting answer; J gets a sort of one mapped fact and two priorities
+21,22,s01-E21b,Retrieval,5,K,"link a detail from each of two sources, or sort claim cards for G"
+22,24,s01-E22,Grouped,5,D,the map conventions group lays a strip along a fresh route
+2,22,s01-Q10,Revise,3,,the day 2 record is revised after written feedback; scored on day 23
+10,22,s01-Q2f,Revise,10,,"the school-grounds map is revised first, positions then the four parts; scored on day 23"
+20,22,s01-Q12,Revise,2,,the day 20 question record is revised if marked partial or missing; scored on day 23
+15,16,s01-P15,Return,0,G,teacher reads the sentence from the folder and writes one cue on it; handed back at the door
+14,15,s01-E14c,Return,0,F,teacher reads the answer from the student page and writes one cue; handed back with day 14 exit tickets
+14,15,s01-E14d,Return,0,F,teacher reads the answer from the student page and writes one cue; handed back with day 14 exit tickets
+18,19,s01-P18,Return,0,I,teacher reads the sentence from the folder and writes one cue on it; handed back at the door on day 19
+19,20,s01-P19,Return,2,,the written claim is handed back with one written cue
+22,23,s01-P22,Packet,1,,the revised piece is handed back for the day 23 record; never graded
+25,27,s02-E25,Return,0,W,the teacher reads the slips and writes one cue; a W miss joins the most-missed repair on day 27
+26,27,s02-E26 s02-E26b,Return,5,W,"the most-missed letter from day 26, wrong example then right; V is heard in talk and sorted on day 27"
+27,28,s02-E27,Return,5,A,"the most-missed letter from E27, wrong example then right, whole class; ss2 retrieval misses from day 27 stay in the small group"
+28,29,s02-E28 s02-E28b s02-E28c,Return,5,A,"the most-missed of A, I and T heard on day 28, wrong example then right, whole class"
+29,30,s02-E29 s02-E29b,Return,5,B,"the most-missed letter from E29, wrong example then right, whole class"
+30,31,s02-E30 s02-E30b,Return,5,A,"the most-missed letter from E30, wrong example then right, whole class"
+31,32,s02-E31 s02-E31b,Return,5,C,"the most-missed letter from E31, wrong example then right, whole class; L gets a sort of tax, fee and gift cards"
+32,33,s02-E32 s02-E32b,Return,5,K,"the most-missed letter from E32 (B or K), wrong example then right; K gets a sort of speaking and voting on a fresh notice"
+33,34,s02-E33 s02-E33b,Return,5,S,"the most-missed letter from E33, wrong example then right, whole class"
+34,35,s02-E34 s02-E34b s02-E34c,Return,5,M,"the most-missed letter from E34, M first if many, wrong example then right, whole class"
+35,36,s02-E35,Return,5,Y,"the most-missed letter from E35, wrong example then right, whole class"
+36,37,s02-E36 s02-E36b,Return,5,E,"the most-missed letter from E36, wrong example then right, whole class"
+26,34,s02-T26c s02-T26d,Rights,5,D,"the day 26 library miss: a small group of up to 5 revises an unfair library rule at the side table, 1 minute each"
+37,38,s02-E37 s02-E37b,Return,5,P,"the more-missed of P and K from E37, wrong example then right; the other gets a fresh sort at the side table after the retrieval group"
+38,39,s02-E38 s02-E38b,Return,5,G,"the most-missed of G, Q and AC from E38, wrong example then right, whole class; G has a ten-minute half in the discussion"
+39,40,s02-E39c,Repair,3,Q,"the most-missed of Q, AC and AA after the written cue is read, wrong example then right; Q first"
+40,41,s02-E40 s02-E40b,Return,5,O,"the more-missed of F and O from E40, five-minute form, whole class"
+40,42,s02-E40 s02-E40b,Our,5,F,the second half of an F repair for up to 6 children at the side table during the pairs part; equal speaking turns on a fresh case
+41,42,s02-E41,Return,5,H,"the more-missed of H and AB, wrong example then right, whole class; a sort of four fresh cards (rules or a plan with limits)"
+42,43,s02-E42b s02-E42c,Return,5,R,"the more-missed of R and M, wrong example then right, whole class; M gets a ten-minute revision of a rule that takes a right away, five of them at the side table"
+43,44,s02-E43 s02-E43b,Return,5,U,"the most-missed of U, T and I, wrong example then right, whole class"
+43,44,s02-E43b,Gather,5,I,"the other half of a ten-minute I or U repair at the side table, then AD; a nation record beside a town record"
+44,45,s02-E44,Return,5,W,"the more-missed of W and V, wrong example then right, whole class; connect an affected group and a supporting answer to the big question"
+45,46,s02-E45,Retrieval,5,J,"the more-missed of J, link a different detail from each source to a claim, whole class"
+45,48,s02-E45,Grouped,5,V,the other half of the J and V ten minutes in the fourth group (constitutions and claims): replace a liking with a claim linked to a fresh detail
+46,48,s02-E46,Grouped,5,K,sort speaking and voting on a fresh notice in the first group (authority and funding)
+26,46,s02-Q17 s02-Q18,Revise,3,W,the day 26 record revised after the written cue; scored on day 47
+34,46,s02-Q9,Revise,3,M,the day 34 record revised after the written cue; scored on day 47
+36,46,s02-Q10,Revise,3,Z,the day 36 record revised after the written cue; scored on day 47
+37,46,s02-Q11,Revise,3,P,the day 37 record revised after the written cue; scored on day 47
+39,46,s02-Q14,Revise,3,Q,the day 39 record revised after the written cue; scored on day 47
+41,46,s02-Q15,Revise,3,AD,the day 41 card revised after the written cue; scored on day 47
+43,46,s02-Q16,Revise,3,I,the day 43 table revised after the written cue; scored on day 47
+44,46,s02-Q19,Revise,3,W,the day 44 record revised after the written cue; scored on day 47
+26,27,s02-T26 s02-T26b,Four levels,0,A,the office match is taught in Four levels; the teacher reads the slips and writes one cue
+26,27,s02-E26c,Return,0,S,the Exit box on side 2; the teacher reads it and writes one cue; an S or x miss joins the most-missed repair
+39,40,s02-P39a s02-P39b s02-P39c s02-P39d,Read,2,Q,"the values record back with its written cue, read by the child; kept for day 46 revision"
+40,48,s02-P40a s02-P40b s02-P40c,Feedback,,G,"the day 40 slip is the scored retry for D2.Civ.7 and D2.Civ.9, judged on day 47 after class; not revised; its cue is read on day 48"
+48,50,s02-R9 s02-R9b s02-R9c s02-R10 s02-R10b s02-R10c,Return,5,x,"the readiness gaps recorded on day 48: one five-minute sequence for the whole class, or a named group of up to 6 (unit 3 plan field 4)"
+44,46,s02-P44a s02-P44b s02-P44c,Revise,3,W,the day 44 record is handed back with its written cue and revised (same record as s02-Q19)
+45,46,s02-P45a s02-P45b s02-P45c,Read,,J,the day 45 claim strip is handed back with its written cue and read; not revised
+47,48,s02-Q1 s02-Q1b s02-Q1c s02-Q1d s02-Q2 s02-Q2b s02-Q2c s02-Q2d s02-Q3 s02-Q3b s02-Q3c s02-Q4 s02-Q4b s02-Q4c s02-Q5 s02-Q5b s02-Q6 s02-Q6b s02-Q7 s02-Q7b s02-Q8 s02-Q8b,Feedback,5,,"the day 47 answer sheets and cues, and the revised records scored from Q9 to Q19, read by each child; the biggest gap marked"
+48,49,s02-F48a s02-F48b s02-F48c s02-F48d s02-F48e s02-F48f s02-F48g s02-F48h,Hand back,3,,"the day 48 redo cards are returned with the written note; read, not redone; never scored"
+48,49,s02-R9 s02-R9b s02-R9c s02-R10 s02-R10b s02-R10c,Hand back,0,x,the readiness gaps recorded on day 48 seat children for oral support nearest the teacher; the repair is day 50 (row 48 to 50)
+49,50,s03-E49 s03-E49b,Pairs,5,T,"the T group at the Pairs sort side table, five minutes: connect a fresh needs case (a school library) to a second group"
+49,66,s03-E49 s03-E49b,Inquiry,4,T,the day 49 record is read with its written cue and revised; scored on day 67 as s03-Q10
+50,51,s03-E50 s03-E50b,Return,5,V,"the most-missed letter from E50, wrong example then right, whole class: sort fresh product and repair pictures"
+50,66,s03-P50a s03-P50b s03-P50c s03-P50d,Inquiry,6,x,the day 50 supporting-question record is read with its written cue and revised; scored on day 67 as s03-Q11
+51,52,s03-E51 s03-E51b s03-E51c,Return,5,A,"the more-missed of A and U from E51, whole class; the other at the side table during Pairs sort"
+52,53,s03-E52 s03-E52b,Return,5,S,"S from E52, whole class: jobs inside one workshop beside two specialist businesses"
+53,54,s03-E53 s03-P53d,Return,5,B,"the more-missed of B and AD from E53 and the ledger, whole class; the other at the side group during Profit with counters"
+53,57,s03-P53d,Savings,2,AD,the class savings ledger comes back; the second $20 goes in
+54,55,s03-E54 s03-E54b,Return,5,F,"the more-missed of F and M from E54, whole class; the other at the Survey side table"
+55,56,s03-E55 s03-E55b,Return,5,V,"the more-missed of V and A from E55, whole class; the other at the side table during Benefit and cost cards"
+56,57,s03-E56 s03-E56b s03-E56c,Return,5,D,"the more-missed of D and Y from E56, whole class; the other at the side table during Rank and name"
+57,58,s03-E57 s03-E57b,Return,5,Z,"the more-missed of Z and D from E57, whole class; the other at the side table during Sort and predict"
+57,61,s03-P57c,Savings,2,AD,the class savings ledger comes back; the third $20 goes in
+58,59,s03-E58 s03-E58b,Return,5,Q,"the more-missed of Q and E from E58, whole class; the other at the side table during Match the needs (G if many)"
+59,60,s03-E59 s03-E59b s03-E59c,Return,5,W,"the more-missed of W and AA from E59, whole class; the other, with N, at the side table during Compare two offers"
+60,61,s03-E60 s03-E60b s03-E60c,Return,5,H,"the more-missed of H and AB from E60, whole class; O at the side table during Map work"
+60,61,s03-E60 s03-E60b,Map,5,O,"O from day 60 at the Map work side table: align equal-amount, equal-year offer cards"
+66,67,s03-P66a s03-P66b s03-P66c s03-P66d s03-P66e,Packet,0,,the day 66 sheet goes back inside page 5 of the packet with its cue; the records are scored on day 67
+67,68,s03-Q1 s03-Q2 s03-Q3 s03-Q4 s03-Q5 s03-Q6 s03-Q7 s03-Q8,Feedback,5,,"the day 67 answer sheets and the scored records, each child reads the note and the letter if there is one; the biggest gap is marked"
+67,68,s03-Q1b s03-Q2b s03-Q3b s03-Q4 s03-Q5b s03-Q6b s03-Q7b s03-Q8b,Grouped,18,,"the other three groups of at most eight, six minutes each by letter (component to move table in the 3.5 plan); the K group is the day 65 row; one minute to move"
+67,68,s03-F68a s03-F68b s03-F68c s03-F68d s03-F68e s03-F68f s03-F68g s03-F68h s03-F68i s03-F68j s03-F68k,Fresh,10,,each child does one new item from the redo bank on the component they missed; not scored
+68,69,s03-F68a s03-F68b s03-F68c s03-F68d s03-F68e s03-F68f s03-F68g s03-F68h s03-F68i s03-F68j s03-F68k,Hand back,2,,the day 68 redo cards come back with a written note before the check starts
+82,83,s04-E82 s04-E82b s04-P82a s04-P82b s04-P82c s04-P82d,Return,5,,the more-missed of C and L from E82
+83,84,s04-E83 s04-E83b s04-P83a s04-P83b s04-P83c s04-P83d s04-P83e s04-P83f,Return,5,,the more-missed of G and O from E83
+84,85,s04-E84 s04-E84b s04-P84a s04-P84b s04-P84c s04-P84d s04-P84e,Return,5,F,F from E84: two named governments compared; the E83 leftovers go to a side table
+85,86,s04-E85 s04-E85b s04-P85a s04-P85b s04-P85c s04-P85d s04-P85e s04-P85f,Retrieval,0,,the day 85 written feedback is returned and read before the supporting-question check; not redone
+72,87,s04-E72 s04-E72b,Feedback,5,R,the written feedback on the saved day 72 exit (a named group and a reason) is returned and read
+88,89,s04-Q1 s04-Q1b s04-Q2 s04-Q3 s04-Q3b s04-Q4 s04-Q4b s04-Q5 s04-Q5b s04-Q6 s04-Q6b s04-Q7 s04-Q7b s04-Q7c s04-Q7d s04-Q7e s04-Q7f s04-Q8 s04-Q8b s04-Q8c s04-Q9 s04-Q9b,Feedback,5,,the day 88 answer sheets and scored records; each child reads the note and the letter if there is one; the biggest gap is marked
+88,89,s04-Q1 s04-Q1b s04-Q2 s04-Q3 s04-Q3b s04-Q4 s04-Q4b s04-Q5 s04-Q5b s04-Q6 s04-Q6b s04-Q7 s04-Q7b s04-Q7c s04-Q7d s04-Q7e s04-Q7f s04-Q8 s04-Q8b s04-Q8c s04-Q9 s04-Q9b,Grouped,24,,"at most four groups of at most eight by the largest gaps, six minutes each and one minute to move; one letter each"
+88,89,s04-F89a s04-F89b s04-F89c s04-F89d s04-F89e s04-F89f s04-F89g s04-F89h s04-F89i s04-F89j s04-F89k s04-F89l s04-F89m s04-F89n s04-F89o s04-F89p s04-F89q s04-F89r,Fresh,10,,each child does one new item from the redo bank on the component they missed; Q8 for those with H or V; not scored
+86,87,s04-E86 s04-E86b s04-P86a s04-P86b s04-P86c s04-P86d s04-P86e s04-P86g s04-P86h s04-P86i,Feedback,0,H,"the day 86 slips, check card and claim are returned with the written note and read with the day 72 notes; H and V go to the day 89 claims group; a missing check card gets its unscored retry in round 1"
+87,89,s04-P87a s04-P87b s04-P87c s04-P87d s04-P87e s04-E87 s04-E87b,Feedback,0,T,the day 87 review sheet and exit are returned with the day 88 note; T goes to the day 89 map group
+89,90,s04-F89a s04-F89b s04-F89c s04-F89d s04-F89e s04-F89f s04-F89g s04-F89h s04-F89i s04-F89j s04-F89k s04-F89l s04-F89m s04-F89n s04-F89o s04-F89p s04-F89q s04-F89r,Retrieval,0,,"the day 89 redo is returned with the written note; read, not redone; never scored"
+61,62,s03-E61 s03-E61b,Return,5,P,"Day 61's slips (s03-E61, s03-E61b). Whole class, the more-missed. Error P: ""the arrow shows how they depend"" beside ""the arrow shows the goo (row rebuilt from the day file)"
+62,63,s03-E62 s03-E62b,Return,5,I,"Day 62's slips (s03-E62, s03-E62b). Whole class, the more-missed. Error I: ""the grower stops growing"" beside ""the buyer's work here goes on (row rebuilt from the day file)"
+63,64,s03-E63 s03-E63b s03-E63c,Return,5,R,"Day 63's slips (s03-E63, s03-E63b, s03-E63c). Whole class, the more-missed. Error R: ""the old empire is Ghana today"" beside ""the country tod (row rebuilt from the day file)"
+64,65,s03-E64 s03-P64a s03-P64b s03-P64d,Return,5,K,"Day 64's slips (s03-E64), with the tables and sentences back (s03-P64a, s03-P64b, s03-P64d) and a written cue. Whole class, the more-missed (row rebuilt from the day file)"
+65,66,s03-E65 s03-P65b s03-P65c s03-P65d,Cues,5,J,"Hand back day 65's sentence checks (s03-P65b, s03-P65c, s03-P65d). Hear the rest of error J (s03-P64c): ""one market is not all of Ghana"" bes (row rebuilt from the day file)"
+72,73,s04-E72 s04-E72b,Retrieval,5,R,"Hand back day 72's exit tickets and the written task, each with a mark. Review (grade 2): who made it, and when. Pairs read the Seed Pot Rec (row rebuilt from the day file)"
+73,74,s04-E73 s04-E73b,Return,5,D,"Hand back day 73's exit tickets and the written task, each with a mark: shown, shown with help or not yet seen. Then five minutes on the mor (row rebuilt from the day file)"
+74,75,s04-E74 s04-E74b,Return,5,,"Hand back day 74's exit tickets and the written task, each with a mark. Review (day 7): the legend trace. Show the fresh map (a made-up isla (row rebuilt from the day file)"
+75,76,s04-E75a s04-E75b,Return,5,A,"Hand back day 75's exit tickets and the written task, each with a mark: shown, shown with help or not yet seen. Then five minutes on the mor (row rebuilt from the day file)"
+76,77,s04-E76,Return,5,,"Hand back day 76's exit tickets and the written task, each with a mark: shown, shown with help or not yet seen. Then five minutes on the mos (row rebuilt from the day file)"
+77,78,s04-E77 s04-E77b,Return,5,,"Hand back day 77's exit tickets and the written task, each with a mark: shown, shown with help or not yet seen. Then five minutes on the mos (row rebuilt from the day file)"
+78,79,s04-E78 s04-E78b,Return,5,I,"Hand back day 78's exit tickets and the written task, each with a mark: shown, shown with help or not yet seen. Then five minutes on the mor (row rebuilt from the day file)"
+79,80,s04-E79 s04-E79b,Return,5,J,"Hand back day 79's exit tickets and the written task, each with a mark: shown, shown with help or not yet seen. Then five minutes on error J (row rebuilt from the day file)"
+80,81,s04-E80 s04-E80b,Return,5,B,"Hand back day 80's exit tickets and the written task, each with a mark: shown, shown with help or not yet seen. Then five minutes on error B (row rebuilt from the day file)"
+81,82,s04-E81 s04-E81b,Return,5,C,"Hand back day 81's exit tickets and the written task, each with a mark: shown, shown with help or not yet seen. Then five minutes on the mor (row rebuilt from the day file)"
+60,66,s03-P60a s03-P60b,Independent,10,H,"the day 60 interest sentence is read with its written cue and revised in the independent savings revision; scored on day 67 as s03-Q9, s03-Q9b and s03-Q9c (row restored from a transcript 2026-11-21)"
+65,68,s03-E65 s03-P65a,Grouped,6,K,the K group: link two fresh details to a claim and retry (row restored from a transcript 2026-11-21)
+90,91,s05-E90 s05-E90b s05-P90a s05-P90b s05-P90c s05-P90d,Return,5,Y,the Y group: a fresh question card; pairs name a group it touches and why
+91,92,s05-E91 s05-P91a s05-P91b s05-P91c,Return,10,A,build a fresh scaled line from three new cards and check it against an answer strip
+92,93,s05-E92 s05-P92a s05-P92b s05-P92c s05-P92d s05-P92e s05-P92f,Return,5,AA,a fresh row of year cards from the 1700s to 1900s; say the century aloud
+93,94,s05-E93 s05-P93a s05-P93b s05-P93c s05-P93d,Return,10,Z,two accounts of one coast; find a farm or town in each
+94,95,s05-E94 s05-P94a s05-P94b s05-P94c s05-P94d s05-P94e s05-P94f,Return,5,B,a fresh made-up voyage; draw it and say the start and the end
+95,96,s05-E95 s05-P95a s05-P95b s05-P95c s05-P95d s05-P95e s05-P95f,Return,10,C,a fresh pair labelled by maker and purpose; say what each leaves out
+96,97,s05-E96 s05-E96b s05-P96a s05-P96b s05-P96c s05-P96d s05-P96e,Return,10,Z,two accounts of one coast; find a farm or town in each
+97,98,s05-E97 s05-P97a s05-P97b s05-P97c s05-P97d s05-P97e s05-P97f s05-P97g,Return,5,AC,fresh invented leader cards; sort whom each leader answered to
+98,99,s05-E98 s05-P98a s05-P98b s05-P98c s05-P98d s05-P98e s05-P98f s05-P98g s05-P98h,Return,10,C,a fresh pair of papers on one beach rule labelled by maker and purpose
+99,100,s05-E99 s05-E99b s05-P99a s05-P99b s05-P99c s05-P99d s05-P99e s05-P99f s05-P99g,Return,5,C,the C group: one more pair of maker and purpose labels
+100,101,s05-E100 s05-E100b s05-P100a,Return,5,AF,a fresh pair of invented passengers; sort Pilgrim and not Pilgrim (M)
+101,102,s05-E101,Return,5,E,sort a fresh set of authority claims
+102,103,s05-E102,Return,5,V,fresh care and shelter records; name the work of each role
+103,104,s05-E103 s05-P103a,Revision,10,D,rebuild the ordering record from a new sequence of dated cards
+104,106,s05-E104 s05-E104b,Return,5,K,a fresh overlap of two invented colony bands
+105,106,s05-M1 s05-M1b s05-M1c s05-M2 s05-M2b s05-M3 s05-M4 s05-M4b s05-M5 s05-M5b s05-M6 s05-M7 s05-M8,Response,5,,"the day 105 answer sheets and scored records; the written note is read, one letter each; not redone for score"
+106,107,s05-E106 s05-P106a,Return,10,F,"fresh invented cause cards; sort choice, pressure or seizure (N: one cause to one effect)"
+107,108,s05-E107 s05-P107a,Return,5,AC,fresh invented leader cards; sort whom each answers to
+108,109,s05-E108 s05-P108a,Return,5,G,fresh invented claim cards tested against a reconstruction picture
+109,110,s05-E109,Return,10,Q,the Work Terms Table filled again from two fresh invented cards; no role play
+110,111,s05-E110 s05-P110a,Return,5,O,a fresh dated caption beside a current classroom record (AB: a fresh home or work pair)
+111,112,s05-E111 s05-E111b,Return,10,H,find and source a fresh northern record; R: a free person beside an enslavement record
+112,113,s05-E112,Return,5,S,name the action and the purpose in a fresh petition detail
+113,114,s05-E113 s05-E113b,Return,5,AD,"link a builder, a fisher and a seller on a fresh card (I: an exchange of goods)"
+114,115,s05-E114 s05-E114b,Return,10,T,sort goods from people carried by force on a fresh route
+115,116,s05-E115 s05-E115b,Return,10,W,"connect harbor, labor and trade on a fresh port record"
+116,117,s05-E116 s05-P116a,Return,5,W,the W group: one more port record; the route record is kept for day 119
+117,118,s05-E117 s05-P117a s05-P117b,Return,5,AH,say how a fresh answer bears on the unit question; J and AG are taught inside the day 118 claim part
+118,119,s05-P118a,Feedback,0,,"the closing claim is returned with a written note; read, not redone"
+119,121,s05-E119 s05-E119b s05-P119a,Groups,0,K,the K group: build a fresh overlap of two invented bands
+120,121,s05-Q1 s05-Q1b s05-Q2 s05-Q2b s05-Q3 s05-Q4 s05-Q5 s05-Q5b s05-Q6 s05-Q6b s05-Q7 s05-Q8 s05-Q8b s05-Q8c s05-Q8d s05-R1 s05-R1b s05-R2 s05-R3 s05-R4 s05-R5 s05-R6 s05-R7 s05-R8 s05-R9,Feedback,5,,the day 120 answer sheets and scored records; each child reads the note and the letter if there is one
+120,121,s05-Q1 s05-Q1b s05-Q2 s05-Q2b s05-Q3 s05-Q4 s05-Q5 s05-Q5b s05-Q6 s05-Q6b s05-Q7 s05-Q8 s05-Q8b s05-Q8c s05-Q8d s05-R1 s05-R1b s05-R2 s05-R3 s05-R4 s05-R5 s05-R6 s05-R7 s05-R8 s05-R9,Groups,20,,at most four groups by the largest gaps; one letter each; others work in pairs from the written move
+93,104,s05-E93 s05-P93a s05-P93b s05-P93c s05-P93d,Feedback,0,,the day 93 record is returned with the written criterion note; revised in a new colour in the revision part
+95,104,s05-E95 s05-P95a s05-P95b s05-P95c s05-P95d s05-P95e s05-P95f,Feedback,0,,the day 95 record is returned with the written criterion note; revised in a new colour in the revision part
+96,104,s05-E96 s05-E96b s05-P96a s05-P96b s05-P96c s05-P96d s05-P96e,Feedback,0,,the day 96 record is returned with the written criterion note; revised in a new colour in the revision part
+100,104,s05-E100 s05-E100b s05-P100a,Feedback,0,,the day 100 record is returned with the written criterion note; revised in a new colour in the revision part
+101,104,s05-E101,Feedback,0,,the day 101 record is returned with the written criterion note; revised in a new colour in the revision part
+102,104,s05-E102,Feedback,0,,the day 102 record is returned with the written criterion note; revised in a new colour in the revision part
+103,104,s05-P103a,Revision,0,D,the day 103 ordering record is returned with its note and revised
+90,119,s05-E90 s05-E90b s05-P90a s05-P90b s05-P90c s05-P90d,Feedback,0,,the day 90 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
+106,119,s05-E106 s05-P106a,Feedback,0,,the day 106 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
+107,119,s05-E107 s05-P107a,Feedback,0,,the day 107 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
+108,119,s05-E108 s05-P108a,Feedback,0,,the day 108 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
+110,119,s05-E110 s05-P110a,Feedback,0,,the day 110 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
+113,119,s05-E113 s05-E113b,Feedback,0,,the day 113 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
+116,119,s05-E116 s05-P116a,Feedback,0,,the day 116 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
+117,119,s05-E117 s05-P117a s05-P117b,Feedback,0,,the day 117 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
+104,119,s05-E104 s05-E104b,Feedback,5,,the written feedback on the records is read in the first five minutes of day 119
+102,104,s05-P102e,Feedback,0,,the day 102 record sentence is returned with the written criterion note; revised in a new colour in the revision part
+106,107,s05-W106a s05-W106b s05-P106b s05-P106c s05-P106d,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
+107,108,s05-W107a s05-P107b s05-P107c,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
+108,109,s05-W108a s05-P108b s05-P108c s05-P108d,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
+109,110,s05-W109a s05-P109a s05-P109b s05-P109c,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
+110,111,s05-W110a s05-P110c s05-P110d,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
+111,112,s05-W111a s05-P111a s05-P111b s05-P111c,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
+112,113,s05-W112a s05-W112b s05-P112a s05-P112b s05-P112c,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
+113,114,s05-W113a s05-W113b s05-W113c s05-P113a s05-P113b s05-P113c,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
+113,119,s05-P113d,Feedback,0,,the day 113 record is returned with the written criterion note and revised in a new colour on day 119; score only the revision
+114,115,s05-W114a s05-W114b s05-P114a s05-P114b s05-P114c s05-P114d s05-P114e,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
+115,116,s05-W115a s05-W115b s05-P115a s05-P115b s05-P115c s05-P115d,Feedback,0,,returned with a written cue; the warm-up and practice answers stay in the record folder
+117,118,s05-P117c s05-P117d,Return,0,AG,"pairs not heard on day 117: one spoken ask, cards 1 and 2, while the others write"
+118,119,s05-W118b s05-W118c,Feedback,0,J,anyone in the Fern Row group not heard on day 118 answers one spoken ask on day 119 while the others read their cues
+119,121,s05-P119b s05-P119c s05-P119d,Groups,0,AJ,pairs or children not called on day 119 are asked once at their group on day 121
+116,117,s05-W116a s05-P116b s05-P116c s05-P116d,Return,0,W,the day 116 practice is returned with a cue; the route record is revised on day 119
+117,118,s05-W117a s05-P117e,Return,0,W,"the Quill Cove repair and the source table are returned with a cue; the table is read, not redone"
+124,126,s06-RD1 s06-RD1b,Return,10,A,"the readiness block: a flag, a memorial tower and a lunch box, then a fresh pair and an eagle banner; whole class if more than a third missed, otherwise a small group"
+125,126,s06-E125 s06-P125a,Return,0,N,"the N and Q children take a fresh law card at the side table; whole class five minutes only if many, and then it moves to day 127"
+126,127,s06-E126 s06-E126b s06-P126c,Return,5,H,a fresh dated card placed by its year on the strip; few children use the side table
+127,128,s06-E127 s06-E127b s06-P127a s06-P127b s06-P127c,Return,5,T,"a fresh invented ruler who asks and one who only commands, or a fresh clause beside its limit; few children use the side table"
+128,129,s06-E128 s06-E128b s06-P128a,Return,10,K,fresh provisions sorted to the three job baskets; few children use the side table and the P group takes the order strip for five minutes
+129,130,s06-E129 s06-E129b s06-P129a s06-P129b,Return,5,O,"a fresh clause beside the limit it places on government, or three fresh details sorted to the three documents"
+130,131,s06-E130 s06-E130b s06-P130a s06-P130b s06-P130c,Return,5,U,"the U or J repair, whichever more missed; the other letter goes to a small group during the sort"
+131,132,s06-E131 s06-E131b s06-P131a,Return,5,D,two fresh cases sorted into citizenship or voting; the other letter goes to the six heard during the record
+132,133,s06-E132 s06-E132b s06-P132a,Return,5,F,"a fresh symbol caption beside a fresh dated rights record, or two ways to study a symbol with the choice to decline kept; unfinished rows are finished at the side table, not for a mark"
+125,134,s06-P125a,Feedback,5,,the day 125 record comes back with the written criterion note; each child reads it
+128,134,s06-P128a,Feedback,0,,"the day 128 record comes back with the written note, read in the same five minutes"
+131,134,s06-P131a,Feedback,0,,"the day 131 sort comes back with the written note, read in the same five minutes"
+125,134,s06-P125a,Revise,5,N,"revised in a new colour; a new line, not a copy of the note; scored on day 135 from the revision"
+128,134,s06-P128a,Revise,5,P,"revised in a new colour; a new line, not a copy of the note; scored on day 135 from the revision"
+131,134,s06-P131a,Revise,5,D,"revised in a new colour; a new line, not a copy of the note; scored on day 135 from the revision"
+133,134,s06-E133 s06-E133b s06-P133a s06-P133b,Revise,0,G,"the G and Q children take a fresh pair of details at the small-group table during the revision part, five minutes, frame withdrawn"
+135,136,s06-Q1 s06-Q1b s06-Q1c s06-Q2 s06-Q2b s06-Q2c s06-Q2d s06-Q2e s06-Q3 s06-Q3b s06-Q4 s06-Q4b s06-Q5 s06-Q5b s06-Q5c s06-Q5d s06-Q5e s06-R1 s06-R2 s06-R2b s06-R3 s06-R4 s06-R4b,Feedback,5,,"each child reads the teacher note on the day 135 sheet: one missed idea circled, one sentence"
+135,136,s06-Q1 s06-Q1b s06-Q1c s06-Q2 s06-Q2b s06-Q2c s06-Q2d s06-Q2e s06-Q3 s06-Q3b s06-Q4 s06-Q4b s06-Q5 s06-Q5b s06-Q5c s06-Q5d s06-Q5e s06-R1 s06-R2 s06-R2b s06-R3 s06-R4 s06-R4b,Groups,20,,"at most four groups by the largest gaps, one letter each, fresh cards; the others work in pairs from the written move"
+134,136,s06-E134 s06-P134a s06-P134b,Feedback,0,,"revised records and strip are scored with day 135 from the folder; they come back with the day 135 sheet and its note, read in the same five minutes"
+141,142,s07-E141 s07-P141r1 s07-P141r2 s07-P141a s07-P141b s07-P141c s07-P141d s07-P141e,Return,5,I,the missed idea gets one repair with a fresh invented case; the others work from the written note
+142,143,s07-E142 s07-E142b s07-P142a s07-P142b s07-P142c s07-P142d s07-P142e,Return,5,A,the missed idea gets one repair with a fresh invented case; the others work from the written note
+143,144,s07-E143 s07-E143b s07-P143a s07-P143b s07-P143c s07-P143d s07-P143e,Return,5,C,the missed idea gets one repair with a fresh invented case; the others work from the written note
+144,145,s07-E144 s07-E144b s07-P144a s07-P144b s07-P144c s07-P144d,Return,5,O,the missed idea gets one repair with a fresh invented case; the others work from the written note
+145,146,s07-E145 s07-E145b s07-P145a s07-P145b s07-P145c s07-P145d s07-P145e s07-P145f,Return,5,B,the missed idea gets one repair with a fresh invented case; the others work from the written note
+146,147,s07-E146 s07-E146b s07-P146r s07-P146a s07-P146b s07-P146c s07-P146d s07-P146e s07-P146f,Return,4,N,the missed idea gets one repair with a fresh invented case; the others work from the written note
+147,148,s07-E147 s07-E147b s07-P147a s07-P147b s07-P147c s07-P147d s07-P147e s07-P147f,Return,4,D,the missed idea gets one repair with a fresh invented case; the others work from the written note
+148,149,s07-E148 s07-E148b s07-P148a s07-P148b s07-P148c s07-P148d s07-P148e,Return,5,K,the missed idea gets one repair with a fresh invented case; the others work from the written note
+149,150,s07-E149 s07-P149a s07-P149b s07-P149c s07-P149d s07-P149e,Return,5,P,the missed idea gets one repair with a fresh invented case; the others work from the written note
+150,151,s07-P150a s07-P150b s07-P150c s07-P150d s07-P150e s07-E150 s07-P150f s07-P150g,Return,5,,the missed idea gets one repair with a fresh invented case; the others work from the written note
+151,152,s07-P151a s07-P151b s07-E151,Return,5,,the missed idea gets one repair with a fresh invented case; the others work from the written note
+152,153,s07-P152a s07-P152b s07-E152 s07-P152c s07-P152d,Return,5,,the missed idea gets one repair with a fresh invented case; the others work from the written note
+153,154,s07-E153 s07-E153b s07-P153a s07-P153b s07-P153c s07-P153d s07-P153e,Return,5,G,the missed idea gets one repair with a fresh invented case; the others work from the written note
+154,155,s07-P154a s07-P154b s07-P154c s07-P154d s07-P154e s07-E154 s07-P154f,Return,5,,the missed idea gets one repair with a fresh invented case; the others work from the written note
+155,156,s07-P155a s07-P155b s07-P155c s07-P155d s07-E155,Return,4,,the missed idea gets one repair with a fresh invented case; the others work from the written note
+156,157,s07-P156a s07-P156b s07-P156c s07-E156 s07-P156d,Return,5,,the missed idea gets one repair with a fresh invented case; the others work from the written note
+157,158,s07-P157a s07-P157b s07-P157c s07-P157d s07-E157,Feedback,5,,the missed idea gets one repair with a fresh invented case; the others work from the written note
+158,160,s07-E158 s07-E158b s07-P158a s07-P158d,Feedback,0,E,the missed idea gets one repair with a fresh invented case; the others work from the written note
+141,158,s07-P141a s07-P142d s07-P147a s07-P148e s07-P150e s07-P151a s07-P152a,Feedback,0,,records are read with the written note and revised on day 158 in the same five minutes
+159,160,s07-Q1 s07-Q1b s07-Q1c s07-Q2 s07-Q2b s07-Q3 s07-Q4 s07-Q4b s07-Q4c s07-Q5 s07-Q5b s07-Q5c s07-Q5d s07-R1 s07-R2 s07-R2b s07-R2c s07-R3 s07-R3b s07-R4 s07-R4b s07-R5 s07-R5b s07-R6 s07-R7 s07-R8 s07-R8b s07-R8c,Feedback,5,,"each child reads the teacher note on the day 159 sheet: one missed idea circled, one sentence"
+159,160,s07-Q1 s07-Q1b s07-Q1c s07-Q2 s07-Q2b s07-Q3 s07-Q4 s07-Q4b s07-Q4c s07-Q5 s07-Q5b s07-Q5c s07-Q5d s07-R1 s07-R2 s07-R2b s07-R2c s07-R3 s07-R3b s07-R4 s07-R4b s07-R5 s07-R5b s07-R6 s07-R7 s07-R8 s07-R8b s07-R8c,Groups,15,,"at most four groups by the largest gaps, one letter each, fresh cards; the others work in pairs from the written move"
+158,160,s07-P158b s07-P158c s07-P158e,Groups,0,,children not reached in the retry or the partner review are heard once at their group
+61,62,s03-P61a s03-P61b s03-P61c s03-P61d s03-P61e,Return,0,,practice page back from the folder with one written note; no talk time
+62,63,s03-P62a s03-P62b s03-P62c s03-P62d s03-P62e,Return,0,,practice page back from the folder with one written note; no talk time
+63,64,s03-P63a s03-P63b s03-P63c s03-P63d,Return,0,,practice page back from the folder with one written note; no talk time
+64,65,s03-P64c,Return,0,,practice page back from the folder with one written note; no talk time
+67,68,s03-Q1c s03-Q2c s03-Q3c s03-Q5c s03-Q6c s03-Q6d s03-Q7c s03-Q8c s03-Q9 s03-Q9b s03-Q9c s03-Q10 s03-Q11,Feedback,0,,scored from the packet after class; the one note per child covers these parts too
+73,74,s04-P73a s04-P73b s04-P73c s04-P73d s04-P73e s04-P73f s04-P73g,Return,0,,practice page back from the folder with one written note; no talk time
+74,75,s04-P74a s04-P74b s04-P74c s04-P74d s04-P74e,Return,0,,practice page back from the folder with one written note; no talk time
+75,76,s04-P75a s04-P75b s04-P75c s04-P75d s04-P75e,Return,0,,practice page back from the folder with one written note; no talk time
+76,77,s04-P76a s04-P76b s04-P76c s04-P76d,Return,0,,practice page back from the folder with one written note; no talk time
+77,78,s04-P77a s04-P77b s04-P77c s04-P77d,Return,0,,practice page back from the folder with one written note; no talk time
+78,79,s04-P78a s04-P78b s04-P78c s04-P78d,Return,0,,practice page back from the folder with one written note; no talk time
+79,80,s04-P79a s04-P79b s04-P79c,Return,0,,practice page back from the folder with one written note; no talk time
+80,81,s04-P80a s04-P80b s04-P80c s04-P80d,Return,0,,practice page back from the folder with one written note; no talk time
+81,82,s04-P81a s04-P81b s04-P81c s04-P81d,Return,0,,practice page back from the folder with one written note; no talk time
+72,73,s04-P72a s04-P72b s04-P72c s04-P72d s04-P72e s04-P72f s04-P72g s04-P72h,Retrieval,0,,practice page back from the folder with one written note; no talk time
+86,87,s04-P86f,Feedback,0,,practice page back from the folder with one written note; no talk time
+69,71,sc1-E1 sc1-E1b sc1-E1c sc1-E1d sc1-E1e sc1-E2 sc1-E2b sc1-E2c sc1-E2d sc1-E3 sc1-E3b sc1-E3c,Feedback,5,,the sheets come back with one note each: a circled missed idea and one sentence
+69,71,sc1-E1 sc1-E1b sc1-E1c sc1-E1d sc1-E1e sc1-E2 sc1-E2b sc1-E2c sc1-E2d sc1-E3 sc1-E3b sc1-E3c,Groups,20,,"groups by the largest gap, one letter each; fresh cards"
+70,71,sc1-E4 sc1-E4b sc1-E4c sc1-E5 sc1-E5b sc1-E5c,Feedback,0,,same note as day 69: one circled idea and one sentence on the sheet
+70,71,sc1-E4 sc1-E4b sc1-E4c sc1-E5 sc1-E5b sc1-E5c,Groups,0,,heard in the same groups; the economics and claim groups use these results
+71,72,sc1-X71 sc1-X71b,Retrieval,0,,the day 71 slips come back as the pairs settle; heard marks from the groups stay on the record
+122,124,sc2-E1 sc2-E1b sc2-E1c sc2-E2 sc2-E2b sc2-E2c,Feedback,5,,the sheets come back with one note each: a circled missed idea and one sentence
+122,124,sc2-E1 sc2-E1b sc2-E1c sc2-E2 sc2-E2b sc2-E2c,Groups,15,,"groups by the largest gap, one letter each; fresh cards"
+123,124,sc2-E3 sc2-E3b sc2-E3c sc2-E4 sc2-E4b sc2-E4c,Feedback,0,,same note as day 122: one circled idea and one sentence
+123,124,sc2-E3 sc2-E3b sc2-E3c sc2-E4 sc2-E4b sc2-E4c,Groups,0,,heard in the same groups
+124,125,sc2-X124 sc2-X124b,Hook,0,,the day 124 slips come back as the class settles; heard marks stay on the record
+136,137,s06-P136a,Hand back,3,,the fix cards come back with one circled idea and one sentence; kept for the record only
+137,139,sc3-E1 sc3-E1b sc3-E1c sc3-E1d sc3-E1e sc3-E2 sc3-E2b sc3-E2c sc3-E2d sc3-E2e sc3-E3 sc3-E3b sc3-E3c,Feedback,5,,the sheets come back with one note each: a circled missed idea and one sentence
+137,139,sc3-E1 sc3-E1b sc3-E1c sc3-E1d sc3-E1e sc3-E2 sc3-E2b sc3-E2c sc3-E2d sc3-E2e sc3-E3 sc3-E3b sc3-E3c,Groups,20,,"groups by the largest gap, one letter each; fresh cards"
+138,139,sc3-E4 sc3-E4b sc3-E4c sc3-E5 sc3-E5b sc3-E5c sc3-E5d,Feedback,0,,same note as day 137: one circled idea and one sentence
+138,139,sc3-E4 sc3-E4b sc3-E4c sc3-E5 sc3-E5b sc3-E5c sc3-E5d,Groups,0,,heard in the same groups
+139,140,sc3-X139 sc3-X139b,Feedback,5,,the slips come back with one line: one thing now shown and one still to do
+140,141,sc3-X140 sc3-X140b,Return,0,,the confirm slips stay on the record; unit 7 begins without a repair
+121,124,s05-E121 s05-E121b,Hand back,0,,"the day 121 slips come back with the check 2 sheets, with the note on each"
+136,139,s06-E136 s06-E136b,Hand back,0,,"the day 136 slips come back with the check 3 sheets, with the note on each"
