@@ -82,3 +82,37 @@ Did the grade use the lower grades well: mostly yes where days write the review 
 | All | 8 | 28 | 3 |
 
 Gates (filtered): lesson.py reports 0 failures on all five days and plan.py none on them; only 2 of the 39 findings (rows 21 and 25) are flagged even as notes.
+
+## Fixes applied (2026-11-22)
+
+Rows are the table numbers above.
+
+- 1 (158 key, tent free): applied. g3-c2-artB now says "The tent is free to enter."
+- 2 (158 oral timing): applied. Children 16 to 26 at 4 minutes (44); children 27 to 30 go to day 159 group time; days.csv note and docs synced.
+- 3 (90 model key): applied. Day line and K90-1 key give one motive (he needs the table, so he puts the plan up high where it is safe).
+- 4 (90 cupboard items): applied. P90-12 asks for a clause with cupboard; P90-13 asks for the two small words (cup and board, RF.3.3c).
+- 5 (90 "new today"): applied. Now a review of the context and figurative chart, days 7 and 11.
+- 6 (127 exit): applied. The card's last sentence now reads "the float closes the valve"; key covers filling and shut-off; single sentences are error B; card line, items, wrongs updated.
+- 7 (19 A14 caption): applied. Caption is "A drawing of a horse-drawn book wagon, Hagerstown, Maryland, about 1905."; wrong answer is now a motor wagon; panel note and art spec say original illustration only.
+- 8 (19 A14 map): applied. Stem is "Say where the wagon went and how, using the picture, the caption and the map."; key updated.
+- 9, 10, 11 (158 r7, W2 to W4, 127 write): left (card and sheet redesign; no short fix).
+- 12 (57 exit form): left. 13: applied (X57b one ask, source label in the strip header, card line synced). 14 (57 talk timing): left.
+- 15 (57 review lines): applied (plural review, -ment and -ous review; leaf, leaves left to the sentence item). 16: applied (P57-3 key).
+- 17, 18, 19 (sources, blog, caption): 19 applied; 17, 18 left (outside pages not opened).
+- 20 to 25 (day 19): 25 left, 20 to 24 left; row 21 and 25 need handbacks and plan-block edits for the lead.
+- 26, 27, 28 (90): 28 applied (P90-10 shorter); 26, 27 left. 29 left.
+- 30 (127 P127-4): applied. 31 to 33: left. 34 to 36 (158): left.
+- 37, 38, 39 TEMPLATE: left.
+
+Key lines in pieces: see set A. Four key pieces made (days 103, 105, 88, 117/118).
+
+Gates (this course): plan.py FAIL lines before 45, after 45. lesson.py FAIL lines on this course's files: before 10 (d037 and d154 known template points), after 10 (same known points).
+
+Ledger entries for the lead: day 75 words changed (men, woman no longer tested; mouse, goose and tooth now, all grade 2 day 54); day 98 busy and hurry + ed no longer taught on day 98; day 90 no longer names the context and figurative idea as new.
+
+### Second pass: sources and day 19 plan (2026-11-22)
+
+- 17 (57 frog facts): applied. Rows g3-u2-f6 (NPS green treefrog page) and g3-u2-f7 (FWS leopard frog, NPS bullfrog, NPS Katahdin Woods, Smithsonian zoo pages; the NIEHS page did not state webbed feet or camouflage and was dropped) now have urls and 2026-11-22 notes. The exit frog is renamed the Tullo frog (invented) in the strips, items, wrongs, card and plan doc.
+- 18, 19 (day 19): see set A second pass; 1904 versus 1905 settled to April 1905 on two solid pages; row f5 merged into f8; plan block synced.
+- 32 (127 sources): applied. CDC page second read (five steps; filters of sand, gravel or charcoal) and the Kitui report page 14, Table 16 (distance, cost, waiting time) read from the PDF; both rows noted. kilometres changed to kilometers in the text, the page and items.
+- Gates after: plan.py 45, lesson.py 10, same as before.

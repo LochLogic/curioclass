@@ -15,11 +15,11 @@ Each exit has a paper card every child marks and a spoken question heard from th
 
 **Mark:** Circle who helped the boats. **Spoken:** "What does the keeper's action show about him?"
 
-## Day 23 exit card: the school
+## Day 23 exit card: the pool paper
 
-**Picture:** Three pictures in a row. 1: a town leader speaks to a council at a table. 2: builders and families lift a roof beam together. 3: a finished school with a flag. Two circles under the row: the leader, the builders and the families together; the leader alone.
+**Picture:** A town notice that reads "The east pool is open." Below it a map of three pools: the east pool drawn with waves, the north and west pools drawn empty. Two circles under the map: "opened the east pool" and "opened all three pools." Read aloud: "A town paper said: the east pool is open. The town has three pools."
 
-**Mark:** Circle who opened the school. **Spoken:** "Ask one question about the builders or the families."
+**Mark (one ask, every child):** Circle what the paper did.
 
 ## Day 24 exit card: the hall stair
 

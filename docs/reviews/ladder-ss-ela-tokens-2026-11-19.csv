@@ -562,3 +562,14 @@ sample,english-language-arts-kindergarten,all,10 days,267242,15,FIRM 10 SOFT 32 
 sample,english-language-arts-grade-1,all,10 days,319556,15,FIRM 15 SOFT 54 TEMPLATE 6
 sample,english-language-arts-grade-2,all,10 days,315457,15,FIRM 8 SOFT 52 TEMPLATE 6
 sample,english-language-arts-grade-3,all,10 days,468324,15,FIRM 14 SOFT 57 TEMPLATE 7
+samplefix-sens,english-language-arts-grade-1,u2,"g1-u2-03,g1-u2-04",89142,1,fresh tale sensitivity read
+samplefix,english-language-arts-grade-2,,sample days,176707,7,"8/8 FIRM, 33 key pieces moved"
+samplefix,english-language-arts-grade-1,,sample days + tales,175771,7,"9 FIRM applied, 1 partly, 2 rejected; tale fixes"
+samplefix,social-studies-grade-2,,sample days,0,7,first pass; tokens logged at finish
+samplefix,social-studies-grade-2,,sample days + sources,216042,12,cumulative total for the agent; replaces the 0 placeholder row
+samplefix,english-language-arts-grade-3,,sample days + sources,255751,17,14/14 FIRM; day 19 date settled 1905
+samplefix,english-language-arts-kindergarten,,sample days + Maathai,195608,17,FIRM applied; d134 goal widened with model and practice added
+samplefix,social-studies-kindergarten,,sample days + sources + splits,301865,21,two runs: 223797 + 78068
+samplefix,social-studies-grade-3,,sample days + d43 fix,204857,21,cumulative across two runs
+samplefix,social-studies-grade-1,,sample days + sources,261875,25,cumulative across two runs; 12/12 FIRM
+samplefix,english-language-arts-grade-2,,cap fixes,9400,5,resume; difference of cumulative counts

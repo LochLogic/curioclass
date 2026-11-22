@@ -43,9 +43,9 @@ A made-up choir. A leader holds up a song card while singers raise hands for eac
 
 Read a made-up line aloud: "Many people came to the sing-along. The record does not say if all liked it." Children sort two cards: "The record says: many people came." "We guess: all liked it." The teacher names the difference once.
 
-## Watched in talk only: K and L
+## Talk: K (also on the day 23 exit) and L
 
-K: if a child says Lincoln's paper freed everyone, say once, beside the split card: "It said people held as slaves in some places were free; slavery did not end everywhere that day." L: if a child says the Cherokee Nation was only long ago, say once: "The Cherokee Nation governs itself today." No score.
+K: if a child says Lincoln's paper freed everyone, say once, beside the split card: "It said people who were enslaved in some places were free; slavery did not end everywhere that day." L: if a child says the Cherokee Nation was only long ago, say once: "The Cherokee Nation governs itself today." No score.
 
 ## For the teacher
 

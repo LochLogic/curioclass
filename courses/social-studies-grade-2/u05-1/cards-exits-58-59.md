@@ -13,8 +13,8 @@ Every card prints "invented for practice" in small letters. Reserved: print each
 
 **Picture:** A girl at a loom. A far town with a market. A sister waving at a gate.
 **Card line:** "Sela hears that a far town needs weavers. Her sister lives in that town too. Sela moves there."
-**Mark:** Circle a reason the card gives for Sela's move: work, a storm, a visit.
-**Spoken, the six one at a time:** "The Weaver Card gives work and family as reasons. Say one reason a person might move that this card does not give."
+**Mark:** Circle a reason the card gives for Sela's move: work, safe, free.
+**Spoken, the six one at a time:** "Say one reason a person might move that the Weaver Card does not give." The six mark the card line first, then hear this ask.
 
 ## Day 59 exit cards: Land Card and two market cards
 

@@ -15,4 +15,4 @@ The ______________________ shows ______________________, made by _______________
 
 One good thing is ______________________; one hard thing is ______________________.
 
-Say it to a partner first. A partner or the teacher may write the child's own words; no sentence is made for the child. Spelling is never judged.
+The teacher may write the child's own words; no sentence is made for the child. Spelling is never judged.

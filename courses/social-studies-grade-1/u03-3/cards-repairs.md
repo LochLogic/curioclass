@@ -23,7 +23,7 @@ Four cards for a made-up sand table: the sand table was full of toys; the helper
 
 ## Day 29 repair for H: match a claim to an action
 
-Three claim cards ("She listens." "She organizes." "She cares.") and three action cards for a made-up mural (asked helpers where to paint; gave each helper a job; brought a bandage for a scraped knee). Children match each claim to the action that supports it, and say "She listens because she asked helpers where to paint."
+Three claim cards ("She organizes." "She cares." "She shares.") and three action cards for a made-up mural (gave each helper a job; brought a bandage for a scraped knee; gave the last crayons to a friend). Children match each claim to the action that supports it, and say "She organizes because she gave each helper a job."
 
 ## Day 29 repair for M: answer the question asked
 

@@ -70,3 +70,22 @@ Severity key: FIRM, SOFT, TEMPLATE as in the job file. "Gate" = would a script g
 | all | 5 | 27 | 3 |
 
 Checked against a source: the three fact claims of day 106's exit (merganser bill edges, sources row g1-u3-f32, a USFWS page, solid); the bluebird and feeder facts of day 144's texts (rows g1-u4-f4 PGC, f6 Clemson Extension, both solid; f8 is a news page, flagged); the tale's source (Dayrell 1910, Project Gutenberg, checked 2026-11-19). Could only judge: the day 3 farm article facts, day 39's classification of "broad smile", and day 78's trowel card (invented, no fact to check beyond common usage). No Native nation, enslaved people, brand names or keys on child pieces were found in these five days.
+
+## Fixes applied (2026-11-22)
+
+- d144 X144c rule4 FIRM: applied. Replaced with a fresh made-up park card (feeder and bath), asks what both do; items, wrongs, card piece, day, at-home and Tomorrow updated; needs_text now no.
+- d144 timing FIRM: applied. Map and spell now 3 + 1 + 6 minutes.
+- d039 chart piece FIRM: applied. Piece and section plan line now name the day's six cards and three boxes.
+- d039 timing FIRM: applied. Model 5, draw 4, hear six at 30 s (19 minutes).
+- d078 timing FIRM: applied. Words and spelling is 4 minutes a group for five groups.
+- d106 exit has no cover SOFT: applied. Card now has a cover picture; stems and piece updated. Exit hearing cut to 25 s each. Gap sort moved to after class. Listener question marked new. Words step limited to the four words on pages 1 and 2. Glossary line only in the opening repair. At-home card printed in the day.
+- d144 SOFT: both-are-at-school example changed to "both are for birds"; at-home Words cut to 5 minutes. Left: pairs make the But half, picture cards in materials, AA label on crate pictures, source names (g1-u4-06 and f8).
+- d039 SOFT: one ask kept at the exit, definitions reworded, at-home Letters cut to 5. Left: broad smile classification, hand-picture note.
+- d078 SOFT: retry hearing capped at six at 30 s, comprehension answered aloud, trowel picture without the hole, at-home asks what a trowel digs, drum changed to rug, X78c one ask. Left: thr- and -lt ledger check, spelling card 78e, template remark.
+- d003 SOFT: vowel work marked review, a, at and map pointed to (poem file corrected), ladder repair made conditional, two-group sorting line added. Left: farm article sources row, error H example.
+- d106 and d003 TEMPLATE items, d144 template: left.
+- Point D: tale texts g1-u2-03 and g1-u2-04 fixed per the sensitivity report (Wikipedia bullet out, library source checked, Queen Mother wording, colonial-era sentence in d035, status lines, picture notes).
+
+Key-line results: cards-exits-1-4, cards-exits-5-9 (and the inline lines in fresh-teller-card-day21 and retry-cards-day157) are teacher-read cards, so left. g1-u4-lo line 12 is a "not the key" note, not a key; left.
+
+Gate counts: plan.py 41 FAIL before, 41 after; lesson.py 0 before, 0 after.

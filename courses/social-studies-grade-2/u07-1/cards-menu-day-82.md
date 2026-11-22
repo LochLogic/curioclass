@@ -18,9 +18,9 @@ Sixteen country cards, one for each menu country, plus one sign-up chart. A coun
 | Europe | France, Norway |
 | Africa | Egypt, Kenya, South Africa |
 | Asia | India, Vietnam, South Korea |
-| Australia and wider Oceania | Australia, Papua New Guinea, New Zealand |
+| Australia and nearby islands | Australia, Papua New Guinea, New Zealand |
 
-Ghana, Canada and Mexico are left off the menu. Keep unit 2's continent name Australia; Oceania names the wider region. Continent grouping follows the continents taught in unit 2 (source row 10E, weak: Wikipedia only). Say each name as the country says it where known; pronunciation is not yet checked (planned only, not yet written: a speaker or an audio check before the day).
+Ghana, Canada and Mexico are left off the menu. Keep unit 2's continent name Australia; the nearby islands share its group. Continent grouping follows the continents taught in unit 2 (source row 10E, National Geographic, checked). Say each name as the country says it where known; pronunciation is not yet checked (planned only, not yet written: a speaker or an audio check before the day).
 
 ## The sign-up chart
 
@@ -34,6 +34,6 @@ A line outline of the country (redrawn by Curio Class from Natural Earth public 
 
 ## TEACHER ONLY
 
-Never ask why a country was chosen. A pass is a full answer. Packets (map, two pages) for the sixteen countries are planned only, not yet written; each needs its own government source check and sensitivity read before it is printed.
+Never ask why a country was chosen. A pass is a full answer. Packets (map, two pages) for the sixteen countries are written as packet-<country>.md; each still needs its own government source check and sensitivity read before it is printed.
 
 <!-- TEACHER-ONLY BLOCK: ends -->

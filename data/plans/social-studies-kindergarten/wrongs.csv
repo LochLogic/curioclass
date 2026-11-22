@@ -29,8 +29,8 @@ s01-E7,Our class is good because it is good.,,,E,
 s01-E8,What color is the trolley? and then no question about the claim.,,,F,
 s01-E8,"Asked why, repeats the claim.",,,L,
 s02-R11,I do not know.,,,x,a missing reason is repaired with two puppets inside today's work; no score
-s02-X11,"Nothing, she painted already.",,,A,
-s02-X11,The teacher will do it.,,,A,
+s02-X11,"Points to the row of cups, because she set them out.",,,A,
+s02-X11,"Nothing, she set out the cups already.",,,A,
 s02-X12,A token on the picture with cards left on the table.,,,A,
 s02-X13,The one who talks loudest picks.,,,G,
 s02-X13,"They vote, then everybody likes it.",,,B,
@@ -56,7 +56,7 @@ s02-E3,Says the result helped without any observed detail.,,,C,
 s02-E4,Lena is fair because she is tallest.,,,D,
 s02-E5,Kim makes the rule by putting the puppets away.,,,E,
 s02-E6,Help because helping is good.,,,F,
-s02-P12-1,Circles the girl with clean hands: she painted already.,,,A,not a trap; she is the one who left it
+s02-P12-1,"Points to Nell, because she set out the cups.",,,A,not a trap; she is the one who left it
 s02-K13-1,Bibi picks because she spoke first.,,,G,
 s02-P13-1,Picks the name from the shorter tower.,,,x,tower height not read; no register letter
 s02-P13-2,The problem is the child at the edge.,,,x,a person blamed; no register letter
@@ -75,8 +75,8 @@ s03-X22,The flat one is a different Earth.,,,B,
 s03-X22,"The flat one is just a small place, like our town.",,,I,
 s03-X23,"Yes, the island moved when the map changed.",,,B,
 s03-X23,The map with the island in the middle is only the island's place.,,,I,
-s03-X24,"The rectangle is a real shed, you can go in it.",,,C,
-s03-X24,"The diamond is a kite, said without a look at the key.",,,H,
+s03-X24b,"The rectangle is a real shed, you can go in it.",,,C,
+s03-X24b,"The diamond is a kite, said without a look at the key.",,,H,
 s03-X25,Circles the middle block because it is the nicest.,,,D,
 s03-X26,"The triangle, because it looks like a swing.",,,H,
 s03-X26,You find it because it is there.,,,G,
@@ -248,8 +248,8 @@ s06-X54b,Because I want it.,,,C,
 s06-X54b,Everybody needs the same kind of bed.,,,J,
 s06-X55a,"A dot on a poster, because it is best.",,,D,
 s06-X55b,The bird is best.,,,D,
-s06-X56a,"Points to the blanket, because the person touches it.",,,F,
-s06-X56b,"Points to the person walking the dog, because she holds the leash.",,,F,
+s06-X56a,"Points to the blanket, because someone touched it.",,,F,
+s06-X56b,"Points to the dog on the leash, because the child holds the leash.",,,F,
 s06-X56c,It was just there.,,,G,
 s06-X57a,"Circles the bucket, because someone carried it.",,,F,
 s06-X57b,A dot on the man.,,,E,
@@ -308,20 +308,20 @@ sc1-E2,Token on the walking feet sign.,,,x,the sign is not the unsafe spot; a pl
 sc1-E3,I think the rain song.,,,D,
 sc1-E3,I think the clap song because I think the clap song.,,,B,
 sc1-E4,The plant shelf is between the sink.,,,E,
-sc1-E4,The coat hooks are right of the door.,,,F,
+sc1-E4b,The coat hooks are right of the door.,,,F,
 sc1-E5,The rug is next to the coat hooks.,,,F,the middle of the map is read as the corner; ask the child to trace from the hooks
-sc1-E5,Everything is near the door because it is one room.,,,x,near and far not yet used on a map
+sc1-E5b,Everything is near the door because it is one room.,,,x,near and far not yet used on a map
 sc1-E6,The globe.,,,x,the globe is picked for its shape; a place to turn the globe and then the map
-sc1-E7,They are different Earths.,,,H,
-sc1-E7,Both show land and water.,,,x,"true of a globe and a world map, not of this room map; ask what the room map shows"
-sc1-E8,The land moved to the middle.,,,H,
+sc1-E7b,They are different Earths.,,,H,
+sc1-E7,Both are round.,,,x,a flat map is not round; the globe is; ask the child to feel or look at each
+sc1-E8b,The land moved to the middle.,,,H,
 sc1-E8,This one is a different Earth.,,,H,
 sc1-X33a,The shell is between the plant.,,,E,
-sc1-X33a,The stone is left of the plant.,,,F,
+sc1-X33a2,The stone is left of the plant.,,,F,
 sc1-X33b,The art table is next to the door.,,,F,top and bottom of the page mixed up; ask the child to trace from the door
-sc1-X33c,"The globe, because it is round.",,,G,
-sc1-X33d,The teacher said to.,,,A,
-sc1-X33d,Because it is the rule.,,,B,
+sc1-X33c2,"The globe, because it is round.",,,G,
+sc1-X33d2,The teacher said to.,,,A,
+sc1-X33d2,Because it is the rule.,,,B,
 sc1-X33e,A park has no rules because it is not school.,,,C,
 sc1-X33e,Because the sign says so.,,,A,
 sc1-X33f,I think the sailboat.,,,D,
@@ -355,7 +355,7 @@ sc2-E13,A token on the wooden bucket.,,,N,
 sc2-E14,"Both, I want both.",,,x,the limit is not heard; say again there is clay for only one
 sc2-E15,The shop just has money.,,,O,
 sc2-E15,Money comes from the bank machine.,,,O,"where the money is kept, not where it comes from"
-sc2-E16,A trade is when you take something.,,,P,
+sc2-E16b,A trade is when you take something.,,,P,
 sc2-E16,A dot on card one.,,,P,the tokens card is a buy
 sc2-E17,We remember them because they were the best.,,,Q,
 sc2-E17,Veterans Day is only for people who died.,,,Q,Memorial Day is mixed with Veterans Day
@@ -416,3 +416,6 @@ sc1-E6b,"The globe, because it shows everything.",,,G,
 sc1-E6b,"The map, because it is a map.",,,B,
 sc1-X33g,The cubby shelf is far from the door.,,,F,top and bottom of the page mixed up; ask the child to trace from the door
 sc2-E14b,"The turtle, because it is the best.",,,B,a pick with no reason from the card
+s02-X11b,"Nobody, she did her part.",,,A,
+s02-X11b,The teacher will do it.,,,A,
+sc1-X33d,Token on card one.,,,x,"paint jars open, lids off, is where the rule is not followed"

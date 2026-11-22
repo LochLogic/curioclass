@@ -19,4 +19,3 @@ Five cards for each table; every card prints "invented for practice". The table 
 | the library adds a reading corner | 2022 |
 
 **Pip says J, then C:** Pip puts 2022 before 2010. Beside it: "The smaller year comes first." Pip says "No year, so I will say 2016." Beside it: "No year given: the box."
-**Key (teacher sheet only):** order 2010, 2012, 2014, 2015, 2022 on the table strips; the gate, in the teacher's model, in the box.

@@ -80,3 +80,29 @@ Did the grade use the lower grades well. Mostly yes. Review lines name the earli
 | all | 6 | 29 | 4 |
 
 (Count rule: each table row is one finding. No finding was caught by a gate that ran; two lesson.py notes name items 75 A92 and A102 order and the day 42 plan "30". Not checked by me: the printed art on every card, since no card art is built.)
+
+## Fixes applied (2026-11-22)
+
+Findings are listed by day, in table order.
+
+- 138 FIRM key (P138-9): applied. Strip now prints "I will skip watering the beans today," said Lena. A dry bean plant needs water every day. (card text and student page); item asks which line the narrator tells; key and wrongs row changed to match.
+- 138 FIRM key (P138-13 tick check): applied. The tick check now comes first on the page and in the day text (the half plan really has a position and one reason), then reason 2, link word, close.
+- 138 FIRM content (P138-10): applied. Key is now polluted water harming fish, plants and people (section 7); steps say the reason supports the position.
+- 75 FIRM timing: applied. Six groups of five at 4 minutes plus 1 minute to change; one typed reply each (A91). X75c and X75d removed (items, wrongs, handbacks, card lines, day 76 hand-back); plan notes in days.csv and docs synced.
+- 75 FIRM rule4: applied. Exit now uses tooth and teeth (X75, X75b, card, wrongs); foot and feet stays on days 57 and 59 only.
+- 98 FIRM timing: applied. Six groups at 4 minutes plus 1 minute to change; three boxes live, two read from the reasons list after class; word in context first, then reasons, then the talk slip; group 6 fills the slip at the start of the exit part.
+- 98 SOFT timing: applied (busy marking and hurry + ed dropped). 98 SOFT key: applied (K98-1 and P98-15 reason 2). 98 SOFT words: applied for P98-2, P98-9, P98-15, P98-16 (shorter stems). 98 SOFT exit-goal, ladder, TEMPLATE rule4: left (kind and days.csv shows are the lead's call).
+- 138 SOFT handoff: applied (page collected again after the 5 minutes, exit slips in Before class, day 139 line). 138 SOFT words: applied (because or since; frame marked for the spoken sentence). 138 SOFT exit-goal, timing, TEMPLATE: left.
+- 75 SOFT ladder (A92, A93): applied (mouse, goose). A99 slower accepted: applied. A103 changed to use + ful and bake + er: applied. Dictation read first: applied. Handoff note and reading line, Tomorrow A120 and page order of A120 and A104: applied; card stem for A104 matched. 75 SOFT X75b "I just knew it", At home TEMPLATE, cut of A97 and A101: left.
+- 42 SOFT: applied (exit read aloud twice, drawing of reeds removed, reread phrase corrected, plan card modeled on the board). Pre-written event cards, P42-2 slip, shape case, TEMPLATE: left.
+- 16 SOFT: applied (week 4 re- expect line, P16-1 now copies facts, day 17 hand-back of X16, day 15 "new today" removed, day 15 comments in Before class). Exit-goal shows, rule4 overlap, source rows (not opened): left.
+
+Key lines in pieces: moved to teacher key pieces key-link-pairs-day-103.md (u03-6), key-word-check-sheet-105.md (u03-7), key-sentences-to-repair-88.md (u03-2), key-oral-forms-117-118.md (u03-9), each named in the day's Before class (days 103, 105, 88, 117, 118). presentation-cards.md and i10-plan-list.md hits were "key point" wording, not keys; left. No other inline key lines found in the pieces opened.
+
+Gates (this course): plan.py FAIL lines before 45, after 45 (the full output also shows two kindergarten lines, not ours). lesson.py FAIL lines on this course's files before 10, after 10 (same known d037 and d154 points; two new length failures on d075 and d105 were fixed).
+
+### Second pass: sources and day 19 plan (2026-11-22)
+
+- 19 SOFT source and plan: applied. Pages opened: Western Maryland Regional Library (starts in April 1905, two horses, janitor Joshua Thomas) and NIST (April 1905, Black Beauty and Dandy, over 1,000 books lent in six months). Maryland State Archives says only "by 1904" for a reality, no start month, so the panel keeps April 1905 and the 1904 line is gone from the panel's teacher note and sources. "Gave out" is now "lent". Rows g3-u1-f6, f7, f8 re-checked 2026-11-22; f5 merged into f8 (same page); Hagerstown now rests on the Archives page (librarian arrived there in 1902). Day 19 plan block synced to the panel g3-u1-d19 and "may mark one word or phrase" in days.csv and docs.
+- 16 SOFT source: the WPA line checked on the National Archives page (opened): row g3-u1-06 now has the url. The New Mexico 1956 bookmobile start could not be confirmed from any page opened (old addresses redirect), so it was cut from the g3-u1-05 text and sources; the three bookmobile names stay (library catalog menu).
+- Gates after: plan.py 45, lesson.py 10, same as before.

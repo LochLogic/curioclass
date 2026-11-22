@@ -44,12 +44,12 @@ In January 1777 Prince Hall and seven other Black men in Massachusetts sent a pe
 
 Items: [[s06-Q3]] [[s06-Q3b]]
 
-## Page 5: Own-state card (Massachusetts; a teacher in another state swaps in the class's own passages)
+## Page 5: Pinewood card (made up, for practice)
 
-The Constitution of Massachusetts, 1780.
-- Lawmakers: "two branches, a Senate and House of Representatives".
-- Executive: the head is called the Governor.
-- Courts: judges keep their offices during good behavior.
+The Constitution of Pinewood State (a made-up state).
+- Lawmakers: one House of Delegates makes the laws.
+- Executive: the Governor sees that the laws are carried out.
+- Courts: a Supreme Court and county courts decide cases.
 
 Items: [[s06-Q4]] [[s06-Q4b]]
 

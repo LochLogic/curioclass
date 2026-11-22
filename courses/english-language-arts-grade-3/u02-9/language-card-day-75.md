@@ -9,8 +9,8 @@ credit: ours
 
 Print one card for each child. These are the prompts for the day 75 items; the children answer on their own paper. Print "invented for practice" in small letters at the foot.
 
-- Write a sentence about a boat with more than one man in it.
-- Write a sentence about a market with more than one woman in it.
+- Write a sentence about a pond with more than one mouse in it.
+- Write a sentence about a pond with more than one goose in it.
 - Read: The reed bent. The frog showed bravery. Write the noun that names an idea.
 - Write a sentence about the frog with drink in the past.
 - Write a sentence about the frog with watch in the past.
@@ -20,6 +20,6 @@ Print one card for each child. These are the prompts for the day 75 items; the c
 - Join two related ideas about a muskrat with because.
 - Write one simple, one compound and one complex sentence about a frog and a beetle.
 - Write the sentence your teacher reads aloud.
-- Add the ending: use + ful and trap + er. Write each new word.
+- Add the ending: use + ful and bake + er. Write each new word.
 - Why does trim double its m before -ing? Write the rule.
-- Use a beginning dictionary to check and fix the spelling in this note: The dragonfy sat on the log.
+- Use a beginning dictionary to fix this spelling: The dragonfy sat on the log.

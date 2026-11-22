@@ -15,5 +15,3 @@ Six strips, one sentence on each, cut from the model paragraph *Bats Help Flower
 - Pollen sticks to the bat while it feeds.
 - Some pollen brushes onto the next flower.
 - So bats help flowers while they eat.
-
-Key: the strips run in the order shown; the second strip holds the definition; the last strip is the ending.

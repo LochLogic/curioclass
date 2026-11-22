@@ -9,8 +9,12 @@ credit: ours
 
 Nine cards, one picture on each, drawn in thick plain lines, a short label under each. Pairs sort them into three piles: **makes or holds pollen**, **gets pollen**, **carries pollen**. Every fact comes from the article *Pollen on the Move*.
 
-- **Makes or holds pollen:** the anther (a flower part on a thin stalk); a grain of yellow pollen; the stalk of the anther.
-- **Gets pollen:** the stigma (the sticky part at the center of the flower); the sticky top of the stigma; a second flower of the same kind.
-- **Carries pollen:** a bee with yellow fuzz; a butterfly on a flower; a hummingbird at a flower.
-
-Key: the pile is given by the heading above. One card from each pile is shared with the class.
+- The anther (a flower part on a thin stalk)
+- A grain of yellow pollen
+- The stalk of the anther
+- The stigma (the sticky part at the center of the flower)
+- The sticky top of the stigma
+- A second flower of the same kind
+- A bee with yellow fuzz
+- A butterfly on a flower
+- A hummingbird at a flower

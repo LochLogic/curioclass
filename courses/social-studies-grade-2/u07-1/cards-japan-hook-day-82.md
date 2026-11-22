@@ -26,6 +26,6 @@ Credit line: "Our own words, from the Statistical Handbook of Japan 2025, Statis
 
 ## TEACHER ONLY
 
-Only the three card sentences are taught about Japan. No number is printed (the page also gives a share of mountainous land; it is not used). The foreign ministry kids page was the plan's first choice and refused an automated read; this page is a weak source (Wikipedia only), kept because the fact is stated in every standard reference. Retrieval question after the hook: "Our big question asks what matters about life in a country. Would 'What work do people do?' help us answer it? How?" A reason that work meets needs is shown; "it is another question" is A. Record, no score.
+Only the three card sentences are taught about Japan. No number is printed (the page also gives a share of mountainous land; it is not used). The foreign ministry kids page was the plan's first choice and refused an automated read; the facts rest on source row 82J1, the Statistical Handbook of Japan 2025 from the Statistics Bureau of Japan, checked. Retrieval question after the hook: "Our big question asks what matters about life in a country. Would 'What work do people do?' help us answer it? How?" A reason that work meets needs is shown; "it is another question" is A. Record, no score.
 
 <!-- TEACHER-ONLY BLOCK: ends -->

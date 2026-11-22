@@ -13,4 +13,4 @@ Ask each pair for one change and one thing that stayed. The change is the tool. 
 
 If many missed the day 52 cafe-cook repair, the strip is dropped and the unit 4 washing chart is read inside this part instead.
 
-Teacher key: changed, how the seeds are planted (by hand, then with a machine). Stayed, the field, the plants and the work of growing food.
+The key is in key-pairs-farm-strip.md (teacher only).

@@ -78,3 +78,19 @@ Did the grade use the lower grades well: mostly yes. Day 15 rightly reviews unit
 | total | 6 | 24 | 2 |
 
 The 87 FIRM finding is a defect in day 86's Kofi model that day 87's repair and exit depend on; it is counted under day 87 because day 87 is the day that repairs and assesses it.
+
+## Fixes applied (2026-11-22)
+
+- Day 87 / 86 Kofi key (FIRM): applied. Kofi fan 5, bean bag 4 (no two fit in 6 tokens) in cards-ranked-sets-day-86.md, d086, u08-2 plan; Reya repair card now 5 tokens, kazoo 5, magnet 4, badge 3.
+- Day 49 Wickquasgeck source (FIRM): applied by cutting. The page refused a read (403). Trail and Broadway lines removed from the read-aloud, layer, key, d049 and repair H (name Manahatta kept); 49F status set to "search read"; 49H note no longer rests on 49F.
+- Day 49 exit (FIRM): applied. Split into X49 (spoken, second six, Pine Dock, one ask) and X49b (every child, token on "the record does not say"); Ash removed; wrongs, handbacks, days.csv, docs updated. The M wrong row was dropped (M stays a talk repair).
+- Day 68 timing (FIRM): applied. Groups 90 seconds each, unheard children capped at 3, fresh attempt capped at 10 in two sittings; d067 after-class time raised to about 40 minutes for the sheet ticks and next steps.
+- Day 68 rule 4 (FIRM): applied. Every item now has a reteach card and a separate fresh-try card (new Larch Cove, school yard, Elm Hollow tree sign, Rae and Tam, Harbor Light verse, Kestrel lantern sign); answers in new key-cards-repairs-and-fresh-tries-day-68.md. SOFT X68: applied (new bridge symbol, X68 mark and X68b spoken split, courthouse key removed).
+- Day 29 rule 4 (FIRM): applied. X29 is now "fair / gave each member a turn"; X29b is the spoken closing; repair H cards changed (organizes, cares, shares); at-home exit and Lincoln chart wording updated. SOFT: split applied; second-leader box, rehearsal minute, Huerta second source, Tubman chart wording: left.
+- Day 49 SOFT: applied (review points to day 44, capital-draws-workers sentence deleted, "Many were forced to leave," Stockbridge-Munsee sentence, pause cue, Man-uh-HAT-uh). Left: account/record word, sensitivity-read record, goal line for Lenape.
+- Day 15 and day 87 other SOFT (exit choices, calendar corner, coat hooks, Commons source, clue/source, X87 transfer, tokens): left.
+- TEMPLATE findings: left.
+
+Key-line results: see the set a report (one file, moved to a key piece).
+
+Gate counts: plan.py 26 before, 26 after; lesson.py 19 before, 19 after.

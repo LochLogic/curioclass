@@ -29,9 +29,9 @@ Print "invented for practice" in small letters at the foot of every card. Plain 
 
 ## Day 117 card E117
 
-**Read:** "A fan palm tree takes in water through its roots. People rest in its cool shade."
+**Read:** "A spruce tree takes in sunlight through its needles. Chickadees eat the seeds from its cones."
 
-**Mark (item a):** Which drawing joins what the tree needs and who uses it? Three drawings: roots with an arrow in from water, and a person in the shade with an arrow out from the palm; roots with water and no person; a person in the shade with no water.
+**Mark (item a):** Which drawing joins what the tree needs and who uses it? Three drawings: needles with an arrow in from the sun, and a chickadee at a cone with an arrow out from the tree; needles with the sun and no chickadee; a chickadee at a cone with no sun.
 
 **Spoken, to the day's six (item b):** "What does the tree need, and who uses the tree?"
 

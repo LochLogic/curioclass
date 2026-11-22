@@ -269,3 +269,4 @@ from_day,to_day,what,where,minutes,error,note
 140,141,sc3-X140 sc3-X140b,Return,0,,the confirm slips stay on the record; unit 7 begins without a repair
 121,124,s05-E121 s05-E121b,Hand back,0,,"the day 121 slips come back with the check 2 sheets, with the note on each"
 136,139,s06-E136 s06-E136b,Hand back,0,,"the day 136 slips come back with the check 3 sheets, with the note on each"
+43,44,s02-E43c,Feedback,0,x,"written cue on the slip with a new made-up town: Lakeview Board votes rules, its Manager puts them to work; the part that makes rules is not the part that carries them out"

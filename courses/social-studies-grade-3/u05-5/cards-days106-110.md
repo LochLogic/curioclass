@@ -69,7 +69,7 @@ The houses at the museum village are timber-framed re-creations of what the firs
 
 ## School and learning
 
-Boston Latin School was founded in 1635. A 1642 law required parents to see that children learned to read. Most children learned with a hornbook, a printed page on a thin board under a sheet of horn. Schooling was aimed mainly at boys. Girls were not shut out of every town. (Paul Revere House, U5X.) Three columns: who, where, with what. One line on what the summary does not tell.
+Boston Latin School was founded in 1635. A 1642 law required parents to see that children learned to read. Children used a hornbook, a printed page on a thin board under a sheet of horn. Schooling was aimed mainly at boys. Girls were not shut out of every town. Children could learn letters at home or in a school. (Paul Revere House, U5X.) Three columns: which children, who taught, with what. One line on what the summary does not tell.
 
 Record: draw and label one thing in a colonial home. One sentence on how children learned. No child describes their own home.
 

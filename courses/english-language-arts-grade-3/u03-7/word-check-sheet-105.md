@@ -28,4 +28,3 @@ Mira carried the unfinished map to the garden. The helpful group was waiting hap
 What does un- do to the word finished? ____________________
 What does -ful add to the word help? ____________________
 
-Teacher key, not printed: un- means not, so unfinished means not finished; -ful means full of, so helpful means full of help. At the table the teacher records each child reading four irregular words and one longer word; that record is the day 106 word record.

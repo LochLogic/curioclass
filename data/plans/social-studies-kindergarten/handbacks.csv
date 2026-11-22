@@ -36,8 +36,8 @@ from_day,to_day,what,where,minutes,error,note
 22,23,s03-X22,Reopen,1,I,lay a world map beside the classroom picture map and name the area each shows
 23,24,s03-X23,Reopen,1,B,changed page position beside an unchanged place
 23,24,s03-X23,Reopen,1,I,"a world map and a room map, the area each shows"
-24,25,s03-X24,Reopen,1,C,the small printed symbol beside the real place or its photograph
-24,25,s03-X24,Reopen,0,H,traced from symbol to key and back inside the same minute; the other minute counts the patch of ground
+24,25,s03-X24b,Reopen,1,C,the small printed symbol beside the real place or its photograph
+24,25,s03-X24b,Reopen,0,H,traced from symbol to key and back inside the same minute; the other minute counts the patch of ground
 25,26,s03-X25b,Reopen,1,C,"a block is a small version, not a real tree; D and G contrasts in the same minute"
 25,26,s03-X25b,Reopen,0,D,"a pretend pond beside observed ground, inside the same minute"
 25,26,s03-X25b,Reopen,0,G,"a detail after because, inside the same minute"
@@ -115,17 +115,19 @@ from_day,to_day,what,where,minutes,error,note
 60,61,fresh try for the part missed (s06-X61a to s06-X61l),Fresh tries,10,,one fresh card per part with a not yet seen cell; unheard parts stay not yet seen in the year-end record
 31,33,day 31 record by part,Reconnect,1,,"one cell per child, privately; the record by part, never by child, said aloud"
 32,33,day 32 record by part,Reconnect,1,,"one cell per child, privately"
-32,33,Words: items sc1-E4 and sc1-E5,Three groups,2,E,"component move: Words (E, F)"
-32,33,Maps: items sc1-E6 to sc1-E8,Three groups,2,G,"component move: Maps (G, H)"
+32,33,"Words: items sc1-E4, sc1-E4b, sc1-E5 and sc1-E5b",Three groups,2,E,"component move: Words (E, F)"
+32,33,Maps: items sc1-E6 to sc1-E8b,Three groups,2,G,"component move: Maps (G, H)"
 31,33,Because: items sc1-E1 to sc1-E3,Three groups,2,A,"component move: Because (A, B, C, D)"
-31,33,"fresh try for the part missed (sc1-X33a to sc1-X33f), children of day 31",Fresh tries,5,,one fresh card per part with a not yet seen cell; unheard parts stay not yet seen
-32,33,"fresh try for the part missed (sc1-X33a to sc1-X33f), children of day 32",Fresh tries,5,,same cards; the hearing of the six not yet heard on day 31 or 32
+31,33,"fresh try for the part missed (sc1-X33a to sc1-X33f, with sc1-X33a2, sc1-X33c2 and sc1-X33d2), children of day 31",Fresh tries,5,,one fresh card per part with a not yet seen cell; unheard parts stay not yet seen
+32,33,"fresh try for the part missed (sc1-X33a to sc1-X33f, with sc1-X33a2, sc1-X33c2 and sc1-X33d2), children of day 32",Fresh tries,5,,same cards; the hearing of the six not yet heard on day 31 or 32
 62,64,day 62 record by part,Reconnect,1,,"one cell per child, privately"
 63,64,day 63 record by part,Reconnect,1,,"one cell per child, privately"
 62,64,Time: items sc2-E1 to sc2-E7,Four groups,2,I,"component move: Time (I, J, K)"
 62,64,Maps: items sc2-E8 and sc2-E9,Four groups,1,L,"component move: Maps (E, F, L)"
-63,64,Money: items sc2-E11 to sc2-E16,Four groups,2,M,"component move: Money (M, N, O, P)"
+63,64,Money: items sc2-E11 to sc2-E16b,Four groups,2,M,"component move: Money (M, N, O, P)"
 63,64,Reasons: items sc2-E10 and sc2-E17,Four groups,1,Q,"component move: Reasons (B, D, Q)"
 62,64,"fresh try for the part missed (sc2-X64a to sc2-X64h), children of day 62",Fresh tries,5,,one fresh card per part with a not yet seen cell
 63,64,"fresh try for the part missed (sc2-X64a to sc2-X64h), children of day 63",Fresh tries,5,,same cards; unheard parts stay not yet seen in the year-end record
 63,64,year-end record for the grade 1 teacher,Record,4,,"the record by part and what day 64 changed, written for the grade 1 teacher"
+11,12,s02-X11b,warm-up,1,A,heard from three of the six; the child not reached is marked not yet seen and asked in the day 12 job routines
+33,34,fresh tries sc1-X33a to sc1-X33g for children not heard on day 33,"routine slots, days 34 to 36",2,,"the record sheet names them; each is heard once, one card, marked shown, shown with help, not yet seen"

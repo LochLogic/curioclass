@@ -7,15 +7,15 @@ credit: ours
 ---
 # Exit cards, days 78 and 80
 
-Each exit has a paper card every child marks and a spoken question heard from the rotating six. Say aloud first: "These classes are made up. These cards are practice." Print "invented for practice" in small letters at the bottom of each. Plain black line drawing on white, thick lines. Keep these closed until the day. No card reuses a teaching card, a repair card, a fresh-try card or the day 79 packet.
+Each exit is one paper card every child marks (day 78) or a card with a spoken question heard from the rotating six (day 80). Say aloud first: "These classes are made up. These cards are practice." Print "invented for practice" in small letters at the bottom of each. Plain black line drawing on white, thick lines. Keep these closed until the day. No card reuses a teaching card, a repair card, a fresh-try card or the day 79 packet.
 
-## Day 78 exit card: lost pencils
+## Day 78 exit card: the chalk tray
 
-**Pictures:** two dated pictures of one made-up class's lost-pencil box. Read aloud: "On Monday, many pencils were scattered. On Friday, some pencils are back in the box and some are still missing."
+**Pictures:** three dated pictures of one made-up class's chalk tray, after a sign went up: Monday, the tray is empty; Wednesday, two pieces; Friday, five pieces. Read aloud: "A class put up a sign about chalk. On Monday the tray was empty. On Wednesday there were two pieces. On Friday there were five."
 
-**Mark:** Circle what the dated records show, from three cards: some returned and some still missing; every pencil is back for good; one tidy picture. **Spoken:** "Say one quality their work shows."
+**Mark (one ask):** Circle what the pictures show: "chalk came back after the sign" or "the sign made the chalk come back." Each choice has a small picture.
 
-If the class's own action involves pencils, use the reserved alternate: an invented class sorts lost chalk pieces.
+If the class's own action involves chalk, use the reserved alternate: the same three dated pictures of an invented class's mitten basket, with the same two choices.
 
 ## Day 80 exit card: the lending shelf
 

@@ -16,3 +16,7 @@ Teacher only. Keep apart from the exit cards (cards-exits-19-22.md); never hand 
 - Day 21: I think the town might be there because people could meet and trade at the road crossing. Map A shows the town at a crossing; Record B says a market opened beside it.
 - Day 22: about 5 bars.
 - Day 24: west (the arrow points to the left edge, so the lower side of the page is west).
+
+## Practice card keys (teacher only)
+
+- Day 22, retrieval cards: the triangle; the lower side; about 3 bars; Southeast; a lake; the ford, or the wagon ruts.

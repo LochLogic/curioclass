@@ -10,5 +10,3 @@ credit: ours
 Twelve cards, one word on each. Pairs sort them under three headings by the sound of -ed: **/t/**, **/d/** and **/id/**. Then each child spells two words and a sentence you say.
 
 asked, tossed, clapped, fixed, played, called, rained, filled, lifted, planted, wanted, rested
-
-Key: /t/: asked, tossed, clapped, fixed. /d/: played, called, rained, filled. /id/: lifted, planted, wanted, rested. All three are spelled -ed.

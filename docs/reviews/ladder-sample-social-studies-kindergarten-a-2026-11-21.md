@@ -73,3 +73,32 @@ Most serious first.
 | 41 | 3 | 4 | 1 |
 | 56 | 1 | 5 | 0 |
 | all | 6 | 24 | 2 |
+
+
+## Fixes applied (2026-11-22)
+
+- d041 FIRM handoff: applied. Before class now says the day is taught on its calendar date; "from unit 3" review dropped and "Who made it, and why?" taught as new in one sentence; nation bridge line added; d040 and d014 Tomorrow lines point to the calendar date.
+- d041 FIRM nation card credit: applied. Credit now says "We drew this card after reading the Aquinnah Wampanoag Tribe's own page, Wampanoag History" in d041 and the card piece.
+- d041 FIRM exit timing: applied. Supported work 10 min, exit 5 min (circle 1, draw 4 while the six are heard at 30 seconds); plan doc synced. Day total unchanged.
+- d032 FIRM hearing timing: applied. Picture rows 6 min, hearing 15 min (2.5 min each), others add a picture to the class chart; an item not reached is heard on day 33.
+- d032 FIRM E7 key: applied. sc1-E7 now asks about one world map and the desk globe, key "both show land and water; globe round, map flat"; stem, answer, steps, samples, wrongs, card piece, day text updated.
+- d056 FIRM X56a: applied. Rows no longer follow the tuner story; story told after rows and used only for X56c; X56c picture of the worker removed; blanket and dog rows redrawn (blanket on a bed, dog on a leash held by a child). Items, wrongs, card, day, plan doc, At home updated. Exit now 4 min (reopen repair 3 min).
+- d014 SOFT: partly. Pairs share one puppet turn; examples given for hooks and blocks; Tomorrow line for day 41. Left: count-card scramble, split of X14, "vote only when" vs day 13, I want / I think frame.
+- d005 SOFT: partly. X5b now "Is this fair to the other puppets? Why or why not?", X5c "This rule is not working. What could we do?" (items, card, day, plan docs). Left: new rule card, rule 4 for (b), timing, frame names. Path blank on X5 is correct for a paper circle (TEMPLATE point rejected).
+- d041 SOFT: partly. "here" changed to "today" in X41b; X41a path set blank (paper circle). Left: second Columbus source (no solid page opened), teaching load, student page blanks.
+- d032 SOFT: partly. Door position added to the card and E4 stem; others-task line added. Left: splitting E4, E5, E7, E8 into one-ask items; 22C geometry note.
+- d056 SOFT: left (buy and sell words, source 56D, timing of teaching); "Some money comes other ways too" sentence cut.
+
+## Key-line results
+- cards-day42-record-and-questions: prints for children (pairs match cards); key moved to key-cards-42-43.md, named in d042 and d043 Before class.
+- pages-king-day43: prints for children; key moved to key-cards-42-43.md.
+- pairs-farm-strip (u06-1): prints per pair; key moved to key-pairs-farm-strip.md, named in d053.
+- Also moved (child pieces opened): cards-exit-41-44 to key-exits-41-44.md; cards-day41-holiday-board to key-cards-41.md; cards-exit-54-56 to key-exits-54-56.md; cards-day31-32 to key-cards-31-32.md.
+
+Gates (course filtered): plan.py check before 19 FAIL, after 19 (all "section is not in data/units.csv"); lesson.py check before 2 FAIL, after 2 (day 31 and 32 review-as-new, known). Several day pages sit at their word caps, so added words were traded for cuts; day 41's "Review: I think, because, from unit 1" line was cut to fit its cap (ledger entry for lead).
+
+### Second pass (2026-11-22)
+- Sources: rows 41C and 41D now rest on a college page (Henry Ford College, hfcc.edu) read in full (1492 landing, second Monday in October, Berkeley 1992, Italian-American parade); 42C on the VA Veterans Day 2026 Teachers Resource Guide PDF (read); 45C on the National Archives Unwritten Record blog quoting the 1777 resolution; 56D on the BEA "Personal Income: More Than Your Paycheck" page. All marked "checked: 2026-11-22". Smithsonian, LOC, NPS and other pages refused or 404.
+- Splits (each part its own item with key, wrongs, handbacks, day text and card lines): sc1-E4/E4b, E5/E5b, E7/E7b, E8/E8b, s03-X24/X24b, sc1-X33a/a2, X33c/c2, X33d/d2.
+- d041: "I think, because" unit 1 review line restored within the word cap.
+- Gates after: plan 19 FAIL (units.csv only), lesson 2 FAIL (d031, d032 known), same as before.

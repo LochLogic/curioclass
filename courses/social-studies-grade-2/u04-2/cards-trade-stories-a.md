@@ -7,7 +7,7 @@ credit: ours
 ---
 # Trade Stories A, day 55
 
-Three model cases read once, each with a map outline of Japan and Saudi Arabia. This is a model story, not a record of real shipments or of what a country is known for. Credit on each card, read aloud: "Made by Curio Class, 2026, invented for practice." Each caption names its buyer's reason. Plain black line drawing on white. Held back and unseen until day 55. Maps are redrawn by Curio Class in 2026 from Natural Earth map data (public domain). Production draws no border that anyone disputes as settled. The art is described here and has not been drawn or looked at yet (planned only, not yet written).
+Three model cases read once, each with a map outline of Japan and Saudi Arabia. This is a model story, not a record of real shipments or of what a country is known for. Credit on cards 1 and 2, read aloud: "Made by Curio Class, 2026, invented for practice." Credit on card 3, read aloud: "Made by Curio Class, invented for practice." (no year) Each caption names its buyer's reason. Plain black line drawing on white. Held back and unseen until day 55. Maps are redrawn by Curio Class in 2026 from Natural Earth map data (public domain). Production draws no border that anyone disputes as settled. The art is described here and has not been drawn or looked at yet (planned only, not yet written).
 
 ## Card 1: dates
 
@@ -19,7 +19,7 @@ Three model cases read once, each with a map outline of Japan and Saudi Arabia. 
 
 ## Card 3: guide
 
-**Picture:** A visitor from Japan, a guide in Saudi Arabia, a coin purse and a map. **Caption:** "A visitor from Japan pays a guide in Saudi Arabia. The guide knows the place." (knowledge, a service) This card's date line is missing: "the card does not say".
+**Picture:** A visitor from Japan, a guide in Saudi Arabia, a coin purse and a map. **Caption:** "A visitor from Japan pays a guide in Saudi Arabia. The guide knows the place." (knowledge, a service) This card's credit has no year: "the card does not say".
 
 ## Source questions
 

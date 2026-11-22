@@ -37,9 +37,9 @@ Each card puts a wrong idea beside a right one so the class can see the differen
 
 **Pip:** says, "Nobody was here before the ships came."
 
-**Right:** Lenape people lived here, with towns and trails. Our sources say where, approximately.
+**Right:** Lenape people lived here, with towns and trails. Our sources name the place, Manahatta.
 
-**Repair:** a small group hears the second read-aloud again beside the Lenape layer; each pair points to the approximate trail.
+**Repair:** a small group hears the second read-aloud again beside the Lenape layer; each pair points to the name Manahatta.
 
 ## K: an opinion is a reason
 

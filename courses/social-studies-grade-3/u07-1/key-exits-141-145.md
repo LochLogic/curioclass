@@ -16,5 +16,5 @@ Teacher only. Keep apart from cards-exits-141-145.md. Marking: shown, shown with
 - E143b: the words "without the northern district". Not "Orchard Province" (C).
 - E144: no; the railroad stop and the brick works jobs also helped. Not "yes, towns grow where there is water" (O).
 - E144b: the railroad stop that opened in 1885, or the brick works jobs. Not "the lake" (O).
-- E145: taken by force. Not "chosen, because she came to work" (B).
-- E145b: she was taken from her home by force and was not paid. Not "she was paid like the other workers" (J).
+- E145: Joel's card. Not Lena's "because she came to work" (B).
+- E145b: his family took a train because a factory was hiring; nobody made them. Not "because Lena came to work" (B). Shown with help: names the train or the job only.

@@ -17,7 +17,7 @@ Credit printed under it: "Abraham Lincoln, Emancipation Proclamation, January 1,
 
 ## In plain words, said right after
 
-"Designated states means the states the paper names, the ones fighting against the country. The paper said that people held as slaves in those places were free. It did not name every place. It did not end slavery everywhere."
+"Designated states means the states the paper names, the ones fighting against the country. The paper said that people who were enslaved, owned and forced to work, in those places were free. It did not name every place. It did not end slavery everywhere."
 
 ## Words with pictures
 

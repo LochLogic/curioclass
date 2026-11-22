@@ -15,3 +15,7 @@ Teacher only. Keep apart from the exit cards (cards-exits-7-10.md); never hand t
 - Day 8: about 4 bars; pond, creek or hill; the legend.
 - Day 9: freight trains stopped there.
 - Day 10: gate west, well east, a path between; a legend naming both symbols; an arrow labelled N; a bar labelled 5 metres.
+
+## Practice card keys (teacher only)
+
+- Day 9, landmark statement cards: 1 and 2 show; 3 might suggest, only if the photograph shows people walking; 4 cannot tell. Children give a reason from the caption or photograph.

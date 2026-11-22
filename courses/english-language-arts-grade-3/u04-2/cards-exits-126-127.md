@@ -11,6 +11,6 @@ Say aloud each time: "This card is made up for practice." Print "invented for pr
 
 - **Day 126 (s04-X126), Exit.** A: "A cafe rinses its cups with a hose. The water runs down the drain." B: "A school kitchen saves its rinse water in a bucket. The cooks use it on the garden." Ask: Write one important point both cards share.
 - **Day 126 (s04-X126b), Exit box on the student page.** Use cards A and B on your slip. Write one detail only B has.
-- **Day 127 (s04-X127), Exit.** Invented for practice. Card: "A farm fills a trough from a spring. A float rises as the trough fills. At the top, the float shuts off the water." Ask: Write the main idea of this card in one sentence.
+- **Day 127 (s04-X127), Exit.** Invented for practice. Card: "A farm fills a trough from a spring. A float rises as the trough fills. At the top, the float closes the valve." Ask: Write the main idea of this card in one sentence.
 
 Every exit sheet prints the card and the ask only, with a ruled space for the answer. The look-fors live in items.csv and the record sheet, never on the child's page.

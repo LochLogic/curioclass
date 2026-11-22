@@ -55,3 +55,23 @@ Ledger terms were looked up with the filtered ledger command for the words the d
 | all | 7 | 11 | 4 |
 
 Reader caveat: these counts come from the table above. During reading I noted further small wording faults (more two-ask stems, plan lines out of date) that are folded into the rows above rather than listed one by one.
+
+## Fixes applied (2026-11-22)
+
+- 153 key (FIRM): partly. The wrong "same in the middle" wording is replaced by "the same vowel-and-r sound" with a review line (car and fork were heard on days 151 and 152). No key row existed for it; it is a spoken sort, not an item.
+- 153 exit-goal (FIRM): rejected as stated. The r-controlled sort is not new: car and fork are heard-only on days 151 and 152 and the sort is the plan's cycle 25 task; the review line now says so. Marks stay on the S1 items.
+- 117 rule 4 (FIRM): applied. E117 is now a spruce tree and chickadees (needs sunlight; not palm or shade); items X117a and b, wrongs, cards file, d117 at-home line, u03-9.md and the d117 skeleton updated together.
+- 117 timing (FIRM): applied. Records are closed for the first half of the roster on day 117 and the second half in day 118's reread part (items R117a-c and L117a-b say so; d117 and d118 edited).
+- 117 SOFT plan line: applied (u03-9.md now describes the spruce card). Source row for gk-u3-06: rejected (rows wiki-mulberry, wiki-sweetgum and wiki-deer already exist).
+- 27 exit-goal (FIRM): applied. The topic sentence is removed from the card, items, d027, cards file and u01-6.md; the card is three bead sentences. Two-ask stem: left.
+- 27 timing (FIRM): applied. Scribing is for the day's six only (about 1.5 minutes a pair); other facts are said to a partner and scribed in the after-class feedback time.
+- 91 end items (FIRM): applied. T2c is now "Say it with me, and point under each word" on the page 3 nest line; T2d is one ask, "What does held mean?" (items, d091, skeleton). SOFT words, repair block and id renames: left.
+- 57 (all SOFT): left; not touched. 153 other SOFT: left. TEMPLATE rows: left.
+
+Key-line files: see set a (cards-check-158-159 moved; the others left as teacher cards).
+
+Gates (course-filtered): plan check FAIL lines 35 before, 35 after; lesson check 15 before, 15 after. No new failures. Ledger for the lead: day 27 and day 9 exit cards no longer state the topic; day 117 exit case is now a spruce tree with chickadees; day 134 goal text changed (see set a).
+
+### Follow-up (2026-11-22)
+
+See set a follow-up for day 134. Gates after: plan 35, lesson 15.

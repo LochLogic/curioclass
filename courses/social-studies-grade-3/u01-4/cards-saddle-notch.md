@@ -8,5 +8,3 @@ credit: ours
 # Saddle Notch Card (day 15)
 
 Invented for practice. A small map and a note of a pass between two hills with a road through it. The note says: "Saddle Notch is the one low way through the hills. A road crosses it. An inn stands at the pass." Ask pairs: what might help explain why the inn is there? What does the card not say?
-
-Teacher key: the pass lets travellers cross; the card does not say who built the inn.

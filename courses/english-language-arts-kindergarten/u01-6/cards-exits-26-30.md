@@ -19,7 +19,7 @@ Each card is marked by every child and goes with a spoken question heard from th
 
 ## Day 27 card: the page about beads
 
-**Read:** "This page is about beads. The red bead is round. The blue bead is round too." **Say, as Pip:** "I pick the blue one."
+**Read:** "The red bead is round. The blue bead is round too. The green bead is round." **Say, as Pip:** "I pick the blue one."
 
 **Picture:** three pictures in a row, each in a ring: a blue bead with the label "beads"; a red bead with the label "beads"; a blue bead with the label "blue". The labels are printed by the teacher in large letters; children do not read them.
 

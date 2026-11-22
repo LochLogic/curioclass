@@ -24,7 +24,7 @@ a book is a door to anywhere.
 
 Rhyme pairs: look and nook; sea and me; share and anywhere (book rhymes with look and nook as well). Clap the beats line by line, about four a line.
 
-Words for the day 3 sound-to-print work: a, at, cat, hat, map (s, a, m, t words are mapped); with a review of sh in fish, dish, ship; th in path; ch in chat.
+Words for the day 3 sound-to-print work: a, at, map (s, a, m, t words are mapped; cat and hat start with sounds mapped soon); with a review of sh in fish, dish, ship; th in path; ch in chat.
 
 Reading: teacher-read. On day 2 the poem is printed and children find the first word, the spaces, a capital and a line. They join echoed lines and are not asked to decode the whole poem.
 

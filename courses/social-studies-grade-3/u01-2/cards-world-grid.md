@@ -11,6 +11,4 @@ Invented for practice. A flat world outline with six columns lettered A to F fro
 
 Teaching use: the teacher places a dot for Lima, Peru and the pair names its cell and its continent. Then a dot for Oslo, Norway.
 
-Teacher key: Lima is B2 (south of the equator and west of the prime meridian, between 30 south and 30 north; column B is 120 to 60 degrees west). Oslo is D3 (north of 30 north, east of the prime meridian, column D 0 to 60 degrees east).
-
 Credit: ours; coordinates from city pages 4A and 4B.

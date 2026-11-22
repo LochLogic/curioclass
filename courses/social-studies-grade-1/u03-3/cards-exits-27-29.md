@@ -21,11 +21,11 @@ Each exit has a paper card every child marks and a spoken question heard from th
 
 **Mark:** Circle the reason that supports "She listens." **Spoken:** "Give one reason that supports 'She listens.'"
 
-## Day 29 exit card: the reading space
+## Day 29 exit card: the turn hat
 
-**Picture:** A club leader speaks to seated members, then sets out cushions with them. Two action cards each with a circle: "asked members" and "is famous." A claim card above reads "The leader listened."
+**Picture:** A club leader holds a hat of folded names while members sit in a circle, and one member takes the next turn. Two action cards each with a circle: "gave each member a turn" and "is famous." A claim card above reads "The leader was fair."
 
-**Mark:** Circle the action card that supports "The leader listened." **Spoken:** "Say a closing that goes back to 'The leader listened.'"
+**Mark (the other twenty-four):** Circle the action card that supports "The leader was fair." **Spoken (the six, a separate ask, taken in the dictated piece):** "Say a closing that goes back to 'The leader was fair.'"
 
 ## For the teacher
 

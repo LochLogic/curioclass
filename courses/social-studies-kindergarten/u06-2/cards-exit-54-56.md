@@ -21,16 +21,8 @@ New picture cards for the exits, printed "invented for practice" along the botto
 
 ## Day 56
 
-- s06-X56a: The teacher reads: A pretend girl pays a piano tuner to tune her piano. Paper: two rows of three pictures, marked with one and two dots. Row one: a person carrying a blanket; a tuner at a piano; a pencil box. Row two: a basket; a person walking a dog; a singing lesson. Mark, row one: point to the one that is a service.
+- s06-X56a: Paper: two rows of three pictures, marked with one and two dots. Row one: a blanket on a bed; a tuner at a piano; a pencil box. Row two: a basket; a dog on a leash held by a child; a singing lesson. Mark, row one: point to the one that is a service.
 - s06-X56b: The same two rows of pictures. Mark, row two: point to the one that is a good.
-- s06-X56c: The same story read again, with a picture of a grown-up at paid work beside it: a pretend girl pays a piano tuner to tune her piano. Spoken, rotating group: Where did the girl get the money to pay the tuner?
+- s06-X56c: The teacher reads: A pretend girl pays a piano tuner to tune her piano. No picture of a worker. Spoken, rotating group: Where could the girl get the money to pay the tuner?
 
-## Key (teacher)
-
-- s06-X54a: The bed in the room, a safe place to sleep. Look for: circles the bed in the room; not the ribbon or the lantern.
-- s06-X54b: You need a safe place to sleep to stay well; the others are for looking nice. Look for: a reason about staying well; not only liking it.
-- s06-X55a: The empty space. Look for: dot on the empty space; not on a poster.
-- s06-X55b: There is only one space. Look for: names the limit, the one space.
-- s06-X56a: The tuner at the piano. Look for: points to the tuner; not the blanket.
-- s06-X56b: The basket. Look for: points to the basket; not the dog walking or the lesson.
-- s06-X56c: From work someone did, as the picture shows; some money comes from work. Look for: says the money comes from work; does not say it was just there.
+The key for these cards is in key-exits-54-56.md (teacher only).

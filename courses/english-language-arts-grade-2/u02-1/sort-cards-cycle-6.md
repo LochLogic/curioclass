@@ -11,6 +11,4 @@ Twelve cards, one word on each. Pairs sort them under three headings: **ar**, **
 
 car, park, jar, corn, horn, born, her, bird, turn, fern, dirt, curl
 
-Key: ar: car, park, jar. or: corn, horn, born. er, ir, ur: her, bird, turn, fern, dirt, curl.
-
-Syllable words: robot, tiger, paper, picnic, napkin, market. Key: open first syllable: robot, tiger, paper. Closed first syllable: picnic, napkin, market.
+Syllable words: robot, tiger, paper, picnic, napkin, market.

@@ -28,15 +28,15 @@ Pine Landing lies along a river.
 Gull Bay lies around a bay.
 
 Ask: Write the names of three Native nations of our region.
-Ask: Record A. Name one way the two towns differ.
-Ask: Record A. Point to the Gull Bay town land.
-Ask: Record A. Point to where the town has its offices today.
+Ask: Records B and D. Name one way the two nations differ.
+Ask: Record A. Circle the Gull Bay town land.
+Ask: Record A. Circle where the town has its offices today.
 
 ## Page 2: Record B, Narragansett Record
 
 Facts from the Narragansett Indian Tribe's own website, in our words.
 
-The Narragansett Indian Tribe is a Tribal Nation in Rhode Island. It governs itself today. A Chief Sachem and a Tribal Council lead the tribe. The tribe's offices are in Charlestown, Rhode Island.
+The Narragansett Indian Tribe is in Rhode Island. It governs itself today. A Chief Sachem, the tribe's chief leader, and a Tribal Council lead the tribe. The tribe's offices are in Charlestown, Rhode Island.
 
 The tribe has an Education Department. It offers tutoring, counseling and workshops for Native children. Children of other federally recognized tribes can use these services too.
 
@@ -45,8 +45,9 @@ Source: the Narragansett Indian Tribe's own website.
 Ask: Record B. Who leads the Narragansett Indian Tribe today?
 Ask: Record B. Describe one thing the Narragansett Indian Tribe shares.
 Ask: Name the source that shows that contribution.
-Ask: Records A and B. Write one claim that answers our unit question.
-Ask: Record A. Give a detail from A that supports your claim.
+Print the unit question here, at the top of the box.
+Ask: Records B and D. Write one claim that answers our unit question.
+Ask: Record D. Give a detail from D that supports your claim.
 Ask: Record B. Give a different detail from B that supports your claim.
 
 ## Page 3: Record C, Sugar Camp Record (made up, for practice)

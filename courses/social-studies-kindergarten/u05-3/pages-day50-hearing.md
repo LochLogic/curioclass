@@ -24,6 +24,4 @@ Neither card stands for all Jewish or all Japanese American families. No child p
 
 The wonder wall, Our Holiday Cards, the sort bins and the cards above are the sources. The teacher scribes the child's "I think ___, because ___" beside a picture the child chooses.
 
-## Key (teacher)
-
-E1: Washington and Lincoln, who were presidents (named, not only the word presidents); the law names the day Washington's Birthday. E2: it shows thanks and respect and we learn what they did. E11: both show people gathering for a special occasion. E12: a game in one, big writing to watch in the other. E13: a claim, a named picture or page detail, and a reason joining them.
+The key for these cards is in key-pages-day50-hearing.md (teacher only).

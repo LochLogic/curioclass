@@ -13,4 +13,3 @@ Print one for each pair, one side. Each pair is two sentences from book 2 with t
 2. Chapter 3. Ben asked Jun where he wanted to sit. ____________ Ada put a card on the far bench that said QUIET READING.
 3. Chapter 4. The answers were nothing like the names. ____________ Priya had not wanted the sunny cushion.
 
-Teacher key, not printed: 1 because (a cause); 2 so or therefore (a result); 3 for example (an instance). The unfit link for the model on the board is a link between two unrelated ideas.

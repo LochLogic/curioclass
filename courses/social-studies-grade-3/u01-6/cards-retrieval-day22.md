@@ -15,5 +15,3 @@ Invented for practice. Six fresh cards a partner checks against the answer overl
 4. A region card: Georgia. Which region?
 5. A feature card: the key shows a blue oval. What kind of feature?
 6. A source card: a map shows a ford and a photograph shows wagon ruts. Name one detail.
-
-Teacher key: the triangle; the lower side; about 3 bars; Southeast; a lake; the ford, or the wagon ruts.

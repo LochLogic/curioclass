@@ -10,5 +10,3 @@ credit: ours
 Twelve cards, one word on each. Pairs sort them under three headings: **igh**, **ie**, **y**. Then each child spells two sentences you say.
 
 light, night, high, right, pie, cried, tried, my, fly, try, sky, why
-
-Key: igh: light, night, high, right. ie: pie, cried, tried. y: my, fly, try, sky, why.

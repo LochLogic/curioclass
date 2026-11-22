@@ -78,3 +78,24 @@ Fresh reader, read-only. Five days read cold, each with the day before it, its s
 | Total | 6 | 21 | 5 |
 
 Script gates caught none of the six FIRM findings in the gate output I ran; two findings (printed pieces carrying keys or teacher notes, stem length) are catchable by a new rule.
+
+## Fixes applied (2026-11-22)
+
+- Day 48, blurb C no answer: applied. Card C now reads "A spider has eight legs." after the question; key matches.
+- Day 48, keys printed on pieces: applied. Key lines removed from blurbs-day-48 and both cycle 9 sort-card pieces (now key-blurbs-day-48, key-sort-cards-cycle-9); the teacher model sentence cut from purpose-cards-day-48.
+- Day 48, exit gives the answer: applied. X48 is now a new open card ("First, put soil in the pot. Next, press in a seed. Last, add water."), ask "Tell me what the author wants to do", key explain how; X48b keeps describe (pebble card, spelling gray), steps no longer ask for words. Items, wrongs (added "Describe what" as D), exit cards file, day text and the plan doc (u02-4.md) updated.
+- Day 112, A56 and A57 (head, friend never taught): applied. Replaced with some and done in new sentences (both on the cycle's irregular-word cards); items, wrongs, keys updated.
+- Day 112, X112 reuses taught picture: applied. New case (bee under a leaf in the rain; close view of its feet vs wide view of the hedge); items, wrongs, exit cards file and plan doc (u03-10.md) updated.
+- Day 112, A59 and A59b unanswerable by accurate reader: applied. A clean first read is marked shown on A58 and A59/A59b skipped (item answer and day text).
+- SOFT applied: day 48 X48b "words that show it" dropped from steps. SOFT left: all other day 13, 48, 71, 112 and 130 soft items (opening repair question reuses the day 47 route card case; sources, timing, ledger and handoff items need other files).
+
+Key-line results (both reports share this list; 34 child-printed pieces checked):
+- Moved to a new teacher key piece key-<name>.md in the same folder, named in each printing day's Before class and added to its leans_on: sort-cards day 18, day 23, cycles 6, 7, 8, 9 (u02-4 and u02-5 copies), 13, 14, 15, 16; cycle 10, 11, 12 sort cards; prefix-sort-cards day 50; sequence-strip 33; match-cards 36; question-cards 39 and 53; blurbs 48; route-cards 47; reference-route-cards 49; compound-cards 51; picture-cards 54; verb-cards 55; pronoun-strips 55; fossil-sentence-cards 56; story-slips 59; capital-cards 65; apostrophe-cards 67; flower-parts-picture-cards 78 (pile lists also moved, cards now unsorted); clue-cards 82 (labels and claim strips moved); model-paragraph-strips 98. Cycle 13 sort lists for days 78 and 79 were also unsorted in the piece and their answers moved to the key.
+- Left (teacher-only or not printed): texts/g2-u2-probes (header metadata, no day prints it), texts/g2-u4-chk-st ("Key idea" sits in the text header, not in the printed text).
+- Not checked: cycle-9-written-check, other written check sheets and exit card files (not on the key-line list).
+
+Gates (filtered, course only): plan.py check 310 FAIL before, 310 after (no new failure; all known template points). lesson.py check 2 FAIL before (d094, d095 At home order, not mine), 0 after.
+Ledger entries for the lead: day 82 ledger term "-less" should read as a review of english-language-arts-grade-1 u04-6 day 146; day 20 ledger igh/ie/y rows should read as a review of grade 1 cycle 24 (not applied, not my files).
+
+
+Lesson-gate follow-up: Before class key sentences shortened to "Keys: key-x.md, ..." and a few words trimmed; lesson.py check FAIL count for the course is now 2 (the known d094 and d095 At home order lines).

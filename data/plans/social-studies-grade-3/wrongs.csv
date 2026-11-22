@@ -377,7 +377,7 @@ s02-P38a,Make Sam stay in at recess.,,,x,a punishment aimed at one child in plac
 s02-P40a,Mari is wrong.,,,Q,a different view taken to mean a bad person
 s02-P40b,I just want it.,,,W,a liking with no reason
 s02-P40c,(blank),,,x,no partner mark
-s02-E43c,Congress.,,,x,the lawmaking part taken for the leader
+s02-E43c,The Council.,,,x,the lawmaking part taken for the one that carries out
 s02-R9c,Nothing; Jo can have both.,,,x,both things taken as bought
 s02-R9c,Everything else.,,,x,giving up taken as every other thing
 s02-R10,The money is gone.,,,x,saving taken as money disappearing
@@ -685,8 +685,8 @@ s04-Q7d,Which page looks nicer?,,,Q,a question about looks alone
 s04-Q7e,"Primary, because it is online.",,,D,format taken as the reason for primary
 s04-Q7f,Because it is long.,,,x,an answer that misses the point of the item (no register letter fits)
 s04-Q8,A and B prove my answer.,,,H,a claim with no relevant detail
-s04-Q8b,The title of A.,,,H,"a title only, no detail"
-s04-Q8c,A second detail from A.,,,V,two details from one source counted as two sources
+s04-Q8b,The title of D.,,,H,"a title only, no detail"
+s04-Q8c,A second detail from D.,,,V,two details from one source counted as two sources
 s04-Q9,Only the teacher.,,,R,only the teacher is named; no other group needs the answer
 s04-Q9b,Only the teacher needs to know.,,,R,only the teacher is named again
 s04-F89a,They are all alike.,,,J,nations taken to be the same
@@ -1009,7 +1009,7 @@ s06-Q2d,All citizens could vote.,,,D,citizenship and voting are taken to be the 
 s06-Q2e,No woman ever voted.,,,J,the New Jersey exception is erased
 s06-Q3,They were angry.,,,S,a feeling is taken to be a virtue
 s06-Q3b,They felt sad about it.,,,S,a feeling is taken to be a principle
-s06-Q4,Both let one person make every law.,,,K,one person is taken to make every decision
+s06-Q4,"Congress, because it makes laws.",,,x,the lawmaking part taken for the one that carries out the laws
 s06-Q4b,The Declaration made both plans.,,,P,the Declaration is taken to have created the plans
 s06-Q5,Consent means a kind leader.,,,Q,agreement is taken to mean kindness
 s06-Q5,Consent means everyone likes every law.,,,I,agreement is taken to mean liking every law
@@ -1036,8 +1036,8 @@ s07-E143,"Yes, and the province has the same outline today.",,,Q,a past outline 
 s07-E143b,Orchard Province,,,C,the place name is taken for the extent
 s07-E144,"Yes, towns grow where there is water.",,,O,water is taken to explain growth alone
 s07-E144b,The lake.,,,O,the lake is named again as the whole reason
-s07-E145,"Chosen, because she came to work.",,,B,a forced move is taken to be a choice
-s07-E145b,She was paid like the other workers.,,,J,"enslaved people are taken to be paid, free workers"
+s07-E145,"Lena's card, because she came to work.",,,B,a forced move is taken to be a choice
+s07-E145b,Because Lena came to work.,,,B,a forced move is taken to be a choice
 s07-E146,"In 2015, because that is the date.",,,N,the recording date is taken as the date remembered
 s07-E146b,"Yes, every child skated there.",,,D,one memory is taken to be everyone's
 s07-E147,It shows everyone in town believes the same thing.,,,D,one image is taken to show everyone's beliefs

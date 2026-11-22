@@ -21,9 +21,11 @@ Read these aloud; no child reads them. Before each, say what the source is, who 
 
 *Source to name:* the nations' own pages, made by the nations, to tell their own history in their own words. They help because Lenape people tell about their own homelands.
 
-"Lenape people lived in this place long before the ships came. Their homelands include the land around New York Bay, which they call Manahatta, and villages along the rivers and the coast. They had paths across the land. One path, called Wickquasgeck, became part of the road named Broadway. The map marks the path as approximate. Later, colonists took land, and over many years many Lenape people were forced to move far away, to the west. The land was never empty, and the Lenape did not choose to leave. Lenape nations live today. They are the Delaware Nation, the Delaware Tribe of Indians and the Stockbridge-Munsee Community. Each tells its own history on its own pages."
+"Lenape people lived in this place long before the ships came. Their homelands include the land around New York Bay, which they call Manahatta, and villages along the rivers and the coast. Later, colonists took land, and over many years many Lenape people were forced to move far away, to the west. Many were forced to leave. Lenape nations live today. They are the Delaware Nation, the Delaware Tribe of Indians and the Stockbridge-Munsee Community, which includes Munsee people, who are Lenape. Each tells its own history on its own pages."
 
-*Picture cards to match:* a path across land with the label "Wickquasgeck, approximate"; a map of arrows leading west labelled "forced to move"; three name cards, one for each nation, each labelled with the nation's own name.
+*Say the name:* Manahatta, Man-uh-HAT-uh. After the sentence "Many were forced to leave," say: "That was not fair." Stop for a breath, then ask the question.
+
+*Picture cards to match:* the word "Manahatta" on a card; a map of arrows leading west labelled "forced to move"; three name cards, one for each nation, each labelled with the nation's own name.
 
 ## If a child asks, "Are the Lenape gone?"
 

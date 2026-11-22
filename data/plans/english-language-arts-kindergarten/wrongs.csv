@@ -475,8 +475,8 @@ s03-X115b,"says ""eucalyptus"" and ""koalas"" only",,,A,facts named but not join
 s03-X116a,"Strip (b), ""Persimmons are orange.""",,,E,"a fact about the tree, no dependent"
 s03-X116a,"Strip (c), ""Opossums like to climb.""",,,D,the card does not say it
 s03-X116b,points to the orange sentence,,,E,"a fact about the tree, no dependent"
-s03-X117a,Roots with water and no person,,,A,"one half only, not joined"
-s03-X117a,A person in the shade with no water,,,A,"one half only, not joined"
+s03-X117a,Needles with the sun and no chickadee,,,A,"one half only, not joined"
+s03-X117a,A chickadee at a cone with no sun,,,A,"one half only, not joined"
 s03-X117b,names only the water or only the person,,,A,"one half only, not joined"
 s03-X118a,The mangrove with no fish,,,A,"one half only, not joined"
 s03-X118a,A fish far out in open water,,,D,the card does not say it
@@ -510,7 +510,7 @@ s04-X131,says Both say worms make tunnels,,,E,matching topic taken as identical 
 s04-X133,"says The bench, with no preference",,,F,a place with no preference
 s04-X133,says The writer says I like the shed,,,C,a personal liking said as the writer's reason
 s04-X134,says I do not know and asks no question,,,W,an uncertainty with no request for clarification
-s04-X134,says what it means and asks nothing,,,X,no detail question
+s04-X134,says something about the card and asks nothing,,,X,no detail question
 s04-X135,points to I like leaves,,,C,a personal liking given as an author reason
 s04-X135,points to It marks our meeting spot,,,Y,the other author's reason
 s04-X136,says The carrying makes the pile,,,AE,the connection reversed
@@ -578,7 +578,7 @@ s04-F129b,says the letter name instead of the sound,,,AN,a name given for a soun
 s04-F129c,says another word for the mapped word,,,AP,a different word read for the mapped word
 s04-F134a,says the letter name of the onset,,,AL,onset replaced by its letter name
 s04-F134b,gives the last sound as the middle sound,,,AM,final sound taken for the middle vowel
-s04-F134c,takes the sound away and says op,,,R,sound deleted when asked to swap it
+s04-F134c,takes the sound away and says an,,,R,sound deleted when asked to swap it
 s04-F134d,points to i for the short e sound,,,AO,a vowel sound matched to the wrong letter
 s04-F134e,says another word for the mapped word,,,AP,a different word read for the mapped word
 s04-F140a,forms a letter that cannot be read,,,AR,an unrecognizable letter form

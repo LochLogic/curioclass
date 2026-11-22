@@ -12,7 +12,7 @@ An unscaled strip on a string with clothes pins, started with unit 2's year stri
 ## The four cards
 
 1. **1849** (day 22). A woman walking on a road. Words: "Tubman escapes, 1849."
-2. **1861 to 1865** (day 23). A man in a tall hat at a desk. Words: "Lincoln is President, 1861 to 1865." A smaller card pinned under it: "January 1, 1863."
+2. **1863** (day 23). A man in a tall hat at a desk. Words: "Lincoln issues the proclamation, January 1, 1863."
 3. **1962** (day 24). A woman at a table with a sign-up sheet. Words: "Huerta begins to organize farm workers, 1962."
 4. **1985 to 1995** (day 25). A woman at a long table. Words: "Mankiller is Principal Chief, 1985 to 1995."
 

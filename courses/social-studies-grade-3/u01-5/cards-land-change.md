@@ -14,5 +14,3 @@ Invented for practice. Print "invented for practice" on each. Five cards, each w
 3. A road. People laid gravel across a hill. They wanted a way to the market.
 4. A filled wetland. People filled a wet place with soil and built a school on it. They wanted flat ground. Teacher note: a wetland is land where water covers the soil or is near it for part of the year (EPA, source 16A, read 2026-11-21, reworded).
 5. A park. People turned a vacant lot into a park. They wanted a place to play.
-
-Teacher key: each card names a change people made and an aim. The rain garden on the exit card is a new case.

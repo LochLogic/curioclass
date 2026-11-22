@@ -42,4 +42,4 @@ Each envelope holds four office cards, four place cards and four job pictures. P
 
 ## For the teacher
 
-Answers: team captain, team, organizes play; mayor, city, leads city work; governor, our state, state laws; President, country, national laws and a four-year term.
+The pair match answers are in key-cards-offices-and-helpers.md; never print it. The four helper cards are a teacher-held class set.

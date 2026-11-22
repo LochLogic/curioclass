@@ -9,11 +9,11 @@ credit: ours
 
 Each exit has a paper card every child marks and a spoken question heard from the day's rotating six. Say aloud first: "These towns are made up. These cards are practice." Print "invented for practice" in small letters at the bottom of each. Plain black line drawing on white, thick lines. Keep these closed until the day. No card reuses Hazel Town, the dated cards, the Constitution page, the Cherokee Nation's parts, the Holly Run or Dell Run strips, Rowan Town or Tansy Town, a repair card, or any end-packet case.
 
-## Day 59 exit card: Juniper Town
+## Day 59 exit card: Pine Town
 
-**Picture:** a card with three neighbors, drawn one at a time: one reads aloud from a paper, one draws a flag, one bakes a cake. Caption read aloud: "Juniper Town neighbors remember the day the Constitution was signed in their own ways." Under it three picture choices: the Constitution paper; the same cake; the same party hats.
+**Picture:** a card with three neighbors, drawn one at a time: one marches in a parade, one eats at a picnic, one sings a song. Under them a red stop sign that all three stand at. Caption read aloud: "Pine Town neighbors keep Pine Day with a parade, a picnic and a song. All of them stop at the same red sign." Under it three picture choices: the red-sign rule; the same picnic; the same song.
 
-**Mark:** Circle what they all share. **Spoken (one, chosen by the record sheet):** "What history do these neighbors share?" Or: "Must they celebrate alike?"
+**Mark:** Circle what they all share. **Spoken (the rotating six, a separate ask):** "What do they share even though they celebrate in different ways?"
 
 ## Day 60 exit card: a passage and the Fern Town strip
 

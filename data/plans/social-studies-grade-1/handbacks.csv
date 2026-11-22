@@ -4,6 +4,7 @@ from_day,to_day,what,where,minutes,error,note
 1,2,s01-X1,Reopen,4,A,"one repair for the day 1 exit and the readiness look s01-R1: read three cards, stand for a question and sit for a statement, then turn one statement about a school bag into a question; a small group takes the rest in the sort"
 1,2,s01-X1b,Reopen,4,A,"one repair for the day 1 exit and the readiness look s01-R1: read three cards, stand for a question and sit for a statement, then turn one statement about a school bag into a question; a small group takes the rest in the sort"
 2,3,s01-X2,Return,4,F,a before card and an after card for a door; a small group takes the rest in the sort
+2,3,s01-X2b,Return,0,F,a before card and an after card for a door; a small group takes the rest in the sort
 3,4,s01-X3,Return,3,D,two invented groups of different ages doing one thing together
 4,5,s01-X4,Reopen,3,B,"two cards for one rule, one with a reason; a small group takes the rest in the sort"
 5,6,s01-X5,Reopen,2,I,choose between two rules by which one helps the group; a small group takes the rest
@@ -57,9 +58,9 @@ from_day,to_day,what,where,minutes,error,note
 21,22,s03-X21b,Reopen,2,E,sort six questions into asks what someone did and asks what we like
 22,23,s03-X22,Reopen,2,B,"cover the name, read one action card and say the quality it shows"
 22,23,s03-X22,Reopen,2,D,lay the leader card and the helper card on the chart and say what each did
-23,24,s03-X23,Reopen,2,D,"the leader card and the helper card again, with the Lincoln chart row"
-23,24,s03-X23,Reopen,2,E,"sort six questions into asks what someone did and asks what we like, with new cards"
-23,24,"talk, day 23",Reopen,1,K,"say the right sentence once beside the split card; watched in talk, not scored"
+23,24,"chart, day 23",Reopen,2,D,"the leader card and the helper card again, with the Lincoln chart row"
+23,24,"pair questions, day 23",Reopen,2,E,"sort six questions into asks what someone did and asks what we like, with new cards"
+23,24,s03-X23,Reopen,1,K,say the right sentence once beside the split card
 24,25,s03-X24,Reopen,2,D,"the leader card and the helper card again, with the Huerta chart row"
 24,25,s03-X24b,Reopen,2,D,"the leader card and the helper card again, with the Huerta chart row"
 24,25,s03-X24,Reopen,2,E,"sort six questions into asks what someone did and asks what we like, with new cards"
@@ -73,8 +74,8 @@ from_day,to_day,what,where,minutes,error,note
 28,29,s03-X28,Reopen,2,H,"match a claim to an action card that supports it, from a new case"
 28,29,s03-X28b,Reopen,2,H,"match a claim to an action card that supports it, from a new case"
 28,29,day 28 pairs,Reopen,2,M,pairs answer three questions with a word from the question
-29,31,s03-X29,Return,2,I,"add a closing to a covered, unfinished piece"
-29,31,s03-X29,Return,2,P,cover the model and try a new action record
+29,31,s03-X29b,Return,2,I,"add a closing to a covered, unfinished piece"
+29,31,s03-X29b,Return,2,P,cover the model and try a new action record
 29,31,"written piece, day 29",Return,1,,"one line of written feedback returned on each day 29 piece, with one improvement named"
 30,31,s03-E1,Reteach,1,A,group one: lay the leader card inside the ring and name a shared task
 30,31,s03-E1 s03-E2,Reteach,1,F,group one: match a role card to the action it does
@@ -139,9 +140,9 @@ from_day,to_day,what,where,minutes,error,note
 48,49,s05-X48,Return,0,L,small group in supported work; a city and a building in it
 48,49,s05-X48b,Return,0,L,small group in supported work; a city and a building in it
 49,50,s05-X49,Return,3,F,a map clue card joined to a record card
-49,50,s05-X49,Return,0,H,small group in supported work; the oral summary beside the schematic
+49,50,s05-X49b,Return,0,H,small group in supported work; the oral summary beside the schematic
 49,50,s05-X49,Return,0,K,"small group in supported work; a clue first, then the reason"
-49,50,s05-X49,Return,0,M,small group in supported work; the nations' names and their own pages
+49,50,"talk, day 49",Return,0,M,small group in supported work; the nations' names and their own pages
 50,51,s05-X50,Reopen,3,Q,nested outline cards; the state card on the country card
 50,51,s05-X50,Reopen,1,D,a continent is a very large land area; our country is on one
 50,51,s05-X50,Reopen,1,E,"picture cards for river, lake and ocean"
@@ -199,8 +200,8 @@ from_day,to_day,what,where,minutes,error,note
 75,76,s07-X75,Warm-up,3,G,sort what a person has and what a person does; error B: match a quality card to a detail card
 76,77,s07-X76,Warm-up,4,L,two then-and-now pictures and a row for what stayed
 76,77,s07-X76b,Warm-up,4,L,two then-and-now pictures and a row for what stayed
-77,78,s07-X77,Warm-up,3,C,put the helper at each scale on the strip; errors O and J: relabel plan and record
-76,78,written task: day 76 judgment sheet with the teachers note,Return,5,B,each child changes or adds one thing; the revised sheet counts for item 2
+77,78,s07-X77,Warm-up,4,C,put the helper at each scale on the strip; errors O and J: relabel plan and record
+76,78,written task: day 76 judgment sheet with the teachers stamp,Return,5,B,each child changes or adds one thing; the revised sheet counts for item 2
 78,80,s07-X78,Return,3,E,lay the baseline beside the day 78 drawing; error K: ask for the date on each picture
 79,80,"marked packets, items 1 to 6",Return,2,,each child sees the packet with marks and a picture of the move for the part missed
 79,80,s07-E1 to s07-E6 by most-missed item,Reteach,10,,"groups by most-missed item; written moves A, N, F; B; L; O, J; H, P; B"

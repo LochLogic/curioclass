@@ -13,5 +13,3 @@ Four slips for each pair, one line on each, taken from the pages of The Mark in 
 - Amara finds a curved mark and wonders what it is.
 - Amara draws her stone and Dr. Lee writes a label.
 - Amara tells Ben what the mark is.
-
-Key: Beginning: the class arrives; Amara finds a mark and wonders. Ending: she draws and the label is written; she tells Ben. The arrow runs from "wonders what it is" to "tells Ben what the mark is".

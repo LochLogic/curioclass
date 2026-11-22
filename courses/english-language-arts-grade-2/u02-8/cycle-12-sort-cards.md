@@ -10,5 +10,3 @@ credit: ours
 Twelve cards, one word on each. On day 64 only the eight cards for nation, section, collection, mission, session, mansion, decision and explosion are put out. Pairs sort them under three headings by the ending: **-tion**, **-sion saying /shun/** and **-sion saying /zhun/**. Then each child spells two words and a sentence you say.
 
 nation, section, collection, direction, action, motion, mission, session, mansion, decision, explosion, vision
-
-Key: -tion: nation, section, collection, direction, action, motion. -sion saying /shun/: mission, session, mansion. -sion saying /zhun/: decision, explosion, vision.

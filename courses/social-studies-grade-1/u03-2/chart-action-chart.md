@@ -20,7 +20,7 @@ One large sheet on butcher paper or a wall chart, with five columns of pictures 
 ## The four rows, one a day
 
 - **Day 22, Harriet Tubman.** Did: escaped in 1849, then went back about thirteen times to lead others. Others: her brothers, and helpers such as Jacob Jackson. Changed: more than seventy people reached freedom. Quality: courage.
-- **Day 23, Abraham Lincoln.** Did: as President, issued the proclamation on January 1, 1863. Others: many people worked for freedom. Changed: people held as slaves in the named states were free; slavery did not end everywhere that day. Quality: taking responsibility for a hard decision.
+- **Day 23, Abraham Lincoln.** Did: as President, issued the proclamation on January 1, 1863. Others: many people worked for freedom. Changed: people who were enslaved in the named states were free; slavery did not end everywhere that day. Quality: taking responsibility for a hard decision.
 - **Day 24, Dolores Huerta.** Did: from 1962, helped organize farm workers. Others: other organizers and many workers, including Filipino farm workers. Changed: union agreements brought better pay and safer work. Quality: organizing.
 - **Day 25, Wilma Mankiller.** Did: Principal Chief 1985 to 1995; young citizens and the Chief worked together in 1989. Others: young citizens of the Cherokee Nation. Changed: a youth council began; three rural health centers opened. Quality: working together with her nation.
 

@@ -10,5 +10,3 @@ credit: ours
 Twelve cards, one word on each. Pairs sort them under two headings: **oi / oy** and **ou / ow**. Then each child spells two words and a sentence you say, and checks one spelling in the beginning dictionary.
 
 boil, oil, point, boy, toy, Roy, out, loud, house, cow, owl, how
-
-Key: oi / oy: boil, oil, point, boy, toy, Roy. ou / ow: out, loud, house, cow, owl, how.

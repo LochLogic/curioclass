@@ -11,8 +11,8 @@ Read aloud by the teacher once after the old paper is shown, then again with the
 
 ## The four sentences
 
-1. Abraham Lincoln was President of the United States from 1861 to 1865.
-2. On January 1, 1863, during a war inside the country, he issued a paper called the Emancipation Proclamation, which said that people held as slaves in the states fighting against the country were free.
+1. Abraham Lincoln was President of the United States.
+2. On January 1, 1863, during a war inside the country, he issued a paper called the Emancipation Proclamation, which said that people who were enslaved, owned and forced to work, in the states fighting against the country were free.
 3. The paper did not free everyone, and it did not end slavery everywhere; it was a step on the road to ending slavery.
 4. Many other people worked for freedom too.
 
@@ -31,4 +31,4 @@ What kind of source is the old paper? (A federal document.) Who made it? (The go
 
 ## For the teacher
 
-See page-proclamation-paragraph.md for the one sentence the teacher reads aloud from the old paper and the plain words that explain it. The proclamation is an adult legal text; children do not decode it. Error K: it did not free everyone and it did not end slavery by itself. The page calls it a milestone along the road to the end of slavery; our telling does not name the later action that ended slavery, and the class does not either. "Many other people worked for freedom too" rests on the Tubman page and its helpers: it is not a claim about any one group. Say plainly, once, that slavery was wrong. The 1861 to 1865 card goes on the leader strip.
+See page-proclamation-paragraph.md for the one sentence the teacher reads aloud from the old paper and the plain words that explain it. The proclamation is an adult legal text; children do not decode it. Error K: it did not free everyone and it did not end slavery by itself. The page calls it a milestone along the road to the end of slavery; our telling does not name the later action that ended slavery, and the class does not either. "Many other people worked for freedom too" rests on the Tubman page and its helpers: it is not a claim about any one group. Say plainly, once, that slavery was wrong. The 1863 card goes on the leader strip.

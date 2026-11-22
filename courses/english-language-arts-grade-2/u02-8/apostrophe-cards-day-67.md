@@ -12,5 +12,3 @@ Eight cards and four printed sentences for each pair. Pairs sort the cards under
 Cards: can't, isn't, it's, we're, Kofi's bag, the guide's brush, Mari's tray, the teacher's pen.
 
 Sentences, printed with the missing apostrophe: "That isnt my cup." "The dogs bone is under the chair." "Were ready to go." "Is this Levs hat?"
-
-Key: gone letters: can't, isn't, it's, we're. Belongs to someone: Kofi's bag, the guide's brush, Mari's tray, the teacher's pen. Ringed words: isnt (gone letters), dogs (belongs), Were (gone letters), Levs (belongs).

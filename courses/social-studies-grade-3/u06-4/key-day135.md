@@ -20,8 +20,8 @@ Teacher only. Keep apart from packet-day135.md. Score each item once: 2 when eve
 - Q2e: some women and free Black men who met the property rules voted until 1807. Not "no woman ever voted" (J).
 - Q3: courage or perseverance: asking officials to correct an injustice. Not "they were angry" (S).
 - Q3b: equality, or liberty for everyone. Not "they felt sad" (S).
-- Q4: both split government into lawmakers, an executive and courts. Not "both let one person make every law" (K).
-- Q4b: President versus Governor, or country versus state. Not "the Declaration made both plans" (P).
+- Q4: the President (Article II, carries out the laws). Not "Congress, because it makes laws" (x).
+- Q4b: President versus Governor, one House versus a Congress, or country versus state. Not "the Declaration made both plans" (P).
 - Q5: consent means people have a voice or a say in how they are governed. Not "a kind leader" (Q) or "everyone likes every law" (I).
 - Teacher background for packet C: the Eastern Band of Cherokee Indians is a sovereign nation today with its own laws, elections and government (ebci.gov, U6I); use it for a fresh written move, not on the sheet.
 - Q5b: a detail from Packet A, such as the Houses being ended. Not "the Declaration is famous" (G).

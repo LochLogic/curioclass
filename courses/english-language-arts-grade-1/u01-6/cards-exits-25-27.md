@@ -19,11 +19,11 @@ Read aloud: "A deep box holds our counters. A flat sheet lets them slide off." S
 
 ## Day 26 card (s01-X26, W.1.2)
 
-Read aloud: "Our paper bin holds our books. Its sides are tall, so a hand cannot reach in." Ask: "What would you change on the bin so a hand can take a book out?" Children draw or point to the change.
+Read aloud: "Our paper bin holds our books. Its sides are tall, so a hand cannot reach in." A partner points at the bin and asks, "Which part stops my hand?" Ask: "Answer your partner: change that part so a hand can take a book out. What do you change?" Children draw or point to the change.
 
 **Picture:** a paper bin with tall sides, books inside, and a hand above it.
 
-**Right answer:** A change that opens or lowers the front or top so a hand can reach in.
+**Right answer:** A change to the sides that lets a hand reach in: lower the sides, or open the front or top.
 
 ## Day 27 card (s01-X27, RI.1.10)
 

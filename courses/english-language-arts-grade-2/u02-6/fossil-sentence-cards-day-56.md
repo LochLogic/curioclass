@@ -17,5 +17,3 @@ Eight cards, each with a sentence that has a blank and two printed words. Pairs 
 6. He wrote his name ____. (neat, neatly)
 7. The ____ dog sat by the door. (sad, sadly)
 8. The girls waited ____. (patient, patiently)
-
-Key: 1 quiet (thing), 2 softly (action), 3 proud (thing), 4 carefully (action), 5 smooth (thing), 6 neatly (action), 7 sad (thing), 8 patiently (action).

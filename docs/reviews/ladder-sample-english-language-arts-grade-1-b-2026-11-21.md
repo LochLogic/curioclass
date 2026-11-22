@@ -73,3 +73,19 @@ What the grade gap caused: kindergarten ideas (revise after a partner question, 
 | all | 10 | 27 | 3 |
 
 Note: several findings were drafted from detailed reading and a compacted summary of it; exact day sentences were not re-quoted. A fixer should reopen each cited line before editing.
+
+## Fixes applied (2026-11-22)
+
+- d049 safety FIRM: applied (sensitivity read done 2026-11-22, status lines updated). d049 source FIRM: applied (Wikipedia out, library page checked, url filled in sources.csv).
+- d124 X124d rule4 FIRM: applied. New Mo-waits-for-the-bus card; items, wrongs, day updated.
+- d124 count FIRM: applied (fly four times on page 8).
+- d124 picture gives its answer FIRM: rejected. The Both and But picture is a teacher model and practice sort; the exit is X124a to d on separate cards.
+- d026 exit FIRM: applied. The exit now gives a partner's question and asks for the change; X26 key now accepts lowering the sides; card, items and at-home updated.
+- d092 repair FIRM: partly. The day compares only the paragraph Feathers for Water, where only D says down keeps the duck warm; added that pairs hold only the paragraph and to say "Find the page that says it".
+- d153 exit rule4 FIRM: rejected. The exit uses a new case (puzzles); the end items use Remy and Ruth; the alike and different form is the Application day's own.
+- d153 A66 FIRM: applied. Stem reworded to "what happens in each story after the child waits in line", removing "it".
+- d049 error D repair SOFT: split into two asks. Left: all other SOFT lines (26 letters, handbacks, retry card; 49 exit, key, timing, handbacks; 92 stems, plan words, ladder wording; 124 print list, overload, ladder, timing; 153 all).
+
+Key-line results: no key line sits on a child-held piece in this course's listed files; all are teacher-read cards, left.
+
+Gate counts: plan.py 41 FAIL before, 41 after; lesson.py 0 before, 0 after.

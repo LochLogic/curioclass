@@ -91,3 +91,26 @@ Rows in the findings table: 8 FIRM, 24 SOFT, 2 TEMPLATE.
 | 145 | 2 | 3 | 0 |
 | Shared (days 13, 43, 145 word count; days 69 and 70 check template) | 0 | 0 | 2 |
 | All | 8 | 24 | 2 |
+
+## Fixes applied (2026-11-22)
+
+FIRM findings
+- Day 145, central cases unwritten: applied. Wrote two Boston Local Record cards (Phillis Wheatley, U7Q, and Apollos Rivoire, U7R, both National Park Service pages opened) and a Boston Labor History Card (Paul Revere House U5X and City of Boston U7P, both re-read) in cards-day145.md; added U7Q and U7R to sources.csv; updated P145d, P145e (now "a move that was not taken by force", because the NPS page does not say why Rivoire came), materials rows and d145 before class and credit.
+- Day 145, exit gives the answer: applied. Lena's card now has no label, new ask 1 "Which card shows a move that was chosen?" and ask 2 "What on that card tells you?" (key Joel's); Ben's table row changed; items, wrongs, key and exit card updated.
+- Day 13, outlines card contradicts day 13 (rule 4): applied. cards-outlines-and-banks.md now gives a plain bank for both days; day 12 paragraph uses New England and Massachusetts; plan u01-4.md shared-shape line matches.
+- Day 13, exit does not measure the goal: applied (option 1). Goal changed to "Practice the region's states, then use the key on another region and leave out words that are not states" in days.csv, s01.md, u01-4.md and skeletons.
+- Day 70, Marking timing: applied. "At most three ... 45 seconds each" on days 70 and 69.
+- Day 43, third ask has no text or key: applied. Ask 3 printed on the exit card, in the student page Exit box and keyed in key-exits-41-43.md.
+- Day 43, E43c recalls a taught line: applied. New made-up nation case (Council makes laws, Chief puts them to work); item, wrong, key updated.
+- Day 108, "where" key: applied. Column now "who taught" (parents by the 1642 law, and a school, the first being Boston Latin School); "most children" cut from the day, card and U5X row; one sentence added that children could learn letters at home or in a school (reasonable from the 1642 parent duty, not a page quote).
+
+SOFT findings
+- Applied: day 108 hear a rotating four; day 108 summary wording; day 145 population card source moved to a teacher line; day 13 repair for S and F; day 43 none; day 70 none; US spelling "neighborhood" on cards edited.
+- Left: all other soft rows (day 145 retrieval review grades, E145b key tiers; day 43 E43 yes or no, E43b case, exit minutes, table row labels, P43b stem, U2O note, AD example, day 42 key; day 108 E108 caption, P108a split, tags in print, plan mixes Plymouth and Boston; day 70 E5, E4 keys, E5c, goal wording, claim wording; day 13 West card, plan default, sources row for the five regions, UK spellings; template rows).
+
+Key lines
+- Nine child-printing cards had keys; the key-line list and result are in set B's section. The days already name the key pieces in Before class.
+
+Gates (filtered, this course): plan.py check 48 FAIL before, 48 after (no new). lesson.py check 40 before, 40 after; no new failure.
+
+Lead correction: day 43 ask 3 now uses a made-up town (Council makes rules, Mayor puts them to work), not a made-up nation; stem, key, wrongs, card and Exit box line updated. Gates re-run: plan 48/48, lesson 40/40.

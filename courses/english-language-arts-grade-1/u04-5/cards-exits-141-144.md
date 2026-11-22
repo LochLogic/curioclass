@@ -78,9 +78,8 @@ This card is invented for practice. The same card stays in view; read it again i
 
 **Right answer:** "It is for carrying."
 
-## Day 144 page (s04-X144c, W.1.7)
+## Day 144 card (s04-X144c, RI.1.9)
 
-Heard in the rotation, not on a card. Show page 1 of *Volunteers Build Bluebird Boxes*. Say: "When do people build nest boxes for birds?" Hear the day's rotating six.
+This card is invented for practice. Read it aloud once: "A park has a feeder and a bath. The feeder holds seeds. The bath holds water." Say: "Say one thing the feeder and the bath both do." Hear the day's rotating six.
 
-**Right answer:** When there are not enough holes for birds to nest in.
-
+**Right answer:** Both help birds, or both give birds something they need.

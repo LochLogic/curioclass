@@ -17,4 +17,4 @@ Eight cards. Pairs lay each beginning card beside the ending card that finishes 
 1. Mira opens the door for the newest pupil and says welcome.
 2. Amara tells her friend what the mark in the stone is.
 
-Keep two spare cards blank. Key: 1 with 1 (Mira's story, chapters 1 and 8), 2 with 2 (*The Mark in the Stone*, pages 1 to 3 and page 11). Pairs say "The ending finishes the job the beginning started."
+Keep two spare cards blank.

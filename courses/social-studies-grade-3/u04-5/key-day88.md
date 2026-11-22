@@ -9,8 +9,8 @@ credit: ours
 
 Teacher only. Never given to children.
 
-- Q1: Pine Landing: along a river. Gull Bay: around a bay. Not "They are all alike" (J). Not "Both are gone" (K).
-- Q1b: A Chief Sachem and a Tribal Council. Not "The town runs it" (F).
+- Q1: Narragansett: Rhode Island. Menominee: Wisconsin. Not "They are all alike" (J). Not "Both are gone" (K).
+- Q1b: A Chief Sachem and a Tribal Council (the chief and the council is accepted). Not "The town runs it" (F).
 - Q2: Penobscot, Narragansett and Wampanoag; a specific Wampanoag tribal name is accepted. Not "Maine, Rhode Island and Massachusetts" (A). Not "Cherokee, Navajo and Maine" (S).
 - Q3: The shaded area around the bay. Not "The state border" (B).
 - Q3b: The square, the town hall. Not "All the shading around the bay" (T).
@@ -27,9 +27,9 @@ Teacher only. Never given to children.
 - Q7e: Secondary. Not "Primary, because it is online" (D).
 - Q7f: The tribe wrote it later, looking back; it was not made for the agreement. Not "Because it is long" (x).
 - Q8: A defensible claim about continuing ties to place, governing or contributions. Not "A and B prove my answer" (H).
-- Q8b: A detail from A, such as the Gull Bay town land lies around the bay. Not "The title of A" (H).
-- Q8c: A different detail from B, such as the tribe is led by a Chief Sachem and a Tribal Council today. Not "A second detail from A" (V).
-- Q9: A named group beyond the class, such as neighbours or families. Not "Only the teacher" (R).
+- Q8b: A detail from D, such as the treaty was made at the Falls of Wolf River in 1854, or the tribe made seven treaties. Not a detail about Record A. Not "The title of A" (H).
+- Q8c: A different detail from B, such as the tribe is led by a Chief Sachem and a Tribal Council today. Not "A second detail from D" (V).
+- Q9: A named group beyond the class, such as neighbors or families. Not "Only the teacher" (R).
 - Q9b: A reason, such as to know that nations live and work here today. Not "Only the teacher needs to know" (R).
 
 - Teacher note, Record D (not for children): background, not from the page: treaties between the United States and nations were often made under pressure. The passage prints only who made the agreement and where; it does not say the two sides were equal. Do not add a claim to the child page.

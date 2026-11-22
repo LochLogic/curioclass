@@ -14,4 +14,3 @@ Every card prints "invented for practice". The teacher says aloud that Ines, Tav
 **Poster.** Maker: a poster on the lamppost. How it knows: it copies Ines. "Fig Street Fence Day. The fence was painted blue on a Saturday."
 **Questions of each card:** who made it, when, where.
 **Pip says E:** "Two sheets say it, so it is true twice." The teacher says beside it: "The poster copied Ines, so it is one teller. Tavo was there too: a second teller."
-**Key (teacher sheet only):** Ines and Tavo each saw it; the poster is a copy.

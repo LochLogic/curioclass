@@ -10,5 +10,3 @@ credit: ours
 Twelve cards, one word on each. Pairs sort them under two headings: **doubled letter** and **not doubled**. Then each child spells two words and a sentence you say, and checks one spelling in the beginning dictionary.
 
 rubbing, stopped, bigger, running, sitting, dropping, hoping, riding, hiding, waving, smiling, poking
-
-Key: doubled: rubbing, stopped, bigger, running, sitting, dropping. Not doubled: hoping, riding, hiding, waving, smiling, poking.

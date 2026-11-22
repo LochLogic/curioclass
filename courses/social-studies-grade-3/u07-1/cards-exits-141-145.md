@@ -41,10 +41,10 @@ Ask 2: Cask Lake Note. Name one other thing that helped the town grow.
 
 ## Day 145: Lena and Joel Cards (made up, for practice)
 
-Lena's card: Lena was taken from her home by force. She was made to work and was not paid.
+Lena's card: Lena's family was made to leave their farm. Lena had to work for the farm's new owner. She was never paid, and she was not allowed to leave.
 
 Joel's card: Joel's family took a train to the city because a factory there was hiring.
 
-Ask 1: Lena and Joel Cards. Was Lena taken by force, or did she choose to come?
+Ask 1: Lena and Joel Cards. Which card shows a move that was chosen?
 
-Ask 2: Lena and Joel Cards. How do you know?
+Ask 2: Lena and Joel Cards. What on that card tells you?

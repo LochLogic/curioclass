@@ -123,6 +123,7 @@ s02-X47,Look under the subheading Shell Shapes.,,,E,a useful feature is ignored 
 s02-X47b,The caption.,,,E,the wrong feature is used for a key word
 s02-X47c,The subheading.,,,E,the wrong feature is used for a picture
 s02-X48,The author wants to sell pencils.,,,D,a purpose the card does not support
+s02-X48,Describe what.,,,D,a purpose the card does not support: it tells steps
 s02-X48b,Explain how.,,,D,a purpose the card does not support: there are no steps
 s02-X49,The glossary.,,,E,the glossary tells what a word means and does not say where to look
 s02-X49,"The bag icon in the menu, page 2.",,,E,the label route is taken for track facts
@@ -257,7 +258,6 @@ s03-X80b,Nectar.,,,C,the card does not say she carried nectar to the second flow
 s03-X81,Points to the arrow that goes into the first flower.,,,C,the arrow does not match the words of the card
 s03-X81b,The bee flies home.,,,C,the card does not say the bee goes home
 s03-X81b,Seeds fly.,,,A,seeds are named where the card names pollen
-s03-X82,Dictionary strip.,,,AB,"no strip is printed for this word, so no clue is named that fits"
 s03-X82,I just know it.,,,AB,no strategy is named
 s03-X82b,Uncurls means curls.,,,AL,the prefix un- is treated as if it meant nothing
 s03-X82c,Uncurls. Dusts. Flies. Brushes.,,,B,the steps are a list with no links
@@ -359,8 +359,8 @@ s03-A53,hawnt,,,AO,the draft is copied back unchanged
 s03-A53,Copies the spelling from a partner.,,,J,"the spelling is copied, not checked in the entry"
 s03-A54,Cub.,,,T,the vowel sound is misread
 s03-A55,Reads oak as ock.,,,T,the vowel team is read as a short vowel
-s03-A56,Reads head with a long e.,,,AM,an irregular word is read as if it were regular
-s03-A57,Reads friend like fried.,,,AM,an irregular word is read as if it were regular
+s03-A56,Reads some like home.,,,AM,an irregular word is read as if it were regular
+s03-A57,Reads done like bone.,,,AM,an irregular word is read as if it were regular
 s03-A58,Reads the same words with the same stops.,,,S,no word is corrected from its letters
 s03-A59,Names a word that was never misread.,,,S,no word was fixed from its letters
 s03-A59b,The picture told me the word.,,,S,the word is taken from the picture
@@ -465,9 +465,9 @@ s03-X110b,The slowly beetle came to the flower.,,,R,a word for the coming is put
 s03-X111,The second line.,,,Z,the choice leaves out what a stranger needs to be told
 s03-X111b,The other is bad English.,,,X,a home way of talking is ranked as inferior
 s03-X111b,Because it is first.,,,Z,no reason about the listener
-s03-X112,The garden view.,,,V,the drawing does not show what the story says
+s03-X112,The hedge view.,,,V,the drawing does not show what the story says
 s03-X112b,I like it.,,,E,a reason that is not about the story
-s03-X112b,It is a pretty sunset.,,,V,"the reason is about colour, not the story"
+s03-X112b,It is a pretty hedge.,,,V,"the reason is about looks, not the story"
 s03-X113,On its body.,,,O,a fragment
 s03-X113,It carries seeds.,,,A,a fact that contradicts the note
 s03-X114,Scratchy is when it is scratchy.,,,P,the word is repeated with no real situation

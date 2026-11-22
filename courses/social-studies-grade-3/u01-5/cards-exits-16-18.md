@@ -15,7 +15,7 @@ A paved strip beside a school becomes a planted rain garden. The town wanted it 
 
 ## Day 17: Garden Group Card
 
-Families in a made-up neighbourhood pass on seed-saving skills and share seeds each spring. The new garden beds are filled with these plants. Ask: what practice do the families share? How does that practice help explain the new garden beds?
+Families in a made-up neighborhood pass on seed-saving skills and share seeds each spring. The new garden beds are filled with these plants. Ask: what practice do the families share? How does that practice help explain the new garden beds?
 
 ## Day 18: Millpond Map Pair
 

@@ -78,3 +78,39 @@ Severity: FIRM = wrong content, wrong key, unsafe, cannot run in the minutes, or
 - Checked against a source row: the Vermont imprint (15A, provisional and in disagreement with the packet), the projection facts (10A and 10B, Wikipedia-based), the county profile (37B, search read), the Antin lines (70A, partial), the Choctaw treaty year (70G, confirmed on the NPS page by the status), and Rahaf (70D, same transcript as 67B).
 - Judged only: that Africa is about 14 times Greenland's area, that glassblowers use sand, that basket makers use reeds, that Choctaw people were removed under an 1830 treaty ratified later, and that Mary Antin wrote "We were wild with joy"; none was traced to a page I could read here.
 - No made-up Native nation: the one Native nation card is the real Choctaw Nation, in the present tense, no sacred content. Enslavement is written as "did not choose to come", with no worker or goods language. No company or brand names in child copy; credit lines name agencies and the public Learning for Justice program only.
+
+## Fixes applied (2026-11-22)
+
+Day 15
+- FIRM Vermont imprint: partly. "and Company" dropped from the packet transcript and E15; the transcript is now "J. H. Colton, New York, 1855". A person still has to read the imprint off the full image (day page says so); source 15A stays PROVISIONAL.
+- FIRM timing: partly. Independent tasks 22 minutes (Map X and Map Y 6, Vermont 4), Collect 3; plan and days.csv synced. The change of E9, E11, E12 to circle choices: left.
+- SOFT Collect list shortened and plan set to 40 seconds each: applied. SOFT key on the printed packet: applied (teacher page moved to key-assessment.md, named in Before class).
+- SOFT 10A and 10B Wikipedia trace, caption shape, E13/E14/E21, one card per six: left.
+
+Day 37
+- SOFT "wheat soil" now "wheat"; "if many circled" now "two or more of the six" (exit mention kept for the handback check): applied.
+- Other day 37 SOFT items (industry mark, hearing order, source 37B, timing): left.
+
+Day 55
+- FIRM card 3 credit: applied. Card 3 prints "Made by Curio Class, invented for practice" with no year; cards 1 and 2 keep 2026.
+- SOFT P55-2 now asks how many countries; X55b now says "The workshop needs advice." and asks for the source for that (items, plan synced): applied.
+- Other day 55 SOFT items (shape, fresh service, invented real-nation cards, timing, error K letter): left.
+
+Day 70
+- FIRM no paper surface for 8 asks: applied. New blank-answer-strip.md with the printed choices, named in the print line; the day and packet ask say circle; the 8 stems now say "Circle". Item path stays spoken because the gate allows only spoken on end items; the student page stays under the 150-word cap.
+- SOFT E17 answer no longer says Africans: applied (items and key). SOFT Present Card "decided" now "moved": applied.
+- Other day 70 SOFT items and TEMPLATE: left.
+
+Day 94
+- FIRM "was told" item spoken for 18 only: applied. sc2-E5 is now a circle-yes-or-no on paper for every child (student page, day text, handbacks note); the three groups of six are dropped, which also frees their minutes.
+- SOFT E1 also-accept line: applied. Other SOFT items: left.
+
+Key lines in pieces and gate counts: see the key-lines and gate sections at the end of set A's report (same run).
+
+### Source follow-up (2026-11-22)
+
+- 10A, 10B: re-cited to the USGS page (opened). It states Mercator areas and distances are grossly distorted near the poles and that shapes are distorted on every equal-area map. It names neither Greenland nor Africa and does not say equal-area keeps sizes in words, so the "about 14 times" number is cut and the Wikipedia notes removed (day 10 and the cut-outs card); the comparison rests on cut-outs and the globe.
+- 37B: state page opened (government); profile PDFs are image only, so what a profile lists is unconfirmed. Row says so; the teacher picks the line.
+- 82A: no second Japan page opened (refusals or lacking the facts); row now marked a duplicate of 82J1, which holds the check.
+- 15A: stays PROVISIONAL, imprint to be read off the full image by a person.
+- Gates after: plan 25 FAIL, lesson 8 FAIL (same as before).

@@ -1743,3 +1743,8 @@ Cory chose option 3 on 2026-11-20: a day job in grade N starts only when every l
 written, never only planned. Cory accepts the slower run in return for fewer tokens, fewer rewrites and better quality. It is built at
 L87, not during the run. The run's capstone pass supports it: 7 of 257 social studies claims and 29 of 302 ELA claims had drifted when
 checked against what the lower grade really wrote (docs/reviews/ladder-ss-ela-report-2026-11-19.md).
+
+## 2026-11-21: Fix the social studies and ELA sample findings now (q-ladder-ss-ela-1)
+
+Cory took the recommended pick: fix the 95 sampled FIRM faults now, as with science, with one fresh fix agent per course,
+plus the L99 must-fix items (the ELA grade 1 tale sensitivity read, the key-line pieces, the Maathai line). L87 follows.

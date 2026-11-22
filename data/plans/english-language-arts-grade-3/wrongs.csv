@@ -42,7 +42,7 @@ s01-A10,Someone has to squeeze the crow.,,,E,a nonliteral phrase read as a physi
 s01-A11,There is a crow.,,,D,a pictured object named with no contribution
 s01-A12,It went by train across the country.,,,A,a place the panel does not give
 s01-A13,It is about horses.,,,B,a topic given as the main idea
-s01-A14,The picture was made today.,,,V,a claim beyond the dated caption
+s01-A14,The picture shows the wagon pulled by a motor.,,,V,a claim the picture does not support
 s01-A15,It means crowded together.,,,F,the sentence clue is ignored
 s01-A16,It means packed again.,,,AC,the prefix is read with the wrong meaning
 s01-A17,A clean place with no dust.,,,AC,the word part is read with the wrong meaning
@@ -360,8 +360,8 @@ s02-A88,Clean water causes pollution.,,,Y,a cause reversed
 s02-A89,Both sentences are in time order.,,,Z,a connection named without checking content
 s02-A90,Both paragraphs are in time order.,,,Z,a connection named without checking content
 s02-A91,Only watches someone else type.,,,AD,watching counted as keyboarding
-s02-A92,Two man sit in the boat.,,,AE,an irregular plural kept in singular form
-s02-A93,Two womans shop at the market.,,,AE,an irregular plural given a regular ending
+s02-A92,Two mouses sit by the pond.,,,AE,an irregular plural given a regular ending
+s02-A93,Two gooses swim on the pond.,,,AE,an irregular plural given a regular ending
 s02-A94,reed,,,AF,a concrete object called an abstract noun
 s02-A95,The frog drinked from the stream.,,,L,an irregular verb given a regular ending
 s02-A96,The frog watch the water yesterday.,,,M,a tense that conflicts with the time
@@ -371,7 +371,7 @@ s02-A99,It swims more slowlier.,,,N,an invalid comparison form
 s02-A100,It dives because my bag is blue.,,,AB,because joins unrelated ideas
 s02-A101,Because the beetle flew.,,,AG,a dependent clause used as a sentence
 s02-A102,The beetle was runing beside the sparkling pond.,,,AH,a suffix added without the taught spelling change
-s02-A103,traper,,,AH,a suffix added without the taught spelling change
+s02-A103,bakeer,,,AH,a suffix added without the taught spelling change
 s02-A104,"dragonfy, checked by guessing again.",,,G,a reference answer guessed
 s02-A105,The government is a drink made of milk and water.,,,C,nonliteral language read as a physical thing
 s02-A106,The frogs went rotten like food.,,,C,nonliteral language read as a physical event
@@ -390,7 +390,7 @@ s02-A118,Wait said Frog.,,,U,speech with no speech marks or comma
 s02-X57,It has webbed back feet.,,,X,a body fact named as the home
 s02-X57,It dives under the water.,,,X,a survival fact named as the home
 s02-X57b,tall grass at a pond's edge,,,A,a note with no source label
-s02-X57b,"webbed back feet; marsh frog book, p. 21",,,X,a body fact written as the home
+s02-X57b,"webbed back feet; Tullo frog book, p. 21",,,X,a body fact written as the home
 s02-X58,A kind of frog.,,,D,the meaning does not use the sentence clue
 s02-X58b,The back of the frog.,,,D,the meaning contradicts the clue
 s02-X59,The pads let it fly away.,,,A,a fact the strip does not give
@@ -441,11 +441,9 @@ s02-X73c,It sounds better.,,,S,does not explain the change
 s02-X74,I will look through the pages.,,,V,no use of text features
 s02-X74b,a note with no label,,,A,no source support shown
 s02-X74c,It is the same.,,,AC,recopying treated as revision
-s02-X75,Both of the frog's foots are green.,,,AE,an irregular plural kept with a regular ending
-s02-X75,Both of the frog's feat are green.,,,G,a guess with no dictionary entry
+s02-X75,The frog has sharp tooths.,,,AE,an irregular plural kept with a regular ending
+s02-X75,The frog has sharp teath.,,,G,a guess with no dictionary entry
 s02-X75b,I just knew it.,,,G,no entry checked
-s02-X75c,I watched my partner type.,,,AD,watching counts as typing
-s02-X75d,Yes.,,,AO,a bare answer with no elaboration
 s02-X76,1 sourced; 2 sourced,,,A,a made-up cause called a source fact
 s02-X76b,The picture of a fish.,,,K,a display that does not match
 s02-X77,The frog is big.,,,A,a claim with no source
@@ -889,9 +887,9 @@ s03-P97-16,The message is that Ada draws.,,,G,an event given as the message
 s03-P97-18,The message is that Ada asks readers.,,,G,an event given as the message
 s03-P96-19,Both children ask a teacher for help.,,,A,a person the card does not give
 s03-P98-1,"o-pi-nion, ex-cit-ing, fam-i-ly",,,AI,opinion split so a chunk cannot be blended
-s03-P98-2,"beleive, bizzy",,,AG,a studied word spelled by an unrelated sound pattern
+s03-P98-2,beleive,,,AG,a studied word spelled by an unrelated sound pattern
 s03-P98-4,reads except for excited,,,AA,a word guessed from its first letters
-s03-P98-5,"jokeing, droped, hurryed",,,AH,the suffix added with no change to the base
+s03-P98-5,"jokeing, droped",,,AH,the suffix added with no change to the base
 s03-P98-7,Jo spilled the paint.,,,G,an event picked as what the story teaches
 s03-P98-8,I like apples because I like apples.,,,I,the opinion repeated picked as the stronger reason
 s03-P98-9,"Since it is a good book, I recommend it.",,,I,the opinion repeated as its reason
@@ -1121,8 +1119,8 @@ s04-X125,"Card A, because the children are tired and thirsty.",,,A,a fact not on
 s04-X126,Only B has a bucket.,,,C,"a detail given as the shared point, no shared point"
 s04-X126,Cafes waste water.,,,A,a claim the card does not state
 s04-X126,A has a hose and B has a bucket.,,,F,"differences only, no shared point"
-s04-X127,A float rises as the trough fills.,,,B,one step as the whole idea
-s04-X127,"The farm fills a trough, a float rises, the water shuts off.",,,C,the steps listed with no joining idea
+s04-X127,A float rises as the trough fills.,,,B,one step as the whole idea (any single sentence of the card)
+s04-X127,"The farm fills a trough, a float rises, the valve closes.",,,C,the steps listed with no joining idea
 s04-X128,"Access, because the note names a creek.",,,AQ,filed under the wrong category
 s04-X128,"Pollution, because the fish died.",,,A,a fact the note does not state
 s04-X129,The city is big and has many homes.,,,C,restates the first sentence with no link
@@ -1441,7 +1439,7 @@ s04-P138-2,"equipement, helpfull",,,x,the suffix spelled wrongly
 s04-P138-3,"planed, hopeed, tryed",,,x,the ending rule not applied
 s04-P138-4,a title and no date,,,x,a part of the line missing
 s04-P138-8,stops,,,x,the opposite meaning
-s04-P138-9,Lena,,,x,the character's view given to the narrator
+s04-P138-9,I will skip watering the beans today.,,,x,the character's quoted line given to the narrator
 s04-P138-14,all four ticked on a plan with one reason,,,x,a look-for ticked that the plan does not meet
 s04-P138-16,the end of a plan,,,x,part of the meaning circled
 s04-P139-1,"thot, strait",,,x,words spelled by sound

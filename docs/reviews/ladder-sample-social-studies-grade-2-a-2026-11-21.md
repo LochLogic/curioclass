@@ -65,3 +65,55 @@ Sources opened: 58A (nps.gov Anna page: matches the card, Yugoslavia, 1920, age 
 | 58 | 1 | 3 | 0 |
 | 82 | 2 | 2 | 0 |
 | all | 7 | 20 | 2 |
+
+## Fixes applied (2026-11-22)
+
+Day 44
+- FIRM s03-E16 not in Item 5: applied. E16 added to the Item 5 line, response row added, Item 5 now 6 minutes (Item 7 4, Collect 3; days.csv check_min updated; total stays 35).
+- FIRM response page rows for E1, E8, E16: applied (three rows added in order).
+- FIRM partner minute contradicts "answer alone": applied. Partner talk cut in the day; "Say it to your partner first" deleted from blank-response-page.md and blank-frame-strip-claim.md.
+- FIRM thirds unexplained: applied by dropping the thirds; a scribe writes only for a child who asks (day, materials, Skip line, packet).
+- SOFT read-aloud ask block in the packet: applied (block deleted).
+- SOFT captions give answers (E2, E12, E17, E16, E23): applied (captions reworded to describe the scene).
+- SOFT E26 stem: applied ("circle one thing that is equipment").
+- SOFT coal case reused (E15, E16): left. Natural gas is taught nowhere in grade 2, so a swap would test an untaught fact.
+- SOFT E5/E29 overlap, E14 anchor, E9 to E11 recorded apart, timing of Items 3 and 8: left (timing eased by the freed partner minute and the extra minutes).
+- TEMPLATE items: left.
+
+Day 58
+- FIRM X58b heard before X58 marked: applied. The six mark X58 first, then hear X58b; X58b reworded so it no longer names the answer; X58 options now work, safe, free (taught words; only work is on the card); items, wrongs, exit card, key and plan synced.
+- SOFT P58-3 stem shortened: applied. SOFT hook and redo minutes, Sela shape: left.
+
+Day 25
+- SOFT "harbour": applied (day, card, X25h item and wrong; other days' files keep it until next edited).
+- SOFT repair routing: applied (whole class gets the part more children missed; the other goes to a group of at most 6).
+- SOFT written line, physical change on the 2025 card, stall letter, grade 1 "cultural" link: left (ledger skill wording is for the lead).
+
+Day 1
+- SOFT stray "1" after "read the board once": applied. Other day 1 SOFT items: left.
+
+Day 82
+- FIRM X82 any picture passes: applied. X82 is now a two-question choice (What do people eat? or Is my shirt red?), a case not used on day 83. X82b broadened to how people live. Day, exit card, key, items, wrongs and the 7.1 plan synced.
+- FIRM card contradiction: applied (exit card holds the questions; First look is 2 minutes finding the country on the locator map; Mark 1 minute).
+- SOFT stale weak-source notes: applied (hook card and menu card now point to 82J1 and 10E). Source row 82A still says search read; I could not read the Japan PDF, so left as is.
+- SOFT Oceania wording, packets note, P82-1 two asks: applied. Pronunciation check: left.
+
+## Key lines in pieces (both reports)
+
+Moved to a teacher key piece: u06-2/cards-ines-tavo.md and u06-2/cards-strip-events-day-76.md (key lines moved to key-exits-76-78.md, already named in day 76 Before class); u01-4/packet-assessment.md teacher page moved to new key-assessment.md, named in day 15 Before class.
+Left, teacher-only: u01-2/transcripts-old-maps.md (teacher read-aloud transcript, not in the print lists of days 6 and 8); u04-2/cards-trade-stories-a.md key (teacher card read aloud).
+Left, not an answer key: the 16 u07-1/packet-*.md lines "KEY (print this box)" are the map legend that children need.
+
+## Gate counts (filtered to this course)
+
+Before: plan.py check 25 FAIL (all "section not in data/units.csv"), lesson.py check 8 FAIL (warm-up names no id, known template). After: 25 and 8. The unfiltered commands crash on another course's mid-edit CSV, so I ran plan.py check social-studies-grade-2 and lesson.py's check through a filter wrapper.
+
+Ledger entries for the lead: day 25 skill "name a physical and a cultural change on a street" does not match the cards (all changes cultural); day 82 X82 and X82b now check choosing a question that helps the big question and a hope about how people live.
+
+### Source follow-up (2026-11-22)
+
+- 10A, 10B: re-cited to the USGS page (opened). It states Mercator areas and distances are grossly distorted near the poles and that shapes are distorted on every equal-area map. It names neither Greenland nor Africa and does not say equal-area keeps sizes in words, so the "about 14 times" number is cut and the Wikipedia notes removed (day 10 and the cut-outs card); the comparison rests on cut-outs and the globe.
+- 37B: state page opened (government); profile PDFs are image only, so what a profile lists is unconfirmed. Row says so; the teacher picks the line.
+- 82A: no second Japan page opened (refusals or lacking the facts); row now marked a duplicate of 82J1, which holds the check.
+- 15A: stays PROVISIONAL, imprint to be read off the full image by a person.
+- Gates after: plan 25 FAIL, lesson 8 FAIL (same as before).

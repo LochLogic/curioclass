@@ -4,8 +4,10 @@ s01-R2,Because the club said.,,,B,a command with no reason; a place to model a r
 s01-R3,The messenger.,,,H,a title with no action; a place to model what the job does
 s01-X1,Walks are fun.,,,A,"a statement, not a question"
 s01-X1,We walk.,,,A,"a statement, not a question"
-s01-X2,The hallway.,,,F,a place name with no link to before
-s01-X2,The wall.,,,F,a place name with no link to before
+s01-X2,Shows the geography card.,,,F,a place word in the question taken for the subject
+s01-X2,Shows the history card.,,,F,a subject chosen from a word with no idea behind it
+s01-X2b,The hallway.,,,F,a place name with no link to before
+s01-X2b,The wall.,,,F,a place name with no link to before
 s01-X3,Matching shirts make the group.,,,D,looking alike is taken for belonging
 s01-X3,They all look the same.,,,D,looking alike is taken for belonging
 s01-X4,Because a grown-up says.,,,B,a command with no purpose
@@ -61,8 +63,7 @@ s03-X21,Was the clock pretty?,,,E,a liking question in place of what the leader 
 s03-X21,Do you like the clock?,,,E,"a preference, not an action"
 s03-X22,The keeper alone helped the boats.,,,D,the neighbors left out
 s03-X22,He is a good leader because everyone knows his name.,,,B,being known taken for good leadership
-s03-X23,The leader alone opened the school.,,,D,the builders and families left out
-s03-X23,Did the builders like the school?,,,E,a liking question in place of what they did
+s03-X23,Circles opened all three pools.,,,K,a paper that opened one thing taken to have opened everything
 s03-X24,The leader alone asked for the change.,,,D,the neighbors left out
 s03-X24,What color was the stair?,,,E,a detail that asks nothing about what the neighbors did
 s03-X25,The leader choosing alone shows listening.,,,D,the leader assumed to do all the deciding
@@ -74,8 +75,8 @@ s03-X27,"First they fixed it, then they noticed the broken leg.",,,C,events out 
 s03-X27,"The bench was green, so they fixed it.",,,J,an unrelated detail told as a step
 s03-X28,She is a good leader.,,,H,the claim repeated as its own reason
 s03-X28,She listens because she listens.,,,H,the claim repeated as its own reason
-s03-X29,Asked members.,,,I,a reason with no closing
-s03-X29,This matters because brave leaders help others reach safety.,,,P,the covered model's closing copied
+s03-X29b,Gave each member a turn.,,,I,a reason with no closing
+s03-X29b,This matters because brave leaders help others reach safety.,,,P,the covered model's closing copied
 s03-X29,Is famous.,,,B,fame taken for evidence
 s03-X31a,"First she checked it, then she heard the worry.",,,C,events out of order
 s03-X31a,"The member wore a red coat, so she changed the route.",,,J,an unrelated detail told as a step
@@ -162,10 +163,9 @@ s05-X47,"Token on the shed to the right of the well, because the page right feel
 s05-X47,"The gate is east of the well, it is to the right.",,,C,a direction taken from the page right
 s05-X48,"Portland, because it is bigger.",,,G,the largest city taken to be the capital
 s05-X48,"Salem, because it has the government building.",,,L,"a capital taken to be a building, not a city"
-s05-X49,"The map shows a river, so shops grew.",,,F,a map clue taken alone as proof of why a place grew
-s05-X49,Nobody was here before the shops.,,,H,a silent record taken to mean an empty place
-s05-X49,Shops grew there because people like shops.,,,K,an opinion in place of a clue
-s05-X49,The people who lived here before are all gone now.,,,M,earlier people taken to have disappeared
+s05-X49,"The map shows a lake, so a mill grew.",,,F,a map clue taken alone as proof of why a place grew
+s05-X49b,Places the token on the record tells who lived here before.,,,H,a past supplied where the record is silent
+s05-X49,Mills grew there because people like bread.,,,K,an opinion in place of a clue
 s05-X50,Circles the whole country when asked for the state.,,,Q,a state taken to be the country
 s05-X50,South America is a country.,,,D,a continent taken to be a country
 s05-X50,The blue part named Indian is a lake.,,,E,an ocean taken for a lake
@@ -230,9 +230,9 @@ s06-X57,That is how it is when it rains.,,,B,weather taken for the cause of a cu
 s06-X58,The snow makes them speak Japanese.,,,B,weather taken as the cause of a language
 s06-X58,The rain is why they eat what they eat.,,,B,weather taken as the cause of a custom
 s06-X58,Swaps the two tokens.,,,,"a swapped pair: read the key again, no letter"
-s06-X59,Circles the same cake.,,,C,sameness of celebration taken for what is shared
-s06-X59,Circles the same party hats.,,,C,sameness of celebration taken for what is shared
-s06-X59,"Yes, they must celebrate alike to be one town.",,,C,belonging taken to need sameness
+s06-X59,Circles the same picnic.,,,C,sameness of celebration taken for what is shared
+s06-X59,Circles the same song.,,,C,sameness of celebration taken for what is shared
+s06-X59b,They all have the same picnic.,,,C,sameness of celebration taken for what is shared
 s06-X60,Circles a people only in old pictures.,,,F,a Native nation taken to exist only in the past
 s06-X60,Circles a nation whose people all believe the same.,,,L,belief read from a group name
 s06-X60,Native people lived long ago and are gone.,,,F,a Native nation taken to exist only in the past
@@ -263,10 +263,9 @@ s06-X66,Circles the same clothes.,,,C,sameness taken for what is shared
 s06-X66,The festivals show they are united too.,,,M,one detail taken to show both sides
 s06-X66,I like the picture.,,,G,a preference taken for evidence
 s06-X68,Circles a decoration.,,,D,a symbol taken for decoration
-s06-X68,Circles the courthouse.,,,D,a symbol taken for the building it stands beside
-s06-X68,They all greet the same.,,,C,belonging taken to need sameness
-s06-X68,The courthouse shows they are different.,,,M,one detail taken to show both sides
-s06-X68,I like the flag.,,,G,a preference taken for evidence
+s06-X68,Circles the river.,,,D,a symbol taken for the place it stands beside
+s06-X68b,They all greet the same.,,,C,belonging taken to need sameness
+s06-X68b,I like the bridge.,,,G,a preference taken for evidence
 s06-E1,Everyone in Japan lives in snow.,,,A,one picture taken to show a whole country
 s06-E1,Both signs are in the same language.,,,,two signs read as one: look at the writing again
 s06-E2,B children have no lunch.,,,A,a gap in one picture taken for a fact about everyone
@@ -321,9 +320,7 @@ s07-X76,A helper must be famous.,,,G,fame taken to decide who is good
 s07-X76,Places the posts painted card first.,,,,order reversed: long ago comes before now
 s07-X77,People far away cannot help themselves.,,,C,people elsewhere taken as helpless
 s07-X77,Places all three cards on near.,,,O,all problems taken as ours alone
-s07-X78,Circles every pencil is back for good.,,,E,one action taken to solve everything
-s07-X78,Circles one tidy picture.,,,K,a single picture taken to show lasting change
-s07-X78,They are good because they did it.,,,B,a judgment with no detail
+s07-X78,Circles the sign made the chalk come back.,,,E,the action necessarily solved the problem
 s07-X80,It is good because they should.,,,B,a judgment with no reason from the record
 s07-X80,They always kept the shelf in the garage and nothing changed.,,,L,efforts taken never to change
 s07-X80,Places the shed picture first.,,,,order reversed: the hand cart came first

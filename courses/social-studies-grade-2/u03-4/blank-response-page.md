@@ -13,16 +13,19 @@ Invented for practice. Write a few words or draw. A scribe may write what you sa
 
 | Card | My answer |
 |---|---|
+| Inlet Map: why people settled by this bay | ______________________ |
 | Inlet Map: the water is low at noon; one way a crew could adapt | ______________________ |
 | Inlet Map: what the pier changed for the boats | ______________________ |
 | Inlet Map: what the pier changed for the marsh | ______________________ |
 | Inlet Map: circle one | adapt   change the land   both |
 | Community B: the farm gets from far away | ______________________ |
 | Community B: the city gets from nearby | ______________________ |
+| Community B: how the city uses land, not as the farm does | ______________________ |
 | Work Card: circle one | trees   clay   wool |
 | Work Card: a job in boatbuilding | ______________________ |
 | Work Card: a job near the forest that is not building boats | ______________________ |
 | Work Card: circle one | pond fish   coal |
+| Work Card: why the one you circled can or cannot be made again | ______________________ |
 | Work Card and Inlet Map: how the forest connects to boatbuilding | ______________________ |
 | Inlet Map: how the sheltered bay connects to boatbuilding | ______________________ |
 | Connections Map: where the blankets were made | ______________________ |
@@ -35,4 +38,4 @@ I think ______________________ because ______________________.
 
 The ______________________ shows ______________________, made by ______________________.
 
-Say it to your partner first. Your teacher may write the words you say. Spelling is never judged.
+Your teacher may write the words you say. Spelling is never judged.

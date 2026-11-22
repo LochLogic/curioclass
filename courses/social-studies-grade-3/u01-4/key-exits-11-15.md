@@ -20,3 +20,9 @@ Teacher only. Keep apart from the exit cards (cards-exits-11-15.md); never hand 
 Teacher example, not shown to children: Massachusetts touches New Hampshire, Vermont, New York, Connecticut and Rhode Island (source 12B).
 
 Drawing notes for the Fenmark Panel (for whoever prints it): A is land that sticks out into the water; B is water that curves into the land; C is a row of brown triangles; D is a wavy blue line. The key says brown triangles are mountains and a wavy blue line is a river.
+
+## Practice card keys (teacher only)
+
+- Days 12 and 13, outlines and name banks: the key's lists; a name that is not on the key's list for the region is not a state of it.
+- Day 13, state cards: Oregon (West), Georgia (Southeast), Ohio (Midwest), Nevada (West), Alabama (Southeast), Iowa (Midwest).
+- Day 15, Saddle Notch Card: the pass lets travelers cross; the card does not say who built the inn.

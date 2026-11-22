@@ -11,6 +11,4 @@ Twelve -le cards, sorted by the letters before le: **ble**, **dle**, **kle**, **
 
 marble, humble, noble, middle, noodle, saddle, bundle, wrinkle, sparkle, nozzle, drizzle, dazzle
 
-Key: ble: marble, humble, noble. dle: middle, noodle, saddle, bundle. kle: wrinkle, sparkle. zle: nozzle, drizzle, dazzle.
-
 Each child spells two of the words and uses each in a sentence.

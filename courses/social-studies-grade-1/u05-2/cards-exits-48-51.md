@@ -17,11 +17,11 @@ Each exit has a paper card every child marks and a spoken question heard from th
 
 If the class lives in Oregon, use Texas: an outline of Texas, a star labelled Austin, a dot labelled Houston, the caption "Houston has more people."
 
-## Day 49 exit card: Ash
+## Day 49 exit card: Pine Dock
 
-**Picture:** a map of Ash from above. A river across the page. A ferry landing beside a row of shops on the near bank, and a row of benches beside the shops. A key: a short line is a landing, a square is a shop, a row of dots is benches. Beside the map, a record card read aloud: "Customers ride the ferry to the shops."
+**Picture:** a map of Pine Dock from above. A lake across the page. A dock on the near shore beside a mill, and a row of benches beside the mill. A key: a short line is a dock, a square is a mill, a row of dots is benches. Beside the map, a record card read aloud: "Boats bring grain to the dock. The mill grinds it." Two word cards: "the record tells who lived here before the mill" and "the record does not say."
 
-**First mark:** Circle the map clue that matches the record, the ferry landing or the benches. **Second mark:** Place a token on one of two word cards: the record tells who lived here before the shops, or the record does not say. The teacher reads both aloud. **Spoken:** "Why did shops grow here?"
+**Mark (every child, one ask):** Place a token on one of the two word cards. The teacher reads both aloud. **Spoken (the second six, a separate ask):** "Why did the mill grow here? Point to the clue."
 
 ## Day 50 exit card: linked outlines and a fresh world view
 

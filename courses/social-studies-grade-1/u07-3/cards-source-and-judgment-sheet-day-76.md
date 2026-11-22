@@ -25,4 +25,4 @@ The detail from the card (draw or dictate):
 
 (a large empty box)
 
-The teacher writes a note on each sheet after class and returns it on day 78 for a change or an addition. No frame is shown on the wall during this work.
+The teacher draws one stamp on each sheet after class, a small calendar (add a detail) or a swap arrow (change the quality), and returns it on day 78 for a change or an addition. No frame is shown on the wall during this work.

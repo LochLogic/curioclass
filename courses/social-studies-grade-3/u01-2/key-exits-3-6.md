@@ -15,3 +15,7 @@ Teacher only. Keep apart from the exit cards (cards-exits-3-6.md); never hand to
 - Day 4: Africa; northern; western.
 - Day 5: C3; latitude.
 - Day 6: N; no, how much rain is a different fact from how warm it is.
+
+## Practice card keys (teacher only)
+
+- Days 5 and 6, World Grid Card: Lima is B2 (south of the equator and west of the prime meridian, between 30 south and 30 north; column B is 120 to 60 degrees west). Oslo is D3 (north of 30 north, east of the prime meridian, column D 0 to 60 degrees east).

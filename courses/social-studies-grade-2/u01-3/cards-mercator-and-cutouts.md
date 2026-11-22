@@ -11,7 +11,7 @@ Say first: "We drew these for our class from the real shapes of the lands." The 
 
 ## The cut-outs (day 10, and day 11)
 
-Cut the land shapes from the Peters card, which keeps sizes, so each paper keeps its true size but its shape is bent: Greenland and Africa. Say aloud: "true size, bent shape." Lay Greenland on the Mercator card, where it looks about as big as Africa; lay it on the Peters card, where it fits. Africa is much bigger than Greenland on the globe (Wikipedia, read 2026-11-20: Africa is about 14 times larger; children say much bigger).
+Cut the land shapes from the Peters card, which keeps sizes, so each paper keeps its true size but its shape is bent: Greenland and Africa. Say aloud: "true size, bent shape." Lay Greenland on the Mercator card, where it looks about as big as Africa; lay it on the Peters card, where it fits. Africa is much bigger than Greenland on the globe (children say much bigger; they see it by laying the cut-outs on the globe, no number).
 
 ## Pairs card: two invented islands
 

@@ -10,5 +10,3 @@ credit: ours
 Eight small cards, one word on each. Pairs sort them under two headings: **today** and **yesterday**. Then each pair says one sentence for each pair of cards.
 
 get, write, lay, feel, got, wrote, laid, felt
-
-Key: today: get, write, lay, feel. Yesterday: got, wrote, laid, felt. Match pairs: get and got, write and wrote, lay and laid, feel and felt. Say aloud that the yesterday word is a different word, not "-ed".

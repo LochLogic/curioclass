@@ -11,9 +11,9 @@ Every card prints "invented for practice" in small letters. Reserved: print each
 
 ## Day 82 exit card: country card
 
-**Three small pictures:** a hill and a river; a boat and a worker; a street with people. A small flag is drawn in the corner.
-**Mark:** Put a token on the picture for what you most want to find out.
-**Spoken, the six one at a time:** "Say one thing you hope to learn about your country." Never ask why the country was chosen.
+**Two questions:** "What do people eat?" and "Is my shirt red?"
+**Mark:** Put a token on the question that helps our big question.
+**Spoken, the six one at a time:** "Say one thing you hope to learn about how people live in your country." Never ask why the country was chosen.
 
 ## Day 83 exit card: three question pictures
 
@@ -31,7 +31,7 @@ Every card prints "invented for practice" in small letters. Reserved: print each
 
 ## TEACHER ONLY: key
 
-Day 82: any one picture; a token on the flag is A. Spoken: any question about land, water, work or people ("What are the mountains like?"); "I like their flag" or "What toys do they have?" is A; "I only want to see the animals" is C (met again on 85).
+Day 82: the eating question; a token on the shirt question is A. Spoken: any hope about how people live ("What are the mountains like?", "What do they eat?"); "I like their flag" or "What toys do they have?" is A; "I only want to see the animals" is C (met again on 85).
 Day 83: the water question; the pencil or number question is A. Spoken: it tells how people meet a need ("people need water"); "it is a question" or "I like it" is A.
 Day 84: the map; the note or the border is B. Spoken: the maker line "Curio Class, 2026"; then a key or a label; "the colors" or "the nicest picture" is B.
 Marking scale: shown, shown with help, not yet seen.

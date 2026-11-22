@@ -15,12 +15,12 @@ A page of a wall calendar with the second Monday of October ringed. Write the da
 
 ## Nation card (teaching, credited)
 
-Our own drawing, never a copy of anyone's page: a plain outline of an island on blue water with a ringed spot on its western end, the words *Martha's Vineyard, Massachusetts*, and the name *Aquinnah Wampanoag* in large print. Credit line, said aloud: "This card is from the Aquinnah Wampanoag Tribe's own page, Wampanoag History." Read, in the present tense:
+Our own drawing, never a copy of anyone's page: a plain outline of an island on blue water with a ringed spot on its western end, the words *Martha's Vineyard, Massachusetts*, and the name *Aquinnah Wampanoag* in large print. Credit line, said aloud: "We drew this card after reading the Aquinnah Wampanoag Tribe's own page, Wampanoag History." Read, in the present tense:
 
 - The Aquinnah Wampanoag still live on their land at Aquinnah, on Martha's Vineyard.
 - The Aquinnah Wampanoag govern themselves and keep their traditions today.
 
-Say who made the page (the tribe), what it is for (to tell their history in their own words) and who it is for (everyone). No headdress, costume or acting. Say the nation's name as its people say it; if you do not know, say that you are learning it. Where a nation lives nearer to your school with its own pages, show that nation instead and credit its page; the Aquinnah card is the fallback.
+Say who made the page (the tribe wrote it; we drew the card from it), what it is for (to tell their history in their own words) and who it is for (everyone). No headdress, costume or acting. Say the nation's name as its people say it; if you do not know, say that you are learning it. Where a nation lives nearer to your school with its own pages, show that nation instead and credit its page; the Aquinnah card is the fallback.
 
 Model one claim aloud: "I think this day helps us remember Native peoples, because this card shows the Aquinnah Wampanoag, who live on Martha's Vineyard today." The card goes on the wall as the first of Our Holiday Cards.
 
@@ -33,6 +33,4 @@ Each pair gets three cards. Hear "I think ___ because ___" from the pair; a part
 
 Sort rule for pairs: put the card that helps explain the day next to the day's card; leave the others in the bin.
 
-## Key (teacher)
-
-Indigenous Peoples' Day: cards 1 and 2 help (a nation and its own words); the loaf of bread only fills a plate. Columbus Day: cards 1 and 2 help (a voyage across the water); the pasta card helps only as the heritage tribute some communities make. Many children will say "a day off": that is the error A, and the answer is that the card, not the day off, tells whom we remember.
+The key for these cards is in key-cards-41.md (teacher only).

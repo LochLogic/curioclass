@@ -71,3 +71,31 @@ Kindergarten is the first grade, so there is no lower grade to reuse or contradi
 | 50 | 1 | 6 | 1 |
 | 63 | 0 | 5 | 1 |
 | all | 3 | 24 | 4 |
+
+
+## Fixes applied (2026-11-22)
+
+- d033 FIRM timing: applied. Fresh tries now hear five children (most parts not yet seen first), the rest on days 34 to 36; handbacks row 33 to 34 added; Shorter/Tomorrow lines match. Also fixed the unreadable "Right only after help" line.
+- d050 FIRM timing: applied. Each child is heard on one task (the one the record shows blank); E3/E4 for ten children at 20 seconds, the other twenty on day 51's fresh tries; the "under nine minutes" arithmetic removed; plan doc synced.
+- d011 FIRM rule 4: applied. The Tuli walkway card replaced with a new snack case (Nell set out cups, napkin basket empty, three children wait); false "never used in teaching" claim gone. s02-X11 is now the point (all) and new s02-X11b the spoken who-counts (three of the six); items, wrongs, days.csv shows, handbacks, d012 warm-up and s02-P12-1, plan doc updated.
+- d011 SOFT: partly (exit split, "point" on the card). Left: R11 link line (no room under the word cap), timing.
+- d024 SOFT: partly. Exit asks "next to" and "show me in the key" (items, card, day); circular model claim replaced. Left: split X24, words list, rule 4 template.
+- d033 SOFT: left (student page, X33 splits, lid card, rule 4 cases, X33h card).
+- d050 SOFT: partly (key moved; plan doc). Left: E1 rule 4, source-row days, dreidel cards, mat tasks.
+- d063 SOFT: applied hearing prompts to match items (E12, E17), E16 split into sc2-E16 (dot) and sc2-E16b (why) with wrongs, days shows and handbacks; other children get a named task. Kept "Hand back day 62's assessment" because day 62's gate requires it. Left: rule 4 swaps, 42C source, handoff wording, hearing reach.
+- TEMPLATE: left.
+
+## Key-line results
+- cards-day33-fresh-tries: prints for children; key moved to key-cards-33.md.
+- pages-day50-hearing: shown to children; key moved to key-pages-day50-hearing.md.
+- cards-exit-24-26: child exit cards; key moved to key-exits-24-26.md (named in d024 to d026).
+- cards-day62-63: shown to children; key moved to key-cards-62-63.md (named in d062, d063).
+- Each key piece is named in its day's Before class and leans_on.
+
+Gates (course filtered): plan.py check before 19 FAIL, after 19 (all "section is not in data/units.csv"); lesson.py check before 2 FAIL, after 2 (day 31 and 32 review-as-new, known). Several day pages sit at their word caps, so added words were traded for cuts; day 41's "Review: I think, because, from unit 1" line was cut to fit its cap (ledger entry for lead).
+
+### Second pass (2026-11-22)
+- Sources: rows 41C and 41D now rest on a college page (Henry Ford College, hfcc.edu) read in full (1492 landing, second Monday in October, Berkeley 1992, Italian-American parade); 42C on the VA Veterans Day 2026 Teachers Resource Guide PDF (read); 45C on the National Archives Unwritten Record blog quoting the 1777 resolution; 56D on the BEA "Personal Income: More Than Your Paycheck" page. All marked "checked: 2026-11-22". Smithsonian, LOC, NPS and other pages refused or 404.
+- Splits (each part its own item with key, wrongs, handbacks, day text and card lines): sc1-E4/E4b, E5/E5b, E7/E7b, E8/E8b, s03-X24/X24b, sc1-X33a/a2, X33c/c2, X33d/d2.
+- d041: "I think, because" unit 1 review line restored within the word cap.
+- Gates after: plan 19 FAIL (units.csv only), lesson 2 FAIL (d031, d032 known), same as before.

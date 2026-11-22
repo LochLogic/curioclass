@@ -78,3 +78,21 @@ Day numbers: 19 is the hand-off read for day 20, listed because its marking is p
 - Checked against a source: article A and C facts against the NPS and Forest Service pages named in g2-u2-01 (checked 2026-11-19 and 2026-11-21 in the text file); article A's "soft parts usually rot away" is flagged in the text's own note as resting on general teaching.
 - Judged only: whether a bee carries pollen between bean flowers (day 82); the 20-second and 45-second turn lengths against 30 children; whether day 114's nine marks per turn can be recorded in 180 seconds.
 - Not found: made-up Native nations or leaders, enslaved people written as workers, brand names in child copy, safety hazards beyond the fossil-collecting wording.
+
+## Fixes applied (2026-11-22)
+
+- Day 82, X82 key disagreed with errors.csv and rejected dictionary strip: applied. Stem now "Which strategy card could help you with it ... Hold up one."; any of the three is fair (word parts, sentence clue, dictionary strip); the "Dictionary strip" wrong row removed; AB now means no strategy named; errors.csv AB example fixed to "I just know it"; handbacks row and day text (hold-up by pairs, tag AB) updated; exit cards file matches.
+- Day 82, clue card 1 circular: applied. Card 1 is now "The bee is careless about the pollen." (the clue to mind); the day's sort line and meaning line updated.
+- SOFT applied: day 82 clue-cards printed labels and Key paragraph moved to key-clue-cards-day-82 with the claim strips (print line and exit text point there); fan holding made consistent (each pair holds one set); X82d heard from partners, X82b and X82c from the six. Day 20 and 52 sort-card and clue-card key lines moved (see below).
+- SOFT left: day 20 retry cards, error E/G tags, exit cards; day 52 source wording, exit and timing; day 82 X82 moth card reuse (rule 4), error letters, -less ledger term, Mira's Beans source; day 114 all; day 152 all (poem P text header lists devices, printed-stem and reserved-source items need the text file); day 19 items.
+
+Key-line results (both reports share this list; 34 child-printed pieces checked):
+- Moved to a new teacher key piece key-<name>.md in the same folder, named in each printing day's Before class and added to its leans_on: sort-cards day 18, day 23, cycles 6, 7, 8, 9 (u02-4 and u02-5 copies), 13, 14, 15, 16; cycle 10, 11, 12 sort cards; prefix-sort-cards day 50; sequence-strip 33; match-cards 36; question-cards 39 and 53; blurbs 48; route-cards 47; reference-route-cards 49; compound-cards 51; picture-cards 54; verb-cards 55; pronoun-strips 55; fossil-sentence-cards 56; story-slips 59; capital-cards 65; apostrophe-cards 67; flower-parts-picture-cards 78 (pile lists also moved, cards now unsorted); clue-cards 82 (labels and claim strips moved); model-paragraph-strips 98. Cycle 13 sort lists for days 78 and 79 were also unsorted in the piece and their answers moved to the key.
+- Left (teacher-only or not printed): texts/g2-u2-probes (header metadata, no day prints it), texts/g2-u4-chk-st ("Key idea" sits in the text header, not in the printed text).
+- Not checked: cycle-9-written-check, other written check sheets and exit card files (not on the key-line list).
+
+Gates (filtered, course only): plan.py check 310 FAIL before, 310 after (no new failure; all known template points). lesson.py check 2 FAIL before (d094, d095 At home order, not mine), 0 after.
+Ledger entries for the lead: day 82 ledger term "-less" should read as a review of english-language-arts-grade-1 u04-6 day 146; day 20 ledger igh/ie/y rows should read as a review of grade 1 cycle 24 (not applied, not my files).
+
+
+Lesson-gate follow-up: Before class key sentences shortened to "Keys: key-x.md, ..." and a few words trimmed; lesson.py check FAIL count for the course is now 2 (the known d094 and d095 At home order lines).

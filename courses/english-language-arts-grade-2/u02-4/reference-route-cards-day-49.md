@@ -12,5 +12,3 @@ Three cards, each with a question about the third article and the tools: **gloss
 1. What is a paleontologist?
 2. Where is a riverbed explained?
 3. Where do you go to read about scientists at work?
-
-Key for the teacher: 1 glossary, then the bold word on page 3. 2 index, page 2. 3 the magnifying glass icon labelled Scientists, page 3. The day's model uses the Shapes icon, the index entry cast and the glossary entry specimen, so no card repeats them. Use none of the words notebook or location as a question, and never trace the Tracks icon.

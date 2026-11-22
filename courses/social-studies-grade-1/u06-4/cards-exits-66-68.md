@@ -17,6 +17,6 @@ Each exit has a paper card every child marks and a spoken question heard from th
 
 ## Day 68 exit card: Aspen Town
 
-**Picture:** a small courthouse with a flag flying outside it, and two neighbors greeting each other in two different ways, one at a time. Record read aloud: "Neighbors use different greetings. They share one courthouse. A flag flies outside it." Under it three picture choices: the country; a decoration; the courthouse.
+**Picture:** a town seal with a bridge joining two river banks, and two neighbors greeting each other in two different ways, one at a time. Record read aloud: "Neighbors use different greetings. The town seal shows a bridge. Neighbors cross it to meet." Under it three picture choices: neighbors who are joined; a decoration; the river.
 
-**Mark:** Circle what the flag stands for. **Spoken:** "How are the Aspen Town neighbors united?" Or: "How are they different?" Only for a child still unresolved from day 67: "What does the flag stand for, and what shows it?"
+**Mark (every child, one ask):** Circle what the bridge on the seal stands for. **Spoken (the rotating six, a separate ask):** "How are the Aspen Town neighbors different?"

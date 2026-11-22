@@ -12,7 +12,7 @@ Every card prints "invented for practice". Plain black line drawing on white. Ea
 ## Four places
 
 **Gull Cove.** *Picture:* A small cove with boats and nets. Resource: fish. Industry: fishing. Job: fisher.
-**Wide Plain.** *Picture:* A flat field of wheat under a wide sky. Resource: wheat soil. Industry: farming. Job: wheat farmer.
+**Wide Plain.** *Picture:* A flat field of wheat under a wide sky. Resource: wheat. Industry: farming. Job: wheat farmer.
 **Iron Hill.** *Picture:* A hill with a mine door and a cart of dark rock. Resource: iron. Industry: mining. Job: miner.
 **Tall Pine.** *Picture:* Tall pine trees and a saw. Resource: trees. Industry: lumber. Job: logger.
 Words: natural resource, industry, job (review). Pip's wrong idea F.

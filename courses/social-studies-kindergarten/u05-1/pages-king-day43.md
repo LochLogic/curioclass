@@ -27,4 +27,4 @@ Each pair sorts three cards and says "I think King's work was ___ because ___":
 2. A sign over a slide that says only some children may use it (an unfair rule).
 3. People signing one long paper at a table (people working to change a rule).
 
-Key (teacher): King's work is the third card, changing a rule together; the first card shows a fair shared rule; the second is the kind of rule people worked to change.
+The key is in key-cards-42-43.md (teacher only).

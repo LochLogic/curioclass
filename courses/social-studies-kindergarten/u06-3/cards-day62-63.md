@@ -28,6 +28,4 @@ Photograph check before day 62: check each print against its Library of Congress
 - **Buy and trade (sc2-E16).** Card one: tokens to a stall worker, who hands over a jar. Card two: a paper fish for a paper shell, both smiling.
 - **Holidays (sc2-E17).** Two calendar cards, Veterans Day and Martin Luther King Jr. Day, names read aloud. Veterans Day honors all who served in the armed forces (source 42C); Dr. King worked with others, peacefully, to change laws that kept Black and white people apart (source 43B).
 
-## Key (teacher)
-
-Look-fors and samples are in each item's row (items.csv).
+The key for these cards is in key-cards-62-63.md (teacher only).

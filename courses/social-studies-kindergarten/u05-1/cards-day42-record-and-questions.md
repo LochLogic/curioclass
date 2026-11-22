@@ -22,4 +22,4 @@ Card A shows a flag and a hand waving above the words *Who do we thank on Vetera
 - For card A: a thank-you card, a flag, a balloon.
 - For card B: two hands holding one basket of food, a ship drawn in outline, a pot on a fire.
 
-Key (teacher): card A with the thank-you card; card B with two groups at one table, the basket the Wampanoag brought; the Wampanoag nations live in Massachusetts today.
+The key is in key-cards-42-43.md (teacher only).

@@ -10,5 +10,3 @@ credit: ours
 Eight cards, one word on each. Pairs sort them under two headings, **un-** and **re-**, and say each meaning with "not" or "again".
 
 unwrap, unfold, redo, refill, unpack, reread, unlock, rebuild
-
-Key: un- (not): unwrap, unfold, unpack, unlock. re- (again): redo, refill, reread, rebuild.

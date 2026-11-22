@@ -11,7 +11,7 @@ Say aloud: "These people, shops and things are made up. These cards are practice
 
 ## Kofi (teaching, 10 minutes)
 
-**Cards on the mat:** Kofi has 6 tokens. First: a yo-yo, 6 tokens. Second: a paper fan, 3 tokens. Third: a bean bag, 2 tokens. **Read aloud:** "Kofi ranks the yo-yo first, the fan second and the bean bag third. He can pay for the yo-yo, 6 tokens, and has none left. What Kofi gives up is the fan, the next best thing." Say once: grown-ups call this opportunity cost. Not the bean bag, and not the 6 tokens; 6 is the price.
+**Cards on the mat:** Kofi has 6 tokens. First: a yo-yo, 6 tokens. Second: a paper fan, 5 tokens. Third: a bean bag, 4 tokens. No two of the three fit in 6 tokens. **Read aloud:** "Kofi ranks the yo-yo first, the fan second and the bean bag third. He can pay for the yo-yo, 6 tokens, and has none left. What Kofi gives up is the fan, the next best thing." Say once: grown-ups call this opportunity cost. Not the bean bag, and not the 6 tokens; 6 is the price.
 
 ## Ines (supported work, 8 minutes)
 

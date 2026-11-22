@@ -10,5 +10,3 @@ credit: ours
 Ten cards, one word on each. Pairs sort them under three headings: **double the last letter**, **drop the e**, **just add the ending**. Say each word aloud when it is placed.
 
 hopping, rubbing, bigger, stopped, running, sitting, hoping, riding, camping, raining
-
-Key: double the last letter: hopping, rubbing, bigger, stopped, running, sitting. Drop the e: hoping, riding. Just add the ending: camping, raining. The words making and stepped are held for day 52 and are not on these cards.

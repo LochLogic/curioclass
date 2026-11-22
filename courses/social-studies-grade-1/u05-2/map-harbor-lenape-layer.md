@@ -11,7 +11,6 @@ A see-through layer (clear sheet or tracing paper) laid over the Harbor Map from
 
 ## What the layer shows
 
-- A long dashed line running up the island from near the southern tip, labelled "Wickquasgeck trail (approximate)".
 - The word "Manahatta" written once across the island in plain letters, with a small label under it: "a Lenape name for this place".
 - A small box in the corner: "Lenape nations live today. The Delaware Nation, the Delaware Tribe of Indians and the Stockbridge-Munsee Community."
 - No village sites are drawn. No houses, no people, no faces, no costume, no arrows of removal on this layer.

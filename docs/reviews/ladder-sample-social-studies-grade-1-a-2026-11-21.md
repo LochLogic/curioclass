@@ -82,3 +82,25 @@ All five days sum to 30 minutes. Tight or failing parts are in the table: d078 r
 | **All** | **6** | **26** | **2** |
 
 Not checked or not caught: a gate cannot see an exit that tests the wrong thing (all six FIRM findings were silent in both gates). I could not check the NPS and National Archives pages live; the facts above are checked against the source rows' own read notes.
+
+## Fixes applied (2026-11-22)
+
+- Day 78 return and revise (FIRM): applied. Stamp (calendar: add a detail, swap arrow: change the quality) drawn on each day 76 sheet; d076, d078, day 76 sheet card, handbacks, materials, u07-4 plan updated.
+- Day 78 unit 6 frame (FIRM): applied. New sheet-claim-frame-day-78.md and key-sheet-claim-frame-day-78.md (three look-fors); both unit 6 entries replaced in leans_on and Before class.
+- Day 78 exit (FIRM): applied. X78 is now one paper ask on a new chalk-tray case (three dated pictures); quality ask dropped; wrongs, answer, steps, docs and cards rewritten; new key-exits-78-80.md. Handback to day 80 kept (error E).
+- Day 23 exit (FIRM): applied. X23 is the east pool paper (one ask, every child, error K); leader-and-helpers check stays on the chart; days.csv shows now names s03-X23; D and E handbacks re-pointed to the chart and pair questions; d024 reopen and docs updated.
+- Day 59 exit (FIRM): applied. Pine Town (parade, picnic, song, one red sign); X59 mark and X59b one spoken ask; wrongs, docs, days.csv shows updated.
+- Day 2 exit (FIRM): applied. Made-up school hallway clock: every child shows a subject card (X2, civics); spoken X2b to the second six; clock pictures dropped; wrongs, handbacks, key, docs updated.
+- Day 78 warm-up and observe timing (SOFT): applied (observe 1 min, warm-up 4, look back 6 with the redraw and tally; handback minutes agree). Day 78 claim and pair check timing: partly (claim 6 min; pair check kept at 2).
+- Day 78 review wording, closing label, chalk card (SOFT): applied. "remain" tag as new: left for the ledger.
+- Day 23 rule 4, timing, enslaved wording, kindergarten reconcile (SOFT): applied (six no longer heard twice; chart 5 min; "people who were enslaved, owned and forced to work" in all our wording; chain card removed; Lincoln review sentence added). Source 23D: left (Britannica; the National Archives page read does not state 1861 to 1865, no solid replacement opened). Ledger President/responsibility review tags: left for the lead.
+- Day 2 split X2/X2b, "made-up school", one ask in "What we need to find out", Tomorrow: applied. Day 2 history review line: left (word cap).
+- Day 45 (all SOFT): left (not edited; no FIRM finding).
+- Day 59 sort-card list: applied (plan matches pictures file). Teaching minutes and dated cards: applied. X59b one stem: applied. Source 59B: left.
+- TEMPLATE findings: left.
+
+Key-line results: courses/social-studies-grade-1/u04-2/cards-offices-and-helpers.md prints for children (pair envelopes): the Answers line moved to new key-cards-offices-and-helpers.md and named in d035 Before class and leans_on. Fresh-try answers I wrote for day 68 went to a key piece, not the printed card.
+
+Gates (course-filtered): plan.py check 26 FAIL before, 26 after; lesson.py check 19 FAIL before, 19 after (all known template points). New notes only: unit 5 error M and unit 7 error K have no wrong row on an exit; day 2 geography and economics shown only by s01-E1; day 59 goal pieces shown only by s06-E14.
+
+Follow-up (2026-11-22, lead request): 23D retired. No page opened states Lincoln's term (archives.gov proclamation page does not; others 404 or 403), so "1861 to 1865" is cut from the strip card, read-aloud, home tell and materials; the strip card is 1863 (23A). 59B re-sourced to the National Archives Declaration history page (read: officially adopted, revision into the late morning of July 4), url and status updated, 1776 from the docket on the Declaration page.

@@ -60,3 +60,26 @@ Kindergarten is the first grade, so the grade gap caused nothing here; the ladde
 | 101 | 0 | 5 | 0 |
 | 134 | 3 | 5 | 0 |
 | all | 3 | 21 | 1 |
+
+## Fixes applied (2026-11-22)
+
+Point D (day 134, Nobel line): the lead opened nobelprize.org "Wangari Maathai - Facts" in a browser. Added sources.csv row nobel-maathai-facts; restored "She was the first African woman to win it" on page 9 of texts/gk-u4-03.md and in the day's Say plainly line; the text's Sources block now cites the rows. Other day 134 facts repointed: concerns to new row gbm-history (opened), Kenya to kenya-highcom-about (opened), soil and rain to psu-trees-stormwater (opened, Penn State Extension).
+
+- 134 source (FIRM): applied. Payment, forest seeds and "kinds that belong" cut from pages 5 and 6, from d134, d136 and u04-4.md (no opened page states them). Four rows added; text Sources block rewritten. Word count corrected 408 to 375 (reader's 398 was also off; now 375 after cuts and the added line). The nursery and seedling steps are flagged in the Sources block as not stated by an opened page.
+- 134 exit-goal (FIRM): partly. Rewrote the goal (days.csv, s04, u04-4, skeletons) to add "ask a question about a detail" and gave it a shows entry (s04-X134); the exit is unchanged so the day 135 W and X return still holds. Naming people and place is measured only by the unscored draw and dictate.
+- 134 timing (FIRM): applied. Two chairs so no seconds go to calling a child, prompts said at once; a part not reached is marked not yet seen (the clock), not shown with help.
+- 134 SOFT page 8 words: applied (say the words as the page gives them). Two-ask F134a and F134c: left. F134c reuse of mop: applied (now man to tan; items, wrongs, s04, skeleton). F134d: applied (point right after each sound). F134e reuse of we, all, one: left. Sensitivity-hold line: shortened, still left open for the lead (needs a dated done line). Purpose cards: applied (one two-sided card). Word count: applied. X-sign wording and wrongs row: applied.
+- 66 (all SOFT and the TEMPLATE kind line): left; not touched.
+- 101 UK spellings: applied. Other 101 SOFT (exit stickers, P1a, reopen wording, repair load): left. P1b "Point to the word leaves": applied (items.csv only).
+- 37 X37 names cloak and picture support now points at the card's picture (no wall card needed): applied. "practiced" and "on day 4": applied. he clue, polar-night source, ledger line: left.
+- 9 exit read-aloud: applied (topic sentence removed from the card, items, d009, u01-3.md). Two-ask split: left.
+
+Key-line files (keylines list): cards-check-158-159.md is a card the child reads aloud, so the four Key lines moved to new key-cards-check-158-159.md, named in d158 and d159 Before class (and leans_on). cards-c4-c5.md and cards-check-77-78.md are teacher cards read aloud or spoken prompts, left. No inline Key lines found in other child pieces I opened.
+
+Gates (course-filtered): plan check FAIL lines 35 before, 35 after (all known template lines); lesson check 15 before, 15 after. Ledger: day 134 goal text changed to "Read the true account of Wangari Maathai whole, name the people and place, and ask a question about a detail."; day 134 content note "millions of trees" and the first-African-woman line now sourced.
+
+### Follow-up (2026-11-22, lead's two checks)
+
+- Goal check: day 134 did not model asking a detail question. Added a model and a pair practice (turn a detail on page 5 or 6 into a who question; review day 124) to the Questions and talk part, same minutes. Goal kept.
+- Pages 5 and 6: opened goldman-maathai and worldbank-maathai (rows added); they support nurseries, raising seedlings and planting on hillsides. Sources-block flag cleared. Payment and forest seeds stay cut.
+- Gates after: plan 35, lesson 15 (unchanged, no new failures).

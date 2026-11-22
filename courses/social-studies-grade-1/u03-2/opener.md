@@ -30,7 +30,7 @@ Days 22 to 25: reopen and repair (5), words with pictures (3), read-aloud with s
 - **E: a liking question.** Sort questions into asks what someone did and asks what we like.
 - **O: the record does not say.** Sort "the record says" from "we guess."
 - **N: the same quality needs the same job.** Place a new pair of jobs under one quality card.
-- **K and L** are watched in talk only; one sentence beside the card.
+- **K** is on the day 23 exit and **L** is watched in talk only; one sentence beside the card.
 
 ## Care
 

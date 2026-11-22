@@ -15,7 +15,7 @@ Each repair puts a wrong idea beside a right one. The wrong idea is spoken by Pi
 
 ## M: price is not given up (opening of day 87, 3 minutes)
 
-**Pip:** "What I give up is the price." **Right:** "The price is the tokens; the given-up thing is the next best." **Retry:** a new ranked set: Reya ranks a kazoo first (price 5), a magnet second, a badge third. Put the price on the kazoo card and a ring on the thing given up.
+**Pip:** "What I give up is the price." **Right:** "The price is the tokens; the given-up thing is the next best." **Retry:** a new ranked set: Reya has 5 tokens and ranks a kazoo first (price 5), a magnet second (4), a badge third (3); no two together are 5 or fewer. Put the price on the kazoo card and a ring on the thing given up.
 
 ## N: only the second best is given up (same 3 minutes as M)
 

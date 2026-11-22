@@ -70,3 +70,24 @@ Whether this grade used the lower grades well: mostly yes for terms (culture, op
 - Day 135: FIRM 1, SOFT 5, TEMPLATE 0.
 - Day 156: FIRM 0, SOFT 6, TEMPLATE 1.
 - All: FIRM 7, SOFT 25, TEMPLATE 3.
+
+## Fixes applied (2026-11-22)
+
+FIRM findings
+- Day 88, items do not measure the goal: partly. Q1 now compares Records B and D (Narragansett in Rhode Island, Menominee in Wisconsin); Q3 and Q3b say "Circle". Left: Q3 and Q3b still use made-up Record A; a real nation map with a sourced homeland and present lands is needed, and no made-up nation may be written (lead decision).
+- Day 88, Q8 key false about A: applied. Q8 and Q8b use Records B and D; key and packet changed (detail from D: treaty at the Falls of Wolf River in 1854, or seven treaties).
+- Day 17, second passage has no source or fallback: partly. Added the Pine Bend Card (made up) as the fallback in cards-dry-hollow.md, day text and P17 key; a nation passage is still teacher-found (no source row written).
+- Day 17, key rejects a correct answer: applied (either practice accepted).
+- Day 135, Q4 and Q4b are the day 128 task: applied. Page 5 is now a made-up Pinewood State card; Q4 asks which part of B does the Governor's job (the President); key, items and wrongs updated.
+- Day 57, part 3 timing: applied (rotating four pairs, 6 minutes).
+- Day 88, rule 4 (taught sentence, Chief Sachem): applied. Tribal Nation sentence dropped from Record B; Chief Sachem glossed in the read-aloud.
+
+SOFT findings
+- Applied: day 17 frame card taken down before the exit; day 17 neighbourhood to neighborhood; day 88 neighbors; day 88 unit question printed at the Q8 box; day 88 Circle wording.
+- Left: all other soft rows (day 135 opener claim, packet D slavery sentence, Q2 and Q5 wording, side-table timing, stale nation note; day 17 exit card rework, Elm Lane card, plan card names; day 57 exit rework, prices, retitle, timing; day 88 timing, map drawing, Q6 key, source U4V; day 156 all; template rows).
+
+Key lines (task C), 9 files print for children and were moved: cards-draft-questions, cards-garden-readings (key-exits-1-2.md); cards-world-grid (key-exits-3-6.md); cards-landmark-statements (key-exits-7-10.md); cards-outlines-and-banks, cards-saddle-notch, cards-state-cards (key-exits-11-15.md); cards-land-change, cards-sort-six (key-exits-16-18.md); cards-retrieval-day22 (key-exits-19-22.md). Inline answer tags such as "(helps)" and "(people)" removed from the child cards; days 2, 5, 6, 9, 13, 15, 16, 22 and 26 name the key piece in Before class. Left as not keys: cards-exits-28-32 (pointer only), cards-day54-profit ("key ring"), the four map legends (Key: lines are map legends).
+
+Gates (filtered, this course, FAIL lines): plan.py check 48 before, 48 after; lesson.py check 40 before, 40 after. No new failure.
+
+Lead correction: day 88 Q3 and Q3b stay on made-up Record A (fine). Day 17 part 3 now defaults to the made-up Pine Bend Card; a nation passage may replace it only with a sourced row from the nation's own site. Gates re-run: plan 48/48, lesson 40/40.

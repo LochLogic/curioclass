@@ -20,4 +20,4 @@ What It Is
 A Reading Tent is a big tent set up in a park. It holds rugs, pillows and shelves of books. Children can sit inside and read as long as they like.
 
 Why Families Like It
-The tent is cool and quiet. It is open on weekends only. Helpers read aloud at noon. Families may borrow a book for free. A Reading Tent is the coziest place to read.
+The tent is cool and quiet. The tent is free to enter. It is open on weekends only. Helpers read aloud at noon. Families may borrow a book for free. A Reading Tent is the coziest place to read.

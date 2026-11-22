@@ -11,7 +11,7 @@ Each exit has a card every child marks and a spoken question heard from the day'
 
 ## Day 9 card: stacking toys
 
-**Read:** "This page tells about toys that stack. Rings stack on a pole. Cones stack in a pile."
+**Read:** "Rings stack on a pole. Cones stack in a pile."
 
 **Picture:** three pictures in a row, each in a ring: rings and cones, both stacked; one ring alone; a pole alone.
 

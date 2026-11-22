@@ -29,7 +29,7 @@ Say aloud each time: "This card is made up for practice." Read each card twice w
 
 **Picture:** a girl pulling a long cloak around her, wind lines at the edges. On the wall: the picture card for the word cloak.
 
-**Spoken, to the day's six:** "Say a question you could ask about a word you do not know." **Mark:** touch the word's picture card; a child with no card raises a hand.
+**Spoken, to the day's six:** "Ask me a question about the word cloak." **Mark:** touch the word's picture card; a child with no card raises a hand.
 
 ## Day 38 strip S38: two times
 
