@@ -178,7 +178,7 @@ def reviews():
 
 
 def base_texts():
-    """The base texts and the open references, with their licences (docs/sources/BASE-TEXTS.md)."""
+    """The base texts and the open references, with their licenses (docs/sources/BASE-TEXTS.md)."""
     by = 'https://creativecommons.org/licenses/by/4.0/'
     return [
         dict(name='Illustrative Mathematics K-12 Math', ed='1st edition, 2019 to 2021', lic='CC BY 4.0', url=by,

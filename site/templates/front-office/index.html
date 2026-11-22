@@ -211,7 +211,7 @@ a.fo-day .dn::after { content: " \203A"; color: var(--c); }
       ('Scope and sequence', 'The year laid out day by day: what each day teaches and how it is checked.', t.scopes, t.courses, 'of ' ~ t.courses ~ ' courses', ''),
       ('Unit plans', 'The plan for each unit: its question, evidence, sources and common misunderstandings.', t.unit_plans, t.units, 'of ' ~ t.units ~ ' units', t.unit_written ~ ' written in full, the rest outlined'),
       ('Sections', 'A unit broken into its short runs of days, each with one goal.', t.sections, t.sections, 'sections laid out', ''),
-      ('Days', 'The lesson itself: what the teacher does, what students do, and the materials.', t.written, t.days, 'of ' ~ '{:,}'.format(t.days) ~ ' days written', 'All days are planned; writing them is next')
+      ('Days', 'The lesson itself: what the teacher does, what students do, and the materials.', t.written, t.days, 'of ' ~ '{:,}'.format(t.days) ~ ' days written', 'Every day is planned; days are written a grade at a time')
     ] %}
     {% for name, what, have, of, unit, note in steps %}
     <div class="fo-step" style="--i: {{ loop.index0 }}">

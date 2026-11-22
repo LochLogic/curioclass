@@ -123,7 +123,7 @@
 {% endblock %}
 {% block main %}
 <div class="syw">
-  <div class="fo-draft">Draft for review. Not linked from the site yet.</div>
+  <div class="fo-draft">Draft for review, still growing as each layer is written.</div>
   <header class="wrap syw-hero">
     <div class="eyebrow"><a href="/front-office/">The Front Office</a> &rsaquo; Show Your Work</div>
     <h1>Show Your Work</h1>
@@ -161,7 +161,7 @@
           <li><h3>Scope and sequence</h3><p>The school year laid out day by day: what each day teaches, what kind of day it is, and where students show what they know.</p><span class="against">Checked against the course frame</span></li>
           <li><h3>Unit plans</h3><p>For each unit: the evidence students produce, the sources they read, the common misunderstandings to watch for and how to answer them.</p><span class="against">Checked against the scope and sequence</span></li>
           <li><h3>Sections</h3><p>Each unit broken into short runs of days that share one goal.</p><span class="against">Checked against the unit plan</span></li>
-          <li><h3>Days</h3><p>The lesson itself: what the teacher does, what students do, the materials, the exit check and a page for families.</p><span class="against">Checked against the section and unit plans</span></li>
+          <li><h3>Days</h3><p>The lesson itself: what the teacher does, what students do, the materials, the exit ticket and a page for families.</p><span class="against">Checked against the section and unit plans</span></li>
         </ol>
       </section>
 
@@ -193,7 +193,7 @@
         <p class="syw-again">After the last fix, every check runs again.</p>
 
         <h3 style="font-size:22px;margin:36px 0 6px">Fixed where it began.</h3>
-        <p>Every problem is recorded with two places: where it was found, and where it began. A problem found in a lesson is often caused higher up. If a unit plan set up a practice task that gives away the exit check, the fix goes into the unit plan, and every other unit plan is checked for the same problem before more lessons are written.</p>
+        <p>Every problem is recorded with two places: where it was found, and where it began. A problem found in a lesson is often caused higher up. If a unit plan set up a practice task that gives away the exit ticket, the fix goes into the unit plan, and every other unit plan is checked for the same problem before more lessons are written.</p>
         <div class="syw-trace">
           <svg viewBox="0 0 640 150" role="img" aria-label="A problem found in a day is traced back to the unit plan where it began.">
             <rect class="bx src" x="20" y="20" width="170" height="48" rx="10"/>
@@ -255,10 +255,10 @@
             <dt class="k-ac">Accuracy</dt><dd>Every skill a course owns sits in a unit.</dd>
             <dt class="k-te">Teaching</dt><dd>Days match the time a school gives the subject, and checks are spaced.</dd></dl></div>
           <div class="syw-layer"><h3>Unit plans</h3><div class="when">Each unit, in order</div><dl>
-            <dt class="k-st">Structure</dt><dd>Every goal has an exit check and a practice of a different shape.</dd>
+            <dt class="k-st">Structure</dt><dd>Every goal has an exit ticket and a practice of a different shape.</dd>
             <dt class="k-co">Continuity</dt><dd>Every review points to real earlier work.</dd>
             <dt class="k-ac">Accuracy</dt><dd>Each unit is read against its subject's sources.</dd>
-            <dt class="k-te">Teaching</dt><dd>The exit check asks what the goal asks.</dd>
+            <dt class="k-te">Teaching</dt><dd>The exit ticket asks what the goal asks.</dd>
             <dt class="k-se">Sensitivity</dt><dd>Read again wherever a topic needs it.</dd></dl></div>
           <div class="syw-layer gr"><h3>Section plans</h3><div class="when">One grade at a time</div><dl>
             <dt class="k-st">Structure</dt><dd>Every question asks one thing.</dd>
@@ -267,7 +267,7 @@
             <dt class="k-te">Teaching</dt><dd>The grade's plans are read as a whole.</dd>
             <dt class="k-se">Sensitivity</dt><dd>Read again wherever a topic needs it.</dd></dl></div>
           <div class="syw-layer gr"><h3>Days</h3><div class="when">One grade at a time, in order</div><dl>
-            <dt class="k-st">Structure</dt><dd>Exit checks fit their time, and every child gets a turn.</dd>
+            <dt class="k-st">Structure</dt><dd>Exit tickets fit their time, and every child gets a turn.</dd>
             <dt class="k-co">Continuity</dt><dd>A lesson waits until what it builds on is written.</dd>
             <dt class="k-ac">Accuracy</dt><dd>Each set of days is checked as it comes in.</dd>
             <dt class="k-te">Teaching</dt><dd>A sample of each grade's days is read in full.</dd>
@@ -301,7 +301,7 @@
         <h2>The open texts behind the courses.</h2>
         <p>Where an openly licensed curriculum or textbook does a course well, Curio Class adapts it rather than starting over. Each adapted day names its source in a credit line. Social studies has no base text: it is written from primary sources and openly available records.</p>
         <table class="syw-table">
-          <thead><tr><th>Source</th><th>Used for</th><th>Licence</th></tr></thead>
+          <thead><tr><th>Source</th><th>Used for</th><th>License</th></tr></thead>
           <tbody>
           {% for b in base_texts %}
             <tr><td><b>{{ b.name }}</b><small>{{ b.ed }}</small></td><td>{{ b.use }}</td><td>{% if b.url %}<a class="syw-lic" href="{{ b.url }}" rel="license noopener">{{ b.lic }}</a>{% else %}<span class="syw-lic">{{ b.lic }}</span>{% endif %}</td></tr>
