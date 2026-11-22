@@ -14,11 +14,9 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Day 11 exit card: the swing ground
 
-**Picture:** Two small drawings side by side, labeled first month and last month. Both show the ground under a swing seen from the side. First month: the ground is smooth and flat. Last month: the same ground has a scuffed hollow under the seat. Under the drawings, two circles: yes, no.
+**Picture:** Three small drawings side by side, labeled Monday, Friday and one month later. All three show the ground under a swing seen from the side. Monday and Friday: the ground is smooth and flat, the same in both. One month later: the same ground has a scuffed hollow under the seat.
 
-**Say:** "The swing ground looked the same every day. Did it change? Point to yes or no."
-
-**Key (teacher):** Yes, with the scuffed hollow named as the difference. No, "it looked the same every day", is error A.
+**Say:** "Pip says the swing ground never changes, because it looked the same on Monday and on Friday. Point to the picture that shows Pip is wrong."
 
 ## Day 12 exit card: the beach
 
@@ -26,32 +24,24 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 **Say:** "Is this a fast change or a slow change? Point to the words that tell you."
 
-**Key (teacher):** Fast, with the words in one night. Slow, because erosion takes a long time, is error B. No change, because it is still a beach, is error A.
-
 ## Day 13 exit card: the sand pile
 
 **Picture:** Two small drawings of a sand pile at a building site, labeled before and after. Before: a tall pile with a pointed top. After: the same pile with its top gone and sand spread on the ground downwind. Under them, the caption: The wind blew the top off the pile one afternoon. Two circles: fast, slow.
 
 **Say:** "Is this fast or slow? Point to the words that tell you."
 
-**Key (teacher):** Fast, with the words one afternoon. Slow, because wind and water wear things away slowly, is error B.
-
 ## Day 14 exit card: the terrace ledge
 
 **Picture:** Two small drawings of a hillside terrace, labeled older and later. Older: a flat ledge with a sharp edge. Later: the same place, the ledge rounded into a slope. Under them, the caption: Rain splashed small bits down, a little each year. Two circles: yes, no.
 
-**Say:** "Nobody saw the ledge change on any day. Did it change? Point to yes or no."
-
-**Key (teacher):** Yes, with the rounded slope named as the difference. No, because nobody saw it change, is error A.
+**Say:** "Nobody saw the ledge change on any day. How do you know whether it changed?"
 
 ## Day 15 exit card: Alder Creek, and the tray
 
 **Picture, part a:** Two records of the Alder Creek bank. Record 1: an older and a later drawing of the bank, the edge farther back in the later one, with the caption: a little each season. Record 2: one drawing of the bank with a big bite gone and brown water in it, with the caption: after the flood a big piece was cut away in one night. Under them, two circles: record 1, record 2.
 
-**Say, part a:** "Point to the record that shows the fast change."
+**Say, part a:** "Point to the record that shows the fast change and say the words that tell you."
 
 **Picture, part b:** Three small cards in a row, numbered 1, 2, 3, each with a few printed words and a tiny picture: card 1, which way the sand slides (an arrow down a sand pile); card 2, how long a real hillside takes to slide (a plain clock face with no hands); card 3, where the spray goes (an arrow from a spray bottle).
 
 **Say, part b:** "A spray bottle wet a sand pile in a pan. Point to the card that shows what the pan cannot tell us."
-
-**Key (teacher):** Part a: record 2, with the words in one night. Neither, because erosion is always slow, is error B. Part b: card 2. Card 1 or card 3, or "the tray shows how long a real change took", is error F.

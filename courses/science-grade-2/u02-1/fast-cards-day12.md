@@ -47,7 +47,3 @@ Drawing style for pairs 2 to 4: plain black line drawing on white, thick lines, 
 ## The word to teach from pair 4
 
 Erosion: wind or water wearing land away and carrying it off. Erosion can be fast or slow. Say this once and write it on the change chart.
-
-## Key (teacher)
-
-Order: first card, then the card with the change, for every pair. Each pair has two sources, the pictures and the caption words, and the two agree. A mark on the chart is: picture | words | source label.

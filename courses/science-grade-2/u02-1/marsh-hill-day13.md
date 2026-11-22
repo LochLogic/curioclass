@@ -24,8 +24,6 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 **Say (teacher):** "Put the pictures in order. Run the evidence check: ordered pictures, words that say when, a second source that agrees. Is this a fast change like the creek bank on day 12?"
 
-**Key (teacher):** Yes. The pictures are in order, the words say in one afternoon, and the two sources agree, so a fast explanation still fits.
-
 ## Six source cards: sort them
 
 Print each card on its own square. Pairs sort them into two piles: "tells when it happened" and "only a story or a liking".
@@ -36,5 +34,3 @@ Print each card on its own square. Pairs sort them into two piles: "tells when i
 4. A made-up tale: Once a giant dug the gully with a spoon.
 5. An observer's note: The water rose fast and the slope slid down.
 6. A sentence: My cousin says this is the best hill.
-
-**Key (teacher):** Cards 1, 2 and 5 tell when it happened. Cards 3, 4 and 6 are a liking or a story, so they are not evidence.

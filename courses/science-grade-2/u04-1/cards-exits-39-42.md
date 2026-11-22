@@ -12,9 +12,9 @@ Each exit has picture cards every child marks, and a spoken stem read once. Draw
 
 ## Day 39 exit card: five toy train cars
 
-**Picture:** Two cards. Card 1: five toy train cars in a straight row, each a different simple shape. Card 2: the same five cars joined in a curving line. Under them, two circles: yes, no.
-**Say:** "Pip says the curving line needed new cars. Is Pip right? Point to yes or no."
-**Key (teacher):** No, with the words that it is the same five cars in a new arrangement. Yes is error A.
+**Picture:** Two cards. Card 1: five toy train cars in a straight row, each a different simple shape, and the same five cars joined in a curving line, with an arrow between. Card 2: a slice of bread and the same slice toasted dark, with an arrow between.
+**Say:** "How do you know which change can go back to how it was?"
+**Key (teacher):** Card 1, the train cars, with the words that they are the same five cars and can be moved back into a row; the toast does not go back. Saying the train needed new cars, so it changed for good, is error A.
 
 ## Day 40 exit card: a bridge, a gate and a roof
 

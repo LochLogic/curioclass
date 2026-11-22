@@ -19,11 +19,15 @@ Each exit has picture cards every child touches and a spoken stem read once. The
 **Say:** "Pip looked at a patch for one minute and drew no worms. Touch what Pip can say."
 **Key (teacher):** Pip did not see worms, and some may be hiding. Error C is touching "there are no worms here".
 
+**Part b picture:** a patch card from a one-minute survey: a dandelion, a snail, an ant and a stone on bare ground, each drawn clearly. Beside it a blank inventory line with room for five small pictures.
+**Say (part b):** "Draw each living thing the card shows on your inventory line."
+**Key (teacher, part b):** a dandelion, a snail and an ant, drawn once each, and no stone. A stone drawn as a living thing, or a living thing left off, has no letter: lay the card beside the line and touch each living thing once.
+
 ## Day 67 exit: a patch card
 
-**Picture:** one patch card showing four identical pill bugs, two identical moss clumps and one dandelion. Three number cards: three, four and seven.
-**Say:** "Touch how many different kinds the card shows."
-**Key (teacher):** three. Error A is touching seven or four.
+**Picture:** one patch card showing four identical pill bugs, two identical moss clumps and one dandelion. A blank line beside it with room for seven small pictures.
+**Say:** "Draw one picture for each different kind the card shows."
+**Key (teacher):** three pictures, one for each kind, drawn once each. Error A is drawing seven, or four.
 
 ## Day 68 exit: two cards, then Pip
 

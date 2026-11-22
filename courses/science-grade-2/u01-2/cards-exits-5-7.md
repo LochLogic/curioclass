@@ -10,13 +10,11 @@ credit: ours
 
 Each exit has pages every child marks or draws on, and a spoken stem. Print "invented for practice" beneath each page. None is reused from a lesson picture.
 
-## Day 5 exit pages: Pip
+## Day 5 exit pages: Maple Hill
 
-**Picture:** Two small pages. Page 1: a pond beside a tall cliff, with flat ground on the far side. Page 2: a stream running between two hills. Pip, a puppet drawn as a round head with two dot eyes, says "Water always lies between hills" in a speech bubble above.
+**Picture:** One small page. A plain line drawing of Maple Hill: a hill with a sloping side, a flat meadow at its foot, and one shallow hollow in the meadow. Small rain marks fall on the hill. No water is drawn on the ground. Print "invented for practice" beneath.
 
-**Say:** "Pip says water always lies between hills. Draw the page that does not fit what Pip said."
-
-**Key (teacher):** The pond page: the pond with the cliff on one side and no hill on the other.
+**Say:** "Rain falls on Maple Hill. The hill slopes down to a flat meadow with one hollow in it. Draw where the rain water runs and where it stops."
 
 ## Day 6 exit pages: two pages
 
@@ -24,12 +22,8 @@ Each exit has pages every child marks or draws on, and a spoken stem. Print "inv
 
 **Say:** "Mark the pond on the page that tells where there is water."
 
-**Key (teacher):** The pond dot beside the hill on the map page, matched to the key. The page that says lovely is not marked.
-
 ## Day 7 exit pages: P and Q
 
 **Picture:** Page P: liquid brook, waterfall, rain barrel and fountain, each with a filled dot. Page Q: frost, hail and a glacier, each with an open dot. Two claims printed below: X, Both pages show water. Y, Only page P shows water.
 
 **Say:** "Which claim do both pages support? Mark one place on each page to show it."
-
-**Key (teacher):** Claim X. One mark on a place on P and one mark on a place on Q.

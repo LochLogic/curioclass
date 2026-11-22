@@ -10,8 +10,6 @@ s01-X3,The ocean is left off the redrawn model.,,,G,
 s01-X4,The path runs up across the rise to the dip.,,,E,
 s01-X4,The dip and its water are drawn with nothing around them.,,,D,
 s01-X4,The marks are made with no key.,,,B,
-s01-X5,The pond is drawn with no cliff beside it.,,,D,
-s01-X5,The stream page is drawn.,,,x,the stream between two hills fits what Pip said; ask which page has no hill on its far side
 s01-X6,"Marks the page that says ponds are lovely, because it sounds nicer.",,,A,
 s01-X6,Marks a dot without checking what the key says.,,,B,
 s01-X7,Claim Y: only page P shows water.,,,C,
@@ -50,6 +48,9 @@ s01-P4-2,"Only the stream is drawn, with no bank or grass.",,,D,
 s01-P4-2,The map has no key box.,,,B,
 s01-P4-3,The two are said to be the same because both are pictures.,,,x,
 s01-P5-2,"It goes to the ocean, because Pip said so.",,,x,the claim is taken without testing it against the picture; ask where the stream in the picture ends
+s01-X5,"The arrow runs up the hill, or the water is drawn on the hill top.",,,E,
+s01-X5,"The water is drawn alone in the hollow, with no land round it.",,,D,
+s01-X5,"The water is drawn spread over the flat meadow, not in the hollow.",,,x,the water stops in the lowest place; ask which part of the meadow is lowest
 s01-P5-3,The arrow runs up the slope to the new water.,,,E,
 s01-P5-3,"Only the lake is drawn, with no land round it.",,,D,
 s01-P5-3,The new place is drawn the same as the school.,,,x,the shapes of the new place are copied from the school; ask what shapes the new picture has
@@ -63,7 +64,7 @@ s01-P7-3,"The dot on the snow is filled, so it is liquid.",,,B,
 s01-P7-4,Snow is left off the chart because it is not water.,,,C,
 s01-P7-4,All the places are from one page.,,,F,
 s01-P7-4,A place from the river story is marked.,,,A,
-s02-X11,"No, it looked the same every day.",,,A,
+s02-X11,"Points to Friday, or says Pip is right, because Friday looks the same as Monday.",,,A,
 s02-X12,"Slow, because erosion takes a long time.",,,B,
 s02-X12,"No change, because it is still a beach.",,,A,
 s02-X13,"Slow, because wind and water wear things away slowly.",,,B,
@@ -72,17 +73,11 @@ s02-X15a,"Neither, because erosion is always slow.",,,B,
 s02-X15b,The pan shows how long a real change took.,,,F,"points to card 1 or card 3 and says the pan cannot show that, or says the pan can time a real change"
 s02-X16,"No, because the slope was the same, so the start does not matter.",,,E,
 s02-X16b,"5 centimeters, because I counted the marks.",,,x,"the strip is read by counting marks, not from zero; ask where the first mark sits on the ruler"
-s02-X17,"The big picture of the fence, because it shows the fence best.",,,C,
-s02-X18,"The bar that says the chips lost the least, so they have no weakness.",,,D,
-s02-X18,"The tidy picture, because the chips look good.",,,C,
-s02-X19,"The mulch bar, because it is the one I looked at first.",,,G,
-s02-X19,"Both bars, because they both have squares.",,,G,
 s02-X20a,Sketches the shapes but draws every wind arrow straight through them.,,,,no letter in the register fits a drawing slip; the teacher notes it and shows the day 21 repair part a wind arrow bending
 s02-X20b,Pick the one that looks stronger.,,,C,
 s02-X20b,"Test them on different ground, or with the fan at a different distance.",,,E,
 s02-X21,"The close picture of the tubes, because they are tallest.",,,C,
 s02-X21,"The tubes lost less, because 6 and 7 are the bigger bars.",,,x,a longer bar is read as better; ask what a bar shows (sand lost) and which bar is shorter
-s02-X22,"Hedge H, because it lost the least land at first and so has no weakness.",,,D,
 s02-X26a,"The rocky surface is not changing, because it looks the same.",,,A,
 s02-X26a,"Both are slow, because erosion is always slow.",,,B,
 s02-X26b,"S, because it looks the strongest.",,,C,
@@ -91,6 +86,7 @@ s02-X26d,"X, because it lost the least the first time and so has no weakness.",,
 s02-X26e,Y has no weakness because I chose it.,,,D,
 s02-E1,"The mound grew little by little, because land always changes slowly.",,,B,
 s02-E1,"The shore did not change, because it looks like a shore today.",,,A,
+s02-E1,"A and C are named as the fast records, with no reason from the records.",,,x,a pick with no evidence from the records; ask what in the record tells how fast
 s02-E2,"Nobody saw the shore change, so it did not change.",,,A,
 s02-E2,"C shows a fast change, because erosion is quick.",,,B,
 s02-E3,"One slow arrow for the whole shore, because erosion is always slow.",,,B,
@@ -110,19 +106,16 @@ s03-X27,"Look at the color, because they are both blue, so they feel the same.",
 s03-X27,"Look at the size, because the bigger one is softer.",,,x,guesses a property from how big it looks; ask how we find out how soft it is
 s03-X28,"Plan 2, because moving the flashlight closer lets us see the light better.",,,D,
 s03-X29,"Yes, ice is ice and water is water, so the ice is not water.",,,C,
-s03-X30,"Strip K, because nothing climbed, so it took in the most.",,,F,
 s03-X31a,An M bar of 4 squares and an N bar of a different height.,,,x,"a slip in drawing: a note on the drawing, no letter; the child redraws it at the table"
 s03-X31b,"Hat N, because it takes water in, so it is the best hat.",,,H,
 s03-X31b,"Either hat, because the water bars are the same.",,,H,
-s03-X32,"Strip V, because it was the best hat, so it is best for everything.",,,E,
 s03-X33,"Strip S, because it bent the most, so it is the stiffest.",,,G,
 s03-X34,"The mat, because it is rough, so it is hard.",,,A,
-s03-X35,"Yes, they are both green, so both keep the box dry.",,,B,
 s03-X38a,"Both, because they are both rough.",,,A,
 s03-X38b,"Yes, they are both brown, so they bend the same.",,,B,
 s03-X38c,"No, once it holds its shape it is not water any more.",,,C,
 s03-X38d,"The plan that moves the lamp, so we can see the light better.",,,D,
-s03-X38e,"Strip Q, because it is rough.",,,B,nearest letter: sorts by one feature instead of the bend
+s03-X38e,"Strip Q, because it is rough.",,,x,sorted by one feature; ask which strip bent
 s03-X38f,"Strip Q, because more water climbed along it.",,,H,
 s03-X38f,"Either strip, because it is my favorite.",,,E,
 s03-X38g,"The strip with 0, because nothing climbed, so it took the most.",,,F,
@@ -143,14 +136,12 @@ s03-E13,"Y, because no water climbed, so it catches the most.",,,F,
 s03-E14,Y is best for every job because it is my favorite.,,,E,
 s03-E15,Any rail will do because bamboo comes from a plant.,,,x,no link from the job to a test; ask what we would test the bamboo for
 s03-X34b,"Lining N, because it looks rougher.",,,x,"a slip: texture stands in for the slope test; a note, no letter; the picture shows the block, not the feel"
-s04-X39,"Yes, it looks different, so it needed new cars.",,,A,
 s04-X40a,"A new piece, because the gate is a different thing.",,,A,arrangement is mistaken for new pieces; string from each block to its place
 s04-X40a,"Piece a, because it is the first one.",,,A,"a guess, not a match; ask which pieces made the bridge and which show on the gate"
 s04-X40b,"Any piece, because they all do the same job.",,,F,a piece's shape does not decide its use; ask which one covers the whole top
 s04-X40b,"The tall thin post, because it is the tallest.",,,F,height stands in for the shape that suits the use
 s04-X41,"Yes, they are the same size, so they work the same.",,,E,
 s04-X42,"The first two, because it froze, so it went back.",,,D,
-s04-X43,"Yes, cooling fixes it.",,,C,
 s04-X44,"Yes, it is a different shape, so it is not hard again.",,,B,
 s04-X47a,The turtle needed new pieces.,,,A,
 s04-X47b,"Stiffness does not matter, any card would do.",,,E,
@@ -185,7 +176,6 @@ s05-X50,A height with nothing else: 8 centimeters.,,,E,
 s05-X51a,Pair N checks it fairly.,,,A,
 s05-X51b,"Its height, because taller means healthier.",,,B,
 s05-X51b,"The color of its cup, because that is what is different.",,,x,the evidence is not tied to the plant; ask which thing shows how healthy the plant looks
-s05-X52a,"Yes, it looks fine, so plants do not need light.",,,C,
 s05-X52b,"Yes, it is standing up, so sunlight is all it needs.",,,D,
 s05-X53a,"The pot card, because both pots are the same.",,,x,"the same pot is fair-test evidence, not evidence of health; ask which card shows how healthy the plant looks"
 s05-X53a,"The ruler card, because the shaded plant is taller.",,,B,height stands in for health; ask what the leaves and stem show
@@ -242,14 +232,10 @@ s06-E10,The model shows everything the jay does.,,,,"the model's limits are not 
 s06-E11,The yellow dots are seeds.,,,A,
 s06-E12,The yellow piece is the seed.,,,A,
 s07-X66,There are no worms here.,,,C,
-s07-X67,Seven.,,,A,
-s07-X67,Four.,,,A,
 s07-X68a,"None, because X has three kinds and Y has two.",,,B,
 s07-X68b,"Yes, every pond has five kinds.",,,D,
 s07-X69a,"The eelgrass bed, because it has more pictures.",,,A,
 s07-X69b,Both cards show the same kinds because each shows four.,,,B,
-s07-X70,"Yes, the flower box lost two kinds.",,,C,
-s07-X71,"Yes, wet places have more kinds.",,,D,
 s07-X73a,"Five, one for every picture.",,,A,
 s07-X73a,Three.,,,A,
 s07-X73b,"Yes, both have two kinds so they are the same.",,,B,
@@ -276,14 +262,17 @@ c1-H57b,"Says returned, because it cooled.",,,I,cooling is taken always to resto
 c1-H57c,"Says the friend is right, because the snowball came back.",,,I,cooling is taken always to restore
 c1-H57c,Uses only the snowball record.,,,x,one record is used; shown with help
 c1-F58a,Touches only the card whose change looks biggest.,,,K,size is taken for speed
-c1-F58b,"Says none changed slowly, because the step looked the same every day.",,,J,looking the same is taken for not changing
+c1-F58b,"Says none changed slowly, because the ridge looked the same every day.",,,J,looking the same is taken for not changing
+c1-F58e,"Says the ridge is rocky and has sharp points, with no words about time.",,,K,the words that tell how fast or slow are not used
 c1-F58c,"Says it did not change, because it looked the same all week.",,,J,looking the same is taken for not changing
+c1-F58f,"Says it looked the same all week, with no older photo named.",,,J,looking the same is taken for not changing
 c1-F58d,Says the fast change is the big one and the slow change is the small one.,,,K,size is taken for speed
 c1-B58a,"Says H is simply the best barrier, with no numbers.",,,L,no weakness is looked for
 c1-B58b,"Says H does nothing poorly, because it lost the least soil.",,,L,a chosen design is taken to have no weakness
 c1-B58c,Says J does well because it lost the least soil.,,,x,"the numbers are misread, H lost less; shown with help"
 c1-B58d,"Says J does nothing poorly, because it uses the least path.",,,L,a chosen design is taken to have no weakness
 c1-W58a,"Chooses by a favorite or by how the material looks, not by the numbers.",,,M,the job and the tests are not used
+c1-W58c,"Writes how the strip looks or a favorite, with no numbers.",,,M,the job and the tests are not used
 c1-W58b,Says the mat grows like roots.,,,x,a model is taken for the living thing; shown with help
 c1-X59a,Touches the arrow over the hill.,,,C,water is taken to run uphill
 c1-X59b,"Touches the poster, because picnics are fun.",,,E,a liked page is taken for a source about water
@@ -318,3 +307,34 @@ c2-X76e,Says nothing is different.,,,x,no gain is named; the teacher adds a gain
 c2-X76f,Touches the ribbon.,,,O,stiffness is taken not to matter for a use
 c2-X76g,"Says yes, it is a banana slice again.",,,Q,a look like the start is taken for a return
 c2-X76h,Touches the taller one in the dark.,,,S,height alone is taken to show health
+s02-X18,"No change, because the pile lost only a little and the bar is short.",,,D,a chosen design with a short bar still has a weakness; ask where the water got through
+s02-X18,Change it because the pile looks messy.,,,C,"a change must come from the record, not the look; point to the gaps on the card"
+s02-X18,"Make the pile taller, with no reason from the card.",,,x,"the card shows gaps at the bottom, not a low pile; ask what the picture shows"
+s02-X19,"Both bars are ticked, because they both have squares.",,,G,lay a ruler along the limit line and read each bar as over or under
+s02-X19,"The tick is above the mulch bar, because it was drawn first.",,,G,"read each bar against the line, not the order drawn"
+s02-X19,The bars are drawn but their heights are not 5 and 9 squares.,,,x,count the squares up one at a time from the bottom line for each strip
+s02-X22,"Hedge H, because it lost the least land at first and so has no weakness.",,,D,lay the path bar beside its limit line and read 9 against 6
+s02-X22,"Fence F, with no numbers said.",,,x,ask which numbers show the fence is at or under each limit
+s03-X28b,"Wax paper and foil, because they both look shiny.",,,B,sorts by how the samples look; the test result is what sorts them
+s03-X28b,"Foil and tissue paper, with no reason from the chart.",,,x,ask what the light test showed for each
+s03-X30,"Strip K, because nothing climbed, so it took in the most.",,,F,"trace where the water went in two pictured strips, one inside and one pooled outside"
+s03-X30,"Strip L, with a number that is not 6 or no number.",,,x,lay the ruler at zero on the cup line and read to the whole centimeter
+s03-X32,"Strip V for both jobs, because it was the best hat, so it is best for everything.",,,E,pair two jobs with two materials from the records and say why one material is not best for both
+s04-X39,"The train changed for good, because it needed new cars to make the curve.",,,A,the castle and boat pictures; the same pieces in a new arrangement are not new pieces
+s04-X39,"The toast goes back, because it is still bread.",,,x,ask whether the toast can be made plain again by moving it
+s04-X43,"The corn, because cooling turns it back.",,,C,the egg before cooking and after cooking and cooling; the class says whether cooling undid the cooking
+s04-X43,"Both, because both were cooled.",,,C,cooling is not the same as a return; look at each last card against its first card
+s05-X52a,"Yes, the dark plant is the same as its control, so plants do not need light.",,,C,the day 51 Day 1 card beside the Day 12 card; touch the pale plant
+s05-X52a,"Not yet, with no comparison with the control said.",,,x,ask what the control shows on May 18
+s07-X66b,The stone is drawn on the inventory line as a living thing.,,,x,a stone is not living; ask which things on the card are alive
+s07-X66b,"A living thing the card shows is left off, or a worm is drawn that is not on the card.",,,x,a slip: lay the card beside the line and touch each living thing once
+s07-X67,"Seven pictures, one for each thing on the card.",,,A,the circle-and-count card; circle the same kind together and draw one for the circle
+s07-X67,"Four pictures, a pill bug, two moss clumps and a dandelion.",,,A,the two moss clumps are one kind; circle them together before drawing
+s07-X70,"Look for one minute, and if fewer kinds show, the flower box lost them.",,,C,"the flap card, first view none, second view one; a shorter look cannot show a kind was lost"
+s07-X70,"Look somewhere new, or with new labels.",,,x,"ask what must stay the same for a fair comparison: the same place, time and labels"
+s07-X71,"Yes, the pond edge has more kinds, so wet places always have more.",,,D,the invented wet and dry pair of equal counts; two cards are not a rule
+s07-X71,"No, because the sandy lot has a lizard.",,,x,ask what two cards can and cannot show
+s02-X17,"The fence, because it looks strongest, with no numbers read.",,,C,"picks by looks, not by the tray result bars"
+s02-X17,"8 centimeters, or 7 centimeters less.",,,x,lay the fence bar beside the bare bar and count the squares between the tops
+s03-X35,"Keep sheet A, because both sheets are green, so both keep the box dry.",,,B,lay the two tested sheets side by side and read what each kept dry
+s03-X35,"Change to sheet B, with no result from the test said.",,,x,ask what the box showed under each sheet

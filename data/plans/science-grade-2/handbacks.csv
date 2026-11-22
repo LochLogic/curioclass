@@ -11,7 +11,7 @@ from_day,to_day,what,where,minutes,error,note
 4,5,s01-X4,Revise your model,0,D,a picture card at the table for outlines round the water
 4,5,s01-X4,Revise your model,0,B,a picture card at the table: add the meaning of each mark
 5,6,s01-X5,Return and repair,5,D,draw the land beside the water on the shared picture
-5,6,s01-X5,Talk,0,,a child who drew the stream page is asked which page has no hill on its far side; recorded in plain words
+5,6,s01-X5,Talk,0,,a child who drew the water spread over the meadow is asked which part of the meadow is lowest; recorded in plain words
 6,7,s01-X6,Return and repair,5,A,each pair holds up the page that can answer and points to the caption or key
 6,7,s01-X6,Combine,0,B,a picture card at the table: read a dot against the key before marking it
 7,10,s01-X7,Repair by letter groups,0,C,day 8 is an assessment day with no reteach; the slips are read before day 10 and the child joins group C (minutes counted under s01-E2)
@@ -34,7 +34,7 @@ from_day,to_day,what,where,minutes,error,note
 5,6,s01-P5-4,Return and repair,0,,each child hears their pattern frame read back with one next step
 7,10,s01-P7-4,Repair by letter groups,0,,the combined chart is read before day 10 and returned with one written next step
 6,7,s01-P6-4,Return and repair,0,,each child gets their marked map back with one written next step
-11,12,s02-X11,Return and repair,5,A,"the wrong example on the board, then order the two swing-ground cards together; the one letter most children made takes the five minutes"
+11,12,s02-X11,Return and repair,5,A,"the wrong example on the board, then lay the three swing-ground pictures side by side and point to the one that shows the change; the one letter most children made takes the five minutes"
 12,13,s02-X12,Return and repair,5,B,compare a bank cut in one night with a path worn little by little; the more missed of the two letters takes the five minutes
 12,13,s02-X12,Return and repair,0,A,a picture card at the table when B is the more missed: put the before and after cards side by side
 13,14,s02-X13,Return and repair,5,B,"the words about when decide the speed, not the word erosion; the five minutes go to the letter most children made"
@@ -42,8 +42,8 @@ from_day,to_day,what,where,minutes,error,note
 15,16,s02-X15b,Return and repair,4,F,lay a pour record beside a flood-cut bank card; say what each shows and what neither can show; the four minutes go to whichever of F or B more children missed
 15,16,s02-X15a,Return and repair,0,B,in the same four minutes when B is the more missed; otherwise a picture card at the table
 16,17,s02-X16 s02-X16b,Return and repair,5,E,"reset two trays to the slope card together, then pour"
-17,18,s02-X17,Return and repair,5,C,put the result bar next to each barrier before choosing
-18,19,s02-X18,Return and repair,5,D,mark one thing the chosen design does poorly in its own record
+17,18,s02-X17,Return and repair,5,C,put the result bar next to each barrier before choosing; read each bar in whole centimeters aloud
+18,19,s02-X18,Return and repair,5,D,"mark one thing the chosen design does poorly in its own record, and name one change the record supports"
 19,20,s02-X19,Return and repair,5,G,lay a ruler along the limit line and read each bar as over or under
 20,21,s02-X20b,Return and repair,5,C,match two barriers to their result bars; the five minutes go to the letter most children made
 20,21,s02-X20b,Return and repair,0,E,a picture card at the table when C is the more missed: reset both trays to the same start and the same fan place
@@ -71,6 +71,7 @@ from_day,to_day,what,where,minutes,error,note
 27,28,s03-X27,Return and repair,5,B,bend and press two same-colour samples side by side; the repair pair is not the exit pair
 27,35,first-choice drawing,Look back,0,,each child gets the dated day 27 drawing back and says what they know now that it did not
 28,29,s03-X28,Return and repair,5,D,two light-test plans on cards; tape the lamp position on a picture and change only the sheet
+28,29,s03-X28b,Return and repair,0,B,"lay the light chart beside two samples; sort by what each let through, not by how it looks"
 29,30,s03-X29,Return and repair,5,C,three pictures of one cup of water; the class says what stayed the same
 30,31,s03-X30,Return and repair,5,F,"trace where the water went in two pictured strips, one inside and one pooled outside"
 30,31,class record chart,Graph together,0,,the six strip numbers on the chart are the bars; the first bar is drawn by the teacher
@@ -144,6 +145,7 @@ from_day,to_day,what,where,minutes,error,note
 64,65,"day 64 records, group D",Repair by letter groups,3,D,"smooth and hooked on the same cloth, limit the every-seed claim"
 65,66,day 65 consensus chart and plant-animal system model,Carry in,2,,the chart is read aloud and two children say one link each; nothing is rescored
 66,67,s07-X66,Return and repair,3,C,"the flap card; whole class if many, otherwise a small group while the rest lay out their sheets"
+66,67,s07-X66b,Return and repair,0,,a slip in the inventory gets a note and no letter; the child touches each living thing on the card and adds it to the line
 67,68,s07-X67,Return and repair,3,A,"the circle-and-count card; whole class if many, otherwise a small group"
 68,69,s07-X68a,Return and repair,3,B,"two equal-count cards, touch each kind in turn; the rest begin their sets"
 68,69,s07-X68b,Return and repair,2,D,"the four-habitat chart, a wet place with a small count and a drier place with a bigger one"

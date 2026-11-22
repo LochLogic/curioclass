@@ -17,5 +17,3 @@ Five printed cards, one test result each, for the child to read with the teacher
 - **Shelf:** Card strip dropped 2. Fabric strip dropped 9.
 - **Cover:** Wood pressed with the blunt stick: no dent. Rubber pressed with the blunt stick: dent.
 - **Grip:** Rubber lining: block held still. Wood lining: block slipped.
-
-**Key (teacher):** For the rain hat, plastic. For the pad, paper towel. For the shelf, card. For the cover, wood. For the grip, rubber. Each choice rests on a result; the colour or the feel is not the evidence.

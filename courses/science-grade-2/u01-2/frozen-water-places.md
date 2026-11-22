@@ -18,10 +18,6 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 **Read:** Caption 1: Snow lies on the high peaks. Caption 2: A sheet of ice fills the high valley. Caption 3: A small pond near the foot of the valley is frozen. Snow and ice are solid water.
 
-## Key (teacher)
-
-The two pages together show liquid water and solid water in imagined places. Match each open dot to the key. Do not give amounts or sizes.
-
 ## Ice-water pictures (if a cup fails)
 
 **Picture:** Two small pictures side by side, each a sealed clear cup on a tray. Cup 1 holds ice pieces and carries an open dot. Cup 2 holds flat liquid water and carries a filled dot. Key box: filled dot = liquid water, open dot = solid water. Print "invented for practice" beneath.

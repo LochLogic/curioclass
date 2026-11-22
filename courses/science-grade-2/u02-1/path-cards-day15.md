@@ -26,8 +26,6 @@ The class sorts the evidence into fast and slow, two sources each, and does not 
 
 **Caption latest:** After a big rain this week.
 
-**Key (teacher):** Slow evidence: the older and later pictures, and the words children walked here all term. Fast evidence: the latest picture, and the words after a big rain this week. Two sources each. Say nothing yet about how to stop it.
-
 ## Fan-tray card
 
 **Picture:** A flat tray of dry sand with a small hand fan at one end, drawn from the side, with wind lines blowing across. A pile of sand lies against the far end of the tray.
@@ -35,5 +33,3 @@ The class sorts the evidence into fast and slow, two sources each, and does not 
 **Caption:** Wind moved the sand in this tray.
 
 **Say (teacher):** "The pour record cards and this tray show soil moving the way water or wind goes. What can they show? What can they not show?"
-
-**Key (teacher):** They show how soil moves. They do not show how long a real change took.

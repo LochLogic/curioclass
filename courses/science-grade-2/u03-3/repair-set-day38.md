@@ -16,11 +16,11 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 **Say:** "Which one is harder? Why?"
 **Key (teacher):** The tile, because it did not dent. Rough is how it feels.
 
-## Group B: the same colour, a different bend
+## Group B: the same color, a different bend
 
 **Picture:** Two black ribbons. One is limp over a finger. The other is a stiff band held straight.
 **Say:** "Both are black. Do they bend the same?"
-**Key (teacher):** No. Colour tells only the colour.
+**Key (teacher):** No. Color tells only the color.
 
 ## Group C: ice is water
 
@@ -36,7 +36,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Group E, F, G, H: one picture each, taken in the order most children named
 
-- **E:** "A job card says a bag needs a stiff base. Pip says the favourite is best for everything. Pair the job with a test result." Key: the job decides.
+- **E:** "A job card says a bag needs a stiff base. Pip says the favorite is best for everything. Pair the job with a test result." Key: the job decides.
 - **F:** "Strip 1 had water climb 5. Strip 2 had none. Which took water in?" Key: strip 1.
 - **G:** "A ramp dropped 1 under a load. Another dropped 6. Which stays more level?" Key: the drop of 1.
 - **H:** "A cover soaked water in and the doll got wet. Another stayed dry. Which is the better hat?" Key: the one that stayed dry.

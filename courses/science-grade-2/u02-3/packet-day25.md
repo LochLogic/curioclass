@@ -27,7 +27,3 @@ Two screens protect the same soil strip in equal wind trials. The problem needs 
 4. Say what screen Q does poorly.
 5. Mark each of the four runs as at or under the limit, or over it.
 6. Choose one screen for this problem. On your barrier model, draw the retreat records of screen P and screen Q against the limit line, and say why you chose it.
-
-## Key (teacher)
-
-P does well in the first run: 1, the least. P does poorly in the second run: 7, over the limit of 5. Q does well: 4 and 4, the same each time and under the limit. Q does poorly in the first run: 4, more than the 1 that P lost. Marks: P first 1 under; P second 7 over; Q first 4 under; Q second 4 under. Choose Q, because both of its runs meet the limit. Look-fors are on the record sheet.

@@ -6,7 +6,6 @@ version: draft, not yet taught
 credit: ours
 ---
 
-
 # Hedge row and sand dune cards (day 73)
 
 Drawing style: plain black line drawing on white, thick lines, no shading, no brand names, no printed words except where a card says so. Children in any picture are of different ages, skin tones and hair, shown as simple figures. Say aloud that every picture is invented for practice, and print "invented for practice" beneath each one.
@@ -17,4 +16,3 @@ The fresh comparison, unscored. Two cards, one set a child. Every kind is drawn 
 **Sand dune, three kinds.** Sand with a few plants. Two identical beach plants, one dune mouse and the same round brown beetle as on the hedge row.
 
 **Say:** "Draw one picture for each kind on each card, and make one graph. Then show one kind that is on both cards and one kind that is on only one."
-**Key (teacher):** hedge row four kinds, sand dune three kinds. The beetle is on both cards. Different: thorn bush, berry vine and finch are only on the hedge row; the beach plant and dune mouse are only on the dune. Not a ranking of places.

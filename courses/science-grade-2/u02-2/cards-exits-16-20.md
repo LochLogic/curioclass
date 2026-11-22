@@ -22,31 +22,23 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 **Say (part b):** "The sand edge was at 0. After the pour it was at the second mark. How far did the edge move back? Write the number."
 
-**Key (teacher):** Yes, with the words that the start must be the same. No, because the slope was the same, is error E. Part b: 4 centimeters. Reading the second mark without starting at 0, or giving a number that is not 4, is not yet seen (no letter).
-
 ## Day 17 exit card: the fence
 
-**Picture:** Three cards in a row. Card 1: a tall wooden fence drawn large. Card 2: three bars from equal tray tests, labeled fence, hedge and mesh. Card 3: a close picture of the fence boards.
+**Picture:** One result card from an equal tray test, with a squared grid, one square for each centimeter. Two bars: the bare tray, 7 squares tall, and the fence tray, 1 square tall, each labeled.
 
-**Say:** "Pip picks the fence because it looks strongest. Which card does Pip need before choosing? Point."
-
-**Key (teacher):** Card 2, the tray result bars. Card 1 or card 3, because they show the fence best, is error C.
+**Say:** "How many centimeters less sand did the fence tray lose than the bare tray?"
 
 ## Day 18 exit card: wood chips
 
-**Picture:** Three cards in a row. Card 1: a tray from above with wood chips spread across the whole path. Card 2: one short bar with the words lost the least. Card 3: a tidy picture of a heap of chips.
+**Picture:** One record card for a new design, a brush pile of sticks laid across the path. Two short bars, run 1 at 2 squares and run 2 at 5 squares, one square for each centimeter. Beside them a small tray picture from above with water arrows running through gaps at the bottom of the pile.
 
-**Say:** "The chips lost the least sand, and Pip says they have no weakness. Point to the card that shows something the chips might do poorly."
-
-**Key (teacher):** Card 1, with the words that the chips use up the path. Card 2, because it says lost the least, is error D. Card 3, because the chips look good, is error C.
+**Say:** "The pile lost 2 centimeters of sand in run 1 and 5 centimeters in run 2. The picture shows water running through gaps at the bottom of the pile. What one change to the brush pile does the card support?"
 
 ## Day 19 exit card: mulch and gravel
 
-**Picture:** A two-bar picture graph on squares, one square for each centimeter. A line across both bars at 7. The mulch bar is 5 squares tall and the gravel bar 9 squares tall, each labeled. Under it, two circles: mulch, gravel.
+**Picture:** A blank squared grid, one square for each centimeter, with a bottom line and a limit line across it at 7. Beside it two paper strips drawn to the same square size, labeled mulch (5 squares long) and gravel (9 squares long).
 
-**Say:** "A limit is the most we allow. Which bar goes past the limit line? Point to it."
-
-**Key (teacher):** The gravel bar. The mulch bar, or both bars, has no letter in the register: the teacher notes it and day 20 opens with error G.
+**Say:** "A limit is the most we allow. The mulch strip is 5 centimeters long and the gravel strip is 9 centimeters long. Draw a bar for each strip, and put a tick above the bar that goes past the limit line."
 
 ## Day 20 exit card: two shapes for one garden strip
 
@@ -55,5 +47,3 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 **Say, part a:** "Sketch both shapes. Draw an arrow for each to show how it turns the wind."
 
 **Say, part b:** "How could we compare their protection fairly? Say it or point to a card." Cards: same ground and same fan place, then measure the retreat; different ground; the one that looks stronger.
-
-**Key (teacher):** Part a: both shapes drawn, each with an arrow that bends around or slows at the shape; arrows straight through both have no letter, so note it and show day 21 an arrow bending. Part b: the same ground and fan place, then measure the retreat. The one that looks stronger is error C. A different ground or fan place is error E.

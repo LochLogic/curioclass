@@ -6,7 +6,6 @@ version: draft, not yet taught
 credit: ours
 ---
 
-
 # Leaf photographs (day 43)
 
 Drawing style: plain black line drawing on white, thick lines, no shading, no brand names, no printed words except where a card says so. Children in any picture are of different ages, skin tones and hair, shown as simple figures. Say aloud that every picture is invented for practice, and print "invented for practice" beneath each one.
@@ -18,4 +17,3 @@ A lettuce leaf is frozen overnight in a sealed bag by a grown-up and then left t
 **Picture 3, labelled thawed:** the same leaf on the plate after it warmed, limp and dark green, lying flat. Beside it a second leaf that was never frozen, firm and bright.
 
 **Say:** "Look at all three. What did the cold do to the leaf? We warmed it back: is it firm again?"
-**Key (teacher):** Cooling changed the leaf. After warming it is still limp, so the change stayed. The never-frozen leaf shows what firm looked like.

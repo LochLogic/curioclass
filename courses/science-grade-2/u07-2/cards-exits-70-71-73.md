@@ -15,15 +15,15 @@ Each exit has picture cards every child touches and a spoken stem read once. The
 
 ## Day 70 exit: a flower box twice
 
-**Picture:** Pip, a child, beside a flower box. Monday's page shows four different drawings and a clock at five minutes. Friday's page shows two drawings and a clock at one minute. Two cards: yes and no.
-**Say:** "Pip drew a flower box for five minutes on Monday and saw four kinds. On Friday Pip looked for one minute and saw two kinds. Touch yes or no: can we say the flower box lost two kinds?"
-**Key (teacher):** no; Friday's look was shorter. Error C is touching yes.
+**Picture:** Pip, a child, beside a flower box. Monday's page shows four different drawings and a clock at five minutes. Friday's page is blank, with a clock and a label card beside it.
+**Say:** "Pip drew a flower box for five minutes on Monday and saw four kinds. Pip will look again on Friday to see if a kind is gone. Say what Pip should keep the same on Friday so the two looks can be compared."
+**Key (teacher):** the same flower box, for the same five minutes, with the same labels. Looking for a shorter time and then saying a kind was lost is error C. A new place or new labels has no letter: ask what must stay the same.
 
-## Day 71 exit: a creek bank and a hillside
+## Day 71 exit: a pond edge and a sandy lot
 
-**Picture:** a damp creek bank card with a broad-leaf plant, a newt and a water bug. A dry hillside card with a sage bush, a pale flower, a bee and a grasshopper. Two cards: yes and no.
-**Say:** "Pip says wet places always have more kinds. Touch yes or no: do these two cards agree with Pip?"
-**Key (teacher):** no; the dry hillside shows four kinds and the damp bank shows three. Error D is touching yes.
+**Picture:** a pond edge card with a reed, a frog, a dragonfly, a snail and a minnow. A sandy lot card with a lizard and a thistle.
+**Say:** "Pip says these two cards show that wet places always have more kinds. Is Pip right? Say yes or no."
+**Key (teacher):** No: two cards show only two places, so they cannot show that wet places always have more kinds. Error D is saying yes because the pond edge has more.
 
 ## Day 73 exit: a park and a ditch
 

@@ -18,4 +18,3 @@ One block on one sloping board, drawn from the side on four cards. No hands are 
 - **Card 4, plastic lining:** the block has slid to the bottom.
 
 **Say:** "Same block, same slope. Point to the linings where the block held still."
-**Key (teacher):** Rubber and fabric. Wood and plastic let the block slip. A lining does not have to feel rough to hold; the slope test shows it.

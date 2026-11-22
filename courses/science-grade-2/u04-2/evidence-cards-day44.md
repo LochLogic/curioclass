@@ -6,7 +6,6 @@ version: draft, not yet taught
 credit: ours
 ---
 
-
 # Evidence cards (day 44)
 
 Drawing style: plain black line drawing on white, thick lines, no shading, no brand names, no printed words except where a card says so. Children in any picture are of different ages, skin tones and hair, shown as simple figures. Say aloud that every picture is invented for practice, and print "invented for practice" beneath each one.
@@ -23,4 +22,3 @@ Eight cards per group. Each card has a short label and a small picture sequence.
 8. **Blocks, castle to boat, no rebuild:** a castle, then a boat, with no card showing the castle again. Not enough yet.
 
 **Say:** "Pip says the ice cup went back. Check it against the card. Sort all eight, then tell us one claim with evidence and a reason."
-**Key (teacher):** Card 7 has no attempted return, so it cannot sort as went back. A claim: "The chocolate went back. We saw it hard, liquid, then hard. Warming and cooling are the reason."

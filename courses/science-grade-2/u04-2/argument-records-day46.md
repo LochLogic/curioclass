@@ -6,7 +6,6 @@ version: draft, not yet taught
 credit: ours
 ---
 
-
 # Argument records (day 46)
 
 Drawing style: plain black line drawing on white, thick lines, no shading, no brand names, no printed words except where a card says so. Children in any picture are of different ages, skin tones and hair, shown as simple figures. Say aloud that every picture is invented for practice, and print "invented for practice" beneath each one.
@@ -20,4 +19,3 @@ Five record cards, one packet per child. Each shows a thing that was heated or c
 5. **Second butter:** a different stick of solid butter; the butter melted after a grown-up heated it. There is no picture of it cooled.
 
 **Say for each:** the asks of items s04-E13 to s04-E22, read one at a time.
-**Key (teacher):** Butter and juice returned; cookie and cucumber remained; the second butter is not enough yet because there is no cooling record. A general claim: heating and cooling can cause some changes that go back and some that stay.

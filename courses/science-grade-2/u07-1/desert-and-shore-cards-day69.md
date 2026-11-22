@@ -6,7 +6,6 @@ version: draft, not yet taught
 credit: ours
 ---
 
-
 # Desert card and shore card (day 69)
 
 Drawing style: plain black line drawing on white, thick lines, no shading, no brand names, no printed words except where a card says so. Children in any picture are of different ages, skin tones and hair, shown as simple figures. Say aloud that every picture is invented for practice, and print "invented for practice" beneath each one.
@@ -17,4 +16,3 @@ Two cards, five paper sets a group, one set a child. Every kind is drawn the sam
 **Shore card, six pictures, three kinds.** Wet sand at the edge of the sea. Three identical strands of seaweed, two identical gulls and one long pink sand worm lying in the wet sand.
 
 **Say:** "Circle the pictures that are the same kind. Draw one picture for each kind. Count your kinds."
-**Key (teacher):** the desert shows three kinds and the shore shows three kinds. No kind is on both cards. Equal counts, different kinds. In the four-habitat chart the pond has five kinds, forest A four, desert three and shore three; the shore is a wet place and does not have the largest count.

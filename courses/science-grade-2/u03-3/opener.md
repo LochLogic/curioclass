@@ -18,7 +18,7 @@ Day 37 opens with directions, then the packet, then collect. Read each task alou
 
 ## The ideas, at an adult's level
 
-- **A choice rests on a result, not on a favourite or a colour.**
+- **A choice rests on a result, not on a favorite or a color.**
 - **Each job needs its own property.** The ledge needs a small drop, the wrapper needs to wrap a curve, the stamping base needs no dent, the lining needs to hold a block, the mat needs the farthest climb.
 - **A different job can change the best choice,** because it asks for a different property.
 - **People test materials from nature before they design with them.** Wood from a tree is tested for bend or dent before it is chosen for a block.

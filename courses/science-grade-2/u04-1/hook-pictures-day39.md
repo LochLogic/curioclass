@@ -33,4 +33,3 @@ The teacher cooked this egg in a kitchen. Three pictures in a row.
 **Picture 3, labelled cooled:** the cooked egg on a plate with small snow marks for cool, still firm and white.
 
 **Say:** "Look at all three. Pip says: our block castle became a boat, and melted chocolate hardened again, but a cooked egg never runs again. Which changes can be undone?"
-**Key (teacher):** Take only guesses; the compelling question is asked before any kind of change is named.

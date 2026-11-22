@@ -19,6 +19,6 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Page 2
 
-**Picture:** Dry Ridge: a long flat-topped ridge with a few bushes. A shallow gully runs down between two gentle slopes to a long lake in a low place, with slopes rising on every side of the lake. There is no ocean on the page. A woman with grey braids walks along the ridge.
+**Picture:** Dry Ridge: a long flat-topped ridge with a few bushes. A shallow stream runs down between two gentle slopes to a long lake in a low place, with slopes rising on every side of the lake. There is no ocean on the page. A woman with gray braids walks along the ridge.
 
-**Read:** On Dry Ridge a gully runs down to a lake. The lake lies in a low place with slopes all round it.
+**Read:** On Dry Ridge a stream runs down to a lake. The lake lies in a low place with slopes all round it.

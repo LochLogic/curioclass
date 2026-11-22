@@ -28,10 +28,6 @@ A reserved packet printed only on day 23. Read the directions once. Children rea
 
 ## Tasks
 
-1. Use A and B to explain a fast land change.
-2. Use C and D to explain a slow land change.
+1. Which records show a fast change, and what tells you?
+2. Which records show a slow change, and what tells you?
 3. Revise your change model so that it shows the fast route and the slow route, each with the records that support it.
-
-## Key (teacher)
-
-Task 1: A with B show new land added suddenly: the shore is flat in the picture before and the mound is there after, and the words say during the eruption. Task 2: C with D show a slow change: the edge is farther inland in the later view, and the words say little by little. Task 3: a model with a fast arrow labelled A and B, a slow arrow labelled C and D, and source labels on each. Look-fors are on the record sheet.

@@ -23,7 +23,3 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 ## Directions
 
 **Read:** "Here are two views of one bay. Make a picture model of this area, with a key. Then use your model to show the way the water goes. Then say how a map could show a different area."
-
-## Key (teacher)
-
-E4: two hills, a valley between them, a bending river in the valley ending in the ocean, a key. E5: the water runs along the low valley toward the mouth, not over the hills, because the valley is lower. E6: a map of a different area would show its own shapes and places, with its own key.

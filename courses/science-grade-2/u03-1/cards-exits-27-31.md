@@ -22,6 +22,12 @@ Each exit has a picture card every child marks, and a spoken stem read once. Dra
 **Say:** "We want to know which sheet lets more light through. Touch the fair plan."
 **Key (teacher):** Plan 1, with the words that the flashlight stays put and only the sheet changes. Plan 2, because closer shows it better, is error D.
 
+**Part b picture:** A small chart from a new light test, three rows with a picture of each sample and the test result in words: wax paper, lets some light through; foil, blocks light; tissue paper, lets some light through.
+
+**Say, part b:** "Touch the two samples that sort together by what the light test showed."
+
+**Key, part b (teacher):** Wax paper and tissue paper, with the words that both let some light through. Wax paper and foil, because they both look shiny, is error B: the test result sorts, not the look.
+
 ## Day 29 exit card: one puddle
 
 **Picture:** Two cards. Card 1: a puddle at dawn with a thin skin of ice, labelled morning. Card 2: the same puddle at the same place, flowing, with ripples, labelled noon. Under them, two circles: yes, no.
@@ -30,9 +36,9 @@ Each exit has a picture card every child marks, and a spoken stem read once. Dra
 
 ## Day 30 exit card: two new strips
 
-**Picture:** Two cups with a strip standing in each, drawn from the side, each with a cup line marked on the strip. Strip K: a clean strip with no wet mark above the cup line. Strip L: a strip with a wet mark climbing to the 6 line above the cup line. A small ruler beside each, zero at the cup line.
-**Say:** "Touch the strip that took water in."
-**Key (teacher):** Strip L, because the water climbed up into it. Strip K, because nothing climbed so it took in the most, is error F.
+**Picture:** Two cups with a strip standing in each, drawn from the side, each with a cup line marked on the strip. Strip K: a clean strip with no wet mark above the cup line. Strip L: a strip with a wet mark climbing to the line marked 6 above the cup line. The facts are in the picture only; the child reads them. A small ruler beside each, zero at the cup line.
+**Say:** "How far did the water climb in the strip that took water in?"
+**Key (teacher):** Strip L, because the water climbed up into it, 6 centimeters. Strip K, because nothing climbed so it took in the most, is error F.
 
 ## Day 31 exit cards: two bars, then two hats
 
@@ -40,5 +46,5 @@ Each exit has a picture card every child marks, and a spoken stem read once. Dra
 **Key (teacher):** Two bars of equal height, each 4 squares, one for M and one for N, both starting at the bottom line. A different height has no letter: note it on the drawing and the child redraws at the table.
 
 **Part b picture:** Two cards. Hat M: a doll under a hat with a dry paper tab beneath. Hat N: a doll under a hat with a wet tab beneath. Under them, two circles: hat M, hat N.
-**Say, part b:** "The water climbed the same in both strips. Touch the hat to use."
-**Key (teacher):** Hat M, because the doll stayed dry. Hat N, because it takes water in, is error H.
+**Say, part b:** "The water climbed the same in both strips. What on the cards tells you which hat to use?"
+**Key (teacher):** The doll stayed dry under hat M, so hat M. Hat N, because it takes water in, is error H.

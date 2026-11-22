@@ -13,12 +13,12 @@ Each exit has picture cards every child touches and a spoken stem read once. Dra
 
 ## Day 43 exit cards: a corn kernel
 
-**Picture:** Three cards laid left to right and labeled first, then, last. First: a hard dry corn kernel. Then: the kernel popped, soft and white, with small heat lines. Last: the popped corn cooled on a plate, small snow marks. Under them, two circles: yes, no.
-**Say:** "Pip says if we cool the popcorn it turns back into a hard kernel. Is Pip right? Point to yes or no."
-**Key (teacher):** No; the popped corn stays popped (error C is saying yes).
+**Picture:** Two rows of three cards, each laid left to right and labeled first, then, last. Series A: a hard dry corn kernel; the kernel popped, soft and white, with small heat lines; the popped corn cooled on a plate, small snow marks. Series B: a hard stick of butter; the butter melted in a pan, small heat lines, a grown-up's hand on the handle; the melted butter cooled hard again in a dish, small snow marks. Under them, two circles: series A, series B.
+**Say:** "How do you know which series ended where it started?"
+**Key (teacher):** Series B, the butter, with the words that it is hard again; the popped corn stays popped. Choosing the corn, or both, because they were cooled, is error C.
 
-## Day 44 exit cards: a wax stub
+## Day 44 exit cards: a glue stick
 
-**Picture:** Three cards labeled first, then, last. First: a short candle stub standing up. Then: the stub as melted liquid wax in a dish, a grown-up in goggles. Last: the wax cooled into a flat hard round, snow marks. Under them, two circles: yes, no.
-**Say:** "Pip says the wax did not go hard again because its outline changed. Is Pip right? Point to yes or no."
-**Key (teacher):** No; it is hard again in a new outline (error B is saying yes).
+**Picture:** Three cards labeled first, then, last. First: a short hard glue stick standing up. Then: the glue as melted liquid on a tray, a grown-up in goggles. Last: the glue cooled into a flat hard blob. Under them, two circles: yes, no.
+**Say:** "Pip says the glue did not go hard again because its outline changed. Use the cards to argue whether Pip is right."
+**Key (teacher):** No, with the words that it is hard again and only the outline changed (error B is saying yes).

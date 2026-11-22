@@ -16,15 +16,15 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 **Say:** "These are equally rough. The same stick pressed each one the same. Touch the harder one."
 **Key (teacher):** The right one, with no dent.
 
-## Card b (colour tells the bend)
+## Card b (color tells the bend)
 
 **Picture:** Two brown strips, one curving over a hand and one held out straight.
-**Say:** "Both are brown. Do matching colours tell us how they bend? Point to yes or no."
-**Key (teacher):** No. Same colour, different bend.
+**Say:** "Both are brown. Do matching colors tell us how they bend? Point to yes or no."
+**Key (teacher):** No. Same color, different bend.
 
 ## Card c (water, solid or liquid)
 
-**Picture:** A row of four pictures of water in a sealed tray: flowing, thickening, nearly set, holding its shape.
+**Picture:** A row of four pictures of water in a sealed tray: liquid water flowing, then the same water cooler with ice crystals forming, then mostly ice, then a solid block of ice holding its shape.
 **Say:** "It cooled slowly. Is it still water at the end? Point to yes or no."
 **Key (teacher):** Yes. It changed from flowing to holding its shape, and it is still water.
 

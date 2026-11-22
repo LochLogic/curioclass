@@ -15,4 +15,3 @@ Two pairs, for the repair of error E. Each strip is held up as a sign: a small c
 **Pair 1:** a stiff card strip standing straight with its sign up, and a floppy paper strip drooping with its sign leaning over.
 **Pair 2:** a thick cardboard strip standing straight with its sign up, and a thin ribbon drooping with its sign flat on the table.
 **Say:** "Which one stays standing? What is it about the strip?"
-**Key (teacher):** The stiff strip, because it keeps its shape. The floppy one droops, so it cannot hold a sign up. Say bends easily and stiff (unit 3 words).

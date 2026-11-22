@@ -49,7 +49,3 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 **Caption card:** Wind and rain wore at the cliff top, a little each season.
 
 **Words:** a little each season.
-
-## Key (teacher)
-
-Order: older, then later, for every pair. In each pair the later picture differs from the older one, and the caption says the change was slow. The wide river is a different place from Alder Creek. No years are counted.
