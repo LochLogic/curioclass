@@ -31,6 +31,11 @@ grade; an ELD id is owned by its cluster's last grade (K, 1, 3, 5, 8, 12) and ~ 
 owned in 3 and SI 4-12 owned in 4 (~ in 5 to 12); library and career education ids carry no grade (one owner, any
 grade). Computer science takes only the eight listed Specialty I ids, each in its own grade. A standards file id is
 the whole first tab-separated field, spaces included.
+Spanish (added 2026-11-22; world-languages STANDARD.md section 6) is level-keyed: the grade column holds L1 to L4,
+skill ids start l1- to l4-, and every grade rule above (earlier, later, skipped, model handoffs) runs on level order.
+A WRS id is owned at L1 and may be ~ at L2 to L4; a strand id (spanish-strands.txt) is owned once at any level; the
+ACTFL.* level ids are listed in spanish-excluded.csv. A cross_subject lean is a teacher pointer, so it has no grade
+test; a lean to a core skill of grade 6 or later is allowed only from an L3 or L4 row.
 A (+) high school math part is covered only when named or excluded itself, not through its parent. A cross_subject
 code must be named by a row of the other subject once that subject's progression exists (added 2026-11-13).
 Lean timing (added 2026-11-13, cross-subject read finding 1): a cross_subject lean must be taught at or before the
@@ -52,6 +57,11 @@ COLS = ['strand', 'grade', 'skill_id', 'standard', 'assumes', 'hands_on', 'model
         'cross_subject', 'notes']
 GRADES = ['K'] + [str(g) for g in range(1, 13)]
 GI = {g: i for i, g in enumerate(GRADES)}
+# level-keyed subjects (added 2026-11-22): a level list replaces the grade list (world-languages STANDARD.md 6)
+LEVELS = ['L1', 'L2', 'L3', 'L4']
+LI = {g: i for i, g in enumerate(LEVELS)}
+LEVEL_KEYED = {'spanish'}
+LATE_LEAN_LEVELS = ['L3', 'L4']  # the only levels that may lean to a core skill of grade 6 or later
 # ccss-literacy-6-12.txt (RH, RST, WHST; added 2026-11-14) is accepted in ela, social studies and science rows. It is
 # never an anchor, so no row is required to name its codes.
 STD_FILES = {'social-studies': ['ma-hss-2018.txt', 'c3-indicators.txt', 'ccss-literacy-6-12.txt'],
@@ -68,7 +78,9 @@ STD_FILES = {'social-studies': ['ma-hss-2018.txt', 'c3-indicators.txt', 'ccss-li
              'arts': ['ncas-performance-standards.txt'],
              # SEL, ELD, library and career education (added 2026-11-21; owner rules in code_grades)
              'sel': ['casel-5.txt'], 'eld': ['wida-2020.txt'], 'library': ['aasl-2018.txt'],
-             'cte': ['cte-career-clusters-2024.txt']}
+             'cte': ['cte-career-clusters-2024.txt'],
+             # Spanish (added 2026-11-22): the World-Readiness ids plus our sounds and spelling strand
+             'spanish': ['actfl-wrs.txt', 'spanish-strands.txt']}
 # the core electives' own lists (added 2026-11-16): accepted codes, and every code in them must be owned by a row.
 # Career education's learner goals (NCDG 2024) take the same route (career-education STANDARD.md, "What the gate needs")
 ELECTIVE_FILES = {'math': ['curio-math-electives.txt'], 'science': ['curio-science-electives.txt'],
@@ -81,7 +93,9 @@ ANCHOR = {'social-studies': 'ma-hss-2018.txt', 'science': 'ngss-pes.txt', 'ela':
           'math': 'ccss-math-standards.txt', 'health': 'nhes-2024.txt', 'physical-education': 'shape-pe-2024.txt',
           'computer-science': 'csta-2026-ids.txt', 'arts': 'ncas-performance-standards.txt',
           'sel': 'casel-5.txt', 'eld': 'wida-2020.txt', 'library': 'aasl-2018.txt',
-          'cte': 'cte-career-clusters-2024.txt'}
+          'cte': 'cte-career-clusters-2024.txt',
+          # two anchor files: every WRS and strand id owned; the ACTFL.* level ids sit in spanish-excluded.csv
+          'spanish': ['actfl-wrs.txt', 'spanish-strands.txt']}
 # subjects whose ids are owned once in each of several grades (SEL: once per band, at its last grade)
 MULTI_OWNER = {'sel': ['2', '5', '8', '12']}
 # computer science Specialty I: only these eight, each in its own grade (computer science STANDARD.md, Specialty)
@@ -124,6 +138,14 @@ def code_grades(subject, code):
                 # grades 9 and 10 own every span 12 indicator; 11 and 12 carry them as ~ (PE STANDARD.md 3, rule 5)
                 return ['9', '10'], band
             return band, band
+        return None
+    if subject == 'spanish':
+        # WRS.Communication.1.1: owned at L1 (met at Novice depth), ~ at L2 to L4; SPA.Sounds.3: owned once at any
+        # level (world-languages STANDARD.md section 6)
+        if code.startswith('WRS.'):
+            return ['L1'], LEVELS
+        if code.startswith('SPA.'):
+            return LEVELS, LEVELS
         return None
     if subject == 'sel':
         # CASEL.Self-Awareness.3: owned once per band at its last grade, ~ in any grade (sel STANDARD.md, Ownership)
@@ -243,6 +265,8 @@ def check(subject):
     if rows and list(rows[0].keys()) != COLS:
         fails.append('columns must be: ' + ', '.join(COLS))
         return fails, notes, len(rows)
+    lvl = subject in LEVEL_KEYED
+    G, OI, unit = (LEVELS, LI, 'level') if lvl else (GRADES, GI, 'grade')
     absent = []
     known = std_codes(subject, absent)
     for f in absent:
@@ -258,8 +282,10 @@ def check(subject):
             fails.append(where + ': duplicate skill_id')
         by_id[sid] = r
         g = (r['grade'] or '').strip()
-        if g not in GI:
-            fails.append(where + ': grade %r not K or 1 to 12' % g)
+        if g not in OI:
+            fails.append(where + (': level %r not L1 to L4' % g if lvl else ': grade %r not K or 1 to 12' % g))
+        elif lvl and not sid.startswith(g.lower() + '-'):
+            fails.append(where + ': a level %s skill id starts with %s-' % (g, g.lower()))
         grade_of[sid] = g
         for c in ('standard', 'notes', 'strand'):
             if not (r[c] or '').strip():
@@ -290,8 +316,9 @@ def check(subject):
                     fails.append('%s names %s: Specialty II ids are not taught (Cory, 2026-11-20)' % (sid, raw.lstrip('~')))
                 continue
             if grade_of[sid] not in allowed:
-                fails.append('%s (grade %s) %s %s: belongs in grade(s) %s' % (
-                    sid, grade_of[sid], 'contributes to' if raw.startswith('~') else 'owns', raw.lstrip('~'), ', '.join(allowed)))
+                fails.append('%s (%s %s) %s %s: belongs in %s(s) %s' % (
+                    sid, unit, grade_of[sid], 'contributes to' if raw.startswith('~') else 'owns', raw.lstrip('~'), unit,
+                    ', '.join(allowed)))
     for sid, code in contrib:
         if code not in owners:
             fails.append('%s contributes to %s, which no row owns' % (sid, code))
@@ -303,11 +330,13 @@ def check(subject):
                 if not (e.get('reason') or '').strip():
                     fails.append('excluded %s has no reason' % e['code'])
                 excl[e['code'].strip()] = e
-        anchor = codes(ANCHOR[subject])
+        afiles = ANCHOR[subject] if isinstance(ANCHOR[subject], list) else [ANCHOR[subject]]
+        anchor = [c for f in afiles for c in codes(f)]
         plus_codes = set()
-        for line in open(os.path.join(ROOT, 'data', 'standards', ANCHOR[subject]), encoding='utf-8'):
-            if not line.startswith('#') and '(+)' in line:
-                plus_codes.add(line.split('	')[0].strip())
+        for f in afiles:
+            for line in open(os.path.join(ROOT, 'data', 'standards', f), encoding='utf-8'):
+                if not line.startswith('#') and '(+)' in line:
+                    plus_codes.add(line.split('	')[0].strip())
         kids = {}
         for code in anchor:
             if parent(code):
@@ -328,7 +357,7 @@ def check(subject):
             if subject in MULTI_OWNER:
                 continue  # checked below: once in each owner grade
             if (code.startswith('MA.') or subject != 'social-studies') and len(gs) > 1:
-                fails.append('%s owned by grades %s' % (code, ', '.join(sorted(gs, key=GI.get))))
+                fails.append('%s owned by %ss %s' % (code, unit, ', '.join(sorted(gs, key=OI.get))))
         if subject in MULTI_OWNER:
             want = MULTI_OWNER[subject]
             per = {}
@@ -360,9 +389,9 @@ def check(subject):
         for c in split(r.get('standard') or ''):
             namers.setdefault(c.lstrip('~'), []).append(sid)
     for code, gs in owners.items():
-        later = [x for x in namers.get(code, []) if grade_of[x] != min(gs, key=GI.get)]
+        later = [x for x in namers.get(code, []) if grade_of[x] != min(gs, key=OI.get)]
         if code.startswith('D') and len(gs) > 1 and not said(later, code):
-            notes.append('%s named in grades %s (say in notes how the depth differs)' % (code, ', '.join(sorted(gs, key=GI.get))))
+            notes.append('%s named in grades %s (say in notes how the depth differs)' % (code, ', '.join(sorted(gs, key=OI.get))))
     for code in known:
         if code.startswith('D') and code not in owners:
             band = code.rsplit('.', 1)[-1]
@@ -370,58 +399,65 @@ def check(subject):
                 notes.append('%s named by no grade in band %s' % (code, band))
     # handoffs
     for sid, r in by_id.items():
-        g = GI.get(grade_of[sid], -1)
+        g = OI.get(grade_of[sid], -1)
         for a in split(r['assumes']):
             if a not in by_id:
                 fails.append('%s assumes %s, which is not a skill here' % (sid, a))
                 continue
-            if GI.get(grade_of[a], 99) >= g:
-                fails.append('%s (grade %s) assumes %s (grade %s): not an earlier grade' % (sid, grade_of[sid], a, grade_of[a]))
+            if OI.get(grade_of[a], 99) >= g:
+                fails.append('%s (%s %s) assumes %s (%s %s): not an earlier %s' % (sid, unit, grade_of[sid], a, unit, grade_of[a], unit))
             if sid not in split(by_id[a]['hands_on']):
                 fails.append('%s assumes %s, but %s does not hand on to it' % (sid, a, a))
         for h in split(r['hands_on']):
             if h not in by_id:
                 fails.append('%s hands on to %s, which is not a skill here' % (sid, h))
                 continue
-            gh = GI.get(grade_of[h], -1)
+            gh = OI.get(grade_of[h], -1)
             if gh <= g:
-                fails.append('%s (grade %s) hands on to %s (grade %s): not a later grade' % (sid, grade_of[sid], h, grade_of[h]))
+                fails.append('%s (%s %s) hands on to %s (%s %s): not a later %s' % (sid, unit, grade_of[sid], h, unit, grade_of[h], unit))
             if sid not in split(by_id[h]['assumes']):
                 fails.append('%s hands on to %s, which does not assume it' % (sid, h))
             if gh > g + 1 and not said([sid, h], h, sid, 'skip', 'idle', 'dormant', 'returns'):
-                notes.append('%s (grade %s) hands on to %s (grade %s): skips %d grade(s); say why in notes' % (
-                    sid, grade_of[sid], h, grade_of[h], gh - g - 1))
+                notes.append('%s (%s %s) hands on to %s (%s %s): skips %d %s(s); say why in notes' % (
+                    sid, unit, grade_of[sid], h, unit, grade_of[h], gh - g - 1, unit))
     # models
     intro = {}
     for sid, r in by_id.items():
-        g = GI.get(grade_of[sid], -1)
+        g = OI.get(grade_of[sid], -1)
         ins, outs = set(split(r['model_in'])), set(split(r['model_out']))
         for m in outs - ins:
             intro.setdefault(m, set()).add(('intro', g))
         for m in outs & ins:
             intro.setdefault(m, set()).add(('carry', g))
     for sid, r in by_id.items():
-        g = GI.get(grade_of[sid], -1)
+        g = OI.get(grade_of[sid], -1)
         for m in split(r['model_in']):
             ok = any((k == 'carry' and gg < g) or (k == 'intro' and gg <= g) for k, gg in intro.get(m, ()))
             if not ok:
-                fails.append('%s (grade %s) uses model %s, which no earlier grade hands on and no row of this grade introduces' % (
-                    sid, grade_of[sid], m))
+                fails.append('%s (%s %s) uses model %s, which no earlier %s hands on and no row of this %s introduces' % (
+                    sid, unit, grade_of[sid], m, unit, unit))
     # model continuity (Codex read 2026-11-13): grades between a model's first and last use where no row uses it
     used = {}
     for sid, r in by_id.items():
         for m in set(split(r['model_in'])) | set(split(r['model_out'])):
-            used.setdefault(m, set()).add(GI.get(grade_of[sid], -1))
+            used.setdefault(m, set()).add(OI.get(grade_of[sid], -1))
     for m, gs in sorted(used.items()):
-        gaps = [GRADES[i] for i in range(min(gs), max(gs) + 1) if i not in gs]
+        gaps = [G[i] for i in range(min(gs), max(gs) + 1) if i not in gs]
         users = [x for x, r in by_id.items() if m in set(split(r['model_in'])) | set(split(r['model_out']))]
         why = any(m in (by_id[x].get('notes') or '') and said([x], 'skip', 'idle', 'dormant', 'return', 'unused', 'not used',
                                                                'paused', 'rest', 'again', 'reactivat') for x in users)
         if gaps and not why:
-            notes.append('model %s unused in grade(s) %s between its first and last use (reactivate, or say why)' % (
-                m, ', '.join(gaps)))
+            notes.append('model %s unused in %s(s) %s between its first and last use (reactivate, or say why)' % (
+                m, unit, ', '.join(gaps)))
     # cross-subject
     def lean_timing(sid, x, ref, og):
+        if lvl:
+            # a level row's lean is a teacher pointer, not an assumption: no grade test, except that a lean to a core
+            # skill of grade 6 or later is allowed only from L3 or L4 (world-languages STANDARD.md 6, Cross-subject leans)
+            if og is not None and GI.get(og, -1) >= GI['6'] and grade_of[sid] not in LATE_LEAN_LEVELS:
+                fails.append('%s (level %s) cross_subject %r: taught in grade %s; a lean to grade 6 or later is allowed '
+                             'only from %s rows' % (sid, grade_of[sid], x, og, ' or '.join(LATE_LEAN_LEVELS)))
+            return
         # a lean must be owned or taught (~ contribution counts) at or before the leaning row's grade
         g = GI.get(grade_of[sid], -1)
         if og is None or GI.get(og, -1) <= g:
@@ -489,7 +525,7 @@ def check(subject):
     counts = {}
     for sid in by_id:
         counts[grade_of[sid]] = counts.get(grade_of[sid], 0) + 1
-    notes.append('rows by grade: ' + ', '.join('%s %d' % (g, counts[g]) for g in GRADES if g in counts))
+    notes.append('rows by %s: ' % unit + ', '.join('%s %d' % (g, counts[g]) for g in G if g in counts))
     return fails, notes, len(rows)
 
 

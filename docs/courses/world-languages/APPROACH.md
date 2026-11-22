@@ -55,7 +55,7 @@ Proposed, to be tried on the first unit plans after the pass opens:
   words and (ASL) parameters taught; what is carried (frame, word cards, sign set), the day it is shown and the day it
   is withdrawn: the unit's second Application day at Level 1 and 2, its first at Level 3 and 4.
 - Unit field 3: builds on (the same mode one unit earlier, strong or weak); leads to; comes back; one cross-subject link
-  by row id (STANDARD section 6).
+  by row id (for Spanish, the leans in data/progressions/spanish-edges.md; STANDARD section 6).
 - Unit field 4: the first line and the timing as UNIT-PLAN.md field 4 sets them; a short understand-and-reply task on
   the words and structures the unit builds on; the reteach is the earlier structure modelled again.
 - Unit field 5: an understand task, a two-way task with a real information gap, a presentation task, with look-fors and
@@ -228,5 +228,5 @@ ACTFL can-do statements page, the open-material pages in the two scouts (docs/re
 docs/reviews/world-languages-asl-material-2026-11-21.md), the Texas
 languages rubric (read by the bar's writer only, bar part 6). From search summary only: the ACTFL target-language and
 heritage position statements, the Indiana and Massachusetts ASL pages, the Illinois Association of the Deaf position.
-From memory: the research claims above. To read before the pass opens: the full 2015 standards volume, the 2024
-proficiency guidelines text, the ASLTA 2014 standards, the Clerc Center standards, and the ACTFL position statements.
+From memory: the research claims above. Read in full 2026-11-22: the 2024 proficiency
+guidelines text (a copy outside the repo; notes in our own words only). To read before the pass opens: the full 2015 standards volume, the ASLTA 2014 standards, the Clerc Center standards, and the ACTFL position statements.

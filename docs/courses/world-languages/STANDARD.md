@@ -14,7 +14,7 @@ docs/courses/eld/STANDARD.md. Web facts below were read on 2026-11-20 unless mar
 | Decide the video source for American Sign Language | Already decided: graphics only, no video, no photos of people (Cory 2026-10-27) | APPROACH.md |
 | Course count above 105 | Counted for each option | Section 5 |
 | Approach page, lens, base-text scout | Approach approved as pre-work (Cory, 2026-11-21); lens and two scouts written | APPROACH.md; docs/agents/lenses/world-languages.md; docs/reviews/world-languages-open-material-2026-11-20.md; docs/reviews/world-languages-asl-material-2026-11-21.md |
-| Strand id files (Spanish sounds and spelling; the seven ASL parameters) and the check entries | Not made; owed before stage 2 | Sections 1 and 6 |
+| Strand id files (Spanish sounds and spelling; the seven ASL parameters) and the check entries | Spanish: data/standards/spanish-strands.txt, the gate entry and the progression (data/progressions/spanish.csv, 51 rows, written 2026-11-22). ASL: not made; it waits on question 4 (data/plans/later.csv L93) | Sections 1 and 6 |
 
 ## 1. The standard and its terms
 
@@ -25,10 +25,11 @@ docs/courses/eld/STANDARD.md. Web facts below were read on 2026-11-20 unless mar
   PDF, both read in full 2026-11-20 (links in section 7; the extracted text is from the Utah copy of the PDF). The 2015 summary is a framework with sample progress indicators in
   longer volumes; the longer volume was not opened (not checked).
 - **Levels.** ACTFL Proficiency Guidelines, 2024 edition: Novice, Intermediate, Advanced, each split Low, Mid, High,
-  then Superior and Distinguished (no sublevels). Checked on the ISBE copy of the 2024 guidelines and on ACTFL's
-  overview page by search summary 2026-11-20; the Distinguished name was added in 2012 and a note says some find the
-  top names lofty. A search summary of the ISBE copy (2026-11-21) lists Distinguished among the 2024 text's five
-  major levels; the text itself was not opened, so its wording is not checked.
+  then Superior and Distinguished (no sublevels). Confirmed in the 2024 proficiency guidelines, read 2026-11-22 (the
+  copy Cory saved in S:\CurioClass-sources\world-languages\actfl-guidelines-2024\, read in full by an agent with his
+  clearance): five major levels, Distinguished added in the 2012 edition, Low, Mid and High only for the first three.
+  Each of listening, speaking, reading and writing is rated on its own. The guidelines' terms allow no copying of
+  their text, so the repo holds level ids and our own words only.
 - **The file.** data/standards/actfl-wrs.txt holds the 11 standard ids (`WRS.<goal area>.<n.n>`) and the 11 level names
   (`ACTFL.<level>`), ids only. It is unchanged by this pre-work.
 - **Do the 2015 pages print the numbers 1.1 to 5.2?** Checked 2026-11-20: **no.** The two-page ACTFL summary PDF
@@ -131,8 +132,15 @@ drawn when the pass opens. French is listed behind Spanish and ASL (Cory's answe
 companion for Levels 1 and 2, 12 courses for Spanish and ASL, settled for when the pass opens. The recommendation had
 been Option B, for a stated target per course, near what a school can staff, with Advanced
 left for a later pass; Option D keeps all of that and adds the companions. Each course's exit target is a sublevel (Level 1 exits at Novice Mid, Level 2 at
-Novice High, Level 3 at Intermediate Mid, Level 4 at Intermediate High; these four exits are ours, from ACTFL
-published norms for school programmes read from memory, not checked).
+Novice High, Level 3 at Intermediate Mid, Level 4 at Intermediate High). These four exits are ours. The 2024
+proficiency guidelines (read 2026-11-22) describe each sublevel and fit this order, but give no hours, years or
+school program norms, so they neither confirm nor rule out any of the four; the program norms they were first drawn
+from are not in the guidelines and stay not checked. The reading supports three limits: a course checks performance
+on taught, rehearsed themes, which the guidelines say can run ahead of proficiency in unrehearsed use; the classroom
+performance scale has major levels only, so a sublevel exit is the proficiency estimate a course aims toward, never
+a rating our checks give; and a learner can sit at different sublevels in listening, speaking, reading and writing,
+so the exit is stated per mode. Level 3 is a long step (it passes Intermediate Low) and Level 4 is the most ambitious,
+since Intermediate High means doing Advanced work, past and future narration in paragraphs, much of the time.
 
 **Standards by course.** All 11 World-Readiness standards apply at every level: Communication's three modes are taught
 and assessed in every unit (bar part 6, item 6). Cultures, Connections, Comparisons and Communities enter through the
@@ -141,7 +149,7 @@ free site without people in the room: bar part 6, "Unsupported": two-way practic
 
 ## 6. Ownership rule a progression writer could use later
 
-A **level owns** a skill, not a grade. In a progression for this subject (not written; none exists), each row sits at the
+A **level owns** a skill, not a grade. In a progression for this subject (Spanish: data/progressions/spanish.csv, 2026-11-22; ASL: none, waiting on question 4, data/plans/later.csv L93), each row sits at the
 level where the learner first does it at its target depth, and later levels carry it as `~` with a one-line note on what
 is harder (the ELD pattern, docs/courses/eld/STANDARD.md section 2). Specifically:
 
@@ -154,30 +162,29 @@ is harder (the ELD pattern, docs/courses/eld/STANDARD.md section 2). Specificall
 - **Ownership for the gate** (from the cold read, docs/reviews/prework-world-languages-read-2026-11-20.md; ours, untested). Each language is its own subject key in
   the progression (`spanish`, `asl`), so each owns the 11 `WRS` ids once. A WRS id is owned by Level 1 of that
   language as "met at Novice depth"; Levels 2 to 4 carry it as `~ID` with a one-line note naming the harder function,
-  context, text type and control (the depth ladder, which is the real progression; not written yet, it is written
-  with the progression once the 2024 guidelines are read at source). An early-years companion targets the same level
+  context, text type and control (the depth ladder, which is the real progression; the 2024 guidelines were read at
+  source 2026-11-22, and the ladder is the "Harder than Level N" note on each row of data/progressions/spanish.csv). An early-years companion targets the same level
   as its Level 1 or 2 course (Option D), so it uses that level's rows. The 11 `ACTFL.*` level ids are
   excluded with the reason "a proficiency scale used to name each level's exit target, not a skill". Strands (sounds
   and spelling; the seven ASL parameters) get their own id file, one id each, owned by the level that first teaches
   them. For the gate, Level 1 to Level 4 map to positions 1 to 4 in a level list that replaces the grade list for
   these two subjects (Cory, 2026-11-21).
-- **What scripts/progression.py would need** (read by the cold reader, lines 51 to 112): one entry per language
-  key (`spanish`, `asl`), not one `world-languages` entry, in STD_FILES and ANCHOR (actfl-wrs.txt with the `ACTFL.*`
-  ids filtered out or listed as exclusions, plus the language's strand id file), a level list in place of the grade
-  list, a code_grades rule that returns all four levels as the span for a WRS id (owner Level 1), and a lean-timing
-  rule for level-keyed rows: the script fails a lean to a skill taught after the leaning row's grade, and a level has
-  no grade, so for these rows it checks the lean rule below instead. The script has no entry for either language
-  today.
+- **What scripts/progression.py does** (Spanish entry added 2026-11-22; the rules are in its docstring): subject key
+  `spanish`, file data/progressions/spanish.csv (51 rows, with spanish-edges.md beside it), anchors actfl-wrs.txt and
+  data/standards/spanish-strands.txt (SPA.Sounds.1 to 11, ours), the 11 `ACTFL.*` ids listed in
+  data/progressions/spanish-excluded.csv, the level list L1 to L4 in the grade column with skill ids starting l1- to
+  l4-, and the lean rule below in place of the grade comparison. ASL has no entry; it waits on question 4 (data/plans/later.csv L93).
 - **Cross-subject leans** (each names a core skill; ids checked 2026-11-20 by a one-line grep for a row whose
   skill_id column matches, in data/progressions/*.csv):
   - ELA: `ek-discussion` and `e3-word-strategies` (a spoken exchange and word-part work), `e5-figurative` (Level 3 and 4
     texts), `e6-word-strategies`, `e9-sl-presentation` (a presentation), `e2-sentences` (what a sentence is).
   - Social studies: `ss2-culture-migration`, `ss3-home-region`, `ss4-regional-cultures`, `ss2-nation-of-immigrants`,
-    `us1-immigration`, `wh1-geography-shapes-contact`.
+    `us1-immigration` (the Spanish progression uses neither, to keep tasks off immigration; spanish-edges.md lists the leans in use), `wh1-geography-shapes-contact`.
   - Psychology: `psy-language` (language acquisition), an elective, only as a later cross-link.
   The lean is a pointer for the teacher, not an assumption: a language level is not placed behind a grade of any
   of these. A lean names a core skill and the earliest grade at which a typical learner meets it; the unit never
-  assumes it. A lean to a skill of grade 6 or later is allowed only from Level 3 or 4 units. `psy-language` is a later
+  assumes it. A lean to a skill of grade 6 or later is allowed only from Level 3 or 4 units (the gate checks this for
+  Spanish rows). `psy-language` is a later
   cross-link and not part of the gate.
 
 ## 7. Sources read (by link)
@@ -187,7 +194,7 @@ is harder (the ELD pattern, docs/courses/eld/STANDARD.md section 2). Specificall
 - 1999 and 2015 comparison: https://www.learner.org/wp-content/uploads/2019/10/teaching-foreign-languages-standards-five-cs-standards-comparison.pdf (search snippet only)
 - Maryland adaptation: https://marylandpublicschools.org/about/Documents/DCAA/World-Languages/MDWorldReadinessStandardsLearningLanguages.pdf (search snippet only)
 - Can-do statements page: https://www.actfl.org/educator-resources/ncssfl-actfl-can-do-statements
-- ACTFL Proficiency Guidelines 2024 (ISBE copy): https://www.isbe.net/Documents/ACTFL-Proficiency-Guidelines-2024.pdf (search only)
+- ACTFL Proficiency Guidelines 2024 and the levels chart: read in full 2026-11-22 from Cory's saved copy (S:\CurioClass-sources\world-languages\actfl-guidelines-2024\); the ISBE copy (https://www.isbe.net/Documents/ACTFL-Proficiency-Guidelines-2024.pdf) now returns a 404
 - Clerc Center K-12 ASL Content Standards: https://clerccenter.gallaudet.edu/resources/asl-content-standards/ (403 when fetched)
 - Indiana ASL standards 2026: https://secure.in.gov/doe/files/2026-Indiana-Academic-Standards-World-Languages-ASL-K-12.pdf (search only)
 - Massachusetts ASL guidance: https://www.doe.mass.edu/worldlanguages/framework/qrg-asl.docx (search only)

@@ -77,7 +77,7 @@ source may be adapted (docs/sources/BASE-TEXTS.md). French, which is in the cata
 Check the source before a finding rests on it. Marked as read or not.
 - ACTFL, *World-Readiness Standards for Learning Languages*, 2015: the two-page summary read 2026-11-20; the full volume
   not read.
-- ACTFL Proficiency Guidelines, 2024: by search summary; not read in full.
+- ACTFL Proficiency Guidelines, 2024: read in full 2026-11-22 from a copy outside the repo (our notes only).
 - NCSSFL-ACTFL Can-Do Statements, 2026: the ACTFL page read for licence only; the statements themselves not read.
 - ACTFL position statements: Early Language Learning (2012, read); use of the target language and heritage speakers
   (2010, by search summary).

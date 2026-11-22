@@ -1,0 +1,17 @@
+# source: ours. A Spanish sounds and spelling strand for Levels 1 to 4, named in docs/courses/world-languages/STANDARD.md section 6 and APPROACH.md ("Accent marks, sounds and spelling are taught directly").
+# basis: the sound and spelling topics the open college Spanish books cover (Lecciones de Español and Semillas, docs/reviews/world-languages-open-material-2026-11-20.md), listed from that scout and from memory; the books were not reopened for this file. The 2024 proficiency guidelines (read 2026-11-22) count pronunciation in listening and speaking and the writing system in reading and writing, which is why the strand exists; no wording comes from them.
+# written: 2026-11-22. Untested: no Spanish teacher has read it, and no unit uses it yet.
+# variety: Latin American default (APPROACH.md, Heritage speakers); regional sounds are taught as varieties, never errors.
+# level: one sounds or spelling skill, SPA.Sounds.<n>. Each id is owned once, by the level that first teaches it (scripts/progression.py, subject spanish); later levels may carry it as ~.
+# words: after each id, a tab and one line in Curio Class's own words, a verb phrase addressed to the learner.
+SPA.Sounds.1	Say and hear the five Spanish vowel sounds, each one short and steady.
+SPA.Sounds.2	Read a new Spanish word aloud from its spelling, letter by letter, sound by sound.
+SPA.Sounds.3	Say and spell the letters h, j, ñ and v and the pair ll, which sound unlike English.
+SPA.Sounds.4	Tell the single tapped r from the trilled rr, and say each one clearly.
+SPA.Sounds.5	Choose c, qu, z, g, gu or j to spell a sound before each vowel.
+SPA.Sounds.6	Split a word into syllables and say its stressed syllable with the right stress.
+SPA.Sounds.7	Use the written accent to mark stress and tell si from sí, el from él.
+SPA.Sounds.8	Write the opening ¿ and ¡ marks and the letters ñ and ü correctly.
+SPA.Sounds.9	Raise or lower your voice to mark a question or a statement when speaking.
+SPA.Sounds.10	Hear and copy words run together in a natural spoken phrase, as speakers link them.
+SPA.Sounds.11	Recognize regional sounds, such as s, ll and z, as varieties of Spanish, not errors.
