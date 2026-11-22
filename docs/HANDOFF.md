@@ -50,7 +50,7 @@ why the core was planned top down; its steps 7 and 8 are superseded by COURSE-RU
    (scripts/goalmap.py brief, insert and audit); `scripts/unitplan.py check` prints no exit-kind or practice-shape
    line. Where days are written (social studies, ELA and science K to 3) each row was read from the written day and
    its exit cards; an exit that does not measure its goal is logged in data/plans/defects.csv (found_by cheap, kind
-   alignment, ref "later.csv L102"): 375 open, 253 of them day faults in the K to 3 written days, 122 in plan
+   alignment, ref "later.csv L102"): 369 open (six more rejected under the K to 2 speech rule), 247 of them day faults in the K to 3 written days, 122 in plan
    exits. They are fixed in each course's refine or day fix, and the row states the goal's target exit to fix toward.
 2. **The next course run, two lanes side by side** (DESK-ANSWERS 2026-11-20): math K to 3, and social studies grades 4
    and 5 with World Geography I. Each subject's first grade starts with a unit 1 probe. The queue comes from

@@ -1838,3 +1838,9 @@ the exit-kind check failed any goal verb on neither list (trace, defend, test), 
 goal's own verb for a listed one. Now a verb on neither list may take either kind, "sketch" and "rehearse" are produce,
 and a listed two-word verb ("tell apart") is read whole; the check fails a row only when every listed verb in its cell
 is of the other kind. UNIT-PLAN.md field 5 says so.
+
+## 2026-11-22: K to 2 speech meets a write goal (chat)
+
+Cory: K to 2 can use speech instead of writing. A spoken or dictated exit meets a goal that says write; UNIT-PLAN.md
+field 5 says so. The six Goal map faults that rested only on that (ELA grade 1 days 7, 28, 116, 118; social studies
+grade 2 days 27, 73) are marked rejected in defects.csv.
