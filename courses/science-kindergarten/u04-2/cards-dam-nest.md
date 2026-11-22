@@ -21,10 +21,6 @@ Our own drawing: a small bird at a half-round nest of mud stuck to the underside
 
 Pairs say "I think ___, because I saw ___" for one of the two; the partner points to the picture that shows it. The class changes one arrow on the chart: the dam or the nest is added as a changed part linked to shelter.
 
-## Key
-
-A claim names the animal and a picture: "I think the beaver made the pond, because I saw the dam"; "I think the swallow made the nest, because I saw the mud." A liking ("I like the beaver") is error I.
-
 ## Teacher background
 
 The National Park Service says its photographs are generally in the public domain unless noted, and that third-party content may carry its own rules (page read 2026-11-19).

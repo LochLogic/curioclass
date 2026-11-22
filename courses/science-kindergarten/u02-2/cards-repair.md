@@ -13,4 +13,4 @@ Small cards for the children not working with the teacher in the six repair minu
 
 **E, three cards in order.** (1) "What we saw": a child looking up at a plain sky. (2) "What the forecast says": a forecast page. (3) "What may come later": a cloud and a clock for later. Put them in order, left to right, and say what each one is.
 
-**Key.** D: possible, with the might-or-might-not picture beside the answer. E: what we saw, what the forecast says, what may come later.
+

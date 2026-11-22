@@ -12,21 +12,21 @@ Held back, never taught from. Plain black line drawings on white, thick lines, n
 ## Sequence C1. A young plant and a stone
 
 A young plant beside a stone with soil packed around it; the same plant later with its roots grown and the soil pushed aside toward damp ground. Card: a cloud (not evidence).
-**C1a:** "Invented for practice. Touch the picture that shows the roots changed the place." **Key:** the picture with the soil pushed aside. The cloud is shown with help, no letter. "Nothing changed, plants cannot change places" is error G.
-**C1b:** "What does that help the plant get?" **Key:** water.
+**C1a:** "Invented for practice. Touch the picture that shows the roots changed the place."
+**C1b:** "What does that help the plant get?"
 
 ## Sequence C2. A fox and a bank
 
 A fox starts to dig; soil comes out in a pile; the bank has a den opening.
-**C2a:** "Touch what the animal changed." **Key:** the bank, now with a den. "Only people change things" is error H.
-**C2b:** "What does the animal get from that?" **Key:** a safe place to be. "Nothing, only people change things" is error H.
+**C2a:** "Touch what the animal changed."
+**C2b:** "What does the animal get from that?"
 
 ## Sequence C3. A channel for a garden
 
 A dry garden of food plants; people digging a channel from a stream; water running along the channel to a green garden.
-**C3a:** "Touch the land the people changed." **Key:** the channel.
-**C3b:** "Two routes for the channel bring the same water. One crosses a bare strip. The other crosses a patch of plants. Touch the route that leaves more living things in place." **Key:** the route across the bare strip. The other route, or "they are the same", is error J.
-**C3c:** "Why that one?" **Key:** it leaves the plants standing. "I like it" is error I.
+**C3a:** "Touch the land the people changed."
+**C3b:** "Two routes for the channel bring the same water. One crosses a bare strip. The other crosses a patch of plants. Touch the route that leaves more living things in place."
+**C3c:** "Why that one?"
 
 ## The kite card
 

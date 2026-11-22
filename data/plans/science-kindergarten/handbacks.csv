@@ -5,7 +5,7 @@ from_day,to_day,what,where,minutes,error,note
 4,5,s01-X4,Warm-up,5,F,"same ball, two ways, tape marks"
 5,6,s01-X5,Warm-up,5,D,"three order cards (come close, touch, changed); children put them in order"
 6,7,s01-X6,Warm-up,5,E,repeat one matched pull with the teacher and keep both records
-7,9,s01-X7,Return and repair,5,A,"the largest error group works with the teacher on its move in these five minutes; if another letter is the largest, that group takes the minutes and this one uses repair cards"
+7,9,s01-X7,Return and repair,5,E,"the largest error group works with the teacher on its move in these five minutes; if another letter is the largest, that group takes the minutes and this one uses repair cards"
 8,9,s01-E1,Return and repair,0,A,"repair cards (same object, different object) unless this is the largest group"
 8,9,s01-E2,Return and repair,0,D,"repair cards (order of come close, touch, changed) unless this is the largest group"
 8,9,s01-E3,Return and repair,0,B,"repair cards (two pulls on the same box, shown with hands) unless this is the largest group"
@@ -27,7 +27,7 @@ from_day,to_day,what,where,minutes,error,note
 20,21,s03-X20,Return and repair,3,B,swap the tool card for the want card; shares the six minutes with A
 21,22,s03-X21,Return and repair,5,A,"one repair only: the class retells keep, change, watch and orders the want picture first"
 22,23,s03-X22a,Return and repair,3,C,"two lanes, two pushes, watch the start, then lay the stopping dots beside it"
-22,23,s03-X22b,Return and repair,2,E,"match each result picture to the want picture, yes or no"
+22,23,s03-X22c,Return and repair,2,E,"match each result picture to the want picture, yes or no"
 23,24,s03-X23,Return and repair,5,F,lay the reached and missed pictures side by side and say sometimes
 24,25,s03-X24a,Return and repair,5,D,"roll past a bumper with a gap, then into it; each child puts a finger on the touch"
 24,25,s03-X24b,Return and repair,0,D,"finds the touch on the drawn path, inside the same five minutes"
@@ -69,7 +69,7 @@ from_day,to_day,what,where,minutes,error,note
 50,51,s05-X50b,Return and repair,2,E,pick the covered-and-open comparison
 51,52,s05-X51a,Return and repair,2,D,"trace the shadow edge onto the patch, one and a half minutes in the plan"
 51,52,s05-X51b,Return and repair,1,H,"same look, one and a half minutes in the plan"
-52,54,s05-W3c,Return and repair,5,A,the record picks at most four groups; A and B go together with the paired records and the others work from pictured instructions inside the same five minutes
+52,54,s05-W3c,Return and repair,5,A,"the record picks the two largest groups, two minutes each with the teacher (A and B go together with the paired records); everyone else revises the day 54 mat from the sticker alone, inside the same five minutes"
 52,54,s05-W2d,Return and repair,0,B,"with A, in the same five minutes"
 52,54,s05-W1a,Return and repair,0,C,"swap one sample for the same material, in the same five minutes"
 52,54,s05-W3c,Return and repair,0,H,"same look, in the same five minutes"

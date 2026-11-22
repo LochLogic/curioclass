@@ -26,7 +26,3 @@ Our before and after in two pictures. First: a flat paving slab with a young tre
 ## What happens
 
 Children point to what changed and to the need it meets. The weed photograph is shown as a "not yet" case, not as evidence of a change.
-
-## Key
-
-Hole and soil pile: shelter. Nest of twigs: safe place for eggs. Raised slab over the root: reaching water. Changes seen, not guessed.

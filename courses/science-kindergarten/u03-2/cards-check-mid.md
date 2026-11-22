@@ -25,7 +25,7 @@ Held back. Not shown, handled or taught from before day 29. Plain black line dra
 ## Forecast cards
 
 - **Page A.** A storm cloud and a clock at late morning over a pond with a picnic blanket. Then a picture of dark clouds now. Then two town rows of small bolt squares: Hill has nine, Lake has one. Cards: plan the picnic indoors first, wait until thunder, go into the school building, stand under a tree.
-- **Page B.** The same cards, with a school garden and an afternoon clock.
+- **Page B.** A school garden and an afternoon clock; the same four cards, but the first reads plan to be indoors first.
 
 ## Day 31 exit cards (held back)
 

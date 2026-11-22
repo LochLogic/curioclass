@@ -13,20 +13,20 @@ For the day 19 observation only. Never show, teach from or send home before day 
 
 ## The June 21 page
 
-**First picture (F1).** A storm symbol in a cloud, a clock, and an outing symbol (a line of small children walking to a bus stop). Date line: 21 June 2024. (Teacher key: the page is the outlook for the day: storms in the afternoon and evening, and an outing at risk.)
-**Timing picture (F2a).** The same page with a second picture: two clock cards, a morning clock and a clock for the afternoon and evening, drawn the same size and plain. (Teacher key: afternoon and evening.)
+**First picture (F1).** A storm symbol in a cloud, a clock, and an outing symbol (a line of small children walking to a bus stop). Date line: 21 June 2024.
+**Timing picture (F2a).** The same page with a second picture: two clock cards, a morning clock and a clock for the afternoon and evening, drawn the same size and plain.
 
-**F1 spoken:** "Here is the first picture of a real page for one day in June: a storm symbol, a clock and an outing. Ask a question that helps the school get ready." **Key:** any question the page can answer: when, how strong, what to do. A question the page cannot answer (what was the weather yesterday) is kept on the not-on-this-page card, marked "shown", never an error; asking about yesterday is error E.
-**F2a spoken:** "Same page. Touch when the storms could come." **Key:** the clock for the afternoon and evening. "They will come" is error D; the morning clock is error E.
+**F1 spoken:** "Here is the first picture of a real page for one day in June: a storm symbol, a clock and an outing. Ask a question that helps the school get ready."
+**F2a spoken:** "Same page. Touch when the storms could come."
 
 ## The June 2023 rows
 
-Two long rows for June 2023. Denver: eleven squares, each a cloud with a zigzag mark and a date numeral. (Teacher key: 2, 6, 8, 9, 12, 14, 15, 21, 22, 29 and 30 June 2023. The teacher says the total, eleven, since it is over ten.) Seattle: an empty row. (Teacher key: no days with thunder reported in June.)
-**F2b spoken:** "Here are two rows of days with thunder reported at a station in June in one year. Denver has eleven squares and Seattle has none. Touch the place that has storm days more often." **Key:** Denver. "The same" is error G.
+Two long rows for June 2023. Denver: eleven squares, each a cloud with a zigzag mark and a date numeral.
+**F2b spoken:** "Here are two rows of days with thunder reported at a station in June in one year. Denver has eleven squares and Seattle has none. Touch the place that has storm days more often."
 
 ## F3a and F3b: cards
 
 **Before the storm.** Card one: children carrying blocks into a classroom and a signpost marked with a roof; "plan indoor play and name the shelter first". Card two: a clock for the afternoon and a child outside with a hand at an ear; "wait until thunder".
-**F3a spoken:** "Touch what the school does before the storm." **Key:** card one. Card two is error F.
+**F3a spoken:** "Touch what the school does before the storm."
 **Where we go.** Card three: a substantial school building with an open door. Card four: a single tall tree.
-**F3b spoken:** "Touch where we go if thunder is heard." **Key:** the school building. The tree is error H.
+**F3b spoken:** "Touch where we go if thunder is heard."

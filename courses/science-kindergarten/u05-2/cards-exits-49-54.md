@@ -11,25 +11,25 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 
 ## Day 49: a seed tray and two crates
 
-**Picture 49a.** A seed tray with its plants growing in a box. Cover 1: a roof on posts over the whole tray. Cover 2: a roof on posts over the empty path beside the tray, the plants in the open. Cover 3: a roof leaning against the side of the tray, beside it, the plants in the open.
+**Picture 49a.** A box of seedlings and, drawn over it, a flat board on two posts. The sun is not drawn: each child draws the sun and the shadow.
 **Picture 49b.** A wooden crate under a roof on posts, and a matching crate in the open, with a clock at the start showing the same hour beside each.
-**Spoken 49a:** "Invented for practice. A seed tray has its plants in a box. Cover 1 is a roof on posts over the whole tray. Cover 2 is a roof on posts over the empty path beside the tray, with the plants in the open. Cover 3 leans against the side of the tray. Touch the cover that shades the tray." **Key:** cover 1. Cover 2 or cover 3, "near is enough", is error D.
-**Spoken 49b:** "Invented for practice. A wooden crate sits under a roof, and a matching crate sits in the open. Both were put out together and will sit in the sun the same time. Which crate will feel less warm? Say: I think the ___ crate, because ___." **Key:** the crate under the roof, because the roof keeps the sun off it. "It was cool the moment the roof went on" is error F. Naming the open crate is shown with help, no letter.
+**Spoken 49a:** "Invented for practice. Here is a new cover: a flat board on two posts over a box of seedlings, with the sun high above. Draw the sun and the shadow the board makes."
+**Spoken 49b:** "Invented for practice. A wooden crate sits under a roof, and a matching crate sits in the open. Both were put out together and will sit in the sun the same time. Which crate will feel less warm? Say: I think the ___ crate, because ___."
 
 ## Day 50: a balcony
 
 **Picture.** A balcony with a marked target on the floor. A cover over its left half; the right half in the sun. Caption read aloud: "The open half was warmer." Three cards: stretch the roof over the open half; paint flowers on the roof; stand the cover farther away.
-**Spoken 50a:** "Invented for practice. Touch the change that fixes it." **Key:** stretch the roof. The flowers, "it will look better so it works", is error E. The farther cover is error D.
-**Spoken 50b:** "Same card. Say: I think, because I saw." **Key:** "I think the open half needs cover, because I saw the card say it was warmer." "Because it is nicest" is error E.
+**Spoken 50a:** "Invented for practice. Touch the change that fixes it."
+**Spoken 50b:** "Same card. Say: I think, because I saw."
 
 ## Day 51: a canopy and a stone seat
 
 **Picture.** A canopy on posts with its shadow shown as a dashed edge on the ground, missing a stone seat beside it. A matching stone seat under the canopy. Caption read aloud: "The open seat was warmer than its covered match."
-**Spoken 51a:** "Invented for practice. Touch yes or no: is the seat that the shadow misses shaded?" Two cards, yes and no. **Key:** no. Yes, "the canopy is close by", is error D.
-**Spoken 51b:** "Same card. Why does the card say the open seat was warmer?" **Key:** the sun reached it. "Because it was later in the day" is error H.
+**Spoken 51a:** "Invented for practice. Touch yes or no: is the seat that the shadow misses shaded?" Two cards, yes and no.
+**Spoken 51b:** "Same card. Why does the card say the open seat was warmer?"
 
 ## Day 54 (section exit, response, not scored)
 
-**Picture.** A miniature picnic square with a cover that misses its patch, and a matching covered patch. Caption read aloud: "The open patch was warmer than its covered match." Three cards: move or stretch the cover over the patch; add a ribbon to the cover; stand the cover farther away.
-**Spoken 54a:** "Invented for practice. Touch the move that fixes the cover." **Key:** move or stretch the cover over the patch. The ribbon is error E.
-**Spoken 54b:** "Same card. How does the card help you choose?" **Key:** the open patch was warmer, so the sun must be kept off it. "The cover looks nice" is error E.
+**Picture.** A doll's umbrella leaning beside a doll's blanket in a play yard, the seat in the open, and a matching shaded blanket. Caption read aloud: "The open blanket was warmer than its shaded match." Three cards: move the umbrella over the blanket; add a ribbon to the umbrella; stand the umbrella farther away.
+**Spoken 54a:** "Invented for practice. Touch the move that fixes it."
+**Spoken 54b:** "Same card. Why does moving the umbrella help?"

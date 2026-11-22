@@ -12,25 +12,25 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 ## Day 32
 
 **Picture.** A roof garden with pots of plants and two birds, drawn before rain and after rain.
-**Spoken 32a:** "Invented for practice. This is a roof garden with pots of plants and two birds. Point to something in the roof garden that is like our plant by the window." **Key:** any potted plant. No letter; first ideas.
-**Spoken 32b:** "Same pictures. Say one thing you wonder about the plants in the pots." **Key:** any wondering, written on the question board. A child who says plants need nothing is error A.
+**Spoken 32a:** "Invented for practice. This is a roof garden with pots of plants and two birds. Point to something in the roof garden that is like our plant by the window."
+**Spoken 32b:** "Same pictures. Say one thing you wonder about the plants in the pots."
 
 ## Day 33
 
-**Cards.** A sunflower being watered, a goat drinking at a trough, a toy truck, a rock with rain on it.
-**Spoken 33a:** "Invented for practice. Touch every picture where something alive takes a drink." **Key:** the sunflower and the goat. Leaving out the sunflower is error A. A touch on the rock or the truck is shown with help, no letter.
+**Cards.** A sunflower being watered and a goat drinking at a trough.
+**Spoken 33a:** "Invented for practice. A sunflower being watered and a goat drinking at a trough. Tell me one thing both of them need."
 **Picture.** Two sunflower pots, both watered. One stands in the light and looks green. The other stands in a closed box and looks pale and bent.
-**Spoken 33b:** "Touch the pot that looks well." **Key:** the pot in the light. A touch on the boxed pot, or both because both were watered, is error B.
+**Spoken 33b:** "Touch the pot that looks well."
 
 ## Day 34
 
-**Cards.** A goat eating grass, a person eating soup, a sunflower being watered, a rock in rain.
-**Spoken 34a:** "Invented for practice. Touch every picture where something is eating." **Key:** the goat and the person. A touch on the sunflower is error C.
+**Cards.** A goat eating grass and a sunflower being watered.
+**Spoken 34a:** "Invented for practice. A goat eating grass and a sunflower being watered. Touch the one that eats."
 **Picture.** A cow with hay and a cat with fish. Cards: yes, no.
-**Spoken 34b:** "Do the cow and the cat eat the same? Touch yes or no." **Key:** no. Yes is error D.
+**Spoken 34b:** "Do the cow and the cat eat the same? Touch yes or no."
 
 ## Day 35
 
-**Picture.** A hillside. Cards: a spring with wet moss; a dry sunny slope; a chipmunk holding a seed; a hiker eating a sandwich.
-**Spoken 35a:** "Invented for practice. Touch the picture that shows water the living things here can use." **Key:** the spring with the wet moss. A miss is shown with help, no letter. This is the section exit.
-**Spoken 35b:** "The chipmunk eats seeds. Does the hiker eat the same? Touch yes or no." **Key:** no. Yes is error D.
+**Picture.** A hillside. Cards: a bush in the open sun; a bush under a thick roof of branches; a chipmunk holding a seed; a hiker eating a sandwich.
+**Spoken 35a:** "Invented for practice. Touch the bush that gets the light it needs."
+**Spoken 35b:** "The chipmunk eats seeds. Tell me what the hiker eats."

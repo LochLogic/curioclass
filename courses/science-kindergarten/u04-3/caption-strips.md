@@ -7,7 +7,7 @@ credit: ours
 ---
 # Caption strips A to J (days 42 and 43)
 
-Held back. Ten pre-printed strips for the teacher; children do not read them. After day 41 the teacher writes the strip that fits on each child's needs mat (A to D) and after day 42 on each model mat (E and F). On day 43 each error group hears its strip once, read in a quiet voice, in the three minutes of Read the captions: needs (A to D), links (E and F), claims (G to I) and impacts (J). Each strip is two short sentences: what to look at and what to try. A child revises at most two captions. Plain strips of paper, the letter large at the left, a plain picture hint at the right.
+Held back. Ten pre-printed strips for the teacher; children do not read them. After day 41 the teacher writes the strip that fits on each child's needs mat (A to D) and after day 42 on each model mat (E and F). On day 43 each error group hears its strip once, read in a quiet voice, in the three minutes of Read the captions: needs (A to D) and links (E and F). Claims and impacts (G to J) are written on the mats after day 43 and read on day 44. Each strip is two short sentences: what to look at and what to try. A child revises at most two captions. Plain strips of paper, the letter large at the left, a plain picture hint at the right.
 
 - **A. Picture hint: a watered pot standing up.** "Plants take in water too. Put a drop on the plant."
 - **B. Picture hint: a green plant in sun beside a pale plant in a box.** "Water and light. Say what the green plant had."

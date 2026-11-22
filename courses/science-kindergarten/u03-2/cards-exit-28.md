@@ -11,6 +11,6 @@ Held back. This exit is response and is not scored. Plain black line drawings on
 
 **Picture.** A toy boat on a dry floor, a dock at the right, and a card guide in the middle. A line shows the boat's path bending away from the dock at the guide. One copy per group.
 
-**Spoken 28a:** "Invented for practice. People want a toy boat to stop at its dock. A toy boat is pushed on a dry floor, touches a card guide, and turns away from the dock. Did the guide do what was wanted? Touch yes or no." **Key:** no.
+**Spoken 28a:** "Invented for practice. People want a toy boat to stop at its dock. A toy boat is pushed on a dry floor, touches a card guide, and turns away from the dock. Touch the place where the boat should end to say the guide worked."
 
-**Spoken 28b:** "Same pictures of the boat and the guide. Touch the place on the path where the boat began to turn." **Key:** the place where the boat touches the card guide.
+**Spoken 28b:** "Same pictures of the boat and the guide. Touch the place on the path where the boat began to turn."

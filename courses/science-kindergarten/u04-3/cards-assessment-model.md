@@ -19,9 +19,9 @@ A plant card (a small red-flowered plant), a prairie dog card (a round animal, s
 
 ## Items
 
-**M1a:** "Invented for practice. Here is a plant card. On the map in your first box, draw the plant where it can get what it needs." (All children draw at once on their own mat.) **Key:** any place whose marks show the sun, the water drop, the air swirl and the soil together: the sunny bed or the garden plot. The bank, pond, trees, house or burrow mouth, or "it can live anywhere", is error E.
-**M1b:** "Draw a line from the plant to each thing in its place that it uses." **Key:** lines to the sun, the water, the air and the soil marks at its place. A missing line is shown with help, no letter.
-**M2a:** "Here is a prairie dog card, an animal that digs and eats grass. On the map in your second box, draw the animal where it can get what it needs." (All at once.) **Key:** the grassy bank. Putting it where its resources are missing is error E.
-**M2b:** "Draw lines from the animal to what it uses in its place." **Key:** lines to the bank (shelter), the grass (food), the pond (water) and the air. No lines and "it can live anywhere" is error E.
-**M3a:** "Here are the people at their house. Draw lines from the people to what they use." **Key:** lines to the pond water, the garden food, the stack of wood and the air. No lines, or "buildings mean people do not need nature", is error F. Labels alone do not earn the point.
-**M3b:** "Say one thing in this place that the people and the plants both use." **Key:** one shared resource, such as "water" or "air" (the pond water goes to the plants and to the people). "The people do not need anything here" is error F.
+**M1a:** "Invented for practice. Here is a plant card. On the map in your first box, draw the plant where it can get what it needs." (All children draw at once on their own mat.)
+**M1b:** "Draw a line from the plant to each thing in its place that it uses."
+**M2a:** "Here is a prairie dog card, an animal that digs and eats grass. On the map in your second box, draw the animal where it can get what it needs." (All at once.)
+**M2b:** "Draw lines from the animal to what it uses in its place."
+**M3a:** "Here are the people at their house. Draw lines from the people to what they use."
+**M3b:** "Say one thing in this place that the people and the plants both use."

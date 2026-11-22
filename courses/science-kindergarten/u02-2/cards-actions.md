@@ -17,4 +17,4 @@ Four cards for each child, used at the day 17 rug with the July page. Plain blac
 
 **Stand under a tree.** A single tall tree with a child at its foot. Says: a tree. (This is the wrong choice; the class sets it aside: a tree is not shelter.)
 
-**Key.** Plan before the afternoon; go into the school building. Say aloud: forecasters use records and today's page together, and the school plans before the danger and still follows the plan when thunder is heard. A child who picks wait or tree is not told off; set the card aside and say again why the other one is the plan.
+

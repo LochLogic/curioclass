@@ -11,8 +11,8 @@ Nine cards, three each of umbrella, canopy and tent, for each group to sort into
 
 ## The cards
 
-- **Over the top (key).** An umbrella held over a bench seat. A canopy on four posts over a picnic table. A tent roof pitched over a sleeping mat.
-- **Beside (key).** An umbrella leaning against a bench, closed or held to one side, the seat in the open. A canopy standing next to a table with the table in the open. A tent standing beside a mat with the mat in the open.
+- **Over the top.** An umbrella held over a bench seat. A canopy on four posts over a picnic table. A tent roof pitched over a sleeping mat.
+- **Beside.** An umbrella leaning against a bench, closed or held to one side, the seat in the open. A canopy standing next to a table with the table in the open. A tent standing beside a mat with the mat in the open.
 - **Mixed.** One card of each kind shows the shadow edge as a dashed line: over the top, the shadow covers the seat or table; beside, the shadow lies on the ground next to it.
 
 ## How they are used

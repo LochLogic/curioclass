@@ -11,25 +11,25 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 
 ## Day 36
 
-**Picture.** A yard with a sunny bed beside a tap and a dark bed under a roof edge with no water. A sunflower on a card.
-**Spoken 36a:** "Invented for practice. Touch the bed where the sunflower can get what it needs." **Key:** the sunny bed beside the tap. The dark bed, or any bed, is error E.
-**Spoken 36b:** "Same picture, on the sheet. Draw one line from the sunflower to one thing in its bed that helps it live." **Key:** a line to the sun, the tap water or the soil. A line to nothing is shown with help, no letter.
+**Picture.** A duck on a card. Two places: a pond edge with water and reeds, and a dry parking lot with no water and no plants.
+**Spoken 36a:** "Invented for practice. Touch the place where the duck can get what it needs."
+**Spoken 36b:** "Same pictures. Tell me one thing the duck gets from that place."
 
 ## Day 37
 
 **Picture.** A keeper's cottage on a hill, with a rain tank, a vegetable plot, a woodpile and the sea.
-**Spoken 37a:** "Invented for practice. Touch where the keeper gets drinking water." **Key:** the rain tank. The cottage is error F.
-**Spoken 37b:** "Same picture, on the sheet. Draw a line from the keeper to one more thing from the land that the keeper uses." **Key:** a line to the plot or the woodpile. Drawing nothing and saying a house means no need of nature is error F.
+**Spoken 37a:** "Invented for practice. Touch where the keeper gets drinking water."
+**Spoken 37b:** "Same picture. Tell me one more thing from the land that the keeper uses."
 
 ## Day 38
 
-**Pictures.** A fence with no vine, then the same fence covered by a vine.
-**Spoken 38a:** "Invented for practice. Touch the part of the place the vine changed." **Key:** the fence, now covered. "Nothing changed" is error G.
+**Pictures.** A fence with no vine, then the same fence covered by a vine, its leaves drawn turned up toward a small sun above the fence.
+**Spoken 38a:** "Invented for practice. A fence with no vine, then the same fence covered by a vine, its leaves reaching up toward the sun. Say: I think the vine ___ to get ___, because I saw ___."
 **Pictures.** Tall grass; a goose pulling at the grass; short grass with the goose standing by. Cards: the goose, a person with a mower, a kite.
-**Spoken 38b:** "Touch what made the grass shorter in the picture." **Key:** the goose. The person is error H. The kite is a card that is not evidence.
+**Spoken 38b:** "Touch what made the grass shorter in the picture."
 
 ## Day 39 (section exit)
 
-**Picture.** A woodpecker at a hole in a tree trunk, wood chips on the ground below.
-**Spoken 39a:** "Invented for practice. Touch the part of the place the bird changed." **Key:** the hole in the tree. A miss is shown with help, no letter.
-**Spoken 39b:** "Same picture. Say: I think, because I saw." **Key:** a claim that names the bird and a picture, such as "I think the bird made the hole, because I saw chips." A liking offered as the reason is error I.
+**Picture.** A woodpecker at a hole in a tree trunk, two small eggs showing inside the hole, wood chips on the ground below.
+**Spoken 39a:** "Invented for practice. A woodpecker at a hole in a tree, with two eggs inside the hole and wood chips on the ground below. Say: The bird changed ___. That meets its need for ___."
+**Spoken 39b:** "Same picture. Say: I think, because I saw."

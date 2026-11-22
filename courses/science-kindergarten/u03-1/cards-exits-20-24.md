@@ -11,28 +11,29 @@ Each exit has picture cards that every child marks and a spoken question heard f
 
 ## Day 20
 
-**Picture.** A classroom wall with a notice hung so high that a row of children can only look up at it. **Cards.** 20a: a child looking at the notice from close up, reading it. 20b: a tall stool.
-**Spoken:** "Invented for practice. A notice hangs on the wall so high that children cannot see it. Touch the picture of what the people want to be different." **Key:** 20a. A touch on 20b is error B. A child who says "just build it" and names no want is error A.
+**Picture.** A small ball on a floor lane, stopped with a clear gap short of a tower of three paper cups. A tape X marks where the ball stopped. Nothing else is drawn: no ramp, no arrows, no tool.
+**Spoken:** "Invented for practice. Pip rolled a small ball toward a tower of cups. The picture shows the ball stopped short of the tower. Before anyone builds anything, say what needs to change."
 
 ## Day 21
 
-**Picture.** A basket sliding off the end of a bench, the basket partly over the edge. **Cards.** 21a: a question card with a basket and a floor mark, a question mark above them, heard as "where should the basket stay". 21b: a question card with a basket and a paint pot, heard as "what color is the basket".
-**Spoken:** "Invented for practice. A basket keeps sliding off the end of a bench. Touch the question card that helps us find out about the problem." **Key:** 21a. A touch on 21b is not an error, record shown with help. "Build a rail" said aloud instead of choosing is error A.
+**Picture.** A toy car at the foot of a card ramp on a floor lane, stopped with a clear gap short of a garage square marked with tape. Nothing else is drawn.
+**Spoken:** "Invented for practice. Pip's toy car rolled off a card ramp and stopped short of its garage square. Say the problem in one sentence: The car stops ___. We want it to ___."
 
-## Day 22 (two questions)
+## Day 22 (three questions)
 
-**Pictures.** Two days of a toy wheel and a cone. Day one: the wheel stopped short of the cone. Day two: the wheel stopped at the cone. No picture shows the start. Cards: yes, no, we cannot tell. 22b: a toy scooter covered in a pattern of stickers, and a result picture of the scooter stopped short of a fence.
-**Spoken 22a:** "Invented for practice. Pip pushed a toy wheel on two days. On the first day it stopped short of the cone. On the second day it stopped at the cone. Nobody watched how it left the line. Did the wheel start faster on the second day? Touch yes, no, or we cannot tell." **Key:** we cannot tell. Yes, or "it went farther", is error C.
-**Spoken 22b:** "Invented for practice. Pip wanted a toy scooter to reach the fence. Pip covered the scooter in stickers, and it looks very strong. The test picture shows the scooter stopped short of the fence. Did the scooter do what Pip wanted? Touch yes or no." **Key:** no. A yes, "it looks good", is error E.
+**Pictures.** Two days of a toy wheel and a cone. Day one: the wheel stopped short of the cone. Day two: the wheel stopped at the cone. No picture shows the start. Cards: yes, no, we cannot tell. 22b, per child: a mat with a toy cup drawn at one end, a card ramp, two book cards and a ball card. 22c: a card ramp covered in a pattern of stickers, and a result picture of the ball stopped short of the cup.
+**Spoken 22a:** "Invented for practice. Pip pushed a toy wheel on two days. On the first day it stopped short of the cone. On the second day it stopped at the cone. Did the wheel start faster on the second day? Touch yes, no, or we cannot tell."
+**Spoken 22b:** "Invented for practice. Pip wants the ball to reach the toy cup on the floor. Use your ramp cards to build a low ramp for the cup."
+**Spoken 22c:** "Invented for practice. Pip built a low ramp for the cup and covered it in stickers, so it looks very strong. The test picture shows the ball stopped short of the cup. Point to where the ball should be to say the ramp worked."
 
 ## Day 23
 
 **Pictures.** Four small pictures in a row for one ramp and a toy bus: reached, reached, stopped short, reached.
-**Spoken:** "Invented for practice. Pip rolled a toy bus down one ramp four times. The four pictures show: reached, reached, stopped short, reached. Touch the picture that shows this ramp does not reach every time." **Key:** the third, stopped short. A touch on a reached picture, "it reached so it always does", is error F.
+**Spoken:** "Invented for practice. Pip rolled a toy bus down one ramp four times. The four pictures show: reached, reached, stopped short, reached. Pip will now roll a new toy truck once down the same ramp. Say your prediction: I think ___ because I saw ___."
 
 ## Day 24 (two questions)
 
-**Pictures for 24a.** A toy truck and a garage square, with a card bumper beside the truck's path. Picture one: the truck's path bends in open floor, with a clear gap between the bend and the bumper. Picture two: the path bends exactly where the truck's nose touches the bumper. Both pictures show a bend.
+**Picture for 24a.** A toy truck and a garage square off to one side. The truck's path runs straight past a card bumper that sits beside the path with a clear gap, and ends beyond the garage square. No bend is drawn.
 **Picture for 24b.** A third picture: the truck's path turns at a card bumper. Three small marks on the path: one well before the bumper, one at the touch, one far after.
-**Spoken 24a:** "Invented for practice. Two pictures of a toy truck rolling toward a garage square, with a card bumper beside its path. Touch the picture where the bumper made the truck turn." **Key:** picture two. Picture one, "the bumper was close", is error D.
-**Spoken 24b:** "Invented for practice. A toy truck rolled toward a card bumper and turned. Three marks are on its path: one well before the bumper, one where the truck meets the bumper, one far after. Touch the mark where the truck began to turn." **Key:** the mark at the touch. The mark before the bumper, near it, is error D.
+**Spoken 24a:** "Invented for practice. Pip's toy truck rolled straight past a card bumper that sat beside its path with a clear gap, and missed the garage square. Say what to change about the bumper so the truck turns into the garage: I move the bumper ___ because the picture shows ___."
+**Spoken 24b:** "Invented for practice. A toy truck rolled toward a card bumper and turned. Three marks are on its path: one well before the bumper, one where the truck meets the bumper, one far after. Touch the mark where the truck began to turn."

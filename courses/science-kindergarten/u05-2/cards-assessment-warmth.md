@@ -24,11 +24,11 @@ Before the unit, at a school place withheld from teaching, the teacher collects 
 
 ## W1a to W3b
 
-**W1a.** "The exhibit is invented for practice; the dated records are real. Our exhibit keeper asks whether sunlight changes warmth. Touch the fair pair." Offer card S beside card U. **Key:** card S, the two sand samples. Card U, "they prove it", is error C.
-**W1b.** "Mark which sand sample felt warmer at the morning look." Read the morning caption on card S aloud once first. **Key:** the mark card S's morning caption gives, about the same included.
-**W2a to W2d.** Read each card's dated caption aloud once before the children mark that row. "For sand (then soil, rock, water), mark the sunny one, the shaded one or about the same, first for the morning card and then for the afternoon card." **Key:** as each caption says, ties included. "Water cannot warm in sunlight" against the water caption is error B, only when the child says so.
-**W3a.** Read each caption on card T aloud once first. "For each sunny sample, touch the earlier look or the later look, whichever its record says was warmer. Touch both looks if the record says about the same." **Key:** as card T's captions say. Later does not always win.
-**W3b and W3c.** "Touch the pair that shows the sun did it." then "Say why that pair shows the sun did it." **Key:** a sunny sample and its shaded match at one look, where the caption says the sunny one was warmer, so the sun warmed it. If every pair is a tie, the key is "we need to look again". "The sun does not warm things" is error A. "The later one is warmer, so sunlight did it" is error H.
+**W1a.** "The exhibit is invented for practice; the dated records are real. Our exhibit keeper asks whether sunlight changes warmth. Touch the fair pair." Offer card S beside card U.
+**W1b.** "Mark which sand sample felt warmer at the morning look." Read the morning caption on card S aloud once first.
+**W2a to W2d.** Read each card's dated caption aloud once before the children mark that row. "For sand (then soil, rock, water), mark the sunny one, the shaded one or about the same, first for the morning card and then for the afternoon card."
+**W3a.** Read each caption on card T aloud once first. "For each sunny sample, touch the earlier look or the later look, whichever its record says was warmer. Touch both looks if the record says about the same."
+**W3b and W3c.** "Touch the pair that shows the sun did it." then "Say why that pair shows the sun did it."
 
 ## The keys follow the records
 

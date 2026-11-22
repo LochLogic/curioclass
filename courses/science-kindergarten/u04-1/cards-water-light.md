@@ -30,7 +30,3 @@ Pre-cut picture cards, one set for each table. Plain black line drawings on whit
 ## What happens
 
 Pairs lay a drop on every card where a living thing takes in water. The drops are counted by touching each once, and the last number says how many. The sun mark goes beside the two plant photographs.
-
-## Key
-
-Drops on W1, W2, W3 and W4. A sun mark on L1; L2 shows the plant that had less light.

@@ -11,8 +11,8 @@ Pre-cut for each table. Plain black line drawings on white, thick lines, no shad
 
 ## Three place pictures (on paper, about half a page each)
 
-- **The forest.** Tall trees close together, shade between them, a stream along one side.
-- **The meadow.** Open grass in the sun with scattered flowers and no water in view.
+- **The forest.** Tall trees close together, shade between them, a stream along one side, and at the edge where the trees open a strip of grass beside the stream (where the deer stands).
+- **The meadow.** Open grass in the sun with scattered flowers, a small rain cloud above with drops falling on the grass, and no pond or stream in view.
 - **The pond.** A round pond with plants growing at its edge and in the water.
 
 ## Three living-thing cards
@@ -24,11 +24,3 @@ Pre-cut for each table. Plain black line drawings on white, thick lines, no shad
 ## Five marks, cut from paper
 
 A blue drop for water, a yellow sun for light, a bite mark for food, a swirl for air, a brown patch for land.
-
-## What happens
-
-Pip puts the fish in the meadow. Children say what is wrong. The teacher then models the fish in the pond: a line to the water and a line to the pond plants. Tables draw lines for the deer (to grass for food, to water, to a swirl for air) and the grass (to light, to water, to the land).
-
-## Key
-
-The fish: lines to water and to pond plants. The deer: lines to grass, water and air. The grass: lines to light, water and land. In the "what if" part, the fish in the meadow has no water line. The grass in the dark forest has no light line.

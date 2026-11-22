@@ -24,7 +24,3 @@ A person card is cut from paper: a simple figure, an adult, no face detail. It s
 ## What happens
 
 The teacher traces water with a crayon from the source to the tap and to a cup. Pairs add a person card and draw lines to water (drinking), food grown on land, wood or soil for shelter, and air.
-
-## Key
-
-Lines from the person to the tap water, the field food, the trees for wood and a swirl for air. "The house makes the water" is error F; the line from the source shows where it comes from.

@@ -21,10 +21,6 @@ The same six houses are drawn inside the patch of trees. Seven of the eight tree
 
 Pairs mark what each plan changes (a crayon circle) and what it leaves standing (a tick). They count the trees left on each plan by touching each once, and say the last number. A rotating six says which plan leaves more living things in place, and why, from the picture.
 
-## Key
-
-Plan 1 leaves more living things in place: eight trees and the flowers stand. Plan 2 leaves one tree. The class says so without blame: people change land to have a place to live, and the plan matters for what it leaves standing.
-
 ## The small cup
 
 After the plans the teacher waters one class plant with a small cup, only when the soil is dry, because a pot holds only so much and the rest runs out. The children say what would waste water. No family or home is mentioned.

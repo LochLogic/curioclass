@@ -17,7 +17,6 @@ Two real forecast pages drawn as calm picture pages. Six table copies of each. P
 
 **What it says, in three pictures:** storms are possible today and tonight (sun, moon and cloud), and it is a time to plan (the dotted line to the school).
 
-**Teacher key for the model question:** "I want to find out when the storms could come." The page answers it: today and tonight. "What do we do?" the page does not say outright; the class answers it with the strip: page, plan indoor play before the afternoon, indoor recess.
 
 ## Page 2: the discussion
 
@@ -25,6 +24,6 @@ Two real forecast pages drawn as calm picture pages. Six table copies of each. P
 
 **What it tells that page one did not:** earlier storms had already moved away (the fading clouds with the arrow), and stronger storms might come later in one corner of the area, in the afternoon and evening.
 
-**Spoken (day 16):** "What can this page tell us that the first one did not?" **Key:** that earlier storms were already moving away, and where. A child who says "it tells what happened" has met the idea of an observation; the same page also says what may come later (error E is not scored here: practice only).
+**Spoken (day 16):** "What can this page tell us that the first one did not?"
 
 **Teacher note:** never say "a storm will come". Say "the page says storms are possible today". The might-or-might-not picture (page 1) shows one cloud with a question mark.

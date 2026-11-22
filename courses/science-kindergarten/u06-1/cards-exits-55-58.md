@@ -11,27 +11,27 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 
 ## Day 55: a paved corner and a puddle
 
-**Picture.** A paved corner of a playground. Four scraps of crumpled paper lie on the pavement beside a puddle. A strip of grass and a fence run along the far side. No arrows.
-**Spoken 55a:** "Invented for practice. Touch each scrap once and make a mark for each." **Key:** four marks, one for each scrap. A miscount is recounted with a partner, no letter.
-**Spoken 55b:** "Draw an arrow for where one scrap might go." **Key:** an arrow from a scrap toward the puddle, the grass, the fence or another place in the picture. "It stays where it fell" is error A.
+**Picture.** A paved corner of a playground. Four scraps of crumpled paper and two bottles lie on the pavement beside a puddle. A strip of grass and a fence run along the far side. No arrows.
+**Spoken 55a:** "Invented for practice. Touch the kind there is more of."
+**Spoken 55b:** "Draw an arrow for where one scrap might go."
 
 ## Day 56: a school fair
 
 **Picture.** A school fair on a field. Near a booth the soil is bare and rutted, with no plants. A plastic bag floats in a pond at one side. A bus has a gray haze behind it. A duck stands by the pond with a bit of string round its foot. A row of shrubs runs along the field edge. No cause arrows are drawn. These cases are new: the four chains are not repictured.
-**Spoken 56a:** "Invented for practice. A school fair has bare rutted soil with no plants, a plastic bag floating in a pond, a bus with a gray haze behind it and a duck with string round its foot. Touch what is hurt in the part I name." Name one part for each child in turn. **Key:** land, the bare soil; water, the bag in the pond; air, the haze; living things, the duck. Touching the bus itself instead of the haze is shown with help, no letter.
-**Spoken 56b:** "Same picture. Draw one thing the school could do so one of these is hurt less, and say which one." **Key:** any feasible action and the part it spares, named. "Put the wrappers in the shrubs, that keeps them safe" is error C.
+**Spoken 56a:** "Invented for practice. A school fair has bare rutted soil with no plants, a plastic bag floating in a pond, a bus with a gray haze behind it and a duck with string round its foot. Touch what is hurt in the part I name." Name one part for each child in turn.
+**Spoken 56b:** "Same picture. Tell me one thing the school could do so the pond is hurt less."
 
-## Day 57: a bench
+## Day 57: a classroom corner
 
-**Picture.** A park bench with three loose wrappers, a used sheet of paper and an empty bottle beside it, and wind lines pointing toward a row of shrubs.
-**Spoken 57a:** "Invented for practice. Draw what our trial would do here." **Key:** the class's chosen action drawn on the bench scene, and a changed picture with fewer loose wrappers or less new material used. Wrappers pushed under the shrubs is error C.
-**Spoken 57b:** "Tell why that helps." **Key:** "If we ___, then ___" naming an affected part. If the class chose to reuse paper, "reusing paper does not change how much new paper we need" is error B.
+**Picture.** A classroom corner: a paper bin with half-used sheets sticking out, a tray of single-use cups, three cups on the floor and a gap behind the cupboard.
+**Spoken 57a:** "Invented for practice. Touch the part of the picture that our action would change."
+**Spoken 57b:** "Tell why that helps."
 
 ## Day 58 (section exit): bottles by a puddle
 
 **Picture.** Two drawings of the same school corner. First: five bottles lie beside a puddle by a wall. Second: the same corner after a class's action, with a reminder card at a bin and two bottles by the puddle. A caption read aloud: "Before. After our class's action."
-**Spoken 58a:** "Invented for practice. Touch what the action changed." **Key:** the bottles beside the puddle, fewer in the second drawing. Touching the puddle is shown with help, no letter.
-**Spoken 58b:** "Draw an arrow that says why it helps." **Key:** an arrow from the action to less harm to the water or the living things near the puddle. "Every bottle goes to be recycled everywhere" is error F.
+**Spoken 58a:** "Invented for practice. Tell me what changed between the two drawings."
+**Spoken 58b:** "Draw an arrow that says why it helps."
 
 ## Day 58 teaching corner (not an exit)
 
