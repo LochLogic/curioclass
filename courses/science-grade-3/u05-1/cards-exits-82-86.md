@@ -12,7 +12,7 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 ## Day 82
 
-Invented for practice. A leaf print is in a rock on a dry hill. Sam says no plant lived here, because the hill is dry now. Is Sam right? Say why.
+Invented for practice. A fish print and a shell print are in a rock on a dry hill. Draw the hill long ago. Label what each print shows.
 
 ## Day 83
 

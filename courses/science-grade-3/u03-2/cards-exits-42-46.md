@@ -12,11 +12,11 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 ## Day 42
 
-A card: spinach. Sown day 0. First leaves day 5. Leaves picked day 30. Max says, "Picking the leaves means new spinach plants were made."
+Card 1: radish. Sown day 0. Sprouts day 4. Roots ready to pull day 28. Our radishes are on day 15 and have leaves. Card 2 (spoken): Max says, "Picking spinach leaves means new plants were made."
 
 ## Day 43
 
-A picture of two red foxes standing in a field beside a fox cub. Pat says they are the parents because they look alike.
+Card 1: a family record names Mom cat and Dad cat. Their three kittens all have pointed ears like their parents. One kitten has white paws. Card 2 (spoken): a picture of two red foxes standing in a field beside a fox cub.
 
 ## Day 44
 

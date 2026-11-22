@@ -12,12 +12,12 @@ credit: ours
 
 Group ______ Roles: pusher, second pusher, measurer, recorder, watcher.
 
-Our question: Does the direction of the pushes change what the box does?
+Our question: ______________________
 
-- We change: ______ (the direction)
-- We keep the same: the box, the tray, the start line, two pushes about equal in strength, and where they touch.
-- We watch: where the box ends, in whole centimetres.
-- We try each condition three times.
+- We change: ______
+- We keep the same: ______
+- We watch: ______
+- Tries of each way: ____
 - Our unbalanced pair: ______
 - We think ______ because ______.
 
@@ -44,4 +44,4 @@ What stayed or moved: ______
 
 Why: ______ Use the words balanced or unbalanced and a number from your table.
 
-Keep the original numbers when you revise. Write changes in a second colour.
+Keep the original numbers when you revise. Write changes in a second color.

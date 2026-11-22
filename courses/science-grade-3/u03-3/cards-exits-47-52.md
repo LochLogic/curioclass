@@ -24,11 +24,11 @@ Pot A: 2 plants on a sunny sill. Pot B: 8 plants on a dim shelf. A's plants are 
 
 ## Day 50
 
-(a) A parrot hatched from an egg. Its family says "hello" to it every morning. Now it says "hello". Lee says it was born knowing "hello". (b) A houseplant of a tall-growing kind sits in a dark closet. It is short and pale.
+(a) A parrot hatched from an egg. Its family says "hello" to it every morning. Now it says "hello". Lee says it was born knowing "hello". (b) A houseplant of a tall-growing kind sits behind a thick curtain with almost no daylight. It is short and pale.
 
 ## Day 51
 
-(a) A calf has the white face of both its parents. (b) A geranium kept in a dim hallway has long, pale stems. (c) Tall-kind and short-kind wheat grow in a dry plot and a watered plot. The tall kind is taller in both, and both are taller when watered. (d) A pony trots to the gate when it hears the feed bucket rattle.
+(a) A calf has the white face of both its parents. (b) A geranium in a dim hall has long, pale stems. (c) Two pumpkin kinds grow in a garden. Big weighs more than small in every plot. Both weigh more in sun. (d) A hen runs to the barn at a rattle. Incubator chicks do not.
 
 ## Day 52 (exit ticket, on its own sheet)
 

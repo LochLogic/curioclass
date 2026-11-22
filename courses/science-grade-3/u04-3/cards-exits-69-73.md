@@ -24,7 +24,7 @@ Invented for practice. A cranberry plant needs damp, sour soil. A dry, sandy hil
 
 ## Day 72
 
-Invented for practice. A class studies the school's north wall. It is shady and damp. Moss and one weed grow there. Name one condition to write down. Name one need it links to.
+Invented for practice. A class studies a damp, shady strip by the school gym wall. A fern grows there. A group writes its entry: "Fern. By the wall. It is there." Write the entry again. Add a condition of the place and a sign on the fern.
 
 ## Day 73
 

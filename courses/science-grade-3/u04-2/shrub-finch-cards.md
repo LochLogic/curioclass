@@ -26,7 +26,7 @@ Invented for practice. In a bare field, hawks found bright males more often than
 
 ## Chick card
 
-Chicks were seen at 9 of 12 nests. This is a separate record from the choices.
+Chicks were seen at 9 of 12 nests.
 
 ## Statement cards
 
@@ -37,4 +37,4 @@ Sort each statement onto a shelf: survive, find a mate, or have young.
 - Ten of 12 females chose the bright male.
 - Chicks were seen at 9 of 12 nests.
 - The clipped shrubs lost more leaves.
-- Females chose by looking at the males.
+- Eight of 12 females stayed near the bright male all morning (invented).

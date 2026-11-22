@@ -14,14 +14,14 @@ A spreading vine hides berry shrubs. Fruit-eating birds feed on the berries. Now
 
 ## The goal card
 
-Goal: at least 4 of 8 shrubs show again, and 5 bird visits, within 6 tokens. Limit: the soil stays whole.
+Goal: at least 4 of 8 shrubs show again and 5 bird visits. Limits: within 6 tokens; the soil stays whole.
 
 ## Two responses
 
 - Cut the vine at the base: 3 tokens, 5 shrubs, 6 visits. The soil stays whole.
 - Dig out all the roots: 9 tokens, 8 shrubs, 9 visits. The soil is torn.
 
-Pairs judge each against the goal and the limit. Cutting at the base meets both. Digging out the roots breaks the budget and the soil limit.
+Pairs judge each against the goal and the limit. Cutting at the base meets the goal and both limits. Digging out the roots meets the goal counts and breaks both limits: the tokens and the soil.
 
 ## The link
 

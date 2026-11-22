@@ -9,9 +9,9 @@ s01-X1,An arrow drawn along the whole path the wagon rolls.,,,C,"the arrow shows
 s01-X1,The wagon went farther.,,,C,reads arrow length as distance
 s01-X2,"North, because Thursday was north.",,,H,uses one entry as proof
 s01-X2,"South, because I like south.",,,G,a liking in place of the table
-s01-X3,"Yes, one gentle and one hard.",,,D,sees the push change and misses the other two
+s01-X3,Change the car and the flick. Watch if it moves.,,,D,two changes in one plan; cross out all but one
 s01-X3b,"No, once is enough.",,,H,one try taken as proof
-s01-X4,"Yes, two pulls make more go.",,,B,adds the pulls instead of cancelling them
+s01-X4,Two arrows the same length.,,,B,equal arrows kept for a boat that moved; equal pulls would cancel
 s01-X4b,"No, it is not moving.",,,A,still is read as no force
 s01-X5,Card 4 moves left.,,,B,two equal pushes read as a start
 s01-X5,"Nothing pushes card 4, it is still.",,,A,rest read as no force
@@ -128,8 +128,8 @@ s02-X18,Watch the string.,,,x,names the changed thing as the thing watched; the 
 s02-X18b,"Yes, moving the magnet closer shows more.",,,D,two changes accepted; cross out all but one
 s02-X19,"Yes, the gap caused the change.",,,D,two changes accepted; ask which things differed
 s02-X19b,There is no pull at that gap.,,,A,none seen read as no force; lay the ruler and the arrow across the gap
-s02-X20,Red to blue push apart.,,,x,unlike ends read as pushing; try the pair again
-s02-X20b,"The screw swings away, because the magnet was turned.",,,C,turning taken to make steel push; draw both arrow pairs
+s02-X20,"Red, because they match.",,,x,like ends read as pulling; try the pair again
+s02-X20b,"Yes, the blue end pushes it, because the magnet was turned.",,,C,turning taken to make steel push; draw both arrow pairs
 s02-X21,"Yes, all metals are pulled.",,,B,steel taken for every metal; hold the magnet near a foil square
 s02-X21b,"Yes, it is fair, two magnets pull more.",,,D,two changes accepted; cross out all but one
 s02-X22,There is no pull at 6 cm.,,,A,none seen read as no force; lay the ruler and the arrow across the gap
@@ -142,11 +142,12 @@ s02-X24,"Yes, it has to touch.",,,A,contact taken as needed; show the screw leap
 s02-X24b,"Nothing is wrong, a bigger screw shows more.",,,D,two changes accepted; cross out all but one
 s02-X25,"Yes, it says what we need.",,,E,a list of equipment taken for the need
 s02-X25b,Use a magnet to hold it.,,,E,an answer given in place of the need; ask who needs what
-s02-X26,"Yes, the tape tells us how to check.",,,E,materials taken for a way to check
+s02-X26,"Use sticks, tape and clay. It looks good.",,,E,materials and a liking given as criteria; nothing to check
 s02-X26b,"Yes, it works better, so the limit does not matter.",,,F,a limit dropped because the design works
-s02-X27,"Yes, higher is better.",,,D,two changes accepted; cross out all but one
+s02-X27,"Change the hook, the tape and the time.",,,D,three changes at once; cross out all but one
 s02-X27b,"Yes, it held, so it meets the problem.",,,F,a limit dropped because the design works
-s02-X28,"Two magnets, a card and tape.",,,E,a list of equipment taken for the need
+s02-X28,"A magnet, a card and tape.",,,E,a list of equipment taken for the criterion
+s02-X28,Take away the token limit so it is easier.,,,F,a limit dropped to make the work easier
 s02-X28b,Only the materials; the tokens do not matter.,,,F,a limit ignored
 s02-X28c,Drop the token limit so it is easier.,,,F,a limit dropped to make the work easier
 s02-X29,Neither pulls unless they touch.,,,A,contact taken as needed; show the pin leaping 1 cm
@@ -182,11 +183,10 @@ s03-X40b,"Four stages, because every animal has a pupa.",,,x,a pupa assumed for 
 s03-X40c,The adult changes back into the young one.,,,A,the adult taken to return as the young; the young come from eggs she lays
 s03-X41,The dead moth turns into its own egg.,,,A,the same individual taken to return; arrow from the adult's eggs to a new moth
 s03-X41b,"Every label is right, because every interval is six days.",,,x,a printed label copied without counting the days
-s03-X42,"Yes, picked leaves are new plants.",,,B,harvest taken as reproduction; a seed that begins to grow is the new plant
+s03-X42,The radish makes new radish plants next.,,,B,harvest taken as reproduction; a seed that begins to grow is the new plant
 s03-X42b,"No, because day 30 is too early.",,,x,the timing argued in place of the missing seed evidence
 s03-X42b,"Nothing, picking leaves is enough.",,,B,harvest taken as reproduction; a seed that begins to grow is the new plant
-s03-X43,"Yes, they look alike, so they are the parents.",,,G,looks taken to settle parentage; a family record names the parents
-s03-X43,"The cub's tail is smaller, so it is not their cub.",,,F,a difference taken to rule out the family; young are not exact copies
+s03-X43,The kitten with white paws is not their kitten.,,,F,a difference taken to rule out the family; young are not exact copies
 s03-X43b,That they look alike.,,,G,looks taken to settle parentage; a family record names the parents
 s03-X44,They are alike because they are all pansies.,,,x,the kind named in place of the recorded trait
 s03-X44b,All the offspring must be the same width.,,,F,young taken to match in every feature; the widths run 4 to 6
@@ -206,16 +206,16 @@ s03-X49,A's plants are taller because their parents were tall.,,,C,a difference 
 s03-X50,It inherited saying hello.,,,D,a learned response taken as inherited; compare the bird before and after the cue
 s03-X50b,That kind is only ever short.,,,C,a surroundings effect taken as the kind's inherited height
 s03-X51,(b) is from the parents.,,,C,a surroundings effect taken as inherited; the dim hallway differs
-s03-X51,(c) is only from the parents.,,,C,water missed in the wheat; both kinds grew taller when watered
-s03-X51,(d) the pony was born knowing the rattle.,,,D,a learned response taken as inherited
+s03-X51,(c) is only from the parents.,,,C,sun missed in the pumpkins; both kinds weighed more in the sun
+s03-X51,(d) the hen was born knowing the rattle.,,,D,a learned response taken as inherited
 s03-X52,The cuttings are different because they are different ages.,,,x,age was matched; read the record for what was kept the same
 s03-X52b,Spacing explains every difference in the plants.,,,C,one cause taken for every difference; inherited likeness stays
 s03-X53,The chicks inherited knowing the card.,,,D,a learned response taken as inherited; compare before and after
 s03-X53,The dead bee turns into its own egg.,,,A,the same individual taken to return; arrow from the eggs to a new bee
 s03-X53,Different lengths mean they cannot be related.,,,F,variation taken as not related; the same leaf form is shared
-s03-X54,The cress differences are all inherited.,,,C,water missed; only the watering was changed
-s03-X54,The chicks inherited dropping nuts.,,,D,a learned response taken as inherited
-s03-X54,The big garden made the vines longer.,,,E,photographs taken to prove a cause; name one condition not kept the same
+s03-X54,The bean differences are all inherited.,,,C,light missed; only the light was changed
+s03-X54,The puppies inherited opening gates.,,,D,a learned response taken as inherited
+s03-X54,The fence made the sunflower taller.,,,E,photographs taken to prove a cause; name one condition not kept the same
 s03-X58c,Mustard dies and starts again as the same plant.,,,A,the same individual taken to return; label the new plant apart
 s03-X58d,The pods prove the mustard reproduced.,,,B,a pod taken as reproduction; a seed that begins to grow is the new plant
 s03-X58e,Offspring must match in every feature.,,,F,young taken to match in every feature; the tallies differ
@@ -299,8 +299,9 @@ s03-P56-3,The same zinnia starts again after it dies.,,,A,the same individual ta
 s03-P56-3,The seeds in the head show it reproduced.,,,B,a seed head taken as reproduction; a seed that begins to grow is the new plant
 s03-P57-2,Different lengths mean they cannot be related.,,,F,variation taken as not related; the same leaf form is shared
 s03-P57-2,Relatives must match every feature.,,,F,young taken to match in every feature; the lengths and patches differ
-s04-X59,"Yes, turtles live anywhere.",,,F,all places taken to suit every kind; draw the missing link on the turtle card
-s04-X59,"No, nothing can live on the tundra.",,,G,one kind's limit taken for every kind; point to the hare and the musk oxen on the drawing
+s04-X59,"The meadow gives the mouse everything, so I drew no lines.",,,F,different needs ignored; draw the missing link on the mouse picture
+s04-X59b,"Yes, turtles live anywhere.",,,F,all places taken to suit every kind; draw the missing link on the turtle card
+s04-X59b,"No, nothing can live on the tundra.",,,G,one kind's limit taken for every kind; point to the hare and the musk oxen on the drawing
 s04-X60,All birds need a group to eat.,,,B,a benefit that holds for pelicans taken as a need of all birds; set the moose card beside the group cards
 s04-X60,The group always gets fish.,,,C,a pattern taken as certain; find the one trip in the heron record that does not follow it
 s04-X61,More gulls always means more fish.,,,C,a pattern taken as certain; read the bar for six gulls aloud
@@ -324,7 +325,7 @@ s04-X69,"Neither, nothing can grow in the cold.",,,G,one kind's limit taken for 
 s04-X70,No living thing lives in a dark forest.,,,G,"one kind's limit taken for every kind; point to the violet, whose needs are met"
 s04-X70b,They all do the same.,,,F,all kinds taken to do equally well; match each need to what the forest floor gives
 s04-X71,"Yes, plants grow wherever there is soil.",,,F,all kinds taken to do equally well; draw the missing link on the cranberry card
-s04-X72,The moss and the weed do equally well because both grow there.,,,F,"all kinds taken to do equally well; a photograph shows what is there, not how well; look for a sign of doing well or poorly"
+s04-X72,"Fern. By the wall. It is there, so it is doing well.",,,F,being there taken as doing well; a sign of doing well or poorly is something seen on the plant
 s04-X73,All three do equally well.,,,F,all kinds taken to do equally well; match each need to what the hollow gives
 s04-X73,The hollow is too wet for any kind to live.,,,G,"one kind's limit taken for every kind; point to the jewelweed, whose needs are met"
 s04-X74,White hides best because it is bright.,,,D,the background ignored; the color must match the ground
@@ -360,7 +361,7 @@ s04-P78-4,A helpful feature always saves everyone.,,,C,a helpful feature taken a
 s04-P78-5,All kinds do equally well here.,,,F,all kinds taken to do equally well; cross the missing link
 s05-R1,The plants are fine as they are.,,,x,the harm link missed; point to the bent plants in picture 2
 s05-R1,"I drew a fence, and I do not know why.",,,x,a solution with no benefit; draw an arrow from the fence to the standing plants
-s05-X82,"Yes, it is dry now, so it always was.",,,A,present taken as past; put the leaf print beside the dry hill and read what each shows
+s05-X82,It was always a dry hill.,,,A,present taken as past; put the fish and shell prints beside the dry hill and read what each shows
 s05-X83,"There is no pond here now, so there never was one.",,,A,present taken as past; the guide card says what the print needs
 s05-X83,A 3 centimeter wing shows it was hot.,,,F,size taken as climate; pair the size with the guide card
 s05-X84,"It is a desert, so a forest could never grow here.",,,A,present taken as past; read the print and the card first
@@ -472,15 +473,15 @@ s06-X98,"Yes, summer weather is the same every day.",,,B,variation ignored; comp
 s06-X98b,"Mild, because one day was mild.",,,B,one day taken for the season; most of the six days were cold
 s06-X99,"6, one for every row.",,,x,"counts rows, not rainy days; read the rain column only"
 s06-X99b,"Yes, dry, because nothing was written.",,,B,a blank taken as a dry day; blank means not recorded
-s06-X100,"3, one day for each umbrella.",,,A,the key is ignored; one umbrella is 2 days
+s06-X100,"May 9 clouds, one for each day.",,,A,the key is ignored; one cloud is 2 days
 s06-X100b,"4, the number of the line.",,,A,the scale is ignored; read the number printed on the line
 s06-X102,Tomorrow will be warm.,,,B,one day taken to guarantee the next; most of the 30 days were cold
-s06-X102b,"No, the usual never changes.",,,x,a rule taken as fixed; 20 of 30 days is more than half
+s06-X102b,"No, the usual never changes.",,,x,a rule taken as fixed; 15 of 24 days is more than half
 s06-X101,Autumn and winter are the same.,,,x,the two counts are not compared; read cool and cold
 s06-X101b,Tomorrow will be mild.,,,x,the less common day chosen; 8 of 10 autumn rows were cool
 s06-X101c,Tomorrow will be cool for sure.,,,B,a season taken to guarantee the day; 2 of 10 autumn rows were mild
-s06-X103,"Yes, 18 is our climate.",,,C,one year taken as the climate; place it beside the 30-year range
-s06-X103,"Yes, it is what we saw.",,,C,a short record taken as the climate
+s06-X103,"Town A, because it has 12 to 14 days.",,,C,the size of the counts taken for the change from year to year; compare the ranges
+s06-X103,"Town B, because it had 20 days.",,,C,one year taken for the many-year range
 s06-X104,R is hot all year.,,,D,the second card is left out; link the station card
 s06-X104,R has few rainy days.,,,D,the first card is left out; link the atlas card
 s06-X105,"V is colder, because it is a desert.",,,D,"a belief used in place of the count; underline the number in each card, then answer from the number"
@@ -621,3 +622,4 @@ c3-X120d,"Sam is right, because the canyon is dry now.",,,R,dry now is taken to 
 c3-X120d,The bone shows the whole country was lake.,,,S,a few places are taken to show the whole region
 c3-P120-4,"Yes, every plant and animal in the marsh will be saved.",,,W,a model result is taken to guarantee every living thing benefits
 c3-P120-4,"It does not count, even if it has merit, because 4 of 5 tokens is too many.",,,V,a limit is read wrongly; 4 is inside the limit of 5
+s06-X103b,"Yes, 19 is Town A's climate.",,,C,one year taken as the climate; place it beside the 30-year range

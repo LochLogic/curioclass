@@ -12,7 +12,7 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 ## Day 103
 
-Invented for practice. A town's 30-year February record runs from 4 to 14 snowy days. This February had 18 snowy days. Lena says this February shows the town's climate. Is she right? Why?
+Invented for practice. Two towns counted rainy days in June for 30 years. Town A's counts run from 12 to 14. Town B's counts run from 3 to 20. Which town's rainy days change more from year to year? Say how you know. Spoken: this June, Town A had 19 rainy days. Is 19 usual for Town A? Say why.
 
 ## Day 104
 

@@ -10,13 +10,21 @@ credit: ours
 
 Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children.
 
-## Day 54 (unscored comparisons)
+## Day 54, practice cards (pairs)
 
-(a) Cress seedlings, matched but for water. With enough water they are 8 and 9 centimetres. With too little they are 3 and 4.
+(a) Cress seedlings, matched but for water. With enough water they are 10 and 11 centimeters. With too little they are 4 and 5.
 
 (b) A crow dropped nuts on a road after watching other crows. Its chicks, never shown, do not.
 
 (c) Two photographs of one kind of pumpkin. One is in a large garden with long vines. One is in a small yard with short vines. A child says space caused it.
+
+## Day 54, exit cards (alone)
+
+(a) Bean seedlings, matched but for light. In bright light they are 12 and 13 centimeters. In dim light they are 5 and 6.
+
+(b) A dog opened a gate latch after watching its owner. Its puppies, never shown, do not.
+
+(c) Two photographs of one kind of sunflower. One is by a south fence and is tall. One is by a north corner and is short. A child says the fence made it taller.
 
 ## Day 58 (unscored transfer)
 

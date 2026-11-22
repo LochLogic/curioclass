@@ -24,7 +24,7 @@ Card 1: a magnet at 2 cm leans a hanging screw 3 cm. A second magnet at 6 cm lea
 
 ## Day 20
 
-Card 1: two magnets pulling together, the left magnet's red end to the right magnet's blue end, then the right magnet turned around so they push apart; the turned magnet's ends are left uncolored. Card 2: a steel screw hanging near a magnet, then the magnet flipped.
+Card 1: a magnet hanging on a string, its red end close to a held magnet whose end is left uncolored. Card 2: a steel nail on a tray with a magnet's red end held near it, the nail slid toward the magnet; Pat's claim in a speech balloon: the blue end will push the nail away.
 
 ## Day 21
 

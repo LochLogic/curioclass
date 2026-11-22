@@ -8,7 +8,7 @@ credit: ours
 
 # Turning one magnet (day 20)
 
-Name ____________ Our gap (whole cm): ____ Keep the same two magnets and the same height.
+Name ____________ Gap: 4 cm Keep the same two magnets and the same height.
 
 | Which ends face | Try 1 | Try 2 | Try 3 |
 |---|---|---|---|

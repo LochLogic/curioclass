@@ -99,7 +99,6 @@ from_day,to_day,what,where,minutes,error,note
 41,42,s03-X41,Return and repair,2,A,redraw the moth model in two colors with the arrow from the adult's eggs to a new moth
 41,42,s03-X41b,Return and repair,2,,count the days between the recorded stages and correct the interval labels
 42,43,s03-X42,Return and repair,2,B,sort picked leaves and a seed beginning to grow into harvest and new plant
-43,44,s03-X43,Return and repair,2,G,"two pictures, one with a family record and one without; which can be used as data"
 43,44,s03-X43,Return and repair,2,F,circle the differing feature in one documented family: alike in ___; different in ___
 44,45,s03-X44b,Return and repair,2,F,circle the differing feature in one documented family: alike in ___; different in ___
 45,46,s03-X45,Return and repair,2,G,"two pictures, one with a family record and one without; which can be used as data"
@@ -140,8 +139,9 @@ from_day,to_day,what,where,minutes,error,note
 57,58,s03-E7,groups,3,G,"two pictures, one with a family record and one without; the class says which can be used as data"
 57,58,s03-E8,groups,3,F,circle the differing feature in one documented family: alike in ___; different in ___
 59,60,day 59 inventory retrieval,Return and repair,2,,side-by-side picture matching of the shared and different kinds
-59,60,s04-X59,Return and repair,2,F,draw the missing link on the turtle card
-59,60,s04-X59,Return and repair,2,G,point to the hare and the musk oxen on the drawing
+59,60,s04-X59,Return and repair,0,F,draw the missing link on the mouse picture
+59,60,s04-X59b,Return and repair,2,F,draw the missing link on the turtle card
+59,60,s04-X59b,Return and repair,2,G,point to the hare and the musk oxen on the drawing
 60,61,s04-X60,Return and repair,2,B,put the moose card beside the group cards and mark where each got food
 60,61,s04-X60,Return and repair,2,C,find the one trip in the heron record that does not follow the pattern
 61,62,s04-X61,Return and repair,2,C,"commonest letter of B and C; read the bar for six gulls aloud, or mark where one gull still got fish"
@@ -191,7 +191,7 @@ from_day,to_day,what,where,minutes,error,note
 81,82,s05-R1,Hook,0,,the day 81 papers seat the day 82 pairs; nothing delays the hook
 81,83,s05-R1,Support groups,7,,the readiness group works from the day 81 papers; the whole class does the 7 minutes if many missed it
 82,83,"retrieval misses, day 82",Support groups,3,,two-picture comparison for the retrieval group in the last 3 minutes
-82,83,s05-X82,Return and repair,2,A,"the leaf print beside the dry hill, read aloud"
+82,83,s05-X82,Return and repair,2,A,"the fish and shell prints beside the dry hill, read aloud"
 83,84,s05-X83,Return and repair,2,F,commonest letter of A and F; the stump beside the guide card
 84,85,s05-X84,Return and repair,2,A,commonest letter of A and F; the desert valley beside the whale bones
 85,86,s05-X85c,Return and repair,1,C,the two stacks in hand
@@ -236,7 +236,7 @@ from_day,to_day,what,where,minutes,error,note
 101,102,written task: product W feedback,product W revision,0,,"component feedback written after day 101, handed back within the 6 minutes"
 101,102,written task: product W revision,product W revision,6,B,"the revision from the written feedback, in a second color; a 2-minute whole-class example of the commonest letter first"
 101,102,s06-X101c,product W revision,0,B,the same commonest-letter example covers this ticket
-102,103,s06-X102b,Return and repair,3,,the usual taken as never changing; count 20 odd days of 30
+102,103,s06-X102b,Return and repair,3,,the usual taken as never changing; count 15 odd days of 24
 102,103,s06-X102,Return and repair,2,B,the one warm day laid beside the winter record
 102,115,s06-E1,Directions,0,,the revised product is scored after day 115 outside lesson minutes
 102,115,s06-E2,Directions,0,,the revised product is scored after day 115 outside lesson minutes
@@ -245,6 +245,7 @@ from_day,to_day,what,where,minutes,error,note
 102,115,s06-E5,Directions,0,,the revised product is scored after day 115 outside lesson minutes
 102,115,s06-E6,Directions,0,B,the revised product is scored after day 115 outside lesson minutes
 103,104,s06-X103,Return and repair,5,C,the class year laid beside the many-year strip
+103,104,s06-X103b,Return and repair,0,C,the same example covers this ticket: the year laid beside the many-year range
 104,105,s06-X104,Return and repair,5,D,link one detail from each card
 105,106,s06-X105b,Return and repair,2,C,"this year laid beside the many-year strip, then the reading part opens with the first example"
 105,106,s06-X105,Return and repair,1,D,"underline the number in each card, then answer from the number"
@@ -313,7 +314,7 @@ from_day,to_day,what,where,minutes,error,note
 40,41,s03-X40b,Return and repair,0,,lay the dragonfly cards and count the stages drawn; a pupa only where a card shows one
 40,41,s03-X40c,Return and repair,0,,lay the dragonfly cards and count the stages drawn; a pupa only where a card shows one
 42,43,s03-X42b,Return and repair,0,B,sort picked leaves and a seed beginning to grow into harvest and new plant
-43,44,s03-X43b,Return and repair,0,G,"two pictures, one with a family record and one without; which can be used as data"
+43,44,s03-X43b,Return and repair,2,G,"two pictures, one with a family record and one without; which can be used as data"
 44,45,s03-X44,Return and repair,0,F,circle the differing feature in one documented family: alike in ___; different in ___
 45,46,s03-X45b,Return and repair,0,G,"two pictures, one with a family record and one without; which can be used as data"
 48,49,s03-X48b,Return and repair,0,,"cross out every difference but the one changed in a pot card, then say what explains the heights"

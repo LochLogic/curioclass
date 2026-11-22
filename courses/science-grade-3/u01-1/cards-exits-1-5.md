@@ -20,11 +20,11 @@ A small wind table: Monday north, Tuesday north, Wednesday south, Thursday north
 
 ## Day 3
 
-Two small scenes side by side. Jo rolls a red toy truck gently on a carpet. Kim rolls a blue toy truck hard on a tile floor.
+Two cards. Card 1: Mia flicks a toy car on a smooth floor, once gently and once hard. Card 2: Kim rolls a toy truck on a tile floor one time.
 
 ## Day 4
 
-Two cards. A toy boat on a pond, with a child on each bank pulling a string. The two arrows are the same length. A girl holds a book still against a wall with her hand.
+Two cards. A toy boat on a pond, with a child on each bank pulling a string. Sam drew two arrows of the same length, but the boat has moved toward the left bank. A girl holds a book still against a wall with her hand.
 
 ## Day 5
 

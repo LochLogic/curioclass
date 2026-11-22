@@ -12,7 +12,7 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 Eight cards. Pairs sort each: from the parents, from the surroundings, or from both. Each sort names a record or a pattern.
 
-- A: a trout has spots like its parents' spots.
+- A: a trout has spots like its parents' spots. Trout from three different streams all have spots like their parents'.
 - B: a fern has big leaves in shade and small leaves in sun.
 - C: a chickadee learns where the feeder is.
 - D: two grass kinds, tall and short. Both grow taller with more water.

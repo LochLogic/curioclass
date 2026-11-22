@@ -12,7 +12,7 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 ## The map
 
-A simple world map. Land is white. Ocean is light blue. A straight line runs across the middle: the equator. A dot marks the top of the map: the North Pole. A dot marks the bottom: the South Pole.
+A simple world map. Land is white. Ocean is light blue. A dashed line runs across the middle: the equator. A dot marks the top of the map: the North Pole. A dot marks the bottom: the South Pole.
 
 ## The key
 

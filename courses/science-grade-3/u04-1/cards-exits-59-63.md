@@ -12,7 +12,7 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 ## Day 59
 
-Invented for practice. A pond turtle needs warm, open water and water plants. The winter tundra has ice, snow and no open water. Could the turtle live there? Say why.
+Card 1, invented for practice: a meadow with tall grass with seeds, a small stream and one bush. A field mouse needs seeds, water and a place to hide. Card 2 (spoken), invented for practice: a pond turtle needs warm, open water and water plants. The winter tundra has ice, snow and no open water. Could the turtle live there? Say why.
 
 ## Day 60
 

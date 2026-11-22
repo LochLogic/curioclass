@@ -14,4 +14,3 @@ A flowerpot hangs from a porch hook. Marks of the far turns in whole centimetres
 
 Pairs say what the table supports. The marks have been getting a little smaller. Pairs say what the table does not support. Nobody has watched past the fourth turn.
 
-Teacher key: the table supports "the far turns have been a little smaller." It does not support "exactly the same mark forever."

@@ -24,12 +24,12 @@ Card 1: Pat's list. A list that reads "a bucket, a rope and a hook". Card 2: a p
 
 ## Day 26
 
-Card 1: "Use a clip and one strip of tape." Card 2: a pencil holder. The limit is 5 tokens. Pat's holder costs 8 tokens and holds more pencils than needed.
+Card 1: a stand for a paper sign on a desk. The class may use sticks, tape and clay. Sticks and tape cost 1 token each, clay costs 2. The class has 6 tokens and 5 minutes. Card 2: a pencil holder. The limit is 5 tokens. Pat's holder costs 8 tokens and holds more pencils than needed.
 
 ## Day 27
 
-Card 1: a window-blind cord that swings loose. A team moved the magnet higher and added more tape, and say the new position fixed it. Card 2: a team used a third magnet although the problem allows two, and the cord held.
+Card 1: a bag hook. The team's criterion was: holds the bag. In the trial the bag stayed up 1 second, then fell. The team says it met the criterion. Card 2: a team used a third magnet although the problem allows two, and the cord held.
 
 ## Day 28
 
-A magnetic pickup tool for three steel washers. Allowed: two magnets, one card, two tape lengths, six making minutes, five tokens. Each supply costs one token.
+A magnetic pickup tool lifts six steel bottle caps from a table into a box. Need: a helper needs the caps lifted so that the table is clear. Criteria: lifts two caps at once; drops them in the box. Limits: one magnet, one card, three tape lengths; five making minutes; five tokens. On this card every supply costs one token. Then the helper cannot bend down and the caps are on the floor.

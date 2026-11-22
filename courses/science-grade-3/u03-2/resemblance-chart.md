@@ -18,7 +18,7 @@ Alike in ______; different in ______.
 
 - trait: a feature we can look at and record
 - inherited: passed from parents to young
-- likeness: a trait the young share with their parents
+- likeness: a trait the young of one kind share; when a record names the parents, a trait the young share with them
 - variation: a trait that differs among young of one kind
 
 ## The chart
