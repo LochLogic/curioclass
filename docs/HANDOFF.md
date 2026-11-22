@@ -45,14 +45,21 @@ core electives and other subjects faint), node states in data/plans/flow-status.
 Every course now runs by [COURSE-RUN.md](COURSE-RUN.md) (since 2026-11-20). PRODUCTION-PATH.md keeps the record of
 why the core was planned top down; its steps 7 and 8 are superseded by COURSE-RUN stages 5 and 6.
 
-1. **The next course run, two lanes side by side** (DESK-ANSWERS 2026-11-20): math K to 3, and social studies grades 4
+1. **Unit plans back to the stage 4 bar: the Goal map (later.csv L102).** Since L87 a unit plan counts as done only
+   once field 5 has its Goal map (docs/courses/UNIT-PLAN.md), checked by `scripts/unitplan.py check` (`FAIL exit-kind:`
+   and `FAIL practice-shape:`); the Desk shows a done plan without one as on file. Math K to 3 is done (33 plans,
+   commit dc16d5cc6 is the model). Left on 2026-11-22: 364 plans in 48 courses, every other core course. Where days
+   are written (social studies, ELA and science K to 3) the map is read from the written days, and an exit that does
+   not fit its goal is a day fault to log; elsewhere it comes from the scope and sequence. Social studies 4, 5 and
+   World Geography I come first: their run (step 2) needs them.
+2. **The next course run, two lanes side by side** (DESK-ANSWERS 2026-11-20): math K to 3, and social studies grades 4
    and 5 with World Geography I. Each subject's first grade starts with a unit 1 probe. The queue comes from
    `scripts/coursegen.py` and the kit in docs/pipeline/kit/; day jobs are ledger-gated (`scripts/ledger.py gate`);
    cost tables come from `scripts/tokens.py`. Prep done 2026-11-22 (later.csv L102): math K to 3 Goal maps and
    section skeletons, the math subject note, grade notes 4 to 6; both lanes generate their queues cleanly.
-2. **Science K to 3 stays paused for Cory** (later.csv L81), as do Refine 1 and the grades past 3.
-3. **Before any course goes live:** the watch items in later.csv L101, and each course's stage 7 finish (COURSE-RUN).
-4. **After the core:** the electives and later subjects run from COURSE-RUN stage 1; their second-model reads and
+3. **Science K to 3 stays paused for Cory** (later.csv L81), as do Refine 1 and the grades past 3.
+4. **Before any course goes live:** the watch items in later.csv L101, and each course's stage 7 finish (COURSE-RUN).
+5. **After the core:** the electives and later subjects run from COURSE-RUN stage 1; their second-model reads and
    calibration are later.csv L88.
 
 ## How to start
