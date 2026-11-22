@@ -12,12 +12,12 @@ Teacher only. Never print this page; it answers the printed piece cards-assessme
 
 ## W1a: one day in September
 
-- A day square for 4 September 2024 with t: cloudy, rainy and windy are true for this day.
+- Day square, 4 September 2024: cloudy, rainy and windy are true for this day.
 - Spoken: cloudy, rainy, windy.
 
 ## W1b: the rainy days of September
 
-- Six rain squares in a row with date nume: six.
+- Rain squares, 4, 5, 15, 17, 21 and 22 September 2024: six.
 - Spoken: six. Seven, with a square touched twice, is error B.
 
 ## W2: three days, morning and afternoon
@@ -27,6 +27,6 @@ Teacher only. Never print this page; it answers the printed piece cards-assessme
 
 ## W3a and W3b: two months
 
-- Two rows of rain squares. September: six: September six, October two.
+- Two rows of rain squares: September six, October two.
 - W3a spoken: September. Touching October is a matching slip: no letter, record "shown with help".
 - W3b spoken: the child lays the squares of the two rows side by side, one to one, and points to the four September squares left over, or says it in words, signs or a picture.

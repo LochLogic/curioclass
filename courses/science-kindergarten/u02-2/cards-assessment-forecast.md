@@ -21,7 +21,7 @@ For the day 19 observation only. Never show, teach from or send home before day 
 
 ## The June 2023 rows
 
-Two long rows for June 2023. Denver: eleven squares, each a cloud with a zigzag mark and a date numeral.
+Two long rows for June 2023. Denver: eleven squares, each a cloud with a zigzag mark and a date numeral. Seattle: an empty row.
 **F2b spoken:** "Here are two rows of days with thunder reported at a station in June in one year. Denver has eleven squares and Seattle has none. Touch the place that has storm days more often."
 
 ## F3a and F3b: cards

@@ -19,7 +19,8 @@ Teacher only. Never print this page; it answers the printed piece cards-assessme
 
 ## The June 2023 rows
 
-- Two long rows for June 2023. Denver: ele: 2, 6, 8, 9, 12, 14, 15, 21, 22, 29 and 30 June 2023. The teacher says the total, eleven, since it is over ten.) Seattle: an empty row. (Teacher key: no days with thunder reported in June.
+- Denver row, June 2023: 2, 6, 8, 9, 12, 14, 15, 21, 22, 29 and 30 June. The teacher says the total, eleven, since it is over ten.
+- Seattle row, June 2023: no days with thunder reported in June.
 - F2b spoken: Denver. "The same" is error G.
 
 ## F3a and F3b: cards

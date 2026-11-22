@@ -12,7 +12,7 @@ Teacher only. Never print this page; it answers the printed piece cards-exits-13
 
 ## Day 13 cards: five days in Denver
 
-- Five day squares in a row, one date nume: rain on four of the five days.
+- Five day squares, 4 to 8 August: rain on four of the five days.
 - Spoken: four. Five, with one square touched twice, is error B; three means a square was missed (touch and slide with a partner, record "shown with help").
 
 ## Day 14 cards: July in Denver
