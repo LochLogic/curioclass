@@ -210,6 +210,11 @@ for _g in RECESS:
     _g['cover'] = (_f / 'art' / 'cover.webp').exists()
     _notes = _f / 'notes.md'
     _g['notes_html'] = markdown.markdown(_notes.read_text(encoding='utf-8')) if _g['live'] and _notes.exists() else ''
+# Cross-links (BUILD-PLAN step 5): a row's "pairs" lists tool or game ids; the game page links the live ones.
+_live_links = {t['tool_id']: dict(title=t['title'], url=t['url']) for t in tools if t['built']}
+_live_links.update({g['id']: dict(title=g['title'], url=g['url']) for g in RECESS if g['live']})
+for _g in RECESS:
+    _g['pairs_live'] = [_live_links[p] for p in _g.get('pairs', []) if p in _live_links and p != _g['id']]
 RECESS_LIVE = any(g['live'] for g in RECESS)
 env.globals['recess_live'] = RECESS_LIVE
 pages, sitemap = 0, []

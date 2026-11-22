@@ -1,0 +1,19 @@
+{
+  "name": "farlight",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Farlight — A school-friendly, wondrous procedural galaxy exploration game in WebGPU, strictly under 2 MB.",
+  "scripts": {
+    "build": "node build/build.mjs",
+    "dev": "node build/build.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@webgpu/types": "^0.1.64",
+    "esbuild": "^0.25.2",
+    "typescript": "^5.8.2",
+    "vitest": "^3.1.1"
+  }
+}

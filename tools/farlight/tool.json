@@ -1,0 +1,12 @@
+{
+  "id": "farlight",
+  "recess": true,
+  "status": "beta",
+  "updated": "2026-11-22",
+  "sources": [
+    "A Curio Class game, made outside this repository and brought in 2026-11-22. TypeScript and shader source in source/; src.html is its single-file build.",
+    "Galaxy, planets, ships, plants, animals and sounds are all generated in the browser; no image, sound or font files",
+    "Solar System facts (Mercury's 88-day year, Olympus Mons, Saturn's rings) are common knowledge"
+  ],
+  "third_party": []
+}

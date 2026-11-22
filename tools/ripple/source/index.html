@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ripple</title>
+  <meta name="description" content="Ripple: stretch strings across dark water, pluck them, and watch every note ripple out. Add a beat, loop layers and save your song. A free Recess game on Curio Class." />
+</head>
+<body>
+  <div id="stageWrap">
+    <canvas id="waveCanvas" width="1280" height="720"></canvas>
+    <canvas id="stageCanvas" width="1280" height="720"></canvas>
+  </div>
+
+  <header id="top" class="bar">
+    <div class="brand">Ripple <span>Music maker</span></div>
+    <div class="group">
+      <span class="lab">Key</span>
+      <button id="keyDown" class="sq" aria-label="Key down">‹</button>
+      <span id="keyVal" class="val"></span>
+      <button id="keyUp" class="sq" aria-label="Key up">›</button>
+    </div>
+    <div class="group">
+      <span class="lab">Scale</span>
+      <button id="toneDown" class="sq" aria-label="Previous scale">‹</button>
+      <span id="toneVal" class="val wide"></span>
+      <button id="toneUp" class="sq" aria-label="Next scale">›</button>
+    </div>
+    <button id="strumBtn" class="chip" title="Toggle Hover-Strum vs Click-Strum (M)">Hover-Strum</button>
+    <button id="themeBtn" class="chip" title="Switch visual wavefield theme">Obsidian</button>
+    <div class="spacer"></div>
+    <button id="shapeBtn" title="Switch stage aspect ratio: 16:9 or 9:16">16:9</button>
+    <button id="recMode" title="Record Video + Sound or Sound Only">Video + sound</button>
+    <button id="recBtn"><span class="dot"></span><span id="recLabel">Record</span><span id="recTime"></span></button>
+    <button id="filmBtn" title="Hide controls, count 3-2-1 and record (F)">Film</button>
+    <button id="setupsBtn">Setups</button>
+    <button id="clearBtn" title="Clear all strings">Clear</button>
+    <button id="helpBtn">Help</button>
+    <button id="setBtn">Settings</button>
+  </header>
+
+  <div id="filmBar">
+    <span class="dot"></span>
+    <span id="filmTime">0:00</span>
+    <button id="filmStop">Stop</button>
+    <button id="cleanExit">Show controls</button>
+  </div>
+
+  <div id="count" aria-hidden="true"></div>
+  <div id="hint"></div>
+  <div id="toast" role="status"></div>
+
+  <footer id="dock" class="bar">
+    <div class="row">
+      <button id="playBtn" class="primary-soft"><i id="playIcon">▶</i><span id="playLabel">Play</span></button>
+      <span class="lab">Beat</span>
+      <div id="beatChips" class="chips"></div>
+      <div class="group">
+        <span class="lab">BPM</span>
+        <button id="bpmDown" class="sq" aria-label="Slower">−</button>
+        <span id="bpmVal" class="val"></span>
+        <button id="bpmUp" class="sq" aria-label="Faster">+</button>
+      </div>
+      <button id="followBtn" class="chip" title="Retune strings automatically to the current chord">Follow chords</button>
+      <span id="chordNow" class="val accent"></span>
+      <div id="leds" aria-hidden="true"></div>
+    </div>
+    <div class="row">
+      <span class="lab">Parts</span>
+      <div id="partChips" class="chips"></div>
+      <span class="sep"></span>
+      <span class="lab">Layers</span>
+      <button id="layerBtn"><span class="dot"></span><span id="layerLabel">Record layer</span></button>
+      <div class="group">
+        <button id="barsDown" class="sq" aria-label="Shorter loop">‹</button>
+        <span id="barsVal" class="val mid"></span>
+        <button id="barsUp" class="sq" aria-label="Longer loop">›</button>
+      </div>
+      <button id="undoLayer" title="Remove last loop layer (Z)">Undo</button>
+      <button id="mixBtn" title="Volumes and multi-track WAV Stems export">Mixer</button>
+      <div id="layerChips" class="chips"></div>
+    </div>
+  </footer>
+
+  <!-- Welcome Modal -->
+  <div id="startModal" class="modal open">
+    <div class="card welcome">
+      <h1>Ripple</h1>
+      <p class="subtitle">Stretch strings across dark water, pluck them, and watch every note ripple out.</p>
+      <ol class="steps">
+        <li><span class="n">1</span><span><b>Sweep to Play.</b> Move your mouse across any string to pluck it. Faster sweeps are brighter and louder. Every vibration sends matching ripples across the dark water.</span></li>
+        <li><span class="n">2</span><span><b>Stretch &amp; Shape.</b> Drag empty space to create a string (hold <code>Alt</code> to snap angles). Click a string's center badge to pick from <b>30 instruments</b>, <b>12 scales</b>, and chord voicings.</span></li>
+        <li><span class="n">3</span><span><b>Express &amp; Loop.</b> Right-click &amp; slide to sustain/bow, drag a string sideways to pitch-bend, play notes with the <code>A</code> to <code>'</code> keys, add a beat, loop layers, and save a video, a sound file or every part on its own.</span></li>
+      </ol>
+      <div class="actions">
+        <button id="startPlay" class="primary">Enter Studio</button>
+        <button id="startEmpty">Start with Empty Stage</button>
+      </div>
+      <p class="small muted">Every sound is made right here on this device. No camera, no microphone, and it works offline.</p>
+    </div>
+  </div>
+
+  <!-- Help Modal -->
+  <div id="helpModal" class="modal">
+    <div class="card">
+      <h2>Controls &amp; Shortcuts</h2>
+      <h3>Mouse</h3>
+      <ul>
+        <li><b>Pluck / Strum:</b> Sweep cursor across a string (Hover-Strum default; press <code>M</code> for Click-Strum). Hold <code>Ctrl</code> to pass over strings silently.</li>
+        <li><b>Create string:</b> Left-drag empty space. Hold <code>Alt</code> to snap to 0°/45°/90°.</li>
+        <li><b>Sustain / Bow / Roll:</b> Hold <b>Right-Click</b> on a string and slide along it.</li>
+        <li><b>Pitch bend &amp; snap:</b> Left-drag a string body sideways (±2 semitones); release to snap-pluck.</li>
+        <li><b>Edit / Move:</b> Click the center badge for the radial menu; drag the badge to move the whole string; drag endpoints to resize (shrink to delete).</li>
+        <li><b>Acoustic XY Pad:</b> <code>Shift</code> + drag (or Middle-drag) empty space to darken/brighten the mix and add stereo echo.</li>
+        <li><b>Quick Octave / Gain:</b> Scroll wheel over a string for octave; <code>Shift</code> + Scroll for string volume.</li>
+      </ul>
+      <h3>Keyboard</h3>
+      <ul>
+        <li><code>A S D F G H J K L ; '</code>: Play notes on the focused string</li>
+        <li><code>1</code> to <code>9</code> / <code>Tab</code>: Focus string · <code>Delete</code>: Remove focused string · <code>Ctrl+Z</code> / <code>Ctrl+Y</code>: Undo/Redo</li>
+        <li><code>Space</code>: Play/Stop beat · <code>L</code>: Record loop layer · <code>Z</code>: Undo last layer</li>
+        <li><code>[</code> / <code>]</code>: Change key · <code>-</code> / <code>=</code>: Tempo · <code>M</code>: Hover/Click Strum · <code>R</code>: Record · <code>F</code>: Film · <code>H</code>: Hide controls</li>
+      </ul>
+      <div class="actions"><button class="primary" data-close="helpModal">Got it</button></div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="setModal" class="modal">
+    <div class="card">
+      <h2>Studio Settings</h2>
+      <div class="set">
+        <label for="sTheme">Wavefield theme<small>Changes surface caustics, nodal lines, and studio palette.</small></label>
+        <select id="sTheme">
+          <option value="obsidian">Obsidian Water</option>
+          <option value="cymatic">Cymatic Silk</option>
+          <option value="warm">Warm Studio</option>
+        </select>
+
+        <label for="sStrum">Strum mode<small>Hover-Strum plays on mouse pass; Click-Strum requires holding button.</small></label>
+        <select id="sStrum">
+          <option value="hover">Hover-Strum (default)</option>
+          <option value="click">Click-Strum</option>
+        </select>
+
+        <label for="sWave">Wavefield intensity<small>Controls brightness and contrast of sound-reactive waves.</small></label>
+        <input id="sWave" type="range" min="0.1" max="1.35" step="0.05" />
+
+        <label for="sReverb">Studio reverb space<small>How big a room it sounds like.</small></label>
+        <input id="sReverb" type="range" min="0" max="1" step="0.02" />
+
+        <label for="sVol">Master volume</label>
+        <input id="sVol" type="range" min="0" max="1" step="0.02" />
+
+        <label for="sQuant">Snap loop layers to beat<small>Quantizes recorded phrases to the 32nd-note grid.</small></label>
+        <input id="sQuant" type="checkbox" />
+
+        <label for="sLabels">Show note &amp; key labels<small>Turn off for a cleaner visual when filming.</small></label>
+        <input id="sLabels" type="checkbox" />
+      </div>
+      <div class="actions"><button class="primary" data-close="setModal">Done</button></div>
+    </div>
+  </div>
+
+  <!-- Setups Modal -->
+  <div id="setupsModal" class="modal">
+    <div class="card wide">
+      <h2>Stage Setups</h2>
+      <h3>Curated layouts</h3>
+      <div id="starterList" class="tiles"></div>
+      <h3>Your saved setups</h3>
+      <div id="setupList"></div>
+      <div class="saverow">
+        <input id="setupName" type="text" maxlength="40" placeholder="Name this setup..." aria-label="Setup name" />
+        <button id="setupSave" class="primary">Save current stage</button>
+      </div>
+      <p class="small muted">Saves strings, instruments, scales, beat, tempo, key, and recorded loop layers.</p>
+      <div class="actions">
+        <button id="setupFileOut">Save to a file</button>
+        <button id="setupFileIn">Open a file</button>
+        <input id="setupFile" type="file" accept=".json,application/json" class="hide" />
+        <button data-close="setupsModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mixer Modal -->
+  <div id="mixModal" class="modal">
+    <div class="card wide">
+      <h2>Mixer &amp; Stems</h2>
+      <div id="mixRows"></div>
+      <h3>Multi-track Stems Export</h3>
+      <p class="small muted">Renders each active beat part, each unmuted loop layer, and a full mix as synchronized stereo WAV files inside a single ZIP archive.</p>
+      <p id="stemsNote" class="small status"></p>
+      <div class="actions">
+        <button id="stemsBtn" class="primary">Export stems (.zip)</button>
+        <button data-close="mixModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Recording Modal -->
+  <div id="saveModal" class="modal">
+    <div class="card">
+      <h2 id="takeTitle">Your Recording</h2>
+      <video id="takeVideo" controls playsinline></video>
+      <audio id="takeAudio" class="hide" controls></audio>
+      <p id="takeNote" class="small muted"></p>
+      <div class="actions">
+        <button id="saveVideo" class="primary">Save video</button>
+        <button id="saveWav">Save audio (.wav)</button>
+        <button data-close="saveModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

@@ -1816,3 +1816,10 @@ Career education's progression is done (data/progressions/cte.csv, 228 rows).
 - **Early-years companion:** listening and speaking at the level's target; reading and writing only as far as the
   child reads and writes in any language.
 World languages' progression is done for Spanish (data/progressions/spanish.csv, 51 rows).
+
+## 2026-11-22: Farlight and Ripple on the Recess shelf
+
+Cory asked (through the lead session) for two of our own games made outside the repository, Farlight and a music maker
+first called Resonance, to join Recess as standalone game pages. The agent's item calls: Recess gets a Brought-in games
+rule (docs/GAMES.md), and the music maker drops MP3 saving rather than carry an LGPL encoder run from a string.
+The music maker is named Ripple, picked in chat after Ripple Strings was turned down (Desk q-recess-ripple-1).

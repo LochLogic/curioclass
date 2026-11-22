@@ -1,0 +1,12 @@
+{
+  "id": "ripple",
+  "recess": true,
+  "status": "beta",
+  "updated": "2026-11-22",
+  "sources": [
+    "A Curio Class game, made outside this repository and brought in 2026-11-22 (first called Resonance, named Ripple in chat on 2026-11-22). TypeScript source in source/; src.html is its single-file build.",
+    "Every instrument, drum and the room echo are synthesized in the browser; no samples, image or font files",
+    "MP3 saving was taken out when it came in (its encoder was an LGPL library run from a string); WAV, video and parts saving stay"
+  ],
+  "third_party": []
+}

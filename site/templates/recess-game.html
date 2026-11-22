@@ -13,6 +13,7 @@
       <p>{{ g.blurb }}</p>
       <a class="rg-play" href="{{ g.url }}play/">Play {{ g.title }}</a>
       <div class="rg-meta b-{{ g.band }}"><span class="band">{{ g.band_label }}</span><span class="soon">Saves on this device only</span></div>
+      {% if g.pairs_live %}<p class="rg-pairs">Pairs well with {% for p in g.pairs_live %}<a href="{{ p.url }}">{{ p.title }}</a>{% if not loop.last %}{{ ' and ' if loop.revindex == 2 else ', ' }}{% endif %}{% endfor %}.</p>{% endif %}
     </div>
   </div>
   {% if g.notes_html %}

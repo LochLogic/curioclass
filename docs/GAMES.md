@@ -126,6 +126,18 @@ names in what kids see. Credit it the way the maker asks; record the permission 
 |---|---|---|---|---|
 | Infinite Hike (`infinite-hike`) | xmetal (github.com/xmetal/infinite-hike, commit 4ec10c4) | Given by the author on Reddit, 2026-11-21, in reply to Cory's request ("grab the latest index.html file from the GitHub and enjoy"). The author needs no citation; a small plain-text mention "Originally written by xmetal", no link, is what was agreed. | No licence file in the repository; used with the author's written permission. Its title font, Barrio, is SIL OFL 1.1, embedded by the author. | Added a meta description; the no-WebGPU message no longer names browser brands; its menu credit "Inspired by Abyssal Garden" stays as plain text, no longer a link off the site (Cory, 2026-11-21). Cover art is a frame rendered from the game itself. Nothing loads from outside; it saves only its detail setting on the device. |
 
+## Brought-in games
+
+Our own games made outside this repository keep their own look and their own build, like hosted games, but need no
+permission record. The build source sits in `tools/<id>/source/`; `src.html` is a copy of its single-file build, with
+a first-line comment saying how to remake it. Each was read in full before it came in, against the same checks as a
+hosted game. Pages link related tools and games through `pairs` in data/recess.json.
+
+| Game | Came in | Our changes |
+|---|---|---|
+| Farlight (`farlight`) | 2026-11-22, TypeScript and WebGPU shaders, esbuild | Em dashes out of what players read; the no-WebGPU message names no browser brands; file-size text off the title card and corner panel; a plain title and a meta description. Saves its journey on the device. Known, not done: no touch controls (keyboard and mouse only) and no reduced-motion setting. |
+| Ripple (`ripple`, first called Resonance) | 2026-11-22, TypeScript, Vite single file | Renamed Ripple in chat (2026-11-22); MP3 saving taken out (an LGPL encoder run from a string), WAV, video and parts zip stay; "808" became "Boom bass"; dashes and tech wording out of the welcome and help text; the preload helper's `fetch` turned off in the build. Saves setups on the device. Known, not done: no reduced-motion setting (the wave slider in Settings turns the water down), and some controls need a mouse. |
+
 ## Open questions
 
 1. Does a game also appear on a standard's page, or only on the Recess shelf?
