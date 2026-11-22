@@ -133,13 +133,25 @@ for i, t, cs, pre in AFTER:
 stage('frames', '3. Course frames, then scopes and sequences', 'Per course, grades in order, pilot course first. A frame holds the owned skills, dose, session count, units and source map; the scope and sequence holds every day in order, the checks and the calendar fit.', lanes3)
 
 # 4. Unit plans
+# A unit plan is done only while it meets the stage 4 bar of COURSE-RUN: since L87 (2026-11-22) that includes field
+# 5's Goal map, checked by scripts/unitplan.py (its exit-kind and practice-shape lines). A plan marked done in
+# flow-status.csv that fails those lines shows as on file (e), to be brought up to the bar in its turn.
+_up = subprocess.run([sys.executable, '-X', 'utf8', os.path.join(ROOT, 'scripts', 'unitplan.py'), 'check'],
+                     capture_output=True, text=True, encoding='utf-8', cwd=ROOT).stdout
+below_bar = set(re.findall(r'^FAIL (?:exit-kind|practice-shape): (\S+?\.md):', _up, re.M))
+
+def unit_state(nid, path, default):
+    s_ = st(nid, default)
+    return 'e' if s_ == 'd' and path in below_bar else s_
+
 lanes4 = []
 for n in SUBJ_ORDER:
     unit_lanes = []
     for c in core(n):
         k = slug(c['title']); tot, est = units_of(c)
         have = c.get('units') or 0
-        cells = ''.join(st(f'unit:{k}:{i + 1}', 'e' if i < have else '.') for i in range(tot))
+        cells = ''.join(unit_state(f'unit:{k}:{i + 1}', 'docs/courses/%s/s%02d.md' % (fid(c), i + 1),
+                                   'e' if i < have else '.') for i in range(tot))
         unit_lanes.append(dict(title=c['title'], est=est, cells=cells, k=k))
         for i in range(tot):
             f = os.path.join('docs', 'courses', fid(c), 's%02d.md' % (i + 1))
@@ -304,7 +316,7 @@ ABOUT = {
     'continuity': "The cross-grade continuity pass: the ledger check re-run across all grades and every review claim confirmed against the written day, one fix job per grade.",
     'pre': "This subject's pre-work: the standard in our own words, the approach, a base text, the expert's lens and bar, the course list and shape, the dose, cross-subject leans and sensitive ground.",
     'baseline1': "A checkpoint: every progression and course frame reviewed, and the website matches the plan.",
-    'row:units': "The unit plans for this course, one cell a unit. Dashed cells are an estimate until the course frame sets the count.",
+    'row:units': "The unit plans for this course, one cell a unit. A plan is done once it meets the stage 4 bar, Goal map included; one written before that bar shows as on file. Dashed cells are an estimate until the course frame sets the count.",
     'row:days': "Every teaching day of this course, one cell a day. Amber: written, its grade not yet closed. Green: the grade closed with a cleanup and a sample read.",
     'row:sections': "The sections of this course, one cell a section (1 to 6 days). Amber: the section plan is written. Green: its plan data and its unit's answer-key read are in too. Dashed cells are an estimate until the unit is split.",
     'row:tools': "The interactive tools in this subject, one dot a tool. Lit dots are live; a tool is rebuilt or checked when a section names it.",
