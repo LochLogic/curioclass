@@ -7,7 +7,7 @@ credit: ours
 ---
 # Dated shoot strips (days 11 and 12)
 
-Two strips for the class, each printed one for each child to draw an evidence arrow on. If the class has its own dated photographs of a shoot by a window that really did lean, use those and ignore these. If the class pictures show no lean, say so plainly and use these, and say aloud: "These pictures are invented for practice. They show what leaning looks like, not what our plant did." Plain black line drawings on white, thick lines, no shading, no brand names. Each frame has a day label and a clock picture so the order can be read without words, and a lamp on a stand beside the cup.
+Two strips for the class, each printed one for each child to draw an evidence arrow on. If the class has its own dated photographs of a shoot by a window that really did lean, use those and ignore these. If the class pictures show no lean, say so plainly and use these, and say aloud: "These pictures are invented for practice. They show what leaning looks like, not what our plant did." Plain black line drawings on white, thick lines, no shading, no brand names. Each frame has a day label and a clock picture so the order can be read without words, and a lamp on a stand beside the cup. Each card and strip carries the printed words "invented for practice" where a child sees it.
 
 ## Strip A, day 11: one shoot, one lamp (three frames)
 

@@ -23,6 +23,7 @@ Each day is 30 to 35 minutes. Children read very little: every question is spoke
 - **Animals sense, then move.** Eyes and ears sense; legs move. The chain "what happened, the part that senses, the part that moves" is a picture, never a mechanism.
 - **A part's shape fits its job.** We copy the shape that does the job, never the picture of the animal. A pretty picture stuck on does nothing.
 - **Pictures are the evidence.** The strips and the dog frames are said aloud to be invented for practice unless the class has its own real ones. We never say what a picture cannot show.
+- **Storm note (day 10).** If your community has had a damaging storm recently, show the photograph without the storm words: say "in a strong wind" and leave out "some trees do fall in storms". If a child tells a storm memory, thank them, say they are safe at school now, and go back to the tower.
 
 ## The errors, in plain words
 

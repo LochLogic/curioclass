@@ -23,6 +23,7 @@ Each day is 30 to 35 minutes. Children read very little: every page is read alou
 - **A cheep is a signal, as in unit 6:** a sound that goes across. It is not an agreed message, and nothing says every cheep gets food.
 - **Plants.** Grown plants make seeds and a seed grows into a young plant. Plants do not feed their young.
 - **Limits.** Animals and plants only. No child is asked about their own family and no human family is compared. No talk of how animals reproduce. Say what an animal does, not what it feels. No live nest, no nest visit and no wildlife handling.
+- **If a child talks about their own family.** Listen, then say one warm line: "Families are made in many ways, and every family is a real family." Ask nothing more, compare no one, and go back to the plant or animal on the page. Tell the child privately that they can come and talk to you any time.
 
 ## The errors, in plain words
 

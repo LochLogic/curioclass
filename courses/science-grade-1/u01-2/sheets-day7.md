@@ -15,4 +15,4 @@ Held back until day 7. Say "these sheets are invented for practice." Five sheets
 **Sheet 5, the moon, covered.** 5 a.m. low above the pole, 8 a.m. high above the barn; 11 a.m. covered.
 **A farm's star records.** Four cards, each with a sun or moon symbol in the corner to match the circle row on the response sheet: clear day, no stars; clear dark night, stars; clear day, no stars; clear dark night, stars. The next, a clear dark night, is covered.
 
-Keys: E1 lower above the hill, from sheets 1 and 2. E2 lower above the ridge, from sheet 4; the morning moon is accepted as a moon. E3 stars; the empty day cards mean not seen. Error letters: A for E1, B and C for E2, D for E3.
+Keys: E1 lower above the hill, from sheets 1 and 2. E2 lower above the ridge, from sheet 4; circling sheets 4 and 5 also meets; the morning moon is accepted as a moon. E3 stars; on the day records the stars are not seen, not gone. An extra circle on sheet 3 (E1) or on the day records (E3) still meets. Error letters: A for E1, B and C for E2, D for E3.

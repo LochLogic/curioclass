@@ -33,7 +33,7 @@ Words card: A young sea otter floats. Its mother wraps it in kelp, long seaweed,
 
 ## Day 59 (item s07-X59a)
 
-Words card: A small emperor penguin chick stays under its parent's skin fold. The parent covers it to keep it warm. One picture: a chick beneath an adult's fold. Three reason cards to touch, each read aloud first: it cannot keep itself warm yet; it is hiding from its parent; it is waiting for a game.
+Words card: A small emperor penguin chick stays under its parent's skin fold. The parent covers it to keep it warm. One picture: a chick beneath an adult's fold. Three reason cards to touch, each read aloud first: it cannot keep itself warm yet; it is looking for a stick; it is waiting for a game.
 
 **X59a.** "Touch the card that tells why staying under the fold helps the chick stay alive." **Key:** it cannot keep itself warm yet. "The chick does nothing, the parent does it all" is error A; it is hiding from its parent has no letter.
 

@@ -26,7 +26,7 @@ Each day is 30 to 35 minutes. Children read very little: every question is spoke
 
 - **E:** "Move the light for each piece so we can see." Repair: tape the light and change only the piece. Met on day 43, repaired on day 44.
 - **C:** "The patch beside the mirror proves light went through." Repair: compare the screens behind and beside the fixed mirror. Met on day 44, repaired on day 45.
-- **D:** "Mirrors need a fourth group." Repair after day 46 only, on day 47: put the mirror card in the blocks hoop and mark turns light apart.
+- **D:** "The mirror lets light through to the side, so it is not a no-light piece." Repair after day 46 only, on day 47: lay the mirror card by its screen-behind record, no patch behind, and keep it apart from the light-through hoops, in the blocks hoop with a turns light tag or a mirror-like group the child names. Calling mirror-like a fourth kind is fair, as long as no light went through.
 - **A and B** from section 5.1 are repaired on day 43 and again on day 47.
 
 ## Safety and set-up

@@ -7,12 +7,12 @@ credit: ours
 ---
 # Check cards, days 35 to 37 (mid-year)
 
-Held back. Not shown, handled or taught from before day 35. Plain black line drawings on white, thick lines, no shading, no printed words except a date or a time, no brand names, children and grown-ups of many skin tones and abilities. Every case is said aloud to be invented for practice. Six table sets.
+Held back. Not shown, handled or taught from before day 35. Plain black line drawings on white, thick lines, no shading, no printed words except a date or a time, no brand names, children and grown-ups of many skin tones and abilities. Every picture case is said aloud to be invented for practice; the sound records are said aloud to be recordings of real tests made by an adult. Six table sets.
 
 ## Day 35: sky and parts
 
 - **Yard dots.** A shadow stick in a yard with a gate, a bench and a slide. Three dot cards in a row: 9 o'clock by the gate, 11 o'clock by the bench, 1 o'clock covered by a flap.
-- **Roofline moons.** A roofline with a chimney, a water tower and a radio mast. Moon cards: 7 o'clock low above the chimney, 9 o'clock high above the water tower, 11 o'clock covered. Three place cards to touch.
+- **Roofline moons.** A roofline with a chimney, a water tower and a radio mast. Moon cards: 7 o'clock low above the chimney, 9 o'clock higher above the water tower, 11 o'clock covered. Three places marked on the student page: low above the chimney, higher above the water tower, higher still above the radio mast.
 - **Hut sky records.** Three records of one harbor hut: a clear bright morning with no stars drawn, a clear dark night with stars, a cloudy dark night with no stars.
 - **Basil plant.** A basil plant in a pot with roots, stem and leaves, drawn with no job written. Three dated sill pictures: Monday leaves face the window; Wednesday the pot turned, window on the other side; Friday leaves face the window again.
 - **Snail and frog.** A snail with shell, feelers and foot. A frog on a log with a fly passing and the tongue out.
@@ -20,9 +20,9 @@ Held back. Not shown, handled or taught from before day 35. Plain black line dra
 
 ## Day 36: resemblance and sound
 
-- **Linden blades.** Three life-size paper blades with heart shapes and toothed edges, the parent's longest, one young blade shortest, the other between. Tape line for laying them. Two touch cards: fits; does not fit.
+- **Linden blades.** Three life-size paper blades with heart shapes and toothed edges, the parent's longest, one young blade shortest, the other between. A small parent-plant picture sits at the base of the parent blade so the parent can be found. Tape line for laying them. Two touch cards: fits; does not fit.
 - **Goat family and hen.** A goat and two kids, one with a brown ear and one with a white ear, a second adult goat, and a hen with feathers and a beak. Two touch cards: fits; does not fit.
-- **Sound records, taken by an adult.** A few paper confetti bits on a paper plate beside the teacher's speaker: sound off; sound on; sound on with a hand on the plate; sound on with a hand held near the plate. A metal baking tray hung on a string: tapped; tapped then gently held. The class sound chart with its three arrows is laid beside them. Nothing is invented as a result: with no valid record leave that case out.
+- **Sound records, taken by an adult.** A few paper confetti bits on a paper plate beside the teacher's speaker: sound off; sound on; sound on with a hand on the plate; sound on with a hand held near the plate. A metal baking tray hung on a string: tapped; tapped then gently held. The class sound chart with its three arrows is laid beside them. Nothing is invented as a result: with no valid record leave that case out. Each finished record is a dated three-frame card (before, during, after): the confetti or tray drawn still or with short motion lines as the adult saw it, and a printed sound on or sound off label in each frame. Until the finished cards exist, the adult runs the trials before day 35 and draws each card by hand with its date.
 
 ## Day 37: fresh exit cards
 

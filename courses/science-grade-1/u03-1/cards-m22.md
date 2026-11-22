@@ -7,7 +7,7 @@ credit: ours
 ---
 # Maple family cards M22 (days 22 and 25)
 
-Printed one packet for each group of five (six packets) and one large set for the teacher. Say aloud before you show them: "These plants are invented for practice. They are not our schoolyard trees." Each card is headed invented for practice. These are drawn plants, not tracings of real ones, and they say nothing about where any real seedling came from. A caption supplies the parent and the seed path; nobody works a parent out from looks or from where a plant stands.
+Printed one packet for each group of five (six packets) and one large set for the teacher. Say aloud before you show them: "These plants are invented for practice. They are not our schoolyard trees." Each card is headed invented for practice. These are drawn plants, not tracings of real ones, and they say nothing about where any real seedling came from. A caption supplies the parent and the seed path; nobody works a parent out from looks or from where a plant stands. Each card and strip carries the printed words "invented for practice" where a child sees it.
 
 Plain black line drawings on white, thick lines, no shading, no brand names. Draw each plant whole, with roots, a stem and true leaves, and draw its one blade beside it. Name the markings in outline and label them with a word. A small corner label (MP, MY1, MY2, MA) is for the adult; children say the parent, the small young plant, the other young plant and the other adult. No conclusion and no arrow of evidence is drawn on a card.
 

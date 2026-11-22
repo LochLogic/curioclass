@@ -9,11 +9,11 @@ credit: ours
 
 ## English
 
-In this unit we ask how young animals and the adults that care for them help the young stay alive. We look at pictures and listen to short pages about a robin and a fawn, and at one plant that grows from a seed. We ask what the words tell us and what the pictures show, and look for a pattern: the young do something, the adult does something, and that can help the young stay alive. We only look at animals and plants, never at children's own families.
+In this unit we ask how young animals and the adults that care for them help the young stay alive. We look at pictures and listen to short pages about a robin and a fawn, and one plant grown from a seed. We compare what the words and the pictures tell, and look for a pattern: the young do something, the adult does something, and that can help the young stay alive. Animals do it in different ways. We only look at animals and plants, never at children's own families, and no nest is visited.
 
 Your child does not need to read or write; pointing, drawing or telling you in any language is fine.
 
-One easy thing to try: look at a picture of any animal and its young together and ask, what does the young do, and what does the grown-up do? There is nothing to send back to school.
+One easy thing to try: look at a picture of any animal and its young together and ask, what does the young do, and what does the grown-up do? Nothing goes back to school.
 
 ## Spanish
 

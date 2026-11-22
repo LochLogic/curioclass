@@ -11,7 +11,7 @@ Keep these sealed until day 26. They appear in no teaching day. Say aloud: "Thes
 
 ## Oak family (O26)
 
-Show each whole plant with roots, a stem and its labeled blade, and a dotted seed path from the oak parent OP to each young plant. Every oak blade has rounded side lobes and a rounded end lobe, with a flat base. OP, OY1 and OY2 have three side lobes on each side; the other adult OA, captioned "Same kind, another adult", has four on each side and is drawn the same size as OP. The young blades are drawn smaller than the parent's. A fern OF, captioned "A different kind", has fronds of many small leaflets and no lobed blade. Three loose life-size blades, OY1, OY2 and OP, are cut by an adult to the sizes in the key.
+Show each whole plant with roots, a stem and its labeled blade, and a dotted seed path from the oak parent OP to each young plant. Every oak blade has rounded side lobes and a rounded end lobe, with a flat base. OP, OY1 and OY2 have three side lobes on each side; the other adult OA, captioned "Same kind, another adult", has four on each side and is drawn the same size as OP. The young blades are drawn smaller than the parent's. On the card, OY1's labeled blade is drawn shorter than OY2's, in the same ratio as the loose blades (50 and 70 mm). A fern OF, captioned "A different kind", has fronds of many small leaflets and no lobed blade. Three loose life-size blades, OY1, OY2 and OP, are cut by an adult to the sizes in the key.
 
 ## Rabbit family (R26)
 
@@ -25,7 +25,7 @@ All rabbits and the fish are drawn in side view at the same size. Every rabbit h
 | RA, another adult | gray with one white ear tip |
 | RF, a fish, caption "A different kind" | fins, scales and a forked tail |
 
-Captions: "The rabbit parent and its two young." The fish is drawn as a different fish from the pond fish of day 13's read-aloud.
+Captions: "The rabbit parent and its two young." Under each rabbit a label, read aloud: "parent" under RP, "young" under RY1 and RY2, "Same kind, another adult" under RA. A dotted line runs from RP to each young, as the oak seed path does; all rabbits stay the same size. The fish is drawn as a different fish from the pond fish of day 13's read-aloud.
 
 ## The sitting
 

@@ -7,7 +7,7 @@ credit: ours
 ---
 # Exit cards, days 22 to 25 and 27
 
-Keep these out of sight until each day's exit. None is used in a hook, a model or a packet, and each shows new individuals, never a family from a teaching day. Say "this is invented for practice" first. Plain black line drawings on white, thick lines, no shading, no brand names, one big word under each marking. Every card is captioned invented for practice and gives the parent in its caption. Animals are drawn in side view at the same size. Every child answers on paper or by pointing; the teacher hears a rotating six and writes who on the record sheet. Keys, wrong answers and blade sizes are in key-cards-exits-22-27.md (teacher only, never printed for children).
+Keep these out of sight until each day's exit. None is used in a hook, a model or a packet, and each shows new individuals, never a family from a teaching day. Say "this is invented for practice" first. Plain black line drawings on white, thick lines, no shading, no brand names, one big word under each marking. Every card is captioned invented for practice and gives the parent in its caption. Animals are drawn in side view at the same size. Every child answers on paper or by pointing; the teacher hears a rotating six and writes who on the record sheet. Keys, wrong answers and blade sizes are in key-cards-exits-22-27.md (teacher only, never printed for children). Each card and strip carries the printed words "invented for practice" where a child sees it.
 
 ## Day 22: M22E
 

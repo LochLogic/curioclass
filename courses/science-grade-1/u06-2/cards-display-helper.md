@@ -14,3 +14,5 @@ Say aloud: "This is invented for practice." Plain black line drawings on white, 
 **Picture 2.** Two small pictures side by side. On the left, a bell hanging by a school door, with a child walking toward it. On the right, a display table with one framed picture. Under them one big question for the teacher to read aloud: why do people send messages far away? The class answers by pointing to one picture or the other and saying why. No phone, radio or screen is drawn.
 
 **Picture 3.** The new pattern, three quick dashes, drawn on a card. Big words: ready.
+
+**Picture 4.** The ready marking card: one framed picture on a display table with a small star beside it. Big word: ready. One per receiver, beside the line up and wait cards.

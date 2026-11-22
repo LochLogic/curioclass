@@ -7,7 +7,7 @@ credit: ours
 ---
 # Kind packets V25 (day 25)
 
-Six packets, two each for maple, dog and cat, printed from M22, D23 and C24. They add no new animals or plants: the same individuals are laid out again in rows so a group can compare young with young and adults with adults. Say aloud: "These are invented for practice."
+Six packets, two each for maple, dog and cat, printed from M22, D23 and C24. They add no new animals or plants: the same individuals are laid out again in rows so a group can compare young with young and adults with adults. Say aloud: "These are invented for practice." Each card and strip carries the printed words "invented for practice" where a child sees it.
 
 Plain black line drawings on white, thick lines, no shading, no brand names. Captions are as on the first cards.
 

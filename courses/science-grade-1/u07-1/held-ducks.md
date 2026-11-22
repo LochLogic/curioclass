@@ -16,7 +16,7 @@ These ducklings hatched from eggs laid by this adult duck. The adult calls to ke
 ## Sequence 1, three frames (calls and answers)
 
 1. In tall plants, the adult duck with a call symbol (one arc mark) by its beak. The young are not in view.
-2. The young, hidden among the plants, with a different call symbol (two small marks) by each. The adult's arc mark is still there.
+2. The adult at the edge of the frame, its arc mark still by its beak. The young, hidden among the plants, each with two small marks by its beak.
 3. The adult and the young together, side by side, no call symbols.
 
 ## Sequence 2, three frames (a danger episode)

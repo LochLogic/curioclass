@@ -11,7 +11,7 @@ Printed once, one set in an envelope for each child, and one large set for the t
 
 ## The five part cards (days 10 and 11)
 
-Each card shows the whole squash plant in light grey, with the one part drawn in thick black so it stands out.
+Each card shows the whole squash plant in light gray, with the one part drawn in thick black so it stands out.
 1. **roots:** thick roots with thin side roots spreading in soil, the soil cut away. Word: root.
 2. **stem:** the long stem rising from the ground to the leaves. Word: stem.
 3. **leaves:** three broad leaves, all turned toward a small sun in the corner. Word: leaf.

@@ -11,13 +11,13 @@ Held back. Not shown, handled or taught from before day 66. Plain black line dra
 
 ## Day 66: seeing and materials
 
-- **Closet looks.** A toy on a closet shelf: look 1, at night, door open and every lamp in the house off; look 2, door open with the hall lamp on, shining on it. A headlamp in a dark tent with no other light is the second case.
+- **Closet looks.** A toy on a closet shelf: look 1, at night, door open, every lamp off and no light at all reaching the shelf; look 2, door open with the hall lamp on, shining on it. A headlamp in a dark tent with no other light is the second case.
 - **Plan cards.** Three picture cards: the lamp, the screen, the piece.
 - **Piece sets.** Per group: a lamp, a screen, a stand and four pieces cut with taped edges: a clear folder piece, a coffee filter, an egg-carton piece, and a plastic mirror. Piece cards to sort under bright patch, dim patch and dark shadow, three per child. A record of a mirror tilted in the beam with a patch on a side screen, and the same side screen with no mirror and no patch. A record of a folded towel square with a dark shadow and no patch.
 
 ## Day 67: message, sources and daylight
 
-- **Message.** Near mark and farther mark cards, per group a strip of tape for each. The agreed message table ready (one long, two short). Sender, device and receiver picture cards in a row. A card of a light flashing with no meaning card.
+- **Message.** Near mark and farther mark cards, per group a strip of tape for each. The agreed message "table ready" (one long, two short). Sender, device and receiver picture cards, laid out mixed, never in path order. A card of a light flashing with no meaning card.
 - **Animal pages.** A lamb and a ewe: words the lamb bleats, a picture of the ewe walking to the lamb. A chick and a hen: words the chick peeps, a picture with the beak open. A pumpkin plant caption and a seed diagram.
 - **Strips from a third place.** Seattle, January 10 and April 10, 2026 (strips-key.md), drawn at 1 cm to the hour on one fixed 24 cm bar and lined up at the sunrise pictures for S67a. Pip's claim, said aloud: winter and spring have the same daylight. For S67b, a sky-watch picture like unit 1's, dated January 10: the sun low over a roof, with a clock showing three o'clock, beside the January 10 strip.
 

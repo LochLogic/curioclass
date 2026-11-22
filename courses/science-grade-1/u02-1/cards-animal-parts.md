@@ -11,7 +11,7 @@ Six sets in envelopes, one for each group of five, and one large set for the tea
 
 ## The six part cards (day 13)
 
-Each card shows its animal in light grey with the one part drawn in thick black.
+Each card shows its animal in light gray with the one part drawn in thick black.
 1. **ears:** the hare's tall ears turned toward a sound line. Word: ears.
 2. **legs:** the hare's back legs stretched out, running. Word: legs.
 3. **eyes:** the hare's eye, with dotted lines to a patch of clover. Word: eyes.

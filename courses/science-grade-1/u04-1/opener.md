@@ -22,7 +22,7 @@ Each day is 30 to 35 minutes. Children read very little: every question is spoke
 - **Stilling is a test, not a rule.** Holding the band, drum or bell gently still is compared with leaving it free. A short fading tail after the hold is normal, so children compare "much quieter". An unclear pair is repeated once and both records are kept.
 - **A source may move too little to see.** The paper top of the drum moves too little to see, so it is felt with a fingertip on the box rim, never on the paper top. A tap that is not felt is recorded "not felt" and repeated once.
 - **The throat is a second case.** A fingertip on one's own throat during a quiet "mmm" can feel a shake. Humming is optional; a child may whisper or watch a partner's record. Nothing is marked on hearing.
-- **Limits.** No waves, wavelength, speed, pitch rules, ear anatomy or hearing tests. Sounds stay at classroom level, never near ears, and loudness is never raised to force a result.
+- **Limits.** No waves, wavelength, speed, pitch rules, ear anatomy or hearing tests. Sounds stay at classroom level, never near ears, and loudness is never raised to force a result. A child who dislikes a sound may cover their ears or watch from farther away and still answer.
 
 ## The errors, in plain words
 

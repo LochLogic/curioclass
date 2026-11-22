@@ -193,6 +193,7 @@ s04-X34c,The held cup still sounds.,,,A,a source keeps producing sound after its
 s04-X34c,"Touches it sounds, so it makes things shake.",,,x,the other arrow; shown with help
 s04-E33a,The ruler keeps making sound after it is held still.,,,A,a source keeps producing sound after its vibration is stopped
 s04-E33a,Names the ruler and the drum and says nothing about what was compared.,,,x,naming earns no point; stays incomplete
+s04-E33a,"The drum makes the sound, because it is a drum.",,,x,"a reason about what a thing is, not what was seen; shown with help"
 s04-E33b,Sound cannot move paper.,,,B,denies that sound can make another material vibrate
 s04-E33b,"I held the ribbon while it played and it moved, so sound did it.",,,C,accepts touching as a sound-only test
 s04-E33b,"It moved, so it was the sound, with the ribbon left on the table beside the speaker.",,,x,does not control table contact; stays unclassified
@@ -216,7 +217,7 @@ s05-X43a,Touches the clear page protector.,,,x,reads a bright patch as a shadow;
 s05-X43b,"Thumb up: yes, it is a fair test.",,,E,moving the light between pieces is thought necessary
 s05-X43b,Says the flashlight can be anywhere.,,,x,no reason given; shown with help
 s05-X44,"Yes, the side patch is lit so it went through.",,,C,a side patch is taken as light through the tray
-s05-X45a,Asks for a fourth hoop for the bowl.,,,D,the mirror-like card is given a fourth group
+s05-X45a,Asks for a new hoop for the bowl and says light went through it to the side.,,,D,"the side patch is taken as light through, and the bowl is sorted out of the no-light group"
 s05-X45a,Touches the lets light through hoop.,,,C,the side patch is taken as light through the bowl
 s05-X45a,Touches the lets some through hoop.,,,x,reads the side patch as some light through; shown with help
 s05-X45b,Touches plan 2 with the moved screen.,,,E,moving a set-up part between samples is thought necessary
@@ -229,9 +230,13 @@ s05-E46a,Wait long enough and the unlit label shows up.,,,A,waiting alone makes 
 s05-E46a,The little light needs another lamp to be seen.,,,B,a source needs another lamp
 s05-E46a,Names the label and the little light and says nothing about what was compared.,,,x,naming earns no point; stays incomplete
 s05-E46b,The side patch shows light went through the mirror.,,,C,redirection taken as transmission
-s05-E46b,The mirror needs a fourth group.,,,D,two sorting questions mixed
+s05-E46b,"The mirror lets the light through to the side, so it is not a no-light piece.",,,D,the sort follows the side patch and the blocking is lost
 s05-E46b,I moved the light for each piece so it was easy to see.,,,E,a changed light position confounds the pieces
 s05-E46b,Names the four pieces and says nothing about what each did.,,,x,naming earns no point; stays incomplete
+s05-E46c,"The mirror made a patch at the side, so it goes in lets light through.",,,C,the side patch is taken as light through the mirror
+s05-E46c,Touches the blocks light hoop for the tissue paper.,,,x,a dim patch read as a shadow; shown with help
+s05-E46d,"Move the mirror to lets light through, because the side was bright.",,,D,the sort follows the side patch and the blocking is lost
+s05-E46d,Says a change with no result to point to.,,,x,a change must rest on what the screen behind showed; stays incomplete
 s06-X48a,Touches the flashlight at the friend's face.,,,x,a safety gap; light never points at eyes is said aloud again; shown with help
 s06-X48b,"Yes, the friend got the signal.",,,A,noticing the signal is taken as understanding the message
 s06-X49a,Touches the box with its top off.,,,B,a part that is not made yet is taken for a device that sends
@@ -274,7 +279,7 @@ s07-X57c,"Says neither, a plant has no young.",,,E,grown plants are left out of 
 s07-X58a,Touches the pup floating alone in kelp: it shows her wrapping it.,,,C,a picture is taken to show what only the words report
 s07-X58a,Touches the mother swimming away.,,,x,a picture of another action; shown with help
 s07-X59a,The chick does nothing; only the parent keeps it alive.,,,A,only the adult is taken to act
-s07-X59a,Touches it is hiding from its parent.,,,x,"the chick is beside its parent, not hiding from it; shown with help"
+s07-X59a,Touches it is looking for a stick.,,,x,"the chick is staying under the fold, not looking for anything; shown with help"
 s07-P59a,The grown-up helps the babies.,,,A,only the adult is taken to act
 s07-E60a,Only the big duck does anything useful.,,,A,only the adult is taken to act
 s07-E60c,Every animal has to call.,,,B,one care behavior is taken for every animal
@@ -283,6 +288,8 @@ s07-E60a,Names the ducks and says nothing about calls or staying still.,,,x,nami
 s07-E60b,The grown sunflower brings food to its seedling.,,,D,a plant is taken to feed its young like an animal
 s07-E60b,Grown plants cannot make young.,,,E,grown plants are left out of the idea
 s07-E60b,Draws the young plant and says nothing about where it came from.,,,x,marking earns no point; stays incomplete
+s07-E60d,The pictures show what the calls sounded like.,,,C,a picture is taken to prove a sound
+s07-E60e,Only the big duck does something in both.,,,A,only the adult is taken to act
 s07-X61a,Thumb up: you can see it calling in the picture.,,,C,a picture is taken to prove a sound
 s08-X9a,Touches the dark part.,,,D,the dark part is taken to be the daylight
 s08-X9b,"Nothing, the report tells how long it was light.",,,C,one evening report is taken to give the whole day
@@ -304,7 +311,7 @@ s08-X65a,"Thumbs up: its dark part is the smallest, so it has the least daylight
 s08-X65b,Touches a dark part at one end of the strip.,,,D,the dark part is taken to be the daylight
 c1-S35a,"Puts the covered dot back by the gate or on the bench dot, because the sun stays in one place.",,,A,the sun is taken to stay at one apparent position
 c1-S35a,Touches the dot nearest the gate with no reason given.,,,x,naming a place earns no point; shown with help if pointed along the dots
-c1-S35b,"Touches high above the water tower, because the moon stays in one place.",,,B,the moon is taken to stay at one apparent position
+c1-S35b,"Touches higher above the water tower, because the moon stays in one place.",,,B,the moon is taken to stay at one apparent position
 c1-S35b,"Touches low above the chimney, back at the start.",,,x,the path is not followed on; shown with help if pointed along the pictures
 c1-S35c,Says the stars are gone in the morning.,,,C,stars are taken to cease to exist in the day
 c1-S35c,Touches the cloudy dark night.,,,x,a dark night is chosen without the clear sky; shown with help

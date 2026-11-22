@@ -45,6 +45,8 @@ One bar for a whole day, midnight at the left end to midnight at the right end, 
 | Jan. 10, 2026 | Seattle | winter | 07:55 | 16:39 | 7.9 to 16.7 | 8.7 | day 67 check (S67a, S67b), third place |
 | Apr. 10, 2026 | Seattle | spring | 05:30 | 18:52 | 5.5 to 18.9 | 13.4 | day 67 check (S67a); day 68 exit (X68c) |
 
+The day 64 report's 5:30 is wall-clock daylight time; on the standard-time strip it sits at 4:30, inside the light part.
+
 Seattle times are standard time (UTC minus 8, no daylight saving), read on 2026-11-22 from the same federal one-day service at 47.61 north, 122.33 west.
 
 ## Checks before printing

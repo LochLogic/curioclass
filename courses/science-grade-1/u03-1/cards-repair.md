@@ -7,7 +7,7 @@ credit: ours
 ---
 # Repair cards (days 24, 25 and 27)
 
-Three cards, printed one set for each group of five and one large set for the teacher. The wrong sentences are read aloud as invented sentences: no child is the example of a mistake. Plain black line drawings on white, thick lines, no shading, no brand names, one big word under each picture.
+Three cards, printed one set for each group of five and one large set for the teacher. The wrong sentences are read aloud as invented sentences: no child is the example of a mistake. Plain black line drawings on white, thick lines, no shading, no brand names, one big word under each picture. Each card and strip carries the printed words "invented for practice" where a child sees it.
 
 ## Card A: alike beside not exactly (day 24, day 27 group A)
 

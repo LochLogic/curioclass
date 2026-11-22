@@ -7,7 +7,7 @@ credit: ours
 ---
 # Dog family cards D23 (days 23 and 24)
 
-Printed fifteen copies, one for each pair, and one large copy for the teacher. Say aloud before you show it: "This dog family is invented for practice. No dog is in our room." The dog in unit 2's turning frames is a different, single dog on a rug; none of these is that dog. The parent and the young are given by the captions, never worked out from looks.
+Printed fifteen copies, one for each pair, and one large copy for the teacher. Say aloud before you show it: "This dog family is invented for practice. No dog is in our room." The dog in unit 2's turning frames is a different, single dog on a rug; none of these is that dog. The parent and the young are given by the captions, never worked out from looks. Each card and strip carries the printed words "invented for practice" where a child sees it.
 
 Plain black line drawings on white, thick lines, no shading, no brand names, no children drawn. Every dog is drawn in side view at the same size, with floppy ears, fur, four legs and a long tail, so the markings carry the comparison. Name each marking in outline with a word label.
 

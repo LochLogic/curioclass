@@ -19,4 +19,4 @@ Three stages, out of order, left to right: a young sunflower with two leaves; a 
 
 ## Key (teacher only)
 
-The young sunflower is the one with two leaves. A seed produced by the grown plant grew into it. No feeding. A food arrow drawn by the child is error D; "a grown plant cannot make young" is error E.
+The young sunflower is the one with two leaves. A seed produced by the grown plant grew into it. No feeding. An arrow from the grown sunflower giving food to the young one is error D. Sun, rain or soil drawn around the young plant is not an error; credit the seed link if it is there. "a grown plant cannot make young" is error E.
