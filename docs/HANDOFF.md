@@ -99,7 +99,8 @@ why the core was planned top down; its steps 7 and 8 are superseded by COURSE-RU
 1. **The next course run, two lanes side by side** (DESK-ANSWERS 2026-11-20): math K to 3, and social studies grades 4
    and 5 with World Geography I. Each subject's first grade starts with a unit 1 probe. The queue comes from
    `scripts/coursegen.py` and the kit in docs/pipeline/kit/; day jobs are ledger-gated (`scripts/ledger.py gate`);
-   cost tables come from `scripts/tokens.py`.
+   cost tables come from `scripts/tokens.py`. Prep done 2026-11-22 (later.csv L102): math K to 3 Goal maps and
+   section skeletons, the math subject note, grade notes 4 to 6; both lanes generate their queues cleanly.
 2. **Science K to 3 stays paused for Cory** (later.csv L81), as do Refine 1 and the grades past 3.
 3. **Before any course goes live:** the watch items in later.csv L101, and each course's stage 7 finish (COURSE-RUN).
 4. **After the core:** the electives and later subjects run from COURSE-RUN stage 1; their second-model reads and

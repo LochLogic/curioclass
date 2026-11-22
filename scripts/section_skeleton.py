@@ -335,6 +335,19 @@ def build(course, section):
           '(an "Owner" cell may still name the old one-section placeholder):')
         w('')
         L.extend(owned)
+    # The unit plan's Goal map rows for this section's days (field 5, UNIT-PLAN.md; added 2026-11-22): each day's exit
+    # kind, exit shape and practice shape, which the section's exits and practice follow.
+    gm = []
+    for t in sliced(field(text, r'5\.'), dayset)[0]:
+        lines = t.splitlines()
+        if lines and lines[0].lstrip().startswith('|') and 'exit kind' in lines[0].lower():
+            gm.extend(lines if not gm else lines[2:])
+    if gm:
+        w('')
+        w('Goal map rows (unit plan field 5) for these days: the exit kind and shape each exit follows, and the practice '
+          'shape, which differs from it:')
+        w('')
+        L.extend(gm)
     items = [x for x in dk.plan_csv(course, 'items') if x.get('day', '').strip().isdigit() and int(x['day']) in dayset]
     if items:
         w('')

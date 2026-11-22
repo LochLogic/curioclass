@@ -66,7 +66,22 @@ def fill(text, mp, where):
     return TOKEN.sub(rep, text)
 
 
+def frame_row(course):
+    """The course's row of data/plans/frames.csv (subject, grade), or None."""
+    with open(ROOT / 'data' / 'plans' / 'frames.csv', encoding='utf-8', newline='') as f:
+        for r in csv.DictReader(f):
+            if r['course'] == course:
+                return r
+    return None
+
+
 def grade_token(course):
+    """'k' or the grade number, from frames.csv (so a course named without its grade, such as
+    world-geography-and-ancient-civilizations-i or algebra-i, still finds its grade note)."""
+    r = frame_row(course)
+    if r and r['grade'].strip():
+        g = r['grade'].strip().lower()
+        return 'k' if g in ('k', 'kindergarten') else g
     if course.endswith('kindergarten'):
         return 'k'
     m = re.search(r'grade-(\d+)$', course)
@@ -332,11 +347,11 @@ def main_gen(a):
     prefix = SUBJECTS[subj][0]
     version, date = kit_version(), datetime.date.today().isoformat()
     for c in a.courses:
-        if not c.startswith(prefix):
-            sys.exit('course %s is not a %s course (expected prefix %s)' % (c, subj, prefix))
+        fr = frame_row(c)
+        if (fr['subject'] if fr else None) != subj and not c.startswith(prefix):
+            sys.exit('course %s is not a %s course (frames.csv subject, or prefix %s)' % (c, subj, prefix))
         if grade_token(c) is None:
-            sys.exit('course %s has no kindergarten or grade-N ending: the kit has grade notes for K and grades 1 to 3 '
-                     '(docs/pipeline/kit/notes/grade-*.txt); add a note for this band first' % c)
+            sys.exit('course %s has no grade: no grade in data/plans/frames.csv and no kindergarten or grade-N ending' % c)
     for f in ['notes/subject-%s.txt' % subj] + ['notes/grade-%s.txt' % grade_token(c) for c in a.courses]:
         if not (KIT / f).exists():
             sys.exit('the kit has no %s: write it first (RETOOL.md entry)' % f)

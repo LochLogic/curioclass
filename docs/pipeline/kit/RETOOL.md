@@ -47,6 +47,12 @@ lived only in prompts and _scratch/ladder2/STATE.md.
   runs. The common rules drop the math-4, math-3-5-progression, `*-spine.md`, NEXT-SPINES.md, im-g4-draft-map.csv and
   data/units.csv blinds and keep `.claude/`, docs/Return/, the spec2 folder, closet/words, the media manifest, the
   `*reconcile*` reviews and ela-6.
+- 2026-11-22, run prep (later.csv L102), before any run used kit 1, so the version stays 1: the math subject note is
+  written (notes/subject-math.txt: base text and login rule, APPROACH-MATH teaching rules, cold-solved keys with
+  error letters, the Goal map exit shape, paper path, invented story problems, sourced real-world numbers); grade
+  notes for grades 4, 5 and 6 (notes/grade-4.txt, grade-5.txt, grade-6.txt) for social studies 4 and 5 and World
+  Geography and Ancient Civilizations I; `scripts/coursegen.py` takes each course's subject and grade from
+  data/plans/frames.csv, so a course named without its grade (World Geography I, Algebra I) finds its grade note.
 
 ### Left for a later retool (not in version 1)
 
@@ -55,4 +61,5 @@ lived only in prompts and _scratch/ladder2/STATE.md.
 - Gate quirks the writers listed as template points (warm-up id rule on repair days, `assess=observe` versus the
   unitplan check, no-exit day kinds, 300 to 500 word teacher caps on short days). These are gate or DEFAULTS changes,
   settled by the lead and Cory, then logged here.
-- A math subject note; grade notes for grades 4 and up.
+- Grade notes for grades 7 and up (the generator stops without one: World Geography II, math grades 7 and 8, the
+  high school courses).

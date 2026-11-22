@@ -353,7 +353,7 @@ def register_check(course, lines, spans, bad):
             c = cells(lines[i]) if lines[i].startswith('|') else []
             if len(c) < 2 or not re.fullmatch(r'[A-Z]{1,2}', c[0]):
                 continue
-            err = re.split(r'(?:right|correct|Right|Correct)\s*:', c[1])[0]
+            err = re.split(r'\b(?:right|correct|Right|Correct)\s*:', c[1])[0]
             if ';' in err:
                 what = 'error %s joins two claims with a semicolon: one misconception per letter (UNIT-PLAN field 6)' % c[0]
                 if course == 'math-4':     # its plans predate the rule; reworked in step 5
@@ -437,7 +437,9 @@ PRODUCE = {'explain', 'describe', 'draw', 'write', 'build', 'make', 'solve', 'co
            'justify', 'tell', 'say', 'compare', 'retell', 'summarize', 'summarise', 'design', 'model', 'predict', 'revise',
            'plan', 'calculate', 'compute', 'show', 'give', 'state', 'report', 'present', 'perform', 'read aloud'}
 RECOGNISE = {'identify', 'recognise', 'recognize', 'choose', 'select', 'match', 'circle', 'point', 'notice', 'spot', 'sort',
-             'pick', 'find', 'locate', 'tell apart', 'distinguish'}
+             'pick', 'tell apart', 'distinguish'}
+# 'find' and 'locate' are in neither list: in math "find the sum" or "locate 3/4 on a number line" asks the child to
+# produce, in ELA "find the detail" asks them to recognise; the writer chooses by what the goal asks (2026-11-22).
 KINDS_OK = {'produce', 'recognise', 'recognize'}
 
 
@@ -493,9 +495,14 @@ def new_gates(path, course, unit):
         if kind not in KINDS_OK:
             out.append('exit-kind: %s:%d: day %d exit kind "%s" is neither produce nor recognise' % (path, ln, d, kind))
         else:
-            v = verb.split()[0] if verb else ''
+            # A goal with two verbs ("choose and explain") names both, joined by "and" or a comma; the exit kind
+            # agrees with the goal when it agrees with any listed verb (2026-11-22).
+            vs = [w.split()[0] for w in re.split(r'\s*(?:,|\band\b)\s*', verb) if w.strip()] if verb else []
             k = 'recognise' if kind.startswith('recogni') else 'produce'
-            if (k == 'produce' and v in RECOGNISE) or (k == 'recognise' and v in PRODUCE):
+            own = PRODUCE if k == 'produce' else RECOGNISE
+            other = RECOGNISE if k == 'produce' else PRODUCE
+            v = vs[0] if vs else ''
+            if vs and not any(x in own for x in vs) and any(x in other for x in vs):
                 out.append('exit-kind: %s:%d: day %d goal verb "%s" asks to %s but the exit kind is %s'
                            % (path, ln, d, verb, 'recognise' if v in RECOGNISE else 'produce', k))
         if not ps:

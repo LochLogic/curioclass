@@ -78,6 +78,7 @@ wording are left alone.
 
 ## Notes (data files)
 
-- notes/subject-<subject>.txt: ela, social-studies, math (a stub: write it before the first math run).
-- notes/grade-<band>.txt: k, 1, 2, 3. A grade 4 or higher course needs its note first; the generator stops without it.
+- notes/subject-<subject>.txt: ela, social-studies, math (no science note yet: write it before science runs on the generator).
+- notes/grade-<band>.txt: k and 1 to 6. The grade comes from data/plans/frames.csv; a grade 7 or higher course needs
+  its note first, and the generator stops without it.
 - Notes may use DATE and COURSE tokens. Both kinds are inserted into every template that names them.
