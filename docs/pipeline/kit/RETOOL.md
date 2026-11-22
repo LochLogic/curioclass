@@ -53,6 +53,10 @@ lived only in prompts and _scratch/ladder2/STATE.md.
   notes for grades 4, 5 and 6 (notes/grade-4.txt, grade-5.txt, grade-6.txt) for social studies 4 and 5 and World
   Geography and Ancient Civilizations I; `scripts/coursegen.py` takes each course's subject and grade from
   data/plans/frames.csv, so a course named without its grade (World Geography I, Algebra I) finds its grade note.
+- 2026-11-22, browser checks (Cory, standing rule): a source page an agent cannot open (403, bot wall) is no longer
+  cut on sight; the fact stays as "browser check" with its url and the job lists it, and the lead opens the list in
+  Claude in Chrome at the grade's close (retool-stop step 0). Never a scraper or a way around a block. common.txt,
+  text2.txt and retool-stop.txt changed; docs/COURSE-RUN.md stage 5 and AGENTS.md say the same.
 
 ### Left for a later retool (not in version 1)
 

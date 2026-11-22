@@ -1773,3 +1773,11 @@ serial stage flow with checks, fixes and retooling at every stage.
 Cory asked the maker of Infinite Hike (xmetal) on Reddit if Curio Class could feature it; the maker said yes and asked for no
 citation beyond a small, unlinked "Originally written by xmetal". Recess now allows hosted games shared with written permission;
 the rule and the permission record are in docs/GAMES.md (Hosted games).
+
+## 2026-11-22: Source pages agents cannot open go to a browser check
+
+Cory, in chat: a standing rule. A source page that refuses automated reads (a 403 or bot wall, as Britannica, the UN,
+Kew, USGS, Cornell and the Smithsonian often do) is no longer cut on sight. The fact stays with its url and the status
+"browser check", each job lists it, and the lead opens every such page in Claude in Chrome at the grade's close
+(retool-stop step 0). No scraper or other way around a site's block (Firecrawl was weighed and passed over). Written into
+AGENTS.md, docs/COURSE-RUN.md stage 5 and the kit (docs/pipeline/kit/RETOOL.md).

@@ -91,7 +91,9 @@ time: a grade's section plans, then its days, then a retool, then the next grade
   probe).
 - **Check:** plan structure, one-ask items, shape notes and cold check words; every review note matched to the
   ledger stage, with anything still planned marked "planned only"; a fresh read of the grade's plans; a fresh key
-  read per unit that solves every item cold and checks facts against sources.
+  read per unit that solves every item cold and checks facts against sources. A source page an agent could not open
+  (a 403 or bot wall) is kept as "browser check", and the lead opens every such page in Claude in Chrome at the
+  grade's close (standing rule, 2026-11-22).
 - **Fix:** one fix job after the plan read. The key reader fixes keys and splits two-part questions itself.
 - **Retool:** after the probe only; then the kit is frozen for the grade.
 - **Gate:** plan read and key reads clean.
