@@ -11,16 +11,16 @@ Each exit has picture cards that every child touches and a spoken question heard
 
 ## Day 5
 
-**Item s01-X5a.** Card: a campsite drawn on a sunny afternoon, no stars marked. Spoken: "Say why the afternoon card has no stars." **Key:** the sky is too bright to see them; they are still there. Wrong: "the stars went away" is error D.
+**Item s01-X5a.** Card: a footbridge over a creek drawn on a sunny afternoon, no stars marked. Spoken: "Say why the afternoon card has no stars." **Key:** the sky is too bright to see them; they are still there. Wrong: "the stars went away" is error D.
 
-**Item s01-X5b.** Three cards of the campsite: a cloudy night, a clear dark night with stars, a sunny afternoon. Spoken: "Touch the card where we could see stars." **Key:** the clear dark night.
+**Item s01-X5b.** Three cards of the creek footbridge, no stars drawn on any card, each labeled by its sky: a cloudy night, a clear dark night, a sunny afternoon. Spoken: "Touch the card where we could see stars." **Key:** the clear dark night.
 
 **Item s01-X5c.** Card: a kite hill at lunchtime, a pale moon beside a bright sun, a clock picture reading midday. Two touch cards: yes, no. Spoken: "Can the moon be in the day sky?" **Key:** yes. Wrong: no is error C.
 
 ## Day 6
 
-**Item s01-X6a.** A stone wall at a seaside school with three ground spots; a dot on the left, then one in the middle, the right spot empty. Touch cards: left, middle, right. Spoken: "Touch where the third dot goes." **Key:** right. Wrong: middle is error A.
+**Item s01-X6a.** A stone wall at a seaside school on two small cards, a dot on the left ground spot on one and a dot on the middle ground spot on the other, plus a blank row of three ground spots with no dots. Touch cards: left, middle, right. Spoken: "On the blank row, touch where the third dot goes." **Key:** right. Wrong: middle is error A.
 
-**Item s01-X6b.** A strip: a dock on the left, a boat shed in the middle, a lighthouse on the right. Look one: the moon low above the dock. Look two: high above the boat shed. Touch cards: low above the dock; high above the boat shed; lower above the lighthouse. **Key:** lower above the lighthouse. Wrong: high above the boat shed is error B.
+**Item s01-X6b.** A row: a pond, a barn and a windmill in a line. First the moon is low above the pond. Then it is high above the barn. Touch cards: low above the pond; high above the barn; lower above the windmill. **Key:** lower above the windmill. Wrong: high above the barn is error B.
 
-**Item s01-X6c.** A mountain school, two clear dark nights each with stars, the third not drawn. Touch cards: stars, no stars. **Key:** stars. Wrong: no stars is error D.
+**Item s01-X6c.** A farm school: Tuesday night clear and dark with stars, Wednesday afternoon bright with no stars, Thursday night clear and dark with stars, Friday night clear and dark and not drawn. Touch cards: stars, no stars. **Key:** stars. Wrong: no stars is error D.

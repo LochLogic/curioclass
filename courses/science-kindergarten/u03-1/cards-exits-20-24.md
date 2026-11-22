@@ -21,9 +21,9 @@ Each exit has picture cards that every child marks and a spoken question heard f
 
 ## Day 22 (two questions)
 
-**Pictures.** Two days of a toy wheel and a cone. Day one: the wheel stopped short of the cone. Day two: the wheel stopped at the cone. No picture shows the start. Cards: yes, no, we cannot tell. 22b: a ramp with a pattern of stickers on it, and a result picture of a ball stopped short of a cone.
+**Pictures.** Two days of a toy wheel and a cone. Day one: the wheel stopped short of the cone. Day two: the wheel stopped at the cone. No picture shows the start. Cards: yes, no, we cannot tell. 22b: a toy scooter covered in a pattern of stickers, and a result picture of the scooter stopped short of a fence.
 **Spoken 22a:** "Invented for practice. Pip pushed a toy wheel on two days. On the first day it stopped short of the cone. On the second day it stopped at the cone. Nobody watched how it left the line. Did the wheel start faster on the second day? Touch yes, no, or we cannot tell." **Key:** we cannot tell. Yes, or "it went farther", is error C.
-**Spoken 22b:** "Invented for practice. Pip wanted a ball to reach the cone. Pip covered the ramp in stickers, and it looks very strong. The test picture shows the ball stopped short of the cone. Did the ramp do what Pip wanted? Touch yes or no." **Key:** no. A yes, "it looks good", is error E.
+**Spoken 22b:** "Invented for practice. Pip wanted a toy scooter to reach the fence. Pip covered the scooter in stickers, and it looks very strong. The test picture shows the scooter stopped short of the fence. Did the scooter do what Pip wanted? Touch yes or no." **Key:** no. A yes, "it looks good", is error E.
 
 ## Day 23
 

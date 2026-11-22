@@ -27,7 +27,3 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 ## Directions
 
 **Read:** "Here are three records. A record is a page that tells what someone saw. Look at each one. Choose the records that tell where water is in Pine Coast. Fill in the chart. Then say what the records show." The headings on the records carry the evidence; the directions name no record and no place on any record.
-
-## Key (teacher)
-
-E1: records A and B (C is Other Cove). E2: ocean A liquid; river A liquid; ice A solid; lake B liquid; pond B liquid; snow B solid. E3: in Pine Coast the liquid water is the ocean at the coast, the river, the lake and the pond; the solid water is the ice and snow on the high ridge; this is what these two records show, not a rule for every place. A child who says "low" for the liquid and "high" for the solid is also right; the pattern is not required.

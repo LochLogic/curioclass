@@ -28,8 +28,8 @@ Each exit has pages every child marks or draws on, and a spoken stem. Print "inv
 
 ## Day 7 exit pages: P and Q
 
-**Picture:** Page P: liquid ocean, river, lake and pond, each with a filled dot. Page Q: snow and ice, each with an open dot. Two claims printed below: X, Both pages show water. Y, Only page P shows water.
+**Picture:** Page P: liquid brook, waterfall, rain barrel and fountain, each with a filled dot. Page Q: frost, hail and a glacier, each with an open dot. Two claims printed below: X, Both pages show water. Y, Only page P shows water.
 
 **Say:** "Which claim do both pages support? Mark one place on each page to show it."
 
-**Key (teacher):** Claim X. A filled mark on a liquid place on P and an open mark on a solid place on Q.
+**Key (teacher):** Claim X. One mark on a place on P and one mark on a place on Q.

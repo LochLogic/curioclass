@@ -27,4 +27,4 @@ Use the dated photographs alone, and say aloud that no plant is in the room.
 
 ## Teacher background
 
-Spider plant (Chlorophytum comosum) is a common houseplant, with long strappy leaves, often striped, that is listed as non-toxic to cats and dogs by university extension and poison-center pages (read 2026-11-19). Even so, children observe and the teacher handles the pots, and the teacher checks for allergies first.
+Spider plant (Chlorophytum comosum) is a common houseplant, with long strappy leaves, often striped, that is commonly listed as non-toxic to cats and dogs; check your own plant before use. Even so, children observe and the teacher handles the pots, and the teacher checks for allergies first.

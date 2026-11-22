@@ -17,9 +17,13 @@ Two rounds. Each round shows a potted plant with red flowers being watered, a mo
 
 ## Panel N2. The recovery sequence
 
-Three pictures. First: potted plants in closed boxes with a watering can beside them. Second: the same plants unpacked into a sunny window with the same watering can. Third: days later, the plants with new green leaves. Cards: the sun in the window; the watering can.
-**Spoken N2a:** "The watering stayed the same. Touch what was new for the plants after unpacking." **Key:** the sun in the window. The watering can is error B.
-**Spoken N2b:** "What else does a plant need, besides water?" **Key:** light. "Water is enough" is error B.
+Three pictures. First: potted plants in closed boxes with a watering can beside them. Second: the same plants unpacked into a sunny window with the same watering can. Third: days later, the plants with new green leaves. Cards: the sun in the window; the watering can; the pots.
+**Spoken N2a:** "Touch what was new for the plants after unpacking." **Key:** the sun in the window. The watering can or the pots is error B.
+**Spoken N2b:** "Besides water, what else did the plants in the window get that they need?" **Key:** light. "Water is enough" is error B.
+
+## Yes and no cards
+
+Two large cards for the front table: a big yes mark and a big no mark. They answer N3b and N4b; each child touches one.
 
 ## Panel N3. The meal records
 
@@ -29,6 +33,6 @@ A mouse swallowing seeds; a turtle eating a lettuce leaf; a child eating rice an
 
 ## Panel N4. The meal tags
 
-Three tags: seeds, a lettuce leaf, rice and fish.
+Three tags: seeds, a lettuce leaf, rice and fish. A strip of three eaters (the mouse, the turtle and the child), one strip for the third box of each mat.
 **Spoken N4a:** "Match each meal tag to who ate it." **Key:** seeds to the mouse, the lettuce leaf to the turtle, rice and fish to the child.
 **Spoken N4b:** "Do the mouse, the turtle and the child all eat the same? Touch yes or no." **Key:** no. Yes is error D.

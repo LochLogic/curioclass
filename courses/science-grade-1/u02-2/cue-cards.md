@@ -9,7 +9,7 @@ credit: ours
 
 A small card for each cue, printed and cut, so a child can hear a cue read aloud and see it. The teacher fixes one or two cards to a child's page after day 20, each tied to a spoken prompt read to the whole group. Plain black line drawings on white, thick lines, no shading, no brand names, one big word under each picture. A cue points at the next look; it never gives the answer.
 
-Evidence cues: **roots and water** (a root with a water drop beside it, a question mark); **stem and leaves** (a stem holding a leaf up toward a sun); **the shoot** (two small shoots side by side, one straight, one leaning, a question mark between them); **the tortoise** (a tortoise and a small arrow, a question mark); **the part I copy** (a small arch and an arrow to a vase).
+Evidence cues: **roots and water** (a root with a water drop beside it, a question mark); **stem and leaves** (a stem holding a leaf up toward a sun); **the shoot** (two small shoots side by side, one straight, one leaning, a question mark between them); **the tortoise** (a tortoise and a small arrow, a question mark); **the part I copy** (an arrow from the evidence boxes to the vase, a question mark between).
 
 Model cues: **the problem** (the vase and the marker); **the shape** (a curved arch); **the open side** (an eye at a gap); **the arrow** (an arrow from the arch to the vase); **point and say** (a pointing finger).
 

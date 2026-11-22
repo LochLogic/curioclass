@@ -21,12 +21,13 @@ Two pictures of the same patch. Picture 1: a roof on posts directly over the pat
 ## D1b: two pieces
 
 The pile on the table: flat cardboard pieces, folded cardboard strips, paper, masking tape. Everything is on the table; nothing is pictured.
-**Spoken:** "Touch two pieces from the pile you will use, and leave the side open to look." **Key:** one piece for a roof and one piece for a support, with nothing chosen that would close the side. Choosing pieces that close the side is shown with help, no letter.
+**Spoken:** "Touch two pieces from the pile you will use, one for a roof and one to hold it up." **Key:** one piece for a roof and one piece for a support. Two roof pieces and nothing to hold them up is shown with help, no letter.
 
 ## D2a and D2b: the build
 
 **D2a:** "Build your cover over your patch." Supplies per child: cardboard pieces, paper, masking tape, blunt scissors shared with the group. The teacher makes the hard cuts the day before and pre-stages large easy-fold pieces; no shape is shown and no template is given. The teacher visits each child for about 30 seconds with the three-look-for checklist: the roof is over the patch; the cover stands on its own; the side is open to look.
-**D2b:** "Show how your cover helps this patch. Will it be warmer or less warm?" **Key:** the roof blocks the sunlight, so the patch should warm less. "The colours make it work" is error E. "It will be cool as soon as it is on" is error F.
+**D2b:** "Show how your cover helps this patch." **Key:** the roof blocks the sunlight. "The colors make it work" is error E.
+**D2c:** "After both sit out in the sun, will your covered patch be warmer or less warm than the open patch?" **Key:** less warm. "It will be cool as soon as it is on" is error F.
 
 ## After the build
 

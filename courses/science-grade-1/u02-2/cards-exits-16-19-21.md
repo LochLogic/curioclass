@@ -13,7 +13,7 @@ Keep these out of sight until each day's exit. None is used in a hook, a read-al
 
 **Item s02-X16a.** Two paper lighthouse plans, drawn side by side. Plan 1: wide root-like feet that end above the table, a gap drawn under each foot. Plan 2: wide root-like feet that rest on the table. Touch cards: plan 1; plan 2. Spoken: "Touch the plan whose feet can hold it up." **Key:** plan 2, the feet on the table. A wrong touch is shown with help.
 
-**Item s02-X16b.** The same two plans. Spoken: "Draw one more foot and say what it does." **Key:** a foot reaching the table that holds the lighthouse up. Wrong: draws roots on the lighthouse wall, "now it looks like a tree" (D).
+**Item s02-X16b.** The same two plans. Spoken: "Draw one more foot so the lighthouse can stand." **Key:** a foot reaching the table that holds the lighthouse up. Wrong: draws roots on the lighthouse wall, "now it looks like a tree" (D).
 
 ## Day 17
 
@@ -25,7 +25,7 @@ Keep these out of sight until each day's exit. None is used in a hook, a read-al
 
 **Item s02-X18a.** A paper signpost that tipped in its test, drawn lying on its side. Touch cards: wider spreading supports; a taller post; a stuck-on picture of roots. Spoken: "Touch the change you would try." **Key:** wider spreading supports. Wrong: the stuck-on picture (D).
 
-**Item s02-X18b.** The same cards. Spoken: "Say what you would draw on its sketch." **Key:** wider supports touching the table, said as a guess about what will happen, not a result. A wrong answer is shown with help.
+**Item s02-X18b.** The same cards. Spoken: "Say, as a guess, what you would draw on its sketch." **Key:** wider supports touching the table, said as a guess about what will happen, not a result. A wrong answer is shown with help.
 
 ## Day 19
 

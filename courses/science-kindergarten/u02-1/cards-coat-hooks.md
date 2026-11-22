@@ -14,5 +14,3 @@ Two pictures for the hook, shown beside that day's row of the class weather char
 **Card 10b: afternoon recess.** The same rail and eight pegs. Only two pegs hold a coat. Six pegs are empty. The boots are gone.
 
 **Spoken:** "Here are our coat hooks at morning recess, and here they are at afternoon recess. What do you notice? What are you wondering?" Take ideas; tell no answer. Ask no child about their own coat, home or family.
-
-**Key:** this is the unit's question, not an exit. Write the children's wonders on question cards. Do not say that mornings are cooler.

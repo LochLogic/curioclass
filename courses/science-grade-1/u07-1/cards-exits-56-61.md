@@ -11,7 +11,7 @@ Keep these out of sight until each day's exit. Say "this is invented for practic
 
 ## Day 56 (items s07-X56a, s07-X56b, s07-X56c)
 
-Words card, read aloud: Young alligators call from their nest. Their mother uncovers it so they can get out. Two word strips to touch: they call; she uncovers the nest. Two frames: hatchlings in a covered nest, mouths shut, with an adult sitting beside it; an adult taking nest material away. The teacher reads each word strip aloud before the touch.
+Words card, read aloud: Young alligators call from their nest. Their mother uncovers it so they can get out. Two word strips to touch: they call; she uncovers the nest. Two frames: hatchlings in a covered nest, mouths shut, no adult in the picture; an adult taking nest material away. The teacher reads each word strip aloud before the touch.
 
 **X56a.** "Touch the words that say what the young do." **Key:** they call. "The young do nothing" is error A.
 **X56b.** "Touch the picture that shows what the adult does." **Key:** the uncovering frame.
@@ -19,18 +19,18 @@ Words card, read aloud: Young alligators call from their nest. Their mother unco
 
 ## Day 57 (items s07-X57a, s07-X57b, s07-X57c)
 
-Words card: The mother alligator carries her young to water in her mouth. She gently shakes the young ones' snouts to help them swim out. Two frames: the adult carrying; the young swimming out. A plant caption: This grown plant made seeds. One seed grew into this young plant. Two pictures: a grown tomato plant, a seed and a young tomato plant with arrows made and grew; the same grown tomato plant with a food arrow going to a young plant.
+Words card: The mother alligator carries her young to water in her mouth. She gently shakes her own snout to help them swim out. Two frames: the adult carrying; the young swimming out. A plant caption: This grown plant made seeds. One seed grew into this young plant. Two pictures: a grown tomato plant, a seed and a young tomato plant with arrows made and grew; the same grown tomato plant with a food arrow going to a young plant.
 
 **X57a.** "Touch what the adult does." **Key:** carries the young to water.
 **X57b.** "Touch what the young do." **Key:** swim out. "Nothing, she does it" is error A.
-**X57c** (six heard say how they know). "Touch the picture that goes with the plant words." **Key:** the seed-growth picture. The food-arrow picture is error D; "a plant has no young" is error E.
+**X57c** (six heard). "Touch the picture that goes with the plant words." **Key:** the seed-growth picture. The food-arrow picture is error D; "a plant has no young" is error E.
 
 ## Day 58 (items s07-X58a, s07-X58b, s07-X58c)
 
-Words card: A young sea otter floats. Its mother wraps it in kelp, long seaweed, while she looks for food. The kelp keeps the pup from drifting away. One picture only: the pup floating in kelp, no mother.
+Words card: A young sea otter floats. Its mother wraps it in kelp, long seaweed, while she looks for food. The kelp keeps the pup from drifting away. Three word strips to touch, each read aloud first: a pup floats; its mother wraps it while she looks for food; the kelp keeps it from drifting. One picture only: the pup floating in kelp, no mother.
 
-**X58a.** "Touch what the words and the picture both show." **Key:** a pup floating in kelp.
-**X58b.** "Touch what only the words tell us." **Key:** the mother wraps it while she looks for food. "The picture shows her wrapping it" is error C.
+**X58a.** "Touch the word strip that the picture shows too." **Key:** the strip a pup floats.
+**X58b.** "Touch what only the words tell us about the mother." **Key:** the mother wraps it while she looks for food. "The picture shows her wrapping it" is error C.
 **X58c** (six heard). "Say what the words add about staying safe." **Key:** the kelp keeps the pup from drifting. "You can see the kelp holding it in the picture" is error C.
 
 ## Day 59 (items s07-X59a, s07-X59b, s07-X59c)
@@ -43,7 +43,7 @@ Words cards: A small emperor penguin chick stays under its parent's skin fold. T
 
 ## Day 61 (items s07-X61a, s07-X61b, s07-X61c)
 
-Words card: A young alligator calls when danger is near. Its mother comes quickly to protect it. Two frames: the young with a distant adult; the adult beside the young.
+Words card: A young alligator calls when danger is near. Its mother comes quickly to protect it. Two word strips to touch, each read aloud first: it calls; she comes quickly. Two frames: the young with a distant adult; the adult beside the young.
 
 **X61a.** "Touch the words that say what the young alligator does." **Key:** calls. "Nothing, the mother does it" is error A.
 **X61b.** "Touch the frame that shows the adult helping." **Key:** the adult beside the young.

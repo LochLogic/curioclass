@@ -25,17 +25,17 @@ Each exit has picture cards that every child marks (points to, or places a count
 ## Day 11 cards: the swing set and two Denver days
 
 **Plan pair 11a.** Two panels. Left: a swing set with a morning clock above. Right: the same swing set, same fence, with an afternoon clock above. A bent arrow joins the clocks.
-**Plan pair 11b.** Two panels. Left: the swing set with a morning clock. Right: a pond with reeds and an afternoon clock.
+**Plan pair 11b.** Two panels. Left: the swing set with a morning clock. Right: a pond with reeds and an afternoon clock. The same bent arrow joins the clocks.
 
-**Spoken (invented for practice):** "Pip wants to see if the afternoon is warmer than the morning. Touch the plan that looks at the same place in the morning and in the afternoon." **Key:** pair 11a. Pair 11b changes the place as well as the time: no register letter, record "shown with help" once keep, change, watch is said back.
+**Spoken (invented for practice):** "Pip wants to see if the afternoon is warmer than the morning. Touch the plan that is fair for finding out." **Key:** pair 11a. Pair 11b changes the place as well as the time: no register letter, record "shown with help" once keep, change, watch is said back.
 
 **Day pictures 11c.** Two calendar squares, each holding a morning panel and an afternoon panel, in Denver. Square one: 2 August, morning sun with a few clouds, afternoon sun with clouds covering part of the sky, afternoon warmth mark up. Square two: 3 August, sun with a few clouds in both panels, afternoon warmth mark up. (Teacher key: 2 August the morning 82, the afternoon 97; 3 August the morning 81, the afternoon 95.)
 **Card 11d.** A full calendar page with all the squares empty.
 
 **Spoken:** "These are two days in Denver. On both days the afternoon was warmer. Touch what these pictures show: these two days, or every day for ever." **Key:** the two calendar squares (11c). The full page (11d) is error A.
 
-## Day 12 cards: Pip's pretend bench
+## Day 12 cards: Pip's pretend picnic table
 
-**Cards 12a and 12b.** The same park bench drawn twice, same tree beside it. 12a has a morning clock above it and a small dot beside it with a thin radiating line (warm). 12b has an afternoon clock above it and a small plain dot (cool). Nothing else changes.
+**Cards 12a and 12b.** The same picnic table drawn twice, same tree beside it. 12a has a morning clock above it and a small dot beside it with a thin radiating line (warm). 12b has an afternoon clock above it and a small plain dot (cool). Nothing else changes.
 
-**Spoken (invented for practice, a pretend bench):** "Pip looked at the same bench in the morning and in the afternoon. The picture marks the morning bench as warm and the afternoon bench as cool. Touch the time when Pip's bench was warmer." **Key:** card 12a, the morning. A touch on 12b with the rule "afternoons are warm" is error A; a bare touch on 12b with no reason has no letter (ask again with the two marks pointed out).
+**Spoken (invented for practice, a pretend picnic table):** "Pip looked at the same table in the morning and in the afternoon. Rays mean warm and a plain dot means cool. Touch the time when Pip's table was warmer." **Key:** card 12a, the morning. A touch on 12b with the rule "afternoons are warm" is error A; a bare touch on 12b with no reason has no letter (ask again with the two marks pointed out).

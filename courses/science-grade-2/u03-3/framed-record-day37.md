@@ -16,4 +16,4 @@ credit: ours
 <div style="margin-top:.1in">Lining: ______ because ______________</div>
 <div style="margin-top:.1in">Mat: ______ because ______________</div>
 <div style="margin-top:.1in">A different job can change the choice because ______________________</div>
-<div style="margin-top:.1in">People can use what we know about wood by ______________________</div>
+<div style="margin-top:.1in">People can use what we know about bamboo by ______________________</div>

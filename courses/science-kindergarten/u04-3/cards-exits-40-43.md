@@ -12,7 +12,7 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 ## Day 40
 
 **Picture.** A town will put a bike rack on one of two spots. Spot 1 is a bare paved corner with a bike rack drawn faintly on it. Spot 2 is a strip of wildflowers where bees visit, with the same faint rack drawn over the flowers.
-**Spoken 40a:** "Invented for practice. A town will put a bike rack on one of two spots. Spot 1 is a bare paved corner. Spot 2 is a strip of wildflowers where bees visit. If the rack goes on a spot, the plants there are gone. Touch the spot where the rack leaves more living things in place." **Key:** the paved corner. The wildflower spot, or "they are the same", is error J.
+**Spoken 40a:** "Invented for practice. A town will put a bike rack on one of two spots. Spot 1 is a bare paved corner. Spot 2 is a strip of wildflowers where bees visit. If the rack goes on a spot, the plants there are gone. Touch the spot where more of what lives there would stay." **Key:** the paved corner. The wildflower spot, or "they are the same", is error J.
 **Spoken 40b:** "Same pictures. Say: I picked spot ___ because ___." **Key:** it leaves the flowers and the bees. "I like it" is error I.
 
 ## Day 43 (section exit, response, not scored)

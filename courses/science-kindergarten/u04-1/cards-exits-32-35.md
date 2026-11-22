@@ -18,7 +18,7 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 ## Day 33
 
 **Cards.** A sunflower being watered, a goat drinking at a trough, a toy truck, a rock with rain on it.
-**Spoken 33a:** "Invented for practice. Touch every picture where a living thing takes in water." **Key:** the sunflower and the goat. Leaving out the sunflower is error A. A touch on the rock or the truck is shown with help, no letter.
+**Spoken 33a:** "Invented for practice. Touch every picture where something alive takes a drink." **Key:** the sunflower and the goat. Leaving out the sunflower is error A. A touch on the rock or the truck is shown with help, no letter.
 **Picture.** Two sunflower pots, both watered. One stands in the light and looks green. The other stands in a closed box and looks pale and bent.
 **Spoken 33b:** "Touch the pot that looks well." **Key:** the pot in the light. A touch on the boxed pot, or both because both were watered, is error B.
 

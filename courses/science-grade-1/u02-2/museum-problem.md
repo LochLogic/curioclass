@@ -13,7 +13,7 @@ Held back from every earlier day. The first card is headed "invented for practic
 
 Headed: **Invented for practice.** A picture of a small paper vase on a card table in a museum room, with a taped line on the table a hand's length away and a broad cardboard marker waiting at the line. Read aloud: "A visitor's marker may slide along the table. The vase must stay untouched. Make a cover for the vase. The cover must stand over the vase and not rest on it. It must leave a gap above the vase. It must have one open side so a visitor can see inside. Use only paper, cardboard and tape. Nothing is sharp. Nothing is worn."
 
-Three criteria, one picture each, kept beside the problem card: **stands over it** (an arch with a gap drawn above the vase); **a gap above** (a double arrow between the vase and the cover); **one open side** (an eye looking through the open side).
+Three criteria, one picture each, kept beside the problem card: **stands over it** (the vase with a dotted outline of clear space around and above it, no cover shape drawn); **a gap above** (a double arrow between the vase and the cover); **one open side** (an eye looking through the open side).
 
 ## The marker and the test
 

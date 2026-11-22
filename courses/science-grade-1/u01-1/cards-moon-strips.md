@@ -15,6 +15,4 @@ Six identical sets, one for each group of five, all invented. Say aloud: "These 
 3. A dark sky. The moon high above the flagpole. Clock picture: nine at night.
 4. A dark sky. The moon lower above the far trees. Clock picture: midnight.
 
-Key: the moon goes from the gym roof to the flagpole to the far trees. Picture 1 is a pale moon in the daytime sky. Error B: a child says the moon is in the same place in every picture; lay yarn from picture to picture. Error C: a child says the moon is only for night; look at picture 1 and its clock.
-
 **The fallback look.** If the moon is not up in school hours, use one extra card: a pale moon low above the gym roof in a bright sky, a clock picture and a date box, said aloud to be a saved picture. The live look uses the moon log and the real landmarks, with backs to the sun and the sun screened by a building.

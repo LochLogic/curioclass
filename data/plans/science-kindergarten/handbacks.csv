@@ -69,13 +69,13 @@ from_day,to_day,what,where,minutes,error,note
 50,51,s05-X50b,Return and repair,2,E,pick the covered-and-open comparison
 51,52,s05-X51a,Return and repair,2,D,"trace the shadow edge onto the patch, one and a half minutes in the plan"
 51,52,s05-X51b,Return and repair,1,H,"same look, one and a half minutes in the plan"
-52,54,s05-W3b,Return and repair,5,A,the record picks at most four groups; A and B go together with the paired records and the others work from pictured instructions inside the same five minutes
+52,54,s05-W3c,Return and repair,5,A,the record picks at most four groups; A and B go together with the paired records and the others work from pictured instructions inside the same five minutes
 52,54,s05-W2d,Return and repair,0,B,"with A, in the same five minutes"
 52,54,s05-W1a,Return and repair,0,C,"swap one sample for the same material, in the same five minutes"
-52,54,s05-W3b,Return and repair,0,H,"same look, in the same five minutes"
+52,54,s05-W3c,Return and repair,0,H,"same look, in the same five minutes"
 53,54,s05-D1a,Return and repair,0,D,"placement, in the same five minutes"
 53,54,s05-D2b,Return and repair,0,E,"a separate evidence repair, in the same five minutes"
-53,54,s05-D2b,Return and repair,0,F,"a separate evidence repair, in the same five minutes"
+53,54,s05-D2c,Return and repair,0,F,"a separate evidence repair, in the same five minutes"
 55,56,s06-X55b,Return and repair,2,A,trace a might arrow on a sequence of three pictures
 56,57,s06-X56b,Return and repair,2,C,"the shrub picture (cards-actions), then the bagged litter"
 57,58,s06-X57b,Return and repair,2,B,"one sheet, blank side up, beside a fresh sheet; one and a half minutes in the plan"
@@ -96,8 +96,8 @@ from_day,to_day,what,where,minutes,error,note
 29,31,c1-K5,Return and repair,1,E,"keep every mark and put the guess beside it; days 29 and 30 share the letter (parallel forms), one rotation of 4 minutes for the largest groups, repair cards for the rest"
 29,31,c1-W1,Return and repair,1,F,"five squares in a line, touch and slide each once; days 29 and 30 share the letter (parallel forms), one rotation of 4 minutes for the largest groups, repair cards for the rest"
 29,31,c1-W2,Return and repair,1,G,"three day marks side by side, find the one that does not fit; days 29 and 30 share the letter (parallel forms), one rotation of 4 minutes for the largest groups, repair cards for the rest"
-29,31,c1-F2,Return and repair,1,H,"put the word possible on the page picture; days 29 and 30 share the letter (parallel forms), one rotation of 4 minutes for the largest groups, repair cards for the rest"
-29,31,c1-F2,Return and repair,1,I,"two town rows side by side, match the squares; days 29 and 30 share the letter (parallel forms), one rotation of 4 minutes for the largest groups, repair cards for the rest"
+29,31,c1-F4,Return and repair,1,H,"put the word possible on the page picture; days 29 and 30 share the letter (parallel forms), one rotation of 4 minutes for the largest groups, repair cards for the rest"
+29,31,c1-F4,Return and repair,1,I,"two town rows side by side, match the squares; days 29 and 30 share the letter (parallel forms), one rotation of 4 minutes for the largest groups, repair cards for the rest"
 29,31,c1-F3,Return and repair,1,J,"two action cards in order, plan then shelter; days 29 and 30 share the letter (parallel forms), one rotation of 4 minutes for the largest groups, repair cards for the rest"
 29,31,c1-F3,Return and repair,1,K,"sort shelter and not shelter cards; days 29 and 30 share the letter (parallel forms), one rotation of 4 minutes for the largest groups, repair cards for the rest"
 29,31,c1-F1,Return and repair,1,L,"put the page and yesterday's squares in two piles; days 29 and 30 share the letter (parallel forms), one rotation of 4 minutes for the largest groups, repair cards for the rest"

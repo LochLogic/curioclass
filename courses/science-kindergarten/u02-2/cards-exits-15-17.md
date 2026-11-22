@@ -22,7 +22,7 @@ Each exit has picture cards that every child marks and a spoken question heard f
 
 **First page.** A tall cloud with a storm symbol and a clock set for late in the day. Date line: 22 June 2024. **Second page.** A radar-like picture with the morning's clouds fading to one side and a small sun, and a morning clock. Date line: 22 June 2024. (Teacher key: the first page gives late-day storms; the second says the morning storms are over.)
 
-**Spoken:** "Pip wants to know if the earlier storms have ended. Here are two real pages for one day in June. The first page tells about storms late in the day. The second page tells what was seen this morning. Touch the page that tells him." **Key:** the second page. A touch on the first page is a wrong page: no register letter, record "shown with help".
+**Spoken:** "Pip wants to know if the earlier storms have ended. Here are two real pages for one day in June. Touch the page that tells him." **Key:** the second page. A touch on the first page is a wrong page: no register letter, record "shown with help".
 
 ## Day 17 cards: August records, and June 23, 2024
 

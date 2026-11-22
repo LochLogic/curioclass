@@ -26,15 +26,15 @@ s01-E4,I must change the ball to test which way.,,,F,a different object added to
 s01-E4,Use a bigger ball for the other place.,,,F,a different object added to a direction test
 s01-E5,The box moves before contact because the ball is near it.,,,D,puts the cause before the touch
 s01-E5,Marks the box moving when the ball only passes by.,,,D,puts the cause before the touch
-s01-E6,Throw away the marks that do not match my guess.,,,E,drops a result that disagrees with the guess
-s01-E6,I will rub out the mark that is not what I thought.,,,E,drops a result that disagrees with the guess
+s01-E6,Throw away the marks that look wrong.,,,E,drops a result that disagrees with the guess
+s01-E6,I will rub out the mark that looks wrong.,,,E,drops a result that disagrees with the guess
 s02-X10,Touches the card about last year.,,,,"asks about a time the pictures do not show; no register letter fits, record not yet seen; the unit 1 recording repair follows"
 s02-X10,Touches the card about next week.,,,,"asks about a time the pictures do not show; no register letter fits, record not yet seen; the unit 1 recording repair follows"
 s02-X11a,Touches the swing set in the morning and the pond in the afternoon.,,,,"changes the place as well as the time; no register letter fits, record shown with help once keep, change, watch is said back"
 s02-X11b,Touches the full calendar page.,,,A,reads two days as every day
 s02-X11b,Says afternoons are always warmer.,,,A,states the rule from two days
-s02-X12,Touches the afternoon bench and says afternoons are warm.,,,A,gives the rule in place of the marks
-s02-X12,Touches the afternoon bench and gives no reason.,,,,a guess at which picture; ask again with the two marks pointed out; no error A follows unless a rule is said
+s02-X12,Touches the afternoon table and says afternoons are warm.,,,A,gives the rule in place of the marks
+s02-X12,Touches the afternoon table and gives no reason.,,,,a guess at which picture; ask again with the two marks pointed out; no error A follows unless a rule is said
 s02-X13,"Says five, with one rain square touched twice.",,,B,counts a date twice
 s02-X13,"Says three, with one rain square missed.",,,,a square missed; touch-and-slide with a partner; record shown with help
 s02-X14a,"Says nine, with a rain square touched twice.",,,B,counts a date twice
@@ -67,7 +67,7 @@ s03-X21,Touches the what-color card.,,,,a question the problem cannot use; recor
 s03-X21,Says build a rail instead of choosing a card.,,,A,starts to build before finding out
 s03-X22a,Touches yes.,,,C,takes a farther stop as a faster start
 s03-X22a,Says it went farther so it was faster.,,,C,takes distance for how it started
-s03-X22b,Touches yes.,,,E,lets the look of the ramp outweigh the result
+s03-X22b,Touches yes.,,,E,lets the look of the scooter outweigh the result
 s03-X22b,Says it looks good so it worked.,,,E,ignores the result picture
 s03-X23,Touches a reached picture.,,,F,takes one success for always
 s03-X23,Says it reached so it always does.,,,F,one trial treated as proof
@@ -88,7 +88,7 @@ s03-P1a,Asks something the cards do not hold.,,,,"kept on the not-on-this-page c
 s03-P1b,Draws the mark in the wrong place.,,,,no register letter; record shown with help
 s03-P1c,Touches the ball in the walking strip.,,,,no register letter; record shown with help
 s03-P2a,Draws a favorite ramp or tool and no want.,,,B,a tool is named in place of what people want
-s03-P2b,Touches is tall or is red.,,,,no register letter; a feature the wanted change does not need; record shown with help
+s03-P2b,"Touches is tall, is red or is shiny.",,,,no register letter; a feature the wanted change does not need; record shown with help
 s03-P2c,Says build first and find out after.,,,A,builds before finding out
 s03-M1a,Marks a start from where the ball stopped.,,,C,reads the stopping place as the start
 s03-M1b,"Says yes because it went farther, with no start watched.",,,C,takes distance for how it started
@@ -134,6 +134,7 @@ s04-X43b,Only people change places.,,,H,leaves plants and animals out of the cha
 s04-N1a,Puts drops on the animals and the child but none on the plant.,,,A,leaves the plant out of the water pattern
 s04-N1b,Just the animals needed water.,,,A,leaves the plant out of the water pattern
 s04-N2a,Touches the watering can.,,,B,takes the unchanged water as the change
+s04-N2a,Touches the pots.,,,B,takes an unchanged thing as the change
 s04-N2b,Water is enough.,,,B,omits light
 s04-N3a,Touches the plant along with the animals.,,,C,treats the plant as eating a meal
 s04-N3b,Touches yes: the soil is the plant's meal.,,,C,treats soil as a plant meal
@@ -194,6 +195,7 @@ s05-X50b,Because it is nicest.,,,E,takes looks for evidence
 s05-X51a,Touches yes and says the canopy is close by.,,,D,near is taken for shaded
 s05-X51b,Because it was later in the day.,,,H,treats the time as the cause
 s05-X54a,Touches the ribbon.,,,E,takes looks for the job
+s05-X54a,Touches stand the cover farther away.,,,D,moves the cover away from the target instead of over it
 s05-X54b,The cover looks nice.,,,E,takes looks for evidence
 s05-W1a,Touches the rock and water pair and says they prove it.,,,C,compares unlike materials
 s05-W1b,Marks a sample the caption does not name.,,,,reads the caption against its words; shown with help
@@ -202,13 +204,14 @@ s05-W2b,Marks against the soil caption.,,,,reads the caption against its words; 
 s05-W2c,Marks against the rock caption.,,,,reads the caption against its words; shown with help
 s05-W2d,"Says water never warms, against the water caption.",,,B,leaves water out of the pattern
 s05-W3a,Marks later for every material whatever the records say.,,,,assumes the later look always wins; shown with help
-s05-W3b,"The later one is warmer, so sunlight did it.",,,H,treats the time as the cause
-s05-W3b,The sun does not warm things.,,,A,denies that the sun is the cause
+s05-W3b,Points to the later look of one sample.,,,,"a look chosen for the wrong reason; no register letter, record shown with help"
+s05-W3c,"The later one is warmer, so sunlight did it.",,,H,treats the time as the cause
+s05-W3c,The sun does not warm things.,,,A,denies that the sun is the cause
 s05-D1a,Touches the cover beside the patch and says it will shade it.,,,D,a cover beside the patch does not shade it
-s05-D1b,Touches pieces that would close the side.,,,,loses the side view; shown with help
+s05-D1b,Touches two roof pieces and none to hold them up.,,,,nothing to hold the roof up; shown with help
 s05-D2a,"Builds a cover that stands beside the patch, leaving it in the sun.",,,D,a cover beside the patch does not shade it
-s05-D2b,The colours make it work.,,,E,takes looks for the job
-s05-D2b,It will be cool as soon as it is on.,,,F,leaves out the shared time
+s05-D2b,The colors make it work.,,,E,takes looks for the job
+s05-D2c,It will be cool as soon as it is on.,,,F,leaves out the shared time
 s05-D3a,Marks without touching both patches.,,,,no comparison made; shown with help
 s05-D3b,It works because it is the nicest.,,,E,takes looks for evidence
 s05-P49-3,Adds a piece that stands beside the animal.,,,D,a roof beside the animal does not shade it
@@ -234,13 +237,14 @@ c1-K1,Takes a bigger car for the harder push.,,,A,changes the object while testi
 c1-K4,Takes a different ball to test which way.,,,C,thinks which way needs another object
 c1-K2,Marks the car starting to move before the hand reaches it.,,,D,places the motion before the touch
 c1-K3,Says a pull cannot change how the box goes.,,,B,denies that a pull changes motion
-c1-K5,Says to throw away the marks that do not match the guess.,,,E,drops the try that was not guessed
+c1-K5,Says to throw away the marks that look wrong.,,,E,drops a mark that looks wrong
 c1-W1,Touches square 6 twice and says seven.,,,F,counts one square twice
 c1-W2,Says afternoons are always warmer.,,,G,makes a rule that the records contradict
 c1-W3,Touches the shorter row because its squares are bigger.,,,,a comparison miss; sorts to no group
 c1-F1,Asks what the weather was yesterday.,,,L,asks the forecast about the past
-c1-F2,Says the page means the storm must come.,,,H,takes a forecast for a guarantee
-c1-F2,Says every town has the same storms.,,,I,ignores the town rows
+c1-F2,Touches a part of the page that does not answer the question.,,,,"a part chosen for another question; no register letter, record shown with help"
+c1-F4,Says the page means the storm must come.,,,H,takes a forecast for a guarantee
+c1-F4,Says every town has the same storms.,,,I,ignores the town rows
 c1-F3,Touches wait until thunder.,,,J,waits for danger before getting ready
 c1-F3,Touches stand under a tree.,,,K,takes a tree for shelter
 c1-X31a,Touches pair two because a bigger truck is stronger.,,,A,changes the object while testing how hard
@@ -253,10 +257,11 @@ c2-N3,Touches the bean plant because it eats the soil.,,,O,takes soil for a plan
 c2-N4,Says every animal eats the same food.,,,P,misses the different diets
 c2-M1,Places the plant in the dark cave because it can live anywhere.,,,Q,separates place from needs
 c2-M2,Places the hare on the stony top with nothing to eat.,,,Q,separates place from needs
-c2-M3,Says people in houses do not need anything from the meadow.,,,R,leaves people out of the system
+c2-M3,Draws no line from the people to the meadow.,,,R,leaves people out of the system
+c2-Mw,Says people in houses do not need anything from the meadow.,,,R,leaves people out of the system
 c2-C1,Says plants cannot change a fence.,,,S,denies plant changes
 c2-C2,Says only people make holes.,,,T,leaves animals out
-c2-C3,Touches plan two because it has a red roof.,,,U,takes a liking for evidence
+c2-C3,Touches plan two because the shed looks nicer.,,,U,takes a liking for evidence
 c2-C3,Says both plans leave the same trees.,,,V,ignores the shown difference
 c2-D1,Touches one square twice.,,,F,counts one square twice
 c2-D3,Says mornings are always cooler.,,,G,makes a rule that the records contradict
@@ -264,16 +269,17 @@ c2-X64a,Touches the carrot for the plant.,,,O,takes a carrot for the plant meal
 c2-X64b,Touches the stony path because a duck can live anywhere.,,,Q,separates place from needs
 c2-X64c,Says only people change lawns.,,,T,leaves animals out
 c2-X64d,Agrees with the friend.,,,G,makes a rule that the records contradict
-c1-K1b,Takes a bigger car for the harder push.,,,A,changes the object while testing how hard
+c1-K1b,Takes a bigger van for the harder push.,,,A,changes the object while testing how hard
 c1-K4b,Takes a different ball to test which way.,,,C,thinks which way needs another object
-c1-K2b,Marks the car starting to move before the hand reaches it.,,,D,places the motion before the touch
+c1-K2b,Marks the van starting to move before the hand reaches it.,,,D,places the motion before the touch
 c1-K3b,Says a pull cannot change how the box goes.,,,B,denies that a pull changes motion
-c1-K5b,Says to throw away the marks that do not match the guess.,,,E,drops the try that was not guessed
+c1-K5b,Says to throw away the marks that look wrong.,,,E,drops a mark that looks wrong
 c1-W1b,Touches square 5 twice and says six.,,,F,counts one square twice
 c1-W2b,Says afternoons are always cooler.,,,G,makes a rule that the records contradict
 c1-W3b,Touches the shorter row because its squares are bigger.,,,,a comparison miss; sorts to no group
 c1-F1b,Asks what the weather was yesterday.,,,L,asks the forecast about the past
-c1-F2b,Says the page means the storm must come.,,,H,takes a forecast for a guarantee
-c1-F2b,Says every town has the same storms.,,,I,ignores the town rows
+c1-F2b,Touches a part of the page that does not answer the question.,,,,"a part chosen for another question; no register letter, record shown with help"
+c1-F4b,Says the page means the storm must come.,,,H,takes a forecast for a guarantee
+c1-F4b,Says every town has the same storms.,,,I,ignores the town rows
 c1-F3b,Touches wait until thunder.,,,J,waits for danger before getting ready
 c1-F3b,Touches stand under a tree.,,,K,takes a tree for shelter

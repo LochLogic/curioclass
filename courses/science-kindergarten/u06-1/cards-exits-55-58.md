@@ -18,12 +18,12 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 ## Day 56: a school fair
 
 **Picture.** A school fair on a field. Near a booth the soil is bare and rutted, with no plants. A plastic bag floats in a pond at one side. A bus has a grey haze behind it. A duck stands by the pond with a bit of string round its foot. A row of shrubs runs along the field edge. No cause arrows are drawn. These cases are new: the four chains are not repictured.
-**Spoken 56a:** "Invented for practice. A school fair has bare rutted soil with no plants, a plastic bag floating in a pond, a bus with a grey haze behind it and a duck with string round its foot. Touch what is hurt for the part I name: land, water, air or living things." Name one part for each child in turn. **Key:** land, the bare soil; water, the bag in the pond; air, the haze; living things, the duck. Touching the bus itself instead of the haze is shown with help, no letter.
+**Spoken 56a:** "Invented for practice. A school fair has bare rutted soil with no plants, a plastic bag floating in a pond, a bus with a grey haze behind it and a duck with string round its foot. Touch what is hurt in the part I name." Name one part for each child in turn. **Key:** land, the bare soil; water, the bag in the pond; air, the haze; living things, the duck. Touching the bus itself instead of the haze is shown with help, no letter.
 **Spoken 56b:** "Same picture. Draw one thing the school could do so one of these is hurt less, and say which one." **Key:** any feasible action and the part it spares, named. "Put the wrappers in the shrubs, that keeps them safe" is error C.
 
 ## Day 57: a bench
 
-**Picture.** A park bench with three loose wrappers beside it and wind lines pointing toward a row of shrubs.
+**Picture.** A park bench with three loose wrappers, a used sheet of paper and an empty bottle beside it, and wind lines pointing toward a row of shrubs.
 **Spoken 57a:** "Invented for practice. Draw what our trial would do here." **Key:** the class's chosen action drawn on the bench scene, and a changed picture with fewer loose wrappers or less new material used. Wrappers pushed under the shrubs is error C.
 **Spoken 57b:** "Tell why that helps." **Key:** "If we ___, then ___" naming an affected part. If the class chose to reuse paper, "reusing paper does not change how much new paper we need" is error B.
 
@@ -31,7 +31,7 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 
 **Picture.** Two drawings of the same school corner. First: five bottles lie beside a puddle by a wall. Second: the same corner after a class's action, with a reminder card at a bin and two bottles by the puddle. A caption read aloud: "Before. After our class's action."
 **Spoken 58a:** "Invented for practice. Touch what the action changed." **Key:** the bottles beside the puddle, fewer in the second drawing. Touching the puddle is shown with help, no letter.
-**Spoken 58b:** "Finish the arrow that says why it helps." **Key:** an arrow from the action to less harm to the water or the living things near the puddle. "Every bottle goes to be recycled everywhere" is error F.
+**Spoken 58b:** "Draw an arrow that says why it helps." **Key:** an arrow from the action to less harm to the water or the living things near the puddle. "Every bottle goes to be recycled everywhere" is error F.
 
 ## Day 58 teaching corner (not an exit)
 

@@ -36,8 +36,8 @@ Each exit has picture cards every child touches and a spoken stem read once. The
 
 ## Day 69 exit: eelgrass bed and tidepool
 
-**Picture:** two cards. A sheltered coastal eelgrass bed: three identical eelgrass blades, one crab, one clam and one snail, six pictures. A rocky tidepool: one sea star, two identical mussels, one barnacle and one hermit crab, five pictures. Every kind is drawn clearly and the hermit crab is not drawn like the crab. Three cards: the eelgrass bed, the tidepool and neither, they show the same number.
+**Picture:** two cards. A sheltered coastal eelgrass bed: three identical eelgrass blades, one crab, one clam and one snail, six pictures. A rocky tidepool: one sea star, two identical mussels, one snail and one hermit crab, five pictures. Every kind is drawn clearly and the hermit crab is not drawn like the crab. Three cards: the eelgrass bed, the tidepool and neither, they show the same number.
 **Say (a):** "Touch which card shows more kinds."
 **Key (teacher):** neither; each shows four kinds. Error A is touching the eelgrass bed because it has more pictures.
 **Say (b):** "Touch one kind that only one of the cards shows."
-**Key (teacher):** eelgrass, or the sea star, mussel, barnacle or hermit crab, any kind that is on one card only. Error B is saying both show the same kinds because each shows four.
+**Key (teacher):** eelgrass, crab, clam, sea star, mussel or hermit crab, any kind that is on one card only; the snail is on both cards. Error B is saying both show the same kinds because each shows four.

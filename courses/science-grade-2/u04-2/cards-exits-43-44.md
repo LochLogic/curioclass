@@ -13,12 +13,12 @@ Each exit has picture cards every child touches and a spoken stem read once. Dra
 
 ## Day 43 exit cards: a corn kernel
 
-**Picture:** Three cards laid left to right and labelled first, then, last. First: a hard dry corn kernel. Then: the kernel popped, soft and white, with small heat lines. Last: the popped corn cooled on a plate, small snow marks.
-**Say:** "Does cooling turn the popped corn back into a kernel? Point to yes or no, then say what you see."
+**Picture:** Three cards laid left to right and labelled first, then, last. First: a hard dry corn kernel. Then: the kernel popped, soft and white, with small heat lines. Last: the popped corn cooled on a plate, small snow marks. Under them, two circles: yes, no.
+**Say:** "Pip says if we cool the popcorn it turns back into a hard kernel. Is Pip right? Point to yes or no."
 **Key (teacher):** No; the popped corn stays popped (error C is saying yes).
 
 ## Day 44 exit cards: a wax stub
 
-**Picture:** Three cards labelled first, then, last. First: a short candle stub standing up. Then: the stub as melted liquid wax in a dish, a grown-up in goggles. Last: the wax cooled into a flat hard round, snow marks.
+**Picture:** Three cards labelled first, then, last. First: a short candle stub standing up. Then: the stub as melted liquid wax in a dish, a grown-up in goggles. Last: the wax cooled into a flat hard round, snow marks. Under them, two circles: yes, no.
 **Say:** "Pip says the wax did not go hard again because its outline changed. Is Pip right? Point to yes or no."
 **Key (teacher):** No; it is hard again in a new outline (error B is saying yes).

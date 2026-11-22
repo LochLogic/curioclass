@@ -25,7 +25,7 @@ A fox starts to dig; soil comes out in a pile; the bank has a den opening.
 
 A dry garden of food plants; people digging a channel from a stream; water running along the channel to a green garden.
 **C3a:** "Touch the land the people changed." **Key:** the channel.
-**C3b:** "Two routes for the channel bring the same water. One crosses a bare strip. The other removes a patch of plants. Touch the route that leaves more plants standing." **Key:** the route across the bare strip. The other route, or "they are the same", is error J.
+**C3b:** "Two routes for the channel bring the same water. One crosses a bare strip. The other crosses a patch of plants. Touch the route that leaves more living things in place." **Key:** the route across the bare strip. The other route, or "they are the same", is error J.
 **C3c:** "Why that one?" **Key:** it leaves the plants standing. "I like it" is error I.
 
 ## The kite card

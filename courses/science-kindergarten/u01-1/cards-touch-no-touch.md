@@ -15,5 +15,3 @@ Six cards for pairs to sort into two piles, touch and no touch, then say "it mov
 4. A hand reaching toward a block with a clear gap, and the block at rest. (no touch)
 5. A child's hand pulling a toy wagon by its string. (touch)
 6. A toy train alone on a track with no hand anywhere, at rest. (no touch)
-
-Key: the touching cards are 1, 2 and 5. A child who says a no-touch card is moving has met error C: ask them to point to what touched it.

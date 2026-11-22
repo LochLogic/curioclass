@@ -33,8 +33,4 @@ Three materials: card X, sheet Y and cloth Z. All three were tested the same way
 6. A lining on a sloping surface must stop a block from sliding. Choose a material and show what tells you.
 7. A mat must draw water farthest along a strip. Choose a material and show what tells you.
 8. Look at your choices for the ledge and the wrapper. Why can a different job change the best choice?
-9. **Picture:** A tree, a plank of wood beside it, and a block under a display. How could knowing about wood help people design a block that holds a display?
-
-## Key (teacher)
-
-Tasks 1 and 2: water climb X 3, Y 0, Z 6; drop X 1, Y 5, Z 3; press X no dent, Y dent, Z dent; feel X rough, Y smooth, Z rough; slope X held, Y slipped, Z held; curve X cracked, Y wrapped, Z wrapped. Task 3: X, the least drop (1). Task 4: Y or Z, because both wrapped and X cracked. Task 5: X, because it did not dent. Task 6: X or Z, because the slope test shows both held. Task 7: Z, climb 6, the farthest. Task 8: each job needs a different tested property; X is best for the ledge, but it cracked on the curve, and Y or Z wrapped. Task 9: people test the wood for bend or dent before they choose it for the block. Look-fors are on the record sheet.
+9. **Picture:** A bamboo plant, a bamboo pole beside it, and a rail on a bridge. How could knowing about bamboo help people design a rail that does not bend?

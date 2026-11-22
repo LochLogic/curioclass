@@ -13,11 +13,11 @@ Two real forecast pages drawn as calm picture pages. Six table copies of each. P
 
 ## Page 1: the outlook
 
-**Picture:** A wide plain of flat land with a distant mountain outline at the left edge. Over the plain, one tall cloud with a small storm symbol in it. At the top right, a clock with its hands set for the afternoon, with a second smaller clock beside it set for the evening, joined by a curved arrow. At the lower left, a small child on a slide with a question mark over a dotted line leading to the school door.
+**Picture:** A wide plain of flat land with a distant mountain outline at the left edge. Over the plain, one tall cloud with a small storm symbol in it. At the top right, a small sun with a smaller moon beside it, joined by a curved arrow (today and tonight). At the lower left, a small child on a slide with a question mark over a dotted line leading to the school door.
 
-**What it says, in three pictures:** storms are possible in the afternoon and evening (clock and cloud), and it is a time to plan (the dotted line to the school).
+**What it says, in three pictures:** storms are possible today and tonight (sun, moon and cloud), and it is a time to plan (the dotted line to the school).
 
-**Teacher key for the model question:** "I want to find out when the storms could come." The page answers it: the afternoon and the evening. "What do we do?" the page does not say outright; the class answers it with the strip: page, plan indoor play before the afternoon, indoor recess.
+**Teacher key for the model question:** "I want to find out when the storms could come." The page answers it: today and tonight. "What do we do?" the page does not say outright; the class answers it with the strip: page, plan indoor play before the afternoon, indoor recess.
 
 ## Page 2: the discussion
 
@@ -27,4 +27,4 @@ Two real forecast pages drawn as calm picture pages. Six table copies of each. P
 
 **Spoken (day 16):** "What can this page tell us that the first one did not?" **Key:** that earlier storms were already moving away, and where. A child who says "it tells what happened" has met the idea of an observation; the same page also says what may come later (error E is not scored here: practice only).
 
-**Teacher note:** never say "a storm will come". Say "the page says storms are possible this afternoon". The might-or-might-not picture (page 1) shows one cloud with a question mark.
+**Teacher note:** never say "a storm will come". Say "the page says storms are possible today". The might-or-might-not picture (page 1) shows one cloud with a question mark.

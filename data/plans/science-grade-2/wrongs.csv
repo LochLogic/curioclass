@@ -1,6 +1,6 @@
 item_id,shown,compute,value,error,note
 s01-X1,The arrow runs from the hollow up the slope.,,,E,
-s01-X1,"Only the full hollow is drawn, with no slope.",,,D,
+s01-X1,"Only the water in the hollow is shaded, with no route drawn on the slope.",,,D,
 s01-X2,The arrow still points up the hill.,,,E,
 s01-X2,"Only the pool is drawn, with the hills left out.",,,D,
 s01-X2,The tray is drawn with no key box.,,,B,
@@ -16,7 +16,7 @@ s01-X6,"Marks the page that says ponds are lovely, because it sounds nicer.",,,A
 s01-X6,Marks a dot without checking what the key says.,,,B,
 s01-X7,Claim Y: only page P shows water.,,,C,
 s01-X7,"Claim X, with marks from only one page.",,,F,
-s01-X10,Marks the colour page because it is my favourite.,,,A,
+s01-X10,Marks the opinion page because it is my favorite.,,,A,
 s01-X10,"Ice is not water, so it is left off.",,,C,
 s01-X10,Marks only the pool and does not use the close-up of the ice.,,,F,
 s01-X10b,The model has no key.,,,B,
@@ -69,8 +69,8 @@ s02-X12,"No change, because it is still a beach.",,,A,
 s02-X13,"Slow, because wind and water wear things away slowly.",,,B,
 s02-X14,"No, because nobody saw it change.",,,A,
 s02-X15a,"Neither, because erosion is always slow.",,,B,
-s02-X15b,The tray shows how long a real change took.,,,F,"points to card 1 or card 3 and says the tray cannot show that, or says the tray can time a real change"
-s02-X16,"No, because the cup was the same, so the start does not matter.",,,E,
+s02-X15b,The pan shows how long a real change took.,,,F,"points to card 1 or card 3 and says the pan cannot show that, or says the pan can time a real change"
+s02-X16,"No, because the slope was the same, so the start does not matter.",,,E,
 s02-X16b,"5 centimeters, because I counted the marks.",,,x,"the strip is read by counting marks, not from zero; ask where the first mark sits on the ruler"
 s02-X17,"The big picture of the fence, because it shows the fence best.",,,C,
 s02-X18,"The bar that says the chips lost the least, so they have no weakness.",,,D,
@@ -141,7 +141,7 @@ s03-E11,"Z, because it is rough, so it is hard.",,,A,
 s03-E12,"X, because it feels rough.",,,x,"right choice, but texture alone does not show grip; no point for the slope comparison"
 s03-E13,"Y, because no water climbed, so it catches the most.",,,F,
 s03-E14,Y is best for every job because it is my favourite.,,,E,
-s03-E15,Any block will do because wood comes from a tree.,,,x,no link from the job to a test; ask what we would test the wood for
+s03-E15,Any rail will do because bamboo comes from a plant.,,,x,no link from the job to a test; ask what we would test the bamboo for
 s03-X34b,"Lining N, because it looks rougher.",,,x,"a slip: texture stands in for the slope test; a note, no letter; the picture shows the block, not the feel"
 s04-X39,"Yes, it looks different, so it needed new cars.",,,A,
 s04-X40a,"A new piece, because the gate is a different thing.",,,A,arrangement is mistaken for new pieces; string from each block to its place
@@ -218,7 +218,7 @@ s05-E14,An undated group number with no part of the child's own.,,,,"earns neith
 s05-E15,"P is the tallest, so the dark is the best place.",,,B,
 s05-E15,"P got water, so a plant does not need light.",,,C,
 s05-E16,"Q was in the sun, so a plant does not need water.",,,D,
-s06-X60a,The seed.,,,A,
+s06-X60a,A seed.,,,A,
 s06-X60b,"An arrow that stops halfway, or none.",,,,"an omission; descriptive feedback, no register letter"
 s06-X61a,Paint the mitten red.,,,B,
 s06-X61b,"The model shows everything, so nothing is missing.",,,,"an omission; descriptive feedback, no register letter"
@@ -290,12 +290,12 @@ c1-X59b,"Touches the poster, because picnics are fun.",,,E,a liked page is taken
 c1-X59c,Touches the juice pop card.,,,I,the case that came back is taken as the one that shows the claim wrong
 c1-X59d,Says fence Q is best because it lost 3 once and touches no run.,,,L,a chosen design is taken to have no weakness
 c1-X59e,Touches the colour of the stream.,,,A,land shapes are left out of the model
-c1-X59f,"Says no, snow is a different thing.",,,F,solid water is not counted as water
+c1-X59f,"Says no, ice is a different thing.",,,F,solid water is not counted as water
 c1-X59g,"Says yes, cooling makes it hard again.",,,I,cooling is taken always to restore
 c1-X59h,"Says no, it looked the same all week.",,,J,looking the same is taken for not changing
 c1-X59i,"Touches lid A, because it lost 1 in the first run.",,,L,one good run is taken for the whole record
 c2-P74a,Touches only the sticks and says the fence has new bands.,,,N,a different whole is taken to need new pieces
-c2-P74b,Points to the two bands and says they are the sticks.,,,x,pieces are mixed up; shown with help
+c2-P74b,Says the two bands are the sticks.,,,x,pieces are mixed up; shown with help
 c2-P74c,"Says any piece would work as well, because the pieces do not matter.",,,O,stiffness and shape are taken not to matter for a use
 c2-P74d,Says the fence is a new thing and so needs new pieces.,,,N,a different whole is taken to need new pieces
 c2-H74a,"Says stayed changed, because heat always changes a thing for good.",,,P,heating is taken always to last

@@ -22,8 +22,8 @@ s01-X5b,The cloudy night: it is night.,,,x,uses night alone and leaves out the c
 s01-X5c,No: the moon is for night.,,,C,replaces the picture with a day and night rule
 s01-X6a,Middle: it stays.,,,A,expects the shadow to stay where it was
 s01-X6a,Left.,,,x,reverses the order of the dots
-s01-X6b,High above the boat shed: it stays.,,,B,reads the strip as one picture
-s01-X6b,Low above the dock.,,,x,reverses the order of the looks
+s01-X6b,High above the barn: it stays.,,,B,reads the strip as one picture
+s01-X6b,Low above the pond.,,,x,reverses the order of the looks
 s01-X6c,No stars.,,,x,does not use the two night records
 s01-X8a,High above the bridge: it stays.,,,A,expects the sun to stay in one place
 s01-X8a,Low above the canal.,,,x,reverses the order of the looks
@@ -124,11 +124,11 @@ s03-X22a,Points to the seed path.,,,x,"the path is a drawn link, not a feature o
 s03-X22b,Lays the blades side by side with the bases apart.,,,x,"tips are not compared; shown with help and a length prompt, no letter"
 s03-X22b,Lays the blades from longest to shortest.,,,x,reverses the order asked; shown with help
 s03-X23a,"They are exact copies, everything is the same.",,,A,treats a shared feature as identity
-s03-X23a,Points to the parent's white forepaw.,,,x,"a marking only the parent has, which is a difference"
+s03-X23a,Points to the parent's white chest patch.,,,x,"a marking only the parent has, which is a difference"
 s03-X23b,"Nothing is different, it is a copy.",,,A,treats a shared feature as identity
-s03-X23b,Points to the black fur.,,,x,"a shared feature, not a difference"
-s03-X24a,"The kitten has a patch on its tail, so it is not a cat like her.",,,B,treats a difference as making a different kind
-s03-X24a,Points to the head patch and the tail patch as the same place.,,,x,the patches are in different places
+s03-X23b,Points to the gray fur.,,,x,"a shared feature, not a difference"
+s03-X24a,"The young one has a patch on its ear, so it is not a mouse like her.",,,B,treats a difference as making a different kind
+s03-X24a,Points to the back patch and the ear patch as the same place.,,,x,the patches are in different places
 s03-X24b,That makes them different animals.,,,B,treats a difference as making a different kind
 s03-X24b,They look exactly the same.,,,A,treats a shared feature as identity
 s03-X25a,"Touches the first grouping, because the little one is a different thing since it is smaller.",,,B,a difference in size takes it out of its kind
@@ -141,8 +141,8 @@ s03-X27a,Points to how short the young leaf is.,,,x,"names a difference, not a s
 s03-X27b,"The young one looks different, so it is another kind.",,,B,treats a difference as making a different kind
 s03-X27b,They are copies.,,,A,treats a shared feature as identity
 s03-X27c,"They are copies, everything is the same.",,,A,treats a shared feature as identity
-s03-X27c,Points to the white muzzle.,,,x,"a marking only the dog has, which is a difference"
-s03-X27d,"The puppy has white paws, so it is not a dog like the parent.",,,B,treats a difference as making a different kind
+s03-X27c,Points to the white neck band.,,,x,"a marking only the goose has, which is a difference"
+s03-X27d,"The gosling has a white wing tip, so it is not a goose like the parent.",,,B,treats a difference as making a different kind
 s03-X27d,Nothing is different.,,,A,treats a shared feature as identity
 s03-E26a,They are exact copies because both have leaves.,,,A,treats a shared feature as identity
 s03-E26a,"The big oak leaf is not like the small ones, so it is a different kind.",,,B,treats a difference as making a different kind
@@ -215,16 +215,16 @@ s05-E46b,Names the four pieces and says nothing about what each did.,,,x,naming 
 s06-X48a,Touches the flashlight at the friend's face.,,,x,a safety gap; light never points at eyes is said aloud again; shown with help
 s06-X48b,"Yes, the friend got the signal.",,,A,noticing the signal is taken as understanding the message
 s06-X49a,Touches the paper plan.,,,B,a plan is taken for a device that sends
-s06-X49b,Touches the string lying in loops.,,,x,slack string is read as ready; said aloud; shown with help
-s06-X50a,Touches the row with the gap.,,,E,a gap between strips is counted as measuring
-s06-X50b,"Says 5 strips, counting the gap.",,,E,the gap is counted as a unit
+s06-X49b,Touches the flap taped flat.,,,x,a flap that cannot lift is read as ready; said aloud; shown with help
+s06-X50a,Touches the row with the space.,,,E,a gap between strips is counted as measuring
+s06-X50b,"Says 5 clips, counting the space.",,,E,the gap is counted as a unit
 s06-X51a,Touches the pair where the signal changed.,,,D,a changed signal is not seen as a second change
 s06-X51b,Says it works anywhere and stops.,,,C,reach is assumed from one near result
 s06-X51b,Changes the signal and tries far away.,,,D,two things change at once
 s06-X52a,"Yes, it will work every time.",,,F,one match is taken as proof it always works
 s06-X52b,Touches the record with a match and a miss.,,,F,one match is taken as a reason to depend
 s06-X53a,Touches the lamp blink.,,,x,"the screen blocks light; review of unit 5, said aloud; shown with help"
-s06-X53b,Touches the ribbon.,,,x,a feature chosen with no trial behind it; said aloud; shown with help
+s06-X53b,Touches the brighter flashlight.,,,x,a feature the trial does not call for; said aloud; shown with help
 s06-X55a,Touches shout louder.,,,x,shouting is not the problem and is not the aim; shown with help
 s06-X55a,Touches change the message.,,,x,changing the message is a different test; shown with help
 s06-X55b,"My friend saw the blink, so it worked.",,,A,noticing is taken as understanding when the friend marked another card
@@ -246,7 +246,7 @@ s07-X57a,Touches the young swimming out.,,,x,the young action is taken for the a
 s07-X57b,"Says the young do nothing, she does it.",,,A,only the adult is taken to act
 s07-X57c,Touches the picture with the food arrow.,,,D,a plant is taken to feed its young like an animal
 s07-X57c,"Says neither, a plant has no young.",,,E,grown plants are left out of the idea
-s07-X58a,Touches the mother wrapping the pup.,,,x,a thing only the words tell is taken for something the picture shows; shown with help
+s07-X58a,Touches the strip its mother wraps it while she looks for food.,,,x,a thing only the words tell is taken for something the picture shows; shown with help
 s07-X58b,Says the picture shows her wrapping it.,,,C,a picture is taken to show what only the words report
 s07-X58c,You can see the kelp holding it in the picture.,,,C,a reason is taken to be visible in a picture
 s07-X59a,"Says nothing, the parent keeps it warm.",,,A,only the adult is taken to act
@@ -254,12 +254,12 @@ s07-X59b,Touches the chick staying under the fold.,,,x,the young action is taken
 s07-X59c,"Touches yes, they all do the same thing.",,,B,one care behaviour is taken for every animal
 s07-P59a,The grown-up helps the babies.,,,A,only the adult is taken to act
 s07-E60a,Only the big duck does anything useful.,,,A,only the adult is taken to act
-s07-E60a,Every animal must use these calls.,,,B,one care behaviour is taken for every animal
+s07-E60c,Every animal has to call.,,,B,one care behaviour is taken for every animal
 s07-E60a,The picture proves what the call sounded like.,,,C,a picture is taken to prove a sound
 s07-E60a,Names the ducks and says nothing about calls or staying still.,,,x,naming earns no point; stays incomplete
 s07-E60b,The grown sunflower brings food to its seedling.,,,D,a plant is taken to feed its young like an animal
 s07-E60b,Grown plants cannot make young.,,,E,grown plants are left out of the idea
-s07-E60b,Marks the young plant and says nothing about where it came from.,,,x,marking earns no point; stays incomplete
+s07-E60b,Draws the young plant and says nothing about where it came from.,,,x,marking earns no point; stays incomplete
 s07-X61a,"Says nothing, the mother does it.",,,A,only the adult is taken to act
 s07-X61b,Touches the frame with the distant adult.,,,x,the before frame is taken for the helping frame; shown with help
 s07-X61c,She comes because I can hear it call in the picture.,,,C,a picture is taken to prove a sound
@@ -286,7 +286,7 @@ c1-S35b,"Touches low above the chimney, back at the start.",,,x,the path is not 
 c1-S35c,Says the stars are gone in the morning.,,,C,stars are taken to cease to exist in the day
 c1-S35c,Touches the cloudy dark night.,,,x,a dark night is chosen without the clear sky; shown with help
 c1-P35a,Says the roots eat the soil.,,,D,roots are taken to take in soil as food
-c1-P35a,Marks the leaves as the part that takes in water.,,,x,another part is given the job; shown with help
+c1-P35a,Says the leaves take in water.,,,x,another part is given the job; shown with help
 c1-P35b,"Says the plant did nothing, because plants cannot move or respond.",,,E,a plant is taken to be unable to respond
 c1-P35b,Draws the arrow from the leaves to the window.,,,x,the arrow is backwards; shown with help
 c1-A35a,Says the shell helps the snail see.,,,x,another part's job is named; shown with help
@@ -317,7 +317,8 @@ c2-T66a,Puts the filter under dark shadow.,,,x,the partly clear piece is taken f
 c2-T66b,Says a patch beside the mirror means the light went through it.,,,O,a patch beside a mirror is taken for light through
 c2-T66c,"Touches keep, because most pieces let light through.",,,x,one case is not allowed to change the account; shown with help
 c2-M67a,"Records what was meant at the farther mark, not what the friend marked.",,,x,the friend's actual mark is not used; shown with help
-c2-M67b,Says seeing the flashes means the friend understood.,,,Q,noticing a signal is taken for understanding it
+c2-M67d,Says seeing the flashes means the friend understood.,,,Q,noticing a signal is taken for understanding it
+c2-M67b,Touches the device before the sender.,,,x,the path is put out of order; shown with help
 c2-M67c,Says it works at every mark because it worked near.,,,R,working near is taken to mean working far
 c2-A67a,Says only the ewe does something for the lamb.,,,S,only the adult is taken to act for the young
 c2-A67b,Says the picture shows what sound the chick made.,,,T,a still picture is taken to show a sound

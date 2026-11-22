@@ -14,7 +14,7 @@ For the day 19 observation only. Never show, teach from or send home before day 
 ## The June 21 page
 
 **First picture (F1).** A storm symbol in a cloud, a clock, and an outing symbol (a line of small children walking to a bus stop). Date line: 21 June 2024. (Teacher key: the page is the outlook for the day: storms in the afternoon and evening, and an outing at risk.)
-**Timing picture (F2a).** The same page with a second picture: two clock cards, a morning clock and a clock for the afternoon and evening, with a cloud over the second. (Teacher key: afternoon and evening.)
+**Timing picture (F2a).** The same page with a second picture: two clock cards, a morning clock and a clock for the afternoon and evening, drawn the same size and plain. (Teacher key: afternoon and evening.)
 
 **F1 spoken:** "Here is the first picture of a real page for one day in June: a storm symbol, a clock and an outing. Ask a question that helps the school get ready." **Key:** any question the page can answer: when, how strong, what to do. A question the page cannot answer (what was the weather yesterday) is kept on the not-on-this-page card, marked "shown", never an error; asking about yesterday is error E.
 **F2a spoken:** "Same page. Touch when the storms could come." **Key:** the clock for the afternoon and evening. "They will come" is error D; the morning clock is error E.

@@ -13,18 +13,18 @@ Held back. Not shown, handled or taught from before day 62. Plain black line dra
 
 - **Water cards.** A sparrow at a puddle, a seedling under a watering can, a child filling a cup, a smooth pebble.
 - **Light pair.** Two bean plants, both with a water drop: one on a bright shelf and green, one in a closed cupboard and pale.
-- **Meal cards.** A goose with pondweed, a hedgehog with a beetle, a child with an apple, a bean plant in soil. Three meal cards: pondweed, a beetle, a bowl of beans.
-- **Meadow map.** A sunny wet bank by a stream, a dark cave, a dry stony top, a stand of trees, a house on the hill. Cards to place: a bean plant, a hare, people. A crayon line from a card to a resource.
+- **Meal cards.** A goose with pondweed, a hedgehog with a beetle, a child with an apple, a bean plant in soil. Three meal cards: pondweed, a beetle, an apple. For N4 show the goose, the hedgehog and the child alone, without their food.
+- **Meadow map.** A sunny wet bank by a stream, grassy, with a hollow in its side; a dark cave; a dry stony top; a stand of trees; a house on the hill. Small marks beside each place show what it gives: a sun, a blue drop, a swirl for air, a brown patch for soil, and a grass tuft on the bank. Cards to place: a bean plant, a hare, people. A crayon line from a card to a resource.
 - **Class transfer.** A lunchroom bin full of hardly used paper towels. The same transfer as unit 6 paper work; never a litter task.
 
 ## Day 63: change and the class chart
 
-- **Change cards.** A young tree between two fence boards, then a thicker trunk with the boards pushed apart, and a passing cloud card. A garden step with smooth soil beside it, then a round hole under the step with a chipmunk looking out. Two shed plans: one on a bare gravel patch, one beside five small trees cut down.
+- **Change cards.** A young tree between two fence boards, then a thicker trunk with the boards pushed apart, and a bird-on-the-fence card. A garden step with smooth soil beside it, then a round hole under the step with a chipmunk looking out. Two shed plans: one on a bare gravel patch, one beside five small trees cut down.
 - **Class year weather chart.** The class's own dated squares. Before class choose a group of at most ten squares from a month the class did not count in unit 2, two months of rainy squares with different counts to lay side by side, and three days with morning and afternoon warmth marks that include one cooler afternoon. Write the key from the chart. If the chart has gaps, use dated squares labelled invented for practice.
 
 ## Day 64 exit cards (held back)
 
 - 64a: a rabbit and a bean plant on a porch; cards water, sunlight, a carrot, soil.
 - 64b: a pond edge with reeds and a stony path.
-- 64c: a lawn with a row of mounds and a mole.
+- 64c: a lawn with a row of mounds; cards: a mole, a passing cloud, a parked bike.
 - 64d: three day pairs: warmer, cooler, cooler; a speech mark from a friend.

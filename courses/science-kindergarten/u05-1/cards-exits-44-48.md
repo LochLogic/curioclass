@@ -19,7 +19,7 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 
 **Picture 45a.** The left card: two pots of the same soil, one in the sun, one in the shade, with the same small clock beside each at the same hour. The right card: a pot of soil in the sun and a pot of sand in the shade.
 **Spoken 45a:** "Invented for practice. Touch the pair that is fair for finding out what the sun does." **Key:** the left card. The right card, "soil and sand show it", is error C.
-**Picture 45b.** The left card: two bowls of sand put out together, the same small clock beside each. The right card: a bowl of sand with a clock showing a morning hour, beside a bowl with a clock showing a later hour.
+**Picture 45b.** The left card: one bowl of sand in the sun and one in the shade, put out together, the same small clock beside each. The right card: a sunny bowl of sand with a clock showing a morning hour, beside a shady bowl with a clock showing a later hour.
 **Spoken 45b:** "Invented for practice. Touch the pair that is fair." **Key:** the left card. The right card, "the long one shows it best", is error G.
 
 ## Day 46: rooftop water and a rock card

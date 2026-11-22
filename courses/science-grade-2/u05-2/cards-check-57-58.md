@@ -21,6 +21,6 @@ Printed one card sheet a child: side 1 holds Tern Coast in a box; side 2 holds t
 
 ## Day 58: Marl Point, two barriers and a cover
 
-- **Marl Point.** Three cards: the bank card (a bank cut by one flood), the step card (a worn step) and the hillside card (a steady hillside), with a sandbar.
-- **Two barriers.** Barrier H and barrier J, each with a number and a printed limit.
+- **Marl Point.** Three cards: the bank card (a bank cut by one flood), the step card (a worn step) and the hillside card (a hillside, then the same hillside after a slide that buried the lower path, with the caption: the slope slid in one rainy afternoon), with a sandbar.
+- **Two barriers.** Barrier H and barrier J, each with three numbers (first run, second run and path used) and both printed limits (lose at most 4 centimeters each run, use at most 6 centimeters of the path).
 - **Cover strips.** Straw, bark and plastic, each with two numbers and two limits.

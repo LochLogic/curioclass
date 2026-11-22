@@ -21,7 +21,7 @@ Keep these out of sight until the day 4 exit. They are not used on days 1 to 3 o
 
 ## The birdhouse post (item s01-X4b)
 
-**Card.** A birdhouse on a post, three ground spots in a row. A shadow dot on the left spot and a shadow dot on the middle spot. The right spot is empty.
+**Cards.** Two small cards and a blank row. Small card one: a birdhouse on a post with a shadow dot on the left ground spot. Small card two: the same post with a shadow dot on the middle ground spot. The blank row: three ground spots in a row, no dots, so no spot is marked as the answer.
 **Three touch cards:** left; middle; right.
 
-**Spoken:** "Touch where the next dot goes." **Key:** the right spot. Wrong: the middle, "it stays" is error A. The left has no letter.
+**Spoken:** "On the blank row, touch where the next dot goes." **Key:** the right spot. Wrong: the middle, "it stays" is error A. The left has no letter.

@@ -21,7 +21,7 @@ Cards: a new shiny tray tried in the beam, a bright patch on the side screen and
 
 ## Day 45 (items s05-X45a and s05-X45b)
 
-**X45a.** A fresh five-card record, invented: two cards where light went through, one where some went through, two where it was blocked, one of those also sending light to the side. Three hoops. Spoken: "Touch the hoop with the fewest cards." **Key:** the lets some through hoop, one card. A fourth hoop for the side card is error D. Other hoops are shown with help.
+**X45a.** A fresh six-card record, invented: three cards where light went through, one where some went through, two where it was blocked, one of those also sending light to the side. Three hoops. Spoken: "Touch the hoop with the fewest cards." **Key:** the lets some through hoop, one card. A fourth hoop for the side card is error D. Other hoops are shown with help.
 
 **X45b.** Two plan pictures: the flashlight and the screen taped in place; the flashlight held and moved. Spoken: "Touch the plan that is fair." **Key:** the taped one. The moved one is error E.
 

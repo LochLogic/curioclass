@@ -17,15 +17,15 @@ Keep these out of sight until each day's exit. Say "this is invented for practic
 
 ## Day 49 (items s06-X49a and s06-X49b)
 
-**X49a.** Two cards: a paper plan of a drum drawn flat on a page, and a drum made from a small box. Spoken: "Touch the one that can send a message now." **Key:** the made drum. The plan is error B.
+**X49a.** Two cards: a paper plan of a clapper drawn flat on a page, and a clapper made from two cardboard strips. Spoken: "Touch the one that can send a message now." **Key:** the made clapper. The plan is error B.
 
-**X49b.** Two cards of paper cups joined by string: in the first the string lies on the floor in loops; in the second the string runs straight and gentle. Spoken: "Touch the pair where the string is ready to carry a message." **Key:** the straight string. The loops are shown with help.
+**X49b.** Two cards of a cardboard flap on a flashlight: in the first the flap is taped flat over the whole lens; in the second the flap hangs on one taped edge and can lift. Spoken: "Touch the flap that is ready to send a message." **Key:** the flap that can lift. The flap taped flat is shown with help.
 
 ## Day 50 (items s06-X50a and s06-X50b)
 
-**X50a.** A new path drawn on the floor from above. Two cards of identical paper strips laid along it: in the first there is a gap between two strips; in the second the strips touch end to end. The path is four strips long. Spoken: "Touch the row that measures the path." **Key:** the touching row. The gap row is error E.
+**X50a.** A new path drawn on the floor from above. Two cards of identical paper clips laid along it: in the first there is a space between two clips; in the second the clips sit in a line, each touching the next. The path is four clips long. Spoken: "Touch the row that measures the path." **Key:** the touching row. The space row is error E.
 
-**X50b.** The touching row again. Spoken: "Count the strips in that row out loud. How many strips long is the path?" **Key:** four strips. A count that includes the gap is error E.
+**X50b.** The two rows again, the one with the space and the touching one. Spoken: "Count the clips in the touching row out loud. How many clips long is the path?" **Key:** four clips. A count that includes the space is error E.
 
 ## Day 51 (items s06-X51a and s06-X51b)
 

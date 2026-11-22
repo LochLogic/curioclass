@@ -13,15 +13,15 @@ Held back. Not shown, handled or taught from before day 35. Plain black line dra
 
 - **Yard dots.** A shadow stick in a yard with a gate, a bench and a slide. Three dot cards in a row: 9 o'clock by the gate, 11 o'clock by the bench, 1 o'clock covered by a flap.
 - **Roofline moons.** A roofline with a chimney, a water tower and a radio mast. Moon cards: 7 o'clock low above the chimney, 9 o'clock high above the water tower, 11 o'clock covered. Three place cards to touch.
-- **Hut sky records.** Three records of one harbour hut: a clear bright morning with no stars drawn, a clear dark night with stars, a cloudy dark night with no stars.
+- **Hut sky records.** Three records of one harbor hut: a clear bright morning with no stars drawn, a clear dark night with stars, a cloudy dark night with no stars.
 - **Basil plant.** A basil plant in a pot with roots, stem and leaves, drawn with no job written. Three dated sill pictures: Monday leaves face the window; Wednesday the pot turned, window on the other side; Friday leaves face the window again.
 - **Snail and frog.** A snail with shell, feelers and foot. A frog on a log with a fly passing and the tongue out.
 - **Seed dish problem.** A seed dish on a yard table, a branch that may slide against it, a bird that must reach the seeds. A snail shell drawn beside it. Each group of five has a taped line, a marker, a seed dish, paper, cardboard and tape.
 
 ## Day 36: resemblance and sound
 
-- **Linden blades.** Three life-size paper blades with heart shapes and toothed edges, the parent's longest, one young blade shortest, the other between. Tape line for laying them.
-- **Goat family and hen.** A goat and two kids, one with a brown ear and one with a white ear, a second adult goat, and a hen with feathers and a beak.
+- **Linden blades.** Three life-size paper blades with heart shapes and toothed edges, the parent's longest, one young blade shortest, the other between. Tape line for laying them. Two touch cards: fits; does not fit.
+- **Goat family and hen.** A goat and two kids, one with a brown ear and one with a white ear, a second adult goat, and a hen with feathers and a beak. Two touch cards: fits; does not fit.
 - **Sound records, taken by an adult.** A tissue strip near the paper ear cone: sound off; sound on; sound on with a hand pressing the strip; sound on with a hand held near it. A pot lid on a string: tapped; tapped then gently held. Nothing is invented as a result: with no valid record leave that case out.
 
 ## Day 37: fresh exit cards

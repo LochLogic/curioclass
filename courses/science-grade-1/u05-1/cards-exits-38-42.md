@@ -27,4 +27,4 @@ Cards: first, a glow lantern with the room light on; second, the lantern with th
 
 ## Day 42: the button and the night light (item s05-X42)
 
-Card: a button on a table and a switched-on night light. Spoken: "We shut the curtain so no outside light comes in. Touch the one we can still see." **Key:** the night light. "Neither, the night light needs the window" is error B. The button after a wait is error A.
+Card: a button in a shut box with the lid on, and a switched-on night light standing on the table beside the box. Spoken: "The button is in the shut box. We shut the curtain so no outside light comes in. Touch the one we can still see." **Key:** the night light. "Neither, the night light needs the window" is error B. The button after a wait is error A.

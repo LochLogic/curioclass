@@ -15,7 +15,7 @@ An imaginary place on one page: a sunny bed with wet soil; a grassy bank with a 
 
 ## The cards
 
-A plant card (a small red-flowered plant), a prairie dog card (a round animal at a burrow mouth), a people card (two adults and a child, no faces) and the resource marks.
+A plant card (a small red-flowered plant), a prairie dog card (a round animal, side view, alone on a plain ground line), a people card (two adults and a child, no faces) and the resource marks.
 
 ## Items
 

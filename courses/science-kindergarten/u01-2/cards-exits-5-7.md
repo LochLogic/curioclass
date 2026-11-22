@@ -12,7 +12,7 @@ Each exit has picture cards that every child marks and a spoken question heard f
 ## Day 5 cards: two toy buses
 
 **Card 5a.** A plain toy bus (a box on four wheels) with its front bumper pressed against the back of a second bus. Two short parallel lines at the meeting place; no starburst. The second bus has a small arrow ahead of it showing it has begun to roll.
-**Card 5b.** The same two buses with a clear gap between them. The second bus sits still, no arrow.
+**Card 5b.** The same two buses with a clear gap between them. The second bus has the same small arrow ahead of it, showing it has begun to roll.
 
 **Spoken:** "A rolling toy bus bumped a toy bus sitting still, and then the second bus began to roll. Touch the picture that shows where the first bus was when the second bus began to roll." **Key:** card 5a. Wrong is error D (the cause comes before the touch). Wrong is error D.
 

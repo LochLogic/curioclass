@@ -20,14 +20,10 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 **Picture:** A close view of a flat sheet of ice on a small pond at the foot of the ridge, low down beside the stream.
 
-## Page 3: the colour page
+## Page 3: the opinion page
 
-**Picture:** A page with a large patch of orange and the words My favourite colour.
+**Picture:** A line drawing of a pond with three ducks on it and the words My favorite pond has ducks.
 
 ## Steps
 
 **Read:** Step 1: "Mark the water places and say whether each is liquid or solid." Step 2: "Draw a model of the same ridge, hollow and lower stream, with a key." Step 3: "Say why the stream is where it is, with the words: I know the stream is low because."
-
-## Key (teacher)
-
-Step 1: pool and stream liquid; the ice on the pond solid (low, not high);  the colour page is not a source. Step 2: ridge and hollow with the pool, the stream low and away from the ridge, a key. Step 3: I know the stream is low because the picture shows it below the hollow and the ridge.

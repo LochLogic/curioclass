@@ -38,6 +38,6 @@ Each exit has a picture card every child draws on or marks, and a spoken stem re
 
 **Picture:** A playground corner where a low path leads water into a dip. Beside it, a tray record showing water gathered between two hills.
 
-**Say:** "Draw this corner. Then mark one thing its water did that the tray water did."
+**Say:** "Draw this corner. Then mark one thing its water did that the tray water did, and add a key box that says what the mark means."
 
 **Key (teacher):** The path sloping to the dip with water in it, the same mark in the dip and between the tray hills, and a key saying the mark means the water collected.

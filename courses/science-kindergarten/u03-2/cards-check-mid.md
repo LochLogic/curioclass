@@ -12,7 +12,7 @@ Held back. Not shown, handled or taught from before day 29. Plain black line dra
 ## Motion cards (both forms)
 
 - **Comparison cards (two).** An arrow with a thick line: how hard. A bent arrow: which way.
-- **Keep cards (three).** The same car (form B: van) twice with an equals mark; a different car beside it; the start line. Watch cards: a car at a line, a car stopped.
+- **Keep cards (four).** The same car (form B: van) twice with an equals mark; the same taped lane twice with an equals mark; a different car beside it; the start line. Watch cards: a car at a line, a car stopped.
 - **Lane.** A taped start line and two tape X marks, left and right. Form A: a toy car, a light box with a short thick string, a firm paper ball. Form B: a toy van, a sled box, red and blue X marks.
 - **Class transfer (day 29).** A rug with an edge, a toy car stopped near the edge. Three result cards: yes, yes, no.
 

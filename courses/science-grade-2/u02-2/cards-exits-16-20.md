@@ -14,15 +14,15 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Day 16 exit card: dry sand and damp sand
 
-**Picture:** Two small trays drawn from the side on the same stack of two books, each with one cup beside it marked "one cup". The left tray is marked dry sand and the right tray damp sand. Under each tray a short bar of lost sand, one longer than the other. Under them, two circles: yes, no.
+**Picture:** Two small trays of damp sand drawn from the side on the same stack of two books. The left tray has a small cup beside it and the right tray a big cup. Under each tray a short bar of lost sand, one longer than the other. Under them, two circles: yes, no.
 
-**Say:** "Pip poured the same cup on both and they lost different amounts. Does it matter that one was dry and one was damp? Point to yes or no."
+**Say:** "Pip poured a small cup on one and a big cup on the other, and they lost different amounts. Does it matter that the cups were different sizes? Point to yes or no."
 
 **Picture, part b (item 16b):** A paper strip with a centimeter ruler beneath it. The first pencil mark is at 0 and the second pencil mark is at 4. Labelled sand edge before and after.
 
 **Say (part b):** "The sand edge was at 0. After the pour it was at the second mark. How far did the edge move back? Write the number."
 
-**Key (teacher):** Yes, with the words that the start must be the same. No, because the cup was the same, is error E. Part b: 4 centimeters. Reading the second mark without starting at 0, or giving a number that is not 4, is not yet seen (no letter).
+**Key (teacher):** Yes, with the words that the start must be the same. No, because the slope was the same, is error E. Part b: 4 centimeters. Reading the second mark without starting at 0, or giving a number that is not 4, is not yet seen (no letter).
 
 ## Day 17 exit card: the fence
 
@@ -54,6 +54,6 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 **Say, part a:** "Sketch both shapes. Draw an arrow for each to show how it turns the wind."
 
-**Say, part b:** "How could we compare their protection fairly? Say it or point to a card." Cards: same ground and same fan place; different ground; the one that looks stronger.
+**Say, part b:** "How could we compare their protection fairly? Say it or point to a card." Cards: same ground and same fan place, then measure the retreat; different ground; the one that looks stronger.
 
 **Key (teacher):** Part a: both shapes drawn, each with an arrow that bends around or slows at the shape; arrows straight through both have no letter, so note it and show day 21 an arrow bending. Part b: the same ground and fan place, then measure the retreat. The one that looks stronger is error C. A different ground or fan place is error E.

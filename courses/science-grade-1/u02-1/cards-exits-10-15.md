@@ -25,9 +25,9 @@ Keep these out of sight until each day's exit. None is used in a hook, a read-al
 
 ## Day 12
 
-**Item s02-X12a.** A vine by a window. One leaf is joined to its stem and tilted toward the window. One leaf has fallen and lies in a dark corner. Touch cards: the joined leaf; the fallen leaf. Spoken: "Touch the leaf that fits our light job." **Key:** the joined leaf. A wrong touch is shown with help.
+**Item s02-X12a.** A vine by a window. One leaf is joined to its stem and tilted toward the window. One leaf has fallen and lies on the sill in the same light by the window. Touch cards: the joined leaf; the fallen leaf. Spoken: "Touch the leaf that fits our light job." **Key:** the joined leaf. A wrong touch is shown with help.
 
-**Item s02-X12b.** A sprout in a cup on a sill. Picture 1: the lamp is on the left, the sprout is straight. Picture 2: the lamp is now on the right. Picture 3 is covered. Touch cards: still straight; leaning right. Spoken: "The lamp stayed on the right for three days. Touch the picture where the sprout has leaned toward the moved lamp." **Key:** leaning right. Wrong: still straight is error B.
+**Item s02-X12b.** A sprout in a cup on a sill. Picture 1: the lamp is on the left, the sprout is straight. Picture 2: the lamp is now on the right. Picture 3 is covered. Touch cards: still straight; leaning right. Spoken: "The lamp stayed on the right for three days. Touch the picture of the sprout after three days." **Key:** leaning right. Wrong: still straight is error B.
 
 ## Day 13
 

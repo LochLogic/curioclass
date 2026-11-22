@@ -50,8 +50,8 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 **Say, part a:** "Point to the record that shows the fast change."
 
-**Picture, part b:** Three small cards in a row, numbered 1, 2, 3, each with a few printed words and a tiny picture: card 1, which way the soil moves (an arrow on a tray); card 2, how long a real change takes (a plain clock face with no hands); card 3, where the water goes (an arrow along a groove).
+**Picture, part b:** Three small cards in a row, numbered 1, 2, 3, each with a few printed words and a tiny picture: card 1, which way the sand slides (an arrow down a sand pile); card 2, how long a real hillside takes to slide (a plain clock face with no hands); card 3, where the spray goes (an arrow from a spray bottle).
 
-**Say, part b:** "The tray moved soil with water. Point to the card that shows what the tray cannot tell us."
+**Say, part b:** "A spray bottle wet a sand pile in a pan. Point to the card that shows what the pan cannot tell us."
 
 **Key (teacher):** Part a: record 2, with the words in one night. Neither, because erosion is always slow, is error B. Part b: card 2. Card 1 or card 3, or "the tray shows how long a real change took", is error F.
