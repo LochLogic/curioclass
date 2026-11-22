@@ -1823,3 +1823,10 @@ Cory asked (through the lead session) for two of our own games made outside the 
 first called Resonance, to join Recess as standalone game pages. The agent's item calls: Recess gets a Brought-in games
 rule (docs/GAMES.md), and the music maker drops MP3 saving rather than carry an LGPL encoder run from a string.
 The music maker is named Ripple, picked in chat after Ripple Strings was turned down (Desk q-recess-ripple-1).
+
+## 2026-11-22: PE grades 11 and 12 core flag (chat)
+
+Cory: commit data/grade_subjects.csv as build_db.py generates it. That file is derived from courses.csv, so the
+hand-set "n" for pe-9-12 grades 11 and 12 (2026-11-21) could not hold. Core describes the course; the grades 9 and 10
+required, 11 and 12 elective rule lives in the pe-9-12 note in courses.csv and in its course frame. No per-grade flag
+until something needs one.
