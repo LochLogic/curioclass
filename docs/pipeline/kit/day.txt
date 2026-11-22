@@ -11,15 +11,15 @@ For each day follow docs/pipeline/briefs/write.md (read it first; its {day}, {pr
 - The section plan docs/courses/{COURSE}/u{UU}-<n>.md is the day's spec (its `## Day N` block gives the parts and minutes); the day skeleton holds the mechanical fields from data: copy them. DEFAULTS.md in docs/courses/{COURSE}/ says what holds every day.
 - The shared pieces in the section folder exist: name the ones you use in `leans_on`.
 - Exit and end item rows already exist in data/plans/{COURSE}/items.csv and have had an answer-key read: use them, and items.csv is the truth over any stale plan line; add rows only for questions your day adds, each with its wrongs, answered cold.
-- {PREVDAY} If there is a day before, honour its "Tomorrow" line.
+- {PREVDAY} If there is a day before, honor its "Tomorrow" line.
 
 {GRADENOTE}
 
 Exit and shape rules (held in every day):
-- Words, cases and pictures held for an exit or end item are not practised in the skill that item tests before its day: check every practice word and case against data/plans/{COURSE}/items.csv (csv module) first. End items (A ids) are never practised with their own words.
+- Words, cases and pictures held for an exit or end item are not practiced in the skill that item tests before its day: check every practice word and case against data/plans/{COURSE}/items.csv (csv module) first. End items (A ids) are never practiced with their own words.
 - Shape rule: read the "Shape:" lines of the section plan. No practice, model or card shares an exit's or check item's shape or case, even when the plan designs it; change the practice, never the exit. An exit or check card is first seen at the child's own turn. Never print a key on a child's card or page: keys live in teacher-only key pieces, named in Before class.
 - Exit cards print exactly their items.csv stems. One ask per stem. Path honesty: a spoken item never has the child write; a child marking or writing on a sheet is a paper item (path blank).
-- Exit slips are half slips (`exit: half`) holding about two judged paper items (one if it has a tall box). Further separate judged paper items go on the student page in an "Exit box" (check practice, path blank, judged teacher) with a handbacks row. Never make an item spoken to save slip space. A judged exit that cannot fit even so may set `exit: half` only when shortening would cut what the exit needs.
+- Exit tickets are half slips (`exit: half`) holding about two judged paper items (one if it has a tall box). Further separate judged paper items go on the student page in an "Exit box" (check practice, path blank, judged teacher) with a handbacks row. Never make an item spoken to save slip space. A judged exit that cannot fit even so may set `exit: half` only when shortening would cut what the exit needs.
 - Exit slot and marking time: the exit has its minutes and its marking is counted (children times seconds each for the teacher). Every judged item is handed back on a named day.
 - Turn-taking time: check every per-child turn: children in the class (about 30) times seconds a turn (about 45 s a child per spoken ask) must fit inside the part's minutes, or hear a rotating six and give a handbacks row that reaches the rest.
 - Print a shared text once and point stems to it. materials.csv rows as the day names them (never only to pass a gate). Parts order matches check_min. Never strip punctuation to pass a word-count gate: split into a short shared line plus a short ask.

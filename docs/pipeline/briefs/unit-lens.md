@@ -38,7 +38,7 @@ exit table.
 **sources** (yours if {lens} = sources): field 10 and every text, source or data set the unit names.
 - Verified or none: every text the days will quote names where its words can be checked for free (a free text
   archive, a government or museum page, the publisher's own page). A text found only in paid editions is named and
-  described, never quoted, from a free secondary source.
+  described, never quoted, from a free secondary source. A page that refused an automated read is the exception to "not planned": keep it as "browser check" and list it (Sources rule in common.txt).
 - No end item or exit is built on our own summary of a source where the source itself is needed.
 - Science: every investigation's materials are school-safe and named; data sets have a source. ELA: every anchor and
   paired text has an edition and a rights note; excerpt lengths fit the rights. Math: every outside task or context
@@ -48,7 +48,7 @@ exit table.
   sign-off form. Every core text is named with its edition, or the plan says why it is written by us and when.
 
 **sequence** (yours if {lens} = sequence): fields 1 to 4, field 8 and the day list.
-- Every owned standard or code is taught, practised and checked inside the unit (or the plan says where else).
+- Every owned standard or code is taught, practiced and checked inside the unit (or the plan says where else).
 - Minutes add up on every day; check and respond days match days.csv; the day list matches days.csv.
 - Ask for minute-by-minute day budgets, daily exits or day plans only where UNIT-PLAN puts them in the unit plan; a
   unit of several sections leaves them to its section plans. The day list is generated: a fault in it or in days.csv is

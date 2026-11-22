@@ -16,7 +16,7 @@ HOW TO FIX
 - Rule 4 (exit reuses the day's case or numbers): give the exit a new case.
 - Part cannot run in its minutes: change the routine (fewer turns, pairs, a sample of children with a hand-back for the rest) so it fits; never change the day's total minutes.
 - Two asks in one stem: split into two items, each with its own key, wrongs if a choice, handbacks and print line. A "Mark: ... Spoken: ..." stem judging both is two asks. Printed stems per the grade note.
-- Weak or missing source: open a solid source and confirm it states the fact; update the sources.csv row (url, title, status "checked: {DATE}" and what the page states). Under the Sources rule below.
+- Weak or missing source: open a solid source and confirm it states the fact; update the sources.csv row (url, title, status "checked: {DATE}" and what the page states). If the page refused an automated read, keep the row as "browser check" and list it. Under the Sources rule below.
 - Review not said (a day teaches as new what a lower grade taught): add a short review line naming what the child already knows; keep the minutes. A review that claims a grade taught something the ledger shows only at stage planned is reworded to what was written.
 - Sensitivity: follow the subject note.
 - Never change an item only to get past a gate. If you change a shared card or sheet piece, update every day that prints it.

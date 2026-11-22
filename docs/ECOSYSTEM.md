@@ -9,13 +9,13 @@ fixes. Survey of the code and data: 2026-11-10 (findings at the end).
 
 | Thing | What it is | Key | Changes? |
 |---|---|---|---|
-| **Topic** | A topic a class spends a few days on. The hub page every shelf links from | `module_id`, about 762 public URLs | **One teachable topic.** Split only when it holds two unrelated topics, and then properly (below). Its list of standards is rewritten in place, from a cluster to the standards inside it |
+| **Topic** | A topic a class spends a few days on. The hub page every shelf links from | `module_id`, about 762 public URLs on 2026-10-27; see the generated site for the count today | **One teachable topic.** Split only when it holds two unrelated topics, and then properly (below). Its list of standards is rewritten in place, from a cluster to the standards inside it |
 | **Tool** | One screen-based teach, see-why or practice piece | `tool_id` | Gains a role and its own list of codes: only the ones it teaches on its main path |
 | **Section** (new, Track 7) | A 1 to 5 day package for a course, in the year's order | `unit_id` (to be designed at the probe) | Points at topics and picks items from the shelves. It owns nothing but the order, the teacher pages and what no shelf has |
 
 **The correction this makes to the locked plan:** rule 22 and step 4 said topics would be split so each names its
 standards. The survey shows `module_id` is the key for the Word Wall (4,413 cards, 719 art folders), anchor charts,
-Game Night, the Teaching map, the research cards and about 762 live pages, and no script renames a topic. Splitting would
+Game Night, the Teaching map, the research cards and about 762 live pages (2026-10-27), and no script renames a topic. Splitting would
 break or orphan all of them. So a topic is never split just to reach standard-level detail: its standards are
 spelled out in place, a second or third tool joins the same topic, and a new topic is made only for a standard
 with no topic home. Same goal (an untaught standard shows), no breakage.
@@ -82,7 +82,7 @@ their ids; only the wording in docs and pages changes, as each is next touched.
 
 ## What the survey found (2026-11-10)
 
-- 797 topics: 795 hold one tool, one holds two, one holds three. The topic page already lists every tool, plan,
+- 797 topics on 2026-10-27 (data/modules.csv had 814 rows on 2026-11-22): 795 hold one tool, one holds two, one holds three. The topic page already lists every tool, plan,
   sheet and game of a topic, so a second tool shows correctly with no change.
 - 133 of 144 math topics list a bare cluster. 213 of 1,457 codes sit on more than one topic.
 - Loud failures if a topic id changed: lesson plan focus check, Word Wall, charts, Game Night (the build stops).

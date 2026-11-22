@@ -18,7 +18,7 @@ use the newest dates. Model your work on the unit 2 fix pass (commit e568594c).
    lists counts once, as cheap. Never edit data/plans/defects.csv by hand.
 5. Gates to 0 failures (this job cannot end with any): `python -X utf8 scripts/plan.py check`,
    `python -X utf8 scripts/lesson.py check`, `python -X utf8 scripts/plan.py tables {course}`, then
-   `python -X utf8 scripts/lesson.py build --pdf`, and look at the unit's student PDFs, displays and exit slips.
+   `python -X utf8 scripts/lesson.py build --pdf`, and look at the unit's student PDFs, displays and exit tickets.
 
 Stale notes: a note that waits on other work starts `Pending(<file>, <file>#<text> or <plan node>):` so
 scripts/stale.py can tell when it lands; any other work-status wording ("not yet placed", "until it is added")

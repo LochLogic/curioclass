@@ -3,13 +3,13 @@
 Started 2026-11-04. What a curiosity is, the qualities and the short test: docs/VISION.md, "Curiosities: the
 second shape". This file holds the concepts, the look, the super tool pivots and the open choices.
 
-**Status (2026-11-04).** Cory approved the overall concept and the look ("The look" below): both are locked. All
+**Status as of 2026-11-04** (a snapshot; the current state of each tool is in docs/BUILD-BOARD.md). Cory approved the overall concept and the look ("The look" below): both are locked. All
 eight concepts go ahead. Span and Spire and Pocket Universe are pivoting first, through a Codex fix round
 (tools/<id>/refine.md); Cipher Vault is held out of the Codex queue until its spec is revised. None of the new
 concepts has a spec yet.
 
 Each concept names the real thing it is, the first two minutes, where the depth comes from, the real material (with
-its licence status), and where it sits on the map: the anchor topic it fills and the other topics it reaches.
+its license status), and where it sits on the map: the anchor topic it fills and the other topics it reaches.
 
 ## Cory's first read (2026-11-04)
 
@@ -33,7 +33,7 @@ its licence status), and where it sits on the map: the anchor topic it fills and
   becomes one thin line. Say "eee" then "ooo" and watch the bright bands jump.
 - **Depth:** pitch versus loudness, harmonics, why vowels differ (formants), why a flute and a violin on the same
   note look different, freezing and measuring a moment, a tone generator to compare against.
-- **Real material:** the student's own microphone, analysed live with Web Audio. Nothing is recorded or kept, and
+- **Real material:** the student's own microphone, analyzed live with Web Audio. Nothing is recorded or kept, and
   the mic prompt says so. No outside data.
 - **Map:** anchor science-8-waves. Also reaches science-1-sound-and-vibration, science-4-waves-and-information,
   science-11-waves-and-sound, ela-k-rhymes-and-sounds (hearing and seeing the sounds in words), arts-k-2-instrument-families.
@@ -54,7 +54,7 @@ its licence status), and where it sits on the map: the anchor topic it fills and
 - **Things to do** (Cory asked for more, 2026-11-04). Each is something a seismologist really does:
   - **Find the quake.** Drop three seismometer stations anywhere; a real past quake strikes; each station's
     squiggle shows the P wave, then the S wave. Read the gap, draw a circle from each station, and the circles
-    meet at the epicentre. Then reveal where it really was.
+    meet at the epicenter. Then reveal where it really was.
   - **Send a wave through the Earth.** Tap anywhere to start a quake and watch the P and S waves travel through
     the crust, mantle and core in a cut-away globe. S waves stop at the liquid core, leaving a shadow zone on the
     far side, which is how we learned the core is liquid.
@@ -74,13 +74,13 @@ its licence status), and where it sits on the map: the anchor topic it fills and
 - **First two minutes:** the sky over the student's town tonight. Drag time forward and the stars wheel around the
   pole; the Moon changes shape as days pass.
 - **Depth:** why the stars you see change by season, the Moon's phases and rise times, planets wandering against the
-  stars, the sky from the South Pole or the equator, star colour and brightness, sky stories from several cultures.
+  stars, the sky from the South Pole or the equator, star color and brightness, sky stories from several cultures.
 - **Real material:** the Yale Bright Star Catalogue (about 9,000 naked-eye stars), planet positions from JPL's
-  published orbital elements. Constellation lines and other cultures' sky stories need a licence check (many are
+  published orbital elements. Constellation lines and other cultures' sky stories need a license check (many are
   share-alike).
 - **Map:** anchor science-1-sun-moon-and-stars. Also reaches science-5-sun-stars-and-shadows,
   science-5-star-brightness, science-6-earth-sun-moon-system, science-9-stars-and-the-big-bang.
-- **Watch:** Pocket Universe (gravity sandbox) is the neighbour. That one makes orbits; this one watches the sky.
+- **Watch:** Pocket Universe (gravity sandbox) is the neighbor. That one makes orbits; this one watches the sky.
 
 ### 4. Microscope Bench
 
@@ -152,11 +152,11 @@ its licence status), and where it sits on the map: the anchor topic it fills and
 - **First two minutes:** type a line and each word lights up its beats: strong, weak, strong. Tap a word and its
   rhymes appear, close rhymes and slant rhymes apart.
 - **Depth:** meter checking against iambic and other feet, syllable counts for haiku, a read-aloud of the line with
-  the stress, famous public-domain lines to scan, rhyme schemes coloured down the page.
-- **Real material:** the CMU Pronouncing Dictionary (134,000 words with stress; BSD-style licence).
+  the stress, famous public-domain lines to scan, rhyme schemes colored down the page.
+- **Real material:** the CMU Pronouncing Dictionary (134,000 words with stress; BSD-style license).
 - **Map:** anchor ela-7-sound-and-form-in-poetry. Also reaches ela-4-poetry-drama-and-prose,
   ela-k-rhymes-and-sounds.
-- **Watch:** Poetry Soundboard (planned studio in the same topic) is the neighbour; this may take its card or sit
+- **Watch:** Poetry Soundboard (planned studio in the same topic) is the neighbor; this may take its card or sit
   beside it.
 
 ## The look (approved by Cory, 2026-11-04)
@@ -175,7 +175,7 @@ as a working surface. Each one borrows the visual language of the real tool it s
 
 | Curiosity | Its real grammar |
 |---|---|
-| Voice Lab | An audio analyser: black glass, a scrolling heat-map ribbon, a level meter, a frequency ruler down the side |
+| Voice Lab | An audio analyzer: black glass, a scrolling heat-map ribbon, a level meter, a frequency ruler down the side |
 | Living Earth | A seismograph station: a slowly turning globe, drum traces scratching ink, a time dial, survey labels |
 | Sky Dome | An observatory: a dark dome, a brass horizon ring, a date wheel and a lat-long setting circle |
 | Microscope Bench | A lab bench: the round eyepiece view, coarse and fine focus knobs, a stage with a slide, a lamp dimmer |
@@ -183,10 +183,10 @@ as a working surface. Each one borrows the visual language of the real tool it s
 | Graph Studio | A plotter: graph paper, a pen that draws the curve, an equation tape, sliders like a slide rule |
 | Compass and Straightedge | A drafting table: cream paper, pencil lines that stay, a real compass that swings |
 | Poet's Workbench | A writer's desk: a typewriter page, stress marks above the line like a printer's proof, a rhyme drawer |
-| Span and Spire (pivot) | An engineer's test yard: blueprint paper, members glowing in stress colours, load gauges with needles |
+| Span and Spire (pivot) | An engineer's test yard: blueprint paper, members glowing in stress colors, load gauges with needles |
 | Pocket Universe (pivot) | Mission control: dark telemetry, orbit plots, a time dial in place of the speed pills |
 
-**What makes them one family, not eight one-offs.** The family is in the grammar, never in one colour:
+**What makes them one family, not eight one-offs.** The family is in the grammar, never in one color:
 
 1. **The object is the stage.** It fills the screen. There is no right-hand pill panel; controls sit where the real
    ones would (knobs on the body, a tray of parts, a toolbelt).
@@ -218,7 +218,7 @@ Cory asked whether the five super tools (docs/agents/SUPER.md) could pivot into 
 already share three of the qualities (the toy comes first, the concept is the mechanic, the model is honest). What
 makes each one a game is its goal ladder, its sticker book, or a fixed order of rooms. The pivot is the same move
 each time: **free play becomes the front door, the goals leave the frame, and the real material moves to the
-centre.** Goals that teach something can stay as an optional book to browse, never a ladder to climb.
+center.** Goals that teach something can stay as an optional book to browse, never a ladder to climb.
 
 | Super tool | Where it stands | The curiosity it becomes | Size of the pivot |
 |---|---|---|---|

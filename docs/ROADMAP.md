@@ -2,7 +2,7 @@
 
 **The build order changed on 2026-11-13 (Cory).** The core subjects are planned top down before more days are
 written: progressions and course frames for all four, then scope and sequence and units one subject at a time
-(social studies first, math last), with reviews, baselines, a probe and a guard; then sections, days and tools. The
+(social studies first; science, ELA and math together after its probe, 2026-11-15), with reviews, baselines, a probe and a guard; then sections, days and tools. The
 order is docs/PRODUCTION-PATH.md (draft 5), section 3, and BASELINE rule 25 now says so. Where this file still
 speaks of the pilot unit first, "prove at the bottom", the ELA and science pilots or one unit ahead, it is stale
 and PRODUCTION-PATH wins until this file is reworked.
@@ -116,9 +116,9 @@ fifth of the year).
 | 2. Standards | What must be learned. Not ours to change | data/standards/ | Math and ELA texts wired. Science and the rest filed, wired when their courses open. Footnoted limits for math still to add |
 | 3. Approach to teaching | How students learn here and why, with its sources. A short shared core for every subject, then one page per subject | docs/APPROACH.md, docs/APPROACH-MATH.md; evidence detail and source access in docs/APPROACH-SOURCES.md | **Second draft 2026-11-11**, revised once after the expert's cold read (docs/reviews/approach-2026-11-11.md). Cory settled the three decisions on Desk card q-approach the same day (teach first by default in grades 2 to 5, no countdown timer in any tool, SPEC.md rule renamed) and said to go forward without library access. Waiting on Cory: his read of the pages. The English language arts page exists (docs/APPROACH-ELA.md). Science and social studies: the subject lens plus its rubric stand in through scopes and unit plans; a short approach page per subject is written before days (Cory, 2026-11-14). The countdown rule was narrowed 2026-11-14: a timer only with a grounded purpose (BASELINE rule 30) |
 | 4. Progressions | What each grade inherits and hands on, per subject | data/sequence.csv, the scope and sequence's builds-on columns, a progression page per subject (first: docs/courses/math-3-5-progression.md) | All four core subjects done K to 12, 2026-11-13 (data/progressions/<subject>.csv). The grades 3 to 5 math page and sequence.csv are older |
-| 5. Course scope and sequence | Every teaching day of a year, in order, with the reason | docs/courses/ | All 52 core courses written (docs/courses/<course>/scope-and-sequence.md): social studies read and fixed 2026-11-14; science, ELA and math read, fix pass from 2026-11-15 (docs/HANDOFF.md) |
-| 6. Unit and section plan | The contract for each unit and section: the checks written first, what each day is for, where a tool is used and for what job | docs/courses/UNIT-PLAN.md (the fields, rules and blank copies); docs/courses/<course>/sNN.md (unit plan) and uNN-N.md (section plan); rows in data/units.csv | **Fields fixed 2026-11-11** after three trial plans and the expert's cold read (docs/reviews/unit-plans-2026-11-11.md); Cory said yes (Desk card q-section-plans). Grade 4 math: units 1, 2, 3, 9, 10 and 11 are planned, 13 of 43 sections (one expert read of units 1 to 3, docs/reviews/unit-plans-4d-2026-11-11.md). Desk card q-plans-4d-1 is answered and applied. Since 2026-11-13 these grade 4 math plans are input to math's turn (PRODUCTION-PATH). Social studies: 138 unit plans read and fixed 2026-11-14; science and ELA next, math last |
-| 7. Lessons, tools, print, checks | What students and teachers touch | The shelves and tools; the lesson-day template docs/courses/LESSON-DAY.md | Building paused. Days wait for the probe and guard (PRODUCTION-PATH); the older grade 4 math days stay as built |
+| 5. Course scope and sequence | Every teaching day of a year, in order, with the reason | docs/courses/ | All 52 core courses written (docs/courses/<course>/scope-and-sequence.md): all read and fixed (social studies 2026-11-14; science, ELA and math from 2026-11-15; state in docs/HANDOFF.md) |
+| 6. Unit and section plan | The contract for each unit and section: the checks written first, what each day is for, where a tool is used and for what job | docs/courses/UNIT-PLAN.md (the fields, rules and blank copies); docs/courses/<course>/sNN.md (unit plan) and uNN-N.md (section plan); rows in data/units.csv | **Fields fixed 2026-11-11** after three trial plans and the expert's cold read (docs/reviews/unit-plans-2026-11-11.md); Cory said yes (Desk card q-section-plans). Grade 4 math: units 1, 2, 3, 9, 10 and 11 are planned, 13 of 43 sections (one expert read of units 1 to 3, docs/reviews/unit-plans-4d-2026-11-11.md). Desk card q-plans-4d-1 is answered and applied. Since 2026-11-13 these grade 4 math plans are input to math's turn (PRODUCTION-PATH). Social studies: 138 unit plans read and fixed 2026-11-14; science, ELA and math units run together after its probe (2026-11-15). Current state: docs/HANDOFF.md |
+| 7. Lessons, tools, print, checks | What students and teachers touch | The shelves and tools; the lesson-day template docs/courses/LESSON-DAY.md | Days written by the ladder runs for science K to 3 and social studies and ELA K to 3 (docs/HANDOFF.md); other courses wait for their runs (COURSE-RUN); the older grade 4 math days stay as built. Recess games are live (docs/GAMES.md) |
 
 Running through every layer: the assessment system, and the supports for English learners, access, teachers and
 families ("What a finished course holds").
@@ -299,8 +299,8 @@ docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catal
 | 3. Reading Room | Add the text record and topics to the story format, then the ten-story pilot. It can run beside the proof | Topic sets are written into the ledger for the standards they carry; enrich waves follow the course order |
 | 4. The site | Page changes that the fixes need. Open items (www redirect, dark mode, request page) any time | The Teaching map, when it returns, shows the measure per stop. A course page links its scope and sequence and sections |
 | 5. Outreach and funding | Funding contacts carry on with what is live. No wide announcement yet | The two proven courses are what gets shown; teacher channels open after the proof |
-| 7. Curriculum | Pilot unit 11 built to the bottom, then the ELA and science pilots, then the rest of the grade 4 math plans a unit at a time (step 4) | It is step 6: scopes and sequences, sections, then Tracks and the Binder once several courses are full |
-| 9. Recess and Curiosities | Wait with tool building, since they use the same pipeline. Design work (Recess's look, picking first games) can go on | Built in their own small waves beside the course work, never counted in the measure |
+| 7. Curriculum | Top down by docs/PRODUCTION-PATH.md (the pilot-first order here was retired 2026-11-13); the state is in docs/HANDOFF.md | It is step 6: scopes and sequences, sections, then Tracks and the Binder once several courses are full |
+| 9. Recess and Curiosities | Recess has shipped, one game at a time (docs/GAMES.md, "On the shelf now"); Curiosities wait with tool building, since they use the same pipeline | Built in their own small waves beside the course work, never counted in the measure |
 | 8. Beyond School, 10. Languages | Wait | Start only after several courses are full, or, for the first Languages wing, when a partner says yes |
 
 ### Decisions, kept few
@@ -560,14 +560,13 @@ Topics past K-12: ACT/SAT-style practice first, then one trade (electrical, plum
 certification prep such as security fundamentals. Titles never use trademarks or branded material; bar exam prep
 comes last and needs expert review.
 
-## Track 9: Recess, the games shelf (new 2026-11-07, concept stage)
+## Track 9: Recess, the games shelf (new 2026-11-07; live since 2026-11-21)
 
 A treat from the teacher: when kids are fully done, they go to Recess and play. Mentally stimulating games with
 educational undertones that never feel like class. Real games where the thinking is the fun: you get better at the game by getting better at the skill
 (untangle as graph planarity, match-3 as chemical bonding, tower defense as the immune system). Original games only:
 a genre's mechanic is fine, a specific game's name, art or levels never are. Cory is sold on the idea (2026-11-07).
-Named Recess, rules set (2026-11-07): open to all, grade bands shown not enforced, best scores saved on the device with arcade-style initials, no class on the screen. Next: Recess's look, then pick the first games from the research pass (docs/GAMES.md,
-docs/agents/research/GAMES-RESEARCH.md), then spec them like any tool.
+Named Recess, rules set (2026-11-07): open to all, grade bands shown not enforced, best scores saved on the device with arcade-style initials, no class on the screen. Games go live one at a time as each passes Sign-off. Current shelf, order and plan: docs/GAMES.md (research pass: docs/agents/research/GAMES-RESEARCH.md).
 
 ## Track 10: Languages (new 2026-11-07, later stage of site growth)
 

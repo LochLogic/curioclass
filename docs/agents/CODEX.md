@@ -15,7 +15,7 @@ checks, the integrator closes, commits, pushes and deploys. First run: biased-bo
 
 One shared brief, docs/agents/CODEX-BUILD.md, needs no per-tool writing and adds rules against hanging. Cory runs Codex
 interactively in the tool's own worktree, one tool at a time; the tool holds there, uncommitted, until a Claude session
-has the budget for Refine. Polish is the costly round, so leave Codex budget for it.
+has the budget for Refine. The Fix step is the costly round, so leave Codex budget for it.
 
 Since 2026-10-30 Codex makes the images during the build, not after it, so art and layout fit together and later work
 dials back rather than adds; people stay out and go to Gemini. Each tool then gets a cold review in a new Codex chat
@@ -124,7 +124,7 @@ own context:
 `resume` takes no `--add-dir`: without the `writable_roots` override the scratch folder is read-only on every resume
 (network-help-desk's polish fell back to %TEMP% for all its evidence).
 
-Polish prompt shape (biased-bot's, which worked): the review is `tools/<id>/refine.md`; fix every Should fix and every
+Fix prompt shape (biased-bot's, which worked): the review is `tools/<id>/refine.md`; fix every Should fix and every
 Polish accepted item and apply the Settled calls; leave Spec open questions; which engine change (if any) is approved,
 backward compatible, with the family doc updated and the other tools on that engine re-checked; keep voice/lines.json
 equal to allLines(); re-bundle and re-check the Done-when list at the review sizes by driving the tool; write only

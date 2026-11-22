@@ -15,9 +15,9 @@ Continuity: look terms up with `python -X utf8 scripts/ledger.py show {SUBJ} --b
 Item rules (the gates check some; a fresh reader checks the rest):
 - One ask per item. A "mark and say why" stem is two items. Path honesty: a spoken item never has the child write; a child marking or writing on a sheet is a paper item (path blank), a dictation the child writes is not spoken.
 - Shape notes: every exit and end item row keeps its "Shape:" line (in the day block and field 3) saying what it asks the child to do; no shared piece, practice, model or card of its day or the day before shares that shape or case. If a section plan lacks the line, add it. Shared pieces and cards print exactly the items.csv stems for exits; never print a key on a child's card or page (keys go in teacher-only key pieces named in Before class).
-- Exit slips are half slips (`exit: half`) holding about two judged paper items; further judged paper items go on the student page in an "Exit box" (check practice, path blank, judged teacher) with a handbacks row. Never make an item spoken to save slip space.
+- Exit tickets are half slips (`exit: half`) holding about two judged paper items; further judged paper items go on the student page in an "Exit box" (check practice, path blank, judged teacher) with a handbacks row. Never make an item spoken to save slip space.
 - Turn-taking time: count about 45 seconds a child per spoken ask for about 30 children; where the part cannot hold everyone, say who is heard and give a handbacks row that names the day everyone else is reached. Every judged item is handed back on a named day.
-- No shared piece may show the same case as an exit or end item of these days (rule 4); check every page against the items before you finish. Words, cases and pictures held for an exit or end item are not practised before their day in the skill the item tests.
+- No shared piece may show the same case as an exit or end item of these days (rule 4); check every page against the items before you finish. Words, cases and pictures held for an exit or end item are not practiced before their day in the skill the item tests.
 - Every key is right: a reader will answer every item cold after you. Where a gate rule does not fit this grade, do not bend the data: leave that one failure and list it as a template point.
 - Hinges: where a day hinges on a visitor, a local page, an unopened photo or a not-yet-written text, name a fallback in the data so the days do not stall.
 
@@ -27,7 +27,7 @@ Gates: {PLANGATE} (exactly this filter, never unfiltered; read plan.py never), `
 
 Edit only: data/plans/{COURSE}/ (rows for your days and unit), courses/{COURSE}/u{UU}-*/ shared pieces for your sections, the `## Day N` blocks of your sections' plans, and their field 3 exit lines (both only to match the data: a case you rename in items.csv is renamed there too; stale field 3 lines are the commonest later fault). Do not edit the unit plan.
 
-Every fact the section plans mark "source to check" or (S) is yours to settle under the Sources rule above: open the named page (or a better public one), add its sources.csv row with the date read, and reword or cut the fact where the page does not support it.
+Every fact the section plans mark "source to check" or (S) is yours to settle under the Sources rule above: open the named page (or a better public one), add its sources.csv row with the date read, and reword or cut the fact where an opened page does not support it (a page that refused an automated read: keep the row as "browser check" and list it).
 
 Before you finish: check every piece you wrote against your exit and end items (no piece prints or nearly gives away a held answer); give every day that holds an end item an `assess` value in days.csv (`observe` for a record scored later, `mid` or `end` for a check day), correct any section plan `## Day N` number your data overruled, list facts you reworded or cut for want of a source, and say that the unit is ready for the answer-key read.
 

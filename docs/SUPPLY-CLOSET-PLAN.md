@@ -1,7 +1,7 @@
 # Supply Closet: teacher resources (plan)
 
 Status: concepts AGREED by Cory 2026-10-26 (decisions at the bottom). This file is the implementation plan.
-Phase A and Phase C's words (all 586 topics at the time; 762 of 797 today) went LIVE 2026-10-27; deploy builds now use `--library --closet`.
+Phase A and Phase C's words (all 586 topics at the time; 762 of 797 on 2026-10-27; data/modules.csv had 814 topics on 2026-11-22) went LIVE 2026-10-27; deploy builds now use `--library --closet`.
 Phases B, D and E went LIVE 2026-10-27 overnight (status notes under each phase). Phase F, the Teaching map, was built 2026-11-03 (status under Phase F).
 
 The Supply Closet is the teacher-resources side of Curio Class: things to print and put up that go with the tools.
@@ -20,7 +20,7 @@ It is organized like a real supply closet, as shelves:
 
 ## What the site already has (checked 2026-10-26)
 
-- **797 topics** in `data/modules.csv` (586 when this plan was written, with about 10 per subject and grade in 252
+- **797 topics** (2026-10-27; 814 on 2026-11-22) in `data/modules.csv` (586 when this plan was written, with about 10 per subject and grade in 252
   subject-grade rows). Each topic lists
   its standard codes at the **cluster** level (`3.NF.A`, not `3.NF.A.1`): 836 distinct codes across CCSS Math and ELA,
   NGSS, C3, NCAS, CSTA, WIDA, NHES and others.
@@ -441,7 +441,7 @@ Part 2) every tool page links back to its topic's closet items.
 A pass over the four shelves asking "what does a teacher or family still have to do by hand?" Numbers are from the
 2026-10-27 build. Ranked by value for effort; nothing here is started.
 
-**Coverage today.** Word Wall covers 762 of 797 topics (4,413 cards). Anchor charts cover 74 topics, Game Night 104
+**Coverage on 2026-10-27.** Word Wall covers 762 of 797 topics (4,413 cards). Anchor charts cover 74 topics, Game Night 104
 games, Sub Day 76 packets: all three follow the built tools, so a topic without a tool gets words and nothing else.
 1411 cards still print "Draw it" (779 of them in 9-12), waiting for the GPU or for more diagrams.
 

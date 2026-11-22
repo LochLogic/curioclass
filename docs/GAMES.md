@@ -78,8 +78,8 @@ in one). Not yet specced.
 
 ## The first collection (Cory, 2026-11-08)
 
-Five games launch together so the shelf looks full on day one: Go, Chess, Checkers, Sliding blocks (Cargo Hold) and
-Untangle. Each is its own physical world; only the shell is shared. Classic rules, our own art, boards and levels.
+The original plan was five games launching together so the shelf looks full on day one: Go, Chess, Checkers, Sliding blocks (Cargo Hold) and
+Untangle. That plan changed: games went live one at a time as they passed Sign-off (see "On the shelf now" below). Each is its own physical world; only the shell is shared. Classic rules, our own art, boards and levels.
 
 | Game | World | The grab |
 |---|---|---|
@@ -95,10 +95,23 @@ geometry that must sit on exact coordinates; the builder paints a three-frame lo
 and a box cover for the shelf (docs/agents/CODEX-RECESS.md, "Visually amazing").
 
 **Puzzle material, free to use:** the Lichess puzzle database (CC0) for chess puzzles from real games; centuries-old
-public domain Go problem collections; public domain checkers problems. Each spec checks the licence at source.
+public domain Go problem collections; public domain checkers problems. Each spec checks the license at source.
 
 **Computer opponents** cover a real range (Cory, 2026-11-08): every board game (Go, Chess, Checkers and later ones like them) plays full games against the computer at several levels, from gentle beginners up to a genuinely strong top level, all offline in one file. Easy levels stay kind; the top ones give strong kids a real game. Go gets a
 sensitivity check on its roots (China, Japan, Korea) like any cultural tool.
+
+## On the shelf now (2026-11-22)
+
+Live means `tools/<id>/tool.json` exists (and the game's html is built). `data/recess.json` stores a `live` flag, but
+`scripts/build_site.py` recomputes it on every build from the files, so the folder is the truth, not the json.
+
+| Game | State |
+|---|---|
+| Infinite Hike | Live 2026-11-21 (hosted game) |
+| Farlight | Live 2026-11-22 (brought in) |
+| Ripple | Live 2026-11-22 (brought in) |
+| Go, Chess, Checkers, Untangle | Live early, by Cory's Desk card |
+| Cargo Hold (`sliding-blocks`) | Spec only: no build yet |
 
 ## The shell and the shelf
 
@@ -107,12 +120,12 @@ sensitivity check on its roots (China, Japan, Korea) like any cultural tool.
   3-letter initials board (local top 10 per level), the win card, sounds, a confetti burst, a seeded daily puzzle and
   device-only storage. `kit/recess-demo.html` is a test bench that uses every call; the API is in the file's header.
 - **The shelf** is `/recess/` (`site/templates/recess.html`, rows in `data/recess.json`, box art in
-  `site/templates/recess/`). Each game is a box with its grade band as a colored edge; the SVG boxes are placeholders.
+  `site/templates/recess/`). Each game is a box with its grade band as a colored edge; the SVG boxes are placeholders only for games without `art/cover.webp`.
 - **Going live.** `build_site.py` works out each game from `tools/<id>/`: a game is live when `<id>.html` and
   `tool.json` exist (rename `tool.draft.json` at Sign-off). A live game gets a page at `/recess/<id>/` (cover, blurb,
   Play button, the grown-ups' note from `notes.md`) and plays full screen at `/recess/<id>/play/`. `art/cover.webp`
   replaces the placeholder box as soon as it exists. Once one game is live, the shelf joins the nav, the footer, search
-  and the sitemap; until then it stays noindex and out of the nav. `build_site.py --recess` also counts
+  and the sitemap; that is now moot, since games are live and the shelf is in the nav. `build_site.py --recess` also counts
   `tool.draft.json`, for a local preview before Sign-off. Recess games sit on the build board under their own heading.
 
 ## Hosted games
@@ -120,11 +133,11 @@ sensitivity check on its roots (China, Japan, Korea) like any cultural tool.
 A game an outside maker shares with Curio Class, with their written permission, sits on the shelf like our own: same
 folder pattern (`tools/<id>/<id>.html`, `tool.json` with `"recess": true`, `notes.md`), but it keeps its own look and
 does not use the Recess shell. Before it goes in, read the whole file: no outside loads, no tracking, no AI or company
-names in what kids see. Credit it the way the maker asks; record the permission and the licence here and in `tool.json`.
+names in what kids see. Credit it the way the maker asks; record the permission and the license here and in `tool.json`.
 
-| Game | Maker | Permission | Licence | Our changes |
+| Game | Maker | Permission | License | Our changes |
 |---|---|---|---|---|
-| Infinite Hike (`infinite-hike`) | xmetal (github.com/xmetal/infinite-hike, commit 4ec10c4) | Given by the author on Reddit, 2026-11-21, in reply to Cory's request ("grab the latest index.html file from the GitHub and enjoy"). The author needs no citation; a small plain-text mention "Originally written by xmetal", no link, is what was agreed. | No licence file in the repository; used with the author's written permission. Its title font, Barrio, is SIL OFL 1.1, embedded by the author. | Added a meta description; the no-WebGPU message no longer names browser brands; its menu credit "Inspired by Abyssal Garden" stays as plain text, no longer a link off the site (Cory, 2026-11-21). Cover art is a frame rendered from the game itself. Nothing loads from outside; it saves only its detail setting on the device. |
+| Infinite Hike (`infinite-hike`) | xmetal (github.com/xmetal/infinite-hike, commit 4ec10c4) | Given by the author on Reddit, 2026-11-21, in reply to Cory's request ("grab the latest index.html file from the GitHub and enjoy"). The author needs no citation; a small plain-text mention "Originally written by xmetal", no link, is what was agreed. | No license file in the repository; used with the author's written permission. Its title font, Barrio, is SIL OFL 1.1, embedded by the author. | Added a meta description; the no-WebGPU message no longer names browser brands; its menu credit "Inspired by Abyssal Garden" stays as plain text, no longer a link off the site (Cory, 2026-11-21). Cover art is a frame rendered from the game itself. Nothing loads from outside; it saves only its detail setting on the device. |
 
 ## Brought-in games
 
@@ -141,4 +154,4 @@ hosted game. Pages link related tools and games through `pairs` in data/recess.j
 ## Open questions
 
 1. Does a game also appear on a standard's page, or only on the Recess shelf?
-2. Which games go first once Recess has its look?
+2. Which games go first: closed. Games go live one at a time as each passes Sign-off.

@@ -1,7 +1,7 @@
 # Reading Room: public domain and openly licensed story library (plan)
 
 Status: plan AGREED by Cory 2026-10-25 (decisions at the bottom). The 700 stories are curated, downloaded and, since
-2026-10-26, processed into readable text (see "Processing" below). Word help, questions and teacher notes come next.
+2026-10-26, processed into readable text (see "Processing" below). Word help, questions and teacher notes come next (as of 2026-10-26; check docs/BUILD-BOARD.md and docs/HANDOFF.md for the current state).
 
 ## Inventory (2026-10-25)
 

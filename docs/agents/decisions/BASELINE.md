@@ -52,7 +52,7 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     What the welcome told the student must still be reachable (the on-screen hint or Read), and a line the tool needs
     later (a premise, a role) is said again where it is needed, not only in the welcome.
 17. **Curiosities finish on Cory's desk review.** Span and Spire, Pocket Universe and later Curiosities get Cory's
-    final review on the Review Desk; plate wording ("Instruments" to "Curiosities") and any areas to lift are noted
+    final review on the Review Desk; plate wording (the track was renamed from Instruments to Curiosities on 2026-11-05) and any areas to lift are noted
     there and fixed after it, not before. Expect larger design work back on the first two.
 18. **Curiosities ship together.** The home page Curiosities entrance is built after every planned Curiosity is fully
     built. Each Curiosity's voice goes on the Forge as it passes its exit check, added to the end of the running Forge
@@ -118,7 +118,7 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
 29. **Course texts are newer and relatable below grade 9.** Kindergarten to grade 8 anchor on newer texts, mostly
     original Curio Class texts written to a per-grade text spec and read by the expert agent (not a teacher), plus
     recent public-domain government nonfiction; a deeper search for fitting open texts is allowed. Older Reading Room
-    texts appear there only as a paired or optional read. Grades 9 to 12 may anchor on Reading Room texts, and favour
+    texts appear there only as a paired or optional read. Grades 9 to 12 may anchor on Reading Room texts, and favor
     recognizable and recent literature: beyond the texts the standards name, anchors come from the newest
     public-domain works (published 1930 or earlier now, one more year each January), recent open texts, and short
     excerpts of well-known recent books; never a library or paid copy. The Reading Room itself stays an

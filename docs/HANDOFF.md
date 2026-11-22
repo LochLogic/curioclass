@@ -1,59 +1,23 @@
 # Handoff: the current state
 
-Where the work stands and what to do next, as of 2026-11-21. The reasons behind decisions are in the decision log,
+Where the work stands and what to do next, as of 2026-11-22. The reasons behind decisions are in the decision log,
 [agents/decisions/DESK-ANSWERS.md](agents/decisions/DESK-ANSWERS.md). If another page disagrees with this one, find
 which is stale, fix it and say so.
 
 ## State now
 
-- **Done 2026-11-21: L87, the process aligned to COURSE-RUN.** Versioned kit docs/pipeline/kit/ (KIT-VERSION 1, retool log), `scripts/coursegen.py` (queues in COURSE-RUN order with a unit 1 probe and ledger-gate lines), `scripts/ledger.py` gate, seed, recheck and settle (and `add` promotes planned rows), `made_at` in defects.csv, ten new tagged checks across unitplan.py, plan.py and lesson.py, and `scripts/tokens.py`. Docs point at COURSE-RUN. Record docs/reviews/l87-alignment-2026-11-21.md; new-check hits in finished courses and the math Goal maps are later.csv L102. Next: the two-lane run (below).
-- **Done 2026-11-22: the social studies and ELA sample fixes (later.csv L99, L100; Cory 2026-11-21, Desk q-ladder-ss-ela-1).** One fresh fix agent per course applied or rejected every sampled FIRM fault, replaced weak sources or cut the facts, moved keys out of 63 child pieces, applied the ELA grade 1 tale sensitivity read and restored the Maathai Nobel line from the Nobel Prize site. Gates are back to each course's before counts. Record docs/reviews/ladder-ss-ela-fixes-2026-11-22.md. Next: L87 alignment.
-- **Done 2026-11-21: the social studies and ELA ladder run (later.csv L98).** Kindergarten to grade 3, initial dirty pass, straight through: ledgers (social-studies.csv, ela.csv), section plans, plan data and 1,056 days (social studies K 64, grades 1 and 2 96, grade 3 160; ELA 160 a grade), then run-end fixes from an outside reader, a capstone cross-grade continuity pass (social studies 7 of 257 claims drifted, ELA 29 of 302, all fixed) and an 80-day read-only sample. Report docs/reviews/ladder-ss-ela-report-2026-11-19.md. Pass marks: FIRM 1.19 a day (miss; science 1.4), wrong keys down by a third (met), review not said still common (miss), 79k tokens a day (miss; target 60k). Open: L99 must-fix before live (ELA grade 1 tale sensitivity, 74 key-line pieces, the Maathai line), L100 Desk card on fixing the 95 sample FIRM findings now or at L87, L101 watch items and template points. Next: L87 alignment, now with ledger-gated scheduling (DESK-ANSWERS 2026-11-21).
-- **2026-11-20: after-core stage 1 reads done** (side work). Library, ELD, career education and world languages (still shelved, pre-work only) were each read cold and fixed (docs/reviews/prework-*-read-2026-11-20.md); health and PE cite the national dose figures; per-subject calibration added to docs/pipeline/CALIBRATION.md. Cory answered q-prework-open-1 and -2 on 2026-11-21, applied (DESK-ANSWERS.md); catalogue edits held for a step boundary of the main run (later.csv L90). Every after-core subject still owes the second-model read (later.csv L88, from 2026-11-23) and its calibration run; progressions for library, ELD and career wait on those calls and gate support in scripts/progression.py (its codes() splits ids at the first space).
-- **2026-11-20: after-core pre-work answers applied** (side work, Desk q-prework-arts-1, q-prework-health-pe-1 and -2, q-prework-cs-1; DESK-ANSWERS.md). Health, PE and computer science pages and progressions carry Cory's calls; arts own-words file is next (later.csv L82 to L85). Open on Desk q-prework-open-1: the health and PE approach yes, our own coding editor, and the SEL reader's calls. SEL pre-work continues (read: docs/reviews/prework-sel-read-2026-11-19.md).
+- **Done 2026-11-22: science K to 3 outside-reader fixes.** The Gemini findings were verified and fixed in all four courses (commits 06044df12, a217321fe, cebb837f9; ledgers docs/reviews/gemini-fixes-science-<course>-2026-11-22.md); gates at each course's baseline. Science K to 3 stays PAUSED for Cory (later.csv L81).
+- **Done 2026-11-22: all 65 progression nodes.** SEL, ELD, library, career education and Spanish joined the earlier subjects (data/progressions/, flow-status.csv). World languages is Spanish only; ASL waits on the required review (later.csv L93).
+- **Done 2026-11-21 to 22: the Recess games.** Infinite Hike, Farlight and Ripple (the renamed music maker) are live, Go, Chess, Checkers and Untangle went live early (Desk card recess-live-early), Cargo Hold is spec only. Which are live is in [GAMES.md](GAMES.md), "On the shelf now" (the `live` flag in data/recess.json is not used).
+- **Done 2026-11-21: L87, the process aligned to COURSE-RUN.** Versioned kit docs/pipeline/kit/ (KIT-VERSION 1; 2 since the 2026-11-22 wording retool, RETOOL.md), `scripts/coursegen.py` (queues in COURSE-RUN order with a unit 1 probe and ledger-gate lines), `scripts/ledger.py` gate, seed, recheck and settle (and `add` promotes planned rows), `made_at` in defects.csv, ten new tagged checks across unitplan.py, plan.py and lesson.py, and `scripts/tokens.py`. Docs point at COURSE-RUN. Record docs/reviews/l87-alignment-2026-11-21.md; new-check hits in finished courses and the math Goal maps are later.csv L102. Next: the two-lane run (below).
+- **Done 2026-11-22: the social studies and ELA sample fixes (later.csv L99, L100; Cory 2026-11-21, Desk q-ladder-ss-ela-1).** One fresh fix agent per course applied or rejected every sampled FIRM fault, replaced weak sources or cut the facts, moved keys out of 63 child pieces, applied the ELA grade 1 tale sensitivity read and restored the Maathai Nobel line from the Nobel Prize site. Gates are back to each course's before counts. Record docs/reviews/ladder-ss-ela-fixes-2026-11-22.md. Next: the two-lane run (below).
+- **Done 2026-11-21: the social studies and ELA ladder run (later.csv L98).** Kindergarten to grade 3, initial dirty pass, straight through: ledgers (social-studies.csv, ela.csv), section plans, plan data and 1,056 days (social studies K 64, grades 1 and 2 96, grade 3 160; ELA 160 a grade), then run-end fixes from an outside reader, a capstone cross-grade continuity pass (social studies 7 of 257 claims drifted, ELA 29 of 302, all fixed) and an 80-day read-only sample. Report docs/reviews/ladder-ss-ela-report-2026-11-19.md. Pass marks: FIRM 1.19 a day (miss; science 1.4), wrong keys down by a third (met), review not said still common (miss), 79k tokens a day (miss; target 60k). L99 and L100 were done 2026-11-22 (above); L101 (watch items and template points, to settle before any course goes live) is open.
+- **After-core subjects (side work, 2026-11-20 to 22):** stage 1 and the progression are done for every after-core subject (health, PE, arts, computer science, SEL, ELD, library, career education, Spanish): each was read cold and by a second model, fixed, and Cory's calls applied (docs/reviews/prework-*, progression-*; DESK-ANSWERS.md). World languages is Spanish only and still shelved; ASL waits on the required review (later.csv L93). Still owed: the catalogue retag (later.csv L90 part 2, with L95), a person to read the health kindergarten body names (L89), the library band-file comparison (L103) and the can-do note (L92). Their frames, scopes and later stages wait for their course runs (COURSE-RUN).
 
 - **Done 2026-11-19: the science ladder test (later.csv L81).** Kindergarten to grade 3, initial dirty pass: ledger (scripts/ledger.py, data/plans/ledgers/science.csv), section plans, plan data and 328 days (K 64, grade 1 68, grade 2 76, grade 3 120), all committed, then a read-only sample of 40 days. Result: 1.4 FIRM faults a day, nearly none gate-visible; fill cost about 72k tokens a day. Report: docs/reviews/ladder-science-report-2026-11-19.md. Cory picked: fix all that can be fixed, then pause. Fixed 2026-11-19 (gates, briefs, every sample FIRM finding, all 328 days at 0 lesson.py failures): docs/reviews/ladder-science-fixes-2026-11-19.md. PAUSED for Cory; Refine 1 and grades past 3 wait. Day-stage jobs come from _scratch/ladder/gen.py. Tokens: docs/reviews/ladder-science-tokens-2026-11-18.csv.
 
-- **Done 2026-11-18: the confirm probe (L78), first for ELA and for middle school** (report
-  docs/reviews/probe-confirm-2026-11-18.md). After L75 (hand-backs in the day skeleton, the plan.py slot gate, sources
-  checked once), L76 with L74 (rules 1 to 10, per-band DEFAULTS.md from scripts/defaults.py, unit edits): ELA grade 11
-  days 1 to 5 and science grade 7 days 1 to 6, lean process, Sonnet agents. Result: Off on plan share (46%, 50%;
-  line 35%), Watch on units (3 of 13 other units firm), On for template. Skeletons ran with no STOP and no unslotted
-  hand-back; the rule kinds mostly did not return; what is left is item keys in unit data that two reads still
-  catch, plus content notes and reading pace in ELA. Rules round done (section-write rules 11 to 14 and science lines,
-  plan-data Keys paragraph, DEFAULTS regenerated, measure 2 unit fixes). Desk card q-probe-confirm-1
-  (later.csv L79) was answered 2026-11-18: superseded by the science grade ladder (L81). Lead: L80 (two page
-  gates). 2.22M tokens, 195k and 174k a finished day.
-- **Done 2026-11-18: the fourth probe, first for science and math** (Cory 2026-11-18; report
-  docs/reviews/probe-science-math-2026-11-18.md). Science grade 5 and Algebra II: section plans 1.1 and 1.2, plan
-  data and pieces for section 1.1, days 1 to 4 and 1 to 5, read (answer key, one expert read per course) and fixed by
-  Claude Sonnet agents with the lean process (L69 test). Result: Off on plan share (50%, 42%) and units changed (6 of
-  11 other units), On for template; the social studies, science and math probe nodes are closed. **Skeletons:** the
-  machinery runs unchanged across three subjects and bands; what it runs on is not ready (the same running faults in
-  every probe). Shortest path to ready: L75 (gate and skeleton session), L76 with L74 (rules, per-band DEFAULTS,
-  small unit edits), then L78 (confirm probe with ELA and middle school). Cory's items: L71 (units.csv rows, now
-  eleven), L77 (soil trial, source A1). Token ledger in docs/reviews/probe-science-math-tokens-2026-11-18.csv.
-- **Done 2026-11-18: the third probe, kindergarten social studies** (Cory 2026-11-17; report
-  docs/reviews/probe-social-studies-3-2026-11-18.md). Section plans for units 1 to 3 (u01-1 to u03-4, now gated by
-  unitplan.py), docs/courses/social-studies-kindergarten/DEFAULTS.md, plan data and shared pieces (our own
-  read-alouds as `piece: story`), and days 1 to 19, all read (section lens, answer key, expert per unit, sensitivity)
-  and fixed by Claude Sonnet agents (Codex out of tokens). Result: Off on plan share (51%) and units changed (68% of
-  19 early-grade units), On for template (new `spoken` path, per-minute prose cap on ranged frames, short-day At
-  home). Next: later.csv L74 (K to 2 rules, a correction pass, probe again), L72 (kindergarten page rendering), L73
-  (small gates), L71 (Cory: seven units.csv rows; until then plan.py and lesson.py show seven known failures).
-  Example section plan u01-1 signed off by Cory 2026-11-18. Token ledger for L69 in the report.
-- **Done 2026-11-17: the Claude second lens pass** (Codex had hit its limit). Claude Sonnet agents ran the unit loop
-  with docs/pipeline/briefs/unit-lens-claude.md (stage `read`, then stage `fix`) over the 186 jobs in
-  docs/pipeline/claude-jobs.txt; reports are docs/reviews/claude-lens-*-2026-11-17.md and claude-fix-*-2026-11-17.md.
-  Every course in the list is fixed, gated and pushed; science 8 was held over the cap until the caps were raised to
-  1,600 and 2,300 (2026-11-17, DESK-ANSWERS). `stash@{0}` (redundant, from a 5:35pm autostash race) and
-  `stash@{1}` (2026-10-27, another session's) are left in place; never `git stash` here.
-  **Pausing point for baseline 2 (2026-11-17, Cory).** Since the pass: the caps are 1,600 and 2,300; Desk answers
-  q-lens-pass-1 and q-electives-frames-1 are applied (docs/reviews/desk-answers-*-2026-11-17.md, elective base texts
-  now in the source store); later.csv L64 (Fluency mislabel: one rule in GLOSSARY "teaching day", a sequence.py gate,
-  44 days relabelled, docs/reviews/fluency-sweep-2026-11-17.md), L65 and L66 are done. Everything is committed and
-  every gate passes. Carried into baseline 2: docs/reviews/lead-list-lens-pass-2026-11-17.md (934 LEAD items and 489
-  findings rejected for the old cap, by unit) and the Fluency sweep's "left for the lead" list.
+- **Probes, 2026-11-15 to 18 (history; each is closed).** Social studies US History I and World History I (docs/reviews/probe-social-studies-2026-11-15.md, probe-social-studies-2-2026-11-15.md); kindergarten (probe-social-studies-3-2026-11-18.md); science grade 5 and Algebra II (probe-science-math-2026-11-18.md); ELA grade 11 and science grade 7 (probe-confirm-2026-11-18.md). Their rule and gate work fed the kit (L87). Cory's seven units.csv rows are later.csv L71.
+- **Done 2026-11-17: the Claude second lens pass** over the 186 jobs in docs/pipeline/claude-jobs.txt (reports docs/reviews/claude-lens-*-2026-11-17.md and claude-fix-*; carried list docs/reviews/lead-list-lens-pass-2026-11-17.md). Never `git stash` here; two old stashes are left in place.
 
 The plan is [PRODUCTION-PATH.md](PRODUCTION-PATH.md): the four core subjects are planned top down, one layer at a
 time, before more days are written.
@@ -64,23 +28,8 @@ time, before more days are written.
 - **Scopes and sequences** (steps 3 and 5): all 52 written, read by the expert and by Codex, fixed and through a
   structure pass (docs/courses/<course>/scope-and-sequence.md, data/plans/<course>/days.csv). The scope gate prints
   no rule 2 notes (social studies fixed 2026-11-15, later.csv L28).
-- **Unit plans**: social studies has 138, written, read twice, fixed and through a structure pass. Science, ELA and
-  math have skeletons for all 259 units (scripts/unit_skeleton.py, spot-checked); their judgement fields are not
-  filled yet.
-- **Social studies probe** (2026-11-15, docs/reviews/probe-social-studies-2026-11-15.md): Off. US History I days 78
-  to 82 written and read the full way; plan share 60%, units changed 88% (mostly error letters holding two
-  misconceptions, written by Codex in 119 units). Corrected 2026-11-15: all 138 units by Codex
-  (docs/pipeline/briefs/unit-correct.md, reports docs/reviews/codex-write-correct-*), the rules in UNIT-PLAN.md, the
-  plan-codex briefs and unitplan.py, sources "verified or none", and days 78 to 82 fixed with a Native nations read
-  (docs/reviews/sensitivity-native-u05-2-2026-11-15.md). **Second probe** (World History I 3.4, days 42 to 46,
-  docs/reviews/probe-social-studies-2-2026-11-15.md): Off again (plan share 60%, units 42%, one required table
-  added to UNIT-PLAN field 7), but only 6 of 147 findings needed a unit plan; most sit in keys, samples and source
-  sheets written at plan-data. Next (later.csv L56): gates for the repeated faults, a second correction pass run to
-  the gates, an answer-key read after plan-data, a third probe. Whether science, ELA and math units wait is Desk card
-  q-probe-ss-2.
-- **Section plans and days**: only the two probe sections (US History I 5.2, days 78 to 82; World History I 3.4, days 42 to 46). A day skeleton draft exists early on purpose
-  (scripts/day_skeleton.py, docs/pipeline/DAY-SKELETON.md, later.csv L31). Grade 4 math's older plans and 48 days,
-  made under the retired pilot plan, are held for math's units in step 5 (PRODUCTION-PATH section 4; rework list in L13).
+- **Unit plans**: all 259 science, ELA and math units have skeletons (scripts/unit_skeleton.py); social studies has 138 plans, read twice, fixed and through a structure pass. Judgement fields are filled at each course's run, and the ladder grades (K to 3) are done (math Goal maps: later.csv L102).
+- **Section plans and days**: the ladder runs wrote section plans and days for science K to 3 (328 days) and social studies and ELA K to 3 (1,056 days), all fixed and gated (above); the probe sections (US History I 5.2, World History I 3.4, science grade 5, Algebra II, ELA grade 11, science grade 7) have section plans only or a few days. Grade 4 math's older plans and 48 days, made under the retired pilot plan, are held for math's units (PRODUCTION-PATH; rework list in L13).
 - **The site**: not launched. scripts/course_pages.py builds hidden course and unit pages for all 52 core courses
   (`SHOWN = False`); the design is [SITE-DESIGN.md](SITE-DESIGN.md). Day pages will be one source file per day,
   published as one page per section with each day as an anchor (settled 2026-11-15, see DESK-ANSWERS).
@@ -88,7 +37,7 @@ time, before more days are written.
   coverage (BASELINE rule 26).
 
 By course: [COURSES-STATUS.md](COURSES-STATUS.md) (generated; never edit by hand). By step: the Desk Dashboard's
-plan flow, drawn as the seven stages of [COURSE-RUN.md](COURSE-RUN.md) for all 105 active courses (core bright,
+plan flow, drawn as the seven stages of [COURSE-RUN.md](COURSE-RUN.md) for all 118 active courses (core bright,
 core electives and other subjects faint), node states in data/plans/flow-status.csv. Parked work: data/plans/later.csv.
 
 ## Next steps, in order
@@ -127,8 +76,8 @@ commits only its own files and never edits in another session's folder. A backgr
 
 ## Standing facts
 
-- 120 courses (118 active, 2 world languages shelved); 52 core courses in the four core subjects plus 6 core
-  electives. World languages stay in the course counts as a reminder. Every course is finished to the adoption bar;
+- 120 courses (118 active, 2 world languages shelved); 58 in the four core subjects (52 flagged core plus 6
+  electives), and 8 health and PE courses flagged core, so 60 flagged core in all. World languages stay in the course counts as a reminder. Every course is finished to the adoption bar;
   never call that unrealistic.
 - The blind rule: writers and first readers never open a subject's earlier planning (each brief lists the paths),
   so old work cannot steer the new layers; a reconcile step then settles each difference by a named source

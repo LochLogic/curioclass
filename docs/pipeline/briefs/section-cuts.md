@@ -13,7 +13,7 @@ unit plan at `S:\CurioClass\docs\courses\<course>\sNN.md` (NN = two-digit unit n
 repository, and never write to it.
 
 Day kinds: Understanding (new idea taught), Fluency, Application, Check (assessment), Respond (re-teach and extend after a
-check). `assess` = end (end-of-unit assessment), mid (mid-unit check), readiness, observe, course (course-level check).
+check). `assess` = end (end-of-unit assessment), mid (mid-unit assessment), readiness, observe, course (course-level check).
 
 ## What makes a good cut
 
@@ -21,7 +21,7 @@ check). `assess` = end (end-of-unit assessment), mid (mid-unit check), readiness
    teacher could open with one page. Cut where the goal shifts, not to hit a number.
 2. 3 to 5 days is the sweet spot; 1 to 6 is allowed. A 2-day section is fine when the content really is separate.
 3. No new teaching (an Understanding day) after a mid check (assess `mid`) inside the same section: the mid check
-   and any Respond or Check days that follow it close their section. The end-of-unit check and its Respond day sit in
+   and any Respond or Check days that follow it close their section. The end-of-unit assessment and its Respond day sit in
    the last section of the unit; in ELA, end parts scored across the closing weeks may sit in the last two or three
    sections.
 4. Never make a section of only Respond days.

@@ -19,7 +19,7 @@ vocabulary cards in English and Spanish, and a family game for home.
 
 ## Where it stands (live since October 2026)
 
-- **83 tools live,** from a kindergarten computer builder to a high school fact-check lab. Open any of them now.
+- **83 tools and 7 Recess games live,** from a kindergarten computer builder to a high school fact-check lab. Open any of them now.
 - **800 tools planned** across every grade and subject. The 717 still to build are on the site already, as sketches
   on each topic page, so you can see exactly what your support finishes.
 - **Supply Closet live:** 4,400+ vocabulary cards in English and Spanish, 104 family games, anchor charts and posters.

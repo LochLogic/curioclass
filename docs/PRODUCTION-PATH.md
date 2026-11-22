@@ -1,4 +1,4 @@
-# How a course gets made: the path as it stands, last changed 2026-11-15
+# How a course gets made: the path as it stands, last changed 2026-11-22
 
 The path is judged against the end goal, FOUNDATION 1 (a teacher can run any course from the first day to the last,
 free, and it would stand up to a state adoption review), and the bar (quality over speed and over saved work).
@@ -275,7 +275,7 @@ in for the separate cheap check of a fix pass. REVIEW-CADENCE step 3 is unchange
 only when no process finding repeats from an earlier unit (19 of 26 repeated in unit 4) and expert-only findings are
 about one a day; the expert agent still reads a sample. Plan as if the expert read stays on every day: about 650,000
 tokens a fully read day (an estimate including the set read), which across about 13,300 days (the 105 active
-courses) is about 8.6 billion, a floor. It leaves out unit-level pieces, planning, re-reads and tooling (every unit
+courses counted on 2026-11-15; 118 are active now, so this is a floor) is about 8.6 billion, a floor. It leaves out unit-level pieces, planning, re-reads and tooling (every unit
 so far has needed a lesson.py pass of 25,000 to 264,000 tokens, a recurring unit cost). Most of those day counts are
 assumed until each course's frame sets them.
 

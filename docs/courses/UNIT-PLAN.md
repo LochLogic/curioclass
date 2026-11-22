@@ -108,7 +108,7 @@ sets is given).
    studies a repair is the warm-up and, where needed, a small group during the next pairs or alone part; it never
    takes minutes from the next day's worked example (expert read, US History I day 80, 2026-11-15).
 7. **Shared. "Many" means more than a third of the class,** everywhere in a unit plan or a section plan.
-8. **Shared. No tool without a named job, and one job for each use.** The job is one of: show why, practise
+8. **Shared. No tool without a named job, and one job for each use.** The job is one of: show why, practice
    with feedback, check unaided. A tool may be used more than once; each use has one job. A day row names the
    part of the tool used, its job and its minutes, with at most two parts a day. A day with no tool says
    "None".
@@ -213,13 +213,13 @@ honestly (minutes a student times the class).
 (rule 10) and a link to the course's TOOL-ASKS.md; the supplies list. Not here: tool gaps or asks of a spec.
 (Science adds materials tiers and safety.)
 
-**9. Family note.** *Shared.* Once for the unit, one or two sentences.
+**9. Family note.** *Shared.* Once for the unit. The plan field is a summary of one or two sentences; the note itself (150 words at most each, English and Spanish) is family.md, written from it (LESSON-DAY.md).
 
 **10. Sources and what is still to make.** *Shared.* The standards file; the progression page; the specs
-read; any open course read to learn, with its licence and what was read; what was not seen; what is still to
+read; any open course read to learn, with its license and what was read; what was not seen; what is still to
 make. **Verified or none:** a text the days will quote is named with where its words were checked (a free
 primary-text archive, a park service or other government page, the publisher's own page); a passage that could not
-be checked is not planned. A paraphrase of a book we have not read is never a source. **Paid-only texts:** a text
+be checked is not planned (a page that refused an automated read is kept as "browser check" and listed; see the Sources rule in common.txt). A paraphrase of a book we have not read is never a source. **Paid-only texts:** a text
 found only in paid editions (a people's own chronicle, epic or inscription) may be named and described, never
 quoted, when a free secondary source we have read (a museum, UNESCO, a university or a scholar's free article) says
 what it holds; the day credits what it says to that secondary source, whose link goes in sources.csv.
@@ -264,7 +264,7 @@ look-fors the teacher judges it by. A procedure section may have one short task 
 rubric for a short section. (A teacher-judged check item needs look-fors and two sample answers; those sit on
 the unit plan.)
 
-**8. Practice that returns.** *Shared:* what earlier work is practised on each day. *Math fills:* the warm-up;
+**8. Practice that returns.** *Shared:* what earlier work is practiced on each day. *Math fills:* the warm-up;
 the fluency target, or "none; the standard sets none"; for a fluency section, how fluency is built with no
 timer. (In ELA "fluency" means reading fluency.)
 

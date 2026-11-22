@@ -17,7 +17,7 @@
    first. Where an earlier day's file names one of your pieces with "when it exists:", remove those words.
    Source sheets: every quoted passage is copied from a checked free source (a primary-text archive, a park service
    or other government page) and its link goes in the course's sources.csv; a passage you cannot check is cut, not
-   left as a placeholder (`[to check ...]` fails lesson.py). A paraphrase of a book we cannot read is cut (settled
+   left as a placeholder (`[to check ...]` fails lesson.py), except a page that refused an automated read: keep it as "browser check" and list it (Sources rule in common.txt). A paraphrase of a book we cannot read is cut (settled
    2026-11-15: free sources, no book purchases). A text found only in paid editions may be named and described,
    never quoted, from a free secondary source that says what it holds, credited to that source (UNIT-PLAN field 10).
    Keys (the faults two reads still found after the answer-key read, L78): a key quotes the text exactly and takes
@@ -26,8 +26,8 @@
    not the solid itself); an exit or check is not the worked example's structure in new numbers; a shared piece is
    the sheet itself (boxes and lines to write in), never a description of it or a note to the teacher.
 4. Sources, once for the course (later.csv L75): for every sources.csv row a day of this unit will use, open the
-   link, read its licence or terms, fill `rights` and set `status` to `checked: <date>` (or `written: <path>` for a
-   piece we make). A row you cannot check is cut, with its passage. The day skeleton STOPs on any source left
+   link, read its license or terms, fill `rights` and set `status` to `checked: <date>` (or `written: <path>` for a
+   piece we make). A row you cannot check is cut, with its passage, unless its page refused an automated read: keep the row as "browser check" and list it (Sources rule in common.txt). The day skeleton STOPs on any source left
    unchecked, as a backstop only: day writers never set a status themselves.
 
 5. Checks before the days lean on the data (science ladder report, 2026-11-19: wrong keys were one firm fault in

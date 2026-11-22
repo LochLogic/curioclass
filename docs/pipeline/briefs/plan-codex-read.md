@@ -32,7 +32,7 @@ findings most serious first (serious, moderate, minor), each with what is wrong,
 (file, field, old, new where short); then "For the fixer" (exact edits, in order) and "For the structure pass"
 (changes to scripts, briefs, data or the template). Plain full sentences, no em dashes, "Curio Class" in full.
 
-Blind rule: do not open docs/courses/ela-6/, docs/courses/ela-6-spine.md, docs/courses/math-4/,
-docs/courses/math-4-spine.md, docs/courses/math-3-5-progression*.md, docs/courses/science-4-spine.md,
-docs/courses/NEXT-SPINES.md, data/plans/math-4/, data/units.csv, courses/math-4/, im-g4-draft-map.csv, or
-docs/reviews/*reconcile*, *math-4*, *ela-6*, science-4-spine*.
+Blind rule: do not open docs/courses/ela-6/, docs/courses/ela-6-spine.md, docs/courses/science-4-spine.md,
+docs/courses/NEXT-SPINES.md, data/units.csv, docs/reviews/*reconcile*, *ela-6*, science-4-spine*. The math blind rule
+is lifted for future course-run work (Cory, DESK-ANSWERS 2026-11-20): a math run may read the old grade 4 math files and reconcile
+with them; job lists made before 2026-11-20 keep their old notes.

@@ -8,7 +8,7 @@ before quoting it to a funder. Lines marked **(Cory)** need Cory's real numbers.
 | | Count |
 |---|---|
 | Tool concepts in the catalog | 800 |
-| Live | 83 |
+| Live | 83 tools, plus 7 Recess games |
 | Still to build | 717 (249 already specced) |
 | Also planned | Reading Room (about 700 public domain stories), Supply Closet (diagrams, charts per topic, topic kit, the Map), Spanish review, ASL collection |
 
