@@ -41,3 +41,14 @@ E1, E2, E5, E7, E9 and E11 key the right answer and their steps accept the fair 
 ## Could not settle
 
 Whether the jay set keeps the hook-and-loop pieces (decides finding 1's fix). Lead's call: item-level, no grade change.
+
+## Fixes applied (2026-11-22)
+
+- 1. s06-E6: applied; any working attachment is credited.
+- 2. s06-E4: applied; key and steps agree; the wrongs row is one that can occur.
+- 3. s06-E10: applied; the key credits any limit of paper.
+- 4. s06-E3: applied; "seed" is not required of the child.
+- 5. s06-E11: applied; now scored, one arrow from the start dot to where the pollen is left; retrieval-card-day63 and its key match.
+- 6. s06-E12: applied; shapes are outlined, not only colored.
+- 7. s06-E8: applied; it is now unscored practice.
+- 8. Print note: applied; day 63 side 2 says "Show these to the teacher; nothing to write."

@@ -26,7 +26,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Page 3
 
-**Picture:** The same slope in the rain. Grey slanting lines show rain. A thin stream of water runs down the middle of the path. The grass on both sides is wet and still stands.
+**Picture:** The same slope in the rain. Gray slanting lines show rain. A thin stream of water runs down the middle of the path. The grass on both sides is wet and still stands.
 
 **Read:** It is raining. Water runs down the path. The grass beside it stays.
 

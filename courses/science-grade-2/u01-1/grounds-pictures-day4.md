@@ -25,6 +25,6 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Page 3
 
-**Picture:** A corner with a garden bed raised on a bank. A stream of water runs from the bed along a shallow groove into the grass. A girl in a wheelchair watches from the paved path.
+**Picture:** A corner with a garden bed raised on a bank. A stream of water runs from the bed along a shallow groove into the grass. A girl in a wheelchair holds a clipboard at the edge of the paved path and points her pencil at the stream; she is part of the group looking.
 
 **Read:** Water ran from the garden bed along the groove.

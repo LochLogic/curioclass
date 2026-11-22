@@ -18,7 +18,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## View 2: from above
 
-**Picture:** The same bay seen from above. The valley is a narrow lighter band between two round hill shapes. The river bends along the band and widens where it meets the ocean. Caption below: Rainwater runs along the valley toward the river mouth.
+**Picture:** The same bay seen from above. The valley is a narrow lighter band between two round hill shapes. The river bends along the band and widens where it meets the ocean. Caption below: Rain falls on both hills.
 
 ## Directions
 

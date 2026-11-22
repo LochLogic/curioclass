@@ -70,3 +70,14 @@ Steps: "pours once at the top of the hill" while d002 has each group pour twice;
 ## Could not settle
 
 Nothing that needs Cory. Finding 4 (keep the narrowing or restore the pattern) is an item-level choice for the lead.
+
+## Fixes applied (2026-11-22)
+
+- 1. s01-E5: applied; the stem asks where the rainwater goes, by arrow or words; key, wrongs and the day 9 packet match.
+- 2. s01-E1, E2: applied; the packet notes say the headings and water labels are printed.
+- 3. s01-K1-1: applied; pictures 2 and 3 show the high ground and the drain cover.
+- 4. s01-E3: applied; it scores the pattern (solid water higher or lower than liquid); the day 8 plan, key and packet match.
+- 5. s01-E6: applied; the key separates a generic answer from the keyed one.
+- 6. s01-K2-1: applied; pour count and key box match the day and sheet.
+- 7. Spelling: applied; "recognizable" on d009.
+- 8. Day 10 retry packet against the unit plan: left; outside the items, the unit plan line is the lead's to reconcile.

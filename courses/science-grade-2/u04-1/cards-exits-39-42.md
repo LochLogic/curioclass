@@ -12,9 +12,9 @@ Each exit has picture cards every child marks, and a spoken stem read once. Draw
 
 ## Day 39 exit card: five toy train cars
 
-**Picture:** Two cards. Card 1: five toy train cars in a straight row, each a different simple shape, and the same five cars joined in a curving line, with an arrow between. Card 2: a slice of bread and the same slice toasted dark, with an arrow between.
-**Say:** "How do you know which change can go back to how it was?"
-**Key (teacher):** Card 1, the train cars, with the words that they are the same five cars and can be moved back into a row; the toast does not go back. Saying the train needed new cars, so it changed for good, is error A.
+**Picture:** One card: five toy train cars in a straight row, each a different simple shape, and the same five cars joined in a curving line, with an arrow between.
+**Say:** "Say what tells you the curving line is made of the same pieces."
+**Key (teacher):** The same five cars, each with its own shape, are in both pictures, and nothing is added. Saying the curve needed new cars is error A.
 
 ## Day 40 exit card: a bridge, a gate and a roof
 
@@ -23,17 +23,17 @@ Each exit has picture cards every child marks, and a spoken stem read once. Draw
 **Key (teacher):** Piece d, the one piece the gate does not show. Any other piece, or a new piece, is error A.
 
 **Picture, part b:** A tall thin post and a wide flat plank side by side, and a toy doghouse with no roof drawn behind them.
-**Say (part b):** "Pip is building a toy doghouse and needs a roof that covers the whole top. Touch the piece Pip should use."
+**Say (part b):** "Pip is building a toy doghouse and needs a roof that covers the whole top. Tell Pip which piece suits the roof by its shape."
 **Key (teacher):** The wide flat plank, because its wide flat shape covers the top. Any piece, or the tall thin post, is error F.
 
 ## Day 41 exit card: two bookends
 
-**Picture:** Two cards. Card 1: a stack of toy books with a stiff card strip folded into an L, standing straight beside it. Card 2: the same books with a floppy paper strip folded into an L, drooping, the books leaning. Under them, two circles: yes, no.
-**Say:** "Pip says the floppy strip holds the books up as well as the stiff one. Is Pip right? Point to yes or no."
+**Picture:** Two cards. Card 1: a stack of toy books with a stiff card strip folded into an L, standing straight beside it. Card 2: the same books with a floppy paper strip folded into an L, drooping, the books leaning. 
+**Say:** "Pip says the floppy strip holds the books up as well as the stiff one. Is Pip right? Say what in the pictures tells you."
 **Key (teacher):** No, with the words that the stiff card keeps its shape and the paper droops. Yes is error E.
 
 ## Day 42 exit cards: a rain bucket
 
-**Picture:** Three cards laid left to right and labelled first, then, last. First: a rain bucket with liquid water, marked with a line at the top of the water. Then: the same bucket with the water frozen solid. Last: the same bucket with liquid water again, a wavy line for warm.
+**Picture:** Three cards laid left to right and labeled first, then, last. First: a rain bucket with liquid water, marked with a line at the top of the water. Then: the same bucket with the water frozen solid. Last: the same bucket with liquid water again, a wavy line for warm.
 **Say:** "Touch the two pictures that show the water went back."
 **Key (teacher):** The first and the last, either liquid picture at either end, with the words that the water was warmed and looked at again. The first two is error D.

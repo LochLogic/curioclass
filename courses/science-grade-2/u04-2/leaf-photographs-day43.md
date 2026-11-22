@@ -12,8 +12,8 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 A lettuce leaf is frozen overnight in a sealed bag by a grown-up and then left to thaw. A second leaf is never frozen. Three photograph stand-ins in a row, the first two beside the sealed leaves.
 
-**Picture 1, labelled before:** a green lettuce leaf, flat and firm, standing up a little on a plate.
-**Picture 2, labelled frozen:** the leaf in a sealed bag in a freezer, white with frost.
-**Picture 3, labelled thawed:** the same leaf on the plate after it warmed, limp and dark green, lying flat. Beside it a second leaf that was never frozen, firm and bright.
+**Picture 1, labeled before:** a green lettuce leaf, flat and firm, standing up a little on a plate.
+**Picture 2, labeled frozen:** the leaf in a sealed bag in a freezer, white with frost.
+**Picture 3, labeled thawed:** the same leaf on the plate after it warmed, limp and dark green, lying flat. Beside it a second leaf that was never frozen, firm and bright.
 
 **Say:** "Look at all three. What did the cold do to the leaf? We warmed it back: is it firm again?"

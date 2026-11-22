@@ -26,4 +26,4 @@ Two matched, equally watered corn seedlings, one covered and one lit, on three c
 **Day 1:** both 2 centimeters, two small green leaves.
 **Day 6:** covered 8 centimeters, pale, two thin leaves. Lit 7 centimeters, green, three leaves.
 **Day 12:** covered 19 centimeters, pale, leaning, two thin leaves. Lit 16 centimeters, green, firm, four leaves.
-**Say:** "Mark colour, leaves and stem with the symbols. Which is taller? Which looks healthier? Say why."
+**Say:** "Mark color, leaves and stem with the symbols. Which is taller? Which looks healthier? Say why."

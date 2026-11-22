@@ -54,3 +54,13 @@ E1 to E6 test 2-PS1-1 (plan a test, carry it out, record properties, sort, name 
 ## Could not settle
 
 Whether a bamboo-knowledge answer (E15 alternative above) should earn the point is a call on the item's intent. I decided to accept it as item-level.
+
+## Fixes applied (2026-11-22)
+
+- 1. s03-E15: applied; the key credits testing the property before choosing, in the child's words; day 37 links the natural material.
+- 2. s03-E5: applied; record-day36 draws the ice and the bath, not only a caption.
+- 3. s03-E6: applied; any true shared property is credited, not only chart rows.
+- 4. s03-E3: applied; the answer chart uses one yes or no scale.
+- 5. s03-E1: applied; rubbing to feel counts as a gentle test.
+- 6. s03-E4: applied; the wrong sample says "light in weight".
+- Printing findings: applied (checklist-day36, answer-chart-day37).

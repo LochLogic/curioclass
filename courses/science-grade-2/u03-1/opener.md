@@ -18,8 +18,8 @@ Days 28 to 31 open with five minutes of return and repair of the last exit, one 
 
 ## The ideas, at an adult's level
 
-- **A property is something we can observe or test.** Colour, rough or smooth, hard or soft, bends or stays stiff, and lets light through or blocks it.
-- **One property does not tell us another.** Two things the same colour can bend differently.
+- **A property is something we can observe or test.** Color, rough or smooth, hard or soft, bends or stays stiff, and lets light through or blocks it.
+- **One property does not tell us another.** Two things the same color can bend differently.
 - **Ice is water that is solid.** The same water flows when it is warmer.
 - **A fair test changes one thing.** Everything else, such as the place of the lamp, the line, the cup and the time, stays the same.
 - **Taking in water and keeping a doll dry are different jobs.** The job decides which test result matters.

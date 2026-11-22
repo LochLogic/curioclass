@@ -21,9 +21,9 @@ Days 49, 50 and 51 open with a short return and repair of the day before's exit.
 
 - **A fair test changes one thing.** The healthy plant has light and water. Each other plant lacks exactly one of them, and is compared with the healthy plant only, never with the other missing-factor plant.
 - **The board on the lawn changed light, rain and perhaps warmth together.** It cannot say which one mattered. Warmth stays on the question board as a question; no cooler plant is added.
-- **Taller is not healthier.** A plant kept in the dark is often tall, pale and weak. Look at colour, leaves and stem as well as height.
+- **Taller is not healthier.** A plant kept in the dark is often tall, pale and weak. Look at color, leaves and stem as well as height.
 - **A record starts with the whole plant.** A height is read at the soil to the whole centimeter. Leaves and stem go in the boxes beside it. A gain under 1 centimeter reads "same".
 
 ## Safety and set-up
 
-Everyone wears fitted goggles on days 49 and 50. The adult grows the seedlings ahead, matches their starting size, prepares drainage holes, dampens the soil and checks the dark cover for light leaks and stability the day before. The cover is lifted only for the measuring turn. Seeds and plants are never eaten. Keep soil in trays and rulers below faces, wipe spills at once, and wash hands at the next scheduled washing. An adult removes any mouldy cup without a child handling it. With no live plants, use dated measured photographs from earlier plants, said aloud to be kept records.
+Everyone wears fitted goggles on days 49 and 50. The adult grows the seedlings ahead, matches their starting size, prepares drainage holes, dampens the soil and checks the dark cover for light leaks and stability the day before. The cover is lifted only for the measuring turn. Seeds and plants are never eaten. Keep soil in trays and rulers below faces, wipe spills at once, and wash hands at the next scheduled washing. An adult removes any moldy cup without a child handling it. With no live plants, use dated measured photographs from earlier plants, said aloud to be kept records.

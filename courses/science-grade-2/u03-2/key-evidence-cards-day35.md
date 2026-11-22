@@ -12,4 +12,4 @@ Teacher only. Do not print for children.
 
 # Evidence cards (day 35)
 
-**Key (teacher):** For the rain hat, plastic. For the pad, paper towel. For the shelf, card. For the cover, wood. For the grip, rubber. Each choice rests on a result; the colour or the feel is not the evidence.
+**Key (teacher):** For the rain hat, plastic. For the pad, paper towel. For the shelf, card. For the cover, wood. For the grip, rubber. Each choice rests on a result; the color or the feel is not the evidence.

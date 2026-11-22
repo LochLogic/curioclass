@@ -14,7 +14,7 @@ Five days, 16 to 20. The class uses the worn path as the problem and tests ways 
 
 ## How the days run
 
-Days 16 to 20 open with four or five minutes of return and repair: hand back the last exit, show one letter most children made, and fix it once. Read each stem aloud, one ask at a time. Children measure with paper strips first, then read the strip with a ruler to the whole centimeter. Teach zero and whole centimeters by modelling; do not use halves. Mark each exit with one scale: shown, shown with help, not yet seen.
+Days 16 to 20 open with four or five minutes of return and repair: hand back the last exit, show one letter most children made, and fix it once. Read each stem aloud, one ask at a time. Children measure with paper strips first, then read the strip with a ruler to the whole centimeter. Teach zero and whole centimeters by modeling; do not use halves. Mark each exit with one scale: shown, shown with help, not yet seen.
 
 ## The ideas, at an adult's level
 

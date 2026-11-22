@@ -28,4 +28,4 @@ We do not count years or give time numbers for landscape change, and we do not t
 
 ## Safety
 
-Printed cards only in this section. Choose calm pictures; no one is hurt in any card. If a child has lived through a flood or a slide, do not ask for personal accounts, and let any child pass.
+Printed cards only in this section. Choose calm pictures; no card shows a hurt person. If a child has lived through a flood or a slide, do not ask for personal accounts, and let any child pass. The class studies how land changes, not what happened to people. If a child starts to tell about a real flood, slide or storm, thank them, say "That sounds important. Let's talk after class," and keep the lesson moving. Afterward, listen, and tell the school counselor or follow the school's own steps. Do not ask other children to share and do not ask for details.

@@ -12,6 +12,6 @@ For a room where the sand will not behave. Say aloud that these strips are inven
 
 ## Two strips
 
-**Picture:** Two paper strips drawn side by side, each marked with a centimeter ruler beneath it and two pencil marks. Strip 1: the second mark is at 9. Strip 2: the second mark is at 10. Each is labelled bare tray, one cup.
+**Picture:** Two paper strips drawn side by side, each marked with a centimeter ruler beneath it and two pencil marks. Strip 1: the second mark is at 9. Strip 2: the second mark is at 10. Each is labeled bare tray, one cup.
 
 **Say (teacher):** "These two trays started the same and were poured the same. Read each strip with the ruler. Do they match exactly?"

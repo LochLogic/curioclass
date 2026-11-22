@@ -12,7 +12,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Card a (hardness): two equally rough samples
 
-**Picture:** Two rough squares of the same size, labelled left and right. A blunt stick presses each one. The left one has a dent. The right one has none.
+**Picture:** Two rough squares of the same size, labeled left and right. A blunt stick presses each one. The left one has a dent. The right one has none.
 **Say:** "These are equally rough. The same stick pressed each one the same. Touch the harder one."
 **Key (teacher):** The right one, with no dent.
 

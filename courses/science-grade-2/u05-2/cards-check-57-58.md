@@ -14,7 +14,7 @@ Held back. Not shown, handled or taught from before day 57. Drawing style: plain
 
 Printed one card sheet a child: side 1 holds Tern Coast in a box; side 2 holds the three Fox Valley cards as three small boxes labeled map, caption and poster, and the snowball and noodle records as two strips of three small pictures. The day 58 sheets stay sealed.
 
-- **Tern Coast.** A picture of a coast: a long high hill on the left, flat land in the middle with a bending river and a lake in a hollow beside it, and the ocean on the right. Caption: Rain that falls on the long hill ends up in the ocean.
+- **Tern Coast.** A picture of a coast: a long high hill on the left, flat land in the middle with a bending river that runs into the ocean and a lake in a hollow beside it, and the ocean on the right. Caption: Rain that falls on the long hill ends up in the ocean.
 - **Fox Valley.** Three cards. The map card: a keyed map with a blue line (the river), a blue patch (a pond) and a white patch (a snowfield). The caption card: In winter the top of the pond is solid ice and the river still flows. The poster card: a poster for the Fox Valley Fair that shows a prize cow, with no facts about water.
 - **Snowball record.** Three small dated pictures: a snowball on a plate, a puddle on the plate after a day in a warm room, and a sheet of ice on the plate after a cold night outside.
 - **Noodle record.** Three small dated pictures: a hard dry noodle, the noodle soft after a grown-up heated it in a bowl of hot water, and the soft noodle after the bowl cooled.

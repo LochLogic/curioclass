@@ -14,8 +14,8 @@ Five record cards, one packet per child. Each shows a thing that was heated or c
 
 1. **Butter:** a stick of solid butter; the butter melted and flowing in a pan after a grown-up in goggles heated it; the butter after it cooled in a dish, solid again in a different outline.
 2. **Cookie:** soft cookie dough; the dough baked into a firm cookie after a grown-up heated it; the cookie after it cooled, still a firm cookie.
-3. **Juice:** a cup of liquid lemon juice; the juice after it was cooled until it froze; the juice after it was warmed until it flowed again.
-4. **Cucumber:** a firm cucumber slice; the slice after it was frozen; the slice after it was warmed and thawed, still soft.
+3. **Juice:** a cup of liquid lemon juice; the juice after it was cooled until it froze, drawn as a visible block; the juice after it was warmed until it flowed again.
+4. **Cucumber:** a firm cucumber slice; the slice after it was frozen; the slice after it was warmed and thawed, still soft, drawn with a visible droop.
 5. **Second butter:** a different stick of solid butter; the butter melted after a grown-up heated it. There is no picture of it cooled.
 
 **Say for each:** the asks of items s04-E13 to s04-E22, read one at a time.

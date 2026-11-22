@@ -11,7 +11,7 @@ credit: ours
 
 Drawing style: plain black line drawing on white, thick lines, no shading, no brand names, no printed words except where a card says so. Children in any picture are of different ages, skin tones and hair, shown as simple figures. Say aloud that every picture is invented for practice, and print "invented for practice" beneath each one.
 
-Withheld from teaching: first shown on day 63 and not used before. Three pictures on one card, labelled "invented for practice". Captions give places and parts only. The teacher says aloud that the acorn is a seed.
+Withheld from teaching: first shown on day 63 and not used before. Three pictures on one card, labeled "invented for practice". Captions give places and parts only. The teacher says aloud that the acorn is a seed.
 
 **Picture 1, under the oak:** a tall oak tree with a wide round crown and one acorn lying on the ground under it. Caption: "under the oak".
 **Picture 2, the beak:** the same acorn held between the two halves of a jay's beak, the jay perched on a low branch. Caption: "the beak".

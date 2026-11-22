@@ -18,7 +18,7 @@ Print "invented for practice" under each card. No people in any picture.
 
 ## Result bar card
 
-**Picture:** Three bars from equal water tests, one square for each centimeter: bare tray 6 squares, card wall 3 squares, stone row 4 squares. Each bar is labelled with its barrier.
+**Picture:** Three bars from equal water tests, one square for each centimeter: bare tray 6 squares, card wall 3 squares, stone row 4 squares. Each bar is labeled with its barrier.
 
 **Say (teacher):** "The bars are retreat in centimeters. Point to the barrier that lost the least. Say one thing it did well. Say one thing it did poorly."
 

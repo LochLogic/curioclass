@@ -31,7 +31,7 @@ s01-E3,The liquid water is on the ridge and the solid water is in the ocean.,,,x
 s01-E4,The model has no key.,,,B,
 s01-E4,The hills are left off because they do not matter.,,,D,
 s01-E4,The ocean is left off because it is outside the area.,,,G,
-s01-E5,The arrow runs up and across the hills.,,,E,
+s01-E5,The water goes up over the hills to the ocean.,,,E,
 s01-E6,A map of a different area looks just like this one.,,,x,this area shapes are copied to another; ask what shapes the other area has
 s01-P1-3,The arrow runs from the low place up the slope.,,,E,
 s01-P1-3,"Only a puddle is drawn, with no slope.",,,D,
@@ -161,9 +161,13 @@ s04-E10,Draws the first bus again.,,,,"a slip in this look-for; no register lett
 s04-E11,"It is a new object, so it needs new pieces.",,,A,
 s04-E12,"The card is stiff, but that does not matter for the job.",,,E,
 s04-E13,"Remained, because the outline is different.",,,B,
+s04-E14,The butter just changed by itself.,,,,"no cause named; no register letter fits, ask what was done to the butter"
 s04-E15,"Returned, because cooling takes it back to soft dough.",,,C,
+s04-E16,The cookie was always firm.,,,,"the start of the record is missed; no register letter fits, point to the soft dough"
 s04-E17,"Returned, because it froze, so it went back.",,,D,
+s04-E18,The juice stayed liquid.,,,,"the frozen picture is missed; no register letter fits, point to the block of juice"
 s04-E19,"Returned, because cooling always fixes it.",,,C,
+s04-E20,The cucumber did not change.,,,,"the thawed picture is missed; no register letter fits, touch firm and soft"
 s04-E21,Cooling always makes things go back to the start.,,,C,
 s04-E22,"Yes, it melted, so it will go back.",,,D,
 s05-X48,P2 with P3 makes a fair test.,,,A,
@@ -197,7 +201,7 @@ s05-E3,Compares the dark plant with the dry plant.,,,A,
 s05-E4,Starts one bar higher than the other two.,,,,"a slip in this look-for; no register letter fits, note it on the sheet"
 s05-E5,"P is tall, so the dark place is the best place.",,,B,
 s05-E6,"P and Q are a fair test, so the sunny place is better.",,,A,
-s05-E7,Adds a plant in the dark with no water.,,,A,
+s05-E7,Adds a plant in the sun with no water.,,,x,"it copies Q, so it adds no comparison; ask which plant it differs from in one thing"
 s05-E8,Draws a line from P to Q.,,,A,
 s05-E9,Writes only the kind of plant.,,,,"a slip in this look-for; no register letter fits, note it on the sheet"
 s05-E10,Gives P more water than the added plant.,,,,"a slip in this look-for; no register letter fits, note it on the sheet"
@@ -221,7 +225,7 @@ s06-X65b,To help the plant.,,,C,
 s06-E1,The feathers drawn on the card.,,,B,
 s06-E2,The leaf litter is the oak.,,,,"a slip in this look-for; no register letter fits, note it on the sheet"
 s06-E3,It carries pollen.,,,A,
-s06-E4,"Lines to the jay as a whole, with no parts named.",,,,"a slip in this look-for; no register letter fits, note it on the sheet"
+s06-E4,All the lines go to one word.,,,,"a slip in this look-for; no register letter fits, note it on the sheet"
 s06-E5,The route starts in the leaf litter.,,,,"a slip in this look-for; no register letter fits, note it on the sheet"
 s06-E6,My pretty jay need not carry anything.,,,B,
 s06-E7,The acorn stays at the oak.,,,,"a slip in this look-for; no register letter fits, note it on the sheet"
@@ -307,6 +311,9 @@ c2-X76e,Says nothing is different.,,,x,no gain is named; the teacher adds a gain
 c2-X76f,Touches the ribbon.,,,O,stiffness is taken not to matter for a use
 c2-X76g,"Says yes, it is a banana slice again.",,,Q,a look like the start is taken for a return
 c2-X76h,Touches the taller one in the dark.,,,S,height alone is taken to show health
+c2-X76j,Touches the invented card.,,,V,an invented record is taken as strong as one we measured
+c2-X76i,Touches the limp one in the sun.,,,U,sun alone is taken to be enough
+c2-X76i,Touches the pale one in the dark.,,,T,water alone is taken to be enough
 s02-X18,"No change, because the pile lost only a little and the bar is short.",,,D,a chosen design with a short bar still has a weakness; ask where the water got through
 s02-X18,Change it because the pile looks messy.,,,C,"a change must come from the record, not the look; point to the gaps on the card"
 s02-X18,"Make the pile taller, with no reason from the card.",,,x,"the card shows gaps at the bottom, not a low pile; ask what the picture shows"
@@ -320,8 +327,7 @@ s03-X28b,"Foil and tissue paper, with no reason from the chart.",,,x,ask what th
 s03-X30,"Strip K, because nothing climbed, so it took in the most.",,,F,"trace where the water went in two pictured strips, one inside and one pooled outside"
 s03-X30,"Strip L, with a number that is not 6 or no number.",,,x,lay the ruler at zero on the cup line and read to the whole centimeter
 s03-X32,"Strip V for both jobs, because it was the best hat, so it is best for everything.",,,E,pair two jobs with two materials from the records and say why one material is not best for both
-s04-X39,"The train changed for good, because it needed new cars to make the curve.",,,A,the castle and boat pictures; the same pieces in a new arrangement are not new pieces
-s04-X39,"The toast goes back, because it is still bread.",,,x,ask whether the toast can be made plain again by moving it
+s04-X39,The curve needed new cars.,,,A,the castle and boat pictures; the same pieces in a new arrangement are not new pieces
 s04-X43,"The corn, because cooling turns it back.",,,C,the egg before cooking and after cooking and cooling; the class says whether cooling undid the cooking
 s04-X43,"Both, because both were cooled.",,,C,cooling is not the same as a return; look at each last card against its first card
 s05-X52a,"Yes, the dark plant is the same as its control, so plants do not need light.",,,C,the day 51 Day 1 card beside the Day 12 card; touch the pale plant

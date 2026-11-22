@@ -10,7 +10,7 @@ credit: ours
 
 Drawing style: plain black line drawing on white, thick lines, no shading, no brand names, no printed words except where a card says so. Children in any picture are of different ages, skin tones and hair, shown as simple figures. Say aloud that every picture is invented for practice, and print "invented for practice" beneath each one.
 
-Unscored. Two cards, one ask each, about five and three minutes. A miss gets a modelled second try in the last minute.
+Unscored. Two cards, one ask each, about five and three minutes. A miss gets a modeled second try in the last minute.
 
 ## Card 1: needs and places (the needs-and-places picture mat)
 

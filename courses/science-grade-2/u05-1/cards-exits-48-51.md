@@ -13,7 +13,7 @@ Each exit has picture cards every child touches and a spoken stem read once. Dra
 
 ## Day 48 exit: three pots of parsley and a bucket on the lawn
 
-**Picture:** three pots of parsley, same cups, soil and start, labelled P1, P2 and P3. P1 in the sun, watered, new leaves. P2 in the shade, watered, leaves falling. P3 in the sun, no water, drooping.
+**Picture:** three pots of parsley, same cups, soil and start, labeled P1, P2 and P3. P1 in the sun, watered, new leaves. P2 in the shade, watered, leaves falling. P3 in the sun, no water, drooping.
 **Say:** "Join two pairs of pots that make a fair test: one pair for light and one pair for water."
 **Key (teacher):** P1 with P2 for light, P1 with P3 for water. Error A is joining P2 with P3.
 
@@ -33,13 +33,13 @@ Each exit has picture cards every child touches and a spoken stem read once. Dra
 
 **Picture:** a ruler standing in soil with zero at the soil, the plant's top at 8, three green upright leaves, a label "sunlight with water", and a dated table with one empty line.
 **Say:** "Fill in this line of the dated table."
-**Key (teacher):** March 3, sunlight with water, 8 centimeters, three green upright leaves drawn and labelled. Error E is a height with nothing else.
+**Key (teacher):** March 3, sunlight with water, 8 centimeters, three green upright leaves drawn and labeled. Error E is a height with nothing else.
 
 ## Day 51 exit: sunflower pairs
 
 **Picture:** pair M, two young sunflowers in matching cups with the same soil and water, one in a bright window and one in a dim corner. Pair N, two young sunflowers in different cups with different spoonfuls of water, one in a bright window and one in a dim corner.
 **Say (a):** "Pip says the taller plant is the healthier one. Touch the pair that checks Pip's idea fairly."
 **Key (teacher):** pair M. Error A is touching pair N.
-**Picture (b):** one card of a sunflower that grew under a cover, tall and pale with thin leaves, and three small cards: its height (a ruler), its colour and leaves, the colour of its cup.
+**Picture (b):** one card of a sunflower that grew under a cover, tall and pale with thin leaves, and three small cards: its height (a ruler), its color and leaves, the color of its cup.
 **Say (b):** "Pip will look at it again next week. Touch the one thing that could show Pip's idea is wrong."
-**Key (teacher):** the colour and leaves card. Error B is its height, "taller means healthier". The cup colour has nothing to do with it.
+**Key (teacher):** the color and leaves card. Error B is its height, "taller means healthier". The cup color has nothing to do with it.

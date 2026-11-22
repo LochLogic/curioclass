@@ -30,7 +30,7 @@ Print each card on its own square. Pairs sort them into two piles: "tells when i
 
 1. Two ordered pictures of a field, before and after a flood. Label: before, after.
 2. A caption: The flood came in one afternoon.
-3. A sentence: I like the muddy field. It looks like fun.
+3. A sentence: I like the green field. It looks nice.
 4. A made-up tale: Once a giant dug the gully with a spoon.
 5. An observer's note: The water rose fast and the slope slid down.
 6. A sentence: My cousin says this is the best hill.

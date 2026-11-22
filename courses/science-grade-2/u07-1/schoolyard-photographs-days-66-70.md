@@ -11,7 +11,7 @@ credit: ours
 
 Drawing style: plain black line drawing on white, thick lines, no shading, no brand names, no printed words except where a card says so. Children in any picture are of different ages, skin tones and hair, shown as simple figures. Say aloud that every picture is invented for practice, and print "invented for practice" beneath each one.
 
-The route for a site that is unsafe or frozen, or for a child with an allergy. Where the class can, the teacher takes its own photographs of the two spots from the path: the same distance, the same size, one pair a group, dated. Never take a photograph that needs a child to leave the path. Where it cannot, use these drawn stand-ins. Say aloud that a photograph is weaker than looking, because the frame hides some of the place, and write that on the record.
+The route for a site that is unsafe or frozen, or for a child with an allergy. Where the class can, the teacher takes its own photographs of the two spots from the path: the same distance, the same size, one pair a group, dated. Never take a photograph that needs a child to leave the path. Where it cannot, use these drawn stand-ins. Say aloud that a photograph is weaker than looking, because the frame hides some of the place, and write that on the record. Offer the photograph pair to any group that wants to compare it with the outdoor sheet, so the route is not only for the one child.
 
 ## Date 1 (day 66)
 

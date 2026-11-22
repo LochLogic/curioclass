@@ -15,7 +15,7 @@ Used for the five-minute repairs of errors D and C. The egg pictures come from t
 
 ## Error D repair (day 43): two cards and a third face down
 
-**Card 1, labelled cup first:** a cup of liquid water. **Card 2, labelled cup second:** the same cup with the water frozen. **Card 3, face down, labelled third:** the cup on a table with a wavy line for warm and liquid water again; the teacher turns it over only after the class says what a third card must show.
+**Card 1, labeled cup first:** a cup of liquid water. **Card 2, labeled cup second:** the same cup with the water frozen. **Card 3, face down, labeled third:** the cup on a table with a wavy line for warm and liquid water again; the teacher turns it over only after the class says what a third card must show.
 **Say:** "The first two cards: did the water go back? Why or why not? Now the third."
 **Key (teacher):** Two cards alone do not show it. The third card, after warming and a look, shows it went back.
 

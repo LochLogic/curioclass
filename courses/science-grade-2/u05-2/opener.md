@@ -22,9 +22,9 @@ Days 52, 53 and 56 open with return and repair, feedback or both. Days 54 and 55
 - **Each missing factor is compared with the healthy plant only.** Never compare the dark plant with the dry plant, because they differ in two things.
 - **Records decide the arrows.** An arrow turns solid only where a dated record shows a difference. Where it does not, the class says it cannot tell yet.
 - **Looks fine today is not the answer.** A plant can look fine for a while without light or water. Keep recording.
-- **Taller is not healthier.** Plants low in light are often tall, pale and weak. Look at colour, leaves and stem.
+- **Taller is not healthier.** Plants low in light are often tall, pale and weak. Look at color, leaves and stem.
 - **Report results as they are.** If a dry plant does not wilt or a dark plant does not pale, say so.
 
 ## Safety and set-up
 
-Everyone wears fitted goggles for plant readings. The cover is lifted only for the measuring turn, and its lifting time is the same on every date. The adult stages the cups and checks for mould the day before and restores the treatment plants after day 56: dark plants to the window, dry plants watered. Seeds and plants are never eaten. No fertilizer, pesticide or laboratory reagent is used. Keep soil in trays and rulers below faces, wipe spills at once, and wash hands at the next scheduled washing. With no live plants, use dated measured photographs said aloud to be kept records; the eight planning components can still be shown but the two conducting ones cannot.
+Everyone wears fitted goggles for plant readings. The cover is lifted only for the measuring turn, and its lifting time is the same on every date. The adult stages the cups and checks for mold the day before and restores the treatment plants after day 56: dark plants to the window, dry plants watered. Seeds and plants are never eaten. No fertilizer, pesticide or laboratory reagent is used. Keep soil in trays and rulers below faces, wipe spills at once, and wash hands at the next scheduled washing. With no live plants, use dated measured photographs said aloud to be kept records; the eight planning components can still be shown but the two conducting ones cannot.

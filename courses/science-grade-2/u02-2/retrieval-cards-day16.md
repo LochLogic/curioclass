@@ -20,7 +20,7 @@ Print "invented for practice" under each card.
 
 ## Daylight chart card
 
-**Picture:** A chart of two bars of daylight hours, one short bar labelled day 1 and one long bar labelled day 2. No caption.
+**Picture:** A chart of two bars of daylight hours, one short bar labeled day 1 and one long bar labeled day 2. No caption.
 
 **Say (teacher):** "Point to the day with more daylight."
 

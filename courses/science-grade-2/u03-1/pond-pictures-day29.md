@@ -12,8 +12,8 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 Unit 1 water states, shown again for retrieval. Two cards.
 
-**Card 1:** A pond with a thin skin of ice and a bare tree, labelled winter.
-**Card 2:** The same pond with flowing water and green leaves, labelled summer.
+**Card 1:** A pond with a thin skin of ice and a bare tree, labeled winter.
+**Card 2:** The same pond with flowing water and green leaves, labeled summer.
 
 **Say:** "This is the same pond. What is the water like in each? Point to the one where water flows."
 **Key (teacher):** Card 2 flows; card 1 holds its shape. Say aloud that the water is the same water.

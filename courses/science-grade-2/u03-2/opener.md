@@ -21,7 +21,7 @@ Days 32 to 35 open with five minutes of return and repair of the last exit, one 
 - **The job decides which result to look at.** A material that takes in water is right for a mat and wrong for a hat.
 - **Greater drop under the same load means more bend.** Less drop stays more level.
 - **Rough does not tell us hard.** Pressing shows hard or soft; touching shows rough or smooth.
-- **Different tests show different properties.** Colour, feel, press, bend and light each need their own test.
+- **Different tests show different properties.** Color, feel, press, bend and light each need their own test.
 - **People use what tests show, and many materials come from nature,** such as wool from sheep.
 
 ## Safety and set-up

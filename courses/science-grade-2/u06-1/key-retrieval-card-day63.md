@@ -12,4 +12,4 @@ Teacher only. Do not print for children.
 
 # Retrieval card (day 63)
 
-**Key (teacher):** source on the first flower, body on the felt, receiver on the second flower's patch; the brown piece is the seed and the yellow dot is pollen. Items s06-E11 and s06-E12.
+**Key (teacher):** one arrow from the first flower, where the dots start, through the felt body, to the second flower's patch (scored, s06-E11); the brown piece, the large seed shape, is the seed and the yellow dot, the small round dot, is pollen; shape or color both count (unscored, s06-E12).

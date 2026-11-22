@@ -48,3 +48,12 @@ E2, E4, E5, E7, E9, E11 are fair and self-contained. Numbers in stems match the 
 ## Could not settle
 
 Whether C (an edge moved inland with stakes now in water) reads as slow to a child from the picture alone. It rests on the labels and on D. That is a design choice for the lead; findings 1 and 4 make the fair answers explicit without changing the records.
+
+## Fixes applied (2026-11-22)
+
+- 1. s02-E12 and E10: applied; both stems state the limit and the data. plan.py now flags s02-E11 and s02-E12 for sharing numbers: they are one assessment case on the day 25 packet, left as a template point.
+- 2. s02-E6: applied; the stem names the barrier model.
+- 3. s02-E3: applied; packet-day23 task 3 and its key ask for the change in the land, as the item does.
+- 4. s02-E1: applied; the key names the labels that separate A from C.
+- 5. s02-E8: applied; a first-to-second-run rise is keyed as fair.
+- Could not settle (record C read as slow): left for the lead, a design choice.

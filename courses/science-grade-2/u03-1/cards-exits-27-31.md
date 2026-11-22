@@ -12,9 +12,9 @@ Each exit has a picture card every child marks, and a spoken stem read once. Dra
 
 ## Day 27 exit card: two blue squares
 
-**Picture:** A blue sponge and a blue board side by side, the same shade of blue. Under them, three cards: a colour swatch (look at the colour), a finger pressing down (press), and a ruler beside a square (look at the size).
-**Say:** "Pip wants to know which one is softer. Which test tells: look at the colour, press, or look at the size? Point."
-**Key (teacher):** Press, with the words that colour tells only the colour. Look at the colour is error B. Look at the size tells how big, not how soft.
+**Picture:** A blue sponge and a blue board side by side, the same shade of blue. Under them, three cards: a color swatch (look at the color), a finger pressing down (press), and a ruler beside a square (look at the size).
+**Say:** "Pip wants to know which one is softer. Which test tells: look at the color, press, or look at the size? Point."
+**Key (teacher):** Press, with the words that color tells only the color. Look at the color is error B. Look at the size tells how big, not how soft.
 
 ## Day 28 exit card: two light plans
 
@@ -30,7 +30,7 @@ Each exit has a picture card every child marks, and a spoken stem read once. Dra
 
 ## Day 29 exit card: one puddle
 
-**Picture:** Two cards. Card 1: a puddle at dawn with a thin skin of ice, labelled morning. Card 2: the same puddle at the same place, flowing, with ripples, labelled noon. Under them, two circles: yes, no.
+**Picture:** Two cards. Card 1: a puddle at dawn with a thin skin of ice, labeled morning. Card 2: the same puddle at the same place, flowing, with ripples, labeled noon. Under them, two circles: yes, no.
 **Say:** "Pip says the ice in the puddle is not water. Is Pip right? Point to yes or no."
 **Key (teacher):** No, with the words that ice is water that is solid and the same water flows at noon. Yes is error C.
 
@@ -42,7 +42,7 @@ Each exit has a picture card every child marks, and a spoken stem read once. Dra
 
 ## Day 31 exit cards: two bars, then two hats
 
-**Part a picture:** Blank axes on squared paper, one square for each centimeter, and a bottom line labelled zero. Two labels under the axes: strip M, strip N. Say: "Strip M and strip N both had water climb 4 centimeters. Draw the two bars."
+**Part a picture:** Blank axes on squared paper, one square for each centimeter, and a bottom line labeled zero. Two labels under the axes: strip M, strip N. Say: "Strip M and strip N both had water climb 4 centimeters. Draw the two bars."
 **Key (teacher):** Two bars of equal height, each 4 squares, one for M and one for N, both starting at the bottom line. A different height has no letter: note it on the drawing and the child redraws at the table.
 
 **Part b picture:** Two cards. Hat M: a doll under a hat with a dry paper tab beneath. Hat N: a doll under a hat with a wet tab beneath. Under them, two circles: hat M, hat N.

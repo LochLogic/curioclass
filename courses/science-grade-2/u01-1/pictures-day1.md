@@ -13,7 +13,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Page 1
 
-**Picture:** A schoolyard during a light rain: a low brick wall, a flat blacktop, a grassy slope that runs down to a paved path, and a bench. Grey curved lines show falling rain. No people.
+**Picture:** A schoolyard during a light rain: a low brick wall, a flat blacktop, a grassy slope that runs down to a paved path, and a bench. Gray curved lines show falling rain. No people.
 
 **Read:** It is raining on the schoolyard. The rain falls on the grass, the blacktop and the path.
 

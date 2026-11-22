@@ -40,3 +40,16 @@ Pass with fixes. All 22 cold answers match the key (0 key errors, 0 errors of mi
 
 ## Could not settle
 Nothing needs Cory. All fixes above are item-level.
+
+## Fixes applied (2026-11-22)
+
+- 1. s04-E22 against the d046 marking note: applied; the note credits "No, not enough yet" with the cooled-result reason.
+- 2. s04-E20: applied; the stem no longer says "even after it thawed".
+- 3. s04-E5 and E11: applied; any matched line for identical pieces is credited.
+- 4. s04-E4 and E5 covered whole: applied; d045 covers the record only while moving.
+- 5. Cause keys: applied; key-argument-records-day46 gives the causes.
+- 6. wrongs.csv gaps: applied; rows for s04-E14, E16, E18, E20.
+- 7. s04-E17 tag D: left; the reader finds it fits.
+- 8. s04-E21: applied; the step asks for both kinds of result.
+- 9. Picture dependence: left as a watch for the art stage; argument-records-day46 names the visible block and droop.
+- 10. s04-E12 sample: applied; no wheel on a robot.

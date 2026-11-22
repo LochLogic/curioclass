@@ -30,4 +30,4 @@ A reserved packet printed only on day 23. Read the directions once. Children rea
 
 1. Which records show a fast change, and what tells you?
 2. Which records show a slow change, and what tells you?
-3. Revise your change model so that it shows the fast route and the slow route, each with the records that support it.
+3. Revise your change model so that it shows the fast route and the slow route, each with the records that support it and the change in the land each one shows.

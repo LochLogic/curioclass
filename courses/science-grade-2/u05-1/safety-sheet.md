@@ -17,5 +17,5 @@ Read each line aloud with the picture. Children point to the picture for each li
 4. Rulers stay below our faces. (Picture: a child holding a ruler low beside a cup.)
 5. The grown-up lifts the dark cover. It has air holes. (Picture: a grown-up lifting a box with holes.)
 6. If water spills, tell a grown-up and wipe it at once. (Picture: a cloth on a drop of water.)
-7. If you see fuzzy mold, do not touch. Tell a grown-up. (Picture: a cup with a fuzzy spot, a hand held back.)
-8. Hands are washed at the next washing time. (Picture: hands under a tap.)
+7. If you see fuzzy mold, do not touch. Tell a grown-up. The grown-up bags it with gloves on. (Picture: a cup with a fuzzy spot, a hand held back.)
+8. We wipe our hands with a damp cloth, then wash them before we eat or play. (Picture: hands under a tap.)

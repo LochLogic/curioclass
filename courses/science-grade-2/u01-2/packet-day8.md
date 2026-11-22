@@ -14,11 +14,11 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Record A: Pine Coast survey
 
-**Picture:** A keyed map of a coast seen from above. Along the bottom edge is the ocean. A river begins in a low valley and runs to the ocean. Ice lies on the top of the high ridge, drawn with an open dot. The ocean and river each carry a filled dot. Key box: filled dot = liquid water, open dot = solid water. The key on this record tells the dots on record B too.
+**Picture:** A keyed map of a coast seen from above. Headed: Pine Coast survey. Labels: Ocean, River, Ice. Along the bottom edge is the ocean. A river begins in a low valley and runs to the ocean. Ice lies on the top of the high ridge, drawn with an open dot. The ocean and river each carry a filled dot. Key box: filled dot = liquid water, open dot = solid water. The key on this record tells the dots on record B too.
 
 ## Record B: Pine Coast observations
 
-**Picture:** A picture log of the same coast: a lake in a low hollow near the coast (filled dot), a small pond in a low hollow beside the road (filled dot), and snow on the high ridge (open dot). Captions under each: Lake. Pond. Snow. A line under the log: "The key on record A tells these dots too."
+**Picture:** A picture log of the same coast, headed Pine Coast observations: a lake in a low hollow near the coast (filled dot), a small pond in a low hollow beside the road (filled dot), and snow on the high ridge (open dot). Captions under each: Lake. Pond. Snow. A line under the log: "The key on record A tells these dots too."
 
 ## Record C: Other Cove observations
 

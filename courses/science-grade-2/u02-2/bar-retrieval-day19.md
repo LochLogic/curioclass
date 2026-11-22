@@ -12,7 +12,7 @@ Print "invented for practice" under the card. No people in the picture.
 
 ## Two-bar picture graph
 
-**Picture:** A picture graph on squares, one square for each centimeter, with two bars labelled sand pile and gravel pile. The sand pile bar is 4 squares tall and the gravel pile bar is 8 squares tall. There is no limit line.
+**Picture:** A picture graph on squares, one square for each centimeter, with two bars labeled sand pile and gravel pile. The sand pile bar is 4 squares tall and the gravel pile bar is 8 squares tall. There is no limit line.
 
 **Say (teacher):** "Each square is one centimeter. Point to the longer bar. How many squares tall is it?"
 

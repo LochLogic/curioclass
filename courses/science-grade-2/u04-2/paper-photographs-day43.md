@@ -12,9 +12,9 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 A strip of white paper warmed near a heater by the teacher. Four photograph stand-ins in a row.
 
-**Picture 1, labelled before:** a white paper strip on a table.
-**Picture 2, labelled heated:** the strip with a brown mark spreading from one edge, a grown-up in goggles holding it with tongs.
-**Picture 3, labelled cooled:** the strip on the table, the brown mark still there, small snow marks for cool.
-**Picture 4, labelled waited a day:** the strip on the table, the brown mark unchanged.
+**Picture 1, labeled before:** a white paper strip on a table.
+**Picture 2, labeled heated:** the strip with a brown mark spreading from one edge, a grown-up in goggles holding it with tongs.
+**Picture 3, labeled cooled:** the strip on the table, the brown mark still there, small snow marks for cool.
+**Picture 4, labeled waited a day:** the strip on the table, the brown mark unchanged.
 
 **Say:** "Lay them in a row. Mark changed, tried cooling, or stayed changed on each."

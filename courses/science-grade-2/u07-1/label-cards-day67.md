@@ -20,7 +20,7 @@ Eight cards, one living thing each, large enough to hold up. The teacher makes t
 3. A small black animal with six legs, walking. Label: "small black walker".
 4. A flying insect with a striped body. Label: "striped flyer".
 5. A fuzzy brown caterpillar on a stem. Label: "fuzzy brown crawler".
-6. A grey bird in flight. Label: "grey fluttering bird".
+6. A gray bird in flight. Label: "gray fluttering bird".
 7. A flat plant with one wide leaf. Label: "flat broad-leaf plant".
 8. A green animal with long back legs, mid-hop. Label: "spotted hopper", drawn with dark spots.
 

@@ -15,9 +15,9 @@ These stand in for the adult's photographs. The bath was cleared before children
 ## Strip 1: chocolate
 
 A piece of chocolate bar in a sealed clear bag, as on day 39.
-**Frame 1, labelled hard:** the bag on a tray, the chocolate in a hard block.
-**Frame 2, labelled warmed by the grown-up:** the bag in a bowl of warm water, the chocolate liquid. A grown-up in goggles at the bowl.
-**Frame 3, labelled cooled:** the bag on a tray, the chocolate a hard flat sheet, a different outline.
+**Frame 1, labeled hard:** the bag on a tray, the chocolate in a hard block.
+**Frame 2, labeled warmed by the grown-up:** the bag in a bowl of warm water, the chocolate liquid. A grown-up in goggles at the bowl.
+**Frame 3, labeled cooled:** the bag on a tray, the chocolate a hard flat sheet, a different outline.
 **Say:** "What did the grown-up do to try to bring it back? What do you see?"
 **Key (teacher):** The grown-up cooled it. It is hard again; the outline is different, and the outline is not the state (error B).
 

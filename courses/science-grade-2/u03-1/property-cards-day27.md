@@ -12,7 +12,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 Seven large cards for the wall, each with one word and one picture. Read each word aloud when you hang it.
 
-- **colour**: a row of crayons.
+- **color**: a row of crayons.
 - **rough**: a close picture of a coarse sack cloth.
 - **smooth**: a close picture of a clean, flat tile.
 - **hard**: a stone being pressed by a stick, no mark on it.

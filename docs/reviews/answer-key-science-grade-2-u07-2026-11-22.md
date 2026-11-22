@@ -25,3 +25,10 @@ All ten items test 2-LS4-1 as the plan names it: observing and recording kinds (
 
 ## Could not settle
 None.
+
+## Fixes applied (2026-11-22)
+
+- 1. s07-E1: applied; the stem allows a scene with no water.
+- 2. s07-E10: applied; scene and key agree.
+- 3. s07-E8: applied; alike by count or by type is credited.
+- 4. s07-E2: applied; any usable method is credited.

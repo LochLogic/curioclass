@@ -12,7 +12,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 Three cards, each marked by every child, then six rotating children say why, one card each. A miss: the teacher models observation to claim on a second picture. No heredity and no light mechanism.
 
-**Card 1: a toy in a dark box.** Two small pictures. Left: a closed box with a toy inside and no lamp, labelled dark. Right: the same box with the lid off and a lamp shining on the toy, labelled lamp on.
+**Card 1: a toy in a dark box.** Two small pictures. Left: a closed box with a toy inside and no lamp, labeled dark. Right: the same box with the lid off and a lamp shining on the toy, labeled lamp on.
 **Say:** "Mark the picture that shows why we can see the toy. Tell us why."
 **Key (teacher):** The lamp-on picture; we see the toy when light shines on it (grade 1 review).
 

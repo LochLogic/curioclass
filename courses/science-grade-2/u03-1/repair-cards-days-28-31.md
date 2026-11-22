@@ -14,7 +14,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 **Picture:** A yellow cloth square and a yellow plastic lid, side by side, with a hand bending the cloth and a hand pressing the lid.
 **Say:** "These are both yellow. Bend one, press one. Do they feel the same? Point to yes or no."
-**Key (teacher):** No. The cloth bends and the lid stays stiff. The class says colour told only the colour.
+**Key (teacher):** No. The cloth bends and the lid stays stiff. The class says color told only the color.
 
 ## Day 29 repair, letter D: two light plans on a different sheet pair
 
@@ -25,7 +25,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 ## Day 30 repair, letter C: one cup of water in three pictures
 
 **Picture:** Three cards of one cup: a solid block of ice shaped like the cup, the same ice partly melted, and the cup full of flowing water.
-**Say:** "Is it the same water in all three? Point to yes or no, then tell a neighbour what stayed the same."
+**Say:** "Is it the same water in all three? Point to yes or no, then tell a neighbor what stayed the same."
 **Key (teacher):** Yes. The water stayed the same; only how it holds its shape changed.
 
 ## Day 31 repair, letter F: two pictured strips
