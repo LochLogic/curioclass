@@ -19,7 +19,7 @@ Each card shows its animal in light grey with the one part drawn in thick black.
 5. **mouth:** the hare's open mouth at the clover and the stream. Word: mouth.
 6. **scales:** a fish with rows of overlapping scales. Word: scales.
 
-**Sort by job (day 13).** Four heading cards, each a picture with one word: **sense** (an eye and an ear), **move** (a pair of running legs), **take in** (a mouth and an arrow in), **cover** (a scaly fish). Key: ears and eyes sense; legs move; nostrils and mouth take in; scales cover. Nothing else is asked of the cards on the sort.
+**Sort by job (day 13).** Four heading cards, each a picture with one word: **sense** (an eye and an ear), **move** (a pair of running legs), **take in** (a mouth and an arrow in), **cover** (a scaly fish). The key is in key-cards-animal-parts.md.
 
 ## The chain cards (days 13 and 14)
 

@@ -15,7 +15,7 @@ Apparatus: a cupboard with a paper label on its inside wall and a small battery 
 
 ## Item 2 pieces
 
-Four new pieces: a clear cup wall piece cut flat from a plastic cup, a dark cloth square, tissue paper, and a differently shaped plastic mirror, with the day 45 stand, two screens and the flashlight. The clear cup wall piece, dark cloth square and tissue paper were not used on days 43 to 45 (days 43 and 44 used clear plastic, wax paper and cardboard); the mirror is a new shape. Children choose the order and predict each effect. The second screen is moved into the redirected beam and stays below faces. Each sample is compared with the empty opening.
+Four new pieces: a clear cup wall piece cut flat from a plastic cup, a thick, tightly woven dark cloth square chosen because it shows a shadow in rehearsal, tissue paper, and a differently shaped plastic mirror, with the day 45 stand, two screens and the flashlight. The clear cup wall piece, dark cloth square and tissue paper were not used on days 43 to 45 (days 43 and 44 used clear plastic, wax paper and cardboard); the mirror is a new shape. Children choose the order and predict each effect. The second screen is moved into the redirected beam and stays below faces. Each sample is compared with the empty opening.
 
 ## Check before use
 

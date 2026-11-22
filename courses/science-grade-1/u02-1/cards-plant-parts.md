@@ -27,4 +27,4 @@ Three cards, one set for each group, to look at beside the real stem and leaf tr
 - **Close-up 2:** a clump of grass with its root mass holding a block of soil together. The roots are drawn thick and many.
 - **Close-up 3:** a seedling lifted gently out of a pot, with its roots wrapped round the soil ball. A hand holds the pot.
 
-**Spoken for all three:** "Find the roots. Put a finger on the part that holds. Put a finger on the part that takes in water." Key: the roots, drawn as the long and thin parts under the ground. These cards are teaching cases; none is used in an exit.
+**Spoken for all three:** "Find the roots. Put a finger on the part that holds. Put a finger on the part that takes in water." The key is in key-cards-plant-parts.md.

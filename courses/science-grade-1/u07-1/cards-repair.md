@@ -15,7 +15,7 @@ Two cards. The robin chick with its mouth open and call marks, word: cheeps. The
 
 ## Errors D and E: the seed sequence (day 58, and the D and E table on day 61)
 
-The bean seed sequence drawn large: grown plant, arrow labelled made, seed, arrow labelled grew, young plant. Beside it a separate card: a food arrow going from a plant to a plant, marked not for plants. Children point and say it. A second card for error E: the words "only animals have young" beside the grown plant, seed and young plant.
+The bean seed sequence drawn large: grown plant, arrow labeled made, seed, arrow labeled grew, young plant. Beside it a separate card: a food arrow going from a plant to a plant, marked not for plants. Children point and say it. A second card for error E: the words "only animals have young" beside the grown plant, seed and young plant.
 
 ## Error C: seen or heard (day 59, and the C table on day 61)
 

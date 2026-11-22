@@ -7,7 +7,7 @@ credit: ours
 ---
 # Bean plant page (day 57)
 
-Printed "invented for practice" under the picture and said aloud. Plain black line drawings on white, thick lines, no shading, no brand names. Taught last on day 57 so the exit can check it. Three drawn stages left to right: a grown bean plant with pods; one bean seed; a young bean plant with two leaves. Two thick arrows between them, labelled made and grew. No other arrow.
+Printed "invented for practice" under the picture and said aloud. Plain black line drawings on white, thick lines, no shading, no brand names. Taught last on day 57 so the exit can check it. Three drawn stages left to right: a grown bean plant with pods; one bean seed; a young bean plant with two leaves. Two thick arrows between them, labeled made and grew. No other arrow.
 
 **Read:** This grown bean plant made seeds. One seed grew into this young bean plant.
 

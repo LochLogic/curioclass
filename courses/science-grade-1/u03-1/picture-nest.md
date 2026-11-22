@@ -19,4 +19,4 @@ Two frames for the teacher, printed large. Say aloud first: "These pictures are 
 
 ## Spoken
 
-"What changed, and what did you see that shows it?" Key: the twigs were gathered into a nest; the pile on the ground is smaller and the cup is in the fork. Then point to leaf and stem on the retained parts chart. A miss: the teacher says one "I saw ___, so ___" and the child tries again in the investigation. Retrieval, not scored: note S, H or N in the margin of the record sheet. Keep the nest out of every exit: day 22's exit is a plant family.
+"What changed, and what did you see that shows it?" The key is in key-picture-nest (teacher only). Then point to leaf and stem on the retained parts chart. A miss: the teacher says one "I saw ___, so ___" and the child tries again in the investigation. Retrieval, not scored: note S, H or N in the margin of the record sheet. Keep the nest out of every exit: day 22's exit is a plant family.

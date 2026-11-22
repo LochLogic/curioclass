@@ -19,7 +19,7 @@ Each day is 30 to 35 minutes. Children read very little: every question is spoke
 
 - **Dependable.** The same device, tried the same way, gives the same mark each time so far. Two matching trials are a start, not a promise.
 - **Evidence for a feature.** A child adds or changes one part and can name the trial that told them to. A borrowed flashlight alone is not building; a partner's making part is named on the sheet.
-- **Light and sound paths.** A cardboard screen blocks light and leaves a clear path for sound (unit 5's block). No wave account, no workings of phones or radios.
+- **Light and sound paths.** A cardboard wall blocks light and leaves a clear path for sound (unit 5's block). No wave account, no workings of phones or radios.
 - **Reading the receiver.** The friend's page is read as marked, not as the sender's card. Noticing a signal is not understanding it.
 - **Limits.** Farther means a safe marked classroom distance, within the string length less one arm span. No ranking of classmates' devices.
 

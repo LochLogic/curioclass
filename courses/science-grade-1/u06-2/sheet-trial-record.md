@@ -10,4 +10,6 @@ credit: ours
 <div style="font-size:16pt;margin-top:.1in">the step I fixed</div>
 <table style="width:100%;border-collapse:collapse;margin-top:.0in"><tr><td style="border:2px solid #000;vertical-align:top;width:100%;height:.8in;font-size:18pt"></td></tr></table>
 <div style="font-size:16pt;margin-top:.1in">how my device carries the message</div>
-<table style="width:100%;border-collapse:collapse;margin-top:.0in"><tr><td style="border:2px solid #000;vertical-align:top;width:100%;height:2in;font-size:18pt"></td></tr></table>
+<table style="width:100%;border-collapse:collapse;margin-top:.0in"><tr><td style="border:2px solid #000;vertical-align:top;width:100%;height:1.7in;font-size:18pt"></td></tr></table>
+<div style="font-size:16pt;margin-top:.1in">my two marks show: ring one</div>
+<table style="width:100%;border-collapse:collapse;margin-top:.0in"><tr><td style="border:2px solid #000;width:34%;height:.5in;font-size:16pt;text-align:center">near and farther</td><td style="border:2px solid #000;width:33%;font-size:16pt;text-align:center">near only</td><td style="border:2px solid #000;width:33%;font-size:16pt;text-align:center">not yet</td></tr></table>

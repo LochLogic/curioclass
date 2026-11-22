@@ -7,8 +7,8 @@ credit: ours
 ---
 # Retrieval pictures for day 43
 
-Say aloud: "These are old pictures from kindergarten." Plain black line drawings on white, thick lines, no shading, no brand names, diverse children, one big word under each picture.
+Say aloud: "These pictures are like our kindergarten tests (review)." Plain black line drawings on white, thick lines, no shading, no brand names, diverse children, one big word under each picture. Keys and wrong answers are in key-picture-retrieval.md (teacher only, never printed for children).
 
-**Push pictures.** A hand pushes a paper strip along a table, gently (strip near) and then harder (strip far). Spoken: "In our paper-strip test, mark what we changed and watched." **Key:** changed the push; watched how far the strip went. A miss: model one gentle push of a paper strip.
+**Push pictures.** One ball rolled from the same start mark, gently (it stops near) and then harder (it stops far). Spoken: "In our ball test, what did we change and watch?"
 
-**Roof pictures.** Three small pictures of a sunny patch of ground: a card roof over it (shade under it), a sheet of clear wrap over it (no shade), and no roof. Spoken: "Which roof blocked sunlight in our shade test?" **Key:** the card roof. A miss: show the old roof pictures and point to the shade. This is retrieval only and tests no warming.
+**Cover pictures.** Two small pictures of a toy animal in the sun: a cardboard cover held over it (shade on the animal), and no cover. Spoken: "Which picture shows the cover blocking sunlight?"

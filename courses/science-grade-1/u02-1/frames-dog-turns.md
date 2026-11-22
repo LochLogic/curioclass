@@ -22,4 +22,4 @@ Plain black line drawings on white, thick lines, no shading, no brand names. One
 
 Each caption says only what happened. A separate card, drawn as a thought bubble over the dog and headed **We think**, reads: "We think the dog heard the voice, because we saw its ears turn." The owner's usual evening call can be said aloud here as one more thing we think, never in a caption. The teacher says aloud that this is what we think, since we cannot ask the dog. Children lay the chain cards (what happened, the part that senses, the part that moves) on the frames: a voice calls, ears, legs.
 
-**Spoken:** "What happened? Which part senses it? Which part moves the dog?" Key: a voice calls from the kitchen; ears; legs. The frames are a teaching case, so the held-back day 14 exit is a different animal.
+**Spoken:** "What happened? Which part senses it? Which part moves the dog?" The key is in key-frames-dog-turns.md.

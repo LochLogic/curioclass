@@ -15,7 +15,7 @@ This grown sunflower made seeds. One seed grew into this young sunflower.
 
 ## Diagram
 
-Three stages left to right: a tall grown sunflower with a big flower head; one seed; a young sunflower with two leaves. Two thick arrows, labelled made and grew. No food arrow, no carrying and no guarding.
+Three stages, out of order, left to right: a young sunflower with two leaves; a tall grown sunflower with a big flower head; one seed. No arrows and no words, so nothing can be copied: the child draws the link. No food, no carrying and no guarding.
 
 ## Key (teacher only)
 

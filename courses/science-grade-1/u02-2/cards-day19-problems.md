@@ -28,4 +28,4 @@ The teacher notes each child's choice on the class list. No child is asked to be
 7. **beetle wing cover:** curved like a lid, covers the wings.
 8. **fish scales:** overlapping and smooth, cover the body.
 
-Each card shows the picture, the part word and one line of shape and job. Four fit the three problems by shape (shell and wing cover protect; feathers and scales keep out; feelers detect), and the others are good for other jobs. Sketches may combine two. Cards 1 to 4 were seen on day 15 or before; none is a thorn, a row of bumps, a lighthouse, a lamppost, a signpost or a bird's beak.
+Each card shows the picture, the part word and one line of shape and job. Cards 1 to 4 were seen on day 15 or before; none is a thorn, a row of bumps, a lighthouse, a lamppost, a signpost or a bird's beak.

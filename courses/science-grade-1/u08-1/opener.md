@@ -9,11 +9,11 @@ credit: ours
 
 ## What the section does
 
-Five meetings across the year: day 9 in the fall, days 62 to 65 in spring. On day 9 the class sets one dated evening report beside a day strip, asks whether the daylight will stay this long, colours a first guess for winter and spring, and starts the class daylight chart. Between day 9 and day 62 the teacher adds a square each month in the two-minute weather chart row, outside lesson time (the monthly look). Day 62 sorts the year's squares into fall, winter and spring and revises the guess. Day 63 slides full-day strips until the sunrise pictures meet and compares winter with fall and with spring. Day 64 is the observed check on strips from an unfamiliar place. Day 65 returns picture comments, repairs by letter and tries three fresh strips. Nothing is scored but day 64, and day 64 is marked on one scale: shown, shown with help, not yet seen.
+Five meetings across the year: day 9 in the fall, days 62 to 65 in spring. On day 9 the class sets one dated evening report beside a day strip, asks whether the daylight will stay this long, colors a first guess for winter and spring, and starts the class daylight chart. Between day 9 and day 62 the teacher adds a square each month in the two-minute weather chart row, outside lesson time (the monthly look). Day 62 sorts the year's squares into fall, winter and spring and revises the guess. Day 63 slides full-day strips until the sunrise pictures meet and compares winter with fall and with spring. Day 64 is the observed check on strips from an unfamiliar place. Day 65 returns picture comments, repairs by letter and tries three fresh strips. Nothing is scored but day 64, and day 64 is marked on one scale: shown, shown with help, not yet seen.
 
 ## How the days run
 
-Each day is 30 to 35 minutes. Children read very little: the teacher reads every prompt, and every answer is a touch, a colouring, a slide, a drawing or a few words the teacher writes. A child may always pass. Every exit case is invented for practice and said aloud to be so. A rotating six is heard on each exit and the record sheet has a heard column. Pip the puppet is wrong on purpose, one line at a time, and no child is ever the one who made the mistake.
+Each day is 30 to 35 minutes. Children read very little: the teacher reads every prompt, and every answer is a touch, a coloring, a slide, a drawing or a few words the teacher writes. A child may always pass. Every exit case is invented for practice and said aloud to be so. A rotating six is heard on each exit and the record sheet has a heard column. Pip the puppet is wrong on purpose, one line at a time, and no child is ever the one who made the mistake.
 
 ## The ideas, at an adult's level
 

@@ -17,4 +17,4 @@ Say aloud first: "These pictures are invented for practice." They bring back kin
 
 ## Spoken
 
-"Mark the push that could start it moving." Key: card 1, the hand pushes the cart. Then "What did we watch in our tower test?" Key: a hand pushes the cart and we watch whether the tower stays standing under the agreed fan test. A miss: the teacher pushes a classroom box gently and the child marks its new place. Retrieval, not scored: note S, H or N in the margin of the record sheet.
+"Mark the push that could start it moving." Then "What did we watch in our tower test?" Both keys are in key-picture-cart (teacher only). A miss: the teacher pushes a classroom box gently and the child marks its new place. Retrieval, not scored: note S, H or N in the margin of the record sheet.

@@ -21,16 +21,16 @@ Each example is a pair: a part's shape card and a job card, with the word **shap
 
 Each set holds **four job cards and eight part cards.** Groups match each job to the part whose shape could do it, and draw one arrow from the shape to the job.
 
-**Job cards.** hold on to a ledge; push through water; dig into soil; stick to rough cloth.
+**Job cards.** hold on to a thin pole; push through water; dig into soil; stick to rough cloth.
 
 **Part cards that fit by shape (4):**
-- a vine's curling tendril, wrapped round a thin stick (hold on to a ledge);
+- a vine's curling tendril, wrapped round a thin stick (hold on to a thin pole);
 - a frog's wide webbed back foot, spread in water (push through water);
 - a mole's broad front paw with long flat claws, in soil (dig into soil);
 - a seed burr covered in small hooks, caught on a sleeve (stick to rough cloth).
 
 **Part cards that are pretty but do not fit any of these jobs (4):** pink rose petals; yellow daisy petals; a shiny red cherry; striped tulip petals.
 
-**Spoken:** "Which part's shape could do this job? Draw one arrow from its shape to the job." Key: tendril to ledge; webbed foot to water; broad paw to soil; hooked burr to cloth. The pretty four fit no job here: they are lovely, and their shape does not do these jobs. A child who matches a pretty card by its colour is showing error D, and the repair is to hold the two cards side by side and say "its shape does the job."
+**Spoken:** "Which part's shape could do this job? Draw one arrow from its shape to the job." The key is in key-cards-design-jobs.md.
 
 The held-back day 15 exit uses a different job (keep a small paper tool safe in a bag) and a different part (a beetle's hard wing cover), so neither the job nor the wing cover is on these sets.

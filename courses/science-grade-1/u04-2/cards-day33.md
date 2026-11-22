@@ -19,4 +19,4 @@ Apparatus: a thin paper ribbon hung from a stand beside a speaker that plays, sh
 
 ## Check before use
 
-The teacher checks every record before use. No hands, breath or fan move the ribbon during sound-only trials. Unknown results are never filled in. The ribbon is never used elsewhere in days 28 to 34, and is not tissue, foil, card or fringe.
+Print one set of each item's records for the teacher table and three sealed sets of each for the waiting groups: groups 1, 3 and 5 take item 2 from records at their table, groups 2, 4 and 6 item 1. The teacher checks every record before use. No hands, breath or fan move the ribbon during sound-only trials. Unknown results are never filled in. The ribbon is never used elsewhere in days 28 to 34, and is not tissue, foil, card or fringe.

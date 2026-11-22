@@ -11,16 +11,16 @@ Each exit has picture cards that every child touches and a spoken question heard
 
 ## Day 5
 
-**Item s01-X5a.** Card: a footbridge over a creek drawn on a sunny afternoon, no stars marked. Spoken: "Say why the afternoon card has no stars." **Key:** the sky is too bright to see them; they are still there. Wrong: "the stars went away" is error D.
+**Item s01-X5a.** Card: a footbridge over a creek drawn on a sunny afternoon, no stars marked. Spoken: "Say why the afternoon card has no stars." The key is in key-cards-exits-5-6.md.
 
-**Item s01-X5b.** Three cards of the creek footbridge, no stars drawn on any card, each labeled by its sky: a cloudy night, a clear dark night, a sunny afternoon. Spoken: "Touch the card where we could see stars." **Key:** the clear dark night.
+**Item s01-X5b.** Three cards of the creek footbridge, no stars drawn on any card, each labeled by its sky: a cloudy night, a clear dark night, a sunny afternoon. Spoken: "Touch the card where we could see stars." The key is in key-cards-exits-5-6.md.
 
-**Item s01-X5c.** Card: a kite hill at lunchtime, a pale moon beside a bright sun, a clock picture reading midday. Two touch cards: yes, no. Spoken: "Can the moon be in the day sky?" **Key:** yes. Wrong: no is error C.
+**Item s01-X5c.** Three touch cards of the kite hill: a dark night with a moon and a clock picture reading night; a bright noon sky with the sun low on one side and a pale moon on the far side of the sky, a clock picture reading midday; a bright noon sky with the sun and no moon, a clock picture reading midday. Spoken: "Touch the card that shows the moon in the day sky." The key is in key-cards-exits-5-6.md.
 
 ## Day 6
 
-**Item s01-X6a.** A stone wall at a seaside school on two small cards, a dot on the left ground spot on one and a dot on the middle ground spot on the other, plus a blank row of three ground spots with no dots. Touch cards: left, middle, right. Spoken: "On the blank row, touch where the third dot goes." **Key:** right. Wrong: middle is error A.
+**Item s01-X6a.** A stone wall at a seaside school on three small cards: a dot on the left ground spot (morning), a flap card (noon), and a dot on the right ground spot (afternoon), plus a blank row of three ground spots with no dots. Touch cards: left, middle, right. Spoken: "On the blank row, touch where the covered noon dot was." The key is in key-cards-exits-5-6.md.
 
-**Item s01-X6b.** A row: a pond, a barn and a windmill in a line. First the moon is low above the pond. Then it is high above the barn. Touch cards: low above the pond; high above the barn; lower above the windmill. **Key:** lower above the windmill. Wrong: high above the barn is error B.
+**Item s01-X6b.** A row: a pond, a barn and a windmill in a line. Look one: the moon low above the pond. Look two: a flap. Look three: the moon lower above the windmill. Touch cards: low above the pond; high above the barn; lower above the windmill. Spoken: "Touch where the moon was at look two." The key is in key-cards-exits-5-6.md.
 
-**Item s01-X6c.** A farm school: Tuesday night clear and dark with stars, Wednesday afternoon bright with no stars, Thursday night clear and dark with stars, Friday night clear and dark and not drawn. Touch cards: stars, no stars. **Key:** stars. Wrong: no stars is error D.
+**Item s01-X6c.** A farm school: Tuesday night clear and dark with stars, Wednesday night clear and dark with stars, and a flap over Thursday afternoon, with a sun and a clock picture reading afternoon on the flap. Touch cards: stars to see (a sky with stars); no stars to see (a bright sky). Spoken: "Touch what the Thursday afternoon card will show." The key is in key-cards-exits-5-6.md.

@@ -7,7 +7,7 @@ credit: ours
 ---
 # Day 60 duck case (held back, invented for practice)
 
-Printed "invented for practice" on the text and on every frame, and said aloud. Used only on day 60. Plain black line drawings on white, thick lines, no shading, no brand names. The adult duck is labelled parent and the small ducks young. The text is read once; the pages are handed out; no meaning is given for either sequence.
+Printed "invented for practice" on the text and on every frame, and said aloud. Used only on day 60. Plain black line drawings on white, thick lines, no shading, no brand names. The adult duck is labeled parent and the small ducks young. The text is read once; the pages are handed out; no meaning is given for either sequence.
 
 ## Words, read aloud once
 
@@ -27,7 +27,7 @@ These ducklings hatched from eggs laid by this adult duck. The adult calls to ke
 
 ## Call symbol convention
 
-Say aloud, before the sequences are handed out: "A mark by a beak is a picture of a call. A picture of a call is not the sound." Do not say what either sequence means. These are two pictures of behaviour the words report, not two separate watchings that prove it.
+Say aloud, before the sequences are handed out: "A mark by a beak is a picture of a call. A picture of a call is not the sound." Do not say what either sequence means. These are two pictures of behavior the words report, not two separate watchings that prove it.
 
 ## Keys (teacher only)
 

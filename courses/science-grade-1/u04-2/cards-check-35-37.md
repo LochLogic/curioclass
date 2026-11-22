@@ -22,18 +22,18 @@ Held back. Not shown, handled or taught from before day 35. Plain black line dra
 
 - **Linden blades.** Three life-size paper blades with heart shapes and toothed edges, the parent's longest, one young blade shortest, the other between. Tape line for laying them. Two touch cards: fits; does not fit.
 - **Goat family and hen.** A goat and two kids, one with a brown ear and one with a white ear, a second adult goat, and a hen with feathers and a beak. Two touch cards: fits; does not fit.
-- **Sound records, taken by an adult.** A tissue strip near the paper ear cone: sound off; sound on; sound on with a hand pressing the strip; sound on with a hand held near it. A pot lid on a string: tapped; tapped then gently held. Nothing is invented as a result: with no valid record leave that case out.
+- **Sound records, taken by an adult.** A few paper confetti bits on a paper plate beside the teacher's speaker: sound off; sound on; sound on with a hand on the plate; sound on with a hand held near the plate. A metal baking tray hung on a string: tapped; tapped then gently held. The class sound chart with its three arrows is laid beside them. Nothing is invented as a result: with no valid record leave that case out.
 
 ## Day 37: fresh exit cards
 
 - Park dots: 10 o'clock by the fountain, noon by the path, 2 o'clock place cards (fountain, path, swings).
 - Bird water dish lids: a flat card resting on the dish, an arch standing clear with one open side, a flat card with a bird drawn on it.
-- Horse and foal: hooves card, white star card, one field card.
-- Streamer and drum: quiet, tapped, nothing touching.
+- Horse and foal: the mother plain-faced, the foal with a white star on its face; hooves card, white star card, one field card.
+- Streamer and drum: a paper streamer hanging close above the drum head, drum quiet, drum tapped firmly, nothing touching. Two arrow touch cards, a picture arrow each with a one-word label: "shakes, so sounds" (a shaking drum to a sound mark) and "sounds, so shakes" (a sound mark to a shaking streamer).
 
 ## Feedback cue cards (days 35 and 36, for day 37)
 
-One picture cue card for each mark that most children need to fix: a finger sliding along a path; a day card beside a night card; a root with water going in; two sill pictures with an arrow; frog eyes then tongue; an arch beside a picture card; three blades with the tips marked; a goat family and a hen; a lid held still; strip off and on; sound-off beside sound-on. Cue cards say nothing in words.
+One picture cue card for each mark that most children need to fix: a finger sliding along a path; a day card beside a night card; a root with water going in; two sill pictures with an arrow; frog eyes then tongue; an arch beside a picture card; three blades with the tips marked; a goat family and a hen; a tray held still; confetti off and on; sound-off beside sound-on. Cue cards say nothing in words.
 
 ## Check before use
 

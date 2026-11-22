@@ -11,7 +11,7 @@ Keep these in an envelope. Say "this is invented for practice" first. Plain blac
 
 **A (day 43): the toy chest.** Picture 1: a shut toy chest with a toy inside, shown dotted. Picture 2: the lid lifted, the toy seen. Wrong: "We waited, so the toy showed up in the dark chest." Right: "We saw it when the lid opened and light got in."
 
-**B (day 43): the torch under a blanket.** Picture 1: a lump under a blanket, nothing else lit. Picture 2: the same, a glow at the edge. Wrong: "The glow under the blanket needs a lamp." Right: "The torch shows at the edge, so it makes its own light."
+**B (day 43): the flashlight under a blanket.** Picture 1: a lump under a blanket, nothing else lit. Picture 2: the same, a glow at the edge. Wrong: "The glow under the blanket needs a lamp." Right: "The flashlight shows at the edge, so it makes its own light."
 
 **E (day 44): the taped light.** One picture of a flashlight held in a hand with arrows showing it moving, and one picture of the flashlight with a tape mark under it and a piece changed. Wrong: "Move the light for each piece so we can see." Right: "Tape the light and change only the piece." Children point to the picture where only the piece changes.
 
