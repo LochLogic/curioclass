@@ -24,7 +24,7 @@ Invented for practice. Goal: an awning stays on in at least 2 of 3 trials. Limit
 
 ## Day 111
 
-Invented for practice. A model greenhouse in a hail box. Goal: at most 3 of 10 glass squares cracked. Limit: 9 tokens. Nothing: 8, 9 and 8 cracked. Net alone, 4 tokens: 5, 5 and 6. Net with frame and slope, 8 tokens: 2, 3 and 2. Solid roof, 12 tokens: 0, 0 and 1. Which design has merit? What do the records not show?
+Invented for practice. A model greenhouse in a hail box. Goal: at most 3 of 10 glass squares cracked. Limit: 9 tokens. No cover: 8, 9 and 8 cracked. Net alone, 4 tokens: 5, 5 and 6. Net with frame and slope, 8 tokens: 2, 3 and 2. Solid roof, 12 tokens: 0, 0 and 1. Which design has merit? What do the records not show?
 
 ## Day 112
 

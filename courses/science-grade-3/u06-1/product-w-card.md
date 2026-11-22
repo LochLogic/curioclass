@@ -20,4 +20,4 @@ Seasons are in this order: spring, summer, autumn, winter. Each season is a samp
 
 ## Your task
 
-Put all three measures in a table. Graph the days with rain or snow. Count by 2 on the side. Label both sides. Write a seasonal expectation that uses all three measures. Say how sure you are. Write what could still happen.
+Put all three measures in a table. Graph the days with rain or snow. Count by 2 on the side. Label both sides. Compare two seasons using all three measures. Write a seasonal expectation that uses all three measures. Say how sure you are. Write what could still happen.

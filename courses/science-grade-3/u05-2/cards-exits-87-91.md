@@ -20,7 +20,7 @@ Invented for practice. A new canal cuts a field from a pond where toads breed. G
 
 ## Day 89
 
-Invented for practice. A dam stops minnows reaching an egg pool. Goal: at least 6 of 10 marked model minnows reach it, within 5 tokens. Wide steps: 2 tokens, 3 of 10. Step-pool channel: 4 tokens, 8 of 10. Long ramp: 7 tokens, 10 of 10. Which has merit? What does the record not show?
+Invented for practice. A raised pipe stops frogs reaching a marsh. Goal: at least 6 of 10 marked model frogs reach it, within 5 tokens. Short ramp: 2 tokens, 3 of 10. Stepped ledges: 4 tokens, 8 of 10. Long slope: 7 tokens, 10 of 10. Which has merit? What does the record not show?
 
 ## Day 90
 

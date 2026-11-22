@@ -12,7 +12,7 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 ## Day 37
 
-Card A: an egg, day 0. Card B: a chick, day 21. Card C: a hen, day 150. Read the card text aloud.
+Card A: a chick, day 21. Card B: a hen, day 150. Card C: an egg, day 0. Read the card text aloud.
 
 ## Day 38
 

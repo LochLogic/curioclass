@@ -19,7 +19,7 @@ Four repair sets for day 120 and the exit cards. Plain line drawings, no brand n
 
 ## Exit cards (answered alone, read aloud twice)
 
-- **X120d.** First question: a bar graph for Cedar Mesa winter with the side counting by 2, one bar drawn to 8, and no title. Second question: a dry canyon wall with a fish bone and a reed print low in the rock.
+- **X120d.** First question: a bar graph for Cedar Mesa winter with the side counting by 2, one bar drawn to 8, and no title and no labels. Second question: a dry canyon wall with a fish bone and a reed print low in the rock.
 - **P120-4, said aloud.** A marsh gate with a tokens line and a goal line.
 
 ## Hand-off sheet

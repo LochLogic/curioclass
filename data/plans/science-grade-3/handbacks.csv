@@ -6,62 +6,62 @@ from_day,to_day,what,where,minutes,error,note
 2,3,s01-X2,Return and repair,2,G,"highlight the repeated entries in the wind table, then predict again"
 2,3,s01-X2,Return and repair,2,H,run the same push a second time before saying anything
 3,4,s01-X3,Return and repair,2,D,cross out every change but one in a proposed test
-3,4,s01-X3,Return and repair,2,H,run the same condition a second time before concluding
-4,5,s01-X4,Return and repair,2,A,hold a box still between two hands and draw both arrows
+3,4,s01-X3b,Return and repair,2,H,run the same condition a second time before concluding
+4,5,s01-X4b,Return and repair,2,A,hold a box still between two hands and draw both arrows
 4,5,s01-X4,Return and repair,2,B,"predict, then test two pushers on the tray box and read the ruler"
 5,6,s01-X5,Return and repair,2,A,a held box with two arrows
 5,6,s01-X5,Return and repair,2,B,two equal pushes tested again on the tray box
 5,6,s01-X5,Return and repair,2,C,each arrow card laid beside its own ruler record
 6,7,s01-X6,Return and repair,2,D,cross out every change but one
-6,7,s01-X6,Return and repair,2,H,run the same condition again before concluding
+6,7,s01-X6b,Return and repair,2,H,run the same condition again before concluding
+7,8,written task: day 7 group test record,revise the record,8,,returned with written feedback; revised in a second color with the original observations and initials kept
 7,8,s01-X7,Return and repair,2,B,run the same equal condition again on the tray and read the ruler
-7,8,s01-X7,Return and repair,2,G,"keep every reading, including the 3 cm one, and say what might explain it"
-7,8,written task: day 7 group test record,revise the record,8,,returned with written feedback; revised in a second colour with the original observations and initials kept
+7,8,s01-X7b,Return and repair,2,G,"keep every reading, including the 3 cm one, and say what might explain it"
 7,15,s01-E3,Launch and transitions,0,D,the revised day 7 record is scored on day 15 outside lesson minutes
 7,15,s01-E4,Launch and transitions,0,,the revised day 7 record is scored on day 15 outside lesson minutes
 7,15,s01-E5,Launch and transitions,0,A,the revised day 7 record is scored on day 15 outside lesson minutes
 8,9,s01-X8,Return and repair,2,A,hold a washer on a string still and draw its two arrows
 8,9,s01-X8,Return and repair,2,C,redraw with arrows for strength only; the rope is drawn separately
 9,10,s01-X9,Return and repair,2,E,lay turning-position cards in order and slide a finger along them
-9,10,s01-X9,Return and repair,2,F,compare successive far turns on the class table and say what changed
+9,10,s01-X9b,Return and repair,2,F,compare successive far turns on the class table and say what changed
 10,11,s01-X10,Return and repair,2,E,lay the turning-position cards in order again
 10,11,s01-X10,Return and repair,2,G,highlight two earlier matching turns that support the answer
 11,12,s01-X11,Return and repair,2,E,lay turning-position cards in order and slide a finger along them
-11,12,s01-X11,Return and repair,2,F,compare successive turning marks on the class table
+11,12,s01-X11b,Return and repair,2,F,compare successive turning marks on the class table
+12,13,written task: day 12 changed pendulum record,revise the record,7,,returned with written feedback; revised in a second color with the original observations kept
 12,13,s01-X12,Return and repair,2,E,lay turning-position cards in order and slide a finger along them
-12,13,s01-X12,Return and repair,2,H,run the same condition again before concluding
-12,13,written task: day 12 changed pendulum record,revise the record,7,,returned with written feedback; revised in a second colour with the original observations kept
+12,13,s01-X12b,Return and repair,2,H,run the same condition again before concluding
 12,14,s01-E1,Launch and transitions,0,E,the revised day 12 record is scored on day 14 outside lesson minutes
 12,14,s01-E2,Launch and transitions,0,E,the revised day 12 record is scored on day 14 outside lesson minutes
-13,16,s01-X13d,Return and repair,2,A,hold a box still between two hands and draw both arrows
 13,16,s01-P13-5,Return and repair,2,C,label strength and distance as two different things
+13,16,s01-X13d,Return and repair,2,A,hold a box still between two hands and draw both arrows
 14,16,day 14 record,Return and repair,1,,component feedback goes back on the fresh transfer record
 16,17,s01-X16c,Retrieve,2,,the resting parcel with two equal opposing arrows is drawn again and the cancelling said aloud
-16,17,s01-X16c,Retrieve,1,,the swinging bead is recalled in one sentence
-17,18,s02-X17,Return and repair,2,A,lay a ruler across the gap and trace the arrow along it; say what none seen means
-18,19,s02-X18,Return and repair,2,D,cross out every change but one in a proposed test
-19,20,s02-X19,Return and repair,2,A,lay a ruler across the gap and trace the arrow along it; say what none seen means
+16,17,s01-X16d,Retrieve,1,,the swinging bead is recalled in one sentence
+17,18,s02-X17b,Return and repair,2,A,lay a ruler across the gap and trace the arrow along it; say what none seen means
+18,19,s02-X18b,Return and repair,2,D,cross out every change but one in a proposed test
+19,20,s02-X19b,Return and repair,2,A,lay a ruler across the gap and trace the arrow along it; say what none seen means
 19,20,s02-X19,Return and repair,2,D,cross out every change but one in a proposed test
-20,21,s02-X20,Return and repair,2,C,"draw both arrow pairs, a magnet and steel, then two magnets"
-21,22,s02-X21,Return and repair,2,B,sort four labelled records into pulled and not pulled
-21,22,s02-X21,Return and repair,2,D,cross out every change but one in a proposed test
+20,21,s02-X20b,Return and repair,2,C,"draw both arrow pairs, a magnet and steel, then two magnets"
+21,22,s02-X21,Return and repair,2,B,sort four labeled records into pulled and not pulled
+21,22,s02-X21b,Return and repair,2,D,cross out every change but one in a proposed test
 22,23,s02-X22,Return and repair,2,A,lay a ruler across the gap and trace the arrow along it; say what none seen means
-22,23,s02-X22,Return and repair,2,D,cross out every change but one in a proposed test
+22,23,s02-X22b,Return and repair,2,D,cross out every change but one in a proposed test
 23,24,s02-X23,Return and repair,2,A,lay a ruler across the gap and trace the arrow along it; say what none seen means
-23,24,s02-X23,Return and repair,2,D,cross out every change but one in a proposed test
+23,24,s02-X23b,Return and repair,2,D,cross out every change but one in a proposed test
 24,25,s02-X24,Return and repair,2,A,lay a ruler across the gap and trace the arrow along it; say what none seen means
-24,25,s02-X24,Return and repair,2,D,cross out every change but one in a proposed test
+24,25,s02-X24b,Return and repair,2,D,cross out every change but one in a proposed test
 25,26,s02-X25,Return and repair,2,E,rewrite a materials list as who needs what so that
 26,27,s02-X26,Return and repair,2,E,rewrite a materials list as who needs what so that
-26,27,s02-X26,Return and repair,2,F,check a proposal card line by line against the printed allowance
+26,27,s02-X26b,Return and repair,2,F,check a proposal card line by line against the printed allowance
 27,28,s02-X27,Return and repair,2,D,cross out every change but one in a proposed test
-27,28,s02-X27,Return and repair,2,F,check a proposal card line by line against the printed allowance
+27,28,s02-X27b,Return and repair,2,F,check a proposal card line by line against the printed allowance
 28,29,s02-X28,Return and repair,2,E,rewrite a materials list as who needs what so that
-28,29,s02-X28,Return and repair,2,F,check a proposal card line by line against the printed allowance
+28,29,s02-X28c,Return and repair,2,F,check a proposal card line by line against the printed allowance
+29,30,written task: day 29 interaction record,revise,7,,returned with written feedback; revised in a second color with the original kept and initialled
+29,30,written task: day 29 lid record,revise,8,,returned with written feedback; revised in a second color with the original kept and initialled
 29,30,s02-X29,Return and repair,2,A,lay a ruler across the gap and trace the arrow along it; say what none seen means
-29,30,s02-X29,Return and repair,2,B,sort four labelled records into pulled and not pulled
-29,30,written task: day 29 interaction record,revise,7,,returned with written feedback; revised in a second colour with the original kept and initialled
-29,30,written task: day 29 lid record,revise,8,,returned with written feedback; revised in a second colour with the original kept and initialled
+29,30,s02-X29b,Return and repair,2,B,sort four labeled records into pulled and not pulled
 29,31,s02-E1,Launch,0,D,the revised day 29 interaction record is scored on day 31 outside lesson minutes
 29,31,s02-E2,Launch,0,A,the revised day 29 interaction record is scored on day 31 outside lesson minutes
 29,31,s02-E2,Launch,0,C,the revised day 29 interaction record is scored on day 31 outside lesson minutes
@@ -74,7 +74,7 @@ from_day,to_day,what,where,minutes,error,note
 31,33,s02-E2,groups,3,A,lay a ruler across the gap and trace the arrow along it; say what none seen means
 31,33,s02-E2,groups,3,C,"draw both arrow pairs, a magnet and steel, then two magnets"
 32,33,day 32 record,feedback,3,,component feedback goes back on the day 32 statement
-32,33,s02-E4,groups,3,B,sort four labelled records into pulled and not pulled
+32,33,s02-E4,groups,3,B,sort four labeled records into pulled and not pulled
 32,33,s02-E5,groups,6,E,rewrite a materials list as who needs what so that
 32,33,s02-E6,groups,6,F,check a proposal card line by line against the printed allowance
 34,36,day 34 records,Return of feedback,3,,each child gets their record with one written next step
@@ -90,37 +90,37 @@ from_day,to_day,what,where,minutes,error,note
 35,36,c1-E35c,Repair groups,0,I,in the same 3 minutes as group 4 letter G; sort the steel and brass washers
 36,38,s03-R1,Support: like parents,10,F,match one shared feature and circle one difference on a fresh pair: alike in ___; different in ___
 36,42,s03-R2,Readiness,4,F,"say why a height difference does not rule out the same kind, citing the matching leaf shape"
-37,38,s03-X37,Return and repair,2,A,"redraw one cycle in two colours: the adult in one, the new individual in the other"
+37,38,s03-X37,Return and repair,2,A,"redraw one cycle in two colors: the adult in one, the new individual in the other"
 38,39,s03-X38,Return and repair,2,B,sort picked ears and a seed beginning to grow into harvest and new plant
-38,39,s03-X38,Return and repair,2,A,redraw one cycle in two colours with the arrow from the adult's seeds to a new plant
-39,40,s03-X39,Return and repair,2,A,"redraw one cycle in two colours: the adult in one, the new animal in the other"
-39,41,s03-X39,Return and repair,2,A,"redraw one cycle in two colours: the adult in one, the new individual in the other"
+38,39,s03-X38,Return and repair,2,A,redraw one cycle in two colors with the arrow from the adult's seeds to a new plant
+39,40,s03-X39,Return and repair,2,A,"redraw one cycle in two colors: the adult in one, the new animal in the other"
+39,41,s03-X39,Return and repair,2,A,"redraw one cycle in two colors: the adult in one, the new individual in the other"
 40,41,s03-X40,Return and repair,2,,lay the dragonfly cards and count the stages drawn; a pupa only where a card shows one
-41,42,s03-X41,Return and repair,2,A,redraw the moth model in two colours with the arrow from the adult's eggs to a new moth
-41,42,s03-X41,Return and repair,2,,count the days between the recorded stages and correct the interval labels
+41,42,s03-X41,Return and repair,2,A,redraw the moth model in two colors with the arrow from the adult's eggs to a new moth
+41,42,s03-X41b,Return and repair,2,,count the days between the recorded stages and correct the interval labels
 42,43,s03-X42,Return and repair,2,B,sort picked leaves and a seed beginning to grow into harvest and new plant
 43,44,s03-X43,Return and repair,2,G,"two pictures, one with a family record and one without; which can be used as data"
 43,44,s03-X43,Return and repair,2,F,circle the differing feature in one documented family: alike in ___; different in ___
-44,45,s03-X44,Return and repair,2,F,circle the differing feature in one documented family: alike in ___; different in ___
+44,45,s03-X44b,Return and repair,2,F,circle the differing feature in one documented family: alike in ___; different in ___
 45,46,s03-X45,Return and repair,2,G,"two pictures, one with a family record and one without; which can be used as data"
-46,47,s03-X46,Return and repair,2,F,circle the differing size in one documented family: alike in ___; different in ___
+46,47,s03-X46b,Return and repair,2,F,circle the differing size in one documented family: alike in ___; different in ___
 46,47,s03-X46,Return and repair,2,,label the count axis and the size categories on one graph and match each bar to its tally
-47,48,s03-X47,Return and repair,2,E,name one condition the two photographs do not keep the same
 47,48,written task,Return and repair,0,,"the day 47 written tasks go back with one short note each, during the ticket handback"
-48,49,s03-X48,Return and repair,2,C,"cross out every difference but the one changed in a pot card, then say what explains the heights"
+47,48,s03-X47,Return and repair,2,E,name one condition the two photographs do not keep the same
 48,49,written task,Return and repair,0,,"the day 48 written tasks go back with one short note each, during the ticket handback"
+48,49,s03-X48,Return and repair,2,C,"cross out every difference but the one changed in a pot card, then say what explains the heights"
 49,50,s03-X49,Return and repair,2,E,name the second difference between the two pots
 49,50,s03-X49,Return and repair,2,C,cross out every difference but the one changed in a pot card
 49,50,written task,Return and repair,0,,"the day 49 written tasks go back with one short note each, during the ticket handback"
-50,51,s03-X50,Return and repair,2,D,set one animal before and after the cue beside its young who were never trained
-50,51,s03-X50,Return and repair,2,C,compare the two light rows of one plant kind and name the surroundings
 50,51,written task,Return and repair,0,,"the day 50 written tasks go back with one short note each, during the ticket handback"
+50,51,s03-X50,Return and repair,2,D,set one animal before and after the cue beside its young who were never trained
+50,51,s03-X50b,Return and repair,2,C,compare the two light rows of one plant kind and name the surroundings
 51,52,s03-X51,Return and repair,2,C,"cross out every difference but the one changed, then say what explains the heights"
 51,52,s03-X51,Return and repair,2,D,set one animal before and after the cue beside its young who were never trained
-52,53,s03-X52,repair,2,C,compare the two spacing rows of one family and cross out every difference but spacing
-53,54,written task: day 53 record 1,Revise,7,,returned with written feedback; revised in a second colour with the original kept and initialled
-53,54,written task: day 53 record 2,Revise,7,,returned with written feedback; revised in a second colour with the original kept and initialled
-53,54,written task: day 53 record 3,Revise,8,,returned with written feedback; revised in a second colour with the original kept and initialled
+52,53,s03-X52b,repair,2,C,compare the two spacing rows of one family and cross out every difference but spacing
+53,54,written task: day 53 record 1,Revise,7,,returned with written feedback; revised in a second color with the original kept and initialled
+53,54,written task: day 53 record 2,Revise,7,,returned with written feedback; revised in a second color with the original kept and initialled
+53,54,written task: day 53 record 3,Revise,8,,returned with written feedback; revised in a second color with the original kept and initialled
 54,55,s03-E1,directions,0,C,the revised day 53 record 1 is scored on day 55 outside lesson minutes
 54,55,s03-E2,directions,0,D,the revised day 53 record 1 is scored on day 55 outside lesson minutes
 54,55,s03-E3,directions,0,C,the revised day 53 record 1 is scored on day 55 outside lesson minutes
@@ -134,7 +134,7 @@ from_day,to_day,what,where,minutes,error,note
 55,58,s03-E2,groups,3,D,set the before and after card of one animal beside the never-trained young
 55,58,s03-E3,groups,3,C,compare the two watering rows of one family and cross out every difference but water
 56,58,day 56 record,Return,2,,component feedback goes back on the day 56 fresh work
-56,58,s03-E4,groups,3,A,"redraw one cycle in two colours: the adult in one, the new individual in the other"
+56,58,s03-E4,groups,3,A,"redraw one cycle in two colors: the adult in one, the new individual in the other"
 56,58,s03-E6,groups,3,B,place the pod card and the seedling card beside the dated record; point to the one that shows a new plant
 57,58,day 57 record,Return,1,,component feedback goes back on the day 57 fresh work
 57,58,s03-E7,groups,3,G,"two pictures, one with a family record and one without; the class says which can be used as data"
@@ -146,25 +146,25 @@ from_day,to_day,what,where,minutes,error,note
 60,61,s04-X60,Return and repair,2,C,find the one trip in the heron record that does not follow the pattern
 61,62,s04-X61,Return and repair,2,C,"commonest letter of B and C; read the bar for six gulls aloud, or mark where one gull still got fish"
 62,63,written task: item G feedback,Return and repair,2,,"component feedback on the day 62 draft, handed back after class"
-62,63,written task: item G revision,Item G revision,8,,"the revision from the written feedback, in a second colour"
+62,63,written task: item G revision,Item G revision,8,,"the revision from the written feedback, in a second color"
 62,63,s04-X62,Return and repair,2,B,commonest letter of B and C; the moose card beside the group cards
-63,64,s04-X63,Return and repair,2,B,commonest letter of B and C; mark where the owl and the mice each got food
+63,64,s04-X63b,Return and repair,2,B,commonest letter of B and C; mark where the owl and the mice each got food
 63,76,s04-E5,Launch,0,B,the revised item G is scored on day 76 outside lesson minutes
 63,76,s04-E6,Launch,0,C,the revised item G is scored on day 76 outside lesson minutes
 63,76,s04-E7,Launch,0,C,the revised item G is scored on day 76 outside lesson minutes
 63,76,s04-E8,Launch,0,B,the revised item G is scored on day 76 outside lesson minutes
 64,65,s04-X64,Return and repair,2,A,"commonest letter of A and C; sort the cards by kind first, then compare"
-65,66,s04-X65,Return and repair,2,D,turn the cloth over and search again for one colour
-66,67,s04-X66,Return and repair,2,C,say what a paper trial cannot show about real animals
+65,66,s04-X65,Return and repair,2,D,turn the cloth over and search again for one color
+66,67,s04-X66b,Return and repair,2,C,say what a paper trial cannot show about real animals
 67,68,s04-X67,Return and repair,2,E,lay the pair card and the chick card side by side and point to the one that shows young
-68,69,s04-X68,Return and repair,2,E,"commonest letter of C and E; pair card beside chick card, or the exception in the table"
 68,69,written task: item V feedback,Return and repair,1,,"component feedback on the day 68 draft, handed back"
-68,74,written task: item V revision,Item V revision,8,,"the revision from the written feedback, in a second colour"
+68,69,s04-X68b,Return and repair,2,E,"commonest letter of C and E; pair card beside chick card, or the exception in the table"
+68,74,written task: item V revision,Item V revision,8,,"the revision from the written feedback, in a second color"
 69,70,s04-X69,Return and repair,2,F,commoner letter of F and G; draw the missing link on the banana card
-70,71,s04-X70,Return and repair,2,F,"commonest letter of F, G and C; match each need to what the forest floor gives"
+70,71,s04-X70b,Return and repair,2,F,"commonest letter of F, G and C; match each need to what the forest floor gives"
 71,72,s04-X71,Return and repair,2,F,draw the missing link on the cranberry card
 71,72,written task: item H feedback,Return and repair,1,,"component feedback on the day 71 draft, handed back"
-71,72,written task: item H revision,Item H revision,8,,"the revision from the written feedback, in a second colour"
+71,72,written task: item H revision,Item H revision,8,,"the revision from the written feedback, in a second color"
 72,73,s04-X72,Return and repair,2,F,"look in the inventory for a sign of doing well or poorly, not only what is there"
 72,77,s04-E9,directions,0,F,the revised item H is scored on day 77 outside lesson minutes
 72,77,s04-E10,directions,0,G,the revised item H is scored on day 77 outside lesson minutes
@@ -179,14 +179,14 @@ from_day,to_day,what,where,minutes,error,note
 76,78,day 76 records,Return records,2,,"item G scored product and fresh work, handed back with the component to work on"
 77,78,day 77 records,Return records,1,,"item H scored product and fresh work, handed back with the component to work on"
 79,81,day 79 records,Return of feedback,2,,each child gets their record with one written next step
-79,81,c2-E79c,Repair groups,5,J,"group 1, 5 minutes with the teacher; the adult in one colour and the new young in another, the arrow from the adult to the eggs"
+79,81,c2-E79c,Repair groups,5,J,"group 1, 5 minutes with the teacher; the adult in one color and the new young in another, the arrow from the adult to the eggs"
 79,81,c2-E79b,Repair groups,0,K,"in the same 5 minutes as group 1 letter J; two cards side by side, one stage that differs"
 79,81,c2-E79d,Repair groups,5,L,"group 2, 5 minutes with the teacher; one trait that matches and one that differs on a fresh pair"
 79,81,c2-E79e,Repair groups,0,M,in the same 5 minutes as group 2 letter L; say what makes it the same kind
 80,81,day 80 records,Return of feedback,2,,each child gets their record with one written next step
 80,81,c2-E80a,Repair groups,5,N,"group 3, 5 minutes with the teacher; one packet in light and shade, what the family gave and what the place gave"
 80,81,c2-E80b,Repair groups,0,O,in the same 5 minutes as group 3 letter N; before and after records side by side
-80,81,c2-E80e,Repair groups,5,P,"group 4, 5 minutes with the teacher; add helps, but does not promise to a claim"
+80,81,c2-E80h,Repair groups,5,P,"group 4, 5 minutes with the teacher; add helps, but does not promise to a claim"
 80,81,c2-E80g,Repair groups,0,Q,in the same 5 minutes as group 4 letter P; count watchers and feeders in each flock
 81,82,s05-R1,Hook,0,,the day 81 papers seat the day 82 pairs; nothing delays the hook
 81,83,s05-R1,Support groups,7,,the readiness group works from the day 81 papers; the whole class does the 7 minutes if many missed it
@@ -195,11 +195,11 @@ from_day,to_day,what,where,minutes,error,note
 83,84,s05-X83,Return and repair,2,F,commonest letter of A and F; the stump beside the guide card
 84,85,s05-X84,Return and repair,2,A,commonest letter of A and F; the desert valley beside the whale bones
 85,86,s05-X85c,Return and repair,1,C,the two stacks in hand
-85,86,s05-X85c,Return and repair,1,B,"extinct means none alive anywhere, with the guide statement"
+85,86,s05-X85d,Return and repair,1,B,"extinct means none alive anywhere, with the guide statement"
 85,97,s05-X85c,Four six-minute groups,6,C,the B and C group; the two stacks in hand
 86,87,s05-X86,Retrieval and repair,2,A,"fossils of water plants show water was here, beside ""it is dry now, so it always was"""
 86,93,written task: product F feedback,Product F revision,0,,"component feedback written after day 86, handed back within the 8 minutes"
-86,93,written task: product F revision,Product F revision,8,,"the revision from the written feedback, in a second colour"
+86,93,written task: product F revision,Product F revision,8,,"the revision from the written feedback, in a second color"
 86,95,s05-E1,Directions,0,A,the revised product F is scored after day 95 outside lesson minutes
 86,95,s05-E2,Directions,0,,the revised product F is scored after day 95 outside lesson minutes
 86,95,s05-E3,Directions,0,F,the revised product F is scored after day 95 outside lesson minutes
@@ -209,10 +209,10 @@ from_day,to_day,what,where,minutes,error,note
 87,88,s05-X87,Return and repair,2,D,the highway pair read aloud; each pair traces one need
 88,89,s05-X88,Return and repair,2,E,commonest letter of E and D; the goal and limit boxes on the cards
 89,90,s05-X89,Return and repair,2,E,commonest letter of E and D; the goal and limit boxes on the cards
-90,91,s05-X90,Return and repair,2,D,the new-trees pair read aloud; each pair traces one need
+90,91,s05-X90b,Return and repair,2,D,the new-trees pair read aloud; each pair traces one need
 91,92,s05-X91,Return and repair,2,E,commonest letter of D and E; the goal and limit boxes on the cards
 91,94,written task: product S feedback,Product S revision,0,,"component feedback written after day 91, handed back within the 8 minutes"
-91,94,written task: product S revision,Product S revision,8,,"the revision from the written feedback, in a second colour"
+91,94,written task: product S revision,Product S revision,8,,"the revision from the written feedback, in a second color"
 91,96,s05-E7,Directions,0,,the revised product S is scored after day 96 outside lesson minutes
 91,96,s05-E8,Directions,0,D,the revised product S is scored after day 96 outside lesson minutes
 91,96,s05-E9,Directions,0,,the revised product S is scored after day 96 outside lesson minutes
@@ -223,20 +223,20 @@ from_day,to_day,what,where,minutes,error,note
 92,97,s05-X92,Four six-minute groups,6,E,the E group; the limit box first
 93,94,s05-X93,Return and repair,2,A,a short week of log beside the rooted layers
 94,97,s05-X94,Four six-minute groups,6,A,the A and F group; wrong beside right on the repair sheet
-94,97,s05-X94,Four six-minute groups,6,D,the D group; each child traces one need
+94,97,s05-X94b,Four six-minute groups,6,D,the D group; each child traces one need
 95,97,day 95 records,Return components,2,,"item F scored product and fresh work, handed back with the component to work on"
 96,97,day 96 records,Return components,2,,"item S scored product and fresh work, handed back with the component to work on"
 97,98,"retrieval misses, day 97",Return and repair,3,,a highlighted wind row or matched goal and limit cards for the children who missed the day 97 retrieval
 97,98,s05-X97c,Return and repair,0,,the day 97 exit tickets go back with one short note each
 97,109,"retrieval misses, day 97 goal and limit",Retrieval and repair,2,,matched goal and limit cards for the children who missed the day 97 retrieval
 98,99,s06-X98,Return and repair,5,B,lay the odd day beside ten season rows
-99,100,s06-X99,Return and repair,3,B,"a highlighted blank box said ""not recorded"""
 99,100,"retrieval misses, day 99",Return and repair,2,,one key-reading card for each child who missed the key retrieval
+99,100,s06-X99b,Return and repair,3,B,"a highlighted blank box said ""not recorded"""
 100,101,s06-X100,Return and repair,5,A,rebuild one bar with counters grouped by the key
 101,102,written task: product W feedback,product W revision,0,,"component feedback written after day 101, handed back within the 6 minutes"
-101,102,written task: product W revision,product W revision,6,B,"the revision from the written feedback, in a second colour; a 2-minute whole-class example of the commonest letter first"
-101,102,s06-X101,product W revision,0,B,the same commonest-letter example covers this ticket
-102,103,s06-X102,Return and repair,3,,the usual taken as never changing; count 20 odd days of 30
+101,102,written task: product W revision,product W revision,6,B,"the revision from the written feedback, in a second color; a 2-minute whole-class example of the commonest letter first"
+101,102,s06-X101c,product W revision,0,B,the same commonest-letter example covers this ticket
+102,103,s06-X102b,Return and repair,3,,the usual taken as never changing; count 20 odd days of 30
 102,103,s06-X102,Return and repair,2,B,the one warm day laid beside the winter record
 102,115,s06-E1,Directions,0,,the revised product is scored after day 115 outside lesson minutes
 102,115,s06-E2,Directions,0,,the revised product is scored after day 115 outside lesson minutes
@@ -246,12 +246,12 @@ from_day,to_day,what,where,minutes,error,note
 102,115,s06-E6,Directions,0,B,the revised product is scored after day 115 outside lesson minutes
 103,104,s06-X103,Return and repair,5,C,the class year laid beside the many-year strip
 104,105,s06-X104,Return and repair,5,D,link one detail from each card
-105,106,s06-X105,Return and repair,2,C,"this year laid beside the many-year strip, then the reading part opens with the first example"
+105,106,s06-X105b,Return and repair,2,C,"this year laid beside the many-year strip, then the reading part opens with the first example"
 105,106,s06-X105,Return and repair,1,D,"underline the number in each card, then answer from the number"
 106,107,written task: product C feedback,product C revision,0,,"component feedback written after day 106, handed back within the 6 minutes"
-106,107,written task: product C revision,product C revision,6,C,"the revision from the written feedback, in a second colour; the commonest letter shown first for 2 minutes"
-106,107,s06-X106,product C revision,0,C,the same commonest-letter example covers this ticket; C and D
-107,108,s06-X107,Return and repair,3,C,one year laid beside the many-year range
+106,107,written task: product C revision,product C revision,6,C,"the revision from the written feedback, in a second color; the commonest letter shown first for 2 minutes"
+106,107,s06-X106b,product C revision,0,C,the same commonest-letter example covers this ticket; C and D
+107,108,s06-X107b,Return and repair,3,C,one year laid beside the many-year range
 107,108,s06-X107,Return and repair,2,D,link one detail from each card
 107,115,s06-E7,Directions,0,D,the revised product is scored after day 115 outside lesson minutes
 107,115,s06-E8,Directions,0,,the revised product is scored after day 115 outside lesson minutes
@@ -261,27 +261,27 @@ from_day,to_day,what,where,minutes,error,note
 107,115,s06-E12,Directions,0,C,the revised product is scored after day 115 outside lesson minutes
 108,109,s06-X108,Return and repair,3,E,"one hazard, design, harm chain drawn on the board"
 109,110,s06-X109,Return and repair,2,F,the goal and limit boxes before any count
-109,110,s06-X109,Return and repair,1,E,"one hazard, design, harm chain drawn on the board"
+109,110,s06-X109b,Return and repair,1,E,"one hazard, design, harm chain drawn on the board"
 109,110,s06-X109,Plan,2,F,the plan part opens with one goal card and one limit card
 110,111,s06-X110,Return and repair,2,E,"one hazard, design, harm chain drawn on the board"
 110,111,s06-X110,Return and repair,2,F,"the limit box first, on one goal card and one limit card"
 110,111,s06-X110,Return and repair,1,G,name one condition not tested for each record
-111,112,s06-X111,"Return and repair, directions",1,E,"one hazard, design, harm chain drawn on the board"
-111,112,s06-X111,"Return and repair, directions",1,G,name one condition not tested
-111,112,s06-X111,Design practice,2,G,the design practice opens with the example
-112,113,s06-X112,Return and repair,1,E,"one hazard, design, harm chain drawn on the board"
-112,113,s06-X112,Return and repair,1,F,the limit box before any count
-112,113,s06-X112,Return and repair,0,G,name one condition not tested
+111,112,s06-X111b,"Return and repair, directions",1,E,"one hazard, design, harm chain drawn on the board"
+111,112,s06-X111b,"Return and repair, directions",1,G,name one condition not tested
+111,112,s06-X111b,Design practice,2,G,the design practice opens with the example
 112,113,written task: product H feedback,Product H revision,0,,"component feedback written after day 112, handed back within the 8 minutes"
-112,113,written task: product H revision,Product H revision,8,,"the revision from the written feedback, in a second colour"
+112,113,written task: product H revision,Product H revision,8,,"the revision from the written feedback, in a second color"
+112,113,s06-X112b,Return and repair,1,E,"one hazard, design, harm chain drawn on the board"
+112,113,s06-X112,Return and repair,1,F,the limit box before any count
+112,113,s06-X112c,Return and repair,0,G,name one condition not tested
+113,114,s06-X113,Transfer practice,0,C,the class range strip beside one July
+113,114,s06-X113b,Transfer practice,0,G,name one condition not tested
 113,116,s06-E13,Directions,0,,the revised product is scored after day 116 outside lesson minutes
 113,116,s06-E14,Directions,0,,the revised product is scored after day 116 outside lesson minutes
 113,116,s06-E15,Directions,0,F,the revised product is scored after day 116 outside lesson minutes
 113,116,s06-E16,Directions,0,,the revised product is scored after day 116 outside lesson minutes
 113,116,s06-E17,Directions,0,E,the revised product is scored after day 116 outside lesson minutes
 113,116,s06-E18,Directions,0,G,the revised product is scored after day 116 outside lesson minutes
-113,114,s06-X113,Transfer practice,0,C,the class range strip beside one July
-113,114,s06-X113,Transfer practice,0,G,name one condition not tested
 114,117,s06-X114,four groups,7,A,the A group; rebuild one bar with counters grouped by the key
 114,117,s06-X114,four groups,4,B,the B and C group; the odd day beside the season records
 114,117,s06-X114,four groups,3,C,the B and C group; the range over many years beside one year
@@ -300,4 +300,43 @@ from_day,to_day,what,where,minutes,error,note
 118,120,c3-E118l,Repair groups,0,W,in the same 5 minutes as group 3 letter V; add the words the card does not show to a claim
 119,120,day 119 records,Return of feedback,2,,each child gets their record with one written next step
 119,120,c3-E119d,Repair groups,5,X,"group 4, 5 minutes with the teacher; the scale and the two labels on a bare graph"
-119,120,c3-E119f,Repair groups,0,Y,"in the same 5 minutes as group 4 letter X; add usually, not always to a sentence"
+119,120,c3-E119g,Repair groups,0,Y,"in the same 5 minutes as group 4 letter X; add usually, not always to a sentence"
+13,16,s01-X13e,Return and repair,0,,hold a box still between two hands and draw both arrows
+17,18,s02-X17,Return and repair,0,A,lay a ruler across the gap and trace the arrow along it; say what none seen means
+18,19,s02-X18,Return and repair,0,D,cross out every change but one in a proposed test
+20,21,s02-X20,Return and repair,0,C,"draw both arrow pairs, a magnet and steel, then two magnets"
+22,23,s02-X22c,Return and repair,0,,lay a ruler across the gap and trace the arrow along it; say what none seen means
+25,26,s02-X25b,Return and repair,0,E,rewrite a materials list as who needs what so that
+28,29,s02-X28b,Return and repair,0,F,check a proposal card line by line against the printed allowance
+38,39,s03-X38b,Return and repair,0,,sort picked ears and a seed beginning to grow into harvest and new plant
+39,40,s03-X39b,Return and repair,0,,"redraw one cycle in two colors: the adult in one, the new animal in the other"
+40,41,s03-X40b,Return and repair,0,,lay the dragonfly cards and count the stages drawn; a pupa only where a card shows one
+40,41,s03-X40c,Return and repair,0,,lay the dragonfly cards and count the stages drawn; a pupa only where a card shows one
+42,43,s03-X42b,Return and repair,0,B,sort picked leaves and a seed beginning to grow into harvest and new plant
+43,44,s03-X43b,Return and repair,0,G,"two pictures, one with a family record and one without; which can be used as data"
+44,45,s03-X44,Return and repair,0,F,circle the differing feature in one documented family: alike in ___; different in ___
+45,46,s03-X45b,Return and repair,0,G,"two pictures, one with a family record and one without; which can be used as data"
+48,49,s03-X48b,Return and repair,0,,"cross out every difference but the one changed in a pot card, then say what explains the heights"
+52,53,s03-X52,repair,0,C,compare the two spacing rows of one family and cross out every difference but spacing
+63,64,s04-X63,Return and repair,0,B,commonest letter of B and C; mark where the owl and the mice each got food
+64,65,s04-X64b,Return and repair,0,,"commonest letter of A and C; sort the cards by kind first, then compare"
+65,66,s04-X65b,Return and repair,0,,turn the cloth over and search again for one color
+66,67,s04-X66,Return and repair,0,C,say what a paper trial cannot show about real animals
+67,68,s04-X67b,Return and repair,0,E,lay the pair card and the chick card side by side and point to the one that shows young
+68,69,s04-X68,Return and repair,0,E,"commonest letter of C and E; pair card beside chick card, or the exception in the table"
+70,71,s04-X70,Return and repair,0,F,"commonest letter of F, G and C; match each need to what the forest floor gives"
+84,85,s05-X84b,Return and repair,0,,commonest letter of A and F; the desert valley beside the whale bones
+86,87,s05-X86b,Retrieval and repair,0,,"fossils of water plants show water was here, beside ""it is dry now, so it always was"""
+89,90,s05-X89b,Return and repair,0,,commonest letter of E and D; the goal and limit boxes on the cards
+90,91,s05-X90,Return and repair,0,D,the new-trees pair read aloud; each pair traces one need
+92,93,s05-X92b,Return and repair,0,,the biggest count beside the limit box
+97,98,s05-X97d,Return and repair,0,,the day 97 exit tickets go back with one short note each
+97,98,s05-X97e,Return and repair,0,,the day 97 exit tickets go back with one short note each
+98,99,s06-X98b,Return and repair,0,B,lay the odd day beside ten season rows
+99,100,s06-X99,Return and repair,0,B,"a highlighted blank box said ""not recorded"""
+100,101,s06-X100b,Return and repair,0,A,rebuild one bar with counters grouped by the key
+101,102,s06-X101b,product W revision,0,,the same commonest-letter example covers this ticket
+101,102,s06-X101,product W revision,0,B,the same commonest-letter example covers this ticket
+105,106,s06-X105b,Return and repair,0,D,"underline the number in each card, then answer from the number"
+106,107,s06-X106,product C revision,0,C,the same commonest-letter example covers this ticket; C and D
+111,112,s06-X111,"Return and repair, directions",0,E,"one hazard, design, harm chain drawn on the board"

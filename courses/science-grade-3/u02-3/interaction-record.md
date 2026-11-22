@@ -10,7 +10,7 @@ credit: ours
 
 Name ____________ A steel tack hangs from a thread. A magnet is held beside it.
 
-Draw the tack, the magnet and the gap. Draw the arrow.
+Draw the tack, the magnet and the gap. Draw every arrow on the tack.
 
 | Draw here |
 |---|
@@ -29,4 +29,4 @@ For one question: I change ____. I keep ____ the same. I watch ____.
 
 Why the arrow starts on the tack: ____________
 
-My ruler reading of the 3 cm gap: ____ cm. Zero is at ____.
+My ruler reading of the gap: ____ cm. Zero is at ____.

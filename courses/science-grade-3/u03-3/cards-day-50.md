@@ -14,15 +14,15 @@ Four short cases. Read each aloud. Pairs name the trait and the surroundings.
 
 ## Case 1: kale
 
-Same-kind kale plants, matched in everything but water. With enough water they are 20 and 21 centimetres. With too little water they are 11 and 12.
+Same-kind kale plants, matched in everything but water. With enough water they are 20 and 21 centimeters. With too little water they are 11 and 12.
 
 ## Case 2: two puppies
 
 Two puppies from one litter. One was fed enough and exercised each day. One was not. At one year the first is bigger and stronger.
 
-## Case 3: flamingos
+## Case 3: arctic foxes
 
-A zoo page says a flamingo's pink colour follows the food it eats. This is our paraphrase of the page.
+A zoo page says arctic foxes have white fur in winter, brown in summer. This is our paraphrase of the page.
 
 ## Case 4: a dog and a clicker
 

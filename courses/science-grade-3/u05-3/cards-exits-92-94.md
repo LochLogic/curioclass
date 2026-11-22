@@ -12,7 +12,7 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 ## Day 92
 
-Invented for practice. After a fire, three plots. Goal: at least 4 berry shrubs back, within 4 tokens. Plot P is left alone: 6 shrubs, 0 tokens. Plot Q is replanted: 5 shrubs, 3 tokens. Plot R is replanted and fenced: 9 shrubs, 7 tokens. Which plots have merit? Does the record show replanting always helps?
+Invented for practice. After a flood, three meadow plots. Goal: at least 4 clover patches back, within 4 tokens. Plot P is left alone: 6 patches, 0 tokens. Plot Q is reseeded: 5 patches, 3 tokens. Plot R is reseeded and watered: 9 patches, 7 tokens. Which plots have merit? Does the record show reseeding always helps?
 
 ## Day 93
 

@@ -18,15 +18,15 @@ A schematic map of one valley with three dots: A, B and C. Dot A is a shale outc
 
 ## Find card A
 
-Prints of small insects in shale. Each is 1 centimetre long. Invented for practice. Guide card: this shale is what is left of the bottom of an old lake.
+Prints of small insects in shale. Each is 1 centimeter long. Invented for practice. Guide card: this shale is what is left of the bottom of an old lake.
 
 ## Find card B
 
-Prints of leaves. Each is 8 centimetres long. Invented for practice. Guide card: these are leaves of plants that grew on land.
+Prints of leaves. Each is 8 centimeters long. Invented for practice. Guide card: these are leaves of plants that grew on land.
 
 ## Find card C
 
-The Big Stump. It is 12 feet across, from a park page. Guide card: it is a redwood stump turned to stone, found in the bed of the old lake.
+The Big Stump. It is 12 feet across, from a park page. Guide card: it is a redwood stump turned to stone, found near the old lake.
 
 ## Three rows
 

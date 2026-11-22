@@ -19,7 +19,7 @@ Name ____________ The class seed box lid keeps popping up. We want a magnet latc
 
 **Limits:** at most ____ magnets, ____ minutes, ____ tokens.
 
-A magnet costs 2 tokens. A tape length costs 1 token. We have 6 tokens, 6 making minutes and two magnets.
+A magnet costs 2 tokens. A tape length costs 1 token.
 
 **Which materials?** ____________
 

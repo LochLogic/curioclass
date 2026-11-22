@@ -8,7 +8,7 @@ credit: ours
 
 # Exit cards, days 17 to 22
 
-Each card is labelled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
+Each card is labeled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
 
 ## Day 17
 
@@ -24,11 +24,11 @@ Card 1: a magnet at 2 cm leans a hanging screw 3 cm. A second magnet at 6 cm lea
 
 ## Day 20
 
-Card 1: two magnets pulling together, red end to blue end, then one turned so red faces red and they push apart. Card 2: a steel spoon on a tray sliding toward a magnet's red end, then the magnet turned so the blue end is near.
+Card 1: two magnets pulling together, the left magnet's red end to the right magnet's blue end, then the right magnet turned around so they push apart; the turned magnet's ends are left uncolored. Card 2: a steel screw hanging near a magnet, then the magnet flipped.
 
 ## Day 21
 
-Card 1: a magnet pulling a steel bolt, with a silver aluminium tray beside it. Card 2: one magnet on a clip, then two stacked magnets on a steel bolt, with Pat's claim that two pull more.
+Card 1: a magnet pulling a steel bolt, with a silver aluminum tray beside it. Card 2: one magnet on a clip, then two stacked magnets on a steel bolt, with Pat's claim that two pull more.
 
 ## Day 22
 

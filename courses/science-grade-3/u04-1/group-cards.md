@@ -18,7 +18,7 @@ Wolves come near. The musk oxen stand in a ring. Their horns face out. The calve
 
 ## Card 2: wolf pack
 
-A pack of wolves hunts elk. The wolves take different places. Some chase the elk. Others wait ahead. They hunt as one pack.
+A pack of wolves hunts elk. They hunt as one pack. Up to about four wolves, more wolves catch more elk.
 
 ## Card 3: school of fish
 

@@ -16,13 +16,13 @@ A dry valley of sand and bare rock. No plant grows. In the rock wall are rows of
 
 ## Guide card
 
-Whales and shells live in the sea today. The valley is a desert now.
+Whales and sea shells live in the sea today. The valley is a desert now.
 
 ## Two finds for the table of finds
 
-Find 1: whale bones. The largest bone is 1 metre long. Place found: the valley. Invented for practice.
+Find 1: whale bones. The largest bone is 1 meter long. Place found: the valley. Invented for practice.
 
-Find 2: shell prints. Each is 6 centimetres across. Place found: the valley. Invented for practice.
+Find 2: shell prints. Each is 6 centimeters across. Place found: the valley. Invented for practice.
 
 ## The comparison sheet
 

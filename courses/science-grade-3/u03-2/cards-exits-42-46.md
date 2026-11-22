@@ -16,11 +16,11 @@ A card: spinach. Sown day 0. First leaves day 5. Leaves picked day 30. Max says,
 
 ## Day 43
 
-A picture of two red foxes standing in a field beside a fox cub. Pat says they are the parents because they look alike. There is no family record.
+A picture of two red foxes standing in a field beside a fox cub. Pat says they are the parents because they look alike.
 
 ## Day 44
 
-A record: pansy parents have ruffled petals. Their six offspring all have ruffled petals. Petal widths in whole centimetres: 4, 4, 5, 5, 5, 6.
+A record: pansy parents have ruffled petals. Their six offspring all have ruffled petals. Petal widths in whole centimeters: 4, 4, 5, 5, 5, 6.
 
 ## Day 45
 

@@ -20,13 +20,13 @@ Day 0: an egg in soil. Day 12: a young hopper with no wings. Day 55: a winged ad
 
 ## Foxglove card (day 79)
 
-Two parent plants with spotted bell flowers. Four seedlings, 20 days old, each with spotted bell flowers, with rulers: 8, 11, 9 and 14 cm tall.
+Two parent plants with oval, soft-haired leaves. Four seedlings, 20 days old, each with oval, soft-haired leaves, with rulers: 8, 11, 9 and 14 cm tall.
 
 ## Wren card (day 79)
 
 Two wren parents with speckled chests and curved tails. Five chicks at 10 days, each with a speckled chest and a curved tail. Their weights: 12, 14, 13, 15 and 13 g.
 
-## Flamingo panel 1: colour, a feeding clap and legs (day 80)
+## Flamingo panel 1: color, a feeding clap and legs (day 80)
 
 Two zoos, A and B, with chicks from one flock of long-legged parents. The parents' legs are about 100 cm.
 

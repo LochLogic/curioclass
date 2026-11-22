@@ -8,7 +8,7 @@ credit: ours
 
 # Exit cards, days 6 to 10
 
-Each card is labelled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
+Each card is labeled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
 
 ## Day 6
 
@@ -16,7 +16,7 @@ A plan on paper: a block pushed from the left with one finger, then pushed from 
 
 ## Day 7
 
-A small results table for a group: about equal pushes from the front and the back, tries of 0 cm, 0 cm and 3 cm.
+A small results table for a group: about equal pushes from the left and the right on a lunch box, tries of 0 cm, 0 cm and 3 cm.
 
 ## Day 8
 

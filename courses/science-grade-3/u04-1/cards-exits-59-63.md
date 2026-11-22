@@ -16,7 +16,7 @@ Invented for practice. A pond turtle needs warm, open water and water plants. Th
 
 ## Day 60
 
-Invented for practice. White pelicans swim in a line. They push fish into shallow water. A pelican alone often misses. How does the line help a pelican?
+Invented for practice. White pelicans swim in a half circle toward shore. They push fish into shallow water. How does the group help a pelican?
 
 ## Day 61
 

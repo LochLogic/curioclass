@@ -8,7 +8,7 @@ credit: ours
 
 # Exit cards, days 11 to 16
 
-Each card is labelled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
+Each card is labeled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
 
 ## Day 11
 
@@ -24,4 +24,4 @@ One half sheet, two questions. 1: a wheeled cart at the bottom of a U-shaped tra
 
 ## Day 16
 
-One card, two questions. 1: a box on a tray with two about equal pushes touching it from opposite sides. 2: a bead hanging on a string, with the record far left, middle, far right, middle, far left.
+One card, two questions. 1: a book on a desk with two about equal pushes touching it from opposite sides. 2: a bead hanging on a string, with the record far left, middle, far right, middle, far left.

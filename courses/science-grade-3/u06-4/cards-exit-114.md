@@ -14,7 +14,7 @@ Invented for practice. Marlow, a new town. Spring: 20 degrees Celsius, 8 rainy d
 
 (a) Make a table of the weather. Graph the rainy days with a scale of 2. Say what summer is usually like.
 
-(b) Draw arrows for the shelter. Write a merit claim and one limit of the evidence.
+(b) Draw arrows for the shelter. Write a merit claim. Say what is not shown.
 
 # Exit card (day 113)
 

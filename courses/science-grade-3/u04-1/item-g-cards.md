@@ -18,7 +18,7 @@ A small group of meerkats looks for food. One is a lookout. The others dig. When
 
 ## Penguin card
 
-A much larger huddle of penguins stands in cold wind. Neighbors shelter one another. As the wind rises, birds change places.
+A much larger huddle of emperor penguins stands in cold wind. Neighbors shelter one another. As the wind rises, birds change places.
 
 ## Your task
 
