@@ -48,7 +48,7 @@ short SOFT findings and the known faults.
 
 - **G51 (WMO World Weather Information Service).** Its rights are "paraphrase only" because the credit terms could
   not be read. Cory may want to check the terms, or leave it.
-- **G61 (wood frogs).** Rests on a search summary of the page, not the page itself (the site refused reads).
+- **G61 (wood frogs).** Rests on a search summary of the page, not the page itself (the site refused reads). Settled 2026-11-22: the page was read in full in Chrome and days 69 and 70 match it.
 - **Kindergarten template point.** The error-letter scheme clashes in one place; named by the K agent, left as is.
 - **units.csv rows (later.csv L71).** 63 science sections (K 13, grade 1 13, grade 2 16, grade 3 21) have no row in
   data/units.csv, a file on the blind list; they are the only failures left in these four courses.
