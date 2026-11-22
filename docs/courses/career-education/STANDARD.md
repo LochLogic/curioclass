@@ -17,7 +17,7 @@ integrated (Cory, 2026-11-14), so it is not planned here.
 | List what a school adds | Done | Section 4 |
 | A learner standard for the two courses | Done 2026-11-21: terms read, 130 indicator ids loaded with our own words, each placed (data/plans/later.csv L91) | data/standards/ncdg-2024.txt and ncdg-2024-words.txt; sections 2 and 3 |
 | A second state's rubric (the bar's "to firm it") | Owed | docs/ADOPTION-BAR-SUBJECTS.md part 7 |
-| Progression gate support | Owed: scripts/progression.py reads ids up to the first space, so every id here becomes `CTE.Career`; it also has no entry for the subject | Section 3 |
+| Progression gate support | Done 2026-11-21: scripts/progression.py splits ids on the tab, has `cte` in STD_FILES and ANCHOR and requires every learner-goal code through ELECTIVE_FILES; `progression.py check cte` passes (273 rows; 228 after the merge of the grade 10 learner-goal rows, 2026-11-21) | scripts/progression.py; data/progressions/cte.csv |
 | Approach page | Approved by Cory 2026-11-21 (Desk q-prework-open-2) | docs/courses/career-education/APPROACH.md |
 
 ## 1. The standard and its terms
@@ -40,7 +40,7 @@ integrated (Cory, 2026-11-14), so it is not planned here.
 
 The cluster framework says which fields exist and how they group; the practices say what a worker does. Neither says
 what a grade 7 student should know or be able to do about planning a career. The bar (part 7) asks for a personal
-plan, labour market data, career tasks (resume, interview, portfolio), hands-on work and defended choices.
+plan, labor market data, career tasks (resume, interview, portfolio), hands-on work and defended choices.
 
 **The learner goals.** Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): the National Career
 Development Guidelines (National Career Development Association, 2024 revision: three domains, goals and leveled
@@ -63,8 +63,8 @@ line for each owned one in data/standards/ncdg-2024-words.txt.
 
 | Course | Clusters | Practices | Plan and tasks |
 |---|---|---|---|
-| Career Exploration, typically grade 8 | All 14 clusters surveyed, with a sub-cluster in each studied through real jobs and data | All 12 introduced, each practised in a task | An interest and strengths inventory, a first education and career plan, a job study with labour market figures, a short interview practice |
-| Career Pathways, typically grade 10 | Two or three clusters the student picks, studied at sub-cluster depth, with a program of study (courses, training, credentials) | All 12 practised on field tasks | A full plan to a first credential, a resume, a mock interview, a portfolio, an applied project from a chosen field defended with data |
+| Career Exploration, typically grade 8 | All 14 clusters surveyed, with a sub-cluster in each studied through real jobs and data | All 12 introduced, each practiced in a task | An interest and strengths inventory, a first education and career plan, a job study with labor market figures, a short interview practice |
+| Career Pathways, typically grade 10 | Two or three clusters the student picks, studied at sub-cluster depth, with a program of study (courses, training, credentials) | All 12 practiced on field tasks | A full plan to a first credential, a resume, a mock interview, a portfolio, an applied project from a chosen field defended with data |
 
 Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): each course is one year (Career Exploration in
 grade 7 or 8, Career Pathways in grade 9 or 10), at two or three sessions a week. The typical grades are 8 and 10
@@ -73,7 +73,9 @@ grade 7 or 8, Career Pathways in grade 9 or 10), at two or three sessions a week
 **Pathways' width** (Cory, 2026-11-21: go broad, so students see more of what is open to them, even though it is
 harder to keep current). Pathways builds field tasks and a dated data sheet for all 14 clusters, and a student
 chooses two or three of them. Any of the 72 sub-clusters is open through its cluster's field tasks and the course's
-task template. Each data sheet carries its date and a line telling the teacher to check the figures that year.
+task template. Each data sheet carries its date and a line telling the teacher to check the figures that year. Each
+training route on a job card is checked against the federal job outlook handbook's typical entry level for that
+school year.
 
 **Course list** (settled by the expert reader, 2026-11-20). Two courses: `cte-explore` (grades 6 to 8 in the
 catalogue, typical grade 8) and `cte-pathways` (grades 9 to 12, typical grade 10). The catalogue's typical grades are
@@ -93,11 +95,19 @@ tasks and data sheet, so no sub-cluster is excluded (Cory, 2026-11-21). Owned he
 means the course supplies each sub-cluster's teaching, task and check for the students who choose its cluster; one
 student meets the sub-clusters of the two or three clusters chosen, and the course page says so. The 12 practices
 are owned by Exploration, where each is first taught in a task, and Pathways carries each as a `~` row with the field
-task that practises it at higher demand. Placement rule for the learner goals (Cory, 2026-11-21, Desk q-fix-career-1),
-the same rule as for the 12 practices: when the 2024 National Career Development Guidelines indicators are loaded,
-each indicator is owned in the course where it is first taught (Exploration, grade 8, or Pathways, grade 10), carried
+task that practices it at higher demand. Placement rule for the learner goals (Cory, 2026-11-21, Desk q-fix-career-1),
+the same rule as for the 12 practices: each 2024 National Career Development Guidelines indicator is owned in the course where it is first taught (Exploration, grade 8, or Pathways, grade 10), carried
 in Pathways as a `~` row where Exploration owns it, and an indicator written only for adults already at work is left
 out with a reason (section 5).
+
+**Units in Exploration** (settled by the expert reader, 2026-11-21, ours, untested). The 14 clusters are grouped into
+five cluster units of two to four clusters each, so each unit's closing days (APPROACH.md) are spent once per group,
+not once per cluster: cross-cutting (Digital Technology, Management and Entrepreneurship, Marketing and Sales); making
+and building (Advanced Manufacturing, Construction, Supply Chain and Transportation); land and energy (Agriculture,
+Energy and Natural Resources); serving people (Education, Healthcare and Human Services, Hospitality, Events and
+Tourism, Public Service and Safety); money and creative work (Financial Services, Arts, Entertainment and Design). A
+frame may regroup with a reason. Each cluster row's study ends with a plan line the cluster changed; the unit's plan
+day holds them.
 
 **Learner goal placement** (ours, untested, 2026-11-21; ids in data/standards/ncdg-2024.txt). Of the 135 indicators,
 Exploration owns 66, Pathways owns 64 and 5 are left out. The pattern: knowing (K) in Exploration; doing (A) in
@@ -110,8 +120,9 @@ else Pathways; judging (R) in Pathways, except re-examining goals, which Explora
 - **Pathways owns (64):** CD1.R1, R2, A3, A4, R4, R5; CD2.R1, R2, R3, R4, A5, R5, A6, R6, A7, R7, A8, R8, R9;
   CD3.R1, R2, R3, R4, R5, A6; CD4.A1, R1, A2, R2, R3, A4, R4, A5, R5, A6, R6, K7, A7; CD5.A1, A2, A3; ALL1.A1, R1,
   R2, R3, R4, R5, R6, A7, R7, A8, R8; ALL2.A1, R1, A2, R2, R3, R4, A5, R5, A6, R6, A7, R7.
-- **Carried:** every one of the 66 Exploration indicators is a `~` row in Pathways, with the field task or plan step
-  that uses it at higher demand; the handoff notes say grade 9 is skipped (as for the practices).
+- **Carried:** every one of the 66 Exploration indicators is a `~` code in Pathways, on the Pathways row of the same
+  goal (one row per goal per grade, with owned and `~` codes together), with the field task or plan step that uses it
+  at higher demand; the handoff notes say grade 9 is skipped (as for the practices).
 - **Left out, adult-only (5):** CD3.R6 (it judges what holding a job uncommon for one's group has done to a career,
   so it needs someone employed in one); CD4.R7 (it judges how a person has presented themselves inside a workplace
   they already work in); CD5.R1, CD5.R2, CD5.R3 (each judges the results of one's own career management over years
@@ -121,16 +132,13 @@ else Pathways; judging (R) in Pathways, except re-examining goals, which Explora
   from family circumstances (section 6). ALL1.K4, A4 and R4 name "learning style"; our lines teach the strategies
   and conditions that help a student learn, with no fixed learning-style label.
 
-**Handoffs** (ours, untested). Each Pathways `~` practice row assumes Exploration's row for that practice, and each
-Pathways sub-cluster row assumes its cluster's row in Exploration, with the matching `hands_on` at the other end. The
+**Handoffs** (ours, untested). Each Pathways `~` practice row assumes Exploration's row for that practice, each
+Pathways sub-cluster row assumes its cluster's row in Exploration, and each Pathways learner-goal row assumes the
+Exploration row of the same goal, with the matching `hands_on` at the other end. The
 handoff skips grade 9 because no career education course owns there; each such row's notes say so.
 
-**What the gate needs** (a note for the progression retool; scripts/progression.py is not edited here): ids split on
-the tab only, keeping the whole first field as scripts/standards.py does (the same split also cuts the SEL competency
-names, which hold spaces); `cte` in STD_FILES with this file and the learner-goals file (ncdg-2024.txt); both files required, since
-ANCHOR holds one file per subject: this file in ANCHOR and the learner-goals file through the route ELECTIVE_FILES
-uses (every code in it must be owned), or ANCHOR widened to a list; and a code_grades case that returns no grade for
-`CTE.` ids or the learner-goal ids.
+**The gate.** scripts/progression.py checks this subject: ids are split on the tab only, the cluster file is the
+anchor, and every code in ncdg-2024.txt must be owned by a row.
 
 Data the courses use: the US Bureau of Labor Statistics Occupational Outlook Handbook and wage data (public domain,
 credit asked) and the O*NET database (CC BY 4.0, with its required attribution in the credit line only). See the scout.
@@ -140,11 +148,11 @@ credit asked) and the O*NET database (CC BY 4.0, with its required attribution i
 The course page says this plainly. A school adds:
 - **People:** guest speakers, workplace visits, job shadows, internships or other work-based learning, and a counselor
   for one-to-one planning.
-- **Its own context:** its state's programs of study, local labour market figures, its state's required plan (many
+- **Its own context:** its state's programs of study, local labor market figures, its state's required plan (many
   states mandate an individual career and academic plan, often in a state system), dual-credit and credential offers.
 - **Equipment and safety:** any field lab (tools, kitchens, shops, clinical kits) and the safety training it needs.
   Curio Class supplies simulations and paper tasks, not equipment.
-- **Student organisations** for the field, if it has them.
+- **Student organizations** for the field, if it has them.
 - **Time:** a period or advisory slot the course runs in.
 
 ## 5. What is left out, and why
@@ -182,7 +190,9 @@ Job models use invented workers drawn from many groups, and a student's own resu
   live public dispute), Entrepreneurship and Regulation (political). Financial Services is taught as a cluster like
   any other (its jobs, training and tasks); only personal finance is Economics'.
 - **If a student tells you something** (Cory, 2026-11-21, Desk q-fix-career-1): every section on Behavioral and
-  Mental Health, Emergency Response, Judicial Systems or Public Safety, and every section of the pay-gap unit, carries
+  Mental Health, Emergency Response, Judicial Systems or Public Safety, and every section of the pay-gap unit (the
+  unit that holds g8-cd3-6-uncommon-jobs, with g8-cd2-7-stereotypes and g8-cd3-5-open-jobs; in Pathways
+  g10-cd3-a6-uncommon-in-plan), carries
   health's steps on its teacher page (docs/courses/health/APPROACH.md, "If a student tells you something"), as SEL,
   physical education and the arts do.
 - **The family note's question** (Cory, 2026-11-21, Desk q-fix-career-1): the question about a person's own work may
@@ -209,16 +219,26 @@ of the writing standards' own text types.
 
 - **ELA:** `e8-informative-writing` and `e8-revise-purpose-audience` (resume lines, an email to an employer),
   `e8-present-reasoning` (an interview answer), `e8-collab-discussion`, `e10-w-informative`, `e10-sl-presentation` (a
-  portfolio defence).
+  portfolio defense).
 - **Math:** `m7-percent-problems` and `m7-unit-rate-fractions` (wages, a budget), `m7-compare-populations` (reading a
-  data display).
+  data display); `alg1-data-displays`, `alg1-percent-change-interest` and `alg1-correlation-causation` (Pathways),
+  and the grade 7 rows above as prerequisites.
 - **Social studies:** `ss8-public-budget` (reading public budget and price data). No grade 8 or grade 10 social studies
-  row teaches labour markets (that is grade 12 Economics), so the course teaches what it needs of them from its own
+  row teaches labor markets (that is grade 12 Economics), so the course teaches what it needs of them from its own
   dated data sheets.
 - **Computer science:** for the Digital Technology cluster, `g7-viz-choices`, `g8-relationships` and
-  `g8-investigation-summary` (Exploration); `g9-data-dictionary` and `g10-visual-data` (Pathways).
-- **Library:** judging a source by lateral reading (AASL.IV.B.3), named by row id once the library progression is
-  written.
-- **SEL:** the SEL courses' sub-skills for self-knowledge and goals (SEL STANDARD.md, self-awareness and self-management), named by progression row id when this subject's progression is written.
+  `g8-investigation-summary` (Exploration); `g9-data-dictionary`, `g10-visual-data`, `g9-optimize-procedures`,
+  `g10-breach-causes` and `g10-career-skills` (Pathways).
+- **Library:** judging a source by lateral reading: `library:g6-lateral-reading` (the method) and
+  `library:g8-news-lateral` (Exploration), with `library:g8-research-product` (running a research cycle, for finding information);
+  `library:g9-lateral-method`, `library:g9-source-log`, `library:g10-lateral-machine-text`, `library:g10-synthesis-map`
+  and `library:g10-database-deep` (Pathways).
+- **SEL:** self-knowledge, goals, teamwork and decisions: `sel:g8-sa-what-interests-me`, `g8-sa-my-strengths`,
+  `g8-sa-who-i-am`, `g8-sa-i-can-try`, `g8-sa-skills-grow`, `g8-sa-snap-judgments`, `g8-sm-set-goal`,
+  `g8-sm-plan-and-tidy`, `g8-sm-stay-on-task`, `g8-rel-teamwork`, `g8-rds-careful-thinking` and
+  `g8-rds-who-is-affected` (Exploration); `g10-sa-what-interests-me`, `g10-sa-i-can-try`, `g10-sa-skills-grow`,
+  `g10-sa-snap-judgments`, `g10-sm-set-goal`, `g10-sm-plan-and-tidy`, `g10-sm-stay-on-task`, `g10-rel-teamwork`,
+  `g10-rel-different-ways`, `g10-rds-careful-thinking` and `g10-rds-who-is-affected` (Pathways).
 
-Each lean is rechecked against the owner grade when the career education progression is written.
+Every lean in data/progressions/cte.csv was checked 2026-11-21 against its owner grade (52 distinct rows, each taught
+at or before the leaning grade; docs/reviews/progression-career-education-2026-11-21.md).

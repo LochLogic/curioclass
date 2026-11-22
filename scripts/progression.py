@@ -74,7 +74,7 @@ STD_FILES = {'social-studies': ['ma-hss-2018.txt', 'c3-indicators.txt', 'ccss-li
 ELECTIVE_FILES = {'math': ['curio-math-electives.txt'], 'science': ['curio-science-electives.txt'],
                   'social-studies': ['apa-hs-psych-2022.txt'], 'cte': ['ncdg-2024.txt']}
 # files that may not be written yet: skipped with a note while absent
-OPTIONAL_FILES = {'ncdg-2024.txt'}
+OPTIONAL_FILES = set()
 for _s, _fs in ELECTIVE_FILES.items():
     STD_FILES[_s] = STD_FILES[_s] + _fs
 ANCHOR = {'social-studies': 'ma-hss-2018.txt', 'science': 'ngss-pes.txt', 'ela': 'ccss-ela-standards.txt',
