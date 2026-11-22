@@ -39,8 +39,8 @@ third. So focus and coherence are not one factor among many: they are the door.
 
 ## What this adds to the plan
 
-Six gaps the earlier reviews did not name. Each is now a row in docs/ROADMAP.md, "Gaps found, and how each
-closes", and each is tried first on the pilot unit:
+Six gaps the earlier reviews did not name. Each became a row in ROADMAP's "Gaps found, and how each
+closes" (moved on 2026-11-22 to docs/archive/ROADMAP-history-2026-11-22.md), and each is tried first on the pilot unit:
 
 1. The eight mathematical practices.
 2. The balance of understanding, fluency and application.

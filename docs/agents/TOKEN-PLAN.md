@@ -1,7 +1,7 @@
 # Token plan: the same quality for fewer tokens (planned 2026-11-10)
 
 Cory, 2026-11-10: token cost is the single biggest limit on growth. Find savings that do not reduce quality. Order and
-status: docs/ROADMAP.md, Now. Nothing here is adopted yet; each change must pass the trial below first.
+status: docs/HANDOFF.md (the old ROADMAP "Now" list is in docs/archive/ROADMAP-history-2026-11-11.md). Nothing here is adopted yet; each change must pass the trial below first.
 
 ## What the logs show
 
@@ -92,6 +92,6 @@ slices) and a README. Always pass --audit; without it the script runs the audit'
 
 **Not done yet: the quality guard.** The side-by-side trial on three tools (old flow against pack flow, counting
 turns, context and findings) has not run. No pipeline doc points agents at the pack until it passes. Tool building is paused
-(docs/ROADMAP.md, "The path from here"); the trial runs at step 5, on the first three tools Refine resumes with,
+(the old ROADMAP "The path from here", now in docs/archive/ROADMAP-history-2026-11-22.md); the trial runs at step 5, on the first three tools Refine resumes with,
 so it costs no extra builds.
 

@@ -1,7 +1,7 @@
 # How the shelves fit together (planned 2026-11-10)
 
 Cory, 2026-11-10: the helpers built around the tools (Sub Day, Word Wall, worksheets, charts, games and the rest) are
-worth keeping, and they must move with the larger change of shape (docs/ROADMAP.md, "The path from here"; BASELINE
+worth keeping, and they must move with the larger change of shape (the old ROADMAP "The path from here", now in docs/archive/ROADMAP-history-2026-11-22.md; BASELINE
 rules 21 and 22). This file says how every shelf hangs together, what the change does to each, and the order of the
 fixes. Survey of the code and data: 2026-11-10 (findings at the end).
 

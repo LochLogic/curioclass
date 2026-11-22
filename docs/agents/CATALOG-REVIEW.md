@@ -1,8 +1,8 @@
 # Catalog review (planned 2026-11-10)
 
 Cory, 2026-11-10: with every tool specced or further along (7 ASL tools held), review the whole catalog for standards
-coverage, duplication and curriculum value. Order and status: docs/ROADMAP.md, Now. Pilot run 2026-11-10 (see "Pilot results"); picks accepted 2026-11-10; the full read is step 2 of
-"The path from here" in docs/ROADMAP.md.
+coverage, duplication and curriculum value. Order and status: docs/HANDOFF.md (the old ROADMAP "Now" list is in docs/archive/ROADMAP-history-2026-11-11.md). Pilot run 2026-11-10 (see "Pilot results"); picks accepted 2026-11-10; the full read was step 2 of
+"The path from here", now in docs/archive/ROADMAP-history-2026-11-22.md.
 
 The earlier passes (docs/agents/overlap/method.md, docs/agents/AUDIT.md) read one-line idea cards. This one reads the
 specs, so it can check what each tool really does. It reuses their clash rule, tag style and scripts
@@ -53,7 +53,7 @@ for those two scopes and sequences (ROADMAP Track 7, step 1).
 
 ## What it absorbs
 
-The K-2 reading scan and the math focus and balance report (ROADMAP Now, item 8a and 8b) are columns and tables of
+The K-2 reading scan and the math focus and balance report (the old ROADMAP Now list, items 8a and 8b, in docs/archive/ROADMAP-history-2026-11-11.md) are columns and tables of
 this review for tools. Worksheets, plans and Word Wall cards for K-2 reading still get their own short scan after it.
 
 ## Pilot results (2026-11-10)

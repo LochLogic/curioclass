@@ -164,7 +164,7 @@ S2, S3, S5, S6, S8, S9 and S10.
 
 ## What this adds to the plan
 
-Proposed rows for docs/ROADMAP.md, "Gaps found, and how each closes". The math and ELA rows already there (items
+Proposed rows for ROADMAP's "Gaps found, and how each closes" (moved on 2026-11-22 to docs/archive/ROADMAP-history-2026-11-22.md). The math and ELA rows already there (items
 name their standard, what to do next, extensions, family note and supplies, accommodations) apply as they stand.
 
 1. A three-dimensional goal at element level in the section plan, for science.

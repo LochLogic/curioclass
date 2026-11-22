@@ -478,7 +478,7 @@ main roadmap: docs/ROADMAP.md, Track 2.
 ## Generators: the Worksheet Generator (26 live 2026-11-04, /closet/worksheets/make/)
 
 **Reviewed 2026-11-03 (Cory): better than expected; the generators come first for procedural practice from here**
-(docs/ROADMAP.md, Now, item 4; docs/WORKSHEETS-PLAN.md says what that does to the authored lists). Decisions and
+(the old ROADMAP Now list, item 4, in docs/archive/ROADMAP-history-2026-11-11.md; docs/WORKSHEETS-PLAN.md says what that does to the authored lists). Decisions and
 rules from that review:
 
 - **Names in problems** are short, common classroom names a child reads at sight (word-problems.js, fractions.js). A

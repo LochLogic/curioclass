@@ -121,7 +121,7 @@ Settled by the expert. A five-day slice on one anchor is read only on what five 
 
 ## What this adds to the plan
 
-Proposed rows for docs/ROADMAP.md, "Gaps found, and how each closes". Each is tried first on the ELA pilot. The
+Proposed rows for ROADMAP's "Gaps found, and how each closes" (moved on 2026-11-22 to docs/archive/ROADMAP-history-2026-11-22.md). Each is tried first on the ELA pilot. The
 math rows already there (items name their standard, what to do next, extensions, family note and supplies,
 accommodations) apply to ELA as they stand.
 

@@ -47,7 +47,7 @@ For the spec as a whole:
 
 Sara fixed these specs, so her review cannot be the only one. A course's specs are finished on paper when she has
 reviewed them. The course is not proved until the built tools have been played against their specs, a fresh agent
-has read the course against docs/ADOPTION-BAR.md, and a working teacher has read one unit (docs/ROADMAP.md, step 4).
+has read the course against docs/ADOPTION-BAR.md, and a working teacher has read one unit (the old ROADMAP step 4, now in docs/archive/ROADMAP-history-2026-11-22.md).
 
 ## Recording it
 

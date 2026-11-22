@@ -75,7 +75,7 @@ hand; the next run would overwrite the edit.
 6. Add a line to done.txt.
 
 Tools marked **built** or **LIVE** have code that follows the old spec. Fix the spec only; the code change is a
-separate step Claude runs after (ROADMAP step 3 for live tools, steps 5 and 6 for the rest).
+separate step Claude runs after (the old ROADMAP steps: 3 for live tools, 5 and 6 for the rest, now in docs/archive/ROADMAP-history-2026-11-22.md).
 
 ## The order
 
@@ -89,7 +89,7 @@ tool (BASELINE rule 26). What follows is kept as the record of the order that wa
 3. Grade 5 math, then grade 3 math, on the splits Cory approved.
 
 Then stop. Every course is shaped, but no other course opens until grade 4 math is proved: three tools built from
-fixed specs and one full unit, read by a working teacher (docs/ROADMAP.md, step 4). If the proof changes what a
+fixed specs and one full unit, read by a working teacher (the old ROADMAP step 4, now in docs/archive/ROADMAP-history-2026-11-22.md). If the proof changes what a
 spec must hold, it changes a few dozen specs, not hundreds. NEXT.md lists the courses on hold and their sizes.
 
 Three things from Shape change how a spec is fixed:
