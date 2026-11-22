@@ -1801,3 +1801,18 @@ SEL's progression is done (data/progressions/sel.csv, 520 rows).
   STANDARD section 6: no student is put down or graded for their own views on environment and resource questions.
   Section 5's six-item leave-out list is unchanged.
 Career education's progression is done (data/progressions/cte.csv, 228 rows).
+
+## 2026-11-22: World languages progression calls (q-prog-wl-1, q-prog-spanish-1)
+
+- **Order:** Spanish first; the ASL progression waits on the required review of who reads ASL pages (later.csv L93,
+  marked required). Cory downloaded the 2024 proficiency guidelines and cleared reading them for this work; the repo
+  keeps ids and our own words only.
+- **Level 3 and 4 exits:** lowered one sublevel to fit about 63 hours a level (Level 3 Intermediate Low, Level 4
+  Intermediate Mid; writing one lower); the full preterite and imperfect contrast and the productive subjunctive are
+  beyond Level 4 ("if this reduces lessons but keeps the rigor and quality, then reduced lessons is okay").
+  Recorded in STANDARD section 5 and the l3 and l4 Communication rows.
+- **Communities 5.1:** both: the course page and family note name the unmet part as not claimed, and Levels 3 and 4
+  offer an optional school-arranged activity, never through the site.
+- **Early-years companion:** listening and speaking at the level's target; reading and writing only as far as the
+  child reads and writes in any language.
+World languages' progression is done for Spanish (data/progressions/spanish.csv, 51 rows).

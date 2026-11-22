@@ -109,7 +109,9 @@ Search only; nothing downloaded; links in section 7.
 
 **Levels, not grades.** The bar says "Modules keyed by level not grade" (courses.csv) and "each level names a target
 proficiency level" (part 6, item 1). A learner of any age starts at the first level. Under Option D (below) a young
-learner takes the early-years companion of Level 1 or 2, which targets the same level as the main course; which
+learner takes the early-years companion of Level 1 or 2, which targets the same level as the main course in listening
+and speaking, and in reading and writing goes only as far as the child reads and writes in any language (copy and
+label) (Cory, 2026-11-22, Desk q-prog-spanish-1); which
 grades take a companion is set with the catalogue rows when the pass opens (heritage and age notes in APPROACH.md). Hours decide the pace: a student cannot meet an Intermediate target in a year of 90 minutes a week
 (the span is large; ACTFL's own time figure and a hours-to-proficiency lead are in APPROACH.md, "Pacing").
 
@@ -132,20 +134,25 @@ drawn when the pass opens. French is listed behind Spanish and ASL (Cory's answe
 companion for Levels 1 and 2, 12 courses for Spanish and ASL, settled for when the pass opens. The recommendation had
 been Option B, for a stated target per course, near what a school can staff, with Advanced
 left for a later pass; Option D keeps all of that and adds the companions. Each course's exit target is a sublevel (Level 1 exits at Novice Mid, Level 2 at
-Novice High, Level 3 at Intermediate Mid, Level 4 at Intermediate High). These four exits are ours. The 2024
+Novice High, Level 3 at Intermediate Low, Level 4 at Intermediate Mid; writing aims one sublevel lower at Levels 3
+and 4). The full preterite and imperfect contrast and the productive subjunctive are beyond Level 4, met at Level 4
+only as chunks (Cory, 2026-11-22, Desk q-prog-spanish-1: an aim a school can reach in about 63 hours a level; fewer
+lessons are acceptable where rigor and quality hold). These four exits are ours. The 2024
 proficiency guidelines (read 2026-11-22) describe each sublevel and fit this order, but give no hours, years or
 school program norms, so they neither confirm nor rule out any of the four; the program norms they were first drawn
 from are not in the guidelines and stay not checked. The reading supports three limits: a course checks performance
 on taught, rehearsed themes, which the guidelines say can run ahead of proficiency in unrehearsed use; the classroom
 performance scale has major levels only, so a sublevel exit is the proficiency estimate a course aims toward, never
 a rating our checks give; and a learner can sit at different sublevels in listening, speaking, reading and writing,
-so the exit is stated per mode. Level 3 is a long step (it passes Intermediate Low) and Level 4 is the most ambitious,
-since Intermediate High means doing Advanced work, past and future narration in paragraphs, much of the time.
+so the exit is stated per mode.
 
 **Standards by course.** All 11 World-Readiness standards apply at every level: Communication's three modes are taught
 and assessed in every unit (bar part 6, item 6). Cultures, Connections, Comparisons and Communities enter through the
 unit theme and task. Communities 5.1 (school and global) and 5.2 (lifelong learning) are the least reachable from a
 free site without people in the room: bar part 6, "Unsupported": two-way practice happens between people in the room.
+Every course page and family note names the part of 5.1 not claimed (use of the language with communities beyond the
+school), and Levels 3 and 4 offer an optional, never required activity the school arranges, never through the site (a
+class-to-class letter exchange, or a guest the school invites) (Cory, 2026-11-22, Desk q-prog-spanish-1).
 
 ## 6. Ownership rule a progression writer could use later
 
