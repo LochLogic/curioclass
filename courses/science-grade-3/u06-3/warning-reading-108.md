@@ -24,6 +24,6 @@ The service says strong wind can blow around things that are not tied down. It c
 
 The service tells people to get ready. Tie down or bring in loose things from outside. Be careful on the road. Stay away from trees and anything that could fall.
 
-The wind cannot be stopped. People can get ready so it hurts less.
+The wind cannot be stopped. People can get ready so it hurts less. People get ready in different ways, and neighbors, schools and the weather service help.
 
 Source: National Weather Service, Omaha, pages 1 to 3 of a briefing, retold by Curio Class.

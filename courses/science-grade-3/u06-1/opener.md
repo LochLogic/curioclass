@@ -32,7 +32,7 @@ Product W (day 101) is revised on day 102 and scored after day 115. Six points, 
 
 ## Supplies for the section
 
-Season tables, dated rows, key cards, graph sheets, counters, squared paper, the product W card, a second colour for each child. Weather equipment on days 98, 99, 101 and 102: a non-glass thermometer, a plastic rain jar, a direction card, the dated weather record.
+Season tables, dated rows, key cards, graph sheets, counters, squared paper, the product W card, a second color for each child. Weather equipment on days 98, 99, 101 and 102: a non-glass thermometer, a plastic rain jar, a direction card, the dated weather record.
 
 ## A room with nothing
 

@@ -14,11 +14,11 @@ Read aloud. Twelve minutes, alone. This is scored after day 75 from the revised 
 
 ## Barley card
 
-Barley plants of one kind: ten deeper-rooted and ten shallower-rooted. They grow in matched dry plots. Eight of the deeper-rooted plants survive. Three of the shallower-rooted plants survive.
+Barley plants of one kind: ten deeper-rooted and ten shallower-rooted. They grow in matched dry plots. Eight of the deeper-rooted plants survive. Three of the shallower-rooted plants survive. Deeper roots reach water farther down.
 
 ## Meadow-bird card
 
-One kind of meadow bird: ten longer-plumed and ten shorter-plumed males, in matched conditions. Seven longer-plumed males find mates. Two shorter-plumed males find mates. Six of the seven pairs later raise young. One of the two pairs later raises young.
+One kind of meadow bird: ten longer-plumed and ten shorter-plumed males, in matched conditions. Males show their plumes to females. Seven longer-plumed males find mates. Two shorter-plumed males find mates. Six of the seven pairs later raise young. One of the two pairs later raises young.
 
 ## Your task
 

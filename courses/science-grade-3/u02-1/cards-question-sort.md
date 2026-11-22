@@ -8,7 +8,7 @@ credit: ours
 
 # Question cards, days 18 and 22
 
-Each card is labelled "invented for practice" in small letters at the bottom. Plain cards, one question each, printed in large letters.
+Each card is labeled "invented for practice" in small letters at the bottom. Plain cards, one question each, printed in large letters.
 
 ## Set A: for pairs to sort (day 18 into four piles, day 22 into testable and not yet)
 

@@ -16,6 +16,6 @@ Lettuce parents have frilly leaves. Six offspring are all frilly. Height bands: 
 
 ## Hamster
 
-Hamster parents have short tails. Six young are all short-tailed. Coat colours: cream 4, brown 2.
+Hamster parents have short tails. Six young are all short-tailed. Coat colors: cream 4, brown 2.
 
 Each child graphs both cards. Then write a likeness and a variation for each. No new content is taught.

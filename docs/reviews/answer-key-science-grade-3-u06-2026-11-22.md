@@ -35,3 +35,10 @@ E1 to E6 test 3-ESS2-1 (tables, graphs, expected season weather and its limit); 
 ## Could not settle
 
 Nothing. No gate was run; no outside facts were used, so no sources rows or browser-check items.
+
+## Fixes applied (2026-11-22)
+
+1. Applied: E12 stem "one day's weather and climate", new sample, wrong sample and wrongs row "rain on one day".
+2. Applied: the E18 step accepts any one untested thing.
+3. Applied: E14 "with the doorway and ramp ... without them".
+4. Applied: the E10 answer accepts "always wetter in this record".

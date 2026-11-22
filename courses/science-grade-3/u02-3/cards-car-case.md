@@ -8,7 +8,7 @@ credit: ours
 
 # Toy cars card (printed only on day 32)
 
-Labelled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
+Labeled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
 
 Two small toy cars roll gently toward each other in a straight card guide. A magnet is taped to the front of each car. The red end of each magnet faces forward. The cars do not touch.
 

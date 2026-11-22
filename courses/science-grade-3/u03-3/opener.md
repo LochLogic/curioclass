@@ -10,7 +10,7 @@ credit: ours
 
 ## What the section does
 
-Six days, 47 to 52. Day 47 goes back to the hydrangeas and asks what a photograph shows and does not show. It names the surroundings. Day 48 measures the class radish pots to the whole centimetre and graphs them. Day 49 sets the class pots beside a supplied dated record and decides: it made a difference, it did not, or "I cannot tell yet". Day 50 reads four short cases and uses "I think ___, because I saw ___, so ___". Day 51 sorts cards: from the parents, from the surroundings or from both. Day 52 builds and writes an explanation and ends with a ten-minute exit ticket. Nothing here is scored.
+Six days, 47 to 52. Day 47 goes back to the hydrangeas and asks what a photograph shows and does not show. It names the surroundings. Day 48 measures the class radish pots to the whole centimeter and graphs them. Day 49 sets the class pots beside a supplied dated record and decides: it made a difference, it did not, or "I cannot tell yet". Day 50 reads four short cases and uses "I think ___, because I saw ___, so ___". Day 51 sorts cards: from the parents, from the surroundings or from both. Day 52 builds and writes an explanation and ends with a ten-minute exit ticket. Nothing here is scored.
 
 ## How the days run
 
@@ -24,7 +24,7 @@ Each day is 45 minutes. Days 49 and 50 start with the weather record. Every day 
 - **A result can show no difference.** Say so. Do not repeat the pots to get a result.
 - **A learned response is not passed to young.** Compare one animal before and after, and its untrained young.
 - **Some traits depend on both.** Inherited likeness and surroundings can shape one feature.
-- **No soil chemistry, no people's bodies.** The hydrangea soil differs and the colour follows.
+- **No soil chemistry, no people's bodies.** The hydrangea soil differs and the color follows.
 
 ## The errors, in plain words
 
@@ -36,7 +36,7 @@ Wrong answers are voiced as "someone might say". No child is the example of a mi
 
 ## Supplies for the section
 
-Labelled class plants and pots, rulers, a water tray, small water cups, a thermometer, a rain jar, a direction card and the dated weather record. The picture sets are the word cards, the pot record, the supplied crowding record, the day 50 cards, the claim sheet, the day 51 sorting cards and the exit cards.
+Labeled class plants and pots, rulers, a water tray, small water cups, a thermometer, a rain jar, a direction card and the dated weather record. The picture sets are the word cards, the pot record, the supplied crowding record, the day 50 cards, the claim sheet, the day 51 sorting cards and the exit cards.
 
 ## A room with nothing
 

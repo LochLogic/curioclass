@@ -18,6 +18,7 @@ Six days, 92 to 97. The big question is: "What do old records and new records ea
 - **Each record has limits.** A fossil record gives kinds, sizes, places and order. It does not give exact dates, and a trunk piece gives only a minimum size.
 - **Merit still means goals and limits.** Check the boxes before reading any count. Replanting does not always help. Fire is part of many places.
 - **Voluntary sharing.** On day 92 no child is asked about a fire they know.
+- **If a child tells or is upset.** If a child starts to tell about a fire they lived through, thank them, say "that sounds hard," do not ask for details, and keep the lesson on the paper example. If a child seems upset, let them step out with a helper or sit with you, and tell the school counselor or the family the same day. No one acts out a fire.
 - **No climate-change teaching.** If a child asks, answer from evidence.
 
 ## Scoring, outside class
@@ -30,7 +31,7 @@ Day 95 and day 96 hold fresh diagnostics, 32 minutes each, unscored. The scored 
 
 ## Supplies for the section
 
-The score sheet, the product F and S cards, the printed evidence records for days 95 and 96, the model sheets, second colours. Weather equipment on days 93 and 94.
+The score sheet, the product F and S cards, the printed evidence records for days 95 and 96, the model sheets, second colors. Weather equipment on days 93 and 94.
 
 ## A room with nothing
 

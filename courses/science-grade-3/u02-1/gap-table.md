@@ -16,7 +16,7 @@ Name ____________ Roles rotate. Write every reading. A lean too small to see is 
 | ____ | | | |
 | ____ | | | |
 
-Lean is how far the clip tip moved toward the magnet, in whole centimetres.
+Lean is how far the clip tip moved toward the magnet, in whole centimeters.
 
 Draw the clip, the magnet and the arrow at the closest gap and at the farthest gap.
 

@@ -18,11 +18,11 @@ The ground is grass today. The rock layers are undisturbed.
 
 ## Lower layer, at two mapped places
 
-Complete fish fossils, 18 centimetres long. Leaf prints of water plants, 6 centimetres long. A guide says this fish form is extinct worldwide. Other fish are not. The guide says these finds go with lake water.
+Complete fish fossils, 18 centimeters long. Leaf prints of water plants, 6 centimeters long. A guide says this fish form is extinct worldwide. Other fish are not. The guide says these finds go with lake water.
 
 ## Upper layer
 
-Pieces of rooted tree trunks, 80 centimetres long. The guide says rooted trunks go with trees growing on land.
+Pieces of rooted tree trunks, 80 centimeters long. The guide says rooted trunks go with trees growing on land.
 
 ## Your task
 

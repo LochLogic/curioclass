@@ -12,9 +12,9 @@ Held back. Not shown, handled or taught from before day 118. Plain black line dr
 
 ## Dry basin card (day 118)
 
-A dry, flat basin. Two cuts in the ground, North Cut and South Cut, two kilometres apart.
+A dry, flat basin. Two cuts in the ground, North Cut and South Cut, two kilometers apart.
 
-- North Cut, lower layer: fish bones of two kinds and water-plant leaf prints. Upper layer: stump roots in place and a trunk piece 45 cm long. The layers lie flat and were never moved.
+- North Cut, lower layer: fish bones of two kinds and water-plant leaf prints. One kind is Gar F. Upper layer: stump roots in place and a trunk piece 45 cm long. The layers lie flat and were never moved.
 - South Cut, one layer: one fish bone and a snail shell.
 - A guide card: Gar F lives nowhere now. The other bones match fish that live in rivers today.
 - Mia's line: "This week is hot and dry, so the basin was always dry."
@@ -35,7 +35,7 @@ Goal: at least 8 of 10 iris patches in flower and at least 6 of 10 net scoops wi
 
 Numbers invented for practice, written to look like a tidy weather summary for Tucson, Arizona. Say aloud that the numbers are made up for this check.
 
-Source card, by season: spring 22 degrees Celsius, 4 rainy days, west wind. Summer 34, 12 rainy days, south wind. Autumn 26, 5, south wind. Winter 14, 6, east wind.
+Source card, by season: spring 22 degrees Celsius, 4 rainy days in the season, west wind. Summer 34, 12 rainy days in the season, south wind. Autumn 26, 5, south wind. Winter 14, 6, east wind.
 
 Faulty table: summer temperature 24, summer rainy days 8, autumn wind north; every other cell right.
 

@@ -14,7 +14,7 @@ Read aloud. Intervals are the differences between recorded days. They are not li
 
 ## Pea P
 
-Day 0: a seed containing a new plant. Day 7: seedling. Day 35: flowering adult. Day 49: closed pods. Day 70: adult dead.
+Day 0: a seed containing a new plant. Day 7: seedling. Day 35: flowering adult. Day 45: closed pods. Day 70: adult dead.
 
 ## Honeybee queen Q
 
@@ -26,4 +26,4 @@ Draw a model for each. Say what is the same and what differs. Predict what follo
 
 ## Second card (reveal after the first draft)
 
-On day 49, the opened pod of P holds new seeds. One seed begins growing that day. It is a seedling on day 56. Revise your model to connect the adult with new individuals. Keep your first model. Revise in a second colour.
+On day 49, the opened pod of P holds new seeds. One seed begins growing that day. It is a seedling on day 56. Revise your model to connect the adult with new individuals. Keep your first model. Revise in a second color.

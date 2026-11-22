@@ -224,8 +224,8 @@ s03-E1,The height differences are all inherited.,,,C,water missed in the matched
 s03-E2,The chicks inherited knowing the card.,,,D,a learned response taken as inherited; set the before and after side by side
 s03-E3,All the height differences are inherited.,,,C,surroundings left out; compare the two watering rows of one family
 s03-E4,The dead bee turns into its own egg.,,,A,the same individual taken to return; arrow from the eggs to a new bee
-s03-E5,"Peas and bees are the same, so I cannot predict.",,,x,the differing stages and timings not compared; read the dates again
-s03-E6,The pods show the pea reproduced.,,,B,a pod taken as reproduction; a seed that begins to grow is the new plant
+s03-E5,"Peas and bees are alive, so they are the same.",,,x,the differing stages and timings not compared; read the dates again
+s03-E6,"The pods show the pea reproduced, and the dead pea starts again.",,,A,the dead plant taken to start again; the new seeds are new individuals
 s03-E7,"The lamb looks like the ewe, so she is its parent.",,,G,looks taken to settle parentage; a family record names the parents
 s03-E8,Different lengths mean they cannot be related.,,,F,variation taken as not related; the same leaf form is shared
 s03-P37-1,It was cold.,,,x,"a feeling in place of the row; ask for the date, the reading and the sky"
@@ -244,7 +244,7 @@ s03-P41-3,The photograph is solid too.,,,x,a supplied photograph taken as seen; 
 s03-P41-5,The dead adult has an arrow back to its own egg.,,,A,the same individual taken to return; arrow from the adult's eggs to a new individual
 s03-K42-1,The seeds come next.,,,x,a later stage the card does not show; the card shows leaves after sprouts
 s03-P42-4,Next the plant makes seeds.,,,x,a stage the card does not show; the card shows leaves after sprouts
-s03-K42-2,"Card B, because the pod has seeds.",,,x,seeds made taken as a new plant; the seed must begin to grow
+s03-K42-2,Card B. It has seeds in it.,,,x,seeds made taken as a new plant that has begun to grow; point to the seed that sprouts
 s03-P42-6,"Card A, because the leaves are new.",,,B,harvest taken as a new plant; a seed that begins to grow is the new plant
 s03-P42-6,"Card D, because the flower is new.",,,x,an adult in flower taken as a new plant; only a seed that begins to grow shows one
 s03-P42-8,They are different kinds because their heights differ.,,,F,a difference taken to rule out the same kind; point to the matching leaves
@@ -343,7 +343,7 @@ s04-E8,"Every animal needs a group, big or small.",,,B,a benefit taken as a need
 s04-E9,They all do equally well because they are alive.,,,F,all kinds taken to do equally well; match each need to what the pond gives
 s04-E10,No living thing can stay in a hard place.,,,G,one kind's limit taken for every kind; point to the waterweed
 s04-E11,"The pond is a hard place, so nothing lives there.",,,G,one kind's limit taken for every kind; a kind whose needs are met stays
-s04-E12,The arrows show all three kinds have what they need.,,,F,all kinds taken to do equally well; cross out the arrow that has no need behind it
+s04-E12,The arrows show all three kinds have what they need.,,,F,all kinds taken to do equally well; cross the missing link where a need has no condition behind it
 s04-P75-1,Waxy leaves help because plants live longer than birds.,,,A,a comparison across kinds taken as proof inside one kind; compare only waxier and less-waxy plants
 s04-P75-1,Waxier leaves mean every plant lives.,,,C,a helpful feature taken as a promise; two less-waxy plants also lived
 s04-P75-2,"Six pairs formed, so six nests had young.",,,E,a pair taken as young; the young record is separate
@@ -522,7 +522,7 @@ s06-E3,"Bars at 5, 2, 1 and 4 read as days.",,,A,the scale is ignored; each unit
 s06-E4,No scale on the side.,,,A,the scale is not stated
 s06-E6,Autumn is always dry because yesterday was dry.,,,B,one day taken for the season
 s06-E7,Only the atlas card is used.,,,D,the second source is left out
-s06-E12,Both places have the same climate because both had rain today.,,,C,one day taken as the climate
+s06-E12,Both places have the same climate because both had rain on one day.,,,C,one day taken as the climate
 s06-E15,Any cost is fine if it works.,,,F,the limit is ignored
 s06-E17,It ends rainstorms.,,,E,hazard and harm confused
 s06-E18,The doorway will protect every house.,,,G,a model trial taken as real protection
@@ -570,8 +570,8 @@ c1-X36e,"It stays still because nothing is pushing it, so no arrows.",,,C,a stil
 c1-X36e,One long arrow drawn along the drawer from front to back.,,,D,"the arrow is drawn along the path, not on the drawer"
 c1-X36f,Two magnets and tape.,,,x,a materials list is given for the need; say who needs what so that
 c1-X36g,It is a good flap.,,,x,a feeling in place of a criterion that can be checked; ask what you could test
-c1-P36-3,"Level, because it was level last.",,,E,the next turn is taken to be the one just seen
-c1-P36-3,"Yes, the next up turn will be exactly 36 cm.",,,F,a repeating record is taken to repeat to the centimeter
+c1-P36-3,"Level, because it was level last.",,,E,a repeating record taken to repeat to the centimeter; level is followed by down
+c1-P36-3,"Up, exactly 36 cm again, because the order repeats exactly.",,,F,a repeating record taken to repeat to the centimeter; level is followed by down
 c1-P36-4,Which magnet is strongest?,,,H,a question about which is best has no one thing to change
 c2-E79a,"Cosmos: seed, flower, dead. (no new seeds)",,,x,a stage of the cycle is missing; point to the day 75 and day 70 lines on the cards
 c2-E79b,"The two lives are the same, stage for stage, because both have stages.",,,K,two cycles are taken to match stage for stage

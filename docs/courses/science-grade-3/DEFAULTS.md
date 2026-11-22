@@ -11,3 +11,4 @@ Generated 2026-11-18 by scripts/defaults.py (later.csv L76) from its band and su
 - **Repair slots fit what is routed to them.** Every hand-back lands in a named part of its day (handbacks.csv `where`) that holds its minutes; a warm-up holds one repair of at most 5 minutes (plan.py checks).
 - **Exits ask a transfer:** a new case that needs the day's idea, not the worked example in new numbers.
 - **Talk.** Every student may pass in public talk; no one is the example of a mistake.
+- **Safety.** The room rules for the year are on the course safety page, courses/science-grade-3/safety.md; a day names only what differs.

@@ -10,7 +10,7 @@ credit: ours
 
 ## English
 
-For the next weeks our class is asking: how do we know places have changed, and what happens to living things when they do? We read fossils, the traces of living things kept in rock, to work out what a place was like long ago. We also look at changes today, such as a new road or a dam, and judge which responses work well. We use records and say what a record shows and what it does not show. Your child may show you a drawing with notes in two colours. Ask, "What did you see? What do you infer? What changed your mind?" Any answer is a good answer, in any language. You do not need to buy or try anything at home. There is nothing to send back to school. No one is asked to share beliefs or personal stories.
+For the next weeks our class is asking: how do we know places have changed, and what happens to living things when they do? We read fossils, the traces of living things kept in rock, to work out what a place was like long ago. We also look at changes today, such as a new road or a dam, and judge which responses work well. We use records and say what a record shows and what it does not show. Your child may show you a drawing with notes in two colors. Ask, "What did you see? What do you infer? What changed your mind?" Any answer is a good answer, in any language. You do not need to buy or try anything at home. There is nothing to send back to school. No one is asked to share beliefs or personal stories.
 
 ## Spanish
 

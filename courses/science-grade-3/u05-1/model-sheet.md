@@ -18,7 +18,7 @@ Label each part: I drew this because of find ____.
 
 Solid line: what a find shows. Dotted line: what I infer.
 
-In a second colour, write what you changed and the find that made you change it.
+In a second color, write what you changed and the find that made you change it.
 
 I changed ______ because ______.
 

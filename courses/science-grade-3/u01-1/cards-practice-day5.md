@@ -8,7 +8,7 @@ credit: ours
 
 # Practice cards, day 5
 
-Eight cards, each labelled "invented for practice". Pairs say what the object does, which arrow is stronger, and where gravity points. Plain line drawings, no brands.
+Eight cards, each labeled "invented for practice". Pairs say what the object does, which arrow is stronger, and where gravity points. Plain line drawings, no brands.
 
 1. A hockey puck at rest on flat ice, one short arrow behind it. It starts. Gravity points down.
 2. A book sliding to the right on a desk, one arrow pointing left. It slows. Gravity points down.

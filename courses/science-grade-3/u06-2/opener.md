@@ -31,7 +31,7 @@ Product C (day 106) is revised on day 107 and scored after day 115. Six points. 
 
 ## Supplies for the section
 
-Climate strip sheets, printed maps (15), the two-column chart, atlas and station cards, region cards, a globe for the teacher if you have one, a second colour. Weather equipment on days 105 and 106.
+Climate strip sheets, printed maps (15), the two-column chart, atlas and station cards, region cards, a globe for the teacher if you have one, a second color. Weather equipment on days 105 and 106.
 
 ## A room with nothing
 

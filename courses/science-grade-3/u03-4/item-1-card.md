@@ -14,7 +14,7 @@ Read aloud. This is diagnostic. The scored work is the revised portfolio record 
 
 ## The records
 
-Same-kind marigolds given enough water grow 12 and 13 centimetres. Matched plants given too little grow 6 and 7. Light, age, soil and spacing are fixed.
+Same-kind marigolds given enough water grow 12 and 13 centimeters. Matched plants given too little grow 6 and 7. Light, age, soil and spacing are fixed.
 
 Two same-kind ducklings ignored a bell. After the bell sounded before every feeding, both ducklings come to it.
 

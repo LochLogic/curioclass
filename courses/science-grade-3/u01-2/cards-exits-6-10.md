@@ -28,4 +28,4 @@ Two cards. A record of a hanging toy: toward the door, middle, toward the window
 
 ## Day 10
 
-A rocking toy and its record: left turn, centre, right turn, centre, left turn, centre, right turn, centre, left turn, centre, right turn.
+A rocking toy and its record: left turn, center, right turn, center, left turn, center, right turn, center, left turn, center, right turn.

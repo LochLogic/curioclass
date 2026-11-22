@@ -14,7 +14,7 @@ Copy your unit 4 drawing here, or tape it in.
 
 (a large blank box for the drawing)
 
-In a second colour, add a "what changed" box.
+In a second color, add a "what changed" box.
 
 What changed: ______
 

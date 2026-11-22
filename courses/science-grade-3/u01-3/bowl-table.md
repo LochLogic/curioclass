@@ -10,7 +10,7 @@ credit: ours
 
 Name ______
 
-A tape strip inside the bowl is marked every centimetre up from the bottom. Release the soft ball from the same left mark twice. Do not push it. Never throw it.
+A tape strip inside the bowl is marked every centimeter up from the bottom. Release the soft ball from the same left mark twice. Do not push it. Never throw it.
 
 My guess first: On the right, will it turn higher, the same or lower than the start? I think ______, because I saw ______.
 

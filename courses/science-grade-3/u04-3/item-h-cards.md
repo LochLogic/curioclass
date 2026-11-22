@@ -14,7 +14,7 @@ Read aloud. Twelve minutes, alone. This is scored after day 77 from the revised 
 
 ## Garden pond card
 
-A garden pond has fresh water all year. It has oxygen and sunlight. The edges are waterlogged. There is no dry ground.
+A garden pond has fresh water all year. It has oxygen and sunlight. The edges are waterlogged. There is no dry ground. The marsh flower is planted in the deep middle, fully under water.
 
 ## Waterweed card
 

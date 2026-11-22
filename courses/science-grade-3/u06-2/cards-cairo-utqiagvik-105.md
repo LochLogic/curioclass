@@ -12,7 +12,7 @@ Each card says "rounded and edited by Curio Class" in small letters at the botto
 
 ## Atlas card: Cairo
 
-Cairo is a big city in Egypt. It is beside a river. The land around it is desert. The map is tan.
+Cairo is a big city in Egypt. It is beside a river. The land around it is desert. Many people live in Cairo. The map is tan.
 
 ## Station card: Cairo
 
@@ -20,7 +20,7 @@ Months below freezing: 0 of 12. Wet months with 20 millimeters or more of rain: 
 
 ## Atlas card: Utqiagvik
 
-Utqiagvik is a town on the Arctic coast of northern Alaska, in the United States. It is near the top of the map. The sea beside it is ice for much of the year.
+Utqiagvik is a town on the Arctic coast of northern Alaska, in the United States. It is near the top of the map. The sea beside it is ice for much of the year. Iñupiat people live in Utqiagvik and across the far north of Alaska. They keep their own language.
 
 ## Station card: Utqiagvik
 

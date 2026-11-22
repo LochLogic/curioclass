@@ -21,7 +21,7 @@ Each day is 45 minutes. Days 82, 83, 85 and 86 hold the 5-minute weather record.
 - **A fossil is a find with a kind, a size and a place.** Kinds are plant print, shell, track, bone and trunk. Never a species name.
 - **A guide card turns a find into a place.** Living things needed then what they need now. This steady-patterns idea is stated to children, not proved.
 - **Seen and inferred.** A find shows what it shows. An inference goes past it, and a dotted line marks it.
-- **A piece gives at least the size of the whole.** A trunk piece 80 centimetres long gives only a minimum.
+- **A piece gives at least the size of the whole.** A trunk piece 80 centimeters long gives only a minimum.
 - **Size alone gives no climate.** A big leaf or stump says a big plant grew. The guide card says what it needs.
 - **Extinct means gone everywhere.** It needs a statement from a guide. Missing from one place is not extinct.
 - **Older and younger only.** Deeper is older only when the layers are undisturbed. No dates and no numbers of years.
@@ -41,7 +41,7 @@ Wrong answers are voiced as "someone might say". No child is the example of a mi
 
 ## Supplies for the section
 
-A non-glass outdoor thermometer, a straight-sided plastic rain jar, a direction card and the dated weather record. The hook drawings, find cards, table of finds, past-environment model sheet, Big Stump cards, guide cards, desert valley cards, whale cards, five layer cards for each pair, the time strip, new-find cards, the regional record, the exit cards and product F card. Second-colour pencils.
+A non-glass outdoor thermometer, a straight-sided plastic rain jar, a direction card and the dated weather record. The hook drawings, find cards, table of finds, past-environment model sheet, Big Stump cards, guide cards, desert valley cards, whale cards, five layer cards for each pair, the time strip, new-find cards, the regional record, the exit cards and product F card. Second-color pencils.
 
 ## A room with nothing
 

@@ -72,3 +72,15 @@ Mismatches: key errors 0 outright and 5 key-versus-plan gaps (E2, E3, E4, E5, E6
 ## Could not settle
 
 - Whether the lead wants the plan's 15 points or the 17 the keys now give. This is an item-level choice and changes no grade content.
+
+## Fixes applied (2026-11-22)
+
+1. Applied (plan side): the s02.md interaction score now names the two arrow points the day 29 record prints; E2 unchanged.
+2. Applied: E3 is now 1 point (all three look-fors), so the keys total 15, as the plan says. Rejected the part relabel to "measure": parts.csv has no measure part for unit 2, and the gate ties end items to its parts.
+3. Applied: the s02.md lid brief now matches d029 and lid-record.md (two magnets, six minutes, six tokens, the prices). E4 point 1 now needs interacting materials. Rejected renaming part "name": parts.csv already defines it as materials, gap and facing ends.
+4. Applied: E5 point 3 is the changed-user criterion; new practice item s02-P29-13 (the light-pull user) printed on lid-record.md, in the d029 teacher text, on the student page and in At home.
+5. Applied: the E1 static sample now uses the rubbed comb and paper bits.
+6. Applied: the K18-1 stem separates the second wonder.
+7. Applied: K17-2 now asks which arrow is the thread's and how you can tell; new answer, steps and samples.
+8. Applied: the d032 launch now says the day 31 question sheets are not scored and go back on day 33.
+9. Rejected: "x" is the register's no-letter code, used across the course; the gate allows it.

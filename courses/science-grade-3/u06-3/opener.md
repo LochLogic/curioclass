@@ -19,6 +19,7 @@ Five days, 108 to 112. The big question is: "How can people get ready for danger
 - **A model trial shows the model.** It does not promise real protection. Name one thing not tested.
 - **A lightning rod does not stop a strike.** It gives a strike a path away from the roof and walls, and it works only with the wire and the ground. Paper only. No lightning mechanism is taught.
 - **Voluntary sharing.** Some children may have lived through a flood, fire or storm. No one is asked to tell about it. Examples stay general.
+- **If a child tells or is upset.** If a child starts to tell about a flood, fire or storm they lived through, thank them, say "that sounds hard," do not ask for details, and keep the lesson on the paper example. If a child seems upset, let them step out with a helper or sit with you, and tell the school counselor or the family the same day. No one acts out a storm.
 - **No climate-change teaching.** Answer plainly from the evidence if a child asks.
 
 ## Safety on day 110

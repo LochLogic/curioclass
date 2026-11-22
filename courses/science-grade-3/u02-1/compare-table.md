@@ -23,6 +23,6 @@ Name ____________ Our question number: ____
 | A: ____________ | | | |
 | B: ____________ | | | |
 
-Write the lean in whole centimetres. Write "none seen" if you see none.
+Write the lean in whole centimeters. Write "none seen" if you see none.
 
 We saw ____________________.

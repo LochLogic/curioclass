@@ -13,10 +13,10 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 ## A forecast-to-action picture sequence
 
 1. A radio on a table. A voice bubble says: strong storm tonight.
-2. A family carries a chair and a flower pot from the yard into the house.
-3. A person closes a window shutter and ties a gate.
-4. Night. Heavy rain and wind. The family is inside. The things from the yard are safe.
-5. Morning. A few leaves lie on the ground. The yard is tidy.
+2. A woman in an apartment moves a plant in from the balcony.
+3. A man on a porch ties a chair to the rail. A neighbor checks on an older neighbor.
+4. Night. Heavy rain and wind. Everyone is inside. The plant and the chair are safe.
+5. Morning. A few leaves lie on the ground. The balcony and the porch are tidy.
 
 ## A rapid-versus-slow pair
 

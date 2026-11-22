@@ -22,11 +22,13 @@ The string is now 40 cm. The releaser holds four washers at the 10 cm mark and l
 | 4 | | |
 | 5 | | |
 | 6 | | |
+| 7 | | |
+| 8 | | |
 
-Tick L, C, R for at least two cycles, with the centre crossings. Write the mark at turn 3 and at turn 5, the far turns. A turn too quick to read stays blank. Never guess a turn.
+Tick L, C, R for at least two cycles, with the center crossings. Write the mark at turn 3 and at turn 5, the far turns. A turn too quick to read stays blank. Never guess a turn.
 
-Mark the repeating order. The next turning side after my last turn will be ______.
+Mark the repeating order. The next turning side after my last left or right turn will be ______.
 
 My evidence is two earlier cycles: ______
 
-Revision on day 13, in a second colour. Keep the first numbers.
+Revision on day 13, in a second color. Keep the first numbers.

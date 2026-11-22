@@ -12,7 +12,7 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 ## Card 1: a quarry
 
-A quarry wall has two layers. The low layer has prints of reed stems, 30 centimetres long. A guide says reeds grow in marsh. The high layer has prints of grass seeds. A guide says these grasses grow on dry ground. The layers are undisturbed.
+A quarry wall has two layers. The low layer has prints of reed stems, 30 centimeters long. A guide says reeds grow in marsh. The high layer has prints of grass seeds. A guide says these grasses grow on dry ground. The layers are undisturbed.
 
 ## Card 2: a modern record
 

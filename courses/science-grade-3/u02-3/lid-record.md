@@ -25,6 +25,8 @@ A magnet costs 2 tokens. A tape length costs 1 token.
 
 **Magnets:** the gap is ____ cm. The red end faces the ____ end.
 
+**A new user** can lift the lid only with a light pull. My changed criterion: ____________
+
 Draw the lid, the box and the arrow across the gap.
 
 | |

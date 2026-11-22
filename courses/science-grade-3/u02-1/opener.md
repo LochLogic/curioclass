@@ -41,4 +41,4 @@ Two low-strength encased magnets per group, five counted clips, thread, a lean s
 
 ## A room with nothing
 
-Safe magnets have no substitute. Supplied records, labelled with who, what and when, are weaker evidence than testing, and the class says so. A fridge magnet, a steel clip on a thread and a ruler do the day 19 and 20 work for one child. Static needs only a comb and a cloth.
+Safe magnets have no substitute. Supplied records, labeled with who, what and when, are weaker evidence than testing, and the class says so. A fridge magnet, a steel clip on a thread and a ruler do the day 19 and 20 work for one child. Static needs only a comb and a cloth.

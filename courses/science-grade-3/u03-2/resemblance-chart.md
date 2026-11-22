@@ -8,7 +8,7 @@ credit: ours
 
 # Resemblance chart (days 43 to 46)
 
-The class chart from grade 1 stays on the wall. Revise it in a second colour. Keep the first.
+The class chart from grade 1 stays on the wall. Revise it in a second color. Keep the first.
 
 ## The frame
 

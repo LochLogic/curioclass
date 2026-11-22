@@ -14,7 +14,7 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 ## Card 1
 
-Invented for practice. An undisturbed cliff. Low layer: lily-leaf prints 30 centimetres across (a guide: still water). High layer: prints of a dry-soil shrub (a guide: dry ground). The class log shows one frosty week. Which layer is older? What was the place like each time? Why can one week not tell us?
+Invented for practice. An undisturbed cliff. Low layer: lily-leaf prints 30 centimeters across (a guide: still water). High layer: prints of a dry-soil shrub (a guide: dry ground). The class log shows one frosty week. Which layer is older? What was the place like each time? Why can one week not tell us?
 
 ## Card 2
 

@@ -20,6 +20,6 @@ Write three claims, one for each outcome:
 - Does poorly: ______
 - Cannot stay: ______
 
-Draw an arrow labelled "so" from a need to a condition.
+Draw an arrow labeled "so" from a need to a condition.
 
 Name: ______ Day: ____

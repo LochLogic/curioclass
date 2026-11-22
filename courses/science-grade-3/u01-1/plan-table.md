@@ -16,7 +16,7 @@ Question: "Do equal pushes from opposite sides change how a box moves?" Copy thi
 |---|---|
 | What we change | How strong one of the two pushes is |
 | What we keep the same | The box, the tray, the start line, where the pushes touch, and that both pushes go toward the box |
-| What we watch | Where the box ends, in whole centimetres |
+| What we watch | Where the box ends, in whole centimeters |
 | How many tries | Three tries of each |
 
 "Stayed" means it moved less than 1 cm. Words: balanced, unbalanced, cancel.

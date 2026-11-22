@@ -16,7 +16,7 @@ Two photographs of one kind of rosebush. One is in a sunny yard with tall stems.
 
 ## Day 48
 
-Pot X: 3 plants, 15, 16 and 15 centimetres tall. Pot Y: 9 plants, 9, 8, 10, 9, 9, 10, 8, 9 and 9 centimetres. Same kind, water, light and soil.
+Pot X: 3 plants, 15, 16 and 15 centimeters tall. Pot Y: 9 plants, 9, 8, 10, 9, 9, 10, 8, 9 and 9 centimeters. Same kind, water, light and soil.
 
 ## Day 49
 
@@ -32,4 +32,4 @@ Pot A: 2 plants on a sunny sill. Pot B: 8 plants on a dim shelf. A's plants are 
 
 ## Day 52 (exit ticket, on its own sheet)
 
-Same-kind mint cuttings trace to parent M, which has toothed leaves. Every cutting keeps toothed leaves. Age, water, light, soil, container size and temperature are matched. Spaced cuttings reach 14 and 15 centimetres. Crowded cuttings reach 8 and 9.
+Same-kind mint cuttings trace to parent M, which has toothed leaves. Every cutting keeps toothed leaves. Age, water, light, soil, container size and temperature are matched. Spaced cuttings reach 14 and 15 centimeters. Crowded cuttings reach 8 and 9.

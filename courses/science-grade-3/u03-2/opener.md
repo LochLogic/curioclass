@@ -10,7 +10,7 @@ credit: ours
 
 ## What the section does
 
-Five days, 42 to 46. Day 42 reads a seed-packet card beside the class record, predicts the next stage, and tells a harvest from a new plant. It also asks readiness item 2 again. Day 43 asks why related seedlings and animal young are alike yet different, and teaches four words: trait, inherited, likeness and variation. Day 44 measures the class plant pairs and graphs the heights, then graphs a family with a record. Day 45 analyzes a puppy litter and a rabbit litter. Day 46 practises graphs on two new cards and ends with a ten-minute exit ticket. Nothing here is scored. Section 3.4 holds the scored records.
+Five days, 42 to 46. Day 42 reads a seed-packet card beside the class record, predicts the next stage, and tells a harvest from a new plant. It also asks readiness item 2 again. Day 43 asks why related seedlings and animal young are alike yet different, and teaches four words: trait, inherited, likeness and variation. Day 44 measures the class plant pairs and graphs the heights, then graphs a family with a record. Day 45 analyzes a puppy litter and a rabbit litter. Day 46 practices graphs on two new cards and ends with a ten-minute exit ticket. Nothing here is scored. Section 3.4 holds the scored records.
 
 ## How the days run
 
@@ -23,7 +23,7 @@ Each day is 45 minutes. Days 42, 45 and 46 start with the weather record. Every 
 - **A pattern in a group cannot say what one young will be.** No trait is predicted.
 - **Looking alike does not show whose young it is.** A family record that names the parents does.
 - **A picture of a kind names a kind, not the actual parents.** The class seedlings show variation only.
-- **Graphs count whole numbers.** One square is one plant. The count axis is labelled.
+- **Graphs count whole numbers.** One square is one plant. The count axis is labeled.
 - **Non-human families only.** No child is asked about family resemblance.
 
 ## The errors, in plain words
@@ -36,7 +36,7 @@ Wrong answers are voiced as "someone might say". No child is the example of a mi
 
 ## Supplies for the section
 
-Labelled class plants, whole-centimetre rulers, a water tray, a thermometer, a rain jar, a direction card and the dated weather record. The picture sets are the packet card and evidence cards, the goat cards, the resemblance chart, the tally sheet, the nasturtium, puppy, rabbit, lettuce and hamster cards and the exit cards.
+Labeled class plants, whole-centimeter rulers, a water tray, a thermometer, a rain jar, a direction card and the dated weather record. The picture sets are the packet card and evidence cards, the goat cards, the resemblance chart, the tally sheet, the nasturtium, puppy, rabbit, lettuce and hamster cards and the exit cards.
 
 ## A room with nothing
 

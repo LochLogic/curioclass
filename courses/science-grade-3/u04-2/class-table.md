@@ -19,7 +19,7 @@ Each group's recorder writes four totals.
 | 5 | | | | |
 | 6 | | | | |
 
-## Supplied row, invented for practice (write it in another colour)
+## Supplied row, invented for practice (write it in another color)
 
 Use it if a group loses trials.
 

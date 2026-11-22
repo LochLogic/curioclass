@@ -10,7 +10,7 @@ credit: ours
 
 ## The strip
 
-A paper strip taped under the path of the pendulum. The centre is marked. There is a mark every centimetre on each side. The releaser holds the washers still at the 10 cm mark and lets go gently. No push.
+A paper strip taped under the path of the pendulum. The center is marked. There is a mark every centimeter on each side. The releaser holds the washers still at the 10 cm mark and lets go gently. No push.
 
 ## My table
 
@@ -30,9 +30,9 @@ Write the first six turns. A turn too fast to read gets the side only, and the m
 ## Words
 
 - A turning point is where it stops and turns back.
-- A cycle is one left turn, centre, one right turn, centre.
+- A cycle is one left turn, center, one right turn, center.
 - A pattern repeats. One run is not yet a pattern.
 
 ## What repeats and what changes
 
-Colour one cycle. Write what repeats: ______ Write what changes: ______
+Color one cycle. Write what repeats: ______ Write what changes: ______

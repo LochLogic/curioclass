@@ -32,7 +32,7 @@ Each day is 45 minutes. Days 14 and 15 give no help and no feedback. Teacher sco
 
 ## Supplies for the section
 
-Bowls, soft balls, rulers, taped centimetre strips, secured pendulums with four washers and eye protection, a two-string paper basket and a cardboard sled with a tray. The record sheets and exit cards. The class record sheet is reused on days 14 and 15.
+Bowls, soft balls, rulers, taped centimeter strips, secured pendulums with four washers and eye protection, a two-string paper basket and a cardboard sled with a tray. The record sheets and exit cards. The class record sheet is reused on days 14 and 15.
 
 ## A room with nothing
 

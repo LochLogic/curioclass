@@ -10,7 +10,7 @@ credit: ours
 
 Cut out. Tape the lean strip under the hanging clip. Tape the distance strip beside it. Zero is at the end.
 
-**Distance strip, whole centimetres**
+**Distance strip, whole centimeters**
 
 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
 |---|---|---|---|---|---|---|---|---|---|---|

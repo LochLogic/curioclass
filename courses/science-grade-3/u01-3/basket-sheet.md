@@ -21,7 +21,7 @@ An unfamiliar paper basket hangs from two parallel strings. The teacher has secu
 | 5 | |
 | 6 | |
 
-Tick the turning positions and centre crossings for at least two cycles. Use the side you really see first. Do not copy a ready-made order.
+Tick the turning positions and center crossings for at least two cycles. Use the side you really see first. Do not copy a ready-made order.
 
 Mark the repeating order. The next turning side will be ______ because ______.
 

@@ -8,7 +8,7 @@ credit: ours
 
 # Cards, day 29
 
-Each card is labelled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
+Each card is labeled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
 
 ## Sort cards
 

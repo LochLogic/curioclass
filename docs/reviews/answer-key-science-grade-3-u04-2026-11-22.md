@@ -48,3 +48,11 @@ E1 to E4 test 3-LS4-2 (survive, mates, young, one kind, no promise): matches the
 ## Could not settle
 
 Whether the meerkat lookout and emperor penguin huddle details match the cited pages (sources.csv G34, G35) was not checked here; the read is for the keys. No fact in this report needs a source.
+
+## Fixes applied (2026-11-22)
+
+1. Applied: item-v-cards adds "Deeper roots reach water farther down" and "Males show their plumes to females"; the E2 answer, step and sample and P68-3 now ask for the plume's could-help reason.
+2. Applied: item-h-cards places the marsh flower in the deep middle, fully under water.
+3. Applied: the E5 and E6 keys accept eight against four as safety evidence too.
+4. Applied: E8 and P62-5 drop "on the edge"; the huddle side is "change places, no separate jobs named".
+Minor: the d076 look-for names the fresh record; the E12 wrongs note now says "cross the missing link". Numbering and E3 counts: no change.

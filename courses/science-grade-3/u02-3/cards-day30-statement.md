@@ -8,7 +8,7 @@ credit: ours
 
 # Statement card, day 30
 
-Labelled "invented for practice" in small letters at the bottom. Plain line drawing, no brands, no names.
+Labeled "invented for practice" in small letters at the bottom. Plain line drawing, no brands, no names.
 
 The school office needs a holder for the sign-in sheet. A card reads: "The office needs a holder that keeps a sign-in sheet flat on a steel shelf. Use magnets."
 

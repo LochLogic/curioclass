@@ -24,7 +24,7 @@ An empty playground swing seen from the side, with two chains and a seat, hangin
 
 ## Day 5, warm-up arrow cards (three, shown large, thumbs for start, stop or turn)
 
-Each card is labelled "invented for practice" in small letters.
+Each card is labeled "invented for practice" in small letters.
 
 **Card 1.** A toy train car at rest on a flat track. One arrow behind it points the way the track runs. Answer: it starts.
 

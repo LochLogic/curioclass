@@ -21,8 +21,8 @@ The class pairs lay the dated class plant record beside these cards. They add th
 
 ## Radish card (for the support group)
 
-Radish seedlings from one packet, day 6. Seedling A is 3 centimetres tall. Seedling B is 5 centimetres tall. Seedling C is 4 centimetres tall. All three have round leaves.
+Radish seedlings from one packet, day 6. Seedling A is 3 centimeters tall. Seedling B is 5 centimeters tall. Seedling C is 4 centimeters tall. All three have round leaves.
 
 ## Fresh pair (for the support group)
 
-Two sage seedlings. Both have gray-green leaves with a soft fuzz. One is 4 centimetres tall. One is 6 centimetres tall.
+Two sage seedlings. Both have gray-green leaves with a soft fuzz. One is 4 centimeters tall. One is 6 centimeters tall.

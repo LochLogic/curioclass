@@ -12,15 +12,15 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 ## Find 1, filled in by the teacher from the trunk drawing
 
-A trunk with roots in gray rock. Kind: trunk. Size: 30 centimetres across. Place found: the far-north dot on the map.
+A trunk with roots in gray rock. Kind: trunk. Size: 30 centimeters across. Place found: the far-north dot on the map.
 
 ## Find 2
 
-A print of one large leaf in the rock beside the trunks. Kind: plant print. Size: 12 centimetres long. Place found: the same dot.
+A print of one large leaf in the rock beside the trunks. Kind: plant print. Size: 12 centimeters long. Place found: the same dot.
 
 ## Find 3
 
-A print of bark in the rock beside the trunks. Kind: plant print. Size: 25 centimetres long. Place found: the same dot.
+A print of bark in the rock beside the trunks. Kind: plant print. Size: 25 centimeters long. Place found: the same dot.
 
 ## Words for the wall
 

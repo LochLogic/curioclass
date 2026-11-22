@@ -8,7 +8,7 @@ credit: ours
 
 # Gap and arrow cards, day 17
 
-Each card is labelled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
+Each card is labeled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
 
 ## Card 1: the parcel (unit 1 retrieval)
 
@@ -24,4 +24,4 @@ The same clip. Three arrows start on it. One points toward the magnet. One point
 
 ## Card 4: pull and push arrows
 
-Two plain grey blocks, A and B, side by side. A pull card: arrows on each block point toward the other. A push card: arrows on each block point away from the other. A gap is marked between them.
+Two plain gray blocks, A and B, side by side. A pull card: arrows on each block point toward the other. A push card: arrows on each block point away from the other. A gap is marked between them.

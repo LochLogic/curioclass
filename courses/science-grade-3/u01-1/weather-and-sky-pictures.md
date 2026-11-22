@@ -14,7 +14,7 @@ A wall table with these columns, one dated row each day: Date. Temperature (to t
 
 ## Day 2 repair, slot 2: three sky rows (paper only)
 
-Label: "invented for practice". Three dated rows, each with three small pictures: a morning sun low on the right, a noon sun high, an afternoon sun low on the left. The rows are cut apart. Children put them in date order, point to the morning picture in every row, and say where the next morning sun goes.
+Label: "invented for practice". Three dated rows, each with three small pictures: a morning sun low on the right, a noon sun high, an afternoon sun low on the left. Say aloud: "This time the morning sun is on the right; these rows face the other way." The rows are cut apart. Children put them in date order, point to the morning picture in every row, and say where the next morning sun goes.
 
 ## Day 2 repair, slot 3: a five-day weather record
 

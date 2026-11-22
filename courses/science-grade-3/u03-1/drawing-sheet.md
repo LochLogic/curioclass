@@ -8,7 +8,7 @@ credit: ours
 
 # Life-cycle drawing sheet (days 37 to 41)
 
-Print one sheet for the plant and one for the mealworm. Each child draws their own. Keep the first drawing. Revise in a second colour.
+Print one sheet for the plant and one for the mealworm. Each child draws their own. Keep the first drawing. Revise in a second color.
 
 ## How to draw
 
@@ -20,7 +20,7 @@ Print one sheet for the plant and one for the mealworm. Each child draws their o
 
 ## The sheet
 
-Six empty boxes in a row with a blank arrow between each. Under each box a line: "Date: ____". At the top: "My first colour ____. My second colour ____."
+Six empty boxes in a row with a blank arrow between each. Under each box a line: "Date: ____". At the top: "My first color ____. My second color ____."
 
 A key in the corner: a solid box with the words "we saw it", a dotted box with the words "only pictured", an arrow with the word "then".
 

@@ -16,7 +16,7 @@ A cosmos plant life in five pictures with day numbers. Day 0: a seed. Day 7: a s
 
 ## Grasshopper card (day 79)
 
-Day 0: an egg in soil. Day 12: a young hopper with no wings. Day 55: a winged adult. Day 70: the adult lays eggs. Day 105: the adult is dead. Sam's drawing has an arrow from the dead adult back to the young hopper.
+Day 0: an egg in soil. It hatches on day 12: a young hopper with no wings. Day 55: a winged adult. Day 70: the adult lays eggs. Day 105: the adult is dead. Sam's drawing has an arrow from the dead adult back to the young hopper.
 
 ## Foxglove card (day 79)
 

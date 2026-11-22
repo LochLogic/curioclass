@@ -12,7 +12,7 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 ## Atlas card: Manaus
 
-Manaus is a city in Brazil. It is just south of the equator. It stands beside a wide river in a green forest. The map is green.
+Manaus is a city in Brazil. It is just south of the equator. It stands beside a wide river in a green forest. Many people live in Manaus. The map is green.
 
 ## Station card: Manaus
 
@@ -20,7 +20,7 @@ Months below freezing: 0 of 12. Wet months with 20 millimeters or more of rain: 
 
 ## Atlas card: our town
 
-The class fills this card from a map and an atlas page: where our town is, the kind of land around it, the colour on the map.
+The class fills this card from a map and an atlas page: where our town is, the kind of land around it, the color on the map.
 
 ## Station card: our town
 

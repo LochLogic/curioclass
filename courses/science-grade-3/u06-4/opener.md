@@ -30,7 +30,7 @@ Day 115 and day 116 hold fresh diagnostics: 20 minutes each on day 115, 30 minut
 
 ## Supplies for the section
 
-The score sheet, the wall cards, the Birch Flat sheets, the fresh cards for days 115 and 116, the repair sheets and recheck cards for day 117, squared paper, second colours. Weather equipment on days 113, 114 and 117.
+The score sheet, the wall cards, the Birch Flat sheets, the fresh cards for days 115 and 116, the repair sheets and recheck cards for day 117, squared paper, second colors. Weather equipment on days 113, 114 and 117.
 
 ## A room with nothing
 

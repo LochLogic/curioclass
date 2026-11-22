@@ -30,7 +30,7 @@ Each day is 45 minutes. Days 65 and 66 end with the 5-minute weather record. Day
 
 - **A:** compare across kinds. Sort by kind first, then compare.
 - **C:** a helpful feature always works. Find the exception in the table.
-- **D:** bright colours hide best. Turn the cloth over and search again.
+- **D:** bright colors hide best. Turn the cloth over and search again.
 - **E:** a pair means young. Lay the pair card beside the chick card.
 
 Wrong answers are voiced as "someone might say". No child is the example of a mistake.

@@ -10,7 +10,7 @@ credit: ours
 
 ## What the section does
 
-Five days, 74 to 78. The big question is the unit's: "Why do some living things survive in a place while others do not?" Nothing new is taught. Day 74 joins the class models into one tundra consensus model: group arrows, part and job rows, and need and condition arrows with the schoolyard evidence. Children also revise item V in a second colour and write the day 74 exit. Day 75 is the variation check: item V fresh, alone. Day 76 is the group check: six groups of five give spoken reasons, then each child writes. Day 77 is the habitat check: item H fresh, alone. Day 78 is the one response: each child works on the component missed, then writes a fresh explanation on the sand lizard card.
+Five days, 74 to 78. The big question is the unit's: "Why do some living things survive in a place while others do not?" Nothing new is taught. Day 74 joins the class models into one tundra consensus model: group arrows, part and job rows, and need and condition arrows with the schoolyard evidence. Children also revise item V in a second color and write the day 74 exit. Day 75 is the variation check: item V fresh, alone. Day 76 is the group check: six groups of five give spoken reasons, then each child writes. Day 77 is the habitat check: item H fresh, alone. Day 78 is the one response: each child works on the component missed, then writes a fresh explanation on the sand lizard card.
 
 ## How the days run
 
@@ -30,7 +30,7 @@ All seven letters can show on day 78. Each repair is one six-minute group on day
 
 ## Supplies for the section
 
-The three fresh cards, the day 74 exit card, the sand lizard card, the 12-point score sheet, copied models for annotation, second-colour pencils and the weather equipment.
+The three fresh cards, the day 74 exit card, the sand lizard card, the 12-point score sheet, copied models for annotation, second-color pencils and the weather equipment.
 
 ## A room with nothing
 

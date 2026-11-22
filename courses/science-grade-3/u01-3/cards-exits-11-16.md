@@ -16,7 +16,7 @@ A can rolls back and forth in a curved skate dip. Record: left side 9 cm up, bot
 
 ## Day 12
 
-A bucket hangs from a porch hook and is made shorter. Pat says it will stay on the left because it started there. The record: left, centre, right, centre.
+A bucket hangs from a porch hook and is made shorter. Pat says it will stay on the left because it started there. The record: left, center, right, center.
 
 ## Day 13
 

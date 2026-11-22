@@ -10,7 +10,7 @@ credit: ours
 
 ## What the section does
 
-Five days, 1 to 5. On day 1 the class watches a pendulum of string and washers, and an empty playground swing if one is in view. The big question is: "What makes a swing start, stop and keep coming back?" Children learn the force arrow, draw a first explanation, and sit a readiness look in the last ten minutes. Day 2 repairs what the look showed and starts the weather record. Day 3 plans a fair test of two pushes on one box. Day 4 runs the test and revises the arrows. Day 5 practises the arrows on fresh cards and ends with the section exit ticket. Only the exits and the day 4 record are kept as evidence. The day 7 record, made in the next section, is the one that is scored.
+Five days, 1 to 5. On day 1 the class watches a pendulum of string and washers, and an empty playground swing if one is in view. The big question is: "What makes a swing start, stop and keep coming back?" Children learn the force arrow, draw a first explanation, and sit a readiness look in the last ten minutes. Day 2 repairs what the look showed and starts the weather record. Day 3 plans a fair test of two pushes on one box. Day 4 runs the test and revises the arrows. Day 5 practices the arrows on fresh cards and ends with the section exit ticket. Only the exits and the day 4 record are kept as evidence. The day 7 record, made in the next section, is the one that is scored.
 
 ## How the days run
 

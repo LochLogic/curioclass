@@ -19,6 +19,6 @@ Four repair sets for day 36 and the exit cards. Plain line drawings, no brand na
 
 ## Exit cards (answered alone, read aloud twice)
 
-- **X36e.** First question: a stuck drawer in a desk, Jo's hand at the front and Kim's hand at the back, both pushing in. Second question: a bird feeder with a flap, two magnets and one tape length laid beside it.
+- **X36e.** First question: a drawer that slides easily in a desk, Jo's hand at the front and Kim's hand at the back, both pushing in. Second question: a bird feeder with a flap, two magnets and one tape length laid beside it.
 - **P36-3, said aloud.** A seesaw drawn six times: up, level, down, level, up, level. Rulers show the two up turns at 40 and 36 cm.
 - **P36-4, said aloud.** A magnet held beside a hanging steel washer.

@@ -14,7 +14,7 @@ Read aloud. This is diagnostic. The scored work is the revised portfolio record 
 
 ## Bean
 
-Bean parents and all six offspring have broad leaves. Offspring leaf lengths in whole centimetres: 4, 4, 5, 5, 6, 6.
+Bean parents and all six offspring have broad leaves. Offspring leaf lengths in whole centimeters: 4, 4, 5, 5, 6, 6.
 
 ## Guinea pig
 

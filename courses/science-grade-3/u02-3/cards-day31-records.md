@@ -8,7 +8,7 @@ credit: ours
 
 # Records for day 31 (printed only on day 31)
 
-Each card is labelled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
+Each card is labeled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
 
 ## Card 1: comb and tissue
 

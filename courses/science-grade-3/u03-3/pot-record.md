@@ -8,7 +8,7 @@ credit: ours
 
 # Pot record (days 48 and 49)
 
-Each group measures every plant in its two radish pots to the whole centimetre. Do not pull a plant up.
+Each group measures every plant in its two radish pots to the whole centimeter. Do not pull a plant up.
 
 | Plant | Pot 1: height in cm | Pot 2: height in cm |
 |---|---|---|

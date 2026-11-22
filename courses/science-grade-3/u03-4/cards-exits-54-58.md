@@ -34,7 +34,7 @@ Lacewing L: egg, larva, pupa, adult, new eggs, then dies. A young one hatches.
 
 All five mustard offspring have yellow flowers like their parents. Offspring leaf widths: narrow 2, wide 3.
 
-Same-family mustard, matched conditions: 16 and 18 centimetres with enough water, 9 and 10 with too little.
+Same-family mustard, matched conditions: 16 and 18 centimeters with enough water, 9 and 10 with too little.
 
 Said aloud, no sheet: a plant is measured with the ruler's zero at the soil. Its top is level with the 26 mark.
 

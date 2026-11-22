@@ -30,7 +30,7 @@ A dark brown beetle with hard wing covers.
 
 ## Card 5: new beetle
 
-The adult laid eggs. An arrow leaves the eggs and points to a box labelled "new beetle".
+The adult laid eggs. An arrow leaves the eggs and points to a box labeled "new beetle".
 
 ## Card 6: the adult dies
 

@@ -14,11 +14,11 @@ Two outcrops on a dry plain. The layer is the same level at both. The layers are
 
 ## West outcrop
 
-Complete freshwater shell fossils, 3 centimetres long. A guide says this shell form is extinct worldwide. Other shellfish are not.
+Complete freshwater shell fossils, 3 centimeters long. A guide says this shell form is extinct worldwide. Other shellfish are not.
 
 ## East outcrop
 
-Land animal footprints, 14 centimetres long. Above the footprints is a rooted trunk fragment, 60 centimetres long.
+Land animal footprints, 14 centimeters long. Above the footprints is a rooted trunk fragment, 60 centimeters long.
 
 ## Your task
 

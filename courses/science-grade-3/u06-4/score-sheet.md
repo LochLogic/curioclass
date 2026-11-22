@@ -12,7 +12,7 @@ Scored outside class, after day 115 and after day 116. Score the revised product
 
 ## Product W (after day 115), 6 points
 
-1. Puts the four supplied average temperatures in a labelled table, in season order.
+1. Puts the four supplied average temperatures in a labeled table, in season order.
 2. Puts the days with rain or snow and the usual winds in the table.
 3. Draws bars at 10, 4, 2 and 8.
 4. Labels both sides and states and uses the scale of 2.

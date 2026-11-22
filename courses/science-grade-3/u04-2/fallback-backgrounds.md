@@ -28,4 +28,4 @@ A cloth with a green pattern. On it are ten yellow paper moths and ten green pap
 | 2 | 2 | 4 | 4 | 2 |
 | 3 | 1 | 5 | 5 | 1 |
 
-Say first: which colour will be picked less on each background?
+Say first: which color will be picked less on each background?

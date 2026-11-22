@@ -8,7 +8,7 @@ credit: ours
 
 # Cards, day 25
 
-Each card is labelled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
+Each card is labeled "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names.
 
 ## Grade 2 carriers
 

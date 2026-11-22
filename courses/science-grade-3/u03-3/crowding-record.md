@@ -14,9 +14,9 @@ A supplied record. It is not our class pots. Say so aloud. Same plant kind, same
 
 | Day | Pot with 4 plants | Pot with 10 plants |
 |---|---|---|
-| 10 | 3 centimetres | 3 centimetres |
-| 17 | 6 centimetres | 5 centimetres |
-| 24 | 12 centimetres | 8 centimetres |
+| 10 | 3 centimeters | 3 centimeters |
+| 17 | 6 centimeters | 5 centimeters |
+| 24 | 12 centimeters | 8 centimeters |
 
 Which statement does the record support?
 

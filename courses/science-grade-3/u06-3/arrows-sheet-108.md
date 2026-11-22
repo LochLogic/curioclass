@@ -22,4 +22,4 @@ What the design changes: ______
 
 I think ______, because I saw ______, so ______.
 
-In a second colour: what I changed ______.
+In a second color: what I changed ______.

@@ -10,9 +10,9 @@ credit: ours
 
 Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children. Paper only. No story and no storm watching. No explanation of how lightning forms.
 
-## A labelled drawing
+## A labeled drawing
 
-A building with a pointed metal rod on its roof, labelled "rod". A thick wire runs from the rod down the wall, labelled "wire". The wire ends in a metal bar pushed into the ground, labelled "ground".
+A building with a pointed metal rod on its roof, labeled "rod". A thick wire runs from the rod down the wall, labeled "wire". The wire ends in a metal bar pushed into the ground, labeled "ground".
 
 ## What each part does
 

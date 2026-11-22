@@ -20,7 +20,7 @@ Check with a partner. Mark a tick for each:
 - The evidence says what was seen.
 - The "so" says how it helps.
 
-Revised sentence, in a second colour:
+Revised sentence, in a second color:
 
 I think ______,
 

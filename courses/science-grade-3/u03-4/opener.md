@@ -36,7 +36,7 @@ Each day is 45 minutes. Days 53 and 54 start with a short opening and hold the w
 
 ## Supplies for the section
 
-Paper models, a whole-centimetre ruler, a water tray and the class plants. The picture sets are the three portfolio record cards, the three day 55 to 57 cards, the day 54 and day 58 exit cards and the score sheet.
+Paper models, a whole-centimeter ruler, a water tray and the class plants. The picture sets are the three portfolio record cards, the three day 55 to 57 cards, the day 54 and day 58 exit cards and the score sheet.
 
 ## A room with nothing
 

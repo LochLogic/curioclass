@@ -8,7 +8,7 @@ credit: ours
 
 # Hydrangea pictures (days 37 and 47)
 
-Two plain line drawings in colour. Each is labelled "invented for practice" in small letters. The class sees the first set on day 37 with no captions about causes. Day 47 uses the same pictures with the captions below.
+Two plain line drawings in color. Each is labeled "invented for practice" in small letters. The class sees the first set on day 37 with no captions about causes. Day 47 uses the same pictures with the captions below.
 
 ## Picture A
 
@@ -24,4 +24,4 @@ Same kind of bush. Two gardens. Look closely.
 
 ## Day 47 captions
 
-Picture A: Garden A. Picture B: Garden B. A garden page says the soil is not the same in the two gardens. The flower colour follows the soil. That is all we know. The page does not tell us about sun, water or age.
+Picture A: Garden A. Picture B: Garden B. A garden page says the soil is not the same in the two gardens. The flower color follows the soil. That is all we know. The page does not tell us about sun, water or age.

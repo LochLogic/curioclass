@@ -14,7 +14,7 @@ Read aloud. Do not predict a future young.
 
 ## Sunflowers
 
-Sunflower parents and six offspring share the same leaf form. Offspring leaf lengths in whole centimetres: 3, 3, 4, 4, 5, 5.
+Sunflower parents and six offspring share the same leaf form. Offspring leaf lengths in whole centimeters: 3, 3, 4, 4, 5, 5.
 
 ## Sheep
 

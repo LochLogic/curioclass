@@ -14,6 +14,6 @@ Each card says "invented for practice" in small letters at the bottom. Plain lin
 
 Parent-plant photograph: a nasturtium with round leaves. The parents are named in the record. Their six offspring all have round leaves.
 
-Leaf widths in whole centimetres: 7, 7, 7, 7, 8, 9.
+Leaf widths in whole centimeters: 7, 7, 7, 7, 8, 9.
 
 Pairs tally, graph and write: alike in ______; different in ______.

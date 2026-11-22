@@ -19,4 +19,4 @@ Dated notes, 2 minutes each day. Two observers a day. Nobody touches soil except
 | | | | | |
 | | | | | |
 
-Write what you see: height in whole centimetres, a count of leaves or buds, colour and any change. Draw a small picture if you like.
+Write what you see: height in whole centimeters, a count of leaves or buds, color and any change. Draw a small picture if you like.

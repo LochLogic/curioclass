@@ -31,7 +31,7 @@ Wrong answers are voiced as "someone might say". No child is the example of a mi
 
 ## Supplies for the section
 
-The system model drawing from unit 4. The highway cards, the crossing case and trial table, the dam and ladder cards, the shade reading, the stream record, two cups for water, the vine case, the exit cards and product S card. Second-colour pencils. Weather equipment on days 89 and 90.
+The system model drawing from unit 4. The highway cards, the crossing case and trial table, the dam and ladder cards, the shade reading, the stream record, two cups for water, the vine case, the exit cards and product S card. Second-color pencils. Weather equipment on days 89 and 90.
 
 ## A room with nothing
 

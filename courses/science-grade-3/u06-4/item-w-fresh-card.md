@@ -20,4 +20,4 @@ Seasons are in this order: spring, summer, autumn, winter. Each season is a samp
 
 ## Your task
 
-Make a labelled table. Make a bar graph of the days with rain or snow, with a scale. Use all three measures to write what to expect in a season. Say how sure you are.
+Make a labeled table. Make a bar graph of the days with rain or snow, with a scale. Use all three measures to write what to expect in a season. Say how sure you are.

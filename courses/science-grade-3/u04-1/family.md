@@ -10,7 +10,7 @@ credit: ours
 
 ## English
 
-For the next weeks our class is asking: why do some living things survive in a place while others do not? We look at animals that live in groups, such as musk oxen on the cold tundra. We compare small differences within one kind, such as coats and colours. We match what a plant or animal needs to what a place gives it. We read records and make arguments with evidence. If the weather allows, we also take a short walk around the school yard.
+For the next weeks our class is asking: why do some living things survive in a place while others do not? We look at animals that live in groups, such as musk oxen on the cold tundra. We compare small differences within one kind, such as coats and colors. We match what a plant or animal needs to what a place gives it. We read records and make arguments with evidence. If the weather allows, we also take a short walk around the school yard.
 
 Your child may show you a drawing with arrows. Ask them, "What does it need? What does the place give it? How do you know?" Any answer is a good answer, in any language. You do not need to buy or try anything at home. There is nothing to send back to school.
 

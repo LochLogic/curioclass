@@ -58,3 +58,13 @@ Mismatches: key errors 0; ambiguous items 3 (E6, E9, E12, listed below as findin
 - UK spellings remain in the pieces that print these items: "centimetres" in product-f-card.md, item-f-fresh-card.md and item-s-fresh-card.md (cards say "centimetres"), and "colour" in model-sheet.md. Fix when next edited (AGENTS.md rule); the items themselves use US spelling.
 - The wrongs.csv rows for E1 to E12 match their keys; E2, E7, E9, E10 have no rows, which is fine.
 - No em dashes and no product names were found in the item text read. Not read: the gate output (not run).
+
+## Fixes applied (2026-11-22)
+
+1. Applied: the E6 key reads "cites a find, or says what the fossils show"; the sample names the fish and the rooted trunks. Not split: a split changes the 12-point score sheet.
+2. Applied: the E9 key accepts water to the frogs, moving or breeding.
+3. Applied: the E4 sample names the lake layer and the trees.
+4. Applied: E3 accepts the 6 cm leaf prints.
+5. Applied: E12 accepts any limit the trials support.
+6. Applied: the E1 sample drops "at both places".
+Could not settle (scored product, one change per revision): listed For Cory in the finish-fix report. UK spellings: Part E.
