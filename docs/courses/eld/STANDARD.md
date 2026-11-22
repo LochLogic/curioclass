@@ -16,7 +16,7 @@ every other course are C11, not this course (bar part 10).
 | Approach page (all ten subjects) | Approved by Cory 2026-11-21 (Desk q-prework-open-2) | docs/courses/eld/APPROACH.md |
 | Base text scout, lens | Done | docs/reviews/eld-open-material-2026-11-16.md; docs/agents/lenses/eld.md |
 | How ELD leans on the ELA progression | Recorded | Section 5 |
-| Progression gate support | Owed: scripts/progression.py has no ELD entry yet (ownership rule in section 2) | Section 2 |
+| Progression gate support | Done 2026-11-21: scripts/progression.py checks ELD with the cluster-to-grade map and the owner rule in section 2, and the progression passes it | Section 2 |
 
 ## 1. The standard and its terms
 
@@ -76,8 +76,8 @@ every other course are C11, not this course (bar part 10).
   6-8, 12 for 9-12, and 3 for SI K-3. The other grades of the cluster carry the ids as `~ID`, each with a one-line
   note on how that year differs (a harder text or task, the next key language use added). SI 4-12 is the one
   exception, because students need that language from the day they enter grade 4: it is owned by grade 4 and carried
-  as `~` in grades 5 to 12. The gate then needs ELD in scripts/progression.py: the standards file, the anchor, and a
-  cluster-to-grade map beside the span map, with the owner rule above.
+  as `~` in grades 5 to 12. scripts/progression.py holds ELD (since 2026-11-21): the standards file, the anchor, and a
+  cluster-to-grade map beside the span map, with the owner rule above; the progression passes it.
 - **Newcomer strand** (ours, untested): a 20-day on-ramp beside each grade frame, not inside its 160 days (Cory,
   2026-11-21, Desk q-fix-eld-1). A newcomer arriving at any point in the year takes it and then joins the class's
   current unit; the frame keeps all 160 days and its host-unit pairings whole. The strand works on the grade's SI
