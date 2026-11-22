@@ -18,6 +18,7 @@ html, body {
   display: block;
   width: 100vw;
   height: 100vh;
+  touch-action: none;
 }
 
 #ui-root {
@@ -322,6 +323,7 @@ kbd {
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   cursor: grab;
+  touch-action: none;
 }
 
 .galaxy-sidebar {
@@ -428,10 +430,148 @@ kbd {
 }
 
 #ui-root.photo-mode .top-bar,
-#ui-root.photo-mode .bottom-bar {
+#ui-root.photo-mode .bottom-bar,
+#ui-root.photo-mode .touch-layer {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s;
+}
+
+#ui-root.touch-active .controls-hint {
+  display: none;
+}
+
+#ui-root.touch-active .bottom-bar {
+  justify-content: center;
+  padding-bottom: 4px;
+}
+
+.touch-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.touch-layer.hidden {
+  display: none;
+}
+
+.touch-stick {
+  position: fixed;
+  left: max(22px, env(safe-area-inset-left));
+  bottom: max(26px, env(safe-area-inset-bottom));
+  width: 124px;
+  height: 124px;
+  border-radius: 50%;
+  background: rgba(16, 26, 52, 0.48);
+  border: 2px solid rgba(140, 238, 255, 0.35);
+  backdrop-filter: blur(8px);
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.touch-knob {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #9bf6ff, #4298cc);
+  box-shadow: 0 4px 16px rgba(90, 220, 255, 0.45);
+  pointer-events: none;
+}
+
+.touch-actions {
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.touch-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.touch-btn {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: rgba(16, 26, 52, 0.56);
+  color: #f4f8ff;
+  font-size: 12px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(8px);
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.touch-btn.small {
+  width: 52px;
+  height: 52px;
+  font-size: 16px;
+}
+
+.touch-btn.accent {
+  border-color: rgba(255, 165, 110, 0.65);
+  background: rgba(255, 142, 98, 0.32);
+}
+
+.touch-btn.pressed {
+  background: #ff8e62;
+  color: #161018;
+  border-color: #ffe0cc;
+  transform: scale(0.95);
+}
+
+@media (max-width: 780px) {
+  #ui-root {
+    padding: 10px 12px;
+  }
+  .card {
+    padding: 9px 11px;
+    border-radius: 12px;
+  }
+  .sys-name {
+    font-size: 16px;
+  }
+  .sys-tagline {
+    display: none;
+  }
+  .pill-btn {
+    padding: 5px 9px;
+    font-size: 11px;
+  }
+  .stats-card {
+    font-size: 11px;
+  }
+  .galaxy-layout {
+    grid-template-columns: 1fr;
+  }
+  .journal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gauge {
+    min-width: 92px;
+  }
+  .touch-stick {
+    width: 108px;
+    height: 108px;
+  }
+  .touch-btn {
+    width: 58px;
+    height: 58px;
+    font-size: 11px;
+  }
 }
 
 .title-screen {
@@ -451,6 +591,9 @@ kbd {
 
 .title-card {
   max-width: 540px;
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+  touch-action: pan-y;
   text-align: center;
   padding: 32px 34px;
 }
@@ -512,4 +655,22 @@ kbd {
   font-size: 14px;
   line-height: 1.6;
   color: #dbe6ff;
+}
+
+/* Short screens (a phone held sideways): keep the Launch button in reach. */
+@media (max-height: 520px) {
+  .title-screen { padding: 10px; }
+  .title-card { padding: 16px 20px; max-height: calc(100dvh - 20px); }
+  .title-logo { font-size: 32px; letter-spacing: 6px; }
+  .title-sub { font-size: 13px; margin-top: 4px; }
+  .title-tips { margin: 10px 0 12px; font-size: 12px; line-height: 1.5; padding: 8px 12px; }
+  /* keep the stats card clear of the touch buttons */
+  #ui-root.touch-active #hud-nearby { display: none; }
+  #ui-root.touch-active .touch-btn { width: 52px; height: 52px; font-size: 11px; }
+  #ui-root.touch-active .touch-col { gap: 8px; }
+}
+
+/* Narrow screens (a phone held upright): lift the speed gauges above the thumbstick and buttons. */
+@media (max-width: 600px) {
+  #ui-root.touch-active .bottom-bar { padding-bottom: 172px; }
 }

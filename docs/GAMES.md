@@ -135,7 +135,7 @@ hosted game. Pages link related tools and games through `pairs` in data/recess.j
 
 | Game | Came in | Our changes |
 |---|---|---|
-| Farlight (`farlight`) | 2026-11-22, TypeScript and WebGPU shaders, esbuild | Em dashes out of what players read; the no-WebGPU message names no browser brands; file-size text off the title card and corner panel; a plain title and a meta description. Saves its journey on the device. Known, not done: no touch controls (keyboard and mouse only) and no reduced-motion setting. |
+| Farlight (`farlight`) | 2026-11-22, TypeScript and WebGPU shaders, esbuild | Em dashes out of what players read; the no-WebGPU message names no browser brands; file-size text off the title card and corner panel; a plain title and a meta description. Saves its journey on the device. Touch controls (thumbstick and buttons) came in from the source on 2026-11-22; we fitted the title card and gauges to phone screens held either way. Known, not done: no reduced-motion setting. |
 | Ripple (`ripple`, first called Resonance) | 2026-11-22, TypeScript, Vite single file | Renamed Ripple in chat (2026-11-22); MP3 saving taken out (an LGPL encoder run from a string), WAV, video and parts zip stay; "808" became "Boom bass"; dashes and tech wording out of the welcome and help text; the preload helper's `fetch` turned off in the build. Saves setups on the device. Known, not done: no reduced-motion setting (the wave slider in Settings turns the water down), and some controls need a mouse. |
 
 ## Open questions

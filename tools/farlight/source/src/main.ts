@@ -24,10 +24,11 @@ import {
 } from './sim/journey.ts';
 import { getShipHull, STORY_TRANSMISSIONS } from './sim/narrative.ts';
 import { clearJourneyLocal, loadJourneyLocal, saveJourneyLocal } from './sim/save.ts';
-import { v3Add, v3Len, v3Norm, v3Scale, v3Sub } from './sim/math.ts';
+import { clamp, v3Add, v3Len, v3Norm, v3Scale, v3Sub } from './sim/math.ts';
 import { ProceduralAudioEngine } from './audio/engine.ts';
 import { Hud } from './ui/hud.ts';
 import { Overlays, type OverlayMode } from './ui/overlays.ts';
+import { TouchControls } from './ui/touch-controls.ts';
 
 async function boot(): Promise<void> {
   const canvas = document.getElementById('gpu-canvas') as HTMLCanvasElement;
@@ -44,7 +45,9 @@ async function boot(): Promise<void> {
 
   const keys = new Set<string>();
   let cruiseToggle = false;
-  let dragging = false;
+  let lookPointerId: number | null = null;
+  let lastLookX = 0;
+  let lastLookY = 0;
   let yawAccum = 0;
   let pitchAccum = 0;
   let visualBank = 0;
@@ -292,6 +295,12 @@ async function boot(): Promise<void> {
       hud.setPhotoMode(photoMode);
       hud.showToast(photoMode ? '📸 Photo Mode ON: press H or Esc to show menus!' : 'Menus restored.', 2.2);
     },
+    onToggleTouch() {
+      const next = !touch.isVisible();
+      touch.setVisible(next);
+      hud.setTouchActive(next);
+      hud.showToast(next ? '🎮 Touch controls ON!' : '🎮 Touch controls hidden.', 2.0);
+    },
     onLaunchGame() {
       audio.unlock();
       audio.playScanDiscovery();
@@ -347,8 +356,20 @@ async function boot(): Promise<void> {
     onClose: () => overlays.open('none', journey, currentSystem, ship),
   });
 
+  const touch = new TouchControls(uiRoot, () => {
+    audio.unlock();
+    cruiseToggle = !cruiseToggle;
+    audio.playUiTap();
+  });
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  touch.setVisible(isTouchDevice);
+  hud.setTouchActive(isTouchDevice);
+
   try {
     gpu = await initWebGpu(canvas);
+    if (window.innerWidth < 768) {
+      gpu.resize('performance');
+    }
     renderer = new FarlightRenderer(gpu);
     renderer.setShipHull(journey.activeShip);
   } catch (err) {
@@ -398,19 +419,30 @@ async function boot(): Promise<void> {
 
   canvas.addEventListener('pointerdown', (e) => {
     audio.unlock();
-    if (overlays.getMode() !== 'none') return;
-    dragging = true;
+    if (overlays.getMode() !== 'none' || hud.isTitleVisible()) return;
+    if (lookPointerId !== null) return;
+    lookPointerId = e.pointerId;
+    lastLookX = e.clientX;
+    lastLookY = e.clientY;
     canvas.setPointerCapture(e.pointerId);
   });
-  canvas.addEventListener('pointerup', () => {
-    dragging = false;
-  });
+  const releaseLook = (e: PointerEvent) => {
+    if (e.pointerId === lookPointerId) {
+      lookPointerId = null;
+    }
+  };
+  canvas.addEventListener('pointerup', releaseLook);
+  canvas.addEventListener('pointercancel', releaseLook);
   canvas.addEventListener('pointermove', (e) => {
-    if (overlays.getMode() !== 'none') return;
-    if (!dragging && document.pointerLockElement !== canvas) return;
-    const sens = 0.0028;
-    yawAccum += e.movementX * sens;
-    pitchAccum += e.movementY * sens;
+    if (overlays.getMode() !== 'none' || hud.isTitleVisible()) return;
+    if (e.pointerId !== lookPointerId && document.pointerLockElement !== canvas) return;
+    const dx = document.pointerLockElement === canvas ? e.movementX : e.clientX - lastLookX;
+    const dy = document.pointerLockElement === canvas ? e.movementY : e.clientY - lastLookY;
+    lastLookX = e.clientX;
+    lastLookY = e.clientY;
+    const sens = e.pointerType === 'touch' ? 0.0042 : 0.0028;
+    yawAccum += dx * sens;
+    pitchAccum += dy * sens;
   });
 
   let lastTime = performance.now();
@@ -452,10 +484,14 @@ async function boot(): Promise<void> {
       if (keys.has('BracketLeft')) planetFlight.sunAngle -= dt * 0.85;
       if (keys.has('BracketRight')) planetFlight.sunAngle += dt * 0.85;
 
-      const forward = (keys.has('KeyW') || keys.has('ArrowUp') ? 1 : 0) - (keys.has('KeyS') || keys.has('ArrowDown') ? 1 : 0);
-      const strafe = (keys.has('KeyD') || keys.has('ArrowRight') ? 1 : 0) - (keys.has('KeyA') || keys.has('ArrowLeft') ? 1 : 0);
-      const vertical = (keys.has('KeyR') ? 1 : 0) - (keys.has('KeyV') ? 1 : 0);
-      const boost = keys.has('ShiftLeft') || keys.has('ShiftRight');
+      const keyFwd = (keys.has('KeyW') || keys.has('ArrowUp') ? 1 : 0) - (keys.has('KeyS') || keys.has('ArrowDown') ? 1 : 0);
+      const keyStrafe = (keys.has('KeyD') || keys.has('ArrowRight') ? 1 : 0) - (keys.has('KeyA') || keys.has('ArrowLeft') ? 1 : 0);
+      const keyVert = (keys.has('KeyR') ? 1 : 0) - (keys.has('KeyV') ? 1 : 0);
+      const forward = clamp(keyFwd + touch.state.forward, -1, 1);
+      const strafe = clamp(keyStrafe + touch.state.strafe, -1, 1);
+      const vertical = clamp(keyVert + touch.state.vertical, -1, 1);
+      const boost = keys.has('ShiftLeft') || keys.has('ShiftRight') || touch.state.boost;
+      const brake = keys.has('Space') || touch.state.brake;
 
       const targetBank = Math.max(-0.42, Math.min(0.42, -yawAccum * 12 - strafe * 0.28));
       const targetPitch = Math.max(-0.26, Math.min(0.26, -pitchAccum * 10));
@@ -471,7 +507,7 @@ async function boot(): Promise<void> {
           yawDelta: yawAccum,
           pitchDelta: pitchAccum,
           boost,
-          brake: keys.has('Space'),
+          brake,
           cruise: cruiseToggle,
         },
         dt,
@@ -480,15 +516,18 @@ async function boot(): Promise<void> {
         exitPlanetToOrbit();
       }
     } else if (overlays.getMode() === 'none' && !hud.isTitleVisible()) {
+      const keyFwd = (keys.has('KeyW') || keys.has('ArrowUp') ? 1 : 0) - (keys.has('KeyS') || keys.has('ArrowDown') ? 1 : 0);
+      const keyStrafe = (keys.has('KeyD') || keys.has('ArrowRight') ? 1 : 0) - (keys.has('KeyA') || keys.has('ArrowLeft') ? 1 : 0);
+      const keyVert = (keys.has('KeyR') ? 1 : 0) - (keys.has('KeyV') ? 1 : 0);
       const input: FlightInput = {
-        forward: (keys.has('KeyW') || keys.has('ArrowUp') ? 1 : 0) - (keys.has('KeyS') || keys.has('ArrowDown') ? 1 : 0),
-        strafe: (keys.has('KeyD') || keys.has('ArrowRight') ? 1 : 0) - (keys.has('KeyA') || keys.has('ArrowLeft') ? 1 : 0),
-        vertical: (keys.has('KeyR') ? 1 : 0) - (keys.has('KeyV') ? 1 : 0),
+        forward: clamp(keyFwd + touch.state.forward, -1, 1),
+        strafe: clamp(keyStrafe + touch.state.strafe, -1, 1),
+        vertical: clamp(keyVert + touch.state.vertical, -1, 1),
         roll: (keys.has('KeyE') ? 1 : 0) - (keys.has('KeyZ') ? 1 : 0),
         yawDelta: yawAccum,
         pitchDelta: pitchAccum,
-        boost: keys.has('ShiftLeft') || keys.has('ShiftRight'),
-        brake: keys.has('Space'),
+        boost: keys.has('ShiftLeft') || keys.has('ShiftRight') || touch.state.boost,
+        brake: keys.has('Space') || touch.state.brake,
         cruise: cruiseToggle,
       };
       const targetBank = Math.max(-0.45, Math.min(0.45, -yawAccum * 14 - input.strafe * 0.25));
@@ -530,17 +569,21 @@ async function boot(): Promise<void> {
     pitchAccum = 0;
 
     if (planetFlight) {
-      const boostVisual = keys.has('ShiftLeft') || keys.has('ShiftRight') ? 1 : cruiseToggle ? 0.65 : 0.15;
+      const boostVisual = keys.has('ShiftLeft') || keys.has('ShiftRight') || touch.state.boost ? 1 : cruiseToggle ? 0.65 : 0.15;
       const campKey = planetScanKey(currentSystem.ref.id, planetFlight.planet.id);
       const activeCamp = journey.camps.find((c) => c.key === campKey) ?? null;
       renderer.renderPlanet(currentSystem, planetFlight, now * 0.001, visualBank, visualPitch, boostVisual, activeCamp);
-      const jetting = planetFlight.onFoot && (keys.has('Space') || keys.has('KeyR')) && planetFlight.jetpackFuel > 2;
+      const jetting = (planetFlight.onFoot || planetFlight.inRover) && (keys.has('Space') || keys.has('KeyR') || touch.state.brake) && planetFlight.jetpackFuel > 2;
       audio.update(
         dt,
-        planetFlight.onFoot ? 'on-foot' : 'planet-fly',
+        planetFlight.onFoot || planetFlight.inRover ? 'on-foot' : 'planet-fly',
         planetFlight.speed / 120,
         boostVisual,
         jetting,
+      );
+      touch.updateContext(
+        planetFlight.inRover ? 'rover' : planetFlight.onFoot ? 'on-foot' : 'planet-fly',
+        cruiseToggle,
       );
     } else {
       renderer.render(
@@ -560,6 +603,7 @@ async function boot(): Promise<void> {
         ship.boostAmount,
         false,
       );
+      touch.updateContext('space', cruiseToggle);
     }
 
     hudTimer += dt;

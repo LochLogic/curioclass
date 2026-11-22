@@ -18,6 +18,7 @@ export interface HudCallbacks {
   onBuildCamp(): void;
   onToggleMute(): void;
   onTogglePhotoMode(): void;
+  onToggleTouch(): void;
   onLaunchGame(): void;
   onSelectQuality(tier: QualityTier): void;
 }
@@ -49,6 +50,7 @@ export class Hud {
   private roverBtn!: HTMLButtonElement;
   private campBtn!: HTMLButtonElement;
   private muteBtn!: HTMLButtonElement;
+  private touchToggleBtn!: HTMLButtonElement;
   private titleScreenEl!: HTMLElement;
   private gravityEl!: HTMLElement;
   private solarLabelEl!: HTMLElement;
@@ -65,10 +67,10 @@ export class Hud {
           <div class="title-logo">FARLIGHT</div>
           <p class="title-sub">A cozy, wondrous galaxy to explore.<br>Chart your way home to Earth across glowing nebulae, ringed giants, and living worlds!</p>
           <div class="title-tips">
-            <div>🚀 <strong>Fly:</strong> Drag mouse to steer · <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> thrust · <kbd>C</kbd> cruise · <kbd>Shift</kbd> boost</div>
+            <div>🚀 <strong>Fly:</strong> Drag screen to steer · <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or Left Stick to move</div>
             <div>🗺 <strong>Explore:</strong> <kbd>M</kbd> Galaxy Map · <kbd>N</kbd> System Map · <kbd>F</kbd> Scan Worlds &amp; Critters</div>
-            <div>🌍 <strong>Land &amp; Walk:</strong> <kbd>L</kbd> Descend · <kbd>G</kbd> Touchdown · <kbd>E</kbd> Step Out · <kbd>B</kbd> Build Camp</div>
-            <div>📸 <strong>Photo Mode:</strong> Press <kbd>H</kbd> anytime to hide menus for clean screenshots!</div>
+            <div>🌍 <strong>Land &amp; Drive:</strong> <kbd>L</kbd> Descend · <kbd>G</kbd> Touchdown · <kbd>E</kbd> Walk · <kbd>K</kbd> 6-Wheel Rover · <kbd>B</kbd> Camp</div>
+            <div>📱 <strong>Phones &amp; tablets:</strong> a thumbstick and buttons appear on touch screens (show or hide them with 🎮).</div>
           </div>
           <button class="pill-btn active launch-btn" id="btn-launch">✨ Launch Explorer</button>
         </div>
@@ -100,6 +102,7 @@ export class Hud {
           <div id="hud-gravity" style="margin-top:2px;color:#ffd166;"></div>
           <div id="hud-nearby" style="margin-top:4px;max-width:255px;"></div>
           <div class="sys-pills" style="justify-content:flex-end;margin-top:8px;" id="hud-qual-pills">
+            <button class="pill-btn" id="btn-touch" title="Toggle Touch Controls">🎮</button>
             <button class="pill-btn" id="btn-photo" title="Photo Mode (H)">📸</button>
             <button class="pill-btn" id="btn-mute">🔊 Sound</button>
           </div>
@@ -145,6 +148,7 @@ export class Hud {
     this.roverBtn = root.querySelector('#btn-rover')!;
     this.campBtn = root.querySelector('#btn-camp')!;
     this.muteBtn = root.querySelector('#btn-mute')!;
+    this.touchToggleBtn = root.querySelector('#btn-touch')!;
     this.titleScreenEl = root.querySelector('#title-screen')!;
     this.gravityEl = root.querySelector('#hud-gravity')!;
     this.solarLabelEl = root.querySelector('#hud-solar-lbl')!;
@@ -153,6 +157,7 @@ export class Hud {
       this.titleScreenEl.classList.add('hidden');
       callbacks.onLaunchGame();
     });
+    this.touchToggleBtn.addEventListener('click', () => callbacks.onToggleTouch());
     root.querySelector('#btn-photo')!.addEventListener('click', () => callbacks.onTogglePhotoMode());
     this.controlsEl = root.querySelector('#hud-controls')!;
 
@@ -198,6 +203,10 @@ export class Hud {
 
   setPhotoMode(enabled: boolean): void {
     this.root.classList.toggle('photo-mode', enabled);
+  }
+
+  setTouchActive(enabled: boolean): void {
+    this.touchToggleBtn.classList.toggle('active', enabled);
   }
 
   isTitleVisible(): boolean {

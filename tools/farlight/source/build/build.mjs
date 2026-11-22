@@ -36,7 +36,7 @@ async function emitHtml(jsCode, cssCode) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Farlight</title>
 <meta name="description" content="Farlight: fly a small ship home to Earth across a glowing galaxy, scanning planets, landing on living worlds and building camps. A free Recess game on Curio Class.">
 <style>${cssCode}</style>
