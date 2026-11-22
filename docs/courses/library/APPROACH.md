@@ -127,6 +127,14 @@ Each read is a fresh-agent read (docs/pipeline/briefs/sensitivity-read.md, kind 
    `rights`, on the 6 to 12 copyright, licence and fair use days.
 7. **Machine-made text and images as a source:** no claim that any tool is reliable or unreliable; the check is the
    same as for any source (who made it, what it cites). Read: the 6 to 12 plans.
+8. **Asking people: interviews and surveys.** Questions stay on a neutral class topic and are checked by the teacher
+   before use; no one is asked about family history, home, beliefs, identity, health, money, food or meals, a family
+   member's job, or immigration or other status unless they raise it, and that is not recorded. Any trusted adult or
+   a school staff member may stand in for a family member, and a first-person source set may stand in for any
+   interview. Interviews outside school are arranged through the school or a family, in a public or supervised
+   setting, with the person's consent (and a parent's, for anyone under 18), recorded only with consent, and reported
+   without a full name. No classmate is asked to speak for a group. Surveys are of the class, on neutral things, with
+   no names recorded. Read: every unit with an interview or survey.
 
 ## Pacing and dose
 

@@ -15,8 +15,8 @@ says which), never fewer units (Cory, 2026-11-11 and 2026-11-15).
 | Relabel the file to the second edition (2025) | Done 2026-11-11 (label in the header); edition confirmed at source 2026-11-16 | data/standards/aasl-2018.txt |
 | Open the continuum's grade lists | Done: grades 3 to 5 read in full 2026-11-16; PK to 2, 6 to 8 and 9 to 12 read in full 2026-11-21 (downloaded with Cory's yes, Desk q-fix-library-1) | Section 2 |
 | Our own words for the 68 | Done 2026-11-21 against the second edition chart | data/standards/aasl-words.txt |
-| Progression gate support | Owed: scripts/progression.py has no library entry yet, and data/progressions/library-excluded.csv (the five ids of section 4) is not written | Sections 3 and 4 |
-| Catalogue | Done 2026-11-21: eight course rows in data/courses.csv, grade_subjects.csv and modules.csv (Cory, 2026-11-21, Desk q-fix-library-1); owed: scripts/course_status.py still names the old `library` id | Section 3 |
+| Progression gate support | Done 2026-11-21: library entry in scripts/progression.py, data/progressions/library-excluded.csv (five ids), data/progressions/library.csv (98 rows, read cold 2026-11-21, docs/reviews/progression-library-2026-11-21.md) | Sections 3 and 4 |
+| Catalog | Done 2026-11-21: eight course rows in data/courses.csv, grade_subjects.csv and modules.csv (Cory, 2026-11-21, Desk q-fix-library-1); scripts/course_status.py counts them | Section 3 |
 | Approach page | Approved 2026-11-21 (Cory, Desk q-prework-open-2) | docs/courses/library/APPROACH.md |
 
 ## 1. The standard and its terms
@@ -61,12 +61,12 @@ says which), never fewer units (Cory, 2026-11-11 and 2026-11-15).
   note-making; grade 4 picks an interesting part of a broad topic and compares primary and secondary sources the
   teacher chose; grade 5 judges which questions facts can answer, weighs print, video and online sources for
   relevance and builds a bibliography to a model. In K to 2 the bold skills include finding picture books by their
-  labels and shelf order, looking a book up in the catalogue by author, title or key word, naming who made a site,
+  labels and shelf order, looking a book up in the catalog by author, title or key word, naming who made a site,
   and crediting authors; in 6 to 8, citing every source in a set style and deciding what fair use allows; in 9 to
-  12, reading laterally for background, search filters and operators, and copyright, open licences and asking a
-  maker's permission. The result goes in a table here when the progression is drafted: for each grade, the
-  priority skills in our words, and a row for each place our list differs.
-- **Terms:** no licence or copyright line on the guide pages or in the band file. Unclear, so reference only: used to
+  12, reading laterally for background, search filters and operators, and copyright, open licenses and asking a
+  maker's permission. The per-grade priority skills, in our words, are the rows of data/progressions/library.csv;
+  where a row places a continuum bold skill in a different grade, its note says why.
+- **Terms:** no license or copyright line on the guide pages or in the band file. Unclear, so reference only: used to
   place skills in grades and to check our list, never copied.
 - **Use (recommended, ours):** each course's progression names priority skills per grade in our own words, tagged
   with the AASL ids they serve, and checked against the continuum's bold skills for that grade. Where the two differ,
@@ -88,23 +88,23 @@ per school year (6, 7, 8; 9, 10, 11, 12) even though each is one course: the pro
 years, the course is how they are taught. Each row's `assumes` names only the earlier library row it builds on
 (empty in kindergarten; each school year's row assumes the library row of the year before, so no grade is skipped),
 since the gate accepts only rows of the same file there; an ELA or social studies row it builds on goes in
-`cross_subject` (section 5). The gate then needs library in scripts/progression.py: the standards file, the
-anchor, an id that carries no grade (any grade may own it, and the one-owner check does the work), and
-`data/progressions/library-excluded.csv` for the ids section 4 excludes. Settled (Cory, 2026-11-21): own once, at
+`cross_subject` (section 5). The gate's library entry in scripts/progression.py uses the standards file, the
+anchor, ids with no grade (any grade may own one; the one-owner check does the work) and
+data/progressions/library-excluded.csv for the ids section 4 places elsewhere. Settled (Cory, 2026-11-21): own once, at
 the school year where the id is first checked alone; `library-6-8` stays one course across grades 6 to 8, with a
 row per school year.
 
-| Courses | AASL | Priority skill emphasis (ours, to be set at the progression) |
+| Courses | AASL | Priority skill emphasis (ours; set grade by grade in data/progressions/library.csv) |
 |---|---|---|
 | K, 1 and 2 (one course each) | All six foundations, mostly at the "with help" level (carried as `~`, owned only where the grade checks an id alone: Ownership, above) | Asking a question, finding a book by its label and shelf order, retelling what a source says, saying who made it and where it came from, sharing with the class (checked against the PK to 2 band file, 2026-11-21) |
-| 3, 4 and 5 (one course each) | All six | Key words, searching a catalogue and a chosen site, note-making, primary and secondary sources, a simple bibliography, first lateral checks of a site |
+| 3, 4 and 5 (one course each) | All six | Key words, searching a catalog and a chosen site, note-making, primary and secondary sources, a simple bibliography, first lateral checks of a site |
 | Grades 6 to 8 (one course) | All six | Search strategy, lateral reading, judging evidence and who is behind it, paraphrase and quotation, citation in one style, fair use basics, checking text made by a machine like any other source (who made it, what it cites) |
-| Grades 9 to 12 (one course) | All six | Research question design, databases, search operators and filters, and open sources, lateral reading on hard cases, synthesis across sources, full citation, copyright, licences, fair use and asking a maker's permission (checked against the 9 to 12 band file, 2026-11-21), checking and disclosing the use of machine-made text, sharing a research product |
+| Grades 9 to 12 (one course) | All six | Research question design, databases, search operators and filters, and open sources, lateral reading on hard cases, synthesis across sources, full citation, copyright, licenses, fair use and asking a maker's permission (checked against the 9 to 12 band file, 2026-11-21), checking and disclosing the use of machine-made text, sharing a research product |
 
 **Partial bases for 6 to 12.** Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): the CC BY
 online-reasoning lessons and the open web-literacy book named in docs/reviews/library-open-material-2026-11-16.md
-are partial bases for the 6 to 8 and 9 to 12 courses. Only items under an open licence are adapted, in our voice,
-with the source in the day's credit, and each item's licence is re-read at source when it is first adapted (the
+are partial bases for the 6 to 8 and 9 to 12 courses. Only items under an open license are adapted, in our voice,
+with the source in the day's credit, and each item's license is re-read at source when it is first adapted (the
 scout's reading of 2026-11-16 is the only one on file); no company or product name appears in student, teacher or family copy.
 
 Every unit names host tasks from the grade's other courses (bar criterion 4): research for a science investigation, a
@@ -112,7 +112,7 @@ social studies source question, an ELA research piece. Each also carries a stand
 
 ## 4. What is left out, and why
 
-- The AASL school librarian and school library frameworks: they describe adults and programmes, not learners.
+- The AASL school librarian and school library frameworks: they describe adults and programs, not learners.
 - Reading promotion and literature appreciation (the continuum's multiple literacies standard) beyond what a research
   unit needs: ELA owns reading; library units may use the same books.
 - The continuum's design thinking strand: science and computer science own the design cycle; library leans on them
@@ -148,18 +148,20 @@ social studies source question, an ELA research piece. Each also carries a stand
 ## 5. Cross-subject leans
 
 **Who teaches what first.** ELA owns the research cycle and the writing of it (the model `research-cycle`; rows
-`ek-shared-research` and `e1-shared-research` to `e12-research`), the first source list (grade 4, `e4-research`), locating print and digital
-sources with key words (grade 5, `e5-locate-sources`), source credibility in writing (grade 6, `e6-short-research`)
+`ek-shared-research` and `e1-shared-research` to `e12-research`), the list of sources in research writing (grade 4,
+`e4-research`, which builds on library's grade 2 credit line and grade 3 source list), finding answers quickly across
+several print and digital sources (grade 5, `e5-locate-sources`), source credibility in writing (grade 6, `e6-short-research`)
 and a standard citation format (grade 7, `e7-research-questions`). Social studies owns sourcing and corroboration
 (the models `source-sourcing` and `corroboration`, from the grade 2 rows `ss2-source-maker` and `ss2-two-accounts`)
 and news reading (`ss8-news-literacy`, grade 8;
-`us1-news-reading`, grade 11). Library owns what neither does: searching as a skill (changing a query, catalogues
+`us1-news-reading`, grade 11). Library owns what neither does: searching as a skill (changing a query, catalogs
 and databases, choosing among results), leaving the page to check who is behind it (lateral reading, the first time
 it is taught as a method: owned by a library row before grade 8, where `ss8-news-literacy` uses it on news), going upstream to the first source, honest use of others' work across media (not only in
 writing), and choosing among tools. Where a library row meets an ELA or social studies skill it names that row's id in
 `cross_subject` (for example `ela:e5-locate-sources`; never a model name, and never in `assumes`, section 3); the
-progression says which came first in each grade. Before the progression is drafted, the 3 to 5 and 6 to 8 emphasis cells above are
-re-read against ELA grades 4 to 7.
+progression says which came first in each grade. Re-read against ELA grades 3 to 7 on 2026-11-21
+(docs/reviews/progression-library-2026-11-21.md): no conflict in the emphasis cells; two ownership lines above were
+corrected and grade 3 note categories moved to grade 4.
 
 - **ELA:** the research writing standards W.7 and W.8 from kindergarten and W.9 from grade 4, and informational
   reading.
