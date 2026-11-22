@@ -1789,3 +1789,15 @@ AGENTS.md, docs/COURSE-RUN.md stage 5 and the kit (docs/pipeline/kit/RETOOL.md).
 - **g12-sm-have-a-say:** planned on an invented graduate's case; real public action stays in the government course.
 - **Grade 12 RS9:** stays a school case with a written carry to work.
 SEL's progression is done (data/progressions/sel.csv, 520 rows).
+
+## 2026-11-22: Career education progression calls (q-prog-cte-1)
+
+- **Who chooses the grade 10 clusters:** the class shares two clusters and each student adds one of their own through
+  a self-guided packet, and every student narrows from a cluster to a sub-cluster to one named job studied in depth;
+  the full plan and the applied project end on that job ("students at some point should be able to follow their
+  interests from very broad to narrow jobs"). The lead set the short path (64 sessions) to one shared cluster plus the
+  student's own, keeping the path to a named job (STANDARD section 3).
+- **Environmental Protection:** not a sensitive field ("necessary for survival"), taught like any other; one rule in
+  STANDARD section 6: no student is put down or graded for their own views on environment and resource questions.
+  Section 5's six-item leave-out list is unchanged.
+Career education's progression is done (data/progressions/cte.csv, 228 rows).

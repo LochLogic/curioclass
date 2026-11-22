@@ -395,3 +395,39 @@ that names the dispute (`g8-clu-energy-resources`) already says "a school may sw
   the read's own text: the lean count is 52 distinct rows (142 instances after the merge), not 66, and the SEL bullet
   lists the grade 10 rows by name, since two grade 8 names (`g8-sa-my-strengths`, `g8-sa-who-i-am`) have no grade 10
   lean; the library bullet also names `library:g8-research-product`, which a grade 8 row leans on.
+
+## Cory's answers applied (2026-11-22, Desk q-prog-cte-1)
+
+Cory's words, verbatim. On For Cory 1: "we can use your recommendation but students at some point should be able to
+follow their interests from very broad to narrow jobs. yes this is massive but its been missing in curriculum for a
+long time." On For Cory 2: "Environmental Protection is not sensitive, its necessary for survival. no one should be
+denigrated for their personal views though."
+
+- **Answer 1 (option C, with a broad-to-narrow path).** STANDARD.md section 3: the course table's Pathways row,
+  "Pathways' width" (two shared clusters the class chooses plus one cluster of each student's own, any of the other
+  twelve, through a self-guided packet; all 72 sub-clusters stay open), a new "Broad to narrow" paragraph (cluster, to
+  sub-cluster, to one named job studied in depth: its tasks, training route, dated pay and outlook figures and a plan
+  step toward it; the full plan and the applied project narrow to that job), a new "Running it with one teacher"
+  paragraph (shared clusters whole-class; the packet self-guided on the task template and data sheet, packet days and
+  check-in days set by the frame; skill days and the applied project whole-class; on the 64-session short path one
+  shared cluster instead of two, packet and named job kept), and the ownership text ("their three clusters").
+  data/progressions/cte.csv: the 14 `g10-clu-*` rows (shared unit or packet, naming a sub-cluster and job to narrow to,
+  packet self-guided with check-ins on set days); all 72 `g10-sub-*` rows (58 owned and 14 carried: met as a shared
+  cluster or through the packet, any one may be where the student narrows to a named job); `g10-all2-full-plan` (the
+  path ends there: the in-depth job study and plan step, the plan narrows to that job); `g10-prac-12-academic-skills`
+  (the applied project from the chosen job's field); `g10-prac-10-plan-path`, `g10-prac-4-teamwork`,
+  `g10-prac-5-digital-data`, `g10-cd2-r1-decide-review`, `g10-cd2-r2-compare-models`, `g10-cd2-r9-trade-offs`,
+  `g10-cd3-r4-grouping-that-helps`, `g10-cd4-carry-over`, `g10-all1-school-widens` ("two or three chosen clusters"
+  wording replaced). No row was added, so the packet is stated in STANDARD and the cluster rows rather than in a row
+  of its own; every id keeps its single owner.
+- **Answer 2 (Environmental Protection is a needed field).** STANDARD.md section 6: Environmental Protection taken out
+  of "a live public dispute" and out of the sensitivity-read list, stated as a needed field taught like any other; a
+  new "Views on environment and resources" rule (views respected, no student put down or graded for them, tasks judge
+  reasoning and evidence, not the side taken). Section 5's six-item list is unchanged. cte.csv:
+  `g10-sub-energy-resources-environmental-protection` (dispute note replaced by the needed-field line and the views
+  rule), `g10-sub-energy-resources-resource-extraction` (stays on the leave-out list, gains the views rule),
+  `g10-clu-energy-resources` and `g8-clu-energy-resources` (teacher notes split: Environmental Protection a needed
+  field, Resource Extraction the dispute; views rule added; the grade 8 Utilities reason no longer calls the other
+  sub-clusters disputed). APPROACH.md needed no change (it points to section 6).
+- **Rows touched:** 98 (97 grade 10, 1 grade 8). Gate after: `progression.py check cte` 228 rows (grade 8: 85, grade
+  10: 143), 0 failures.

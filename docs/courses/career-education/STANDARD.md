@@ -64,18 +64,37 @@ line for each owned one in data/standards/ncdg-2024-words.txt.
 | Course | Clusters | Practices | Plan and tasks |
 |---|---|---|---|
 | Career Exploration, typically grade 8 | All 14 clusters surveyed, with a sub-cluster in each studied through real jobs and data | All 12 introduced, each practiced in a task | An interest and strengths inventory, a first education and career plan, a job study with labor market figures, a short interview practice |
-| Career Pathways, typically grade 10 | Two or three clusters the student picks, studied at sub-cluster depth, with a program of study (courses, training, credentials) | All 12 practiced on field tasks | A full plan to a first credential, a resume, a mock interview, a portfolio, an applied project from a chosen field defended with data |
+| Career Pathways, typically grade 10 | Three clusters per student, studied at sub-cluster depth: two shared clusters the class chooses and one of the student's own through a self-guided packet, narrowing to one sub-cluster and one named job, with its program of study (courses, training, credentials) | All 12 practiced on field tasks | A study in depth of the student's chosen job, a full plan to its first credential, a resume, a mock interview, a portfolio, an applied project from the chosen job's field defended with data |
 
 Settled 2026-11-16 (Cory, Desk card q-later-cs-career-library): each course is one year (Career Exploration in
 grade 7 or 8, Career Pathways in grade 9 or 10), at two or three sessions a week. The typical grades are 8 and 10
 (see "Course list"); the frames say how many sessions.
 
 **Pathways' width** (Cory, 2026-11-21: go broad, so students see more of what is open to them, even though it is
-harder to keep current). Pathways builds field tasks and a dated data sheet for all 14 clusters, and a student
-chooses two or three of them. Any of the 72 sub-clusters is open through its cluster's field tasks and the course's
-task template. Each data sheet carries its date and a line telling the teacher to check the figures that year. Each
-training route on a job card is checked against the federal job outlook handbook's typical entry level for that
-school year.
+harder to keep current; Cory, 2026-11-22, Desk q-prog-cte-1: the class studies two clusters together and each
+student adds one of their own). Pathways builds field tasks and a dated data sheet for all 14 clusters. Each student
+meets three: two shared clusters the class chooses together, and one cluster of the student's own, any of the other
+twelve, through a self-guided packet. Any of the 72 sub-clusters stays open through its cluster's field tasks, the
+packet and the course's task template. Each data sheet carries its date and a line telling the teacher to check the
+figures that year. Each training route on a job card is checked against the federal job outlook handbook's typical
+entry level for that school year.
+
+**Broad to narrow** (Cory, 2026-11-22, Desk q-prog-cte-1: students should be able to follow their interests from very
+broad to narrow jobs; the path is ours, untested). Every student goes from a cluster, to a sub-cluster, to one named
+job studied in depth. From any of their three clusters the student picks one sub-cluster, then one named job in it,
+the job they choose, and studies its tasks, its training route and its pay and outlook figures (each with its source
+and year), with one plan step toward it. The full plan (`g10-all2-full-plan`) narrows to that job's first credential,
+and the applied project (`g10-prac-12-academic-skills`) takes its problem from that job's field. No job is the default,
+and the plan is scored on its reasoning, never on the job chosen.
+
+**Running it with one teacher** (ours, untested). The two shared clusters are taught whole-class: one room on one
+field task with one data sheet on the same day. The own-cluster packet is self-guided: the cluster's dated data
+sheet, its sub-clusters' field tasks on the course's task template, and the steps of the job study, each with its
+model, so a packet stands alone for each of the 14 clusters. The frame sets packet days, when the whole class works
+in its own packets at once, and check-in days within them, when the teacher meets each student briefly (the step
+done, one figure, the next step, logged on the packet's check-in line). Skill days (resume, interview, the plan) and
+the applied project are whole-class. On the 64-session short path the class studies one shared cluster instead of
+two and keeps the own-cluster packet and the path to a named job. A frame may change the split with a reason.
 
 **Course list** (settled by the expert reader, 2026-11-20). Two courses: `cte-explore` (grades 6 to 8 in the
 catalogue, typical grade 8) and `cte-pathways` (grades 9 to 12, typical grade 10). The catalogue's typical grades are
@@ -92,8 +111,9 @@ span's last grade; the frame may place a course a year earlier with a reason. Ex
 sub-clusters, one per cluster, fixed in the frame (Cory, 2026-11-21: a smaller number here, as long as breadth is
 given somewhere). Pathways gives the breadth: it owns the other 58 sub-clusters, each met through its cluster's field
 tasks and data sheet, so no sub-cluster is excluded (Cory, 2026-11-21). Owned here
-means the course supplies each sub-cluster's teaching, task and check for the students who choose its cluster; one
-student meets the sub-clusters of the two or three clusters chosen, and the course page says so. The 12 practices
+means the course supplies each sub-cluster's teaching, task and check for the students who meet its cluster, shared
+or through the packet; one student meets the sub-clusters of their three clusters ("Pathways' width"), and the course
+page says so. The 12 practices
 are owned by Exploration, where each is first taught in a task, and Pathways carries each as a `~` row with the field
 task that practices it at higher demand. Placement rule for the learner goals (Cory, 2026-11-21, Desk q-fix-career-1),
 the same rule as for the 12 practices: each 2024 National Career Development Guidelines indicator is owned in the course where it is first taught (Exploration, grade 8, or Pathways, grade 10), carried
@@ -186,9 +206,14 @@ Job models use invented workers drawn from many groups, and a student's own resu
   recruiter material on a student page; a teacher-page note says the school's own policy governs recruiter visits
   (Cory, 2026-11-21).
 - **Clusters that touch other subjects:** Behavioral and Mental Health (health's ground), Emergency Response and
-  Judicial Systems and Public Safety (violence, force, trauma), Resource Extraction and Environmental Protection (a
-  live public dispute), Entrepreneurship and Regulation (political). Financial Services is taught as a cluster like
-  any other (its jobs, training and tasks); only personal finance is Economics'.
+  Judicial Systems and Public Safety (violence, force, trauma), Resource Extraction (a live public dispute),
+  Entrepreneurship and Regulation (political). Financial Services is taught as a cluster like any other (its jobs,
+  training and tasks); only personal finance is Economics'. Environmental Protection is a needed field, not sensitive
+  ground, and is taught like any other (Cory, 2026-11-22, Desk q-prog-cte-1).
+- **Views on environment and resources** (Cory, 2026-11-22, Desk q-prog-cte-1): students' own views on environmental
+  and resource questions are respected; no student is put down or graded for their personal views; tasks judge
+  reasoning and evidence, not which side a student takes. The Environmental Protection and Resource Extraction rows
+  apply it.
 - **If a student tells you something** (Cory, 2026-11-21, Desk q-fix-career-1): every section on Behavioral and
   Mental Health, Emergency Response, Judicial Systems or Public Safety, and every section of the pay-gap unit (the
   unit that holds g8-cd3-6-uncommon-jobs, with g8-cd2-7-stereotypes and g8-cd3-5-open-jobs; in Pathways
@@ -205,7 +230,7 @@ Job models use invented workers drawn from many groups, and a student's own resu
 
 **Reads.** Every unit gets the fresh-agent sensitivity read (docs/pipeline/briefs/sensitivity-read.md, kind
 `sensitivity`). Units on the Military and National Security, Behavioral and Mental Health, Judicial Systems, Emergency
-Response, Public Safety, Resource Extraction and Environmental Protection sub-clusters, the pay-gap unit and any unit
+Response, Public Safety and Resource Extraction sub-clusters, the pay-gap unit and any unit
 that shows disabled workers, name that community or topic in the read's community slot.
 
 ## 7. Cross-subject leans
