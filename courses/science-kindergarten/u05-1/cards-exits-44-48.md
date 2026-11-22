@@ -7,7 +7,7 @@ credit: ours
 ---
 # Exit cards, days 44 to 48
 
-Each exit has picture cards that every child marks or touches and a spoken question heard from the day's rotating six. Plain black line drawings on white, thick lines, no shading, no printed words except a caption, no brand names. Children in the pictures are of many skin tones, hair and abilities. Say aloud first that every case is invented for practice. Do not reuse the slide, the benches or the pairs touched in class. Mark on the one scale. A warm mark is a small curved set of lines drawn over a surface, never a colour or a number.
+Each exit has picture cards that every child marks or touches and a spoken question heard from the day's rotating six. Plain black line drawings on white, thick lines, no shading, no printed words except a caption, no brand names. Children in the pictures are of many skin tones, hair and abilities. Say aloud first that every case is invented for practice. Do not reuse the slide, the benches or the pairs touched in class. Mark on the one scale. A warm mark is a small curved set of lines drawn over a surface, never a color or a number.
 
 ## Day 44: soil by a wall
 
@@ -33,7 +33,7 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 
 **Picture.** A small clay path patch. Awning 1: a plain roof on posts, over the patch. Awning 2: a striped roof on posts standing beside the patch, the patch in the open.
 **Spoken 47a:** "Invented for practice. Touch the cover that keeps the sun off the patch." **Key:** the plain roof over the patch. The striped roof, "it is nearer", is error D. "It is prettier" is error E.
-**Spoken 47b:** "Same pictures. Point to the part that keeps the sunlight off." **Key:** the roof overhead. The stripes, "the colours do it", is error E.
+**Spoken 47b:** "Same pictures. Point to the part that keeps the sunlight off." **Key:** the roof overhead. The stripes, "the colors do it", is error E.
 
 ## Day 48: wood in sun and shade
 

@@ -17,8 +17,8 @@ Each exit has picture cards that every child marks or touches and a spoken quest
 
 ## Day 56: a school fair
 
-**Picture.** A school fair on a field. Near a booth the soil is bare and rutted, with no plants. A plastic bag floats in a pond at one side. A bus has a grey haze behind it. A duck stands by the pond with a bit of string round its foot. A row of shrubs runs along the field edge. No cause arrows are drawn. These cases are new: the four chains are not repictured.
-**Spoken 56a:** "Invented for practice. A school fair has bare rutted soil with no plants, a plastic bag floating in a pond, a bus with a grey haze behind it and a duck with string round its foot. Touch what is hurt in the part I name." Name one part for each child in turn. **Key:** land, the bare soil; water, the bag in the pond; air, the haze; living things, the duck. Touching the bus itself instead of the haze is shown with help, no letter.
+**Picture.** A school fair on a field. Near a booth the soil is bare and rutted, with no plants. A plastic bag floats in a pond at one side. A bus has a gray haze behind it. A duck stands by the pond with a bit of string round its foot. A row of shrubs runs along the field edge. No cause arrows are drawn. These cases are new: the four chains are not repictured.
+**Spoken 56a:** "Invented for practice. A school fair has bare rutted soil with no plants, a plastic bag floating in a pond, a bus with a gray haze behind it and a duck with string round its foot. Touch what is hurt in the part I name." Name one part for each child in turn. **Key:** land, the bare soil; water, the bag in the pond; air, the haze; living things, the duck. Touching the bus itself instead of the haze is shown with help, no letter.
 **Spoken 56b:** "Same picture. Draw one thing the school could do so one of these is hurt less, and say which one." **Key:** any feasible action and the part it spares, named. "Put the wrappers in the shrubs, that keeps them safe" is error C.
 
 ## Day 57: a bench

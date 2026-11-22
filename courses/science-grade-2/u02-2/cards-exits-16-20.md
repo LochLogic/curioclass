@@ -18,7 +18,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 **Say:** "Pip poured a small cup on one and a big cup on the other, and they lost different amounts. Does it matter that the cups were different sizes? Point to yes or no."
 
-**Picture, part b (item 16b):** A paper strip with a centimeter ruler beneath it. The first pencil mark is at 0 and the second pencil mark is at 4. Labelled sand edge before and after.
+**Picture, part b (item 16b):** A paper strip with a centimeter ruler beneath it. The first pencil mark is at 0 and the second pencil mark is at 4. Labeled sand edge before and after.
 
 **Say (part b):** "The sand edge was at 0. After the pour it was at the second mark. How far did the edge move back? Write the number."
 
@@ -26,7 +26,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Day 17 exit card: the fence
 
-**Picture:** Three cards in a row. Card 1: a tall wooden fence drawn large. Card 2: three bars from equal tray tests, labelled fence, hedge and mesh. Card 3: a close picture of the fence boards.
+**Picture:** Three cards in a row. Card 1: a tall wooden fence drawn large. Card 2: three bars from equal tray tests, labeled fence, hedge and mesh. Card 3: a close picture of the fence boards.
 
 **Say:** "Pip picks the fence because it looks strongest. Which card does Pip need before choosing? Point."
 
@@ -42,7 +42,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Day 19 exit card: mulch and gravel
 
-**Picture:** A two-bar picture graph on squares, one square for each centimeter. A line across both bars at 7. The mulch bar is 5 squares tall and the gravel bar 9 squares tall, each labelled. Under it, two circles: mulch, gravel.
+**Picture:** A two-bar picture graph on squares, one square for each centimeter. A line across both bars at 7. The mulch bar is 5 squares tall and the gravel bar 9 squares tall, each labeled. Under it, two circles: mulch, gravel.
 
 **Say:** "A limit is the most we allow. Which bar goes past the limit line? Point to it."
 

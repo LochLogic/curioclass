@@ -13,7 +13,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 The framed sheet of eight boxes, one for each plan component, and one picture of the puppet stage.
 
-**Picture:** a small puppet stage with two matching pea plants in matching cups, labelled P and Q. P stands behind an opaque screen with two drawn spoonfuls of water beside it. Q stands in sunlight with a crossed-out drop. Both are drawn at 4 centimeters with three green leaves.
+**Picture:** a small puppet stage with two matching pea plants in matching cups, labeled P and Q. P stands behind an opaque screen with two drawn spoonfuls of water beside it. Q stands in sunlight with a crossed-out drop. Both are drawn at 4 centimeters with three green leaves.
 
 **Read aloud, one sentence at a time, about 1 minute, not repeated, no hint:** "A puppet stage has two matching pea plants. P stands behind an opaque screen and receives two spoonfuls daily. Q stands in sunlight and receives none. Both began with three green leaves at 4 centimeters in matching cups and soil, at the same temperature. After two weeks, P is tall and pale; Q has wilted. The caretaker says comparing P with Q proves which place is better. What could explain each change, and how would you complete this investigation to find out? Show comparisons, what stays alike and what you will record."
 

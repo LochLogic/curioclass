@@ -10,7 +10,7 @@ credit: ours
 
 Make this before class from the three samples. If a sample differs from the line below, change the line, not the child.
 
-| Sample | Colour | Feel | Press | Bend | Light |
+| Sample | Color | Feel | Press | Bend | Light |
 | --- | --- | --- | --- | --- | --- |
 | sanded pine | pale | smooth | no dent | stays stiff | blocks the light |
 | clear flexible plastic | clear | smooth | no dent | bends | lets light through |

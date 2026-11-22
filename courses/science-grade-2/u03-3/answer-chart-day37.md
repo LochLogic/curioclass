@@ -22,4 +22,4 @@ For the teacher. The packet is the source.
 | different job | each job needs a different property | ledge picks X, wrapper picks Y or Z |
 | bamboo | test the bamboo first | bend or dent |
 
-**Marks:** score each look-for 2, 1 or 0. A choice with no result named scores 1 at most. A favourite or a colour as the only reason scores 0 for that look-for and takes the letter E.
+**Marks:** score each look-for 2, 1 or 0. A choice with no result named scores 1 at most. A favorite or a color as the only reason scores 0 for that look-for and takes the letter E.

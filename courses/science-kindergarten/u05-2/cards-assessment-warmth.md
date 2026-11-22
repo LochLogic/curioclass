@@ -36,4 +36,4 @@ A key for W1b, W2 and W3 is whatever the caption on the real card says. If the t
 
 ## A room with nothing
 
-Use dated photographs of pairs collected on another day, labelled as media, and say aloud that the hand cannot feel a picture.
+Use dated photographs of pairs collected on another day, labeled as media, and say aloud that the hand cannot feel a picture.

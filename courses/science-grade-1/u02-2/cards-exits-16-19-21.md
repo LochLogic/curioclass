@@ -17,7 +17,7 @@ Keep these out of sight until each day's exit. None is used in a hook, a read-al
 
 ## Day 17
 
-**Item s02-X17a.** A sketch of a paper lamppost with two straight legs and a head, no supports. Touch cards: outward supports; a coloured pattern; a label that says strong. Spoken: "Touch what to add so a partner can see how it stands." **Key:** outward supports. Wrong: the coloured pattern (D).
+**Item s02-X17a.** A sketch of a paper lamppost with two straight legs and a head, no supports. Touch cards: outward supports; a colored pattern; a label that says strong. Spoken: "Touch what to add so a partner can see how it stands." **Key:** outward supports. Wrong: the colored pattern (D).
 
 **Item s02-X17b.** The same sketch. Spoken: "Say what the shape-to-job arrow should say." **Key:** wide feet hold it up. Wrong: "it looks like a tree so it stands" (D).
 

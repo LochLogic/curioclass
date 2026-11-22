@@ -14,7 +14,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Day 11 exit card: the swing ground
 
-**Picture:** Two small drawings side by side, labelled first month and last month. Both show the ground under a swing seen from the side. First month: the ground is smooth and flat. Last month: the same ground has a scuffed hollow under the seat. Under the drawings, two circles: yes, no.
+**Picture:** Two small drawings side by side, labeled first month and last month. Both show the ground under a swing seen from the side. First month: the ground is smooth and flat. Last month: the same ground has a scuffed hollow under the seat. Under the drawings, two circles: yes, no.
 
 **Say:** "The swing ground looked the same every day. Did it change? Point to yes or no."
 
@@ -22,7 +22,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Day 12 exit card: the beach
 
-**Picture:** Two small drawings of one beach, labelled before the storm and after. Before: a wide sand shore with a low sand ridge at the back. After: a narrower shore, the ridge cut back. Under them, the caption: Storm waves carried the sand away in one night. Two circles: fast, slow.
+**Picture:** Two small drawings of one beach, labeled before the storm and after. Before: a wide sand shore with a low sand ridge at the back. After: a narrower shore, the ridge cut back. Under them, the caption: Storm waves carried the sand away in one night. Two circles: fast, slow.
 
 **Say:** "Is this a fast change or a slow change? Point to the words that tell you."
 
@@ -30,7 +30,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Day 13 exit card: the sand pile
 
-**Picture:** Two small drawings of a sand pile at a building site, labelled before and after. Before: a tall pile with a pointed top. After: the same pile with its top gone and sand spread on the ground downwind. Under them, the caption: The wind blew the top off the pile one afternoon. Two circles: fast, slow.
+**Picture:** Two small drawings of a sand pile at a building site, labeled before and after. Before: a tall pile with a pointed top. After: the same pile with its top gone and sand spread on the ground downwind. Under them, the caption: The wind blew the top off the pile one afternoon. Two circles: fast, slow.
 
 **Say:** "Is this fast or slow? Point to the words that tell you."
 
@@ -38,7 +38,7 @@ Drawing style: plain black line drawing on white, thick lines, no shading, no br
 
 ## Day 14 exit card: the terrace ledge
 
-**Picture:** Two small drawings of a hillside terrace, labelled older and later. Older: a flat ledge with a sharp edge. Later: the same place, the ledge rounded into a slope. Under them, the caption: Rain splashed small bits down, a little each year. Two circles: yes, no.
+**Picture:** Two small drawings of a hillside terrace, labeled older and later. Older: a flat ledge with a sharp edge. Later: the same place, the ledge rounded into a slope. Under them, the caption: Rain splashed small bits down, a little each year. Two circles: yes, no.
 
 **Say:** "Nobody saw the ledge change on any day. Did it change? Point to yes or no."
 

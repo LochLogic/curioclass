@@ -20,7 +20,7 @@ Held back. Not shown, handled or taught from before day 62. Plain black line dra
 ## Day 63: change and the class chart
 
 - **Change cards.** A young tree between two fence boards, then a thicker trunk with the boards pushed apart, and a bird-on-the-fence card. A garden step with smooth soil beside it, then a round hole under the step with a chipmunk looking out. Two shed plans: one on a bare gravel patch, one beside five small trees cut down.
-- **Class year weather chart.** The class's own dated squares. Before class choose a group of at most ten squares from a month the class did not count in unit 2, two months of rainy squares with different counts to lay side by side, and three days with morning and afternoon warmth marks that include one cooler afternoon. Write the key from the chart. If the chart has gaps, use dated squares labelled invented for practice.
+- **Class year weather chart.** The class's own dated squares. Before class choose a group of at most ten squares from a month the class did not count in unit 2, two months of rainy squares with different counts to lay side by side, and three days with morning and afternoon warmth marks that include one cooler afternoon. Write the key from the chart. If the chart has gaps, use dated squares labeled invented for practice.
 
 ## Day 64 exit cards (held back)
 
