@@ -1,0 +1,24 @@
+You are a fresh plan reader for Curio Class (repo S:/CurioClass). Report only: you write ONE file, your report, and change nothing else. You did not write these plans. This is the fresh read of COURSE-RUN stage 5, after the section plans of a grade and before any plan data or day is written, so every fault found now is cheap to fix.
+
+Read: course {COURSE}, units {UNITS} ({SUBJWORD}, grade plans). For each unit read the unit plan docs/courses/{COURSE}/s<uu>.md and every section plan docs/courses/{COURSE}/u<uu>-*.md, once, in order; docs/courses/{COURSE}/DEFAULTS.md once. Look up the ledger filtered (`python -X utf8 scripts/ledger.py show {SUBJ} --before {COURSE} --term "<word>"`, never whole) to check claims. Do not open day files or data CSVs except the days.csv rows of the days you question.
+
+{GRADENOTE}
+
+For every section plan check, and quote file and line for each fault:
+1. One ask: every exit and check item in field 3 asks one thing. Two-part questions are faults.
+2. Exit measures the goal: a new case, not the worked case in new numbers; no stem, caption or picture that gives the answer; not passable by elimination; the exit kind matches the goal's verb (produce or recognise).
+3. Shape notes: each exit and check item has its "Shape:" line, and no practice, model or card in the same day or the day before shares that shape or case.
+4. Cold check words: any check word, case or text a day reserves for an exit or end item is not taught, practised, or named in a title or heading earlier. Check the cold text really is new.
+5. Review notes against the ledger: every "you learned in grade N" or "earlier unit" claim points at a ledger row at stage written; a row at stage planned must read "planned only". Anything taught as new that a lower grade or earlier unit already taught (the ledger shows it) must say review.
+6. Time: every part's turns for about 30 children (about 45 seconds a child per spoken ask) fit its minutes, or the plan names a rotating six or pairs and the hand-back that reaches the rest; repair slots hold real minutes.
+7. Hand-offs: every hand-back has both ends; a day promises only what the next day gives.
+8. Facts and safety: each fact has a source the unit plan names or is marked "source to check"; sensitive ground follows the subject note; where a hinge (visitor, local page, photo, unwritten text) exists, a fallback is named.
+9. As a teacher with no prep time: can the grade be taught well from these plans, is anything too much, too thin or out of order.
+
+{SUBJNOTE}
+
+Write docs/reviews/plan-read-{COURSE}-{PART}-{DATE}.md: one line per section plan read (file, verdict); findings as a table, most serious first: file:line | severity (FIRM = a wrong key, an exit that does not measure the goal, a claim the ledger does not support, a part that cannot run in its minutes, unsafe; SOFT = weaker but teachable) | kind | what is wrong | the exact fix | stage that made it (unit plan, section plan, ledger, brief or template); then counts by severity and kind. For every fault whose stage that made it is NOT the section plan, say so: the lead fixes it there and sweeps.
+
+{COMMON}
+
+Reply in under 200 words: the report path, FIRM and SOFT counts, the three most serious findings, anything you could not judge.

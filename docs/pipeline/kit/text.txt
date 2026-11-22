@@ -1,0 +1,22 @@
+You work in S:\CurioClass (a free K-12 lessons site). This is a course run (docs/COURSE-RUN.md): English language arts is written grade by grade from kindergarten up. This job comes first for a unit: core texts are written before any section plan. (Optional job: the generator writes it only with --texts.)
+
+Job: course {COURSE}, unit {UNIT}. Write every row of data/plans/ela-texts.csv for this course and unit whose status is `to write`, and settle every row whose status is `to choose`, `to confirm` or `to decide`.
+
+Read first: the unit plan docs/courses/{COURSE}/s{UU}.md (field 2's text set and field 10's editions and rights paragraphs say what each text is for, how long, which days read it and what it must teach), the frame docs/courses/{COURSE}/frame.md (its text lines and sensitive-topics notes), docs/courses/{COURSE}/DEFAULTS.md, docs/agents/lenses/ela.md, and BASELINE rule 29 in docs/agents/decisions/BASELINE.md (search the file for "29."). If the unit plan names an EL Education text this one replaces or adapts, read the base text's lesson in S:\CurioClass-sources\el-education-k5-2017 (open only the folder for this grade) to see what the text must do; never copy or paraphrase a trade book the base text names.
+
+For each `to write` row:
+- Write the text in our own words, to the row's length, kind, form and demands and to what the unit plan's days ask of it (the details, words, feelings or facts a day or an exit needs must be in the text; the day list says which days read it). Kindergarten to grade 2 read-alouds are read by the teacher; any text children decode themselves uses only the letters and patterns the Skills Block cycles have taught by its first day (the source map rows give the cycles), plus the named high-frequency words.
+- Real-world facts rest on a checked free source (see the Sources rule); list each source at the foot of the text with its url and `checked: {DATE}`. A traditional tale is retold in our own words and credited to its people and tradition, with the source of the telling checked, and sent to a sensitivity read before its days.
+- Picture-book length means a read-aloud of about 400 to 900 words in kindergarten and grade 1, unless the row or unit plan says otherwise; give it page breaks (`[page 1]` ...) and a one-line plain picture description per page an illustrator could draw from (diverse children, no brands).
+- Save it as courses/{COURSE}/texts/TEXTID.md: a header block (title, text_id, author `Curio Class`, year 2026, kind, form, word count, use, the days that read it), then the text, then the sources.
+- Do NOT edit data/plans/ela-texts.csv (a shared file). Write the row's new values to your own file, _scratch/l87/texts-out/{COURSE}-u{UNIT}.csv (Python csv module; columns text_id, year, status, source, rights_basis, rights_checked, measure, todo; one row per text you settle): for a written text `year` 2026, `status` `written: courses/{COURSE}/texts/TEXTID.md`, `source` `Curio Class original`, `rights_basis` `ours`, `rights_checked` {DATE}, `measure` the word count and a plain difficulty note, `todo` what is still open (art, a read) or blank. The lead merges it.
+
+For each `to choose`, `to confirm` or `to decide` row: find a free text that fits (public domain or an open licence you check at its source; US government work counts), give it a row in your file with `status` `on file`, `source` its url, `rights_basis` and `rights_checked`, and save its text (or the excerpt the days read) as courses/{COURSE}/texts/TEXTID.md with its source and licence line; if none fits, write our own as above. A text already `on file` from the base text stays as it is, but an `on file` row with no file under courses/{COURSE}/texts/ is yours too: adapt it from the base text's supporting materials (CC BY 4.0) or write fresh where it is a trade book.
+
+Do not run the skeleton scripts; the lead rebuilds them after merging.
+
+{SUBJNOTE}
+
+{COMMON}
+
+Last message, under 200 words: per text, the id, words, and the facts you sourced or cut; rows settled (and that your texts-out file is written); anything a reader should look at first.

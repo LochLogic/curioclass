@@ -15,9 +15,10 @@ docs/PRODUCTION-PATH.md; its scripts are in "Planning above the day" below.
 | Any Codex read | `scripts/codex_read.py <brief> <out>` | the read brief named | Codex, by script |
 | Sensitivity, safety, answer key, text | | sensitivity-read | Fresh agents; there are no outside human readers (settled 2026-11-14, see DESK-ANSWERS) |
 
-Sections, days and lessons will use the same pattern: a script skeleton, Codex writes, the gates run, Codex reads every
-day, and Claude reads a sample and the flags (settled 2026-11-14, see DESK-ANSWERS). The unit-jobs table below is the
-older day pipeline.
+Sections, days and lessons run by docs/COURSE-RUN.md stages 5 and 6 (since 2026-11-20): per grade, section plans,
+a plan read and fix, plan data and keys, ledger-gated day jobs of 4 to 6 days, a grade-close sample read and a
+retool. The job templates are the versioned kit in docs/pipeline/kit/ and `scripts/coursegen.py` writes a run's
+queue. The unit-jobs table below is the older day pipeline, kept as a record; it is not the current cadence.
 
 ## The pieces
 
@@ -31,7 +32,7 @@ older day pipeline.
 | `scripts/pipeline_runner.py` | Optional: runs the queue unattended, starting each worker from `data/pipeline/workers.json`. |
 | `data/pipeline/runs.csv` | One row per unattended run: worker, minutes, tries, tokens. |
 
-## A unit's jobs, in order (the day pipeline)
+## A unit's jobs, in order (the older day pipeline, not current)
 
 `turn.py add-unit <course> <unit> <first>-<last>` queues the first three; the rest are queued when plan data ends.
 

@@ -1,0 +1,35 @@
+You are the grade-close cleanup agent for Curio Class (repo S:/CurioClass), course {COURSE} (COURSE-RUN stage 6: faults across days go to one cleanup job at grade close). Read S:/CurioClass/AGENTS.md first.
+
+Two fresh readers sampled 10 days of this course read-only. Their reports:
+  S:/CurioClass/docs/reviews/ladder-sample-{COURSE}-a-{DATE}.md
+  S:/CurioClass/docs/reviews/ladder-sample-{COURSE}-b-{DATE}.md
+Your job, in this order:
+A. Every FIRM finding: verify it at the quoted file and line, then fix it at its cause, or reject it with a reason. Readers were careful but can be wrong (word counts, formats, a key that is in fact fair). A finding whose "stage that made it" is earlier than the day (unit plan, section plan, data) is fixed in that stage's file, the day follows it, and it is listed under "For the lead: sweep" with the stage, so the lead can look for the same fault in every unused piece of that stage.
+B. SOFT findings: apply those that are a short, clear fix in a file you are already editing; list the rest as left.
+C. Key lines in pieces: list the piece files (not day files, not key-* files) under courses/{COURSE}/ that contain a key or right-answer line (a short Python scan of "Key:", "Answer:", "Right answer" in piece .md files in your own temp folder). For each: does the piece print for children (a card, sheet, packet or student page a child holds or sees)? If yes, move the keys to the matching teacher key piece (make one, key-<name>.md, if none exists) and name it in the day's Before class. If the piece is teacher-only (a teacher card read aloud, a script, a map legend), leave it and say so.
+
+{GRADENOTE}
+
+HOW TO FIX
+- Exit does not measure the goal (gives the answer, passes by elimination, tests something untaught, caption answers it): rework the item so it checks the goal cold. Any new or changed item: one ask, a new case not used in any card, text, practice, model or exit, no shared shape with the day's practice, answer it cold yourself, give a key and wrongs rows tied to registered errors, update the handbacks row and every print.
+- Wrong or unfair key: fix the key, or the stem, and then key, wrongs and every print together.
+- Rule 4 (exit reuses the day's case or numbers): give the exit a new case.
+- Part cannot run in its minutes: change the routine (fewer turns, pairs, a sample of children with a hand-back for the rest) so it fits; never change the day's total minutes.
+- Two asks in one stem: split into two items, each with its own key, wrongs if a choice, handbacks and print line. A "Mark: ... Spoken: ..." stem judging both is two asks. Printed stems per the grade note.
+- Weak or missing source: open a solid source and confirm it states the fact; update the sources.csv row (url, title, status "checked: {DATE}" and what the page states). Under the Sources rule below.
+- Review not said (a day teaches as new what a lower grade taught): add a short review line naming what the child already knows; keep the minutes. A review that claims a grade taught something the ledger shows only at stage planned is reworded to what was written.
+- Sensitivity: follow the subject note.
+- Never change an item only to get past a gate. If you change a shared card or sheet piece, update every day that prints it.
+- Ledger: never run ledger.py note or add. If a ledger entry should change, list it in your report for the lead.
+
+{SUBJNOTE}
+
+FINISH
+Run the gates for your course only (filtered, never unfiltered), before and after: {PLANGATE} and {LESSONGATE}. Count FAIL lines from the whole filtered output, including lines after the course summary. Fix any new failure you caused. Known template points stay.
+Append a "Fixes applied ({DATE})" section to each of the two sample reports: one line per finding (day, applied / rejected / partly / left, what changed), then the key-line results, then before and after gate counts.
+
+Touch only courses/{COURSE}/, data/plans/{COURSE}/, docs/courses/{COURSE}/ (plan sync, plan to match the day, never the other way) and the two sample reports.
+
+{COMMON}
+
+Reply in under 250 words: FIRM applied / rejected / partly, SOFT applied / left, key-line files moved / left, before and after gate counts, "For the lead: sweep" faults with their stage, ledger entries for the lead, anything left.

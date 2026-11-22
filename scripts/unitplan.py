@@ -428,6 +428,92 @@ def subject_checks(course, unit, rows, lines, spans, bad):
             bad(0, 'source-map.csv row %s is not named in field 10' % r['source'])
 
 
+# ------------------------------------------------------------------ new gates (L87 step 8, 2026-11-21)
+# Two tagged checks on field 5's "Goal map" table (docs/courses/UNIT-PLAN.md): exit-kind and practice-shape. They print
+# their own line after a file's old lines ("FAIL exit-kind: path:line: ...") and are not counted in the file's "(n)",
+# so the old output stays as it was.
+NEW_TAGS = ('exit-kind', 'practice-shape')
+PRODUCE = {'explain', 'describe', 'draw', 'write', 'build', 'make', 'solve', 'compose', 'construct', 'create', 'argue',
+           'justify', 'tell', 'say', 'compare', 'retell', 'summarize', 'summarise', 'design', 'model', 'predict', 'revise',
+           'plan', 'calculate', 'compute', 'show', 'give', 'state', 'report', 'present', 'perform', 'read aloud'}
+RECOGNISE = {'identify', 'recognise', 'recognize', 'choose', 'select', 'match', 'circle', 'point', 'notice', 'spot', 'sort',
+             'pick', 'find', 'locate', 'tell apart', 'distinguish'}
+KINDS_OK = {'produce', 'recognise', 'recognize'}
+
+
+def goal_map(lines, spans):
+    """Rows of field 5's goal map: (line number, day, verb, kind, exit shape, practice shape). The table's heading row
+    names its columns (Day, Goal verb, Exit kind, Exit shape, Practice shape), in any order."""
+    rows = []
+    if 5 not in spans:
+        return None
+    s, e = spans[5][0]
+    cols, found = None, False
+    for i in range(s, e):
+        ln = lines[i]
+        if not ln.startswith('|'):
+            cols = None      # a table ends at the first line that is not a row; the next table names its own columns
+            continue
+        c = cells(ln)
+        low = [x.lower() for x in c]
+        if 'exit kind' in low:
+            cols, found = {x: k for k, x in enumerate(low)}, True
+            continue
+        if cols and c and c[0].isdigit() and not set(ln) <= set('|-: '):
+            g = lambda name: c[cols[name]].strip() if name in cols and cols[name] < len(c) else ''
+            rows.append((i + 1, int(c[0]), g('goal verb').lower(), g('exit kind').lower(), g('exit shape').lower(),
+                         g('practice shape').lower()))
+    return rows if found else None
+
+
+def new_gates(path, course, unit):
+    """Lines of the exit-kind and practice-shape checks for one unit plan: every teaching day of the unit (a day that is
+    not an assessment or respond day) has a goal-map row; its exit kind is produce or recognise and agrees with its
+    goal verb; its practice shape is named and differs from its exit shape."""
+    text = Path(path).read_text(encoding='utf-8') if Path(path).exists() else Path(sk.ROOT / path).read_text(encoding='utf-8')
+    lines = text.splitlines()
+    sk.set_subject(sk.subject_of(course))
+    urows = sk.unit_days(course, unit)
+    heads, spans = load_sections(lines)
+    out = []
+    gm = goal_map(lines, spans)
+    teach = [int(r['day']) for r in urows
+             if r['kind'].lower() not in ('check', 'respond') and r.get('assess', '') not in ('end', 'mid')]
+    if gm is None:
+        if teach:
+            out.append('exit-kind: %s:-: field 5 has no "Goal map" table (Day, Goal verb, Exit kind, Exit shape, Practice shape) '
+                       'naming each goal\'s exit kind' % path)
+        return out
+    have = {d: (ln, v, k, es, ps) for ln, d, v, k, es, ps in gm}
+    for d in teach:
+        if d not in have:
+            out.append('exit-kind: %s:-: day %d has no goal-map row' % (path, d))
+            continue
+        ln, verb, kind, es, ps = have[d]
+        if kind not in KINDS_OK:
+            out.append('exit-kind: %s:%d: day %d exit kind "%s" is neither produce nor recognise' % (path, ln, d, kind))
+        else:
+            v = verb.split()[0] if verb else ''
+            k = 'recognise' if kind.startswith('recogni') else 'produce'
+            if (k == 'produce' and v in RECOGNISE) or (k == 'recognise' and v in PRODUCE):
+                out.append('exit-kind: %s:%d: day %d goal verb "%s" asks to %s but the exit kind is %s'
+                           % (path, ln, d, verb, 'recognise' if v in RECOGNISE else 'produce', k))
+        if not ps:
+            out.append('practice-shape: %s:%d: day %d names no practice shape' % (path, ln, d))
+        elif not es:
+            out.append('practice-shape: %s:%d: day %d names no exit shape' % (path, ln, d))
+        elif re.sub(r'\W+', ' ', ps).strip() == re.sub(r'\W+', ' ', es).strip():
+            out.append('practice-shape: %s:%d: day %d practice shape "%s" is the exit\'s shape; practice and exit must differ'
+                       % (path, ln, d, ps))
+    for d in sorted(set(have) - set(days_of(urows))):
+        out.append('exit-kind: %s:%d: goal-map day %d is not a day of unit %d' % (path, have[d][0], d, unit))
+    return out
+
+
+def days_of(urows):
+    return [int(r['day']) for r in urows]
+
+
 def shown(p):
     try:
         return Path(p).resolve().relative_to(sk.ROOT).as_posix()
@@ -491,6 +577,13 @@ def main(a):
                 print('FAIL %s (%d)' % (shown(p), len(msgs)))
             else:
                 print('PASS %s' % shown(p))
+            try:
+                ng = new_gates(shown(p), course, u)
+            except sk.DataError:
+                ng = []
+            for m in ng:
+                print('FAIL', m)
+            bad_any = bad_any or bool(ng)
             for q in sorted(p.parent.glob('u%02d-*.md' % u)):
                 seen += 1
                 qm = check_section(q, course, u)

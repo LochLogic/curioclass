@@ -1,0 +1,38 @@
+You work in S:\CurioClass (a free K-12 lessons site; Windows, `python -X utf8`). This is a course run (docs/COURSE-RUN.md, stage 6): {SUBJWORD} is written grade by grade from kindergarten up, each day job started only when the ledger gate is open. The gates must pass.
+
+{GATELINE}
+
+Job: write days {FIRST} to {LAST} of course {COURSE}, {SECTIONTEXT}, one day at a time in order, each day a separate file dNNN.md in its section's folder.
+
+First run `python -X utf8 scripts/day_skeleton.py {COURSE} u{UNIT}` to make the day skeletons (docs/courses/{COURSE}/day-skeletons/dNNN.md); a STOP line blocks writing: fix its cause in data if it is a gap you can close (a source status, a missing row, an `assess` value on a day that holds an end item), otherwise report it and write the days you can.
+
+For each day follow docs/pipeline/briefs/write.md (read it first; its {day}, {prev}, {next}, {unit} are your day's), with these changes:
+- docs/agents/DAY-WRITER.md "Read first" 2 may name a worked case of another course: use the shape course the subject note names (headings and header fields, not content, length or tone).
+- The section plan docs/courses/{COURSE}/u{UU}-<n>.md is the day's spec (its `## Day N` block gives the parts and minutes); the day skeleton holds the mechanical fields from data: copy them. DEFAULTS.md in docs/courses/{COURSE}/ says what holds every day.
+- The shared pieces in the section folder exist: name the ones you use in `leans_on`.
+- Exit and end item rows already exist in data/plans/{COURSE}/items.csv and have had an answer-key read: use them, and items.csv is the truth over any stale plan line; add rows only for questions your day adds, each with its wrongs, answered cold.
+- {PREVDAY} If there is a day before, honour its "Tomorrow" line.
+
+{GRADENOTE}
+
+Exit and shape rules (held in every day):
+- Words, cases and pictures held for an exit or end item are not practised in the skill that item tests before its day: check every practice word and case against data/plans/{COURSE}/items.csv (csv module) first. End items (A ids) are never practised with their own words.
+- Shape rule: read the "Shape:" lines of the section plan. No practice, model or card shares an exit's or check item's shape or case, even when the plan designs it; change the practice, never the exit. An exit or check card is first seen at the child's own turn. Never print a key on a child's card or page: keys live in teacher-only key pieces, named in Before class.
+- Exit cards print exactly their items.csv stems. One ask per stem. Path honesty: a spoken item never has the child write; a child marking or writing on a sheet is a paper item (path blank).
+- Exit slips are half slips (`exit: half`) holding about two judged paper items (one if it has a tall box). Further separate judged paper items go on the student page in an "Exit box" (check practice, path blank, judged teacher) with a handbacks row. Never make an item spoken to save slip space. A judged exit that cannot fit even so may set `exit: half` only when shortening would cut what the exit needs.
+- Exit slot and marking time: the exit has its minutes and its marking is counted (children times seconds each for the teacher). Every judged item is handed back on a named day.
+- Turn-taking time: check every per-child turn: children in the class (about 30) times seconds a turn (about 45 s a child per spoken ask) must fit inside the part's minutes, or hear a rotating six and give a handbacks row that reaches the rest.
+- Print a shared text once and point stems to it. materials.csv rows as the day names them (never only to pass a gate). Parts order matches check_min. Never strip punctuation to pass a word-count gate: split into a short shared line plus a short ask.
+- Where a gate rule does not fit this grade, do not bend the day to pass it with something wrong for the class: write the day right, leave that one failure, and list it as a template point. Never rename a part, reorder parts or reword a goal only to get past a gate. Every other failure you fix.
+
+{SUBJNOTE}
+
+Ledger: look terms up with `python -X utf8 scripts/ledger.py show {SUBJ} --before {COURSE} --term "<word>"` (add `--course <course>` to narrow; never print the whole ledger, it is cut off), one call per term, model, case, text and routine your day touches, including this course's earlier units. A term, model or routine a lower grade or an earlier unit taught is named as review on the page, in the same words ("Review: ..." or "You learned ... in kindergarten"), never taught as new (a gate checks this); an earlier case may come back as a reminder, never as an exit or check. Review claim rule: a day may say an earlier grade taught something only for a ledger row at stage written; a row at stage planned is taught as new and listed in your reply for the lead. After each day, add a ledger row with that day's number for each term, notation, model, case, text, investigation, skill or routine the day actually teaches, one call each: `python -X utf8 scripts/ledger.py add {SUBJ} {COURSE} u{UU}-<n> <day> <kind> "<entry>" "<note>"` (review rows get the note "review of <course> <where>"). Never edit the CSV by hand; never use a kind outside the ledger's list.
+
+Gates: run plan.py check only as {PLANGATE} and lesson.py check only as {LESSONGATE}, from the very first run: never read either unfiltered (lesson.py check is slow: run it after your last day, and again after fixes). Before you report, grep the plan output for your day numbers and "materials": every materials.csv FAIL naming your days is yours to fix (add the day to the existing row's used_days, or drop a day the day never names). "section ... not in data/units.csv" failures are known; ignore them. Failures for days not yet written are expected.
+
+{COMMON}
+
+Edit only: your days' files, the day skeletons of your days, data/plans/{COURSE}/ rows for your days, and the ledger through ledger.py.
+
+Last message, under 250 words: per day, the file, teacher prose words, student page words and sides; ledger rows added (and any planned-only review you taught as new); gate failures left and why; template points; any change to days.csv or the plan; anything a reader should look at first.

@@ -219,6 +219,10 @@ last check before days.
 
 ### Step 7. Sections, days and lessons
 
+**Superseded for running courses (2026-11-20):** sections and days now run by docs/COURSE-RUN.md, stages 5
+and 6 (per grade: section plans, plan read and fix, plan data and keys, ledger-gated days, a grade-close sample,
+retool). What follows is the record of how step 7 was planned before the ladder runs.
+
 Writing starts only here, under the review cadence (step 8).
 
 - **The guard first**: a few days in each subject written from the unit plans and read in full, measured against
@@ -256,6 +260,9 @@ Writing starts only here, under the review cadence (step 8).
 
 ### Step 8. The review cadence (from step 7 on)
 
+**Superseded (2026-11-20):** the checks for every stage are COURSE-RUN.md section 3; there is no per-day expert
+read. Kept as the record of the earlier plan and its cost estimate.
+
 Sections, days and lessons will use the unit plan workflow: script skeleton, Codex writes, code gates, Codex reads
 every day, and Claude reads deeply on a sample and on flags (settled 2026-11-14, see DESK-ANSWERS). Its test is
 shaped and run when the unit plans are done or nearly done, from what unit development teaches. Until that test
@@ -280,6 +287,8 @@ a finished course. Tools already live stay live as free-standing tools and claim
 names them (BASELINE rule 26).
 
 ### After the core subjects
+
+Every later subject runs by docs/COURSE-RUN.md from stage 1 (pre-work) on. The order below still stands.
 
 First the 6 electives of the four core subjects (precalculus, statistics, calculus, earth and space science,
 environmental science, psychology). Then the 49 courses of the other subjects (47 active plus the 2 shelved world

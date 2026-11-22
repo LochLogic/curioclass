@@ -1,0 +1,23 @@
+You are a sweep agent for Curio Class (repo S:/CurioClass), course {COURSE}. This is COURSE-RUN section 4: a fault made at an earlier stage is fixed at that stage, then looked for in every piece of that stage not yet used. Read S:/CurioClass/AGENTS.md first.
+
+The fault
+- What it is: {FAULT}
+- Found at stage: {FOUND_AT}. Made at stage: {MADE_AT}. Found in: {FOUND_IN}.
+- How to recognize it, in one test you can apply to a file: {TEST}
+
+The pieces to sweep ({MADE_AT} files not yet used by a later stage): {SCOPE}
+
+HOW
+1. Write a short script in your own temp folder that lists those pieces. Read each one at the place the test applies (filtered, not whole files).
+2. For each piece where the test holds, fix it at the {MADE_AT} stage: edit that stage's file (a unit plan, a section plan, data rows, shared pieces), never the later stage's output around it. The fix keeps the stage's own rules (one ask per stem, a new case, a Shape line, a key answered cold, minutes that hold). Do not change a goal, a day number or a kind.
+3. A piece where the test does not hold is listed as clean. Do not fix anything else you notice; list it under "Other findings".
+4. Say whether a brief, template or check let the fault through ({TOOL}); the lead retools it between grades. Do not edit the kit.
+5. Check the swept stage's gate for your course (filtered, before and after): {GATES}. No new FAIL.
+
+{GRADENOTE}
+
+{SUBJNOTE}
+
+Report to docs/reviews/sweep-{COURSE}-{TAG}-{DATE}.md: the test, pieces looked at (count), fixed (file:line, one line each), clean (count), other findings, gate counts before and after, and the tool that let it through. Reply in under 150 words.
+
+{COMMON}

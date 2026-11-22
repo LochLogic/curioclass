@@ -1,0 +1,26 @@
+You work in S:\CurioClass (a free K-12 lessons site). This is the READ-ONLY grade-close SAMPLE of a course run (docs/COURSE-RUN.md, stage 6): {COURSE} has been written. You are a fresh reader; you did not write any of it. You find faults; you fix nothing.
+
+Your days ({COURSE}, set {PART}): {DAYS}
+
+For each day, cold, one at a time:
+1. Read the day file in full, the day before it in full (the hand-off), its section plan's `## Day N` block (docs/courses/{COURSE}/u<uu>-<n>.md; for a course-level day with no section, the unit plan docs/courses/{COURSE}/s<uu>.md lines that name the day), docs/courses/{COURSE}/DEFAULTS.md once, the day's rows of data/plans/{COURSE}/days.csv, items.csv and wrongs.csv, the unit's errors.csv rows, and every shared piece the day's `leans_on` names.
+2. Rework every exit and end item key by hand. Check every number, fact and safety claim; say which you checked against a source and which you could only judge.
+3. Check the timing: for every part, children in the class (about 30) times seconds a turn, plus set-up and marking, must fit the part's minutes.
+4. Check rule 4: no exit or end item reuses a case, picture or numbers taught in the day, a shared piece or an earlier day. Check the shape rule: no practice, model or card shares an exit's or check item's shape.
+5. Check the ladder. Look terms up with `python -X utf8 scripts/ledger.py show {SUBJ} --before {COURSE} --term "<word>"` (filtered; the whole output is cut off if read in one piece). Does the day teach as new something a lower grade or an earlier unit already taught (it should be named as review, in the same words)? Does it assume something no lower grade or earlier unit taught? Does it use a lower grade's words for the same idea, or new words for an old idea? Does it reuse a lower grade's case as an exit? Does a review claim ("in grade N you learned") hold in the written day it names?
+6. Check pieces: does any piece children hold or see print a key or right-answer line?
+7. Judge as a teacher with no prep time: can it be taught well in the minutes, does the exit really measure the goal, does it hand off cleanly both ways, is it plain and fast to read, is it right for this age.
+
+{SUBJNOTE}
+
+Write one report, docs/reviews/ladder-sample-{COURSE}-{PART}-{DATE}.md:
+- one line per day read: the file, kind, and a 1-sentence verdict;
+- findings, most serious first, as a table with columns: day | severity (FIRM = wrong content, a wrong key, unsafe, cannot run in the minutes, or the exit does not measure the goal; SOFT = weaker but teachable; TEMPLATE = a gate or template rule that does not fit this grade) | kind (content, key, timing, exit-goal, rule4, ladder, handoff, safety, source, words, key-on-child-page, other) | what is wrong | the exact fix | the stage that made it (unit plan, section plan, data, day, kit) | would a script gate have caught it (yes or no);
+- a short ladder section: what the grade gap caused, and whether this grade used the lower grades well;
+- counts: FIRM, SOFT and TEMPLATE findings, per day and in all.
+
+Edit no file but your report. If you run the gates, use only {PLANGATE} and {LESSONGATE}, never unfiltered, and never grep gate output for a bare day file name. Helper files only in your own new temp folder under S:/CurioClass/_scratch/l87/tmp/.
+
+{COMMON}
+
+Last message, under 200 words: the report path, FIRM, SOFT and TEMPLATE counts, and the three most serious findings.

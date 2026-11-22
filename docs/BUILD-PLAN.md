@@ -3,6 +3,9 @@
 Agreed with Cory 2026-10-25. 532 concepts are on the bench. They get built in waves, each tool by its own fresh
 agents, so nothing drifts over a long run and the 300th tool gets the same care as the first.
 
+**Tools only.** This file covers interactive tools. Courses (sections and days) run by docs/COURSE-RUN.md and the
+kit in docs/pipeline/kit/, not by these waves.
+
 ## Why fresh agents
 
 A long session that builds tool after tool starts to blur them: it misremembers what it built, repeats ideas and

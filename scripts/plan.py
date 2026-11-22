@@ -3,7 +3,7 @@
     python -X utf8 scripts/plan.py check  [course]            gates; exit 1 on any failure
     python -X utf8 scripts/plan.py tables [course]            rewrite the generated blocks in the plan files
     python -X utf8 scripts/plan.py pack   <course> <unit>     print one agent's reading pack
-    python -X utf8 scripts/plan.py defect [--status=open|fixed|rejected] <course> <artifact> <layer> <found_by> <kind> "<summary>" [ref]
+    python -X utf8 scripts/plan.py defect [--status=open|fixed|rejected] [--made-at=STAGE] <course> <artifact> <layer> <found_by> <kind> "<summary>" [ref]
     python -X utf8 scripts/plan.py defects                    counts by reader and layer
     python -X utf8 scripts/plan.py reserve <course> <unit>    write the unit's fact triples into its generator
 
@@ -1162,6 +1162,66 @@ def check(course):
     return fails, notes, len(items), len(wrongs)
 
 
+# ------------------------------------------------------------------ new gates (L87 step 9, 2026-11-21)
+# Each prints its own tagged line ("  FAIL one-ask: ...") after a course's old lines and is not counted in the course's
+# "N failure(s)" line, so the old output stays as it was (filter these three tags to compare).
+TWO_ASKS = re.compile(
+    r'\band (?:then )?(?:explain|say why|tell why|tell me why|tell how|say how|give a reason|give one reason|justify'
+    r'|describe why|write why|show why)\b|,? and (?:why|how come)\b|\bthen (?:explain|tell why|say why|write why)\b', re.I)
+WORD_TASK = re.compile(r'\b(?:read|spell|sort|blend|segment)\b[^.?]{0,40}\bwords?\b|\bcheck words?\b|\bword check\b', re.I)
+
+
+def stem_asks(stem):
+    """(question marks, joined second ask) of one printed stem. A question inside a quoted card line is one prop and
+    counts nothing; code spans are skipped."""
+    x = re.sub(r'`[^`]*`', ' ', stem)
+    x = re.sub(r'"[^"]*\?"', '"q"', x)
+    # a choice between two questions ("... ? Or: ...?", "A? or B?") is one ask the teacher picks from, not two
+    x = re.sub(r'\?\s+Or:?\s', ' or ', x)
+    x = re.sub(r'\?\s+or\s', ' or ', x)
+    q = max(seg.count('?') for seg in re.split(r'Or:\s', x))   # "Or:" opens an alternative ask the teacher chooses
+    return q, bool(TWO_ASKS.search(x))
+
+
+def word_list_present(stem):
+    """True when a stem gives its words: two or more quoted words, or a colon list of three."""
+    if len(re.findall(r'"[A-Za-z\' -]{1,20}"', stem)) >= 2:
+        return True
+    return bool(re.search(r':\s*[a-z\']+(?:,\s*[a-z\']+){2,}', stem))
+
+
+def new_gates(course):
+    """The L87 gates for one course, as 'tag: message' strings: one-ask (a stem asking two things), cold-words (an
+    exit or end item about words that names none and gives no answer) and shape-note (a section plan day that has an
+    exit but no 'Shared shape' note)."""
+    out = []
+    items = rows(course, 'items')
+    for i in items:
+        if i['check'] not in ('exit', 'end', 'readiness'):
+            continue
+        q, join = stem_asks(i['stem'])
+        if q >= 2:
+            out.append('one-ask: %s: the stem has %d question marks, so it asks %d things (one ask per item)'
+                       % (i['item_id'], q, q))
+        elif join:
+            out.append('one-ask: %s: the stem joins a second ask to the first ("and explain", "and tell why"); split it'
+                       % i['item_id'])
+    for i in items:
+        if i['check'] in ('exit', 'end') and WORD_TASK.search(i['stem']) and not word_list_present(i['stem']) \
+                and not i.get('text_id', '').strip() and not i['answer'].strip():
+            out.append('cold-words: %s: asks about words but names none and gives no answer, so a key reader cannot answer it cold'
+                       % i['item_id'])
+    exit_days = {i['day'] for i in items if i['check'] == 'exit'}
+    for f in sorted((DOCS / course).glob('u[0-9][0-9]-[0-9]*.md')):
+        blocks = re.split(r'^## Day (\d+)\s*$', f.read_text(encoding='utf-8'), flags=re.M)
+        for k in range(1, len(blocks) - 1, 2):
+            d, body = blocks[k], blocks[k + 1]
+            if d in exit_days and not re.search(r'\*\*(?:Shared shape|Shape)\b|\bshape note\b', body, re.I):
+                out.append('shape-note: %s day %s: the day has an exit but no "Shared shape" note naming the practice shape against the exit\'s'
+                           % (f.name, d))
+    return out
+
+
 # ------------------------------------------------------------------ generated tables
 def cell(t):
     return t.replace('|', '\\|')
@@ -1283,7 +1343,9 @@ def pack(course, s):
 
 # ------------------------------------------------------------------ defect ledger
 DEF = PLANS / 'defects.csv'
-DEF_COLS = ['date', 'course', 'artifact', 'layer', 'found_by', 'kind', 'summary', 'status', 'ref']
+DEF_COLS = ['date', 'course', 'artifact', 'layer', 'found_by', 'kind', 'summary', 'status', 'ref', 'made_at']
+MADE_AT = {'prework', 'progression', 'frame', 'scope', 'unit-plan', 'section-plan', 'plan-data', 'keys', 'day', 'finish', 'kit'}
+# made_at (COURSE-RUN section 4): the stage that made the fault, beside found_by/layer, the stage that found it; old rows blank
 
 
 def rows_defects():
@@ -1293,6 +1355,12 @@ def rows_defects():
 
 def defect_add(a):
     status = 'open'
+    made_at = ''
+    for x in [x for x in a if x.startswith('--made-at=')]:
+        made_at = x.split('=', 1)[1]
+        a = [y for y in a if y != x]
+    if made_at and made_at not in MADE_AT:
+        raise SystemExit('made_at must be one of: ' + ', '.join(sorted(MADE_AT)))
     for x in [x for x in a if x.startswith('--status=')]:
         status = x.split('=', 1)[1]
         a = [y for y in a if y != x]
@@ -1302,7 +1370,16 @@ def defect_add(a):
         raise SystemExit(__doc__)
     if a[3] not in READERS:
         raise SystemExit('found_by must be one of: ' + ', '.join(sorted(READERS)))
-    row = [str(datetime.date.today())] + a[:6] + [status, a[6] if len(a) > 6 else '']
+    row = [str(datetime.date.today())] + a[:6] + [status, a[6] if len(a) > 6 else '', made_at]
+    with io.open(DEF, encoding='utf-8', newline='') as f:   # an old file lacks the made_at column: add it, old rows blank
+        head = next(csv.reader(f), [])
+    if head and 'made_at' not in head:
+        old = rows_defects()
+        with io.open(DEF, 'w', encoding='utf-8', newline='') as f:
+            w = csv.writer(f, lineterminator=chr(10))
+            w.writerow(head + ['made_at'])
+            for r in old:
+                w.writerow([r.get(h, '') for h in head] + [''])
     with io.open(DEF, 'a', encoding='utf-8', newline='') as f:
         csv.writer(f, lineterminator='\n').writerow(row)
     print('logged:', row)
@@ -1316,6 +1393,12 @@ def defects():
         tally[(x['found_by'], x['layer'])] = tally.get((x['found_by'], x['layer']), 0) + 1
     for (who, layer), n in sorted(tally.items(), key=lambda t: -t[1]):
         print('  %-8s layer %-12s %d' % (who, layer, n))
+    made = {}
+    for x in d:
+        if (x.get('made_at') or '').strip():
+            made[x['made_at']] = made.get(x['made_at'], 0) + 1
+    if made:
+        print('made at: ' + ', '.join('%s %d' % kv for kv in sorted(made.items())))
 
 
 def main(a):
@@ -1347,6 +1430,10 @@ def main(a):
             for x in notes:
                 print('  note', x)
             bad += len(fails)
+            ng = new_gates(c)
+            for x in ng:
+                print('  FAIL', x)
+            bad += len(ng)
         if not rest:
             import progression
             for s in [s for s in progression.STD_FILES if progression.load(s) is not None]:

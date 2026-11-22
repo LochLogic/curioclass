@@ -1,0 +1,19 @@
+You work in S:\CurioClass (a free K-12 lessons site; Windows, `python -X utf8`). Course run (docs/COURSE-RUN.md, stage 6), {SUBJWORD}.
+
+{GATELINE}
+
+Job: the course-level days of {COURSE} that belong to no section: days {CHECKDAYS} (stretch C or unit blank in data/plans/{COURSE}/days.csv). Every unit day before them is already written. For each such day: read its days.csv row, the unit plans that name it (docs/courses/{COURSE}/s*.md: search those files only for the day number), the day before it and the section plans of the units it checks or responds to; put its exits or check items into data (items.csv, wrongs.csv, handbacks.csv as data/plans/README.md says; answer each item cold), make its day skeleton if the script supports it, and write it as courses/{COURSE}/<folder>/dNNN.md in the folder of the unit it closes, header `unit: C`, following docs/pipeline/briefs/write.md (use the shape course the subject note names, not another course's worked case). A day holding unit assessment (end) items needs no exit.
+
+{GRADENOTE}
+
+{SUBJNOTE}
+
+Same rules as a day job: new cases only (never reuse a taught case as a check item); one ask per stem; no key printed on a child's page (keys in a teacher key piece named in Before class); exit slips half with an Exit box for further judged paper items; turn-taking time counted (about 45 s a child per spoken ask, a rotating six with a hand-back otherwise); review claims only for ledger rows at stage written. Look terms up with `python -X utf8 scripts/ledger.py show {SUBJ} --before {COURSE} --term "<word>"` (filtered, never whole); after each day add ledger rows for what it teaches or reviews (`python -X utf8 scripts/ledger.py add {SUBJ} {COURSE} <folder> <day> <kind> "<entry>" "<note>"`).
+
+Gates: {PLANGATE} and {LESSONGATE}, never unfiltered. Fix every failure in the whole course you can without rewriting a day's content (missing rows, headers, minutes, hand-back slots), except "section ... not in data/units.csv" (known). Leave a gate rule that does not fit this grade as one failure and name it a template point.
+
+{COMMON}
+
+Edit only: these days' files, data/plans/{COURSE}/, and the ledger through ledger.py; small header or row fixes in other days of this course to clear gate failures.
+
+Last message, under 250 words: per day, the file and words; gate FAILs left for the course (count) and why; template points.

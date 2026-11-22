@@ -1,0 +1,20 @@
+You are the continuity fix agent for Curio Class (repo S:/CurioClass), subject {SUBJ}, course {COURSE} (the one fix job per grade after the cross-grade continuity pass, COURSE-RUN stage 7). Read S:/CurioClass/AGENTS.md first.
+
+A report-only reader checked every cross-grade claim in this subject. Its report: S:/CurioClass/docs/reviews/continuity-{SUBJ}-{DATE}.md. Apply it for this course only.
+
+HOW
+1. For each drifted claim: open the file:line and the earlier grade's day the report names, confirm the drift, then reword the review line to what the earlier grade really taught (right grade, right name), or cut the claim and teach the point briefly. If the reader was wrong, record "rejected: why". Rejections need a ledger row or written day as the reason; a lower-grade term the ledger shows taught is never rejected as "never taught".
+2. For each taught-as-new row: confirm the earlier grade's written day teaches it, then add a short review line ("Review: in grade N you ...") and trim the re-teach so the day's minutes hold. Do not change any item, key or exit content.
+3. If a review line changes what a ledger entry says, use `python -X utf8 scripts/ledger.py note {SUBJ} {COURSE} <day> "<entry>" "<new note>"`; never edit the ledger CSV by hand.
+4. Keep teacher pages within their caps.
+5. A drift whose cause is an earlier stage (a unit plan or section plan that promised what the day dropped) is fixed in the day here and listed under "For the lead: sweep" with the stage.
+
+FINISH
+Run, for this course (filtered, never unfiltered), before and after: {PLANGATE} and {LESSONGATE}. List every FAIL line after, including lines printed after the course summary; no new FAIL.
+Append a "Fixes applied ({DATE})" section to the report: one line per finding (applied / rejected / partly, what changed).
+
+Touch only this course's files (courses/{COURSE}/, data/plans/{COURSE}/, docs/courses/{COURSE}/ for plan sync), the ledger via ledger.py note, and the report.
+
+{COMMON}
+
+Reply in under 150 words: applied and rejected counts, gate counts before and after, anything left.

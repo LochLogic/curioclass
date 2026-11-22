@@ -1,0 +1,26 @@
+You work in S:\CurioClass (a free K-12 lessons site). This is a course run (docs/{COURSE}-RUN.md), English language arts. (Optional job: the generator writes it only with --texts.) The core texts of this unit are written already. This job writes the texts the unit plan COMMISSIONS that have NO row in data/plans/ela-texts.csv yet: cycle readers (the short decodable readers of the foundations block), weekly shared verses or poems (for example "Tree Words", "Tree Care Words", "Weather Words"), retry or check passages, invented exit or practice passages the section plans say are "to write" or "still to make", and any other whole text the unit plan or section plans name as an original still to write.
+
+Job: course {COURSE}, unit {UNIT}.
+
+Read first: the unit plan docs/courses/{COURSE}/s{UU}.md (search it for "cycle reader", "verse", "commission", "original", "to write", "passage"; field 2's text set and field 10's editions and rights paragraphs), the section plans docs/courses/{COURSE}/u{UU}-*.md (search them for "to write", "still to make", "no ela-texts", "cycle reader", "passage"), docs/courses/{COURSE}/DEFAULTS.md, and this course's rows of data/plans/ela-texts.csv (read only, with the csv module: course {COURSE}, unit {UNIT}) so you know what already has a row. A text that already has a row is not yours (the earlier text pass wrote it).
+
+Exit, retry and check cards that a section plan quotes in full are item rows (data/plans/{COURSE}/items.csv, written at the data stage), never text rows: leave them. A retry or check passage a child reads as a whole text is yours.
+
+List every commissioned text with no row, then write each one:
+- Decodable texts (cycle readers, any passage children read themselves): only the letters and spelling patterns the foundations cycles have taught by the text's first day, plus the high-frequency words taught by then. Find the cycle order in the unit plan's source-map or Skills Block rows and the section plans' foundations parts; the ledger helps: `python -X utf8 scripts/ledger.py show ela --course {COURSE} --term "<letter or pattern>"` (filtered, never whole), and for grades 1 to 3 the grade below too (`--before {COURSE}`). Check every word of the body against that list and say in the text's header which words are high-frequency and which pattern each new word practises. Titles may be adult-read where the plan says so. Length and form as the plan says (for example 20 to 80 words, one sentence a page, with a plain one-line picture description a page). Keep out every word the plans reserve for a probe, check or exit (the plans name them: F1 words, battery words, held-back lists); keep out titles the plans forbid.
+- Verses and poems: the number of verses, days and purposes the plan names (rhyme pairs, syllables, onset-rime, the cycle's mapped words), teacher-read unless the plan says children read them.
+- Retry or check passages: new, cold, to the length the plan names, using no taught case.
+- Real-world facts rest on a checked free source (WebSearch or WebFetch; a site that refuses an automated read gets one other source, never a retry), listed at the foot with url and `checked: {DATE}`.
+- Save each as courses/{COURSE}/texts/<text_id>.md with a header block (title, text_id, author `Curio Class`, year 2026, kind, form, word count, use, the days that read it, and for a decodable text the patterns and high-frequency words). Give a set of small texts one file and one row when the plan treats them as a set (for example seven cycle readers of one unit may be one row with parts listed, or one row each: one row each when they are read on different days by different exits; say which you chose). New text_ids: the course prefix of this course's existing ids (gk, g1, g2, g3), the unit, and a short tag, for example gk-u4-cr1 or gk-u4-tcw.
+
+Do NOT edit data/plans/ela-texts.csv (a shared file). Write your new rows to your own file, _scratch/l87/texts-out/{COURSE}-u{UNIT}-new.csv (Python csv module), with exactly these columns: course, unit, text_id, title, author, year, kind, form, length, use, part, edition, measure, demands, source, status, rights_basis, rights_checked, todo, note. Fill: course {COURSE}, unit {UNIT}, author `Curio Class`, year 2026, kind (literary or informational), form, length, use (what the days use it for and the days), part `whole` or the parts, measure (word count and a plain difficulty note; for decodables "decodable through cycle N"), demands, source `Curio Class original`, status `written: courses/{COURSE}/texts/<text_id>.md`, rights_basis `ours`, rights_checked {DATE}, todo (art, a read) . The lead merges it.
+
+If the unit plan commissions nothing without a row, write the file with only its header and say so.
+
+Do not run the skeleton scripts; the lead rebuilds them after merging.
+
+{SUBJNOTE}
+
+{COMMON}
+
+Last message, under 200 words: per new text, the id, words, its first day, and (decodables) the cycle it is decodable through and any word you could not make decodable; facts sourced or cut; that your -new.csv is written (row count); anything a reader should look at first.

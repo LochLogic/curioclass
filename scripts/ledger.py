@@ -3,15 +3,38 @@
     python -X utf8 scripts/ledger.py add <subject> <course> <where> <day> <kind> "<entry>" ["<note>"]
     python -X utf8 scripts/ledger.py show <subject> [--before <course>] [--kind <kind>] [--term <text>] [--course <course>]
     python -X utf8 scripts/ledger.py note <subject> <course> <day> "<entry>" "<new note>"
-    python -X utf8 scripts/ledger.py check <subject>
+    python -X utf8 scripts/ledger.py check <subject> [--all]
+    python -X utf8 scripts/ledger.py settle <subject> <course> [--apply]
+    python -X utf8 scripts/ledger.py seed <subject> <units.csv>
+    python -X utf8 scripts/ledger.py gate <subject> <course> <first_day> <last_day>
+    python -X utf8 scripts/ledger.py recheck <subject> [--all]
 
-Built 2026-11-18 for the science kindergarten to grade 3 ladder test (later.csv L81,
-docs/reviews/assessment-dirty-fill-2026-11-18.md). One file per subject, data/plans/ledgers/<subject>.csv. Every
-section writer and day writer in a ladder run reads it (`show`, everything below its own course plus its own course so
+Serves every course run (docs/COURSE-RUN.md); first built 2026-11-18 for the science K to 3 ladder test (L81).
+One file per subject, data/plans/ledgers/<subject>.csv (env LEDGER_DIR overrides the folder, for tests). Every
+section writer and day writer in a run reads it (`show`, everything below its own course plus its own course so
 far) and adds what it teaches (`add`). Writers never edit the CSV by hand.
 
 Columns: course, where (u01-2, a section, or s01 for a unit-level entry), day (the day number, or blank when planned
 for the whole section), kind, entry, note, stage (planned when a section plan adds it, written when a day adds it).
+
+seed (stage 4): units.csv has columns course, where (s03 for a unit-level entry, or u03-2), kind, entry, note; every
+row is added at stage planned in one call; all-or-nothing, refuses bad kinds, courses off the ladder and duplicates.
+
+check: besides the structural problems it prints a separate "citation check": a review note whose cited target exists
+only at stage planned must say "planned only"; citations matching no row are listed as their own kind. These do not
+change the exit code. A citation follows "review of": a course (full id, or grade-N / kindergarten for the same
+subject), a where (u04-1) or a whole unit (u04, unit 4), optional days (day 5, days 3 and 4, days 26 to 29) and
+optional words (in brackets, or after a bare course). It matches rows of that course with that where, that day (a
+planned row with blank day stands in when the day is not written yet) and those words in entry or note.
+
+gate: a day job for <course> days a..b may start only when every lower-grade (or earlier same-course) entry that the
+section rows of those days cite is at stage written (decision 2026-11-21, DESK-ANSWERS "Ledger-gated scheduling").
+Exit 0 gate open; 1 blocked (one line per blocker); 2 usage. Citations into the gated sections themselves are exempt.
+
+add with a day promotes a planned row of the same course, where, kind and entry (case and spacing ignored) to
+written instead of adding a duplicate; settle cleans up finished courses (see settle).
+
+recheck: every review claim with its target's stage and whether the target's day still exists in days.csv.
 
 Kinds:
 - term: a word students are taught to use;
@@ -25,11 +48,14 @@ Kinds:
 - skill: a practice students do (measure with a ruler, sort by one property).
 """
 import csv
+import os
+import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DIR = ROOT / 'data' / 'plans' / 'ledgers'
+DIR = Path(os.environ['LEDGER_DIR']) if os.environ.get('LEDGER_DIR') else ROOT / 'data' / 'plans' / 'ledgers'
+PLANS = ROOT / 'data' / 'plans'
 COLS = ['course', 'where', 'day', 'kind', 'entry', 'note', 'stage']
 KINDS = ('term', 'notation', 'model', 'case', 'investigation', 'material', 'routine', 'text', 'skill')
 LADDER = {'science': ['science-kindergarten', 'science-grade-1', 'science-grade-2', 'science-grade-3',
@@ -38,7 +64,10 @@ LADDER = {'science': ['science-kindergarten', 'science-grade-1', 'science-grade-
           # Social studies and ELA joined 2026-11-19 for their K to 3 ladder run; later courses join when their run starts.
           'social-studies': ['social-studies-kindergarten', 'social-studies-grade-1', 'social-studies-grade-2',
                              'social-studies-grade-3', 'social-studies-grade-4', 'social-studies-grade-5'],
-          'ela': ['english-language-arts-kindergarten'] + ['english-language-arts-grade-%d' % g for g in range(1, 13)]}
+          'ela': ['english-language-arts-kindergarten'] + ['english-language-arts-grade-%d' % g for g in range(1, 13)],
+          # Math joined 2026-11-21 (L87): K to 8, then the high school sequence; calculus and statistics branch off it.
+          'math': ['math-kindergarten'] + ['math-grade-%d' % g for g in range(1, 9)]
+          + ['algebra-i', 'geometry', 'algebra-ii', 'precalculus']}
 
 
 def path(subject):
@@ -53,6 +82,17 @@ def rows(subject):
         return list(csv.DictReader(f))
 
 
+def norm(text):
+    return ' '.join(text.casefold().split())
+
+
+def write_all(subject, rs):
+    with open(path(subject), 'w', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=COLS, lineterminator='\n')
+        w.writeheader()
+        w.writerows(rs)
+
+
 def add(subject, course, where, day, kind, entry, note=''):
     if subject not in LADDER or course not in LADDER[subject]:
         sys.exit('ledger: %s is not on the %s ladder' % (course, subject))
@@ -64,6 +104,19 @@ def add(subject, course, where, day, kind, entry, note=''):
         sys.exit('ledger: entry is empty')
     p = path(subject)
     p.parent.mkdir(parents=True, exist_ok=True)
+    if day:
+        # A planned row of the same section, kind and entry (written at section-plan time) is promoted, not duplicated.
+        rs = rows(subject)
+        hit = [r for r in rs if r['course'] == course and r['where'] == where and r['kind'] == kind
+               and r['stage'] == 'planned' and norm(r['entry']) == norm(entry)]
+        if hit:
+            r = hit[0]
+            r['day'], r['stage'] = day, 'written'
+            if note.strip() and note.strip() != r['note']:
+                r['note'] = (r['note'] + '; ' + note.strip()) if r['note'] else note.strip()
+            write_all(subject, rs)
+            print('promoted: %s %s day %s %s: %s' % (course, where, day, kind, entry.strip()))
+            return
     new = not p.exists()
     stage = 'written' if day else 'planned'
     with open(p, 'a', encoding='utf-8', newline='') as f:
@@ -111,21 +164,343 @@ def renote(subject, course, day, entry, note):
     print('note set: %s day %s %s: %s' % (course, day, entry.strip(), note.strip()))
 
 
-def check(subject):
+def settle(subject, course, apply=False):
+    """Finished course: a planned row whose course, kind and entry also stand as a written row is a leftover (a day
+    writer added a new row instead of moving the planned one). --apply DELETES the planned duplicate: marking it written
+    would leave two written rows for one entry, and the written row already carries the day and the real note. Planned
+    rows with no written match are only listed (planned, never written); nothing else is changed."""
+    if subject not in LADDER or course not in LADDER[subject]:
+        sys.exit('ledger settle: %s is not on the %s ladder' % (course, subject))
+    rs = rows(subject)
+    written = {(r['kind'], norm(r['entry'])) for r in rs if r['course'] == course and r['stage'] == 'written'}
+    dup = [r for r in rs if r['course'] == course and r['stage'] == 'planned' and (r['kind'], norm(r['entry'])) in written]
+    never = [r for r in rs if r['course'] == course and r['stage'] == 'planned' and (r['kind'], norm(r['entry'])) not in written]
+    for r in never[:10] if not apply else []:
+        print('  planned, never written: %s %s: %s' % (r['where'], r['kind'], r['entry'][:70]))
+    print('%s %s: %d rows; settled (planned duplicate of a written row) %d; planned, never written %d%s' % (
+        subject, course, sum(1 for r in rs if r['course'] == course), len(dup), len(never),
+        ' (first 10 shown above)' if never and not apply else ''))
+    if apply and dup:
+        ids = {id(r) for r in dup}
+        write_all(subject, [r for r in rs if id(r) not in ids])
+        print('applied: deleted %d planned duplicates' % len(dup))
+    elif dup:
+        print('dry run: nothing changed (--apply deletes the %d duplicates)' % len(dup))
+    return 0
+
+
+def seed(subject, file):
+    if subject not in LADDER:
+        sys.exit('ledger seed: no ladder for %s' % subject)
+    with open(file, encoding='utf-8', newline='') as f:
+        src = list(csv.DictReader(f))
+    need = {'course', 'where', 'kind', 'entry', 'note'}
+    if not src or set(src[0]) != need:
+        sys.exit('ledger seed: columns must be course, where, kind, entry, note (and at least one row)')
+    have = {(r['course'], r['where'], r['kind'], r['entry'].strip()) for r in rows(subject)}
+    errs, out = [], []
+    for i, r in enumerate(src, 2):
+        r = {k: (v or '').strip() for k, v in r.items()}
+        key = (r['course'], r['where'], r['kind'], r['entry'])
+        if r['course'] not in LADDER[subject]:
+            errs.append('line %d: %s is not on the %s ladder' % (i, r['course'], subject))
+        elif r['kind'] not in KINDS:
+            errs.append('line %d: unknown kind %s' % (i, r['kind']))
+        elif not re.fullmatch(r's\d\d|u\d\d-\d+', r['where']):
+            errs.append('line %d: where must look like s03 or u03-2' % i)
+        elif not r['entry']:
+            errs.append('line %d: entry is empty' % i)
+        elif key in have:
+            errs.append('line %d: duplicate of an existing or earlier row: %s %s %s' % (i, r['course'], r['where'], r['entry']))
+        else:
+            have.add(key)
+            out.append([r['course'], r['where'], '', r['kind'], r['entry'], r['note'], 'planned'])
+    if errs:
+        print('\n'.join(errs))
+        sys.exit('ledger seed: refused, nothing added (%d problems)' % len(errs))
+    p = path(subject)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    new = not p.exists()
+    with open(p, 'a', encoding='utf-8', newline='') as f:
+        w = csv.writer(f, lineterminator='\n')
+        if new:
+            w.writerow(COLS)
+        w.writerows(out)
+    print('seeded %d planned rows into the %s ledger' % (len(out), subject))
+
+
+# ---- citations ----------------------------------------------------------------------------------------------------
+
+def _days(text):
+    out = []
+    for p in re.split(r'\s*(?:,|and|;)\s*', text):
+        m = re.fullmatch(r'(\d+)\s*(?:to|-)\s*(\d+)', p.strip())
+        if m and 0 <= int(m.group(2)) - int(m.group(1)) < 400:
+            out += list(range(int(m.group(1)), int(m.group(2)) + 1))
+        elif p.strip().isdigit():
+            out.append(int(p))
+    return out
+
+
+def _tokens(subject):
+    names = sorted(LADDER[subject], key=len, reverse=True)
+    return re.compile('|'.join([
+        '(?P<course>' + '|'.join(re.escape(n) for n in names) + r')(?![\w-]*\d)',
+        r'\b(?P<short>kindergarten|grade[- ]\d+)\b',
+        r'\b(?P<where>u(?P<wu>\d\d)(?:-(?P<ws>\d+))?)\b',
+        r'\bunits? (?P<unit>\d+)\b',
+        r'\b(?:days?|d)\s?(?P<days>\d+(?:\s*(?:,|and|to|-)\s*\d+)*)',
+        r'\((?P<paren>[^)]*)\)']), re.I)
+
+
+_TOK = {}
+
+
+def _short_course(subject, text):
+    t = text.lower().replace(' ', '-')
+    for c in LADDER[subject]:
+        if t == 'kindergarten' and c.endswith('kindergarten'):
+            return c
+        if t.startswith('grade-') and c.endswith('-' + t):
+            return c
+    return None
+
+
+def _new(course):
+    return {'course': course, 'where': None, 'unit': None, 'days': [], 'words': '', 'bare': True}
+
+
+def citations(subject, course, note):
+    """Targets a note cites after 'review of'. Each: dict(course, where, unit, days, words, text). A bare course (no
+    where, unit or days) is filled by the next where or unit; anything else starts a new target."""
+    tok = _TOK.setdefault(subject, _tokens(subject))
+    out = []
+    for m in re.finditer(r'review of ', note):
+        seg = re.split(r'review of |;|\.\s|\.$', note[m.end():])[0]
+        cur_course, cur, last_end, left = course, None, 0, []
+        for t in tok.finditer(seg):
+            left.append(seg[last_end:t.start()])
+            last_end = t.end()
+            g = t.groupdict()
+            if g['course'] or g['short']:
+                c = g['course'].lower() if g['course'] else _short_course(subject, g['short'])
+                if c:
+                    cur_course = c
+                    cur = _new(c)
+                    out.append(cur)
+            elif g['where'] or g['unit']:
+                if g['where']:
+                    wu = int(g['wu'])
+                    wh, un = ('u%02d-%s' % (wu, g['ws']), None) if g['ws'] else (None, wu)
+                else:
+                    wh, un = None, int(g['unit'])
+                if cur is None or not cur['bare'] or cur['course'] != cur_course:
+                    cur = _new(cur_course)
+                    out.append(cur)
+                cur['where'], cur['unit'], cur['bare'] = wh, un, False
+            elif g['days']:
+                if cur is None:
+                    cur = _new(cur_course)
+                    out.append(cur)
+                cur['days'] += _days(g['days'])
+                cur['bare'] = False
+            elif g['paren'] is not None and cur is not None:
+                p = g['paren'].strip()
+                if p and not re.match(r'(planned|review|new)', p, re.I) and not p.endswith('.md'):
+                    cur['words'] = (cur['words'] + ' ' + p).strip()
+        left.append(seg[last_end:])
+        # words after a bare course ("english-language-arts-kindergarten rhyming")
+        if cur is not None and cur['bare'] and not cur['words']:
+            rest = re.sub(r'\b(and|the|of|in|on|at|a|an|to|day|days)\b|[^\w\s-]', ' ', left[-1])
+            rest = re.sub(r'\s+', ' ', rest).strip()
+            if rest:
+                cur['words'] = rest
+    for t in out:
+        t['text'] = describe(t)
+    return out
+
+
+def describe(t):
+    s = t['course']
+    if t['where']:
+        s += ' ' + t['where']
+    elif t['unit'] is not None:
+        s += ' unit %d' % t['unit']
+    if t['days']:
+        s += ' day' + ('s ' if len(t['days']) > 1 else ' ') + ','.join(str(d) for d in t['days'][:6])
+    if t['words']:
+        s += ' (' + t['words'] + ')'
+    return s
+
+
+def index(rs):
+    ix = {}
+    for r in rs:
+        ix.setdefault(r['course'], []).append(r)
+    return ix
+
+
+def resolve(t, ix):
+    """-> (stage, rows): 'written' when any matching row is written, 'planned' when all are, None when none match."""
+    cand = ix.get(t['course'], [])
+    if t['where']:
+        cand = [r for r in cand if r['where'] == t['where']]
+    elif t['unit'] is not None:
+        cand = [r for r in cand if r['where'] == 's%02d' % t['unit'] or r['where'].startswith('u%02d-' % t['unit'])]
+    if t['days']:
+        ds = {str(d) for d in t['days']}
+        hit = [r for r in cand if r['day'] in ds]
+        cand = hit or [r for r in cand if not r['day']] or cand
+    if t['words'] and cand:
+        w = t['words'].lower()
+        hit = [r for r in cand if w in (r['entry'] + ' ' + r['note']).lower()]
+        if not hit:
+            bits = [x for x in re.findall(r'\w+', w) if len(x) > 3]
+            hit = [r for r in cand if any(b in (r['entry'] + ' ' + r['note']).lower() for b in bits)] if bits else []
+        cand = hit
+    if not cand:
+        return None, []
+    return ('written' if any(r['stage'] == 'written' for r in cand) else 'planned'), cand
+
+
+def claims(subject, rs):
+    for r in rs:
+        if 'review of ' in r['note']:
+            yield r, citations(subject, r['course'], r['note'])
+
+
+def rowname(r):
+    return '%s %s %s: %s' % (r['course'], r['where'], ('day ' + r['day']) if r['day'] else '(planned)', r['entry'][:60])
+
+
+def check(subject, show_all=False):
+    rs = rows(subject)
     bad = 0
-    for i, r in enumerate(rows(subject), 2):
+    for i, r in enumerate(rs, 2):
         if None in r or set(r) != set(COLS):
             print('line %d: wrong cell count' % i)
             bad += 1
         elif r['kind'] not in KINDS or r['course'] not in LADDER[subject]:
             print('line %d: unknown kind or course' % i)
             bad += 1
-    print('%s ledger: %d rows, %d problems' % (subject, len(rows(subject)), bad))
+    print('%s ledger: %d rows, %d problems' % (subject, len(rs), bad))
+    ix = index(rs)
+    po, un, nclaims, ntargets = [], [], 0, 0
+    for r, ts in claims(subject, rs):
+        nclaims += 1
+        said = 'planned only' in r['note'].lower()
+        for t in ts:
+            ntargets += 1
+            st, _ = resolve(t, ix)
+            if st is None:
+                un.append((r, t))
+            elif st == 'planned' and not said:
+                po.append((r, t))
+    print('\n== citation check (added 2026-11-21; does not change the exit code) ==')
+    print('review notes: %d, cited targets: %d' % (nclaims, ntargets))
+    print('planned-only findings: %d (target only at stage planned, note lacks "planned only")' % len(po))
+    print('unmatched citations: %d (no ledger row matches the cited target)' % len(un))
+    lim = None if show_all else 8
+    for title, lst in (('planned-only', po), ('unmatched', un)):
+        for r, t in lst[:lim]:
+            print('  %s: %s cites %s' % (title, rowname(r), t['text']))
+        if lim and len(lst) > lim:
+            print('  ... %d more %s (use --all)' % (len(lst) - lim, title))
     return 1 if bad else 0
 
 
+def section_where(unit):
+    """days.csv unit '3.10' -> ledger where 'u03-10'."""
+    a, _, b = unit.partition('.')
+    return 'u%02d-%s' % (int(a), b) if a.isdigit() and b.isdigit() else None
+
+
+def days_of(course):
+    """{day number: where} from data/plans/<course>/days.csv, or None when there is no file."""
+    p = PLANS / course / 'days.csv'
+    if not p.exists():
+        return None
+    with open(p, encoding='utf-8', newline='') as f:
+        return {int(r['day']): section_where(r['unit']) for r in csv.DictReader(f) if r['day'].isdigit()}
+
+
+def gate(subject, course, first, last):
+    if subject not in LADDER or course not in LADDER[subject]:
+        sys.exit('ledger gate: %s is not on the %s ladder' % (course, subject))
+    if not (first.isdigit() and last.isdigit() and int(first) <= int(last)):
+        sys.exit('ledger gate: first_day and last_day are numbers, first <= last')
+    dm = days_of(course)
+    if dm is None:
+        sys.exit('ledger gate: no days.csv for %s' % course)
+    a, b = int(first), int(last)
+    missing = [d for d in range(a, b + 1) if d not in dm]
+    if missing:
+        sys.exit('ledger gate: days not in days.csv of %s: %s' % (course, ','.join(map(str, missing[:10]))))
+    secs = {dm[d] for d in range(a, b + 1)}
+    rs = rows(subject)
+    mine = [r for r in rs if r['course'] == course and
+            ((r['day'] and a <= int(r['day']) <= b) or (not r['day'] and r['where'] in secs))]
+    if not mine:
+        print('gate closed: %s days %d-%d have no ledger rows (sections %s not seeded)' % (course, a, b, ','.join(sorted(secs))))
+        return 1
+    ix = index(rs)
+    seen, blockers = set(), []
+    for r in mine:
+        for t in citations(subject, course, r['note']):
+            own = t['course'] == course and (t['where'] in secs or (
+                t['where'] is None and t['unit'] is not None and any(s.startswith('u%02d-' % t['unit']) for s in secs)))
+            if own:
+                continue
+            st, _ = resolve(t, ix)
+            if st == 'written' or t['text'] in seen:
+                continue
+            seen.add(t['text'])
+            blockers.append('blocked: %s is %s (cited by %s)' % (t['text'], 'planned only' if st else 'not in the ledger', rowname(r)))
+    if blockers:
+        print('\n'.join(blockers))
+        print('gate closed: %s days %d-%d, %d blockers' % (course, a, b, len(blockers)))
+        return 1
+    print('gate open: %s days %d-%d (%d rows, sections %s)' % (course, a, b, len(mine), ','.join(sorted(secs))))
+    return 0
+
+
+def recheck(subject, show_all=False):
+    rs = rows(subject)
+    ix = index(rs)
+    dcache, cnt, n, gone, flagged, lines = {}, {'written': 0, 'planned': 0, None: 0}, 0, 0, 0, []
+    for r, ts in claims(subject, rs):
+        for t in ts:
+            n += 1
+            st, hit = resolve(t, ix)
+            cnt[st] += 1
+            ok = st == 'written' or (st == 'planned' and 'planned only' in r['note'].lower())
+            extra = ''
+            if st:
+                days = {int(x['day']) for x in hit if x['day']} | set(t['days'])
+                if days:
+                    if t['course'] not in dcache:
+                        dcache[t['course']] = days_of(t['course'])
+                    dm = dcache[t['course']]
+                    lost = sorted(d for d in days if dm is not None and d not in dm)
+                    if dm is None:
+                        extra = ' (no days.csv)'
+                    elif lost:
+                        gone += 1
+                        ok = False
+                        extra = ' (day no longer in days.csv: %s)' % ','.join(map(str, lost[:6]))
+            flagged += 0 if ok else 1
+            if show_all or not ok:
+                lines.append('%s | cites %s -> %s%s' % (rowname(r), t['text'], st or 'unmatched', extra))
+    if not show_all and len(lines) > 40:
+        lines = lines[:40] + ['... %d more (use --all)' % (len(lines) - 40)]
+    print('\n'.join(lines))
+    print('%s recheck: %d citations; target written %d, planned only %d, unmatched %d; target day gone %d; flagged %d' % (
+        subject, n, cnt['written'], cnt['planned'], cnt[None], gone, flagged))
+    return 1 if flagged else 0
+
+
 def main(a):
-    if not a or a[0] not in ('add', 'show', 'check', 'note'):
+    if not a or a[0] not in ('add', 'show', 'check', 'note', 'seed', 'gate', 'recheck', 'settle'):
         print(__doc__)
         return 2
     if a[0] == 'add':
@@ -138,11 +513,26 @@ def main(a):
             sys.exit('ledger note: subject course day entry note')
         renote(*a[1:6])
         return 0
-    flags = dict(zip(a[2::2], a[3::2])) if len(a) > 2 else {}
-    if a[0] == 'show':
-        show(a[1], flags.get('--before'), flags.get('--kind'), flags.get('--term'), flags.get('--course'))
+    if a[0] == 'settle':
+        if len(a) not in (3, 4) or (len(a) == 4 and a[3] != '--apply'):
+            sys.exit('ledger settle: subject course [--apply]')
+        return settle(a[1], a[2], len(a) == 4)
+    if a[0] == 'seed':
+        if len(a) != 3:
+            sys.exit('ledger seed: subject units.csv')
+        seed(a[1], a[2])
         return 0
-    return check(a[1])
+    if a[0] == 'gate':
+        if len(a) != 5:
+            sys.exit('ledger gate: subject course first_day last_day')
+        return gate(*a[1:5])
+    if len(a) < 2 or a[1] not in LADDER:
+        sys.exit('ledger %s: subject (%s)' % (a[0], ', '.join(LADDER)))
+    if a[0] in ('check', 'recheck'):
+        return (check if a[0] == 'check' else recheck)(a[1], '--all' in a)
+    flags = dict(zip(a[2::2], a[3::2])) if len(a) > 2 else {}
+    show(a[1], flags.get('--before'), flags.get('--kind'), flags.get('--term'), flags.get('--course'))
+    return 0
 
 
 if __name__ == '__main__':

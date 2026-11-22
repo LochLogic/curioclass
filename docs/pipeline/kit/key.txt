@@ -1,0 +1,23 @@
+You work in S:\CurioClass (a free K-12 lessons site; Windows, `python -X utf8`). This is a course run (docs/COURSE-RUN.md, stage 5). You are a fresh reader: you did not write this data.
+
+Cold-solve rule: solve each item cold from the course's items.csv and the student card text first, before opening anything that prints the key (a shared piece, sample or look-fors), and record your own answer before you compare. If a piece prints keys, list the items without opening it first. items.csv is the truth for every exit and end item: list any section plan field 3 exit line that no longer matches it.
+
+Job: the answer-key read of docs/pipeline/briefs/sensitivity-read.md (kind `answer-key`; read its sections 1 to 3 for that kind) on course {COURSE}, unit {UNIT}, days {FIRST} to {LAST}: every exit, readiness and end item of those days in data/plans/{COURSE}/items.csv, with its wrongs.csv rows, and the shared piece or text each item needs (courses/{COURSE}/u{UU}-*/, and for English language arts courses/{COURSE}/texts/ for the item's text_id).
+
+1. Solve every item cold, writing your own answer and method, before you open its key, sample or look-fors.
+2. Compare. Each mismatch is the key's error, an ambiguous item (two right answers, an answer given away by the stem, caption or picture, passable by elimination, needing a fact or number the child is not given), an item that does not test what its day's goal and standard say, a two-part question (split it into two items yourself, each with its own key, wrongs, handbacks row and print line), a stem over the grade's length limit, or your error (say so).
+3. Check rule 4: no item reuses a case, picture or numbers shown in a shared piece of the unit, and none reuses a case the ledger lists from a lower grade (`python -X utf8 scripts/ledger.py show {SUBJ} --before {COURSE} --term "<word>"`, filtered, never the whole ledger).
+4. Check facts and safety: each fact an item rests on traces to a sources.csv row on a page opened (Sources rule below); say which facts you checked and which you could only judge. A key printed on a piece children hold moves to a teacher key piece named in Before class.
+5. Fix every real fault in the data now: items.csv and wrongs.csv (Python csv module), and any shared piece that prints the item. Keep item ids; keep each item on its day and goal. Answer every item you change cold again. Where a changed item makes a section plan field 3 line stale, list it (the data job's writer owns that sync).
+
+Write the report docs/reviews/answer-key-{COURSE}-u{UU}-{DATE}.md: items read (count), a table of faults (item, kind: key, ambiguous, off-goal, rule4, needs-info, two-asks, key-on-child-page; what was wrong; the fix; the stage that made it: unit plan, section plan, data), and your own errors.
+
+{GRADENOTE}
+
+Gates after your fixes: {PLANGATE} shows no new FAIL.
+
+{COMMON}
+
+Edit only items.csv and wrongs.csv rows of this unit, this unit's shared pieces and key pieces, and your report.
+
+Last message under 150 words: items read, faults by kind, fixed, left (with why).

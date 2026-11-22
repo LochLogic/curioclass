@@ -4,6 +4,9 @@ How a fresh Claude session takes Curio Class tools from concept to Cory's Review
 batch (2026-10-25, 10 tools; log in `docs/agents/BATCH-G11-LOG.md`). Read `docs/BUILD-PLAN.md` (the why) and
 `docs/agents/STANDARDS.md` (the rules every agent follows) first.
 
+**Tools only.** This file covers interactive tools. Courses (sections and days) run by docs/COURSE-RUN.md and the
+kit in docs/pipeline/kit/, not by these waves.
+
 ## Start of session
 
 1. `git pull`; `python scripts/board.py` for where every tool stands. **Current work (2026-10-28): the build and refine

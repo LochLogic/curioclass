@@ -1,0 +1,34 @@
+You work in S:\CurioClass (a free K-12 lessons site; Windows, `python -X utf8`). This is a course run (docs/COURSE-RUN.md, stage 5): {SUBJWORD} is written grade by grade from kindergarten up. The grade's section plans have had their fresh read and fix; the gates must pass.
+
+Job: steps 2, 3, 4 and 5 of docs/pipeline/briefs/plan-data.md (read it first; skip its step 1, the plan read is done; its step 5 answer-key read is done by another agent after you, so do every other part of step 5 yourself) for course {COURSE}, unit {UNIT}, sections {SECTIONS} (days {FIRST} to {LAST}). {UNITLEVEL}
+
+Put into data/plans/{COURSE}/ what those days need, following data/plans/README.md: parts.csv rows, the days.csv columns for days {FIRST} to {LAST} (never change a goal, kind or day number; leave `shows` blank, day writers fill it), items.csv (readiness items if the unit plan has them, every exit the section plans name, {ENDITEMS}), wrongs.csv (one error letter each), errors.csv (the unit's register), words.csv only if a word rule is needed, materials.csv, handbacks.csv, sources.csv and source-map.csv rows those days use. English language arts only: items carry `text_id`, `text_ref` and `needs_text` and the unit's word list goes in wordlist.csv, as data/plans/README.md and docs/courses/UNIT-PLAN.md ("English language arts data") say; every text_id is a row of data/plans/ela-texts.csv that is `on file` or `written: <path>` (read the written texts in courses/{COURSE}/texts/; never edit ela-texts.csv, a shared file; if a text is missing or wrong for an item, report it). If a data file does not exist yet, create it with the same header as the matching file of the shape course below. Shared pieces in courses/{COURSE}/u{UU}-<n>/: readiness.md (if the plan has a readiness check), one opener.md per section, record.md, family.md (in the unit's first section folder only; English then Spanish, 150 words at most each, never asking a family to report on home, money, bodies or religion), and every original picture sequence, picture-card set, recording sheet or practice sheet the section plans name for these days, each in its own file in the section folder where it is first used. Read docs/courses/LESSON-DAY.md first.
+
+Read: the unit plan docs/courses/{COURSE}/s{UU}.md; the section plans docs/courses/{COURSE}/u{UU}-*.md for your sections (field 3 and 4 hold the exits, wrong answers and letters, with their "Shape:" lines; field 5 materials; field 8 hand-backs and safety); docs/courses/{COURSE}/DEFAULTS.md (what holds every day; handbacks.csv `where` must be a word of the receiving part's name, and that part must hold the minutes).
+
+{GRADENOTE}
+
+{SUBJNOTE}
+
+Continuity: look terms up with `python -X utf8 scripts/ledger.py show {SUBJ} --before {COURSE} --term "<word>"` (add `--course <course>` to narrow; never print the whole ledger, it is cut off), one call per term, model, case and routine your work touches, including this course's earlier units. A term or routine already in the ledger is spelled the same way in items, cards and openers, and no picture or case the ledger lists from a lower grade or an earlier unit appears in an exit or end item (rule 4 holds across grades). Do not add ledger rows in this job.
+
+Item rules (the gates check some; a fresh reader checks the rest):
+- One ask per item. A "mark and say why" stem is two items. Path honesty: a spoken item never has the child write; a child marking or writing on a sheet is a paper item (path blank), a dictation the child writes is not spoken.
+- Shape notes: every exit and end item row keeps its "Shape:" line (in the day block and field 3) saying what it asks the child to do; no shared piece, practice, model or card of its day or the day before shares that shape or case. If a section plan lacks the line, add it. Shared pieces and cards print exactly the items.csv stems for exits; never print a key on a child's card or page (keys go in teacher-only key pieces named in Before class).
+- Exit slips are half slips (`exit: half`) holding about two judged paper items; further judged paper items go on the student page in an "Exit box" (check practice, path blank, judged teacher) with a handbacks row. Never make an item spoken to save slip space.
+- Turn-taking time: count about 45 seconds a child per spoken ask for about 30 children; where the part cannot hold everyone, say who is heard and give a handbacks row that names the day everyone else is reached. Every judged item is handed back on a named day.
+- No shared piece may show the same case as an exit or end item of these days (rule 4); check every page against the items before you finish. Words, cases and pictures held for an exit or end item are not practised before their day in the skill the item tests.
+- Every key is right: a reader will answer every item cold after you. Where a gate rule does not fit this grade, do not bend the data: leave that one failure and list it as a template point.
+- Hinges: where a day hinges on a visitor, a local page, an unopened photo or a not-yet-written text, name a fallback in the data so the days do not stall.
+
+Gates: {PLANGATE} (exactly this filter, never unfiltered; read plan.py never), `python -X utf8 scripts/plan.py tables {COURSE}`, `python -X utf8 scripts/unitplan.py check {COURSE}` must still pass, and {LESSONGATE} (always filtered; failures only because the days are not written are expected). "section ... is not in data/units.csv" is known.
+
+{COMMON}
+
+Edit only: data/plans/{COURSE}/ (rows for your days and unit), courses/{COURSE}/u{UU}-*/ shared pieces for your sections, the `## Day N` blocks of your sections' plans, and their field 3 exit lines (both only to match the data: a case you rename in items.csv is renamed there too; stale field 3 lines are the commonest later fault). Do not edit the unit plan.
+
+Every fact the section plans mark "source to check" or (S) is yours to settle under the Sources rule above: open the named page (or a better public one), add its sources.csv row with the date read, and reword or cut the fact where the page does not support it.
+
+Before you finish: check every piece you wrote against your exit and end items (no piece prints or nearly gives away a held answer); give every day that holds an end item an `assess` value in days.csv (`observe` for a record scored later, `mid` or `end` for a check day), correct any section plan `## Day N` number your data overruled, list facts you reworded or cut for want of a source, and say that the unit is ready for the answer-key read.
+
+Last message under 200 words: rows added by file, pieces written, plan points you decided, facts cut or reworded, expected failures, template points.

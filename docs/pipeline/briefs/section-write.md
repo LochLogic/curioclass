@@ -93,9 +93,9 @@ Kindergarten to grade 2, in addition (kindergarten probe, L74):
   "Plan points". Do not edit the unit plan, days.csv or any other file (in a ladder run, `scripts/ledger.py add` is the one
   exception).
 
-## In a ladder run (a subject written grade by grade from kindergarten up; later.csv L81)
+## In a course run (docs/COURSE-RUN.md; a subject written grade by grade from kindergarten up)
 
-The job names it when it is one. Continuity across sections and grades is the point of the run.
+The job names it when it is one (the kit in docs/pipeline/kit/). Continuity across sections and grades is the point of the run.
 
 - **Read the ledger first:** `python -X utf8 scripts/ledger.py show <subject> --before {course}` lists what the
   earlier grades and this course's earlier sections teach. Also read this course's section plan just before yours,
@@ -112,10 +112,11 @@ The job names it when it is one. Continuity across sections and grades is the po
   - Kinds are term, notation, model, case, investigation, material, routine, text and skill.
   - Add every new term and every case, investigation, model and routine the section teaches. Add a material only
     when students handle it for the first time.
-  - Add review entries too, with the note "review of <course> <where>".
+  - Add review entries too, with the note "review of <course> <where>". If the cited entry is still at stage planned
+    (not yet written), add "planned only" to the note and do not build on its wording.
   - Never edit the CSV by hand.
-- **This is a first pass:** no read follows right away, and format and polish are fixed later. The gates below still
-  must pass.
+- **A fresh read of the grade's plans follows** (COURSE-RUN stage 5), then one fix job. The gates below still must
+  pass.
 
 ## Gates
 

@@ -1,0 +1,1 @@
+Step 0, before anything else. Run: `python -X utf8 scripts/ledger.py gate {SUBJ} {COURSE} {FIRST} {LAST}`. If it exits non-zero, print its output as your whole reply and stop: change nothing, write nothing. The lead opens the gate (by getting the lower rows to stage written) and sends you again.

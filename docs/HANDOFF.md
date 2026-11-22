@@ -6,6 +6,7 @@ which is stale, fix it and say so.
 
 ## State now
 
+- **Done 2026-11-21: L87, the process aligned to COURSE-RUN.** Versioned kit docs/pipeline/kit/ (KIT-VERSION 1, retool log), `scripts/coursegen.py` (queues in COURSE-RUN order with a unit 1 probe and ledger-gate lines), `scripts/ledger.py` gate, seed, recheck and settle (and `add` promotes planned rows), `made_at` in defects.csv, ten new tagged checks across unitplan.py, plan.py and lesson.py, and `scripts/tokens.py`. Docs point at COURSE-RUN. Record docs/reviews/l87-alignment-2026-11-21.md; new-check hits in finished courses and the math Goal maps are later.csv L102. Next: the two-lane run (below).
 - **Done 2026-11-22: the social studies and ELA sample fixes (later.csv L99, L100; Cory 2026-11-21, Desk q-ladder-ss-ela-1).** One fresh fix agent per course applied or rejected every sampled FIRM fault, replaced weak sources or cut the facts, moved keys out of 63 child pieces, applied the ELA grade 1 tale sensitivity read and restored the Maathai Nobel line from the Nobel Prize site. Gates are back to each course's before counts. Record docs/reviews/ladder-ss-ela-fixes-2026-11-22.md. Next: L87 alignment.
 - **Done 2026-11-21: the social studies and ELA ladder run (later.csv L98).** Kindergarten to grade 3, initial dirty pass, straight through: ledgers (social-studies.csv, ela.csv), section plans, plan data and 1,056 days (social studies K 64, grades 1 and 2 96, grade 3 160; ELA 160 a grade), then run-end fixes from an outside reader, a capstone cross-grade continuity pass (social studies 7 of 257 claims drifted, ELA 29 of 302, all fixed) and an 80-day read-only sample. Report docs/reviews/ladder-ss-ela-report-2026-11-19.md. Pass marks: FIRM 1.19 a day (miss; science 1.4), wrong keys down by a third (met), review not said still common (miss), 79k tokens a day (miss; target 60k). Open: L99 must-fix before live (ELA grade 1 tale sensitivity, 74 key-line pieces, the Maathai line), L100 Desk card on fixing the 95 sample FIRM findings now or at L87, L101 watch items and template points. Next: L87 alignment, now with ledger-gated scheduling (DESK-ANSWERS 2026-11-21).
 - **2026-11-20: after-core stage 1 reads done** (side work). Library, ELD, career education and world languages (still shelved, pre-work only) were each read cold and fixed (docs/reviews/prework-*-read-2026-11-20.md); health and PE cite the national dose figures; per-subject calibration added to docs/pipeline/CALIBRATION.md. Cory answered q-prework-open-1 and -2 on 2026-11-21, applied (DESK-ANSWERS.md); catalogue edits held for a step boundary of the main run (later.csv L90). Every after-core subject still owes the second-model read (later.csv L88, from 2026-11-23) and its calibration run; progressions for library, ELD and career wait on those calls and gate support in scripts/progression.py (its codes() splits ids at the first space).
@@ -92,18 +93,17 @@ core electives and other subjects faint), node states in data/plans/flow-status.
 
 ## Next steps, in order
 
-1. The social studies probe (PRODUCTION-PATH step 4, docs/pipeline/PROBE-GUARD.md), then
-   baseline 2, where any unit template change is made once, before three more subjects copy it. The day pipeline
-   (plan-data.md, lesson.py, LESSON-DAY.md, courses/<course>/) is math-shaped: adapting it for social studies is
-   part of the probe. The blind rule names courses/math-4/ only (narrowed 2026-11-15, see DESK-ANSWERS), so new
-   day folders can be written under courses/.
-2. Science, ELA and math units together (step 5): Codex fills the skeletons the social studies way
-   (scripts/codex_units.py with plan-codex-science.md, plan-codex-ela.md and plan-codex-math.md), then expert and
-   Codex reads, a fix pass, a structure pass, each subject's own probe and a review from the progression down. ELA
-   text editions and rights go into data/plans/ela-texts.csv after each batch (L32). Math is written blind, then
-   reconciled with grade 4's old work (L13); high school math is read against docs/RUBRIC-MATH-HS.md (L49, L50).
-3. Then the path's later steps: the final review (step 6), a short approach page per subject before days (L27),
-   the guard and days (step 7), and tools (step 9).
+Every course now runs by [COURSE-RUN.md](COURSE-RUN.md) (since 2026-11-20). PRODUCTION-PATH.md keeps the record of
+why the core was planned top down; its steps 7 and 8 are superseded by COURSE-RUN stages 5 and 6.
+
+1. **The next course run, two lanes side by side** (DESK-ANSWERS 2026-11-20): math K to 3, and social studies grades 4
+   and 5 with World Geography I. Each subject's first grade starts with a unit 1 probe. The queue comes from
+   `scripts/coursegen.py` and the kit in docs/pipeline/kit/; day jobs are ledger-gated (`scripts/ledger.py gate`);
+   cost tables come from `scripts/tokens.py`.
+2. **Science K to 3 stays paused for Cory** (later.csv L81), as do Refine 1 and the grades past 3.
+3. **Before any course goes live:** the watch items in later.csv L101, and each course's stage 7 finish (COURSE-RUN).
+4. **After the core:** the electives and later subjects run from COURSE-RUN stage 1; their second-model reads and
+   calibration are later.csv L88.
 
 ## How to start
 

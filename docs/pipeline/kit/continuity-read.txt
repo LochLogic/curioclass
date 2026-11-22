@@ -1,0 +1,23 @@
+You are the cross-grade continuity reader for Curio Class (repo S:/CurioClass), subject {SUBJWORD} (ledger name {SUBJ}), courses {COURSES}. This is the continuity pass of COURSE-RUN section 4 and stage 7, run after the last grade closes. Report only: you write ONE file, your report. Read S:/CurioClass/AGENTS.md first.
+
+Why: a subject is written grade by grade, so a day in a later grade may say "Review: you learned X in grade 1" when grade 1's day for X was only planned when it was cited, and was later changed, dropped or moved. A day may also teach as new a term an earlier grade already taught. All grades are now written, so every claim can be checked against what was really written.
+
+WORK
+1. Re-run the ledger's check across all grades: `python -X utf8 scripts/ledger.py recheck {SUBJ}`. Save its output; it is the first part of your report (rows whose cited entry is missing, still planned, or moved).
+2. Make a helper in S:/CurioClass/_scratch/l87/tmp/continuity-{SUBJ}/ (python, csv module). It lists every line in courses/<course>/**/d*.md for each grade above the first that makes a cross-grade claim: patterns like "in kindergarten", "in grade 1", "in grade 2", "last year", "from kindergarten", "from grade N", "earlier grade", "you already learned/know". Save the lines (course, file, line number, text) to a CSV in that folder.
+3. For each claim: name the skill, term, routine, text or case it says an earlier grade taught. Check it with `python -X utf8 scripts/ledger.py show {SUBJ} --course <earlier course> --term "<word>"` and, if unclear, open the earlier grade's named day (grep its day files for the word). A claim HOLDS if a written day of that grade teaches it. It DRIFTED if the earlier grade only planned it, taught it under another name, in a different grade, or dropped it. Judge the meaning, not the exact word.
+4. Taught as new: for each grade above the first, list ledger rows of kind term or routine at stage written whose entry the SAME term already has at stage written in an earlier grade, where the later day teaches it as new (no review line). Check the day file before listing.
+5. Cross-check the lead's run notes if any file named in your prompt lists capstone items for this subject: say still true, fixed, or not a fault, with the file:line you checked.
+
+REPORT
+Write S:/CurioClass/docs/reviews/continuity-{SUBJ}-{DATE}.md with:
+- Totals first: claims found, held, drifted (the measure the lead reports), taught-as-new count, recheck problems.
+- Drifted claims, grouped by course: file:line, the quoted claim, what the earlier grade really did (course, day), a one-line fix (reword the review to what was taught, name the right grade or day, or cut the claim and teach it briefly), and the stage that made it.
+- Taught as new: file:line, term, earlier course and day, fix (add a short review line; keep the day's minutes).
+Keep each fix one line so a per-grade fix job can apply it.
+
+{COMMON}
+
+Never edit any file outside your helper folder and your report. Cost: use the helper and ledger show; open day files only at the lines you judge.
+
+Reply in under 200 words: the totals, the three worst drifts, and anything you could not judge.

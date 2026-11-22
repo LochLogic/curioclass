@@ -1749,6 +1749,25 @@ checked against what the lower grade really wrote (docs/reviews/ladder-ss-ela-re
 Cory took the recommended pick: fix the 95 sampled FIRM faults now, as with science, with one fresh fix agent per course,
 plus the L99 must-fix items (the ELA grade 1 tale sensitivity read, the key-line pieces, the Maathai line). L87 follows.
 
+## 2026-11-20: The course run process, course shape, dose and lanes (logged 2026-11-22 at L87)
+
+Cory, 2026-11-20, after the ELA and social studies K to 3 run: testing is done, and every subject now follows
+docs/COURSE-RUN.md (stages 1 to 7, each with make, check, fix, retool and gate; the kit frozen within a stage, or
+within a grade in stages 5 and 6). Cory asked for the most sound teaching answer on course shape and dose, and for the
+serial stage flow with checks, fixes and retooling at every stage.
+
+- **Course shape:** K to 8 is one course per grade (band standards split across grades); high school electives by
+  level; ELD by WIDA cluster. Earlier settled calls stand (computer science one course per grade; library 6 to 8 one
+  course, 2026-11-21).
+- **Dose:** plan to the national body's recommendation with a cited source. Where schools' schedules fall short, say so
+  openly on the course page; with no national figure, use the common school schedule. Short, frequent sessions are
+  preferred. The health and PE pages cite their national figures (APPROACH.md, Pacing).
+- **Lanes:** the next run has two writing lanes side by side: math K to 3, and social studies grades 4 and 5 with World
+  Geography I. Each subject's first grade runs a unit 1 probe (COURSE-RUN stage 5).
+- **Math files open:** the math blind rule (courses/math-4/ and the math spines) is lifted for future course-run work;
+  a math run reads the old grade 4 work and reconciles with it. Job lists made before 2026-11-20 keep their old notes.
+- **Ledger gating** (2026-11-21, above) and the kit, generator and gates built at L87 serve this process.
+
 ## 2026-11-21: Infinite Hike hosted on the Recess shelf
 
 Cory asked the maker of Infinite Hike (xmetal) on Reddit if Curio Class could feature it; the maker said yes and asked for no

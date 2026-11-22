@@ -191,6 +191,8 @@ that work had written feedback and a chance to revise before it is scored; work 
 taught is practice, never a scored part (social studies probe, 2026-11-15). Work made, given feedback, revised
 and scored all in one period is not a scored part: scored work is made on an earlier day than the score.
 
+**Goal map (field 5, added 2026-11-21, L87 step 8).** *Shared.* One table row for every teaching day of the unit (not an assessment or respond day): Day; Goal verb (the verb of the day's goal); Exit kind, `produce` or `recognise`, matching that verb (explain, describe, draw, write, build, solve: produce; identify, choose, match, circle, point, sort: recognise); Exit shape (what the child does on the exit, in a few words); Practice shape (what the day's practice asks, in a few words). The practice shape must differ from the exit shape, so the exit is not the day's practice again. `scripts/unitplan.py` prints `FAIL exit-kind:` and `FAIL practice-shape:` lines for a missing row, an exit kind that is neither word or does not match the verb, and a practice shape that is blank or equals the exit's.
+
 **6. Error register.** *Shared.* Errors and first ideas, lettered once for the unit, each with what it
 shows and its source or "from memory". Section plans use these letters. **One mistake per letter:** a letter holds
 one misconception with one repair; two claims joined by "and" or a semicolon are two letters. A wrong answer is
@@ -358,6 +360,11 @@ Day _, thirty minutes, unaided.
 
 - **Item _, teacher judged.** Look-fors: _. Meets: "_". Does not: "_".
 - **Accommodations.**
+
+Goal map. One row for each teaching day:
+
+| Day | Goal verb | Exit kind | Exit shape | Practice shape |
+|---|---|---|---|---|
 
 ## 6. Error register
 | | The error or first idea | What it shows | Source |

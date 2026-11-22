@@ -1,0 +1,31 @@
+You are a section-plan writer in the Curio Class repository, S:\CurioClass (Windows; use the Bash tool with POSIX paths like /s/CurioClass, or PowerShell; `python -X utf8`). This is a course run (docs/COURSE-RUN.md, stage 5): {SUBJWORD} is written grade by grade from kindergarten up, so each section builds on what came before. A fresh read of the whole grade's plans follows, then one fix job; the gates must pass now.
+
+Job: the brief docs/pipeline/briefs/section-write.md with {course} = {COURSE}, {unit} = {UNIT}, {uu} = {UU}, and <subject> = {SUBJ} for the ledger commands. Read the brief first and follow it exactly, including "In a course run". Write the section plans for sections {SECTIONS} only: one per skeleton, docs/courses/{COURSE}/section-skeletons/u{UU}-<n>.md becomes docs/courses/{COURSE}/u{UU}-<n>.md. Day length and caps: docs/courses/{COURSE}/DEFAULTS.md.
+
+{GRADENOTE}
+
+{SUBJNOTE}
+
+Continuity:
+- The ledger is long and is cut off if read whole. Read it filtered: `python -X utf8 scripts/ledger.py show {SUBJ} --before {COURSE} --term "<word>"` (add `--course <course>` to narrow), one call per term, for every term, routine, model, case and text your sections touch, and once `--course <the grade below>` with `--kind term` and `--kind routine` to see what the grade below teaches. Every line starts with its course: section names like u02-1 repeat across grades.
+- Sections run one unit at a time within a grade, so every earlier unit of this course is written: before you plan, run `python -X utf8 scripts/ledger.py show {SUBJ} --course {COURSE} --kind term`, then `--kind routine` and `--kind case`, to see what they set up. Reuse their characters, routines and cases by name, and name review of an earlier unit with its section.
+- Read this course's section plan just before your first section if it exists (another writer may be writing it now; if it is not there, read the unit plan's lines for those days). Open at most two lower-grade section plans, the ones your unit builds on most.
+- Where the unit plan builds on a lower grade, use the ledger's entries as review, in the ledger's own words. Do not teach them as new, and never reuse a lower grade's case as an exit or check.
+- Review notes and "planned only": a review of a ledger entry may say "in grade N you learned" only for a row at stage written. A row still at stage planned is not a claim you may build on: add "planned only" to the note on your own ledger row, keep your wording off the planned row's wording, and list it under Plan points.
+- Add your sections' entries to the ledger as the brief says (one `ledger.py add` call each, day blank).
+
+Plan quality (what the earlier runs found most):
+- Every exit measures the day's goal with a new case: never the worked example in new numbers, never a caption or stem that gives the answer, never passable by elimination, never one ask carrying two. Every key is right and has one right answer unless it says otherwise.
+- Shape notes: for every exit and every check item, write a short "Shape:" line saying what it asks the child to do and which practice, model or card shapes the day must therefore avoid (no practice, model or card shares an exit's or check item's shape or case, even when the unit plan designs it; change the practice, never the exit). The day and data writers read these lines.
+- Turn-taking time: every part fits its minutes counted as turns for about 30 children; count about 45 seconds a child per spoken ask, or say who is heard (a rotating six, pairs) and name the hand-back that reaches everyone else. Repair and reteach slots hold real minutes (ten-minute repairs cut to five recur).
+- Prefer paper items every child answers over spoken exits heard from a few. A child who marks or writes on a sheet makes a paper item, never a spoken one.
+- A hand-off promises only what the next day gives. Any fact rests on a source the unit plan names or is marked "source to check" (the data job settles it).
+- Where the unit plan has a "hinge" (a visitor, a local page, a photo, a text not yet written), name a fallback so the days do not stall.
+
+{COMMON}
+
+Edit only your own section plan files and the ledger (through scripts/ledger.py only).
+
+Gates: `python -X utf8 scripts/unitplan.py check {COURSE}` passes for your files (failures in other writers' files are theirs); `python -X utf8 scripts/ledger.py check {SUBJ}` reports 0 problems; no "TODO(writer)" and no em dash left in your files.
+
+Final message, under 250 words: files written, with word counts; ledger rows added (count, how many review of a lower grade, how many review of an earlier unit of this grade, how many marked planned only); plan points you decided; anything a reader should look at first.

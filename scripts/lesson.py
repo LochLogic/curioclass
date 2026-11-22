@@ -3169,6 +3169,214 @@ def load(course):
             plan.rows(course, 'errors'), plan.rows(course, 'wrongs'))
 
 
+# ------------------------------------------------------------------ new gates (L87 step 9, 2026-11-21)
+# Each prints its own tagged line ("  FAIL turn-time: ...") after a file's old lines and is not counted in that file's
+# "N failure(s)" count, so the old output stays as it was (filter these tags to compare):
+# turn-time, exit-slot, copied-exit, key-on-child-page, timing-sum.
+NEW_TAGS = ('turn-time', 'exit-slot', 'copied-exit', 'key-on-child-page', 'timing-sum')
+NUM_WORDS = {'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9, 'ten': 10,
+             'twelve': 12, 'fifteen': 15}
+NUM_RX = r'(?:\d+|' + '|'.join(NUM_WORDS) + r')'
+TURN = re.compile(r'\b(\d+(?:\.\d+)?)\s*(seconds?|secs?|minutes?)\s+(?:each|a child|per child|for each child|a student|per student'
+                  r'|a turn|per turn)\b', re.I)
+SMALL_GROUP = re.compile(r'\b(?:rotating|rotation|rotate|cohort|small group|groups? of|(?:the|day.s|heard|today.s) six|'
+                         r'a group|each group|half the class|a few|volunteers?|heard)\b', re.I)
+SMALL_N = re.compile(r'\b(two|three|four|five|six|seven|eight|nine|ten|twelve|fifteen|\d+(?=\s+(?:children|students|pairs|kids|learners)))\b', re.I)
+
+
+def num_of(w):
+    return int(w) if w.isdigit() else NUM_WORDS.get(w.lower())
+
+
+def turn_count(text, m, wide=220):
+    """How many children take the turn at match m: 30 unless the text says a small or rotating group; the number it
+    names (a "hear three" or "about five" beside the turn, else the nearest number word before it), or None when it
+    names a group without a number. Pairs speak at the same time, so a pair's turn is not counted (None)."""
+    before = text[max(0, m.start() - wide):m.start()]
+    after = text[m.end():m.end() + 90]
+    near = text[max(0, m.start() - 100):m.start()]
+    if re.search(r'\b(?:pairs?|groups?)\b', near, re.I) and not re.search(r'children|students', near, re.I)             or re.match(r'\s*(?:each )?way', text[m.end():m.end() + 12], re.I):
+        return None
+    if not re.search(r'\b(?:child|children|student|students|learner|learners|six|heard)\b', text[max(0, m.start() - 110):m.start()], re.I)             or re.search(r'\b(?:per|each|every|at the) table\b', near, re.I):
+        return None   # the turn belongs to a table, a group or a card, not a child
+    rng = re.search(r'\bchildren (\d+) to (\d+)\b', before, re.I)
+    if rng:
+        return int(rng[2]) - int(rng[1]) + 1
+    pick = re.search(r'\b(?:hear|call|take|pick|choose)s?(?: up to)? (two|three|four|five|six|seven|eight|nine|ten|twelve|fifteen|\d+)\b', before, re.I)         or re.match(r'[ ,]*(?:about|up to|at most) (two|three|four|five|six|seven|eight|nine|ten|twelve|fifteen|\d+)\b', after, re.I)
+    if pick:
+        return num_of(pick[1])
+    if not (SMALL_GROUP.search(before + ' ' + after) or SMALL_N.search(before)):
+        return 30
+    ns = SMALL_N.findall(before) or SMALL_N.findall(after)
+    return num_of(ns[-1]) if ns else None
+
+
+def turn_matches(text):
+    for m in TURN.finditer(text):
+        if m[2].lower().startswith('min') and not re.search(r'child|student', text[max(0, m.start() - 40):m.end()], re.I):
+            continue   # "5 minutes each" is a group's, pair's or conference's turn, not a child's
+        yield m
+
+
+def exit_block_of(d):
+    return [b for b in d['blocks'] if b[1].lower().startswith('exit')]
+
+
+def gate_turn_time(d, lab):
+    """A per-child turn line ("45 seconds each"): about 30 children times the stated seconds must fit in the part's
+    minutes, unless the part says a rotating or small group (then the group's size, where it names one, times the
+    seconds must fit)."""
+    out = []
+    for mins, name, text in d['blocks']:
+        for m in turn_matches(text):
+            sec = float(m[1]) * (60 if m[2].lower().startswith('min') else 1)
+            n = turn_count(text, m)
+            if n is None:
+                continue
+            if n * sec > mins * 60 + 1:
+                out.append('turn-time: %s: part "%d min. %s" gives each child %g seconds; %d children take %.1f minutes, '
+                           'more than the part\'s %d (say a rotating group, or shorten the turn)'
+                           % (lab, mins, name, sec, n, n * sec / 60, mins))
+                break
+    return out
+
+
+def gate_exit_slot(d, items, lab):
+    """A day with an exit item has an Exit part, and the part holds what it asks: the minutes it states for the
+    children's mark plus the per-child turns of the group the teacher hears (the marking time) fit in the part."""
+    h = d['head']
+    ex = [i for i in items if i['day'] == h.get('day') and i['check'] == 'exit']
+    if not ex:
+        return []
+    ids = [i['item_id'] for i in ex]
+    blocks = [b for b in d['blocks'] if b[1].lower().startswith('exit') or any(x in b[2] for x in ids)]
+    if not blocks:
+        return ['exit-slot: %s: the day has an exit item (%s) but no part of the day holds it (no "Exit" part)' % (lab, ids[0])]
+    out = []
+    for mins, name, text in blocks:
+        used = 0.0
+        for m in re.finditer(r'\bmark(?:s|ing)?\s+(?:for\s+)?(\d+(?:\.\d+)?)\s*(?:minutes?|min)\b', text, re.I):
+            used += float(m[1])
+        for t in turn_matches(text):
+            sec = float(t[1]) * (60 if t[2].lower().startswith('min') else 1)
+            n = turn_count(text, t)
+            if n:
+                used += n * sec / 60
+            break
+        if used > mins + 0.01:
+            out.append('exit-slot: %s: the Exit part is %d min but its mark and per-child turns add to %.1f minutes'
+                       % (lab, mins, used))
+    return out
+
+
+STOP = set("""a an the and or but if so then than that this these those it its is are was were be been being am do does did
+done have has had to of in on at by for from with without into onto over under up down out off as about after before
+again too very can could will would shall should may might must not no yes any some each every all both one two three
+who whom whose which what when where why how there here they them their he she her his him we us our you your i me my
+point show shows shown showed circle mark draw write say says said tell tells told read reads reading ask asks asked
+look looks find finds name names pick picks choose chooses use uses used make makes made give gives gave put puts
+card cards picture pictures child children student students class teacher page sheet paper line lines word words
+sentence sentences item items part parts day today new fresh invented practice answer answers question questions
+then next first last also just only still more most other another same different like""".split())
+
+
+def shingles(text, n=4):
+    """Runs of n content words (stop words and instruction words dropped), so a shared case or text matches and a
+    shared instruction ("point to the picture that shows") does not."""
+    text = re.sub(r'\[\[[^\]]*\]\]|\([a-z0-9]+-[A-Za-z0-9-]+\)', ' ', text.lower())
+    w = [x for x in re.findall(r"[a-z0-9']+", text) if x not in STOP]
+    return {' '.join(w[k:k + n]) for k in range(len(w) - n + 1)}
+
+
+def gate_copied_exit(d, items, lab):
+    """An exit item whose text repeats the day's practice case or text: a run of four content words of the exit's stem found in a
+    practice, example, tool, fix or challenge row of the day, or in the day's parts other than the Exit part. Number
+    reuse is checked apart (plan.py rule 4)."""
+    h = d['head']
+    ex = [i for i in items if i['day'] == h.get('day') and i['check'] == 'exit']
+    if not ex:
+        return []
+    other = {}
+    for i in items:
+        if i['day'] == h.get('day') and i['check'] in plan.LESSON_KINDS and i.get('path', '') != 'spare':
+            other[i['item_id']] = i['stem']
+    other["the day's teaching parts"] = '\n'.join(t for m, nme, t in d['blocks'] if not nme.lower().startswith('exit'))
+    seen = {k: shingles(v) for k, v in other.items()}
+    out = []
+    for i in ex:
+        s = shingles(re.sub(r'^Invented for practice[.:]?', '', i['stem']))
+        for k, sh in seen.items():
+            common = sorted(s & sh)
+            if common:
+                out.append('copied-exit: %s: exit %s repeats %s ("%s")' % (lab, i['item_id'], k, common[0]))
+                break
+    return out
+
+
+KEY_LINE = re.compile(r'^[\s>*_#|-]*(answer key|answers|key|answer)\s*:\**\s*(.*)$', re.I)
+CHILD_PIECES = {'story', 'blank', 'sheet', 'check', 'facts', 'packet', 'extract'}
+
+
+def gate_key_lines(text, lab, line0=0):
+    """A "Key:", "Answer key:" or "Answers:" line in a piece that prints for children. A worksheet's blank "Answer:
+    ______", a map legend ("Key: :::: = homeland"), "KEY (print this box)" and "key point" are not keys."""
+    out = []
+    for k, ln in enumerate(text.splitlines()):
+        m = KEY_LINE.match(ln)
+        if not m:
+            continue
+        word, rest = m[1], m[2].strip()
+        if word.lower() == 'answer':      # a bare "Answer:" is a worksheet's blank or a model's label, not a key line
+            continue
+        if not rest or re.match(r'^[_\s.\-]+$', rest) or not re.match(r'[A-Za-z0-9]', rest) \
+                or re.search(r'\[#\]|:{3,}|_{3,}', rest):   # a legend, or a graph key with blanks to fill
+            continue
+        out.append('key-on-child-page: %s:%d: a "%s:" line prints for children ("%s")' % (lab, line0 + k + 1, word, rest[:60]))
+    return out
+
+
+LISTED_MIN = re.compile(r'(?:^|\n)\s*(?:[-*]\s*)?(?:\*|_)?(?:(?:first|then|next|last|finally|the last|after that),?\s+)?'
+                        r'(\d+(?:\.\d+)?)\s*(?:min(?:utes?)?)(?:\.|:|,)?(?=\s|\*|_|$)', re.I)
+
+
+def gate_timing_sum(d, lab):
+    """A part's listed activity minutes added up must not exceed the part's minutes. Listed means set out as a list:
+    an italic or bulleted line that opens with its minutes ("*8 min. Words.*", "- 3 min: read", "First 2 minutes:",
+    "Then 4 minutes"). Minutes inside a sentence of prose (a rate, a total, an alternative) are not summed."""
+    out = []
+    for mins, name, text in d['blocks']:
+        body = re.sub(r'\[\[[^\]]*\]\]|`[^`]*`', ' ', text)
+        found = [float(m[1]) for m in LISTED_MIN.finditer(body)]
+        # a step set out in prose with its own minutes: "(3 minutes)", "First 2 minutes:", "Then 4 minutes"; a rate
+        # ("3 minutes a card", "each") is not a step, and a sentence offering an alternative is left out
+        for sent in re.split(r'(?<=[.!?])\s+|\n+', LISTED_MIN.sub(' ', body)):
+            if re.search(r'\b(?:if|or|otherwise|instead|longer|shorter|skip|either)\b', sent, re.I):
+                continue
+            for m in re.finditer(r'\((?:about )?(?P<a>\d+(?:\.\d+)?) min(?:ute)?s\)|\b(?:first|then|next|last|finally),? (?P<b>\d+) min(?:ute)?s?\b', sent, re.I):
+                if not re.search(r'(?:a|each|per|every) (?:card|child|pair|group|item|turn|round)', sent[m.start():m.end() + 14], re.I):
+                    found.append(float(m['a'] or m['b']))
+        total = sum(found)
+        if len(found) >= 2 and total > mins + 0.01:
+            out.append('timing-sum: %s: part "%d min. %s" lists activities adding to %g minutes' % (lab, mins, name, total))
+    return out
+
+
+def new_day_gates(d, items):
+    lab = d['path'].relative_to(ROOT).as_posix()
+    out = gate_turn_time(d, lab) + gate_exit_slot(d, items, lab) + gate_copied_exit(d, items, lab) + gate_timing_sum(d, lab)
+    raw = d['path'].read_text(encoding='utf-8')
+    cut = raw.find('\n## Student page\n')
+    out += gate_key_lines(d['student'], lab, raw[:max(cut, 0)].count('\n') + 2)
+    return out
+
+
+def new_piece_gates(pc):
+    lab = pc['path'].relative_to(ROOT).as_posix()
+    if pc['path'].name.startswith('key-') or pc['head'].get('piece') not in CHILD_PIECES:
+        return []
+    return gate_key_lines(pc['body'], lab)
+
+
 def main(a):
     if not a or a[0] not in ('check', 'build'):
         raise SystemExit(__doc__)
@@ -3218,6 +3426,10 @@ def main(a):
         for x in notes:
             print('  NOTE', x)
         bad += len(fails)
+        ng = new_day_gates(d, items)
+        for x in ng:
+            print('  FAIL', x)
+        bad += len(ng)
         if a[0] == 'build' and not fails:
             out, note = build_day(d, c, items, days, parts, errors, wrongs, '--pdf' in a)
             print('  built %s%s' % (out.relative_to(ROOT).as_posix(), ('; student page: ' + note) if note else ''))
@@ -3245,6 +3457,10 @@ def main(a):
         for x in notes:
             print('  NOTE', x)
         bad += len(fails)
+        ng = new_piece_gates(pc)
+        for x in ng:
+            print('  FAIL', x)
+        bad += len(ng)
         if a[0] == 'build' and not fails:
             out = build_piece(pc, items, wrongs, errors)
             print('  built %s/%s' % (out.relative_to(ROOT).as_posix(), p.stem))
