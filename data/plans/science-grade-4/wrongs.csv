@@ -106,7 +106,7 @@ s01-A4,Which speed is best?,,,F,Persisting in revised s01-A2 work: Names no obse
 s01-A4,The force arrow carries energy into air,,,J,Persisting in revised s01-A2 work: Confuses object force with energy destinations.
 s02-R1,The shaded square warms more because sunlight cannot warm surfaces.,,,H,Missing sunlight cause selects ten-minute day 18 response.
 s02-X16,The lamp makes energy from nothing.,,,A,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
-s02-X17,A proves sound crossed the air because both objects share a board.,,,G,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X17,A proves the air path because the rod joins both supports.,,,G,Joining rod permits a competing solid path; it cannot establish an air route.
 s02-X18,The dark patch must be warmer because it looks dark.,,,H,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
 s02-X19,The cooler metal lid creates warmth without receiving energy.,,,A,A diagnoses energy creation without an input. A direction-only reversal gets a conference rather than this letter.
 s02-X20,One lead from one terminal completes the path.,,,B,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
@@ -137,3 +137,17 @@ s02-E3,Renewable water means the dam changes nothing.,,,E,Renewal does not erase
 s02-E3,The passage removes every effect.,,,F,Flooded habitat remains.
 s02-X35,The generator needs no input.,,,A,Use comparable evidence and input-to-output reasoning.
 s02-X35,Improvement needs no tests.,,,D,Use comparable evidence and input-to-output reasoning.
+s02-P16-connect,The cup made energy from nothing.,,,A,Ignores motion input from the moving marble.
+s02-P16-1,The light makes energy without input.,,,A,Leaves out the moving handle input.
+s02-P16-model,Energy appears from nothing inside.,,,A,Substitutes creation for input and transfer.
+s02-P16-question,The light is best.,,,x,A preference is not an investigable question.
+s02-P17-repair,The lamp creates energy from nothing.,,,A,Names creation rather than input.
+s02-P17-1,I saw movement because I expected it.,,,x,A prediction is not a recorded observation.
+s02-P17-path,A shared board proves the air path.,,,G,Shared support permits a competing contact path.
+s02-P18-repair,Touching supports prove the air path.,,,G,Shared contact gives a competing route.
+s02-P18-sun,Sunlight cannot warm a surface.,,,H,Rejects sunlight warming despite the supplied comparison.
+s02-P18-1,The opaque card lets all light pass straight through.,,,x,Misreads the material observation; not evidence of a warming error.
+s02-P18-2,"Dark must be warmer, whatever the readings.",,,H,Uses appearance instead of the temperature comparison.
+s02-P19-repair,"Dark looks warmer, so it must be warmer.",,,H,Substitutes appearance for the recorded change.
+s02-P19-1,The metal spoon makes warmth without receiving energy.,,,A,Treats metal as creating energy without input.
+s02-P19-model,I added metal makes energy from nothing.,,,A,Makes creation without an input the explanation.

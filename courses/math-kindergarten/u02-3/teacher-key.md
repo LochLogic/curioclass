@@ -159,3 +159,43 @@ Answer: Add at least one to supplied five, six to ten.
 Look for: Correct supplied partial work; read labels aloud. Return marked paper. No answer on student sheet.
 
 Shown: Add at least one to supplied five, six to ten. | Not yet seen: Does not repair the indicated action. (I).
+
+## s02-PR25-1
+
+Prompt: Fix the supplied route.
+
+Answer: 5 squares each visited once; 5 altogether.
+
+Look for: Original line square layout, 5 objects. The adult starts a route and omits one; repair it and use a start mark. No leaf, star or curved-path case.
+
+Shown: repairs the missed square, 5 visits. | Not yet seen: leaves one square unvisited (K).
+
+## s02-PR25-2
+
+Prompt: Fix the supplied route.
+
+Answer: 10 squares each visited once; 10 altogether.
+
+Look for: Original array square layout, 10 objects. The adult starts a route and omits one; repair it and use a start mark. No leaf, star or curved-path case.
+
+Shown: repairs the missed square, 10 visits. | Not yet seen: leaves one square unvisited (K).
+
+## s02-PR25-3
+
+Prompt: Fix the supplied route.
+
+Answer: 5 squares each visited once; 5 altogether.
+
+Look for: Original circle square layout, 5 objects. The adult starts a route and omits one; repair it and use a start mark. No leaf, star or curved-path case.
+
+Shown: repairs the missed square, 5 visits. | Not yet seen: leaves one square unvisited (K).
+
+## s02-PR25-4
+
+Prompt: Fix the supplied route.
+
+Answer: 10 squares each visited once; 10 altogether.
+
+Look for: Original scatter square layout, 10 objects. The adult starts a route and omits one; repair it and use a start mark. No leaf, star or curved-path case.
+
+Shown: repairs the missed square, 10 visits. | Not yet seen: leaves one square unvisited (K).

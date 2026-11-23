@@ -23,3 +23,5 @@ The record sheet in u02-1 holds the thirty-child roster. Counting conferences: f
 For one child, use count 3, model/rehearsal 5, guided work 7, repair 5, exit 8, tidy 2, thirty minutes. An adult takes both partner roles and hears this child. Split or skip a day as needed. Assessment replaces familiar work; preserve the same independent response and supports. No child-facing timer.
 
 Pieces here: exit-41.md, exit-42.md, exit-43.md, mitten-sock-pieces.md, food-pieces.md, one-more-record.md, shape-cards.md, category-record.md, length-pattern-cards.md, practice-records.md, teacher-key.md. Unit family note and record sheet are in u02-1. No readiness assessment: day 19 retrieval is unscored.
+
+Before class, adult-cut the shape cards on their small square borders and the three independent mats on their outlines. Supply mats shuffled square, triangle, circle. Children order the completed mats physically; teacher records their order before collecting. Six small cards fit in a mat without overlap.

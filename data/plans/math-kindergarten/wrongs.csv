@@ -289,28 +289,32 @@ s02-F4-circle,Omits one member while counting.,,,K,Assign this letter only when 
 s02-F4-square,Omits one member while counting.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-F4-triangle,Omits one member while counting.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-F4order,"Correct counts but order 6, 4, 2.",,,G,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P19-1,Does not repair the indicated action.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P20-1,Does not repair the indicated action.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P21-1,Does not repair the indicated action.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P23-1,Does not repair the indicated action.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P24-1,Does not repair the indicated action.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P25-1,Does not repair the indicated action.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P26-1,Does not repair the indicated action.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P27-1,Does not repair the indicated action.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P28-1,Does not repair the indicated action.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P29-1,Does not repair the indicated action.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P30-1,Does not repair the indicated action.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P31-1,Does not repair the indicated action.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P32-1,Does not repair the indicated action.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P33-1,Does not repair the indicated action.,,,O,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P34-1,Does not repair the indicated action.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P35-1,Does not repair the indicated action.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P36-1,Does not repair the indicated action.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P37-1,Does not repair the indicated action.,,,H,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P38-1,Does not repair the indicated action.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P39-1,Does not repair the indicated action.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P40-1,Does not repair the indicated action.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P41-1,Does not repair the indicated action.,,,F,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P42-1,Does not repair the indicated action.,,,F,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P43-1,Does not repair the indicated action.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-P43-2,Does not repair the indicated action.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P19-1,Omits one square when linking.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P20-1,Leaves one of eight squares without its mark.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P21-1,Skips a square while pairing.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P23-1,Leaves five and explicitly calls it fewer than five.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P24-1,Calls the wider equal-five row more because of spacing.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P25-1,Skips the unmarked fifth square.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P26-1,Omits the eighth square while checking the dots.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P27-1,Acknowledges extras in eight but calls eight fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P28-1,Skips an occupied cell while checking the group.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P29-1,Leaves five and explicitly calls it more than five.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P30-1,Counts five correctly but links it to numeral 8.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P31-1,Counts eight correctly but keeps label 2.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P32-1,Continues past five until all available pieces are used.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P33-1,Keeps one dot for the zero request.,,,O,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P34-1,Continues past five to use all available pieces.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P35-1,Counts five correctly but keeps label 2.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P36-1,Counts eight correctly but writes label 6.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P37-1,Adds one to four but says it stays four.,,,H,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P38-1,Acknowledges extras in eight but calls it fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P39-1,Acknowledges extras in five but calls it fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P40-1,Calls a wider row of five more than five because of spacing.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P41-1,Leaves the blue double-border square on the red mat.,,,F,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P42-1,Leaves a double-border card on the one-border mat.,,,F,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P43-1,Continues past the requested stop until all spare pieces are used.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P43-2,Continues past the requested stop until all spare pieces are used.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-PR25-1,Leaves one square unvisited.,,,K,Observe omitted visit; do not infer it from a spoken total alone.
+s02-PR25-2,Leaves one square unvisited.,,,K,Observe omitted visit; do not infer it from a spoken total alone.
+s02-PR25-3,Leaves one square unvisited.,,,K,Observe omitted visit; do not infer it from a spoken total alone.
+s02-PR25-4,Leaves one square unvisited.,,,K,Observe omitted visit; do not infer it from a spoken total alone.

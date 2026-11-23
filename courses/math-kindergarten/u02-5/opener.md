@@ -22,4 +22,4 @@ The record sheet in u02-1 holds the thirty-child roster. Counting conferences: f
 
 For one child, use count 3, model/rehearsal 5, guided work 7, repair 5, exit 8, tidy 2, thirty minutes. An adult takes both partner roles and hears this child. Split or skip a day as needed. Assessment replaces familiar work; preserve the same independent response and supports. No child-facing timer.
 
-Pieces here: exit-34.md, exit-35.md, exit-36.md, ticket-pieces.md, tower-pieces.md, conference-tabs.md, counting-conference.md, numeral-record-1.md, numeral-record-2.md, numeral-record-3.md, practice-records.md, teacher-key.md. Unit family note and record sheet are in u02-1. No readiness assessment: day 19 retrieval is unscored.
+Pieces here: exit-34.md, exit-35.md, exit-36.md, ticket-pieces.md, tower-pieces.md, conference-tabs.md, counting-conference.md, numeral-record-1.md, numeral-record-2.md, practice-records.md, teacher-key.md. Unit family note and record sheet are in u02-1. No readiness assessment: day 19 retrieval is unscored.

@@ -1,5 +1,5 @@
 ---
-piece: blank
+piece: story
 course: math-kindergarten
 unit: 2.3
 stretch: 2
@@ -8,48 +8,10 @@ credit: All ours.
 ---
 # Practice records
 
-Teacher reads all words aloud. Invented for practice.
+Teacher index. Print only the needed day, with all words read aloud.
 
-## Day 25
-
-## s02-P25-1
-
-Fix the missing visit.
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="100%" role="img" aria-label="Unanswered stimulus for s02-P25-1"><g data-object="square" transform="translate(65 70) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(175 70) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(285 70) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(395 70) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(505 70) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><path d="M65,92L65,110" fill="none" stroke="black" stroke-width="2"/><path d="M175,92L175,110" fill="none" stroke="black" stroke-width="2"/><path d="M285,92L285,110" fill="none" stroke="black" stroke-width="2"/><path d="M505,92L505,110" fill="none" stroke="black" stroke-width="2"/></svg>
-
-
-## Day 26
-
-## s02-P26-1
-
-Fix the missing dot.
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="100%" role="img" aria-label="Unanswered stimulus for s02-P26-1"><rect x="40" y="45" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="59" cy="64" r="10" fill="black"/><rect x="78" y="45" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="97" cy="64" r="10" fill="black"/><rect x="116" y="45" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="135" cy="64" r="10" fill="black"/><rect x="154" y="45" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="173" cy="64" r="10" fill="black"/><rect x="192" y="45" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="211" cy="64" r="10" fill="black"/><rect x="40" y="83" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="59" cy="102" r="10" fill="black"/><rect x="78" y="83" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="97" cy="102" r="10" fill="black"/><rect x="116" y="83" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><rect x="154" y="83" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><rect x="192" y="83" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><g data-object="square" transform="translate(340 60) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(384 60) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(428 60) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(472 60) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(340 105) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(384 105) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(428 105) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(472 105) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g></svg>
-
-
-## Day 27
-
-## s02-P27-1
-
-Fix the comparison word.
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="100%" role="img" aria-label="Unanswered stimulus for s02-P27-1"><rect x="30" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="49" cy="69" r="10" fill="black"/><rect x="68" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="87" cy="69" r="10" fill="black"/><rect x="106" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="125" cy="69" r="10" fill="black"/><rect x="144" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="163" cy="69" r="10" fill="black"/><rect x="182" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="201" cy="69" r="10" fill="black"/><rect x="30" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><rect x="68" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><rect x="106" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><rect x="144" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><rect x="182" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><rect x="350" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="369" cy="69" r="10" fill="black"/><rect x="388" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="407" cy="69" r="10" fill="black"/><rect x="426" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="445" cy="69" r="10" fill="black"/><rect x="464" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="483" cy="69" r="10" fill="black"/><rect x="502" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="521" cy="69" r="10" fill="black"/><rect x="350" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="369" cy="107" r="10" fill="black"/><rect x="388" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="407" cy="107" r="10" fill="black"/><rect x="426" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="445" cy="107" r="10" fill="black"/><rect x="464" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><rect x="502" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><text x="30" y="210" font-family="sans-serif" font-size="24">Eight has fewer.</text></svg>
-
-
-## Day 28
-
-## s02-P28-1
-
-Check the full five.
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="100%" role="img" aria-label="Unanswered stimulus for s02-P28-1"><rect x="30" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="49" cy="69" r="10" fill="black"/><rect x="68" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="87" cy="69" r="10" fill="black"/><rect x="106" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="125" cy="69" r="10" fill="black"/><rect x="144" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="163" cy="69" r="10" fill="black"/><rect x="182" y="50" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="201" cy="69" r="10" fill="black"/><rect x="30" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="49" cy="107" r="10" fill="black"/><rect x="68" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="87" cy="107" r="10" fill="black"/><rect x="106" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><circle cx="125" cy="107" r="10" fill="black"/><rect x="144" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><rect x="182" y="88" width="38" height="38" rx="4" fill="none" stroke="black" stroke-width="2"/><text x="30" y="210" font-family="sans-serif" font-size="24">Five and three.</text></svg>
-
-
-## Day 29
-
-## s02-P29-1
-
-Repair this drawing for more.
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="100%" role="img" aria-label="Unanswered stimulus for s02-P29-1"><g data-object="square" transform="translate(65 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(109 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(153 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(197 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(241 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(65 180) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(109 180) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(153 180) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(197 180) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(241 180) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><text x="400" y="190" font-family="sans-serif" font-size="24">more</text></svg>
+- [Day 25](practice-25.md)
+- [Day 26](practice-26.md)
+- [Day 27](practice-27.md)
+- [Day 28](practice-28.md)
+- [Day 29](practice-29.md)
