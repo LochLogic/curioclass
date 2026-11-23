@@ -14,7 +14,7 @@ on days 2 and 3. Day 4 reads the whole short Williams poem. A precise image give
 a reader a particular subject; an inference stays limited by actual words and actions.
 A line break can focus attention without demanding a fixed pause. Free verse needs no regular meter.
 
-There is no readiness check. retrieval.md holds familiar grade 3 routines.
+There is no readiness check. The retrieval.md sheet holds familiar grade 3 routines.
 The fall rotation reaches all thirty once: 9, 7, 9 and 5 children on days 1 to 4,
 two teacher minutes per child. Meaning and long-word reading share each turn.
 Do not add another screen during partner reading.

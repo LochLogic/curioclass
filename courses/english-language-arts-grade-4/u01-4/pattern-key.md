@@ -16,3 +16,5 @@ Five oral samples at one minute each across the existing ten-minute word block.
 The five-minute paper probe runs concurrently; do not add a second teacher screen.
 Record children actually heard. Other oral samples use existing later rotations.
 Give written feedback day 14; correct or extend in day 15 Word work.
+
+Teacher oral prompt: [[s01-P14-probe-oral]]

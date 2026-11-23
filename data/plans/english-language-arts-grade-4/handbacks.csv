@@ -33,7 +33,7 @@ from_day,to_day,what,where,minutes,error,note
 13,14,all s01-A13 written components,Return,10,A,"Five minutes teach on different taught fragments, five independently revise. Oral record finalized separately from actual samples and revised notes."
 13,14,s01-A13c oral component record,Return,0,,"Finalize prepared record from actual observations, feedback and revised notes, not presumed speech."
 15,16,finalized day 13 written assessment,Opening,0,,Return after day 15 judgment; no second correction sitting.
-14,15,pattern probe returning/carefully,Word,5,H,Correct/extend from written feedback. Remaining oral samples use only existing missing-component conferences; no paper-to-oral inference.
+14,15,s01-P14-probe-paper s01-P14-probe-oral,Word,5,H,Correct/extend from written feedback. Remaining oral samples use only existing missing-component conferences; no paper-to-oral inference.
 17,18,all s01-A17 components and s01-X16,Return,10,AE,"Five instruction on earliest need using sign faults, five independent revision. Score retained D17a after class day 19."
 19,20,finalized day 17 paragraph,Opening,0,,Return privately with current papers; retain component/support record.
 9,12,s01-A09-RF actual reading feedback,Opening,0,,"Written feedback on actual due readers only, shared with existing returned work. Fill unheard evidence only in scheduled rotations."
@@ -68,3 +68,4 @@ from_day,to_day,what,where,minutes,error,note
 14,15,s01-P14-1 s01-P14-2,Opening,0,,All inspected practice returned with existing papers; no extra repair minutes. Private drafts remain unjudged.
 15,16,s01-P15-1 s01-P15-2,Opening,0,,All inspected practice returned with existing papers; no extra repair minutes. Private drafts remain unjudged.
 16,18,s01-P16-1 s01-P16-2,Return,0,,All inspected practice returned with existing papers; no extra repair minutes. Private drafts remain unjudged.
+29,30,s01-A29-word oral decoding and word-part feedback,Word,0,H,"Correction/extension uses existing ten-minute Word work, no extra screen. Remaining oral samples only in existing rotations."

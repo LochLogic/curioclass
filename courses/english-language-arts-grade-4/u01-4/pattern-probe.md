@@ -15,7 +15,7 @@ carefully
 
 After returning, I placed the torn page carefully beside my notebook.
 
-Mark familiar parts in the words.
+[[s01-P14-probe-paper]]
 
 My parts: ________________________________________
 

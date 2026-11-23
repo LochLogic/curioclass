@@ -35,8 +35,8 @@ and the complete reserved The Lunch Table from g4-u1-01. Number that story's thr
 at the starts The folded, Lend a hand, and Before I lifted, without changing the wording.
 Day 36: use Two Ways to Find a Poem, g4-u1-tw, whole. It replaces the old biography check.
 
-The Lunch Table's napkin context has a lower-grade case overlap; the reviewer must settle
-that text issue before release. Do not silently substitute another registered taught text.
+The Lunch Table's lunch/napkin context potentially overlaps a lower-grade case. The reviewer must
+compare the actual cases before release. Do not silently substitute another registered taught text.
 Original exit companions and the sign model still need their own shared text-register rows.
 Their exact copy is in the scoped shared pieces; do not misattribute them to the anchor.
 No alternate core text is invented by a day writer.

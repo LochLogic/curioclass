@@ -28,3 +28,10 @@ from_day,to_day,what,where,minutes,error,note
 10,11,s01-X10,Return and repair,5,D,Return all with next step; more than ten misses triggers shared repair.
 10,11,s01-X10,Return and repair,5,E,Return all with next step; more than ten misses triggers shared repair.
 10,11,s01-Ps10,Return and repair,0,,Return record feedback with ticket; retain in folder. Continue heard roster with previously unheard children.
+11,12,s01-X11,Return and repair,5,F,Return feedback; retain the original in the folder.
+11,12,s01-X11,Return and repair,5,A,Return feedback; retain the original in the folder.
+11,12,s01-X11,Return and repair,5,C,Return feedback; retain the original in the folder.
+11,12,s01-Po11 s01-Pn11,Return and repair,0,,Return feedback; retain the original in the folder.
+12,13,s01-X12,Return and repair,5,C,Return feedback; retain the original in the folder.
+12,13,s01-X12,Return and repair,5,J,Return feedback; retain the original in the folder.
+12,13,s01-Ps12,Return and repair,0,,Return feedback; retain the original in the folder.

@@ -69,3 +69,33 @@ s01-P8-4,The map shows every person.,,,H,Predicted response; score the geographi
 s01-X8,I like this map.,,,H,Predicted response; score the geographic idea separately from spelling.
 s01-X8,The continent map gives every street.,,,D,Expects local detail on the broad view.
 s01-X8,The town map shows everything.,,,N,No specific limit recognized.
+s01-P9-R,Every view shows the bench.,,,D,Does not meet the geographic or source look-for.
+s01-P9-R,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-K9-1,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-K9-1,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-K9-2,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-K9-2,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P9-1,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-P9-1,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P9-2,Northwest Territories is a province.,,,E,Does not meet the geographic or source look-for.
+s01-P9-2,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P9-3,I like this map.,,,H,Does not meet the geographic or source look-for.
+s01-P9-3,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-X9,Alberta is a country; Nunavut is a province.,,,E,Does not meet the geographic or source look-for.
+s01-X9,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P10-R,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-P10-R,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-K10-1,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-K10-1,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-K10-2,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-K10-2,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P10-1,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-P10-1,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P10-2,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-P10-2,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P10-3,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-P10-3,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P10-4,Cuba contains all of the Caribbean.,,,E,Does not meet the geographic or source look-for.
+s01-P10-4,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-X10,Sonora is a country; Barbados is a state.,,,E,Does not meet the geographic or source look-for.
+s01-X10,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.

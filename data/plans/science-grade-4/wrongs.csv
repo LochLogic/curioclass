@@ -60,3 +60,18 @@ s01-Ps10,Warming is impossible because hands did not detect it.,,,E,Error E: det
 s01-X10,Energy disappeared when the sphere slowed.,,,C,Error C: missing transfer destinations.
 s01-X10,All energy became the click.,,,D,Error D: Cone and remaining sphere motion also have energy.
 s01-X10,"No warmth was felt, so no warming happened.",,,E,Error E: Account explains warming below this task detection.
+s01-Pr11,All energy became sound,,,D,Does not meet the look-fors: All energy became sound
+s01-Pr11,Energy disappears,,,C,Loses energy instead of tracing destinations.
+s01-Pr11,No felt warmth proves no warming,,,E,Confuses detection limits with absence.
+s01-Po11,My expected result is an observation,,,I,Does not meet the look-fors: My expected result is an observation
+s01-Pn11,A prediction proves what happened,,,I,Does not meet the look-fors: A prediction proves what happened
+s01-X11,Which speed is best?,,,F,Does not meet the look-fors: Which speed is best?
+s01-X11,The same wagon has equal starting energy at both speeds,,,A,Ignores speed when comparing the same object.
+s01-X11,The wagon loses energy because energy vanishes,,,C,Does not trace transfer.
+s01-Pr12,Which speed is best?,,,F,Does not meet the look-fors: Which speed is best?
+s01-Pr12,Same car means equal energy at both speeds,,,A,Ignores the speed difference.
+s01-Pr12,Energy vanishes,,,C,Loses energy rather than tracing destinations.
+s01-Pa12,A push arrow carries energy into air,,,J,Does not meet the look-fors: A push arrow carries energy into air
+s01-Ps12,Sound receives all energy,,,D,Does not meet the look-fors: Sound receives all energy
+s01-X12,Energy vanished as the bead slowed,,,C,Does not meet the look-fors: Energy vanished as the bead slowed
+s01-X12,The force arrow carries energy from the card into air,,,J,Confuses force acting on an object with an energy destination.

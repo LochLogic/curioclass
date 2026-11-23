@@ -12,3 +12,5 @@ from_day,to_day,what,where,minutes,error,note
 6,7,s01-X6 s01-P6-3,Return and repair,5,,One written cue per child. Repair only the dominant gap; other cues are independent.
 7,8,s01-X7 s01-P7-2 s01-P7-3,Return and repair,5,,One written cue per child. Repair only the dominant gap; other cues are independent.
 8,9,s01-X8 s01-P8-4,Return and repair,5,,One written cue per child. Repair only the dominant gap; other cues are independent.
+9,10,s01-X9 s01-P9-3,Return and repair,5,,"Return with one cue. One dominant repair only. Record shown, shown with help, not yet seen."
+10,11,s01-X10 s01-P10-4,Return and repair,5,,"Return with one cue. One dominant repair only. Record shown, shown with help, not yet seen."
