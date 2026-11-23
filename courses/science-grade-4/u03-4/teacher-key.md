@@ -14,7 +14,7 @@ Teacher only. Keep away from student sheets and displays. Read answers cold befo
 
 Answer: Q alone passes. Keep every sent/received message, correctness, whole-second duration, code and condition, including failures.
 
-Look-fors: Apply accuracy and duration together. | Complete records include failures and code/condition labels.
+Look-fors: Apply accuracy and duration together. | Complete records include failures and code/condition labels. | Shape: judge a near-condition acceptance log and specify complete evidence fields.
 
 Samples: Meets: Q alone passes. Keep every sent/received message, correctness, whole-second duration, code and condition, including failures. | Does not meet: The fastest code wins even with wrong messages. (error C).
 
@@ -26,7 +26,7 @@ Wrong: The fastest code wins even with wrong messages. Error C: Ignores accuracy
 
 Answer: Summaries favor Q in both; P fails far accuracy. Recover failed-message details and complete timing/code/condition records to verify summaries. Successful messages alone cannot verify the trial.
 
-Look-fors: Provisional comparison uses both conditions and criteria. | Diagnose selective retention; require complete records before verified success.
+Look-fors: Provisional comparison uses both conditions and criteria. | Diagnose selective retention; require complete records before verified success. | Shape: compare near/far summaries and diagnose selectively missing records.
 
 Samples: Meets: Summaries favor Q in both; P fails far accuracy. Recover failed-message details and complete timing/code/condition records to verify summaries. Successful messages alone cannot verify the trial. | Does not meet: Success in one condition proves success everywhere. (error D).
 
@@ -38,7 +38,7 @@ Wrong: Success in one condition proves success everywhere. Error D: Extends a cl
 
 Answer: B passes accuracy and duration in both; A fails conversation duration. Shorter A pauses might save time but blur boundaries. Retest the changed code in both conditions.
 
-Look-fors: B meets both criteria/conditions. | Benefit: shorter duration; risk: confused boundaries; require retests.
+Look-fors: B meets both criteria/conditions. | Benefit: shorter duration; risk: confused boundaries; require retests. | Shape: recommend from both-condition time records and evaluate a proposed pause change.
 
 Samples: Meets: B passes accuracy and duration in both; A fails conversation duration. Shorter A pauses might save time but blur boundaries. Retest the changed code in both conditions. | Does not meet: The fastest code wins even with wrong messages. (error C).
 
@@ -52,7 +52,7 @@ Wrong: Success in one condition proves success everywhere. Error D: Extends a cl
 
 Answer: Later waves have smaller amplitude and shorter wavelength. Show smaller local raft motion and separate onward pattern/energy arrows, linked to the frames.
 
-Look-fors: Lower amplitude, shorter spacing, smaller local movement. | Link frames to separate local motion and traveling energy.
+Look-fors: Lower amplitude, shorter spacing, smaller local movement. | Link frames to separate local motion and traveling energy. | Shape: model lower closer pond waves and smaller local raft motion.
 
 Samples: Meets: Later waves have smaller amplitude and shorter wavelength. Show smaller local raft motion and separate onward pattern/energy arrows, linked to the frames. | Does not meet: The marked material travels to the far end with a crest. (error A).
 
@@ -66,7 +66,7 @@ Wrong: Wider peak spacing always makes waves taller. Error B: Treats amplitude a
 
 Answer: Agree colors and row order at both ends: each row left to right, top first. Decode 1100 as black-black above white-white. Correct digits still need the agreed reading rule.
 
-Look-fors: Unify meanings and order. | Revised model reconstructs intended picture with the shared rule.
+Look-fors: Unify meanings and order. | Revised model reconstructs intended picture with the shared rule. | Shape: repair incompatible sender/receiver grid-order rules.
 
 Samples: Meets: Agree colors and row order at both ends: each row left to right, top first. Decode 1100 as black-black above white-white. Correct digits still need the agreed reading rule. | Does not meet: Any receiver understands marks without a shared rule. (error E).
 
@@ -168,7 +168,7 @@ Wrong: Any receiver understands marks without a shared rule. Error E: Omits agre
 
 Answer: B and C have equal smaller amplitude than A; C alone has wider spacing. The bird stays local at both moments. Pattern and energy travel; recorded bird movement shows energy reaches its place.
 
-Look-fors: Independent day 46, feedback afterward, revise day 47; no points until day 55. | Height 2: all-three comparison and matching marks. | Spacing 2: all-three comparison and matching marks. | Local motion 2: one per corrected moment. | Energy 2: traveling energy and link to observed local movement. | Maximum eight points; no points for day 55 additions.
+Look-fors: Independent day 46, feedback afterward, revise day 47; no points until day 55. | Height 2: all-three comparison and matching marks. | Spacing 2: all-three comparison and matching marks. | Local motion 2: one per corrected moment. | Energy 2: traveling energy and link to observed local movement. | Maximum eight points; no points for day 55 additions. | Shape: select earlier revised individual evidence for first scoring; no new written response.
 
 Samples: Meets: B and C have equal smaller amplitude than A; C alone has wider spacing. The bird stays local at both moments. Pattern and energy travel; recorded bird movement shows energy reaches its place. | Does not meet: The marked material travels to the far end with a crest. (error A).
 
@@ -182,7 +182,7 @@ Wrong: Wider peak spacing always makes waves taller. Error B: Treats amplitude a
 
 Answer: For example: checked card HOLD/plain GO, blank gaps; triangle HOLD/star GO, blank gaps. Other distinguishable feasible complete alternatives accepted.
 
-Look-fors: Two points: one per complete feasible alternative with both meanings and boundaries. | No points for day 55 additions.
+Look-fors: Two points: one per complete feasible alternative with both meanings and boundaries. | No points for day 55 additions. | Shape: select earlier revised individual evidence for first scoring; no new written response.
 
 Samples: Meets: For example: checked card HOLD/plain GO, blank gaps; triangle HOLD/star GO, blank gaps. Other distinguishable feasible complete alternatives accepted. | Does not meet: Any receiver understands marks without a shared rule. (error E).
 
@@ -196,7 +196,7 @@ Wrong: The prettier system performs better. Error F: Substitutes appearance for 
 
 Answer: B alone meets accuracy and time in both. A passes shade but fails daylight accuracy despite being faster.
 
-Look-fors: Two points: accuracy and time together; both conditions used. | No points for day 55 additions.
+Look-fors: Two points: accuracy and time together; both conditions used. | No points for day 55 additions. | Shape: select earlier revised individual evidence for first scoring; no new written response.
 
 Samples: Meets: B alone meets accuracy and time in both. A passes shade but fails daylight accuracy despite being faster. | Does not meet: The fastest code wins even with wrong messages. (error C).
 
@@ -210,7 +210,7 @@ Wrong: Success in one condition proves success everywhere. Error D: Extends a cl
 
 Answer: They are untested. Test each in shade and bright daylight, keeping every received message and duration against five correct within 40 seconds.
 
-Look-fors: Two points: recognize untested status; specify both-condition trials against criteria. | No points for day 55 additions.
+Look-fors: Two points: recognize untested status; specify both-condition trials against criteria. | No points for day 55 additions. | Shape: select earlier revised individual evidence for first scoring; no new written response.
 
 Samples: Meets: They are untested. Test each in shade and bright daylight, keeping every received message and duration against five correct within 40 seconds. | Does not meet: Success in one condition proves success everywhere. (error D).
 
@@ -222,7 +222,7 @@ Wrong: Success in one condition proves success everywhere. Error D: Extends a cl
 
 Answer: A receiving hood made from allowed card could shade the light and improve contrast. Retest both conditions against accuracy and time; the improvement remains unproven.
 
-Look-fors: Two points: change targets contrast failure using allowed materials; explain retesting. | No points for day 55 additions.
+Look-fors: Two points: change targets contrast failure using allowed materials; explain retesting. | No points for day 55 additions. | Shape: select earlier revised individual evidence for first scoring; no new written response.
 
 Samples: Meets: A receiving hood made from allowed card could shade the light and improve contrast. Retest both conditions against accuracy and time; the improvement remains unproven. | Does not meet: Success in one condition proves success everywhere. (error D).
 
@@ -236,7 +236,7 @@ Wrong: The prettier system performs better. Error F: Substitutes appearance for 
 
 Answer: 1101.
 
-Look-fors: One point: top row 11 followed by bottom row 01. | No points for day 55 additions.
+Look-fors: One point: top row 11 followed by bottom row 01. | No points for day 55 additions. | Shape: select earlier revised individual evidence for first scoring; no new written response.
 
 Samples: Meets: 1101. | Does not meet: Any receiver understands marks without a shared rule. (error E).
 
@@ -248,7 +248,7 @@ Wrong: Any receiver understands marks without a shared rule. Error E: Omits agre
 
 Answer: White-black above black-black.
 
-Look-fors: One point: top row 01; bottom row 11. | No points for day 55 additions.
+Look-fors: One point: top row 01; bottom row 11. | No points for day 55 additions. | Shape: select earlier revised individual evidence for first scoring; no new written response.
 
 Samples: Meets: White-black above black-black. | Does not meet: Any receiver understands marks without a shared rule. (error E).
 
@@ -260,7 +260,7 @@ Wrong: Any receiver understands marks without a shared rule. Error E: Omits agre
 
 Answer: A device encodes sound as ordered digits. A receiver decodes correctly received digits into sound with agreed rules. Digitization supports distant communication without guaranteeing flawless reception.
 
-Look-fors: Two points: encode sound as ordered digits; decode received digits into sound with agreed rules. | No points for day 55 additions.
+Look-fors: Two points: encode sound as ordered digits; decode received digits into sound with agreed rules. | No points for day 55 additions. | Shape: select earlier revised individual evidence for first scoring; no new written response.
 
 Samples: Meets: A device encodes sound as ordered digits. A receiver decodes correctly received digits into sound with agreed rules. Digitization supports distant communication without guaranteeing flawless reception. | Does not meet: Any receiver understands marks without a shared rule. (error E).
 
@@ -272,7 +272,7 @@ Wrong: Any receiver understands marks without a shared rule. Error E: Omits agre
 
 Answer: Personal source notes; two feasible proposals with peer response; complete interpreted tests of both systems in both conditions; criteria-based comparison and failure-linked proposed improvement.
 
-Look-fors: Four points, one each: research before design; two feasible personal proposals with peer response; complete interpreted both-condition tests; evidence-based comparison and improvement. | Item 2 supports the code but is not scored again here. | Invented fallback interpretation never earns firsthand-performance credit; missing practical tests stay unscored. | No points for day 55 additions.
+Look-fors: Four points, one each: research before design; two feasible personal proposals with peer response; complete interpreted both-condition tests; evidence-based comparison and improvement. | Item 2 supports the code but is not scored again here. | Invented fallback interpretation never earns firsthand-performance credit; missing practical tests stay unscored. | No points for day 55 additions. | Shape: select earlier revised individual evidence for first scoring; no new written response.
 
 Samples: Meets: Personal source notes; two feasible proposals with peer response; complete interpreted tests of both systems in both conditions; criteria-based comparison and failure-linked proposed improvement. | Does not meet: Success in one condition proves success everywhere. (error D).
 

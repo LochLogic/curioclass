@@ -14,7 +14,7 @@ Teacher only. Keep away from student sheets and displays. Read answers cold befo
 
 Answer: Show local up/down spot motion at two moments and a rightward pattern arrow. Ask an investigable question, such as whether larger hand motion changes spot movement.
 
-Look-fors: Local motion at two moments. | Onward pattern motion. | Investigable question; accept tentative initial accounts.
+Look-fors: Local motion at two moments. | Onward pattern motion. | Investigable question; accept tentative initial accounts. | Shape: construct a two-moment rope model and an investigable question.
 
 Samples: Meets: Show local up/down spot motion at two moments and a rightward pattern arrow. Ask an investigable question, such as whether larger hand motion changes spot movement. | Does not meet: The marked material travels to the far end with a crest. (error A).
 
@@ -26,7 +26,7 @@ Wrong: The marked material travels to the far end with a crest. Error A: Confuse
 
 Answer: B has greater amplitude and wavelength than A. Its float moves farther up/down locally. Pattern and energy pass; the float stays near its marker.
 
-Look-fors: Draw amplitude and spacing contrasts. | Explain local float motion using evidence, distinct from traveling energy.
+Look-fors: Draw amplitude and spacing contrasts. | Explain local float motion using evidence, distinct from traveling energy. | Shape: paired pattern drawings with evidence-linked local float motion.
 
 Samples: Meets: B has greater amplitude and wavelength than A. Its float moves farther up/down locally. Pattern and energy pass; the float stays near its marker. | Does not meet: The marked material travels to the far end with a crest. (error A).
 
@@ -40,7 +40,7 @@ Wrong: Wider peak spacing always makes waves taller. Error B: Treats amplitude a
 
 Answer: Keep equal amplitude from rest and different peak spacing. Show local tag motion separately from onward pattern and energy.
 
-Look-fors: Equal amplitude, unequal wavelength. | Local tag motion and separate traveling pattern/energy.
+Look-fors: Equal amplitude, unequal wavelength. | Local tag motion and separate traveling pattern/energy. | Shape: repair a faulty equal-height comparative model and tag transport.
 
 Samples: Meets: Keep equal amplitude from rest and different peak spacing. Show local tag motion separately from onward pattern and energy. | Does not meet: Wider peak spacing always makes waves taller. (error B).
 

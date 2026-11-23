@@ -14,7 +14,7 @@ Teacher only. Keep away from student sheets and displays. Read answers cold befo
 
 Answer: Fabric dot moves up/down; cart dots move back/forth locally. Pattern and energy travel right through both materials.
 
-Look-fors: Two contrasting local directions. | Common onward pattern and energy, not material transport.
+Look-fors: Two contrasting local directions. | Common onward pattern and energy, not material transport. | Shape: draw two contrasting local-motion directions and explain common pattern/energy travel.
 
 Samples: Meets: Fabric dot moves up/down; cart dots move back/forth locally. Pattern and energy travel right through both materials. | Does not meet: The marked material travels to the far end with a crest. (error A).
 
@@ -26,7 +26,7 @@ Wrong: The marked material travels to the far end with a crest. Error A: Confuse
 
 Answer: Both rings stay local. X has greater amplitude; spacing is equal. Pattern and energy travel without carrying rings to the wall.
 
-Look-fors: Repair both ring journeys. | Greater X amplitude with equal wavelength, linked to observed range.
+Look-fors: Repair both ring journeys. | Greater X amplitude with equal wavelength, linked to observed range. | Shape: repair paired drifting-ring models with an amplitude contrast and equal spacing.
 
 Samples: Meets: Both rings stay local. X has greater amplitude; spacing is equal. Pattern and energy travel without carrying rings to the wall. | Does not meet: The marked material travels to the far end with a crest. (error A).
 
@@ -40,7 +40,7 @@ Wrong: Wider peak spacing always makes waves taller. Error B: Treats amplitude a
 
 Answer: Replace the point arrow with local up/down motion. Repeated nearby positions support this. A separate rightward arrow shows pattern and energy.
 
-Look-fors: Correct local arrow. | Cite temporal positions beside a fixed mark; distinguish onward energy.
+Look-fors: Correct local arrow. | Cite temporal positions beside a fixed mark; distinguish onward energy. | Shape: correct one falsely assigned local arrow and justify it with temporal positions.
 
 Samples: Meets: Replace the point arrow with local up/down motion. Repeated nearby positions support this. A separate rightward arrow shows pattern and energy. | Does not meet: The marked material travels to the far end with a crest. (error A).
 

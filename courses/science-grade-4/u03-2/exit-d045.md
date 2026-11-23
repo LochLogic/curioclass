@@ -11,9 +11,7 @@ exit: half
 
 Name: ____________________
 
-![Invented observation stimulus](e45-fabric.svg)
-
-![Invented observation stimulus](e45-carts.svg)
+Use the separately supplied reserved observation card.
 
 [[s03-X45]]
 

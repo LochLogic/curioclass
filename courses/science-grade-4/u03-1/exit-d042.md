@@ -11,7 +11,7 @@ exit: half
 
 Name: ____________________
 
-![Invented observation stimulus](e42-frames.svg)
+Use the separately supplied reserved observation card.
 
 Frames run in time order from top to bottom.
 

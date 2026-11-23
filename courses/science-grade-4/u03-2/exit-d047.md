@@ -11,9 +11,7 @@ exit: half
 
 Name: ____________________
 
-![Invented observation stimulus](e47-frames.svg)
-
-![Invented observation stimulus](e47-fault.svg)
+Use the separately supplied reserved observation card.
 
 [[s03-X47]]
 

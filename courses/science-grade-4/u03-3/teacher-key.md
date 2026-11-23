@@ -14,7 +14,7 @@ Teacher only. Keep away from student sheets and displays. Read answers cold befo
 
 Answer: Research must check whether marks are distinguishable across the route and background. Sender and receiver need agreed meanings and reading order.
 
-Look-fors: Investigate the route before design. | Agree meanings/order; quiet success alone cannot settle noisy performance.
+Look-fors: Investigate the route before design. | Agree meanings/order; quiet success alone cannot settle noisy performance. | Shape: explain research need and decoding agreement from failed distant speech.
 
 Samples: Meets: Research must check whether marks are distinguishable across the route and background. Sender and receiver need agreed meanings and reading order. | Does not meet: Any receiver understands marks without a shared rule. (error E).
 
@@ -28,7 +28,7 @@ Wrong: Success in one condition proves success everywhere. Error D: Extends a cl
 
 Answer: For example: triangle WAIT/circle COME with blank gaps; one steady light WAIT/two displays COME with dark gaps. Both messages arrive correctly; only paper and one flashlight. Accept other feasible complete rules.
 
-Look-fors: Two distinct rules with both meanings and boundaries. | Label correct-reception criterion and listed-material limit.
+Look-fors: Two distinct rules with both meanings and boundaries. | Label correct-reception criterion and listed-material limit. | Shape: draw two complete two-message solutions with criterion and material limit.
 
 Samples: Meets: For example: triangle WAIT/circle COME with blank gaps; one steady light WAIT/two displays COME with dark gaps. Both messages arrive correctly; only paper and one flashlight. Accept other feasible complete rules. | Does not meet: Any receiver understands marks without a shared rule. (error E).
 
@@ -42,7 +42,7 @@ Wrong: The prettier system performs better. Error F: Substitutes appearance for 
 
 Answer: 1001.
 
-Look-fors: Top row 10, bottom row 01, giving 1001.
+Look-fors: Top row 10, bottom row 01, giving 1001. | Shape: encode an unseen two-by-two picture using explicit color and row rules.
 
 Samples: Meets: 1001. | Does not meet: Digits can be read in any order. (error E).
 
@@ -54,7 +54,7 @@ Wrong: Digits can be read in any order. Error E: Disregards agreed order.
 
 Answer: U retains its meanings and adds blank-card intervals between messages. V retains its meanings and adds agreed dark intervals between messages. Both ends share complete keys.
 
-Look-fors: Both systems retain complete meanings. | Blank/dark message boundaries differ from shorter within-message gaps.
+Look-fors: Both systems retain complete meanings. | Blank/dark message boundaries differ from shorter within-message gaps. | Shape: repair two boundaryless three-message systems with agreed keys.
 
 Samples: Meets: U retains its meanings and adds blank-card intervals between messages. V retains its meanings and adds agreed dark intervals between messages. Both ends share complete keys. | Does not meet: Any receiver understands marks without a shared rule. (error E).
 
@@ -94,7 +94,7 @@ Look-fors: First cell 1; second and third 0.
 
 Samples: Meets: 100. | Does not meet: Any receiver understands marks without a shared rule. (error E).
 
-Hand-back: written component feedback; retain in portfolio
+Hand-back: 49
 
 Wrong: Any receiver understands marks without a shared rule. Error E: Omits agreed meanings, order or boundaries.
 
@@ -106,7 +106,7 @@ Look-fors: Read 0, 1, 0 with stated meanings.
 
 Samples: Meets: White-black-white. | Does not meet: Any receiver understands marks without a shared rule. (error E).
 
-Hand-back: written component feedback; retain in portfolio
+Hand-back: 49
 
 Wrong: Any receiver understands marks without a shared rule. Error E: Omits agreed meanings, order or boundaries.
 
@@ -118,7 +118,7 @@ Look-fors: Correctly received digits still need a shared rule.
 
 Samples: Meets: Sound becomes ordered digits, is sent/received and decoded into sound with agreed rules. | Does not meet: Any receiver understands marks without a shared rule. (error E).
 
-Hand-back: written component feedback; retain in portfolio
+Hand-back: 49
 
 Wrong: Any receiver understands marks without a shared rule. Error E: Omits agreed meanings, order or boundaries.
 
