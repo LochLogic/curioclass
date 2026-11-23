@@ -1,14 +1,15 @@
 ---
-piece: blank
+piece: story
 course: social-studies-grade-4
 unit: 2.3
 version: draft, not yet taught
 credit: ours
 ---
-# Section 2.3 teacher keys
+# Section 2.3 teacher answer key
 
 Teacher only. Read before class; keep out of student packets.
 One scale: shown; shown with help; not yet seen. Access support is not content help.
+Paper and spoken components are recorded separately. Retained work is judged once.
 
 ## s02-X27
 
@@ -28,11 +29,11 @@ Samples, first shows evidence, second needs work: I will say inland because the 
 
 ## s02-X29
 
-Two stops supported by map. Replace one tram with three, citing depot list.
+The map supports two stops. The depot lists three trams, but does not say how many run. Replace the unsupported one-running claim with the listed count or say the running count is unknown.
 
-Look for: Supported strength and sourced repair.
+Look for: Supported two-stop strength from map; sourced repair distinguishing depot list from number running.
 
-Samples, first shows evidence, second needs work: Two stops fits the map; the depot lists three trams, so replace one with three. | It is good because it is short.
+Samples, first shows evidence, second needs work: The map supports two stops. The depot lists three trams; how many run is unknown. | Three trams must run because the depot lists three.
 
 ## s02-E7
 
@@ -44,11 +45,11 @@ Samples, first shows evidence, second needs work: A six-topic folder links findi
 
 ## s02-E8
 
-Supported finding naming source; relevant evidence-based reply. Thirty 45-second teacher-heard finding slots in 23 minutes. Paired replies: 45 seconds each within revision's last two minutes; retain question/reply slips. Same scale for private/signed/aided response.
+One supported revised finding naming its source; thirty teacher-heard 45-second slots in 23 minutes. Listener reply is judged separately from retained work in s02-E8b.
 
-Look for: Source-linked finding; relevant reply on retained slip.
+Look for: Source-linked finding, supported by a relevant detail.
 
-Samples, first shows evidence, second needs work: The office card names lawmakers' job; my reply points to that detail. | Best because I like it.
+Samples, first shows evidence, second needs work: My finding matches this detail in my source. | Best because I like it.
 
 ## s02-P27
 
@@ -68,7 +69,7 @@ Samples, first shows evidence, second needs work: My card explains courts' job. 
 
 ## s02-P29
 
-Criterion-linked order improvement; no accuracy rehearsal.
+Criterion-linked order improvement; no accuracy rehearsal. Retain as evidence for s02-E11; no separate practice score.
 
 Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
 
@@ -76,7 +77,7 @@ Samples, first shows evidence, second needs work: Put the city heading before it
 
 ## s02-P29b
 
-Relevant missing sourced detail, with topic.
+Relevant missing sourced detail, with topic. Retain as evidence for s02-E12; no separate practice score.
 
 Look for: Fresh component evidence; record support and next step.
 
@@ -92,8 +93,72 @@ Samples, first shows evidence, second needs work: Which source? The office card 
 
 ## s02-P29q
 
-Retained evidence for E8, scored once.
+Retained revised question/reply evidence for s02-E8b; no separate practice score.
 
-Look for: Fresh component evidence; record support and next step.
+Look for: Retain question, relevant reply and source; judge once through s02-E8b.
 
 Samples, first shows evidence, second needs work: This card supports the office's job. | I like it.
+
+## s02-P27-R
+
+Art-room stools only; not all school stools or every room.
+
+Look for: Names the recorded group, without extending its scope.
+
+Samples, first shows evidence, second needs work: Only stools in the art room. | All school stools.
+
+## s02-P27-S
+
+A traceable source detail supports that exact sentence; no title-only evidence.
+
+Look for: Sentence, source and relevant detail linked.
+
+Samples, first shows evidence, second needs work: My sentence matches the detail I marked in its source. | A source title proves everything.
+
+## s02-P28-R
+
+Opinion or preference; a liking without an agreed measure.
+
+Look for: Identifies preference; no factual proof from liking.
+
+Samples, first shows evidence, second needs work: An opinion about a shade. | A proven fact.
+
+## s02-P28-B
+
+Counts differ on different dates; this is not yet a same-date contradiction.
+
+Look for: Notices different counts and dates; neither count automatically false.
+
+Samples, first shows evidence, second needs work: The counts differ, but they describe different days. | One count must be false.
+
+## s02-P29-R
+
+Glue, within this chart only.
+
+Look for: Uses the supplied symbol meaning.
+
+Samples, first shows evidence, second needs work: Glue. | Any classroom supply.
+
+## s02-E8b
+
+The retained s02-P29q slip records a relevant listener question and a reply supported by a named source detail. Judge once.
+
+Look for: Relevant reply; source detail supports the reply.
+
+Samples, first shows evidence, second needs work: Which source supports that? This marked detail supports my answer. | My liking is enough.
+
+## s02-E11
+
+Use the retained s02-P29 slip: a specific, relevant order improvement grounded in the peer report; do not score twice.
+
+Look for: Names the order need; gives a relevant concrete suggestion.
+
+Samples, first shows evidence, second needs work: The suggestion identifies a specific place in the report and a useful change. | It is good because I like it.
+
+## s02-E12
+
+Use the retained s02-P29b slip: a specific, relevant missing detail improvement grounded in the peer report; do not score twice.
+
+Look for: Names the missing detail need; gives a relevant concrete suggestion.
+
+Samples, first shows evidence, second needs work: The suggestion identifies a specific place in the report and a useful change. | It is good because I like it.
