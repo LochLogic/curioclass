@@ -121,3 +121,13 @@ from_day,to_day,what,where,minutes,error,note
 19,20,s02-P19-repair,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
 19,20,s02-P19-model,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
 19,20,s02-P19-retry,Return and repair,0,,"When used, return the optional sunlight retry record with day 19 papers and descriptive feedback; no additional repair minutes. Preserve missing live evidence."
+20,21,s02-P20-repair,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+20,21,s02-P20-retry,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+21,22,s02-P21-repair,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+21,22,s02-P21-retry,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+22,23,s02-P22-repair,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+22,23,s02-P22-retry,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+22,23,s02-K22-1,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+23,24,s02-P23-repair,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+23,24,s02-P23-retry,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+23,24,s02-P23-model,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."

@@ -345,3 +345,18 @@ s02-F22,Calls the group with extras fewer.,,,I,Infer the letter only from observ
 s02-E22,Calls one equal group more because its squares are larger.,,,N,Infer the letter only from observed actions or heard words; record help separately.
 s02-M22,Leaves eight while explicitly saying it is the same as five.,,,I,Infer the letter only from observed actions or heard words; record help separately.
 s02-N22,Leaves five and calls it fewer than five.,,,I,Infer the letter only from observed actions or heard words; record help separately.
+s02-R23,Skips a word and its piece.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-M23,Keeps three and calls that more than five.,,,I,Infer the letter only from observed actions or heard words; record help separately.
+s02-N23,Leaves eight and calls it fewer than five.,,,I,Infer the letter only from observed actions or heard words; record help separately.
+s02-E23,Leaves eight and calls it the same as five.,,,I,Infer the letter only from observed actions or heard words; record help separately.
+s02-Gm23,Draws three and explicitly calls it more than five.,,,I,Infer the letter only from observed actions or heard words; record help separately.
+s02-Ge23,Draws five and explicitly calls it the same as eight.,,,I,Infer the letter only from observed actions or heard words; record help separately.
+s02-R24,Skips a word while omitting its piece.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-F24,Calls the group with extras fewer.,,,I,Infer the letter only from observed actions or heard words; record help separately.
+s02-K24,Omits a square during matching.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-C24,Omits one square during counting.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-D24,Omits one square during counting.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-E24,Chooses five has more because the pieces are bigger.,,,N,Infer the letter only from observed actions or heard words; record help separately.
+s02-P224,Leaves one square without a link or count mark.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-P20-2,Leaves one square without a linked mark.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-P22-1,Leaves an upper square without its partner.,,,K,Infer the letter only from observed actions or heard words; record help separately.

@@ -152,3 +152,17 @@ s02-P19-repair,"Dark looks warmer, so it must be warmer.",,,H,Substitutes appear
 s02-P19-1,The metal spoon makes warmth without receiving energy.,,,A,Treats metal as creating energy without input.
 s02-P19-model,I added metal makes energy from nothing.,,,A,Makes creation without an input the explanation.
 s02-P19-retry,The darker patch must be warmer regardless of readings.,,,H,Appearance substitutes for the actual temperature comparison.
+s02-P20-repair,The spoon creates energy.,,,A,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P20-retry,"The cloth looks warmer, so no reading is needed.",,,H,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P20-1,One terminal connection completes the path.,,,B,Cold-solved diagnostic; unrelated work gets a conference.
+s02-P21-repair,One terminal connection completes the path.,,,B,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P21-retry,"The cloth looks warmer, so no reading is needed.",,,H,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P21-1,One connection powers the buzzer.,,,B,Cold-solved diagnostic; unrelated work gets a conference.
+s02-P22-repair,One connection powers the buzzer.,,,B,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P22-retry,"The cloth looks warmer, so no reading is needed.",,,H,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-K22-1,The generator creates energy without input.,,,A,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P22-1,The open switch completes this single-gap loop.,,,x,Cold-solved diagnostic; unrelated work gets a conference.
+s02-P23-repair,An open gap completes this loop.,,,x,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P23-retry,"The cloth looks warmer, so no reading is needed.",,,H,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P23-model,The generator creates energy without input.,,,A,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P23-1,Lamp circuit: heat.,,,x,Names contact warming instead of current carrying energy through the complete cell-lamp circuit.
