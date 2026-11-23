@@ -89,9 +89,9 @@ s01-A38b-review,My first answer is best; nothing else matters.,,,M,Assign only f
 s01-A09-RF-purpose,He runs away because boys always do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A09-RF-phrasing,Observer: ignores question and sentence boundaries.,,,I,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A09-RF-confirm,Substitutes planted for scattered without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
-s01-A17-RF-purpose,He runs away because boys always do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A17-RF-purpose,Ben leaves without writing.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A17-RF-phrasing,Observer: ignores question and sentence boundaries.,,,I,Assign only for this demonstrated fault; missing work needs evidence.
-s01-A17-RF-confirm,Substitutes planted for scattered without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A17-RF-confirm,Says a quiet shuffle for a quick shuffle without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A27-RF-purpose,He runs away because boys always do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A27-RF-phrasing,Observer: ignores question and sentence boundaries.,,,I,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A27-RF-confirm,Substitutes planted for scattered without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
@@ -195,10 +195,10 @@ s01-P11-1,Mina worries about shelf height.,,,O,Use only for the actual fault sho
 s01-P11-2,Every third-person story hides all thoughts.,,,x,False universal claim about narrator access; does not by itself show narrator/author confusion.
 s01-P12-1,setting,,,D,Use only for the actual fault shown.
 s01-P12-2,I like lunch.,,,AI,Use only for the actual fault shown.
-s01-P14-1,Ben keeps a private poem.,,,O,Use only for the actual fault shown.
+s01-P14-1,Ben keeps private notes.,,,O,Use only for the actual fault shown.
 s01-P14-2,stuff,,,Q,Use only for the actual fault shown.
 s01-P15-1,My lunch is cold.,,,R,Use only for the actual fault shown.
-s01-P15-2,total disappearance of grief,,,C,Use only for the actual fault shown.
+s01-P15-2,total disappearance of grief,,,O,The claim invents an outcome; choosing a page does not erase grief.
 s01-P16-1,sign instructions,,,N,Use only for the actual fault shown.
 s01-P16-2,"revision, plan, draft, feedback",,,S,Use only for the actual fault shown.
 s01-P1-7,The notebook makes the noise.,,,O,Claimed event or referent is absent; separate from the decoding fault.
@@ -356,3 +356,27 @@ s01-P10-3,Leave the requested words unlocated as evidence-finder.,,,AK,Assign on
 s01-P10-7,Keep I like the story best in the summary.,,,C,Assign only the demonstrated component error.
 s01-P11-9,Mina takes his paper.,,,O,Diagnose only the demonstrated fault; unobserved work is not an error.
 s01-P12-9,Ben must be the real author because he says I.,,,F,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P14-3,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P14-4,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P14-5,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-K14-1,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-K14-2,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P14-6,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P14-7,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P15-3,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-K15-1,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-K15-2,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P15-4,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P15-5,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P16-3,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-R8,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-R9,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P16-4,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P16-5,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P16-6,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P16-7,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P17-1,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P17-2,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-X14,He likes games.,,,A,No located chalk detail supports this general claim.
+s01-X15,Puppets are my favorite.,,,C,Personal preference replaces a text-based explanation.
+s01-X15,She repairs the screen before the show.,,,O,Invents a repair; the screen is still folded for mending.

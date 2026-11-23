@@ -181,7 +181,7 @@ from_day,to_day,what,where,minutes,error,note
 48,49,s03-X48,Criteria,5,D,"Five-minute D move before criteria agreement, separate from E48 E Return slot."
 46,47,s03-T46-model,Portfolio,10,,"Written component feedback; second-color revision, originals preserved; no points until day 55."
 48,51,s03-P48-source; s03-P48-research,Return,2,,Source revisions share five minutes with proposals; E50 takes other five.
-50,51,s03-P50-proposals; s03-P50-encode; s03-P50-decode,Return,3,,Source/proposal revision total five minutes; preserve unresolved individual gaps.
+50,51,s03-P50-proposals; s03-P50-encode; s03-P50-decode; s03-P50-assemble,Return,3,,Source/proposal revision total five minutes; preserve unresolved individual gaps.
 53,54,s03-P53-compare,Return,5,F,Separate five-minute failure/change move; E53 C/D takes other five.
 53,54,s03-T53-alternatives; s03-T53-comparison; s03-T53-trials; s03-T53-improvement; s03-T53-encode; s03-T53-decode; s03-T53-voice,Portfolio,10,,"Written components then private revision, originals retained; first score day 55."
 51,52,s03-P51-log,Changed,0,,Return annotated quiet logs alongside new records; no added repair.
@@ -207,3 +207,4 @@ from_day,to_day,what,where,minutes,error,note
 43,44,s03-P43-source; s03-P43-receiver; s03-P43-signal,Return and repair,0,,Written component notes only; no additional repair minutes.
 44,45,s03-P44-travel,Return and repair,0,,Written component notes only; no additional repair minutes.
 45,46,s03-P45-energy,Return and repair,0,,Written component notes only; no additional repair minutes.
+48,49,s03-P48-return; s03-P48-design,Return,0,,Written component notes returned to everyone; no additional repair slot.

@@ -325,3 +325,6 @@ s03-P43-receiver,No evidence is given.,,,x,Missing evidence for the named claim.
 s03-P43-signal,No evidence is given.,,,x,Missing evidence for the named claim.
 s03-P44-travel,The marked material travels to the far end with a crest.,,,A,Confuses the named wave features or motions.
 s03-P45-energy,The marked material travels to the far end with a crest.,,,A,Confuses the named wave features or motions.
+s03-P48-return,The coil material travels to the far end.,,,A,Confuses local material motion and traveling pattern.
+s03-P48-design,The prettier system performs better.,,,F,Appearance is not a reception criterion.
+s03-P50-assemble,Any receiver understands marks without a shared rule.,,,E,Omits agreed meanings or boundaries.
