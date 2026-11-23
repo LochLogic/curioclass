@@ -1,0 +1,37 @@
+item_id,shown,compute,value,error,note
+s01-H1,No response yet.,,,x,Offer quiet handling time; this is not a counting diagnosis.
+s01-K1-1,Two words during one pass.,,,D,The second word has no new object action.
+s01-P1-1,One strip is left untouched.,,,A,One object was omitted.
+s01-P1-1,A strip is passed twice.,,,B,A counted object is revisited.
+s01-F1,Last square still untouched.,,,A,The omitted square still lacks a word.
+s01-X1,One button remains above the tray.,,,A,Observed omission; three of four were moved.
+s01-X1,One button returns and is counted again.,,,B,Observed repeat; a fifth word does not mean five buttons.
+s01-W2,Two words during the pass.,,,D,An extra word lacks another object.
+s01-H2,No response yet.,,,x,"Offer handling and a gesture choice, not a counting label."
+s01-K2-1,One block omitted.,,,A,A block receives no word.
+s01-P2-1,One piece is passed again.,,,B,Revisits a piece already counted.
+s01-F2,First square passed twice.,,,B,A repeat visit produces an extra count.
+s01-X2,One crayon untouched.,,,A,"Observed omission, one pictured object lacks a word."
+s01-X2,"One, two, five, seven on four distinct touches.",,,C,The words are not the standard sequence; the touches are one per picture.
+s01-W3,Two words during one pass.,,,D,A word has no separate action.
+s01-H3,No arrangement attempted yet.,,,x,Offer a gesture and quiet handling time; do not score frame structure.
+s01-K3-1,One counter skipped.,,,A,One object receives no word.
+s01-P3-1,"One, two, five, three, four on distinct passes.",,,C,Words are out of their standard order.
+s01-F3,"One, two, five, three, four.",,,C,The spoken sequence is out of order.
+s01-X3,One counter never placed.,,,A,An object is omitted from the count.
+s01-X3,"One, two during the first counter move.",,,D,Two words accompany one action.
+s01-W4,Two words on one touch.,,,D,An extra word lacks its own object action.
+s01-H4,No proposal yet.,,,x,Give quiet handling time and a gesture choice.
+s01-K4-1,A piece is counted twice.,,,B,A second visit adds an extra word.
+s01-P4-1,One piece absent from drawing and count.,,,A,"Observed omission, rather than drawing skill alone."
+s01-F4,Two words at the first square.,,,D,The second word has no new touch.
+s01-X4,One car unmarked and uncounted.,,,A,"Observed omission, one car receives no word."
+s01-X4,First car visited twice.,,,B,"Observed repeat, one car receives two counts."
+s01-W5,One piece counted twice.,,,B,Revisits an object.
+s01-H5,No choice yet.,,,x,Offer handling time and point to familiar materials.
+s01-K5-1,Says a total without indicating pieces.,,,x,The total supplies no observable pairing evidence.
+s01-P5-1,One piece omitted.,,,A,One object has no counting word.
+s01-P5-2,Because I like it.,,,x,Preference alone gives no tracking reason.
+s01-F5,Last square remains untouched.,,,A,An object is still omitted.
+s01-X5,Marks the left heap tray.,,,x,A hidden leaf edge makes tracking difficult; selection alone cannot diagnose error A.
+s01-X5,Marks the right overlapping tray.,,,x,Leaves cross a compartment edge; selection alone cannot diagnose error B.
