@@ -119,3 +119,80 @@ s01-P11-E,Citizen Potawatomi Nation has government only in the past.,,,F,"Card N
 s01-P11-E,Saskatchewan is a separate country.,,,E,The printed division label identifies a province within Canada.
 s01-X9,Nunavut is a province.,,,E,Nunavut is a territory; score this category separately.
 s01-X10,Barbados is a state.,,,E,Barbados is a Caribbean country; score this category separately.
+s01-P12-R,The county contains the state.,,,E,Accept equivalent supported wording. Accept the correction matching the assigned record; never put nation on the containment ladder.
+s01-P12-R,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P12-R,Cherokee Nation has no government today.,,,F,The printed reference describes present government.
+s01-P12-R,Every nation must be an independent country.,,,L,Self-government does not require independent-country status.
+s01-P12-1,Prime meridian is the only zero line.,,,P,Accept equivalent supported wording. Zero lines are equator and prime meridian.
+s01-P12-1,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-K12-1,"70 degrees west, 10 degrees north.",,,G,Accept equivalent supported wording. Follow A horizontally to its latitude label: 10 degrees north.
+s01-K12-1,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P12-2,"B: 80 degrees west, 30 degrees north.",,,G,Accept equivalent supported wording. Reads the two crossing lines for each existing star; preserves hemisphere and order.
+s01-P12-2,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P12-3,Latitude measures from the prime meridian.,,,P,Accept equivalent supported wording. Distinguishes direction a line runs from direction its number measures.
+s01-P12-3,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-X12,X placed using longitude as latitude.,,,G,"Accept equivalent supported wording. Marks the intersection, not a neighboring cell."
+s01-X12,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-X12,Uses prime meridian as the north/south zero line.,,,P,"Latitude starts at the equator, not the prime meridian."
+s01-P13-R,Latitude begins at prime meridian.,,,P,Accept equivalent supported wording. Corrects only the assigned order or zero-line error; no point pair is produced.
+s01-P13-R,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P13-1,A changes latitude; B changes longitude.,,,G,Accept equivalent supported wording. A runs along a parallel. B follows a meridian. No full point coordinates required.
+s01-P13-1,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P13-2,Horizontal lines are longitude.,,,G,"Accept equivalent supported wording. Uses direction measured, not the line direction alone; no ordered pair requested."
+s01-P13-2,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P13-3,Measure latitude east/west from prime meridian.,,,P,Accept equivalent supported wording. Repairs ordering and reference line without locating a point.
+s01-P13-3,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P13-4,A degree label is a kilometer distance.,,,x,"Accept equivalent supported wording. Explains degree labels with the general reference, not a supplied coordinate pair."
+s01-P13-5,The first label is whichever is larger.,,,G,Accept equivalent supported wording. Uses an accurate reference link. All children submit a written explanation; public talk optional.
+s01-P13-5,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-X13,"Y: 90 degrees west, 20 degrees north.",,,G,Accept equivalent supported wording. Reads Y latitude first with hemispheres.
+s01-X13,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-X13,Measures latitude north from prime meridian.,,,P,Latitude starts at the equator; a correctly placed Z is still credited separately.
+s01-P14-R,Longitude comes first.,,,G,Accept equivalent supported wording. Corrects assigned ordering or zero-line statement without reading or plotting an assessment point.
+s01-P14-R,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P14-1,Only the titles are evidence.,,,H,Accept equivalent supported wording. Identifies source-linked details and the inference linking them to the given claim.
+s01-P14-1,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P14-2,A and B are nice.,,,H,"Accept equivalent supported wording. Uses a relevant detail from A, identifies A and links it to the supplied claim."
+s01-P14-2,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P14-3,A marks Mississippi River.,,,I,Accept equivalent supported wording. Names B and its own relevant detail; does not repeat A evidence.
+s01-P14-3,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P14-4,It supports it because I wrote it.,,,H,Accept equivalent supported wording. Explains the link rather than repeating the detail alone.
+s01-P14-4,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-X14,They are useful because they have titles.,,,H,Accept equivalent supported wording. Makes a comparative claim with reasoning.
+s01-X14,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-X14,Walking Map shows paths and a pond; no Region Map detail.,,,I,A detail from each named map is required.
+s01-X14,Both maps show everything about the park.,,,N,Region Map omits paths; neither map establishes all human information.
+s01-A1a,4 is a desert.,,,Q,Accept equivalent supported wording. Scores each correctly located physical category separately. Index and title remain visible.
+s01-A1a,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A1b,The dotted boundary is the river.,,,A,"Accept equivalent supported wording. Links river identification to the printed solid-line key, not appearance alone."
+s01-A1b,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A1c,"North, because P is above Q.",,,B,Accept equivalent supported wording. Scores direction and arrow reasoning; accepts a correctly rotated compass drawing.
+s01-A1c,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A1d,3 kilometers.,,,C,Accept equivalent supported wording. Measures 3 centimeters.
+s01-A1d,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A1d,800 kilometers.,,,C,Counts one bar without the half bar.
+s01-A2a,Manitoba is an independent country.,,,E,Accept equivalent supported wording. Records each location and category separately; uses the map key and index.
+s01-A2a,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A2b,Dane is the country containing Wisconsin.,,,E,Accept equivalent supported wording. Scores all four place terms and the two definitions separately; accepts labelled arrows.
+s01-A2b,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A2c,"L: 110 degrees west, 30 degrees north.",,,G,Accept equivalent supported wording. Locates K at the intersection.
+s01-A2c,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A2c,Latitude is measured from prime meridian.,,,P,Wrong zero-line reference; do not infer this error from an unexplained misplaced point.
+s01-A2d,Every nation must be an independent country.,,,L,Accept equivalent supported wording. Uses card evidence for present government and distinguishes nation from state or independent country.
+s01-A2d,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A2d,Chickasaw Nation has no government today.,,,F,Card H describes elected officials and a court in the present.
+s01-A3a,"Library, park, lake.",,,O,"Accept equivalent supported wording. Scores a cultural location and an environmental relationship separately. Library, park and street are explicitly invented."
+s01-A3a,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A3b,Every view shows the same information.,,,D,"Accept equivalent supported wording. Uses each wider view for a visible nested location, not just a list."
+s01-A3b,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A3c,F shows every local street.,,,D,Accept equivalent supported wording. Chooses F for statewide planning and names a supported missing detail; it is not a driving-directions map.
+s01-A3c,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A4a,Maps show everything about every resident.,,,N,"Accept equivalent supported wording. Score claim, reasoning and supported limit once here, under D3.4."
+s01-A4a,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A4a,The maps are useful; no mapped evidence.,,,H,The claim has no evidence link.
+s01-A4a,No label means nobody lives there.,,,K,An omission does not establish absence of residents.
+s01-A4b,Two titles without a relevant detail from each.,,,I,Accept equivalent supported wording. Score source-linked evidence and the two links only. Do not award the claim twice.
+s01-A4b,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A4c,Only my question matters.,,,M,Accept equivalent supported wording. Another reader is named.
+s01-A4c,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A4c,Only one map use is possible.,,,J,A different supported question and reader are possible.

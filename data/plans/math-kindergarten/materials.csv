@@ -6,7 +6,7 @@ button exit card,1,1,classroom folder,student,
 cut-paper buttons,1,1,classroom folder,student,
 connecting cubes,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18,classroom folder,pair,
 counting mat,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18,classroom folder,pair,
-paper puppet,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18,classroom folder,room,
+paper puppet,1,1 6 7 8 9 10 11 12 13 14 15 16 17,classroom folder,room,
 paper squares,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18,classroom folder,room,
 class list,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18,classroom folder,room,
 paper shapes,2,2 5 6 7 8 9 10 11 12 13 14 15 16 17 18,classroom folder,student,
@@ -78,7 +78,7 @@ spoon exit card,12,12,classroom folder,student,Original master or retained paper
 day 11 plate-and-napkin papers,12,12,classroom folder,student,Original master or retained paper named on this day; cover reserved cases until the individual turn.
 crayon exit mat,13,13,classroom folder,student,Original master or retained paper named on this day; cover reserved cases until the individual turn.
 paper crayons,13,13,classroom folder,student,Original master or retained paper named on this day; cover reserved cases until the individual turn.
-covers,13,13,classroom folder,room,Original master or retained paper named on this day; cover reserved cases until the individual turn.
+covers,12,12 13 14 15 16 17,classroom folder,pair,Large paper scraps cover counted pieces or supplied places during a selected repair; five to ten per pair.
 day 12 spoon papers,13,13,classroom folder,student,Original master or retained paper named on this day; cover reserved cases until the individual turn.
 cork exit card,14,14,classroom folder,student,Original master or retained paper named on this day; cover reserved cases until the individual turn.
 day 13 crayon papers,14,14,classroom folder,student,Original master or retained paper named on this day; cover reserved cases until the individual turn.
@@ -93,5 +93,5 @@ stack exit mat,17,17,classroom folder,student,Original master or retained paper 
 paper blocks,17,17,classroom folder,student,Original master or retained paper named on this day; cover reserved cases until the individual turn.
 day 16 animal papers,17,17,classroom folder,student,Original master or retained paper named on this day; cover reserved cases until the individual turn.
 check paper,18,18,classroom folder,student,Original master or retained paper named on this day; cover reserved cases until the individual turn.
-retained records,18,17 18,classroom folder,room,Original master or retained paper named on this day; cover reserved cases until the individual turn.
+retained records,15,17 18,classroom folder,room,Original master or retained paper named on this day; cover reserved cases until the individual turn.
 familiar center papers,18,18,classroom folder,student,Original master or retained paper named on this day; cover reserved cases until the individual turn.

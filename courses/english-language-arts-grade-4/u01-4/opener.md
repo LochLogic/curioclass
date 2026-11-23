@@ -19,6 +19,8 @@ and closes on the explanation. Inspect one weakness in a fictional display-sign 
 Do not demonstrate a complete inspiration paragraph or judge the child's own parallel draft.
 
 Use sign-inspection.md, choice-cards.md, pattern-probe.md and writing-feedback.md.
+Day 15 hears the remaining day 10 shell-source turns, children 13 to 24,
+in nine Independent reading minutes instead of optional conferences.
 Keep pattern-key.md and the choice/exit keys teacher-only. The sign model is removed
 before day 17. The earlier checkpoint entries are reserved for assessments and individual correction,
 not preparation cards for the new paragraph task. On day 16 use different taught entries for unjudged plans.

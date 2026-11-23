@@ -27,7 +27,9 @@ Role samples: children 1 to 6 on day 1, 7 to 12 on day 4,
 13 to 18 on day 8, 19 to 24 on day 10, 25 to 30 on day 12.
 Each linked exchange takes two minutes. Give dated written component feedback.
 Day 10's exit samples children 25 to 30 at 45 seconds each.
-Others' exit-specific oral evidence reaches day 13's existing window.
+Hear children 1 to 12 on day 11 and 13 to 24 on day 15.
+Each window uses nine Independent reading minutes, replacing optional conferences.
+Use the actual retained shell source and notes, then give private written feedback.
 Paper notes cannot prove speech. Retain actual question, answer, role, linked comment and reflection separately.
 
 D13c: six groups of five minutes; five 45-second contributions leave 75 seconds

@@ -19,7 +19,8 @@ Day 8 reads the three whole taught tellings and scene. Perform the exact on-file
 reading and stage the printed directions. Teacher-operated paper figures replace missing audio.
 Use only floor-level seating and soft taps; nobody must act. The transcript alone cannot prove performance.
 
-Use choice-cards.md, the carried log/roles/wall, and separate complete reading copies.
+Use choice-cards.md, feature-labels.md, meaning-feedback.md, the carried log/roles/wall,
+and separate complete reading copies. Print only the current day of each sheet.
 Keep choice-key.md and exit-key.md teacher-only. Half slips hold two day 6 comparison items;
 its third judged paper item is the student-page Exit box. Return it with the other work.
 

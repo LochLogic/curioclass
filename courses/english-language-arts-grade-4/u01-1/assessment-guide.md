@@ -35,8 +35,11 @@ and the complete reserved The Lunch Table from g4-u1-01. Number that story's thr
 at the starts The folded, Lend a hand, and Before I lifted, without changing the wording.
 Day 36: use Two Ways to Find a Poem, g4-u1-tw, whole. It replaces the old biography check.
 
-The Lunch Table's lunch/napkin context potentially overlaps a lower-grade case. The reviewer must
-compare the actual cases before release. Do not silently substitute another registered taught text.
+The lower-grade lunch/napkin ledger note differs from its current day 5 item,
+which uses a loud truck and a quiet bench. This unit's table-setting story tests
+figurative and conventional meanings in a different whole case. Keep it reserved.
+The day 3 fallen-tower exit was replaced with the original paint-and-cloth poem
+to avoid the lower-grade fallen-tower assessment case.
 Original exit companions and the sign model still need their own shared text-register rows.
 Their exact copy is in the scoped shared pieces; do not misattribute them to the anchor.
 No alternate core text is invented by a day writer.
@@ -84,3 +87,32 @@ s01-A36-RF-purpose; s01-A36-RF-phrasing; s01-A36-RF-confirm; s01-A36b-topic; s01
 ## Day 38 data
 
 s01-A38b-prep; s01-A38b-turn; s01-A38b-role; s01-A38b-question; s01-A38b-answer; s01-A38b-link; s01-A38b-review; s01-A38a-report; s01-A38a-pace; s01-A38a-clear; s01-A38a-visual; s01-A38c.
+
+## Data handoff for the answer-key read
+
+The unit is ready for the answer-key read. Day release still needs these shared text records:
+`g4-u1-x02`, `g4-u1-x03`, `g4-u1-x04`, `g4-u1-x05`, `g4-u1-x06`, `g4-u1-x07`,
+`g4-u1-x08`, `g4-u1-x10`, `g4-u1-x11`, `g4-u1-x12`, `g4-u1-x14`, `g4-u1-x15`,
+`g4-u1-x16` and `g4-u1-sign`. Exit stimuli remain exactly in items.csv and their scoped cards.
+The sign is in u01-4/sign-inspection.md. The shared text registry was not edited.
+
+Text-owner point: March 4 says Dad moved the chair. January 9/13 instead says Dad
+moved the bowl and Ben moved his chair. Avoid requiring the conflicting actor claim.
+The core manuscript is outside this data job's edit scope.
+
+The sentence-length check found no item stem sentence above fifteen words.
+Each end-bearing day reserves an assess value; every exit and end component has
+look-fors, samples and separately lettered wrong answers. Student practice sheets
+contain no literal reserved checkpoint, probe or final-reading case.
+
+The unit-plan gate reports four observation-table failures in the immutable unit plan:
+day 7 lacks numbered RL.4.4 and RF.4.3a rows; day 29 lacks the same two rows.
+The observation gate expects every teaching code on those days in the numbered table,
+although only a retained component is being collected. Preserve the teaching codes.
+The required plan filter cannot run without awk. The lesson gate cannot import markdown.
+The runner must run those gates in its configured environment.
+
+No factual claim was cut for want of an opened source. No browser checks remain.
+No readiness sheet is needed: this unit specifies retrieval rather than readiness.
+All original practice pieces use separate taught cases. Half-sheet exits and the
+separate Exit boxes retain their own receiving-day hand-back rows.

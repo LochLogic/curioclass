@@ -30,7 +30,7 @@ s01-P3-4,Keep the invented teacher command to share.,,,O,Observed response misse
 s01-P3-5,A private family experience must be shared.,,,x,Observed response misses this task: A dated private notice or labeled sketch; unjudged folder work.
 s01-P3-6,Skips a syllable in magnetic.,,,H,"Observed response misses this task: Ben says he should have asked, will not use the entry, and Leila need not help. Decode mag/net/ic completely; reread with meaning. Record actual reading and support, diagnostic only."
 s01-P3-7,mu has a short u; bas is an open syllable.,,,H,Observed response misses this task: mu/sic begins with an open syllable; bas/ket uses closed syllables. Compare every letter in notebook and correct any mismatch.
-s01-X03,Happy because everyone loves building.,,,A,Observed response misses this task: Frustration or disappointment supported by staring or pushing the plan away. The tower falls; the builder reconsiders the plan and makes a wider base. Accept other supported initial feelings.
+s01-X03,Happy because everyone loves painting.,,,A,A general claim about painters does not use a poem detail.
 s01-P4-1,Eager to perform for everyone.,,,A,Observed response misses this task: Unsure about sharing matches his hands holding still; eager to perform conflicts with the action.
 s01-K4-1,white / chickens divides a single word.,,,E,Observed response misses this task: wheel / barrow or rain / water are breaks dividing compound words. Preserve printed line endings.
 s01-P4-2,green and yellow.,,,x,Observed response misses this task: red and white. These words contribute visible color; do not add an unprinted load or setting.
@@ -46,7 +46,7 @@ s01-P4-10,Adds an invented detail absent from the chosen text.,,,x,Misses the lo
 s01-X04,Only short print makes it a poem.,,,E,"Observed response misses this task: Tap and drip suggest repeated striking sounds, such as rain on the lid and gutter. Their repeated three-part pattern creates a beat. Sings and rings suggest sounds, not literal voices. Accept other supported sound interpretations."
 s01-X04,The lid has a singing mouth.,,,Y,Treats the figurative sound description as a literal voice.
 s01-P4-X1,Every line must be read with the same long pause.,,,E,Imposes one pause rule without connecting a specific ending to its effect.
-s01-X03b,I like towers.,,,C,Assign only for this demonstrated fault; missing work needs evidence.
+s01-X03b,I like painting.,,,C,A personal preference replaces the event sequence.
 s01-X05,The boy copies a real tree into his room.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
 s01-X06,They sail a real island.,,,Y,Assign only for this demonstrated fault; missing work needs evidence.
 s01-X06b,The coats carry real sailors.,,,Y,Assign only for this demonstrated fault; missing work needs evidence.
@@ -113,9 +113,9 @@ s01-A17-close,Trucks are best.,,,R,Assign only for this demonstrated fault; miss
 s01-A17-audience,Unintroduced scraps leave the reader guessing.,,,N,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A17-evidence,His teacher ordered a prize-winning poem.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A27-topic,Seeds. Mountains.,,,AE,Assign only for this demonstrated fault; missing work needs evidence.
-s01-A27-groups,Disconnected facts copied in any order.,,,N,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-groups,Life facts and poem details are scattered without grouping.,,,N,The essay needs related details grouped by aspect.
 s01-A27-develop,A patient ordered Williams to write the poem.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
-s01-A27-links,"Mina dislikes the line, so Ben volunteers.",,,P,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-links,He worked as a doctor because the poem has short lines.,,,P,The sentence invents a causal relationship between career choice and line length.
 s01-A27-precise,Things do things.,,,Q,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A27-close,Trucks are best.,,,R,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A27-audience,Unintroduced scraps leave the reader guessing.,,,N,Assign only for this demonstrated fault; missing work needs evidence.
@@ -132,9 +132,9 @@ s01-A27-quote-marks,"Williams begins, ""so much depends; the thought continues."
 s01-A27-reference,I guessed inspirashun without checking.,,,X,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A27-spelling,I checked but kept inspirashun.,,,AL,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A36b-topic,Seeds. Mountains.,,,AE,Assign only for this demonstrated fault; missing work needs evidence.
-s01-A36b-groups,Disconnected facts copied in any order.,,,N,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-groups,Life facts and poem details are scattered without grouping.,,,N,The essay needs related details grouped by aspect.
 s01-A36b-develop,A patient ordered Williams to write the poem.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
-s01-A36b-links,"Mina dislikes the line, so Ben volunteers.",,,P,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-links,He worked as a doctor because the poem has short lines.,,,P,The sentence invents a causal relationship between career choice and line length.
 s01-A36b-precise,Things do things.,,,Q,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A36b-close,Trucks are best.,,,R,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A36b-audience,Unintroduced scraps leave the reader guessing.,,,N,Assign only for this demonstrated fault; missing work needs evidence.

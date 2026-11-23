@@ -25,7 +25,6 @@ from_day,to_day,what,where,minutes,error,note
 8,9,revised s01-A07-meaning,Feedback,0,,Finalize after revision; return privately with feedback.
 9,10,s01-A09a-action s01-A09a-infer s01-A09b-theme s01-A09b-summary s01-A09c s01-A09d,Return,10,A,"Five minutes targeted teaching on another taught case, five independent revision. X08 shares this route. Score after class day 11."
 11,12,finalized day 9 written assessment,Opening,0,,Return finalized revised work with existing papers; no additional repair.
-10,13,s01-X10 unheard oral components,Discussion,0,,Hear missing children 1 to 24 only within the planned six five-minute groups. Children 25 to 30 already sampled. Never infer speech from paper.
 1,12,"actual role record, written feedback and role notes",Choice,0,,Revise preparation from dated written feedback; keep earlier actual question/answer/role evidence. No extra full performance.
 4,12,"actual role record, written feedback and role notes",Choice,0,,Revise preparation from dated written feedback; keep earlier actual question/answer/role evidence. No extra full performance.
 8,12,"actual role record, written feedback and role notes",Choice,0,,Revise preparation from dated written feedback; keep earlier actual question/answer/role evidence. No extra full performance.
@@ -71,3 +70,7 @@ from_day,to_day,what,where,minutes,error,note
 29,30,s01-A29-word oral decoding and word-part feedback,Word,0,H,"Correction/extension uses existing ten-minute Word work, no extra screen. Remaining oral samples only in existing rotations."
 5,6,s01-P5-3 s01-K5-1 s01-P5-4 s01-P5-5 s01-P5-6 s01-P5-7 s01-P5-8,Opening,0,,Return inspected practice with existing papers. Private notebook drafts stay unjudged in folders; no extra repair time.
 6,7,s01-P6-4 s01-K6-1 s01-P6-5 s01-P6-6 s01-P6-7 s01-P6-8 s01-P6-9 s01-P6-10,Opening,0,,Return inspected practice with existing papers. Private notebook drafts stay unjudged in folders; no extra repair time.
+10,11,s01-X10 unheard oral components,Independent,9,,"Actual shell-source exit turns for children 1 to 12, 45 seconds each. Replace optional missing-component conferences, never add them. Use retained preparation; record speech separately from paper and return private written feedback."
+10,15,s01-X10 unheard oral components,Independent,9,,"Actual shell-source exit turns for children 13 to 24, 45 seconds each. Replace optional missing-component conferences, never add them. Use retained preparation; record speech separately from paper and return private written feedback."
+3,4,s01-X03b,Opening,0,C,Return with s01-X03. One common repair only; summary needs share the existing Choice workshop group.
+19,20,finalized s01-A17 paragraph,Opening,0,,Return the retained paragraph after day 19 judgment; no new sitting.

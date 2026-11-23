@@ -96,8 +96,8 @@ s01-N11,Skips a counting word,,,C,Standard order not followed.
 s01-X11,Takes all eight because the pile looks sufficient,,,E,Appearance replaces choosing one per place.
 s01-X11,Supplies one plate twice and leaves another empty,,,B,A plate was revisited.
 s01-X11,Other unexplained incorrect selection,,,x,A wrong quantity alone cannot diagnose the action.
-s01-W12,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
-s01-W12,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-W12,Leaves one place unchecked.,,,x,This matching retrieval does not ask for number words; do not infer a counting error.
+s01-W12,Checks an already checked pair again.,,,x,This matching retrieval does not ask for number words; do not infer a counting error.
 s01-N12,"One, two, five, three.",,,C,Assign this letter only when the action is observed; a total alone does not diagnose it.
 s01-K12,Two words during one move.,,,D,Assign this letter only when the action is observed; a total alone does not diagnose it.
 s01-F12,Leaves the last square untouched.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
@@ -126,8 +126,6 @@ s01-P14,One object receives no action.,,,A,Assign this letter only when the acti
 s01-P14,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
 s01-X14,Skips a cork and stops at seven.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
 s01-X14,Revisits a cork and stops at nine.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
-s01-W15,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
-s01-W15,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
 s01-N15,"One, two, five, three.",,,C,Assign this letter only when the action is observed; a total alone does not diagnose it.
 s01-K15,Says five but leaves the omitted square untouched.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
 s01-Q15,"Only says five, with no corrected action.",,,x,Assign this letter only when the action is observed; a total alone does not diagnose it.
@@ -165,3 +163,4 @@ s01-P17,An object is counted again.,,,B,Assign this letter only when the action 
 s01-X17,Leaves one piece unused while counting.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
 s01-X17,Says two words while adding one piece.,,,D,Assign this letter only when the action is observed; a total alone does not diagnose it.
 s01-Q14-10,No amount connected to the count.,,,x,"Descriptive response only, not cardinality evidence."
+s01-W15,No amount connected to the count.,,,x,Descriptive last-word conversation only; do not assign an omission from a total alone.

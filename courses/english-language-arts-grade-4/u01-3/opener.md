@@ -17,11 +17,13 @@ First and third person name a telling relation, not a rule that all third-person
 lack thoughts. Check what each actual telling makes available. A connected character description
 uses thoughts, words and actions with setting and a turning event, rather than an isolated trait.
 
-Use choice-cards.md and role-feedback.md with the carried log, moves chart and story map.
+Use choice-cards.md, source-labels.md and role-feedback.md with the carried log, moves chart and story map.
 Withdraw filled maps for independent writing. Keep answer keys separate.
 Day 10 uses ten Return and repair minutes for the earlier written check, not another Opening group.
 Teacher hears children 19 to 24 in twelve Choice workshop minutes, then six different
-children at forty-five seconds each in the exit. Paper accounts never prove unheard speech.
+children at forty-five seconds each in the exit. Paper accounts never prove unheard speech. Hear the same shell-source turns
+for children 1 to 12 on day 11 and 13 to 24 on day 15.
+Each window replaces optional conferences in nine Independent reading minutes.
 Day 12 revises written role feedback; its linked exchanges reach children 25 to 30 in twelve minutes.
 
 Day 13 first reads the new checkpoint entry. It compares a familiar baseline without claiming
