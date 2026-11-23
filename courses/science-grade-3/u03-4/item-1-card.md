@@ -10,7 +10,7 @@ credit: ours
 
 Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children.
 
-Read aloud. This is diagnostic. The scored work is the revised portfolio record 1.
+Read aloud. This is scored work, done alone.
 
 ## The records
 

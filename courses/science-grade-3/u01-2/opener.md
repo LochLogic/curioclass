@@ -10,7 +10,7 @@ credit: ours
 
 ## What the section does
 
-Five days, 6 to 10. The class asks: "Will our explanation work in another test, and what repeats?" On day 6 groups learn the three features of a push and plan a test that changes one of them. On day 7 each child carries out the test and records it. That record is first-teaching work. It gets written feedback, is revised on day 8, and is scored on day 15. Day 8 draws two arrows on the pendulum washer and revises the swing drawing. Day 9 records ten turns of the pendulum in a position table. Day 10 practices reading the table and ends with the section exit ticket.
+Five days, 6 to 10. The class asks: "Will our explanation work in another test, and what repeats?" On day 6 groups learn the three features of a push and plan a test that changes one of them. On day 7 each child carries out the test and records it. That record is first-teaching work. It gets a look-for checklist and one question stamp, is revised on day 8, and gets a repair mark on day 15, beside the score of the fresh day 15 work. Day 8 draws two arrows on the pendulum washer and revises the swing drawing. Day 9 records ten turns of the pendulum in a position table. Day 10 practices reading the table and ends with the section exit ticket.
 
 ## How the days run
 

@@ -22,7 +22,7 @@ Five days, 113 to 117. The big question is: "What weather can we expect here, an
 
 ## Scoring, outside class
 
-Day 115 and day 116 hold fresh diagnostics: 20 minutes each on day 115, 30 minutes on day 116, unscored. The scored work is the revised product W and the revised product C (after day 115) and the revised product H (after day 116). Eighteen points in all, one for each component. Score each point 1 when the component is complete and 0 when it is not. An unseen component is blank, not zero. Repairs happen in teaching slots only: day 113, then day 117. Never on days 115 and 116.
+Day 115 and day 116 hold the scored fresh work: 20 minutes each on day 115, 30 minutes on day 116. Day 115 scores the W and C components, day 116 the H components. The revised products W, C and H are recorded beside the score as a repair mark, not the score. Feedback is a six-tick checklist and one question stamp, about 1 minute a child. Day 117 hands back the checklists; the scored papers come back on day 120. Eighteen points in all, one for each component. Score each point 1 when the component is complete and 0 when it is not. An unseen component is blank, not zero. Repairs happen in teaching slots only: day 113, then day 117. Never on days 115 and 116.
 
 ## The errors, in plain words
 

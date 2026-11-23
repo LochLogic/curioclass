@@ -27,8 +27,8 @@ Each day is 45 minutes. Days 82, 83, 85 and 86 hold the 5-minute weather record.
 - **Older and younger only.** Deeper is older only when the layers are undisturbed. No dates and no numbers of years.
 - **Deep time is stated plainly.** Land can change very slowly over ages that no one watched.
 - **The Svalbard trunks.** The standing trunks grew when that land was warm and near the equator. The land has since moved. Do not say it was always Arctic. Do not teach why it moved.
-- **If a child asks about belief or age,** answer with what the evidence shows. Nobody is asked for a belief.
-- **Scoring product F.** Six points, one for each complete component. Feedback is written after class. Revision is day 93.
+- **If a child asks about belief or age,** answer plainly with what the evidence shows. If a child says their family sees it differently, say: "People bring different ideas. In science class we look at what the rocks and fossils show." Do not argue; nobody is asked for a belief.
+- **Product F.** Six look-fors. After class, a six-tick checklist and one question stamp, about 1 minute a child. Revision is day 93: one change for each look-for marked not yet. It earns a repair mark beside the day 95 score, not the score.
 
 ## The errors, in plain words
 

@@ -10,7 +10,7 @@ credit: ours
 
 Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children.
 
-Read aloud. This is diagnostic. The scored work is the revised portfolio record 2. Intervals are the differences between recorded days.
+Read aloud. This is scored work, done alone. Intervals are the differences between recorded days.
 
 ## Zinnia Z
 

@@ -6,7 +6,7 @@ version: draft
 credit: ours
 ---
 
-# Item C fresh card (day 115, diagnostic, unscored)
+# Item C fresh card (day 115, scored)
 
 Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children.
 

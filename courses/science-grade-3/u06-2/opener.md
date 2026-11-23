@@ -23,7 +23,7 @@ Five days, 103 to 107. The big question is: "Does this year's log describe our t
 
 ## Scoring, outside class
 
-Product C (day 106) is revised on day 107 and scored after day 115. Six points. It is never scored on its production or revision day. Day 106 has no exit.
+Product C (day 106) gets a six-tick checklist and one question stamp, about 1 minute a child, and is revised on day 107. The six points come from day 115's fresh work; revised C is recorded beside them as a repair mark, not the score. Day 106 has no exit.
 
 ## The errors, in plain words
 

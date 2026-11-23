@@ -28,7 +28,7 @@ The adult alone places the house, plugs in and runs the fan on low, with the gua
 
 ## Scoring, outside class
 
-Product H (day 112) is revised on day 113 and scored after day 116. Six points. It is never scored on its production or revision day.
+Product H (day 112) gets a six-tick checklist and one question stamp, about 1 minute a child, and is revised on day 113. The six points come from day 116's fresh work; revised H is recorded beside them as a repair mark, not the score.
 
 ## The errors, in plain words
 

@@ -8,33 +8,35 @@ credit: ours
 
 # Score sheet, unit 6, 18 points
 
-Scored outside class, after day 115 and after day 116. Score the revised products only. A blank component is unscored.
+Scored outside class, after day 115 and after day 116, from the fresh check-day work. A blank component is unscored. Tick the same six look-fors on each child's checklist, about 1 minute a child.
 
-## Product W (after day 115), 6 points
+Repair mark, not the score: beside each point, mark the revised earlier product (W, C or H) shown or not yet for the same component.
 
-1. Puts the four supplied average temperatures in a labeled table, in season order.
+## Day 115 Ridge records (product W components), 6 points
+
+1. Puts the four supplied average temperatures, 16, 26, 32 and 20, in a labeled table, in season order.
 2. Puts the days with rain or snow and the usual winds in the table.
-3. Draws bars at 10, 4, 2 and 8.
-4. Labels both sides and states and uses the scale of 2.
+3. Draws bars at 6, 8, 2 and 4.
+4. Labels both sides and states and uses a scale.
 5. Uses temperature, rain and wind together to compare two seasons.
 6. Qualifies the expectation: usually, and one day can differ.
 
-## Product C (after day 115), 6 points
+## Day 115 cards for M and N (product C components), 6 points
 
 7. Gathers evidence from both the atlas card and the station card, each named.
-8. Describes P using both sources.
-9. Describes Q using both sources.
-10. Compares P and Q with the evidence.
+8. Describes M using both sources.
+9. Describes N using both sources.
+10. Compares M and N with the evidence.
 11. Shows year-to-year change with the selected years.
 12. Keeps one day's weather apart from climate.
 
-## Product H (after day 116), 6 points
+## Day 116 wind screen (product H components), 6 points
 
-13. Makes a claim linked to the goal of at most two wet counters.
-14. Uses the repeated counts with and without the doorway.
-15. Checks the cost against the 11-token limit.
-16. Checks the step-free entrance limit.
-17. Ties blocked water to less harm, with the rain still falling.
-18. Names heavier rain as untested, with no claim that storms stop.
+13. Makes a merit claim for the screen.
+14. Uses the repeated counts with and without the screen.
+15. Checks the cost against the 13-token limit.
+16. Checks the goal of at least 7 of 9 markers in every trial.
+17. Ties less wind reaching the markers to less harm, with the wind still blowing.
+18. Names one thing not tested, such as stronger winds, with no claim that storms stop.
 
-Each point is 1 when complete and 0 when not.
+Each point is 1 when complete and 0 when not. The repair mark never changes the score.

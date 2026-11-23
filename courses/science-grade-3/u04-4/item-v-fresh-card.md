@@ -10,7 +10,7 @@ credit: ours
 
 Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children.
 
-Read aloud. This is diagnostic. The scored work is the revised day 68 item V.
+Read aloud. This is the scored work. The revised day 68 item V is marked beside it as repair evidence.
 
 ## Plant record
 

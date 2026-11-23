@@ -10,7 +10,7 @@ credit: ours
 
 Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children.
 
-Read aloud. Twelve minutes, alone. This is scored after day 77 from the revised work.
+Read aloud. Twelve minutes, alone. The revision is marked as repair evidence after day 77; the day 77 fresh card is scored.
 
 ## Garden pond card
 

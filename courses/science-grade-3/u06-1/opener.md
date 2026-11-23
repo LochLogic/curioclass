@@ -24,7 +24,7 @@ Five days, 98 to 102. The big question is: "What weather can we expect here?" Da
 
 ## Scoring, outside class
 
-Product W (day 101) is revised on day 102 and scored after day 115. Six points, one for each component. It is never scored on its production day or its revision day. Day 101 has no exit.
+Product W (day 101) gets a six-tick checklist and one question stamp, about 1 minute a child, and is revised on day 102. The six points come from day 115's fresh work on the same components; revised W is recorded beside them as a repair mark, not the score. Day 101 has no exit.
 
 ## The errors, in plain words
 

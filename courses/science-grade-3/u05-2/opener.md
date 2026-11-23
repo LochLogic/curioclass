@@ -19,7 +19,7 @@ Five days, 87 to 91. The big question is: "When a place changes, what happens to
 - **A trial record is a model.** The cards are invented for practice. A result covers only the marked model animals, not every animal.
 - **Research informs the design.** What the animals need is found out first. A fish ladder is a staircase of small pools. Mechanism only.
 - **No graphic harm.** An animal that dies is told plainly, with no picture of it.
-- **Scoring product S.** Six points, one for each complete component. Feedback is written after class. Revision is day 94.
+- **Product S.** Six look-fors. After class, a six-tick checklist and one question stamp, about 1 minute a child. Revision is day 94: one change for each look-for marked not yet. It earns a repair mark beside the day 96 score, not the score.
 
 ## The errors, in plain words
 

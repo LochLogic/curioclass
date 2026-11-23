@@ -6,7 +6,7 @@ version: draft
 credit: ours
 ---
 
-# Item S fresh card (day 96, diagnostic, unscored)
+# Item S fresh card (day 96, the scored check)
 
 Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children.
 

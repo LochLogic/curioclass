@@ -6,7 +6,7 @@ version: draft
 credit: ours
 ---
 
-# Product S card (day 91, revised on day 94)
+# Product S card (day 91, revised on day 94, a repair mark)
 
 Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children.
 

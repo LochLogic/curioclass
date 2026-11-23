@@ -10,7 +10,7 @@ credit: ours
 
 ## What the section does
 
-Five days, 29 to 33. Day 29 builds the class's consensus model and the second pollination slot, and each child writes two records: an interaction record and a lid record. Day 30 returns feedback, and every child revises both records. The class also critiques a new statement and judges two proposals. Days 31 and 32 are the checks. They use fresh cases, and none of their records are scored. Day 31 asks questions about a comb-and-tissue arrangement and magnet evidence cards. Day 32 defines a problem for two toy cars. The scores come from the revised day 29 records. Day 33 reteaches the two most common wrong ideas and closes the unit.
+Five days, 29 to 33. Day 29 builds the class's consensus model and the second pollination slot, and each child writes two records: an interaction record and a lid record. Day 30 returns a checklist on each record, and every child revises both records. The class also critiques a new statement and judges two proposals. Days 31 and 32 are the checks. They use fresh cases, and their records are scored. Day 31 asks questions about a comb-and-tissue arrangement and magnet evidence cards. Day 32 defines a problem for two toy cars. The revised day 29 records are marked beside the scores as repair evidence, not the score. Day 33 reteaches the two most common wrong ideas and closes the unit.
 
 ## How the days run
 
@@ -31,7 +31,7 @@ Each day is 45 minutes. Days 29, 30 and 33 start with the weather record. Days 3
 
 ## Scoring
 
-Fifteen points from the revised day 29 records. Items 1 to 3 (7 points, the last a ruler reading) are the interaction record. Items 4 to 6 (8 points) are the lid record. Score 2 when met alone, 1 with a prompt, 0 when not met, blank when not seen. A record with no feedback and revision is unscored, never zero.
+Fifteen points from the fresh check-day work. Items 1 to 3 (7 points, the last a ruler reading) are the day 31 question sheet. Items 4 to 6 (8 points) are the day 32 toy cars statement. Score 1 for each component met, 0 when not met, blank when not seen. Beside each score, mark the revised day 29 record shown or not yet for each component: repair evidence, never the score. Feedback is a six-tick checklist with one question stamp, about 1 minute a child. Day 33 returns the checklists; the scored papers come back on day 36.
 
 ## Supplies
 

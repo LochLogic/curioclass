@@ -8,23 +8,23 @@ credit: ours
 
 # Score sheet, 12 points (days 75 to 77)
 
-Score the revised products, outside lesson minutes. Award a point only when its complete look-for is there. Fresh work from days 75 to 77 is diagnostic and is not added.
+Score the fresh work from days 75 to 77, outside lesson minutes. Award a point only when its complete look-for is there. In the repair column, mark the same component in the revised earlier item: S (shown) or N (not yet). The repair mark is not the score and is never added.
 
-| Item | Look-for | End item | Point |
-|---|---|---|---|
-| V | A root and survival explanation that uses eight against three | End 1 | 0 or 1 |
-| V | A plume and mates explanation that uses seven against two | End 2 | 0 or 1 |
-| V | A link to young that uses six against one from the separate record | End 3 | 0 or 1 |
-| V | Model arrows from each difference to its outcome that do not promise success | End 4 | 0 or 1 |
-| G | A food link supported by eight against four | End 5 | 0 or 1 |
-| G | A protection link supported by the call and the retreat | End 6 | 0 or 1 |
-| G | A cold wind link supported by the huddle | End 7 | 0 or 1 |
-| G | A comparison of the small group and its jobs with the larger huddle | End 8 | 0 or 1 |
-| H | A thriving judgment from evidence for the waterweed | End 9 | 0 or 1 |
-| H | A poor-survival judgment from evidence for the marsh flower | End 10 | 0 or 1 |
-| H | An inability-to-remain judgment for the burrowing mammal | End 11 | 0 or 1 |
-| H | Arrows that explain each need and condition link | End 12 | 0 or 1 |
+| Item | Look-for in the fresh work | End item | Point | Repair mark (revised item) |
+|---|---|---|---|---|
+| V | A wax and survival explanation that uses seven against two | End 1 | 0 or 1 | S or N |
+| V | A call and mates explanation that uses six against three | End 2 | 0 or 1 | S or N |
+| V | A link to young that uses five against one from the separate record | End 3 | 0 or 1 | S or N |
+| V | Model arrows from each difference to its outcome that do not promise success | End 4 | 0 or 1 | S or N |
+| G | A food link supported by eight against three | End 5 | 0 or 1 | S or N |
+| G | A protection link supported by the call and the retreat | End 6 | 0 or 1 | S or N |
+| G | A cold wind link supported by the shared shelter | End 7 | 0 or 1 | S or N |
+| G | A comparison of the small group and its jobs with the larger colony | End 8 | 0 or 1 | S or N |
+| H | A does-well judgment from evidence for the floating plant | End 9 | 0 or 1 | S or N |
+| H | A does-poorly judgment from evidence for the rooted plant | End 10 | 0 or 1 | S or N |
+| H | A cannot-remain judgment for the land snail | End 11 | 0 or 1 | S or N |
+| H | Arrows that explain each need and condition link, with the snail's link crossed | End 12 | 0 or 1 | S or N |
 
-Total: ____ of 12.
+Total: ____ of 12. Repair marks shown: ____ of 12.
 
 Child: ______ Date: ______

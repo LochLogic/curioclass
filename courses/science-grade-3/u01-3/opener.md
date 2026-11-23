@@ -10,11 +10,11 @@ credit: ours
 
 ## What the section does
 
-Six days, 11 to 16. The class asks: "When should we change a prediction?" On day 11 a soft ball rolls in a bowl, a second thing with the same pattern. Day 12 shortens the pendulum string and each child makes the scored record alone. Day 13 builds one class explanation and ends with the section exit ticket. Days 14 and 15 are check days. Each child makes a fresh unscored record, while the revised day 12 and day 7 records are scored outside lesson minutes. Day 16 responds to what the work showed.
+Six days, 11 to 16. The class asks: "When should we change a prediction?" On day 11 a soft ball rolls in a bowl, a second thing with the same pattern. Day 12 shortens the pendulum string and each child makes a record alone, revised on day 13. Day 13 builds one class explanation and ends with the section exit ticket. Days 14 and 15 are check days. Each child makes a fresh record alone, scored outside lesson minutes; the revised day 12 and day 7 records get a repair mark beside the score. Day 16 responds to what the work showed, and the scored papers come back on day 17.
 
 ## How the days run
 
-Each day is 45 minutes. Days 14 and 15 give no help and no feedback. Teacher scoring takes about 90 minutes outside lessons. Scored work is only ever the revised record, never first-teaching work or same-day work. A turn too quick to read is left blank. Seen data is never replaced by expected data.
+Each day is 45 minutes. Days 14 and 15 give no help and no feedback. Feedback is a look-for checklist and one question stamp, about 1 minute a child. Scored work is the fresh check-day work; a revised record is repair evidence, never the score. A turn too quick to read is left blank. Seen data is never replaced by expected data.
 
 ## The ideas, at an adult's level
 

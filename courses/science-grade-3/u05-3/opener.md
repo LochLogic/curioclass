@@ -23,7 +23,7 @@ Six days, 92 to 97. The big question is: "What do old records and new records ea
 
 ## Scoring, outside class
 
-Day 95 and day 96 hold fresh diagnostics, 32 minutes each, unscored. The scored work is the revised product F (after day 95) and the revised product S (after day 96). Six points each, 12 in all. Score each point 1 when the component is complete, 0 when it is not. An unseen component is blank, not zero. Repairs happen in teaching slots only: days 93 and 94, then day 97. Never on days 95 and 96.
+Day 95 and day 96 hold fresh checks, 32 minutes each, and this fresh work is the score: six points each, 12 in all. Score each point 1 when the component is complete, 0 when it is not. An unseen component is blank, not zero. Beside each score, record the revised product F or S as a repair mark, not the score. After each check, tick a six-tick checklist with one question stamp, about 1 minute a child; checklists go back on day 97 and scored papers on day 98. Repairs happen in teaching slots only: days 93 and 94, then day 97. Never on days 95 and 96.
 
 ## The errors, in plain words
 

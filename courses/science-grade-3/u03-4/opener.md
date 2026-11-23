@@ -10,11 +10,11 @@ credit: ours
 
 ## What the section does
 
-Six days, 53 to 58. No new content is taught: the unit's teaching ended on day 52. Day 53 joins the wall models into one class model, then each child works three new records alone, ten minutes each, and writes them on paper. Day 54 returns written feedback. Each child revises all three records and marks which observation warrants each change. Days 55, 56 and 57 are independent checks on fresh records, one a day. Fresh work is diagnostic. The scored work is the revised portfolio record, scored outside lesson minutes, 12 points in all. Day 58 is the one response, a fresh transfer, and the last living-record reading.
+Six days, 53 to 58. No new content is taught: the unit's teaching ended on day 52. Day 53 joins the wall models into one class model, then each child works three new records alone, ten minutes each, and writes them on paper. Day 54 returns a look-for checklist and one question stamp for each record. Each child revises all three records and marks which observation warrants each change. Days 55, 56 and 57 are independent checks on fresh records, one a day. The fresh work is scored, outside lesson minutes, 12 points in all. The revised portfolio records are recorded beside the score as repair evidence, a separate mark. Day 58 is the one response, a fresh transfer, and the last living-record reading.
 
 ## How the days run
 
-Each day is 45 minutes. Days 53 and 54 start with a short opening and hold the weather record and the living record. Days 55 to 57 give no feedback. Day 58 returns the written feedback, then four six-minute groups, an 8-minute transfer and a model update. Every child may pass in public talk.
+Each day is 45 minutes. Days 53 and 54 start with a short opening and hold the weather record and the living record. Days 55 to 57 give no feedback. Feedback is a look-for checklist and one question stamp, about 1 minute a child. Scored papers come back on day 59. Day 58 returns the look-for checklists, then four six-minute groups, an 8-minute transfer and a model update. Every child may pass in public talk.
 
 ## The ideas, at an adult's level
 

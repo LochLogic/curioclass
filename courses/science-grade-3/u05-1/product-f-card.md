@@ -6,7 +6,7 @@ version: draft
 credit: ours
 ---
 
-# Product F card (day 86, revised on day 93)
+# Product F card (day 86, revised on day 93, a repair mark)
 
 Each card says "invented for practice" in small letters at the bottom. Plain line drawings, no brands, no names of real children.
 

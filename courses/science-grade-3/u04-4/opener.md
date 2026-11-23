@@ -14,12 +14,12 @@ Five days, 74 to 78. The big question is the unit's: "Why do some living things 
 
 ## How the days run
 
-Each day is 45 minutes. Days 74, 77 and 78 hold the 5-minute weather record. There is no feedback and no reteaching on days 75 to 77. The scored work is the earlier revised product: item V (12 points across three items), item G and item H. The fresh cards are diagnostic and unscored. Feedback is written after class, about 3 minutes a child. Every child may pass in public talk.
+Each day is 45 minutes. Days 74, 77 and 78 hold the 5-minute weather record. There is no feedback and no reteaching on days 75 to 77. The scored work is the fresh check-day work: the item V, G and H fresh cards, 12 points across three items. The revised earlier items V, G and H are marked beside the score as repair evidence, not the score. Feedback is a look-for checklist, four ticks and one question stamp, about 1 minute a child. Day 78 hands back the checklists; the scored papers come back on day 81, in its Return of feedback. Every child may pass in public talk.
 
 ## The ideas, at an adult's level
 
 - **The three fresh cards ask for the same reasoning in new cases.** Plants and birds, shore animals, a new pond.
-- **Scoring.** Twelve points, one point for each complete component. A missed feedback or revision opportunity means unscored, not zero. A sparse answer gets component feedback, not a letter.
+- **Scoring.** Twelve points, one point for each complete component. A missed revision means no repair mark, not zero. A sparse answer gets component feedback, not a letter.
 - **Day 76 oral record.** Each child's brief spoken reason is noted on the heard list. File it unchanged for day 80. Do not score it a second time.
 - **The teacher judges components.** Children do not self-mark.
 - **No genetics and no natural selection by name.** Differences can help. They do not promise success.

@@ -10,21 +10,22 @@ credit: ours
 
 Name ____________
 
-Choose one card. Write one question that can be tested.
+Four questions I could test:
 
-My question: ____________
+1. A comb gap question: ____________
+2. A magnet gap question: ____________
+3. A turning question: ____________
+4. A steel swap question: ____________
 
-I change ____________.
-
-I keep ____________ the same.
-
-I watch ____________.
+For one question: I change ____________. I keep ____________ the same. I watch ____________.
 
 One thing I saw that points to a cause: ____________
 
-Draw the arrow on one card.
+Draw the hung spoon on card 3 and the magnet. Draw three arrows on the spoon: the pull, gravity and the thread.
 
 | |
 |---|
 | |
 | |
+
+My ruler reading of the gap card: ____ cm. Zero is at ____.

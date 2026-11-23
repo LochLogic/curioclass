@@ -119,6 +119,24 @@ NGSS is the base. The Massachusetts framework is a crosswalk only and adds no ow
 
 Nature of science is deliberate work: days 3 and 7 address controlled evidence and varied methods, day 12 treats a failed prediction as evidence, and days 84 to 85 and 94 address steady natural patterns and revisable past explanations. Engineering starts with a precise problem in unit 2, applies criteria to changed ecosystems in unit 5 and uses hazard evidence in unit 6. Formal comparison of several new solutions and full prototype fair testing remain later-grade ownership.
 
+## Practice and crosscutting concept coverage
+
+Each cell lists the days on which children actually do the practice or reason with the concept, counted from the section plans and the day files as written; a label in passing does not count. The course checks (days 34 to 36, 79 to 81 and 118 to 120) are separate days and have their own row.
+
+Key. Practices: Q, Asking Questions and Defining Problems; M, Developing and Using Models; I, Planning and Carrying Out Investigations; D, Analyzing and Interpreting Data; E, Constructing Explanations and Designing Solutions; A, Engaging in Argument from Evidence; O, Obtaining, Evaluating, and Communicating Information. Crosscutting concepts: Pat, Patterns; CE, Cause and Effect; Sc, Scale, Proportion, and Quantity; Sys, Systems and System Models; SF, Structure and Function; SC, Stability and Change.
+
+| Unit | Q | M | I | D | E | A | O | Pat | CE | Sc | Sys | SF | SC |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 1, 8 | 1, 4, 5, 8, 13 | 3, 4, 6, 7, 9, 12, 14, 15 | 7, 9, 10, 12, 14 | 13 | none | none | 9, 10, 11, 12, 14 | 1, 4, 7, 13, 15 | none | none | none | none |
+| 2 | 18 to 28, 30 to 33 | 17, 22, 29 | 19, 20, 21, 23, 27 | 19, 20, 21, 23 | 29 | none | none | none | 19, 20, 21, 23, 24, 27, 28, 31 | none | none | none | none |
+| 3 | 37, 43 | 37 to 42, 53, 54, 56, 58 | none | 38, 42, 44, 45, 46, 48, 49, 51, 54, 57 | 50, 51, 52, 55 | none | none | 40, 41, 42, 44, 45, 46, 56, 57 | 47 to 52, 55 | none | none | none | none |
+| 4 | 59, 64 | 59, 66, 68, 69, 74, 75, 77 | 65, 66, 72, 73 | 61, 65, 66, 73 | 66, 68, 75 | 62, 63, 70, 71, 76, 77, 78 | none | none | 61, 62, 66, 68, 69, 71, 73, 75, 76, 77 | none | 59, 69, 72, 74 | 64, 66, 67 | none |
+| 5 | 82, 87 | 82, 84, 85, 86, 87, 90, 91, 93, 95 | none | 83, 84, 85, 86, 90, 94, 95 | none | 88, 89, 91, 92, 96 | none | none | 87, 90 | 85, 86, 93, 94, 95 | 87, 90, 91, 93, 94, 96 | none | 84, 85, 87, 93, 94 |
+| 6 | 103, 108 | 98, 107, 110, 113, 114 | 110 | 99, 100, 101, 102, 105, 106, 110, 115, 117 | 101, 102 | 109, 111, 112, 114, 116, 117 | 104, 105, 106, 107, 115, 117 | 98, 101, 102, 106, 115 | 108, 110, 111, 112, 116 | none | none | none | none |
+| Course checks | 35, 36 | 35, 36, 79, 81, 118 | 34 | 34, 36, 79, 118, 119, 120 | 34, 118 | 35, 79, 80, 81, 118, 119, 120 | 119 | 34, 79, 119 | 34, 35, 80, 118 | 118 | 118 | none | 118 |
+
+Every practice and concept the course names has at least one day. The course names neither Using Mathematics and Computational Thinking nor Energy and Matter, so neither has a column.
+
 ## Calendar leans and bridges
 
 These decisions use every grade 3 subject's unit/check rows in `data/plans/calendar.csv` and the corresponding frame sections, rather than assuming simultaneous teaching within a week.
