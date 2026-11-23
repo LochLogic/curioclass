@@ -208,3 +208,7 @@ from_day,to_day,what,where,minutes,error,note
 44,45,s03-P44-travel,Return and repair,0,,Written component notes only; no additional repair minutes.
 45,46,s03-P45-energy,Return and repair,0,,Written component notes only; no additional repair minutes.
 48,49,s03-P48-return; s03-P48-design,Return,0,,Written component notes returned to everyone; no additional repair slot.
+51,52,s03-P51-return,Return,0,,Written component feedback to everyone; no additional repair minutes.
+52,53,s03-P52-return,Return,0,,Written component feedback to everyone; no additional repair minutes.
+53,54,s03-P53-return,Return,0,,Written component feedback to everyone; no additional repair minutes.
+54,55,s03-P54-return,Independent,0,,Written component feedback to everyone; no additional repair minutes.

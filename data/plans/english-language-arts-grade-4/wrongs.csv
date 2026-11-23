@@ -356,27 +356,30 @@ s01-P10-3,Leave the requested words unlocated as evidence-finder.,,,AK,Assign on
 s01-P10-7,Keep I like the story best in the summary.,,,C,Assign only the demonstrated component error.
 s01-P11-9,Mina takes his paper.,,,O,Diagnose only the demonstrated fault; unobserved work is not an error.
 s01-P12-9,Ben must be the real author because he says I.,,,F,Diagnose only the demonstrated fault; unobserved work is not an error.
-s01-P14-3,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-P14-4,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-P14-5,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-K14-1,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-K14-2,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P14-3,Visitors ask questions; Tansy sleeps.,,,D,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-P14-4,No visitors used the display.,,,O,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-P14-5,Supported: happiness explains every choice.,,,A,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-K14-1,Cooks; entertain; recipe.,,,x,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-K14-2,"Because, since the second fact causes the first.",,,P,Assign only for this demonstrated fault; missing work remains unobserved.
 s01-P14-6,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
 s01-P14-7,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-P15-3,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-K15-1,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-K15-2,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P15-3,I wanted to find out who had written it.,,,A,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-K15-1,in-for-mation; three syllables.,,,H,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-K15-2,Because: giving instructions causes the cover to protect the card.,,,P,Assign only for this demonstrated fault; missing work remains unobserved.
 s01-P15-4,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-P15-5,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-P16-3,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-R8,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-R9,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-P16-4,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P15-5,Choosing pages makes Ben stop missing Tansy.,,,O,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-P16-3,He practiced in front of the mirror.,,,A,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-R8,These things help.,,,AE,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-R9,The revision adds a colder lunch.,,,O,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-P16-4,Supported: the sign answers every question.,,,O,Assign only for this demonstrated fault; missing work remains unobserved.
 s01-P16-5,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-P16-6,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P16-6,invita-tion; two syllables.,,,H,Assign only for this demonstrated fault; missing work remains unobserved.
 s01-P16-7,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-P17-1,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
-s01-P17-2,No relevant selection or correction.,,,x,Inspect actual work before choosing a repair.
+s01-P17-1,carefuly,,,AL,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-P17-2,nora folds Paper.,,,x,Assign only for this demonstrated fault; missing work remains unobserved.
 s01-X14,He likes games.,,,A,No located chalk detail supports this general claim.
 s01-X15,Puppets are my favorite.,,,C,Personal preference replaces a text-based explanation.
 s01-X15,She repairs the screen before the show.,,,O,Invents a repair; the screen is still folded for mending.
+s01-P15-6,some stuff,,,Q,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-P16-8,Cooks; entertainment; recipe.,,,x,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-P16-9,Group B: cover and lunch.,,,N,Assign only for this demonstrated fault; missing work remains unobserved.

@@ -422,3 +422,77 @@ C1-P41-C,"A stays at 60 N, 50 W.",,,G,Read target latitude then longitude.
 C1-P41-D,The right location proves quietest.,,,C,A location detail cannot establish a preference.
 C1-P41-B,210 kilometers,210,210,M,Omits the half-bar portion.
 C1-X41,The map proves everyone likes the bridge.,,,C,Separate a mapped location from an unmapped preference.
+s03-X42,Old buildings are fun.,,,N,Interest alone does not explain the writer's need.
+s03-X43a,V; deepest always means oldest.,,,K,The later pit changes original associations.
+s03-X43b,Only record attractive finds.,,,F,Every context matters.
+s03-X43b,Nobody else needs to check.,,,O,Research needs checkable records.
+s03-X44a,Place18000 two ticks from today.,,,A,"Read the years-ago labels, not elapsed ticks from the left."
+s03-X44b,"7,000 years ago.",,,A,Smaller years-ago is more recent.
+s03-X45a,It proves the whole inland journey.,,,C,A crossing does not establish conditions farther south.
+s03-X45b,Yes; exposed land proves the corridor.,,,C,Separate land and ice keys address different conditions.
+s03-X46a,The first people arrived exactly then.,,,B,A dated find is not a first-arrival record.
+s03-X46b,It proves arrival only by boat.,,,B,Presence does not identify a journey.
+s03-X46b,Coastal travel rules out Beringia.,,,J,Land and coast can join.
+s03-X47,One Native story for everyone.,,,L,Distinct nations have distinct accounts.
+s03-X48a,Coastal find proves boat arrival.,,,B,A coastal location does not trace a journey.
+s03-X48a,An open inland route proves use.,,,C,Usability does not establish use.
+s03-X48b,Choose the route we like.,,,H,Preference is not evidence.
+s03-X49a,160 kilometers.,,,x,"Scale mismatch; supply scale support, not a D label."
+s03-X49b,The shade marks one nation.,,,D,Cultural groupings are not political territory.
+s03-X50a,Everyone made points.,,,P,One object does not show everyone's work.
+s03-X50a,The shape proves private beliefs.,,,E,Visible form does not establish private belief.
+s03-X50b,The surface proves beliefs.,,,E,Do not infer beliefs from texture.
+s03-X50b,Everyone made pottery.,,,P,One fragment does not establish every occupation.
+s03-X51a,Every resident farmed because walls survive.,,,P,"Crop evidence is the card, not every person's job."
+s03-X51b,The rooms prove everyone farmed.,,,P,Buildings do not establish every job.
+s03-X52a,The builders vanished.,,,G,Material survival does not describe descendants' lives.
+s03-X52b,All Pueblo people disappeared.,,,G,Current communities contradict disappearance.
+s03-X53a,It names every builder's nation.,,,P,A structure does not identify every builder.
+s03-X53b,No descendants remain.,,,G,A living nation names an ancestral relationship.
+s03-X53b,Only Osage ancestors built every structure.,,,P,No exclusive-identity claim is supported.
+s03-X54a,Taking it preserves all context.,,,F,Removal breaks the location association.
+s03-X54b,Nobody; the people vanished.,,,G,The statement names a continuing relationship.
+s03-X55a,The title proves the answer.,,,I,A title is not evidence.
+s03-X55a,It proves every route people took.,,,H,The claim exceeds the evidence.
+s03-X55b,Every past practice stayed identical.,,,H,Continuity is not unchanged practice.
+s03-X55b,It has another title.,,,I,"Use a relevant detail, not its title."
+s03-X56,The shape proves beliefs.,,,E,Form does not establish private beliefs.
+s03-X56,My favorite idea is true.,,,H,Preference is not support.
+s03-X56,Two titles suffice.,,,I,Each record needs a relevant contribution.
+s03-X57a,It proves first arrival by boat.,,,B,Neither first arrival nor route follows from one date.
+s03-X57b,The people vanished.,,,G,The statement names living descendants.
+s03-A1a,B is earlier than A.,,,A,12600 is more recent than21000 to23000 years ago.
+s03-A1b,Land proves the entire corridor.,,,C,Crossing and corridor conditions differ.
+s03-A1b,A proves first arrival on that route.,,,B,Presence is not first arrival or route proof.
+s03-A1b,Boats exclude Beringia.,,,J,Land and coast can join.
+s03-A1c,Deepest always means oldest.,,,K,The pit changes original associations.
+s03-A2a,The two groups form one nation.,,,D,Cultural categories are not political territory.
+s03-A2b,It proves everyone's beliefs.,,,E,Material form does not establish private belief.
+s03-A2b,Every resident did that job.,,,P,One material record does not show every occupation.
+s03-A2c,It proves everyone's beliefs.,,,E,Material form does not establish private belief.
+s03-A2c,Every resident did that job.,,,P,One material record does not show every occupation.
+s03-A2d,It proves everyone's beliefs.,,,E,Material form does not establish private belief.
+s03-A2d,Every resident did that job.,,,P,One material record does not show every occupation.
+s03-A2e,It proves everyone's beliefs.,,,E,Material form does not establish private belief.
+s03-A2e,Every resident did that job.,,,P,One material record does not show every occupation.
+s03-A2f,Every resident had one job.,,,P,Large construction is not an occupation list.
+s03-A2g,One color is one nation.,,,D,The categories are not borders.
+s03-A3a,Keep only valuable objects.,,,F,Careful context is more useful than selecting attractive finds.
+s03-A3b,An opinion replaces records.,,,O,Interpretations need evidence.
+s03-A3c,One expert's guess settles it.,,,O,Different methods let researchers test interpretations.
+s03-A3d,Every person had the same job.,,,P,The strip supports a bounded inference.
+s03-A3e,The alignment proves sacred beliefs.,,,E,Orientation alone cannot establish private meaning.
+s03-A4a,History began with European arrivals.,,,M,Earlier Native societies belong in American history.
+s03-A4b,The people vanished.,,,G,Sources identify continuing communities.
+s03-A4b,Take objects to save context.,,,F,Removal can break location associations.
+s03-A5a,My favorite route must be right.,,,H,Preference is not evidence.
+s03-A5b,Two titles are enough.,,,I,Each maker contributes a relevant detail.
+s03-A5b,A twice counts as two sources.,,,I,One maker is not multiple sources.
+s03-A5c,I like old things.,,,N,Interest does not explain another person's need.
+s03-R1,12000 is later than9000.,,,A,Larger years-ago is farther back.
+s03-R1,The find identifies its path.,,,B,Presence is not a path.
+s03-R2,Keep the best-looking sample.,,,F,Every sample needs context.
+s03-R2,One opinion is enough.,,,O,Layer comparison needs records.
+s03-R3,The nation vanished.,,,G,Current self-government contradicts disappearance.
+s03-R4,Titles are enough.,,,I,Use actual distinct details.
+s03-R4,Everyone was happy.,,,H,The records do not show every experience.
