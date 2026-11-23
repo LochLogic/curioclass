@@ -318,3 +318,30 @@ s02-PR25-1,Leaves one square unvisited.,,,K,Observe omitted visit; do not infer 
 s02-PR25-2,Leaves one square unvisited.,,,K,Observe omitted visit; do not infer it from a spoken total alone.
 s02-PR25-3,Leaves one square unvisited.,,,K,Observe omitted visit; do not infer it from a spoken total alone.
 s02-PR25-4,Leaves one square unvisited.,,,K,Observe omitted visit; do not infer it from a spoken total alone.
+s02-H19,Leaves one of the three pieces unrepresented.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-R19,Omits a count word while skipping its piece.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-L19,Leaves one leaf untouched.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-T19,Omits one supplied piece while counting.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-U19,Omits one supplied piece while counting.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-V19,Omits one supplied piece while counting.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-W19,Omits one supplied piece while counting.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-F19,Leaves one square untouched.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-R20,Skips a count word and its piece.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-L20,Leaves one leaf untouched.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-K20,Repeats the sequence without giving a total.,,,A,Infer the letter only from observed actions or heard words; record help separately.
+s02-F20,Calls the regrouped eight squares ten because the arrangement changed.,,,B,Infer the letter only from observed actions or heard words; record help separately.
+s02-C20,Says more appeared because the shape changed.,,,B,Infer the letter only from observed actions or heard words; record help separately.
+s02-S20,Leaves one square unmoved.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-R21,Skips a word and its piece.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-F21,Leaves one square without a mark.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-K21,Calls the large block group more because the blocks are larger.,,,N,Infer the letter only from observed actions or heard words; record help separately.
+s02-C21,Calls the larger pieces more because of their size.,,,N,Infer the letter only from observed actions or heard words; record help separately.
+s02-D21,Calls the five-piece group fewer despite the extras.,,,I,Infer the letter only from observed actions or heard words; record help separately.
+s02-M21,Keeps three and calls that more than five.,,,I,Infer the letter only from observed actions or heard words; record help separately.
+s02-N21,Keeps eight and calls that fewer than five.,,,I,Infer the letter only from observed actions or heard words; record help separately.
+s02-R22,Skips a word while omitting a piece.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-K22,Skips a square while pairing.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-F22,Calls the group with extras fewer.,,,I,Infer the letter only from observed actions or heard words; record help separately.
+s02-E22,Calls one equal group more because its squares are larger.,,,N,Infer the letter only from observed actions or heard words; record help separately.
+s02-M22,Leaves eight while explicitly saying it is the same as five.,,,I,Infer the letter only from observed actions or heard words; record help separately.
+s02-N22,Leaves five and calls it fewer than five.,,,I,Infer the letter only from observed actions or heard words; record help separately.

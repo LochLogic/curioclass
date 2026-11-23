@@ -111,3 +111,13 @@ from_day,to_day,what,where,minutes,error,note
 35,38,s02-P35-2,Read feedback,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
 38,39,s02-P38-1,opening,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
 36,38,s02-E2-portfolio,Read feedback,0,,Locate preserved portfolio evidence; final scoring once after day 38.
+16,17,s02-P16-connect,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+16,17,s02-P16-model,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+16,17,s02-P16-question,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+17,18,s02-P17-repair,Response and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+17,18,s02-P17-path,Response and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+18,19,s02-P18-repair,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+18,19,s02-P18-sun,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+19,20,s02-P19-repair,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+19,20,s02-P19-model,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+19,20,s02-P19-retry,Return and repair,0,,"When used, return the optional sunlight retry record with day 19 papers and descriptive feedback; no additional repair minutes. Preserve missing live evidence."
