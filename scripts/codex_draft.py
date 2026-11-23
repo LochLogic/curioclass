@@ -381,6 +381,18 @@ def lane(subj, dry=False):
             if len(nums) == 2:
                 code, out = py('scripts/lesson_course.py', course, str(nums[0]), str(nums[1]))
                 m = re.search(r'lesson_course: (\d+) failure\(s\) in (\d+) day', out)
+                if m and int(m.group(1)) and run and run.thread and not run.limit:
+                    # the lesson gate cannot run inside the sandbox, so the runner hands its failures back once
+                    fails = '\n'.join(ln for ln in out.splitlines() if ln.startswith('  FAIL'))[-6000:]
+                    log('%s %s: %s gate failures; handing them back to the session to fix' % (subj, num, m.group(1)))
+                    run.t0 = time.time()
+                    run._session(['exec', 'resume', '-c', 'sandbox_mode="workspace-write"', run.thread],
+                                 'The runner ran the lesson gate on your days (it cannot run in your sandbox). Fix every '
+                                 'failure below in your days and their data, as your job says (never bend content to pass '
+                                 'a gate; a rule that truly does not fit stays, listed as a template point). Then send '
+                                 'your last message again, updated.\n\n' + fails, '-fix')
+                    code, out = py('scripts/lesson_course.py', course, str(nums[0]), str(nums[1]))
+                    m = re.search(r'lesson_course: (\d+) failure\(s\) in (\d+) day', out)
                 if m:
                     gfails, ndays = int(m.group(1)), int(m.group(2))
                     grade_fails += gfails
