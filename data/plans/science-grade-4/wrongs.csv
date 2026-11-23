@@ -225,3 +225,97 @@ C-R41-source,The ruler keeps making sound after vibration stops.,,,M,Error M: Ru
 C-R41-receiver,The silent comparison does not matter.,,,N,Error N: Silent comparison ignored in sound-caused motion.
 C-E39-heat,The cooler spoon makes its own warmth.,,,P,Error P: source-to-recipient transfer replaced by creation.
 C-P41-question,Which speed is best?,,,C,Error C: observable outcome absent.
+s03-X42,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X43,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X43,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-X44,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-X44,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X45,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X46,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X46,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-X47,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X48,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-X48,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-X49,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-X49,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-X50a,Digits can be read in any order.,,,E,Disregards agreed order.
+s03-X50b,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-X51,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
+s03-X52,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-X53,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
+s03-X53,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-X54a,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X54a,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-X54b,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-T46-model,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-T46-model,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-T53-alternatives,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-T53-alternatives,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-T53-comparison,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
+s03-T53-comparison,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-T53-trials,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-T53-improvement,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-T53-improvement,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-T53-encode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-T53-decode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-T53-voice,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-E1,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-E1,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-E2-alternatives,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-E2-alternatives,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-E2-comparison,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
+s03-E2-comparison,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-E2-trials,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-E2-improvement,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-E2-improvement,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-E2-encode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-E2-decode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-E2-voice,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-E3,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-E3,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-E3,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-D55-wave,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-D55-wave,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-D55-codes,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-D55-codes,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-D55-picture,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P42-observe,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-P42-question,No evidence is given.,,,x,"Incomplete evidence; component feedback, no unit error diagnosis."
+s03-P43-table,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-P43-table,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-P44-labels,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-P45-motion,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-P46-features,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-P47-evidence,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-P48-source,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P48-research,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-P48-encode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P48-decode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P48-voice,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P49-criteria,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
+s03-P49-criteria,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-P49-tap-rule,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P49-proposals,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P49-proposals,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-P50-proposals,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P50-proposals,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-P50-encode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P50-decode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P51-log,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-P52-log,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-P53-compare,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
+s03-P53-compare,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-P53-compare,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-P54-anchor,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-P54-anchor,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P54-sort,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P56-revision,No evidence is given.,,,x,"Incomplete evidence; component feedback, no unit error diagnosis."
+s03-P56-reflect,No evidence is given.,,,x,"Incomplete evidence; component feedback, no unit error diagnosis."
+s03-P56-A,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-P56-B,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-P56-C,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
+s03-P56-D,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-P56-E,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P56-F,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-R56,Cloth stops the rain.,,,x,"Carrying diagnostic, not a unit 3 letter."
+s03-R56,Cloth is better because prettier.,,,x,"Design-evidence diagnostic, not a unit 3 letter."

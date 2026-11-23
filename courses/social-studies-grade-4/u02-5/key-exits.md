@@ -1,5 +1,6 @@
 ---
 piece: blank
+audience: teacher
 course: social-studies-grade-4
 unit: 2.5
 version: draft, not yet taught
@@ -9,6 +10,23 @@ credit: ours
 
 Teacher only. Read before class; keep out of student packets.
 One scale: shown; shown with help; not yet seen. Access support is not content help.
+Use the assigned component only on day 38. Keep keys separate from every child card.
+
+## s02-P34
+
+Sort actual source-linked details under the given supply-connections or limits heading. Name each maker. A national total cannot show every group effect.
+
+Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
+
+Samples, first shows evidence, second needs work: The foreign affairs article names wheat crossing to Mexico, under supply connections. | The title proves everyone gains.
+
+## s02-P34-R
+
+The bakery receives the cafe orders; no claim about every bakery.
+
+Look for: Use relevant supplied evidence; equivalent wording accepted; access separate from content help.
+
+Samples, first shows evidence, second needs work: The bakery. | Every baker gains.
 
 ## s02-X34
 
@@ -18,6 +36,30 @@ Look for: Tentative claim; distinct relevant details connected.
 
 Samples, first shows evidence, second needs work: Potters rely on trade: P supplies clay, and R shows buyers for more pots. | P and R are nice.
 
+## s02-E9
+
+Supported need of researcher, producer, buyer or transport planner; no personal disclosure.
+
+Look for: Another user and a use for an answer.
+
+Samples, first shows evidence, second needs work: A planner needs to understand which supplies cross borders. | Only our teacher needs it.
+
+## s02-P35
+
+A bounded paragraph explains cross-border purchasing connections using two distinct makers: the foreign affairs Canada-Mexico article and Census United States-Mexico goods table. Explain how purchases connect sellers and buyers. Do not infer every producer depends on these goods or every group gains.
+
+Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
+
+Samples, first shows evidence, second needs work: The foreign affairs article describes Canada-Mexico exchanges. The Census table shows United States-Mexico goods purchases. Sellers have buyers across borders, but these records cannot establish every group effect. | The article and its diagram are independent makers, so every worker gains.
+
+## s02-P35-R
+
+Closes at noon supports the given limited-afternoon-access claim.
+
+Look for: Use relevant supplied evidence; equivalent wording accepted; access separate from content help.
+
+Samples, first shows evidence, second needs work: Closes at noon. | I like reading rooms.
+
 ## s02-X35
 
 S supplies production; T shows lower buyer prices but rival order losses. Link distinct details to uneven effects.
@@ -25,6 +67,46 @@ S supplies production; T shows lower buyer prices but rival order losses. Link d
 Look for: Unequal-effects argument; relevant S and T details.
 
 Samples, first shows evidence, second needs work: S supplies cloth; T shows cheaper clothing but fewer rival orders, so effects differ. | Trade makes everyone rich. S and T.
+
+## s02-P36
+
+Match the reviewed notice's maker caretakers' office, date 2010, audience caretakers, purpose equipment preparation and format posted notice to their fields.
+
+Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
+
+Samples, first shows evidence, second needs work: Maker: caretakers' office; date: 2010; audience: caretakers. | Audience: 2010.
+
+## s02-P36-D1
+
+Maker: who created it. Audience: intended readers. Purpose: intended use.
+
+Look for: Use relevant supplied evidence; equivalent wording accepted; access separate from content help.
+
+Samples, first shows evidence, second needs work: Maker means who created it. | Maker means intended readers.
+
+## s02-P36-D2
+
+Import: comes in. Export: goes out. Specialize: makes mostly one kind.
+
+Look for: Use relevant supplied evidence; equivalent wording accepted; access separate from content help.
+
+Samples, first shows evidence, second needs work: Import means comes into a country. | Import means goes out.
+
+## s02-P36-D3
+
+Evidence: relevant source detail. Reasoning: how that detail supports the claim.
+
+Look for: Use relevant supplied evidence; equivalent wording accepted; access separate from content help.
+
+Samples, first shows evidence, second needs work: Reasoning links the detail to the claim. | A title is enough.
+
+## s02-P36-R
+
+Oil is the needed input; delivery makes production possible without guaranteeing every outcome.
+
+Look for: Use relevant supplied evidence; equivalent wording accepted; access separate from content help.
+
+Samples, first shows evidence, second needs work: Oil. | Every shop gains.
 
 ## s02-X36
 
@@ -41,6 +123,14 @@ Halifax: Nova Scotia, Atlantic (A); cargo handling connects goods movements (B).
 Look for: Location detail from A; cargo connection from B.
 
 Samples, first shows evidence, second needs work: A locates Halifax in Nova Scotia; B shows cargo handling. | Halifax is on the Pacific; everyone works on ships.
+
+## s02-E10
+
+Only E6's multiple-source support: distinct relevant D/E details linked to claim. Do not score claim/reasoning twice.
+
+Look for: Relevant D detail; relevant E detail; both linked to argument.
+
+Samples, first shows evidence, second needs work: The component chain and buyer/rival effects both support the argument. | D and E are my sources.
 
 ## s02-E2a
 
@@ -145,46 +235,6 @@ Bounded argument for shared reliance or unequal effects; D's components/orders a
 Look for: Defensible claim and reasoning; distinct relevant D/E evidence.
 
 Samples, first shows evidence, second needs work: D needs imported parts; E shows buyer gains and rival losses, so the chain links groups unevenly. | I like bicycles. D and E.
-
-## s02-E9
-
-Supported need of researcher, producer, buyer or transport planner; no personal disclosure.
-
-Look for: Another user and a use for an answer.
-
-Samples, first shows evidence, second needs work: A planner needs to understand which supplies cross borders. | Only our teacher needs it.
-
-## s02-E10
-
-Only E6's multiple-source support: distinct relevant D/E details linked to claim. Do not score claim/reasoning twice.
-
-Look for: Relevant D detail; relevant E detail; both linked to argument.
-
-Samples, first shows evidence, second needs work: The component chain and buyer/rival effects both support the argument. | D and E are my sources.
-
-## s02-P34
-
-Relevant country/trade details sorted under connection or limit, maker identified; no full claim generation.
-
-Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
-
-Samples, first shows evidence, second needs work: Trade detail goes under connection. | A title is enough.
-
-## s02-P35
-
-Supported shared-reliance paragraph naming two sources; unequal-effects paragraph withheld.
-
-Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
-
-Samples, first shows evidence, second needs work: Sources show producers need supplies and buyers. | Trade is nice. My two sources.
-
-## s02-P36
-
-Matches maker/date/kind to given labeled claims; no drafting or extraction-plus-verification.
-
-Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
-
-Samples, first shows evidence, second needs work: 2010 belongs to equipment notice. | Every date is current.
 
 ## s02-P38a
 

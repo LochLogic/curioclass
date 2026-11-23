@@ -395,7 +395,8 @@ def lane(subj, dry=False):
                     m = re.search(r'lesson_course: (\d+) failure\(s\) in (\d+) day', out)
                 if m:
                     gfails, ndays = int(m.group(1)), int(m.group(2))
-                    grade_fails += gfails
+                    dm = re.search(r'(\d+) in day files', out)
+                    grade_fails += int(dm.group(1)) if dm else gfails   # pile-up counts day-file failures only
                     grade_days += ndays
         with LOCK:
             commit(subj, '%s %s %s (job %s, %s)' % (kind.lower(), course, detail, num, result))
@@ -411,7 +412,7 @@ def lane(subj, dry=False):
             if fails_row >= MAX_FAILS:
                 stop_lane(subj, '%d failed jobs in a row (last %s %s)' % (fails_row, num, kind))
                 return
-        if grade_fails > 4 + grade_days // 4:
+        if grade_fails > 6 + grade_days // 3:   # shared pieces and plan rows wait for the grade fix job
             stop_lane(subj, '%s: %d lesson gate failures in %d drafted days' % (course, grade_fails, grade_days))
             return
     log('%s: lane finished' % subj)

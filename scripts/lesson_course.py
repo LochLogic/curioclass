@@ -58,7 +58,8 @@ def main(a):
         return any(f.relative_to(lesson.ROOT).as_posix() + '/' in ln for f in folders)
 
     n = sum(1 for ln in keep if counts(ln))   # with a range: only failures naming those days or their folders
-    print('lesson_course: %d failure(s) in %d day(s)' % (n, days))
+    nd = sum(1 for ln in keep if counts(ln) and (re.search(r'/d\d{3}\.md', ln) or re.search(r'day \d+', ln)))
+    print('lesson_course: %d failure(s) in %d day(s), %d in day files' % (n, days, nd))
 
 
 if __name__ == '__main__':

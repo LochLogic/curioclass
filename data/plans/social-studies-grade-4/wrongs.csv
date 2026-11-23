@@ -268,7 +268,6 @@ s02-E3b,A and B have names.,,,N,Source titles replace details. Compare the stimu
 s02-E3c,One opinion makes all of C false.,,,K,One opinion makes all claims false. Compare the stimulus; judge content separately from English grammar.
 s02-E4a,Good because short.,,,H,Liking or length is enough to critique. Compare the stimulus; judge content separately from English grammar.
 s02-E4b,This evidence proves an unrelated claim.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
-s02-E4b,Only our teacher needs the answer.,,,P,Only class preference gives importance. Compare the stimulus; judge content separately from English grammar.
 s02-E5a,A goods list explains reliance.,,,E,Listing goods explains reliance. Compare the stimulus; judge content separately from English grammar.
 s02-E5a,Each makes everything alone.,,,O,Specialized producers make everything alone. Compare the stimulus; judge content separately from English grammar.
 s02-E5b,Every person in Canada gains.,,,F,Everyone in a country gains or loses together. Compare the stimulus; judge content separately from English grammar.
@@ -389,3 +388,16 @@ s02-P30b,The cocoa.,,,x,Cold-checked against the printed stimulus and the comple
 s02-P30,Paper is the buyer.,,,x,Cold-checked against the printed stimulus and the complete item key.
 s02-P31,The arrowhead is the origin.,,,D,Cold-checked against the printed stimulus and the complete item key.
 s02-P32,All groups gain alike.,,,F,Cold-checked against the printed stimulus and the complete item key.
+s02-P34-R,Every baker gains.,,,F,Only the bakery receiving the order is supported.
+s02-P34,A title is enough.,,,N,A relevant detail is needed.
+s02-P35,The article and its diagram are independent makers.,,,N,A derivative rendering is not a distinct maker.
+s02-P35-R,I like reading rooms.,,,G,Liking does not support the given claim.
+s02-P36,Audience: 2010.,,,B,Date and intended readers are distinct.
+s02-P36-R,Every shop gains.,,,F,The input link does not show universal gains.
+s02-P36-D1,Maker means intended readers.,,,B,Confuses maker and audience.
+s02-P36-D2,Import means goes out.,,,E,Reverses the country viewpoint.
+s02-P36-D3,A title is enough.,,,N,A title is not a supporting detail.
+s02-P38a,Only agreeing accounts matter.,,,A,Need complementary evidence.
+s02-P38b,Tuesday proves comfort.,,,D,Opening day does not measure comfort.
+s02-P38c,Delays help everyone.,,,F,Missing input can interrupt this producer.
+s02-P38d,Everyone benefits because I like canals.,,,G,Preference does not establish support or universal benefits.

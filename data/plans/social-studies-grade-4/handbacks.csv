@@ -68,7 +68,7 @@ from_day,to_day,what,where,minutes,error,note
 32,33,s02-X32 repair,Case,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
 32,33,s02-P32,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
 33,34,s02-X33,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
-33,34,s02-X33 repair,Evidence,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
+33,34,s02-X33 repair,Evidence work,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
 33,34,s02-P33,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
 34,35,s02-X34,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
 34,35,s02-X34 repair,Claim,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
@@ -105,3 +105,6 @@ from_day,to_day,what,where,minutes,error,note
 31,32,s02-P31-R s02-P31-B,Return,0,,Return all collected component papers with exit; one priority within existing repair minutes.
 32,33,s02-P32-R2 s02-P32-R,Return,0,,Return all collected component papers with exit; one priority within existing repair minutes.
 33,34,s02-P33-F s02-P33-R s02-P33-S s02-P33-B,Return,0,,Return all collected component papers with exit; one priority within existing repair minutes.
+34,35,s02-P34-R,Return,0,,Return within existing feedback; no extra adult queue.
+35,36,s02-P35-R,Return,0,,Return within existing feedback; no extra adult queue.
+36,38,s02-P36-R s02-P36-D1 s02-P36-D2 s02-P36-D3,Feedback,0,,Return within existing feedback; no extra adult queue.
