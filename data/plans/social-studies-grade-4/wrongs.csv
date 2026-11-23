@@ -240,7 +240,7 @@ s02-X27,This evidence proves an unrelated claim.,,,D,Evidence supports an unrela
 s02-X27,Checkable means true.,,,L,Checkable means verified true. Compare the stimulus; judge content separately from English grammar.
 s02-X28,Coastal sounds better.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
 s02-X29,Good because short.,,,H,Liking or length is enough to critique. Compare the stimulus; judge content separately from English grammar.
-s02-X29,This evidence proves an unrelated claim.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
+s02-X29,Three trams must run because the depot lists three.,,,D,A depot inventory does not establish the number operating.
 s02-X30,A goods list explains reliance.,,,E,Listing goods explains reliance. Compare the stimulus; judge content separately from English grammar.
 s02-X30,Each makes everything alone.,,,O,Specialized producers make everything alone. Compare the stimulus; judge content separately from English grammar.
 s02-X31,A goods list explains reliance.,,,E,Listing goods explains reliance. Compare the stimulus; judge content separately from English grammar.
@@ -353,3 +353,17 @@ s02-P26-2,Any other unsupported or missing response.,,,x,Check the printed evide
 s02-X23,Every Métis person speaks Michif.,,,I,Cold-solved sample: unsupported generalization or mismatch with printed evidence.
 s02-P23-1,This counts everybody in Canada.,,,I,Cold-solved sample: unsupported generalization or mismatch with printed evidence.
 s02-P25-1,Ottawa labeled Mexico.,,,D,Cold-solved sample: unsupported generalization or mismatch with printed evidence.
+s02-P27-R,All school stools.,,,I,Use the supplied record only; return one criterion cue.
+s02-P27-S,Any source proves the sentence.,,,D,Use the supplied record only; return one criterion cue.
+s02-P27,A list without sources.,,,D,Missing named criterion or relevant source detail; give one private cue.
+s02-P28-R,A proven fact.,,,C,Use the supplied record only; return one criterion cue.
+s02-P28-B,One count must be false.,,,L,Use the supplied record only; return one criterion cue.
+s02-P28,I like it.,,,D,Missing named criterion or relevant source detail; give one private cue.
+s02-P28q,No source needed.,,,D,Missing named criterion or relevant source detail; give one private cue.
+s02-P29-R,Any classroom supply.,,,D,Use the supplied record only; return one criterion cue.
+s02-E8b,My liking is enough.,,,G,"Reply needs relevant source evidence, not preference."
+s02-P29,I like it.,,,H,Missing named criterion or relevant source detail; give one private cue.
+s02-P29b,Longer is always better.,,,H,Missing named criterion or relevant source detail; give one private cue.
+s02-P29q,I like it.,,,D,Missing named criterion or relevant source detail; give one private cue.
+s02-E11,It is good because I like it.,,,H,Liking does not critique order or detail.
+s02-E12,It is good because I like it.,,,H,Liking does not critique order or detail.

@@ -93,3 +93,11 @@ from_day,to_day,what,where,minutes,error,note
 26,27,s02-P26-R,Return,0,,"Return this component with the prior exit and practice in the same five-minute slot; one priority per child, no added queue."
 26,27,s02-P26-1,Return,0,,"Return this component with the prior exit and practice in the same five-minute slot; one priority per child, no added queue."
 26,27,s02-P26-2,Return,0,,"Return this component with the prior exit and practice in the same five-minute slot; one priority per child, no added queue."
+27,28,s02-P27-R,Return,0,,Return with all prior-day papers within the existing opening slot; no extra repair minutes.
+27,28,s02-P27-S,Return,0,,Return with all prior-day papers within the existing opening slot; no extra repair minutes.
+28,29,s02-P28-R,Read,0,,Return with all prior-day papers within the existing opening slot; no extra repair minutes.
+28,29,s02-P28-B,Read,0,,Return with all prior-day papers within the existing opening slot; no extra repair minutes.
+29,30,s02-P29-R,Return,0,,Return with all prior-day papers within the existing opening slot; no extra repair minutes.
+29,38,s02-E8b,Feedback,0,,Return retained listener-reply component with E7 and E8; no second judgment.
+29,38,s02-E11,Feedback,0,,Return retained peer-critique judgment alongside performance components; no duplicate score.
+29,38,s02-E12,Feedback,0,,Return retained peer-critique judgment alongside performance components; no duplicate score.
