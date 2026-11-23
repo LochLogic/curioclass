@@ -27,15 +27,15 @@ Words card: The mother alligator carries her young to water in her mouth. She ge
 
 ## Day 58 (item s07-X58a)
 
-Words card: A young sea otter floats. Its mother wraps it in kelp, long seaweed, while she looks for food. The kelp keeps the pup from drifting away. One picture we have: the pup floating in kelp, no mother. Three new picture cards to touch, each said aloud first: the pup floating alone in kelp; the mother wrapping kelp around the pup; the mother swimming away.
+Words card: A young sea otter floats. Its mother wraps it in kelp, long seaweed, while she looks for food. The kelp keeps the pup from drifting away. One picture we have: the pup floating in kelp, no mother.
 
-**X58a.** "To show the wrapping too, which new picture would we need? Touch one." **Key:** the mother wrapping kelp around the pup. "The pup floating alone shows her wrapping it" is error C; the mother swimming away has no letter.
+**X58a.** "Say one thing the words tell that our picture does not show." **Key:** any one of the mother wrapping the pup in kelp, the mother looking for food, or the kelp keeping the pup from drifting. "Nothing, the picture shows her wrapping it" is error C; naming the floating pup, which the picture shows, has no letter.
 
 ## Day 59 (item s07-X59a)
 
-Words card: A small emperor penguin chick stays under its parent's skin fold. The parent covers it to keep it warm. One picture: a chick beneath an adult's fold. Three reason cards to touch, each read aloud first: it cannot keep itself warm yet; it is looking for a stick; it is waiting for a game.
+Words card: A small emperor penguin chick stays under its parent's skin fold. The parent covers it to keep it warm. One picture: a chick beneath an adult's fold.
 
-**X59a.** "Touch the card that tells why staying under the fold helps the chick stay alive." **Key:** it cannot keep itself warm yet. "The chick does nothing, the parent does it all" is error A; it is hiding from its parent has no letter.
+**X59a.** "Say how staying under the fold helps the chick stay alive." **Key:** it keeps the chick warm, because it cannot keep itself warm yet; the chick stays under and the parent covers it. "The chick does nothing, the parent does it all" is error A; "it is hiding from its parent" has no letter.
 
 ## Day 61 (item s07-X61a)
 

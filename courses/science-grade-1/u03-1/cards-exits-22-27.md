@@ -23,7 +23,7 @@ A brown horse with two young beside it, all at the same size: a brown foal with 
 
 **Item s03-X23a.** Spoken: "Touch the young one that is this horse's foal."
 
-**Item s03-X23b.** Spoken: "Pip says the foal is an exact copy of its parent. Is Pip right? Thumb up for yes, thumb down for no."
+**Item s03-X23b.** Spoken: "Pip says the foal is an exact copy of its parent. Tell Pip one way the foal is like its parent and one way it is not."
 
 ## Day 24: C24E
 
