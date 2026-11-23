@@ -7,7 +7,7 @@ credit: ours
 ---
 # Day 35 component work
 
-Use your established notes and the blank claim-notes.md headings.
+Use your established notes and the blank Claim and evidence organizer headings.
 Write about shared reliance; keep the unequal-effects exit unseen.
 
 **s02-P35**

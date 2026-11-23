@@ -5,29 +5,29 @@ unit: 2.5
 version: draft, not yet taught
 credit: ours
 ---
-# Unseen source packet
+# Unseen sources
 
 ## A
-![Selected atlas](end-atlas.svg)
-Original atlas, 2026. Geographic facts: Canadian regional department; British Columbia place-name office.
+![Atlas](end-atlas.svg)
+Facts: regional department; provincial place-name office. Original.
 
 ## B
-Transport Canada, digital source summary, 2026. For transport readers; cargo-port information.
+Transport Canada, 2026. Digital cargo summary.
 
 | Port | Province | Activity |
 |---|---|---|
 | Halifax | Nova Scotia | Cargo handling |
 | Prince Rupert | British Columbia | Cargo handling |
 
-Facts paraphrased from federal marine description and port list.
+Marine-port facts paraphrased.
 
 ## C
 Classroom article, 2026. Made up.
 Prince Rupert is in British Columbia. Prince Rupert is the nicest city.
-Original writing.
+Original.
 
 ## D
-Canadian workshop, 2026. Made-up order table; for planning production.
+Workshop, Canada, 2026. Made-up order table for production.
 
 | Source | Part |
 |---|---|
@@ -35,21 +35,21 @@ Canadian workshop, 2026. Made-up order table; for planning production.
 | United States | Wheels |
 | Canada | Bicycle assembly |
 
-United States bicycle orders rise from 4 to 7 weekly.
-Canadian workshop workers gain shifts; rival assemblers lose orders.
-Mexican supplying workers gain orders; rival tube makers lose sales.
-Original invented case, not actual statistics.
+United States orders: 4, then 7 bicycles weekly.
+Canadian workshop: more worker shifts; rival assemblers: fewer orders.
+Mexican supplier workers: more orders; rival tube makers: fewer sales.
+Original.
 
 ## E
-United States buyers, 2026. Made-up comparison; for discussing purchases.
-Buyers pay less for these bicycles. Rival bicycle assemblers lose orders.
-Original invented case.
+United States buyers, 2026. Made-up comparison.
+Buyers pay less; rival bicycle assemblers lose orders.
+Original.
 
 ## F
-Seller, undated. Made-up promotion for buyers.
+Seller, undated. Made-up promotion.
 More bicycle trade helps everybody. Buy more bicycles!
-Original invented case.
+Original.
 
 ## Peer explanation
 Everyone in Halifax works on ships. Halifax is beside the Pacific. Cargo moves there.
-Original made-up explanation to critique.
+Original.

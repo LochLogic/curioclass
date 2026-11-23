@@ -7,7 +7,7 @@ credit: ours
 ---
 # Day 30 component work
 
-Use printing-chain.md, input card only.
+Use Invented printing chain cards, input card only.
 The retrieval choice is made up; no household purchase question is asked.
 
 **s02-P30**

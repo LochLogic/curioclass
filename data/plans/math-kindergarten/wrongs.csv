@@ -360,3 +360,24 @@ s02-E24,Chooses five has more because the pieces are bigger.,,,N,Infer the lette
 s02-P224,Leaves one square without a link or count mark.,,,K,Infer the letter only from observed actions or heard words; record help separately.
 s02-P20-2,Leaves one square without a linked mark.,,,K,Infer the letter only from observed actions or heard words; record help separately.
 s02-P22-1,Leaves an upper square without its partner.,,,K,Infer the letter only from observed actions or heard words; record help separately.
+s02-R25,Skips a counting word.,,,K,Assign only from this observed action or heard reason; record help separately.
+s02-F25,Uses one object in two pairs.,,,L,Assign only from this observed action or heard reason; record help separately.
+s02-K25-1,Says the new start makes four objects.,,,C,Assign only from this observed action or heard reason; record help separately.
+s02-K25-2,Touches the starting square twice.,,,L,Assign only from this observed action or heard reason; record help separately.
+s02-R26,Skips a counting word.,,,x,Assign only from this observed action or heard reason; record help separately.
+s02-F26,Leaves one square unvisited.,,,K,Assign only from this observed action or heard reason; record help separately.
+s02-K26-1,Calls the wider row more because of spread.,,,B,Assign only from this observed action or heard reason; record help separately.
+s02-K26-2,Counts an empty cell as an object.,,,x,Assign only from this observed action or heard reason; record help separately.
+s02-K26-3,Omits the eighth square.,,,K,Assign only from this observed action or heard reason; record help separately.
+s02-C26m,Acknowledges extras but calls eight fewer.,,,I,Assign only from this observed action or heard reason; record help separately.
+s02-C26f,Calls five fewer despite its extras.,,,I,Assign only from this observed action or heard reason; record help separately.
+s02-C26e,Calls the wider spaced five more.,,,B,Assign only from this observed action or heard reason; record help separately.
+s02-G26m,Leaves equal fives and explicitly calls lower more.,,,I,Assign only from this observed action or heard reason; record help separately.
+s02-G26f,Leaves eight and explicitly calls it fewer.,,,I,Assign only from this observed action or heard reason; record help separately.
+s02-G26e,Stops at four with one reference square unpaired.,,,K,Assign only from this observed action or heard reason; record help separately.
+s02-R27,Skips a counting word.,,,x,Assign only from this observed action or heard reason; record help separately.
+s02-F27,Retains a repeated lower partner.,,,L,Assign only from this observed action or heard reason; record help separately.
+s02-C27m,Acknowledges extras but calls eight fewer.,,,I,Assign only from this observed action or heard reason; record help separately.
+s02-C27f,Calls five fewer despite extras.,,,I,Assign only from this observed action or heard reason; record help separately.
+s02-C27e,Calls a wider spaced five more.,,,B,Assign only from this observed action or heard reason; record help separately.
+s02-P27-2,Skips the unmarked square.,,,K,Assign only from this observed action or heard reason; record help separately.

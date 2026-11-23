@@ -7,7 +7,7 @@ credit: ours
 ---
 # Day 33 component work
 
-Use only day 33 trade-sources.md and factory-farm.md.
+Use only day 33 Selected national trade records and Made-up factory and farm diagram.
 National totals and the made-up farm case are different evidence.
 
 **s02-P33**

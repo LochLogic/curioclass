@@ -7,7 +7,7 @@ credit: ours
 ---
 # Day 34 component work
 
-Use claim-notes.md with existing country and trade sources.
+Use Claim and evidence organizer with existing country and trade sources.
 Sort details under the given headings; do not model a complete new claim.
 
 **s02-P34**

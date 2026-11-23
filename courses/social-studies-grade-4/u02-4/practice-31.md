@@ -7,7 +7,7 @@ credit: ours
 ---
 # Day 31 component work
 
-Use section 2.1 goods-map.md and the day 31 part of trade-sources.md.
+Use the Goods Connections Map. Read the day 31 trade table.
 Annotate origins only during practice.
 
 **s02-P31**

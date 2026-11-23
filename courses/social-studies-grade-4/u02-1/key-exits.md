@@ -92,11 +92,11 @@ Samples, first shows evidence, second needs work: Caretakers; prepare equipment.
 
 ## s02-P21
 
-Six chairs: inventory; delivery day: receipt; favorite color has no factual test.
+Chair-count claim matches inventory but five conflicts with its six chairs. Delivery-day claim matches receipt; favorite color has no agreed factual test.
 
 Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
 
-Samples, first shows evidence, second needs work: Inventory checks six chairs. | A liking verifies six chairs.
+Samples, first shows evidence, second needs work: The inventory checks the chair count and contradicts five. | A liking verifies five chairs.
 
 ## s02-P22
 

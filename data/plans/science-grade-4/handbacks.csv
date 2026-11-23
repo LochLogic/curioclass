@@ -131,3 +131,5 @@ from_day,to_day,what,where,minutes,error,note
 23,24,s02-P23-repair,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
 23,24,s02-P23-retry,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
 23,24,s02-P23-model,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+25,26,s02-P25-repair,Return and repair,0,,Return with ticket and descriptive feedback; no additional repair minutes.
+25,26,s02-P25-observe,Return and repair,0,,Return with ticket and descriptive feedback; no additional repair minutes.

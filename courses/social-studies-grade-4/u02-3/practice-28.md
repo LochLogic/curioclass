@@ -7,7 +7,7 @@ credit: ours
 ---
 # Day 28 component work
 
-Sources open. Use listener-slips.md before your finding.
+Sources open. Use Listener question and reply before your finding.
 A teacher hears every student on the roster; no one waits in a public line.
 
 **s02-P28**

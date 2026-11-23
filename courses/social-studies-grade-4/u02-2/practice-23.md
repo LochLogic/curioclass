@@ -7,8 +7,8 @@ credit: ours
 ---
 # Day 23 component work
 
-Use Shared introduction and only your chosen research card from people-sources.md.
-Use a blank source-log.md and topic-notes.md. Do not print teacher metadata.
+Use Shared introduction and only your chosen research card from People and languages cards.
+Use a blank My source log and Six-topic research notes. Do not print teacher metadata.
 
 **s02-P23**
 

@@ -8,7 +8,7 @@ credit: ours
 # Day 21 component work
 
 Made-up labeled claims and records:
-Checkable claim: There are six chairs. Inventory record: six chairs.
+Checkable claim: There are five chairs. Inventory record: six chairs.
 Checkable claim: Delivery came Monday. Receipt: delivery Monday.
 Opinion: Green is the nicest color. There is no agreed best-color test.
 

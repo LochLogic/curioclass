@@ -166,3 +166,9 @@ s02-P23-repair,An open gap completes this loop.,,,x,Cold-solved diagnostic; blan
 s02-P23-retry,"The cloth looks warmer, so no reading is needed.",,,H,Cold-solved diagnostic; blank or unrelated work gets a conference.
 s02-P23-model,The generator creates energy without input.,,,A,Cold-solved diagnostic; blank or unrelated work gets a conference.
 s02-P23-1,Lamp circuit: heat.,,,x,Names contact warming instead of current carrying energy through the complete cell-lamp circuit.
+s02-P24-repair,The generator creates energy without input.,,,A,Error A; use the named repair. Blank work gets a conference.
+s02-K24-1,Any attractive signal succeeds without a success rule.,,,C,Error C; use the named repair. Blank work gets a conference.
+s02-P24-budget,There is no budget limit to check.,,,C,Error C; use the named repair. Blank work gets a conference.
+s02-K24-2,Only one terminal must connect.,,,B,Error B; use the named repair. Blank work gets a conference.
+s02-P25-repair,"A pleasant appearance is enough, without any success result.",,,C,Error C; use the named repair. Blank work gets a conference.
+s02-P25-observe,Any attractive signal succeeds without a success rule.,,,C,Error C; use the named repair. Blank work gets a conference.

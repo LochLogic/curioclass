@@ -7,7 +7,7 @@ credit: ours
 ---
 # Day 24 component work
 
-Use government-sources.md and government-table.md. Record one office/function at a time.
+Use Government office cards and My government research table. Record one office/function at a time.
 
 **s02-P24**
 
