@@ -40,16 +40,16 @@ from_day,to_day,what,where,minutes,error,note
 22,23,s02-P22 s02-P22-R s02-K22-1 s02-P22-1 s02-P22-2 s02-P22-3 s02-P22-4 s02-P22-5,Return,0,,Return all collected component work with written cues alongside the exit; repair time is counted separately.
 23,24,s02-X23,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
 23,24,s02-X23 repair,Research,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
-23,24,s02-P23,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
+23,24,s02-P23,Return,0,,"Return all day 23 papers, including s02-P23-R, s02-P23-1, with the component feedback in this same slot; no extra minutes."
 24,25,s02-X24,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
 24,25,s02-X24 repair,Research,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
-24,25,s02-P24,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
+24,25,s02-P24,Return,0,,"Return all day 24 papers, including s02-P24-R, with the component feedback in this same slot; no extra minutes."
 25,26,s02-X25,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
 25,26,s02-X25 repair,Research,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
-25,26,s02-P25,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
+25,26,s02-P25,Return,0,,"Return all day 25 papers, including s02-P25-R, s02-P25-1, with the component feedback in this same slot; no extra minutes."
 26,27,s02-X26,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
 26,27,s02-X26 repair,Draft,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
-26,27,s02-P26,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
+26,27,s02-P26,Return,0,,"Return all day 26 papers, including s02-P26-R, s02-P26-1, s02-P26-2, with the component feedback in this same slot; no extra minutes."
 27,28,s02-X27,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
 27,28,s02-X27 repair,Listener,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
 27,28,s02-P27,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
