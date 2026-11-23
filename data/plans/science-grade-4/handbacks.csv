@@ -212,3 +212,28 @@ from_day,to_day,what,where,minutes,error,note
 52,53,s03-P52-return,Return,0,,Written component feedback to everyone; no additional repair minutes.
 53,54,s03-P53-return,Return,0,,Written component feedback to everyone; no additional repair minutes.
 54,55,s03-P54-return,Collection,0,,Written component feedback to everyone; no additional repair minutes.
+57,58,s04-X57-model s04-X57-question,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+58,59,s04-X58,response,0,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+59,60,s04-X59-plan s04-X59-start,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+60,61,s04-X60-record s04-X60-cause,Compare controls,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+61,62,s04-X61,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+62,63,s04-X62-graph s04-X62-claim s04-XB62-process,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+63,64,s04-X63,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+64,65,s04-XB64-ice s04-XB64-wind s04-XB64-root s04-XB64-burrow s04-X64,Explain,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+65,66,s04-X65-distance s04-X65-cause s04-XB65-roots,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+66,67,s04-X66-model s04-X66-question,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+67,68,s04-X67,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+68,69,s04-X68,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+69,70,s04-X69,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+70,73,s04-X70,Targeted repair,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+59,60,s04-P59-response s04-P59-plan s04-P59-baseline,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+60,61,s04-P60-measure,Compare controls,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+61,62,s04-P61-clay s04-P61-abrasion,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+65,70,s04-P65-retrieve s04-P65-measure,Feedback revision,7,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+66,70,s04-P66-revise s04-P66-records,Feedback revision,8,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+67,68,s04-P67-retrieve s04-P67-build s04-P67-cards,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+68,69,s04-P68-model s04-P68-photo,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+69,70,s04-P69-notes s04-P69-accounts,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+71,73,s04-E1-measure s04-E1-cause s04-E1-ice s04-E1-wind s04-E1-animal s04-E1-rain,Revision,10,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+72,73,s04-E2-order s04-E2-match s04-E2-deform s04-E2-cut s04-E2-limit,Revision,10,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+71,75,s04-E1-measure original individual practical record,assessment,0,,Retain unchanged for course check; no new turn or second unit score.

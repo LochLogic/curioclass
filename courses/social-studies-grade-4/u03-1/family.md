@@ -16,7 +16,7 @@ No child needs to share family history, ancestry, money, religion or private exp
 
 An optional conversation: What evidence could help answer a question about an old public building?
 
-## Español
+## Spanish
 
 Preguntamos cómo las pruebas nos ayudan a conocer a las personas de hace mucho tiempo. Estudiamos fechas, mapas, objetos y relatos públicos de naciones indígenas nombradas. Distinguimos lo que muestran las pruebas de lo que sigue siendo incierto. Las comunidades Pueblo, la Tribu Hopi y la Nación Osage siguen vivas hoy.
 

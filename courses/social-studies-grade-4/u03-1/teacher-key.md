@@ -1,5 +1,6 @@
 ---
-piece: key
+piece: opener
+role: teacher-key
 course: social-studies-grade-4
 unit: 3.1
 stretch: 3

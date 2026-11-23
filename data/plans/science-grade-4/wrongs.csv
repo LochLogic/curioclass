@@ -333,3 +333,70 @@ s03-P52-return,A quick run makes every message correct.,,,C,"Attend to accuracy 
 s03-P53-return,One quiet success proves success everywhere.,,,D,Limit a claim to both observed conditions; preserve uncertainty about untested settings.
 s03-P54-return,The quickest quiet run settles every comparison.,,,C,Apply accuracy and duration in each recorded setting; identify error D separately when a claim exceeds conditions.
 s03-P54-return,Quiet success proves the conversation trial passed.,,,D,Error D: extends success from one condition to a different condition without its evidence.
+s04-X57-model,The drawing proves exactly when every rock fell.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-X57-question,How old is every river in the world?,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-X58,Only carrying occurred because weathering must move material.,,,A,Error A: Only carrying occurred because weathering must move material.
+s04-X59-plan,Change both because any difference proves the grain-size effect.,,,C,Error C: Change both because any difference proves the grain-size effect.
+s04-X59-start,Final cracks prove freezing caused them without a starting record.,,,C,Error C: Final cracks prove freezing caused them without a starting record.
+s04-X60-record,Keep only trial 1 because it supports the cause.,,,C,Error C: Keep only trial 1 because it supports the cause.
+s04-X60-cause,One supporting trial proves the edge effect.,,,C,Error C: One supporting trial proves the edge effect.
+s04-X61,Clay cannot weather while its pieces stay together.,,,A,Error A: Clay cannot weather while its pieces stay together.
+s04-X62-graph,"High flow always goes farther, so omit low-flow 8.",,,C,"Error C: High flow always goes farther, so omit low-flow 8."
+s04-X62-claim,Repeats prove high flow always carries farther.,,,C,Error C: Repeats prove high flow always carries farther.
+s04-XB62-process,Distance cannot show erosion because no rock broke.,,,A,Error A: Distance cannot show erosion because no rock broke.
+s04-X63,Two repeats prove pebbles caused it even though tilt also changed.,,,C,Error C: Two repeats prove pebbles caused it even though tilt also changed.
+s04-XB64-ice,No weathering occurred because nothing traveled.,,,A,Error A: No weathering occurred because nothing traveled.
+s04-XB64-wind,Dust must have been newly broken by wind.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-XB64-root,Living things cannot change land.,,,D,Error D: Living things cannot change land.
+s04-XB64-burrow,Animals cannot change land.,,,D,Error D: Animals cannot change land.
+s04-X64,Rain can reshape soil but cannot affect the plants that grow.,,,E,Error E: Rain can reshape soil but cannot affect the plants that grow.
+s04-X65-distance,Planted moved 10 centimeters and bare moved 5 centimeters.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-X65-cause,Water does not matter; cover alone caused the difference.,,,C,Error C: Water does not matter; cover alone caused the difference.
+s04-XB65-roots,Plants cannot change land.,,,D,Error D: Plants cannot change land.
+s04-X66-model,"Rock can never change, so the pictures cannot show changes.",,,B,"Error B: Rock can never change, so the pictures cannot show changes."
+s04-X66-question,The picture gives every layer an exact age.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-X67,All layers were land because upper roots prove every environment.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-X68,"Lowest always means oldest, even after overturning.",,,F,"Error F: Lowest always means oldest, even after overturning."
+s04-X69,The channel must always have occupied its present position.,,,H,Error H: The channel must always have occupied its present position.
+s04-X70,The river always occupied exactly its present position.,,,H,Error H: The river always occupied exactly its present position.
+s04-E1-measure,I wrote expected readings without observing.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-E1-cause,One trial proves slope caused it even if water changed.,,,C,Error C: One trial proves slope caused it even if water changed.
+s04-E1-ice,Neither weathered because pieces did not travel.,,,A,Error A: Neither weathered because pieces did not travel.
+s04-E1-wind,Moving grains prove new rock breakage.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-E1-animal,Only plants can change land.,,,D,Error D: Only plants can change land.
+s04-E1-rain,Rain changes grooves but cannot affect which plants live.,,,E,Error E: Rain changes grooves but cannot affect which plants live.
+s04-E2-order,All layers formed together in the same environment.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-E2-match,Matching colors prove all exposures are the same.,,,G,Error G: Matching colors prove all exposures are the same.
+s04-E2-deform,The break happened before any layer existed.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-E2-cut,Today's river always occupied this notch.,,,H,Error H: Today's river always occupied this notch.
+s04-E2-limit,Every feature appeared at once because it is visible now.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P57-notice,The image gives an exact age.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P57-initial,My first guess proves the cause.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P57-slow,Deep channels must form in one event.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P58-sort,Cracks cannot weather unless they travel.,,,A,Error A: Cracks cannot weather unless they travel.
+s04-P59-response,Prettier barriers work better without evidence.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P59-plan,Change slope and water to prove slope caused it.,,,C,Error C: Change slope and water to prove slope caused it.
+s04-P59-baseline,Every final crack must be new.,,,C,Error C: Every final crack must be new.
+s04-P60-measure,Replace failed readings with expected results.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P61-clay,Rock never changes because clay did not.,,,B,Error B: Rock never changes because clay did not.
+s04-P61-abrasion,Moving stones must be smaller.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P62-retrieve,Unequal intervals can stand for equal counts.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P62-graph,Omit inconvenient results to prove a cause.,,,C,Error C: Omit inconvenient results to prove a cause.
+s04-P63-paper,Repeats prove every possible setting.,,,C,Error C: Repeats prove every possible setting.
+s04-P64-records,Living things cannot change land.,,,D,Error D: Living things cannot change land.
+s04-P65-retrieve,Any planted slope must always lose less soil.,,,C,Error C: Any planted slope must always lose less soil.
+s04-P65-measure,This proves only roots caused every difference.,,,C,Error C: This proves only roots caused every difference.
+s04-P66-revise,A tray proves an exact canyon rate.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P66-records,Rain cannot affect which plants survive.,,,E,Error E: Rain cannot affect which plants survive.
+s04-P67-retrieve,Any loose shell proves a recent sea.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P67-build,Clay gives exact rock ages.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P67-cards,Similar colors prove one environment.,,,G,Error G: Similar colors prove one environment.
+s04-P68-model,Lowest always means oldest after any bending.,,,F,Error F: Lowest always means oldest after any bending.
+s04-P68-photo,Lowest on the screen always means oldest.,,,F,Error F: Lowest on the screen always means oldest.
+s04-P69-notes,A source proves any story I prefer.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P69-accounts,Colors alone prove every match.,,,G,Error G: Colors alone prove every match.
+s04-P70-consensus,A vote replaces evidence.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P70-feedback,Change readings to match expectations.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P73-revision,Copy an answer without evidence.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P73-change,My explanation changed because it is longer.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P73-fresh,The path proves an exact age.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
