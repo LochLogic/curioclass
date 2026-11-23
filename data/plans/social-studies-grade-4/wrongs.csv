@@ -426,7 +426,7 @@ s03-X42,Old buildings are fun.,,,N,Interest alone does not explain the writer's 
 s03-X43a,V; deepest always means oldest.,,,K,The later pit changes original associations.
 s03-X43b,Only record attractive finds.,,,F,Every context matters.
 s03-X43b,Nobody else needs to check.,,,O,Research needs checkable records.
-s03-X44a,Place18000 two ticks from today.,,,A,"Read the years-ago labels, not elapsed ticks from the left."
+s03-X44a,"Place 18,000 two ticks from today.",,,A,"Read the years-ago labels, not elapsed ticks from the left."
 s03-X44b,"7,000 years ago.",,,A,Smaller years-ago is more recent.
 s03-X45a,It proves the whole inland journey.,,,C,A crossing does not establish conditions farther south.
 s03-X45b,Yes; exposed land proves the corridor.,,,C,Separate land and ice keys address different conditions.
@@ -502,3 +502,24 @@ s03-P43-RN,Old gates are fun.,,,N,Does not meet the stated evidence or record re
 s03-P43-RT,Three years.,,,A,Does not meet the stated evidence or record requirement.
 s03-K43-1,Lift it before recording its position.,,,F,Does not meet the stated evidence or record requirement.
 s03-P43-Q,One guess replaces records.,,,O,Does not meet the stated evidence or record requirement.
+s03-P44-RF,Only list the shiniest find.,,,F,Does not meet the stated evidence or record requirement.
+s03-P44-RK,Yes. Deepest always means oldest.,,,K,Does not meet the stated evidence or record requirement.
+s03-P44-RO,Pick the most confident person.,,,O,Does not meet the stated evidence or record requirement.
+s03-P44-Q,One year.,,,A,Does not meet the stated evidence or record requirement.
+s03-P42a,1900.,,,x,Does not match the supplied record or interval.
+s03-P42b,One century.,,,x,Does not match the supplied record or interval.
+s03-P42c,All Native nations disappeared.,,,x,Does not match the supplied record or interval.
+s03-P42d,That wall looks nice.,,,x,Does not match the supplied record or interval.
+s03-P43-1,Choose the prettiest object.,,,F,Selects attractive finds instead of the method matching the missing record.
+s03-P43-2,Choose the prettiest object.,,,F,Selects attractive finds instead of the method matching the missing record.
+s03-P43-3,Choose the prettiest object.,,,F,Selects attractive finds instead of the method matching the missing record.
+s03-P43-4,Choose the prettiest object.,,,F,Selects attractive finds instead of the method matching the missing record.
+s03-P43-5,Choose the prettiest object.,,,F,Selects attractive finds instead of the method matching the missing record.
+s03-P43-6,Choose the prettiest object.,,,F,Selects attractive finds instead of the method matching the missing record.
+s03-P44-1,14 years ago.,,,A,Does not match the supplied record or interval.
+s03-P44-2,6 years ago.,,,A,Does not match the supplied record or interval.
+s03-P44-3,16 years ago.,,,A,Does not match the supplied record or interval.
+s03-P44-4,9 years ago.,,,A,Does not match the supplied record or interval.
+s03-P44-5,4 years ago.,,,A,Does not match the supplied record or interval.
+s03-P44-6,"6,000 years ago.",,,A,Does not match the supplied record or interval.
+s03-P43-RG,All Native nations disappeared.,,,x,Does not meet the stated evidence or record requirement.
