@@ -1,0 +1,12 @@
+from_day,to_day,what,where,minutes,error,note
+1,2,s01-X01 role notes,Opening,5,Q,Return dated feedback; one component repair only.
+2,3,s01-X02,Opening,5,A,One component repair; log lines returned in same part.
+2,3,s01-X02,Choice workshop,5,O,Alternative route for invented claims; no duplicate repair.
+2,3,s01-P2-2 inspected log lines,Opening,0,,Return with exit; no extra repair minutes.
+3,4,s01-X03,Opening,5,A,Supported feeling repair on a different taught passage.
+3,4,s01-P3-2 s01-P3-3 s01-P3-4 choice work,Choice workshop,5,C,"Alternative component group, including event and invented-claim repairs; no additional group."
+3,4,s01-X03,Choice workshop,0,C,Same five-minute group as collected choice work; not a second duty.
+4,5,s01-X04 role notes,Opening,5,E,One pattern repair and return notes.
+4,5,s01-X04,Choice workshop,5,Y,Alternative figurative phrase group; no duplicate repair.
+4,5,s01-P4-X1,Choice workshop,0,E,"Returned with s01-X04; line-ending repair shares the existing five-minute feature group, not another group."
+4,12,teacher role record and written role feedback,Choice workshop,0,,Retain for the planned note revision; children 13 to 30 still need live role observations in later scheduled windows. Paper is not oral evidence.
