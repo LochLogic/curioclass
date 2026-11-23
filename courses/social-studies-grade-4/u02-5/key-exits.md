@@ -6,6 +6,8 @@ unit: 2.5
 version: draft, not yet taught
 credit: ours
 ---
+<style>body.student {font-size:11pt;line-height:1.15;column-count:2;column-gap:.3in} body.student p {margin:.12em 0} body.student h1 {font-size:16pt;margin:.3em 0;column-span:all} body.student h2 {font-size:11.5pt;margin:.35em 0 .12em;break-after:avoid}</style>
+
 # Section 2.5 teacher keys
 
 Teacher only. Read before class; keep out of student packets.

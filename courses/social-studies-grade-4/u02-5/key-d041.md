@@ -6,7 +6,7 @@ unit: C
 version: draft 1, not ready, not yet taught
 credit: ours
 ---
-<style>body.student {font-size:11pt;line-height:1.25} body.student p {margin:.25em 0} body.student h1 {font-size:16pt;margin:.4em 0} body.student h2 {font-size:12pt;margin:.5em 0 .2em}</style>
+<style>body.student {font-size:11pt;line-height:1.25;column-count:2;column-gap:.3in} body.student p {margin:.25em 0} body.student h1 {font-size:16pt;margin:.4em 0;column-span:all} body.student h2 {font-size:12pt;margin:.5em 0 .2em}</style>
 
 # Day 41 teacher-only answer key
 

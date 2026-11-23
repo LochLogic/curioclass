@@ -326,3 +326,18 @@ s01-P9-1,Ran cot for raincoat.,,,H,Use only for the actual demonstrated fault; a
 s01-P9-2,mina reads. Ben listens.,,,V,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-P9-3,Ignore meaning and race.,,,I,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-P9-4,Copy an adult's answer over the first attempt.,,,x,Use only for the actual demonstrated fault; accept supported alternatives.
+s01-P10-3,Interrupt again and give no source.,,,J,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P10-4,All lines need the same pace regardless of meaning.,,,I,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P10-5,Read house instead of hotel.,,,H,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P10-6,Mina takes his paper.,,,O,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P10-7,Footsteps is the complete message; keep my opinion in the summary.,,,B,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P10-8,The wider page must be prose.,,,E,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P10-9,Copy a classmate without reading.,,,x,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P10-10,Log a title without reading.,,,x,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-K11-1,The real author must have had this hope.,,,F,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P11-3,The rehearsal had no readers.,,,O,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P11-4,Face up matches the printed opening.,,,G,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P11-5,Replace remember with member.,,,H,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P11-6,Ben must be the real author because he says I.,,,F,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P11-7,Use a future unseen entry without reading it.,,,x,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P11-8,Invent a reading log without reading.,,,x,Diagnose only the demonstrated fault; unobserved work is not an error.
