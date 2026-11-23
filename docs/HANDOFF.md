@@ -6,7 +6,7 @@ which is stale, fix it and say so.
 
 ## State now
 
-- **Done 2026-11-22: science K to 3 finished to COURSE-RUN stage 7, awaiting Cory's sign-off (later.csv L81).** The L102 exit faults fixed, a 10-day re-sample per grade (K 0.9, grade 1 1.2, grade 2 0.8, grade 3 0.8 FIRM a day), a full read and cleanup for grade 1, then the stage 7 reads, one fix pass and a safety page per course, and the K to 3 continuity pass. Gates: lesson.py 0 FAIL; plan.py only the known units.csv lines. Records docs/reviews/finish-fix-science-<course>-2026-11-22.md, continuity-science-2026-11-22.md. Cory's calls are on Desk cards q-sci-finish-k, -g1, -g2, -g3. Art, voice and tools deferred.
+- **Done 2026-11-23: science K to 3 finished to COURSE-RUN stage 7 and signed off by Cory (later.csv L81).** His calls were applied 2026-11-23 (docs/reviews/signoff-fix-science-<course>-2026-11-23.md; DESK-ANSWERS 2026-11-23). Run record from 2026-11-22: The L102 exit faults fixed, a 10-day re-sample per grade (K 0.9, grade 1 1.2, grade 2 0.8, grade 3 0.8 FIRM a day), a full read and cleanup for grade 1, then the stage 7 reads, one fix pass and a safety page per course, and the K to 3 continuity pass. Gates: lesson.py 0 FAIL; plan.py only the known units.csv lines. Records docs/reviews/finish-fix-science-<course>-2026-11-22.md, continuity-science-2026-11-22.md. Cory's calls are on Desk cards q-sci-finish-k, -g1, -g2, -g3. Art, voice and tools deferred.
 - **Done 2026-11-22: science K to 3 outside-reader fixes.** The Gemini findings were verified and fixed in all four courses (commits 06044df12, a217321fe, cebb837f9; ledgers docs/reviews/gemini-fixes-science-<course>-2026-11-22.md); gates at each course's baseline. Science K to 3 stays PAUSED for Cory (later.csv L81).
 - **Done 2026-11-22: all 65 progression nodes.** SEL, ELD, library, career education and Spanish joined the earlier subjects (data/progressions/, flow-status.csv). World languages is Spanish only; ASL waits on the required review (later.csv L93).
 - **Done 2026-11-21 to 22: the Recess games.** Infinite Hike, Farlight and Ripple (the renamed music maker) are live, Go, Chess, Checkers and Untangle went live early (Desk card recess-live-early), Cargo Hold is spec only. Which are live is in [GAMES.md](GAMES.md), "On the shelf now" (the `live` flag in data/recess.json is not used).
@@ -58,7 +58,7 @@ why the core was planned top down; its steps 7 and 8 are superseded by COURSE-RU
    `scripts/coursegen.py` and the kit in docs/pipeline/kit/; day jobs are ledger-gated (`scripts/ledger.py gate`);
    cost tables come from `scripts/tokens.py`. Prep done 2026-11-22 (later.csv L102): math K to 3 Goal maps and
    section skeletons, the math subject note, grade notes 4 to 6; both lanes generate their queues cleanly.
-3. **Science K to 3 waits on Cory's sign-off** (later.csv L81; Desk cards q-sci-finish-k, -g1, -g2, -g3): answer the calls, apply them in one small pass, then the grades past 3 climb.
+3. **Science grades 4 and up can climb** (K to 3 signed off 2026-11-23, later.csv L81). Each new science scope gets the coverage table (L104). Art, voice and tools for K to 3 wait for their stages.
 4. **Before any course goes live:** the watch items in later.csv L101, and each course's stage 7 finish (COURSE-RUN).
 5. **After the core:** the electives and later subjects run from COURSE-RUN stage 1; their second-model reads and
    calibration are later.csv L88.
