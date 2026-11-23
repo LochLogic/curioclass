@@ -401,3 +401,24 @@ s02-P38a,Only agreeing accounts matter.,,,A,Need complementary evidence.
 s02-P38b,Tuesday proves comfort.,,,D,Opening day does not measure comfort.
 s02-P38c,Delays help everyone.,,,F,Missing input can interrupt this producer.
 s02-P38d,Everyone benefits because I like canals.,,,G,Preference does not establish support or universal benefits.
+C1-E39-1,1 Sierra Nevada; 2 Colorado River; 3 Great Basin Desert.,,,A,Compare keyed feature marks.
+C1-E39-2,Thin boundary lines mean rivers.,,,A,The thick line is the river mark.
+C1-E39-4,The whole country of Canada is shaded.,,,E,The index target is a division within Canada.
+C1-E39-5,A province is a separate country.,,,E,"Use containment, without treating a division as independent."
+C1-E39-6,T is in the cell beside the crossing.,,,G,"A coordinate identifies a crossing, not a cell."
+C1-E39-3,5 kilometers,5,5,M,Paper length substituted for ground distance.
+C1-E39-3,360 kilometers,2*180,360,M,Counts two whole bars but omits the remaining half.
+C1-E40-1,All four are facts because they are printed.,,,L,A printed claim still needs relevant evidence; separate preferences.
+C1-E40-2,"The leaflet says it, so the map agrees.",,,D,Read the separate map detail instead of repeating the first source.
+C1-E40-3,The map proves every visitor should choose Alaska.,,,C,Location evidence cannot establish a preference.
+C1-E40-3,One opinion makes all the leaflet false.,,,K,Judge each claim separately.
+C1-K41-1,Triangles mean water.,,,A,The supplied teaching key says hills.
+C1-K41-2,3 kilometers.,,,M,"Count represented units, not bars."
+C1-K41-3,Latitude is the column number.,,,G,"Use the labeled margin, not a letter-grid habit."
+C1-K41-4,A path map proves nicest smell.,,,C,The source does not record that preference.
+C1-P41-CP,Both are independent countries.,,,E,Distinguish a division from its containing country.
+C1-P41-A,The square is east of the circle.,,,B,Use the downward north arrow.
+C1-P41-C,"A stays at 60 N, 50 W.",,,G,Read target latitude then longitude.
+C1-P41-D,The right location proves quietest.,,,C,A location detail cannot establish a preference.
+C1-P41-B,210 kilometers,210,210,M,Omits the half-bar portion.
+C1-X41,The map proves everyone likes the bridge.,,,C,Separate a mapped location from an unmapped preference.

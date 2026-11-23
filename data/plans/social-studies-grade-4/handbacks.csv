@@ -108,3 +108,5 @@ from_day,to_day,what,where,minutes,error,note
 34,35,s02-P34-R,Return,0,,Return within existing feedback; no extra adult queue.
 35,36,s02-P35-R,Return,0,,Return within existing feedback; no extra adult queue.
 36,38,s02-P36-R s02-P36-D1 s02-P36-D2 s02-P36-D3,Feedback,0,,Return within existing feedback; no extra adult queue.
+39,41,C1-E39-1 C1-E39-2 C1-E39-3 C1-E39-4 C1-E39-5 C1-E39-6,Feedback,2,,"Return privately; one component priority. Response groups holds map teaching, not Feedback."
+40,41,C1-E40-1 C1-E40-2 C1-E40-3,Feedback,3,,"Return privately; combine with map evidence to assign one priority, not two groups."

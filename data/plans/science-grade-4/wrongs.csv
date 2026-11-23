@@ -319,3 +319,9 @@ s03-P56-E,Any receiver understands marks without a shared rule.,,,E,"Omits agree
 s03-P56-F,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
 s03-R56,Cloth stops the rain.,,,x,"Carrying diagnostic, not a unit 3 letter."
 s03-R56,Cloth is better because prettier.,,,x,"Design-evidence diagnostic, not a unit 3 letter."
+s03-K42-features,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-P43-source,No evidence is given.,,,x,Missing evidence for the named claim.
+s03-P43-receiver,No evidence is given.,,,x,Missing evidence for the named claim.
+s03-P43-signal,No evidence is given.,,,x,Missing evidence for the named claim.
+s03-P44-travel,The marked material travels to the far end with a crest.,,,A,Confuses the named wave features or motions.
+s03-P45-energy,The marked material travels to the far end with a crest.,,,A,Confuses the named wave features or motions.
