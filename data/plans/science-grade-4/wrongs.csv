@@ -180,3 +180,12 @@ s02-P29-repair,"More detections always prove improvement, even with changed cond
 s02-P30-retrieval,The road cannot change nesting places.,,,x,Diagnose only this reasoning; blank or unrelated work gets a conference.
 s02-K30-1,The solar cell is the natural energy supply.,,,I,Diagnose only this reasoning; blank or unrelated work gets a conference.
 s02-P30-1,A made battery is a natural resource.,,,I,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-K31-1,Oil is replenished within a human lifetime.,,,J,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P31-1,A gas deposit is replenished as quickly as people extract it.,,,J,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-K32-1,Every land animal keeps the same habitat after flooding.,,,x,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P32-1,Burning solid fuel leaves no material behind.,,,x,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-K33-1,Every gas is captured by the particle filter.,,,F,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P33-1,The filter removes every environmental effect.,,,F,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P34-1,Zero rounded shares prove the resource was absent.,,,x,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P35-1,The generator makes energy without input.,,,A,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P35-2,"Our group liked it, so no comparable retest evidence is needed.",,,D,Diagnose only this reasoning; blank or unrelated work gets a conference.

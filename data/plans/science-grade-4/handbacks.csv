@@ -141,3 +141,8 @@ from_day,to_day,what,where,minutes,error,note
 24,25,s02-P24-repair,Return and repair,0,,Return with ticket and packet feedback; no additional repair minutes.
 24,25,s02-P24-budget,Return and repair,0,,Return with ticket and packet feedback; no additional repair minutes.
 24,25,s02-K24-2,Return and repair,0,,Return with ticket and packet feedback; no additional repair minutes.
+30,31,s02-P30-retrieval,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
+30,31,s02-K30-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
+31,32,s02-K31-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
+32,33,s02-K32-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
+33,34,s02-K33-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
