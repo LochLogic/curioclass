@@ -96,3 +96,72 @@ s01-N11,Skips a counting word,,,C,Standard order not followed.
 s01-X11,Takes all eight because the pile looks sufficient,,,E,Appearance replaces choosing one per place.
 s01-X11,Supplies one plate twice and leaves another empty,,,B,A plate was revisited.
 s01-X11,Other unexplained incorrect selection,,,x,A wrong quantity alone cannot diagnose the action.
+s01-W12,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-W12,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-N12,"One, two, five, three.",,,C,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-K12,Two words during one move.,,,D,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-F12,Leaves the last square untouched.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-P12,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-P12,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-X12,Skips a spoon and stops at six.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-X12,Says two words during one spoon touch.,,,D,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-W13,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-W13,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-N13,"One, two, five, three.",,,C,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-K13,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-K13,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-F13,Lifts a cover to count the same square again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-P13,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-P13,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-X13,Leaves one crayon uncounted.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-X13,Takes a crayon from the done pile and counts it again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-W14,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-W14,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-N14,"One, two, five, three.",,,C,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-K14,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-K14,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-Q14,No response after the count.,,,x,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-F14,"One, two, five, three, four on five distinct moves.",,,C,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-P14,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-P14,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-X14,Skips a cork and stops at seven.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-X14,Revisits a cork and stops at nine.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-W15,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-W15,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-N15,"One, two, five, three.",,,C,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-K15,Says five but leaves the omitted square untouched.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-Q15,"Only says five, with no corrected action.",,,x,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-P15,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-P15,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-X15,Explanation route leaves an acorn out.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-X15,Explanation route returns to an already counted acorn.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-X15,"Only says eight, without explaining tracking.",,,x,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-A1a,"One kite untouched, stops at five.",,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-A1a,"Says one, two during one kite touch.",,,D,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-A1b,Skips one boat and stops at eight.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-A1b,Revisits one boat and stops at ten.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-A1b,"Touches nine boats once, saying one through eight then ten.",,,C,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-A1b,Says two words during one touch.,,,D,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-A1c,"I said nine, with no tracking action.",,,x,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-W16,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-W16,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-N16,"One, two, five, three.",,,C,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-K16,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-K16,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-Q16,Points to an unrelated square.,,,x,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-P16,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-P16,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-X16,Leaves one animal unrepresented.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-X16,Records one animal a second time.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-W17,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-W17,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-N17,"One, two, five, three.",,,C,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-K17,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-K17,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-Q17,Assumes the visible front always shows every piece.,,,x,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-F17,Revisits the first piece after counting five.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-P17,One object receives no action.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-P17,An object is counted again.,,,B,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-X17,Leaves one piece unused while counting.,,,A,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-X17,Says two words while adding one piece.,,,D,Assign this letter only when the action is observed; a total alone does not diagnose it.
+s01-Q14-10,No amount connected to the count.,,,x,"Descriptive response only, not cardinality evidence."

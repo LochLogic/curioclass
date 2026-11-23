@@ -81,7 +81,7 @@ s01-P9-2,Northwest Territories is a province.,,,E,Does not meet the geographic o
 s01-P9-2,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
 s01-P9-3,I like this map.,,,H,Does not meet the geographic or source look-for.
 s01-P9-3,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
-s01-X9,Alberta is a country; Nunavut is a province.,,,E,Does not meet the geographic or source look-for.
+s01-X9,Alberta is a country.,,,E,Alberta is a province within Canada; score this category separately.
 s01-X9,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
 s01-P10-R,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
 s01-P10-R,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
@@ -97,7 +97,7 @@ s01-P10-3,The division is a separate country.,,,E,Does not meet the geographic o
 s01-P10-3,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
 s01-P10-4,Cuba contains all of the Caribbean.,,,E,Does not meet the geographic or source look-for.
 s01-P10-4,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
-s01-X10,Sonora is a country; Barbados is a state.,,,E,Does not meet the geographic or source look-for.
+s01-X10,Sonora is a country.,,,E,Sonora is a Mexican state; score this category separately.
 s01-X10,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
 s01-P11-R,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
 s01-P11-R,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
@@ -117,3 +117,5 @@ s01-P11-E,Every nation must be an independent country.,,,L,Does not meet the geo
 s01-P11-E,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
 s01-P11-E,Citizen Potawatomi Nation has government only in the past.,,,F,"Card N describes government today, not only the past."
 s01-P11-E,Saskatchewan is a separate country.,,,E,The printed division label identifies a province within Canada.
+s01-X9,Nunavut is a province.,,,E,Nunavut is a territory; score this category separately.
+s01-X10,Barbados is a state.,,,E,Barbados is a Caribbean country; score this category separately.

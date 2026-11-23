@@ -37,3 +37,7 @@ from_day,to_day,what,where,minutes,error,note
 12,13,s01-Ps12,Return and repair,0,,Return feedback; retain the original in the folder.
 13,15,s01-X13,Read feedback,0,,"Written component feedback; targeted support is in Response stations, counted there once."
 13,15,s01-K13,Read feedback,0,,Return evidence-tag feedback; retain tags.
+14,15,s01-A1 s01-A2,Read feedback,5,,"Written gap feedback; station repair minutes counted once in Response stations, not here."
+15,16,s01-P15-revise,Cleanup,0,,Return revised packets with final categories during paper pickup; no repair.
+15,18,s02-R1,Response and repair,5,,Begin ten-minute sunlight-cause response here; finish during Light and warming comparisons if E17 also needs repair.
+15,18,s02-R1,Light and warming comparisons,5,,"Finish ten-minute readiness response if needed; without E17 gaps, all ten may fit Response and repair."

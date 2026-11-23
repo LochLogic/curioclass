@@ -348,12 +348,14 @@ def lane(subj, dry=False):
             t0 = time.time()
             if gate:
                 code, out = py(*gate.split()[3:]) if gate.startswith('python -X utf8 ') else (1, 'bad gate line')
-                if code:
-                    result = 'gate-closed'
-                    log('%s %s %s %s: ledger gate closed: %s' % (subj, num, kind, course, out.strip().splitlines()[-1:]))
+                if code:   # a draft writes the days anyway (Cory 2026-11-23); the job is told what the gate found
+                    log('%s %s %s %s: ledger gate closed, drafting anyway: %s' % (subj, num, kind, course, out.strip().splitlines()[-1:]))
+                    gate_note = '\n\nThe runner ran the step 0 ledger gate and it is CLOSED. Its output:\n' + out.strip()[-3000:] + '\n'
             run = None
             if result == 'ok':
                 prompt = (ROOT / 'docs/pipeline/kit/draft-preamble.txt').read_text(encoding='utf-8') + text
+                if gate and code:
+                    prompt += gate_note
                 extra = DRAFT / 'notes' / ('%s-%s.txt' % (subj, num))
                 if extra.exists():   # a per-job note (say, work already done by hand that the job must keep)
                     prompt += '\n\nNote for this job (it wins over the job above):\n' + extra.read_text(encoding='utf-8')
@@ -371,8 +373,8 @@ def lane(subj, dry=False):
                     continue
                 if not run.last.strip():
                     result = 'failed'
-                elif 'gate closed' in run.last[:400]:
-                    result = 'gate-closed'
+                elif re.search(r'(changed nothing|no files changed|zero rows added)', run.last[:1500], re.I):
+                    result = 'wrote-nothing'
             break
         if result == 'ok' and kind in ('DAY', 'CHECKS'):
             nums = [int(x) for x in re.findall(r'\d+', gate or '')[-2:]] if gate else []
