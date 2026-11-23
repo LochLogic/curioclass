@@ -1,5 +1,5 @@
 ---
-piece: blank
+piece: opener
 course: science-grade-4
 unit: 3.1
 version: draft, not yet taught

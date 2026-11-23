@@ -192,7 +192,7 @@ s01-P8-2,Mina takes the page.,,,G,Use only for the actual fault shown.
 s01-P10-1,What is for lunch?,,,L,Use only for the actual fault shown.
 s01-P10-2,My answer is best.,,,M,Use only for the actual fault shown.
 s01-P11-1,Mina worries about shelf height.,,,O,Use only for the actual fault shown.
-s01-P11-2,Every third-person story hides all thoughts.,,,F,Use only for the actual fault shown.
+s01-P11-2,Every third-person story hides all thoughts.,,,x,False universal claim about narrator access; does not by itself show narrator/author confusion.
 s01-P12-1,setting,,,D,Use only for the actual fault shown.
 s01-P12-2,I like lunch.,,,AI,Use only for the actual fault shown.
 s01-P14-1,Ben keeps a private poem.,,,O,Use only for the actual fault shown.
@@ -326,11 +326,11 @@ s01-P9-1,Ran cot for raincoat.,,,H,Use only for the actual demonstrated fault; a
 s01-P9-2,mina reads. Ben listens.,,,V,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-P9-3,Ignore meaning and race.,,,I,Use only for the actual demonstrated fault; accept supported alternatives.
 s01-P9-4,Copy an adult's answer over the first attempt.,,,x,Use only for the actual demonstrated fault; accept supported alternatives.
-s01-P10-3,Interrupt again and give no source.,,,J,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P10-3,Give no source title or located line.,,,J,Diagnose only the demonstrated fault; unobserved work is not an error.
 s01-P10-4,All lines need the same pace regardless of meaning.,,,I,Diagnose only the demonstrated fault; unobserved work is not an error.
 s01-P10-5,Read house instead of hotel.,,,H,Diagnose only the demonstrated fault; unobserved work is not an error.
 s01-P10-6,Mina takes his paper.,,,O,Diagnose only the demonstrated fault; unobserved work is not an error.
-s01-P10-7,Footsteps is the complete message; keep my opinion in the summary.,,,B,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P10-7,Footsteps is the complete message.,,,B,Diagnose only the demonstrated fault; unobserved work is not an error.
 s01-P10-8,The wider page must be prose.,,,E,Diagnose only the demonstrated fault; unobserved work is not an error.
 s01-P10-9,Copy a classmate without reading.,,,x,Diagnose only the demonstrated fault; unobserved work is not an error.
 s01-P10-10,Log a title without reading.,,,x,Diagnose only the demonstrated fault; unobserved work is not an error.
@@ -341,3 +341,16 @@ s01-P11-5,Replace remember with member.,,,H,Diagnose only the demonstrated fault
 s01-P11-6,Ben must be the real author because he says I.,,,F,Diagnose only the demonstrated fault; unobserved work is not an error.
 s01-P11-7,Use a future unseen entry without reading it.,,,x,Diagnose only the demonstrated fault; unobserved work is not an error.
 s01-P11-8,Invent a reading log without reading.,,,x,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-K12-1,Ben forces the visitor back into the noise.,,,O,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P12-3,Omar's guess.,,,O,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P12-4,Copy a prepared portrait without reading.,,,x,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P12-5,Keep rember after seeing remember in the reference.,,,AL,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P12-6,Read Ben's hope as loud shouted dialogue.,,,I,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P12-7,Leave the preparation note unchanged and ignore the target.,,,J,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P12-8,Write a log without reading.,,,x,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P13-1,Replace the first attempt with an adult answer.,,,x,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P13-2,Replace hotel with house.,,,H,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P13-3,Log an unread title.,,,x,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P10-3,Interrupt the unfinished turn.,,,K,Assign only the demonstrated component error.
+s01-P10-3,Leave the requested words unlocated as evidence-finder.,,,AK,Assign only the demonstrated component error.
+s01-P10-7,Keep I like the story best in the summary.,,,C,Assign only the demonstrated component error.
