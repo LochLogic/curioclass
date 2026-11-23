@@ -68,7 +68,7 @@ Both kindergarten rows were last used in grade 1 by the one-hop count (a grade 1
 
 No unit exceeds 25 days, so none requires a mid-unit assessment. Every code is taught before assessment. A closing window spreads full performances across the last lessons: unit 1 days 8/9, unit 2 days 23/24/25, unit 3 days 36/37, unit 4 days 45/46, unit 5 days 54/55, unit 6 days 63/64, unit 7 day 72. Each code's components are named below and in the CSV. Response occurs only on days 10, 26, 38, 47, 56, 65 and 73 for the respective units; course responses are 59 and 76.
 
-For observed action, one teacher plans for 30 children: six groups of five, every child acting and an own paper record. Unit 3 uses six four-minute groups on day 36, six minutes set-up/transitions and five minutes anchor return. Units 4, 5 and 6 use three four-minute groups on each of two days, with three minutes transitions and 20 minutes for the named paper/teaching work. Other children independently use familiar change cards (unit 4), single-date graph/plan sheets (unit 5), or familiar sock/flower model labels (unit 6). Builds begin before the final day. Paper tasks with frames carry explanations; a spokesperson never stands for a group.
+For observed action, one teacher plans for 30 children: six groups of five, every child acting and an own paper record. Unit 3 uses six four-minute groups on day 36, six minutes set-up/transitions and five minutes anchor return. Units 4, 5 and 6 use three four-minute groups on each of two days, with three minutes transitions and 20 minutes for the named paper/teaching work. Day 45 adds three minutes of directions, 38 minutes in all, inside the course's 35 to 40. Other children independently use familiar change cards (unit 4), single-date graph/plan sheets (unit 5), or familiar sock/flower model labels (unit 6). Builds begin before the final day. Paper tasks with frames carry explanations; a spokesperson never stands for a group.
 
 Collect once: keep each child's single observation record across its window. A course check within ten days carries it forward unchanged, with no new collection or re-scoring. Course checks list only newly sampled codes, use new cases and avoid task forms given in the preceding two weeks. Original unit records still establish all owned parts even when a later check samples fewer codes. Each response uses a fresh short retry only for a demonstrated gap, with supported and independent evidence distinguished.
 
@@ -183,6 +183,24 @@ A school year ten days shorter still has 150 school days, beyond this course's s
 | 71 | 70 | Repeated counts, evidence limits and anchor-model revision | 8 | 35 to 40 |
 
 No readiness, observation, unit assessment, course check, respond day or sole owned part folds. The old fold-ins 8 and 36 now collect assessment evidence, so days 5 and 34 replace them. The old days 44 and 56 are now 41 and 53 after renumbering. Keep plant setup/final observations at school days 81/91 and surveys at 124/129; remove discussion meetings without removing those appointments. Keep checks in weeks 20 and 28.
+
+## Practice and crosscutting concept coverage
+
+One row per unit (the two course checks get their own rows); a column for each NGSS science and engineering practice and crosscutting concept this course uses (frame, "Practices across the year"). Each cell names the days that use it, from the section plans and days as written; a day is counted only where children do the practice or reason with the concept, not where it is merely named. Practices come first, then crosscutting concepts.
+
+| Unit | Asking questions and defining problems | Developing and using models | Planning and carrying out investigations | Analyzing and interpreting data | Using mathematics (counting, whole-centimeter measurement, graphs) | Constructing explanations and designing solutions | Engaging in argument from evidence | Obtaining, evaluating and communicating information | Patterns | Cause and effect | Scale, proportion and quantity | Systems and system models | Energy and matter | Structure and function | Stability and change |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1. Land and water (days 1 to 10) | 2 | 1, 2, 3, 4, 5, 9, 10 | 2 | none | none | 10 | none | 6, 7, 8, 10 | 5, 8, 9, 10 | none | none | none | none | none | none |
+| 2. The land changes, fast and slow (11 to 26) | 11 | 11, 14, 15, 23, 24, 25, 26 | 16, 17, 18, 20, 21 | 17, 18, 19, 21, 22, 24, 25 | 16, 17, 18, 19, 21, 22 | 12, 13, 15, 17, 18, 20, 22, 23, 24, 25, 26 | none | 11, 12, 13, 14, 23, 24 | none | 17, 18, 21, 22, 24, 25 | 17, 18, 19, 21, 22 | none | none | 20 | 11, 12, 13, 14, 15, 23, 26 |
+| 3. Materials and their best uses (27 to 38) | 27 | none | 27, 28, 29, 30, 33, 34, 36 | 31, 32, 33, 34, 35, 37 | 30, 31, 33, 37 | 32, 35, 37, 38 | 31, 34, 35, 37, 38 | none | 28, 35, 36 | 29, 30, 35 | 30, 31, 33 | none | none | 27, 32, 33, 34, 35, 37 | none |
+| 4. Can we change it back? (39 to 47) | 39 | 42, 44, 45, 47 | none | none | none | 40, 41, 45, 46, 47 | 44, 46, 47 | none | none | 42, 43, 44, 46 | none | 40, 45, 46 | 39, 40, 41, 45, 46, 47 | 41, 45, 46 | none |
+| 5. What plants need (48 to 56) | 48 | none | 48, 49, 50, 51, 52, 54, 55 | 52, 53, 54, 55, 56 | 49, 50, 52, 54, 55 | 53, 55, 56 | none | none | none | 48, 51, 52, 53, 55 | 50, 52, 54 | none | none | none | none |
+| Mid-year check (57 to 59) | none | 57, 59 | none | 58, 59 | none | 58 | 57, 59 | 57, 58, 59 | 57 | 57 | none | none | none | 58 | 58 |
+| 6. Seeds and pollinators (60 to 65) | none | 60, 61, 62, 63, 64, 65 | 61, 62 | 62 | 61, 62 | 60, 63, 64, 65 | none | none | none | none | 61 | 63, 64 | none | 60, 62, 64 | none |
+| 7. Habitats (66 to 73) | none | 71 | 66, 70, 72 | 67, 68, 69, 71, 72, 73 | 67, 68, 69, 70, 72, 73 | 69, 71 | none | 68, 69 | 68, 69, 71, 72 | none | none | 66, 71 | none | none | none |
+| Year-end check (74 to 76) | none | none | 75 | 75 | 75 | 74 | 74 | none | none | 74 | 75 | none | 74 | 74 | none |
+
+Gaps: none; every practice and crosscutting concept the course uses has at least one day.
 
 ## Remaining work at the next layer
 
