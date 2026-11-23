@@ -10,3 +10,61 @@ from_day,to_day,what,where,minutes,error,note
 4,5,s01-X04,Choice workshop,5,Y,Alternative figurative phrase group; no duplicate repair.
 4,5,s01-P4-X1,Choice workshop,0,E,"Returned with s01-X04; line-ending repair shares the existing five-minute feature group, not another group."
 4,12,teacher role record and written role feedback,Choice workshop,0,,Retain for the planned note revision; children 13 to 30 still need live role observations in later scheduled windows. Paper is not oral evidence.
+5,6,s01-X05,Opening,5,A,Return all papers/notes. One earliest component only; other needs share one Choice workshop group or independent cards. Never display a held case as the repair model.
+6,7,s01-X06 s01-X06b s01-X06c,Opening,5,Y,Return all papers/notes. One earliest component only; other needs share one Choice workshop group or independent cards. Never display a held case as the repair model.
+7,8,s01-X07,Choice,5,Z,Return all papers/notes. One earliest component only; other needs share one Choice workshop group or independent cards. Never display a held case as the repair model.
+8,10,s01-X08,Return,0,E,Return all papers/notes. One earliest component only; other needs share one Choice workshop group or independent cards. Never display a held case as the repair model.
+10,11,s01-X10,Opening,5,O,Return all papers/notes. One earliest component only; other needs share one Choice workshop group or independent cards. Never display a held case as the repair model.
+11,12,s01-X11,Opening,5,F,Return all papers/notes. One earliest component only; other needs share one Choice workshop group or independent cards. Never display a held case as the repair model.
+12,14,s01-X12,Opening,5,D,Return all papers/notes. One earliest component only; other needs share one Choice workshop group or independent cards. Never display a held case as the repair model.
+14,15,s01-X14,Opening,5,A,Return all papers/notes. One earliest component only; other needs share one Choice workshop group or independent cards. Never display a held case as the repair model.
+15,16,s01-X15,Opening,5,C,Return all papers/notes. One earliest component only; other needs share one Choice workshop group or independent cards. Never display a held case as the repair model.
+16,18,s01-X16,Return,0,N,Return all papers/notes. One earliest component only; other needs share one Choice workshop group or independent cards. Never display a held case as the repair model.
+6,7,s01-X06c,Choice,0,AA,"Return Exit box with the two comparison rows; other letters use the same one five-minute group, not another group."
+7,8,s01-A07-meaning,Opening,5,Y,"Return written feedback; independent revision, no model answer."
+8,9,revised s01-A07-meaning,Feedback,0,,Finalize after revision; return privately with feedback.
+9,10,s01-A09a-action s01-A09a-infer s01-A09b-theme s01-A09b-summary s01-A09c s01-A09d,Return,10,A,"Five minutes targeted teaching on another taught case, five independent revision. X08 shares this route. Score after class day 11."
+11,12,finalized day 9 written assessment,Opening,0,,Return finalized revised work with existing papers; no additional repair.
+10,13,s01-X10 unheard oral components,Discussion,0,,Hear missing children 1 to 24 only within the planned six five-minute groups. Children 25 to 30 already sampled. Never infer speech from paper.
+1,12,"actual role record, written feedback and role notes",Choice,0,,Revise preparation from dated written feedback; keep earlier actual question/answer/role evidence. No extra full performance.
+4,12,"actual role record, written feedback and role notes",Choice,0,,Revise preparation from dated written feedback; keep earlier actual question/answer/role evidence. No extra full performance.
+8,12,"actual role record, written feedback and role notes",Choice,0,,Revise preparation from dated written feedback; keep earlier actual question/answer/role evidence. No extra full performance.
+10,12,"actual role record, written feedback and role notes",Choice,0,,Revise preparation from dated written feedback; keep earlier actual question/answer/role evidence. No extra full performance.
+13,14,all s01-A13 written components,Return,10,A,"Five minutes teach on different taught fragments, five independently revise. Oral record finalized separately from actual samples and revised notes."
+13,14,s01-A13c oral component record,Return,0,,"Finalize prepared record from actual observations, feedback and revised notes, not presumed speech."
+15,16,finalized day 13 written assessment,Opening,0,,Return after day 15 judgment; no second correction sitting.
+14,15,pattern probe returning/carefully,Word,5,H,Correct/extend from written feedback. Remaining oral samples use only existing missing-component conferences; no paper-to-oral inference.
+17,18,all s01-A17 components and s01-X16,Return,10,AE,"Five instruction on earliest need using sign faults, five independent revision. Score retained D17a after class day 19."
+19,20,finalized day 17 paragraph,Opening,0,,Return privately with current papers; retain component/support record.
+9,12,s01-A09-RF actual reading feedback,Opening,0,,"Written feedback on actual due readers only, shared with existing returned work. Fill unheard evidence only in scheduled rotations."
+17,19,s01-A17-RF actual reading feedback,Word,0,,"Written feedback on actual due readers only, shared with existing returned work. Fill unheard evidence only in scheduled rotations."
+27,28,s01-A27-RF actual reading feedback,Word,0,,"Written feedback on actual due readers only, shared with existing returned work. Fill unheard evidence only in scheduled rotations."
+34,37,s01-A34-RF actual reading feedback,Feedback,0,,"Written feedback on actual due readers only, shared with existing returned work. Fill unheard evidence only in scheduled rotations."
+35,37,s01-A35-RF actual reading feedback,Feedback,0,,"Written feedback on actual due readers only, shared with existing returned work. Fill unheard evidence only in scheduled rotations."
+36,37,s01-A36-RF actual reading feedback,Feedback,0,,"Written feedback on actual due readers only, shared with existing returned work. Fill unheard evidence only in scheduled rotations."
+26,27,essay draft and convention slips with written feedback,Revision,0,S,Day 27 existing 40-minute revision task holds all components; no added task. Retain for day 36 audit.
+27,36,eligible revised essay/process and convention components,assessment,0,,Retained work scored outside instruction; no new writing sitting.
+29,30,poem draft and written feedback; reserved word probe feedback,Revision,0,S,"Poem revision fits existing 40-minute task. Pattern correction uses existing Word work, no additional screen."
+31,32,finalized day 30 revision record,Opening,0,,Return judgment after independent revision; no new score for day 30 feedback.
+33,34,presentation version and written feedback,Presentation,0,S,Revise in existing 25-minute revision part. Retain eligible version for day 36.
+34,36,s01-A34a retained presentation revision,assessment,0,S,Outside-instruction audit of feedback-eligible revision; no added sitting.
+34,37,day 34 reading responses and written component feedback,Feedback,0,,Shared five-minute return for all three sets; independent revision fits the same 25-minute correction part.
+35,37,day 35 reading responses and written component feedback,Feedback,0,,Shared five-minute return for all three sets; independent revision fits the same 25-minute correction part.
+36,37,day 36 reading responses and written component feedback,Feedback,0,,Shared five-minute return for all three sets; independent revision fits the same 25-minute correction part.
+34,37,"all end reading sets, common return route",Feedback,5,,"One shared five-minute return, not five per set."
+37,38,"revised day 34/35/36 responses, eligible prepared talk/role notes and folder",Feedback,0,,Finalize reading corrections after class day 38; live presentation judged only from scheduled actual observations.
+38,39,unit 1 finalized end-component/support record and dated folder,Notebook,0,,Return with the existing written next step during Notebook. No added oral turn or extra repair lesson.
+1,2,s01-K1-1 s01-R1 s01-R2 s01-P1-1 s01-P1-2 s01-P1-3 s01-P1-4 s01-P1-5 s01-P1-6 s01-P1-7,Opening,0,,Return all inspected practice alongside the existing exit return. Dated private notebook work remains unjudged; no extra repair minutes.
+2,3,s01-P2-1 s01-R3 s01-K2-1 s01-P2-2 s01-P2-3 s01-P2-4 s01-P2-5 s01-P2-6 s01-P2-7,Opening,0,,Return all inspected practice alongside the existing exit return. Dated private notebook work remains unjudged; no extra repair minutes.
+3,4,s01-P3-1 s01-R4 s01-K3-1 s01-P3-2 s01-P3-3 s01-P3-4 s01-P3-5 s01-P3-6 s01-P3-7,Opening,0,,Return all inspected practice alongside the existing exit return. Dated private notebook work remains unjudged; no extra repair minutes.
+4,5,s01-P4-1 s01-K4-1 s01-P4-2 s01-P4-3 s01-R5 s01-P4-4 s01-P4-5 s01-P4-6 s01-P4-7 s01-P4-8 s01-P4-9 s01-P4-10 s01-P4-X1,Opening,0,,Return all inspected practice alongside the existing exit return. Dated private notebook work remains unjudged; no extra repair minutes.
+5,6,s01-P5-1 s01-P5-2,Opening,0,,All inspected practice returned with existing papers; no extra repair minutes. Private drafts remain unjudged.
+6,7,s01-P6-1 s01-P6-2 s01-P6-3,Opening,0,,All inspected practice returned with existing papers; no extra repair minutes. Private drafts remain unjudged.
+7,8,s01-P7-1 s01-P7-2,Opening,0,,All inspected practice returned with existing papers; no extra repair minutes. Private drafts remain unjudged.
+8,10,s01-P8-1 s01-P8-2,Return,0,,All inspected practice returned with existing papers; no extra repair minutes. Private drafts remain unjudged.
+10,11,s01-P10-1 s01-P10-2,Opening,0,,All inspected practice returned with existing papers; no extra repair minutes. Private drafts remain unjudged.
+11,12,s01-P11-1 s01-P11-2,Opening,0,,All inspected practice returned with existing papers; no extra repair minutes. Private drafts remain unjudged.
+12,14,s01-P12-1 s01-P12-2,Opening,0,,All inspected practice returned with existing papers; no extra repair minutes. Private drafts remain unjudged.
+14,15,s01-P14-1 s01-P14-2,Opening,0,,All inspected practice returned with existing papers; no extra repair minutes. Private drafts remain unjudged.
+15,16,s01-P15-1 s01-P15-2,Opening,0,,All inspected practice returned with existing papers; no extra repair minutes. Private drafts remain unjudged.
+16,18,s01-P16-1 s01-P16-2,Return,0,,All inspected practice returned with existing papers; no extra repair minutes. Private drafts remain unjudged.
