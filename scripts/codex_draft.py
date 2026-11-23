@@ -348,7 +348,6 @@ def lane(subj, dry=False):
                     prompt += '\n\nNote for this job (it wins over the job above):\n' + extra.read_text(encoding='utf-8')
                 prompt = LESSONGATE.sub(lambda m: 'python -X utf8 scripts/lesson_course.py ' + m.group(1), prompt)
                 prompt = REPO.sub(lambda m: m.group(0) + '-draft', prompt)
-                prompt = prompt.replace('python -X utf8 ', '"%s" -X utf8 ' % sys.executable)   # the sandbox's own python lacks markdown
                 log('%s start %s %s %s %s' % (subj, num, kind, course, detail))
                 run = Run(subj, num, kind, course, detail, prompt)
                 run.go()

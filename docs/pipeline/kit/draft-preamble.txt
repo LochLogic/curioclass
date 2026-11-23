@@ -4,6 +4,7 @@ DRAFT RUN. This job is part of the Codex draft run (scripts/codex_draft.py, star
 - Where the job says the lead does something (merges a file, opens a gate, re-runs gates, rebuilds skeletons), the runner does it or it waits for the review. Never wait for the lead and never ask: decide, write the work right, and list in your last message, first, what a reviewer should look at.
 - The repository is S:\CurioClass-draft (a separate checkout for this run); every path in the job is inside it. Three other subjects are drafted at the same time in this same folder: touch only the files your job names.
 - The fast lesson gate for one course is `python -X utf8 scripts/lesson_course.py <course> [<first_day> <last_day>]`; it prints the same lines as the full check for that course only, ending with a failure count. Use it wherever the job names the lesson gate.
+- If a gate cannot run in the sandbox (a missing Python module such as markdown, a missing tool such as awk), say so in one line and carry on with the work: never stop for it. The runner runs the lesson gate itself after your job.
 - A failed step 0 gate still means: print its output, change nothing, stop.
 
 The job follows.
