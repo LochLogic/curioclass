@@ -1844,3 +1844,24 @@ is of the other kind. UNIT-PLAN.md field 5 says so.
 Cory: K to 2 can use speech instead of writing. A spoken or dictated exit meets a goal that says write; UNIT-PLAN.md
 field 5 says so. The six Goal map faults that rested only on that (ELA grade 1 days 7, 28, 116, 118; social studies
 grade 2 days 27, 73) are marked rejected in defects.csv.
+
+## 2026-11-23: Science K to 3 finish calls and sign-off (q-sci-finish-k, -g1, -g2, -g3)
+
+Cory answered the four finish cards on the Desk and signed off all four courses once the calls are applied.
+- **Kindergarten:** a one-line teacher swap for the local severe-weather hazard (Colorado stays the worked example);
+  an element-level coverage table (practices and crosscutting concepts per unit) in each science scope, the same way
+  for every grade; unit 5 W2 becomes one spoken reason per material; unit 2 uses the three-step scale (shown, shown
+  with help, not yet seen) everywhere; day 41's spoken parts cut to one brief reason per code; days 48 and 51 stay
+  full days (notes fixed); the "voluntary public accounts" line is dropped from kindergarten.
+- **Grade 1:** the plant parent-and-young masters stay invented and labeled, day 12's pressing claim cut to what they
+  show, scope wording aligned; real class records at the media stage. Hands-on days need a helper adult, with a
+  24-child note for schools without one.
+- **Grade 2:** the day 12 Mount St. Helens line keeps no number; the M2 and L2 wording stays; the day 46 table stays;
+  day 45's scope becomes 38 minutes.
+- **Grade 3:** fresh check-day work is scored, with revised products recorded beside it as repair evidence; one change
+  per marked component; feedback is a six-tick look-for checklist with one question stamp (about 1 minute a child) and
+  scored papers come back one day later, in the Return slot; Utqiagvik stays in the plain form.
+- **Earth's age (grade 3 day 82), chat 2026-11-23:** "Science comes first. We are respectful to religion but facts are
+  facts, no outside reader needed." Day 82 teaches the evidence plainly and adds the respectful line ("People bring
+  different ideas. In science class we look at what the rocks and fossils show."). This is the rule for any science
+  day that meets a belief: teach what the evidence shows, say it respectfully, no extra read needed.
