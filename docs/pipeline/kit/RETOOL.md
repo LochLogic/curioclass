@@ -77,3 +77,11 @@ Source: the lead continuity sweep of 2026-11-22 (no grade running; science K to 
 | Lines still said a source that cannot be checked is cut, against the browser-check rule (sweep / kit and briefs) | cleanup.txt, key.txt, data.txt, notes/subject-social-studies.txt and the table line above now keep a refused page as "browser check" and point to the Sources rule in common.txt |
 | Retired word "exit slip" (sweep / kit) | data.txt, day.txt, checks.txt say exit ticket; the `exit: half` column keeps its name |
 | UK spellings in the lines edited (sweep / kit) | US spelling in those files |
+
+## Retool 2: KIT-VERSION 3 (2026-11-23)
+
+Source: the Codex draft run (Cory, 2026-11-23: Codex drafts section plans and days for every lane this week, no reads until later; scripts/codex_draft.py). No grade running in the kit's own runs.
+
+| Finding (stage that found / made it) | Where it went |
+|---|---|
+| The generator stopped for science: no subject note (generator / kit) | notes/subject-science.txt, written from the science K to 3 run's defaults, safety pages and Cory's sign-off calls (Earth's age rule, spoken comparison counts as produce in K to 2) |

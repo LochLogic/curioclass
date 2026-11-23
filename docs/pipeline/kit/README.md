@@ -1,6 +1,6 @@
 # The course-run kit
 
-KIT-VERSION: 2 (2026-11-22)
+KIT-VERSION: 3 (2026-11-23)
 
 The job templates, notes and rules that `scripts/coursegen.py` fills to write a course run's job queue, in the order of
 docs/COURSE-RUN.md (stages 5 and 6, with the retool and sweep rules of its sections 1 and 4). Built from the
@@ -78,7 +78,7 @@ wording are left alone.
 
 ## Notes (data files)
 
-- notes/subject-<subject>.txt: ela, social-studies, math (no science note yet: write it before science runs on the generator).
+- notes/subject-<subject>.txt: ela, social-studies, math, science (science added 2026-11-23, retool 2).
 - notes/grade-<band>.txt: k and 1 to 6. The grade comes from data/plans/frames.csv; a grade 7 or higher course needs
   its note first, and the generator stops without it.
 - Notes may use DATE and COURSE tokens. Both kinds are inserted into every template that names them.

@@ -1,0 +1,10 @@
+DRAFT RUN. This job is part of the Codex draft run (scripts/codex_draft.py, started 2026-11-23): Codex writes the first draft of every section plan, its plan data and its days, grade by grade, and a Claude review comes much later. Read this note first; where it differs from the job below, this note wins.
+
+- No plan read, plan fix, answer-key read, sample read or lead re-check runs between jobs in this run. Where the job says a read or a key check has happened, it has not: answer every key, sample answer and worked case cold yourself before you write it or rely on it, and fix a wrong items.csv row you rely on (with its wrongs) rather than copying it.
+- Where the job says the lead does something (merges a file, opens a gate, re-runs gates, rebuilds skeletons), the runner does it or it waits for the review. Never wait for the lead and never ask: decide, write the work right, and list in your last message, first, what a reviewer should look at.
+- The repository is S:\CurioClass-draft (a separate checkout for this run); every path in the job is inside it. Three other subjects are drafted at the same time in this same folder: touch only the files your job names.
+- The fast lesson gate for one course is `python -X utf8 scripts/lesson_course.py <course> [<first_day> <last_day>]`; it prints the same lines as the full check for that course only, ending with a failure count. Use it wherever the job names the lesson gate.
+- A failed step 0 gate still means: print its output, change nothing, stop.
+
+The job follows.
+
