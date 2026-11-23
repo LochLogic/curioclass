@@ -97,7 +97,6 @@ s01-P15-3,No felt warmth proves no warming,,,E,Does not meet the look-fors: No f
 s01-P15-4,Which speed is best? is testable without an outcome,,,F,Does not meet the look-fors: Which speed is best? is testable without an outcome
 s01-P15-4,Force arrows carry energy into air,,,J,Confuses object force with energy destination.
 s01-P15-revise,Erase the record and replace it with a prediction,,,I,Does not meet the look-fors: Erase the record and replace it with a prediction
-s02-R1,The shaded square warms more because it receives no sunlight,,,x,Does not meet the look-fors: The shaded square warms more because it receives no sunlight
 s01-A3,Same spool means equal starting energy,,,A,Persisting in revised s01-A1 work: Does not meet the look-fors: Same spool means equal starting energy
 s01-A3,The spool has 12 centimeters of energy,,,B,"Persisting in revised s01-A1 work: Centimeters describe flap travel, not energy."
 s01-A4,All energy vanishes when the spool slows,,,C,Persisting in revised s01-A2 work: Does not meet the look-fors: All energy vanishes when the spool slows
@@ -105,3 +104,36 @@ s01-A4,All energy becomes sound,,,D,Persisting in revised s01-A2 work: Omits mot
 s01-A4,Warming must be felt to exist,,,E,Persisting in revised s01-A2 work: Confuses lack of detection with no warming.
 s01-A4,Which speed is best?,,,F,Persisting in revised s01-A2 work: Names no observable outcome.
 s01-A4,The force arrow carries energy into air,,,J,Persisting in revised s01-A2 work: Confuses object force with energy destinations.
+s02-R1,The shaded square warms more because sunlight cannot warm surfaces.,,,H,Missing sunlight cause selects ten-minute day 18 response.
+s02-X16,The lamp makes energy from nothing.,,,A,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X17,A proves sound crossed the air because both objects share a board.,,,G,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X18,The dark patch must be warmer because it looks dark.,,,H,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X19,Energy travels cooler to warmer because metal supplies warmth.,,,M,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X20,One lead from one terminal completes the path.,,,B,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X21,One lead is enough to power this buzzer.,,,B,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X22,A switch across an uncut wire must control the lamp.,,,L,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X23,The generator creates energy without an input.,,,A,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X24,Any attractive alarm succeeds without a success rule.,,,C,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X25,One lead completes the circuit.,,,B,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X26,We need no rule for success.,,,C,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X27,"Paint improves the signal because I prefer its color, without test evidence.",,,D,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X28,More detections prove improvement even though conditions changed.,,,D,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X29,The improvement claim needs no test evidence.,,,D,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X30,The manufactured battery is the natural resource.,,,I,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X31,Natural gas is replenished within human lifetimes.,,,J,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X32,Burning fuel releases no air pollutants.,,,K,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X33,This improvement removes every environmental effect.,,,F,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X34,Wind has no environmental effects because it is renewable.,,,E,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X35,A better contact removes the effects of mining its materials.,,,F,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-E1-sound,A shared board proves the air route.,,,G,Resolve using actual station evidence.
+s02-E1-light,Dark appearance proves greater warmth.,,,H,Resolve using actual station evidence.
+s02-E1-heat,The cooler spoon transfers energy to the warmer spoon.,,,M,Resolve using actual station evidence.
+s02-E1-current,One lead from one cell terminal completes the path.,,,B,Resolve using actual station evidence.
+s02-E2,The generator creates energy.,,,A,Name motion input.
+s02-E2,No criterion is needed.,,,C,Each pull must light the signal.
+s02-E2,My preferred change needs no retest.,,,D,Use failure evidence and comparable retest.
+s02-E2-portfolio,"Our group succeeded, so no personal evidence is needed.",,,D,"Locate each child's own plan, implementation and interpretation."
+s02-E3,Renewable water means the dam changes nothing.,,,E,Renewal does not erase effects.
+s02-E3,The passage removes every effect.,,,F,Flooded habitat remains.
+s02-X35,The generator needs no input.,,,A,Use comparable evidence and input-to-output reasoning.
+s02-X35,Improvement needs no tests.,,,D,Use comparable evidence and input-to-output reasoning.

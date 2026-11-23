@@ -222,3 +222,84 @@ s01-P6-7,Delighted is opposite.,,,AA,Use only for the demonstrated fault; accept
 s01-P6-8,Only recopy the same opinion neatly.,,,S,Use only for the demonstrated fault; accept other grounded answers.
 s01-P6-9,Read daydream as dad ram.,,,H,Use only for the demonstrated fault; accept other grounded answers.
 s01-P6-10,Log an untaught reserved companion as familiar practice.,,,x,Use only for the demonstrated fault; accept other grounded answers.
+s01-X18-1,Inferred.,,,A,Treats directly stated wording as unstated.
+s01-X18-2,Stated.,,,A,Treats an interpretation as direct wording.
+s01-X18-2,His basket held prizes.,,,O,Adds an absent detail.
+s01-X19,She wanted fame.,,,A,No detail supports fame.
+s01-X19,She won a contest.,,,O,No contest is named.
+s01-X20,Soren fits because color proves sound.,,,A,Color does not support the sound brief.
+s01-X21,"One unsorted list: a, b, c, d.",,,N,Does not group related aspects.
+s01-X21,Writing for a driver: all notes.,,,O,Invents a purpose.
+s01-X22-1,All three are unrelated facts.,,,N,Misses the organized relationship.
+s01-X22-2,Because the room grows quiet.,,,T,Leaves a dependent clause alone.
+s01-X23,He does that.,,,AE,Does not identify subject or purpose.
+s01-X23,Kez won a biography prize.,,,O,No prize occurs in the plan.
+s01-X24,Mara watched shooting stars.,,,O,Neither source names shooting stars.
+s01-X24,"Rooftop, sunset, silver, threads.",,,N,A list supplies no developed explanation.
+s01-X24,"Her poem states, ""Silver threads stitch the dark.",,,W,No closing quotation mark.
+s01-X24,"Her poem states ""Silver threads stitch the dark.""",,,AG,No introducing comma.
+s01-X25,"Because the poem repeats lantern, the writer was born here.",,,P,Unsupported causal relationship.
+s01-X25,The things help readers expect a return.,,,Q,Keeps vague noun.
+s01-X26-1,Shopping is fun.,,,R,Unrelated new topic.
+s01-X26-2,The bus sentence explains the kitchen rhythm.,,,O,Claims a connection the ending does not make.
+s01-X28,Things happen.,,,Q,No identifiable subject or image.
+s01-X28,Spaces alone make it a poem.,,,E,Spacing replaces intentional language.
+s01-X29,Things do stuff.,,,Q,No precise moment or image.
+s01-X29,A storm tears the house apart.,,,O,Replaces the given moment.
+s01-X31,It came from that.,,,AE,Does not orient a new reader.
+s01-X31,A prize caused Rae to write.,,,O,Invents an absent cause.
+s01-X32,Both are nice.,,,A,No supported connection.
+s01-X32,They describe the same object.,,,O,Confuses zipper and stapler.
+s01-X33,The writer copied the source words.,,,O,The response uses different words and objects.
+s01-X33,Both are nice.,,,A,No evidence connects reading and revision.
+s01-P18-1,Keep it because poets imagine things.,,,O,Supplied fault inspection; own draft remains unjudged.
+s01-P19-1,A.,,,W,Supplied fault inspection; own draft remains unjudged.
+s01-P20-1,A.,,,V,Supplied fault inspection; own draft remains unjudged.
+s01-P21-1,"Yes, everything belongs together.",,,N,Supplied fault inspection; own draft remains unjudged.
+s01-P22-1,Circle Williams.,,,AE,Supplied fault inspection; own draft remains unjudged.
+s01-P22-2,A.,,,T,Supplied fault inspection; own draft remains unjudged.
+s01-P23-1,Lunch menu.,,,AE,Supplied fault inspection; own draft remains unjudged.
+s01-P24-1,Leave only poems.,,,O,Supplied fault inspection; own draft remains unjudged.
+s01-P24-2,B.,,,W,Supplied fault inspection; own draft remains unjudged.
+s01-P25-1,Thing.,,,Q,Supplied fault inspection; own draft remains unjudged.
+s01-P25-2,Keep because.,,,P,Supplied fault inspection; own draft remains unjudged.
+s01-P26-1,Keep the sandwich detail.,,,N,Supplied fault inspection; own draft remains unjudged.
+s01-P28-1,B.,,,Q,Supplied fault inspection; own draft remains unjudged.
+s01-P29-1,The claim is true.,,,Y,Supplied fault inspection; own draft remains unjudged.
+s01-P29-2,Neither choice affects attention.,,,E,Supplied fault inspection; own draft remains unjudged.
+s01-P31-1,Cross out main idea.,,,AC,Supplied fault inspection; own draft remains unjudged.
+s01-P31-2,Decorate an empty corner.,,,AB,Supplied fault inspection; own draft remains unjudged.
+s01-P32-1,Keep the price detail.,,,A,Supplied fault inspection; own draft remains unjudged.
+s01-P33-1,Keep the race claim.,,,O,Supplied fault inspection; own draft remains unjudged.
+s01-P37-1,Trace thing neatly.,,,S,Supplied fault inspection; own draft remains unjudged.
+s01-P38-1,Keep the claim.,,,E,Supplied fault inspection; own draft remains unjudged.
+s01-C24-name,nina wrote moon steps.,,,V,"Diagnostic collection; feedback 26, revision 27, judgment 36."
+s01-C24-opening,the page rests beside a lamp.,,,AF,"Diagnostic collection; feedback 26, revision 27, judgment 36."
+s01-C24-speech,The guide said Please enter quietly.,,,AG,"Diagnostic collection; feedback 26, revision 27, judgment 36."
+s01-C24-text,"The note states, ""Three bells rang.",,,W,"Diagnostic collection; feedback 26, revision 27, judgment 36."
+s01-C25-sentence,Beside the eraser.,,,T,"Diagnostic collection; feedback 26, revision 27, judgment 36."
+s01-C25-fragment,Although the cover was bent.,,,T,"Diagnostic collection; feedback 26, revision 27, judgment 36."
+s01-C25-runon,The folder opens its pages slide out.,,,U,"Diagnostic collection; feedback 26, revision 27, judgment 36."
+s01-C25-reference,I guessed without looking.,,,X,"Diagnostic collection; feedback 26, revision 27, judgment 36."
+s01-C25-spelling,The final word differs from the entry.,,,AL,"Diagnostic collection; feedback 26, revision 27, judgment 36."
+s01-W18,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W19,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W20,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W21,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W22,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W23,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W24,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W25,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W26,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W28,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W31,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W32,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W33,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W37,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W38,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-C24-name,Nina wrote moon steps.,,,V,Leaves the named poem title lowercase.
+s01-C24-speech,"The guide said, ""Please enter quietly.",,,W,Keeps comma but leaves closing quotation mark absent.
+s01-C24-text,"The note states ""Three bells rang.""",,,AG,Keeps paired marks but misses introducing comma.
+s01-R10,A new planet.,,,O,Retrieval diagnostic; use a different taught component for repair.
+s01-R11,XXII splits rainwater it uses red and white.,,,U,Fuses two complete thoughts without a boundary.
+s01-R12,Lunch is the main idea.,,,AC,Retrieval diagnostic; use a different taught component for repair.
