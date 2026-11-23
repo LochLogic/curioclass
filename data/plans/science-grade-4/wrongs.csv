@@ -1,0 +1,31 @@
+item_id,shown,compute,value,error,note
+s01-P1,The next mark stays at C.,,,x,Error x: The next mark stays at C.
+s01-K1,My guess proves every result.,,,I,Error I: My guess proves every result.
+s01-Pq1,I observed what tomorrow will do.,,,I,Error I: I observed what tomorrow will do.
+s01-X1,My guess proves every future result.,,,I,Error I: My guess proves every future result.
+s01-P2,Observed; the child said it.,,,I,Error I: Observed; the child said it.
+s01-K2,Changing both makes it fairer.,,,G,Error G: Changing both makes it fairer.
+s01-Pr2,Different cups prove speed matters.,,,G,Error G: Different cups prove speed matters.
+s01-X2,Use a different lid for each speed.,,,G,Error G: Use a different lid for each speed.
+s01-P3,Keep changing cups.,,,G,Error G: Keep changing cups.
+s01-K3,The pencil travels 7 centimeters.,,,H,Error H: The pencil travels 7 centimeters.
+s01-Pp3,The axis measures energy in centimeters.,,,B,Error B: The axis measures energy in centimeters.
+s01-Pr3,Erase the awkward result and invent a matching one.,,,x,Error x: Erase the awkward result and invent a matching one.
+s01-X3,First travel is 15 centimeters.,,,H,Error H: First travel is 15 centimeters.
+s01-X3,The axis shows energy in centimeters.,,,B,Error B: distance unit confused with energy.
+s01-P4,The endpoint 7 is the travel.,,,H,Error H: The endpoint 7 is the travel.
+s01-P4,Centimeters measure energy.,,,B,Error B: distance is not an energy quantity.
+s01-Pr4,The cup moved centimeters of energy.,,,B,Error B: The cup moved centimeters of energy.
+s01-K4,The same marble has equal energy at both speeds.,,,A,Error A: The same marble has equal energy at both speeds.
+s01-X4,The same disk has equal energy at both speeds.,,,A,Error A: The same disk has equal energy at both speeds.
+s01-X4,Distances measure energy in centimeters.,,,B,"Error B: travel is an indicator, not energy units."
+s01-P5,Same marble means equal energy.,,,A,Error A: Same marble means equal energy.
+s01-P5,Centimeters measure energy.,,,B,Error B: distance confused with energy.
+s01-K5,Fast means fast; evidence is unnecessary.,,,x,Error x: Fast means fast; evidence is unnecessary.
+s01-Pn5,The cup traveled centimeters of energy.,,,B,Error B: The cup traveled centimeters of energy.
+s01-X5,Same cylinder means equal energy.,,,A,Error A: Same cylinder means equal energy.
+s01-P6,One marble always has equal motion energy.,,,A,Error A: One marble always has equal motion energy.
+s01-K6,B supplies evidence by repeating faster.,,,x,Error x: B supplies evidence by repeating faster.
+s01-Pm6,Same tire proves equal energy.,,,A,Error A: Same tire proves equal energy.
+s01-X6,The same hoop always has equal energy.,,,A,Error A: The same hoop always has equal energy.
+s01-X6,Tube travel measures energy in centimeters.,,,B,Error B: effect indicator confused with energy measurement.

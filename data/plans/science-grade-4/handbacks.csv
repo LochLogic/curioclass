@@ -1,0 +1,16 @@
+from_day,to_day,what,where,minutes,error,note
+1,2,s01-X1,Return and repair,5,I,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+1,2,s01-Pq1,Return and repair,0,,Feedback handed back with ticket; pages then stay in folders.
+2,3,s01-X2,Return and repair,5,G,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+2,3,s01-Pr2,Return and repair,0,,Feedback handed back with ticket; pages then stay in folders.
+3,4,s01-X3,Return and repair,5,H,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+3,4,s01-X3,Return and repair,5,B,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+3,4,s01-Pr3,Return and repair,0,,Feedback handed back with ticket; pages then stay in folders.
+4,5,s01-X4,Return and repair,5,A,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+4,5,s01-X4,Return and repair,5,B,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+4,5,s01-Pr4,Return and repair,0,,Feedback handed back with ticket; pages then stay in folders.
+5,6,s01-X5,Return and repair,5,A,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+5,6,s01-Pn5,Return and repair,0,,Feedback handed back with ticket; pages then stay in folders.
+6,7,s01-X6,Return and repair,5,A,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+6,7,s01-X6,Return and repair,5,B,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+6,7,s01-Pm6,Return and repair,0,,Feedback handed back with ticket; pages then stay in folders.
