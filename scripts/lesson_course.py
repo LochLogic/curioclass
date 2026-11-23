@@ -47,7 +47,17 @@ def main(a):
     out = buf.getvalue()
     keep = [ln for ln in out.splitlines() if 'courses/%s/' % course in ln or ln.startswith('  FAIL')]
     print('\n'.join(keep))
-    n = sum(1 for ln in keep if ln.startswith('  FAIL') and KNOWN not in ln)
+    def counts(ln):
+        if not ln.startswith('  FAIL') or KNOWN in ln:
+            return False
+        if len(a) < 3:
+            return True
+        m = re.search(r'/d(\d{3})\.md', ln) or re.search(r'\bday (\d+)\b', ln)
+        if m:
+            return lo <= int(m.group(1)) <= hi
+        return any(f.relative_to(lesson.ROOT).as_posix() + '/' in ln for f in folders)
+
+    n = sum(1 for ln in keep if counts(ln))   # with a range: only failures naming those days or their folders
     print('lesson_course: %d failure(s) in %d day(s)' % (n, days))
 
 
