@@ -59,7 +59,7 @@ LANES = {   # subject: courses in grade order (Cory 2026-11-22; math-grade-4 is 
     'ela': ['english-language-arts-grade-4', 'english-language-arts-grade-5'],
     'science': ['science-grade-4', 'science-grade-5', 'science-grade-6'],
 }
-KINDS = {'SEC', 'DATA', 'DAY', 'CHECKS', 'TEXT', 'TEXT2'}
+KINDS = {'SEC', 'DATA', 'DAY', 'CHECKS', 'TEXT', 'TEXT2'}   # plus FIX: one grade fix per course (docs/pipeline/kit/draft-fix.txt)
 STALL = 20 * 60
 TIMEBOX = 3 * 3600
 STAGGER = 120          # seconds between lane starts (two sandboxes starting at once failed their handshake, 2026-11-04)
@@ -154,7 +154,14 @@ def load_queue(subj):
         elif kind in KINDS:
             steps.append(('job', num, kind, course, detail, f, gate if kind in ('DAY', 'CHECKS') else None))
         gate = None
-    return steps
+    out = []   # a grade fix job after each course's last step (Cory 2026-11-23: keep a good baseline for later grades)
+    for i, st in enumerate(steps):
+        out.append(st)
+        c = st[3] if st[0] == 'job' else st[1]
+        nxt = steps[i + 1] if i + 1 < len(steps) else None
+        if nxt is None or (nxt[3] if nxt[0] == 'job' else nxt[1]) != c:
+            out.append(('job', 'F-' + c, 'FIX', c, 'grade', None, None))
+    return out
 
 
 def done_set():
@@ -327,7 +334,11 @@ def lane(subj, dry=False):
         if dry:
             print('[dry] %s %s %s %s %s%s' % (subj, num, kind, course, detail, ('  gate: ' + gate) if gate else ''))
             continue
-        text = (QUEUES / subj / fname).read_text(encoding='utf-8')
+        if kind == 'FIX':
+            text = (ROOT / 'docs/pipeline/kit/draft-fix.txt').read_text(encoding='utf-8')
+            text = text.replace('{COURSE}', course).replace('{SUBJ}', subj)
+        else:
+            text = (QUEUES / subj / fname).read_text(encoding='utf-8')
         while True:   # one pass per try; a usage limit pauses every lane and tries the same job again
             while PAUSE_UNTIL[0] > time.time():
                 time.sleep(60)
