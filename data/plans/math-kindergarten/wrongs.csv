@@ -164,3 +164,153 @@ s01-X17,Leaves one piece unused while counting.,,,A,Assign this letter only when
 s01-X17,Says two words while adding one piece.,,,D,Assign this letter only when the action is observed; a total alone does not diagnose it.
 s01-Q14-10,No amount connected to the count.,,,x,"Descriptive response only, not cardinality evidence."
 s01-W15,No amount connected to the count.,,,x,Descriptive last-word conversation only; do not assign an omission from a total alone.
+s02-X19,Omits one requested clip.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O19,Repeats the sequence without a final total.,,,A,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X20,Omits one bear when moving.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O20,Says it became more because the patch is wider.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X21,Calls drums more because the pictures are larger.,,,N,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O21,Calls drums more because of picture size.,,,N,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X22,Skips a crayon during observed matching.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O22,Calls seven fewer because of its extra.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X23,Makes eight and explicitly calls it fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O23,Calls the group with extras fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X24,Calls brushes fewer despite their extras.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O24,Calls wider pots more because of spread.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X25,Skips one leaf.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O25,Visits a leaf twice while counting.,,,L,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X26,Calls wider row more because of spacing.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O26,Calls wider row more because it is longer.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X27,Selects unequal pair because rows span equal space.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O27,Skips a peg while verifying.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X28,Calls six more because its source cluster is wider.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O28,Calls nine fewer despite extras.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X29,Draws two and explicitly calls it more.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O29,Says three spread-out marks are more than three.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X30,Counts six correctly but rings 3.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O30,Repeats sequence without total.,,,A,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X31,Counts four correctly but labels 2.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O31,Says spreading made five.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X32,Moves all ten after losing requested stop.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O32,Continues past requested eight.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X33,Draws one dot for zero.,,,O,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O33,Says zero needs one dot.,,,O,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X34,Labels empty bowl 1.,,,E,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O34,Says empty needs 1.,,,E,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X35,Moves all ten after losing requested stop.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O35,Continues after six to use every ticket.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X36,Counts four correctly but labels 6.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O36,Says adjacent towers are same despite extra.,,,H,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X37,Adds one but says total stayed five.,,,H,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O37,Adds one and says five.,,,H,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X38,Represents both correctly but calls eight fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O38,Calls eight fewer after acknowledging extras.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X39,Acknowledges extras in eight but calls eight fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O39,Calls extra group fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X40,Chooses 2 because print is larger.,,,J,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O40,Chooses 2 because of print size.,,,J,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X41,Places mitten on sock mat.,,,F,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O41,Acknowledges sock extras but calls socks fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X42,Keeps pattern groups instead of length rule.,,,F,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O42,Keeps pattern after length rule named.,,,F,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-X43,Continues after requested six.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O43,Keeps adding until tray is empty.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1a-34,Omits a tab.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1b-34,Repeats sequence with no total.,,,A,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1c-34,Says eight because spread changed.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1d-34,Claims eight because new start changed total.,,,C,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2a-34,Moves all ten after losing stop.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1a-35,Omits a tab.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1b-35,Repeats sequence with no total.,,,A,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1c-35,Says eight because spread changed.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1d-35,Claims eight because new start changed total.,,,C,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2a-35,Moves all ten after losing stop.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1a-36,Omits a tab.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1b-36,Repeats sequence with no total.,,,A,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1c-36,Says eight because spread changed.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1d-36,Claims eight because new start changed total.,,,C,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2a-36,Moves all ten after losing stop.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1a-37,Omits a tab.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1b-37,Repeats sequence with no total.,,,A,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1c-37,Says eight because spread changed.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1d-37,Claims eight because new start changed total.,,,C,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2a-37,Moves all ten after losing stop.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1a-38,Omits a tab.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1b-38,Repeats sequence with no total.,,,A,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1c-38,Says eight because spread changed.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1d-38,Claims eight because new start changed total.,,,C,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2a-38,Moves all ten after losing stop.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1a-39,Omits a tab.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1b-39,Repeats sequence with no total.,,,A,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1c-39,Says eight because spread changed.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1d-39,Claims eight because new start changed total.,,,C,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2a-39,Moves all ten after losing stop.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M3-1,Counts 6 correctly but writes another numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2p-1,Omits a star.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2p-1,Visits one star twice.,,,L,"Observed revisit, not inferred from a written numeral."
+s02-M3-2,Writes 1 for empty.,,,E,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M3-3,Counts 8 correctly but writes another numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2p-3,Omits a star.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2p-3,Visits one star twice.,,,L,"Observed revisit, not inferred from a written numeral."
+s02-M3-4,Counts 3 correctly but writes another numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M3-5,Counts 10 correctly but writes another numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2p-5,Omits a star.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2p-5,Visits one star twice.,,,L,"Observed revisit, not inferred from a written numeral."
+s02-M3-6,Counts 1 correctly but writes another numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M3-7,Counts 9 correctly but writes another numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2p-7,Omits a star.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M2p-7,Visits one star twice.,,,L,"Observed revisit, not inferred from a written numeral."
+s02-M3-8,Counts 4 correctly but writes another numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M3-9,Counts 2 correctly but writes another numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M3-10,Counts 7 correctly but writes another numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M3-11,Counts 5 correctly but writes another numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F1a,Circles four as full five.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F1b,Treats occupied cell as empty by skipping its dot.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F1c,Says still nine after adding one and writes 9.,,,H,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F2um,Omits an object while matching.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F2uleft,Omits an object while counting.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F2uright,Omits an object while counting.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F2umore,Calls extra group fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F2ufewer,Calls extra group fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F2em,Omits an object while matching.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F2eleft,Omits an object while counting.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F2eright,Omits an object while counting.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F2esame,Says wider four-tab group has more.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F3-1,Chooses larger ink as greater.,,,J,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F3-2,Connects correctly counted quantity to wrong numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F3-3,Says same-number groups differ because of spacing.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F2reason-40,Counts both but calls three fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F3reason-40,Says 4 greater because print larger.,,,J,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F2reason-41,Counts both but calls three fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F3reason-41,Says 4 greater because print larger.,,,J,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F2reason-42,Counts both but calls three fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F3reason-42,Says 4 greater because print larger.,,,J,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F4a,Triangle on square mat.,,,F,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F4-circle,Omits one member while counting.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F4-square,Omits one member while counting.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F4-triangle,Omits one member while counting.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F4order,"Correct counts but order 6, 4, 2.",,,G,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P19-1,Does not repair the indicated action.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P20-1,Does not repair the indicated action.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P21-1,Does not repair the indicated action.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P23-1,Does not repair the indicated action.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P24-1,Does not repair the indicated action.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P25-1,Does not repair the indicated action.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P26-1,Does not repair the indicated action.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P27-1,Does not repair the indicated action.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P28-1,Does not repair the indicated action.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P29-1,Does not repair the indicated action.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P30-1,Does not repair the indicated action.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P31-1,Does not repair the indicated action.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P32-1,Does not repair the indicated action.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P33-1,Does not repair the indicated action.,,,O,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P34-1,Does not repair the indicated action.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P35-1,Does not repair the indicated action.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P36-1,Does not repair the indicated action.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P37-1,Does not repair the indicated action.,,,H,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P38-1,Does not repair the indicated action.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P39-1,Does not repair the indicated action.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P40-1,Does not repair the indicated action.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P41-1,Does not repair the indicated action.,,,F,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P42-1,Does not repair the indicated action.,,,F,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P43-1,Does not repair the indicated action.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-P43-2,Does not repair the indicated action.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.

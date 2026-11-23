@@ -1,0 +1,37 @@
+---
+piece: blank
+course: math-kindergarten
+unit: 2.2
+stretch: 2
+version: draft, not yet taught
+credit: All ours.
+---
+# Practice records
+
+Teacher reads all words aloud. Invented for practice.
+
+## Day 21
+
+## s02-P21-1
+
+Finish the partners.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="100%" role="img" aria-label="Unanswered stimulus for s02-P21-1"><g data-object="square" transform="translate(65 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(165 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(265 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(365 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(465 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(65 190) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(135 190) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(205 190) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(275 190) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(345 190) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(415 190) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(485 190) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(555 190) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><path d="M65,80L65,175" fill="none" stroke="black" stroke-width="2"/><path d="M165,80L135,175" fill="none" stroke="black" stroke-width="2"/></svg>
+
+
+## Day 23
+
+## s02-P23-1
+
+Fix the comparison picture.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="100%" role="img" aria-label="Unanswered stimulus for s02-P23-1"><g data-object="square" transform="translate(65 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(109 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(153 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(197 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(241 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(65 180) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(109 180) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(153 180) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(197 180) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(241 180) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><text x="400" y="190" font-family="sans-serif" font-size="24">fewer</text></svg>
+
+
+## Day 24
+
+## s02-P24-1
+
+Fix the given reason.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="100%" role="img" aria-label="Unanswered stimulus for s02-P24-1"><g data-object="square" transform="translate(60 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(100 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(140 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(180 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(220 65) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(60 190) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(165 190) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(270 190) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(375 190) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><g data-object="square" transform="translate(480 190) rotate(0) scale(1)" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"><rect x="-13" y="-13" width="26" height="26"/></g><text x="20" y="270" font-family="sans-serif" font-size="24">The wider row has more.</text></svg>

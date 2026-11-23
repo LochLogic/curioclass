@@ -8,21 +8,17 @@ credit: ours
 
 # Parts and token ledger
 
-Invented token prices for planning, not purchase prices.
+Invented token prices, not purchase prices.
 
-| Listed part | Tokens |
+| Part | Tokens |
 |---|---|
-| Cell and holder | 4 |
-| Compatible buzzer | 3 |
-| Insulated leads | 2 |
-| Prepared card, folded foil and tape | 1 |
+| Cell/holder | 4 |
+| Buzzer | 3 |
+| Leads | 2 |
+| Prepared card/foil/tape | 1 |
 
-Total allowed: ten tokens. Use one desk and tomorrow's build time.
+Limit: ten tokens, one desk, tomorrow's build time.
 
-My parts: __________________________________
+My total: ____  Left: ____
 
-My total: ____  Tokens left: ____
-
-My success criterion: __________________________________
-
-Our observation point: __________________________________
+Criterion and observation point: ____

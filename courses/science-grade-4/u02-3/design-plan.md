@@ -10,18 +10,12 @@ credit: ours
 
 Name: ____  Day: ____
 
-Need: signal when the lid opens.
+Criterion and point: ____  Limits: ____
 
-Our criterion: ____ detections in ____ openings at ____.
-
-Our limits: __________________________________
-
-Draw your chosen mechanism in its trigger state. Label the cell terminals, buzzer and complete path.
+Draw your trigger-state plan. Label both terminals, buzzer and complete path.
 
 ________________________________________________
 
-My assembly step: __________________________________
+My assembly step and decision: ____
 
-My decision: __________________________________
-
-Adult observation initials: ____  Assistance: ____
+Adult initials: ____  Assistance: ____

@@ -10,37 +10,37 @@ credit: ours
 
 Name: ____  Day: 36
 
-Own work, no help, no feedback, no repair. Watch within the equipment boundary. Record unclear if a change cannot be resolved.
+Own work, no help, no feedback, no repair. Record unclear when needed.
 
 ## Sound
 
 At the sound station, record one observation with its evidence-linked energy-path explanation.
 
-Observation and account: __________________________________
+Response: __________________________________
 
 ## Light
 
 At the light station, record one observation with its evidence-linked energy-path explanation.
 
-Observation and account: __________________________________
+Response: __________________________________
 
 ## Heat
 
 At the heat station, record one observation with its evidence-linked energy-path explanation.
 
-Observation and account: __________________________________
+Response: __________________________________
 
 ## Current
 
 At the current station, record one observation with its evidence-linked energy-path explanation.
 
-Observation and account: __________________________________
+Response: __________________________________
 
 ## New generator record
 
 Invented for practice. A pull-cord turns a generator powering a marker lamp. The signal must light on every pull. Keep the listed parts and one box. Two failed pulls coincide with a joint opening. Explain conversion and a justified improvement within these limits, including a retest prediction.
 
-My explanation and improvement: __________________________________
+Response: __________________________________
 
 ________________________________________________
 
@@ -48,6 +48,6 @@ ________________________________________________
 
 Locate your revised personal design evidence for the four labeled components.
 
-Plan page: ____  Criterion/limits page: ____
+Plan: ____  Criterion/limits: ____
 
-Tests page: ____  Refinement/retest page: ____
+Tests: ____  Refinement/retest: ____

@@ -1,5 +1,5 @@
 ---
-piece: story
+piece: opener
 course: science-grade-4
 unit: 2.4
 version: draft

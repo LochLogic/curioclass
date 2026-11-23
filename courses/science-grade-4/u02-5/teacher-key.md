@@ -1,5 +1,5 @@
 ---
-piece: story
+piece: opener
 course: science-grade-4
 unit: 2.5
 version: draft
@@ -91,7 +91,7 @@ Child links changes to evidence after at most three assigned five-minute moves. 
 
 - s02-E1-sound: "A shared board proves the air route." is G. Resolve using actual station evidence.
 - s02-E1-light: "Dark appearance proves greater warmth." is H. Resolve using actual station evidence.
-- s02-E1-heat: "The cooler spoon transfers energy to the warmer spoon." is M. Resolve using actual station evidence.
+- s02-E1-heat: "The cooler spoon creates energy without receiving any." is A. Resolve using actual station evidence.
 - s02-E1-current: "One lead from one cell terminal completes the path." is B. Resolve using actual station evidence.
 - s02-E2: "The generator creates energy." is A. Name motion input.
 - s02-E2: "No criterion is needed." is C. Each pull must light the signal.

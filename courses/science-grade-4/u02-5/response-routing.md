@@ -8,7 +8,7 @@ credit: ours
 
 # Private day 38 routing
 
-TEACHER ONLY. Four parallel groups: paths A/B/L; design C/D; resources E/F/I/J/K; observations G/H/M. Prioritize at most three five-minute moves per child inside fifteen minutes. Visit each group three minutes, twelve total. Other children work from their assigned packet and familiar records. These are independent response routes, not twelve sequential class reteaches.
+TEACHER ONLY. Four parallel groups: paths A/B/L; design C/D; resources E/F/I/J/K; observations G/H. Prioritize at most three five-minute moves per child inside fifteen minutes. Visit each group three minutes, twelve total. Other children work from their assigned packet and familiar records. These are independent response routes, not twelve sequential class reteaches.
 
 If a live-mode retry is feasible, select one mode before class using actual conditions and pretest. Give that child five minutes supervised unaided observation plus five cleanup inside the fifteen-minute block, leaving one five-minute letter move. Do not coach the observation. Preserve other missing opportunities for reporting; do not promise another lesson.
 

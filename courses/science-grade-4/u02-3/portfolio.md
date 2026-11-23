@@ -10,11 +10,11 @@ credit: ours
 
 Name: ____
 
-Attach your original plan, adult initials and both complete test logs.
+Keep original evidence attached.
 
 ## Energy-based plan
 
-My labeled drawing and energy path: __________________________________
+My energy plan: __________________________________
 
 ## Criterion and limits
 
@@ -24,7 +24,7 @@ Our limits: __________________________________
 
 ## Tests
 
-What my original and retest records show: __________________________________
+Original/retest evidence: __________________________________
 
 ## Refinement
 
@@ -32,10 +32,10 @@ My implemented step: __________________________________
 
 Its failure evidence and reason: __________________________________
 
-My conclusion under comparable conditions: __________________________________
+Matched-test conclusion: __________________________________
 
 ## Revision, day 35
 
-Keep the original. Use a second color for changes.
+Keep the original. Change in a second color.
 
 Feedback I addressed: __________________________________

@@ -29,13 +29,3 @@ Compare the prior plain-patch readings and exposure labels.
 Evidence I found: __________________________________
 
 My revised claim: __________________________________
-
-## M
-
-Claim to reconsider: Metal sends energy cooler to warmer.
-
-Use warmer-source and cooler-recipient labels on the hand-to-spoon record.
-
-Evidence I found: __________________________________
-
-My revised claim: __________________________________

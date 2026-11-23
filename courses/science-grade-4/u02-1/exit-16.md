@@ -8,7 +8,7 @@ credit: ours
 
 # Day 16 exit ticket
 
-Invented for practice. A sealed handle torch lights while its handle turns. Report B claims light continues afterward, without observations. Draw an initial energy-path idea using recorded effects. Include a question that tests Report B.
+Invented for practice. A sealed signal badge flashes when its tab slides. Report B claims flashing continues afterward, without observations. Draw an initial energy-path idea using recorded effects. Include a question that tests Report B.
 
 Response: __________________________________
 

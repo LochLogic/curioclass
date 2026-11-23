@@ -1,5 +1,5 @@
 ---
-piece: story
+piece: opener
 course: science-grade-4
 unit: 2.1
 version: draft
@@ -14,7 +14,7 @@ TEACHER ONLY. Keep this piece separate from all child pages. Read privately in B
 
 Shape: matched-patch prediction with sunlight reason.
 
-Prompt: Invented for practice. Identical cloth squares start equally cool. One stays in sunlight; one stays shaded. Predict which warms more, using a sunlight reason.
+Prompt: Invented for practice. Identical cloth squares start equally cool. One stays in sunlight; one stays shaded. Compare them after the same time. Predict which warms more, using a sunlight reason.
 
 Key and look-fors: The sunlit square should warm more because sunlight warms its surface. No grade 4 vocabulary required.
 
@@ -24,7 +24,7 @@ Use the formative categories on record.md, one cell per component; never point s
 
 Shape: matched-patch prediction with sunlight reason.
 
-Prompt: Invented for practice. Identical cloth squares start equally cool. One stays in sunlight; one stays shaded. Predict which warms more, using a sunlight reason.
+Prompt: Invented for practice. Identical cloth squares start equally cool. One stays in sunlight; one stays shaded. Compare them after the same time. Predict which warms more, using a sunlight reason.
 
 Key and look-fors: The sunlit square should warm more because sunlight warms its surface. No grade 4 vocabulary required.
 
@@ -34,9 +34,9 @@ Use the formative categories on record.md, one cell per component; never point s
 
 Shape: initial model plus unsupported-claim test question.
 
-Prompt: Invented for practice. A sealed handle torch lights while its handle turns. Report B claims light continues afterward, without observations. Draw an initial energy-path idea using recorded effects. Include a question that tests Report B.
+Prompt: Invented for practice. A sealed signal badge flashes when its tab slides. Report B claims flashing continues afterward, without observations. Draw an initial energy-path idea using recorded effects. Include a question that tests Report B.
 
-Key and look-fors: Show observed handle motion and light; uncertain inner steps allowed. Ask whether light continues after turning stops. Do not treat continued light as observed. Conversion vocabulary is not required.
+Key and look-fors: Show observed tab motion and flashing light; uncertain inner steps allowed. Ask whether flashing continues after sliding stops. Do not treat continued flashing as observed. Conversion vocabulary is not required.
 
 Use the formative categories on record.md, one cell per component; never point scores.
 
@@ -70,7 +70,7 @@ Key and look-fors: Point from warmer clip to cooler lid. Clip cooling and recipi
 
 Use the formative categories on record.md, one cell per component; never point scores.
 
-Readiness: eight minutes answer, two collect on day 15. Missing sunlight cause receives ten minutes on day 18, never on hook day 16. E19 direction error is M, distinct from energy creation A.
+Readiness: eight minutes answer, two collect on day 15. Missing sunlight cause receives ten minutes on day 18, never on hook day 16. E19 energy-creation claim is A. A direction-only reversal gets a conference, not a new letter.
 
 ## Practice tasks, private answers
 
@@ -101,4 +101,4 @@ Warm hand is source; held cooler spoon is recipient. Use actual whole-degree rea
 - s02-X16: "The lamp makes energy from nothing." is A. Use the evidence and the error-register repair; unrelated or blank work gets a conference.
 - s02-X17: "A proves sound crossed the air because both objects share a board." is G. Use the evidence and the error-register repair; unrelated or blank work gets a conference.
 - s02-X18: "The dark patch must be warmer because it looks dark." is H. Use the evidence and the error-register repair; unrelated or blank work gets a conference.
-- s02-X19: "Energy travels cooler to warmer because metal supplies warmth." is M. Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+- s02-X19: "The cooler metal lid creates warmth without receiving energy." is A. Use the evidence and the error-register repair; unrelated or blank work gets a conference.
