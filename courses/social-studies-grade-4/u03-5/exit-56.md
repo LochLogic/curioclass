@@ -8,7 +8,7 @@ credit: Curio Class original text; image credits accompany images.
 ---
 # Day 56 exit ticket
 
-<img src="exit56-mound.jpg" alt="New exterior view" style="height:1.05in;width:auto;">
+<img src="exit56-mound.jpg" alt="New exterior view" style="height:1.65in;width:auto;">
 
 Lyle Kruger; date not supplied; public domain; photograph from federal byways collection.
 

@@ -383,3 +383,5 @@ s01-X15,She repairs the screen before the show.,,,O,Invents a repair; the screen
 s01-P15-6,some stuff,,,Q,Assign only for this demonstrated fault; missing work remains unobserved.
 s01-P16-8,Cooks; entertainment; recipe.,,,x,Assign only for this demonstrated fault; missing work remains unobserved.
 s01-P16-9,Group B: cover and lunch.,,,N,Assign only for this demonstrated fault; missing work remains unobserved.
+s01-K18-1,Return it there.,,,AE,Supplied-fault inspection; own plans stay unjudged.
+s01-K18-2,Keep only.,,,O,Supplied-fault inspection; own plans stay unjudged.

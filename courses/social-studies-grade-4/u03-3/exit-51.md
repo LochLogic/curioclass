@@ -12,7 +12,7 @@ Farming Card: The park reports crop growing and winter food storage at Mesa Verd
 
 Source 51E, original summary.
 
-<img src="exit51-rooms.jpg" alt="Spruce Tree House exterior" style="height:1.05in;width:auto;">
+<img src="exit51-rooms.jpg" alt="Spruce Tree House exterior" style="height:1.65in;width:auto;">
 
 NPS photograph; date not supplied; public domain.
 

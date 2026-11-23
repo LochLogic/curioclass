@@ -10,11 +10,11 @@ credit: Curio Class original text; image credits accompany images.
 
 A: Mesa Verde stone object; NPS photograph, date not supplied; public domain.
 
-<img src="exit50-point.jpg" alt="Photograph A" style="height:1.05in;width:auto;">
+<img src="exit50-point.jpg" alt="Photograph A" style="height:1.3in;width:auto;">
 
 B: Russell Cave fragment; NPS photograph, date not supplied; public domain.
 
-<img src="exit50-fragment.jpg" alt="Photograph B" style="height:1.05in;width:auto;">
+<img src="exit50-fragment.jpg" alt="Photograph B" style="height:1.3in;width:auto;">
 
 Name: __________________
 

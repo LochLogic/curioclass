@@ -242,7 +242,7 @@ s03-X50a,Digits can be read in any order.,,,E,Disregards agreed order.
 s03-X50b,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
 s03-X51,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
 s03-X52,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
-s03-X53,Choose A because its quiet trial is fastest.,,,C,"Error C: treats fastest quiet duration as sufficient, ignoring the conversation time limit."
+s03-X53,Choose B for speed; correct messages are unnecessary.,,,C,"Error C: explicitly discards the accuracy criterion, even though the chosen system is B. A bare B is insufficient evidence of comparing both criteria."
 s03-X53,Shorter pauses guarantee success without more tests.,,,D,Error D: extends the old test evidence to an untested changed system.
 s03-X54a,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
 s03-X54a,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
@@ -332,3 +332,4 @@ s03-P51-return,The receiver can choose any order or gap.,,,E,Agreed order and bo
 s03-P52-return,A quick run makes every message correct.,,,C,"Attend to accuracy before duration; use actual quiet records, not a supplied acceptance table."
 s03-P53-return,One quiet success proves success everywhere.,,,D,Limit a claim to both observed conditions; preserve uncertainty about untested settings.
 s03-P54-return,The quickest quiet run settles every comparison.,,,C,Apply accuracy and duration in each recorded setting; identify error D separately when a claim exceeds conditions.
+s03-P54-return,Quiet success proves the conversation trial passed.,,,D,Error D: extends success from one condition to a different condition without its evidence.

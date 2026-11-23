@@ -8,7 +8,7 @@ credit: Curio Class original text; image credits accompany images.
 ---
 # Day 53 exit ticket
 
-<img src="exit53-mound.jpg" alt="Cahokia earthwork" style="height:1.05in;width:auto;">
+<img src="exit53-mound.jpg" alt="Cahokia earthwork" style="height:1.65in;width:auto;">
 
 Great Rivers Country; date not supplied; public domain.
 

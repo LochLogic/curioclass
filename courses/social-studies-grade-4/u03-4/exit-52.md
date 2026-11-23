@@ -8,7 +8,7 @@ credit: Curio Class original text; image credits accompany images.
 ---
 # Day 52 exit ticket
 
-<img src="exit52-rooms.jpg" alt="Spruce Tree House in snow" style="height:1.05in;width:auto;">
+<img src="exit52-rooms.jpg" alt="Spruce Tree House in snow" style="height:1.65in;width:auto;">
 
 NPS photograph; date not supplied; public domain.
 
