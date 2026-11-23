@@ -35,3 +35,5 @@ from_day,to_day,what,where,minutes,error,note
 12,13,s01-X12,Return and repair,5,C,Return feedback; retain the original in the folder.
 12,13,s01-X12,Return and repair,5,J,Return feedback; retain the original in the folder.
 12,13,s01-Ps12,Return and repair,0,,Return feedback; retain the original in the folder.
+13,15,s01-X13,Read feedback,0,,"Written component feedback; targeted support is in Response stations, counted there once."
+13,15,s01-K13,Read feedback,0,,Return evidence-tag feedback; retain tags.
