@@ -177,3 +177,6 @@ s02-P27-repair,We need no rule for success.,,,C,Error C; use the named repair. B
 s02-K27-1,My preferred change proves improvement without testing.,,,D,Error D; use the named repair. Blank work gets a conference.
 s02-P28-repair,A preferred change proves improvement without test evidence.,,,D,Error D; use the named repair. Blank work gets a conference.
 s02-P29-repair,"More detections always prove improvement, even with changed conditions.",,,D,Error D; use the named repair. Blank work gets a conference.
+s02-P30-retrieval,The road cannot change nesting places.,,,x,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-K30-1,The solar cell is the natural energy supply.,,,I,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P30-1,A made battery is a natural resource.,,,I,Diagnose only this reasoning; blank or unrelated work gets a conference.

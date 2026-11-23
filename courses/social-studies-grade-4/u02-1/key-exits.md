@@ -5,111 +5,58 @@ unit: 2.1
 version: draft, not yet taught
 credit: ours
 ---
-# Section 2.1 teacher keys
+# Section 2.1 exit answer key
 
-Teacher only. Read before class; keep out of student packets.
-One scale: shown; shown with help; not yet seen. Access support is not content help.
+Teacher only. Keep out of student packets. Use the generated teacher key for practice.
 
-## s02-X17
+One component scale: shown; shown with help; not yet seen. Access support is separate.
 
-Understanding delivery connections helps explain food supply or interruptions.
+## Day 17: s02-X17
 
-Look for: Gives a use for this family, not only class.
+**Look for.** Gives a use for this family, not only class. Understanding delivery connections helps explain food supply or interruptions.
 
-Samples, first shows evidence, second needs work: They could understand which delivery brings their food. | The teacher likes maps.
+**Shown sample.** They could understand which delivery brings their food.
 
-## s02-X18
+**Needs-work sample.** The teacher likes maps.
 
-Map/atlas locates it; article/resident account describes uses. Accept alternatives with distinct relevant jobs.
+## Day 18: s02-X18
 
-Look for: Location kind and experience/use kind; each job explained.
+**Look for.** Location kind and experience/use kind; each job explained. Map/atlas locates it; article/resident account describes uses. Accept alternatives with distinct relevant jobs.
 
-Samples, first shows evidence, second needs work: A map locates it; residents' accounts describe uses. | Use the prettiest pages.
+**Shown sample.** A map locates it; residents' accounts describe uses.
 
-## s02-X19
+**Needs-work sample.** Use the prettiest pages.
 
-Clerk table and rider blog: counts and one experience, both 2026. Guide is historical; neither current record describes all riders.
+## Day 19: s02-X19
 
-Look for: Complementary records; maker/kind/date/viewpoint reasons.
+**Look for.** Complementary records; maker/kind/date/viewpoint reasons. Clerk table and rider blog: counts and one experience, both 2026. Guide is historical; neither current record describes all riders.
 
-Samples, first shows evidence, second needs work: The current table counts trips; the current rider account describes crowding. | The official table proves everyone is happy.
+**Shown sample.** The current table counts trips; the current rider account describes crowding.
 
-## s02-X20
+**Needs-work sample.** The official table proves everyone is happy.
 
-School advice for school travelers in 1995; current routes need a current source. Date and audience constrain use.
+<div style="break-before: page; page-break-before: always;"></div>
 
-Look for: Date and audience used; historical evidence distinguished from current proof.
+## Day 20: s02-X20
 
-Samples, first shows evidence, second needs work: It shows school advice in 1995, not current routes. | Printed means current.
+**Look for.** Date and audience used; historical evidence distinguished from current proof. School advice for school travelers in 1995; current routes need a current source. Date and audience constrain use.
 
-## s02-X21
+**Shown sample.** It shows school advice in 1995, not current routes.
 
-Check 1950 in an independent town opening record. Preference neither proves nor cancels the date.
+**Needs-work sample.** Printed means current.
 
-Look for: Relevant verification; preference kept separate.
+## Day 21: s02-X21
 
-Samples, first shows evidence, second needs work: Check the opening record; friendliest does not prove the year. | Friendly ducks prove the year.
+**Look for.** Relevant verification; preference kept separate. Check 1950 in an independent town opening record. Preference neither proves nor cancels the date.
 
-## s02-X22
+**Shown sample.** Check the opening record; friendliest does not prove the year.
 
-Both locate Lake Chapala in Mexico. Location agreement does not establish water quality or other unmeasured facts.
+**Needs-work sample.** Friendly ducks prove the year.
 
-Look for: Mexico compared in independent origins; limit stated.
+## Day 22: s02-X22
 
-Samples, first shows evidence, second needs work: Both put it in Mexico; neither tests the water. | Both agree, so the water is safe.
+**Look for.** Mexico compared in independent origins; limit stated. Both locate Lake Chapala in Mexico. Location agreement does not establish water quality or other unmeasured facts.
 
-## s02-P17
+**Shown sample.** Both put it in Mexico; neither tests the water.
 
-Researchable connection question.
-
-Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
-
-Samples, first shows evidence, second needs work: Which town does the route reach? | I like buses.
-
-## s02-P18
-
-A map; B atlas; C article; D printed digital page.
-
-Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
-
-Samples, first shows evidence, second needs work: A is a map; B an atlas. | All are maps.
-
-## s02-P19
-
-Caretakers' office; 2010; caretakers; notice.
-
-Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
-
-Samples, first shows evidence, second needs work: For caretakers in 2010. | Fancy means useful.
-
-## s02-P20
-
-Caretakers; preparing equipment.
-
-Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
-
-Samples, first shows evidence, second needs work: Caretakers; prepare equipment. | Everyone everywhere.
-
-## s02-P21
-
-Chair-count claim matches inventory but five conflicts with its six chairs. Delivery-day claim matches receipt; favorite color has no agreed factual test.
-
-Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
-
-Samples, first shows evidence, second needs work: The inventory checks the chair count and contradicts five. | A liking verifies five chairs.
-
-## s02-P22
-
-Notice copy depends on office notice; inventory observer is independent.
-
-Look for: Performs named component using supplied evidence; written feedback; content separate from grammar.
-
-Samples, first shows evidence, second needs work: The copy uses the notice. | Two copies are independent.
-
-## s02-P17b
-
-Route connects two made-up towns because it crosses their boundary.
-
-Look for: Fresh component evidence; record support and next step.
-
-Samples, first shows evidence, second needs work: The route crosses their boundary, linking them. | The line is pretty.
+**Needs-work sample.** Both agree, so the water is safe.

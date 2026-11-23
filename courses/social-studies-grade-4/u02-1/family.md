@@ -20,7 +20,9 @@ Contact the teacher privately to request another way to participate.
 Students aged 18 or older receive this note and make their own participation choices.
 School rules still apply.
 
-## Español
+## Spanish
+
+**Español.**
 Usaremos mapas y fuentes breves para investigar Canadá y México.
 El alumnado explicará conexiones y considerará cómo el comercio afecta a distintos grupos.
 Cada estudiante guardará notas, revisará un informe y compartirá un hallazgo con evidencia.
