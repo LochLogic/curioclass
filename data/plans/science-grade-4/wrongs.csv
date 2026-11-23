@@ -132,7 +132,7 @@ s02-E1-current,One lead from one cell terminal completes the path.,,,B,Resolve u
 s02-E2,The generator creates energy.,,,A,Name motion input.
 s02-E2,No criterion is needed.,,,C,Each pull must light the signal.
 s02-E2,My preferred change needs no retest.,,,D,Use failure evidence and comparable retest.
-s02-E2-portfolio,"Our group succeeded, so no personal evidence is needed.",,,D,"Locate each child's own plan, implementation and interpretation."
+s02-E2-portfolio,"Our group succeeded, so no personal evidence is needed.",,,x,"Missing personal evidence is an evidence gap, not preference or unmatched-test error D. Confer and locate original implementation records; do not infer performance from team success."
 s02-E3,Renewable water means the dam changes nothing.,,,E,Renewal does not erase effects.
 s02-E3,The passage removes every effect.,,,F,Flooded habitat remains.
 s02-X35,The generator needs no input.,,,A,Use comparable evidence and input-to-output reasoning.
@@ -189,3 +189,16 @@ s02-P33-1,The filter removes every environmental effect.,,,F,Diagnose only this 
 s02-P34-1,Zero rounded shares prove the resource was absent.,,,x,Diagnose only this reasoning; blank or unrelated work gets a conference.
 s02-P35-1,The generator makes energy without input.,,,A,Diagnose only this reasoning; blank or unrelated work gets a conference.
 s02-P35-2,"Our group liked it, so no comparable retest evidence is needed.",,,D,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P38-A,The crank creates energy.,,,A,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-B,One connection to one terminal is enough.,,,B,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-L,A switch across an uncut wire stops current in that wire.,,,L,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-C,An attractive device needs no criterion.,,,C,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-D,"I like my change, so it is proved better.",,,D,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-E,A renewable resource cannot affect the surroundings.,,,E,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-F,The filter removes every consequence.,,,F,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-I,The manufactured battery itself is a natural resource.,,,I,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-J,Natural gas is replaced as quickly as people use it.,,,J,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-K,Burning releases no pollutants.,,,K,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-G,A shared support proves transfer through air.,,,G,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-H,A dark-looking patch must be warmer without temperature evidence.,,,H,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-1,I changed my answer because the key says so.,,,x,No identified evidence link; confer without assigning a misconception letter.
