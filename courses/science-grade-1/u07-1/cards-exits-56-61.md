@@ -7,7 +7,7 @@ credit: ours
 ---
 # Exit cards, days 56 to 59 and 61
 
-Keep these out of sight until each day's exit. Say "this is invented for practice" first. Plain black line drawings on white, thick lines, no shading, no brand names, diverse children where children appear, one big word under each picture. Every card is a schematic and supplies no result. Every child touches a card; the teacher hears a rotating six, and writes who on the record sheet. No card here appears in any teaching day.
+Keep these out of sight until each day's exit. Say "this is invented for practice" first. Plain black line drawings on white, thick lines, no shading, no brand names, diverse children where children appear, one big word under each picture. Every card is a schematic and supplies no result. Every child touches a card; the teacher hears a rotating six, and writes who on the record sheet. No card here appears in any teaching day. Each card and strip carries the printed words "invented for practice" where a child sees it.
 
 ## Day 56 (items s07-X56a, s07-X56b, s07-X56c)
 

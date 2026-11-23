@@ -42,7 +42,8 @@ Wash with soap and running water, scrubbing at least 20 seconds, after clay, cha
 - Children stay with you; count them out and back in.
 - Never look at the sun, and no binoculars or other lenses; backs to the sun on day 4. Sunglasses do not make looking safe.
 - In lightning, extreme heat or cold, skip the look and use the saved tracing.
-- Ask a helper adult to move round on the cutting, band, ruler and string lane days (18 to 21, 28, 29, 31, 33, 49, 51, 52, 54).
+- A helper adult works beside you for the hands-on part of the cutting, band, ruler and string lane days (18 to 21, 28, 29, 31, 33, 49, 51, 52, 54); each day's Safety and set-up names the part.
+- A school without a helper adult runs the hands-on part with no more than 24 children: half the class at a time, the other half on the day's sheet.
 
 ## Heat and lamps (days 38 to 46, 48 to 55, 66 to 68)
 
