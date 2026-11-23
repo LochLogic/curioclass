@@ -56,10 +56,10 @@ from_day,to_day,what,where,minutes,error,note
 28,29,s02-X28,Read,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
 28,29,s02-P28,Read,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
 29,30,s02-X29,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
-29,30,s02-X29 repair,Trade,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
+29,30,s02-X29 repair,Trade work,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
 29,30,s02-P29,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
 30,31,s02-X30,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
-30,31,s02-X30 repair,Map,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
+30,31,s02-X30 repair,Map work,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
 30,31,s02-P30,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
 31,32,s02-X31,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
 31,32,s02-X31 repair,Group,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
@@ -101,3 +101,7 @@ from_day,to_day,what,where,minutes,error,note
 29,38,s02-E8b,Feedback,0,,Return retained listener-reply component with E7 and E8; no second judgment.
 29,38,s02-E11,Feedback,0,,Return retained peer-critique judgment alongside performance components; no duplicate score.
 29,38,s02-E12,Feedback,0,,Return retained peer-critique judgment alongside performance components; no duplicate score.
+30,31,s02-P30-R s02-P30-R2 s02-P30-L s02-P30a s02-P30b,Return,0,,Return all collected component papers with exit; one priority within existing repair minutes.
+31,32,s02-P31-R s02-P31-B,Return,0,,Return all collected component papers with exit; one priority within existing repair minutes.
+32,33,s02-P32-R2 s02-P32-R,Return,0,,Return all collected component papers with exit; one priority within existing repair minutes.
+33,34,s02-P33-F s02-P33-R s02-P33-S s02-P33-B,Return,0,,Return all collected component papers with exit; one priority within existing repair minutes.

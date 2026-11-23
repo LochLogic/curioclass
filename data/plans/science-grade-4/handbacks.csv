@@ -146,3 +146,21 @@ from_day,to_day,what,where,minutes,error,note
 31,32,s02-K31-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
 32,33,s02-K32-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
 33,34,s02-K33-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
+39,41,C-E39-speed,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+39,41,C-E39-question,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+39,41,C-E39-predict,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+39,41,C-E39-sound,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+39,41,C-E39-light,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+39,41,C-E39-heat,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+39,41,C-E39-current,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+40,41,C-E40-origin,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+40,41,C-E40-use,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+40,41,C-E40-effects,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+40,41,C-E40-change,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+41,43,C-R41-source,older-row response,5,,"Within reserved fifteen-minute response, five minutes per causal direction. Grade 1 causal models planned: teach missing directions as new; day 42 keeps hook."
+41,43,C-R41-receiver,older-row response,5,,"Within reserved fifteen-minute response, five minutes per causal direction. Grade 1 causal models planned: teach missing directions as new; day 42 keeps hook."
+41,42,C-P41-revise,opening,0,,"Return revised papers with written note, informational only; no extra repair."
+41,42,C-P41-motion,opening,0,,"Return any completed personal repair sheet with written evidence note; informational only, no new repair slot."
+41,42,C-P41-paths,opening,0,,"Return any completed personal repair sheet with written evidence note; informational only, no new repair slot."
+41,42,C-P41-resources,opening,0,,"Return any completed personal repair sheet with written evidence note; informational only, no new repair slot."
+41,42,C-P41-question,opening,0,,"Return completed personal question with written note, informational only."

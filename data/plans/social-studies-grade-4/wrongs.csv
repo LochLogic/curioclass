@@ -241,13 +241,13 @@ s02-X27,Checkable means true.,,,L,Checkable means verified true. Compare the sti
 s02-X28,Coastal sounds better.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
 s02-X29,Good because short.,,,H,Liking or length is enough to critique. Compare the stimulus; judge content separately from English grammar.
 s02-X29,Three trams must run because the depot lists three.,,,D,A depot inventory does not establish the number operating.
-s02-X30,A goods list explains reliance.,,,E,Listing goods explains reliance. Compare the stimulus; judge content separately from English grammar.
+s02-X30,Glass jars and metal lids.,,,E,Listing goods explains reliance. Compare the stimulus; judge content separately from English grammar.
 s02-X30,Each makes everything alone.,,,O,Specialized producers make everything alone. Compare the stimulus; judge content separately from English grammar.
-s02-X31,A goods list explains reliance.,,,E,Listing goods explains reliance. Compare the stimulus; judge content separately from English grammar.
-s02-X31,This evidence proves an unrelated claim.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
+s02-X31,Oats.,,,E,Listing goods explains reliance. Compare the stimulus; judge content separately from English grammar.
+s02-X31,Mexico exports oats to Canada.,,,D,"Reverses the supplied arrow; Canada is origin, Mexico destination."
 s02-X32,Everyone wins.,,,F,Everyone in a country gains or loses together. Compare the stimulus; judge content separately from English grammar.
 s02-X33,Everyone gains.,,,F,Everyone in a country gains or loses together. Compare the stimulus; judge content separately from English grammar.
-s02-X33,A goods list explains reliance.,,,E,Listing goods explains reliance. Compare the stimulus; judge content separately from English grammar.
+s02-X33,Imported parts; repairs; replacement tools.,,,E,Lists case features without tracing changed customer purchases to either business effect.
 s02-X34,True because I like it.,,,G,Preference replaces supported claim. Compare the stimulus; judge content separately from English grammar.
 s02-X34,Two titles prove it.,,,N,Source titles replace details. Compare the stimulus; judge content separately from English grammar.
 s02-X35,True because I like it.,,,G,Preference replaces supported claim. Compare the stimulus; judge content separately from English grammar.
@@ -367,3 +367,25 @@ s02-P29b,Longer is always better.,,,H,Missing named criterion or relevant source
 s02-P29q,I like it.,,,D,Missing named criterion or relevant source detail; give one private cue.
 s02-E11,It is good because I like it.,,,H,Liking does not critique order or detail.
 s02-E12,It is good because I like it.,,,H,Liking does not critique order or detail.
+s02-P30-R,Paint sounds nicer.,,,H,Cold-solved against supplied case; content separate from grammar.
+s02-P30-R2,The poster.,,,x,Cold-solved against supplied case; content separate from grammar.
+s02-K30-K,The customers deliver paper.,,,x,Cold-solved against supplied case; content separate from grammar.
+s02-P30-L,Notebook customers to shop.,,,x,Cold-solved against supplied case; content separate from grammar.
+s02-P31-R,Signs.,,,x,Cold-solved against supplied case; content separate from grammar.
+s02-K31-K,Canada imports wheat.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-K31-Kb,Canada exports vegetables.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-P31-B,Numbers of workers.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-P32-R2,Candles and wax.,,,E,Cold-solved against supplied case; content separate from grammar.
+s02-P32-R,Town Beck.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-K32-K,Everyone in Canada gets more work.,,,F,Cold-solved against supplied case; content separate from grammar.
+s02-P33-F,A large national total brings orders.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-P33-R,Every shop gains.,,,F,Cold-solved against supplied case; content separate from grammar.
+s02-P33-S,Both are individual farm records.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-P33-B,A large total proves its loss.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-P33,The national goods total proves this farm sells less.,,,D,A national value does not establish the invented farm buyer switch; use the case record.
+s02-P30-R,"The circle means paint, according to the chart.",,,D,Contradicts the supplied symbol key; the chart says tape.
+s02-P30a,Nothing crosses.,,,x,Cold-checked against the printed stimulus and the complete item key.
+s02-P30b,The cocoa.,,,x,Cold-checked against the printed stimulus and the complete item key.
+s02-P30,Paper is the buyer.,,,x,Cold-checked against the printed stimulus and the complete item key.
+s02-P31,The arrowhead is the origin.,,,D,Cold-checked against the printed stimulus and the complete item key.
+s02-P32,All groups gain alike.,,,F,Cold-checked against the printed stimulus and the complete item key.
