@@ -19,3 +19,4 @@ from_day,to_day,what,where,minutes,error,note
 13,14,s01-X13 s01-P13-2 s01-P13-3 s01-P13-4 s01-P13-5,Return and repair,5,,One priority cue; alternatives share the slot.
 14,16,s01-X14 s01-P14-2 s01-P14-3 s01-P14-4,Feedback,5,,"E14 feedback waits through assessment day. Return with assessment, one combined priority move."
 15,16,s01-A1a s01-A1b s01-A1c s01-A1d s01-A2a s01-A2b s01-A2c s01-A2d s01-A3a s01-A3b s01-A3c s01-A4a s01-A4b s01-A4c,Feedback,0,,Return together with E14 in one five-minute combined feedback slot.
+16,17,s01-P16-1 s01-P16-2 s01-P16-3 s01-P16-4 s01-P16-5 s01-P16-6 s01-P16-7,Open the inquiry,1,,Return a written cue while opening day 17; no new repair lesson. Students retain folders.
