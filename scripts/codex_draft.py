@@ -26,6 +26,8 @@ Stops (no Claude tokens are used; everything is automatic):
 - a lane stops itself after 3 failed jobs in a row (codex error, no last message, or a closed ledger gate), or when a
   grade's lesson gate failures pile up: more than 4 plus one for every 4 days drafted in that grade;
 - the file _draft\STOP stops every lane gently (running jobs finish); _draft\STOP-<lane> stops one lane.
+A per-job note in _draft
+otes\<lane>-<job>.txt is added to that job's prompt; a job listed in done.txt never runs.
 Restarting picks up where it stopped (done jobs are in _draft\done.txt; a stopped lane is in _draft\stopped.txt;
 delete its line to let it go on).
 
@@ -341,6 +343,9 @@ def lane(subj, dry=False):
             run = None
             if result == 'ok':
                 prompt = (ROOT / 'docs/pipeline/kit/draft-preamble.txt').read_text(encoding='utf-8') + text
+                extra = DRAFT / 'notes' / ('%s-%s.txt' % (subj, num))
+                if extra.exists():   # a per-job note (say, work already done by hand that the job must keep)
+                    prompt += '\n\nNote for this job (it wins over the job above):\n' + extra.read_text(encoding='utf-8')
                 prompt = LESSONGATE.sub(lambda m: 'python -X utf8 scripts/lesson_course.py ' + m.group(1), prompt)
                 prompt = REPO.sub(lambda m: m.group(0) + '-draft', prompt)
                 log('%s start %s %s %s %s' % (subj, num, kind, course, detail))
