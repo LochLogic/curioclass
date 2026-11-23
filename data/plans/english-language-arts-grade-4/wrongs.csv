@@ -354,3 +354,5 @@ s01-P13-3,Log an unread title.,,,x,Diagnose only the demonstrated fault; unobser
 s01-P10-3,Interrupt the unfinished turn.,,,K,Assign only the demonstrated component error.
 s01-P10-3,Leave the requested words unlocated as evidence-finder.,,,AK,Assign only the demonstrated component error.
 s01-P10-7,Keep I like the story best in the summary.,,,C,Assign only the demonstrated component error.
+s01-P11-9,Mina takes his paper.,,,O,Diagnose only the demonstrated fault; unobserved work is not an error.
+s01-P12-9,Ben must be the real author because he says I.,,,F,Diagnose only the demonstrated fault; unobserved work is not an error.
