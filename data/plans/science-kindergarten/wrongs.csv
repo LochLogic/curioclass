@@ -212,10 +212,14 @@ s05-X54a,Touches stand the umbrella farther away.,,,D,moves the cover away from 
 s05-X54b,The umbrella looks nice.,,,E,takes looks for evidence
 s05-W1a,Touches the rock and water pair and says they prove it.,,,C,compares unlike materials
 s05-W1b,Marks a sample the caption does not name.,,,,reads the caption against its words; shown with help
-s05-W2a,Marks against the sand caption.,,,,reads the caption against its words; shown with help
-s05-W2b,Marks against the soil caption.,,,,reads the caption against its words; shown with help
-s05-W2c,Marks against the rock caption.,,,,reads the caption against its words; shown with help
-s05-W2d,"Says water never warms, against the water caption.",,,B,leaves water out of the pattern
+s05-W2a,"Says the sun cannot warm sand, against the sand caption.",,,A,does not link sunlight to warming
+s05-W2a,Says the sand was warmer because it was the afternoon.,,,H,"gives the time of day as the cause, not sun and shade"
+s05-W2b,"Says the sun cannot warm soil, against the soil caption.",,,A,does not link sunlight to warming
+s05-W2b,Says the soil was warmer because it was the afternoon.,,,H,"gives the time of day as the cause, not sun and shade"
+s05-W2c,"Says the sun cannot warm rock, against the rock caption.",,,A,does not link sunlight to warming
+s05-W2c,Says the rock was warmer because it was the afternoon.,,,H,"gives the time of day as the cause, not sun and shade"
+s05-W2d,"Says sunlight cannot warm water, against the water caption.",,,B,leaves water out of the pattern
+s05-W2d,Says the water was warmer because it was the afternoon.,,,H,"gives the time of day as the cause, not sun and shade"
 s05-W3a,Touches the later look for every material whatever the captions say.,,,,assumes the later look always wins; shown with help
 s05-W3b,Points to the later look of one sample.,,,,"a look chosen for the wrong reason; no register letter, record shown with help"
 s05-W3c,"The later one is warmer, so sunlight did it.",,,H,treats the time as the cause

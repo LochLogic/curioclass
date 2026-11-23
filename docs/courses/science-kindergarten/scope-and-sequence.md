@@ -118,6 +118,23 @@ These are sequence-level reservations. The unit plan must turn each listed asses
 
 Nature of science is deliberate on days 6 (ways to investigate), 14 (patterns and order), 33 to 34 (patterns across living things) and 41 (claims depend on evidence). Weather forecasts on days 15 to 17 show why people use technological information. The design cycle is built in unit 3 before reuse in units 5 and 6; unit 4 builds the relational system model and evidence sentence before their later uses. This is an element-level planning trace for the owned expectations, not a claim that the whole K to 2 band has already been completed in kindergarten.
 
+## Practice and crosscutting concept coverage
+
+Each cell lists the days that use the practice or concept, read from the section plans and days.csv (goal, opening and hand work) as written; a day is counted only where children do the practice, not where a code alone names it. Course checks are days 29 to 31 and 62 to 64.
+
+| Unit | Asking questions and defining problems | Developing and using models | Planning and carrying out investigations | Analyzing and interpreting data | Using mathematics and computational thinking | Constructing explanations and designing solutions | Engaging in argument from evidence | Obtaining, evaluating and communicating information | Patterns | Cause and effect | Systems and system models |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1. Pushes and pulls | 1 | none | 2 to 9 | 2, 3, 4, 7, 8 | none | 4, 5, 6, 8, 9 | none | 1 | none | 1 to 9 | none |
+| 2. Weather watch | 10, 15, 16, 17, 19 | 17 | 11, 12 | 10 to 14, 18 | 13, 14, 18 | 17, 19 | none | 15 to 19 | 10 to 14, 17, 18 | 10, 15, 17, 19 | none |
+| 3. Ramps and targets | 20, 21, 25, 27 | none | 21 to 24, 26, 28 | 22, 23, 24, 26, 28 | 23 | 22, 24, 26, 28 | none | 21, 25, 27 | none | 22, 24, 26, 28 | none |
+| Course checks, mid-year | none | none | 29, 30, 31 | 29, 30, 31 | 29, 30 | none | none | 29, 30, 31 | 29, 30, 31 | 29, 30, 31 | none |
+| 4. Living things and what they need | 32 | 32, 36, 37, 39, 40, 41, 42 | 33 | 33, 34, 35, 40, 41 | 33, 34, 40 | 41, 42 | 38, 39, 40, 43 | 33, 35, 37 | 33, 34, 35, 41 | none | 32, 36, 37, 39, 40, 42, 43 |
+| 5. Sunlight warms | 47 | 44, 45, 46, 50 | 45, 46, 48, 50, 51, 54 | 45, 46, 48, 50, 51, 52, 54 | none | 44, 46, 47, 49, 50, 52, 53, 54 | none | 52 | 48 | 44 to 54 | none |
+| 6. Caring for our place | none | 55, 56, 61 | 55, 59 | 55, 59 | 55, 59 | 56 to 61 | none | 57, 58, 60, 61 | none | 55 to 61 | none |
+| Course checks, year-end | none | 62, 64 | none | 62, 63, 64 | 63 | none | 63 | none | 62, 63, 64 | 64 | 62, 64 |
+
+Gaps: every one of the eight practices and the three crosscutting concepts the course uses has at least one day; no practice or concept is left without a day. Engaging in argument from evidence is the thinnest (unit 4 and day 63 only).
+
 ## Course-level checks
 
 **Mid-year:** course days 29 and 30, school days 66 and 68, week 14, after unit 3. Six groups of five, three groups per day at eight minutes each, leave six minutes daily for set-up and transitions. Each child completes the three-code scope once, with an own response mat, checklist and one brief spoken why per code. Newly sampled: K-PS2-1, K-ESS2-1 and K-ESS3-2 only. The motion station requires the child to choose a comparison and what stays fixed, conduct separate strong/gentle push and pull and direction trials, mark outcomes and explain starting/stopping, speed, turning and collisions. The chart station asks for daily/monthly patterns, relative morning/afternoon warmth, a selected supported count up to ten and comparison of monthly picture-row frequencies. The forecast station asks a question, obtains media information, connects regional hazard likelihood and observed patterns to a prediction, then to community preparation and response. Fresh forms are a choose-and-run contact investigation and weather-information stations, rather than unit 3's define/build/judge design task. Others independently sort familiar weather pictures or draw the unit 1 anchor.
