@@ -133,3 +133,11 @@ from_day,to_day,what,where,minutes,error,note
 23,24,s02-P23-model,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
 25,26,s02-P25-repair,Return and repair,0,,Return with ticket and descriptive feedback; no additional repair minutes.
 25,26,s02-P25-observe,Return and repair,0,,Return with ticket and descriptive feedback; no additional repair minutes.
+26,27,s02-P26-repair,Return and repair,0,,Return with the packet; no extra repair minutes.
+27,28,s02-P27-repair,Return and repair,0,,Return with ticket; no additional repair minutes.
+27,28,s02-K27-1,Return and repair,0,,Return with ticket; no additional repair minutes.
+28,29,s02-P28-repair,Return and repair,0,,Return with ticket; no extra repair minutes.
+29,30,s02-P29-repair,Return and repair,0,,Return with ticket; no additional repair minutes.
+24,25,s02-P24-repair,Return and repair,0,,Return with ticket and packet feedback; no additional repair minutes.
+24,25,s02-P24-budget,Return and repair,0,,Return with ticket and packet feedback; no additional repair minutes.
+24,25,s02-K24-2,Return and repair,0,,Return with ticket and packet feedback; no additional repair minutes.

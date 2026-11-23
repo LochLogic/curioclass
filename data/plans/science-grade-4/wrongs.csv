@@ -172,3 +172,8 @@ s02-P24-budget,There is no budget limit to check.,,,C,Error C; use the named rep
 s02-K24-2,Only one terminal must connect.,,,B,Error B; use the named repair. Blank work gets a conference.
 s02-P25-repair,"A pleasant appearance is enough, without any success result.",,,C,Error C; use the named repair. Blank work gets a conference.
 s02-P25-observe,Any attractive signal succeeds without a success rule.,,,C,Error C; use the named repair. Blank work gets a conference.
+s02-P26-repair,One terminal connection completes the circuit.,,,B,Error B; use the named repair. Blank work gets a conference.
+s02-P27-repair,We need no rule for success.,,,C,Error C; use the named repair. Blank work gets a conference.
+s02-K27-1,My preferred change proves improvement without testing.,,,D,Error D; use the named repair. Blank work gets a conference.
+s02-P28-repair,A preferred change proves improvement without test evidence.,,,D,Error D; use the named repair. Blank work gets a conference.
+s02-P29-repair,"More detections always prove improvement, even with changed conditions.",,,D,Error D; use the named repair. Blank work gets a conference.

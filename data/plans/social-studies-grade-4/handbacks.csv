@@ -21,23 +21,23 @@ from_day,to_day,what,where,minutes,error,note
 15,16,s01-A1a s01-A1b s01-A1c s01-A1d s01-A2a s01-A2b s01-A2c s01-A2d s01-A3a s01-A3b s01-A3c s01-A4a s01-A4b s01-A4c,Feedback,0,,Return together with E14 in one five-minute combined feedback slot.
 16,17,s01-P16-1 s01-P16-2 s01-P16-3 s01-P16-4 s01-P16-5 s01-P16-6 s01-P16-7,Open the inquiry,1,,Return a written cue while opening day 17; no new repair lesson. Students retain folders.
 17,18,s02-X17,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
-17,18,s02-X17 repair,Source,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
-17,18,s02-P17,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
+17,18,s02-X17 repair,Source work,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
+17,18,s02-P17 s02-P17b s02-K17-1 s02-P17-2,Return,0,,Return all collected component work with written cues alongside the exit; repair time is counted separately.
 18,19,s02-X18,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
-18,19,s02-X18 repair,Metadata,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
-18,19,s02-P18,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
+18,19,s02-X18 repair,Metadata work,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
+18,19,s02-P18 s02-P18-R s02-P18-1 s02-K18-1 s02-P18-2,Return,0,,Return all collected component work with written cues alongside the exit; repair time is counted separately.
 19,20,s02-X19,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
-19,20,s02-X19 repair,Supported,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
-19,20,s02-P19,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
+19,20,s02-X19 repair,Supported work,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
+19,20,s02-P19 s02-P19-R s02-K19-1 s02-P19-1 s02-P19-2,Return,0,,Return all collected component work with written cues alongside the exit; repair time is counted separately.
 20,21,s02-X20,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
-20,21,s02-X20 repair,Evidence,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
-20,21,s02-P20,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
+20,21,s02-X20 repair,Evidence work,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
+20,21,s02-P20 s02-P20-R s02-K20-1 s02-P20-1 s02-P20-2,Return,0,,Return all collected component work with written cues alongside the exit; repair time is counted separately.
 21,22,s02-X21,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
-21,22,s02-X21 repair,Origin,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
-21,22,s02-P21,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
+21,22,s02-X21 repair,Origin work,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
+21,22,s02-P21 s02-P21-R s02-K21-1 s02-P21-1 s02-P21-2,Return,0,,Return all collected component work with written cues alongside the exit; repair time is counted separately.
 22,23,s02-X22,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
-22,23,s02-X22 repair,Research,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
-22,23,s02-P22,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
+22,23,s02-X22 repair,Research work,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
+22,23,s02-P22 s02-P22-R s02-K22-1 s02-P22-1 s02-P22-2 s02-P22-3 s02-P22-4 s02-P22-5,Return,0,,Return all collected component work with written cues alongside the exit; repair time is counted separately.
 23,24,s02-X23,Return,5,,"Return every paper; one private priority, fresh component repair; same scale, no spoken queue."
 23,24,s02-X23 repair,Research,5,,Extend one priority only; written moves for others; no reserved case rehearsal.
 23,24,s02-P23,Return,0,,Return written component feedback alongside exit within its slot; no extra repair minutes.
