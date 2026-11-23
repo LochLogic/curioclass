@@ -20,7 +20,7 @@ from_day,to_day,what,where,minutes,error,note
 14,15,s01-X14,Opening,5,A,Return all papers/notes. One earliest component only; other needs share one Choice workshop group or independent cards. Never display a held case as the repair model.
 15,16,s01-X15,Opening,5,C,Return all papers/notes. One earliest component only; other needs share one Choice workshop group or independent cards. Never display a held case as the repair model.
 16,18,s01-X16,Return,0,N,Return all papers/notes. One earliest component only; other needs share one Choice workshop group or independent cards. Never display a held case as the repair model.
-6,7,s01-X06c,Choice,0,AA,"Return Exit box with the two comparison rows; other letters use the same one five-minute group, not another group."
+6,7,s01-X06c,Choice,5,AA,Alternative five-minute relationship group; return Exit box here. No child gets duplicate repair.
 7,8,s01-A07-meaning,Opening,5,Y,"Return written feedback; independent revision, no model answer."
 8,9,revised s01-A07-meaning,Feedback,0,,Finalize after revision; return privately with feedback.
 9,10,s01-A09a-action s01-A09a-infer s01-A09b-theme s01-A09b-summary s01-A09c s01-A09d,Return,10,A,"Five minutes targeted teaching on another taught case, five independent revision. X08 shares this route. Score after class day 11."
@@ -42,9 +42,9 @@ from_day,to_day,what,where,minutes,error,note
 34,37,s01-A34-RF actual reading feedback,Feedback,0,,"Written feedback on actual due readers only, shared with existing returned work. Fill unheard evidence only in scheduled rotations."
 35,37,s01-A35-RF actual reading feedback,Feedback,0,,"Written feedback on actual due readers only, shared with existing returned work. Fill unheard evidence only in scheduled rotations."
 36,37,s01-A36-RF actual reading feedback,Feedback,0,,"Written feedback on actual due readers only, shared with existing returned work. Fill unheard evidence only in scheduled rotations."
-26,27,essay draft and convention slips with written feedback,Revision,0,S,Day 27 existing 40-minute revision task holds all components; no added task. Retain for day 36 audit.
+26,27,essay draft and convention slips with written feedback,Writing,0,S,Day 27 existing 40-minute revision task holds all components; no added task. Retain for day 36 audit.
 27,36,eligible revised essay/process and convention components,assessment,0,,Retained work scored outside instruction; no new writing sitting.
-29,30,poem draft and written feedback; reserved word probe feedback,Revision,0,S,"Poem revision fits existing 40-minute task. Pattern correction uses existing Word work, no additional screen."
+29,30,poem draft and written feedback; reserved word probe feedback,Poem,0,S,"Poem revision fits existing 40-minute task. Pattern correction uses existing Word work, no additional screen."
 31,32,finalized day 30 revision record,Opening,0,,Return judgment after independent revision; no new score for day 30 feedback.
 33,34,presentation version and written feedback,Presentation,0,S,Revise in existing 25-minute revision part. Retain eligible version for day 36.
 34,36,s01-A34a retained presentation revision,assessment,0,S,Outside-instruction audit of feedback-eligible revision; no added sitting.
