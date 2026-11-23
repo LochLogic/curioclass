@@ -2,6 +2,8 @@
 piece: check
 course: science-grade-4
 unit: 3.4
+stretch: 3
+check: readiness
 version: draft, not yet taught
 credit: ours
 ---
@@ -9,6 +11,8 @@ credit: ours
 # Next unit readiness
 
 Name: __________ Date: __________
+
+## Items
 
 [[s03-R56]]
 
