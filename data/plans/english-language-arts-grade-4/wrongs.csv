@@ -47,3 +47,137 @@ s01-P4-10,Adds an invented detail absent from the chosen text.,,,x,Misses the lo
 s01-X04,Only short print makes it a poem.,,,E,"Observed response misses this task: Tap and drip suggest repeated striking sounds, such as rain on the lid and gutter. Their repeated three-part pattern creates a beat. Sings and rings suggest sounds, not literal voices. Accept other supported sound interpretations."
 s01-X04,The lid has a singing mouth.,,,Y,Treats the figurative sound description as a literal voice.
 s01-P4-X1,Every line must be read with the same long pause.,,,E,Imposes one pause rule without connecting a specific ending to its effect.
+s01-X03b,I like towers.,,,C,Assign only for this demonstrated fault; missing work needs evidence.
+s01-X05,The boy copies a real tree into his room.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-X06,They sail a real island.,,,Y,Assign only for this demonstrated fault; missing work needs evidence.
+s01-X06b,The coats carry real sailors.,,,Y,Assign only for this demonstrated fault; missing work needs evidence.
+s01-X06c,Noisy means quiet.,,,AA,Assign only for this demonstrated fault; missing work needs evidence.
+s01-X06c,Quiet and hushed always have identical force.,,,AJ,Erases the contextual difference in degree or effect.
+s01-X07,He names the bridge Day.,,,Z,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A07-meaning,A real bird lives inside a person.,,,Y,Assign only for this demonstrated fault; missing work needs evidence.
+s01-X08,Small cards make them all poems.,,,E,Assign only for this demonstrated fault; missing work needs evidence.
+s01-X10,My lunch was good.,,,L,Assign only for this demonstrated fault; missing work needs evidence.
+s01-X10,His teacher ordered the shell poem.,,,O,Invents a command.
+s01-X11,Raj must be the real author because it says I.,,,F,Assign only for this demonstrated fault; missing work needs evidence.
+s01-X12,Nia is patient.,,,D,Assign only for this demonstrated fault; missing work needs evidence.
+s01-X14,His teacher demands rhymes.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-X15,Mara cancels the show.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-X16,"Copy a, b, c, d without a topic or grouping.",,,N,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A09a-action,Ben wins a prize.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A09a-infer,He is proud because he wins.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A09b-theme,Seeds.,,,B,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A09b-summary,I enjoy gardening.,,,C,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A09c,Paper size decides their forms.,,,E,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A09d,Everyone feels that way.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A13a-stated,He becomes famous.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A13a-infer,He becomes famous because all poets do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A13b,He is brave.,,,D,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A13b-evidence,Ben wins a medal.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A13c-prep,I did not study the reading.,,,J,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A13c-turn,Talks over an unfinished turn.,,,K,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A13c-role,Leaves the assigned invitation undone.,,,AK,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A13c-question,Poses no specific question.,,,AH,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A13c-answer,Gives no response to a specific question.,,,AI,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A13c-link,I like basketball.,,,L,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A13c-review,My first answer is best; nothing else matters.,,,M,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A38b-prep,I did not study the reading.,,,J,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A38b-turn,Talks over an unfinished turn.,,,K,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A38b-role,Leaves the assigned invitation undone.,,,AK,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A38b-question,Poses no specific question.,,,AH,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A38b-answer,Gives no response to a specific question.,,,AI,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A38b-link,I like basketball.,,,L,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A38b-review,My first answer is best; nothing else matters.,,,M,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A09-RF-purpose,He runs away because boys always do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A09-RF-phrasing,Observer: ignores question and sentence boundaries.,,,I,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A09-RF-confirm,Substitutes planted for scattered without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A17-RF-purpose,He runs away because boys always do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A17-RF-phrasing,Observer: ignores question and sentence boundaries.,,,I,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A17-RF-confirm,Substitutes planted for scattered without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-RF-purpose,He runs away because boys always do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-RF-phrasing,Observer: ignores question and sentence boundaries.,,,I,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-RF-confirm,Substitutes planted for scattered without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A34-RF-purpose,He runs away because boys always do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A34-RF-phrasing,Observer: ignores question and sentence boundaries.,,,I,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A34-RF-confirm,Substitutes planted for scattered without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-RF-purpose,He runs away because boys always do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-RF-phrasing,Observer: ignores question and sentence boundaries.,,,I,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-RF-confirm,Substitutes planted for scattered without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36-RF-purpose,He runs away because boys always do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36-RF-phrasing,Observer: ignores question and sentence boundaries.,,,I,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36-RF-confirm,Substitutes planted for scattered without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A17-topic,Seeds. Mountains.,,,AE,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A17-groups,Disconnected facts copied in any order.,,,N,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A17-develop,Ben wins a poetry prize.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A17-links,"Mina dislikes the line, so Ben volunteers.",,,P,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A17-precise,Things do things.,,,Q,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A17-close,Trucks are best.,,,R,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A17-audience,Unintroduced scraps leave the reader guessing.,,,N,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A17-evidence,His teacher ordered a prize-winning poem.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-topic,Seeds. Mountains.,,,AE,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-groups,Disconnected facts copied in any order.,,,N,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-develop,A patient ordered Williams to write the poem.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-links,"Mina dislikes the line, so Ben volunteers.",,,P,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-precise,Things do things.,,,Q,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-close,Trucks are best.,,,R,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-audience,Unintroduced scraps leave the reader guessing.,,,N,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-process,I recopied the same words neatly.,,,S,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-sentence,Because the lines are short.,,,T,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-fragment,Because the lines are short.,,,T,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-runon,The lines are short I slow down.,,,U,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-name,william Carlos Williams wrote poems.,,,V,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-opening,his poem uses short lines.,,,AF,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-speech-comma,"The reader said ""I notice the colors.""",,,AG,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-speech-marks,"The reader said, ""I notice the colors.",,,W,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-quote-comma,"Williams begins ""so much depends.""",,,AG,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-quote-marks,"Williams begins, ""so much depends.",,,W,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-reference,I guessed inspirashun without checking.,,,X,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A27-spelling,I checked but kept inspirashun.,,,AL,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-topic,Seeds. Mountains.,,,AE,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-groups,Disconnected facts copied in any order.,,,N,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-develop,A patient ordered Williams to write the poem.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-links,"Mina dislikes the line, so Ben volunteers.",,,P,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-precise,Things do things.,,,Q,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-close,Trucks are best.,,,R,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-audience,Unintroduced scraps leave the reader guessing.,,,N,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-process,I recopied the same words neatly.,,,S,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-sentence,Because the lines are short.,,,T,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-fragment,Because the lines are short.,,,T,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-runon,The lines are short I slow down.,,,U,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-name,william Carlos Williams wrote poems.,,,V,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-opening,his poem uses short lines.,,,AF,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-speech-comma,"The reader said ""I notice the colors.""",,,AG,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-speech-marks,"The reader said, ""I notice the colors.",,,W,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-quote-comma,"Williams begins ""so much depends.""",,,AG,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-quote-marks,"Williams begins, ""so much depends.",,,W,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-reference,I guessed inspirashun without checking.,,,X,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36b-spelling,I checked but kept inspirashun.,,,AL,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A30-revise,I recopied the same words in colored pencil.,,,S,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A30-audience,The thing does things.,,,Q,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A34a,I changed the border but kept the unexplained claim.,,,S,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A34b-action,She pushes the child.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A34b-infer,She is angry because Ivo insults her.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A34b-form,Narrow print alone makes a poem.,,,E,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A34b-narrate,Dara must be the real author because it says I.,,,F,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A34b-oral,The reader stresses the stolen prize in the prose.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A34b-stage,Sliding early follows the direction to wait.,,,G,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A34b-evidence,The scene says Ivo takes the token by force.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-theme,Nature.,,,B,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-summary,I enjoy snowball fights.,,,C,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-depth,The speaker is brave.,,,D,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-napkin,Guests sleep inside the napkins.,,,Y,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-table,The table is an actual road map.,,,Y,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-help,Give away a detached hand.,,,Z,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-many,Hands glow like lamps.,,,Z,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-safe,He apologizes to the cups.,,,Z,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-opposite,Crowded means the same as empty.,,,AA,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-degree,Cool and cold have identical degrees.,,,AJ,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-range,The crow is Ben in the classroom.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36a-fact,The room opens all night.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36a-infer,Visitors may borrow cards overnight.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36a-sentence,The list records each poet's age.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A38a-report,Unordered snippets have no main idea.,,,AC,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A38a-pace,Observer: rushing makes words impossible to follow.,,,AM,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A38a-clear,Observer: indistinct words cannot be heard clearly.,,,AN,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A38a-visual,I added a flower because the page looked empty.,,,AB,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A38c,One polished page proves all eight weeks of writing.,,,AD,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A29-word,Says helpful for unhelpfulness without reading every part.,,,H,Assign only for this demonstrated fault; missing work needs evidence.

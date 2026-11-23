@@ -29,3 +29,34 @@ s01-K6,B supplies evidence by repeating faster.,,,x,Error x: B supplies evidence
 s01-Pm6,Same tire proves equal energy.,,,A,Error A: Same tire proves equal energy.
 s01-X6,The same hoop always has equal energy.,,,A,Error A: The same hoop always has equal energy.
 s01-X6,Tube travel measures energy in centimeters.,,,B,Error B: effect indicator confused with energy measurement.
+s01-Pr7,The same marble always has equal motion energy.,,,A,Error A: same object mistaken for equal energy.
+s01-Pr7,The cup moved centimeters of energy.,,,B,Error B: Centimeters measure distance.
+s01-K7,The push arrow leaves the crate and carries energy into air.,,,J,Error J: force arrow confused with energy path.
+s01-Ke7,The force arrow carries energy away into the air.,,,J,Error J: force arrow confused with energy path.
+s01-Pq7,A is ready because best tells us what to measure.,,,F,Error F: no observable outcome.
+s01-Po7,My prediction counts as something already observed.,,,I,Error I: prediction confused with observation.
+s01-X7,Which speed is best?,,,F,Error F: no observable outcome.
+s01-X7,The slowing ball loses energy because it disappears.,,,C,Error C: Name a receiving destination.
+s01-X7,The contact push arrow leaves the carton for the air.,,,J,Error J: Put force arrow on receiver.
+s01-Pr8,Which speed is best needs no further detail.,,,F,Error F: no observable outcome.
+s01-Pr8,The car slows because energy disappears.,,,C,Error C: Motion change supports transfer.
+s01-Pr8,The push on the block starts in the air.,,,J,Error J: Start force arrow on receiver.
+s01-P8,Record the prediction as the observed result.,,,I,Error I: prediction confused with observation.
+s01-Pu8,Erase the observation to match the prediction.,,,I,Error I: prediction confused with observation.
+s01-X8,The can slows because its energy disappears.,,,C,Error C: missing transfer destinations.
+s01-X8,"The pictured slowing is only a prediction, not an observation.",,,I,Error I: Panel supplies observations.
+s01-Pr9,The next roll is already observed because I predicted it.,,,I,Error I: prediction confused with observation.
+s01-Pr9,The car slowing means its energy disappeared.,,,C,Error C: Identify a receiving destination.
+s01-K9,My expected quiet sound counts as observed sound.,,,I,Error I: prediction confused with observation.
+s01-P9,"Sound receives all energy, so block motion needs no record.",,,D,Error D: sound mistaken for the only destination.
+s01-Pc9,All energy became sound.,,,D,Error D: sound mistaken for the only destination.
+s01-X9,The same wheel has equal starting motion energy at both speeds.,,,A,Error A: same object mistaken for equal energy.
+s01-X9,All the wheel energy became sound.,,,D,Error D: Box motion is another destination.
+s01-Pr10,All collision energy became sound.,,,D,Error D: sound mistaken for the only destination.
+s01-Pr10,The same car has equal energy at both speeds.,,,A,Error A: Speed changes motion energy.
+s01-K10,"We did not feel warmth, so warming cannot happen.",,,E,Error E: detection limit mistaken for absence.
+s01-Pa10,Energy disappears when the car slows.,,,C,Error C: missing transfer destinations.
+s01-Ps10,Warming is impossible because hands did not detect it.,,,E,Error E: detection limit mistaken for absence.
+s01-X10,Energy disappeared when the sphere slowed.,,,C,Error C: missing transfer destinations.
+s01-X10,All energy became the click.,,,D,Error D: Cone and remaining sphere motion also have energy.
+s01-X10,"No warmth was felt, so no warming happened.",,,E,Error E: Account explains warming below this task detection.

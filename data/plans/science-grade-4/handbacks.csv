@@ -14,3 +14,17 @@ from_day,to_day,what,where,minutes,error,note
 6,7,s01-X6,Return and repair,5,A,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
 6,7,s01-X6,Return and repair,5,B,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
 6,7,s01-Pm6,Return and repair,0,,Feedback handed back with ticket; pages then stay in folders.
+7,8,s01-X7,Return and repair,5,F,Return all with next step; more than ten misses triggers shared repair.
+7,8,s01-X7,Return and repair,5,C,Return all with next step; more than ten misses triggers shared repair.
+7,8,s01-X7,Return and repair,5,J,Return all with next step; more than ten misses triggers shared repair.
+7,8,s01-Po7,Return and repair,0,,Return record feedback with ticket; retain in folder. Continue heard roster with previously unheard children.
+8,9,s01-X8,Return and repair,5,C,Return all with next step; more than ten misses triggers shared repair.
+8,9,s01-X8,Return and repair,5,I,Return all with next step; more than ten misses triggers shared repair.
+8,9,s01-P8 s01-Pu8,Return and repair,0,,Return record feedback with ticket; retain in folder. Continue heard roster with previously unheard children.
+9,10,s01-X9,Return and repair,5,D,Return all with next step; more than ten misses triggers shared repair.
+9,10,s01-X9,Return and repair,5,A,Return all with next step; more than ten misses triggers shared repair.
+9,10,s01-P9,Return and repair,0,,Return record feedback with ticket; retain in folder. Continue heard roster with previously unheard children.
+10,11,s01-X10,Return and repair,5,C,Return all with next step; more than ten misses triggers shared repair.
+10,11,s01-X10,Return and repair,5,D,Return all with next step; more than ten misses triggers shared repair.
+10,11,s01-X10,Return and repair,5,E,Return all with next step; more than ten misses triggers shared repair.
+10,11,s01-Ps10,Return and repair,0,,Return record feedback with ticket; retain in folder. Continue heard roster with previously unheard children.

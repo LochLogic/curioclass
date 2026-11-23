@@ -35,3 +35,64 @@ s01-P5-2,Because I like it.,,,x,Preference alone gives no tracking reason.
 s01-F5,Last square remains untouched.,,,A,An object is still omitted.
 s01-X5,Marks the heap tray.,,,x,A hidden leaf edge makes tracking difficult; selection alone cannot diagnose error A.
 s01-X5,Marks the overlapping tray.,,,x,Leaves cross a compartment edge; selection alone cannot diagnose error B.
+s01-W6,Last square untouched,,,A,An object receives no word.
+s01-K6,Skips a square while checking,,,A,"Observe the skipped action, not just a wrong total."
+s01-F6,Stops at four with one square untouched,,,A,One member omitted.
+s01-P6,A block not dotted,,,A,One object omitted.
+s01-P6,A block revisited with another word,,,B,One object counted again.
+s01-Q6,Only names a color,,,x,Does not show the quantity noticed.
+s01-N6,"One, two, five, three",,,C,Words out of standard order.
+s01-X6,Touches only two of four leaves and selects that card,,,A,Observed omission; an unexplained wrong selection is error x.
+s01-X6,Touches one leaf twice and selects its card,,,B,Observed repeat.
+s01-X6,Other unexplained wrong selection,,,x,Selection alone cannot identify a counting action.
+s01-W7,Touches one block twice,,,B,Repeated object observed.
+s01-K7,Omits a block in the indicated group,,,A,Group boundary includes all five blocks.
+s01-F7,Revisits first square after the fifth,,,B,Object receives another counting word.
+s01-P7,One found object left out of drawing,,,A,An object has no representation.
+s01-P7,One object recorded twice,,,B,Repeat only when observed.
+s01-Q7,Only repeats a total without showing any action,,,x,Insufficient evidence of the checking method.
+s01-N7,"One, two, five",,,C,Standard sequence not followed.
+s01-X7,Selects three scraps from the five-scrap tray,,,A,Two members of the whole tray are omitted.
+s01-X7,Counts the one brush three times and rings its tray,,,B,Repeated object observed.
+s01-X7,Other unexplained wrong selection,,,x,No counting action can be inferred.
+s01-W8,One block untouched,,,A,Omitted object.
+s01-K8,One square left without a partner,,,A,A member was omitted from the pairing.
+s01-F8,"One, two, five, three, four",,,C,"Five separate touches, but words out of order."
+s01-P8,A square has no strip or link,,,A,One member omitted.
+s01-P8,One strip used as partner for two squares,,,B,The same member is used twice.
+s01-Q8,Only cites the color,,,x,No quantity correspondence shown.
+s01-N8,Skips a counting word,,,C,Standard sequence interrupted.
+s01-X8,Touches each of two buttons twice and chooses that group,,,B,Observed repeat.
+s01-X8,Skips four of eight buttons and chooses that group,,,A,Observed omission.
+s01-X8,Other unexplained wrong line,,,x,Selection does not diagnose a counting action.
+s01-W9,One strip serves two squares,,,B,A member used twice.
+s01-K9,One block lacks a mark,,,A,One object omitted from the record.
+s01-F9,"Says one, two on the first unmoving touch",,,D,Second word has no separate action.
+s01-P9,One block drawing has no mark,,,A,One source member omitted from the mark record.
+s01-P9,One block receives a second mark,,,B,Repeated recording of a member.
+s01-Q9,Points to a different block without following the link,,,x,No correspondence shown.
+s01-N9,"One, two, five, three",,,C,Number names out of order.
+s01-X9,One shell without a mark,,,A,Omitted source member.
+s01-X9,Records the same shell twice,,,B,Repeated source member.
+s01-X9,Other unexplained extra or missing marks,,,x,Attach a specific letter only when the action is observed.
+s01-W10,A link's block omitted,,,A,A member is not reached.
+s01-K10,One place left empty while a square remains,,,A,Place omitted from the pairing.
+s01-F10,Leaves the fifth square untouched,,,A,The missed object remains omitted.
+s01-P10,A place has no partner,,,A,Omitted place.
+s01-P10,One square used for two places,,,B,Same piece reused.
+s01-Q10,Points to largest piece as proof all are supplied,,,E,Appearance replaces checking the actual pairs.
+s01-N10,"One, two, five, three",,,C,Number words out of order.
+s01-X10,Marks every hat supplied because cups look like many,,,E,Appearance overrides one-to-one matching.
+s01-X10,Reuses one cup for another hat,,,B,Repeated piece.
+s01-X10,Other unexplained incomplete response,,,x,Do not infer a specific counting error.
+s01-W11,Points only to an empty place,,,A,No piece paired with that place.
+s01-K11,Places a second square at an occupied place,,,B,Place revisited as if new.
+s01-F11,Revisits first square and says six,,,B,Same member counted again.
+s01-G11,Claims one large disc supplies all five places,,,E,Size substitutes for matching.
+s01-P11,One place supplied twice,,,B,Occupied place revisited.
+s01-P11,A place left without a piece,,,A,Omission observed independently of a repeat.
+s01-Q11,Only cites a big piece,,,E,Appearance replaces place-by-place matching.
+s01-N11,Skips a counting word,,,C,Standard order not followed.
+s01-X11,Takes all eight because the pile looks sufficient,,,E,Appearance replaces choosing one per place.
+s01-X11,Supplies one plate twice and leaves another empty,,,B,A plate was revisited.
+s01-X11,Other unexplained incorrect selection,,,x,A wrong quantity alone cannot diagnose the action.

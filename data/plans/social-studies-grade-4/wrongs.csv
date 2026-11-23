@@ -36,3 +36,36 @@ s01-X4,Canada and Brazil.,,,E,"Predicted response; use look-fors, not spelling."
 s01-P2-RC,3 meters.,,,C,"Predicted response; use look-fors, not spelling."
 s01-P2-RJ,Only one map can ever help anyone.,,,J,"Predicted response; use look-fors, not spelling."
 s01-P2-RM,Like the prettiest map.,,,M,"Predicted response; use look-fors, not spelling."
+s01-P5-R,Country.,,,E,Predicted response; score the geographic idea separately from spelling.
+s01-K5-1,A 336-centimeter strip.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-P5-1,A 392-centimeter strip.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-P5-2,A 448-centimeter strip.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-F5-1,Both labels say centimeters.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-F5-2,56 centimeters on land.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-P5-3,The ruler directly measures kilometers.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-X5,5 kilometers.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-X5,80 kilometers for the entire segment.,,,C,Treats the scale label as the whole segment distance.
+s01-P6-R,224 centimeters.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-P6-1,"Whole bar: 112 kilometers, about 112 miles.",,,C,Predicted response; score the geographic idea separately from spelling.
+s01-F6-1,About 336 miles.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-F6-2,About 140 miles.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-P6-2,448 kilometers; about 448 miles.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-P6-3,Both unit columns should contain the same number.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-X6,90 kilometers; about 90 miles.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-X6,60 kilometers for all the bars.,,,C,Ignores the additional half bar.
+s01-P7-R,224 miles; about 140 kilometers.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-K7-1,The claim needs no detail.,,,H,Predicted response; score the geographic idea separately from spelling.
+s01-P7-1,Every window covers the same area.,,,D,Predicted response; score the geographic idea separately from spelling.
+s01-P7-2,Every view shows Ash Road.,,,D,Predicted response; score the geographic idea separately from spelling.
+s01-F7-1,Hall and pond.,,,O,Predicted response; score the geographic idea separately from spelling.
+s01-P7-3,Every map shows everything.,,,N,Predicted response; score the geographic idea separately from spelling.
+s01-X7,Library and river.,,,O,Predicted response; score the geographic idea separately from spelling.
+s01-X7,All three maps contain the local streets.,,,D,Does not distinguish wider extent from retained street detail.
+s01-P8-R,Every wider map has every road.,,,D,Predicted response; score the geographic idea separately from spelling.
+s01-P8-1,I like this map.,,,H,Predicted response; score the geographic idea separately from spelling.
+s01-P8-2,Town views cover the entire state.,,,D,Predicted response; score the geographic idea separately from spelling.
+s01-P8-3,Every pond must be on the continent map.,,,N,Predicted response; score the geographic idea separately from spelling.
+s01-P8-4,The map shows every person.,,,H,Predicted response; score the geographic idea separately from spelling.
+s01-X8,I like this map.,,,H,Predicted response; score the geographic idea separately from spelling.
+s01-X8,The continent map gives every street.,,,D,Expects local detail on the broad view.
+s01-X8,The town map shows everything.,,,N,No specific limit recognized.

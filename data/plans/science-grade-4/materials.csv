@@ -5,12 +5,20 @@ paper cup,1,1 2 3,classroom,room,Same target reset to start.
 ruler,1,1 2 3 4,classroom,room,One-centimeter step.
 tape,1,1 2 3,classroom,room,Marks and containment.
 table-edge guard,1,1 2 3,classroom,room,Used with catch barrier on floor lane.
-catch barrier,1,1 2 3,classroom,room,Stops escaped rolls.
-impact eye protection,1,1 2 3,classroom,room,Existing stock for everyone; otherwise use invented record. No purchase decision.
-wipes,1,1 2 3,classroom,room,Cleaning protection.
-storage bags,1,1 2 3,classroom,room,Store protection.
-question board,1,1 2 3 4 5 6,classroom,room,Teacher retains.
-class record book,1,1 2 3 4 5 6,classroom,room,One marking scale and heard roster.
+catch barrier,1,1 2 3 7 8 9,classroom,room,Stops escaped rolls.
+impact eye protection,1,1 2 3 7 8 9,classroom,room,Existing stock for everyone; otherwise use invented record. No purchase decision.
+wipes,1,1 2 3 7 8 9,classroom,room,Cleaning protection.
+storage bags,1,1 2 3 7 8 9,classroom,room,Store protection.
+question board,1,1 2 3 4 5 6 7 8,classroom,room,Teacher retains.
+class record book,1,1 2 3 4 5 6 7 8 9 10,classroom,room,One marking scale and heard roster.
 Ramp record R,1,1 2 3 4 5 6,classroom,room,Invented fallback; never mixed with measured observations.
-pencil,1,1 2 3 4 5 6,classroom,student,Also stationary demonstration on day 4.
-folder,1,1 2 3 4 5 6,classroom,student,Retain records after feedback.
+pencil,1,1 2 3 4 5 6 7 8 9 10,classroom,student,Also stationary demonstration on day 4.
+folder,1,1 2 3 4 5 6 7 8 9 10,classroom,student,Retain records after feedback.
+Car record C,7,7 8 9 10,classroom,room,Named in day materials; invented records labeled.
+toy cars,7,7 8 9,classroom,room,Named in day materials; invented records labeled.
+wooden blocks,7,7 8 9,classroom,room,Named in day materials; invented records labeled.
+tape floor lane,7,7 8 9,classroom,room,Named in day materials; invented records labeled.
+second-color pencil,8,8,folder,student,Named in day materials; invented records labeled.
+class energy-arrow chart,10,10,classroom,room,Named in day materials; invented records labeled.
+scientific account,10,10,folder,student,Named in day materials; invented records labeled.
+destination labels,10,10,folder,student,Named in day materials; invented records labeled.
