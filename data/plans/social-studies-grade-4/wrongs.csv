@@ -1059,3 +1059,154 @@ C2-E106-date,"9,400 is later, so the label fits.",,,N,Diagnose this component se
 C2-E106-clue,It is for cooks who should bring spoons.,,,Q,Diagnose this component separately against the supplied record.
 C2-E106-kinds,Both are eyewitness accounts of the celebration.,,,S,Diagnose this component separately against the supplied record.
 C2-E106-cause,The waiting potters caused the earlier gate closure.,,,U,Diagnose this component separately against the supplied record.
+s06-X107a,Which picture is prettiest?,,,X,Predicted response; one error only. Shape: Produce a decision-relevant question for an unseen worker-choice record.
+s06-X107b,I like blue.,,,X,Predicted response; one error only. Shape: Explain another person's practical need for the answer.
+s06-X108a,Rhode Island labelled Connecticut.,,,L,Predicted response; one error only. Shape: Produce one state and its capital from a new outline.
+s06-X108b,The largest coastal dot must be the capital.,,,K,Predicted response; one error only. Shape: Infer a capital's position from a separate river strip.
+s06-X109a,Delaware in the Northeast.,,,L,Predicted response; one error only. Shape: Recognize one complete state/capital/region combination on a fresh numbered outline.
+s06-X109b,Lansing in the Upper Peninsula.,,,L,Predicted response; one error only. Shape: Recognize the second state/capital/region combination without a completed reference response.
+s06-X110a,Puerto Rico in the Pacific.,,,L,Predicted response; one error only. Shape: Produce a mainland and ocean location record on a fresh inset arrangement.
+s06-X110b,The touching boxes mean the islands are neighbors.,,,B,Predicted response; one error only. Shape: Explain page arrangement versus ocean positions for the unseen island pair.
+s06-X111a,Two equally spaced event boxes without year positions.,,,C,Predicted response; one error only. Shape: Construct two date positions on a new equal-year line.
+s06-X111b,59 years.,,,C,Predicted response; one error only. Shape: Find the interval between the two reserved admission cards.
+s06-X112a,It has no government until statehood.,,,O,Predicted response; one error only. Shape: Explain institutions in a new fictional statehood petition.
+s06-X112b,Its delegate already has the same final House vote.,,,P,Predicted response; one error only. Shape: Identify one precise present limit in the petition case.
+s06-X113a,West; 1776.,,,L,Predicted response; one error only. Shape: Complete an unseen public record with region and dated membership event.
+s06-X113b,Independence and ratification are the same event.,,,N,Predicted response; one error only. Shape: Distinguish two sourced public events on a fresh local strip.
+s06-X114a,Capital uses the key's water symbol.,,,E,Predicted response; one error only. Shape: Construct a compact city/capital/water/mountain inset from unseen evidence.
+s06-X114b,Enlarge only the map while retaining its old scale.,,,Q,Predicted response; one error only. Shape: Justify source-to-response calibration after constructing the fresh inset.
+s06-X115,Mountains at the river mouth.,,,L,Predicted response; one error only. Shape: Finish an unseen bounded city/river/mountain inset with conventions.
+s06-X116,The flour mill is the soil resource.,,,T,Predicted response; one error only. Shape: Transfer an invented resource/production arrangement onto a blank four-by-four grid.
+s06-X117a,The removal was freely chosen.,,,S,Predicted response; one error only. Shape: Annotate a forced route on an unseen Navajo dated-land locator.
+s06-X117b,All three dated land relationships are identical.,,,F,Predicted response; one error only. Shape: Explain temporal land relationships rather than copy a boundary.
+s06-X118,Only a place list outside an unchanged outline.,,,R,Predicted response; one error only. Shape: Construct a new four-category regional inset.
+s06-X119a,Equally spaced boxes replacing equal-year positions.,,,C,Predicted response; one error only. Shape: Correct an unequal event-space representation on a new subdivided line.
+s06-X119b,73 years.,,,C,Predicted response; one error only. Shape: Compute a span after correcting the representation.
+s06-X121,"Water, homes, fields.",,,U,Predicted response; one error only. Shape: Explain one resource-to-settlement or movement relationship from an unseen invented map.
+s06-X122a,Which drawing is nicest?,,,X,Predicted response; one error only. Shape: Ask a researchable question about an unseen two-record harbor.
+s06-X122b,The titles say Map and Grower.,,,J,Predicted response; one error only. Shape: Synthesize an original map and independent invented account into an adaptation explanation.
+s06-X123,Every Western resident cuts trees.,,,G,Predicted response; one error only. Shape: Compare new regional models with a previously taught Northeast case.
+s06-X124,Only the bakery exchanges anything.,,,H,Predicted response; one error only. Shape: Construct a two-actor reason/sale/purchase record for unseen specialists.
+s06-X125a,Both supply every need alone.,,,V,Predicted response; one error only. Shape: Follow unseen worker/business exchanges in a complete table.
+s06-X125b,Saving destroys the money.,,,V,Predicted response; one error only. Shape: Identify a next-best forgone purchase from an invented choice.
+s06-X126a,Congress is the judicial branch.,,,I,Predicted response; one error only. Shape: Complete matches on a new arrangement of three labeled building drawings.
+s06-X126b,The governor works at the White House.,,,I,Predicted response; one error only. Shape: Explain exclusion of a state office from a national-building set.
+s06-X127a,The monument has no public use.,,,W,Predicted response; one error only. Shape: Infer a public use from an unseen Washington Monument caption.
+s06-X127b,No resident votes in any election.,,,P,Predicted response; one error only. Shape: State a precise congressional limit alongside the new public-resource case.
+s06-X128,Map A and Notice B are my evidence.,,,J,Predicted response; one error only. Shape: Qualify an evidence-based tentative answer using an unseen map and employer notice.
+s06-X129a,Two details from C only.,,,Y,Predicted response; one error only. Shape: Organize an unframed claim with independent evidence from unseen farm/port records.
+s06-X129b,The picture is pretty.,,,X,Predicted response; one error only. Shape: Explain each distinct source-to-claim connection.
+s06-X130a,The region supplies every need without purchases.,,,V,Predicted response; one error only. Shape: Repair a false universal/self-sufficiency claim from a new clay/grain record.
+s06-X130b,State governor/White House.,,,I,Predicted response; one error only. Shape: Recall one building/branch relationship without a completed three-way sort.
+s06-M1a,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-M1b,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-M1c,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-M1d,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-M1e,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-M1f,D.C. is a state.,,,M,Predicted response; one error only. Shape: Three-location district and Caribbean record on new outline.
+s06-M1g,The inset boxes mean adjacent mainland lands.,,,B,Predicted response; one error only. Shape: Match all five locations on an unseen ocean-dot arrangement.
+s06-F1a,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-F1b,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-F1c,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-F1d,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-F1e,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-F1f,D.C. is a state.,,,M,Predicted response; one error only. Shape: Three-location district and Caribbean record on new outline.
+s06-F1g,The inset boxes mean adjacent mainland lands.,,,B,Predicted response; one error only. Shape: Match all five locations on an unseen ocean-dot arrangement.
+s06-M2a,Each event gets an equal space.,,,C,Predicted response; one error only. Shape: Construct five date positions from an unseen mixed-region array.
+s06-M2b,Count boxes rather than elapsed years.,,,C,Predicted response; one error only. Shape: Calculate the interval on the independently completed mixed-region line.
+s06-F2a,Each event gets an equal space.,,,C,Predicted response; one error only. Shape: Construct five date positions from an unseen mixed-region array.
+s06-F2b,Count boxes rather than elapsed years.,,,C,Predicted response; one error only. Shape: Calculate the interval on the independently completed mixed-region line.
+s06-M3a,Statehood gave everyone the vote.,,,D,Predicted response; one error only. Shape: Explain two institutional benefits without a taught full paragraph.
+s06-M3b,A territory has no government.,,,O,Predicted response; one error only. Shape: Name a precise current limit separately from historical institutions.
+s06-F2c,Everyone gained an equal vote.,,,D,Predicted response; one error only. Shape: A concise historical institutions/rights distinction on fresh evidence.
+s06-F2d,All territories have voting senators.,,,P,Predicted response; one error only. Shape: Name a present institutional limit without copying a petition answer.
+s06-M4,Only the map is resized while its scale stays fixed.,,,Q,Predicted response; one error only. Shape: Construct an unseen six-feature Northeast map.
+s06-M5c,"Homeland, confinement and present reservation are identical.",,,F,Predicted response; one error only. Shape: Classify an unseen combined Arizona/New Mexico dated map without constructing it.
+s06-M5b,Copy the old record without checking its missing component.,,,R,Predicted response; one error only. Shape: Unaided revision of a fresh day 119 construction after written feedback.
+s06-M5m,Copy the old record without checking its missing component.,,,R,Predicted response; one error only. Shape: Unaided revision of a fresh day 119 construction after written feedback.
+s06-M5w,Copy the old record without checking its missing component.,,,R,Predicted response; one error only. Shape: Unaided revision of a fresh day 119 construction after written feedback.
+s06-M5l,Copy the old record without checking its missing component.,,,R,Predicted response; one error only. Shape: Unaided revision of a fresh day 119 construction after written feedback.
+s06-M5t,Copy the old record without checking its missing component.,,,C,Predicted response; one error only. Shape: Unaided revision of a fresh day 119 construction after written feedback.
+s06-F3a,Capital and river share an unexplained symbol.,,,E,Predicted response; one error only. Shape: Complete missing capital/water/mountain key entries on a new partly drawn map.
+s06-F3b,Scale changes while the map does not.,,,Q,Predicted response; one error only. Shape: Supply missing conventions on an unfamiliar partly drawn map.
+s06-F3c,Milk processing is a natural resource.,,,T,Predicted response; one error only. Shape: Complete three resource/production categories from an unseen Wisconsin source.
+s06-F3d,Forced removal is labelled free migration.,,,S,"Predicted response; one error only. Shape: Independently synthesize physical, climate, dated land, forced movement, exploration and settlement information."
+s06-F3e,One unexplained symbol stands for every category.,,,E,Predicted response; one error only. Shape: Complete three cultural/site categories on a fresh partly drawn map.
+s06-F3u,Only list the places.,,,R,Predicted response; one error only. Shape: Observe construction conventions in the F3d product; no additional paper question.
+s06-F4q,Which picture is prettiest?,,,X,Predicted response; one error only. Shape: Generate an unseen locality question from independently credited records.
+s06-F4g,The river forced every resident into one job.,,,G,Predicted response; one error only. Shape: Analyze geographic and historical evidence for linked uses without an unsupported soil overlay.
+s06-F4c,"I like the town, so it proves the claim.",,,X,Predicted response; one error only. Shape: Organize a qualified claim using the unseen source pair.
+s06-F4s,Two NPS titles alone establish two independent makers.,,,Y,Predicted response; one error only. Shape: Explain separate source-to-claim links from independently credited records.
+s06-F4i,Only I need it because I like the picture.,,,X,Predicted response; one error only. Shape: Explain a practical need belonging to another user of the inquiry.
+s06-F4settle,Water is a resource.,,,U,Predicted response; one error only. Shape: Observe the settlement explanation already in F4; no extra child prompt.
+s06-F4move,Name the river without explaining movement.,,,U,Predicted response; one error only. Shape: Observe the movement explanation already in F4; no extra child prompt.
+s06-F5w,Only the dairy trades.,,,H,Predicted response; one error only. Shape: Explain an unseen worker's specialization and exchanges in one row.
+s06-F5b,The dairy supplies every need alone.,,,V,Predicted response; one error only. Shape: Explain the paired business's specialization and exchanges.
+s06-F6a,Governor/White House/national.,,,I,Predicted response; one error only. Shape: Complete an unseen capital/worker/branch/building record.
+s06-F6b,Records are only decoration.,,,W,Predicted response; one error only. Shape: Infer a civic use from a reserved public-record caption.
+s06-F6c,D.C. residents elect voting senators.,,,P,Predicted response; one error only. Shape: State the current congressional limit without a statehood opinion.
+s06-M2-se,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-M2-mw,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-M2-sw,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-M2-we,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-F2-se,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-F2-mw,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-F2-sw,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-F2-we,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-M4u,List feature names without locating them.,,,R,Predicted response; one error only. Shape: Teacher records construction in M4; no additional child prompt.
+s06-P107-1,A response missing the named relationship or source position.,,,X,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P107-2,A response missing the named relationship or source position.,,,X,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P108-1,A response missing the named relationship or source position.,,,K,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P108-2,A response missing the named relationship or source position.,,,K,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P109-1,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P109-2,A response missing the named relationship or source position.,,,K,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P110-1,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P110-2,A response missing the named relationship or source position.,,,M,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P111-1,A response missing the named relationship or source position.,,,C,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P111-2,A response missing the named relationship or source position.,,,C,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P112-1,A response missing the named relationship or source position.,,,O,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P112-2,A response missing the named relationship or source position.,,,D,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P113-1,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P113-2,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P114-1,A response missing the named relationship or source position.,,,Q,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P114-2,A response missing the named relationship or source position.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P115-1,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P115-2,A response missing the named relationship or source position.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P116-1,A response missing the named relationship or source position.,,,T,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P116-2,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P117-1,A response missing the named relationship or source position.,,,F,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P117-2,A response missing the named relationship or source position.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P118-1,A response missing the named relationship or source position.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P118-2,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P119-1,A response missing the named relationship or source position.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P119-2,A response missing the named relationship or source position.,,,T,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P119-3,A response missing the named relationship or source position.,,,R,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P119-4,A response missing the named relationship or source position.,,,R,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P119-5,A response missing the named relationship or source position.,,,C,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P121-1,A response missing the named relationship or source position.,,,U,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P121-2,A response missing the named relationship or source position.,,,G,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P122-1,A response missing the named relationship or source position.,,,X,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P122-2,A response missing the named relationship or source position.,,,U,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P122-3,A response missing the named relationship or source position.,,,G,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P123-1,A response missing the named relationship or source position.,,,U,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P123-2,A response missing the named relationship or source position.,,,G,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P124-1,A response missing the named relationship or source position.,,,H,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P124-2,A response missing the named relationship or source position.,,,H,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P124-3,A response missing the named relationship or source position.,,,V,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P125-1,A response missing the named relationship or source position.,,,H,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P125-2,A response missing the named relationship or source position.,,,V,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P125-3,A response missing the named relationship or source position.,,,V,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P126-1,A response missing the named relationship or source position.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P126-2,A response missing the named relationship or source position.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P127-1,A response missing the named relationship or source position.,,,W,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P127-2,A response missing the named relationship or source position.,,,W,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P128-1,A response missing the named relationship or source position.,,,J,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P128-2,A response missing the named relationship or source position.,,,G,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P129-1,A response missing the named relationship or source position.,,,Y,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P130-1,A response missing the named relationship or source position.,,,K,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P130-2,A response missing the named relationship or source position.,,,T,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P130-3,A response missing the named relationship or source position.,,,V,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P132-1,A response missing the named relationship or source position.,,,C,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P132-2,A response missing the named relationship or source position.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P132-3,A response missing the named relationship or source position.,,,R,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P132-4,A response missing the named relationship or source position.,,,H,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.

@@ -926,3 +926,172 @@ sC-X86-move,Marks 6 because row is wider.,,,D,"Spread as quantity, unit 2 error 
 sC-X86-next,Marks four after one arrives.,,,F,"No advance for one more, unit 2 error H."
 sC-X86-stop,Moves all nine despite request six.,,,J,"Requested stop lost, unit 2 error D."
 sC-X86-fewer,Marks seven because its pictures are smaller.,,,G,"Size replaces quantity, unit 2 error N."
+s05-X87,One/four copied twice as a new pair.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X88,Six assigned slots and one empty.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X88,One object assigned to both categories.,,,F,Observed double assignment.
+s05-X89,"One cell outside both stated parts, four and four.",,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X90,Calls rearranged one/seven a new pair.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X91,Rejects 7 = 2 + 5 solely because seven is first.,,,C,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X92,Eight with one bookmark visibly omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X93,Same labelled three/five redrawn as new.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X94,Six assigned hats and one omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X94,One object assigned to both categories.,,,F,Observed double assignment.
+s05-X95,Same labelled counts redrawn as new.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X96,Rejects A solely for total-left order.,,,C,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X96,B or C because its result is eight.,,,x,Record action mismatch descriptively.
+s05-X97,Adds six because six were given.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X98,Rejects first card solely for total-left order.,,,C,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X98,Says the given eight must also be the added part.,,,D,Observed repeated-given-part explanation; a mismatched card alone does not establish D.
+s05-X99,Draws six as its own partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X100,Labels the only empty cell zero and reports zero.,,,E,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X101,Repeats the visible seven as partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X102,Repositions two peaches/eight plums as a new pair.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-R87-quantity,Other card marked.,,,x,Describe the mismatch; no forced register letter.
+s05-R87-action,Other card marked.,,,x,Describe the mismatch; no forced register letter.
+s05-F1-0-1,No deliberate empty-parts indication.,,,x,Describe the mismatch; no forced register letter.
+s05-F1-1-1,One dot omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-1-1,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-2-1,One dot omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-2-1,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-2-2,Same unordered pair as first panel.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-2-2,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-3-1,One dot omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-3-1,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-3-2,Same unordered pair as first panel.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-3-2,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-4-1,One dot omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-4-1,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-4-2,Same unordered pair as first panel.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-4-2,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-5-1,One dot omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-5-1,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-5-2,Same unordered pair as first panel.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-5-2,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-6-1,One dot omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-6-1,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-6-2,Same unordered pair as first panel.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-6-2,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-7-1,One dot omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-7-1,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-7-2,Same unordered pair as first panel.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-7-2,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-8-1,One dot omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-8-1,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-8-2,Same unordered pair as first panel.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-8-2,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-9-1,One dot omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-9-1,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-9-2,Same unordered pair as first panel.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-9-2,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-10-1,One dot omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-10-1,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-10-2,Same unordered pair as first panel.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F1-10-2,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
+s05-F1-equation,Rejects a matching equation solely because total is first.,,,C,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F3-1,One stamp assigned to both albums.,,,F,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F3-2,Same labelled allocation repeated.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F2-1,Repeats the given part as its partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F2-2,Repeats the given part as its partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F2-3,Repeats the given part as its partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F2-4,Repeats the given part as its partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F2-5,Repeats the given part as its partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F2-6,Repeats the given part as its partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F2-7,Repeats the given part as its partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F2-8,Repeats the given part as its partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F2-9,Counts five empty cells from zero and reports four.,,,E,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-C101-F1,Calls unchanged three/five a different pair.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-C101-F2,Repeats given seven as partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-C101-F3,One stamp assigned to both albums.,,,F,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-C102-F1,Calls unchanged three/five a different pair.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-C102-F2,Repeats given seven as partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-C102-F3,One stamp assigned to both albums.,,,F,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-C103-F1,Calls unchanged three/five a different pair.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-C103-F2,Repeats given seven as partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-C103-F3,One stamp assigned to both albums.,,,F,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-A103-F1,Calls unchanged three/five a different pair.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-A103-F2,Repeats given seven as partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-A103-F3,One stamp assigned to both albums.,,,F,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P87,One square left outside both parts.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P88,"Three, with one square visibly omitted.",,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P89,One piece counted in both parts.,,,F,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P90,Copies unchanged one/five as new.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P91,Rejects total-left order alone.,,,C,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P92,Five after omitting a visible square.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P93,Calls unchanged one/five a new allocation.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P94,Leaves the loose short block unassigned.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P95,Same one/five called changed.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P96,Adds incoming marks for removal.,,,x,Describe the mismatch; no forced register letter.
+s05-P97,Says three added to three fills ten.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P98,Repeats given four.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P99,Repeats given three as partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P100,Repeats given two.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P101,Repeats given four.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P102,Counts a picture in both groups.,,,F,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-G87-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G87-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G87-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G87-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G88-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G88-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G88-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G88-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G89-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G89-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G89-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G89-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G90-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G90-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G90-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G90-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G91-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G91-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G91-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G91-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G92-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G92-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G92-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G92-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G93-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G93-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G93-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G93-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G94-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G94-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G94-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G94-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G95-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G95-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G95-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G95-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G96-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G96-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G96-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G96-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G97-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G97-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G97-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G97-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G98-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G98-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G98-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G98-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G99-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G99-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G99-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G99-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G100-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G100-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G100-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G100-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G101-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G101-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G101-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G101-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G102-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G102-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G102-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G102-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G103-1,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G103-2,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G103-3,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
+s05-G103-4,Action does not match story.,,,x,Describe the mismatch; no forced register letter.
