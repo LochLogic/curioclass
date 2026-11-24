@@ -10,9 +10,11 @@ credit: All ours.
 
 <div style="font-size:18pt">
 
+<div style="font-size:18pt">
+
 Fix this partial hexagon design.
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 255" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><polygon points="305.0,125.0 262.5,198.61215932167727 177.50000000000003,198.6121593216773 135.0,125.00000000000001 177.49999999999997,51.38784067832273 262.5,51.38784067832272" /><line x1="220" y1="125" x2="262.5" y2="198.61215932167727" /><line x1="220" y1="125" x2="177.50000000000003" y2="198.6121593216773" /><line x1="220" y1="125" x2="135.0" y2="125.00000000000001" /><line x1="220" y1="125" x2="177.49999999999997" y2="51.38784067832273" /><line x1="220" y1="125" x2="262.5" y2="51.38784067832272" /><g transform="rotate(0 482.5 112.0)"><polygon points="440,149 525,149 468.9,75" /></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 255" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><polygon points="305.0,125.0 262.5,198.61215932167727 177.50000000000003,198.6121593216773 135.0,125.00000000000001 177.49999999999997,51.38784067832273 262.5,51.38784067832272" /><polygon points="220,125 262.5,198.61215932167727 177.50000000000003,198.6121593216773" fill="#e8e8e8"/><polygon points="220,125 177.50000000000003,198.6121593216773 135.0,125.00000000000001" fill="#e8e8e8"/><polygon points="220,125 135.0,125.00000000000001 177.49999999999997,51.38784067832273" fill="#e8e8e8"/><polygon points="220,125 177.49999999999997,51.38784067832273 262.5,51.38784067832272" fill="#e8e8e8"/><polygon points="220,125 262.5,51.38784067832272 305.0,125.0" fill="#e8e8e8"/><polygon points="435,175 520,175 477.5,101.387840678" /></g></svg>
 
 Count these pieces.
 
@@ -21,3 +23,5 @@ Count these pieces.
 </div>
 
 Invented for practice.
+
+</div>

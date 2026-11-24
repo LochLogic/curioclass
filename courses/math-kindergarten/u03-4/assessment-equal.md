@@ -10,6 +10,8 @@ credit: All ours.
 
 <div style="font-size:18pt">
 
+<div style="font-size:18pt">
+
 Show whether these strips have the same length.
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 270" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><rect x="20" y="20" width="600" height="225" stroke-dasharray="7 6" stroke="#777"/></g></svg>
@@ -17,3 +19,5 @@ Show whether these strips have the same length.
 </div>
 
 Invented for practice.
+
+</div>

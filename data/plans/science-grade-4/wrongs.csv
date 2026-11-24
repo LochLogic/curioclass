@@ -432,3 +432,34 @@ C-P76-revise,Erase the original and copy answers without evidence.,,,x,Revise a 
 C-P76-fresh,Mud fill formed before the channel that holds it.,,,Z,Fresh unscored transfer; no repair rehearsal of this cut-and-fill chain. Accept labeled arrows or drawing. Written feedback returns day 77; unresolved needs remain recorded.
 C-E76-record,Supplied observations count as new firsthand measurements.,,,x,"One scale only: shown, shown with help, not yet seen. Content coaching means shown with help; neutral reading/scribing alone does not. Missing opportunity is a separate note. No total."
 C-R76-water,Dry land D must contain liquid water because it is beside the ocean.,,,x,"Diagnostic only: record state recognition and location/key separately, no grade 4 achievement claim. Six minutes answer, four sort. Day 78 teaches missing states/locations as new; land-water model stays separate retrieval."
+s05-X77,The dots are evenly scattered.,,,G,Error G: Misses clustering.
+s05-X78,The dark seafloor strip is higher.,,,H,Error H: Ignores each map key.
+s05-X79,Leave out T because the ocean floor is flat.,,,A,Error A: Omits underwater relief.
+s05-X80,Earthquakes happen only at coastlines.,,,B,Error B: Makes coastline association exclusive.
+s05-X81,Keep every belt at coastlines.,,,B,Error B: Makes coastline association exclusive.
+s05-X82,Other places are safe because this earthquake was here.,,,C,Error C: Treats a selected record as proof of safety.
+s05-X83,The alert stops the tsunami.,,,F,Error F: Confuses information with stopping the process.
+s05-X84,My wall guarantees dryness in every flood.,,,D,Error D: Promises protection in every flood.
+s05-X85,Gentle success proves the narrow base works under every motion.,,,E,Error E: Generalizes beyond tested conditions.
+s05-X86,One small-flow trial proves protection at every flow.,,,E,Error E: Generalizes beyond tested conditions.
+s05-X87,The channel must protect at every larger flow.,,,E,Error E: Generalizes beyond tested conditions.
+s05-X88,Small-flow success proves larger-flow success.,,,E,Error E: Generalizes beyond tested conditions.
+s05-X89,"Eight is less than twelve, so enough time remains.",,,I,Error I: Omits alert delay.
+s05-X90,Use only the wall; it guarantees protection despite overtopping.,,,D,Error D: Promises protection in every flood.
+s05-X91,The wall protects in every flow.,,,D,Error D: Promises protection in every flood.
+s05-X80,No dots means no hazard.,,,C,"Error C: unsupported absolute or ignored evidence, as named in the unit register."
+s05-X88,Any wall guarantees protection in every flood.,,,D,"Error D: unsupported absolute or ignored evidence, as named in the unit register."
+s05-X89,The alert stops the wave.,,,F,"Error F: unsupported absolute or ignored evidence, as named in the unit register."
+s05-X91,The ocean floor is flat.,,,A,"Error A: unsupported absolute or ignored evidence, as named in the unit register."
+s05-X91,One success proves all conditions.,,,E,"Error E: unsupported absolute or ignored evidence, as named in the unit register."
+s05-E1,All earthquakes occur at coastlines.,,,B,Error B: Makes coastline association exclusive.
+s05-E1,Blank areas are safe.,,,C,Error C: ignores a mapped feature or limits of the selected record.
+s05-E1,The ocean floor is flat.,,,A,Error A: ignores a mapped feature or limits of the selected record.
+s05-E2,"A wall protects in every flood, including untested flows.",,,D,Error D: Promises protection in every flood.
+s05-E2,A warning stops the natural process.,,,F,Error F: information or limited trials treated as universal prevention.
+s05-E2,Small-flow raising success proves protection at every flow.,,,E,Error E: information or limited trials treated as universal prevention.
+s05-P88-portfolio,Erase a failure so the design appears successful.,,,x,Error x: Record the specific gap separately.
+s05-E3-portfolio,Only successful designs deserve observation credit.,,,x,Error x: Record the specific gap separately.
+s05-D93,Louder warnings stop the process.,,,F,Error F: Confuses information with stopping the process.
+s05-R93a,Eyes light up the toy inside.,,,x,Error x: Record the specific gap separately.
+s05-R93b,The animal moves without receiving any information.,,,x,Error x: Record the specific gap separately.

@@ -10,9 +10,11 @@ credit: All ours.
 
 <div style="font-size:18pt">
 
+<div style="font-size:18pt">
+
 Fix this label picture.
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 255" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><g transform="rotate(0 275.0 107.5)"><polygon points="200,165 350,165 251.0,50" /></g><text x="210" y="210" font-size="25" fill="black" stroke="none">triangle</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 255" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><path d="M200,165 L251,50 L350,165 L225,165" fill="none"/><text x="210" y="210" font-size="28" fill="black" stroke="none">triangle</text></g></svg>
 
 Close the gap.
 
@@ -21,3 +23,5 @@ Close the gap.
 </div>
 
 Invented for practice.
+
+</div>

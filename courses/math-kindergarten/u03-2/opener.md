@@ -14,7 +14,7 @@ A triangle is closed with three straight sides; circles are round. A square is a
 
 ## Teach and record
 
-Read all print aloud, 18 point on child pages. Paper, movement, drawing, pointing and usual communication methods are valid. Demonstrate earlier-unit Counting centers, Paper count-dot record, Partner turns and Return and repair if needed; ledger plans do not prove teaching. Counting stays within ten, optional supported continuation to twenty, no timer.
+Read all print aloud, 18 point on child pages. Paper, movement, drawing, pointing and usual communication methods are valid. Demonstrate earlier-unit Counting centers, Paper count-dot record, Partner turns and Return and repair if needed; do not assume earlier work was taught. Counting stays within ten, optional supported continuation to twenty, no timer.
 
 Fifteen pairs work concurrently. One round is two 45-second turns plus handling; at most two public volunteers, passing allowed. Rin is the sole actor in invented scenes. Say invented for practice. No independent reading or home reports.
 
@@ -28,7 +28,7 @@ C: trace varied triangles. B: rotate a square. G: align endpoints. D: close a fr
 
 ## Before class
 
-Print only the named day panels from practice-records.md, the half-slip exit and needed packet. practice-50.md through practice-52.md, paper-joins.md, exit-50.md through exit-52.md, packet-52.md. Keep teacher-key.md private, off child pages and displays. The unit record and family note are in u03-1; send family.md on day 45. No readiness assessment; day 45 nine-square retrieval is unscored.
+Print only the named day panels from practice-records.md, the half-slip exit and needed packet. practice-50.md through practice-52.md, paper-joins.md, exit-50.md through exit-52.md, packet-52.md. Keep teacher-key.md private, off child pages and displays. Select only one repair-DAY-LETTER.md card for the queued repair; it shows the wrong claim. Correct it with fresh objects before revealing the answer key. The other repair cards are alternatives, never extra turns. The unit record and family note are in u03-1; send family.md on day 45. No readiness assessment; day 45 nine-square retrieval is unscored.
 
 ## Materials and access
 

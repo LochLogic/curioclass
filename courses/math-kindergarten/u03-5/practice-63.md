@@ -10,10 +10,14 @@ credit: All ours.
 
 <div style="font-size:18pt">
 
+<div style="font-size:18pt">
+
 Fix your familiar puzzle.
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 255" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><polygon points="100,165 170,44 240,165" /><polygon points="170,44 310,44 240,165" /><polygon points="350,165 280,44 420,165" /></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 255" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><polygon points="100,165 170,44 240,165" /><polygon points="170,44 310,44 240,165" /><polygon points="390,165 460,44 530,165" /></g></svg>
 
 </div>
 
 Invented for practice.
+
+</div>

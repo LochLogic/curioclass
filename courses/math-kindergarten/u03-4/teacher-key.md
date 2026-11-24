@@ -454,15 +454,35 @@ Teacher-completed six-triangle/three-rhombus fills; compare only, never independ
 
 Shown: Both completed regular-hexagon fills have same outside. | Not yet seen: No interpretable response.
 
+## s03-P57-position-below
+
+Read: Put the card below the cup.
+
+Look for: Card below cup.
+
+Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
+
+Shown: Card below cup. | Not yet seen: No interpretable response.
+
+## s03-P57-position-beside
+
+Read: Put the card beside the cup.
+
+Look for: Card beside cup.
+
+Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
+
+Shown: Card beside cup. | Not yet seen: No interpretable response.
+
 ## s03-F57-I
 
 Read: Fix this practice picture.
 
-Look for: Adult transfer, mark space or liquid.
+Look for: The short wide practice cup holds more, established by the actual adult transfer; height alone cannot decide.
 
-One five-minute priority action: Tall narrow practice vessel versus short wider holding more. Adult transfer, mark space or liquid. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Tall narrow practice vessel versus short wider holding more. Adult transfer, mark space or liquid. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: The short wide practice cup holds more, established by the actual adult transfer; height alone cannot decide. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Adult transfer, mark space or liquid. | Not yet seen: Tallest must hold most. (I).
+Shown: The short wide practice cup holds more, established by the actual adult transfer; height alone cannot decide. | Not yet seen: Tallest must hold most. (I).
 
 Wrong ideas: Tallest must hold most. (I).
 
@@ -470,11 +490,11 @@ Wrong ideas: Tallest must hold most. (I).
 
 Read: Fix this practice picture.
 
-Look for: Close fresh quadrilateral and mark join.
+Look for: Join the missing edge to close the four-sided frame.
 
-One five-minute priority action: Open doorway frame called closed, versus joined. Close fresh quadrilateral and mark join. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Open doorway frame called closed, versus joined. Close fresh quadrilateral and mark join. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Join the missing edge to close the four-sided frame. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Close fresh quadrilateral and mark join. | Not yet seen: Open boundary treated as closed. (D).
+Shown: Join the missing edge to close the four-sided frame. | Not yet seen: Open boundary treated as closed. (D).
 
 Wrong ideas: Open boundary treated as closed. (D).
 
@@ -482,11 +502,11 @@ Wrong ideas: Open boundary treated as closed. (D).
 
 Read: Fix this practice picture.
 
-Look for: Trace varied closed three-sided boundaries.
+Look for: It is a triangle: three straight sides are joined.
 
-One five-minute priority action: Thin flag rejected, versus traced triangle. Trace varied closed three-sided boundaries. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Thin flag rejected, versus traced triangle. Trace varied closed three-sided boundaries. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: It is a triangle: three straight sides are joined. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Trace varied closed three-sided boundaries. | Not yet seen: Rejects narrow triangle as triangle. (C).
+Shown: It is a triangle: three straight sides are joined. | Not yet seen: Rejects narrow triangle as triangle. (C).
 
 Wrong ideas: Rejects narrow triangle as triangle. (C).
 
@@ -494,12 +514,36 @@ Wrong ideas: Rejects narrow triangle as triangle. (C).
 
 Read: Fix this practice picture.
 
-Look for: Move piece until full sides touch.
+Look for: Move the loose triangle left until its whole edge touches the exposed matching edge; no gap.
 
-One five-minute priority action: Spaced puzzle versus full-edge fit. Move piece until full sides touch. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Spaced puzzle versus full-edge fit. Move piece until full sides touch. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Move the loose triangle left until its whole edge touches the exposed matching edge; no gap. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Move piece until full sides touch. | Not yet seen: Gap at claimed join. (E).
+Shown: Move the loose triangle left until its whole edge touches the exposed matching edge; no gap. | Not yet seen: Gap at claimed join. (E).
 
 Wrong ideas: Gap at claimed join. (E).
+
+## s03-F60-K
+
+Read: Fix this practice picture.
+
+Look for: Separate the overlapping pieces and fit full sides without overlap.
+
+Alternative five-minute queued repair, not additional minutes. Overlap versus full-edge contact. Lift, separate, fit without overlap. Correct response: Separate the overlapping pieces and fit full sides without overlap. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+
+Shown: Separate the overlapping pieces and fit full sides without overlap. | Not yet seen: Overlaps edge-joining pieces. (K).
+
+Wrong ideas: Overlaps edge-joining pieces. (K).
+
+## s03-F60-N
+
+Read: Fix this practice picture.
+
+Look for: Only the right figure is square; the left equal-sided slanted figure does not match its square corners.
+
+Alternative five-minute queued repair, not additional minutes. Slanted equal-sided tile versus square corners. Overlay corners on square tile. Correct response: Only the right figure is square; the left equal-sided slanted figure does not match its square corners. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+
+Shown: Only the right figure is square; the left equal-sided slanted figure does not match its square corners. | Not yet seen: Nonsquare rhombus called square from equal sides. (N).
+
+Wrong ideas: Nonsquare rhombus called square from equal sides. (N).
 
 

@@ -202,11 +202,11 @@ Shown: Gesture the weight of this carton. | Not yet seen: No interpretable respo
 
 Read: Fix this practice picture.
 
-Look for: Close fresh quadrilateral and mark join.
+Look for: Join the missing edge to close the four-sided frame.
 
-One five-minute priority action: Open doorway frame called closed, versus joined. Close fresh quadrilateral and mark join. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Open doorway frame called closed, versus joined. Close fresh quadrilateral and mark join. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Join the missing edge to close the four-sided frame. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Close fresh quadrilateral and mark join. | Not yet seen: Open boundary treated as closed. (D).
+Shown: Join the missing edge to close the four-sided frame. | Not yet seen: Open boundary treated as closed. (D).
 
 Wrong ideas: Open boundary treated as closed. (D).
 
@@ -214,11 +214,11 @@ Wrong ideas: Open boundary treated as closed. (D).
 
 Read: Fix this practice picture.
 
-Look for: Replace big with measurable attribute.
+Look for: Mark a specific measurable attribute such as this carton length, rather than only big.
 
-One five-minute priority action: Big carton versus length/height gestures. Replace big with measurable attribute. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Big carton versus length/height gestures. Replace big with measurable attribute. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Mark a specific measurable attribute such as this carton length, rather than only big. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Replace big with measurable attribute. | Not yet seen: Only big as attribute. (F).
+Shown: Mark a specific measurable attribute such as this carton length, rather than only big. | Not yet seen: Only big as attribute. (F).
 
 Wrong ideas: Only big as attribute. (F).
 
@@ -226,11 +226,11 @@ Wrong ideas: Only big as attribute. (F).
 
 Read: Fix this practice picture.
 
-Look for: Align near ends, mark exposed far end.
+Look for: The upper strip is longer after the near ends align; mark its exposed far end.
 
-One five-minute priority action: Shifted shorter strip seems longer; aligned is shorter. Align near ends, mark exposed far end. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Shifted shorter strip seems longer; aligned is shorter. Align near ends, mark exposed far end. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: The upper strip is longer after the near ends align; mark its exposed far end. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Align near ends, mark exposed far end. | Not yet seen: Judges from unaligned far endpoints. (G).
+Shown: The upper strip is longer after the near ends align; mark its exposed far end. | Not yet seen: Judges from unaligned far endpoints. (G).
 
 Wrong ideas: Judges from unaligned far endpoints. (G).
 
@@ -238,12 +238,36 @@ Wrong ideas: Judges from unaligned far endpoints. (G).
 
 Read: Fix this practice picture.
 
-Look for: Heft safely, swap hands, name both objects.
+Look for: The smaller practice carton is heavier and the larger lighter after actual hefting and swapping hands.
 
-One five-minute priority action: Large light carton versus small heavier sealed carton. Heft safely, swap hands, name both objects. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Large light carton versus small heavier sealed carton. Heft safely, swap hands, name both objects. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: The smaller practice carton is heavier and the larger lighter after actual hefting and swapping hands. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Heft safely, swap hands, name both objects. | Not yet seen: Larger must be heavier. (H).
+Shown: The smaller practice carton is heavier and the larger lighter after actual hefting and swapping hands. | Not yet seen: Larger must be heavier. (H).
 
 Wrong ideas: Larger must be heavier. (H).
+
+## s03-F54-L
+
+Read: Fix this practice picture.
+
+Look for: Mark this carton length instead of giving only its color.
+
+Alternative five-minute queued repair, not additional minutes. Blue versus carton length gesture. Gesture attribute that can be longer or heavier. Correct response: Mark this carton length instead of giving only its color. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+
+Shown: Mark this carton length instead of giving only its color. | Not yet seen: Only color as measurable here. (L).
+
+Wrong ideas: Only color as measurable here. (L).
+
+## s03-F55-M
+
+Read: Fix this practice picture.
+
+Look for: Both strips have the same length; turning without stretching does not change their common-end comparison.
+
+Alternative five-minute queued repair, not additional minutes. Turned stick called longer versus unchanged length. Turn without stretching, align ends again. Correct response: Both strips have the same length; turning without stretching does not change their common-end comparison. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+
+Shown: Both strips have the same length; turning without stretching does not change their common-end comparison. | Not yet seen: Turning changes length. (M).
+
+Wrong ideas: Turning changes length. (M).
 
 

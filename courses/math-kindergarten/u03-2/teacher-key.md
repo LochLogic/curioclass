@@ -78,11 +78,11 @@ Shown: 8 squares. | Not yet seen: No interpretable response.
 
 Read: Fix this label picture.
 
-Look for: Trace closed broad triangle below supplied label triangle.
+Look for: Close and trace the three-straight-sided boundary to match supplied triangle label.
 
 Teacher supplies name; single labeled card, not blank pair naming. Unscored practice stays with child unless feedback needed.
 
-Shown: Trace closed broad triangle below supplied label triangle. | Not yet seen: No interpretable response.
+Shown: Close and trace the three-straight-sided boundary to match supplied triangle label. | Not yet seen: No interpretable response.
 
 ## s03-P50-open
 
@@ -144,15 +144,35 @@ Repair partial composition, never build complete triangle. Unscored practice sta
 
 Shown: Given adjacent squares meet without gap. | Not yet seen: No interpretable response.
 
+## s03-P52-position-above
+
+Read: Put the card above the cup.
+
+Look for: Card above cup.
+
+Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
+
+Shown: Card above cup. | Not yet seen: No interpretable response.
+
+## s03-P52-position-next-to
+
+Read: Put the card next to the cup.
+
+Look for: Card next to cup.
+
+Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
+
+Shown: Card next to cup. | Not yet seen: No interpretable response.
+
 ## s03-F50-C
 
 Read: Fix this practice picture.
 
-Look for: Trace varied closed three-sided boundaries.
+Look for: It is a triangle: three straight sides are joined.
 
-One five-minute priority action: Thin flag rejected, versus traced triangle. Trace varied closed three-sided boundaries. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Thin flag rejected, versus traced triangle. Trace varied closed three-sided boundaries. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: It is a triangle: three straight sides are joined. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Trace varied closed three-sided boundaries. | Not yet seen: Rejects narrow triangle as triangle. (C).
+Shown: It is a triangle: three straight sides are joined. | Not yet seen: Rejects narrow triangle as triangle. (C).
 
 Wrong ideas: Rejects narrow triangle as triangle. (C).
 
@@ -160,11 +180,11 @@ Wrong ideas: Rejects narrow triangle as triangle. (C).
 
 Read: Fix this practice picture.
 
-Look for: Trace varied closed three-sided boundaries.
+Look for: It is a triangle: three straight sides are joined.
 
-One five-minute priority action: Thin flag rejected, versus traced triangle. Trace varied closed three-sided boundaries. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Thin flag rejected, versus traced triangle. Trace varied closed three-sided boundaries. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: It is a triangle: three straight sides are joined. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Trace varied closed three-sided boundaries. | Not yet seen: Rejects narrow triangle as triangle. (C).
+Shown: It is a triangle: three straight sides are joined. | Not yet seen: Rejects narrow triangle as triangle. (C).
 
 Wrong ideas: Rejects narrow triangle as triangle. (C).
 
@@ -172,11 +192,11 @@ Wrong ideas: Rejects narrow triangle as triangle. (C).
 
 Read: Fix this practice picture.
 
-Look for: Align near ends, mark exposed far end.
+Look for: The upper strip is longer after the near ends align; mark its exposed far end.
 
-One five-minute priority action: Shifted shorter strip seems longer; aligned is shorter. Align near ends, mark exposed far end. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Shifted shorter strip seems longer; aligned is shorter. Align near ends, mark exposed far end. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: The upper strip is longer after the near ends align; mark its exposed far end. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Align near ends, mark exposed far end. | Not yet seen: Judges from unaligned far endpoints. (G).
+Shown: The upper strip is longer after the near ends align; mark its exposed far end. | Not yet seen: Judges from unaligned far endpoints. (G).
 
 Wrong ideas: Judges from unaligned far endpoints. (G).
 

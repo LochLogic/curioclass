@@ -300,15 +300,35 @@ One placement command and fresh movable card, fixed viewer, no folder/badge. Uns
 
 Shown: Card behind cup. | Not yet seen: No interpretable response.
 
+## s03-P49-position-beside
+
+Read: Put the card beside the cup.
+
+Look for: Card beside cup.
+
+Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
+
+Shown: Card beside cup. | Not yet seen: No interpretable response.
+
+## s03-P49-position-above
+
+Read: Put the card above the cup.
+
+Look for: Card above cup.
+
+Review day 45 movement command, fifteen concurrent pairs, two 45-second turns plus handling. No static folder or final display case. Unscored practice stays with child unless feedback needed.
+
+Shown: Card above cup. | Not yet seen: No interpretable response.
+
 ## s03-F46-A
 
 Read: Fix this practice picture.
 
-Look for: Fix viewer, move fresh card across cup.
+Look for: The card is behind the cup from the fixed viewer; replace in front with behind.
 
-One five-minute priority action: Card hidden by cup called in front, versus behind. Fix viewer, move fresh card across cup. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Card hidden by cup called in front, versus behind. Fix viewer, move fresh card across cup. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: The card is behind the cup from the fixed viewer; replace in front with behind. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Fix viewer, move fresh card across cup. | Not yet seen: Reverses in front of and behind. (A).
+Shown: The card is behind the cup from the fixed viewer; replace in front with behind. | Not yet seen: Reverses in front of and behind. (A).
 
 Wrong ideas: Reverses in front of and behind. (A).
 
@@ -316,11 +336,11 @@ Wrong ideas: Reverses in front of and behind. (A).
 
 Read: Fix this practice picture.
 
-Look for: Close fresh quadrilateral and mark join.
+Look for: Join the missing edge to close the four-sided frame.
 
-One five-minute priority action: Open doorway frame called closed, versus joined. Close fresh quadrilateral and mark join. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Open doorway frame called closed, versus joined. Close fresh quadrilateral and mark join. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Join the missing edge to close the four-sided frame. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Close fresh quadrilateral and mark join. | Not yet seen: Open boundary treated as closed. (D).
+Shown: Join the missing edge to close the four-sided frame. | Not yet seen: Open boundary treated as closed. (D).
 
 Wrong ideas: Open boundary treated as closed. (D).
 
@@ -328,11 +348,11 @@ Wrong ideas: Open boundary treated as closed. (D).
 
 Read: Fix this practice picture.
 
-Look for: Rotate square over tracing, track corners.
+Look for: Both are squares; turning preserves four equal sides and square corners.
 
-One five-minute priority action: Turned tile called only diamond, versus square. Rotate square over tracing, track corners. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Turned tile called only diamond, versus square. Rotate square over tracing, track corners. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Both are squares; turning preserves four equal sides and square corners. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Rotate square over tracing, track corners. | Not yet seen: Rejects turned square as square. (B).
+Shown: Both are squares; turning preserves four equal sides and square corners. | Not yet seen: Rejects turned square as square. (B).
 
 Wrong ideas: Rejects turned square as square. (B).
 
@@ -340,12 +360,24 @@ Wrong ideas: Rejects turned square as square. (B).
 
 Read: Fix this practice picture.
 
-Look for: Rotate square over tracing, track corners.
+Look for: Both are squares; turning preserves four equal sides and square corners.
 
-One five-minute priority action: Turned tile called only diamond, versus square. Rotate square over tracing, track corners. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Turned tile called only diamond, versus square. Rotate square over tracing, track corners. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Both are squares; turning preserves four equal sides and square corners. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Rotate square over tracing, track corners. | Not yet seen: Rejects turned square as square. (B).
+Shown: Both are squares; turning preserves four equal sides and square corners. | Not yet seen: Rejects turned square as square. (B).
 
 Wrong ideas: Rejects turned square as square. (B).
+
+## s03-F46-J
+
+Read: Fix this practice picture.
+
+Look for: The disk is above the shelf from the fixed viewer.
+
+Alternative five-minute queued repair, not additional minutes. Disk above shelf called below, versus above. Trace up/down from reference. Correct response: The disk is above the shelf from the fixed viewer. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
+
+Shown: The disk is above the shelf from the fixed viewer. | Not yet seen: Reverses above and below. (J).
+
+Wrong ideas: Reverses above and below. (J).
 
 

@@ -14,7 +14,7 @@ Position depends on a fixed viewer and reference object. A side is a straight bo
 
 ## Teach and record
 
-Read all print aloud, 18 point on child pages. Paper, movement, drawing, pointing and usual communication methods are valid. Demonstrate earlier-unit Counting centers, Paper count-dot record, Partner turns and Return and repair if needed; ledger plans do not prove teaching. Counting stays within ten, optional supported continuation to twenty, no timer.
+Read all print aloud, 18 point on child pages. Paper, movement, drawing, pointing and usual communication methods are valid. Demonstrate earlier-unit Counting centers, Paper count-dot record, Partner turns and Return and repair if needed; do not assume earlier work was taught. Counting stays within ten, optional supported continuation to twenty, no timer.
 
 Fifteen pairs work concurrently. One round is two 45-second turns plus handling; at most two public volunteers, passing allowed. Rin is the sole actor in invented scenes. Say invented for practice. No independent reading or home reports.
 
@@ -28,7 +28,7 @@ A/J: fix viewer or trace up/down from reference. B: rotate a square over its tra
 
 ## Before class
 
-Print only the named day panels from practice-records.md, the half-slip exit and needed packet. shape-cards.md, position-scenes.md, practice-45.md through practice-49.md, exit-45.md through exit-49.md, packet-46.md. Keep teacher-key.md private, off child pages and displays. The unit record and family note are in u03-1; send family.md on day 45. No readiness assessment; day 45 nine-square retrieval is unscored.
+Print only the named day panels from practice-records.md, the half-slip exit and needed packet. shape-cards.md, position-scenes.md, practice-45.md through practice-49.md, exit-45.md through exit-49.md, packet-46.md. Keep teacher-key.md private, off child pages and displays. Select only one repair-DAY-LETTER.md card for the queued repair; it shows the wrong claim. Correct it with fresh objects before revealing the answer key. The other repair cards are alternatives, never extra turns. The unit record and family note are in u03-1; send family.md on day 45. No readiness assessment; day 45 nine-square retrieval is unscored.
 
 ## Materials and access
 

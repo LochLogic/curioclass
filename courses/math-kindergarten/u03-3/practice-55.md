@@ -10,9 +10,11 @@ credit: All ours.
 
 <div style="font-size:18pt">
 
+<div style="font-size:18pt">
+
 Fix this weight claim.
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 255" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><rect x="100" y="45" width="180" height="110" /><rect x="395" y="70" width="110" height="65" /><text x="65" y="210" font-size="20" fill="black" stroke="none">The bigger carton must be heavier.</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 255" width="100%" role="img"><g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"><rect x="100" y="45" width="180" height="110" /><rect x="395" y="70" width="110" height="65" /><text x="65" y="210" font-size="28" fill="black" stroke="none">The bigger carton must be heavier.</text></g></svg>
 
 Finish this water picture.
 
@@ -21,3 +23,5 @@ Finish this water picture.
 </div>
 
 Invented for practice.
+
+</div>

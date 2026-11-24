@@ -334,11 +334,11 @@ Shown: Familiar partial puzzle corrected with full-edge joins. | Not yet seen: N
 
 Read: Fix this practice picture.
 
-Look for: Lift, separate, fit without overlap.
+Look for: Separate the overlapping pieces and fit full sides without overlap.
 
-One five-minute priority action: Overlap versus full-edge contact. Lift, separate, fit without overlap. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Overlap versus full-edge contact. Lift, separate, fit without overlap. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Separate the overlapping pieces and fit full sides without overlap. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Lift, separate, fit without overlap. | Not yet seen: Overlaps edge-joining pieces. (K).
+Shown: Separate the overlapping pieces and fit full sides without overlap. | Not yet seen: Overlaps edge-joining pieces. (K).
 
 Wrong ideas: Overlaps edge-joining pieces. (K).
 
@@ -346,11 +346,11 @@ Wrong ideas: Overlaps edge-joining pieces. (K).
 
 Read: Fix this practice picture.
 
-Look for: Move piece until full sides touch.
+Look for: Move the loose triangle left until its whole edge touches the exposed matching edge; no gap.
 
-One five-minute priority action: Spaced puzzle versus full-edge fit. Move piece until full sides touch. If absent choose one queued letter on fresh practice objects, never reserved checks.
+One five-minute priority action: Spaced puzzle versus full-edge fit. Move piece until full sides touch. If absent choose one queued letter on fresh practice objects, never reserved checks. Correct response: Move the loose triangle left until its whole edge touches the exposed matching edge; no gap. Pretest physical practice weights and capacities before H/I; pictures alone never establish them.
 
-Shown: Move piece until full sides touch. | Not yet seen: Gap at claimed join. (E).
+Shown: Move the loose triangle left until its whole edge touches the exposed matching edge; no gap. | Not yet seen: Gap at claimed join. (E).
 
 Wrong ideas: Gap at claimed join. (E).
 
