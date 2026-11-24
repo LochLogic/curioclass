@@ -20,11 +20,7 @@ ________________________________________________________________
 
 ________________________________________________________________
 
-Name one issue that inquiry should test.
-
-________________________________________________________________
-
-________________________________________________________________
+Teacher: The second judged item, s04-X44b, is on the covered student-page Exit box. Reveal it with this ticket.
 
 ## Day 45: held form
 
@@ -36,11 +32,7 @@ ________________________________________________________________
 
 ________________________________________________________________
 
-Connect that argument to equality, natural rights, and consent.
-
-________________________________________________________________
-
-________________________________________________________________
+Teacher: The second judged item, s04-X45b, is on the covered student-page Exit box. Reveal it with this ticket.
 
 ## Day 46: held form
 

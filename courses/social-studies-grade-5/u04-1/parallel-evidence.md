@@ -15,7 +15,7 @@ U, town notice: Every resident may use the public reading room.
 
 V, Wednesday work record: The room's only entrance was closed for repairs.
 
-Explain what Records U/V establish about a promise and actual access.
+Label Record U’s maker and Record V’s reported action.
 
 ________________________________________________________________
 

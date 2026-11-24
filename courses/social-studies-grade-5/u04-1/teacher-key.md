@@ -21,9 +21,9 @@ Look-fors: Audience need | Promise distinguished from actual protection
 
 Samples: Readers need evidence about actual protection, because a promise alone does not establish equal rights in practice. | Only my opinion matters.
 
-W: Only my opinion matters. Personal preference omits another reader.
+Error W: Only my opinion matters. Personal preference omits another reader.
 
-A: Independence automatically gave everyone equal rights. Treats the promise as an accomplished legal change.
+Error A: Independence automatically gave everyone equal rights. Treats the promise as an accomplished legal change.
 
 ## s04-X44b, day 44
 
@@ -35,7 +35,9 @@ Look-fors: One relevant testable issue
 
 Samples: Whose freedom or political participation was actually protected? Accept another testable rights issue. | Which color should the newsletter use?
 
-W: Only whether I like independence. No testable issue concerning the public claim.
+Location: Covered student-page Exit box; reveal with the half-sheet ticket.
+
+Error W: Only whether I like independence. No testable issue concerning the public claim.
 
 ## s04-X45a, day 45
 
@@ -47,7 +49,7 @@ Look-fors: Judicial control threatens fair protection | Abuses support separatio
 
 Samples: Congress accuses the king of threatening independent judgment. It argues that repeated abuses justify separation and legal restraints on rulers. | Any royal command is lawful.
 
-J: Any royal command is lawful. Obedience is mistaken for legal restraints.
+Error J: Any royal command is lawful. Obedience is mistaken for legal restraints.
 
 ## s04-X45b, day 45
 
@@ -59,9 +61,11 @@ Look-fors: Equality | Inherent rights | Consent connected to legitimate governme
 
 Samples: People have equal human standing and inherent rights. Government should protect those rights through agreement of the governed. Independence alone does not prove equal protection. | The king gives people their natural rights.
 
-B: Natural rights are gifts from the king. Misses inherent rights.
+Location: Covered student-page Exit box; reveal with the half-sheet ticket.
 
-A: The grievance proves everyone immediately gained equal protection. An argument is not proof of an outcome.
+Error B: Natural rights are gifts from the king. Misses inherent rights.
+
+Error A: The grievance proves everyone immediately gained equal protection. An argument is not proof of an outcome.
 
 ## s04-X46, day 46
 
@@ -73,9 +77,9 @@ Look-fors: Equality versus actual participation | State variation respected
 
 Samples: An equality principle coexisted with unequal political participation. Political activity did not establish equal voting protection; state variation matters. | No woman ever voted anywhere.
 
-A: No woman ever voted anywhere. Erases the stated state variation.
+Error A: No woman ever voted anywhere. Erases the stated state variation.
 
-A: Political action proves equal voting rights. Action is not legal protection.
+Error A: Political action proves equal voting rights. Action is not legal protection.
 
 ## s04-X47a, day 47
 
@@ -745,27 +749,33 @@ Answer: Congress, July 1776; Hall and Black petitioners, January 1777.
 
 Look-fors: Two accurate maker/date labels
 
-Samples: Congress, July 1776; Hall and Black petitioners, January 1777. | Unsupported action or invented motive.
+Samples: Congress, July 1776; Hall and Black petitioners, January 1777. | Both sources were made by Congress in July 1776.
+
+Error x: Both sources were made by Congress in July 1776. Incorrect requested source annotation.
 
 ## s04-P45, day 45
 
 Annotate one teaching grievance with its subject.
 
-Answer: The dissolved-houses grievance concerns representative lawmaking; the standing-armies grievance concerns legislative consent.
+Answer: Accept either: representative lawmaking for dissolved houses; legislative consent for standing armies.
 
-Look-fors: Accurate grievance subject
+Look-fors: Accurate subject for one selected grievance
 
-Samples: The dissolved-houses grievance concerns representative lawmaking; the standing-armies grievance concerns legislative consent. | Unsupported action or invented motive.
+Samples: The dissolved-houses grievance concerns representative lawmaking. | The grievance concerns a harvest.
+
+Error x: The grievance concerns a harvest. Incorrect requested source annotation.
 
 ## s04-P46, day 46
 
 Record one requested action from the teaching petition.
 
-Answer: The petitioners request restoration of freedom from Massachusetts lawmakers. A request alone does not establish an outcome.
+Answer: The petitioners ask Massachusetts lawmakers to restore freedom. Accept the requested freedom action without an outcome explanation.
 
-Look-fors: Requested action and maker
+Look-fors: Requested restoration of freedom
 
-Samples: The petitioners request restoration of freedom from Massachusetts lawmakers. A request alone does not establish an outcome. | Unsupported action or invented motive.
+Samples: They ask lawmakers to restore freedom. | They request a new army.
+
+Error x: They request a new army. Incorrect requested source annotation.
 
 ## s04-P47, day 47
 
@@ -879,13 +889,15 @@ Samples: A qualified promise/protection claim with teaching Declaration, Hall an
 
 ## s04-P46-alt, day 46
 
-Explain what Records U/V establish about a promise and actual access.
+Label Record U’s maker and Record V’s reported action.
 
-Answer: U promises access; V reports a closed entrance on Wednesday. The promise alone did not establish access then, and these records cannot establish every day's access.
+Answer: U: town notice, exact individual maker unknown. V: the only entrance was closed for repairs on Wednesday.
 
-Look-fors: Promised access | Bounded actual-access evidence | Scope limit
+Look-fors: Maker label with uncertainty respected | Reported action
 
-Samples: The promise did not establish access on Wednesday; V reports the closed entrance. | The promise proves access every day.
+Samples: U is a town notice; V records an entrance closed for repairs. | U proves everyone entered every day.
+
+Error x: U proves everyone entered every day. Incorrect requested source annotation.
 
 ## Geographic and finance keys
 
@@ -909,3 +921,172 @@ The Onondaga timeline is a present national account, not an eyewitness statement
 Adams's March request precedes the July Declaration and cannot prove later outcomes.
 R59-7 uses a made-up library request, replacing the earlier Hall case.
 The optional public-rule alternative does not establish the omitted historical content.
+
+## s04-K44-1, day 44
+
+Made-up club: Members choose representatives. One member dislikes their decision. Does disagreement erase consent?
+
+Answer: No. Consent to a decision process does not mean liking every result.
+
+Look-fors: Choosing representatives supplies a process | Disliking one result does not erase that agreement
+
+Samples: No. Consent to a decision process does not mean liking every result. | Every decision must please everyone.
+
+Error x: Every decision must please everyone. Anticipated response; judge only the requested component.
+
+
+## s04-P44-2, day 44
+
+Write one smaller question about the Declaration’s promise. Name evidence that could help.
+
+Answer: Accept a relevant supporting question and evidence type, such as what Congress promised and its text.
+
+Look-fors: Relevant question | Evidence suited to it
+
+Samples: Accept a relevant supporting question and evidence type, such as what Congress promised and its text. | Which color is prettiest?
+
+Error W: Which color is prettiest? Anticipated response; judge only the requested component.
+
+
+## s04-K45-1, day 45
+
+Paint costs three tokens. Borrowed money for scissors: seven tokens, plus two for borrowing. Label price, loan, interest, and repayment.
+
+Answer: Price three; loan seven; interest two; repayment nine tokens.
+
+Look-fors: Price is the amount asked | Loan is repaid | Add seven and two for repayment nine
+
+Samples: Price three; loan seven; interest two; repayment nine tokens. | Repayment is seven tokens.
+
+Error b: Repayment is seven tokens. Anticipated response; judge only the requested component.
+
+
+## s04-P45-1, day 45
+
+Made-up club: Felt costs twelve tokens. A separate loan requires eleven returned, plus three. Label price, loan, interest, and repayment.
+
+Answer: Price twelve; loan eleven; interest three; repayment fourteen tokens.
+
+Look-fors: Price twelve | Loan eleven | Interest three | Repayment fourteen
+
+Samples: Price twelve; loan eleven; interest three; repayment fourteen tokens. | Repayment is eleven tokens.
+
+Error b: Repayment is eleven tokens. Anticipated response; judge only the requested component.
+
+
+## s04-K45-2, day 45
+
+Underline the teaching statement about government’s purpose.
+
+Answer: Congress says governments protect rights.
+
+Look-fors: Protecting rights is the purpose | Show the phrase only after children mark
+
+Samples: Congress says governments protect rights. | The accusation about armies is the purpose.
+
+Error x: The accusation about armies is the purpose. Anticipated response; judge only the requested component.
+
+
+## s04-K46-B, day 46
+
+Label this idea: rights people have because they are human.
+
+Answer: Natural rights.
+
+Look-fors: Inherent rights are natural rights
+
+Samples: Natural rights. | Rights are gifts from the king.
+
+Error B: Rights are gifts from the king. Anticipated response; judge only the requested component.
+
+
+## s04-F46-B, day 46
+
+Label this idea: rights a ruler cannot create by giving permission.
+
+Answer: Natural rights.
+
+Look-fors: Inherent rights do not depend on a ruler’s permission
+
+Samples: Natural rights. | Only the ruler creates these rights.
+
+Error B: Only the ruler creates these rights. Anticipated response; judge only the requested component.
+
+
+## s04-K46-J, day 46
+
+Made-up town: Officials must follow posted meeting rules. Who is bound by those rules?
+
+Answer: The officials are bound by those rules.
+
+Look-fors: Rules constrain officials too
+
+Samples: The officials are bound by those rules. | Only residents follow rules; officials can ignore them.
+
+Error J: Only residents follow rules; officials can ignore them. Anticipated response; judge only the requested component.
+
+
+## s04-F46-J, day 46
+
+Made-up town: Officials must publish decisions. An official refuses. Does the official follow that rule?
+
+Answer: No. The official’s refusal breaks the publication rule.
+
+Look-fors: A rule applies to the official too
+
+Samples: No. The official’s refusal breaks the publication rule. | The refusal automatically changes the rule.
+
+Error J: The refusal automatically changes the rule. Anticipated response; judge only the requested component.
+
+
+## s04-K46-A, day 46
+
+Made-up museum: Visitors request later closing. Label this record: request or approval.
+
+Answer: Request; no approval is reported.
+
+Look-fors: A request names a desired action
+
+Samples: Request; no approval is reported. | The request proves approval.
+
+Error A: The request proves approval. Anticipated response; judge only the requested component.
+
+
+## s04-F46-A, day 46
+
+Made-up park: Gardeners ask officials for another fountain. Label the recorded action.
+
+Answer: The gardeners make a request. No approval is recorded.
+
+Look-fors: Asking is the recorded action
+
+Samples: The gardeners make a request. No approval is recorded. | Officials approved a fountain.
+
+Error A: Officials approved a fountain. Anticipated response; judge only the requested component.
+
+
+## s04-K46-W, day 46
+
+Made-up park board asks which trail floods. Name someone who could use that answer.
+
+Answer: A park guide could use it when planning routes. Accept a relevant person and use.
+
+Look-fors: Another person can use the answer
+
+Samples: A park guide could use it when planning routes. Accept a relevant person and use. | Only my favorite color matters.
+
+Error W: Only my favorite color matters. Anticipated response; judge only the requested component.
+
+
+## s04-F46-W, day 46
+
+Made-up town asks which drains need repairs. Name someone who could use that answer.
+
+Answer: A maintenance planner could use it to schedule repairs. Accept another relevant person and use.
+
+Look-fors: Another person and relevant use
+
+Samples: A maintenance planner could use it to schedule repairs. Accept another relevant person and use. | Only whether I like the question matters.
+
+Error W: Only whether I like the question matters. Anticipated response; judge only the requested component.
+

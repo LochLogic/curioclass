@@ -15,7 +15,7 @@ Students may pass during public talk. They can use short writing, labeled drawin
 
 Families may request the parallel public-rule task for sensitive passages. Students eighteen or older receive this note themselves and make their own choice. School rules still apply.
 
-## Español
+## Spanish
 
 La unidad pregunta si la independencia cumplió la promesa de la Declaración. Comparamos argumentos públicos con peticiones de derechos. Estudiamos decisiones diferentes, el primer gobierno y precios mediante ejemplos inventados. Nombramos la esclavitud como trabajo forzado y negación de libertad. No hacemos representaciones ni pedimos información personal.
 

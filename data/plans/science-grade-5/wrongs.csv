@@ -757,3 +757,29 @@ s06-P113-control,A favorable result means conditions do not matter.,,,E,error E:
 s06-P113-failure,Only the best trial matters.,,,F,error F: One favorable result omits variation.
 s06-P114-reason,More output in a longer trial proves the design is better.,,,E,error E: Collection interval changes as well as design.
 s06-P114-instrument,One reading proves the instruments have identical precision.,,,x,error x: Different unit steps do not establish equivalent resolution.
+c5-E118-model,Plants and soil are nearby.,,,AF,Names proximity without an observed interaction.
+c5-E118-coast,Moving sand is rock breaking.,,,AG,Calls transport weathering rather than movement of existing grains.
+c5-E118-life,"Crab and grass, with no water connection.",,,AF,Explains living things but omits the ocean system.
+c5-E118-air,Invisible air cannot interact.,,,AH,Rejects an interacting system because it cannot be seen.
+c5-E118-all,Every salt share is ocean.,,,AI,Confuses all salt water with its ocean subset.
+c5-E118-all,Both bars are fresh-water shares.,,,AJ,Uses the wrong whole.
+c5-E118-fresh,"Ice holds 6,870 of every 10,000 all-water shares.",,,AJ,Changes the fresh-only whole to all water.
+c5-E118-fresh,The 120 shares are only lakes and rivers.,,,AK,Deletes other stores from the remainder.
+c5-E118-inset,Draw equally long bars on different axes.,,,AM,Different scales hide unequal quantities.
+c5-E118-limit,Fresh means safe to drink.,,,AL,Low salt does not establish drinking safety.
+c5-E119-leaflet,A has gardens. B has habitat.,,,AN,Copies disconnected facts.
+c5-E119-leaflet,"Pavement, garden, groundwater, without actions.",,,AO,A parts list omits interactions.
+c5-E119-leaflet,The garden makes all water safe to drink.,,,AL,The sources establish no drinking safety.
+c5-E119-impacts,Shrubs remove existing debris from orbit.,,,AU,Action does not address the affected route or place.
+c5-E119-status,General benefits are our measured outcome.,,,AP,Treats projection as an observation of this proposal.
+c5-E119-plan,Different loads give a fair comparison.,,,AQ,Load confounds the seam comparison.
+c5-E119-plan,One trial proves the wider seam best.,,,AR,Single result does not reveal variation.
+c5-E119-plan,Delete the trial where the seam opened.,,,AS,Deletes failure evidence.
+c5-E119-plan,Read a 0.2 millimeter change with a millimeter ruler.,,,AT,Claims finer resolution than the instrument step.
+c5-P120-systems,Invisible air cannot act.,,,AH,Rejects evidence of air affecting plants.
+c5-P120-graphs,Earth all-water shares.,,,AJ,Changes the fresh-only whole and mistakes invented tokens for Earth estimates.
+c5-P120-sources,Prediction already measured.,,,AP,Conflates predicted and observed results.
+c5-P120-testing,Different slopes are fair.,,,AQ,Slope could cause the difference.
+c5-P120-handoff,Copied table proves I conducted.,,,U,Copied data is not observed personal conducting.
+c5-X120,One observation proves permanent success.,,,AR,Overgeneralizes from one observation.
+c5-X120,"Boom, pond, litter, without arrows.",,,AO,Lists parts without modeled actions.

@@ -96,12 +96,11 @@ unit 3 private priority retry cards,43,43,teacher sealed dated envelope,student,
 unit 3 next-unit readiness,43,43,individual folder,student,"courses/social-studies-grade-5/u03-5/readiness.md, once only, last ten minutes; no instruction before collection."
 unit 3 assessment covers and scissors,42,42,teacher folder,room,Opaque paper covers with no-print fallback of folded blank paper; teacher cuts and collects the Q1 panel before exposing comparison directions.
 unit 4 pencils and paper,44,44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59,individual folder,student,One writing set; private dictation transcribed without content cues.
-unit 4 family note,44,44,individual folder,student,"One copy, English then Spanish, u04-1/family.md."
-unit 4 record sheet,44,44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59,"teacher folder, held pieces sealed separately",room,"u04-1/record.md; one component scale, no totals; keep private."
-unit 4 timeline strip,44,44 45 46 47 48 49 50 51 52 53 54 55 56 57,individual folder,student,"u04-1/timeline.md; equal year gaps, no held event strips."
-section 4.1 source labels,44,44 45 46,individual folder,student,"u04-1/recording.md; blank labels and arrows, never completed answers."
-section 4.1 teaching sources,44,44 45 46,"teacher folder, held pieces sealed separately",room,u04-1/teaching-sources.md; print only that day's selection; paraphrases credited by source id.
-section 4.1 held exits,44,44 45 46,individual folder,student,"u04-1/held-exits.md; print only current form, half slip; 54c covered Exit box."
+unit 4 family note,44,44,individual folder,student,"One copy, English then Spanish, courses/social-studies-grade-5/u04-1/family.md."
+unit 4 record sheet,44,44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59,"teacher folder, held pieces sealed separately",room,"courses/social-studies-grade-5/u04-1/record.md; one component scale, no totals; keep private."
+unit 4 timeline strip,44,44 45 46 47 48 49 50 51 52 53 54 55 56 57,individual folder,student,"courses/social-studies-grade-5/u04-1/timeline.md; equal year gaps, no held event strips."
+section 4.1 source labels,44,44 45 46,individual folder,student,"courses/social-studies-grade-5/u04-1/recording.md; blank labels and arrows, never completed answers."
+section 4.1 teaching sources,44,44 45 46,"teacher folder, held pieces sealed separately",room,courses/social-studies-grade-5/u04-1/teaching-sources.md; print only that day's selection; paraphrases credited by source id.
 section 4.2 source labels,47,47 48 49 50 51,individual folder,student,"u04-2/recording.md; blank labels and arrows, never completed answers."
 section 4.2 teaching sources,47,47 48 49 50 51,"teacher folder, held pieces sealed separately",room,u04-2/teaching-sources.md; print only that day's selection; paraphrases credited by source id.
 section 4.2 held exits,47,47 48 49 50 51,individual folder,student,"u04-2/held-exits.md; print only current form, half slip; 54c covered Exit box."
@@ -111,18 +110,18 @@ section 4.3 held exits,52,52 53 54 55,individual folder,student,"u04-3/held-exit
 section 4.4 source labels,56,56 57,individual folder,student,"u04-4/recording.md; blank labels and arrows, never completed answers."
 section 4.4 teaching sources,56,56 57,"teacher folder, held pieces sealed separately",room,u04-4/teaching-sources.md; print only that day's selection; paraphrases credited by source id.
 section 4.4 held exits,56,56 57,individual folder,student,"u04-4/held-exits.md; print only current form, half slip; 54c covered Exit box."
-unit 4 counters and supply labels,45,45 54,"teacher folder, held pieces sealed separately",pair,"u04-1/finance-practice.md; tokens stand for invented exchanges, never home finances."
+unit 4 counters and supply labels,45,45 54,"teacher folder, held pieces sealed separately",pair,"courses/social-studies-grade-5/u04-1/finance-practice.md; tokens stand for invented exchanges, never home finances."
 teaching maps,47,47 48,"teacher folder, held pieces sealed separately",room,u04-2/teaching-map-47.svg and teaching-map-48.svg; geographically separate pairs.
 exit map 47,47,47,individual folder,student,u04-2/exit-map-47.svg; covered until exit; do not print a location key.
 exit map 48,48,48,individual folder,student,u04-2/exit-map-48.svg; covered until exit; different crop from teaching map.
 unit 4 rulers,47,47 48 58,individual folder,student,Map scale retained at matched print size; no distance score on approximate placements.
 end-of-unit packet,58,58,individual folder,student,"u04-4/assessment-print.html is the two-side 348-word master, with assessment-map.svg. assessment.md holds matching data stems. Teacher directions and key separate."
-teacher-only unit 4 answer key,44,44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59,"teacher folder, held pieces sealed separately",room,u04-1/teacher-key.md; never displayed with held forms.
+teacher-only unit 4 answer key,44,44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59,"teacher folder, held pieces sealed separately",room,courses/social-studies-grade-5/u04-1/teacher-key.md; never displayed with held forms.
 unit 4 retry forms,59,59,individual folder,student,"u04-4/retry.md; print one assigned branch only, not all eight."
 unit 5 readiness form,59,59,individual folder,student,u04-4/next-readiness.md; last ten minutes only; hand to 61.
-day 44 practice notes,44,44,individual folder,student,u04-1/practice-44.md; collect all paper and return within existing priority slot. Student page includes source labels and supporting-question response; use current item-row keys.
-day 45 practice notes,45,45,individual folder,student,u04-1/practice-45.md; collect all paper and return within existing priority slot.
-day 46 practice notes,46,46,individual folder,student,u04-1/practice-46.md; collect all paper and return within existing priority slot.
+day 44 practice notes,44,44 45 46,individual folder,student,"courses/social-studies-grade-5/u04-1/practice-44.md; collect all paper and return within existing priority slot. Student page includes source labels and supporting-question response; use current item-row keys. Includes covered s04-X44b, answered only during the exit."
+day 45 practice notes,45,45 46,individual folder,student,"courses/social-studies-grade-5/u04-1/practice-45.md; collect all paper and return within existing priority slot. Includes covered s04-X45b, answered only during the exit."
+day 46 practice notes,46,46 47,individual folder,student,courses/social-studies-grade-5/u04-1/practice-46.md; collect all paper and return within existing priority slot.
 day 47 practice notes,47,47,individual folder,student,u04-2/practice-47.md; collect all paper and return within existing priority slot.
 day 48 practice notes,48,48,individual folder,student,u04-2/practice-48.md; collect all paper and return within existing priority slot.
 day 49 practice notes,49,49,individual folder,student,u04-2/practice-49.md; collect all paper and return within existing priority slot.
@@ -135,9 +134,9 @@ day 55 practice notes,55,55,individual folder,student,u04-3/practice-55.md; coll
 day 56 practice notes,56,56,individual folder,student,u04-4/practice-56.md; collect all paper and return within existing priority slot.
 day 57 practice notes,57,57,individual folder,student,u04-4/practice-57.md; collect all paper and return within existing priority slot.
 day 54 finance recheck,54,54,individual folder,student,"u04-3/recheck-54.md; two minutes inside Return and repair, returned 55."
-day 44 half-sheet exit,44,44,teacher folder until independent exit,student,"u04-1/exit-44.html; exact CSV stems and held stimulus, two tickets per sheet. Day 54c remains on covered student Exit box."
-day 45 half-sheet exit,45,45,teacher folder until independent exit,student,"u04-1/exit-45.html; exact CSV stems and held stimulus, two tickets per sheet. Day 54c remains on covered student Exit box."
-day 46 half-sheet exit,46,46,teacher folder until independent exit,student,"u04-1/exit-46.html; exact CSV stems and held stimulus, two tickets per sheet. Day 54c remains on covered student Exit box."
+day 44 half-sheet exit,44,44,teacher folder until independent exit,student,"courses/social-studies-grade-5/u04-1/exit-44.html; first judged paper item only, two tickets per sheet. The second exact stem is in the covered student-page Exit box, revealed in the same independent exit slot."
+day 45 half-sheet exit,45,45,teacher folder until independent exit,student,"courses/social-studies-grade-5/u04-1/exit-45.html; first judged paper item only, two tickets per sheet. The second exact stem is in the covered student-page Exit box, revealed in the same independent exit slot."
+day 46 half-sheet exit,46,46,teacher folder until independent exit,student,"courses/social-studies-grade-5/u04-1/exit-46.html; exact CSV stems and held stimulus, two tickets per sheet. Day 54c remains on covered student Exit box."
 day 47 half-sheet exit,47,47,teacher folder until independent exit,student,"u04-2/exit-47.html; exact CSV stems and held stimulus, two tickets per sheet. Day 54c remains on covered student Exit box."
 day 48 half-sheet exit,48,48,teacher folder until independent exit,student,"u04-2/exit-48.html; exact CSV stems and held stimulus, two tickets per sheet. Day 54c remains on covered student Exit box."
 day 49 half-sheet exit,49,49,teacher folder until independent exit,student,"u04-2/exit-49.html; exact CSV stems and held stimulus, two tickets per sheet. Day 54c remains on covered student Exit box."
@@ -149,4 +148,5 @@ day 54 half-sheet exit,54,54,teacher folder until independent exit,student,"u04-
 day 55 half-sheet exit,55,55,teacher folder until independent exit,student,"u04-3/exit-55.html; exact CSV stems and held stimulus, two tickets per sheet. Day 54c remains on covered student Exit box."
 day 56 half-sheet exit,56,56,teacher folder until independent exit,student,"u04-4/exit-56.html; exact CSV stems and held stimulus, two tickets per sheet. Day 54c remains on covered student Exit box."
 day 57 half-sheet exit,57,57,teacher folder until independent exit,student,"u04-4/exit-57.html; exact CSV stems and held stimulus, two tickets per sheet. Day 54c remains on covered student Exit box."
-optional public-rule alternative,46,46,individual folder,student,u04-1/parallel-evidence.md Records U/V panels only; task from current s04-P46-alt row. No shared comparison question before exit; separate maker/action annotation. Historical components not sampled stay not yet seen. Return on 47.
+optional public-rule alternative,46,46,individual folder,student,courses/social-studies-grade-5/u04-1/parallel-evidence.md Records U/V panels only; task from current s04-P46-alt row. No shared comparison question before exit; separate maker/action annotation. Historical components not sampled stay not yet seen. Return on 47.
+section 4.1 Exit box covers,44,44 45,teacher folder,student,Opaque paper covers the student-page Exit box until the independent exit. Use spare sheets from unit 4 pencils and paper.
