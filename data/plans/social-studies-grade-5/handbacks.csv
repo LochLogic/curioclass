@@ -12,7 +12,7 @@ from_day,to_day,what,where,minutes,error,note
 11,12,s01-X11a s01-X11b s01-P11 s01-R11a s01-R11b,Return,10,,"All paper returned together. One priority within this slot; written cues for others. Five-minute explanation and five-minute fresh response, except day 13 five total. Includes source-work, retrieval, or research-note paper; written feedback, one priority only."
 12,13,s01-X12 s01-R12a s01-R12b,Return,5,,"All paper returned together. One priority within this slot; written cues for others. Five-minute explanation and five-minute fresh response, except day 13 five total."
 8,13,retained Penn preface research notes,Directions,1,,"Redistribute within the one-minute directions slot, not another repair."
-12,14,unscored map and claim display,Feedback,2,,Written component cues within the same five-minute feedback slot.
+12,14,unscored map and claim display s01-P12a s01-P12b s01-P12c,Feedback,2,,Written component cues within the same five-minute feedback slot.
 13,14,all s01-Q components s01-R13-1,Feedback,3,,"One priority per child, four groups maximum in the twenty-minute repair part; other gaps retained."
 14,15,selected s01-R14 fresh retry s01-R14i,Open,1,,"Private cue while opening inquiry; retain unresolved component, no extra meeting."
 14,16,s02-R1a s02-R1b s02-R2,Route,10,,"Actual receiving part is Route and harbor instruction: model five, guide three, fresh response two; teach as new."

@@ -209,4 +209,43 @@ from_day,to_day,what,where,minutes,error,note
 77,78,s04-P77-scale,Return,0,,Private component note returned inside the existing repair allocation; no additional reteaching minutes.
 82,84,c2-E82-measure c2-E82-powder c2-E82-metal c2-E82-mineral c2-E82-liquid c2-E82-plan c2-E82-log c2-E82-claim,Private feedback,2,,One private next step; missing practical evidence separate.
 83,84,c2-E83-distance c2-E83-light c2-E83-size c2-E83-shadow c2-E83-daylight c2-E83-stars,Private feedback,3,,One priority gap; no public comparison.
-84,86,c2-R84-climate,Climate support,10,,"AD timescale/AE map key. Existing day 86 support: three compare records, four symbols, three fresh comparison; no added time."
+85,86,s05-X85,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+85,86,s05-X85,Return,5,C,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+86,87,s05-X86-1 s05-X86-2,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+86,87,s05-X86-1 s05-X86-2,Return,5,C,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+87,88,s05-X87,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+88,89,s05-X88-1 s05-X88-2 s05-X88-3,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+88,89,s05-X88-1 s05-X88-2 s05-X88-3,Return,5,C,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+89,90,s05-X89-1 s05-X89-2,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+89,90,s05-X89-1 s05-X89-2,Return,5,B,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+90,91,s05-X90-1 s05-X90-2,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+90,91,s05-X90-1 s05-X90-2,Return,5,G,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+91,92,s05-X91,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+91,92,s05-X91,Return,5,C,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+92,93,s05-X92,Return,5,D,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+93,94,s05-X93,Return,5,D,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+94,95,s05-X94,Return,5,E,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+94,95,s05-X94,Return,5,F,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+95,96,s05-X95-1 s05-X95-2,Return,5,E,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+95,96,s05-X95-1 s05-X95-2,Return,5,H,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+96,97,s05-X96,Return,5,D,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+96,97,s05-X96,Return,5,G,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+85,86,s05-P85,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+86,87,s05-P86,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+87,88,s05-P87,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+88,89,s05-P88,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+89,90,s05-P89,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+90,91,s05-P90,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+91,92,s05-P91,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+92,93,s05-P92,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+93,94,s05-P93,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+94,95,s05-P94,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+95,96,s05-P95,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+96,97,s05-P96,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+97,98,s05-P97,Independent,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+84,86,c2-R84-climate,Climate,10,,"Existing readiness, not repeated on 85: three minutes timescales, four key matching, three fresh oral comparison. Missing results: teach as new."
+97,99,s05-X97-1 s05-X97-2,feedback,0,,"Return with assessment feedback, never on 98."
+98,99,s05-Q1a s05-Q1b s05-Q1c s05-Q1d s05-Q1e s05-Q2a1 s05-Q2a2 s05-Q2b1 s05-Q2b2 s05-Q2c1 s05-Q2c2 s05-Q2c3,feedback,5,,"Return original 24 points privately; priorities go to existing separate repair rounds, no rescore."
+98,99,Q1/Q2 and E97 priority component gaps,Return,15,,Three five-minute parallel rounds maximum per child. Teacher three four-minute visits plus three routing minutes. Whole-class move replaces a round; log remaining gaps.
+99,100,assigned s05-R99 route and revisions,Reopen,0,,Return private written feedback after class; no promised extra repair lesson. Forward unresolved gaps with existing unit-6 retrieval.
+99,103,unit-6 design/resource handoff notes,Return,0,,"Notes only, not another readiness check or added lesson allocation."

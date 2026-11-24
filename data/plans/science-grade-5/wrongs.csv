@@ -521,3 +521,53 @@ c2-X84,A: pale color proves U is A.,,,T,Error T: A: pale color proves U is A.
 c2-X84,B: every mixture forms new material.,,,W,Error W: B: every mixture forms new material.
 c2-X84,C: distance never affects brightness.,,,Y,Error Y: C: distance never affects brightness.
 c2-X84,D: missing stars were destroyed.,,,AC,Error AC: D: missing stars were destroyed.
+s05-X85,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-X85,Unseen air cannot act.,,,C,Observable effects support unseen-air interaction.
+s05-X86-1,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-X86-1,Unseen air cannot act.,,,C,Observable effects support unseen-air interaction.
+s05-X87,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-X88-1,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-X88-2,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-X88-3,Unseen air cannot act.,,,C,Observable effects support unseen-air interaction.
+s05-X89-1,Carrying loose grains is weathering.,,,B,Transport is erosion; stationary breaking is weathering.
+s05-X89-2,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-X89-2,Carrying loose grains is weathering.,,,B,Transport is erosion; stationary breaking is weathering.
+s05-X90-1,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-X90-2,Fresh water is always safe to drink.,,,G,"Low salt does not establish testing, treatment or access."
+s05-X91,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-X91,Unseen air cannot act.,,,C,Observable effects support unseen-air interaction.
+s05-X92,All salt water is ocean water.,,,D,Inland saline lakes and groundwater also belong in salt water.
+s05-X93,All salt water is ocean water.,,,D,Inland saline lakes and groundwater also belong in salt water.
+s05-X94,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-X94,Surface and other fresh water means only lakes and rivers.,,,F,"The full remainder includes other stores, such as soil moisture."
+s05-X95-1,Equal lengths on different scales mean equal amounts.,,,H,Compare values using the same units and scale.
+s05-X95-2,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-X96,All salt water is ocean water.,,,D,Inland saline lakes and groundwater also belong in salt water.
+s05-X96,Fresh water is always safe to drink.,,,G,"Low salt does not establish testing, treatment or access."
+s05-X97-1,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-X97-2,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-Q1a,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-Q1a,Carrying loose grains is weathering.,,,B,Transport is erosion; stationary breaking is weathering.
+s05-Q1b,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-Q1b,Carrying loose grains is weathering.,,,B,Transport is erosion; stationary breaking is weathering.
+s05-Q1c,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-Q1d,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-Q1d,Unseen air cannot act.,,,C,Observable effects support unseen-air interaction.
+s05-Q1e,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-Q2a1,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-Q2a2,All salt water is ocean water.,,,D,Inland saline lakes and groundwater also belong in salt water.
+s05-Q2b1,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-Q2b1,Surface and other fresh water means only lakes and rivers.,,,F,"The full remainder includes other stores, such as soil moisture."
+s05-Q2b2,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-Q2c1,Equal lengths on different scales mean equal amounts.,,,H,Compare values using the same units and scale.
+s05-Q2c1,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-Q2c2,Equal lengths on different scales mean equal amounts.,,,H,Compare values using the same units and scale.
+s05-Q2c3,Fresh water is always safe to drink.,,,G,"Low salt does not establish testing, treatment or access."
+s05-R99-systems,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-R99-systems,Carrying loose grains is weathering.,,,B,Transport is erosion; stationary breaking is weathering.
+s05-R99-air,Unseen air cannot act.,,,C,Observable effects support unseen-air interaction.
+s05-R99-distribution,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-R99-distribution,Surface and other fresh water means only lakes and rivers.,,,F,"The full remainder includes other stores, such as soil moisture."
+s05-R99-distribution,Equal lengths on different scales mean equal amounts.,,,H,Compare values using the same units and scale.
+s05-R99-salt,All salt water is ocean water.,,,D,Inland saline lakes and groundwater also belong in salt water.
+s05-R99-access,Fresh water is always safe to drink.,,,G,"Low salt does not establish testing, treatment or access."
