@@ -1,137 +1,44 @@
 ---
-piece: blank
+piece: opener
 course: social-studies-grade-4
 unit: 3.5
 stretch: 3
 version: draft, not yet taught
-credit: Curio Class original text; image credits accompany images.
+credit: ours
 ---
-# Unit 3 assessment
+# Unit 3 assessment: teacher administration reference
 
-A: Park and geological researchers report White Sands footprints about 21,000 to 23,000 years old.
+Teacher only. The complete student assessment is the Student page block in d058.md.
+Print that page, including both sides and their images. This reference adds no child pages.
+Keep the student packet unseen until day 58. Keep answers separate from every child packet.
 
-Recorded layers, seeds, pollen and light-based sediment dating inform their work.
+## Before class
 
-B: Pedersen's team reports food-supporting corridor conditions by about 12,600 years ago.
+Use the map label Map, distinct from photograph C. Retain all source-maker labels, dates,
+image credits, captions and response spaces from d058.md. Its item references pull the exact
+stems from items.csv. Do not print this reference instead of the student page.
 
-Their study sampled one bottleneck.
+The image files are local. Use the saved photographs, not drawings in their place. If a child
+needs enlarged print or verbatim scribing, arrange it without interpreting the evidence.
 
-<img src="regions-assessment.svg" width="250" height="123.4"> <img src="chronology-context-assessment.svg" width="250" height="142.6">
+## Administration
 
-C map, drawn 2026: gray Southwest; blue Eastern Woodlands. Approximate; societies lived at different times.
+| Part | Minutes | Items |
+|---|---|---|
+| Read packet neutrally | 4 | Sources and directions only |
+| Assessment Q1 | 7 | s03-A1a to s03-A1c |
+| Assessment Q2 | 8 | s03-A2a to s03-A2g |
+| Assessment Q3 | 8 | s03-A3a to s03-A3e |
+| Assessment Q4 | 4 | s03-A4a and s03-A4b |
+| Assessment Q5 | 9 | s03-A5a to s03-A5c |
 
-B: Russell Cave. C: Joshua Tree. D: Cahokia. E: Mesa Verde.
+Give no worked answer, content repair or extra exit ticket. Collect all papers.
 
-<p><img src="assessment-point.jpg" width="125" height="70.3" style="width:125px;height:70.3px;"> <img src="assessment-bowl.jpg" width="125" height="125.0" style="width:125px;height:125.0px;"> <img src="assessment-mound.jpg" width="125" height="125.0" style="width:125px;height:125.0px;"> <img src="assessment-rooms.jpg" width="125" height="93.8" style="width:125px;height:93.8px;"></p>
+## Marking and response
 
-Photographs: National Park Service, undated, public domain.
+Use the answers and look-fors in items.csv, the generated day 58 answer key and teacher-key.md.
+Record shown, shown with help, or not yet seen per component. Record access separately from
+content help. Do not total the labels. Budget six minutes per child after class.
 
-S, invented: pottery and stored crops beside house floors.
-
-T, invented: repeated building alignment compared with seasonal sunrise observations.
-
-Mesa Verde National Park. Cahokia Mounds State Historic Site.
-
-<p><img src="assessment-site-mesa.jpg" width="210" height="112.9" style="width:210px;height:112.9px;"> <img src="assessment-site-cahokia.jpg" width="210" height="118.2" style="width:210px;height:118.2px;"></p>
-
-Pueblo account: living distinct communities. Osage account: ancestral Cahokia connections.
-
-Site photos: NPS, public domain; Northfielder, CC BY 2.0; both undated.
-
-<div style="page-break-before:always"></div>
-
-## 1
-
-Place A and B on the timeline.
-
-________________________
-
-Compare inland and coastal possibilities using A and B.
-
-________________________
-
-Does depth alone date finds in the pit diagram?
-
-________________________
-
-## 2
-
-Locate both sites using C.
-
-________________________
-
-Identify B using one visible detail.
-
-________________________
-
-Identify C using one visible detail.
-
-________________________
-
-Identify D using one visible detail.
-
-________________________
-
-Identify E using one visible detail.
-
-________________________
-
-What does large construction suggest about work?
-
-________________________
-
-Does C's shading mark national borders?
-
-________________________
-
-## 3
-
-How do recorded digs strengthen theories?
-
-________________________
-
-What do artifacts and organic traces contribute?
-
-________________________
-
-Why compare climate and dating evidence with specialists?
-
-________________________
-
-What could S suggest about settlement?
-
-________________________
-
-What could T suggest about seasonal observation?
-
-________________________
-
-## 4
-
-Explain each named place's contribution to American history.
-
-________________________
-
-Why protect evidence and respect descendants' connections?
-
-________________________
-
-## 5
-
-Answer our unit question with a claim, reasons and a limit.
-
-________________________
-
-Support your claim using distinct details from two named makers.
-
-________________________
-
-________________________
-
-________________________
-
-________________________
-
-Explain why an accurate answer matters to another person.
-
-________________________
+Return all papers privately on day 59 with one priority move. Use the response groups and
+one assigned fresh component described in d059.md. The retry cards are not part of day 58's packet.
