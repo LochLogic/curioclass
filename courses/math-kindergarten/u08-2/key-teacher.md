@@ -152,7 +152,7 @@ Shown: Two moved out/four remain. | Shown with help: correct after a mathematica
 
 ## s08-G140-1
 
-Check this picture.
+Check the picture for three plus zero.
 
 Key: 3
 
@@ -162,7 +162,7 @@ Shown: 3 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G141-1
 
-Check this picture.
+Check the picture for three plus zero.
 
 Key: 3
 
@@ -172,7 +172,7 @@ Shown: 3 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G142-1
 
-Check this picture.
+Check the picture for three plus zero.
 
 Key: 3
 
@@ -182,7 +182,7 @@ Shown: 3 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G143-1
 
-Check this picture.
+Check the picture for three plus zero.
 
 Key: 3
 
@@ -192,7 +192,7 @@ Shown: 3 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G144-1
 
-Check this picture.
+Check the picture for three plus zero.
 
 Key: 3
 
@@ -202,7 +202,7 @@ Shown: 3 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G145-1
 
-Check this picture.
+Check the picture for three plus zero.
 
 Key: 3
 
@@ -212,7 +212,7 @@ Shown: 3 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G140-2
 
-Check this picture.
+Check the picture for four plus zero.
 
 Key: 4
 
@@ -222,7 +222,7 @@ Shown: 4 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G141-2
 
-Check this picture.
+Check the picture for four plus zero.
 
 Key: 4
 
@@ -232,7 +232,7 @@ Shown: 4 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G142-2
 
-Check this picture.
+Check the picture for four plus zero.
 
 Key: 4
 
@@ -242,7 +242,7 @@ Shown: 4 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G143-2
 
-Check this picture.
+Check the picture for four plus zero.
 
 Key: 4
 
@@ -252,7 +252,7 @@ Shown: 4 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G144-2
 
-Check this picture.
+Check the picture for four plus zero.
 
 Key: 4
 
@@ -262,7 +262,7 @@ Shown: 4 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G145-2
 
-Check this picture.
+Check the picture for four plus zero.
 
 Key: 4
 
@@ -272,7 +272,7 @@ Shown: 4 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G140-3
 
-Check this picture.
+Check the picture for three minus two.
 
 Key: 1
 
@@ -282,7 +282,7 @@ Shown: 1 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G141-3
 
-Check this picture.
+Check the picture for three minus two.
 
 Key: 1
 
@@ -292,7 +292,7 @@ Shown: 1 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G142-3
 
-Check this picture.
+Check the picture for three minus two.
 
 Key: 1
 
@@ -302,7 +302,7 @@ Shown: 1 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G143-3
 
-Check this picture.
+Check the picture for three minus two.
 
 Key: 1
 
@@ -312,7 +312,7 @@ Shown: 1 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G144-3
 
-Check this picture.
+Check the picture for three minus two.
 
 Key: 1
 
@@ -322,7 +322,7 @@ Shown: 1 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G145-3
 
-Check this picture.
+Check the picture for three minus two.
 
 Key: 1
 
@@ -332,7 +332,7 @@ Shown: 1 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G140-4
 
-Check this picture.
+Check the picture for four minus three.
 
 Key: 1
 
@@ -342,7 +342,7 @@ Shown: 1 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G141-4
 
-Check this picture.
+Check the picture for four minus three.
 
 Key: 1
 
@@ -352,7 +352,7 @@ Shown: 1 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G142-4
 
-Check this picture.
+Check the picture for four minus three.
 
 Key: 1
 
@@ -362,7 +362,7 @@ Shown: 1 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G143-4
 
-Check this picture.
+Check the picture for four minus three.
 
 Key: 1
 
@@ -372,7 +372,7 @@ Shown: 1 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G144-4
 
-Check this picture.
+Check the picture for four minus three.
 
 Key: 1
 
@@ -382,7 +382,7 @@ Shown: 1 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G145-4
 
-Check this picture.
+Check the picture for four minus three.
 
 Key: 1
 
@@ -392,7 +392,7 @@ Shown: 1 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G140-5
 
-Check this picture.
+Check the picture for five minus zero.
 
 Key: 5
 
@@ -402,7 +402,7 @@ Shown: 5 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G141-5
 
-Check this picture.
+Check the picture for five minus zero.
 
 Key: 5
 
@@ -412,7 +412,7 @@ Shown: 5 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G142-5
 
-Check this picture.
+Check the picture for five minus zero.
 
 Key: 5
 
@@ -422,7 +422,7 @@ Shown: 5 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G143-5
 
-Check this picture.
+Check the picture for five minus zero.
 
 Key: 5
 
@@ -432,7 +432,7 @@ Shown: 5 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G144-5
 
-Check this picture.
+Check the picture for five minus zero.
 
 Key: 5
 
@@ -442,7 +442,7 @@ Shown: 5 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G145-5
 
-Check this picture.
+Check the picture for five minus zero.
 
 Key: 5
 
@@ -452,7 +452,7 @@ Shown: 5 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G140-6
 
-Check this picture.
+Check the picture for five minus five.
 
 Key: 0
 
@@ -462,7 +462,7 @@ Shown: 0 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G141-6
 
-Check this picture.
+Check the picture for five minus five.
 
 Key: 0
 
@@ -472,7 +472,7 @@ Shown: 0 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G142-6
 
-Check this picture.
+Check the picture for five minus five.
 
 Key: 0
 
@@ -482,7 +482,7 @@ Shown: 0 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G143-6
 
-Check this picture.
+Check the picture for five minus five.
 
 Key: 0
 
@@ -492,7 +492,7 @@ Shown: 0 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G144-6
 
-Check this picture.
+Check the picture for five minus five.
 
 Key: 0
 
@@ -502,7 +502,7 @@ Shown: 0 with picture. | Shown with help: correct after a mathematical prompt. |
 
 ## s08-G145-6
 
-Check this picture.
+Check the picture for five minus five.
 
 Key: 0
 
