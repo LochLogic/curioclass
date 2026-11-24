@@ -216,41 +216,41 @@ Samples: Nine Northeast cards correctly positioned, same-year labels in separate
 
 Southeast date record.
 
-Key: Correct placement from the supplied card on the shared equal-year line.
+Key: Florida: 1845, five years after 1840 on the equal-year line.
 
-Look for: Correct placement from the supplied card on the shared equal-year line.
+Look for: Record the existing timeline response, without another prompt. Florida: 1845, five years after 1840 on the equal-year line.
 
-Samples: Correct placement from the supplied card on the shared equal-year line. | Equal event spacing replaces elapsed years.
+Samples: Florida: 1845, five years after 1840 on the equal-year line. | Equal event spacing replaces elapsed years.
 
 ## s06-M2-mw
 
 Midwest date record.
 
-Key: Correct placement from the supplied card on the shared equal-year line.
+Key: Iowa: 1846, six years after 1840 on the equal-year line.
 
-Look for: Correct placement from the supplied card on the shared equal-year line.
+Look for: Record the existing timeline response, without another prompt. Iowa: 1846, six years after 1840 on the equal-year line.
 
-Samples: Correct placement from the supplied card on the shared equal-year line. | Equal event spacing replaces elapsed years.
+Samples: Iowa: 1846, six years after 1840 on the equal-year line. | Equal event spacing replaces elapsed years.
 
 ## s06-M2-sw
 
 Southwest date record.
 
-Key: Correct placement from the supplied card on the shared equal-year line.
+Key: Texas: 1845, five years after 1840, sharing the year with Florida on the equal-year line.
 
-Look for: Correct placement from the supplied card on the shared equal-year line.
+Look for: Record the existing timeline response, without another prompt. Texas: 1845, five years after 1840, sharing the year with Florida on the equal-year line.
 
-Samples: Correct placement from the supplied card on the shared equal-year line. | Equal event spacing replaces elapsed years.
+Samples: Texas: 1845, five years after 1840, sharing the year with Florida on the equal-year line. | Equal event spacing replaces elapsed years.
 
 ## s06-M2-we
 
 West date record.
 
-Key: Correct placement from the supplied card on the shared equal-year line.
+Key: Utah: 1896, six years after 1890 on the equal-year line.
 
-Look for: Correct placement from the supplied card on the shared equal-year line.
+Look for: Record the existing timeline response, without another prompt. Utah: 1896, six years after 1890 on the equal-year line.
 
-Samples: Correct placement from the supplied card on the shared equal-year line. | Equal event spacing replaces elapsed years.
+Samples: Utah: 1896, six years after 1890 on the equal-year line. | Equal event spacing replaces elapsed years.
 
 ## s06-M4u
 

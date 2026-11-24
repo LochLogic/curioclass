@@ -354,41 +354,41 @@ Samples: No senators and no final House vote through its delegate; local governm
 
 Record the SE card's date position in the same timeline.
 
-Key: Correct placement from the supplied card on the shared equal-year line.
+Key: Maryland: 1788, eight years after 1780 on the equal-year line.
 
-Look for: Teacher observation of the existing response; no additional child prompt. Correct placement from the supplied card on the shared equal-year line.
+Look for: Record the existing timeline response, without another prompt. Maryland: 1788, eight years after 1780 on the equal-year line.
 
-Samples: Correct placement from the supplied card on the shared equal-year line. | Equal event spacing replaces elapsed years.
+Samples: Maryland: 1788, eight years after 1780 on the equal-year line. | Equal event spacing replaces elapsed years.
 
 ## s06-F2-mw
 
 Record the MW card's date position in the same timeline.
 
-Key: Correct placement from the supplied card on the shared equal-year line.
+Key: Ohio: 1803, three years after 1800 on the equal-year line.
 
-Look for: Teacher observation of the existing response; no additional child prompt. Correct placement from the supplied card on the shared equal-year line.
+Look for: Record the existing timeline response, without another prompt. Ohio: 1803, three years after 1800 on the equal-year line.
 
-Samples: Correct placement from the supplied card on the shared equal-year line. | Equal event spacing replaces elapsed years.
+Samples: Ohio: 1803, three years after 1800 on the equal-year line. | Equal event spacing replaces elapsed years.
 
 ## s06-F2-sw
 
 Record the SW card's date position in the same timeline.
 
-Key: Correct placement from the supplied card on the shared equal-year line.
+Key: Arizona: 1912, two years after 1910 on the equal-year line.
 
-Look for: Teacher observation of the existing response; no additional child prompt. Correct placement from the supplied card on the shared equal-year line.
+Look for: Record the existing timeline response, without another prompt. Arizona: 1912, two years after 1910 on the equal-year line.
 
-Samples: Correct placement from the supplied card on the shared equal-year line. | Equal event spacing replaces elapsed years.
+Samples: Arizona: 1912, two years after 1910 on the equal-year line. | Equal event spacing replaces elapsed years.
 
 ## s06-F2-we
 
 Record the WE card's date position in the same timeline.
 
-Key: Correct placement from the supplied card on the shared equal-year line.
+Key: Montana: 1889, nine years after 1880 on the equal-year line.
 
-Look for: Teacher observation of the existing response; no additional child prompt. Correct placement from the supplied card on the shared equal-year line.
+Look for: Record the existing timeline response, without another prompt. Montana: 1889, nine years after 1880 on the equal-year line.
 
-Samples: Correct placement from the supplied card on the shared equal-year line. | Equal event spacing replaces elapsed years.
+Samples: Montana: 1889, nine years after 1880 on the equal-year line. | Equal event spacing replaces elapsed years.
 
 ## s06-P128-1
 
