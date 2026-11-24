@@ -98,9 +98,13 @@ from_day,to_day,what,where,minutes,error,note
 32,33,s02-P32-1,Resource,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
 33,34,s02-P33-1 s02-P33-2,Evidence,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
 34,35,s02-P34-1,Food-use,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
-35,36,s02-P35-1 s02-P35-2,Separate,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+35,36,s02-P35-1 s02-P35-2 s02-P35-4,Separate,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
 36,37,s02-P36-1 s02-P36-2,Separate,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
-37,38,s02-P37-1 s02-P37-2,Accuracy,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
-38,41,s02-P38-1,Reflection,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+37,38,s02-P37-1 s02-P37-2 s02-P37-6,Accuracy,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+38,41,s02-P38-1 s02-P38-2 s02-P38-3,Reflection,1,,Return checklist feedback and any recorded oral/pointing evidence in the same minute; absence stays blank.
 32,33,s02-P32-2 s02-P32-3,Return,0,,Return descriptive correction-strip feedback with the exit in the existing repair slot; no separate repair task or additional minutes.
 33,34,s02-P33-3 s02-P33-4,Return,0,,Return descriptive correction-strip feedback with the exit in the existing repair slot; no separate repair task or additional minutes.
+34,35,s02-P34-2,Return,0,,Return correction feedback with exit in existing repair time; no added repair task.
+35,36,s02-P35-3,Return,0,,Return correction feedback with exit in existing repair time; no added repair task.
+36,37,s02-P36-3,Return,0,,Return correction feedback with exit in existing repair time; no added repair task.
+37,38,s02-P37-3 s02-P37-4 s02-P37-5,Return,0,,Return correction feedback with exit in existing repair time; no added repair task.

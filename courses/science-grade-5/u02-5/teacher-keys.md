@@ -1,5 +1,5 @@
 ---
-piece: teacher
+piece: opener
 course: science-grade-5
 unit: 2.5
 version: draft, not yet taught
