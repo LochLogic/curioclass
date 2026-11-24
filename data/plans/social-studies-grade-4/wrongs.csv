@@ -1328,10 +1328,8 @@ s07-X146,A storm happened.,,,S,Broken pipes disrupted safe water. Officials supp
 s07-X147,There was drought.,,,S,Water shortage reduced crops. Assistance addressed farm losses; food collections addressed resulting food needs.
 s07-X149,Human construction could not matter.,,,C,The built defect also contributed to failure. Storm and structural weakness both mattered. Road loss disrupted a connection; legal blame is not established.
 s07-X150,Where people lived did not change.,,,N,People left unusable district housing. Both receiving towns gained temporary residents. Permanence and return remain unknown.
-s07-X151,Only the port and bridge places were affected.,,,E,Port closure reduced inland fruit deliveries. Bridge closure changed delivery routes and traffic in another county. No price change is stated.
 s07-X152,One national body controls every service.,,,O,"The record assigns town, county and national responsibilities separately."
 s07-X153,Submitting the request adopted it.,,,F,It remains a proposal. Neither the request nor unauthorized posting supplies the board approval this rule requires.
-s07-X154,Copy the same plan everywhere.,,,G,"Both lack stall funds. Higher sites offer less flood exposure and continued trading, without ending risk. Each needs its own decisions and conditions."
 s07-X155,No author or date can be found.,,,R,The office and date are explicitly printed on the source label.
 s07-X156,Delay means improvement is impossible.,,,Q,"Staff limits delay capacity. Coordinated trained help could address staffing, without guaranteeing opening."
 s07-X157,Submitting it adopted the change.,,,F,The principal decides under this rule. No decision adopted the request; it remains a proposal.
@@ -1383,7 +1381,6 @@ s07-R160-A,Liking is evidence.,,,H,Communities adapt shared places to sustain ac
 s07-R160-C,Native nations exist only in the past.,,,J,The Makah Tribe maintains its own government today; MT is the Makah Tribe's public information page.
 s07-R160-H,Naming hail explains every response.,,,S,Staff repaired the structure; covers protected exposed plants during repairs.
 s07-RET137,A ramp appeared because I like ramps.,,,H,A preference does not establish the change. The recent drawing shows the ramp.
-s07-RET152,Guess without evidence.,,,H,Town: shelter rule. State: statewide building rule. National office: aid. Actual powers need actual sources.
 s07-RET155,Guess without evidence.,,,H,"Evidence of need, existing advice, alternatives and consequences before choosing fairly."
 s07-P137,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
 s07-P138,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
@@ -1399,10 +1396,6 @@ s07-P147,One source speaks for everyone.,,,I,"Check the actual source location, 
 s07-P148,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
 s07-P149,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
 s07-P150,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
-s07-P151,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
-s07-P152,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
-s07-P153,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
-s07-P154,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
 s07-P155,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
 s07-P156,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
 s07-P157,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
@@ -1446,3 +1439,22 @@ s07-K149,The downstream valley.,,,C,Use the printed evidence. The South Fork Dam
 s07-K150-R,Rain falls.,,,C,Use the printed evidence. A damaged drain.
 s07-F150,Wind bends reeds.,,,C,Use the printed evidence. A cracked signal cable stops messages.
 s07-X150,Only the closed district changed.,,,E,Both receiving towns gained temporary residents.
+s07-X151,Only the port and bridge places were affected.,,,E,Inland shops received less fruit after the port closed. Deliveries used routes through another county after the bridge closed.
+s07-K151-R,The record shows no change in residence.,,,N,Departure: Reed Flats closed. Receiving place: residents now sleep in Fern District.
+s07-F151,Only Larch Rooms changed.,,,E,Origin: Larch Rooms. Receiving place: Elm District. Renting rooms shows a residence change.
+s07-K151-1,The bakery has no connection to the store.,,,E,"The bakery lost its ingredient order. The higher quote is stated evidence, not a rule for every outage."
+s07-P151,Every worker moved homes.,,,N,Wind: unusable apartment rooms; another district offers temporary rooms. Fire: closed workplaces; another town records job inquiries. Neither proves everyone moved.
+s07-P151-E,Nothing changed beyond the damaged place.,,,E,The replacement supply quote costs more after deliveries stopped. Repair crews moved temporarily to Birch Town. Accept two accurate linked explanations without assuming permanent relocation.
+s07-K152-R,Distance prevents any effect.,,,E,The cable connects the break to the clinic refrigerator.
+s07-F152,The museum cannot be affected.,,,E,The stopped train connects the interruption with the canceled museum visit.
+s07-RET152,Only national officials can do public work.,,,O,"Accept a public service, such as a warning or library, and attending a meeting, volunteering or staying informed. This is retrieval, not a claim about universal responsibility."
+s07-K152-1,The request proves adoption.,,,F,Asking for a warning sign shows a proposal. A request is not an authorized adoption.
+s07-P152,One source establishes every authority and stage.,,,I,"AID: eligibility limits; other help may exist. FL1: weaknesses, study commission and code taking effect. FL2: public input and technical recommendations. Request: asking, not adoption. The selected cards do not name the author of exact code wording."
+s07-K153-R,One national office made every decision.,,,O,Library committee is the named body. The signature is a decision feature.
+s07-F153,A wider area always has authority.,,,O,Parks office. The printed role is authority evidence for this invented task.
+s07-P153,The commission name proves it proposed and adopted every later word.,,,F,"FL1: 1992 weaknesses show a problem; 1996 commission shows investigation, not the exact proposer. The 2002 code taking effect shows implementation. FL2 shows later review and public input. Exact proposer, authorization record and a specific enacted revision are absent from these selected cards."
+s07-K154-R,Every request is a decision.,,,F,Asks for identifies a request. Signed minutes authorize identifies a decision feature. These are separate documents and cases.
+s07-F154,The draft wording proves adoption.,,,F,Suggests is a proposal feature; signed minutes approve is a decision feature. Do not combine these into one policy history.
+s07-K154-1,Any remaining task means no improvement is possible.,,,Q,"Temporary housing, detailed planning, relocation underway or large projects show a continuing task. Accept one supporting phrase."
+s07-P154,The same response must work everywhere.,,,G,"JP: planning and temporary housing address a large rebuilding task; some higher-land relocation was underway. Better-protected housing is an opening, not proof every home is safe. FL2: public and technical input offer a way to improve rules; the record does not establish every building is safe."
+s07-X154,Copy the same plan everywhere.,,,G,"Both records show limited stall funding. Moving the market or approving a raised reopening site offers a place for trading to resume. Higher sites may reduce flood exposure, but neither record proves safety or full reopening."
