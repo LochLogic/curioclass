@@ -29,4 +29,10 @@ Place one teaching detail beside a relevant question label.
 My evidence limit: ______________________________________
 
 
-Credits: [Stamp Act Congress resolutions](https://avalon.law.yale.edu/18th_century/resolu65.asp); [Declaratory Act](https://avalon.law.yale.edu/18th_century/declaratory_act_1766.asp); [Letter to Samson Occom](https://hamilton.gilderlehrman.org/supporting-document/phillis-wheatley-reverend-samson-occom-slavery-1774). Original summaries, not historical quotations.
+Credits:
+
+- [Stamp Act Congress resolutions](https://avalon.law.yale.edu/18th_century/resolu65.asp)
+- [Declaratory Act](https://avalon.law.yale.edu/18th_century/declaratory_act_1766.asp)
+- [Letter to Samson Occom](https://hamilton.gilderlehrman.org/supporting-document/phillis-wheatley-reverend-samson-occom-slavery-1774)
+
+Original summaries, not historical quotations.

@@ -29,4 +29,10 @@ Sort the supplied questions by the days that could help answer them.
 My evidence limit: ______________________________________
 
 
-Credits: [Stamp Act Congress resolutions](https://avalon.law.yale.edu/18th_century/resolu65.asp); [Declaratory Act](https://avalon.law.yale.edu/18th_century/declaratory_act_1766.asp); [Petition for freedom](https://hamilton.gilderlehrman.org/media/946/download). Original summaries, not historical quotations.
+Credits:
+
+- [Stamp Act Congress resolutions](https://avalon.law.yale.edu/18th_century/resolu65.asp)
+- [Declaratory Act](https://avalon.law.yale.edu/18th_century/declaratory_act_1766.asp)
+- [Petition for freedom](https://hamilton.gilderlehrman.org/media/946/download)
+
+Original summaries, not historical quotations.

@@ -29,4 +29,9 @@ Label one arrow with a pressure supported by its source note.
 My evidence limit: ______________________________________
 
 
-Credits: [Britain Begins Taxing the Colonies](https://home.nps.gov/articles/000/sugar-and-stamp-acts.htm); [Royal Proclamation](https://avalon.law.yale.edu/18th_century/proc1763.asp). Original summaries, not historical quotations.
+Credits:
+
+- [Britain Begins Taxing the Colonies](https://home.nps.gov/articles/000/sugar-and-stamp-acts.htm)
+- [Royal Proclamation](https://avalon.law.yale.edu/18th_century/proc1763.asp)
+
+Original summaries, not historical quotations.

@@ -29,4 +29,10 @@ Annotate one source feature that affects what it can establish.
 My evidence limit: ______________________________________
 
 
-Credits: [Boston Massacre](https://www.nps.gov/articles/000/boston-massacre.htm); [Testimony of Matthew Murray](https://www.dhr.history.vt.edu/modules/us/intro/evidence_detail_02.html); [Crispus Attucks interview](https://www.aaihs.org/crispus-attucks-american-revolutionary-hero-an-interview-with-mitch-kachun/). Original summaries, not historical quotations.
+Credits:
+
+- [Boston Massacre](https://www.nps.gov/articles/000/boston-massacre.htm)
+- [Testimony of Matthew Murray](https://www.dhr.history.vt.edu/modules/us/intro/evidence_detail_02.html)
+- [Crispus Attucks interview](https://www.aaihs.org/crispus-attucks-american-revolutionary-hero-an-interview-with-mitch-kachun/)
+
+Original summaries, not historical quotations.

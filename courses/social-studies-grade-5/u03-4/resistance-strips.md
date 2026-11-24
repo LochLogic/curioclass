@@ -29,4 +29,12 @@ Place a named date and add one source-origin annotation.
 My evidence limit: ______________________________________
 
 
-Credits: [Parliament and the American colonies 1767 to 1783](https://www.parliament.uk/about/living-heritage/evolutionofparliament/legislativescrutiny/parliament-and-empire/parliament-and-the-american-colonies-before-1765/parliament-and-the-war-in-the-american-colonies-1767-83/); [Suffolk Resolves](https://constitution.org/2-Authors/bcp/suffolk-resolves_1774.html); [Timeline of the Revolution](https://home.nps.gov/subjects/americanrevolution/timeline.htm). Original summaries, not historical quotations.
+Credits:
+
+- [Parliament and the American colonies 1767 to 1783](https://www.parliament.uk/about/living-heritage/evolutionofparliament/legislativescrutiny/parliament-and-empire/parliament-and-the-american-colonies-before-1765/parliament-and-the-war-in-the-american-colonies-1767-83/)
+- [Suffolk Resolves](https://constitution.org/2-Authors/bcp/suffolk-resolves_1774.html)
+- [Timeline of the Revolution](https://home.nps.gov/subjects/americanrevolution/timeline.htm)
+
+Original summaries, not historical quotations.
+
+Congress endorsement credit: [Samuel Adams account](https://www.nps.gov/articles/000/samuel-adams-boston-revolutionary.htm).

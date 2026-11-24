@@ -27,4 +27,10 @@ Underline a stated concern in each separately attributed note.
 My evidence limit: ______________________________________
 
 
-Credits: [The French and Indian War](https://oneida-nsn.gov/our-ways/historic-timeline/the-french-and-indian-war/); [History: homeland and sovereignty](https://www.delawarenation-nsn.gov/history/); [Fort Necessity history](https://www.nps.gov/fone/learn/historyculture/index.htm). Original summaries, not historical quotations.
+Credits:
+
+- [The French and Indian War](https://oneida-nsn.gov/our-ways/historic-timeline/the-french-and-indian-war/)
+- [History: homeland and sovereignty](https://www.delawarenation-nsn.gov/history/)
+- [Fort Necessity history](https://www.nps.gov/fone/learn/historyculture/index.htm)
+
+Original summaries, not historical quotations.

@@ -30,4 +30,9 @@ Annotate the date and action on one teaching slip.
 My evidence limit: ______________________________________
 
 
-Credits: [Timeline of the Revolution](https://home.nps.gov/subjects/americanrevolution/timeline.htm); [Dorchester Heights](https://www.nps.gov/places/dorchester-heights.htm). Original summaries, not historical quotations.
+Credits:
+
+- [Timeline of the Revolution](https://home.nps.gov/subjects/americanrevolution/timeline.htm)
+- [Dorchester Heights](https://www.nps.gov/places/dorchester-heights.htm)
+
+Original summaries, not historical quotations.

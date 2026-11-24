@@ -30,4 +30,8 @@ Annotate only the assigned source component on each separate record.
 My evidence limit: ______________________________________
 
 
-Credits: [Stamp Act Congress resolutions](https://avalon.law.yale.edu/18th_century/resolu65.asp). Original summaries, not historical quotations.
+Credits:
+
+- [Stamp Act Congress resolutions](https://avalon.law.yale.edu/18th_century/resolu65.asp)
+
+Original summaries, not historical quotations.

@@ -28,4 +28,12 @@ Record one supported action and the evidence type it needs.
 My evidence limit: ______________________________________
 
 
-Credits: [Old South Meeting House](https://osmh.org/); [Boston Massacre](https://www.nps.gov/articles/000/boston-massacre.htm); [Samuel Adams: Boston radical revolutionary](https://www.nps.gov/articles/000/samuel-adams-boston-revolutionary.htm); [Letter to Samson Occom](https://hamilton.gilderlehrman.org/supporting-document/phillis-wheatley-reverend-samson-occom-slavery-1774); [Crispus Attucks interview](https://www.aaihs.org/crispus-attucks-american-revolutionary-hero-an-interview-with-mitch-kachun/). Original summaries, not historical quotations.
+Credits:
+
+- [Old South Meeting House](https://osmh.org/)
+- [Boston Massacre](https://www.nps.gov/articles/000/boston-massacre.htm)
+- [Samuel Adams: Boston radical revolutionary](https://www.nps.gov/articles/000/samuel-adams-boston-revolutionary.htm)
+- [Letter to Samson Occom](https://hamilton.gilderlehrman.org/supporting-document/phillis-wheatley-reverend-samson-occom-slavery-1774)
+- [Crispus Attucks interview](https://www.aaihs.org/crispus-attucks-american-revolutionary-hero-an-interview-with-mitch-kachun/)
+
+Original summaries, not historical quotations.

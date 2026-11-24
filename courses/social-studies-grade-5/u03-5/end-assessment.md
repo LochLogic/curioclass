@@ -56,7 +56,6 @@ Q4b Connect one institution's earlier development with resistance.
 
 ________________________________________________
 
-Timeline
 Stamp Act Congress: _____
 Sons of Liberty: _____
 Tea Party: _____
@@ -86,7 +85,6 @@ Q6b Explain one role's effect.
 
 ________________________________________________
 
-M: modern schematic.
 Old South: Milk/Washington. Shooting: beyond Town House.
 P: Revere publishes a selected portrayal of King Street deaths.
 
@@ -100,6 +98,8 @@ ________________________________________________
 
 R: Congress, October 1774.
 People have rights to peaceful assembly and petition.
+
+When is breaking a law the right thing to do?
 
 Q8a Select two attributed A/B/R details for your resistance condition.
 

@@ -29,4 +29,9 @@ Complete one detail-to-claim reasoning arrow on the display.
 My evidence limit: ______________________________________
 
 
-Credits: [Boston Massacre](https://www.nps.gov/articles/000/boston-massacre.htm); [Testimony of Matthew Murray](https://www.dhr.history.vt.edu/modules/us/intro/evidence_detail_02.html). Original summaries, not historical quotations.
+Credits:
+
+- [Boston Massacre](https://www.nps.gov/articles/000/boston-massacre.htm)
+- [Testimony of Matthew Murray](https://www.dhr.history.vt.edu/modules/us/intro/evidence_detail_02.html)
+
+Original summaries, not historical quotations.

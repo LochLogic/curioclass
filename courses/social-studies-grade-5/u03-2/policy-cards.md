@@ -30,4 +30,10 @@ Place the already named policy cards in chronological order.
 My evidence limit: ______________________________________
 
 
-Credits: [Britain Begins Taxing the Colonies](https://home.nps.gov/articles/000/sugar-and-stamp-acts.htm); [Parliament and the American colonies 1767 to 1783](https://www.parliament.uk/about/living-heritage/evolutionofparliament/legislativescrutiny/parliament-and-empire/parliament-and-the-american-colonies-before-1765/parliament-and-the-war-in-the-american-colonies-1767-83/); [Boston Tea Party Timeline](https://www.nps.gov/articles/000/boston-tea-party-in-real-time.htm). Original summaries, not historical quotations.
+Credits:
+
+- [Britain Begins Taxing the Colonies](https://home.nps.gov/articles/000/sugar-and-stamp-acts.htm)
+- [Parliament and the American colonies 1767 to 1783](https://www.parliament.uk/about/living-heritage/evolutionofparliament/legislativescrutiny/parliament-and-empire/parliament-and-the-american-colonies-before-1765/parliament-and-the-war-in-the-american-colonies-1767-83/)
+- [Boston Tea Party Timeline](https://www.nps.gov/articles/000/boston-tea-party-in-real-time.htm)
+
+Original summaries, not historical quotations.

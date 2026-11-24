@@ -28,4 +28,11 @@ Label one named action as petition, communication or intimidation.
 My evidence limit: ______________________________________
 
 
-Credits: [Stamp Act Congress resolutions](https://avalon.law.yale.edu/18th_century/resolu65.asp); [Anger and Opposition to the Stamp Act](https://home.nps.gov/articles/000/anger-and-opposition-to-the-stamp-act.htm); [Samuel Adams: Boston radical revolutionary](https://www.nps.gov/articles/000/samuel-adams-boston-revolutionary.htm); [Timeline of the Revolution](https://home.nps.gov/subjects/americanrevolution/timeline.htm). Original summaries, not historical quotations.
+Credits:
+
+- [Stamp Act Congress resolutions](https://avalon.law.yale.edu/18th_century/resolu65.asp)
+- [Anger and Opposition to the Stamp Act](https://home.nps.gov/articles/000/anger-and-opposition-to-the-stamp-act.htm)
+- [Samuel Adams: Boston radical revolutionary](https://www.nps.gov/articles/000/samuel-adams-boston-revolutionary.htm)
+- [Timeline of the Revolution](https://home.nps.gov/subjects/americanrevolution/timeline.htm)
+
+Original summaries, not historical quotations.

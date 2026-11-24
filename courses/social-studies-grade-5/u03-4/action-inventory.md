@@ -31,4 +31,12 @@ Record one attributed action separately from an unsupported motive.
 My evidence limit: ______________________________________
 
 
-Credits: [Women During the Lead Up to War](https://www.nps.gov/articles/000/alyssa-kariofyllis-women-of-the-battle-road-paper4.htm); [Letter to Samson Occom](https://hamilton.gilderlehrman.org/supporting-document/phillis-wheatley-reverend-samson-occom-slavery-1774); [Samuel Adams: Boston radical revolutionary](https://www.nps.gov/articles/000/samuel-adams-boston-revolutionary.htm); [Boston Massacre](https://www.nps.gov/articles/000/boston-massacre.htm); [Crispus Attucks interview](https://www.aaihs.org/crispus-attucks-american-revolutionary-hero-an-interview-with-mitch-kachun/). Original summaries, not historical quotations.
+Credits:
+
+- [Women During the Lead Up to War](https://www.nps.gov/articles/000/alyssa-kariofyllis-women-of-the-battle-road-paper4.htm)
+- [Letter to Samson Occom](https://hamilton.gilderlehrman.org/supporting-document/phillis-wheatley-reverend-samson-occom-slavery-1774)
+- [Samuel Adams: Boston radical revolutionary](https://www.nps.gov/articles/000/samuel-adams-boston-revolutionary.htm)
+- [Boston Massacre](https://www.nps.gov/articles/000/boston-massacre.htm)
+- [Crispus Attucks interview](https://www.aaihs.org/crispus-attucks-american-revolutionary-hero-an-interview-with-mitch-kachun/)
+
+Original summaries, not historical quotations.

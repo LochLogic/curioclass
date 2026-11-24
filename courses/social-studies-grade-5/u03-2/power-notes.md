@@ -29,4 +29,10 @@ Annotate one claimed power on each separate teaching strip.
 My evidence limit: ______________________________________
 
 
-Credits: [Stamp Act Congress resolutions](https://avalon.law.yale.edu/18th_century/resolu65.asp); [Declaratory Act](https://avalon.law.yale.edu/18th_century/declaratory_act_1766.asp); [Charter of Privileges](https://avalon.law.yale.edu/18th_century/pa07.asp). Original summaries, not historical quotations.
+Credits:
+
+- [Stamp Act Congress resolutions](https://avalon.law.yale.edu/18th_century/resolu65.asp)
+- [Declaratory Act](https://avalon.law.yale.edu/18th_century/declaratory_act_1766.asp)
+- [Charter of Privileges](https://avalon.law.yale.edu/18th_century/pa07.asp)
+
+Original summaries, not historical quotations.
