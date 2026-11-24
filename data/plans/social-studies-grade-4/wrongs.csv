@@ -450,7 +450,7 @@ s03-X52b,All Pueblo people disappeared.,,,G,Current communities contradict disap
 s03-X53a,It names every builder's nation.,,,P,A structure does not identify every builder.
 s03-X53b,No descendants remain.,,,G,A living nation names an ancestral relationship.
 s03-X53b,Only Osage ancestors built every structure.,,,P,No exclusive-identity claim is supported.
-s03-X54a,Taking it preserves all context.,,,F,Removal breaks the location association.
+s03-X54a,Taking it preserves all context.,,,F,Removal breaks in-place associations even if a written location caption survives.
 s03-X54b,Nobody; the people vanished.,,,G,The statement names a continuing relationship.
 s03-X55a,The title proves the answer.,,,I,A title is not evidence.
 s03-X55a,It proves every route people took.,,,H,The claim exceeds the evidence.
@@ -551,3 +551,14 @@ s03-P48-2,Coastal travel makes Beringia impossible.,,,J,A Beringia crossing coul
 s03-P48-W,"I like the coast, so it is proved.",,,H,Source 46A reports dated points at Nipéhe. Made objects support presence there; the full journey remains unknown. Accept a cautious combined-route possibility linked to the evidence limit.
 s03-P48,The points prove all stages.,,,B,A dated location does not trace every journey stage.
 s03-P46-S,A traveler recording every journey stage.,,,B,Molly Rosbach; 2022; public readers. Accept the university research report as maker attribution.
+s03-P49-R,"I like the path, so they used it.",,,H,Compare the response with the supplied record; address this component only.
+s03-P50-R,One nation.,,,D,Compare the response with the supplied record; address this component only.
+s03-P50-R2,A whole bar.,,,x,Compare the response with the supplied record; address this component only.
+s03-P51-R,Every resident made bowls.,,,P,Compare the response with the supplied record; address this component only.
+s03-P51-R2,The shape proves all beliefs.,,,E,Compare the response with the supplied record; address this component only.
+s03-P52-R,The doorway proves everyone farmed.,,,P,Compare the response with the supplied record; address this component only.
+s03-P53-R,The people disappeared.,,,G,Compare the response with the supplied record; address this component only.
+s03-P53-T,2013 dates the mound.,,,x,Compare the response with the supplied record; address this component only.
+s03-P53-O,The outline names every builder.,,,P,Compare the response with the supplied record; address this component only.
+s03-P54-R,The outline names every builder.,,,P,Compare the response with the supplied record; address this component only.
+s03-P54-R2,No nation remains.,,,G,Compare the response with the supplied record; address this component only.
