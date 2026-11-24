@@ -585,8 +585,6 @@ s06-X111,"Only beak, skin and wings matter",,,F,Diagnose only this stated idea; 
 s06-X112,Cutting proves roots absorbed water,,,H,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X112,Only outside structures matter,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X113,Eye lights stone,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
-s06-X113,Ear commands movement directly,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
-s06-X113,Only outside parts supply plant,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X114,Eyes light the insect,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X114,Learning cannot affect action,,,E,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X114,Petals alone make seeds,,,G,Diagnose only this stated idea; incomplete answers are not automatically this error.
@@ -708,3 +706,12 @@ s06-P112-roots,The rootless cutting tests root uptake,,,H,Explicit claim only; d
 s06-P112-audit,A list of names proves every function,,,x,Explicit claim only; descriptive feedback for missing evidence.
 s06-P112-question,Our records guarantee every animal survives,,,x,Explicit claim only; descriptive feedback for missing evidence.
 s06-X112-animal,Having these parts guarantees survival,,,x,An interaction can help survival; a source model does not guarantee an outcome.
+s06-P113-roots,The cutting tested roots,,,H,Apply only to the stated idea; describe other gaps separately.
+s06-P113-inside,Only the outside mouth matters,,,F,Apply only to the stated idea; describe other gaps separately.
+s06-K113,The toy is visible without illumination,,,B,Apply only to the stated idea; describe other gaps separately.
+s06-P113-question,No question or chart is identified,,,x,Apply only to the stated idea; describe other gaps separately.
+s06-P114-retrieve,An unrelated observation is offered,,,x,Apply only to the stated idea; describe other gaps separately.
+s06-P114-match,Only outside parts have jobs,,,F,Apply only to the stated idea; describe other gaps separately.
+s06-P114-link,Receiving parts command action directly,,,D,Apply only to the stated idea; describe other gaps separately.
+s06-P117-repair,A needed link stays absent,,,x,Apply only to the stated idea; describe other gaps separately.
+s06-P117-revise,The first response is erased without an evidence-linked repair,,,x,Apply only to the stated idea; describe other gaps separately.
