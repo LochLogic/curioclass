@@ -281,17 +281,17 @@ from_day,to_day,what,where,minutes,error,note
 80,81,s05-X80-table s05-X80-exception,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
 82,83,s05-X82-fit s05-X82-limit,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
 82,83,s05-X82-fit s05-X82-limit,Return,5,B,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
-83,84,s05-X83-harm; s05-X83-criterion,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-83,84,s05-X83-harm; s05-X83-criterion,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-84,85,s05-X84-ideas; s05-X84-limits,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-84,85,s05-X84-ideas; s05-X84-limits,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-85,86,s05-X85-recommend; s05-X85-challenge,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-85,86,s05-X85-recommend; s05-X85-challenge,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-86,87,s05-X86-ideas; s05-X86-control,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-86,87,s05-X86-ideas; s05-X86-control,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-87,88,s05-X87-compare; s05-X87-failure,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-88,89,s05-X88-revise; s05-X88-improve,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-88,89,s05-X88-revise; s05-X88-improve,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+83,84,s05-X83-harm; s05-X83-criterion,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+83,84,s05-X83-harm; s05-X83-criterion,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+84,85,s05-X84-ideas; s05-X84-limits,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+84,85,s05-X84-ideas; s05-X84-limits,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+85,86,s05-X85-recommend; s05-X85-challenge,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+85,86,s05-X85-recommend; s05-X85-challenge,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+86,87,s05-X86-ideas; s05-X86-control,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+86,87,s05-X86-ideas; s05-X86-control,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+87,88,s05-X87-compare; s05-X87-failure,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+88,89,s05-X88-revise; s05-X88-improve,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+88,89,s05-X88-revise; s05-X88-improve,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
 89,90,s05-X89-time; s05-X89-gap,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
 89,90,s05-X89-time; s05-X89-gap,Return,5,I,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
 91,93,s05-X91-map; s05-X91-design,Read,0,,Private diagnostic note with assessment feedback; no day 92 repair.
@@ -311,3 +311,9 @@ from_day,to_day,what,where,minutes,error,note
 79,80,s05-X79-pattern,Return,0,,Return the paper Exit box with written feedback alongside the half slip; existing repair minutes are unchanged. Initial model day 77 remains unscored.
 80,81,s05-X80-exception,Return,0,,Return the paper Exit box with written feedback alongside the half slip; existing repair minutes are unchanged. Initial model day 77 remains unscored.
 82,83,s05-X82-limit,Return,0,,Return the paper Exit box with written feedback alongside the half slip; existing repair minutes are unchanged. Initial model day 77 remains unscored.
+83,84,s05-P83-1 s05-P83-2 s05-P83-3 s05-P83-4 s05-P83-5,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
+84,85,s05-P84-1 s05-P84-2 s05-P84-3 s05-P84-4 s05-P84-5 s05-P84-6,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
+85,86,s05-P85-1 s05-P85-2 s05-P85-3 s05-P85-4,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
+86,87,s05-P86-1 s05-P86-2 s05-P86-3 s05-P86-4 s05-P86-5,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
+87,88,s05-P87-1 s05-P87-2 s05-P87-3 s05-P87-4,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
+88,89,s05-P88-1 s05-P88-2 s05-P88-3,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.

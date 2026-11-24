@@ -517,3 +517,30 @@ s05-P82-4,The older extract covers only July 2025.,,,x,Error x: The older extrac
 s05-P82-5,Outside the plot is guaranteed safe.,,,C,Error C: Outside the plot is guaranteed safe.
 s05-P82-6,Label invented V as the July 2025 real event.,,,x,Error x: Label invented V as the July 2025 real event.
 s05-P82-7,Treat practice years A to D as actual calendar dates.,,,x,Error x: Treat practice years A to D as actual calendar dates.
+s05-P83-1,An empty region must be safe.,,,C,Error C: Makes selected absence prove safety.
+s05-P83-2,Every earthquake touches a coast.,,,B,Error B: Treats all earthquakes as coastal.
+s05-P83-3,Every barrier guarantees dryness.,,,D,Error D: Promises all protection succeeds.
+s05-P83-4,Monitoring stops an eruption.,,,F,Error F: Makes information stop the event.
+s05-P83-5,An alert stops the waves.,,,F,Error F: Makes information stop the event.
+s05-P84-1,Receiving information stops the event.,,,F,Error F: Makes information stop the event.
+s05-P84-2,No plotted dot means no hazard.,,,C,Error C: Makes selected absence prove safety.
+s05-P84-3,Every wall guarantees protection.,,,D,Error D: Promises all protection succeeds.
+s05-P84-4,Monitoring makes shaking stop.,,,F,Error F: Makes information stop the event.
+s05-P84-5,One success proves all conditions.,,,E,Error E: Generalizes beyond tested conditions.
+s05-P84-6,Different loads show whether braces helped.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P85-1,Every barrier holds every flow.,,,D,Error D: Promises all protection succeeds.
+s05-P85-2,A message stops the event.,,,F,Error F: Makes information stop the event.
+s05-P85-3,Erase fallen results so the model succeeds.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P85-4,Gentler success proves all motions.,,,E,Error E: Generalizes beyond tested conditions.
+s05-P86-1,One gentler success proves every future condition.,,,E,Error E: Generalizes beyond tested conditions.
+s05-P86-2,Every wall always protects.,,,D,Error D: Promises all protection succeeds.
+s05-P86-3,Different input amounts make a matched design comparison.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P86-4,Erase failures from the recording guide.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P86-5,Every prepared wall guarantees dry houses.,,,D,Error D: Promises all protection succeeds.
+s05-P87-1,One flow proves every flow.,,,E,Error E: Generalizes beyond tested conditions.
+s05-P87-2,Every wall guarantees protection.,,,D,Error D: Promises all protection succeeds.
+s05-P87-3,No visible route means no failure occurred.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P87-4,Gentler success establishes all stronger outcomes.,,,E,Error E: Generalizes beyond tested conditions.
+s05-P88-1,Small-flow success proves every larger flow.,,,E,Error E: Generalizes beyond tested conditions.
+s05-P88-2,Erase wet-house results.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P88-3,Any new change must work.,,,x,Error x: Other wrong answer; check the evidence.
