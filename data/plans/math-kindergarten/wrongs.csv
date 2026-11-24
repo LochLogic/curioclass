@@ -1877,3 +1877,26 @@ sC-X159,Fourteen marks labeled 13.,,,L,Quantity/numeral mismatch; distinguish a 
 sC-F160-1,Keeps one mark for ten.,,,P,Confuses container with ten individual ones.
 sC-X160,"One new mark, said to stand for ten.",,,P,Ten ones represented as one counting mark.
 sC-X160,Eighteen new marks beside printed eight.,,,R,Whole used as missing part; completed record has twenty-six.
+sC-P158-count,Switches from tens to ones.,,,M,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-P158-gamea,Counts one square twice.,,,B,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-P158-gameb,Joins during removal.,,,Y,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-P159-count,Switches from tens to ones.,,,M,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-P159-gamea,Counts one square twice.,,,B,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-P159-gameb,Joins during removal.,,,Y,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-P160-count,Switches from tens to ones.,,,M,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-P160-gamea,Counts one square twice.,,,B,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-P160-gameb,Joins during removal.,,,Y,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-K158-1,Calls four its own partner.,,,Q,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-P158-1,Copies eight as its own partner.,,,Q,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-F158-1,Keeps three/three as ten.,,,Q,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-X158,Draws four additions because four were given.,,,Q,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-K159-guess,Copies exact result afterward as a first guess.,,,x,Record the process descriptively; this is not a numerical-accuracy error or a scored guess.
+sC-K159-count,Counts a square twice.,,,B,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-P159-guess,Changes original guess to conceal a revision.,,,x,Record the process descriptively; this is not a numerical-accuracy error or a scored guess.
+sC-P159-check,Calls spread-out eight more than compact ten.,,,D,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-F159-1,Keeps duplicate link.,,,B,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-X159,Records fifteen after revisiting one bar; initial wrong guess alone is not an error.,,,B,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-K160-1,Shows one plus two as twelve.,,,P,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-P160-1,Uses one mark for ten.,,,P,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-F160-1,Keeps five total marks for fourteen.,,,P,"Anticipated action; classify from observed working, not from the final numeral alone."
+sC-X160,"Draws one mark, saying it stands for ten.",,,P,"Anticipated action; classify from observed working, not from the final numeral alone."
