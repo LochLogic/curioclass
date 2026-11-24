@@ -173,7 +173,7 @@ an end-of-unit assessment per unit, a mid-unit assessment in units over 25 days,
 course-level check, each `readiness` day on the previous unit's last day or a respond day at most 3 days before a
 unit's first day and never on a first day except unit 1's day 1, every owned skill placed, every owned code placed
 (a note), the .md file present, not empty, with its title and a section per unit, and a "Shorter path" section (a
-note). Then run `python -X utf8 scripts/frame.py calendar` and say in your last message whether your course breaks
+note). A science course whose scope has the "Practice and crosscutting concept coverage" section (required for earth-and-space-science and environmental-science) also fails when the table has fewer practice and concept columns than the frame names or a column is empty or "none" in every row (day numbers are not checked). Then run `python -X utf8 scripts/frame.py calendar` and say in your last message whether your course breaks
 the stagger rule.
 
 Final message, short: units and days, the check weeks, the gate result, the Candidate cells settled, the "For the
