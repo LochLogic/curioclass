@@ -2,8 +2,8 @@ material,made_day,used_days,kept_in,per,note
 marble,1,1 2 3,classroom,room,Counted out and back.
 cardboard ramp,1,1 2 3,classroom,room,Pretest guarded floor lane.
 paper cup,1,1 2 3,classroom,room,Same target reset to start.
-ruler,1,1 2 3 4 43 78,classroom,room,"One-centimeter step on days 1 to 4. Day 43: clamped sound demonstration, no length reading."
-tape,1,1 2 3,classroom,room,Marks and containment.
+ruler,1,1 2 3 4 43 78 85,classroom,room,"One-centimeter step on days 1 to 4. Day 43: clamped sound demonstration, no length reading."
+tape,1,1 2 3 85,classroom,room,Marks and containment.
 table-edge guard,1,1 2 3,classroom,room,Used with catch barrier on floor lane.
 catch barrier,1,1 2 3 7 8 9 11,classroom,room,Stops escaped rolls.
 impact eye protection,1,1 2 3 7 8 9 11,classroom,room,Existing stock for everyone; otherwise use invented record. No purchase decision.
@@ -12,7 +12,7 @@ storage bags,1,1 2 3 7 8 9 11,classroom,room,Store protection.
 question board,1,1 2 3 4 5 6 7 8 13 16 27 35 57 58,classroom,room,Teacher retains.
 class record book,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15,classroom,room,One marking scale and heard roster.
 Ramp record R,1,1 2 3 4 5 6 7 13 15,classroom,room,Invented fallback; never mixed with measured observations.
-pencil,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82,classroom,student,Also stationary demonstration on day 4.
+pencil,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88,classroom,student,Also stationary demonstration on day 4.
 folder,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35,classroom,student,Retain records after feedback.
 Car record C,7,7 8 9 10 11,classroom,room,Named in day materials; invented records labeled.
 toy cars,7,7 8 9 11,classroom,room,Named in day materials; invented records labeled.
@@ -172,7 +172,7 @@ assessment-72.md,72,72,teacher envelope until named day; student folder after us
 assessment-fallback.md,71,71,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-4/assessment-fallback.md; print only named day; 14 point type.
 feedback-sheet.md,73,73,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-4/feedback-sheet.md; print only named day; 14 point type.
 fresh-case.md,73,73,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-4/fresh-case.md; print only named day; 14 point type.
-damp clean sand,59,59 60 65 71,labeled unit 4 storage; originals in class folder,room,No airborne grains; adult pours/resets.
+damp clean sand,59,59 60 65 71 86 87 88,labeled unit 4 storage; originals in class folder,room,No airborne grains; adult pours/resets.
 two baking trays,59,60 65 71,labeled unit 4 storage; originals in class folder,room,Use new starting patches and slopes on day 71.
 equal water cups,59,59 60 65 71,labeled unit 4 storage; originals in class folder,room,No milliliter conversion.
 ruler,60,60 65 71,labeled unit 4 storage; originals in class folder,student,Whole-centimeter step; keep beside dry edge.
@@ -237,3 +237,4 @@ section 5.4 reserved half-slip exits,89,89 90 91,unit 5 folder,student,Only curr
 unit 5 assessment record,92,92 93,private teacher folder,room,One 2/1/0 component scale; keep /24 new-case and /4 portfolio separate. Formative categories live only on record.md.
 volcano record T,80,80,"student page, then unit 5 folder",student,"Invented larger-event record, years J to K; two ocean volcanoes, no continental chain or isolated exception."
 three source-label slips,82,82,unit 5 folder,student,Use the three source labels from the student table; paper labels replace cut slips.
+improvement labels,88,88,unit 5 folder,student,"Separate observed failure and proposed effect, before independent portfolio."

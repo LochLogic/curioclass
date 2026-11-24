@@ -281,21 +281,21 @@ from_day,to_day,what,where,minutes,error,note
 80,81,s05-X80-table s05-X80-exception,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
 82,83,s05-X82-fit s05-X82-limit,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
 82,83,s05-X82-fit s05-X82-limit,Return,5,B,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
-83,84,s05-X83-harm; s05-X83-criterion,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
-83,84,s05-X83-harm; s05-X83-criterion,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
-84,85,s05-X84-ideas; s05-X84-limits,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
-84,85,s05-X84-ideas; s05-X84-limits,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
-85,86,s05-X85-recommend; s05-X85-challenge,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
-85,86,s05-X85-recommend; s05-X85-challenge,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
-86,87,s05-X86-ideas; s05-X86-control,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
-86,87,s05-X86-ideas; s05-X86-control,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
-87,88,s05-X87-compare; s05-X87-failure,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
-88,89,s05-X88-revise; s05-X88-improve,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
-88,89,s05-X88-revise; s05-X88-improve,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+83,84,s05-X83-harm s05-X83-criterion,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+83,84,s05-X83-harm s05-X83-criterion,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+84,85,s05-X84-ideas s05-X84-limits,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+84,85,s05-X84-ideas s05-X84-limits,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+85,86,s05-X85-recommend s05-X85-challenge,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+85,86,s05-X85-recommend s05-X85-challenge,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+86,87,s05-X86-ideas s05-X86-control,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+86,87,s05-X86-ideas s05-X86-control,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+87,88,s05-X87-compare s05-X87-failure,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+88,89,s05-X88-revise s05-X88-improve,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+88,89,s05-X88-revise s05-X88-improve,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
 89,90,s05-X89-time; s05-X89-gap,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
 89,90,s05-X89-time; s05-X89-gap,Return,5,I,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
 91,93,s05-X91-map; s05-X91-design,Read,0,,Private diagnostic note with assessment feedback; no day 92 repair.
-88,90,s05-P88-compare; s05-P88-improve,Portfolio,15,,"Written feedback after day 88, two minutes per child; second-color revision, no score."
+88,90,s05-P88-compare s05-P88-improve,Portfolio,15,,"Written feedback after day 88, two minutes per child; second-color revision, no score."
 92,93,s05-E1-table; s05-E1-account,Read,0,,Private return in five-minute Read feedback; then Targeted repair 10 and Revision 15. Retain first score.
 90,91,s05-X89-time; s05-X89-gap unresolved I,Return,0,I,"Use the same second five-minute move already reserved for unresolved F. Choose F or I per child, never add a third move."
 92,93,s05-E2,Read,0,,Private return during Read feedback; share that five-minute part with the other assessment papers. Then Targeted repair 10 and Revision 15. Retain first score.
