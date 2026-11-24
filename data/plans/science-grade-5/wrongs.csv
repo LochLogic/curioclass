@@ -113,3 +113,62 @@ s01-P14-1,Every fall proves gas escape.,,,G,Treats one reading change as a uniqu
 s01-P15-1,I circled an unrelated record.,,,x,Selected record does not support the assigned evidence link.
 s01-N17a,They must have different inherited traits.,,,x,"The supplied comparison supports environmental effects, not an inheritance claim."
 s01-N17b,Losing food cannot affect survival.,,,x,"Ignores the specified food dependence; readiness gap, separate from unit 1 errors."
+s02-X18,Equal weights prove soil supplied the growth,,,I,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X19,New leaves prove water supplied everything,,,I,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X19,No soil means minerals are unnecessary,,,C,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X20,Sunlight enters as plant material,,,D,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X20,Five centimeters proves water supplied all growth,,,I,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X21,Neither matters because water supplies everything,,,B,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X21,R proves air caused growth despite changed water,,,I,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X22,Mostly soil,,,A,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X22,Light becomes material,,,D,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X22,Minerals are unnecessary,,,C,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X23,Living plants exchange no gases,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X23,Survival proves water is their only input,,,I,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X24,Only water has incoming matter,,,B,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X24,Light becomes new parts,,,D,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X25,Supports the claim that water supplied everything,,,I,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X26,Soil supplies most of the 30 g,,,A,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X26,Air cannot matter because water supplies everything,,,B,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X27,Fallen leaves become nothing,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X28,Plants exchange no gases with air,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X29,Dead matter disappears,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X29,Decomposers exchange no gases,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X30,The missing whole leaf proves matter vanished,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X30,Invisible gas means living things exchange no gases,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X31,Smaller leaves mean matter became nothing,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X31,The bottle proves living things exchange no gases,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X32,Organisms never exchange gases,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X32,Dead leaves become nothing,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X33,Only the owl changes; mice and sedges cannot,,,K,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X34,The bird gets food energy straight from sunlight,,,H,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X35,Food provides energy but no body material,,,G,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X36,Sunlight becomes body material,,,D,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X36,Energy cycles through soil into plants,,,F,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X36,Food has no building material,,,G,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X37,Soil supplies nearly all new plant matter,,,A,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X37,Decaying leaves become nothing,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X38,Sunlight is plant material,,,D,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X38,Dead snails vanish,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X38,Waste returns energy to reeds,,,F,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-E1,Mostly soil.,,,A,Plant gain exceeds soil loss.
+s02-E1,Water alone.,,,B,Controlled air comparison challenges water-only.
+s02-E1,Minerals unnecessary.,,,C,Neither record omits minerals.
+s02-E1,Sunlight adds material.,,,D,Light supplies energy.
+s02-E2,Dead matter vanishes.,,,E,Matter returns to environmental pools.
+s02-E2,No gas exchange.,,,J,Living organisms exchange gases.
+s02-E2,Newcomer cannot affect others.,,,K,Shared dependencies transmit effects.
+s02-E3,Energy cycles back to plants.,,,F,Matter reuse is not an energy cycle.
+s02-E3,Food supplies no material.,,,G,Food matter builds and repairs.
+s02-E3,Animals obtain food energy directly from sunlight.,,,H,Plant food carries that energy.
+s02-R41S,Mainly soil.,,,A,Disregards soil constraint.
+s02-R41S,Water alone.,,,B,Disregards controlled air.
+s02-R41S,Minerals unnecessary.,,,C,Minerals were included.
+s02-R41S,Sunlight is material.,,,D,Light is energy.
+s02-R41S,Any growth proves its source.,,,I,Source claims need controlled evidence.
+s02-R41R,Dead parts vanish.,,,E,Matter remains and returns.
+s02-R41R,No gas exchange occurs.,,,J,Organisms exchange gases.
+s02-R41E,Energy cycles through soil.,,,F,Energy leaves as warmth.
+s02-R41E,Food gives no building material.,,,G,Food provides matter too.
+s02-R41E,Sunlight feeds the goat directly.,,,H,Food carries energy from plants.
+s02-R41K,The newcomer cannot affect existing organisms.,,,K,Both use limited shared food.

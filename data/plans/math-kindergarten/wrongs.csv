@@ -1466,3 +1466,9 @@ s07-K123-link,Uses four squares for both parts.,,,N,Assign this letter only if o
 s07-K124-join,Keeps two as whole.,,,I,Assign this letter only if observed method supports it; x is another descriptive response.
 s07-K125-whole,Leaves out one and calls nine ten.,,,J,Assign this letter only if observed method supports it; x is another descriptive response.
 s07-P121-transfer,Leaves three further and claims fourteen.,,,x,"An omitted mark does not establish error L, which specifically revisits an object. Describe the partial-record error."
+s07-P122-repair-matching,Calls four more because its row spreads farther.,,,G,Cold-solved repair. Assign the letter only when observed method supports it.
+s07-F123-repair-whole,Keeps only arriving two as total.,,,I,Cold-solved repair. Assign the letter only when observed method supports it.
+s07-P124-repair-equation,Uses six for both groups.,,,N,Cold-solved repair. Assign the letter only when observed method supports it.
+s07-K125-repair-join,Keeps only arriving four as total.,,,I,Cold-solved repair. Assign the letter only when observed method supports it.
+s07-P125-repair-removal,Adds two to eight and records ten.,,,H,Cold-solved repair. Assign the letter only when observed method supports it.
+s07-P124-exitbox-removal,Adds three to eight and records eleven.,,,H,8 - 3 = 5; adding gives 11. Assign H only if action is observed.

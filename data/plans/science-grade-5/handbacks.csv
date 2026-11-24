@@ -44,3 +44,61 @@ from_day,to_day,what,where,minutes,error,note
 2,3,s01-X2a s01-X2b,Squeeze and compare,0,,Return teacher feedback for all 30 children; repair time is counted in the separate error routes.
 3,4,s01-X3a s01-X3b,Compare drawings,0,,Return teacher feedback for all 30 children; repair time is counted in the separate error routes.
 4,5,s01-P4-1 s01-P4-2 s01-P4-3,Revise,0,,Return the student page with its Exit box; practice is not scored.
+18,19,s02-X18,Evidence,5,I,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+19,20,s02-X19,Return,5,I,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+19,20,s02-X19,Return,5,C,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+20,21,s02-X20,Return,5,D,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+20,21,s02-X20,Return,5,I,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+21,22,s02-X21,Return,5,B,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+21,22,s02-X21,Return,5,I,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+22,23,s02-X22,Return,5,,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case. Shared A/C move, not ten minutes."
+22,23,s02-X22,Return,5,D,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+23,24,s02-X23,Return,5,J,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+23,24,s02-X23,Return,5,I,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+24,25,s02-X24,Return,5,B,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+24,25,s02-X24,Return,5,D,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+25,26,s02-X25,Return,5,I,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+26,27,s02-X26,Return,5,,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case. Shared A/B move."
+27,28,s02-X27,Return,5,E,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+28,29,s02-X28,Return,5,J,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+29,30,s02-X29,Return,5,E,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+29,30,s02-X29,Return,5,J,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+30,31,s02-X30,Return,5,E,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+30,31,s02-X30,Return,5,J,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+31,32,s02-X31,Return,5,E,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+31,32,s02-X31,Return,5,J,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+32,33,s02-X32,Return,5,E,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+32,33,s02-X32,Return,5,J,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+33,34,s02-X33,Return,5,K,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+34,35,s02-X34,Return,5,H,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+35,36,s02-X35,Return,5,G,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+36,37,s02-X36,Return,5,D,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+36,37,s02-X36,Return,5,F,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+36,37,s02-X36,Return,5,G,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+37,38,s02-X37,Return,5,A,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+37,38,s02-X37,Return,5,E,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+38,41,s02-X38,Private,2,,Return E38 with private route feedback. No return on days 39/40.
+39,41,s02-E1,Private,1,,Original component points; same five-minute Private feedback allocation.
+40,41,s02-E2 s02-E3,Private,2,,Return original component points; all four papers share five minutes.
+38,41,E38 and assessment targeted component corrections,Return,20,,Four five-minute rounds; at most one letter move per child per round. Whole-class move replaces a round. Retain extra unresolved gaps.
+18,19,s02-P18-1 s02-P18-2,Observe,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+19,20,s02-P19-1 s02-P19-2 s02-P19-3,Height,2,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+20,21,s02-P20-1 s02-P20-2,Single-study,2,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+21,22,s02-P21-1 s02-P21-2,Evidence,2,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+22,23,s02-P22-1,Predict,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+23,24,s02-P23-1,Evidence,2,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+24,25,s02-P24-1,Evidence,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+25,26,s02-P25-1,Evidence,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+26,27,s02-P26-1,Location,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+27,28,s02-P27-1 s02-P27-2,Separate,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+28,29,s02-P28-1 s02-P28-2,Evidence,2,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+29,30,s02-P29-1,Separate,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+30,31,s02-P30-1 s02-P30-2,Component,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+31,32,s02-P31-1 s02-P31-2,Needs,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+32,33,s02-P32-1,Resource,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+33,34,s02-P33-1 s02-P33-2,Evidence,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+34,35,s02-P34-1,Food-use,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+35,36,s02-P35-1 s02-P35-2,Separate,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+36,37,s02-P36-1 s02-P36-2,Separate,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+37,38,s02-P37-1 s02-P37-2,Accuracy,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+38,41,s02-P38-1,Reflection,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.

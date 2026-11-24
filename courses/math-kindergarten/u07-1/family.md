@@ -14,7 +14,7 @@ We are building with paper shapes, comparing pieces and describing flat forms an
 
 If you wish, compare one classroom drawing with its model together. Ask what looks alike or different. This is optional; no purchase, home materials, photograph or report is needed. All materials are provided in class. Children may pass during public talk. We will share written feedback and time to revise before closing the record.
 
-## Español
+## Spanish
 
 Construimos con figuras de papel, comparamos piezas y describimos figuras planas y objetos sólidos. Los niños usarán dibujos, marcas, modelos y sus formas habituales de comunicarse. Una caja tiene caras planas, pero la caja entera es sólida.
 
