@@ -254,11 +254,11 @@ from_day,to_day,what,where,minutes,error,note
 90,91,s05-X90,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
 90,91,s05-X90,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
 90,92,s05-E3-portfolio,Collection,0,,"Collect revised work day 90. First score after day 92, four points; no sitting time."
-77,78,question slips and strips,Water-location,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
-78,79,traces and land-water model,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
-79,80,row audits,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
-80,81,tallies,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
-81,82,evidence tags,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+77,78,"notice pages, question slips and strips",Water-location,0,,Written notes only in Water-location response; no extra repair block. All papers returned.
+78,79,"student pages, traces and land-water model",Return,0,,Written feedback returned in Return and repair; no extra minutes.
+79,80,student pages and row audits,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+80,81,student pages and tallies,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+81,82,student pages and evidence tags,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
 82,83,source sort,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
 83,84,source annotations,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
 84,85,causal strips,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."

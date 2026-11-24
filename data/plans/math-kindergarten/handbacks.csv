@@ -108,3 +108,6 @@ from_day,to_day,what,where,minutes,error,note
 60,61,s03-W60 s03-P60-mat s03-P60-fills s03-F60-E s03-F60-K s03-F60-N,Return,0,,"Unscored practice stays with child. Any teacher-recorded judgment needing feedback is handed back in existing priority repair, no extra allocation."
 61,62,s03-W61 s03-P61-hexagon s03-P61-count s03-F61-K,Return,0,,"Unscored practice stays with child. Any teacher-recorded judgment needing feedback is handed back in existing priority repair, no extra allocation."
 62,64,s03-W62 s03-P62-art s03-P62-boundary s03-F62-E,Centers,0,,"Unscored practice stays with child. Any teacher-recorded judgment needing feedback is handed back in existing priority repair, no extra allocation."
+50,51,s03-P50-circle,Return,0,,Unscored practice stays in the folder; any recorded feedback returns in the existing five-minute priority repair.
+51,52,s03-K51-names s03-P51-corners,Return,0,,Unscored practice stays in the folder; any recorded feedback returns in the existing five-minute priority repair.
+52,53,s03-P52-frame s03-F52-name,Return,0,,Unscored practice stays in the folder; any recorded feedback returns in the existing five-minute priority repair.
