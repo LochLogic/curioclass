@@ -1308,8 +1308,10 @@ C3-X136-C,Everyone benefited because stall numbers rose.,,,W,The fees record com
 C3-E134-R,Both sources are true because they are printed.,,,W,Printed status alone does not connect details to the claim.
 C3-K135-S2,All town residents because it mentions streets.,,,Q,The inside addressee is more specific than the topic.
 C3-K135-S3,Invite a street parade.,,,R,"A blocked route and clearing request support repair, not celebration."
-C3-X135-S2,Every visitor because gates are public.,,,Q,Generic public users ignore the printed addressee.
-C3-X135-S3,Sell more sacks.,,,R,The request discourages this use; no sales purpose is shown.
-C3-X136-S1,A boat crew wrote it in 2026.,,,P,The notice metadata names a clerk and its original date.
+C3-X135-S2,Every visitor is the intended reader.,,,Q,The catalog label conflicts with the more specific inside addressee.
+C3-X135-S3,The notice aims to sell more sacks.,,,R,The request and its safety reason contradict a sales purpose.
+C3-X136-S1,Boat crews made it; the original date is unknown.,,,P,The index guess conflicts with the original signature and date.
 C3-X136-S2,Anyone who likes celebrations.,,,Q,The addressee is boat crews.
 C3-K136-S1,The archive wrote it in 2020.,,,P,The later label is distinct from original maker/date.
+C3-X135-R1,Repairs ended Monday because the plan said Monday.,,,W,The claim exceeds what this record supports.
+C3-X136-R1,The North lamp was definitely not checked because its page is missing.,,,W,The claim exceeds what this record supports.

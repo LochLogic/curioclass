@@ -283,7 +283,7 @@ from_day,to_day,what,where,minutes,error,note
 132,132,s06-W132-1 s06-W132-2 s06-W132-3 s06-W132-4 s06-P132-1 s06-P132-2 s06-P132-3 s06-P132-4,Reflect and hand on,5,,Same-day private cue for every assigned paper; one priority per child. Checking starts during independent work.
 133,135,C3-E133-M C3-E133-G,Feedback,2,,Return all maps and explanations with a private cue; shared five-minute feedback block with 134.
 134,135,C3-E134-A1 C3-E134-A2 C3-E134-A3 C3-E134-B1 C3-E134-B2 C3-E134-B3 C3-E134-C C3-E134-R,Feedback,3,,"Return all history papers; one priority across both checks, not one meeting per error."
-135,136,C3-X135-M C3-X135-G C3-X135-S C3-X135-C C3-X135-S2 C3-X135-S3,Feedback,5,,Return assigned branch ticket and one move; unassigned branches stay blank.
+135,136,C3-X135-M C3-X135-G C3-X135-S C3-X135-C C3-X135-S2 C3-X135-S3 C3-X135-R1,Feedback,5,,Return the assigned written task retry and common exit. One priority remains; unassigned components stay blank.
 135,135,C3-K135-M C3-K135-G C3-K135-S C3-K135-C C3-K135-S2 C3-K135-S3,Response groups,0,,Feedback within the allocated group; only assigned teaching component required.
 136,136,C3-K136-M C3-K136-G C3-K136-S C3-K136-C C3-K136-S1,Targeted repair,0,,Feedback within allocated repair block.
-136,136,C3-X136-M C3-X136-G C3-X136-S C3-X136-C C3-X136-S1 C3-X136-S2,Return and reflect,5,,One assigned ticket per child. Begin checking in independent work; record unfinished checking for later adult completion.
+136,136,C3-X136-M C3-X136-G C3-X136-S C3-X136-C C3-X136-S1 C3-X136-S2 C3-X136-R1,Exit ticket and reflect,7,,Return checked written task retries and common exit tickets with a private cue. Begin checking during the last six independent minutes; record unfinished marking without claiming closure.

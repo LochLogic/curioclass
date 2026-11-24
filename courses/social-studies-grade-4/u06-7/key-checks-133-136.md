@@ -8,11 +8,11 @@ credit: ours
 ---
 # Course-level check 3 answer key
 
-Teacher only. Keep separate from every student page and ticket.
+Teacher only. Keep separate from child pages.
 
-One scale per component: shown, shown with help, not yet seen. Leave unobserved blank. Access reading or exact dictation alone is not content help; accept equivalent supported wording. No points or totals.
+One scale per component: shown, shown with help, not yet seen. Leave unobserved blank. Access alone is not content help. No points or totals.
 
-Map: compare both original atlas layers and the matching response outline. Positions and scale are approximate. Visual comparison with the source remains a browser check.
+Original items have blank adaptation-credit cells. Their factual references remain in sources.csv. The generalized atlas still needs its recorded browser check.
 
 ## C3-E133-M
 
@@ -240,27 +240,27 @@ Wrong: Invite a street parade. Error R. A blocked route and clearing request sup
 
 ## C3-X135-S2
 
-Storekeepers who hang sacks; the notice addresses them.
+The readers are storekeepers who hang sacks; the notice addresses them, rather than every visitor.
 
-Look for: Names audience.; Uses printed addressee clue.
+Look for: Corrects the broad reader label.; Uses the notice addressee as evidence.
 
-Wrong: Every visitor because gates are public. Error Q. Generic public users ignore the printed addressee.
+Wrong: Every visitor is the intended reader. Error Q. The catalog label conflicts with the more specific inside addressee.
 
 ## C3-X135-S3
 
-Stop sacks being hung on the gate because the hinges are rusted and could fail.
+The notice asks storekeepers to stop hanging sacks because rusted hinges could fail. Its request concerns preventing damage, not selling sacks.
 
-Look for: Infers purpose.; Uses request and damaged-hinge clue.
+Look for: Rejects the sales purpose.; Uses the stop request and damaged hinges.
 
-Wrong: Sell more sacks. Error R. The request discourages this use; no sales purpose is shown.
+Wrong: The notice aims to sell more sacks. Error R. The request and its safety reason contradict a sales purpose.
 
 ## C3-X136-S1
 
-Dock clerk Lian; April 1924.
+Original maker: dock clerk Lian. Original date: April 1924. The signature and date correct the index guess about boat crews and a missing date.
 
-Look for: Names original maker.; Gives original date.
+Look for: Corrects maker from the signature.; Corrects date from the original notice.
 
-Wrong: A boat crew wrote it in 2026. Error P. The notice metadata names a clerk and its original date.
+Wrong: Boat crews made it; the original date is unknown. Error P. The index guess conflicts with the original signature and date.
 
 ## C3-X136-S2
 
@@ -270,16 +270,30 @@ Look for: Names intended audience.; Uses addressee clue.
 
 Wrong: Anyone who likes celebrations. Error Q. The addressee is boat crews.
 
-## Limits
-
-A and B are later institutional accounts. B links A, so two page names do not establish independent eyewitness corroboration. This check uses complementary details, not workers' own testimony. Unit 5 is sampled, not every topic in units 3 to 5.
-
-A resource can enable work without determining every job or every reason for settlement. Record only the assigned response component.
-
 ## C3-K136-S1
 
 Garden clerk Nico; March 1898. The 2020 archive label is later.
 
-Look for: original maker; original date separated from cataloging.
+Look for: Names original maker.; Separates original date from archive label.
 
-Wrong: The archive wrote it in 2020. Error P: hosting is not authorship.
+Wrong: The archive wrote it in 2020. Error P. The later label is distinct from original maker/date.
+
+## C3-X135-R1
+
+Repairs ended Thursday. The completed-work log reports Thursday; the plan names an intended finish, not the actual finish.
+
+Look for: Corrects the finish to Thursday.; Uses the completed-work log rather than the intended plan.
+
+Wrong: Repairs ended Monday because the plan said Monday. Error W. The claim exceeds what this record supports.
+
+## C3-X136-R1
+
+East and West lamps were checked. Whether the North lamp was checked is unknown. A missing page does not prove that it was unchecked or that all lamps were checked.
+
+Look for: States the two supported checks.; Keeps North unknown rather than inferring checked or unchecked.
+
+Wrong: The North lamp was definitely not checked because its page is missing. Error W. The claim exceeds what this record supports.
+
+## Limits
+
+The two history texts are later institutional accounts, not eyewitnesses. B links A. Two pages do not establish independent corroboration. Keep each child's assigned retry result separate from the common exit's evidence-correction result.

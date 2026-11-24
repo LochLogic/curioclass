@@ -48,3 +48,8 @@ Cargo record: Cargo boats still enter the harbor.
 ## Held exit S2/S3
 Gate notice: To storekeepers: Stop hanging sacks on this gate.
 The hinges are rusted and could fail.
+
+## Catalog label for held S2/S3
+The catalog calls the readers all visitors.
+It says the notice aims to sell sacks.
+These are catalog guesses. Compare them with the actual gate notice.

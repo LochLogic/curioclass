@@ -6,11 +6,11 @@ unit: C
 version: draft 1, not ready, not yet taught
 credit: ours
 ---
-# Day 135 exit ticket: S
+# Day 135 fresh retry: S
 
 Use only your assigned held card S.
 [[C3-X135-S]]
 
-**Exit box**
+**Retry box**
 
 {work}
