@@ -619,18 +619,18 @@ s06-P100,Eyes directly command fingers.,,,D,Diagnose only this stated idea; inco
 s06-P101,Learning cannot affect responses.,,,E,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-P102,Sense organ commands movement directly.,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-P103,Learned meanings cannot guide action.,,,E,Diagnose only this stated idea; incomplete answers are not automatically this error.
-s06-P104,Cutting proves root uptake.,,,H,Diagnose only this stated idea; incomplete answers are not automatically this error.
-s06-P105,Petals alone produce seeds.,,,G,Diagnose only this stated idea; incomplete answers are not automatically this error.
-s06-P106,Only outside structures contribute.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P104,I replace our unclear result with the supplied color result.,,,x,Changes the actual observation to match a supplied fallback.
+s06-P105,A plant must walk to respond.,,,x,A growing shoot can respond to light without walking.
+s06-P106,A wind-moved seed supports protection from eating.,,,x,Matches true evidence to an unrelated claim.
 s06-P107,Cutting directly shows root uptake.,,,H,Diagnose only this stated idea; incomplete answers are not automatically this error.
-s06-P108,Petals alone make seeds.,,,G,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P108,Seeds turn into pollen after fruit appears.,,,x,Reverses the sequence and confuses pollen with seeds.
 s06-P109,Only outside parts matter.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-P110,Rootless observation proves uptake.,,,H,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-P111,Only external structures contribute.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-P112,Cutting proves uptake.,,,H,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-P113,Only outside parts help organisms.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X97-dark,It sees without any illumination.,,,B,One stated idea; not a label for an incomplete response.
-s06-X104-question,All useful parts are outside.,,,F,One stated idea; not a label for an incomplete response.
+s06-X104-question,Why can no inside part help?,,,F,The question assumes internal parts cannot contribute. Do not diagnose from an open question alone.
 s06-P94-parts,The eye supplies light.,,,A,Reverses receiving light into supplying light.
 s06-P94-materials,Thick card lets light through.,,,I,Treats an opaque card as transmitting light.
 s06-P94-sort,Both ask about seeing.,,,x,Does not account for the distinction or change the task asks about.
@@ -669,3 +669,24 @@ s06-C100,The counts show eyes directly commanding fingers,,,D,Anticipated; ident
 s06-C101,Learning cannot affect responses,,,E,Anticipated; identify this stated idea only.
 s06-C102,Receiving parts command movement directly,,,D,Anticipated; identify this stated idea only.
 s06-C103,Remembered meanings cannot guide actions,,,E,Anticipated; identify this stated idea only.
+s06-X104-question,Were the watered plants' leaves firm?,,,x,The record already answers this question. Give descriptive feedback only.
+s06-P104-repair,The receiving organ commands the action directly.,,,D,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P104-memory,Remembered meanings cannot guide action.,,,E,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P104-cycle,The same adult becomes its own seed.,,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P104-jobs,The difference guarantees survival.,,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P104-label,Only external parts can help the plant.,,,F,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P105-repair,Only the outside surface can carry water.,,,F,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P105-reason,Stored water guarantees the plant survives.,,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P105-evidence,This supports seed travel.,,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P105-limit,The cut flower tests roots taking in water.,,,H,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P106-inside,Outside parts are the only parts that can transport water.,,,F,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P106-roots,The drawing shows roots taking up water.,,,H,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P106-reason,"The seed moves in wind, so this shows protection from eating.",,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P106-say,A moved seed supports the protection claim.,,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P107-inside,Only outside parts can help water move.,,,F,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P107-roots,The cut stem has tested root uptake.,,,H,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P107-link,Only outside parts do useful work.,,,F,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P108-inside,Only outside parts do useful work.,,,F,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P108-roots,The cut flower directly tested root uptake.,,,H,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P108-fruit,The seed is a pollen grain.,,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-X108,Inside parts cannot contribute to reproduction.,,,F,Explicit denial of internal reproductive contribution; incomplete labels alone do not diagnose this.

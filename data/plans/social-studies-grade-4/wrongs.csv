@@ -869,14 +869,14 @@ s05-P86-1,Exchange comes before the clothing request.,,,O,Cold-solved: this resp
 s05-P86-2,Only settlers from the East.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
 s05-P87-1,Every gray outline is an old national border.,,,E,Cold-solved content diagnosis.
 s05-P87-2,Oregon.,,,E,Cold-solved content diagnosis.
-s05-P88-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P88-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P88-3,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P89-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P89-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P89-3,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P90-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P90-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
+s05-P88-1,Both events belong at 1836.,,,F,Cold-solved content diagnosis.
+s05-P88-2,Enslaved people freely chose the work.,,,I,Cold-solved content diagnosis.
+s05-P88-3,All Tejanos supported independence.,,,D,Cold-solved content diagnosis.
+s05-P89-1,An unnamed historian wrote it.,,,G,Cold-solved content diagnosis.
+s05-P89-2,All three are eyewitness war accounts.,,,G,Cold-solved content diagnosis.
+s05-P89-3,Texas independence ended this war in 1836.,,,F,Cold-solved content diagnosis.
+s05-P90-1,Later payment caused earlier fighting.,,,O,Cold-solved content diagnosis.
+s05-P90-2,It proves everyone wanted closure.,,,G,Cold-solved content diagnosis.
 s05-P91-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
 s05-P91-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
 s05-P91-3,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
@@ -943,3 +943,21 @@ s05-P86-3,Yes. Monday always causes Tuesday's events.,,,H,Cold-solved against pr
 s05-P86-4,Both groups received only benefits.,,,R,Cold-solved against printed stimulus; accept equivalent supported wording.
 s05-F87-1,Tuesday rain caused Monday's vote.,,,O,Cold-solved fresh component; one diagnosis.
 s05-K87-1,A modern state always has one historical acquisition.,,,E,Cold-solved fresh component; one diagnosis.
+s05-F88-1,The dotted edge must follow the current garden edge.,,,E,Cold-solved fresh component; one diagnosis.
+s05-K88-1,Independence.,,,F,Cold-solved fresh component; one diagnosis.
+s05-F89-1,Leaving and joining mean the same action.,,,F,Cold-solved fresh component; one diagnosis.
+s05-P89-4,The Oregon history witnessed California fighting.,,,G,Cold-solved fresh component; one diagnosis.
+s05-P89-5,These supply firsthand accounts from every affected people.,,,G,Cold-solved fresh component; one diagnosis.
+s05-K89-1,The clerk saying so proves the boundary.,,,G,Cold-solved fresh component; one diagnosis.
+s05-F90-1,The clerk saying so proves everyone agreed.,,,G,Cold-solved fresh component; one diagnosis.
+s05-P90-3,Payment proves a freely chosen sale without pressure.,,,N,Cold-solved fresh component; one diagnosis.
+s05-F87-2,Saturday lamps caused Friday repairs.,,,O,Cold-solved fresh component; one diagnosis.
+s05-F88-2,The pond edge must follow the playground outline.,,,E,Cold-solved fresh component; one diagnosis.
+s05-F89-2,Leaving and joining are the same.,,,F,Cold-solved fresh component; one diagnosis.
+s05-F90-2,Buying benches proves every resident wanted them.,,,G,Cold-solved fresh component; one diagnosis.
+s05-F87-1,Dates alone explain planting.,,,H,Separate priority component; one diagnosis.
+s05-F87-1,Every group gained space.,,,R,Separate priority component; one diagnosis.
+s05-F87-2,Dates alone explain repairs.,,,H,Separate priority component; one diagnosis.
+s05-F87-2,Every group gained room space.,,,R,Separate priority component; one diagnosis.
+s05-F89-1,The captive freely chose work.,,,I,Separate priority component; one diagnosis.
+s05-F89-2,The captive freely chose work.,,,I,Separate priority component; one diagnosis.
