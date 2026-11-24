@@ -118,7 +118,7 @@ Key: Four plain apples.
 
 Look-fors: Invented for practice: Rin labels six play-apple pictures striped/plain. Two striped already supplied. One allocation at a time. | Concurrent paper in connected work; teacher circulates, no thirty-child oral round.
 
-Shown: Two striped/four plain. | Not yet seen: Calls unchanged one/five a new allocation.
+Shown: Two striped/four plain. | Not yet seen: Three plain, with one plain picture visibly omitted.
 
 ## s05-P94
 

@@ -10,7 +10,7 @@ credit: All ours.
 
 Equals relates equal quantities; connect pieces, supplied drawings and both equation orders. Use six-square partial models, 6 = 2 + 4 alongside 2 + 4 = 6. In labelled stories, swapping category counts can change the allocation. Rin is the sole actor. Every practice story is invented for practice. Supported correction of a partial record is distinct from independent generation.
 
-Read every word and equation aloud; no independent reading. Before class print practice and exit masters at 18 point or larger, the local record and teacher-key.md. Keep the teacher key private. Never show held exit/end layouts, pictures or independent response formats in practice. Each practice master supplies an adult-started record, not a blank evidence task. Finite number pairs recur in full-range records, but independent cases/layouts are held.
+Read every word and equation aloud; no independent reading. Before class print practice and exit masters at 18 point or larger, the local record and key-teacher.md. Keep the teacher key private. Never show held exit/end layouts, pictures or independent response formats in practice. Each practice master supplies an adult-started record, not a blank evidence task. Finite number pairs recur in full-range records, but independent cases/layouts are held.
 
 Keep ledger wording: Partner turns, Return and repair, Paper count-dot record, Counting centers, Close retained observation records, and Five occupied cells and five-and-some on joined 5-frames. Demonstrate intended reviews afresh before use; never assume planned teaching has happened. There is no readiness assessment; day 87 retrieval is unscored.
 
