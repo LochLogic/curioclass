@@ -564,10 +564,10 @@ s05-R99-access,Fresh water is always safe to drink.,,,G,"Low salt does not estab
 s05-P99-A,Names prove an interaction.,,,A,Unit 5 component repair letter A; use separate repair-key.md after the component attempt.
 s05-P99-B,Transport is weathering.,,,B,Unit 5 component repair letter B; use separate repair-key.md after the component attempt.
 s05-P99-C,Unseen air cannot act.,,,C,Unit 5 component repair letter C; use separate repair-key.md after the component attempt.
-s05-P99-D,Only ocean belongs.,,,D,Unit 5 component repair letter D; use separate repair-key.md after the component attempt.
+s05-P99-D,Only ocean belongs under salt water.,,,D,error D: Non-ocean saline groundwater is wrongly excluded from the salt category.
 s05-P99-E,Both mean all water.,,,E,Unit 5 component repair letter E; use separate repair-key.md after the component attempt.
 s05-P99-F,Only lakes and rivers belong.,,,F,Unit 5 component repair letter F; use separate repair-key.md after the component attempt.
-s05-P99-G,All fresh water is safe.,,,G,Unit 5 component repair letter G; use separate repair-key.md after the component attempt.
+s05-P99-G,The contamination test alone gives the salt amount.,,,G,error G: Conflates evidence about salt amount with evidence about contamination; distinguish fresh from tested safe.
 s05-P99-H,Equal lengths always mean equal amounts.,,,H,Unit 5 component repair letter H; use separate repair-key.md after the component attempt.
 s05-X85,"Land, water, air.",,,A,Parts named without an action.
 s05-X85,Unseen air cannot act.,,,C,Unseen air excluded or lost despite supplied evidence.
@@ -614,3 +614,9 @@ s05-C92-1,A surface view always shows every water store.,,,x,Teacher-only feedba
 s05-C93-1,More blue area always means more stored water.,,,x,Teacher-only feedback: Area alone gives no depth or stored volume; use amount evidence.
 s05-C94-1,One fresh-only share is one all-water share.,,,E,Teacher-only feedback: It belongs to the fresh subset within all water; it is not one all-water share.
 s05-C95-1,Larger printing increases the water quantity.,,,H,Teacher-only feedback: The same supplied quantities are represented with larger printed lengths.
+s05-P96,The graph proves every fresh source safe.,,,G,error G: Global freshwater distribution is mistaken for local drinking-water safety.
+s05-P97,Unsupported claims need no evidence.,,,x,error x: Component lacks a matching source locator; use descriptive feedback.
+s05-P99-design,Both devices changed in every way.,,,x,error x: Identical outlines and slot counts are ignored; only spacing differs.
+s05-P99-resource,The stream amount cannot change.,,,x,error x: Supplied matched records show fewer downstream water marks when the intake opens.
+s05-Q2a1,Endpoints do not match the supplied 975 and 25.,,,x,error x: Copying or construction gap; no specific misconception inferred.
+s05-Q2b2,No land-ice category or dominant freshwater store is identified.,,,x,error x: Location or category evidence absent; give descriptive feedback.
