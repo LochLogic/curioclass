@@ -1,5 +1,7 @@
 ---
 piece: check
+check: end
+stretch: 4
 course: science-grade-4
 unit: 4.4
 version: draft, not yet taught
@@ -7,6 +9,8 @@ credit: ours
 ---
 
 # Day 71: land-change evidence
+
+## Items
 
 The additional records are invented for practice. Record your own live slope measurements.
 

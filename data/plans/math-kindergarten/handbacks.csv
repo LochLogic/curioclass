@@ -63,3 +63,5 @@ from_day,to_day,what,where,minutes,error,note
 41,42,s02-P41-1 s02-K41-order s02-F41-J,Connected,0,,"Practice feedback joins the existing five-minute E41 repair, no extra minutes; fifteen teacher minutes after day 41."
 42,43,s02-P42-1 s02-P42-talk,Return,0,,"Practice feedback joins the existing five-minute E42 repair; fifteen teacher minutes after class, no extra repair slot."
 43,45,s02-P43-1 s02-P43-2 s02-P43-compare s02-P43-reason,Unit,0,,Return feedback with existing Unit 2 response; no added allocation. Fifteen teacher minutes after day 43.
+41,42,s02-F41-M s02-F41-I,Connected,0,,"Conditional practice feedback joins existing five-minute repair, no second allocation."
+43,45,s02-F43-rule,Unit,0,,Conditional rule repair joins existing response; no extra minutes.

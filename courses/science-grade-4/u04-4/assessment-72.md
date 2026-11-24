@@ -1,5 +1,7 @@
 ---
 piece: check
+check: end
+stretch: 4
 course: science-grade-4
 unit: 4.4
 version: draft, not yet taught
@@ -7,6 +9,8 @@ credit: ours
 ---
 
 # Day 72: a new valley history
+
+## Items
 
 Teacher: keep sealed until day 72. Original diagrams and records are invented for practice. Read prompts neutrally. Keep the classroom model visible only for independent checking, without feedback.
 

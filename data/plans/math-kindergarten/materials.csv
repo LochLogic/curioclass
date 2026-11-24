@@ -1,7 +1,7 @@
 material,made_day,used_days,kept_in,per,note
 paper strips,1,1 5 6 7 8 9 10 11 12 13 14 15 16 17 18,classroom folder,student,
 pencil,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18,classroom folder,student,
-student page,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18,classroom folder,student,
+student page,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18 41 42 43 44,classroom folder,student,
 button exit card,1,1,classroom folder,student,
 cut-paper buttons,1,1,classroom folder,student,
 connecting cubes,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18,classroom folder,pair,
@@ -41,7 +41,7 @@ class list,4,4,classroom folder,room,
 build card,4,4,classroom folder,student,
 counter cards,3,4,classroom folder,student,Day 3 exit returned with feedback.
 pencil,5,5,classroom folder,student,
-paper pieces,3,3 4 5 11 25 34 36 37 38 39 40,classroom folder,student,
+paper pieces,3,3 4 5 11 25 34 36 37 38 39 40 44,classroom folder,student,
 student page,5,5,classroom folder,student,
 leaf exit card,5,5,classroom folder,student,
 connecting cubes,5,5,classroom folder,pair,
@@ -62,7 +62,7 @@ one closed book,7,7 8,classroom folder,pair,Original paper material; quantities 
 large blocks,7,7 8 9,classroom folder,pair,Original paper material; quantities and stand-ins named on the day.
 star-and-button exit card,8,8,classroom folder,student,Original paper material; quantities and stand-ins named on the day.
 day 7 art-corner cards,8,8,classroom folder,student,Original paper material; quantities and stand-ins named on the day.
-crayons,2,2 9 16,classroom folder,student,"Day 2 uses crayon pictures on cut-paper exit cards, not loose crayons. Days 9 and 16 use drawing crayons with the pencil stand-in named on the day."
+crayons,2,2 9 16 41 42 43 44,classroom folder,student,"Day 2 uses crayon pictures on cut-paper exit cards, not loose crayons. Days 9 and 16 use drawing crayons with the pencil stand-in named on the day."
 shell exit card,9,9,classroom folder,student,Original paper material; quantities and stand-ins named on the day.
 day 8 star-and-button cards,9,9,classroom folder,student,Original paper material; quantities and stand-ins named on the day.
 hat-and-cup exit card,10,10,classroom folder,student,Original paper material; quantities and stand-ins named on the day.
@@ -125,10 +125,10 @@ courses/math-kindergarten/u02-6/exit-37.md,37,37,Unit 2 dated folder; reserved t
 courses/math-kindergarten/u02-6/exit-38.md,38,38,Unit 2 dated folder; reserved tasks separate envelope,student,"Half slip, exact original stimulus hand-drawn if no printer. Read exact prompt, no key on child sheet."
 courses/math-kindergarten/u02-6/exit-39.md,39,39,Unit 2 dated folder; reserved tasks separate envelope,student,"Half slip, exact original stimulus hand-drawn if no printer. Read exact prompt, no key on child sheet."
 courses/math-kindergarten/u02-6/exit-40.md,40,40,Unit 2 dated folder; reserved tasks separate envelope,student,"Half slip, exact original stimulus hand-drawn if no printer. Read exact prompt, no key on child sheet."
-u02-7/practice-records.md,41,41 42 43 44,Unit 2 dated folder; reserved tasks separate envelope,student,Print the page for today only; board-copy supplied partial diagram if no printer. Keys stay private.
-u02-7/exit-41.md,41,41,Unit 2 dated folder; reserved tasks separate envelope,student,"Half slip, exact original stimulus hand-drawn if no printer. Read exact prompt, no key on child sheet."
-u02-7/exit-42.md,42,42,Unit 2 dated folder; reserved tasks separate envelope,student,"Half slip, exact original stimulus hand-drawn if no printer. Read exact prompt, no key on child sheet."
-u02-7/exit-43.md,43,43,Unit 2 dated folder; reserved tasks separate envelope,student,"Half slip, exact original stimulus hand-drawn if no printer. Read exact prompt, no key on child sheet."
+courses/math-kindergarten/u02-7/practice-records.md,41,41 42 43 44,Unit 2 dated folder; reserved tasks separate envelope,student,Print the page for today only; board-copy supplied partial diagram if no printer. Keys stay private.
+courses/math-kindergarten/u02-7/exit-41.md,41,41,Unit 2 dated folder; reserved tasks separate envelope,student,"Half slip, exact original stimulus hand-drawn if no printer. Read exact prompt, no key on child sheet."
+courses/math-kindergarten/u02-7/exit-42.md,42,42,Unit 2 dated folder; reserved tasks separate envelope,student,"Half slip, exact original stimulus hand-drawn if no printer. Read exact prompt, no key on child sheet."
+courses/math-kindergarten/u02-7/exit-43.md,43,43,Unit 2 dated folder; reserved tasks separate envelope,student,"Half slip, exact original stimulus hand-drawn if no printer. Read exact prompt, no key on child sheet."
 courses/math-kindergarten/u02-1/family.md,19,19,Unit 2 dated folder; reserved tasks separate envelope,student,"English and Spanish, optional activity, no home reports."
 courses/math-kindergarten/u02-1/record.md,19,19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44,Unit 2 dated folder; reserved tasks separate envelope,room,Thirty-name roster and component records; dates/help separate.
 courses/math-kindergarten/u02-1/bear-pieces.md,20,20,Unit 2 dated folder; reserved tasks separate envelope,student,"Five adult-cut large bears, not small toys."
@@ -142,12 +142,12 @@ courses/math-kindergarten/u02-5/tower-pieces.md,36,36,Unit 2 dated folder; reser
 courses/math-kindergarten/u02-6/matching-record-u.md,40,40 41 42 44,Unit 2 dated folder; reserved tasks separate envelope,student,Retain two/three paper for later reasons and judgment; no second collection.
 courses/math-kindergarten/u02-6/matching-record-e.md,40,40 41 42 44,Unit 2 dated folder; reserved tasks separate envelope,student,"Retain equal-four original, feedback and revision."
 courses/math-kindergarten/u02-6/numeral-comparison-record.md,40,40 41 42 44,Unit 2 dated folder; reserved tasks separate envelope,student,Three reserved pairs; retain for reasons and revision.
-u02-7/one-more-record.md,41,41 42 44,Unit 2 dated folder; reserved tasks separate envelope,student,Nine dots plus outside tab; tenth cell open.
-u02-7/mitten-sock-pieces.md,41,41,Unit 2 dated folder; reserved tasks separate envelope,student,Adult-cut four mittens/seven socks.
-u02-7/shape-cards.md,42,42 43 44,Unit 2 dated folder; reserved tasks separate envelope,student,"Fresh two circles/four squares/six triangles, example icons, no reading."
-u02-7/category-record.md,42,42 43 44,Unit 2 dated folder; reserved tasks separate envelope,student,Blank labels and retained mat order; supported revision separately traced.
-u02-7/length-pattern-cards.md,42,42,Unit 2 dated folder; reserved tasks separate envelope,student,"Ten rectangles: two short striped, four short plain, three long striped, one long plain."
-u02-7/food-pieces.md,43,43,Unit 2 dated folder; reserved tasks separate envelope,student,"Ten mushrooms/ten peppers, paper only."
+courses/math-kindergarten/u02-7/one-more-record.md,41,41 42 44,Unit 2 dated folder; reserved tasks separate envelope,student,Nine dots plus outside tab; tenth cell open.
+courses/math-kindergarten/u02-7/mitten-sock-pieces.md,41,41,Unit 2 dated folder; reserved tasks separate envelope,student,Adult-cut four mittens/seven socks.
+courses/math-kindergarten/u02-7/shape-cards.md,42,42 43 44,Unit 2 dated folder; reserved tasks separate envelope,student,"Fresh two circles/four squares/six triangles, example icons, no reading."
+courses/math-kindergarten/u02-7/category-record.md,42,42 43 44,Unit 2 dated folder; reserved tasks separate envelope,student,Blank labels and retained mat order; supported revision separately traced.
+courses/math-kindergarten/u02-7/length-pattern-cards.md,42,42,Unit 2 dated folder; reserved tasks separate envelope,student,"Ten rectangles: two short striped, four short plain, three long striped, one long plain."
+courses/math-kindergarten/u02-7/food-pieces.md,43,43,Unit 2 dated folder; reserved tasks separate envelope,student,"Ten mushrooms/ten peppers, paper only."
 courses/math-kindergarten/u02-5/numeral-record-1.md,35,35 36 44,Unit 2 dated folder; reserved tasks separate envelope,student,Two sides of one independent eleven-box count/write sheet; exact pictures hand-drawn if no printer. Read every prompt separately before conferences. Star routes share boxes and minutes.
 courses/math-kindergarten/u02-5/numeral-record-2.md,35,35 36 44,Unit 2 dated folder; reserved tasks separate envelope,student,Two sides of one independent eleven-box count/write sheet; exact pictures hand-drawn if no printer. Read every prompt separately before conferences. Star routes share boxes and minutes.
 paper trays and screen,19,19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44,Unit 2 dated folder; reserved tasks separate envelope,pair,Paper plates or drawn tray areas; folded paper screen. Optional single display device only.
@@ -172,13 +172,10 @@ courses/math-kindergarten/u02-6/practice-37.md,37,37,Unit 2 dated practice folde
 courses/math-kindergarten/u02-6/practice-38.md,38,38,Unit 2 dated practice folder,student,Actual day practice sheet; board-copy the same partial diagram if no printer. Teacher reads labels aloud. No held exit/end cases.
 courses/math-kindergarten/u02-6/practice-39.md,39,39,Unit 2 dated practice folder,student,Actual day practice sheet; board-copy the same partial diagram if no printer. Teacher reads labels aloud. No held exit/end cases.
 courses/math-kindergarten/u02-6/practice-40.md,40,40,Unit 2 dated practice folder,student,Actual day practice sheet; board-copy the same partial diagram if no printer. Teacher reads labels aloud. No held exit/end cases.
-u02-7/practice-41.md,41,41,Unit 2 dated practice folder,student,Actual day practice sheet; board-copy the same partial diagram if no printer. Teacher reads labels aloud. No held exit/end cases.
-u02-7/practice-42.md,42,42,Unit 2 dated practice folder,student,Actual day practice sheet; board-copy the same partial diagram if no printer. Teacher reads labels aloud. No held exit/end cases.
-u02-7/practice-43.md,43,43,Unit 2 dated practice folder,student,Actual day practice sheet; board-copy the same partial diagram if no printer. Teacher reads labels aloud. No held exit/end cases.
+courses/math-kindergarten/u02-7/practice-41.md,41,41 44,Unit 2 dated practice folder,student,Actual day practice sheet; board-copy the same partial diagram if no printer. Teacher reads labels aloud. No held exit/end cases. Embedded in student page; no duplicate copy.
+courses/math-kindergarten/u02-7/practice-42.md,42,42,Unit 2 dated practice folder,student,Actual day practice sheet; board-copy the same partial diagram if no printer. Teacher reads labels aloud. No held exit/end cases. Use the exact supplied pictures; keep assessment pieces hidden until independent task.
+courses/math-kindergarten/u02-7/practice-43.md,43,43,Unit 2 dated practice folder,student,Actual day practice sheet; board-copy the same partial diagram if no printer. Teacher reads labels aloud. No held exit/end cases. Retain initial and revised F4 or use embedded partial practice art as named.
 courses/math-kindergarten/u02-3/picture-routes.md,25,25 26 27 28 29,Unit 2 teaching folder,student,"Original square line, array, circle, scatter. Adult starts a partial route; children repair. Hand drawings are no-printer path. No reserved leaf/star pictures."
 student page,19,19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40,Unit 2 dated folder,student,One practice side on days 19 to 22; two sides on days 23 and 24.
 crayons,19,19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40,Unit 2 dated folder,student,"Optional stand-in for broad pencils, named on each day."
 paper bags,34,34 35,Unit 2 practice folder,pair,"Folded scrap paper stand-in; verify supplied labels, no independent bowl-label practice."
-courses/math-kindergarten/u02-7/practice-41.md,41,41 44,Unit 2 dated folder,student,Embedded in student page; no duplicate copy.
-courses/math-kindergarten/u02-7/practice-42.md,42,42,Unit 2 dated folder,student,Use the exact supplied pictures; keep assessment pieces hidden until independent task.
-courses/math-kindergarten/u02-7/practice-43.md,43,43,Unit 2 dated folder,student,Retain initial and revised F4 or use embedded partial practice art as named.
