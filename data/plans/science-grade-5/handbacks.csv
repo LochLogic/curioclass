@@ -207,3 +207,6 @@ from_day,to_day,what,where,minutes,error,note
 75,76,s04-K75-1,Return,0,,Private component note returned inside the existing repair allocation; no additional reteaching minutes.
 76,77,s04-P76-footprint,Return,0,,Private component note returned inside the existing repair allocation; no additional reteaching minutes.
 77,78,s04-P77-scale,Return,0,,Private component note returned inside the existing repair allocation; no additional reteaching minutes.
+82,84,c2-E82-measure c2-E82-powder c2-E82-metal c2-E82-mineral c2-E82-liquid c2-E82-plan c2-E82-log c2-E82-claim,Private feedback,2,,One private next step; missing practical evidence separate.
+83,84,c2-E83-distance c2-E83-light c2-E83-size c2-E83-shadow c2-E83-daylight c2-E83-stars,Private feedback,3,,One priority gap; no public comparison.
+84,86,c2-R84-climate,Climate support,10,,"AD timescale/AE map key. Existing day 86 support: three compare records, four symbols, three fresh comparison; no added time."

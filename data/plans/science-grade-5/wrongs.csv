@@ -496,3 +496,28 @@ s04-P72-tag,Our class directly observed N71 in the sky.,,,x,error x: Descriptive
 s04-K75-1,The paths converge farther from the source.,,,x,Use a descriptive next step for this model feature.
 s04-P76-footprint,"My observation was unclear, but I replaced it with a made-up measurement.",,,x,Use a descriptive next step for this model feature.
 s04-P77-scale,The grain shows the true scaled size of Earth.,,,x,Use a descriptive next step for this model feature.
+c2-E82-measure,I copied a number without reading an instrument.,,,U,Error U: I copied a number without reading an instrument.
+c2-E82-powder,B must match because its color matches.,,,T,Error T: B must match because its color matches.
+c2-E82-metal,C must match because its color matches.,,,T,Error T: C must match because its color matches.
+c2-E82-mineral,F must match because its color matches.,,,T,Error T: F must match because its color matches.
+c2-E82-liquid,G must match because its color matches.,,,T,Error T: G must match because its color matches.
+c2-E82-plan,Warm salt cups and cold controls isolate salt addition.,,,V,Error V: Warm salt cups and cold controls isolate salt addition.
+c2-E82-log,My partner performed every action; I copied the supplied record.,,,U,Error U: My partner performed every action; I copied the supplied record.
+c2-E82-claim,"Every mixture makes a new substance, so clarity proves formation.",,,W,"Error W: Every mixture makes a new substance, so clarity proves formation."
+c2-E83-distance,B: sun is not a star.,,,X,Error X: B: sun is not a star.
+c2-E83-light,Distance cannot change apparent brightness at fixed output.,,,Y,Error Y: Distance cannot change apparent brightness at fixed output.
+c2-E83-size,A larger image proves the sun physically exceeds every other star.,,,Z,Error Z: A larger image proves the sun physically exceeds every other star.
+c2-E83-shadow,A fixed stick always has one shadow direction.,,,AA,Error AA: A fixed stick always has one shadow direction.
+c2-E83-daylight,Daylight duration is identical in both months.,,,AB,Error AB: Daylight duration is identical in both months.
+c2-E83-stars,L ceased to exist in September.,,,AC,Error AC: L ceased to exist in September.
+c2-P84-properties,Shine alone selects it.,,,T,Error T: Shine alone selects it.
+c2-P84-controls,Two changed conditions isolate one cause.,,,V,Error V: Two changed conditions isolate one cause.
+c2-P84-light,Distance cannot affect brightness.,,,Y,Error Y: Distance cannot affect brightness.
+c2-P84-pattern,It stays the same all day.,,,AA,Error AA: It stays the same all day.
+c2-X84-material,Pale means A.,,,T,Error T: Pale means A.
+c2-X84-change,Every mixture must make new material.,,,W,Error W: Every mixture must make new material.
+c2-X84-light,Distance never affects apparent brightness.,,,Y,Error Y: Distance never affects apparent brightness.
+c2-X84-pattern,February stars ceased to exist.,,,AC,Error AC: February stars ceased to exist.
+c2-P84-shadow,I copied a supplied length as my personal measurement.,,,U,Error U: I copied a supplied length as my personal measurement.
+c2-R84-climate,Yesterday makes P dry climate and Q wet climate.,,,AD,Error AD: Yesterday makes P dry climate and Q wet climate.
+c2-R84-climate,P usually dry; Q usually wet.,,,AE,Error AE: reverses the printed map key.
