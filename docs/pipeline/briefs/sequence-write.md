@@ -25,7 +25,12 @@ step 5.
   sentences, why the days fall in this order, the readiness, mid-unit and end-of-unit assessment days and what each
   covers, and each "Candidate:" check-set cell settled (kept with its day cost inside the unit's days, or dropped
   with the reason). Then the course-level checks, with their weeks, and a "Shorter path" section (rule 10). Prose
-  for judgment only; the days live in the CSV.
+  for judgment only; the days live in the CSV. Science only (later.csv L104, Cory 2026-11-23): the file ends with a
+  section "Practice and crosscutting concept coverage": one row per unit plus one for the course-level checks, one
+  column per practice and per crosscutting concept the frame names, with a key naming each column. Each cell lists
+  the course days on which students do the practice or reason with the concept, counted from days.csv goals and
+  notes (a label in passing does not count; an empty cell says "none"). Every practice and concept the frame names
+  is on at least one day.
 - `data/plans/{course}/days.csv`, one row per course day, columns in this order:
   `day,stretch,unit,kind,goal,skills,codes,assess,school_day,note`
   - **day**: 1 to the frame's total, in order, none skipped.
@@ -149,12 +154,15 @@ step 5.
    base's, with `harms_learning` yes or no and why. Days that adapt no base lesson never carry "Base" in their goal
    or note.
 9. **Sensitivity:** a day with content the frame flags names it in the note column; the sensitivity agent's read
-   (docs/pipeline/briefs/sensitivity-read.md) comes with the unit plan.
+   (docs/pipeline/briefs/sensitivity-read.md) comes with the unit plan. In science, a day where the evidence meets a
+   belief (the age of Earth, evolution, the origin of the universe, climate change) names it in the note; the order
+   has students meet the evidence first, and the day teaches what the evidence shows, plainly and respectfully, with
+   no separate outside reader (Cory 2026-11-23: facts are facts).
 10. **A shorter path.** The scope and sequence has a short "Shorter path" section (FOUNDATION section 5, adoption
     bar C2): how the days hold on a shorter period, and a year about 10 days short, by named fold-in days (days whose
-    work folds into a neighbour, nothing assessed and no owned part cut). Each fold-in day names the minutes it
+    work folds into a neighbor, nothing assessed and no owned part cut). Each fold-in day names the minutes it
     saves, and the section states its total against the frame's day count. The same rule holds in every subject.
-11. No em dashes; "Curio Class" in full; no company names. Edit only your files. No git.
+11. No em dashes; "Curio Class" in full; US spelling; no company names. Edit only your files. No git.
 
 ## The gate
 Run `python -X utf8 scripts/sequence.py check {course}` (also run by `python -X utf8 scripts/plan.py check`): days
