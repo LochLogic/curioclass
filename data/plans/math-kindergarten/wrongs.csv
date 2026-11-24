@@ -534,8 +534,6 @@ s03-X57,Calls open drawing complete.,,,D,"Assign only from observed action or he
 s03-X58,Too narrow to be triangle.,,,C,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X59,Gap at claimed join.,,,E,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X59,Overlap instead of edge contact.,,,K,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-X60,Rejects square because turned.,,,B,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
-s03-X60,Selects nonsquare rhombus from equal sides alone.,,,N,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X61,Gaps in fill.,,,E,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X61,Overlaps in fill.,,,K,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-X62,Rejects turned square as square.,,,B,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
@@ -1900,3 +1898,4 @@ sC-K160-1,Shows one plus two as twelve.,,,P,"Anticipated action; classify from o
 sC-P160-1,Uses one mark for ten.,,,P,"Anticipated action; classify from observed working, not from the final numeral alone."
 sC-F160-1,Keeps five total marks for fourteen.,,,P,"Anticipated action; classify from observed working, not from the final numeral alone."
 sC-X160,"Draws one mark, saying it stands for ten.",,,P,"Anticipated action; classify from observed working, not from the final numeral alone."
+s03-X60,Selects the five-sided outline.,,,x,Unclassified mismatch. Trace each boundary once on a fresh practice hexagon before retrying a different partial record.

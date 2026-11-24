@@ -1,5 +1,5 @@
 ---
-piece: key
+piece: record
 course: math-kindergarten
 unit: C
 stretch: C

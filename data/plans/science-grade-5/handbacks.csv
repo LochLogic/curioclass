@@ -247,7 +247,7 @@ from_day,to_day,what,where,minutes,error,note
 97,99,s05-X97-1 s05-X97-2,feedback,0,,"Return with assessment feedback, never on 98."
 98,99,s05-Q1a s05-Q1b s05-Q1c s05-Q1d s05-Q1e s05-Q2a1 s05-Q2a2 s05-Q2b1 s05-Q2b2 s05-Q2c1 s05-Q2c2 s05-Q2c3,feedback,5,,"Return original 24 points privately; priorities go to existing separate repair rounds, no rescore."
 98,99,Q1/Q2 and E97 priority component gaps,Return,15,,Three five-minute parallel rounds maximum per child. Teacher three four-minute visits plus three routing minutes. Whole-class move replaces a round; log remaining gaps.
-99,100,assigned s05-R99 route and revisions,Retrieve,0,,Return private written feedback after class; no promised extra repair lesson. Forward unresolved gaps with existing unit-6 retrieval.
+99,100,s05-R99-systems s05-R99-air s05-R99-distribution s05-R99-salt s05-R99-access,Retrieve,0,,Return private written feedback after class; no promised extra repair lesson. Forward unresolved gaps with existing unit-6 retrieval.
 99,103,unit-6 design/resource handoff notes,Return,0,,"Notes only, not another readiness check or added lesson allocation."
 86,87,s05-P86-climate s05-P86-key s05-P86-recheck s05-P86-extension,Return,0,,Return support notes with existing packet; no additional conference.
 99,100,s05-P99-A s05-P99-B s05-P99-C s05-P99-D s05-P99-E s05-P99-F s05-P99-G s05-P99-H s05-P99-design s05-P99-resource,Retrieve,0,,"Private written feedback after class, same folder as assigned retry; notes only, no new promised teaching time."

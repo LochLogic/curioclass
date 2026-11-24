@@ -124,11 +124,11 @@ Shown: Seven; only positions changed. | Not yet seen: Says eight because spread 
 
 Prompt: Count from here.
 
-Answer: One through seven, seven altogether.
+Answer: One through seven, each tab once.
 
 Look for: Opposite starting point, each object once, total unchanged. Children 16 to 20; five 45-second asks and 15 seconds notes per child, twenty minutes total. | Shape: Seven-tab count, total, changed-spacing prediction, reverse-route count and seven-of-ten stop. Each prompt separate; no complete sequence practiced.
 
-Shown: One through seven, seven altogether. | Not yet seen: Claims eight because new start changed total. (C).
+Shown: One through seven, each tab once. | Not yet seen: Claims eight because new start changed total. (C).
 
 ## s02-M2a-37
 
@@ -174,11 +174,11 @@ Shown: Seven; only positions changed. | Not yet seen: Says eight because spread 
 
 Prompt: Count from here.
 
-Answer: One through seven, seven altogether.
+Answer: One through seven, each tab once.
 
 Look for: Opposite starting point, each object once, total unchanged. Children 21 to 25; five 45-second asks and 15 seconds notes per child, twenty minutes total. | Shape: Seven-tab count, total, changed-spacing prediction, reverse-route count and seven-of-ten stop. Each prompt separate; no complete sequence practiced.
 
-Shown: One through seven, seven altogether. | Not yet seen: Claims eight because new start changed total. (C).
+Shown: One through seven, each tab once. | Not yet seen: Claims eight because new start changed total. (C).
 
 ## s02-M2a-38
 
@@ -224,11 +224,11 @@ Shown: Seven; only positions changed. | Not yet seen: Says eight because spread 
 
 Prompt: Count from here.
 
-Answer: One through seven, seven altogether.
+Answer: One through seven, each tab once.
 
 Look for: Opposite starting point, each object once, total unchanged. Children 26 to 30; five 45-second asks and 15 seconds notes per child, twenty minutes total. | Shape: Seven-tab count, total, changed-spacing prediction, reverse-route count and seven-of-ten stop. Each prompt separate; no complete sequence practiced.
 
-Shown: One through seven, seven altogether. | Not yet seen: Claims eight because new start changed total. (C).
+Shown: One through seven, each tab once. | Not yet seen: Claims eight because new start changed total. (C).
 
 ## s02-M2a-39
 

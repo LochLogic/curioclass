@@ -48,15 +48,15 @@ Wrong ideas: Gap at claimed join. (E); Overlap instead of edge contact. (K).
 
 ## s03-X60
 
-Read: Which shape is the same kind as this one?
+Which shape is the same kind as this one?
 
-Look for: Larger differently turned square, equal sides and matching square corners.
+Look for: The larger differently turned irregular hexagon, with six joined straight sides and six corners.
 
-Join target/choice; mark equal-side/corner correspondence; hear six demonstrate. Rhombus also equal-sided, attend to corners. | Shape: Recognize turned/resized square among square/rhombus/rectangle; practice one piece in incomplete mat, never choice array.
+Join the small irregular hexagon to its rotated enlarged copy; trace six sides and mark six corresponding corners. Pentagon and quadrilateral distractors do not match. | Shape: Independently match an irregular six-sided boundary by its features. Practice rotates a single piece in an incomplete mat, never this target or choice array.
 
-Shown: Larger differently turned square, equal sides and matching square corners. | Not yet seen: Rejects square because turned. (B).
+Shown: Links the two six-sided outlines and marks corresponding sides/corners. | Not yet seen: Selects the five-sided outline; reason unobserved, error x.
 
-Wrong ideas: Rejects square because turned. (B); Selects nonsquare rhombus from equal sides alone. (N).
+Wrong ideas: Selects the five-sided outline, error x.
 
 ## s03-F1-paper
 

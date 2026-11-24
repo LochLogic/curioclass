@@ -16,7 +16,7 @@ Prompt: Label these bowls.
 
 Answer: 3 by three-feather bowl; 0 by empty bowl.
 
-Look for: Choose from all cards 0 to 10; outline attached cards on paper. | Shape: Labels beside a counted and empty bowl. No bowls, feathers, paired full/empty labelling or group-to-card selection in practice; begin with supplied bag labels and verify contents, then guided formation.
+Look for: Choose from all cards 0 to 10; outline attached cards on paper. | Shape: Labels beside a counted and empty bowl. No bowls, feathers, paired full/empty labeling or group-to-card selection in practice; begin with supplied bag labels and verify contents, then guided formation.
 
 Shown: 3 by three-feather bowl; 0 by empty bowl. | Not yet seen: Labels empty bowl 1. (E).
 
@@ -104,11 +104,11 @@ Shown: Seven; only positions changed. | Not yet seen: Says eight because spread 
 
 Prompt: Count from here.
 
-Answer: One through seven, seven altogether.
+Answer: One through seven, each tab once.
 
 Look for: Opposite starting point, each object once, total unchanged. Children 1 to 5; five 45-second asks and 15 seconds notes per child, twenty minutes total. | Shape: Seven-tab count, total, changed-spacing prediction, reverse-route count and seven-of-ten stop. Each prompt separate; no complete sequence practiced.
 
-Shown: One through seven, seven altogether. | Not yet seen: Claims eight because new start changed total. (C).
+Shown: One through seven, each tab once. | Not yet seen: Claims eight because new start changed total. (C).
 
 ## s02-M2a-34
 
@@ -154,11 +154,11 @@ Shown: Seven; only positions changed. | Not yet seen: Says eight because spread 
 
 Prompt: Count from here.
 
-Answer: One through seven, seven altogether.
+Answer: One through seven, each tab once.
 
 Look for: Opposite starting point, each object once, total unchanged. Children 6 to 10; five 45-second asks and 15 seconds notes per child, twenty minutes total. | Shape: Seven-tab count, total, changed-spacing prediction, reverse-route count and seven-of-ten stop. Each prompt separate; no complete sequence practiced.
 
-Shown: One through seven, seven altogether. | Not yet seen: Claims eight because new start changed total. (C).
+Shown: One through seven, each tab once. | Not yet seen: Claims eight because new start changed total. (C).
 
 ## s02-M2a-35
 
@@ -204,11 +204,11 @@ Shown: Seven; only positions changed. | Not yet seen: Says eight because spread 
 
 Prompt: Count from here.
 
-Answer: One through seven, seven altogether.
+Answer: One through seven, each tab once.
 
 Look for: Opposite starting point, each object once, total unchanged. Children 11 to 15; five 45-second asks and 15 seconds notes per child, twenty minutes total. | Shape: Seven-tab count, total, changed-spacing prediction, reverse-route count and seven-of-ten stop. Each prompt separate; no complete sequence practiced.
 
-Shown: One through seven, seven altogether. | Not yet seen: Claims eight because new start changed total. (C).
+Shown: One through seven, each tab once. | Not yet seen: Claims eight because new start changed total. (C).
 
 ## s02-M2a-36
 

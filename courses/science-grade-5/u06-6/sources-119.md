@@ -30,4 +30,5 @@ Own paraphrase of public-domain federal text; no images copied.
 
 ## Proposed leaflet
 Invented for practice: a community proposes a planted garden below its paved plaza.
+Plaza runoff now carries grit toward a pond.
 The draft says: "Every drop stays in the garden. All pollution disappears. Pond life is always protected."

@@ -1,5 +1,5 @@
 ---
-piece: key
+piece: record
 course: math-kindergarten
 unit: 8.3
 stretch: 8

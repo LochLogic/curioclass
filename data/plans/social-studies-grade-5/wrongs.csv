@@ -347,8 +347,8 @@ s04-X47b,Trenton prompted the formal French alliance.,,,Y,Reverses the different
 s04-X48a,Valley Forge is in Virginia; Yorktown is in Pennsylvania.,,,X,Location reversal; extend geographic repair beyond the original two places.
 s04-X48b,Valley Forge was a battle.,,,C,Confuses camp with battle.
 s04-X48b,Yorktown ended all fighting immediately.,,,L,One force surrendered; peace was broader.
-s04-X49a,All foreign help began after Saratoga.,,,K,Confuses earlier resources with the later formal alliance.
-s04-X49b,Yorktown instantly ended every campaign.,,,L,Confuses local surrender and the wider war.
+s04-X49a,The equipment and supplies could not support resistance.,,,x,Ignores contributions. This undated stem cannot diagnose when aid began; record K only if timing is volunteered.
+s04-X49b,Crossing the Atlantic made supplying troops effortless.,,,x,Denies the supply constraint instead of explaining a difficulty.
 s04-X50a,Every Native nation supported Britain.,,,D,Erases distinct sovereign decisions.
 s04-X50a,Every Black fighter gained freedom.,,,M,Military participation does not prove an outcome.
 s04-X50a,All colonists wanted independence.,,,S,Erases loyal and neutral colonists.
@@ -434,3 +434,36 @@ s04-P44,Both sources were made by Congress in July 1776.,,,x,Incorrect requested
 s04-P45,The grievance concerns a harvest.,,,x,Incorrect requested source annotation.
 s04-P46,They request a new army.,,,x,Incorrect requested source annotation.
 s04-P46-alt,U proves everyone entered every day.,,,x,Incorrect requested source annotation.
+s04-K47-A,The request proves access.,,,A,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F47-A,The path must be open.,,,A,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K48-X,New Jersey.,,,X,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F48-X,New York.,,,X,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K48-Y,The deliveries repaired the bridge.,,,Y,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F48-Y,Food access opened the storehouse.,,,Y,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K49-C,Building shelters is a battle.,,,C,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F49-C,Winning a battle.,,,C,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K49-L,Every army stopped fighting.,,,L,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F49-L,Peace everywhere is proved.,,,L,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K50-K,No help existed before Friday.,,,K,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F50-K,Nothing arrived earlier.,,,K,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K50-L,All fighting ended.,,,L,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F50-L,All other forces gave up.,,,L,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K51-D,Both councils joined.,,,D,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F51-D,Vale decided for both.,,,D,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K51-M,Service guarantees the permit.,,,M,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F51-M,Permission was certainly granted.,,,M,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K51-N,The owner does not care.,,,N,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F51-N,The seller dislikes customers.,,,N,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K51-S,Everyone supports the path.,,,S,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F51-S,Everyone approves.,,,S,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K51-U,One force means one legal status.,,,U,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F51-U,Both must have the same legal status.,,,U,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K51-team,Their titles explain success.,,,E,Names roles without actions or effects.
+s04-K50-resource,The record shows no helpful resource.,,,x,Ignores the resource explicitly linked to continued action.
+s04-F50-resource,Travel needs no resources.,,,x,Ignores the resource explicitly linked to continued action.
+s04-P47,Trenton 1777; Saratoga December 1776.,,,x,Reverses the given event dates.
+s04-P48,Valley Forge was a battle.,,,C,Confuses camp logistics with fighting.
+s04-P49,A Dutch army supplied every resource.,,,x,Invents a force and erases distinct origins.
+s04-P50,The household did not care.,,,N,Invents a motive absent from the notice.
+s04-P51,Their titles alone explain their actions.,,,E,Omits the four specified actions.
+s04-P50-alt,Everyone must already have access.,,,x,Treats the promise as proof of access; does not sample historical knowledge.

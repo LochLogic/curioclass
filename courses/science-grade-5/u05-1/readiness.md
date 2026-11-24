@@ -1,5 +1,6 @@
 ---
 piece: check
+check: readiness
 course: science-grade-5
 unit: 5.1
 stretch: 5
@@ -12,6 +13,8 @@ audience: teacher
 
 Teacher: use the existing check once, in day 84's last ten minutes.
 Six independent paper minutes, four inspecting; no unit-5 content here.
+
+## Items
 
 [[c2-R84-climate]]
 

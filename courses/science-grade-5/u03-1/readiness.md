@@ -1,5 +1,6 @@
 ---
 piece: check
+check: readiness
 course: science-grade-5
 unit: 3.1
 stretch: 3
