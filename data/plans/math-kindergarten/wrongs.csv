@@ -197,7 +197,7 @@ s02-O33,Says zero needs one dot.,,,O,Assign this letter only when the recorded a
 s02-X34,Labels empty bowl 1.,,,E,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-O34,Says empty needs 1.,,,E,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-X35,Moves all ten after losing requested stop.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-O35,Continues after six to use every ticket.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-O35,"Ten, because every ticket must be used.",,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-X36,Counts four correctly but labels 6.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-O36,Says adjacent towers are same despite extra.,,,H,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-X37,Adds one but says total stayed five.,,,H,Assign this letter only when the recorded action or explanation establishes it; record help separately.
@@ -217,17 +217,17 @@ s02-O43,Keeps adding until tray is empty.,,,D,Assign this letter only when the r
 s02-M1a-34,Omits a tab.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M1b-34,Repeats sequence with no total.,,,A,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M1c-34,Says eight because spread changed.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-M1d-34,Claims eight because new start changed total.,,,C,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1d-34,Claims the new starting point makes eight tabs.,,,C,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M2a-34,Moves all ten after losing stop.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M1a-35,Omits a tab.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M1b-35,Repeats sequence with no total.,,,A,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M1c-35,Says eight because spread changed.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-M1d-35,Claims eight because new start changed total.,,,C,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1d-35,Claims the new starting point makes eight tabs.,,,C,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M2a-35,Moves all ten after losing stop.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M1a-36,Omits a tab.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M1b-36,Repeats sequence with no total.,,,A,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M1c-36,Says eight because spread changed.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-M1d-36,Claims eight because new start changed total.,,,C,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-M1d-36,Claims the new starting point makes eight tabs.,,,C,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M2a-36,Moves all ten after losing stop.,,,D,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M1a-37,Omits a tab.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M1b-37,Repeats sequence with no total.,,,A,Assign this letter only when the recorded action or explanation establishes it; record help separately.
@@ -450,3 +450,19 @@ s02-P32-5,Leaves 2 squares for numeral 1.,,,M,"Assign a letter only from observe
 s02-P32-6,Leaves 2 squares for numeral 3.,,,M,"Assign a letter only from observed actions or heard reasoning, otherwise describe response."
 s02-P32-7,Leaves 7 squares for numeral 8.,,,M,"Assign a letter only from observed actions or heard reasoning, otherwise describe response."
 s02-P32-8,Leaves 9 squares for numeral 10.,,,M,"Assign a letter only from observed actions or heard reasoning, otherwise describe response."
+s02-R34,Misses one square.,,,K,Assign a letter only from an observed action or explanation; record help separately.
+s02-F34,Keeps 1 for none.,,,E,Assign a letter only from an observed action or explanation; record help separately.
+s02-P34-2,Intended numeral remains unrecognizable.,,,x,Assign a letter only from an observed action or explanation; record help separately.
+s02-P34-3,Writes 2 while saying five.,,,x,Isolated numeral recall does not establish quantity-to-numeral error M.
+s02-R35,Adds all surplus pieces beyond five.,,,D,Assign a letter only from an observed action or explanation; record help separately.
+s02-F35,Keeps 1 for empty.,,,E,Assign a letter only from an observed action or explanation; record help separately.
+s02-P35-2,Intended numeral remains unrecognizable.,,,x,Assign a letter only from an observed action or explanation; record help separately.
+s02-F35-route,Omits middle square and gives four.,,,K,Assign a letter only from an observed action or explanation; record help separately.
+s02-F35-route,Revisits middle square and gives six.,,,L,Repeated visit is directly observed.
+s02-R36,Claims ten because squares spread.,,,B,Assign a letter only from an observed action or explanation; record help separately.
+s02-K36-1,Says two after one square joins two.,,,H,Assign a letter only from an observed action or explanation; record help separately.
+s02-K36-2,Chooses 2 because its printed mark is larger.,,,J,Assign a letter only from an observed action or explanation; record help separately.
+s02-P36-2,Counts two but writes 1.,,,M,Assign a letter only from an observed action or explanation; record help separately.
+s02-P36-3,Says same despite extra square.,,,H,Assign a letter only from an observed action or explanation; record help separately.
+s02-F36,Continues beyond requested five.,,,D,Assign a letter only from an observed action or explanation; record help separately.
+s02-P34-4,Claims spreading the five requires label 8.,,,B,Assign only when explanation shows spacing used as quantity.
