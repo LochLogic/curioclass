@@ -236,4 +236,11 @@ from_day,to_day,what,where,minutes,error,note
 69,70,s04-P69-notes s04-P69-accounts,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
 71,73,s04-E1-measure s04-E1-cause s04-E1-ice s04-E1-wind s04-E1-animal s04-E1-rain,Revision,10,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
 72,73,s04-E2-order s04-E2-match s04-E2-deform s04-E2-cut s04-E2-limit,Revision,10,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
-71,75,s04-E1-measure original individual practical record,assessment,0,,Retain unchanged for course check; no new turn or second unit score.
+71,75,s04-E1-measure original individual practical record,Investigation audit,0,,Retain unchanged for course check; no new turn or second unit score.
+57,58,s04-P57-notice s04-P57-initial s04-P57-slow,Return,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
+58,59,s04-P58-sort,response,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
+62,63,s04-P62-retrieve s04-P62-graph,Return,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
+63,64,s04-P63-paper,Return,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
+64,65,s04-P64-records,Explain,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
+70,73,s04-P70-consensus s04-P70-feedback,Targeted repair,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
+73,74,s04-P73-revision s04-P73-change s04-P73-fresh,Launch,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
