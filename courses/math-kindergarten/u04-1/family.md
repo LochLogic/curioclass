@@ -16,7 +16,7 @@ If you would like, try a short invented story with two paper squares and three m
 
 This is optional. There is nothing to send back and no need to describe your household.
 
-## Español
+## Spanish
 
 Estamos mostrando cómo se juntan grupos y qué queda cuando se apartan objetos. Usamos papel, dibujos y relatos antes de relacionarlos con +, - y =. El signo igual indica la misma cantidad a ambos lados. Está bien contar todos los objetos.
 
