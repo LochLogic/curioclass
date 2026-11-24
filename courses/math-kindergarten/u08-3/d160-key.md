@@ -12,7 +12,7 @@ Read all child directions aloud. Keep this key private. Mark only shown, shown w
 
 ## sC-P160-count
 
-Continue our spoken count.
+Keep the counting pattern going.
 
 **Answer.** Ones: every successive whole-number name from one through one hundred. Tens: ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
 
@@ -24,7 +24,7 @@ Continue our spoken count.
 
 ## sC-P160-gamea
 
-Check this supplied answer.
+Use the paired squares to check this answer.
 
 **Answer.** 4
 
@@ -36,7 +36,7 @@ Check this supplied answer.
 
 ## sC-P160-gameb
 
-Check this supplied answer.
+Check what remains on the removal card.
 
 **Answer.** 3
 

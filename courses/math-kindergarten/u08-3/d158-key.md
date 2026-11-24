@@ -12,7 +12,7 @@ Read all child directions aloud. Keep this key private. Mark only shown, shown w
 
 ## sC-P158-count
 
-Continue our spoken count.
+Continue our count after the spoken start.
 
 **Answer.** Ones: every successive whole-number name from one through one hundred. Tens: ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
 
@@ -24,7 +24,7 @@ Continue our spoken count.
 
 ## sC-P158-gamea
 
-Check this supplied answer.
+Check the answer on the joining-squares card.
 
 **Answer.** 4
 
@@ -36,7 +36,7 @@ Check this supplied answer.
 
 ## sC-P158-gameb
 
-Check this supplied answer.
+Verify the crossed-out-square card.
 
 **Answer.** 3
 

@@ -12,7 +12,7 @@ Read all child directions aloud. Keep this key private. Mark only shown, shown w
 
 ## sC-P159-count
 
-Continue our spoken count.
+Follow the counting voice through the next stretch.
 
 **Answer.** Ones: every successive whole-number name from one through one hundred. Tens: ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.
 
@@ -24,7 +24,7 @@ Continue our spoken count.
 
 ## sC-P159-gamea
 
-Check this supplied answer.
+Match the joining picture to its supplied answer.
 
 **Answer.** 4
 
@@ -36,7 +36,7 @@ Check this supplied answer.
 
 ## sC-P159-gameb
 
-Check this supplied answer.
+Test the removal picture's supplied total.
 
 **Answer.** 3
 
@@ -48,7 +48,7 @@ Check this supplied answer.
 
 ## sC-K159-guess
 
-Make a first guess.
+Guess this arranged collection before counting.
 
 **Answer.** Accept a first more/fewer/same-as-ten guess; the model has twelve.
 
@@ -72,7 +72,7 @@ Show a check of the collection.
 
 ## sC-P159-guess
 
-Make a first guess.
+Mark your first guess for the spaced squares.
 
 **Answer.** Accept an initial guess before counting; eight are supplied.
 
