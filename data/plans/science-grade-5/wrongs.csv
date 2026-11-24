@@ -352,3 +352,24 @@ s03-P51f,Different depths still isolate spoon material.,,,I,Error I: Changing tw
 s03-P51q,Matching appearance always proves matching identity.,,,A,Error A: A shared visible property does not establish identity.
 s03-P51,Weight needs no unit.,,,B,Error B: A measurement needs its unit.
 s03-P51t,The empty cup weight is the powder weight.,,,x,Error x: Use actual or supplied evidence without inventing a result.
+s03-P52a,Appearance alone identifies every sample.,,,A,Error A: evidence misread.
+s03-P52b,Nothing remains when material cannot be seen.,,,F,Error F: evidence misread.
+s03-K52-1,Change dampness and pulling strength together to isolate dampness.,,,I,Error I: evidence misread.
+s03-P52c,The reading proves every mixture makes new material.,,,E,Error E: evidence misread.
+s03-P52d,Every changed appearance proves a new substance.,,,E,Error E: evidence misread.
+s03-P52,Paragraph 1 says material vanished.,,,F,Error F: evidence misread.
+s03-P52r,Both returned just because someone tried.,,,H,Error H: evidence misread.
+s03-P52w,It returned only because all changes must reverse.,,,H,Error H: evidence misread.
+s03-P53h,Changing stick length still gives a matched comparison.,,,I,Error I: evidence misread.
+s03-P53f,Clear appearance means no material remains.,,,F,Error F: evidence misread.
+s03-P53i,Change dampness and pulling strength together to isolate dampness.,,,I,Error I: evidence misread.
+s03-P53n,Three repeated trials guarantee the claim is true.,,,x,Error x: evidence misread.
+s03-P54i,Change liquid type and amount together to identify one cause.,,,I,Error I: evidence misread.
+s03-P54m,All bubbles prove a new substance.,,,G,Error G: evidence misread.
+s03-P55g,Any pouring bubble proves a new substance.,,,G,Error G: evidence misread.
+s03-P55t,Every mixture must create a new substance.,,,E,Error E: evidence misread.
+s03-P55s,Change dampness and cup size together to isolate dampness.,,,I,Error I: evidence misread.
+s03-P55q,Clumps prove every mixture creates new material.,,,E,Error E: evidence misread.
+s03-P53,Change quantities and temperature together to isolate one cause.,,,I,Error I: evidence misread.
+s03-P54,Any pouring bubble proves a new substance.,,,G,Error G: evidence misread.
+s03-P55,Every mixture must create a new substance.,,,E,Error E: evidence misread.
