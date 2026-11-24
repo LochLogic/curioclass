@@ -263,7 +263,7 @@ s02-M3-8,Counts 4 correctly but writes another numeral.,,,M,Assign this letter o
 s02-M3-9,Counts 2 correctly but writes another numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M3-10,Counts 7 correctly but writes another numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-M3-11,Counts 5 correctly but writes another numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-F1a,Circles four as full five.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F1a,Skips one top-row dot while counting and circles only the other four.,,,K,"Assign only when the skipped member is observed, not from a wrong total alone."
 s02-F1b,Treats occupied cell as empty by skipping its dot.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-F1c,Says still nine after adding one and writes 9.,,,H,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-F2um,Omits an object while matching.,,,K,Assign this letter only when the recorded action or explanation establishes it; record help separately.
@@ -498,3 +498,8 @@ s02-R37-oral,"Says one, three, two while trying to count in order.",,,x,Record h
 s02-R38-oral,"Says one, three, two while trying to count in order.",,,x,Record heard sequence difficulty only; no quantity diagnosis from a choral response.
 s02-R39-oral,"Says one, three, two while trying to count in order.",,,x,Record heard sequence difficulty only; no quantity diagnosis from a choral response.
 s02-R40-oral,"Says one, three, two while trying to count in order.",,,x,Record heard sequence difficulty only; no quantity diagnosis from a choral response.
+s02-K41-order,Places 8 before 5 after the supplied 3.,,,G,"Assign only from observed action or heard explanation, not a wrong total alone."
+s02-F41-J,Says 5 is greater because its print is larger.,,,J,"Assign only from observed action or heard explanation, not a wrong total alone."
+s02-P42-talk,Skips one member when explaining a group's count.,,,K,"Assign only when the skipped member is observed, not from a wrong total alone."
+s02-P43-compare,Acknowledges three extras in eight but marks eight as fewer.,,,I,"Assign only from observed action or heard explanation, not a wrong total alone."
+s02-P43-reason,Calls the group with extras fewer.,,,I,"Assign only from observed action or heard explanation, not a wrong total alone."

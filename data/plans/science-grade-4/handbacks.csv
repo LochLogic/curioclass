@@ -225,7 +225,7 @@ from_day,to_day,what,where,minutes,error,note
 67,68,s04-X67,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
 68,69,s04-X68,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
 69,70,s04-X69,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
-70,73,s04-X70,Targeted repair,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+70,73,s04-X70,Targeted repair,5,H,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
 59,60,s04-P59-response s04-P59-plan s04-P59-baseline,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
 60,61,s04-P60-measure,Compare controls,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
 61,62,s04-P61-clay s04-P61-abrasion,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
@@ -234,7 +234,7 @@ from_day,to_day,what,where,minutes,error,note
 67,68,s04-P67-retrieve s04-P67-build s04-P67-cards,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
 68,69,s04-P68-model s04-P68-photo,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
 69,70,s04-P69-notes s04-P69-accounts,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
-71,73,s04-E1-measure s04-E1-cause s04-E1-ice s04-E1-wind s04-E1-animal s04-E1-rain,Revision,10,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+71,73,s04-E1-measure s04-E1-cause s04-E1-ice s04-E1-wind s04-E1-animal s04-E1-rain,Revision,10,C,"Return all records with feedback; preserve originals. Assessment revisions never change original scores. Error C is routed here with its causal-comparison feedback, not to the independent day 72 assessment."
 72,73,s04-E2-order s04-E2-match s04-E2-deform s04-E2-cut s04-E2-limit,Revision,10,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
 71,75,s04-E1-measure original individual practical record,Investigation audit,0,,Retain unchanged for course check; no new turn or second unit score.
 57,58,s04-P57-notice s04-P57-initial s04-P57-slow s04-P57-questions,Return,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.

@@ -60,3 +60,6 @@ from_day,to_day,what,where,minutes,error,note
 44,45,Unit 2 first-made missing evidence and flagged gaps,Unit,10,,"Existing unit 3 slot: five-minute repair, five-minute fresh transfer. First-made day 44 work revised before judgment. Receiving part: Unit 2 Return and repair, ten minutes, not the generic five-minute return."
 44,46,Unit 2 remaining flagged gaps,Unit,10,,"Second existing unit 3 slot: five-minute repair and five-minute fresh transfer, no repeated full assessment. Receiving part: Unit 2 Return and repair, ten minutes, not the generic five-minute return."
 19,20,unit 1 response records from days 17 and 18,Counting centers,10,,"Five minutes repair and five fresh transfer, not another assessment; preserve missing-observation list."
+41,42,s02-P41-1 s02-K41-order s02-F41-J,Connected,0,,"Practice feedback joins the existing five-minute E41 repair, no extra minutes; fifteen teacher minutes after day 41."
+42,43,s02-P42-1 s02-P42-talk,Return,0,,"Practice feedback joins the existing five-minute E42 repair; fifteen teacher minutes after class, no extra repair slot."
+43,45,s02-P43-1 s02-P43-2 s02-P43-compare s02-P43-reason,Unit,0,,Return feedback with existing Unit 2 response; no added allocation. Fifteen teacher minutes after day 43.

@@ -12,7 +12,7 @@ storage bags,1,1 2 3 7 8 9 11,classroom,room,Store protection.
 question board,1,1 2 3 4 5 6 7 8 13 16 27 35 57 58,classroom,room,Teacher retains.
 class record book,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15,classroom,room,One marking scale and heard roster.
 Ramp record R,1,1 2 3 4 5 6 7 13 15,classroom,room,Invented fallback; never mixed with measured observations.
-pencil,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66,classroom,student,Also stationary demonstration on day 4.
+pencil,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73,classroom,student,Also stationary demonstration on day 4.
 folder,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35,classroom,student,Retain records after feedback.
 Car record C,7,7 8 9 10 11,classroom,room,Named in day materials; invented records labeled.
 toy cars,7,7 8 9 11,classroom,room,Named in day materials; invented records labeled.
@@ -138,7 +138,7 @@ barrier-response.md,59,59,teacher envelope until named day; student folder after
 abrasion-sheet.md,61,61,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-2/abrasion-sheet.md; print only named day; 14 point type.
 graph-sheet.md,62,62,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-2/graph-sheet.md; print only named day; 14 point type.
 claim-cards.md,63,63,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-2/claim-cards.md; print only named day; 14 point type.
-process-cards.md,64,64,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-2/process-cards.md; print only named day; 14 point type.
+process-cards.md,64,64 73,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-2/process-cards.md; print only named day; 14 point type.
 plant-sheet.md,65,65 70,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-2/plant-sheet.md; print only named day; 14 point type.
 revision-sheet.md,66,66 70,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-2/revision-sheet.md; print only named day; 14 point type.
 fallback-records.md,61,61 62 65,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-2/fallback-records.md; print only named day; 14 point type.
@@ -147,7 +147,7 @@ environment-cards.md,67,67,teacher envelope until named day; student folder afte
 photo-sheet.md,68,68,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-3/photo-sheet.md; print only named day; 14 point type.
 canyon-cards.md,69,69 70,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-3/canyon-cards.md; print only named day; 14 point type.
 source-notes.md,69,69,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-3/source-notes.md; print only named day; 14 point type.
-history-practice.md,69,69,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-3/history-practice.md; print only named day; 14 point type.
+history-practice.md,69,69 73,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-3/history-practice.md; print only named day; 14 point type.
 consensus-sheet.md,70,70,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-3/consensus-sheet.md; print only named day; 14 point type.
 exit-57.md,57,57,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-1/exit-57.md; print only named day; 14 point type.
 exit-58.md,58,58,teacher envelope until named day; student folder after use,student,courses/science-grade-4/u04-1/exit-58.md; print only named day; 14 point type.
@@ -193,7 +193,10 @@ process-64.svg,64,64,named-day teacher envelope; then student folder,student,Ori
 process-66.svg,66,66,named-day teacher envelope; then student folder,student,Original vector in courses/science-grade-4/u04-2/; held diagrams opened only on named day.
 fold-practice.svg,68,68,named-day teacher envelope; then student folder,student,Original vector in courses/science-grade-4/u04-3/; held diagrams opened only on named day.
 exit-68.svg,68,68,named-day teacher envelope; then student folder,student,Original vector in courses/science-grade-4/u04-3/; held diagrams opened only on named day.
-environment.svg,67,67,named-day teacher envelope; then student folder,student,Original vector in courses/science-grade-4/u04-3/; held diagrams opened only on named day.
 history-practice.svg,69,69,named-day teacher envelope; then student folder,student,Original vector in courses/science-grade-4/u04-3/; held diagrams opened only on named day.
 assessment-valley.svg,72,72,named-day teacher envelope; then student folder,student,Original vector in courses/science-grade-4/u04-4/; held diagrams opened only on named day.
 process-cards-66.md,66,66,"unit 4 day-66 envelope, then student folder",student,Separate day 66 practice records; invented for practice.
+new liners and tray supports,71,71,unit 4 named-day teacher storage,room,Reserved matched comparison; change only slope.
+goggle cleaning supplies,71,71,unit 4 named-day teacher storage,room,Clean eye protection during five-minute cleanup.
+spill cloths,67,67 68,unit 4 named-day teacher storage,room,Clay table cleanup; wet-day cloths stay on their existing row.
+repair-cards.md,73,73,unit 4 named-day teacher storage,teacher,Teacher-only directions; current question answers come from generated answer key.
