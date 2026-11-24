@@ -165,10 +165,7 @@ from_day,to_day,what,where,minutes,error,note
 77,78,s04-X77,Return,5,E,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
 77,78,s04-X77,Return,5,F,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
 78,81,s04-X78,Private,1,,Inside five-minute feedback. No hints or feedback during 79/80.
-79,81,s04-Q1a,Private,0.5,,Private score/component notes; four rows total two minutes.
-79,81,s04-Q1b,Private,0.5,,Private score/component notes; four rows total two minutes.
-79,81,s04-Q1c,Private,0.5,,Private score/component notes; four rows total two minutes.
-79,81,s04-Q1d,Private,0.5,,Private score/component notes; four rows total two minutes.
+79,81,s04-Q1a s04-Q1b s04-Q1c s04-Q1d,Private,2,,Distribute four private component notes in two minutes total; original points preserved.
 80,81,s04-Q2,Private,1,,Private score/component notes; two rows total two minutes.
 80,81,s04-Q3,Private,1,,Private score/component notes; two rows total two minutes.
 80,81,unit 4 priority component repairs including E78,Return,20,,All gaps share four five-minute rounds maximum per child. Four four-minute teacher visits plus four routing minutes; retain unresolved gaps.
@@ -207,3 +204,6 @@ from_day,to_day,what,where,minutes,error,note
 67,68,s04-P67-next,Return,0,,Private notes with exit return; no extra repair minutes.
 71,72,s04-P71-pattern,Return,0,,Return private notes with exit feedback in the scheduled repair slot; no added minutes.
 72,73,s04-P72-tag,Return,0,,Return private notes with exit feedback in the scheduled repair slot; no added minutes.
+75,76,s04-K75-1,Return,0,,Private component note returned inside the existing repair allocation; no additional reteaching minutes.
+76,77,s04-P76-footprint,Return,0,,Private component note returned inside the existing repair allocation; no additional reteaching minutes.
+77,78,s04-P77-scale,Return,0,,Private component note returned inside the existing repair allocation; no additional reteaching minutes.
