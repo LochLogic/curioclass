@@ -842,3 +842,42 @@ s04-K76-model,Completes in for the removal cue.,,,C,"Code a register letter only
 s04-F76-E,Rings moved one as remaining.,,,E,"Code a register letter only from the corresponding observed action, never a number alone."
 s04-P76-game,"Rings moved two as remaining, error E.",,,E,"Code a register letter only from the corresponding observed action, never a number alone."
 s04-P76-game,"Counts only arriving three as whole, error B.",,,B,Joining card only; observe exclusion of starting group.
+s04-K-count-77,A counting word is skipped.,,,A,Only observed corresponding action or explanation establishes error A. Bare wrong numbers stay descriptive.
+s04-F-77,"Two removed pieces joined to five, seven.",,,C,Only observed corresponding action or explanation establishes error C. Bare wrong numbers stay descriptive.
+s04-K-story-77,Only incoming two treated as whole.,,,B,Only observed corresponding action or explanation establishes error B. Bare wrong numbers stay descriptive.
+s04-K-count-78,A counting word is skipped.,,,A,Only observed corresponding action or explanation establishes error A. Bare wrong numbers stay descriptive.
+s04-F-78,Incoming three alone called whole.,,,B,Only observed corresponding action or explanation establishes error B. Bare wrong numbers stay descriptive.
+s04-K-join-78,Incoming three subtracted instead of joined.,,,H,Only observed corresponding action or explanation establishes error H. Bare wrong numbers stay descriptive.
+s04-K-take-78,Removed two added to make seven.,,,C,Only observed corresponding action or explanation establishes error C. Bare wrong numbers stay descriptive.
+s04-K-count-79,A counting word is skipped.,,,A,Only observed corresponding action or explanation establishes error A. Bare wrong numbers stay descriptive.
+s04-F-79,Total-left five rejected solely for order.,,,D,Only observed corresponding action or explanation establishes error D. Bare wrong numbers stay descriptive.
+s04-K-frame-79,Six-first equation rejected solely for order.,,,D,Only observed corresponding action or explanation establishes error D. Bare wrong numbers stay descriptive.
+s04-K-count-80,A counting word is skipped.,,,A,Only observed corresponding action or explanation establishes error A. Bare wrong numbers stay descriptive.
+s04-F-80,Five-first equation rejected solely for order.,,,D,Only observed corresponding action or explanation establishes error D. Bare wrong numbers stay descriptive.
+s04-K-check-80,Only incoming four counted as whole.,,,B,Only observed corresponding action or explanation establishes error B. Bare wrong numbers stay descriptive.
+s04-K-count-81,A counting word is skipped.,,,A,Only observed corresponding action or explanation establishes error A. Bare wrong numbers stay descriptive.
+s04-F-81,Moved one called remaining.,,,E,Only observed corresponding action or explanation establishes error E. Bare wrong numbers stay descriptive.
+s04-K-one-81,Four unchanged despite one arriving.,,,G,Only observed corresponding action or explanation establishes error G. Bare wrong numbers stay descriptive.
+s04-K-count-82,A counting word is skipped.,,,A,Only observed corresponding action or explanation establishes error A. Bare wrong numbers stay descriptive.
+s04-F-82,Extra fifth square invented for zero.,,,F,Only observed corresponding action or explanation establishes error F. Bare wrong numbers stay descriptive.
+s04-K-story-82,"Removed four joined to eight, twelve.",,,C,Only observed corresponding action or explanation establishes error C. Bare wrong numbers stay descriptive.
+s04-K-count-83,A counting word is skipped.,,,A,Only observed corresponding action or explanation establishes error A. Bare wrong numbers stay descriptive.
+s04-K-close-83,Only second group still called whole.,,,B,Only observed corresponding action or explanation establishes error B. Bare wrong numbers stay descriptive.
+s04-F-79,Only incoming three counted as whole.,,,B,"Diagnose only from the corresponding observed action or reason, never a bare wrong numeral."
+s04-F-79,"Incoming three removed from original three, zero.",,,H,"Diagnose only from the corresponding observed action or reason, never a bare wrong numeral."
+s04-F-79,"Removed two joined to five, seven.",,,C,"Diagnose only from the corresponding observed action or reason, never a bare wrong numeral."
+s04-F-80,Only incoming three counted as whole.,,,B,"Diagnose only from the corresponding observed action or reason, never a bare wrong numeral."
+s04-F-81,"Removed two joined to five, seven.",,,C,"Diagnose only from the corresponding observed action or reason, never a bare wrong numeral."
+s04-F-82,"One incoming square omitted, four unchanged.",,,G,"Diagnose only from the corresponding observed action or reason, never a bare wrong numeral."
+s04-P-game-77,Only incoming three counted as whole.,,,B,Observe the matching action or reason; never diagnose from the numeral alone.
+s04-P-game-77,Moved two ringed as remaining.,,,E,Observe the matching action or reason; never diagnose from the numeral alone.
+s04-P-game-78,Only incoming three counted as whole.,,,B,Observe the matching action or reason; never diagnose from the numeral alone.
+s04-P-game-78,Moved two ringed as remaining.,,,E,Observe the matching action or reason; never diagnose from the numeral alone.
+s04-P-game-79,Only incoming three counted as whole.,,,B,Observe the matching action or reason; never diagnose from the numeral alone.
+s04-P-game-79,Moved two ringed as remaining.,,,E,Observe the matching action or reason; never diagnose from the numeral alone.
+s04-P-game-80,Only incoming three counted as whole.,,,B,Observe the matching action or reason; never diagnose from the numeral alone.
+s04-P-game-80,Moved two ringed as remaining.,,,E,Observe the matching action or reason; never diagnose from the numeral alone.
+s04-P-game-81,Only incoming three counted as whole.,,,B,Observe the matching action or reason; never diagnose from the numeral alone.
+s04-P-game-81,Moved two ringed as remaining.,,,E,Observe the matching action or reason; never diagnose from the numeral alone.
+s04-P-game-82,Only incoming three counted as whole.,,,B,Observe the matching action or reason; never diagnose from the numeral alone.
+s04-P-game-82,Moved two ringed as remaining.,,,E,Observe the matching action or reason; never diagnose from the numeral alone.

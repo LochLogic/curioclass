@@ -813,10 +813,10 @@ s05-E2-3,It immediately became a state.,,,A,One predicted content diagnosis; equ
 s05-E2-4,It was purchased from Russia.,,,T,One predicted content diagnosis; equivalent supported wording accepted.
 s05-E2-5,All four were purchased.,,,T,One predicted content diagnosis; equivalent supported wording accepted.
 s05-E3-1,All women wanted homes; all men wanted gold.,,,D,One predicted content diagnosis; equivalent supported wording accepted.
-s05-E3-2,Their traveling camp already had permanent houses.,,,D,One predicted content diagnosis; equivalent supported wording accepted.
-s05-E3-3,They were still only traveling.,,,D,One predicted content diagnosis; equivalent supported wording accepted.
-s05-E4-1,All named people were one group.,,,D,One predicted content diagnosis; equivalent supported wording accepted.
-s05-E4-2,Enslavement was chosen employment.,,,I,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E3-2,Their traveling camp already had permanent houses.,,,x,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E3-3,They were still only traveling.,,,x,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E4-1,All named people were one group.,,,x,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E4-2,Enslavement was chosen employment.,,,I,Cold check: Required: contrast constrained decisions to leave with a journey and enslavement imposed by force. Free Black lives may be noted but are not required by this stem.
 s05-E5-1,The division was unrelated to slavery.,,,J,One predicted content diagnosis; equivalent supported wording accepted.
 s05-E5-2,War caused the earlier dispute.,,,O,One predicted content diagnosis; equivalent supported wording accepted.
 s05-E6-1,Modern boundaries always equal former national boundaries.,,,E,One predicted content diagnosis; equivalent supported wording accepted.
@@ -825,11 +825,11 @@ s05-E6-3,All Arizona and New Mexico came in 1836.,,,F,One predicted content diag
 s05-E7-1,All modern Colorado was transferred from Mexico.,,,E,One predicted content diagnosis; equivalent supported wording accepted.
 s05-E7-2,"Both accounts are equally proven, so the border was settled.",,,G,One predicted content diagnosis; equivalent supported wording accepted.
 s05-E8-1,The date alone proves the cause.,,,H,One predicted content diagnosis; equivalent supported wording accepted.
-s05-E8-2,A larger map proves Native consent.,,,B,One predicted content diagnosis; equivalent supported wording accepted.
-s05-E9-1,Growth was good because I like maps.,,,K,One predicted content diagnosis; equivalent supported wording accepted.
-s05-E9-2,Two titles without supporting details.,,,Q,One predicted content diagnosis; equivalent supported wording accepted.
-s05-E9-3,Everyone benefited equally.,,,R,One predicted content diagnosis; equivalent supported wording accepted.
-s05-E9-4,Two details from one record are two sources.,,,Q,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E8-2,A larger map proves Native consent.,,,B,"Cold check: Require two distinct supported changes, not every listed effect. The purchase transferred a foreign claim, not immediate Native ownership or consent."
+s05-E9-1,Growth was good because I like maps.,,,K,"Cold check: Judge the claim and reasoning here. Evidence relevance, organization and distinct source support have their own component rows."
+s05-E9-2,Two titles without supporting details.,,,Q,Cold check: Judge the evidence in the single Q9 response; do not request another answer.
+s05-E9-3,There are dates but no connected gain-and-loss argument.,,,K,Cold check: Judge organization in Q9; a relevant event list without a linked argument does not suffice.
+s05-E9-4,Two details from one record are two sources.,,,Q,Cold check: G1 petition and G2 congressional resolution count as two records; two titles or two details from one record do not.
 s05-X80-1,Why was nobody living there?,,,L,Separate predicted content error; no compound diagnosis.
 s05-X84-1,Tracks prove nobody lived there.,,,L,Separate predicted content error; no compound diagnosis.
 s05-X86-1,The later reservation caused earlier arrivals.,,,O,Separate predicted content error; no compound diagnosis.
@@ -845,7 +845,6 @@ s05-X100-1,"I like boats, so growth was good.",,,K,Separate predicted content er
 s05-X101-1,All movement was a job choice.,,,I,Separate predicted content error; no compound diagnosis.
 s05-E2-5,Purchases prove Native agreement.,,,B,Separate predicted content error; no compound diagnosis.
 s05-E2-5,The land was empty.,,,L,Separate predicted content error; no compound diagnosis.
-s05-E4-2,All Black people were enslaved.,,,P,Separate predicted content error; no compound diagnosis.
 s05-E7-2,Treaty payment proves a freely chosen sale.,,,N,Separate predicted content error; no compound diagnosis.
 s05-E9-1,Everyone benefited equally.,,,R,Separate predicted content error; no compound diagnosis.
 s05-P80-1,At 1700.,,,F,Task-specific cold-solved diagnosis; retrieval stays ungraded.
@@ -898,16 +897,16 @@ s05-P96-3,Admission and annexation both mean statehood.,,,A,Specific independent
 s05-P97-1,A purchase from Russia.,,,T,Specific independently solved content diagnosis; equivalent correct wording accepted.
 s05-P97-2,These peoples no longer have public activities.,,,M,Specific independently solved content diagnosis; equivalent correct wording accepted.
 s05-P97-3,Puerto Rico had no local government before invasion.,,,L,Specific independently solved content diagnosis; equivalent correct wording accepted.
-s05-P98-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P98-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P98-3,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P99-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P99-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P100-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P100-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P101-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P101-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P101-3,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
+s05-P98-1,"Evenly space the five events, ignoring the gaps in years.",,,H,Cold check: Place 1803 three tenths after 1800; 1846 six tenths after 1840; 1867 seven tenths after 1860; both 1898 labels eight tenths after 1890.
+s05-P98-2,Four bars represent 25 kilometers altogether.,,,x,Cold check: Count four equal whole bars; 25 + 25 + 25 + 25 = 100 kilometers.
+s05-P98-3,Hawaii belongs in the Caribbean inset.,,,E,Cold check: Accept a label beside the island chain; never place it in the Caribbean or on the mainland.
+s05-P99-1,The agreement proves all Native residents consented.,,,B,Cold check: Link the boundary agreement to changed outside-government claims. The agreement alone does not establish Native consent.
+s05-P99-2,The purchased land had no residents.,,,L,Cold check: Connect the purchase with access to northern Pacific territory. Do not infer empty land or universal benefit.
+s05-P100-1,A page title proves all residents agree.,,,K,"Cold check: Connect one listed public institution to continuing government, naming the source."
+s05-P100-2,All transferred peoples vanished.,,,M,Cold check: Use a relevant advocacy detail to reject the universal claim; this page cannot describe everyone.
+s05-P101-1,Independence and annexation both happened in 1836.,,,F,"Cold check: Keep independence, joining the United States and the war as separate events."
+s05-P101-2,A canal carries trains.,,,C,"Cold check: Match each vehicle to its route, without explaining all three mechanisms in one argument."
+s05-P101-3,Forced transport means choosing a job.,,,I,Cold check: Match the two meanings separately. Forced transport is not chosen employment.
 s05-P103-access,Every record proves agreement.,,,C,One predicted content diagnosis; equivalent supported wording accepted.
 s05-P103-sources,Every record proves agreement.,,,Q,One predicted content diagnosis; equivalent supported wording accepted.
 s05-P103-residence,Every record proves agreement.,,,S,One predicted content diagnosis; equivalent supported wording accepted.
@@ -1018,3 +1017,27 @@ s05-F97-3,"Yes, every boundary change creates a state.",,,A,"One priority repair
 s05-F97-4,Every swimmer's choice.,,,B,"One priority repair, fresh case; equivalent correct wording accepted."
 s05-F97-5,Lunch.,,,F,"One priority repair, fresh case; equivalent correct wording accepted."
 s05-F97-6,Doors open.,,,F,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F98-1,Every transfer is a purchase.,,,T,Cold answer check: Gift; no payment is stated.
+s05-F98-2,The club no longer exists.,,,M,Cold answer check: Members meet weekly in 2026.
+s05-F99-1,Buying an island makes it a state.,,,A,Cold answer check: The country buys the island; no admission evidence appears.
+s05-F99-2,The date caused the delay.,,,H,Cold answer check: The broken cart prevents moving the books.
+s05-F99-3,It became a state automatically.,,,A,"Cold answer check: The gift shows acquisition, but does not establish admission as a state."
+s05-F99-4,A later painting caused the lock.,,,H,Cold answer check: The locked cupboard prevents access to the paints.
+s05-F100-1,The date caused the smears.,,,H,Cold answer check: Wet ink causes smearing.
+s05-F100-2,The patch caused the earlier tear.,,,O,Cold answer check: The paper tears before the patch is added.
+s05-F100-3,Everyone gained the same thing.,,,R,Cold answer check: Visitors lose seats.
+s05-F100-4,The date spilled beads.,,,H,Cold answer check: The torn bag allows beads to spill.
+s05-F100-5,The later glue caused the earlier crack.,,,O,Cold answer check: The cup cracks before glue is applied.
+s05-F100-6,All groups gained equally.,,,R,Cold answer check: Readers lose quiet space.
+s05-F101-1,Favorite paint color proves the roof leaks.,,,K,Cold answer check: The damp-ceiling report is evidence for a leaking roof.
+s05-F101-2,Two titles are two supporting details.,,,Q,Cold answer check: The custodian made the report.
+s05-F101-3,Every group gains equally.,,,R,Cold answer check: Players lose court space.
+s05-F101-4,Favorite curtain color proves flooding.,,,K,Cold answer check: The water-depth report supports the flooding claim.
+s05-F101-5,A title supplies a supporting detail.,,,Q,Cold answer check: The gardener made the report.
+s05-F101-6,Every group gains equally.,,,R,Cold answer check: Readers lose quiet space.
+s05-P103-group-access,The route creates more territory.,,,C,Cold answer check: The two workshops are the endpoints.
+s05-P103-group-sources,One notice copies the other.,,,Q,Cold answer check: The gatekeeper reports shutting the gate; the visitor reports watching it close.
+s05-P103-group-residence,The school moves when the boundary moves.,,,S,Cold answer check: The school location stays fixed.
+s05-P103-group-continuity,The garden group no longer exists.,,,M,Cold answer check: 2026; volunteers meet weekly.
+s05-F98-3,Every transfer is a purchase.,,,T,Cold answer check: Gift or donation; no purchase is stated.
+s05-F98-4,The garden group vanished.,,,M,Cold answer check: Volunteers meet monthly in 2026.

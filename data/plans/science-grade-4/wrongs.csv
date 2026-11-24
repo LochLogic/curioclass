@@ -715,3 +715,25 @@ s06-P114-match,Only outside parts have jobs,,,F,Apply only to the stated idea; d
 s06-P114-link,Receiving parts command action directly,,,D,Apply only to the stated idea; describe other gaps separately.
 s06-P117-repair,A needed link stays absent,,,x,Apply only to the stated idea; describe other gaps separately.
 s06-P117-revise,The first response is erased without an evidence-linked repair,,,x,Apply only to the stated idea; describe other gaps separately.
+C-E118-table,W has no features because the ocean floor is flat.,,,AA,Omits mapped underwater relief.
+C-E118-audit,"All events must be coastal, even those marked inland.",,,AA,Replaces mapped evidence with an absolute rule.
+C-E118-limit,Every empty space is safe forever.,,,AB,Ignores the selected record and its time limit.
+C-E118-add,Dig a new river channel despite the no-digging limit.,,,AD,Ignores a stated design constraint.
+C-E118-compare,The wall meets the goal in every flow because small flow wets no stores.,,,AD,Omits larger-flow failures.
+C-E118-harm,A warning stops the river from flooding.,,,AC,Confuses reducing harm with stopping the process.
+C-E118-model,Eye → mirror → dial supplies the light.,,,AE,Reverses receiving and emitting.
+C-E118-predict,The dial stays visible because light passes through the opaque card.,,,AF,Treats an opaque obstruction as transmitting.
+C-E118-test,Erase the lamp because an unseen dial cannot be illuminated.,,,AF,Confuses interrupted viewing with lost illumination.
+C-E119-select,A is better because ears order legs directly.,,,AG,Omits brain processing.
+C-E119-predict,It cannot act because a remembered sign never guides movement.,,,AH,Denies learned meaning and a different sensory input.
+C-E119-test,"Only ears receive information, even in the silent sign test.",,,AG,Excludes a supported sensory input.
+C-E119-plant,Petals alone become seeds without other flower parts.,,,AJ,Omits reproductive cooperation.
+C-E119-animal,Skin and legs do all four jobs without inside parts.,,,AI,Omits inside/outside interactions.
+C-P120-map,An empty island is certainly safe.,,,AB,Record absence is not safety.
+C-P120-design,Gentle success proves every flood is stopped.,,,AC,Retains a universal guarantee.
+C-P120-light,Unseen means unlit.,,,AF,Conflates illumination with viewing.
+C-P120-sense,Remembering cannot change action.,,,AH,Omits learned meaning.
+C-P120-structure,Outside parts alone explain growth.,,,AI,Omits inside cooperation.
+C-P120-preserve,Label supplied invented readings as measurements I made.,,,AK,Supplied evidence is not firsthand observation.
+C-X120,"Lamp ? sign ? eye, labeled my firsthand measurement.",,,AK,"The path is accurate, but supplied invented evidence is mislabeled firsthand."
+C-X120,The eye supplies the light to the sign.,,,AE,Reversed light direction; code separately from provenance.
