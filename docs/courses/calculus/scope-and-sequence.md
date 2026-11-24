@@ -117,7 +117,7 @@ Each check comes right after a unit's end-of-unit assessment (units 5, 8 and 11)
 
 **A shorter period (45 minutes).** The opening drops from five minutes to three on teaching days, and each teaching day's practice set is cut by its last few items (the exit ticket stays); check and assessment sittings keep their items and run the extended task in the full period. Below 45 minutes, a school runs the check 1 to 3 extended tasks over two periods and folds the days below.
 
-**A year about 10 days short.** Ten fold-in days, each a practice or review day whose work goes into a neighbor's day and the openings, nothing assessed and no owned part cut, and never a feedback, revision, check or respond day, nor a day between a modeling draft and its revision. The first five follow the frame's trim order (A tight course), so they also serve seniors who leave early (Grade 12 calendar).
+**A year about 10 days short.** Ten fold-in days, each a practice or review day whose work goes into a neighbor's day and the openings, nothing assessed and no owned part cut, and never a feedback, revision, check or respond day, nor a day between a modeling draft and its revision. The first four follow the frame's trim order (A tight course: improper integrals and arc length each lose one of their two days, then days 142 and 2), and the fifth, day 7, is the next fold the frame's Grade 12 calendar names, so the first five serve seniors who leave early.
 
 | Fold-in day | Folds into | Minutes saved |
 |---|---|---|
