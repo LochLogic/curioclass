@@ -82,7 +82,7 @@ from_day,to_day,what,where,minutes,error,note
 23,24,s01-X23,Opening,5,,Return all papers with dated feedback. Repair one earliest need; others use the one workshop group.
 24,25,s01-X24,Opening,5,,Return all papers with dated feedback. Repair one earliest need; others use the one workshop group.
 25,26,s01-X25,Opening,5,,Return all papers with dated feedback. Repair one earliest need; others use the one workshop group.
-26,28,s01-X26-1 s01-X26-2,Return,0,,Return all papers with dated feedback. Repair one earliest need; others use the one workshop group.
+26,28,s01-X26-1 s01-X26-2,Return,0,,"Return the half slip and independent student-page Exit box together with D27 feedback. Same ten-minute Return and repair allocation, no extra sitting."
 28,29,s01-X28,Opening,5,,Return all papers with dated feedback. Repair one earliest need; others use the one workshop group.
 29,31,s01-X29,Opening,5,,Return all papers with dated feedback. Repair one earliest need; others use the one workshop group.
 31,32,s01-X31,Opening,5,,Return all papers with dated feedback. Repair one earliest need; others use the one workshop group.
@@ -141,3 +141,5 @@ from_day,to_day,what,where,minutes,error,note
 22,24,day 22 actual reading feedback and remaining due rotation,Partner rereading,0,,Continue existing five-reader windows; unheard components remain pending. No new sitting.
 26,28,s01-P26-listen s01-R26 actual discussion feedback,Return,0,,Return written reflection and feedback for six heard children with existing X26/D27 work. Unheard oral components stay blank.
 26,33,s01-R26 remaining discussion observations,Discussion,0,,"Continue the other twenty-four within existing six-group window; actual eligible records only, no added turns or inferred speech."
+24,27,day 24 actual reading feedback and remaining due rotation,Partner rereading,0,,Continue only missing components within the existing five-reader window; reuse matching ten-day evidence. No extra sitting and no inferred speech.
+27,29,day 27 pending reading components,Partner rereading,0,,Continue only missing components within the existing five-reader window; reuse matching ten-day evidence. No extra sitting and no inferred speech.

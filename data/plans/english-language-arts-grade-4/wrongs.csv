@@ -289,7 +289,6 @@ s01-W22,Skips a printed part.,,,H,Read every part before checking meaning.
 s01-W23,Skips a printed part.,,,H,Read every part before checking meaning.
 s01-W24,Skips a printed part.,,,H,Read every part before checking meaning.
 s01-W25,Skips a printed part.,,,H,Read every part before checking meaning.
-s01-W26,Skips a printed part.,,,H,Read every part before checking meaning.
 s01-W28,Skips a printed part.,,,H,Read every part before checking meaning.
 s01-W31,Skips a printed part.,,,H,Read every part before checking meaning.
 s01-W32,Skips a printed part.,,,H,Read every part before checking meaning.
@@ -413,3 +412,18 @@ s01-K24-2,B.,,,V,Taught selection; diagnostic slips use different cases.
 s01-K24-3,B.,,,W,Taught selection; diagnostic slips use different cases.
 s01-R26,Interrupts with an unrelated claim.,,,K,Actual observed evidence only.
 s01-P26-listen,I did not listen.,,,M,Actual observed evidence only.
+s01-W26-1,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W26-2,The stress moves to the last syllable.,,,x,Misplaces stress; no registered specific stress-error category.
+s01-W27-1,Skips a printed part.,,,H,Read every part before checking meaning.
+s01-W27-2,The stress moves to the last syllable.,,,x,Misplaces stress; no registered specific stress-error category.
+s01-K27-1,B.,,,AF,Taught selection; diagnostic slips use different cases.
+s01-K27-2,B.,,,V,Taught selection; diagnostic slips use different cases.
+s01-K23-R1,Yes.,,,N,Review of a taught case in one feedback-routed warm-up; no new collection.
+s01-K23-R2,A.,,,T,Review of a taught case in one feedback-routed warm-up; no new collection.
+s01-K24-R1,Lunch menu.,,,AE,Review of a taught case in one feedback-routed warm-up; no new collection.
+s01-K24-R2,Keep it because he practiced medicine.,,,A,Review of a taught case in one feedback-routed warm-up; no new collection.
+s01-K25-R1,Leave only poems.,,,O,Review of a taught case in one feedback-routed warm-up; no new collection.
+s01-K25-R2,B.,,,W,Review of a taught case in one feedback-routed warm-up; no new collection.
+s01-K25-R2,B.,,,AG,Review of a taught case in one feedback-routed warm-up; no new collection.
+s01-K26-R1,Keep because.,,,P,Review of a taught case in one feedback-routed warm-up; no new collection.
+s01-K26-R2,Thing.,,,Q,Review of a taught case in one feedback-routed warm-up; no new collection.
