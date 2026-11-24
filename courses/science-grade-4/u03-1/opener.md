@@ -10,7 +10,7 @@ credit: ours
 
 Days 42 to 44 develop models of qualitative wave patterns using the tub and marked cork. Distinguish height from spacing and local movement from energy travel. Rest position is the undisturbed level; amplitude is displacement from rest, not peak-to-trough distance. Wavelength is matching-peak spacing. Never measure either numerically. A cork can drift; observe whether it follows each crest rather than promising perfect stillness.
 
-Explain energy moving between places with a fresh arrow on day 42. Day 43 separates vibration producing sound, shown with a secured ruler, from sound making another surface vibrate, shown only through receiving-drum records. Readiness remains diagnostic; teach any missing causal direction as new. The signal retrieval agrees a LOOK meaning and checks reception.
+Explain energy moving between places with a fresh arrow on day 42. Day 43 separates vibration producing sound, shown with a secured ruler, from sound making another surface vibrate, shown only through receiving-drum records. Readiness diagnoses retrieval gaps in grade 1 days 31 and 32; reteach a missing causal direction explicitly. The signal retrieval agrees a LOOK meaning and checks reception.
 
 One adult operates the tub. Six two-minute group views take twelve minutes. Day 42 has three additional recording minutes. Day 43 has five setup/label minutes and three recording minutes. Day 44 rope is an adult demonstration. Adult wears goggles; observers remain outside splash/recoil reach. Adult fills/empties water and secures the ruler. Use nonlatex equipment; no food, soil or plants. Stop for damage, recoil or uncontrolled spills. Five cleanup minutes: adult stores/washes two; dry observers file three. No class sink queue.
 

@@ -372,7 +372,7 @@ from_day,to_day,what,where,minutes,error,note
 111,112,s06-X111,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
 111,112,s06-X111,Return,5,H,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
 111,112,s06-P111 s06-P111-inside s06-P111-flower s06-P111-roots s06-P111-talk s06-P111-coverage; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
-112,113,s06-X112 s06-X112-animal,Return,5,H,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+112,113,s06-P112-roots,Return,5,H,"Recurring missing-root provenance error in practice, not the new rooted-seedling exit. Use its already reserved five-minute repair."
 112,113,s06-X112 s06-X112-animal,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
 112,113,s06-P112 s06-P112-inside s06-P112-roots s06-P112-audit s06-P112-question; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 113,114,s06-X113 s06-X113-response s06-P113-plant,Return,10,,"Two common letters, five each; others use contrasts in Evidence retrieval."

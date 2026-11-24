@@ -1,7 +1,8 @@
 ---
 course: math-kindergarten
 unit: C
-piece: key
+piece: story
+version: draft, not yet taught
 credit: ours
 ---
 # Private teacher key, days 84 to 86
@@ -166,7 +167,7 @@ Shown: Dated original evidence pointers, original labels preserved. | Not yet se
 
 **Show.** Tray A on student page: 0 separate disks, no numeral model. Read tray letter as locator.
 
-**Say.** Write the missing number label for tray A.
+**Say.** Label tray A.
 
 **Answer.** 0
 
@@ -180,7 +181,7 @@ Shown: Writes 0 for shown quantity. | Not yet seen: Writes 1 for empty tray.
 
 **Show.** Tray B on student page: 7 separate disks, no numeral model. Read tray letter as locator.
 
-**Say.** Write the missing number label for tray B.
+**Say.** Label tray B.
 
 **Answer.** 7
 
@@ -194,7 +195,7 @@ Shown: Writes 7 for shown quantity. | Not yet seen: Counts 7 correctly but write
 
 **Show.** Tray C on student page: 2 separate disks, no numeral model. Read tray letter as locator.
 
-**Say.** Write the missing number label for tray C.
+**Say.** Label tray C.
 
 **Answer.** 2
 
@@ -208,7 +209,7 @@ Shown: Writes 2 for shown quantity. | Not yet seen: Counts 2 correctly but write
 
 **Show.** Tray D on student page: 10 separate disks, no numeral model. Read tray letter as locator.
 
-**Say.** Write the missing number label for tray D.
+**Say.** Label tray D.
 
 **Answer.** 10
 
@@ -222,7 +223,7 @@ Shown: Writes 10 for shown quantity. | Not yet seen: Counts 10 correctly but wri
 
 **Show.** Tray E on student page: 4 separate disks, no numeral model. Read tray letter as locator.
 
-**Say.** Write the missing number label for tray E.
+**Say.** Label tray E.
 
 **Answer.** 4
 
@@ -236,7 +237,7 @@ Shown: Writes 4 for shown quantity. | Not yet seen: Counts 4 correctly but write
 
 **Show.** Tray F on student page: 1 separate disks, no numeral model. Read tray letter as locator.
 
-**Say.** Write the missing number label for tray F.
+**Say.** Label tray F.
 
 **Answer.** 1
 
@@ -250,7 +251,7 @@ Shown: Writes 1 for shown quantity. | Not yet seen: Counts 1 correctly but write
 
 **Show.** Tray G on student page: 9 separate disks, no numeral model. Read tray letter as locator.
 
-**Say.** Write the missing number label for tray G.
+**Say.** Label tray G.
 
 **Answer.** 9
 
@@ -264,7 +265,7 @@ Shown: Writes 9 for shown quantity. | Not yet seen: Counts 9 correctly but write
 
 **Show.** Tray H on student page: 3 separate disks, no numeral model. Read tray letter as locator.
 
-**Say.** Write the missing number label for tray H.
+**Say.** Label tray H.
 
 **Answer.** 3
 
@@ -278,7 +279,7 @@ Shown: Writes 3 for shown quantity. | Not yet seen: Counts 3 correctly but write
 
 **Show.** Tray I on student page: 8 separate disks, no numeral model. Read tray letter as locator.
 
-**Say.** Write the missing number label for tray I.
+**Say.** Label tray I.
 
 **Answer.** 8
 
@@ -292,7 +293,7 @@ Shown: Writes 8 for shown quantity. | Not yet seen: Counts 8 correctly but write
 
 **Show.** Tray J on student page: 5 separate disks, no numeral model. Read tray letter as locator.
 
-**Say.** Write the missing number label for tray J.
+**Say.** Label tray J.
 
 **Answer.** 5
 
@@ -306,7 +307,7 @@ Shown: Writes 5 for shown quantity. | Not yet seen: Counts 5 correctly but write
 
 **Show.** Tray K on student page: 6 separate disks, no numeral model. Read tray letter as locator.
 
-**Say.** Write the missing number label for tray K.
+**Say.** Label tray K.
 
 **Answer.** 6
 

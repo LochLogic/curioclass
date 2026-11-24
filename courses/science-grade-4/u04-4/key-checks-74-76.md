@@ -23,7 +23,7 @@ Copy on a class list. Record each named component separately. Heard is an access
 
 Q/R: waves. S/T/U: codes. V/W/X: land. Y/Z: history. Collision B/C joins the wave visit with the earlier energy model. For error x, name the actual gap. More than ten of thirty prioritizes that route inside twelve minutes. Assign one priority route per child; revise both checks. Keep unresolved needs recorded.
 
-Readiness has a separate diagnostic record: state recognition and locating by key, same category words. Day 78 reserves five minutes state matching, five locations/key. Teach missing ideas as new; lower skill entries are planned only. Land-water model remains separate retrieval.
+Readiness has a separate diagnostic record: state recognition and locating by key, same category words. Day 78 reserves five minutes state matching, five locations/key. Review written grade 2 days 7 and 8 water-state/key work; reteach missing ideas explicitly. Land-water model remains separate retrieval.
 
 ## Item answers
 
