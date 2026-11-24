@@ -554,11 +554,9 @@ s05-Q1c,"Land, water, air.",,,A,Names alone do not show an interaction.
 s05-Q1d,"Land, water, air.",,,A,Names alone do not show an interaction.
 s05-Q1d,Unseen air cannot act.,,,C,Observable effects support unseen-air interaction.
 s05-Q1e,"Land, water, air.",,,A,Names alone do not show an interaction.
-s05-Q2a1,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
 s05-Q2a2,All salt water is ocean water.,,,D,Inland saline lakes and groundwater also belong in salt water.
 s05-Q2b1,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
 s05-Q2b1,Surface and other fresh water means only lakes and rivers.,,,F,"The full remainder includes other stores, such as soil moisture."
-s05-Q2b2,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
 s05-Q2c1,Equal lengths on different scales mean equal amounts.,,,H,Compare values using the same units and scale.
 s05-Q2c1,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
 s05-Q2c2,Equal lengths on different scales mean equal amounts.,,,H,Compare values using the same units and scale.
@@ -571,3 +569,11 @@ s05-R99-distribution,Surface and other fresh water means only lakes and rivers.,
 s05-R99-distribution,Equal lengths on different scales mean equal amounts.,,,H,Compare values using the same units and scale.
 s05-R99-salt,All salt water is ocean water.,,,D,Inland saline lakes and groundwater also belong in salt water.
 s05-R99-access,Fresh water is always safe to drink.,,,G,"Low salt does not establish testing, treatment or access."
+s05-P99-A,Names prove an interaction.,,,A,Unit 5 component repair letter A; use separate repair-key.md after the component attempt.
+s05-P99-B,Transport is weathering.,,,B,Unit 5 component repair letter B; use separate repair-key.md after the component attempt.
+s05-P99-C,Unseen air cannot act.,,,C,Unit 5 component repair letter C; use separate repair-key.md after the component attempt.
+s05-P99-D,Only ocean belongs.,,,D,Unit 5 component repair letter D; use separate repair-key.md after the component attempt.
+s05-P99-E,Both mean all water.,,,E,Unit 5 component repair letter E; use separate repair-key.md after the component attempt.
+s05-P99-F,Only lakes and rivers belong.,,,F,Unit 5 component repair letter F; use separate repair-key.md after the component attempt.
+s05-P99-G,All fresh water is safe.,,,G,Unit 5 component repair letter G; use separate repair-key.md after the component attempt.
+s05-P99-H,Equal lengths always mean equal amounts.,,,H,Unit 5 component repair letter H; use separate repair-key.md after the component attempt.

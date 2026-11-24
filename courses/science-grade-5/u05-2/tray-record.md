@@ -33,4 +33,4 @@ Evidence: actual observation / supplied invented T89
 | &nbsp; |
 
 Keep every unclear entry. Do not replace it with an invented observation.
-Only one gentle retry; use separately labelled T89 if the reading remains unclear.
+Only one gentle retry; use separately labeled T89 if the reading remains unclear.

@@ -10,7 +10,7 @@ audience: teacher
 
 # Assigned retry: teacher key
 
-Teacher only. Assign one route per child; do not practise these cases first.
+Teacher only. Assign one route per child; do not practice these cases first.
 
 ## s05-R99-systems
 

@@ -51,7 +51,8 @@ Day 91 rehearses existing displays orally; its new gust/stem display is independ
 
 ## Safety and set-up
 
-Before class ask privately about sand or glove allergies. Provide a dry observer role.
+Before class check sand/glove allergies through the school's confidential adult process.
+Do not ask children to disclose illness. Provide a dry observer role without explanation.
 Teacher portions clean damp sand, checks its safety sheet, stable trays and eyewash access.
 Six simultaneous groups of five each need one shallow tray, two cups damp sand,
 one cup water, pouring cup, towels, five splash goggles and five nonlatex glove pairs.
@@ -74,3 +75,5 @@ Return 88 A/C on 89, 89 A/B on 90, 90 A/G on 91 and 91 A/C on 92.
 Each receiving opening has two five-minute routes; whole-class moves replace group routes.
 B confuses breaking and carrying; G confuses low salt with tested safe supply.
 Keys and covered exits are not practice cards.
+
+For day 91, print display-rehearsal.md with the existing evidence folder.

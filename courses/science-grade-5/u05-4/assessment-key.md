@@ -19,7 +19,7 @@ Water/land named (1); bank-to-stream transport (1); deposition (1); both observe
 
 Look-fors: parts 1 | transport 1 | deposition 1 | observed changes 2 | annotation 1
 
-Meets: The stream removes bank grains and deposits them where the beach grows. | Not yet: Land, water, air. (A)
+Meets: Drawn water/land labels; bank -> carried grains -> beach arrows. The stream removes bank grains and deposits them where the beach grows. | Not yet: Only water and land labels, without arrows or explanation. (A)
 
 ## s05-Q1b: 1 points
 
@@ -59,7 +59,7 @@ Endpoints 975 and 25 (2); all-water units and whole (1).
 
 Look-fors: endpoints 2 | all-water whole 1
 
-Meets: Bars end at 975 salt and 25 fresh, per 1,000 all-water shares. | Not yet: The fresh-only whole is all water. (E)
+Meets: Bars end at 975 salt and 25 fresh per 1,000 all-water shares. | Not yet: Endpoints do not match the supplied 975 and 25. Descriptive copying feedback; no letter inferred.
 
 ## s05-Q2a2: 1 points
 
@@ -83,7 +83,7 @@ Polar land ice and mountain glaciers belong in combined ice caps, glaciers and p
 
 Look-fors: polar land ice category and dominance 1
 
-Meets: These land-ice places belong in combined ice. Ice and groundwater hold most freshwater. | Not yet: The fresh-only whole is all water. (E)
+Meets: Greenland and Antarctic land ice and mountain glaciers belong in combined ice. Ice and groundwater hold most freshwater. | Not yet: Does not locate polar land ice in the combined category or recognize store dominance. Descriptive location feedback; no letter inferred.
 
 ## s05-Q2c1: 3 points
 
@@ -110,4 +110,4 @@ Look-fors: ready freshwater guarantee rejected 1
 Meets: Ocean is salty; global shares cannot establish access or tested safety. | Not yet: Fresh water is always safe to drink. (G)
 
 No atmospheric quantity, percentage calculation or water volume is assessed.
-Missing responses remain missing evidence. Revision notes never replace original points.
+Missing responses remain missing evidence; revisions never replace original points.

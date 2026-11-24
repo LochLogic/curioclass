@@ -16,9 +16,13 @@ Natural resource: material or energy supply found in nature.
 
 Name: __________________ Date: __________
 
-One changed feature in the two device pictures: __________________
+[[s05-P99-design]]
 
-Resource-to-stream link in the second picture: __________________
+__________________
+
+[[s05-P99-resource]]
+
+__________________
 
 An uncertain idea to revisit: __________________
 

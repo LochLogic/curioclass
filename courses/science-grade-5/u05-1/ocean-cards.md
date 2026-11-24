@@ -17,7 +17,7 @@ Invented for practice. Read one card at a time.
 
 | Coastal habitat card |
 | --- |
-| Small swimming animals remain in submerged shoreline grass. |
+| Drifting jellylike animals remain within offshore seawater. |
 
 | Air-temperature card |
 | --- |

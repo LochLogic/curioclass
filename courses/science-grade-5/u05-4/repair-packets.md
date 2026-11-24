@@ -15,9 +15,7 @@ Use only your assigned component packet. Records are invented for practice.
 
 ## Packet A
 
-A pot stands near a puddle. Names alone do not show an interaction.
-
-Connect an action only when the record supplies evidence.
+[[s05-P99-A]]
 
 ________________________________________________________________
 
@@ -25,9 +23,7 @@ ________________________________________________________________
 
 ## Packet B
 
-A tile cracks in place. A different grain travels in water.
-
-Sort stationary breaking and carrying.
+[[s05-P99-B]]
 
 ________________________________________________________________
 
@@ -35,9 +31,7 @@ ________________________________________________________________
 
 ## Packet C
 
-A closed bag bulges when air enters. Air is unseen.
-
-Use the visible effect as evidence.
+[[s05-P99-C]]
 
 ________________________________________________________________
 
@@ -45,9 +39,7 @@ ________________________________________________________________
 
 ## Packet D
 
-Salty groundwater and ocean water both enter a salt category.
-
-Keep both members in the salt category.
+[[s05-P99-D]]
 
 ________________________________________________________________
 
@@ -55,9 +47,7 @@ ________________________________________________________________
 
 ## Packet E
 
-A collection holds 70 portions; its marked fresh subset holds 7.
-
-Name the parent whole and the subset whole.
+[[s05-P99-E]]
 
 ________________________________________________________________
 
@@ -65,9 +55,7 @@ ________________________________________________________________
 
 ## Packet F
 
-A surface-and-other card includes soil moisture.
-
-Keep the full category label.
+[[s05-P99-F]]
 
 ________________________________________________________________
 
@@ -75,9 +63,7 @@ ________________________________________________________________
 
 ## Packet G
 
-A fresh spring note gives no testing result.
-
-Separate low salt from tested safe.
+[[s05-P99-G]]
 
 ________________________________________________________________
 
@@ -85,10 +71,9 @@ ________________________________________________________________
 
 ## Packet H
 
-One axis uses equal steps of 2; another uses steps of 5.
-
-Match units before comparing lengths.
+[[s05-P99-H]]
 
 ________________________________________________________________
 
 ________________________________________________________________
+

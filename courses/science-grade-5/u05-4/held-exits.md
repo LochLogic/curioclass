@@ -14,7 +14,7 @@ Each record headed invented is invented for practice.
 
 ## Day 96
 
-![Supplied record or blank work area](held-graphs-96.svg)
+Use the separate covered graph sheet supplied with this exit.
 
 [[s05-X96]]
 

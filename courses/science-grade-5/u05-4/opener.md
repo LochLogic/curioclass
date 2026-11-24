@@ -74,3 +74,5 @@ A connects action/evidence; B separates breaking/carrying; C cites unseen-air ef
 D widens salt beyond ocean; E changes whole; F retains the full remainder;
 G separates fresh from safe; H aligns units. Return 95 on 96 and 96 on 97.
 Use handoff.md/pictures for grade-4 design/resource retrieval, not a readiness check.
+
+For days 96/97, print access-components.md and consensus-stations.md with the existing evidence folder.
