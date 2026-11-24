@@ -42,4 +42,4 @@ A/B/C repair unseen matter and scale; D/F complete boundaries and graphs; E/F te
 
 ## No kit
 
-N11 to N14 are printed and said aloud as invented for practice. Keep authentic attempts separately with reasons. No supplied record certifies firsthand weighing. No visitor, photograph or outside text is needed. Background records A1 to A3 support science and safety. All printed records are ours.
+N11 to N14 are printed and said aloud as invented for practice. Keep authentic attempts separately with reasons. No supplied record certifies firsthand weighing. No visitor, photograph or outside text is needed. Background records A1L, A2L and A3 support science and safety. All printed records are ours.

@@ -36,4 +36,4 @@ A: gas treated as nothing. B: dots treated as grains. C: clear means empty. D: o
 
 ## Other rooms
 
-N7 to N10 are original supplied records. Print and say invented for practice. Use for missing kit, leaks, failed freezing or unstable readings. Handling stays unobserved. No visitor or photograph is required. A student may direct handling or dictate to a scribe who adds no ideas. Background records A1 to A3 support science and safety. Everything printed here is ours.
+N7 to N10 are original supplied records. Print and say invented for practice. Use for missing kit, leaks, failed freezing or unstable readings. Handling stays unobserved. No visitor or photograph is required. A student may direct handling or dictate to a scribe who adds no ideas. Background records A1L, A2L and A3 support science and safety. Everything printed here is ours.
