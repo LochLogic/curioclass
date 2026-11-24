@@ -432,11 +432,11 @@ exit-108-river,108,108,student unit folder; teacher holds reserved masters,stude
 exit-110-ocean,110,110,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-1/exit-110-ocean.svg. Print at 100 percent; keep source/response sizes together. 
 M-ocean,120,120,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-4/M-ocean.svg. Print at 100 percent; keep source/response sizes together. Held assessment source; never used as earlier teaching.
 F-ocean,131,131,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-7/F-ocean.svg. Print at 100 percent; keep source/response sizes together. Held assessment source; never used as earlier teaching.
-admission-cards,111,111 119 130,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-2/admission-cards.md. Print at 100 percent; keep source/response sizes together. 
+admission-cards,111,111 130,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-2/admission-cards.md. Print at 100 percent; keep source/response sizes together. 
 class-line,111,111,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-2/class-line.svg. Print at 100 percent; keep source/response sizes together. 
 exit-111-line,111,111,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-2/exit-111-line.svg. Print at 100 percent; keep source/response sizes together. 
 exit-119-line,119,119,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-4/exit-119-line.svg. Print at 100 percent; keep source/response sizes together. 
-northeast-line,119,119,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-4/northeast-line.svg. Print at 100 percent; keep source/response sizes together. 
+northeast-line,119,119 120,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-4/northeast-line.svg. Print at 100 percent; keep source/response sizes together. 
 M2-line,120,120,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-4/M2-line.svg. Print at 100 percent; keep source/response sizes together. Held assessment source; never used as earlier teaching.
 F2-line,131,131,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-7/F2-line.svg. Print at 100 percent; keep source/response sizes together. Held assessment source; never used as earlier teaching.
 retry-line,128,128,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-7/retry-line.svg. Print at 100 percent; keep source/response sizes together. 
@@ -563,7 +563,7 @@ atlas-B,119,119 120,student unit folder; teacher holds reserved masters,student,
 atlas-C,119,119 120,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-4/atlas-C.md. Print at 100 percent; keep source/response sizes together. 
 atlas-E,119,119 120,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-4/atlas-E.md. Print at 100 percent; keep source/response sizes together. 
 atlas-Local,119,119 120,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-4/atlas-Local.md. Print at 100 percent; keep source/response sizes together. 
-northeast-cards,119,119,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-4/northeast-cards.md. Print at 100 percent; keep source/response sizes together. 
+northeast-cards,119,119 120,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-4/northeast-cards.md. Print at 100 percent; keep source/response sizes together. 
 mid-source-book,120,120,teacher source folder,student,File: courses/social-studies-grade-4/u06-4/mid-source-book.md. Print at 100 percent; keep source/response sizes together. Held assessment source; never used as earlier teaching.
 end-source-book,131,131,teacher source folder,student,File: courses/social-studies-grade-4/u06-7/end-source-book.md. Print at 100 percent; keep source/response sizes together. Held assessment source; never used as earlier teaching.
 F3F-partial,131,131,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-7/F3F-partial.svg. Print at 100 percent; keep source/response sizes together. Held assessment source; never used as earlier teaching.
@@ -582,32 +582,32 @@ F2-cards,131,131,student unit folder; teacher holds reserved masters,student,Fil
 end-assessment,131,131,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-7/end-assessment.md. Print at 100 percent; keep source/response sizes together. Held assessment source; never used as earlier teaching.
 response-132,132,132,student unit folder; teacher holds reserved masters,student,"File: courses/social-studies-grade-4/u06-7/response-132.md. Print at 100 percent; keep source/response sizes together. Fresh retry collected and returned in Reflect and hand on, five minutes; same-day feedback to every child."
 retry-grid,128,128,student unit folder; teacher holds reserved masters,student,File: courses/social-studies-grade-4/u06-7/retry-grid.svg. Print at 100 percent; keep source/response sizes together. 
-teacher-key,107,107 108 109 110,teacher source folder,room,File: courses/social-studies-grade-4/u06-1/key-teacher.md. Teacher only; teacher-key.md is a pointer for earlier directions.
-opener,107,107,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-1/opener.md. Print at 100 percent; keep source/response sizes together. 
-teacher-key,111,111 112 113,teacher source folder,room,File: courses/social-studies-grade-4/u06-2/key-teacher.md. Teacher only; teacher-key.md points to this adult key.
-opener,111,111,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-2/opener.md. Print at 100 percent; keep source/response sizes together. 
+teacher-key,107,107 108 109 110 119 120,teacher source folder,room,File: courses/social-studies-grade-4/u06-1/key-teacher.md. Teacher only; teacher-key.md is a pointer for earlier directions.
+opener,107,107 119 120,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-1/opener.md. Print at 100 percent; keep source/response sizes together. 
+teacher-key,111,111 112 113 119 120,teacher source folder,room,File: courses/social-studies-grade-4/u06-2/key-teacher.md. Teacher only; teacher-key.md points to this adult key.
+opener,111,111 119 120,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-2/opener.md. Print at 100 percent; keep source/response sizes together. 
 key-teacher,114,114 115 116 117 118,teacher source folder,room,File: courses/social-studies-grade-4/u06-3/key-teacher.md. Print at 100 percent; keep source/response sizes together. 
-opener,114,114 115 116 117 118,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-3/opener.md. Print at 100 percent; keep source/response sizes together. 
-teacher-key,119,119,teacher source folder,room,File: courses/social-studies-grade-4/u06-4/teacher-key.md. Print at 100 percent; keep source/response sizes together. 
-opener,119,119,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-4/opener.md. Print at 100 percent; keep source/response sizes together. 
-teacher-key,121,121,teacher source folder,room,File: courses/social-studies-grade-4/u06-5/teacher-key.md. Print at 100 percent; keep source/response sizes together. 
-opener,121,121,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-5/opener.md. Print at 100 percent; keep source/response sizes together. 
-teacher-key,126,126,teacher source folder,room,File: courses/social-studies-grade-4/u06-6/teacher-key.md. Print at 100 percent; keep source/response sizes together. 
-opener,126,126,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-6/opener.md. Print at 100 percent; keep source/response sizes together. 
-teacher-key,128,128,teacher source folder,room,File: courses/social-studies-grade-4/u06-7/teacher-key.md. Print at 100 percent; keep source/response sizes together. 
-opener,128,128,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-7/opener.md. Print at 100 percent; keep source/response sizes together. 
+opener,114,114 115 116 117 118 119 120,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-3/opener.md. Print at 100 percent; keep source/response sizes together. 
+teacher-key,119,119 120,teacher source folder,room,File: courses/social-studies-grade-4/u06-4/teacher-key.md. Print at 100 percent; keep source/response sizes together. 
+opener,119,119 120,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-4/opener.md. Print at 100 percent; keep source/response sizes together. 
+teacher-key,121,119 120 121,teacher source folder,room,File: courses/social-studies-grade-4/u06-5/teacher-key.md. Print at 100 percent; keep source/response sizes together. 
+opener,121,119 120 121,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-5/opener.md. Print at 100 percent; keep source/response sizes together. 
+teacher-key,126,119 120 126,teacher source folder,room,File: courses/social-studies-grade-4/u06-6/teacher-key.md. Print at 100 percent; keep source/response sizes together. 
+opener,126,119 120 126,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-6/opener.md. Print at 100 percent; keep source/response sizes together. 
+teacher-key,128,119 120 128,teacher source folder,room,File: courses/social-studies-grade-4/u06-7/teacher-key.md. Print at 100 percent; keep source/response sizes together. 
+opener,128,119 120 128,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-7/opener.md. Print at 100 percent; keep source/response sizes together. 
 reference-northeast-mainland,108,108 109 119 120 130 131,teacher reference folder,student,File: courses/social-studies-grade-4/u06-1/reference-northeast-mainland.svg. Each S/C number matches its row in the separate reference index.
 reference-southeast-mainland,109,109 119 120 130 131,teacher reference folder,student,File: courses/social-studies-grade-4/u06-1/reference-southeast-mainland.svg. Each S/C number matches its row in the separate reference index.
 reference-midwest-mainland,109,109 110 119 120 130 131,teacher reference folder,student,File: courses/social-studies-grade-4/u06-1/reference-midwest-mainland.svg. Each S/C number matches its row in the separate reference index.
 reference-southwest-mainland,110,110 119 120 130 131,teacher reference folder,student,File: courses/social-studies-grade-4/u06-1/reference-southwest-mainland.svg. Each S/C number matches its row in the separate reference index.
 reference-west-mainland,110,110 119 120 130 131,teacher reference folder,student,File: courses/social-studies-grade-4/u06-1/reference-west-mainland.svg. Each S/C number matches its row in the separate reference index.
-reference-west-alaska,110,110 119 120 130 131,teacher reference folder,student,File: courses/social-studies-grade-4/u06-1/reference-west-alaska.svg. Each S/C number matches its row in the separate reference index.
-reference-west-hawaii,110,110 119 120 130 131,teacher reference folder,student,File: courses/social-studies-grade-4/u06-1/reference-west-hawaii.svg. Each S/C number matches its row in the separate reference index.
+reference-west-alaska,110,110 130 131,teacher reference folder,student,File: courses/social-studies-grade-4/u06-1/reference-west-alaska.svg. Each S/C number matches its row in the separate reference index.
+reference-west-hawaii,110,110 130 131,teacher reference folder,student,File: courses/social-studies-grade-4/u06-1/reference-west-hawaii.svg. Each S/C number matches its row in the separate reference index.
 question board,107,107,class wall,room,"Five questions and named answer days, teacher holds provenance."
-teacher-key,80,80 81 82 83,teacher source folder,room,File: courses/social-studies-grade-4/u05-1/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
-teacher-key,84,84 85 86,teacher source folder,room,File: courses/social-studies-grade-4/u05-2/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
-teacher-key,87,87 88 89 90,teacher source folder,room,File: courses/social-studies-grade-4/u05-3/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
-teacher-key,91,91 92 93 94,teacher source folder,room,File: courses/social-studies-grade-4/u05-4/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
-teacher-key,95,95 96 97,teacher source folder,room,File: courses/social-studies-grade-4/u05-5/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
-teacher-key,98,98 99 100 101 102 103,teacher source folder,room,File: courses/social-studies-grade-4/u05-6/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
+teacher-key,80,80 81 82 83 119 120,teacher source folder,room,File: courses/social-studies-grade-4/u05-1/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
+teacher-key,84,84 85 86 119 120,teacher source folder,room,File: courses/social-studies-grade-4/u05-2/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
+teacher-key,87,87 88 89 90 119 120,teacher source folder,room,File: courses/social-studies-grade-4/u05-3/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
+teacher-key,91,91 92 93 94 119 120,teacher source folder,room,File: courses/social-studies-grade-4/u05-4/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
+teacher-key,95,95 96 97 119 120,teacher source folder,room,File: courses/social-studies-grade-4/u05-5/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
+teacher-key,98,98 99 100 101 102 103 119 120,teacher source folder,room,File: courses/social-studies-grade-4/u05-6/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
 key-teacher.md,107,107 108 109 110,teacher source folder,room,"File: courses/social-studies-grade-4/u06-1/key-teacher.md. Adult answers only, printed separately."

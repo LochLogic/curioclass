@@ -8,7 +8,7 @@ credit: All ours.
 ---
 # Day 100 assessment paper
 
-Teacher reads each ask from teacher-key.md. One panel, one ask.
+Teacher reads each ask from key-teacher.md. One panel, one ask.
 
 ## Side 1
 

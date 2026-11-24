@@ -10,7 +10,7 @@ credit: All ours.
 
 A full frame has two rows of five. Given and missing parts together occupy ten places. Count empty spaces from one; never repeat the given part as the missing part. Demonstrate completed 3/7, 1/9, 2/8 and 5/5 on day 97, then 4/6 and reversed given/added roles on day 98. Days 99/100 rehearse these methods. No speed target or strategy beyond ten.
 
-Read every word and equation aloud; no independent reading. Before class print practice and exit masters at 18 point or larger, the local record and teacher-key.md. Keep the teacher key private. Never show held exit/end layouts, pictures or independent response formats in practice. Each practice master supplies an adult-started record, not a blank evidence task. Finite number pairs recur in full-range records, but independent cases/layouts are held.
+Read every word and equation aloud; no independent reading. Before class print practice and exit masters at 18 point or larger, the local record and key-teacher.md. Keep the teacher key private. Never show held exit/end layouts, pictures or independent response formats in practice. Each practice master supplies an adult-started record, not a blank evidence task. Finite number pairs recur in full-range records, but independent cases/layouts are held.
 
 Keep ledger wording: Partner turns, Return and repair, Paper count-dot record, Counting centers, Close retained observation records, and Five occupied cells and five-and-some on joined 5-frames. Demonstrate intended reviews afresh before use; never assume planned teaching has happened. There is no readiness assessment; day 87 retrieval is unscored.
 
@@ -30,4 +30,4 @@ Pieces: practice-97.md and exit-97.md, practice-98.md and exit-98.md, practice-9
 
 Part-mats.md and feedback.md in u05-1 supply reusable blank regions. Always supply a started practice record; never use reserved independent assessment sheets for rehearsal.
 
-Before class for day 100, print assessment-100.md in u05-3 as the single two-sided paper, plus the half-slip exit. It combines the next ten F1 panels, both F3 allocations and the equation box. Read the F1 asks separately from teacher-key.md and the four-stamp story setup from story-record.md. Portfolio-100.md, portfolio-equation.md and story-record.md are source masters, not extra child copies. Day 99 uses portfolio-99.md, and day 101 uses partner-sheet.md.
+Before class for day 100, print assessment-100.md in u05-3 as the single two-sided paper, plus the half-slip exit. It combines the next ten F1 panels, both F3 allocations and the equation box. Read the F1 asks separately from key-teacher.md and the four-stamp story setup from story-record.md. Portfolio-100.md, portfolio-equation.md and story-record.md are source masters, not extra child copies. Day 99 uses portfolio-99.md, and day 101 uses partner-sheet.md.

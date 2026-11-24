@@ -1081,7 +1081,7 @@ s06-X117a,A solid exploration line replaces the dashed forced-movement arrow.,,,
 s06-X117b,All three dated land relationships are identical.,,,F,Predicted response; one error only. Shape: Explain temporal land relationships rather than copy a boundary.
 s06-X118,Only a place list outside an unchanged outline.,,,R,Predicted response; one error only. Shape: Construct a new four-category regional inset.
 s06-X119a,Equally spaced boxes replacing equal-year positions.,,,C,Predicted response; one error only. Shape: Correct an unequal event-space representation on a new subdivided line.
-s06-X119b,73 years.,,,C,Predicted response; one error only. Shape: Compute a span after correcting the representation.
+s06-X119b,73 years.,,,x,Cold-checked predicted response; one diagnostic error. Arithmetic alone does not establish event-spacing error.
 s06-X121,"Water, homes, fields.",,,U,Predicted response; one error only. Shape: Explain one resource-to-settlement or movement relationship from an unseen invented map.
 s06-X122a,Which drawing is nicest?,,,X,Predicted response; one error only. Shape: Ask a researchable question about an unseen two-record harbor.
 s06-X122b,The titles say Map and Grower.,,,J,Predicted response; one error only. Shape: Synthesize an original map and independent invented account into an adaptation explanation.
@@ -1171,11 +1171,11 @@ s06-P117-1,All three locators show the present reservation.,,,F,Predicted respon
 s06-P117-2,The settlement dot is the expedition route.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P118-1,Fort Clatsop is a river.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P118-2,Crater Lake is on the northern boundary.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P119-1,A response missing the named relationship or source position.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P119-2,A response missing the named relationship or source position.,,,T,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P119-3,A response missing the named relationship or source position.,,,R,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P119-4,A response missing the named relationship or source position.,,,R,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P119-5,A response missing the named relationship or source position.,,,C,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P119-1,"A key labels a circle as a lake, but the lake uses a triangle.",,,E,Cold-checked concrete response; one diagnostic error.
+s06-P119-2,The key calls the processing plant a natural resource.,,,T,Cold-checked concrete response; one diagnostic error.
+s06-P119-3,Four feature names appear in a list with no located marks.,,,R,Cold-checked concrete response; one diagnostic error.
+s06-P119-4,The response lists four places without locating them.,,,R,Cold-checked concrete response; one diagnostic error.
+s06-P119-5,Nine cards are spaced evenly by event rather than year.,,,C,Cold-checked concrete response; one diagnostic error.
 s06-P121-1,A response missing the named relationship or source position.,,,U,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P121-2,A response missing the named relationship or source position.,,,G,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P122-1,A response missing the named relationship or source position.,,,X,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
@@ -1251,3 +1251,9 @@ s06-P117,All New Mexico has one identical climate.,,,L,Fresh component task; no 
 s06-F117,A line following the eastern state boundary.,,,L,Fresh component task; no held source arrangement.
 s06-R118,1863 confinement.,,,F,Fresh component task; no held source arrangement.
 s06-P116-3,All three layers show only a dot labeled Topeka.,,,R,"Locations are source areas, not the earlier city reminder."
+s06-R119,A triangle still marks the tree.,,,E,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
+s06-P119-R1,A larger city replaces the capital.,,,K,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
+s06-P119-R2,A larger city replaces the capital.,,,K,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
+s06-P119-R3,A larger city replaces the capital.,,,K,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
+s06-P119-R4,A larger city replaces the capital.,,,K,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
+s06-P119-R5,A larger city replaces the capital.,,,K,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
