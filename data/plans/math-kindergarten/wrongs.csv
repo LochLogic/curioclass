@@ -1439,7 +1439,7 @@ s07-F3s,Calls cylinder behind box in front.,,,E,Assign this letter only when res
 s07-F4b,Sideways cone called triangle.,,,F,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-P120,Leaves a gap.,,,K,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-P121,Calls four spread pieces more than six.,,,G,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-P122,Question asks about whole but answer counts added part only.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P122,Gives an ending that the partial picture cannot answer.,,,x,The stem asks for a question ending; an unrelated ending does not establish part/whole error I. Describe the response.
 s07-P123,Uses 4 for both parts.,,,N,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-P124,Adds two to six.,,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-P125,Claims eight and one make ten.,,,J,Assign this letter only when response or observed method shows it; otherwise describe the response.
@@ -1454,3 +1454,15 @@ s07-G120-1,Shows only arriving one.,,,I,Assign this letter only when response or
 s07-G120-2,"Shows five, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-G120-3,Shows only arriving two.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-G120-4,"Shows seven, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-K120-hook,Names an absent feature.,,,x,Assign this letter only if observed method supports it; x is another descriptive response.
+s07-K120-tri,Leaves a gap.,,,K,Assign this letter only if observed method supports it; x is another descriptive response.
+s07-K120-eq,Indicates only the second group as whole.,,,I,Assign this letter only if observed method supports it; x is another descriptive response.
+s07-F120-count,Revisits a square and keeps 7.,,,L,Assign this letter only if observed method supports it; x is another descriptive response.
+s07-K121-strip,Leaves a gap.,,,K,Assign this letter only if observed method supports it; x is another descriptive response.
+s07-K121-match,Calls four more because its row is wider.,,,G,Assign this letter only if observed method supports it; x is another descriptive response.
+s07-K122-ending,Names something not countable from the picture.,,,x,Assign this letter only if observed method supports it; x is another descriptive response.
+s07-F122-whole,Keeps arriving two as whole.,,,I,Assign this letter only if observed method supports it; x is another descriptive response.
+s07-K123-link,Uses four squares for both parts.,,,N,Assign this letter only if observed method supports it; x is another descriptive response.
+s07-K124-join,Keeps two as whole.,,,I,Assign this letter only if observed method supports it; x is another descriptive response.
+s07-K125-whole,Leaves out one and calls nine ten.,,,J,Assign this letter only if observed method supports it; x is another descriptive response.
+s07-P121-transfer,Leaves three further and claims fourteen.,,,x,"An omitted mark does not establish error L, which specifically revisits an object. Describe the partial-record error."
