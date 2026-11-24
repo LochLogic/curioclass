@@ -295,3 +295,17 @@ s03-F32,A conclusion not supported by the supplied record.,,,x,Any other wrong a
 s03-T30a,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
 s03-T30b,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
 s03-T27,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-K33,Every record has the same audience.,,,C,Separate addressee clues from maker/date and purpose.
+s03-K34,Leaving makes all earlier observations useless.,,,M,A time limit does not erase earlier evidence.
+s03-P33,Thursday is the audience.,,,C,The date does not identify readers.
+s03-P34,The engraving records every moment exactly.,,,K,A constructed image selects a portrayal.
+s03-P35,Copying details explains their connection.,,,E,Explain how the detail supports the claim.
+s03-P36,All actions occurred at once.,,,A,Attend to separate dated actions.
+s03-P37,British troops lost Bunker Hill.,,,Q,The text identifies a costly British victory.
+s03-P38,An action proves every private motive.,,,N,Distinguish action from private motive.
+s03-F33,The signed request is intimidation.,,,J,No threat is stated.
+s03-F34,Report is the audience.,,,C,The addressee identifies recipients.
+s03-F35,Both disputed weights are confirmed.,,,D,Only the color gains support.
+s03-F36,The entire building was checked.,,,D,The inspection covers one stair.
+s03-F37,The Thursday reply came first.,,,A,Monday precedes Thursday within the given week.
+s03-F38,The page describes the whole route.,,,S,The page covers one segment only.

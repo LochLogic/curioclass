@@ -1,5 +1,5 @@
 ---
-piece: assessment
+piece: opener
 course: social-studies-grade-5
 unit: 3.3
 stretch: 3

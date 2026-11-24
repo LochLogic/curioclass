@@ -1,5 +1,5 @@
 ---
-piece: sheet
+piece: blank
 course: social-studies-grade-5
 unit: 3.4
 stretch: 3

@@ -1716,18 +1716,18 @@ s08-P144-1,Records arriving one as whole.,,,L,Use the letter only for the stated
 s08-P144-2,"Joins stored one to four, writes five.",,,C,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
 s08-P145-1,Uses arriving one as whole total.,,,L,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
 s08-P145-2,Keeps 3 = 3 + 1 despite four actual strips.,,,x,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
-s08-P146-1,Does not make the described correction.,,,J,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P146-2,Does not make the described correction.,,,K,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P147-1,Does not make the described correction.,,,L,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P147-2,Does not make the described correction.,,,M,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P148-1,Does not make the described correction.,,,L,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P148-2,Does not make the described correction.,,,O,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P149-1,Does not make the described correction.,,,C,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P149-2,Does not make the described correction.,,,O,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P150-1,Does not make the described correction.,,,C,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P150-2,Does not make the described correction.,,,L,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P151-1,Does not make the described correction.,,,M,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P151-2,Does not make the described correction.,,,O,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
+s08-P146-1,"Says eighty after sixty-nine, skipping seventy.",,,J,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-P146-2,Says twenty-one when third ten-object group moves.,,,K,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-P147-1,"Calls empty part zero the whole, ignoring three dots.",,,L,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-P147-2,Calls visible one the hidden part.,,,M,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-P148-1,Calls empty half zero the whole.,,,L,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-P148-2,Keeps three after all three removed.,,,O,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-P149-1,Keeps both swapped placements without checking operations.,,,x,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-P149-2,Keeps five after all five removed.,,,O,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-P150-1,"Keeps starting four, ignoring removal.",,,x,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-P150-2,Calls empty part zero the whole.,,,L,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-P151-1,Calls visible one hidden.,,,M,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-P151-2,Says zero hidden because none visible.,,,M,Use letter only for described observed action; otherwise describe response. Access help separate.
 s08-X135,Revisits a pencil and claims six pencils.,,,A,Only if the repeated visit is observed; a final unexplained mark is descriptive.
 s08-X142,Calls the whole cube flat because its face is square.,,,G,"Only if this reason is actually observed/heard, never inferred from an incorrect trace."
 s08-Q135-flat,Whole cube treated as flat.,,,x,"Descriptive diagnostic/practice note, not scored evidence or inferred misconception."
@@ -1775,3 +1775,16 @@ s08-R145-C,"Joins stored one to four, writes five.",,,C,Use the letter only for 
 s08-Q145,Misses a word in the supplied stretch.,,,x,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
 s08-A142-number,Marks thirteen-loop row.,,,x,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
 s08-A143-meaning,Records only one part as whole.,,,L,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-Q146,"Says forty, forty-one while whole groups move.",,,K,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-R146,"Joins one to four, records five.",,,C,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-Q147,"Says forty, forty-one while whole groups move.",,,K,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-R147,"Skips fifty, says sixty after forty-nine.",,,J,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-RK147,Says forty-one for next whole group.,,,K,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-Q148,"Says forty, forty-one while whole groups move.",,,K,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-R148,Calls visible three hidden.,,,M,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-RL148,Calls empty part zero whole.,,,L,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-Q149,"Says forty, forty-one while whole groups move.",,,K,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-R149,Calls visible zero hidden amount.,,,M,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-Q150,"Says forty, forty-one while whole groups move.",,,K,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-R150,"Joins two to three, records five.",,,C,Use letter only for described observed action; otherwise describe response. Access help separate.
+s08-Q151,"Says forty, forty-one while whole groups move.",,,K,Use letter only for described observed action; otherwise describe response. Access help separate.

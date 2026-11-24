@@ -662,17 +662,14 @@ s06-R117,Separate copied facts.,,,A,Separate facts need a combined conclusion.
 s06-R117,Parts without route.,,,B,Names alone omit interactions.
 s06-R117,Runoff is drinkable.,,,D,Appearance does not establish drinking safety.
 s06-R117,"Repaint covers, leaving unequal slopes.",,,H,Target the recorded failure.
-s06-P100-notice,Part names alone show the interaction.,,,B,Names alone omit interactions.
+s06-P100-notice,The picture proves drinking safety.,,,x,Appearance cannot establish invisible hazards or drinking safety.
 s06-P100-route,Part names alone show the interaction.,,,B,Names alone omit interactions.
-s06-P101-locator,The separate facts already explain the whole result.,,,A,Separate facts need a combined conclusion.
 s06-P101-status,The expected future result has already been observed.,,,C,A projection is not an observation.
 s06-P102-soil,An action unrelated to this harm route will solve it.,,,I,An action must affect the particular harm route.
 s06-P102-status,The expected future result has already been observed.,,,C,A projection is not an observation.
-s06-P103-sort,Clear-looking output is safe to drink.,,,D,Appearance does not establish drinking safety.
-s06-P103-limit,An unrelated change fixes any failure.,,,H,Target the recorded failure.
 s06-P104-feature,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
-s06-P104-contribution,An unrelated change fixes any failure.,,,H,Target the recorded failure.
-s06-P105-plot,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P104-contribution,"Our group worked, but I cannot identify my contribution.",,,x,Group work alone does not establish an individual decision.
+s06-P105-plot,Plot one mark at 1 and one at 1.5; drop the repeated 1.,,,G,Deleting a repeated measurement hides one trial.
 s06-P105-control,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
 s06-P106-assembly,An unrelated change fixes any failure.,,,H,Target the recorded failure.
 s06-P106-inventory,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
@@ -703,7 +700,6 @@ s06-P117-H,An unrelated change fixes any failure.,,,H,Target the recorded failur
 s06-P117-I,An action unrelated to this harm route will solve it.,,,I,An action must affect the particular harm route.
 s06-X100-1,"Separate yard, ditch and pond labels.",,,B,Names alone omit interactions.
 s06-X100-2,An air-protection question with no connection to this route.,,,I,An action must affect the particular harm route.
-s06-X101-1,Copy facts separately without a shared question.,,,A,Separate facts need a combined conclusion.
 s06-X101-2,Copy facts separately without a shared question.,,,A,Separate facts need a combined conclusion.
 s06-X104-1,One forecast proves S always works.,,,F,One result does not establish repeated performance.
 s06-X104-2,One forecast proves S always works.,,,F,One result does not establish repeated performance.
@@ -712,3 +708,27 @@ s06-X106-2,Different inputs still compare fairly.,,,E,A second changing conditio
 s06-P110-retests,Change inputs between trials.,,,E,A second changing condition confounds comparison.
 s06-P110-retests,Remove the category-3 repeat.,,,G,Retain inconvenient or unresolved trials with notes.
 s06-X110,Omit unfavorable repeated evidence from the model.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P100-resource,The depot building is the natural resource.,,,x,The response does not meet the stated task.
+s06-P100-fresh,"Yes, ocean water is fresh.",,,x,The response does not meet the stated task.
+s06-P100-arrow,"Water, pavement, grit.",,,B,Part names alone omit the interaction.
+s06-P100-shadow,Copy 34 cm into the actual log without observing.,,,x,The response does not meet the stated task.
+s06-P101-repair-B,"Roof, rain, dust.",,,B,Part names alone omit the action.
+s06-P101-repair-I,It removes gases from distant air.,,,I,That action does not address the described route.
+s06-P101-link,Wetlands and rivers are separate labels.,,,B,The answer needs an interaction.
+s06-P101-locator,The author and date do not matter.,,,x,Source locations need a maker and date when available.
+s06-X101-1,The inspection log reports leaf blockage; the maintenance note reports retained wrappers.,,,x,This reverses which named source supplies each idea.
+s06-P102-repair-A,Storage. Release. These words alone explain everything.,,,A,Separate facts need a connecting explanation.
+s06-P102-repair-BI,The lid changes distant engine exhaust.,,,I,This does not address the recorded grit route.
+s06-P102-observed,A future projection.,,,C,A recorded result is not a projection.
+s06-P103-repair-A,Water; plants; soil. Separate labels fully explain it.,,,A,Labels alone do not connect source information.
+s06-P103-repair-B,"Roof and barrel, without an action.",,,B,A parts list omits the interaction.
+s06-P103-repair-C,An observed result from next spring.,,,C,Expectation is not observation.
+s06-P103-retrieve,Change message meanings during the comparison.,,,E,Different comparison conditions can hide a design effect.
+s06-P103-measure-v2,2 milliliters.,,,x,The mark count must be multiplied by the printed 20 mL interval.
+s06-P103-sort,The collection target is a material restriction.,,,x,A checkable performance target is a criterion.
+s06-P103-limit,Using at least two cups meets the one-cup limit.,,,x,Two cups exceed the stated maximum.
+s06-P104-repair-D,It is safe to drink.,,,D,Clear appearance does not establish drinking safety.
+s06-P105-repair-D,Less cloudy means safe to drink.,,,D,Appearance is not a drinking-safety test.
+s06-P105-repair-F,One result proves every future result.,,,F,One result cannot establish repeated performance.
+s06-P105-measure,4 milliliters.,,,x,Four marks represent four 20 mL intervals.
+s06-P105-repeat,Keep only the largest volume.,,,G,Selecting a favorable result hides variation.
