@@ -624,10 +624,6 @@ s06-P105,A plant must walk to respond.,,,x,A growing shoot can respond to light 
 s06-P106,A wind-moved seed supports protection from eating.,,,x,Matches true evidence to an unrelated claim.
 s06-P107,Cutting directly shows root uptake.,,,H,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-P108,Seeds turn into pollen after fruit appears.,,,x,Reverses the sequence and confuses pollen with seeds.
-s06-P109,Only outside parts matter.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
-s06-P110,Rootless observation proves uptake.,,,H,Diagnose only this stated idea; incomplete answers are not automatically this error.
-s06-P111,Only external structures contribute.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
-s06-P112,Cutting proves uptake.,,,H,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-P113,Only outside parts help organisms.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X97-dark,It sees without any illumination.,,,B,One stated idea; not a label for an incomplete response.
 s06-X104-question,Why can no inside part help?,,,F,The question assumes internal parts cannot contribute. Do not diagnose from an open question alone.
@@ -690,3 +686,25 @@ s06-P108-inside,Only outside parts do useful work.,,,F,Diagnose the stated idea 
 s06-P108-roots,The cut flower directly tested root uptake.,,,H,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
 s06-P108-fruit,The seed is a pollen grain.,,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
 s06-X108,Inside parts cannot contribute to reproduction.,,,F,Explicit denial of internal reproductive contribution; incomplete labels alone do not diagnose this.
+s06-P109,Only outside parts matter,,,F,Use only for the explicit stated error; missing links receive descriptive feedback.
+s06-P109-inside,Inside parts do nothing,,,F,Use only for the explicit stated error; missing links receive descriptive feedback.
+s06-P109-flower,Petals alone make seeds,,,G,Use only for the explicit stated error; missing links receive descriptive feedback.
+s06-P109-route,Only the outside intake part contributes,,,F,Use only for the explicit stated error; missing links receive descriptive feedback.
+s06-P109-young,The shell makes food and every egg becomes a young bird,,,x,Use only for the explicit stated error; missing links receive descriptive feedback.
+s06-P110,Rootless observation proves uptake,,,H,Explicit stated error only; separate unsupported evidence from missing content.
+s06-P110-inside,Outside parts alone suffice,,,F,Explicit stated error only; separate unsupported evidence from missing content.
+s06-P110-flower,Petals alone make seeds,,,G,Explicit stated error only; separate unsupported evidence from missing content.
+s06-K110,The cut flower directly shows roots absorbing water,,,H,Explicit stated error only; separate unsupported evidence from missing content.
+s06-P110-talk,A rootless cutting alone proves root uptake,,,H,Explicit stated error only; separate unsupported evidence from missing content.
+s06-P111,Only external structures contribute,,,F,Explicit idea only; missing components get descriptive feedback.
+s06-P111-inside,Only outside structures help,,,F,Explicit idea only; missing components get descriptive feedback.
+s06-P111-flower,Petals alone make seeds,,,G,Explicit idea only; missing components get descriptive feedback.
+s06-P111-roots,The rootless setup tests roots taking water,,,H,Explicit idea only; missing components get descriptive feedback.
+s06-P111-talk,Only outside parts help,,,F,Explicit idea only; missing components get descriptive feedback.
+s06-P111-coverage,One food-processing label proves all four functions,,,x,Explicit idea only; missing components get descriptive feedback.
+s06-P112,Cutting proves uptake,,,H,Explicit claim only; descriptive feedback for missing evidence.
+s06-P112-inside,Only outside structures help,,,F,Explicit claim only; descriptive feedback for missing evidence.
+s06-P112-roots,The rootless cutting tests root uptake,,,H,Explicit claim only; descriptive feedback for missing evidence.
+s06-P112-audit,A list of names proves every function,,,x,Explicit claim only; descriptive feedback for missing evidence.
+s06-P112-question,Our records guarantee every animal survives,,,x,Explicit claim only; descriptive feedback for missing evidence.
+s06-X112-animal,Having these parts guarantees survival,,,x,An interaction can help survival; a source model does not guarantee an outcome.

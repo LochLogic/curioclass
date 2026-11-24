@@ -12,7 +12,7 @@ storage bags,1,1 2 3 7 8 9 11,classroom,room,Store protection.
 question board,1,1 2 3 4 5 6 7 8 13 16 27 35 57 58 94 97 98 99 103 104,classroom,room,Teacher retains.
 class record book,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15,classroom,room,One marking scale and heard roster.
 Ramp record R,1,1 2 3 4 5 6 7 13 15,classroom,room,Invented fallback; never mixed with measured observations.
-pencil,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108,classroom,student,Also stationary demonstration on day 4.
+pencil,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112,classroom,student,Also stationary demonstration on day 4.
 folder,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 94,classroom,student,Retain records after feedback.
 Car record C,7,7 8 9 10 11,classroom,room,Named in day materials; invented records labeled.
 toy cars,7,7 8 9 11,classroom,room,Named in day materials; invented records labeled.
@@ -250,15 +250,15 @@ owl and snake input cards,102,102,unit 6 folder,student,courses/science-grade-4/
 visible flag action cards,103,103 104,unit 6 folder,group,"courses/science-grade-4/u06-2/flag-actions.md; revealed meanings/actions, no prediction."
 sealed flower pair and plant record,104,104 107,adult sealed storage,room,"courses/science-grade-4/u06-3/plant-record.md and plant-views.svg; white snapdragon pair, optional celery leaf stalk; Plant P fallback."
 plant preparation kit,104,104 107 108,adult locked storage,room,"Adult cutting tool, cover, water/cups, sealed containers, dye/safety sheet, splash goggles, required gloves, cleanup/handwashing supplies."
-single-job plant cards,105,105 106 110 112,unit 6 folder,student,"courses/science-grade-4/u06-3/plant-cards.md and plant-cards.svg; separate cactus/thorn/dandelion/bending, no held composite."
+single-job plant cards,105,105 106 110,unit 6 folder,student,"courses/science-grade-4/u06-3/plant-cards.md and plant-cards.svg; separate cactus/thorn/dandelion/bending, no held composite."
 flower parts and event cards,108,108 109 110 112,unit 6 folder,group,"courses/science-grade-4/u06-3/flower-parts.md and flower-parts.svg; adult preclass dissection, blunt tweezers/tray, six sealed sets; diagram route."
-animal part and reproduction cards,109,109 110 111 112 114,unit 6 folder,student,"u06-4/animal-parts.md, animal-parts.svg, reproduction-cards.md, reproduction.svg; separate generic diagrams, no goat/bird F/otter practice."
-claim evidence locator sheet,110,110 111 112 113,unit 6 folder,student,u06-4/evidence-locators.md; one valid claim at a time.
+animal part and reproduction cards,109,109 110 111 112 114,unit 6 folder,student,"courses/science-grade-4/u06-4/animal-parts.md and courses/science-grade-4/u06-4/reproduction-cards.md, with their SVG diagrams. Separate generic organs; no held animal argument before its exit."
+claim evidence locator sheet,110,110 111 112 113,unit 6 folder,student,"courses/science-grade-4/u06-4/evidence-locators.md; student claim fields only, one valid claim at a time."
 unit 6 formative record,94,94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 117,unit 6 folder,room,Each section record.md uses shown / shown with help / not yet seen; initial ideas descriptive; no 114 record.
 unit 6 assessment packets,115,115 116,unit 6 folder,student,"u06-5/assessment-115.md, assessment-116.md, end-light-layout.svg, end-plant-sequence.svg; cover flaps until predictions. End-otter.svg supplies original reserved anatomy symbols."
 unit 6 private assessment key and component record,115,115 116 117,unit 6 folder,room,"u06-5/assessment-key.md and assessment-record.md; separate 0/1/2 components, 44 points, sixty minutes marking after each day."
 unit 6 repair cards and second color,117,117,unit 6 folder,student,"u06-5/repair-cards.md; simultaneous groups, teacher verifies during revision. Fresh route never rehearsed. Print u06-5/routed-117.md one assigned Exit box route per child."
-held exit diagram sheets,112,112 113,teacher-held unit 6 folder,student,u06-4/exit-112.md and u06-5/exit-113.md with original SVG diagrams. Withhold each case until its own exit.
+held exit diagram sheets,112,112 113,teacher-held unit 6 folder,student,courses/science-grade-4/u06-4/exit-112.md and courses/science-grade-4/u06-5/exit-113.md reference the diagrams. Print diagrams separately; conceal until the matching exit.
 wooden block and flashlight,98,98,adult storage,room,"Lit patch only, ambient light remains. Adult handles flashlight below eyes; invented L if unclear."
 family.md,94,94,family folder,student,"courses/science-grade-4/u06-1/family.md; unit 6 family note, sent on day 94."
 inside/outside view cards,104,104 105 106 107 108,unit 6 folder,room,Original enlarged plant-views.svg; outside and inside views kept separate.
