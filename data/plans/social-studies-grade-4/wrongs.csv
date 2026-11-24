@@ -648,7 +648,7 @@ s04-P60-1,Which flag looks nicest?,,,I,"Predicted, untested. Judge evidence sepa
 s04-P60-2,Only someone who likes sails needs history.,,,R,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
 s04-P60-3,Both were eyewitnesses.,,,A,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
 s04-P60-4,Nobody lived there.,,,C,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
-s04-P61-1,It reveals everyone's thoughts.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P61-1,It reveals everyone's thoughts.,,,B,"Object and find context support tool use, not thoughts. Accept other relevant tool-use questions."
 s04-P61-2,The map tells every opinion.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
 s04-P61-3,Any old drawing is eyewitness evidence.,,,A,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
 s04-P62-1,The later recorder saw every event.,,,A,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
@@ -703,3 +703,17 @@ s04-P79-1,It must be eyewitness evidence.,,,A,Predicted response; reteach on thi
 s04-P79-2,Every resident has already benefited.,,,E,Predicted response; reteach on this made-up case before a different unseen R79 task.
 s04-P79-3,Any event needs equal gaps regardless of years.,,,F,Predicted response; reteach on this made-up case before a different unseen R79 task.
 s04-P79-4,The title alone proves voyage speed.,,,J,Predicted response; reteach on this made-up case before a different unseen R79 task.
+s04-P60-5,All four ask which flag is nicest.,,,R,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P61-4,What did every sailor think?,,,B,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P61-5,The costume designer choosing green fabric.,,,R,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P61-6,The painter choosing yellow paint.,,,R,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P62-5,Every sailor was happy.,,,B,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P62-6,A witnessed event.,,,A,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P62-7,Our class.,,,H,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P62-8,2026.,,,H,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P63-4,Our class.,,,H,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P63-5,Describe a feast.,,,M,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P60-6,The islands were empty.,,,C,Unscored folder practice; accept any supported single-source detail or clue.
+s04-P61-7,The object reveals every thought.,,,B,Unscored folder practice; accept any supported single-source detail or clue.
+s04-P62-9,Our class is always the audience.,,,H,Unscored folder practice; accept any supported single-source detail or clue.
+s04-P60-7,The historian's later comparison.,,,A,Unmarked fresh retrieval; witnessing distinguishes these records.
