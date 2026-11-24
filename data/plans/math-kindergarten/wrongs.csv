@@ -277,7 +277,7 @@ s02-F2eright,Omits an object while counting.,,,K,Assign this letter only when th
 s02-F2esame,Says wider four-tab group has more.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-F3-1,Chooses larger ink as greater.,,,J,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-F3-2,Connects correctly counted quantity to wrong numeral.,,,M,Assign this letter only when the recorded action or explanation establishes it; record help separately.
-s02-F3-3,Says same-number groups differ because of spacing.,,,B,Assign this letter only when the recorded action or explanation establishes it; record help separately.
+s02-F3-3,"Rings only one 3, without a valid explanation.",,,x,Equal-print bare numerals provide no spacing evidence; do not assign error B from this choice.
 s02-F2reason-40,Counts both but calls three fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-F3reason-40,Says 4 greater because print larger.,,,J,Assign this letter only when the recorded action or explanation establishes it; record help separately.
 s02-F2reason-41,Counts both but calls three fewer.,,,I,Assign this letter only when the recorded action or explanation establishes it; record help separately.
@@ -483,3 +483,14 @@ s02-T38-M,Counts five but retains label 2.,,,M,Assign only from observed action 
 s02-T38-track,Misses one square.,,,K,Assign only from observed action or heard explanation; record help separately.
 s02-T38-total,Writes 6 because counting starts at the other end.,,,C,Assign only from observed action or heard explanation; record help separately.
 s02-T38-stop,Adds all four loose squares and passes eight.,,,D,Assign only from observed action or heard explanation; record help separately.
+s02-R39,Retains label 1 for none.,,,E,Assign only from observed action or heard explanation; record help separately.
+s02-K39,Says rearranging three makes four.,,,B,Assign only from observed action or heard explanation; record help separately.
+s02-K39-more,Acknowledges extras in five but calls five fewer.,,,I,Assign only from observed action or heard explanation; record help separately.
+s02-K39-less,Calls five fewer after noticing its extras.,,,I,Assign only from observed action or heard explanation; record help separately.
+s02-F39-M,Counts three but keeps 6.,,,M,Assign only from observed action or heard explanation; record help separately.
+s02-F39-H,Says the total stays seven after adding one.,,,H,Assign only from observed action or heard explanation; record help separately.
+s02-R40,Keeps four after one joins.,,,H,Assign only from observed action or heard explanation; record help separately.
+s02-K40-more,Acknowledges extras in eight but calls it fewer.,,,I,Assign only from observed action or heard explanation; record help separately.
+s02-K40-less,Calls eight fewer despite its extras.,,,I,Assign only from observed action or heard explanation; record help separately.
+s02-F40-M,Keeps 6 after counting three.,,,M,Assign only from observed action or heard explanation; record help separately.
+s02-F40-I,Acknowledges extras in five but calls five fewer.,,,I,Assign only from observed action or heard explanation; record help separately.
