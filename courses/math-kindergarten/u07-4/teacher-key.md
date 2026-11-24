@@ -36,7 +36,7 @@ Mark the arrowed object in its place.
 
 Answer: Marks partly hidden cone behind container.
 
-Independent student-page Exit box, all children. Target mark supports identification/place, never an unheard shape or position word. | Shape: Paper target record alongside spoken shape/place components.
+Independent second question on the separate exit master, all children. Target mark supports identification/place, never an unheard shape or position word. | Shape: Paper target record alongside spoken shape/place components.
 
 Shown: Marks cone. | Not yet seen: Marks sphere above container.
 

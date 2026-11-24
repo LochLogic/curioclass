@@ -135,10 +135,10 @@ s02-X22a,David is free because he submitted a request.,,,N,"Diagnose only if exp
 s02-X22b,A request is a court judgment.,,,N,Diagnose only if expressed. David asks lawmakers to act; Celia already has a judgment declaring freedom.
 s02-X22c,All slavery ends after an agreed term.,,,G,Diagnose only if expressed. No. Ada has a fixed service endpoint; hereditary bondage passes through maternal status without that endpoint.
 s02-X23a,Both were freed immediately by one northern law.,,,P,Diagnose only if expressed. The Pennsylvania child remains bound by delayed service; the Massachusetts parent controls paid work.
-s02-X23b,Freedom guaranteed equal treatment.,,,O,Diagnose only if expressed. The parent and legally free child have family security and property; discrimination persists. The records cannot establish every family experience or equality.
-s02-X23b,Black people had no families.,,,D,Diagnose only if expressed. The parent and legally free child have family security and property; discrimination persists. The records cannot establish every family experience or equality.
+s02-X23b,Freedom guaranteed equal treatment.,,,O,One household has legal freedom and lives together; neither case proves equality or every family experience.
+s02-X23b,Black people had no families.,,,D,One household has legal freedom and lives together; neither case proves equality or every family experience.
 s02-X24,Both mention people. Freedom is good.,,,H,Diagnose only if expressed. A supported claim links the Portsmouth freedom request and Vassall land request to control of life and family support. A request itself grants neither freedom nor land.
-s02-Q1a,1619 began all slavery.,,,A,Diagnose only if expressed. 1662 follows maternal status; 1667 blocks freedom through baptism.
+s02-Q1a,Baptism automatically freed an enslaved person.,,,x,The 1667 law denied this route to freedom; no chronology error is inferred.
 s02-Q1a,Status followed the father.,,,I,Diagnose only if expressed. 1662 follows maternal status; 1667 blocks freedom through baptism.
 s02-Q1b,Only southern colonies ever permitted it.,,,C,"Diagnose only if expressed. 1751, when Georgia permitted slavery."
 s02-Q1c,Every household enslaved someone.,,,K,Diagnose only if expressed. Common but not universal; proportions differed. It is not an all-colony count.
@@ -179,7 +179,7 @@ s02-R26d,Only armed action counts as resistance.,,,L,Diagnose only if expressed.
 s02-R26e,Skill proves freedom.,,,F,Diagnose only if expressed. Skill and payment alone do not document legal release.
 s02-R26f,Both free people today.,,,N,Diagnose only if expressed. First establishes future release but is not yet effective; request establishes no release.
 s02-R26g,Everyone became equal.,,,O,Diagnose only if expressed. Required service ended; equal treatment is not established.
-s02-R26h,A bridge and a letter.,,,H,Diagnose only if expressed. Collective contributes skills; letter challenges exclusion; link both to claim.
+s02-R26h,A clock tower and a letter.,,,H,Diagnose only if expressed. Collective contributes skills; letter challenges exclusion; link both to claim.
 s02-R26i,It is important.,,,R,Diagnose only if expressed. Visitor identifies previously omitted contributors.
 s02-P15-1,All ask about maps.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
 s02-P15-2,What caused ship illness?,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
@@ -193,8 +193,8 @@ s02-P19-1,Enslaved people had no family.,,,D,Diagnose only if expressed. Smith a
 s02-P19-2,Restriction means equality.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
 s02-P20-1,Massachusetts.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
 s02-P20-2,Only uprising is resistance.,,,L,Diagnose only if expressed. Escape; petition; revolt.
-s02-P21-1,Each carpenter kept all wages.,,,M,"Diagnose only if expressed. James Hoban, enslaver, signs for the carpenters' wages."
-s02-P21-2,No skill is needed.,,,Q,"Diagnose only if expressed. Carpentry supports the skills claim, not a claim of freedom."
+s02-P21-1,The brickmaker automatically keeps all pay.,,,M,The receipt names the enslaver as recipient; error M ignores payment control.
+s02-P21-2,No skill is needed.,,,Q,Mold-shaped bricks supply craft evidence; error Q denies the skill shown.
 s02-P22-1,Lawmakers answered a petition.,,,N,Diagnose only if expressed. The enslaver issued a manumission deed; payment alone is not the deed.
 s02-P22-2,Legislature.,,,N,Diagnose only if expressed. Court.
 s02-P23-1,Everyone immediately.,,,P,Diagnose only if expressed. 28.

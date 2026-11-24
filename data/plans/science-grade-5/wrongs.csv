@@ -598,3 +598,19 @@ s05-K90,I point uphill.,,,x,The hollow is stated to be lower; no registered misc
 s05-P89,I replaced an unclear view with a claimed measurement.,,,x,Preserve uncertainty; distinguish supplied from actual observations.
 s05-P90,A map symbol proves tested safety.,,,G,Terrain symbols provide no water-testing evidence.
 s05-P91,Two disconnected names show an interaction.,,,A,Connect parts with an action and matching observation.
+s05-P92-2,Triangle means lake.,,,x,Teacher-only feedback: Mountain.
+s05-K92-1,Enlarging the shaded group adds squares.,,,x,Teacher-only feedback: Any five of sixteen equal squares are shaded. The shaded group can be enlarged separately.
+s05-K92-2,Equal intervals can represent different numbers of units.,,,H,Teacher-only feedback: One bar runs from zero to seven; equal axis intervals represent equal badge units.
+s05-P92,All underground spaces form one giant lake.,,,x,Groundwater occupies water-filled spaces in earth materials; no universal underground lake.
+s05-P93-2,One hundredth is ten tiles.,,,x,Teacher-only feedback: One tile is marked.
+s05-P93-3,Only ocean water belongs in salt water.,,,D,"Teacher-only feedback: Salt water, about 97 of 100 shares; includes ocean and non-ocean saline stores."
+s05-P93,Salt means only ocean.,,,D,Include salty groundwater and inland saline lakes.
+s05-P94,Both wholes mean all water.,,,E,The lifted strip includes fresh water alone.
+s05-P94,Soil moisture cannot join the remainder.,,,F,Surface and other fresh water includes stores beyond lakes and rivers.
+s05-P95-2,0.04 is larger than 0.18.,,,x,Teacher-only feedback: 0.18 units is larger.
+s05-K95-1,Any longer printed strip must mean more water.,,,H,Teacher-only feedback: One swamp strip begins at zero and ends at 0.03 parts per 100 fresh-water shares.
+s05-P95,Printed lengths always mean equal amounts.,,,H,"Compare zero, units and scale before interpreting length."
+s05-C92-1,A surface view always shows every water store.,,,x,Teacher-only feedback: It may not show water in underground spaces.
+s05-C93-1,More blue area always means more stored water.,,,x,Teacher-only feedback: Area alone gives no depth or stored volume; use amount evidence.
+s05-C94-1,One fresh-only share is one all-water share.,,,E,Teacher-only feedback: It belongs to the fresh subset within all water; it is not one all-water share.
+s05-C95-1,Larger printing increases the water quantity.,,,H,Teacher-only feedback: The same supplied quantities are represented with larger printed lengths.

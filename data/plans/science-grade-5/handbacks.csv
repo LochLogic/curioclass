@@ -237,10 +237,10 @@ from_day,to_day,what,where,minutes,error,note
 89,90,s05-P89,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
 90,91,s05-P90,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
 91,92,s05-P91,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
-92,93,s05-P92,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
-93,94,s05-P93,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+92,93,s05-P92 s05-P92-2,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+93,94,s05-P93 s05-P93-2 s05-P93-3,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
 94,95,s05-P94,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
-95,96,s05-P95,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+95,96,s05-P95 s05-P95-2,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
 96,97,s05-P96,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
 97,98,s05-P97,Independent,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
 84,86,c2-R84-climate,Climate,10,,"Existing readiness, not repeated on 85: three minutes timescales, four key matching, three fresh oral comparison. Missing results: teach as new."

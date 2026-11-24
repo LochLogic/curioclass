@@ -56,7 +56,7 @@ Fill the empty part to make ten.
 
 Answer: 3 new marks, since 7 + 3 = 10.
 
-Independent student-page Exit box, not taught practice. Seven occupied spaces nonconsecutive. Each added mark fills one empty place. | Shape: Complete a novel interrupted ten-space row; practice uses supplied complete diagrams.
+Independent second question on the separate exit master, not taught practice. Seven occupied spaces nonconsecutive. Each added mark fills one empty place. | Shape: Complete a novel interrupted ten-space row; practice uses supplied complete diagrams.
 
 Shown: Adds three marks, all ten occupied. | Not yet seen: Adds two and calls nine ten.
 

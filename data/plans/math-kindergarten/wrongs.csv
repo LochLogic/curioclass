@@ -1544,3 +1544,5 @@ s07-F35,Marks reference object.,,,x,Record observed mark descriptively; this alo
 s07-F36,Marks reference object.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
 s07-F4a,Joins cone to cylinder by pose.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
 s05-A103-F4,Earlier record rejects 8 = 3 + 5 solely because the total comes first.,,,C,Carry the recorded equality-orientation gap from unit 4; no new question.
+s03-X51,Calls the long turned rectangle a square despite its unequal adjacent sides.,,,x,Describe the observed classification error. A wrong name alone does not establish an orientation misconception.
+s07-X122a,Asks an unrelated question that cannot be answered from the displayed pieces.,,,x,"The question must be answerable by counting the displayed pieces. An unheard question remains pending, not wrong."
