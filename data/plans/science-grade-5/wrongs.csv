@@ -275,7 +275,7 @@ s03-X45,White proves A,,,A,A: One shared visible property identifies a substance
 s03-X45,Record starting weight without a unit,,,B,B: A measurement needs no unit.
 s03-X46,"L, because shine proves stiffness",,,A,A: One shared visible property identifies a substance.
 s03-X47,Weigh starting portions but omit grams,,,B,B: A measurement needs no unit.
-s03-X47,White means salt,,,A,A: One shared visible property identifies a substance.
+s03-X47,Grains alone prove salt,,,A,A: One observed property does not establish identity; the record never gives color.
 s03-X48,S cannot be metal because it is nonmagnetic,,,C,C: Every metal is attracted by a magnet.
 s03-X48,Clear means water,,,A,A: One shared visible property identifies a substance.
 s03-X49,Its hardness is 4 cm,,,D,D: A hardness rank is a length.
@@ -316,3 +316,21 @@ s03-R61E,Every mixture makes new substance.,,,E,E: Every mixture makes a new sub
 s03-R61G,Any bubble proves a new substance.,,,G,G: Every bubble proves a new substance formed.
 s03-R61H,Any failed separation proves formation.,,,H,H: Reversibility alone determines whether a new substance formed.
 s03-R61Q,Hardness is 7 cm.,,,D,D: Confuses measured length with scratch resistance.
+s03-K45-1,Color proves identical materials.,,,A,One shared property cannot establish identity.
+s03-P45,White alone proves salt.,,,A,Appearance is not identity.
+s03-P45q,Which powder tastes sweet?,,,x,Unsafe tasting.
+s03-P45t,Taste both.,,,x,Unsafe method.
+s03-P45t,Record weight without a unit.,,,B,Measurement needs a unit.
+s03-P46rA,Blue proves the same material.,,,A,Shared color does not establish identity.
+s03-P46rB,18 alone needs no unit.,,,B,Measurement needs a unit.
+s03-K46-1,18 without unit or source.,,,B,Measurement needs a unit.
+s03-K46-2,Hardness means length.,,,D,Scratch resistance is not length.
+s03-P46,Smooth always means flexible.,,,x,Does not follow the stated property record.
+s03-P46b,H is rough because it stays stiff.,,,x,Does not follow the stated property record.
+s03-P46c,J is smooth because it stays stiff.,,,x,Does not follow the stated property record.
+s03-P46d,D is best because it leaked first.,,,x,Does not follow the stated property record.
+s03-P46e,All covers resist the same water.,,,x,Does not follow the stated property record.
+s03-P47,"V47 water, 20, with no unit.",,,B,Water volume needs mL.
+s03-P47r,Green proves the same substance.,,,A,Shared color is not identity.
+s03-P47o,My supplied values are firsthand measurements.,,,x,Supplied records do not show personal actions.
+s03-P47c,Grains alone prove salt.,,,A,A single observation cannot identify the material.
