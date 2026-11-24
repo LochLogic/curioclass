@@ -253,10 +253,10 @@ from_day,to_day,what,where,minutes,error,note
 100,101,question-board paper from all children; public roster,Return and repair,0,,"All children reached in writing next day within the shared return slot; six rotating optional 45-second turns, 4.5 minutes, never thirty serial turns. No extra meeting."
 104,106,C2-E104-1 C2-E104-2 C2-E104-3 C2-E104-4 C2-E104-5,Feedback,2,,One private priority across both days; teaching in Groups.
 105,106,C2-E105-1 C2-E105-2 C2-E105-3 C2-E105-4 C2-E105-5,Feedback,3,,Combine with 104; assign one component.
-107,108,s06-X107a s06-X107b s06-P107-1 s06-P107-2,Return and repair,5,,"Return paper to every child, including all not heard in public. One priority per child; alternative misses share this allocation. "
-108,109,s06-X108a s06-X108b s06-P108-1 s06-P108-2,Return and repair,5,,"Return paper to every child, including all not heard in public. One priority per child; alternative misses share this allocation. "
-109,110,s06-X109a s06-X109b s06-P109-1 s06-P109-2,Return and repair,5,,"Return paper to every child, including all not heard in public. One priority per child; alternative misses share this allocation. "
-110,111,s06-X110a s06-X110b s06-P110-1 s06-P110-2,Return and repair,5,,"Return paper to every child, including all not heard in public. One priority per child; alternative misses share this allocation. "
+107,108,s06-X107a s06-X107b s06-P107-1 s06-P107-2 s06-R107a s06-R107b s06-P107-3,Return and repair,5,,"Return paper to every child, including all not heard in public. One priority per child; alternative misses share this allocation.  Includes consent retrieval and question revision; one priority only."
+108,109,s06-X108a s06-X108b s06-P108-1 s06-P108-2 s06-R108-consent s06-R108-evidence,Return and repair,5,,"Return paper to every child, including all not heard in public. One priority per child; alternative misses share this allocation. "
+109,110,s06-X109a s06-X109b s06-P109-1 s06-P109-2 s06-R109-key s06-R109-boundary,Return and repair,5,,"Return paper to every child, including all not heard in public. One priority per child; alternative misses share this allocation. "
+110,111,s06-X110a s06-X110b s06-P110-1 s06-P110-2 s06-R110-1,Return and repair,5,,"Return paper to every child, including all not heard in public. One priority per child; alternative misses share this allocation. "
 111,112,s06-X111a s06-X111b s06-P111-1 s06-P111-2,Return and repair,5,,"Return paper to every child, including all not heard in public. One priority per child; alternative misses share this allocation. "
 112,113,s06-X112a s06-X112b s06-P112-1 s06-P112-2,Return and repair,5,,"Return paper to every child, including all not heard in public. One priority per child; alternative misses share this allocation. "
 113,114,s06-X113a s06-X113b s06-P113-1 s06-P113-2,Return and repair,5,,"Return paper to every child, including all not heard in public. One priority per child; alternative misses share this allocation. "

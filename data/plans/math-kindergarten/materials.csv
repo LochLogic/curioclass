@@ -1,19 +1,19 @@
 material,made_day,used_days,kept_in,per,note
-paper strips,1,1 5 6 7 8 9 10 11 12 13 14 15 16 17 18 51 52 57 58 59 60 61 62 63,classroom folder,student,
+paper strips,1,1 5 6 7 8 9 10 11 12 13 14 15 16 17 18 51 52 57 58 59 60 61 62 63 89,classroom folder,student,
 pencil,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18 62 84 85 86,classroom folder,student,
-student page,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86,classroom folder,student,
+student page,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90,classroom folder,student,
 button exit card,1,1,classroom folder,student,
 cut-paper buttons,1,1,classroom folder,student,
-connecting cubes,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18,classroom folder,pair,
+connecting cubes,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18 89,classroom folder,pair,
 counting mat,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18,classroom folder,pair,
 paper puppet,1,1 6 7 8 9 10 11 12 13 14 15 16 17,classroom folder,room,
 paper squares,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83,classroom folder,room,
 class list,1,1 6 7 8 9 10 11 12 13 14 15 16 17 18,classroom folder,room,
-paper shapes,2,2 5 6 7 8 9 10 11 12 13 14 15 16 17 18 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63,classroom folder,student,
+paper shapes,2,2 5 6 7 8 9 10 11 12 13 14 15 16 17 18 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 88,classroom folder,student,
 pencil,2,2,classroom folder,student,
 student page,2,2,classroom folder,student,
 crayon exit card,2,2,classroom folder,student,
-pattern blocks,2,2 6 7 8 9 10 11 12 13 14 15 16 17 18 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63,classroom folder,pair,
+pattern blocks,2,2 6 7 8 9 10 11 12 13 14 15 16 17 18 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 88,classroom folder,pair,
 counting mat,2,2,classroom folder,pair,
 paper puppet,2,2,classroom folder,room,
 paper squares,2,2,classroom folder,room,
@@ -180,7 +180,7 @@ student page,19,19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 4
 crayons,19,19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40,Unit 2 dated folder,student,"Optional stand-in for broad pencils, named on each day."
 paper bags,34,34 35,Unit 2 practice folder,pair,"Folded scrap paper stand-in; verify supplied labels, no independent bowl-label practice."
 paper and broad pencils,45,45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63,Unit 3 dated folder,student,"Scrap paper and broad crayons stand in; 18 point, all print read aloud."
-large paper squares,45,45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 85,Unit 3 dated folder,student,"Adult-cut scrap-paper counters, known counting within ten."
+large paper squares,45,45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 85 87 88 89 90,Unit 3 dated folder,student,"Adult-cut scrap-paper counters, known counting within ten."
 flat shape cards,45,45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63,Unit 3 dated folder,pair,Original practice cards in each section practice-records.md; hand-draw if no printer. Pattern blocks replaced by exact adult-cut paper pieces. Keep assessment packets separate.
 record.md,45,45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63,Unit 3 dated folder,room,"courses/math-kindergarten/u03-1/record.md, thirty-child roster and dated component history."
 family.md,45,45,Unit 3 dated folder,student,"courses/math-kindergarten/u03-1/family.md, English and Spanish."
@@ -271,14 +271,14 @@ course-check teacher key,84,84 85 86,Dated mid-year classroom folder,room,teache
 course-check paper squares,84,84 85 86,Dated mid-year classroom folder,student,Large adult-cut scrap-paper pieces; draw if unsafe.
 course-check labels sheet,85,85,Dated mid-year classroom folder,student,"Day 85 student page, two sides."
 course-check transfer slip,86,86,Dated mid-year classroom folder,student,One assigned half slip cut from exit-86.md; never full master.
-unit 5 exit-87 half slip,87,87,Unit 5 teacher folder; issue only on named days,student,"u05-1/exit-87.md, reserved; one half slip per child, 18 point type or larger, teacher reads aloud. Draw the identical master if no printer."
-unit 5 practice-87 supplied record,87,87,Unit 5 teacher folder; issue only on named days,student,"u05-1/practice-87.md; redraw its starter, never a blank independent evidence task."
-unit 5 exit-88 half slip,88,88,Unit 5 teacher folder; issue only on named days,student,"u05-1/exit-88.md, reserved; one half slip per child, 18 point type or larger, teacher reads aloud. Draw the identical master if no printer."
-unit 5 practice-88 supplied record,88,88,Unit 5 teacher folder; issue only on named days,student,"u05-1/practice-88.md; redraw its starter, never a blank independent evidence task."
-unit 5 exit-89 half slip,89,89,Unit 5 teacher folder; issue only on named days,student,"u05-1/exit-89.md, reserved; one half slip per child, 18 point type or larger, teacher reads aloud. Draw the identical master if no printer."
-unit 5 practice-89 supplied record,89,89,Unit 5 teacher folder; issue only on named days,student,"u05-1/practice-89.md; redraw its starter, never a blank independent evidence task."
-unit 5 exit-90 half slip,90,90,Unit 5 teacher folder; issue only on named days,student,"u05-1/exit-90.md, reserved; one half slip per child, 18 point type or larger, teacher reads aloud. Draw the identical master if no printer."
-unit 5 practice-90 supplied record,90,90,Unit 5 teacher folder; issue only on named days,student,"u05-1/practice-90.md; redraw its starter, never a blank independent evidence task."
+unit 5 exit-87 half slip,87,87,Unit 5 teacher folder; issue only on named days,student,"courses/math-kindergarten/u05-1/exit-87.md, reserved; one half slip per child, 18 point type or larger, teacher reads aloud. Draw the identical master if no printer."
+unit 5 practice-87 supplied record,87,87,Unit 5 teacher folder; issue only on named days,student,"courses/math-kindergarten/u05-1/practice-87.md; redraw its starter, never a blank independent evidence task."
+unit 5 exit-88 half slip,88,88,Unit 5 teacher folder; issue only on named days,student,"courses/math-kindergarten/u05-1/exit-88.md, reserved; one half slip per child, 18 point type or larger, teacher reads aloud. Draw the identical master if no printer."
+unit 5 practice-88 supplied record,88,88,Unit 5 teacher folder; issue only on named days,student,"courses/math-kindergarten/u05-1/practice-88.md; redraw its starter, never a blank independent evidence task."
+unit 5 exit-89 half slip,89,89,Unit 5 teacher folder; issue only on named days,student,"courses/math-kindergarten/u05-1/exit-89.md, reserved; one half slip per child, 18 point type or larger, teacher reads aloud. Draw the identical master if no printer."
+unit 5 practice-89 supplied record,89,89,Unit 5 teacher folder; issue only on named days,student,"courses/math-kindergarten/u05-1/practice-89.md; redraw its starter, never a blank independent evidence task."
+unit 5 exit-90 half slip,90,90,Unit 5 teacher folder; issue only on named days,student,"courses/math-kindergarten/u05-1/exit-90.md, reserved; one half slip per child, 18 point type or larger, teacher reads aloud. Draw the identical master if no printer."
+unit 5 practice-90 supplied record,90,90,Unit 5 teacher folder; issue only on named days,student,"courses/math-kindergarten/u05-1/practice-90.md; redraw its starter, never a blank independent evidence task."
 unit 5 exit-91 half slip,91,91,Unit 5 teacher folder; issue only on named days,student,"u05-2/exit-91.md, reserved; one half slip per child, 18 point type or larger, teacher reads aloud. Draw the identical master if no printer."
 unit 5 practice-91 supplied record,91,91,Unit 5 teacher folder; issue only on named days,student,"u05-2/practice-91.md; redraw its starter, never a blank independent evidence task."
 unit 5 exit-92 half slip,92,92,Unit 5 teacher folder; issue only on named days,student,"u05-2/exit-92.md, reserved; one half slip per child, 18 point type or larger, teacher reads aloud. Draw the identical master if no printer."
@@ -308,17 +308,17 @@ unit 5 drawn frames and folded covers,87,87 88 89 90 91 92 93 94 95 96 97 98 99 
 unit 5 crayons and paper,87,87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103,Unit 5 teacher folder; issue only on named days,student,"Broad crayons, nonslip mat, tactile outlines or directed adult marking; no required fingers or fine cutting."
 unit 5 adult-cut shapes,88,88,Unit 5 teacher folder; issue only on named days,student,"Paper triangles/squares replace pattern blocks; count pieces, never area."
 unit 5 marked cube strips,89,89 101,Unit 5 teacher folder; issue only on named days,student,Marked paper replaces connecting cubes. Each cell is one piece. Reserved fresh train/tower only at its exit.
-unit 5 game cards,87,87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103,Unit 5 teacher folder; issue only on named days,pair,"u05-1/game-cards.md; one card at a time, four fixed rounds, teacher-modelled day 87, collection checks; no timer."
-unit 5 retrieval sheet,87,87,Unit 5 teacher folder; issue only on named days,student,"u05-1/retrieval.md; unscored, no formal readiness check."
+unit 5 game cards,87,87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103,Unit 5 teacher folder; issue only on named days,pair,"courses/math-kindergarten/u05-1/game-cards.md; one card at a time, four fixed rounds, teacher-modelled day 87, collection checks; no timer."
+unit 5 retrieval sheet,87,87,Unit 5 teacher folder; issue only on named days,student,"courses/math-kindergarten/u05-1/retrieval.md; unscored, no formal readiness check."
 unit 5 F1 panel packet,99,99 100 101 102 103,Unit 5 teacher folder; issue only on named days,student,"u05-3/portfolio-99.md and portfolio-100.md. Twenty panels, ten each day. Five per side, count labels/read-aloud instruction at 18 point, no earlier exposure."
 unit 5 F1 equation and F3 paper,100,100 101 102 103,Unit 5 teacher folder; issue only on named days,student,u05-3/portfolio-equation.md and story-record.md; original reserved pictures. No stamps/albums in practice.
 unit 5 F2 partner sheet,101,101 102 103,Unit 5 teacher folder; issue only on named days,student,"u05-4/partner-sheet.md, nine frames mixed order, issue once for ten independent minutes; retain for feedback/revision/conference."
-unit 5 teacher record and feedback,87,87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105,Unit 5 teacher folder; issue only on named days,room,u05-1/record.md master and local section records; private teacher-key.md. Dates for initial/help/feedback/revision/judgment. Carry into days 104/105 response.
-unit 5 part mats,87,87 88 89 90 91 92 93 94 95 96,Unit 5 teacher folder,student,u05-1/part-mats.md; teacher supplies adult-started record with large squares. Hand-drawn separate regions replace printing. Never free-partition held evidence cases during practice.
-unit 5 feedback sheet,87,87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105,Unit 5 teacher folder,student,u05-1/feedback.md; keep initial marks; written feedback then later revision/judgment. Draw boxes if no printer.
+unit 5 teacher record and feedback,87,87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105,Unit 5 teacher folder; issue only on named days,room,courses/math-kindergarten/u05-1/record.md master and local section records; private teacher-key.md. Dates for initial/help/feedback/revision/judgment. Carry into days 104/105 response.
+unit 5 part mats,87,87 88 89 90 91 92 93 94 95 96,Unit 5 teacher folder,student,courses/math-kindergarten/u05-1/part-mats.md; teacher supplies adult-started record with large squares. Hand-drawn separate regions replace printing. Never free-partition held evidence cases during practice.
+unit 5 feedback sheet,87,87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105,Unit 5 teacher folder,student,courses/math-kindergarten/u05-1/feedback.md; keep initial marks; written feedback then later revision/judgment. Draw boxes if no printer.
 unit 5 combined day 100 paper,100,100 101 102 103,Unit 5 teacher folder,student,"u05-3/assessment-100.md; one sheet both sides, combines ten F1 panels, total-left equation and two F3 albums. Use instead of separately printing its three source masters; reserved until day 100."
-unit 5 section 1 opener and key,87,87 88 89 90,"Teacher planning folder, key private",room,"u05-1/opener.md, teacher-key.md and record.md. Prepare before first day; read all labels/stems aloud, never display key."
+unit 5 section 1 opener and key,87,87 88 89 90,"Teacher planning folder, key private",room,"courses/math-kindergarten/u05-1/opener.md, teacher-key.md and record.md. Prepare before first day; read all labels/stems aloud, never display key."
 unit 5 section 2 opener and key,91,91 92 93 94 95 96,"Teacher planning folder, key private",room,"u05-2/opener.md, teacher-key.md and record.md. Prepare before first day; read all labels/stems aloud, never display key."
 unit 5 section 3 opener and key,97,97 98 99 100,"Teacher planning folder, key private",room,"u05-3/opener.md, teacher-key.md and record.md. Prepare before first day; read all labels/stems aloud, never display key."
 unit 5 section 4 opener and key,101,101 102 103,"Teacher planning folder, key private",room,"u05-4/opener.md, teacher-key.md and record.md. Prepare before first day; read all labels/stems aloud, never display key."
-unit 5 family note,87,87,Unit 5 teacher folder,student,"u05-1/family.md, English then Spanish; one voluntary note per child. No reporting about home and no purchase."
+unit 5 family note (family.md),87,87,Unit 5 teacher folder,student,"courses/math-kindergarten/u05-1/family.md, English then Spanish; one voluntary note per child. No reporting about home and no purchase."

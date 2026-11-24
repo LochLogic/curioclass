@@ -1109,3 +1109,13 @@ s05-F88-action,Marks plus for the removal.,,,x,Cold-solved original supplied-rec
 s05-K88-design,Counts the large square twice.,,,x,Cold-solved original supplied-record case; identify a letter only from observed action.
 s05-F88-A,Leaves one square outside both recorded parts.,,,A,Cold-solved original supplied-record case; identify a letter only from observed action.
 s05-F88-F,Leaves a square assigned to both parts.,,,F,Cold-solved original supplied-record case; identify a letter only from observed action.
+s05-K89-count,Five marks with one square omitted.,,,A,Cold-solved original supplied-record case; identify a letter only from observed action.
+s05-F89-A,One square remains omitted from both recorded parts.,,,A,Cold-solved original supplied-record case; identify a letter only from observed action.
+s05-F89-F,Keeps one square assigned to both parts.,,,F,Cold-solved original supplied-record case; identify a letter only from observed action.
+s05-K89-change,Claims a square vanished despite all six remaining.,,,x,Cold-solved original supplied-record case; identify a letter only from observed action.
+s05-K90-count,Five marks with one square omitted.,,,A,Cold-solved original supplied-record case; identify a letter only from observed action.
+s05-F90-A,One piece left outside both recorded parts.,,,A,Cold-solved original supplied-record case; identify a letter only from observed action.
+s05-F90-F,One square remains assigned to both parts.,,,F,Cold-solved original supplied-record case; identify a letter only from observed action.
+s05-F90-B,Calls unchanged one/five a new pair.,,,B,Cold-solved original supplied-record case; identify a letter only from observed action.
+s05-K90-order,Calls four/two a different unordered pair from two/four.,,,B,Cold-solved original supplied-record case; identify a letter only from observed action.
+s05-C90-ten,Leaves an unmoved square outside both parts.,,,A,Cold-solved original supplied-record case; identify a letter only from observed action.

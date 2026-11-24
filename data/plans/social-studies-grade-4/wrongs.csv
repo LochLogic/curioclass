@@ -1155,8 +1155,6 @@ s06-F2-sw,Equal event spacing replaces elapsed years.,,,C,Predicted response; on
 s06-F2-we,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
 s06-M4u,List feature names without locating them.,,,R,Predicted response; one error only. Shape: Teacher records construction in M4; no additional child prompt.
 s06-P107-1,A response missing the named relationship or source position.,,,X,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P110-1,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P110-2,A response missing the named relationship or source position.,,,M,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P111-1,A response missing the named relationship or source position.,,,C,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P111-2,A response missing the named relationship or source position.,,,C,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P112-1,A response missing the named relationship or source position.,,,O,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
@@ -1222,3 +1220,8 @@ s06-K109-dc,State.,,,M,"Cold-solved for the day; one predicted error, not an obs
 s06-K109-lookup,Row 1 from the Midwest index.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
 s06-P109-1,Alabama: Jackson.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
 s06-P109-2,Illinois: Indianapolis.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-R110-1,A nearby dot outside Ohio is enough.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K110-inset,A place in a separate box becomes a territory.,,,M,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K110-ocean,North of the equator in the Caribbean.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P110-1,New Mexico: Phoenix.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P110-2,Wake Island is a state because it has a map dot.,,,M,"Cold-solved for the day; one predicted error, not an observed rate."

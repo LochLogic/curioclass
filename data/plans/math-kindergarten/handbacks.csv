@@ -300,3 +300,5 @@ from_day,to_day,what,where,minutes,error,note
 103,104,s05-G103-1 s05-G103-2 s05-G103-3 s05-G103-4,Centers,0,,Immediate action/model feedback during game; return all annotated quantity marks with the already allocated exit/feedback packet next day. No added repair or oral interview.
 87,88,s05-K87-count s05-F87-B s05-F87-quantity s05-F87-action,Return and repair,0,,"Return annotated supplied practice in existing feedback packet, no additional repair or oral round."
 88,89,s05-K88-count s05-F88-B s05-F88-quantity s05-F88-action s05-F88-A s05-F88-F,Return and repair,0,,"Return annotated supplied practice in existing feedback packet, no additional repair or oral round."
+89,90,s05-K89-count s05-F89-A s05-F89-F,Return and repair,0,,"Return annotated supplied practice in existing feedback packet, no additional repair or oral round."
+90,91,s05-K90-count s05-F90-A s05-F90-F s05-F90-B s05-C90-ten,Return and repair,0,,"Return annotated supplied practice in existing feedback packet, no additional repair or oral round."
