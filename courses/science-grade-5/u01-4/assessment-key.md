@@ -1,5 +1,5 @@
 ---
-piece: key
+piece: opener
 course: science-grade-5
 unit: 1.4
 version: draft, not yet taught

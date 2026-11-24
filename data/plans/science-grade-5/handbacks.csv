@@ -108,3 +108,8 @@ from_day,to_day,what,where,minutes,error,note
 35,36,s02-P35-3,Return,0,,Return correction feedback with exit in existing repair time; no added repair task.
 36,37,s02-P36-3,Return,0,,Return correction feedback with exit in existing repair time; no added repair task.
 37,38,s02-P37-3 s02-P37-4 s02-P37-5,Return,0,,Return correction feedback with exit in existing repair time; no added repair task.
+42,44,c1-E42a c1-E42b c1-E42c c1-E42d,Private feedback,2,,Return original marked paper with one private next step. Preserve original evidence. Two returns fit the five-minute feedback part.
+43,44,c1-E43a c1-E43b c1-E43c,Private feedback,2,,Return original marked paper with one private next step. Preserve original evidence. Two returns fit the five-minute feedback part.
+44,46,c1-R44a,Properties repair,10,,Diagnostic readiness row and written next step. Slot already allocated in s03; properties and purpose separate on day 46; change on day 52. Unwritten receiving days remain runner handoffs.
+44,46,c1-R44b,Purpose repair,10,,Diagnostic readiness row and written next step. Slot already allocated in s03; properties and purpose separate on day 46; change on day 52. Unwritten receiving days remain runner handoffs.
+44,52,c1-R44c,Change repair,10,,Diagnostic readiness row and written next step. Slot already allocated in s03; properties and purpose separate on day 46; change on day 52. Unwritten receiving days remain runner handoffs.
