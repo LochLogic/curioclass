@@ -334,3 +334,21 @@ s03-P47,"V47 water, 20, with no unit.",,,B,Water volume needs mL.
 s03-P47r,Green proves the same substance.,,,A,Shared color is not identity.
 s03-P47o,My supplied values are firsthand measurements.,,,x,Supplied records do not show personal actions.
 s03-P47c,Grains alone prove salt.,,,A,A single observation cannot identify the material.
+s03-P48a,"Both are rough, so both must be the same material.",,,A,Error A: A shared visible property does not establish identity.
+s03-P48b,"12, with no unit.",,,B,Error B: A measurement needs its unit.
+s03-P48c,"The sample cannot conduct, even though the checking strip failed.",,,x,Error x: Use actual or supplied evidence without inventing a result.
+s03-P48s,A clear liquid must be water.,,,A,Error A: A shared visible property does not establish identity.
+s03-P48,All metals must pull.,,,C,Error C: Not every metal is attracted by a magnet.
+s03-P49a,"Both are black, so both must be the same material.",,,A,Error A: A shared visible property does not establish identity.
+s03-P49c,Every metal must be pulled.,,,C,Error C: Not every metal is attracted by a magnet.
+s03-P49l,Length 3 without a unit.,,,B,Error B: A measurement needs its unit.
+s03-P49,Its hardness is 3 cm.,,,D,Error D: A scratch comparison is not a length.
+s03-P50a,"Both are gray, so both must be the same material.",,,A,Error A: A shared visible property does not establish identity.
+s03-P50d,Hardness: 6 cm.,,,D,Error D: A scratch comparison is not a length.
+s03-P50f,The starting water temperature can differ to isolate spoon material.,,,I,Error I: Changing two conditions does not isolate a cause.
+s03-P50,Handle reading 27 with no unit.,,,B,Error B: A measurement needs its unit.
+s03-P50r,Energy always goes from handle to water.,,,x,Error x: Use actual or supplied evidence without inventing a result.
+s03-P51f,Different depths still isolate spoon material.,,,I,Error I: Changing two conditions does not isolate a cause.
+s03-P51q,Matching appearance always proves matching identity.,,,A,Error A: A shared visible property does not establish identity.
+s03-P51,Weight needs no unit.,,,B,Error B: A measurement needs its unit.
+s03-P51t,The empty cup weight is the powder weight.,,,x,Error x: Use actual or supplied evidence without inventing a result.
