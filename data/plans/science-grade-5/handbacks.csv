@@ -113,3 +113,30 @@ from_day,to_day,what,where,minutes,error,note
 44,46,c1-R44a,Properties repair,10,,Diagnostic readiness row and written next step. Slot already allocated in s03; properties and purpose separate on day 46; change on day 52. Unwritten receiving days remain runner handoffs.
 44,46,c1-R44b,Purpose repair,10,,Diagnostic readiness row and written next step. Slot already allocated in s03; properties and purpose separate on day 46; change on day 52. Unwritten receiving days remain runner handoffs.
 44,52,c1-R44c,Change repair,10,,Diagnostic readiness row and written next step. Slot already allocated in s03; properties and purpose separate on day 46; change on day 52. Unwritten receiving days remain runner handoffs.
+45,46,s03-X45,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+45,46,s03-X45,Return and repair,5,B,B: Locate the standard unit beside one complete reading. Whole-class version replaces the group move; no added minutes.
+46,47,s03-X46,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+47,48,s03-X47,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+47,48,s03-X47,Return and repair,5,B,B: Locate the standard unit beside one complete reading. Whole-class version replaces the group move; no added minutes.
+48,49,s03-X48,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+48,49,s03-X48,Return and repair,5,C,C: Locate contrasting known steel and copper magnet observations. Whole-class version replaces the group move; no added minutes.
+49,50,s03-X49,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+49,50,s03-X49,Return and repair,5,D,D: Locate scratch results separately from a labelled length. Whole-class version replaces the group move; no added minutes.
+50,51,s03-X50,Return and repair,5,I,I: Locate the fixed condition in a familiar valid comparison. Whole-class version replaces the group move; no added minutes.
+51,52,s03-X51,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+52,53,s03-X52,Return and repair,5,F,F: Locate retained unseen material in a familiar diagram. Whole-class version replaces the group move; no added minutes.
+52,53,s03-X52,Return and repair,5,I,I: Locate the fixed condition in a familiar valid comparison. Whole-class version replaces the group move; no added minutes.
+53,54,s03-X53,Return and repair,5,I,I: Locate the fixed condition in a familiar valid comparison. Whole-class version replaces the group move; no added minutes.
+54,55,s03-X54,Return and repair,5,G,G: Locate a recorded source of introduced air. Whole-class version replaces the group move; no added minutes.
+55,56,s03-X55,Return and repair,5,I,I: Locate the fixed condition in a familiar valid comparison. Whole-class version replaces the group move; no added minutes.
+55,56,s03-X55,Return and repair,5,E,E: Locate one starting/resulting property comparison. Whole-class version replaces the group move; no added minutes.
+56,57,s03-X56,Return and repair,5,F,F: Locate retained unseen material in a familiar diagram. Whole-class version replaces the group move; no added minutes.
+56,57,s03-X56,Return and repair,5,H,H: Locate what one separation method cannot establish. Whole-class version replaces the group move; no added minutes.
+57,58,s03-X57,Return and repair,5,G,G: Locate a recorded source of introduced air. Whole-class version replaces the group move; no added minutes.
+58,61,s03-X58,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+58,61,s03-X58,Return and repair,5,H,H: Locate what one separation method cannot establish. Whole-class version replaces the group move; no added minutes.
+59,61,s03-E1 s03-E2P s03-E2M s03-E2R s03-E2L,Private feedback,2,,Return original points and component notes together. Prioritize repairs in four rounds total including E58; never promise a round for every item.
+60,61,s03-E3 s03-E4a s03-E4b s03-E4c s03-E4d,Private feedback,3,,Return original points and component notes together. Prioritize repairs in four rounds total including E58; never promise a round for every item.
+61,63,s03-N61a,Noncontact support,10,,Row-specific readiness from day 61; the receiving day 63 block reserves this exact ten-minute slot.
+61,63,s03-N61b,Sky support,10,,Row-specific readiness from day 61; the receiving day 63 block reserves this exact ten-minute slot.
+61,63,s03-N61c,Daylight support,10,,Row-specific readiness from day 61; the receiving day 63 block reserves this exact ten-minute slot.
