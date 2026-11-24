@@ -230,10 +230,10 @@ from_day,to_day,what,where,minutes,error,note
 95,96,s05-X95-1 s05-X95-2,Return,5,H,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
 96,97,s05-X96,Return,5,D,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
 96,97,s05-X96,Return,5,G,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
-85,86,s05-P85,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+85,86,s05-P85 s05-P85-retrieve s05-P85-sort,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
 86,87,s05-P86,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
 87,88,s05-P87,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
-88,89,s05-P88,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+88,89,s05-P88 s05-P88-compare,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
 89,90,s05-P89,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
 90,91,s05-P90,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
 91,92,s05-P91,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
@@ -249,5 +249,5 @@ from_day,to_day,what,where,minutes,error,note
 98,99,Q1/Q2 and E97 priority component gaps,Return,15,,Three five-minute parallel rounds maximum per child. Teacher three four-minute visits plus three routing minutes. Whole-class move replaces a round; log remaining gaps.
 99,100,assigned s05-R99 route and revisions,Retrieve,0,,Return private written feedback after class; no promised extra repair lesson. Forward unresolved gaps with existing unit-6 retrieval.
 99,103,unit-6 design/resource handoff notes,Return,0,,"Notes only, not another readiness check or added lesson allocation."
-86,87,s05-P86-climate s05-P86-key s05-P86-recheck,Return,0,,Return support notes with existing packet; no additional conference.
+86,87,s05-P86-climate s05-P86-key s05-P86-recheck s05-P86-extension,Return,0,,Return support notes with existing packet; no additional conference.
 99,100,s05-P99-A s05-P99-B s05-P99-C s05-P99-D s05-P99-E s05-P99-F s05-P99-G s05-P99-H s05-P99-design s05-P99-resource,Retrieve,0,,"Private written feedback after class, same folder as assigned retry; notes only, no new promised teaching time."

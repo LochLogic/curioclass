@@ -521,14 +521,6 @@ c2-X84,A: pale color proves U is A.,,,T,Error T: A: pale color proves U is A.
 c2-X84,B: every mixture forms new material.,,,W,Error W: B: every mixture forms new material.
 c2-X84,C: distance never affects brightness.,,,Y,Error Y: C: distance never affects brightness.
 c2-X84,D: missing stars were destroyed.,,,AC,Error AC: D: missing stars were destroyed.
-s05-X85,"Land, water, air.",,,A,Names alone do not show an interaction.
-s05-X85,Unseen air cannot act.,,,C,Observable effects support unseen-air interaction.
-s05-X86-1,"Land, water, air.",,,A,Names alone do not show an interaction.
-s05-X86-1,Unseen air cannot act.,,,C,Observable effects support unseen-air interaction.
-s05-X87,"Land, water, air.",,,A,Names alone do not show an interaction.
-s05-X88-1,"Land, water, air.",,,A,Names alone do not show an interaction.
-s05-X88-2,"Land, water, air.",,,A,Names alone do not show an interaction.
-s05-X88-3,Unseen air cannot act.,,,C,Observable effects support unseen-air interaction.
 s05-X89-1,Carrying loose grains is weathering.,,,B,Transport is erosion; stationary breaking is weathering.
 s05-X89-2,"Land, water, air.",,,A,Names alone do not show an interaction.
 s05-X89-2,Carrying loose grains is weathering.,,,B,Transport is erosion; stationary breaking is weathering.
@@ -577,3 +569,27 @@ s05-P99-E,Both mean all water.,,,E,Unit 5 component repair letter E; use separat
 s05-P99-F,Only lakes and rivers belong.,,,F,Unit 5 component repair letter F; use separate repair-key.md after the component attempt.
 s05-P99-G,All fresh water is safe.,,,G,Unit 5 component repair letter G; use separate repair-key.md after the component attempt.
 s05-P99-H,Equal lengths always mean equal amounts.,,,H,Unit 5 component repair letter H; use separate repair-key.md after the component attempt.
+s05-X85,"Land, water, air.",,,A,Parts named without an action.
+s05-X85,Unseen air cannot act.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-P85,The drawing proves every cause.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-P85-retrieve,Both are weathering.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-K85-air,Unseen air cannot act.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-P85-sort,My guess proves the cause.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-X86-1,"Land, water, air.",,,A,Parts named without an action.
+s05-X86-1,Unseen air cannot act.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-X86-2,One dry day makes the long-term climate dry.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-P86,All air stops permanently.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-P86-climate,One afternoon determines the climate.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-P86-key,M rainy; N snowy.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-P86-recheck,One gust establishes the usual season.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-K86-arrow,"Land, water, air.",,,A,Parts named without an action.
+s05-P86-extension,Both describe this afternoon.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-X87,"Land, water, air.",,,A,Parts named without an action.
+s05-P87,The ridge destroys air.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-K87-stages,Air vanishes at the ridge.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-X88-1,"Land, water, air.",,,A,Parts named without an action.
+s05-X88-2,"Land, water, air.",,,A,Parts named without an action.
+s05-X88-3,Unseen air cannot act.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-P88,Water cannot affect another system.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-K88-actions,Water cannot affect another system.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-P88-compare,Naming parts alone explains both.,,,A,Parts named without an action.
