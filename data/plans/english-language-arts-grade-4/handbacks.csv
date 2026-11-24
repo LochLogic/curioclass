@@ -86,7 +86,7 @@ from_day,to_day,what,where,minutes,error,note
 28,29,s01-X28,Opening,5,,Return all papers with dated feedback. Repair one earliest need; others use the one workshop group.
 29,31,s01-X29,Opening,5,,Return all papers with dated feedback. Repair one earliest need; others use the one workshop group.
 31,32,s01-X31,Opening,5,,Return all papers with dated feedback. Repair one earliest need; others use the one workshop group.
-32,33,s01-X32,Opening,5,,Return all papers with dated feedback. Repair one earliest need; others use the one workshop group.
+32,33,s01-X32 s01-P32-1 s01-P32-folder,Opening,5,,Return all papers with dated feedback. Repair one earliest need; others use the one workshop group.
 33,37,s01-X33,Feedback,0,,Return all papers with dated feedback. Repair one earliest need; others use the one workshop group.
 18,19,s01-P18-1,Opening,0,,Return all feature-inspection work with existing papers. No extra repair minutes.
 19,20,s01-P19-1,Opening,0,,Return all feature-inspection work with existing papers. No extra repair minutes.
