@@ -403,11 +403,11 @@ shadow stick,84,84,"Day-specific teacher tray or student folder, as the day's pr
 exit ticket,84,84,"Day-specific teacher tray or student folder, as the day's print line directs.",student,"Availability row for the item already named in each day's materials, print or Before class; use that day's quantities and safety directions."
 chalk,84,84,"Day-specific teacher tray or student folder, as the day's print line directs.",room,"Availability row for the item already named in each day's materials, print or Before class; use that day's quantities and safety directions."
 teacher clock,82,82,Teacher station,room,"Measures matched twenty-second stirring intervals, not student work speed."
-unit 5 anchor records,85,85 86 87 97,unit 5 folder,pair,u05-1/anchor-records.md and anchor-landscape.svg; real photo link with labeled invented schematic fallback. No invented rainfall called measured Cascades data.
-unit 5 component and action cards,85,85 86 87 88 91 97,unit 5 folder,pair,"u05-1/component-cards.md, action-strips.md and ocean-cards.md. Component practice only; no held package."
-unit 5 climate support sheet,86,86,unit 5 folder,student,"u05-1/climate-support.md; named ten-minute support, key separate."
-unit 5 evidence notes,85,85 86 87 88 89 90 91 92 93 94 95 96 97,unit 5 folder,student,u05-1/evidence-notes.md; source/date/observations/uncertainty; retain unclear readings.
-unit 5 covered section 5.1 exits,85,85 86 87 88,unit 5 folder,student,"u05-1/held-exits.md; print one day only. Half ticket, two items maximum. Day 88 third panel is student-page Exit box. Keys separate."
+unit 5 anchor records,85,85 86 87 97,unit 5 folder,pair,courses/science-grade-5/u05-1/anchor-records.md and courses/science-grade-5/u05-1/anchor-landscape.svg; source-labeled original schematic and photograph link.
+unit 5 component and action cards,85,85 86 87 88 91 97,unit 5 folder,pair,courses/science-grade-5/u05-1/component-cards.md and courses/science-grade-5/u05-1/action-strips.md. Day 85 uses components; days 86 to 88 use separate correct action strips. Ocean action-word practice is on day 88 student page.
+unit 5 climate support sheet,86,86,unit 5 folder,student,"courses/science-grade-5/u05-1/climate-support.md; day 86 student-page side 2 reproduces the question rows, with the teacher key separate."
+unit 5 evidence notes,85,85 86 87 88 89 90 91 92 93 94 95 96 97,unit 5 folder,student,"courses/science-grade-5/u05-1/evidence-notes.md; retain source, observation and uncertainty tags."
+unit 5 covered section 5.1 exits,85,85 86 87 88,unit 5 folder,student,"courses/science-grade-5/u05-1/held-exits.md; print only the named half-ticket item. On 86, X86-2 is an Exit box; on 88, X88-2 and X88-3 are Exit boxes. Keep every independent prompt covered until the exit."
 unit 5 covered section 5.2 exits,89,89 90 91,unit 5 folder,student,"u05-2/held-exits.md; print one day only. Half ticket, two items maximum. Day 88 third panel is student-page Exit box. Keys separate."
 unit 5 covered section 5.3 exits,92,92 93 94 95,unit 5 folder,student,"u05-3/held-exits.md; print one day only. Half ticket, two items maximum. Day 88 third panel is student-page Exit box. Keys separate."
 unit 5 covered section 5.4 exits,96,96 97,unit 5 folder,student,"u05-4/held-exits.md; print one day only. Half ticket, two items maximum. Day 88 third panel is student-page Exit box. Keys separate."
@@ -440,3 +440,6 @@ unit 5 approved goggle-cleaning supplies,89,89,unit 5 folder,room,Teacher cleans
 unit 5 existing display rehearsal,91,91,unit 5 folder,student,"courses/science-grade-5/u05-2/display-rehearsal.md; component work only, with source locator and no held-case rehearsal."
 unit 5 access component sheet,96,96,unit 5 folder,student,"courses/science-grade-5/u05-4/access-components.md; component work only, with source locator and no held-case rehearsal."
 unit 5 consensus station sheet,97,97,unit 5 folder,student,"courses/science-grade-5/u05-4/consensus-stations.md; component work only, with source locator and no held-case rehearsal."
+question board,85,85 86 87,unit 5 teacher folder,class,Retained notices and evidence-linked class consensus for days 85 to 87.
+exit ticket,85,85 86 87 88,unit 5 teacher folder,student,"Half sheet, one tall response box. Additional judged responses remain on the student-page Exit boxes."
+record,85,85 86 87 88,unit 5 teacher folder,class,courses/science-grade-5/u05-1/record.md; teacher-only formative record. Initial models receive descriptive notes.
