@@ -132,7 +132,7 @@ Samples: 7: American Samoa; 6: Guam; 3: Northern Mariana Islands; 1: Midway Isla
 
 ## s06-F2a
 
-Place the five supplied state cards on the line.
+Place the five supplied cards.
 
 Key: New Jersey 1787; Maryland 1788; Ohio 1803; Arizona 1912; Montana 1889. Equal years have equal spaces; same-year cards share a year.
 
@@ -142,7 +142,7 @@ Samples: New Jersey 1787; Maryland 1788; Ohio 1803; Arizona 1912; Montana 1889. 
 
 ## s06-F2b
 
-Label the span between the earliest and latest cards.
+Find the earliest-to-latest span.
 
 Key: 125 years; 1912 - 1787 = 125.
 
@@ -152,7 +152,7 @@ Samples: 125 years; 1912 - 1787 = 125. | Count boxes rather than elapsed years.
 
 ## s06-F2c
 
-Describe statehood's institutions and who still lacked equal voting rights.
+Describe statehood's institutions and historical voting limits.
 
 Key: A state constitution and congressional representation; voting remained unequal, including exclusion of women from most voting at founding.
 
@@ -162,7 +162,7 @@ Samples: A state constitution and congressional representation; voting remained 
 
 ## s06-F2d
 
-Name one congressional vote a present territory lacks.
+Name one present territorial congressional limit.
 
 Key: No senators or no final House vote through its delegate/resident commissioner.
 
@@ -172,7 +172,7 @@ Samples: No senators or no final House vote through its delegate/resident commis
 
 ## s06-F3a
 
-Add Albany, Hudson River and Catskill Mountains with key entries.
+Add Albany, Hudson River and Catskills with key entries.
 
 Key: Albany at source capital point; Hudson north-south through eastern New York; Catskills west of Hudson; consistent symbols.
 
@@ -182,7 +182,7 @@ Samples: Albany at source capital point; Hudson north-south through eastern New 
 
 ## s06-F3b
 
-Add Tennessee's title, matching scale and compass rose.
+Add Tennessee's title, matching scale and compass.
 
 Key: Title names Tennessee; scale matches G calibration points; north up with east right.
 
@@ -192,7 +192,7 @@ Samples: Title names Tennessee; scale matches G calibration points; north up wit
 
 ## s06-F3c
 
-Add H's soil, farming and processing symbols with key entries.
+Add H's soil, farming and processing with key entries.
 
 Key: Antigo-area soil locator is distinct from illustrative dairy farming and Madison milk-processing site; symbols match H.
 
@@ -202,7 +202,7 @@ Samples: Antigo-area soil locator is distinct from illustrative dairy farming an
 
 ## s06-F3d
 
-Construct New Mexico's dated map from I with all map parts.
+Construct New Mexico's dated map from I.
 
 Key: Santa Fe early Spanish settlement; Roswell nineteenth-century settler town; Rio Grande; northwest dry plateau; Mescalero Apache homeland locator before 1863, 1863 forced arrow to Bosque Redondo, present reservation locator, 1776 exploration northwest from Santa Fe. Distinct dated symbols, title/north/key/scale. Native presence precedes settler sites.
 
@@ -212,7 +212,7 @@ Samples: Santa Fe early Spanish settlement; Roswell nineteenth-century settler t
 
 ## s06-F3e
 
-Add J's landmark, national park and historic site with distinct symbols.
+Add J's three site categories with distinct symbols.
 
 Key: Golden Gate Bridge near San Francisco; Yosemite in Sierra Nevada; Sutter's Fort in Sacramento. Different symbols and a consistent key.
 
@@ -232,7 +232,7 @@ Samples: F3d independently locates features and uses title, north, dated key and
 
 ## s06-F4q
 
-Ask a question about Northeast land and work.
+Ask a Northeast land-and-work question.
 
 Key: A researchable question about how Lowell river access shaped mills, settlement or trade.
 
@@ -252,7 +252,7 @@ Samples: R locates Lowell beside the Merrimack; S describes canals powering text
 
 ## s06-F4c
 
-Write a qualified answer to our unit question.
+Give a qualified answer to our unit question.
 
 Key: Resources, access, skills and choices influence work; the two records show some linked work, not every resident's occupation.
 
@@ -262,7 +262,7 @@ Samples: Resources, access, skills and choices influence work; the two records s
 
 ## s06-F4s
 
-Explain how one detail from each maker supports your claim.
+Explain how each maker's detail supports your claim.
 
 Key: Geographic maker R locates river/city access. Historical account S explains waterpower, work and exchange. Each detail must be linked to the claim; two S pages are one maker.
 
@@ -272,7 +272,7 @@ Samples: Geographic maker R locates river/city access. Historical account S expl
 
 ## s06-F4i
 
-Explain who else needs your question answered and why.
+Explain another person's need for your answer.
 
 Key: A planner or worker could use the answer to compare work locations or needed services.
 
@@ -322,7 +322,7 @@ Samples: Dairy uses pasture, cows and skills; sells milk/cheese; buys building w
 
 ## s06-F6a
 
-Identify the national capital and complete its three building matches.
+Complete the national capital and three-building record.
 
 Key: Washington, D.C.; Congress/Capitol/legislative, president/White House/executive, justices/Supreme Court/judicial.
 
@@ -332,7 +332,7 @@ Samples: Washington, D.C.; Congress/Capitol/legislative, president/White House/e
 
 ## s06-F6b
 
-Explain a civic use of the National Archives card.
+Explain the Archives card's civic use.
 
 Key: Preserved federal records help people research historical or public questions.
 
@@ -489,3 +489,6 @@ Key: Worker sells packing work/buys fruit; packing business sells packed fruit/b
 Look for: Worker sells packing work/buys fruit; packing business sells packed fruit/buys boxes. Freight note confirms shipments, not all jobs.
 
 Samples: Worker sells packing work/buys fruit; packing business sells packed fruit/buys boxes. Freight note confirms shipments, not all jobs. | A response missing the named relationship or source position.
+
+
+Map area halos are generalized locators, not legal borders. An arrow connects source locations, not an exact traveled path. Accept source-consistent relative locations; do not score invented boundary precision.

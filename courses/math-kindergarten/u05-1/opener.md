@@ -28,3 +28,5 @@ One child: counting 3, demonstration/rehearsal 5, paper work 9, repair 5, exit/c
 Day 87 Centers and repair: day 86 feedback/revision five minutes, diagnostic quantity repair five, diagnostic sign repair five, game five. Tidy within actions. No added correction block. Additional diagnostic retry is reserved day 88.
 
 Pieces: practice-87.md and exit-87.md, practice-88.md and exit-88.md, practice-89.md and exit-89.md, practice-90.md and exit-90.md. Teacher key and local record are here. Family note and master record in u05-1. 
+
+Part-mats.md and feedback.md in u05-1 supply reusable blank regions. Always supply a started practice record; never use reserved independent assessment sheets for rehearsal.

@@ -8,7 +8,7 @@ credit: Original summaries; factual source index.
 ---
 # Unit 6 factual sources
 
-Teacher only. Read secular summaries, not unrestricted webpages. These are the opened factual references. Status follows the run date convention; actual access was 2026-11-24. No live page, visitor, unverified photograph or private report is required.
+Teacher only. Use original secular summaries and generalized locators. No live page, visitor or photograph is required. Status follows the requested run date; actual opening was 2026-11-24.
 
 - s06-paterson: [The Passaic River Runs Through It](https://www.nps.gov/pagr/learn/historyculture/the-passaic-river-runs-through-it.htm). paraphrase only. Run date convention; actually opened 2026-11-24. Facts paraphrased; no photographs or source tasks copied. 
 - s06-paterson-growth: [Hydroelectric Plant](https://www.nps.gov/pagr/learn/historyculture/hydroelectric-plant.htm). paraphrase only. Run date convention; actually opened 2026-11-24. Facts paraphrased; no photographs or source tasks copied. 
@@ -53,7 +53,7 @@ Teacher only. Read secular summaries, not unrestricted webpages. These are the o
 - s06-delicate: [Delicate Arch](https://home.nps.gov/arch/planyourvisit/delicate-arch.htm). paraphrase only. Run date convention; actually opened 2026-11-24. Facts paraphrased; no photographs or source tasks copied. 
 - s06-sutter: [Sutter's Fort State Historic Park](https://www.parks.ca.gov/?page_id=485). paraphrase only. Run date convention; actually opened 2026-11-24. Facts paraphrased; no photographs or source tasks copied. Held for day 131; watch: 
 - s06-bridge: [Golden Gate Bridge historical landmark](https://ohp.parks.ca.gov/ListedResources/Detail/974). paraphrase only. Run date convention; actually opened 2026-11-24. Facts paraphrased; no photographs or source tasks copied. Held for day 131; watch: 
-- s06-space: [Space Needle landmark designation, 1998](https://www.seattle.gov/Documents/Departments/Neighborhoods/HistoricPreservation/Landmarks/RelatedDocuments/space-needle-designation.pdf). paraphrase only. Run date convention; actually opened 2026-11-24. Facts paraphrased; no photographs or source tasks copied. 
+- s06-space: [Space Needle, Seattle Center attraction](https://www.seattlecenter.com/explore/attractions). paraphrase only. Actually opened 2026-11-24; run date convention checked: 2026-11-22. Original category and location summary; no scanned image reproduced.
 - s06-hartford: [Riverside Park along Connecticut River](https://www.nps.gov/places/riverside-park-hartford.htm). paraphrase only. Run date convention; actually opened 2026-11-24. Facts paraphrased; no photographs or source tasks copied. 
 - s06-catskill: [Catskill region](https://parks.ny.gov/regions/Catskill/default.aspx). paraphrase only. Run date convention; actually opened 2026-11-24. Facts paraphrased; no photographs or source tasks copied. Held for day 131; watch: 
 - s06-blue: [Natural Georgia, Blue Ridge Mountains](https://gastateparks.org/NaturalGeorgia). paraphrase only. Run date convention; actually opened 2026-11-24. Facts paraphrased; no photographs or source tasks copied. 

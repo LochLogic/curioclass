@@ -102,7 +102,7 @@ Samples: 1: American Samoa; 7: Guam; 4: Northern Mariana Islands; 6: Midway Isla
 
 ## s06-M2a
 
-Place the five supplied state cards on the line.
+Place the five supplied cards.
 
 Key: Pennsylvania 1787; Florida 1845; Texas 1845; Iowa 1846; Utah 1896. Equal years have equal spaces; same-year cards share a year.
 
@@ -112,7 +112,7 @@ Samples: Pennsylvania 1787; Florida 1845; Texas 1845; Iowa 1846; Utah 1896. Equa
 
 ## s06-M2b
 
-Label the span between the earliest and latest cards.
+Find the earliest-to-latest span.
 
 Key: 109 years; 1896 - 1787 = 109.
 
@@ -168,7 +168,7 @@ Key: Florida: Lake Okeechobee and Everglades positioned from B; usable conventio
 
 Look for: Florida: Lake Okeechobee and Everglades positioned from B; usable conventions.
 
-Samples: Florida: Lake Okeechobee and Everglades positioned from B; usable conventions. | Copy the old record without checking its missing component.
+Samples: Florida: Lake Okeechobee and Everglades positioned from B; usable conventions. | Only a place list, with no features located on the map.
 
 ## s06-M5m
 
@@ -178,7 +178,7 @@ Key: Iowa: Mississippi, a documented Tama soil sample, illustrative corn-use are
 
 Look for: Iowa: Mississippi, a documented Tama soil sample, illustrative corn-use area and Cedar Rapids processing; distinct categories and conventions.
 
-Samples: Iowa: Mississippi, a documented Tama soil sample, illustrative corn-use area and Cedar Rapids processing; distinct categories and conventions. | Copy the old record without checking its missing component.
+Samples: Iowa: Mississippi, a documented Tama soil sample, illustrative corn-use area and Cedar Rapids processing; distinct categories and conventions. | Only a place list, with no features located on the map.
 
 ## s06-M5w
 
@@ -188,7 +188,7 @@ Key: Utah: Great Salt Lake, Delicate Arch, Arches National Park and Golden Spike
 
 Look for: Utah: Great Salt Lake, Delicate Arch, Arches National Park and Golden Spike; conventions and distinct categories.
 
-Samples: Utah: Great Salt Lake, Delicate Arch, Arches National Park and Golden Spike; conventions and distinct categories. | Copy the old record without checking its missing component.
+Samples: Utah: Great Salt Lake, Delicate Arch, Arches National Park and Golden Spike; conventions and distinct categories. | Only a place list, with no features located on the map.
 
 ## s06-M5l
 
@@ -198,7 +198,7 @@ Key: Massachusetts public-place fallback: Worcester, Boston, Quabbin Reservoir a
 
 Look for: Massachusetts public-place fallback: Worcester, Boston, Quabbin Reservoir and Connecticut River; source positions and conventions.
 
-Samples: Massachusetts public-place fallback: Worcester, Boston, Quabbin Reservoir and Connecticut River; source positions and conventions. | Copy the old record without checking its missing component.
+Samples: Massachusetts public-place fallback: Worcester, Boston, Quabbin Reservoir and Connecticut River; source positions and conventions. | Only a place list, with no features located on the map.
 
 ## s06-M5t
 
@@ -208,7 +208,7 @@ Key: Nine Northeast cards correctly positioned, same-year labels in separate lan
 
 Look for: Nine Northeast cards correctly positioned, same-year labels in separate lanes; original-state dates are ratification.
 
-Samples: Nine Northeast cards correctly positioned, same-year labels in separate lanes; original-state dates are ratification. | Copy the old record without checking its missing component.
+Samples: Nine Northeast cards correctly positioned, same-year labels in separate lanes; original-state dates are ratification. | Only a place list, with no features located on the map.
 
 ## s06-M2-se
 
@@ -309,3 +309,6 @@ Key: Two 1787, four 1788, Rhode Island 1790, Vermont 1791, Maine 1820.
 Look for: Two 1787, four 1788, Rhode Island 1790, Vermont 1791, Maine 1820.
 
 Samples: Two 1787, four 1788, Rhode Island 1790, Vermont 1791, Maine 1820. | A response missing the named relationship or source position.
+
+
+Map area halos are generalized locators, not legal borders. An arrow connects source locations, not an exact traveled path. Accept source-consistent relative locations; do not score invented boundary precision.

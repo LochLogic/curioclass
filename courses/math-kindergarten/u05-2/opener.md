@@ -26,3 +26,5 @@ One child: counting 3, demonstration/rehearsal 5, paper work 9, repair 5, exit/c
 
 
 Pieces: practice-91.md and exit-91.md, practice-92.md and exit-92.md, practice-93.md and exit-93.md, practice-94.md and exit-94.md, practice-95.md and exit-95.md, practice-96.md and exit-96.md. Teacher key and local record are here. Family note and master record in u05-1. 
+
+Part-mats.md and feedback.md in u05-1 supply reusable blank regions. Always supply a started practice record; never use reserved independent assessment sheets for rehearsal.

@@ -24,11 +24,11 @@ Shown: Three marks. | Not yet seen: Repeats the visible seven as partner.
 
 Tell a fruit story for ten with a different pair from this one.
 
-Key: Any labelled peach/plum pair totaling ten except 2 peaches/8 plums; 8 peaches/2 plums counts. Rin is sole actor.
+Key: Any labelled peach/plum allocation totaling ten except 2 peaches/8 plums, communicated by a complete Rin picture story or usual communication; 8 peaches/2 plums counts.
 
-Look-fors: All leave a picture reminder; only heard speech establishes complete story. Two category counts, fixed ten, changed labelled pair. | Stimulus in exit-102.md; read labels neutrally. Eight minutes: launch 1, simultaneous paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Independently create a whole fruit story with a changed labelled pair.
+Look-fors: All mark a complete labelled picture story with Rin as the sole actor: two fruit counts, fixed total ten, changed labelled pair. Directed adult marking and usual communication accepted. The picture communicates the mathematical story; do not infer exact unheard words. Six may tell their same response; the other twenty-four are reached through their complete paper scene and next-day written feedback. | Stimulus in exit-102.md; read category labels neutrally. Eight minutes: launch 1, concurrent paper 2, six 45-second same-ask samples 4.5, collection 0.5. | Shape: Independently create a whole fruit story with a changed labelled pair.
 
-Shown: Rin sets out three peach pictures and seven plum pictures, ten altogether. | Not yet seen: Repositions two peaches/eight plums as a new pair.
+Shown: Picture scene has Rin with three peach pictures and seven plum pictures, ten altogether; six may communicate the same story aloud. | Not yet seen: Repositions the same two peaches/eight plums and calls the labelled pair different.
 
 ## s05-F1-0-1
 

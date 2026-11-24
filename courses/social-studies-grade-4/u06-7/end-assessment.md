@@ -39,43 +39,43 @@ ____________________________
 
 ____________________________
 
-**F2a** Place the five supplied state cards on the line.
+**F2a** Place the five supplied cards.
 
 ____________________________
 
-**F2b** Label the span between the earliest and latest cards.
+**F2b** Find the earliest-to-latest span.
 
 ____________________________
 
-**F2c** Describe statehood's institutions and who still lacked equal voting rights.
+**F2c** Describe statehood's institutions and historical voting limits.
 
 ____________________________
 
-**F2d** Name one congressional vote a present territory lacks.
+**F2d** Name one present territorial congressional limit.
 
 ____________________________
 
-**F3a** Add Albany, Hudson River and Catskill Mountains with key entries.
+**F3a** Add Albany, Hudson River and Catskills with key entries.
 
 ____________________________
 
-**F3b** Add Tennessee's title, matching scale and compass rose.
+**F3b** Add Tennessee's title, matching scale and compass.
 
 ____________________________
 
-**F3c** Add H's soil, farming and processing symbols with key entries.
+**F3c** Add H's soil, farming and processing with key entries.
 
 ____________________________
 
-**F3d** Construct New Mexico's dated map from I with all map parts.
+**F3d** Construct New Mexico's dated map from I.
 
 ____________________________
 
-**F3e** Add J's landmark, national park and historic site with distinct symbols.
+**F3e** Add J's three site categories with distinct symbols.
 
 ____________________________
 
-**F4q** Ask a question about Northeast land and work.
+**F4q** Ask a Northeast land-and-work question.
 
 ____________________________
 
@@ -83,15 +83,15 @@ ____________________________
 
 ____________________________
 
-**F4c** Write a qualified answer to our unit question.
+**F4c** Give a qualified answer to our unit question.
 
 ____________________________
 
-**F4s** Explain how one detail from each maker supports your claim.
+**F4s** Explain how each maker's detail supports your claim.
 
 ____________________________
 
-**F4i** Explain who else needs your question answered and why.
+**F4i** Explain another person's need for your answer.
 
 ____________________________
 
@@ -103,11 +103,11 @@ ____________________________
 
 ____________________________
 
-**F6a** Identify the national capital and complete its three building matches.
+**F6a** Complete the national capital and three-building record.
 
 ____________________________
 
-**F6b** Explain a civic use of the National Archives card.
+**F6b** Explain the Archives card's civic use.
 
 ____________________________
 

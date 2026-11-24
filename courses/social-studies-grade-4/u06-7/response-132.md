@@ -37,6 +37,8 @@ Each square side represents one kilometer. North is up.
 
 Map the features using a consistent key.
 
+![Blank retry grid](retry-grid.svg)
+
 ________________________________________________
 
 ## Exchange and evidence

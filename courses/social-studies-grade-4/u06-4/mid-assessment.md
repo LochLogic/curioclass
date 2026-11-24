@@ -39,11 +39,11 @@ ____________________________
 
 ____________________________
 
-**M2a** Place the five supplied state cards on the line.
+**M2a** Place the five supplied cards.
 
 ____________________________
 
-**M2b** Label the span between the earliest and latest cards.
+**M2b** Find the earliest-to-latest span.
 
 ____________________________
 

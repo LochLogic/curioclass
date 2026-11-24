@@ -179,3 +179,6 @@ Key: Oregon water source relationship is retained; one layer only.
 Look for: Oregon water source relationship is retained; one layer only.
 
 Samples: Oregon water source relationship is retained; one layer only. | A response missing the named relationship or source position.
+
+
+Map area halos are generalized locators, not legal borders. An arrow connects source locations, not an exact traveled path. Accept source-consistent relative locations; do not score invented boundary precision.

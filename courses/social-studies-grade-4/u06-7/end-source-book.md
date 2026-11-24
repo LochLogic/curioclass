@@ -8,7 +8,7 @@ credit: Original summaries and diagrams; factual credits in sources.csv.
 ---
 # Day 131 teacher source book
 
-Teacher source book. Read the factual captions neutrally. Keep completed teaching work covered.
+Teacher source book, adult reference only. Read the factual captions neutrally. Keep completed teaching work covered.
 
 Use the matching blank response masters. Source layers give locations, not a completed thematic answer.
 Locators are generalized; dotted halos are not legal boundaries. Arrows connect places, not precise travel paths.
