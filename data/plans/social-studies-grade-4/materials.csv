@@ -592,8 +592,8 @@ key-teacher,119,119 120,teacher-only key folder,room,File: courses/social-studie
 opener,119,119 120,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-4/opener.md. Print at 100 percent; keep source/response sizes together. 
 teacher-key,121,119 120,teacher source folder,room,File: courses/social-studies-grade-4/u06-5/teacher-key.md. Print at 100 percent; keep source/response sizes together. 
 opener,121,119 120 121 122 123 124 125,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-5/opener.md. Print at 100 percent; keep source/response sizes together. 
-teacher-key,126,119 120 126,teacher source folder,room,File: courses/social-studies-grade-4/u06-6/teacher-key.md. Print at 100 percent; keep source/response sizes together. 
-opener,126,119 120 126,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-6/opener.md. Print at 100 percent; keep source/response sizes together. 
+teacher-key,126,119 120,teacher source folder,room,File: courses/social-studies-grade-4/u06-6/teacher-key.md. Print at 100 percent; keep source/response sizes together. 
+opener,126,119 120 126 127,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-6/opener.md. Print at 100 percent; keep source/response sizes together. 
 teacher-key,128,119 120 128,teacher source folder,room,File: courses/social-studies-grade-4/u06-7/teacher-key.md. Print at 100 percent; keep source/response sizes together. 
 opener,128,119 120 128,student unit folder; teacher holds reserved masters,room,File: courses/social-studies-grade-4/u06-7/opener.md. Print at 100 percent; keep source/response sizes together. 
 reference-northeast-mainland,108,108 109 119 120 130 131,teacher reference folder,student,File: courses/social-studies-grade-4/u06-1/reference-northeast-mainland.svg. Each S/C number matches its row in the separate reference index.
@@ -603,7 +603,7 @@ reference-southwest-mainland,110,110 119 120 130 131,teacher reference folder,st
 reference-west-mainland,110,110 119 120 130 131,teacher reference folder,student,File: courses/social-studies-grade-4/u06-1/reference-west-mainland.svg. Each S/C number matches its row in the separate reference index.
 reference-west-alaska,110,110 130 131,teacher reference folder,student,File: courses/social-studies-grade-4/u06-1/reference-west-alaska.svg. Each S/C number matches its row in the separate reference index.
 reference-west-hawaii,110,110 130 131,teacher reference folder,student,File: courses/social-studies-grade-4/u06-1/reference-west-hawaii.svg. Each S/C number matches its row in the separate reference index.
-question board,107,107,class wall,room,"Five questions and named answer days, teacher holds provenance."
+question board,107,107 127,class wall,room,"Five questions and named answer days, teacher holds provenance."
 teacher-key,80,80 81 82 83 119 120,teacher source folder,room,File: courses/social-studies-grade-4/u05-1/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
 teacher-key,84,84 85 86 119 120,teacher source folder,room,File: courses/social-studies-grade-4/u05-2/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
 teacher-key,87,87 88 89 90 119 120,teacher source folder,room,File: courses/social-studies-grade-4/u05-3/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
@@ -612,3 +612,4 @@ teacher-key,95,95 96 97 119 120,teacher source folder,room,File: courses/social-
 teacher-key,98,98 99 100 101 102 103 119 120,teacher source folder,room,File: courses/social-studies-grade-4/u05-6/teacher-key.md. Teacher only; used_days restores the runner-listed return and teaching days.
 key-teacher.md,107,107 108 109 110,teacher source folder,room,"File: courses/social-studies-grade-4/u06-1/key-teacher.md. Adult answers only, printed separately."
 key-teacher,121,121 122 123 124 125,teacher source folder,room,File: courses/social-studies-grade-4/u06-5/key-teacher.md. Teacher only; keep separate from student print.
+key-teacher,126,126 127,teacher source folder,room,"File: courses/social-studies-grade-4/u06-6/key-teacher.md. Teacher only; current day 126 and 127 item answers, look-fors and samples."

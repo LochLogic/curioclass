@@ -1091,8 +1091,8 @@ s06-X125a,Both supply every need alone.,,,V,Predicted response; one error only. 
 s06-X125b,Saving destroys the money.,,,x,"Choice note, no error group: name the next-best current choice forgone. The catchall x records an individual misconception without inventing a unit error letter."
 s06-X126a,Congress is the judicial branch.,,,I,Predicted response; one error only. Shape: Complete matches on a new arrangement of three labeled building drawings.
 s06-X126b,The governor works at the White House.,,,I,Predicted response; one error only. Shape: Explain exclusion of a state office from a national-building set.
-s06-X127a,The monument has no public use.,,,W,Predicted response; one error only. Shape: Infer a public use from an unseen Washington Monument caption.
-s06-X127b,No resident votes in any election.,,,P,Predicted response; one error only. Shape: State a precise congressional limit alongside the new public-resource case.
+s06-X127a,The monument has no public use.,,,x,Predicted response; one error only. Shape: Infer a public use from an unseen Washington Monument caption.
+s06-X127b,No resident votes in any election.,,,x,Predicted response; one error only. Shape: State a precise congressional limit alongside the new public-resource case.
 s06-X128,Map A and Notice B are my evidence.,,,J,Predicted response; one error only. Shape: Qualify an evidence-based tentative answer using an unseen map and employer notice.
 s06-X129a,Two details from C only.,,,Y,Predicted response; one error only. Shape: Organize an unframed claim with independent evidence from unseen farm/port records.
 s06-X129b,The picture is pretty.,,,X,Predicted response; one error only. Shape: Explain each distinct source-to-claim connection.
@@ -1189,10 +1189,10 @@ s06-P124-3,"The mill supplies every need alone, so it buys nothing.",,,V,"Cold-s
 s06-P125-1,Only the mill buys and sells; Inez cannot trade.,,,H,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
 s06-P125-2,The groups use only twenty-five counters.,,,x,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
 s06-P125-3,Moving counters to saving destroys them.,,,x,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
-s06-P126-1,A response missing the named relationship or source position.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P126-2,A response missing the named relationship or source position.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P127-1,A response missing the named relationship or source position.,,,W,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P127-2,A response missing the named relationship or source position.,,,W,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P126-1,Governor national; president state.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P126-2,Deciding a case: legislative.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P127-1,The bridge record answers how the drill was turned.,,,W,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P127-2,The caption proves the building is open today.,,,x,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P128-1,A response missing the named relationship or source position.,,,J,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P128-2,A response missing the named relationship or source position.,,,G,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P129-1,A response missing the named relationship or source position.,,,Y,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
@@ -1261,3 +1261,10 @@ s06-X121,The river makes every person take the same job.,,,G,Cold-solved predict
 s06-X122b,The factory is a natural resource.,,,T,Cold-solved predicted response; one error only. Routes to next-day repair.
 s06-X123,"Grain, forest, water.",,,U,Cold-solved predicted response; one error only. Routes to next-day repair.
 s06-X124,Each specialist supplies every need and buys nothing.,,,V,Cold-solved predicted response; one error only. Routes to next-day repair.
+s06-W126-1,The shoemaker supplies all needed fruit alone.,,,V,Cold-solved day 126 practice; no held building arrangement.
+s06-R126-1,It is a building where the president works.,,,x,Cold-solved day 126 practice; no held building arrangement.
+s06-K126-1,Decide a court case.,,,x,Cold-solved day 126 practice; no held building arrangement.
+s06-W127-1,Governor national; president state.,,,I,"Cold-solved day 127 response; one wrong, one error letter."
+s06-K127-1,It cannot show when the bridge opened.,,,x,"Cold-solved day 127 response; one wrong, one error letter."
+s06-Q127-1,The museum caption proves it is open today.,,,x,"Cold-solved day 127 response; one wrong, one error letter."
+s06-X127b,D.C.'s delegate votes on final House passage.,,,P,"Cold-solved day 127 response; one wrong, one error letter."

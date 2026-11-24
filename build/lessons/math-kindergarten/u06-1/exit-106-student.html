@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 106</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; } .student table.even { table-layout: fixed; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.75in; width: 48%; display: inline-block; box-sizing: border-box; padding: .18in; margin: 0 1% .15in 0; vertical-align: top; font-size: 12pt; line-height: 1.3; overflow: hidden; } .slip.half { width: 98%; } .slip p { margin: .22em 0; } .slip .foot { font-size: 7pt; line-height: 1.25; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.0in; } .slip .sketch.tall { height: 1.1in; } .slip .fig svg { max-height: 1.2in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+.blank.fblank { width: .8in; height: 1.6em; }   /* a line holding one stands about 2em: room for a stacked fraction */
+</style></head><body class="student"><h1>Day 106</h1><div style="font-size:18pt">
+
+Show the counts starting at either end.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 100" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2"><path d="M21.0,32.0Q18.9,15.9 35.0,18.0Q37.1,34.1 21.0,32.0Z M21.0,32.0L35.0,18.0"/><path d="M52.470588235294116,32.0Q50.370588235294115,15.9 66.47058823529412,18.0Q68.57058823529411,34.1 52.470588235294116,32.0Z M52.470588235294116,32.0L66.47058823529412,18.0"/><path d="M83.94117647058823,32.0Q81.84117647058824,15.9 97.94117647058823,18.0Q100.04117647058823,34.1 83.94117647058823,32.0Z M83.94117647058823,32.0L97.94117647058823,18.0"/><path d="M115.41176470588235,32.0Q113.31176470588235,15.9 129.41176470588235,18.0Q131.51176470588234,34.1 115.41176470588235,32.0Z M115.41176470588235,32.0L129.41176470588235,18.0"/><path d="M146.88235294117646,32.0Q144.78235294117647,15.9 160.88235294117646,18.0Q162.98235294117646,34.1 146.88235294117646,32.0Z M146.88235294117646,32.0L160.88235294117646,18.0"/><path d="M178.35294117647058,32.0Q176.25294117647059,15.9 192.35294117647058,18.0Q194.45294117647057,34.1 178.35294117647058,32.0Z M178.35294117647058,32.0L192.35294117647058,18.0"/><path d="M209.8235294117647,32.0Q207.7235294117647,15.9 223.8235294117647,18.0Q225.9235294117647,34.1 209.8235294117647,32.0Z M209.8235294117647,32.0L223.8235294117647,18.0"/><path d="M241.2941176470588,32.0Q239.19411764705882,15.9 255.2941176470588,18.0Q257.3941176470588,34.1 241.2941176470588,32.0Z M241.2941176470588,32.0L255.2941176470588,18.0"/><path d="M272.7647058823529,32.0Q270.6647058823529,15.9 286.7647058823529,18.0Q288.86470588235295,34.1 272.7647058823529,32.0Z M272.7647058823529,32.0L286.7647058823529,18.0"/><path d="M304.2352941176471,32.0Q302.13529411764705,15.9 318.2352941176471,18.0Q320.3352941176471,34.1 304.2352941176471,32.0Z M304.2352941176471,32.0L318.2352941176471,18.0"/><path d="M335.70588235294116,32.0Q333.60588235294114,15.9 349.70588235294116,18.0Q351.8058823529412,34.1 335.70588235294116,32.0Z M335.70588235294116,32.0L349.70588235294116,18.0"/><path d="M367.17647058823525,32.0Q365.0764705882352,15.9 381.17647058823525,18.0Q383.27647058823527,34.1 367.17647058823525,32.0Z M367.17647058823525,32.0L381.17647058823525,18.0"/><path d="M398.6470588235294,32.0Q396.54705882352937,15.9 412.6470588235294,18.0Q414.7470588235294,34.1 398.6470588235294,32.0Z M398.6470588235294,32.0L412.6470588235294,18.0"/><path d="M430.11764705882354,32.0Q428.0176470588235,15.9 444.11764705882354,18.0Q446.21764705882356,34.1 430.11764705882354,32.0Z M430.11764705882354,32.0L444.11764705882354,18.0"/><path d="M461.5882352941176,32.0Q459.4882352941176,15.9 475.5882352941176,18.0Q477.68823529411765,34.1 461.5882352941176,32.0Z M461.5882352941176,32.0L475.5882352941176,18.0"/><path d="M493.0588235294117,32.0Q490.9588235294117,15.9 507.0588235294117,18.0Q509.15882352941173,34.1 493.0588235294117,32.0Z M493.0588235294117,32.0L507.0588235294117,18.0"/><path d="M524.5294117647059,32.0Q522.4294117647058,15.9 538.5294117647059,18.0Q540.6294117647059,34.1 524.5294117647059,32.0Z M524.5294117647059,32.0L538.5294117647059,18.0"/><path d="M556.0,32.0Q553.9,15.9 570.0,18.0Q572.1,34.1 556.0,32.0Z M556.0,32.0L570.0,18.0"/></g></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 60" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2"><rect x="10" y="10" width="55" height="40"/><path d="M80,30H150M150,30L140,23M150,30L140,37"/><rect x="575" y="10" width="55" height="40"/><path d="M560,30H490M490,30L500,23M490,30L500,37"/></g></svg>
+
+Start at seven and count through eleven.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 90" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2"><rect x="20" y="20" width="100" height="45"/><rect x="135" y="20" width="100" height="45"/><rect x="250" y="20" width="100" height="45"/><rect x="365" y="20" width="100" height="45"/><rect x="480" y="20" width="100" height="45"/></g></svg>
+
+
+
+Invented for practice.
+
+</div><div class="foot">Curio Class, kindergarten math, section 6.1, exit-106, version draft, not yet taught, CC BY 4.0, curioclass.org</div></body></html>

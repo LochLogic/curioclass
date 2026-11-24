@@ -41,3 +41,40 @@ s01-K4-1,"Dry soil 172 g, beans 174 g, water 204 g.",172|174|204,172|174|204,x,w
 s01-K4-1,"Dry soil 172 g, beans 2 g, water 204 g.",172|174-172|204,172|2|204,x,read the water from the last scale reading without subtracting
 s01-P4-3,Dry soil 164 g. Beans 167 g. Water 195 g.,,,x,wrote each running reading as the amount added
 s01-P4-1,I changed everything.,,,I,"air is said to have changed or gone, not just its spacing"
+s01-X5,The powder stopped existing.,,,C,Interpret with this unit register letter.
+s01-X5,Each dot is a visible grain.,,,B,Interpret with this unit register letter.
+s01-X6,Dissolved solid no longer exists.,,,C,Interpret with this unit register letter.
+s01-X7,The tire contains nothing.,,,A,Interpret with this unit register letter.
+s01-X7,Dots are visible grains.,,,B,Interpret with this unit register letter.
+s01-X7,Clear water holds no mineral.,,,C,Interpret with this unit register letter.
+s01-X8,Remove the holder afterward.,,,D,Interpret with this unit register letter.
+s01-X8,Do not count the tablet initially.,,,D,Interpret with this unit register letter.
+s01-X9,Use 80 g as the after total.,,,D,Interpret with this unit register letter.
+s01-X9,"Warming creates matter, so the total must rise.",,,E,Interpret with this unit register letter.
+s01-X9,Label a bar 92 g but end it at 82 g.,,,F,Interpret with this unit register letter.
+s01-X10,After total is 100 g.,,,D,Interpret with this unit register letter.
+s01-X10,Cooling removes matter despite equal complete readings.,,,E,Interpret with this unit register letter.
+s01-X10,Equal 110 g labels have different bar heights.,,,F,Interpret with this unit register letter.
+s01-X11,Clear sugar water has no sugar.,,,C,Interpret with this unit register letter.
+s01-X11,Use 86 g after stirring.,,,D,Interpret with this unit register letter.
+s01-X11,Draw the 98 g endpoint below 98 g.,,,F,Interpret with this unit register letter.
+s01-X12,The holder can be discarded.,,,D,Interpret with this unit register letter.
+s01-X12,Every decrease proves gas escaped.,,,G,Interpret with this unit register letter.
+s01-X13,Gas has no matter.,,,A,Interpret with this unit register letter.
+s01-X13,The 134 g bar is taller than the 135 g bar.,,,F,Interpret with this unit register letter.
+s01-X14,All differences prove gas escape.,,,G,Interpret with this unit register letter.
+s01-X14,The added tray does not count.,,,D,Interpret with this unit register letter.
+s01-X15,Warming creates matter.,,,E,Interpret with this unit register letter.
+s01-X15,Clear sweetener stopped existing.,,,C,Interpret with this unit register letter.
+s01-X15,Dots are visible grains.,,,B,Interpret with this unit register letter.
+s01-E3,Use 122 g after heating or 130 g after mixing.,,,D,Interpret with this unit register letter.
+s01-E3,Shrinking removes matter despite equal complete readings.,,,E,Interpret with this unit register letter.
+s01-E3,The 138 g bar ends at 124 g.,,,F,Interpret with this unit register letter.
+s01-E4,Any decrease proves gas escaped.,,,G,Interpret with this unit register letter.
+s01-R17a,Nothing is inside.,,,A,Interpret with this unit register letter.
+s01-R17a,Dots are grains.,,,B,Interpret with this unit register letter.
+s01-R17b,Discard the cradle.,,,D,Interpret with this unit register letter.
+s01-R17b,Equal labels have different heights.,,,F,Interpret with this unit register letter.
+s01-R17c,Cooling removes matter.,,,E,Interpret with this unit register letter.
+s01-R17d,Clear cleaner holds no dissolved matter.,,,C,Interpret with this unit register letter.
+s01-R17e,Every decrease proves gas escaped.,,,G,Interpret with this unit register letter.
