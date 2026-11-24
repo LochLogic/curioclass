@@ -75,4 +75,4 @@ M2a/b: Explain settlement changes and distant effects in both cases; note a limi
 P1: Explain development/revision.
 P2: Compare challenges/opportunities; relate your proposal.
 A1: Answer our unit question using West C and another source; explain both links.
-A2: Who else needs this answer, and why?
+A2: Explain why this answer matters to another person.

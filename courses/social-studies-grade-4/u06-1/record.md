@@ -133,14 +133,14 @@ Shown: independent evidence. Shown with help: content prompting was needed. Not 
 - s06-F6a: Washington, D.C.; Congress/Capitol/legislative, president/White House/executive, justices/Supreme Court/judicial.
 - s06-F6b: Preserved federal records help people research historical or public questions.
 - s06-F6c: No senators and no final House vote through its delegate; local government and other voting continue.
-- s06-M2-se: Correct placement from the supplied card on the shared equal-year line.
-- s06-M2-mw: Correct placement from the supplied card on the shared equal-year line.
-- s06-M2-sw: Correct placement from the supplied card on the shared equal-year line.
-- s06-M2-we: Correct placement from the supplied card on the shared equal-year line.
-- s06-F2-se: Correct placement from the supplied card on the shared equal-year line.
-- s06-F2-mw: Correct placement from the supplied card on the shared equal-year line.
-- s06-F2-sw: Correct placement from the supplied card on the shared equal-year line.
-- s06-F2-we: Correct placement from the supplied card on the shared equal-year line.
+- s06-M2-se: Florida: 1845, five years after 1840 on the equal-year line.
+- s06-M2-mw: Iowa: 1846, six years after 1840 on the equal-year line.
+- s06-M2-sw: Texas: 1845, five years after 1840, sharing the year with Florida on the equal-year line.
+- s06-M2-we: Utah: 1896, six years after 1890 on the equal-year line.
+- s06-F2-se: Maryland: 1788, eight years after 1780 on the equal-year line.
+- s06-F2-mw: Ohio: 1803, three years after 1800 on the equal-year line.
+- s06-F2-sw: Arizona: 1912, two years after 1910 on the equal-year line.
+- s06-F2-we: Montana: 1889, nine years after 1880 on the equal-year line.
 - s06-M4u: M4 locates features from A and uses title/north/key/calibrated scale.
 
 ## Public-turn roster

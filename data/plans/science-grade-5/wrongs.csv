@@ -213,3 +213,14 @@ s02-P33-1,Grass cannot change because no rabbit predator lives here,,,K,Ignores 
 s02-P33-2,The resident eater cannot be affected by less grass,,,K,Denies a supplied food dependency.
 s02-P33-3,The dead material becomes nothing,,,E,Denies environmental return of dead matter.
 s02-P33-4,Gas can never leave the organism,,,J,Denies outward gas exchange.
+s02-P34-2,Only the newcomer can change.,,,K,Error K: ignores a shared-resource dependency.
+s02-K34-1,Sunlight becomes grass material.,,,D,Error D: confuses energy with matter.
+s02-P34-1,The cricket gets food energy directly from sunlight.,,,H,Error H: omits plant food between sunlight and the animal.
+s02-P35-3,The cricket gets food energy straight from sunlight.,,,H,Error H: omits plant food between sunlight and the animal.
+s02-P35-1,The 18 g reading proves sunlight became plant matter.,,,D,Error D: confuses energy with matter.
+s02-P35-2,Food supplies energy but no building material.,,,G,Error G: denies food building material.
+s02-P35-4,I saw that no gases move in any living plant.,,,J,Error J: does not use the specified record or legend.
+s02-P36-3,Food supplies no building material.,,,G,Error G: denies food building material.
+s02-K36-1,Energy cycles from waste through soil into plant food.,,,F,Error F: applies matter cycling to energy.
+s02-P36-1,The unclear shadow proves sunlight became material.,,,D,Error D: confuses energy with matter.
+s02-P36-2,T9 means energy cycles back into plant food.,,,F,Error F: applies matter cycling to energy.

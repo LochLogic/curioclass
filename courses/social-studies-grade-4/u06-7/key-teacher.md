@@ -112,7 +112,7 @@ Samples: Montana; Helena at approximately 46.6 N, 112.0 W. State position follow
 
 ## s06-F1f
 
-Locate D.C. and both Caribbean territories.
+On F-locator and F-ocean, locate D.C. and the two Caribbean territories.
 
 Key: D.C. at Potomac capital district; Puerto Rico and United States Virgin Islands in Caribbean inset.
 
@@ -122,7 +122,7 @@ Samples: D.C. at Potomac capital district; Puerto Rico and United States Virgin 
 
 ## s06-F1g
 
-Match the five Pacific names to their ocean dots.
+On F-ocean, match the five Pacific names to the new numbered dots.
 
 Key: 7: American Samoa; 6: Guam; 3: Northern Mariana Islands; 1: Midway Islands; 5: Wake Island.
 

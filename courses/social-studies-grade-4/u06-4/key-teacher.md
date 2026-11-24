@@ -164,7 +164,7 @@ Samples: Anza 1774: exploration. Tubac and Prescott: settlements. Forced movemen
 
 ## s06-M5b
 
-Revise this original record using its written criterion cue.
+Revise your Florida water map using its written criterion cue.
 
 Key: Florida: Lake Okeechobee and Everglades positioned from B; usable conventions.
 
@@ -174,7 +174,7 @@ Samples: Florida: Lake Okeechobee and Everglades positioned from B; usable conve
 
 ## s06-M5m
 
-Revise this original record using its written criterion cue.
+Revise your Florida water map using its written criterion cue.
 
 Key: Iowa: Mississippi, a documented Tama soil sample, illustrative corn-use area and Cedar Rapids processing; distinct categories and conventions.
 
@@ -184,7 +184,7 @@ Samples: Iowa: Mississippi, a documented Tama soil sample, illustrative corn-use
 
 ## s06-M5w
 
-Revise this original record using its written criterion cue.
+Revise your Florida water map using its written criterion cue.
 
 Key: Utah: Great Salt Lake, Delicate Arch, Arches National Park and Golden Spike; conventions and distinct categories.
 
@@ -194,7 +194,7 @@ Samples: Utah: Great Salt Lake, Delicate Arch, Arches National Park and Golden S
 
 ## s06-M5l
 
-Revise this original record using its written criterion cue.
+Revise your Florida water map using its written criterion cue.
 
 Key: Massachusetts public-place fallback: Worcester, Boston, Quabbin Reservoir and Connecticut River; source positions and conventions.
 
@@ -204,7 +204,7 @@ Samples: Massachusetts public-place fallback: Worcester, Boston, Quabbin Reservo
 
 ## s06-M5t
 
-Revise this original record using its written criterion cue.
+Revise your Florida water map using its written criterion cue.
 
 Key: Nine Northeast cards correctly positioned, same-year labels in separate lanes; original-state dates are ratification.
 
