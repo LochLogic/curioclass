@@ -22,3 +22,10 @@ Write how many pieces you used.
 Invented for practice.
 
 </div>
+
+
+## Second exit question
+
+[[s07-X120b]]
+
+{small}

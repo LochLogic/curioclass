@@ -7,19 +7,17 @@ version: draft, not yet taught
 credit: Curio Class original work, CC BY 4.0. Historical summaries credited below.
 ---
 # Private exit work, day 16
-Name: __________________
 
+## Exit box, student page
 
-## Exit ticket, half slip
 [[s02-X16a]]
 
-________________________________________________
-
-________________________________________________
+{work}
 
 ## Exit ticket, half slip
+
 [[s02-X16b]]
 
-________________________________________________
+{work}
 
-________________________________________________
+Keep the Exit box record visible while answering the half slip.

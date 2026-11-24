@@ -14,7 +14,7 @@ We are finding two parts that make the same whole, recording different pairs and
 
 If you wish, use six large paper squares. Start one part with two squares. Invite your child to finish the other part. Then move one square and notice what stays the same. No purchase, device, speed target or report is needed. Replace mouthed or damaged pieces with drawn marks.
 
-## Español
+## Spanish
 
 Buscamos dos partes que formen el mismo total, registramos pares diferentes y encontramos parejas que formen diez. Una parte puede estar vacía. Su niño puede dibujar, señalar, hablar, usar señas o indicar dónde debe marcar una persona adulta. Usamos piezas grandes de papel e imágenes de frutas, nunca alimentos.
 

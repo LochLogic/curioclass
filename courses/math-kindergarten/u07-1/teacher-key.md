@@ -1,5 +1,5 @@
 ---
-piece: key
+piece: story
 course: math-kindergarten
 unit: 7.1
 stretch: 7

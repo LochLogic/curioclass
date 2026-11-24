@@ -18,7 +18,9 @@ Families may request that a child leave out a sensitive selection and use that s
 A student who is 18 or older receives this note and makes that choice personally.
 School rules still apply. No family information or at-home report is requested.
 
-## Español
+## Spanish
+
+Español
 Estudiaremos la esclavitud colonial, el trabajo, las familias negras y la búsqueda de libertad.
 Leeremos resúmenes históricos breves, estudiaremos mapas y apoyaremos ideas con pruebas.
 Nombraremos claramente la coerción, las leyes desiguales, la resistencia y el daño humano.

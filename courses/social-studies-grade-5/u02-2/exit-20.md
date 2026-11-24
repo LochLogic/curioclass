@@ -7,22 +7,19 @@ version: draft, not yet taught
 credit: Curio Class original work, CC BY 4.0. Historical summaries credited below.
 ---
 # Private exit work, day 20
-Name: __________________
 
+## Exit box, student page
 
-## Exit ticket, half slip
 [[s02-X20a]]
 
-________________________________________________
-
-________________________________________________
+{work}
 
 ## Exit ticket, half slip
+
 [[s02-X20b]]
 
-________________________________________________
+{work}
 
-________________________________________________
-
+Keep the Exit box record visible while answering the half slip.
 
 Credits: [Two Views of the Stono Rebellion](https://www.nationalhumanitiescenter.org/pds/becomingamer/peoples/text4/stonorebellion.pdf). Original summaries, no source images reproduced.

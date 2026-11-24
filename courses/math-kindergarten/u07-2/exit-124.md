@@ -20,3 +20,12 @@ Rin has five pieces. Rin adds two pieces. Show how many pieces Rin has now.
 Invented for practice.
 
 </div>
+
+
+## Second exit question
+
+[[s07-P124-exitbox-removal]]
+
+{tall}
+
+Invented for practice.
