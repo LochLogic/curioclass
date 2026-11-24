@@ -200,3 +200,7 @@ from_day,to_day,what,where,minutes,error,note
 77,78,s04-P77-travel,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
 77,78,s04-P77-disk,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
 78,81,s04-P78-locate,Private,0,,Hold these component notes with E78 until day 81 Private feedback. Distribution only; no feedback on assessment days 79 or 80.
+62,63,s04-P62-hook,Opening,0,,"Return private component notes with exit notes, without added repair minutes."
+64,65,s04-P64-observe,Return and repair,0,,"Return private component notes with exit notes, without added repair minutes."
+64,65,s04-P64-label,Return and repair,0,,"Return private component notes with exit notes, without added repair minutes."
+65,66,s04-P65-link,Return and repair,0,,"Return private component notes with exit notes, without added repair minutes."
