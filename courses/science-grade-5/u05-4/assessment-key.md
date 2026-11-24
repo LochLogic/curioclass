@@ -8,6 +8,8 @@ credit: All ours.
 audience: teacher
 ---
 
+<style>body.student { font-size: 11pt; line-height: 1.4; } body.student p { margin: .3em 0; } body.student h2 { margin: .55em 0 .2em; }</style>
+
 # Day 98: teacher assessment key
 
 Teacher only. Original total: 24 points. Use u05-1/score-record.md.

@@ -16,7 +16,7 @@ You may invite your child to check a small group of large paper squares. Drawing
 
 The teacher keeps observations and later feedback. An accurate count and a known fact show different things. We record help separately and allow time to revise.
 
-## Español
+## Spanish
 
 En esta unidad, los niños cuentan y comparan objetos del salón, hacen libros de números y representan cuentos inventados con dibujos. Relacionan los números del once al diecinueve con diez unidades y otras unidades. También practican contar en voz alta, sumar y restar hasta cinco.
 

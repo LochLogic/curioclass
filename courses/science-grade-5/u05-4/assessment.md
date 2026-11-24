@@ -1,76 +1,30 @@
 ---
-piece: check
+piece: blank
 course: science-grade-5
 unit: 5.4
 stretch: 5
+check: end
+layout: authored from d098.md and current item rows
 version: draft, not yet taught
-credit: All ours.
+credit: ours
 ---
 
 # Day 98 assessment
 
-Name: __________________ Date: __________
-
-## Side 1
-
-Island records are invented for practice. Earth shares are supplied estimates.
-
-[[s05-Q1a]]
-
-| Annotated model |
-| --- |
-| &nbsp; |
-| &nbsp; |
-| &nbsp; |
-| &nbsp; |
-| &nbsp; |
-
-[[s05-Q1b]]
-
-_______________________________________________________________
-
-[[s05-Q1c]]
-
-_______________________________________________________________
-
-[[s05-Q1d]]
-
-_______________________________________________________________
-
-[[s05-Q1e]]
-
-_______________________________________________________________
-
-[[s05-Q2a1]]
-
-![Blank all-water axes](assessment-axes.svg)
-
-[[s05-Q2a2]]
-
-_______________________________________________________________
-
-## Side 2
-
-[[s05-Q2b1]]
-
-![Blank fresh-only overview](assessment-fresh.svg)
-
-[[s05-Q2b2]]
-
-![Schematic ice locator](polar-locations.svg)
-
-_______________________________________________________________
-
-[[s05-Q2c1]]
-
-![Blank matching inset](assessment-inset.svg)
-
-[[s05-Q2c2]]
-
-_______________________________________________________________
-
-[[s05-Q2c3]]
-
-_______________________________________________________________
-
-Check before collection.
+<div class="side"><p>Name ______________________ Date __________</p><p style="margin:.12em 0">I can use models and graphs as evidence.</p>
+<p style="margin:.12em 0">Invented island. A stream removes bank grains; those grains form a growing beach deposit. Draw an annotated water-land model using both observations.</p>
+<div class="sketch"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:.04in .18in;align-items:start"><div style="break-inside:avoid"><p style="margin:.12em 0">Invented island panel. Waves strike a cliff; cliff grains move afterward. Explain the ocean-land interaction.</p><div style="margin:.02in 0 .04in"><div style="height:.28in;border-bottom:1px solid #000"></div><div style="height:.28in;border-bottom:1px solid #000"></div></div></div><div style="break-inside:avoid"><p style="margin:.12em 0">Invented island panel. Young fish remain among submerged coastal plants. Explain the ocean-life interaction.</p><div style="margin:.02in 0 .04in"><div style="height:.28in;border-bottom:1px solid #000"></div><div style="height:.28in;border-bottom:1px solid #000"></div></div></div><div style="break-inside:avoid"><p style="margin:.12em 0">Invented island panel. Coastal air changes less between summer and winter than inland air. Explain the ocean-air interaction.</p><div style="margin:.02in 0 .04in"><div style="height:.28in;border-bottom:1px solid #000"></div><div style="height:.28in;border-bottom:1px solid #000"></div></div></div><div style="break-inside:avoid"><p style="margin:.12em 0">Choose one island comparison panel. Connect your explanation to its specific observation.</p><div style="margin:.02in 0 .04in"><div style="height:.28in;border-bottom:1px solid #000"></div><div style="height:.28in;border-bottom:1px solid #000"></div></div></div></div>
+<p style="margin:.12em 0">Supplied Earth estimates. Atlas evidence: 975 salt and 25 fresh shares per 1,000 all-water shares. Draw both bars with correct whole and category labels.</p>
+<div style="margin:.02in 0;line-height:0"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="100" viewBox="0 0 640 100" role="img" aria-label="Blank matching axes, shared scale and supplied endpoints"><rect width="640" height="100" fill="white"/><g stroke="black" fill="none" stroke-width="1.5"><path d="M145 7 V17 M145 12 H600"/><path d="M145 8 V16"/><path d="M156.375 8 V16"/><path d="M588.625 8 V16"/><path d="M600 8 V16"/><path d="M145 55 V65 M145 60 H600"/><path d="M145 56 V64"/><path d="M156.375 56 V64"/><path d="M588.625 56 V64"/><path d="M600 56 V64"/></g><g font-family="sans-serif" font-size="19" fill="black"><text x="8" y="18"><span class="blank" style="width:3.6em"></span></text><text x="8" y="66"><span class="blank" style="width:3.6em"></span></text><text x="145" y="34" text-anchor="middle">0</text><text x="156.375" y="52" text-anchor="middle">25</text><text x="588.625" y="34" text-anchor="middle">975</text><text x="600" y="52" text-anchor="middle">1000</text><text x="8" y="96">Whole / units: <span class="blank" style="width:10.8em"></span></text></g></svg></div>
+<p style="margin:.12em 0">Draft label: ocean 975. Evidence includes salty lakes and groundwater; almost all salt is ocean. Explain the corrected category and which dominates.</p>
+<div style="margin:.02in 0 .04in"><div style="height:.28in;border-bottom:1px solid #000"></div><div style="height:.28in;border-bottom:1px solid #000"></div></div></div>
+<div class="side" style="page-break-after:auto;break-after:auto"><p style="margin:.12em 0">Atlas fresh shares: ice 687, groundwater 301, surface and other 12 per 1,000. Draft heading: all Earth water. Draw corrected bars and whole label.</p>
+<div style="margin:.02in 0;line-height:0"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="150" viewBox="0 0 640 150" role="img" aria-label="Blank matching axes, shared scale and supplied endpoints"><rect width="640" height="150" fill="white"/><g stroke="black" fill="none" stroke-width="1.5"><path d="M145 7 V17 M145 12 H600"/><path d="M145 8 V16"/><path d="M150.46 8 V16"/><path d="M281.955 8 V16"/><path d="M457.585 8 V16"/><path d="M600 8 V16"/><path d="M145 60 V70 M145 65 H600"/><path d="M145 61 V69"/><path d="M150.46 61 V69"/><path d="M281.955 61 V69"/><path d="M457.585 61 V69"/><path d="M600 61 V69"/><path d="M145 100 V110 M145 105 H600"/><path d="M145 101 V109"/><path d="M150.46 101 V109"/><path d="M281.955 101 V109"/><path d="M457.585 101 V109"/><path d="M600 101 V109"/></g><g font-family="sans-serif" font-size="19" fill="black"><text x="8" y="18"><span class="blank" style="width:3.6em"></span></text><text x="8" y="71"><span class="blank" style="width:3.6em"></span></text><text x="8" y="111"><span class="blank" style="width:3.6em"></span></text><text x="145" y="34" text-anchor="middle">0</text><text x="150.46" y="52" text-anchor="middle">12</text><text x="281.955" y="34" text-anchor="middle">301</text><text x="457.585" y="52" text-anchor="middle">687</text><text x="600" y="34" text-anchor="middle">1000</text><text x="8" y="146">Whole / units: <span class="blank" style="width:10.8em"></span></text></g></svg></div>
+<p style="margin:.12em 0">The map locates Greenland, Antarctica and mountain glaciers. Explain their atlas category and where most freshwater lies.</p>
+<div style="margin:.02in 0;line-height:0"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="75" viewBox="0 0 640 75" role="img" aria-label="Schematic ice locations, not to scale"><g stroke="black" fill="none" stroke-width="1.5"><path d="M65 8 L90 5 L105 25 L80 36 Z M240 15 Q280 2 340 15 L335 35 H245 Z M505 35 L530 5 L555 35"/></g><g font-family="sans-serif" font-size="19"><text x="10" y="65">Greenland land ice</text><text x="220" y="65">Antarctica land ice</text><text x="450" y="65">Mountain glaciers</text></g></svg></div>
+<div style="margin:.02in 0 .04in"><div style="height:.28in;border-bottom:1px solid #000"></div><div style="height:.28in;border-bottom:1px solid #000"></div></div>
+<p style="margin:.12em 0">Atlas fresh shares: lakes 2.6; rivers 0.06 per 1,000. Draw both bars on matching 0 to 3 inset axes with units.</p>
+<div style="margin:.02in 0;line-height:0"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="100" viewBox="0 0 640 100" role="img" aria-label="Blank matching axes, shared scale and supplied endpoints"><rect width="640" height="100" fill="white"/><g stroke="black" fill="none" stroke-width="1.5"><path d="M145 7 V17 M145 12 H600"/><path d="M145 8 V16"/><path d="M154.1 8 V16"/><path d="M539.333 8 V16"/><path d="M600 8 V16"/><path d="M145 55 V65 M145 60 H600"/><path d="M145 56 V64"/><path d="M154.1 56 V64"/><path d="M539.333 56 V64"/><path d="M600 56 V64"/></g><g font-family="sans-serif" font-size="19" fill="black"><text x="8" y="18"><span class="blank" style="width:3.6em"></span></text><text x="8" y="66"><span class="blank" style="width:3.6em"></span></text><text x="145" y="34" text-anchor="middle">0</text><text x="154.1" y="52" text-anchor="middle">0.06</text><text x="539.333" y="34" text-anchor="middle">2.6</text><text x="600" y="52" text-anchor="middle">3</text><text x="8" y="96">Whole / units: <span class="blank" style="width:10.8em"></span></text></g></svg></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:.04in .18in;align-items:start"><div style="break-inside:avoid"><p style="margin:.12em 0">Draft full-height bars use lake maximum 2.6 and river maximum 0.06. Explain the faulty comparison, including ice and groundwater.</p><div style="margin:.02in 0 .04in"><div style="height:.28in;border-bottom:1px solid #000"></div><div style="height:.28in;border-bottom:1px solid #000"></div><div style="height:.28in;border-bottom:1px solid #000"></div></div></div><div style="break-inside:avoid"><p style="margin:.12em 0">Draft claim: Nearby ocean guarantees ready fresh drinking water. Explain why the atlas cannot support this claim.</p><div style="margin:.02in 0 .04in"><div style="height:.28in;border-bottom:1px solid #000"></div><div style="height:.28in;border-bottom:1px solid #000"></div><div style="height:.28in;border-bottom:1px solid #000"></div></div></div></div>
+<p style="margin:.12em 0">Check both sides before handing them in.</p></div>

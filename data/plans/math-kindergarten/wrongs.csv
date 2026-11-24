@@ -1693,16 +1693,16 @@ s08-G148-6,Rejects matching result without checking.,,,x,Unexplained misses get 
 s08-G149-6,Rejects matching result without checking.,,,x,Unexplained misses get descriptive notes. Access support separate.
 s08-G150-6,Rejects matching result without checking.,,,x,Unexplained misses get descriptive notes. Access support separate.
 s08-G151-6,Rejects matching result without checking.,,,x,Unexplained misses get descriptive notes. Access support separate.
-s08-P135-1,Does not make the described correction.,,,N,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P135-2,Does not make the described correction.,,,A,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P136-1,Does not make the described correction.,,,B,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P136-2,Does not make the described correction.,,,A,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P137-1,Does not make the described correction.,,,D,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P137-2,Does not make the described correction.,,,C,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P138-1,Does not make the described correction.,,,D,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P138-2,Does not make the described correction.,,,D,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P139-1,Does not make the described correction.,,,E,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P139-2,Does not make the described correction.,,,x,Unexplained misses get descriptive notes. Access support separate.
+s08-P135-1,Leaves stripe card on dot mat.,,,N,Assign this letter only if the named action/reason is observed; otherwise describe the response.
+s08-P135-2,Visits an already counted object again and records five.,,,A,Assign this letter only if the named action/reason is observed; otherwise describe the response.
+s08-P136-1,Says spread-out four has more because it is longer.,,,B,Assign this letter only if the named action/reason is observed; otherwise describe the response.
+s08-P136-2,Revisits a line object and records thirteen.,,,A,Assign this letter only if the named action/reason is observed; otherwise describe the response.
+s08-P137-1,Keeps four after one arrives.,,,D,Assign this letter only if the named action/reason is observed; otherwise describe the response.
+s08-P137-2,Adds the removed piece and records seven.,,,C,Assign this letter only if the named action/reason is observed; otherwise describe the response.
+s08-P138-1,Keeps four after one is added.,,,D,Assign this letter only if the named action/reason is observed; otherwise describe the response.
+s08-P138-2,Keeps eight after one is added.,,,D,Assign this letter only if the named action/reason is observed; otherwise describe the response.
+s08-P139-1,"Starts one, two, three instead of the supplied eight.",,,E,Assign this letter only if the named action/reason is observed; otherwise describe the response.
+s08-P139-2,Writes five again in the missing-label box.,,,x,Assign this letter only if the named action/reason is observed; otherwise describe the response.
 s08-P140-1,Does not make the described correction.,,,A,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-P140-2,Does not make the described correction.,,,I,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-P141-1,Does not make the described correction.,,,F,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
@@ -1733,3 +1733,29 @@ s08-X142,Calls the whole cube flat because its face is square.,,,G,"Only if this
 s08-Q135-flat,Whole cube treated as flat.,,,x,"Descriptive diagnostic/practice note, not scored evidence or inferred misconception."
 s08-Q135-count,Does not count all six rings.,,,x,"Descriptive diagnostic/practice note, not scored evidence or inferred misconception."
 s08-P146-3,Skips the next decade.,,,x,"Descriptive diagnostic/practice note, not scored evidence or inferred misconception."
+s08-Q135,Skips a word in the echoed stretch.,,,x,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-Q136,Skips a word in the echoed stretch.,,,x,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-Q137,Skips a word in the echoed stretch.,,,x,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-Q138,Skips a word in the echoed stretch.,,,x,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-Q139,Skips a word in the echoed stretch.,,,x,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-H135,Moves cap into eraser tray.,,,N,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-F135,Revisits the first circle and keeps five.,,,A,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-R135,Makes no change responding to the feature note.,,,x,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-R-A136,Visits a counted square twice and keeps four.,,,A,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-R-N136,Leaves ring on stripe tray.,,,N,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-K-equal136,Calls a group more because it is wider.,,,B,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-P-arr136,Visits a counted dot again and records nineteen.,,,A,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-P-circle136,Revisits start and records sixteen.,,,A,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-P-scatter136,Revisits a square and records nine.,,,A,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-P-out136,Keeps adding and makes seven.,,,x,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-R137,Says spread-out two has more because wider.,,,B,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-P-join137,Leaves three after one arrives.,,,D,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-P-take137,Adds the removed piece to make five.,,,C,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-R138,Joins during removal and keeps five.,,,C,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-R-D138,Keeps three after one arrives.,,,D,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-P-less138,Keeps six after one is removed.,,,D,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-Q-why138,Says no new piece arrived.,,,D,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-R139,Keeps three after adding one.,,,D,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-P-order139,Puts 17 after 19.,,,x,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-P-start139,"Restarts one, two, three.",,,E,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-P-label139,Revisits a dot and records ten.,,,A,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
