@@ -35,4 +35,6 @@ Reserve thirty teacher minutes after each check day to annotate original records
 
 Choose one priority per child for day 86: counting/tracking, comparison, numeral connection. Three twelve-minute groups share both days' referrals, one teacher. Two children heard per group, six total. Others return practice paper; no unheard explanation credited. If more than ten share a gap, corresponding slot becomes whole-class, counted once; queue other needs. Turned-shape and other unresolved/unsampled domains remain named for later instruction, never claimed repaired today.
 
-Day 86 transfer: one assigned half slip per child, no new oral interview. Keep original, descriptive feedback and a later revision before updating a judgment. Reserve thirty teacher minutes after class to record paper evidence; unheard reasoning stays pending. Carry first response and help notes intact.
+Day 86 transfer: one assigned half slip per child, matched to the repaired component: count, move, next, stop, compare, fewer or symbol. No new oral interview. Keep original, descriptive feedback and a later revision before updating a judgment. Reserve thirty teacher minutes after class to record paper evidence; unheard reasoning stays pending. Carry first response and help notes intact.
+
+Day 87 receives five Return and repair minutes for day 86 feedback and assigned-slip revision, replacing center time, no new check. Update eligible component judgments afterward.

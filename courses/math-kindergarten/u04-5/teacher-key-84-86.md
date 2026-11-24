@@ -471,3 +471,59 @@ Shown: Three correct links including zero to empty. | Not yet seen: Links 4 to e
 
 **Error L.** Numeral-quantity mismatch, unit 2 error M.
 
+
+## sC-X86-move
+
+**Show.** Adult counts three large paper leaves in a close row, then spreads same pieces and indicates opposite start. Slip has equal-print choices 3, 4, 6. No answer cue.
+
+**Say.** Mark the number that still fits.
+
+**Answer.** Three still; same members after spreading or changing start.
+
+**Look for.** Marks 3. Unheard invariance reason remains pending.
+
+Shown: Three, nothing entered or left. | Not yet seen: Marks 6 because row is wider.
+
+**Error D.** Spread as quantity, unit 2 error B.
+
+## sC-X86-next
+
+**Show.** Adult counts four large paper stars once, adds exactly one. Slip has unlabelled four-dot and five-dot choices, no numeral, tower or equation.
+
+**Say.** Mark the picture for the amount now.
+
+**Answer.** Five dots after one joins four.
+
+**Look for.** Marks five-dot card. Only heard group turn establishes next-word reasoning.
+
+Shown: Marks five; one more comes next. | Not yet seen: Marks four after one arrives.
+
+**Error F.** No advance for one more, unit 2 error H.
+
+## sC-X86-stop
+
+**Show.** Give nine large disks and blank border. Speak requested six. Child marks each placed piece to retain record, or directs adult movement. No supplied dot record.
+
+**Say.** Put six pieces inside this border.
+
+**Answer.** Six inside, three of nine available outside.
+
+**Look for.** Stops at six; paper preserves set, unheard words stay pending.
+
+Shown: Six pieces inside, three outside. | Not yet seen: Moves all nine despite request six.
+
+**Error J.** Requested stop lost, unit 2 error D.
+
+## sC-X86-fewer
+
+**Show.** Four large circles in wide upper row, seven small circles in compact lower row. No links, totals or supplied correction. New independent fewer selection.
+
+**Say.** Mark the group that has fewer.
+
+**Answer.** Four large circles have fewer members than seven small circles.
+
+**Look for.** Marks four-group; record count method only if observed.
+
+Shown: Marks four, counts both if heard. | Not yet seen: Marks seven because its pictures are smaller.
+
+**Error G.** Size replaces quantity, unit 2 error N.

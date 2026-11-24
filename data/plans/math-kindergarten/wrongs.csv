@@ -922,3 +922,7 @@ sC-P86-symbol,Labels empty as 1.,,,K,"None confused with one, unit 2 error E."
 sC-X86-count,Accepts seven dots without checking all eight seals.,,,A,Incomplete inventory; omission letter only if action observed.
 sC-X86-compare,Draws wide row of five rings and calls enough.,,,D,"Spread replaces partners, unit 2 error B."
 sC-X86-symbol,Links 4 to empty.,,,L,"Numeral-quantity mismatch, unit 2 error M."
+sC-X86-move,Marks 6 because row is wider.,,,D,"Spread as quantity, unit 2 error B."
+sC-X86-next,Marks four after one arrives.,,,F,"No advance for one more, unit 2 error H."
+sC-X86-stop,Moves all nine despite request six.,,,J,"Requested stop lost, unit 2 error D."
+sC-X86-fewer,Marks seven because its pictures are smaller.,,,G,"Size replaces quantity, unit 2 error N."

@@ -37,3 +37,47 @@ Invented for practice. Cut each bordered half slip. Give one assigned form per c
 </div>
 
 <style>div{break-inside:avoid;font-size:18pt}svg{max-height:2.5in}</style>
+
+## move, sC-X86-move
+
+Teacher setup: Adult counts three large paper leaves in a close row, then spreads same pieces and indicates opposite start. Slip has equal-print choices 3, 4, 6. No answer cue.
+
+<div style="border:2px solid;padding:10px;min-height:3.3in">
+
+**Exit**
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 230" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2.5"><g stroke="none" fill="black" font-size="32"><text x="100" y="160">3</text><text x="320" y="160">4</text><text x="540" y="160">6</text></g></g></svg>
+</div>
+
+## next, sC-X86-next
+
+Teacher setup: Adult counts four large paper stars once, adds exactly one. Slip has unlabelled four-dot and five-dot choices, no numeral, tower or equation.
+
+<div style="border:2px solid;padding:10px;min-height:3.3in">
+
+**Exit**
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 230" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2.5"><rect x="10" y="50" width="310" height="150"/><circle cx="50" cy="120" r="12"/><circle cx="115" cy="120" r="12"/><circle cx="180" cy="120" r="12"/><circle cx="245" cy="120" r="12"/><rect x="350" y="50" width="310" height="150"/><circle cx="380" cy="120" r="12"/><circle cx="435" cy="120" r="12"/><circle cx="490" cy="120" r="12"/><circle cx="545" cy="120" r="12"/><circle cx="600" cy="120" r="12"/></g></svg>
+</div>
+
+## stop, sC-X86-stop
+
+Teacher setup: Give nine large disks and blank border. Speak requested six. Child marks each placed piece to retain record, or directs adult movement. No supplied dot record.
+
+<div style="border:2px solid;padding:10px;min-height:3.3in">
+
+**Exit**
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 230" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2.5"><rect x="30" y="25" width="610" height="180"/></g></svg>
+</div>
+
+## fewer, sC-X86-fewer
+
+Teacher setup: Four large circles in wide upper row, seven small circles in compact lower row. No links, totals or supplied correction. New independent fewer selection.
+
+<div style="border:2px solid;padding:10px;min-height:3.3in">
+
+**Exit**
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 230" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2.5"><circle cx="65" cy="55" r="22"/><circle cx="230" cy="55" r="22"/><circle cx="395" cy="55" r="22"/><circle cx="560" cy="55" r="22"/><circle cx="225" cy="165" r="8"/><circle cx="260" cy="165" r="8"/><circle cx="295" cy="165" r="8"/><circle cx="330" cy="165" r="8"/><circle cx="365" cy="165" r="8"/><circle cx="400" cy="165" r="8"/><circle cx="435" cy="165" r="8"/></g></svg>
+</div>
