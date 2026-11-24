@@ -10,20 +10,8 @@ audience: teacher
 
 # Section 6.3: teacher keys
 
-Teacher only. Separate before copying. Equivalent supported answers count.
-Language support does not establish a content error.
-
-## s06-X106
-
-Invented for practice. Plan P has one cloth layer; Q has two. Other media, supports and outlet heights match. Built record J shows two cloth layers; K shows one. J would receive three level cupfuls; K would receive two. Match each built filter to its plan. Annotate the correction needed for a fair test.
-
-Key: J matches Q; K matches P. Give both the same measured input amount with other conditions fixed.
-
-Look-fors: Both matches; equal-input repair; matching gaps descriptive, without invented error letters | Shape: unfamiliar picture-to-plan matching and confounded-input correction
-
-Samples: Meets: J matches Q; K matches P. Give both the same measured input amount with other conditions fixed. | Not yet: Different inputs still compare fairly. Error E.
-
-- Different inputs still compare fairly. Error E: A second changing condition confounds comparison.
+Teacher only. Keep separate before copying. Equivalent supported answers count.
+Language support does not establish a science error.
 
 ## s06-X107
 
@@ -40,7 +28,7 @@ Samples: Meets: K1: 60 mL/category 2/none; K2: 80 mL/category 2/side leak; K3: 6
 
 ## s06-X108
 
-Invented for practice. Storage liners release water through intended spouts. Each receives three cupfuls under matching conditions. Outlet cups: M1 1.5, M2 2, M3 1.5; N1 2.5, N2 0.5, N3 2.5. Values match half-cup marks. N2's seam leaked; M2's pour started above the guide. A draft graph omits N2. Replace it with complete labeled line plots. Mark recorded problems beside their trial marks.
+Invented for practice. Storage liners release water through intended spouts. Each receives three cupfuls under matching conditions. Outlet cups: M1 1.5, M2 2, M3 1.5; N1 2.5, N2 0.5, N3 2.5. Values match half-cup marks. N2's seam leaked; M2's pour started above the guide. A draft graph omits N2. Replace it with complete line plots annotated with trial identifiers, units and problems.
 
 Key: M1/M3 at 1.5 cups; M2 at 2. N2 at 0.5 cups; N1/N3 at 2.5. Mark above-guide pour at M2 and seam leak at N2; invent no other causes.
 
@@ -122,4 +110,28 @@ Look-fors: Supported component; language support recorded separately from scienc
 Samples: Meets: Recorded identifier/fault; absent faults are not invented. | Not yet: An unrelated change fixes any failure. Error H.
 
 - An unrelated change fixes any failure. Error H: Target the recorded failure.
+
+## s06-X106-1
+
+Invented for practice. Plan P has one cloth layer; Q has two. Other media, supports and outlet heights match. Built record J shows two cloth layers; K shows one. J would receive three level cupfuls; K would receive two. Match each built filter to its plan.
+
+Key: J matches Q; K matches P.
+
+Look-fors: Match unfamiliar built cross-sections to their plans | Shape: Match unfamiliar built cross-sections to their plans
+
+Samples: Meets: J matches Q; K matches P. | Not yet: Matching is incomplete; descriptive evidence gap, no assigned letter.
+
+
+
+## s06-X106-2
+
+Using the input record, annotate the correction needed for a fair comparison.
+
+Key: Give both the same measured input volume and keep other listed conditions fixed.
+
+Look-fors: Repair the confounded input comparison | Shape: Repair the confounded input comparison
+
+Samples: Meets: Give both the same measured input volume and keep other listed conditions fixed. | Not yet: Different inputs still compare fairly. Error E.
+
+- Different inputs still compare fairly. Error E: A second changing condition confounds comparison.
 

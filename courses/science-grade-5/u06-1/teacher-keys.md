@@ -10,37 +10,12 @@ audience: teacher
 
 # Section 6.1: teacher keys
 
-Teacher only. Separate before copying. Equivalent supported answers count.
-Language support does not establish a content error.
-
-## s06-X100
-
-Invented for practice. A delivery yard slopes into a ditch. Its pipe to a pond is blocked. Water spills over the low bank toward the pond. Draw the runoff routes shown by this record. Add one question about protecting the pond.
-
-Key: Yard to ditch, then over bank to pond; no flow through blocked pipe. Example question: How could less carried material reach the pond?
-
-Look-fors: Connected directional route excluding blocked pipe; relevant protection question | Shape: obstructed route reconstruction and protection question
-
-Samples: Meets: Yard to ditch, then over bank to pond; no flow through blocked pipe. Example question: How could less carried material reach the pond? | Not yet: Separate yard, ditch and pond labels. Error B.
-
-- Separate yard, ditch and pond labels. Error B: Names alone omit interactions.
-- An air-protection question with no connection to this route. Error I: An action must affect the particular harm route.
-
-## s06-X101
-
-Invented for practice. Inspection log: A town's trash screen held wrappers after rain. Maintenance note: Leaves blocked the screen. Water then passed around its edge. Record one relevant idea from each named card. Write a shared question both cards help investigate.
-
-Key: Inspection log records retained wrappers; Maintenance note records blockage and bypass. Shared question: When does the screen reliably keep litter from downstream water?
-
-Look-fors: Both named attributions; shared inquiry requiring both | Shape: paired attribution and shared inquiry
-
-Samples: Meets: Inspection log records retained wrappers; Maintenance note records blockage and bypass. Shared question: When does the screen reliably keep litter from downstream water? | Not yet: Copy facts separately without a shared question. Error A.
-
-- Copy facts separately without a shared question. Error A: Separate facts need a combined conclusion.
+Teacher only. Keep separate before copying. Equivalent supported answers count.
+Language support does not establish a science error.
 
 ## s06-X102
 
-Invented for practice. Harbor log: A floating boom held wrappers beside the dock. Council note: Floating barriers intercept litter before it spreads. A prettier harbor matters to us. We expect less floating litter next year. Revise a system drawing using both cards. Label its observation, value and projection.
+Invented for practice. Harbor log: A floating boom held wrappers beside the dock. Council note: Floating barriers intercept litter before it spreads. A prettier harbor matters to us. We expect less floating litter next year. Revise a system drawing with both cards, labeling observation, value and projection.
 
 Key: Wrappers moving in water meet the boom and remain beside the dock. The log supports interception in the note. Retained wrappers: observation; prettier: value; less next year: projection.
 
@@ -123,4 +98,52 @@ Look-fors: Supported component; language support recorded separately from scienc
 Samples: Meets: Future hope, not next-season observation. | Not yet: The expected future result has already been observed. Error C.
 
 - The expected future result has already been observed. Error C: A projection is not an observation.
+
+## s06-X100-1
+
+Invented for practice. A delivery yard slopes into a ditch. Its pipe to a pond is blocked. Water spills over the low bank toward the pond. Draw the runoff routes shown by this record.
+
+Key: Yard to ditch, then over low bank to pond. Blocked pipe carries no flow.
+
+Look-fors: Reconstruct the obstructed directional route | Shape: Reconstruct the obstructed directional route
+
+Samples: Meets: Yard to ditch, then over low bank to pond. Blocked pipe carries no flow. | Not yet: Separate yard, ditch and pond labels. Error B.
+
+- Separate yard, ditch and pond labels. Error B: Names alone omit interactions.
+
+## s06-X100-2
+
+Using the same record, write one question about protecting the pond.
+
+Key: Example: How could less material reach the pond along this route?
+
+Look-fors: Pose a relevant protection inquiry | Shape: Pose a relevant protection inquiry
+
+Samples: Meets: Example: How could less material reach the pond along this route? | Not yet: An air-protection question with no connection to this route. Error I.
+
+- An air-protection question with no connection to this route. Error I: An action must affect the particular harm route.
+
+## s06-X101-1
+
+Invented for practice. Inspection log: A town's trash screen held wrappers after rain. Maintenance note: Leaves blocked the screen. Water then passed around its edge. Record one relevant idea from each named card.
+
+Key: Inspection log: retained wrappers. Maintenance note: leaf blockage and edge bypass.
+
+Look-fors: Attribute one relevant idea to each named source | Shape: Attribute one relevant idea to each named source
+
+Samples: Meets: Inspection log: retained wrappers. Maintenance note: leaf blockage and edge bypass. | Not yet: Copy facts separately without a shared question. Error A.
+
+- Copy facts separately without a shared question. Error A: Separate facts need a combined conclusion.
+
+## s06-X101-2
+
+Write a shared question both cards help investigate.
+
+Key: Example: When does the screen reliably keep litter from downstream water? Both cards contribute.
+
+Look-fors: Pose a shared inquiry requiring both cards | Shape: Pose a shared inquiry requiring both cards
+
+Samples: Meets: Example: When does the screen reliably keep litter from downstream water? Both cards contribute. | Not yet: Copy facts separately without a shared question. Error A.
+
+- Copy facts separately without a shared question. Error A: Separate facts need a combined conclusion.
 

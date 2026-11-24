@@ -10,12 +10,12 @@ audience: teacher
 
 # Section 6.4: teacher keys
 
-Teacher only. Separate before copying. Equivalent supported answers count.
-Language support does not establish a content error.
+Teacher only. Keep separate before copying. Equivalent supported answers count.
+Language support does not establish a science error.
 
 ## s06-X109
 
-Invented for practice. A roof-drain screen has a split seam. Graph: J1, four escaped squares; J2, six; J3, four. Every escape occurred at the split. Goal: no more than one escaped square. Limit: one repair strip and unchanged screen area. Draw one change targeting this graphed failure. Link your change to the repeated evidence.
+Invented for practice. A roof-drain screen has a split seam. Graph: J1, four escaped squares; J2, six; J3, four. Every escape occurred at the split. Goal: no more than one escaped square. Limit: one repair strip and unchanged screen area. Draw one constrained repair, linking your change to the repeated graph evidence.
 
 Key: Join or cover split with one strip, keeping screen area unchanged. Every trial shows seam escapes above goal. Predict fewer escapes, then retest; success is not established yet.
 
@@ -27,16 +27,15 @@ Samples: Meets: Join or cover split with one strip, keeping screen area unchange
 
 ## s06-X110
 
-Invented for practice. Prototype V has a cloth gap beside its wall. Baseline trials each used one cup and 60 seconds. Each collected half a cup, category 3, with side bypass. Input category: 3; media: half a cup. Goals: improve one category, collect half a cup, and avoid leaks. Media limit: one cup. Retest the cloth adjustment three times, keeping the baseline record. Revise your water-route drawing using your results.
+Using your retained baseline and retests, revise the water-route drawing from your results.
 
-Key: Reposition same cloth across gap; change nothing else. Retain baseline and all retests with cups, categories and faults. Draw route from actual evidence, including failures. Fallback: 0.5/0.5/0.5 cups, categories 2/2/3, no bypass. Volume/media/leak limits pass; appearance improvement is inconsistent. No-kit cannot show conducting.
+Key: Show how the adjusted cloth changes the route using recorded evidence, without guaranteeing success. Fallback has no bypass but appearance improvement is inconsistent; keep all repeats.
 
-Look-fors: Named observed controlled action; baseline plus all repeats; evidence-based causal drawing | Shape: fresh single-prototype adjustment, controlled retests and causal drawing
+Look-fors: Revised causal route supported by actual results, including failure | Shape: independent evidence-based causal revision after controlled retests
 
-Samples: Meets: Reposition same cloth across gap; change nothing else. Retain baseline and all retests with cups, categories and faults. Draw route from actual evidence, including failures. Fallback: 0.5/0.5/0.5 cups, categories 2/2/3, no bypass. Volume/media/leak limits pass; appearance improvement is inconsistent. No-kit cannot show conducting. | Not yet: Change inputs between trials. Error E.
+Samples: Meets: Show how the adjusted cloth changes the route using recorded evidence, without guaranteeing success. Fallback has no bypass but appearance improvement is inconsistent; keep all repeats. | Not yet: Hide the unfavorable repeat from the model. Error G.
 
-- Change inputs between trials. Error E: A second changing condition confounds comparison.
-- Remove the category-3 repeat. Error G: Retain inconvenient or unresolved trials with notes.
+- Omit unfavorable repeated evidence from the model. Error G: Retain inconvenient or unresolved trials with notes.
 
 ## s06-X111
 
@@ -134,4 +133,17 @@ Look-fors: Supported component; language support recorded separately from scienc
 Samples: Meets: Use recorded bypass; absent evidence stays unknown. | Not yet: Clear-looking output is safe to drink. Error D.
 
 - Clear-looking output is safe to drink. Error D: Appearance does not establish drinking safety.
+
+## s06-P110-retests
+
+Invented for practice. Prototype V has a cloth gap beside its wall. Baseline trials each used one cup and 60 seconds. Each collected half a cup, category 3, with side bypass. Input category: 3; media: half a cup. Goals: improve one category, collect half a cup, and avoid leaks. Media limit: one cup. Retest the cloth adjustment three times, keeping the baseline record.
+
+Key: Keep baseline plus all three retests and named actual actions. Fallback: 0.5/0.5/0.5 cups, categories 2/2/3, no bypass. Records-only conducting remains unobserved.
+
+Look-fors: Named controlled action; retain baseline and all retests with units, categories and faults | Shape: held independent practical retest record, never taught practice
+
+Samples: Meets: Keep baseline plus all three retests and named actual actions. Fallback: 0.5/0.5/0.5 cups, categories 2/2/3, no bypass. Records-only conducting remains unobserved. | Not yet: Delete the category-3 repeat. Error G.
+
+- Change inputs between trials. Error E: A second changing condition confounds comparison.
+- Remove the category-3 repeat. Error G: Retain inconvenient or unresolved trials with notes.
 

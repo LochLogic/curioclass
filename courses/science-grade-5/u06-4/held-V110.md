@@ -12,7 +12,9 @@ credit: All ours, except attributed source fragments where stated.
 Keep covered until the fresh practical exit. Print this record only on day 110.
 The supplied baseline is invented for practice, not measured by your group.
 
-Invented for practice. Prototype V has a cloth gap beside its wall. Baseline trials each used one cup and 60 seconds. Each collected half a cup, category 3, with side bypass. Input category: 3; media: half a cup. Goals: improve one category, collect half a cup, and avoid leaks. Media limit: one cup. Retest the cloth adjustment three times, keeping the baseline record. Revise your water-route drawing using your results.
+## Independent Exit box: s06-P110-retests
+
+Invented for practice. Prototype V has a cloth gap beside its wall. Baseline trials each used one cup and 60 seconds. Each collected half a cup, category 3, with side bypass. Input category: 3; media: half a cup. Goals: improve one category, collect half a cup, and avoid leaks. Media limit: one cup. Retest the cloth adjustment three times, keeping the baseline record.
 
 Name: __________ Group: __________ Actual / records-only: __________
 
@@ -25,6 +27,8 @@ Name: __________ Group: __________ Actual / records-only: __________
 My observed action: _____________________________________________
 
 ## Independent route drawing after cleanup
+
+Using your retained baseline and retests, revise the water-route drawing from your results.
 
 | Water route and result evidence |
 | --- |

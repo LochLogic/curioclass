@@ -10,8 +10,8 @@ audience: teacher
 
 # Section 6.2: teacher keys
 
-Teacher only. Separate before copying. Equivalent supported answers count.
-Language support does not establish a content error.
+Teacher only. Keep separate before copying. Equivalent supported answers count.
+Language support does not establish a science error.
 
 ## s06-X103
 
@@ -25,22 +25,9 @@ Samples: Meets: Example: Fewer counted flecks after filtering equal samples. At 
 
 - Clear output proves safe drinking water. Error D: Appearance does not establish drinking safety.
 
-## s06-X104
-
-Invented for practice. A model screen must retain at least four floating squares. It must collect at least 100 milliliters. Both proposals use the allowed frame and mesh. Predicted R: five squares retained, 80 milliliters collected. Predicted S: four squares retained, 120 milliliters collected. Compare both predictions with every goal and limit. Explain what testing must still establish.
-
-Key: R meets predicted retention/material limits but misses volume. S predicts meeting both goals and materials. Repeated fair tests must establish actual performance; neither forecast establishes drinking safety.
-
-Look-fors: Both forecasts compared against retention, volume and materials; uncertainty retained | Shape: supplied forecast comparison against requirements with uncertainty
-
-Samples: Meets: R meets predicted retention/material limits but misses volume. S predicts meeting both goals and materials. Repeated fair tests must establish actual performance; neither forecast establishes drinking safety. | Not yet: One forecast proves S always works. Error F.
-
-- One forecast proves S always works. Error F: One result does not establish repeated performance.
-- S produces drinkable water. Error D: Appearance does not establish drinking safety.
-
 ## s06-X105
 
-Invented for practice. Two model litter baskets differ in hole spacing. They receive stirred water containing equal-sized paper scraps. Plan a fair repeated comparison. Include measurements and explain why repetition helps.
+Invented for practice. Two model litter baskets differ in hole spacing. They receive stirred water containing equal-sized paper scraps. Write a fair repeated-test plan explaining your measurements and reason for repetition.
 
 Key: Change hole spacing only. Fix input volume, scrap amount/size, mixture, pour position, duration and reset. Alternate at least three trials each. Record volume in a stated unit and escaping scrap counts. Repeats reveal variation; retain every failure.
 
@@ -122,4 +109,29 @@ Look-fors: Supported component; language support recorded separately from scienc
 Samples: Meets: Input, mixture, position, reset or interval, with fair-comparison reason. | Not yet: The comparison condition does not need to match. Error E.
 
 - The comparison condition does not need to match. Error E: A second changing condition confounds comparison.
+
+## s06-X104-1
+
+Invented for practice. A model screen must retain at least four floating squares. It must collect at least 100 milliliters. Both proposals use the allowed frame and mesh. Predicted R: five squares retained, 80 milliliters collected. Predicted S: four squares retained, 120 milliliters collected. Compare both predictions with every goal and limit.
+
+Key: R meets retention/material limits but misses volume. S predicts meeting every stated goal and limit.
+
+Look-fors: Compare both supplied forecasts with every goal and limit | Shape: Compare both supplied forecasts with every goal and limit
+
+Samples: Meets: R meets retention/material limits but misses volume. S predicts meeting every stated goal and limit. | Not yet: One forecast proves S always works. Error F.
+
+- One forecast proves S always works. Error F: One result does not establish repeated performance.
+
+## s06-X104-2
+
+Using the same forecasts, explain what repeated testing must still establish.
+
+Key: Repeated fair trials must establish actual performance. A forecast proves neither reliable success nor drinking safety.
+
+Look-fors: Explain what repeated testing must still establish | Shape: Explain what repeated testing must still establish
+
+Samples: Meets: Repeated fair trials must establish actual performance. A forecast proves neither reliable success nor drinking safety. | Not yet: One forecast proves S always works. Error F.
+
+- One forecast proves S always works. Error F: One result does not establish repeated performance.
+- S produces drinkable water. Error D: Appearance does not establish drinking safety.
 

@@ -10,8 +10,8 @@ audience: teacher
 
 # Section 6.6: teacher keys
 
-Teacher only. Separate before copying. Equivalent supported answers count.
-Language support does not establish a content error.
+Teacher only. Keep separate before copying. Equivalent supported answers count.
+Language support does not establish a science error.
 
 ## s06-Q1a
 
@@ -100,7 +100,7 @@ Samples: Meets: Space around Earth; prevent new orbital debris to reduce additio
 
 ## s06-Q1c
 
-Which line reports completed work, and which anticipates a benefit? Use another line to explain remaining uncertainty and one protection limit.
+Write an evidence-status note using completed work, an anticipated benefit, uncertainty and one protection limit. Cite the source lines.
 
 Key: A1 reports completed projects; A3 anticipates benefit. A4 says final performance still needs evaluation. Neither source tests drinking safety; construction alone does not establish every projected outcome.
 
@@ -127,7 +127,7 @@ Samples: Meets: Change barrier height only. Match 20 mL input, mixture, pour pos
 
 ## s06-Q2b
 
-Use your results to compare both catchers with every goal and limit. Show a failure-based improvement and a retest prediction on a revised system drawing.
+Use a revised system drawing to compare both catchers and justify a failure-based improvement. Include every goal, limit and a retest prediction.
 
 Key: Use all actual trials and limits. Fallback only: A 18/17/18 mL all exceed 10; B 8/9/8 all meet it. Both fit with no side leaks; A repeatedly overtops. Raise its barrier within footprint/material limits, predict less escape and repeat matching trials. Accept other actual-data conclusions and targeted changes.
 

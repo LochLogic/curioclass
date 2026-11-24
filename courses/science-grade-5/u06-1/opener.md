@@ -70,6 +70,6 @@ The opened scientific source footer is dated November 20, 2026, replacing older 
 Illustrated references replace unavailable photographs and are labeled as schematics.
 For thirty parallel handlers with one teacher, the labeled records path is required.
 These item-level preparation choices do not add people, purchases or activities.
-The source-based assessment is 324 words with its source packet; the practical packet is 246 words,
-before the footprint labels. All item stem sentences have at most fifteen words.
+Both assessment packets remain below the 350-word student print cap.
+All item stem sentences have at most fifteen words.
 The data is ready for the separate answer-key read, subject to the reported gate limitations.

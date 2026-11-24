@@ -93,7 +93,7 @@ ________________________________________________________________
 
 ## s06-Q1c
 
-Which line reports completed work, and which anticipates a benefit? Use another line to explain remaining uncertainty and one protection limit.
+Write an evidence-status note using completed work, an anticipated benefit, uncertainty and one protection limit. Cite the source lines.
 
 ________________________________________________________________
 

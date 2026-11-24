@@ -32,7 +32,7 @@ My observed failure or supported limit: ___________________________
 
 ## s06-Q2b
 
-Use your results to compare both catchers with every goal and limit. Show a failure-based improvement and a retest prediction on a revised system drawing.
+Use a revised system drawing to compare both catchers and justify a failure-based improvement. Include every goal, limit and a retest prediction.
 
 ________________________________________________________________
 
