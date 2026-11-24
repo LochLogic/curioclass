@@ -5,28 +5,25 @@ unit: 4.4
 version: draft, not yet taught
 credit: Curio Class original writing, CC BY 4.0.
 ---
-# Day 58 assessment
+# Assessment
 
 Name: __________________
 
-Use phrases and one Q7 paragraph.
+Exhibit: Did the Revolution keep the Declaration's promise?
+
+Phrases permitted.
 
 A, Congress, 1776 Declaration: equal inherent rights; consent; repeated abuses justify separation. Grievance: denied jury trials.
 
 B, Dartmouth Black petitioners, 1780: taxed without votes; Black military service; request relief.
 
-P: Oneida American allies at Saratoga; Bay of Quinte ancestors British allies.
-Free and enslaved Black people served both sides; freedom varied.
-Made-up households: loyal to Britain; avoiding armies for safety.
+P: Oneida American allies at Saratoga; Bay of Quinte ancestors British allies. Free and enslaved Black people served both sides; freedom varied. Made-up households: loyal to Britain; avoiding armies for safety.
 
 L: Washington sustained an army; Franklin negotiated French assistance.
 
-R, Articles: retained state powers; state taxation/contributions; unanimous amendment.
-Massachusetts, 1786: scarce cash, debts/taxes, property threatened, little petition relief, court closures; reform already underway.
+R, Articles: retained state powers; state taxation/contributions; unanimous amendment. Massachusetts, 1786: scarce cash, debts/taxes, property threatened, little petition relief, court closures; reform already underway.
 
-F, made up: prices generally keep rising; savings fixed.
-Later prices generally keep falling; crop receipts fall; debt remains eighteen dollars.
-Then an available adult seeks paid work, finding none.
+F, made up: prices generally keep rising; savings fixed. Later prices generally keep falling; crop receipts fall; debt remains eighteen dollars. Then an available adult seeks paid work, finding none.
 
 **Q1a.** Use A to explain Congress's separation argument, including the jury grievance.
 
@@ -104,5 +101,14 @@ ________________________________________________________________
 
 ________________________________________________________________
 
-Primary originals public domain. Modern facts paraphrased. Curio Class, CC BY 4.0.
+________________________________________________________________
 
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+Curio Class, CC BY 4.0. Sources: public-domain originals; paraphrased facts.

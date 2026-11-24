@@ -348,3 +348,6 @@ from_day,to_day,what,where,minutes,error,note
 112,113,s06-P112-repair-F s06-P112-repair-D,Return,0,,Private written feedback in existing return; no added conference minutes.
 113,114,s06-P113-repair-A s06-P113-repair-D,Return,0,,Private written feedback in existing return; no added conference minutes.
 114,117,s06-P114-repair-B s06-P114-repair-C,Read,0,,Private written feedback in existing return; no added conference minutes.
+112,113,s06-P112-trial s06-P112-route,Return,0,,Private component feedback inside existing return; no added conference minutes.
+113,114,s06-P113-control s06-P113-failure,Return,0,,Private component feedback inside existing return; no added conference minutes.
+114,117,s06-P114-instrument s06-P114-reason,Read,0,,Private component feedback inside existing return; no added conference minutes.

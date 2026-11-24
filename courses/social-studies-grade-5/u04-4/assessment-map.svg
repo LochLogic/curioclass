@@ -27,13 +27,13 @@
 
 
 
-<circle cx="390.3" cy="168.6" r="4" fill="black"/><text x="398.3" y="173.6" font-size="44">A</text>
-<circle cx="337.4" cy="342.4" r="4" fill="black"/><text x="345.4" y="347.4" font-size="44">B</text>
-<circle cx="304.5" cy="349.9" r="4" fill="black"/><text x="312.5" y="354.9" font-size="44">C</text>
-<circle cx="254.5" cy="528.5" r="4" fill="black"/><text x="262.5" y="533.5" font-size="44">D</text>
+<circle cx="390.3" cy="168.6" r="4" fill="black"/><path d="M390.3,168.6 L398.3,149.6" stroke="black" stroke-width="1"/><text x="398.3" y="161.6" font-size="44">A</text>
+<circle cx="337.4" cy="342.4" r="4" fill="black"/><path d="M337.4,342.4 L380.4,300.4" stroke="black" stroke-width="1"/><text x="380.4" y="312.4" font-size="44">B</text>
+<circle cx="304.5" cy="349.9" r="4" fill="black"/><path d="M304.5,349.9 L237.5,374.9" stroke="black" stroke-width="1"/><text x="237.5" y="386.9" font-size="44">C</text>
+<circle cx="254.5" cy="528.5" r="4" fill="black"/><path d="M254.5,528.5 L262.5,525.5" stroke="black" stroke-width="1"/><text x="262.5" y="537.5" font-size="44">D</text>
 <path d="M560,85 L560,45 M550,58 L560,45 L570,58" stroke="black" fill="none" stroke-width="2"/><text x="553" y="34" font-size="44">N</text>
-<path d="M45,650 h55.96" stroke="black" stroke-width="3"/><text x="45" y="675" font-size="36">0</text>
-<text x="100.96" y="675" font-size="36">100 km</text>
+<path d="M45,650 h55.96" stroke="black" stroke-width="3"/><text x="45" y="675" font-size="44">0</text>
+<text x="100.96" y="675" font-size="44">100 km</text>
 
 
 </svg>

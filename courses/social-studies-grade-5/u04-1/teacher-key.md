@@ -7,12 +7,11 @@ credit: Curio Class original writing, CC BY 4.0.
 ---
 # Unit 4 teacher-only answer key
 
-Teacher only. Before class, separate this file from every student source, form, and display.
-Use shown, shown with help, not yet seen for each look-for; no totals.
-Access support alone is not content help.
+Teacher only. Before class, separate this file from every student source, form and display.
+Use shown, shown with help, not yet seen for each look-for. Never total components.
+Access support alone is not content help. A language gap does not establish a history gap.
 
-
-## s04-X44a (day 44)
+## s04-X44a, day 44
 
 Made-up newsletter: Independence gave everyone equal rights in 1776. Explain why readers should investigate this claim.
 
@@ -26,7 +25,7 @@ W: Only my opinion matters. Personal preference omits another reader.
 
 A: Independence automatically gave everyone equal rights. Treats the promise as an accomplished legal change.
 
-## s04-X44b (day 44)
+## s04-X44b, day 44
 
 Name one issue that inquiry should test.
 
@@ -38,7 +37,7 @@ Samples: Whose freedom or political participation was actually protected? Accept
 
 W: Only whether I like independence. No testable issue concerning the public claim.
 
-## s04-X45a (day 45)
+## s04-X45a, day 45
 
 Congress, July 1776: The king controlled judges' jobs and pay. Explain the grievance's argument for separation and protection under law.
 
@@ -50,7 +49,7 @@ Samples: Congress accuses the king of threatening independent judgment. It argue
 
 J: Any royal command is lawful. Obedience is mistaken for legal restraints.
 
-## s04-X45b (day 45)
+## s04-X45b, day 45
 
 Connect that argument to equality, natural rights, and consent.
 
@@ -64,7 +63,7 @@ B: Natural rights are gifts from the king. Misses inherent rights.
 
 A: The grievance proves everyone immediately gained equal protection. An argument is not proof of an outcome.
 
-## s04-X46 (day 46)
+## s04-X46, day 46
 
 Women took political action during the Revolution. Most could not vote; some voted in New Jersey. What promise/protection gap does this reveal?
 
@@ -78,7 +77,7 @@ A: No woman ever voted anywhere. Erases the stated state variation.
 
 A: Political action proves equal voting rights. Action is not legal protection.
 
-## s04-X47a (day 47)
+## s04-X47a, day 47
 
 Mark Trenton and Saratoga on Exit map 47.
 
@@ -90,7 +89,7 @@ Samples: Trenton: New Jersey on the Delaware River. Saratoga: eastern New York a
 
 X: Trenton is in New York; Saratoga is in New Jersey. Reverses states.
 
-## s04-X47b (day 47)
+## s04-X47b, day 47
 
 Explain what each victory changed.
 
@@ -102,7 +101,7 @@ Samples: Trenton revived American prospects after setbacks. Saratoga encouraged 
 
 Y: Trenton prompted the formal French alliance. Reverses the differentiated consequences.
 
-## s04-X48a (day 48)
+## s04-X48a, day 48
 
 Mark Valley Forge and Yorktown on Exit map 48.
 
@@ -114,7 +113,7 @@ Samples: Valley Forge: southeastern Pennsylvania. Yorktown: eastern Virginia. Ac
 
 X: Valley Forge is in Virginia; Yorktown is in Pennsylvania. Location reversal; extend geographic repair beyond the original two places.
 
-## s04-X48b (day 48)
+## s04-X48b, day 48
 
 Explain each site's event and effect.
 
@@ -128,7 +127,7 @@ C: Valley Forge was a battle. Confuses camp with battle.
 
 L: Yorktown ended all fighting immediately. One force surrendered; peace was broader.
 
-## s04-X49a (day 49)
+## s04-X49a, day 49
 
 Route card: French equipment reaches American forces. Spanish supplies feed forces fighting Britain along the Gulf. Dutch merchants supply arms. Explain why winning alone is an inadequate account.
 
@@ -140,7 +139,7 @@ Samples: Foreign supplies and pressure supported continuing resistance. Spanish 
 
 K: All foreign help began after Saratoga. Confuses earlier resources with the later formal alliance.
 
-## s04-X49b (day 49)
+## s04-X49b, day 49
 
 Britain supplied troops across the Atlantic. Explain one British difficulty.
 
@@ -152,7 +151,7 @@ Samples: Distance complicated supply, while widening war required Britain to div
 
 L: Yorktown instantly ended every campaign. Confuses local surrender and the wider war.
 
-## s04-X50a (day 50)
+## s04-X50a, day 50
 
 Use Packet E50 to correct this claim: Ancestry decided sides. All colonists supported independence. Native nations all supported Britain. Every Black fighter was enslaved and gained freedom.
 
@@ -170,7 +169,7 @@ S: All colonists wanted independence. Erases loyal and neutral colonists.
 
 U: All Black fighters were enslaved. Erases free Black participants.
 
-## s04-X50b (day 50)
+## s04-X50b, day 50
 
 Explain why avoiding armies does not establish indifference.
 
@@ -182,7 +181,7 @@ Samples: The invented household explicitly seeks safety; avoiding armies does no
 
 N: Neutral people did not care. Invents an unsupported motive.
 
-## s04-X51 (day 51)
+## s04-X51, day 51
 
 Using Profiles E51, compare the leaders' actions and effects.
 
@@ -196,7 +195,7 @@ E: Their titles prove their impact. Names roles without consequences.
 
 V: Madison commanded the Continental Army. Misattributes military leadership; repair role evidence.
 
-## s04-X52a (day 52)
+## s04-X52a, day 52
 
 Timeline E52 shows adoption, ratification, and an ordinance. Why would states agree to this league?
 
@@ -208,7 +207,7 @@ Samples: States sought common defense and cooperation while retaining substantia
 
 F: They wanted no government. A confederation is a government.
 
-## s04-X52b (day 52)
+## s04-X52b, day 52
 
 Explain one thing that government could accomplish.
 
@@ -220,7 +219,7 @@ Samples: Congress could establish territorial government and a route to statehoo
 
 T: Congress could directly tax every resident. States collected taxes for national contributions.
 
-## s04-X53 (day 53)
+## s04-X53, day 53
 
 Invented Articles case: Congress needs funds for a coastal fort. Several states send no requested contribution. Explain the weakness and its effect on the union.
 
@@ -236,7 +235,7 @@ F: There was no government. Limited powers do not mean absent government.
 
 O: Every ordinary decision required all states. Confuses amendment and ordinary decisions.
 
-## s04-X54a (day 54)
+## s04-X54a, day 54
 
 Using Cards E54, label B, C, and D with their economic conditions.
 
@@ -250,7 +249,7 @@ H: B and C both show inflation. Reverses trend meaning.
 
 Q: D is not unemployed because no job exists. Seeking and availability establish unemployment here.
 
-## s04-X54b (day 54)
+## s04-X54b, day 54
 
 Explain why A and E do not establish those conditions.
 
@@ -264,7 +263,7 @@ H: A alone proves inflation. One price is insufficient.
 
 Q: E is necessarily unemployed. No paid work alone is insufficient.
 
-## s04-X54c (day 54)
+## s04-X54c, day 54
 
 Explain how B could affect repayment of its fixed debt.
 
@@ -276,7 +275,7 @@ Samples: B states that crop receipts fall while the twelve-dollar debt stays fix
 
 P: Deflation helps every borrower. Ignores lower receipts and fixed debt.
 
-## s04-X55a (day 55)
+## s04-X55a, day 55
 
 Using Strip E55, explain two causal links.
 
@@ -288,7 +287,7 @@ Samples: Scarce coins and collection demands threatened property. Limited petiti
 
 G: One disliked tax explains everything. Several interacting pressures are supplied.
 
-## s04-X55b (day 55)
+## s04-X55b, day 55
 
 Explain why unrest did not make a Convention inevitable.
 
@@ -302,7 +301,7 @@ Z: The Constitution already governed during the unrest. Reverses chronology.
 
 G: The unrest automatically produced the Convention. Mistakes sequence for inevitability.
 
-## s04-X56a (day 56)
+## s04-X56a, day 56
 
 Using Pair E56, connect one promise to the event it can test.
 
@@ -314,7 +313,7 @@ Samples: Protection of life and liberty can be tested against the reported destr
 
 A: Independence immediately protected everyone equally. Ignores the reported harm.
 
-## s04-X56b (day 56)
+## s04-X56b, day 56
 
 Explain how each maker affects what its source establishes.
 
@@ -326,7 +325,7 @@ Samples: Congress states its public justification in 1776. The present Onondaga 
 
 R: Congress says rights; Onondaga says crops. Names details without weighing makers or significance.
 
-## s04-X57 (day 57)
+## s04-X57, day 57
 
 Answer the unit question using Pair E57. Attribute one detail per source, explaining each detail's support.
 
@@ -342,7 +341,7 @@ R: Adams mentions women; Congress mentions rights. No reasoning links.
 
 A: Everyone became legally equal in July 1776. Promise mistaken for universal accomplished protection.
 
-## s04-R54a (day 54)
+## s04-R54a, day 54
 
 Made-up club: paper costs six tokens. What does that price tell you?
 
@@ -352,9 +351,9 @@ Look-fors: Price is amount requested
 
 Samples: Six tokens is the amount requested for the paper. | Six tokens measures production cost.
 
-H: The price is necessarily the production cost. Finance note only; distinguish price from cost, not inflation.
+a: Six tokens is the production cost. Diagnostic price/cost confusion, not inflation.
 
-## s04-R54b (day 54)
+## s04-R54b, day 54
 
 Borrowed tools require four tokens returned plus one. Explain the repayment.
 
@@ -364,9 +363,9 @@ Look-fors: Repayment five | Interest one
 
 Samples: Five tokens are owed: four principal and one borrowing charge, or interest. | Only four are owed.
 
-P: Only four are owed. Finance note only; repayment includes the specified interest.
+b: Only four tokens are owed. Diagnostic loan/interest confusion, not a deflation judgment.
 
-## s04-Q1a (day 58)
+## s04-Q1a, day 58
 
 Use A to explain Congress's separation argument, including the jury grievance.
 
@@ -378,7 +377,7 @@ Samples: Congress argues repeated abuses justify independence; denying jury tria
 
 J: Any royal command satisfies rule of law. No restraint on arbitrary authority.
 
-## s04-Q1b (day 58)
+## s04-Q1b, day 58
 
 Explain equality, natural rights, legal rights, and rule of law.
 
@@ -392,7 +391,7 @@ B: Natural rights are gifts from rulers. Misses inherent rights.
 
 J: Rule of law means obeying any ruler. Misses limits on rulers.
 
-## s04-Q1c (day 58)
+## s04-Q1c, day 58
 
 Name one group denied equal rights in practice.
 
@@ -404,7 +403,7 @@ Samples: Enslaved people remained denied freedom; women lacked equal political p
 
 A: Everyone gained equal rights in 1776. Promise is not accomplished protection.
 
-## s04-Q2a (day 58)
+## s04-Q2a, day 58
 
 Label M's four dots: Trenton, Saratoga, Valley Forge, Yorktown.
 
@@ -416,7 +415,7 @@ Samples: A Saratoga, eastern New York; B Trenton, New Jersey; C Valley Forge, Pe
 
 X: A Trenton; B Saratoga; C Yorktown; D Valley Forge. Reversed locations.
 
-## s04-Q2b (day 58)
+## s04-Q2b, day 58
 
 Describe Trenton and Saratoga's events and effects.
 
@@ -430,7 +429,7 @@ Y: Trenton encouraged the formal French alliance instead of Saratoga. Reverses c
 
 K: French help began only after Saratoga. Earlier supplies preceded alliance.
 
-## s04-Q2c (day 58)
+## s04-Q2c, day 58
 
 Describe the Valley Forge winter and its effect.
 
@@ -442,7 +441,7 @@ Samples: The 1777 to 1778 winter camp had shortages and illness, while training 
 
 C: Valley Forge was a battle won by cold weather. Confuses camp with battle.
 
-## s04-Q2d (day 58)
+## s04-Q2d, day 58
 
 Describe Yorktown's siege and its result.
 
@@ -454,7 +453,7 @@ Samples: Allied armies and French naval support trapped Cornwallis and forced su
 
 L: Every British force surrendered in 1781. Local surrender is not universal peace.
 
-## s04-Q2e (day 58)
+## s04-Q2e, day 58
 
 Explain two reasons Americans won and Britain lost.
 
@@ -468,7 +467,7 @@ K: No foreign help mattered before Saratoga. Misstates earlier aid.
 
 L: All campaigns ended instantly at Yorktown. Confuses surrender with peace.
 
-## s04-Q3 (day 58)
+## s04-Q3, day 58
 
 Use P to correct: Everyone wanted independence and shared one status and outcome.
 
@@ -488,7 +487,7 @@ S: All colonists wanted independence. Erases loyal and neutral choices.
 
 M: All service brought freedom. Promise is not universal outcome.
 
-## s04-Q4 (day 58)
+## s04-Q4, day 58
 
 Compare L's leaders' actions and effects.
 
@@ -502,7 +501,7 @@ E: Their titles alone explain their impact. No action-effect comparison.
 
 V: Franklin commanded the Continental Army. Confuses diplomacy and military command.
 
-## s04-Q5a1 (day 58)
+## s04-Q5a1, day 58
 
 Use R to explain states' acceptance of a league.
 
@@ -514,7 +513,7 @@ Samples: States wanted cooperation and common defense while retaining substantia
 
 F: No government existed before the Constitution. The Articles established national government.
 
-## s04-Q5a2 (day 58)
+## s04-Q5a2, day 58
 
 Explain one weakness and its effect on the plan.
 
@@ -528,7 +527,7 @@ T: Congress could levy national taxes on residents. Misstates power.
 
 O: Every ordinary decision required unanimous approval. Confuses amendment with ordinary votes.
 
-## s04-Q5b (day 58)
+## s04-Q5b, day 58
 
 Use R to link two unrest pressures with existing reform calls.
 
@@ -542,7 +541,7 @@ G: Only one disliked tax caused everything. Omits interacting pressures.
 
 Z: The Constitution governed during Shays' Rebellion. Reverses chronology.
 
-## s04-Q6a (day 58)
+## s04-Q6a, day 58
 
 Name and explain each condition in F.
 
@@ -556,7 +555,7 @@ H: One expensive item would prove inflation. Needs broad sustained trend.
 
 Q: Everyone without paid work is unemployed. Seeking and availability matter.
 
-## s04-Q6b (day 58)
+## s04-Q6b, day 58
 
 Explain one effect on F's made-up family.
 
@@ -568,7 +567,7 @@ Samples: Fixed savings buy less as prices rise. Alternatively lower crop receipt
 
 P: Falling prices help everyone. Ignores stated lower receipts and fixed debt.
 
-## s04-Q7a (day 58)
+## s04-Q7a, day 58
 
 Explain this exhibit question's use for visitors, using A or B.
 
@@ -580,7 +579,7 @@ Samples: Visitors can test promised consent against the petitioners' denied elec
 
 W: Only my opinion matters. Omits audience importance.
 
-## s04-Q7b (day 58)
+## s04-Q7b, day 58
 
 Compare A/B's shared principle, gap, makers, and purposes.
 
@@ -594,7 +593,7 @@ A: Independence and equal voting rights are identical. Promise and protection di
 
 I: The petition proves lawmakers granted its request. Purpose is not outcome.
 
-## s04-Q7c (day 58)
+## s04-Q7c, day 58
 
 State a historical claim answering the unit question.
 
@@ -606,7 +605,7 @@ Samples: For these petitioners the promise was not fully kept: proclaimed consen
 
 A: Everyone gained equal rights immediately. Unsupported universal outcome.
 
-## s04-Q7d (day 58)
+## s04-Q7d, day 58
 
 Select one attributed detail per source supporting your answer.
 
@@ -618,7 +617,7 @@ Samples: Congress asserts government requires consent. Dartmouth petitioners rep
 
 R: Any two unrelated details are support. Relevance and attribution matter.
 
-## s04-Q7e (day 58)
+## s04-Q7e, day 58
 
 Connect both details to your claim in one paragraph.
 
@@ -630,7 +629,7 @@ Samples: Congress's consent principle provides the test; the petitioners' lack o
 
 R: The two details explain themselves. No reasoning links.
 
-## s04-R59-1 (day 59)
+## s04-R59-1, day 59
 
 A made-up council must give residents a hearing. Explain how this limits officials.
 
@@ -642,7 +641,7 @@ Samples: Officials must hear residents rather than act without hearing them. | A
 
 J: Any command is lawful. Use only the observed priority; other domains remain open.
 
-## s04-R59-2 (day 59)
+## s04-R59-2, day 59
 
 Yorktown caption: Cornwallis surrendered in 1781; fighting continued elsewhere. Explain why this was not universal peace.
 
@@ -654,7 +653,7 @@ Samples: One force surrendered; the caption explicitly says wider fighting conti
 
 L: Every army surrendered. Use only the observed priority; other domains remain open.
 
-## s04-R59-3 (day 59)
+## s04-R59-3, day 59
 
 A made-up adult avoids armies to prevent reprisals. What does this establish about motive?
 
@@ -666,7 +665,7 @@ Samples: Safety motivated this adult; no universal indifference follows. | All n
 
 N: All neutral people were indifferent. Use only the observed priority; other domains remain open.
 
-## s04-R59-4 (day 59)
+## s04-R59-4, day 59
 
 Lafayette provided uniforms to soldiers in need. Explain a possible effect on continued service.
 
@@ -678,7 +677,7 @@ Samples: Clothing could help soldiers remain equipped and continue serving; fame
 
 E: His title alone kept them serving. Use only the observed priority; other domains remain open.
 
-## s04-R59-5 (day 59)
+## s04-R59-5, day 59
 
 Articles rule: amendment needs every state. One state refuses. Explain what blocks the change.
 
@@ -690,7 +689,7 @@ Samples: Lack of unanimous state agreement blocks an amendment; this does not es
 
 O: Every ordinary decision needs all states. Use only the observed priority; other domains remain open.
 
-## s04-R59-6 (day 59)
+## s04-R59-6, day 59
 
 Made-up record: basket prices stay unchanged while candles rise. Explain whether this establishes inflation.
 
@@ -702,7 +701,7 @@ Samples: No. One rising item with an unchanged broad basket does not establish a
 
 H: Candles alone prove inflation. Use only the observed priority; other domains remain open.
 
-## s04-R59-7 (day 59)
+## s04-R59-7, day 59
 
 Made-up library petition requests evening hours. Explain whether this establishes approval.
 
@@ -714,7 +713,7 @@ Samples: It establishes a request, not the governing body's decision; a decision
 
 I: A request proves approval. Use only the observed priority; other domains remain open.
 
-## s04-R59-8 (day 59)
+## s04-R59-8, day 59
 
 Timeline: Annapolis meeting, 1786; rebellion ends, 1787. Explain why unrest alone cannot explain reform.
 
@@ -726,7 +725,7 @@ Samples: Reform discussions already existed before the rebellion ended. Chronolo
 
 G: One rebellion alone created all reform. Use only the observed priority; other domains remain open.
 
-## s04-R59-next (day 59)
+## s04-R59-next, day 59
 
 A town requires drivers to stop at a school crossing. Explain the problem and safety this rule protects.
 
@@ -736,16 +735,177 @@ Look-fors: Problem | Public safety purpose
 
 Samples: Moving vehicles endanger crossing; stopping permits safer access to school. | The rule has no purpose.
 
-J: Officials may ignore the rule whenever they wish. Readiness note: missing public purpose, not a unit 4 score.
+c: It serves only the official's preference. Next-unit readiness: misses rule's public purpose, not the unit 4 rule-of-law item.
 
-## Assessment map
+## s04-P44, day 44
 
-A Saratoga, B Trenton, C Valley Forge, D Yorktown. Check state and regional placement, not pinpoint accuracy.
+Label each hook source with its maker and date.
 
-## Finance practice
+Answer: Congress, July 1776; Hall and Black petitioners, January 1777.
 
-Day 45: paint price three; scissors repayment seven plus two equals nine. Day 54 poster club: thirteen minus ten equals three interest.
+Look-fors: Two accurate maker/date labels
 
-## Source limits
+Samples: Congress, July 1776; Hall and Black petitioners, January 1777. | Unsupported action or invented motive.
 
-Do not score Bay of Quinte browser-only detail until opened confirmation; record that component not yet seen. Onondaga timeline is a present account. Adams March request precedes July Declaration and cannot establish later results alone. R59-7 replaces the earlier Hall case with an invented library request.
+## s04-P45, day 45
+
+Annotate one teaching grievance with its subject.
+
+Answer: The dissolved-houses grievance concerns representative lawmaking; the standing-armies grievance concerns legislative consent.
+
+Look-fors: Accurate grievance subject
+
+Samples: The dissolved-houses grievance concerns representative lawmaking; the standing-armies grievance concerns legislative consent. | Unsupported action or invented motive.
+
+## s04-P46, day 46
+
+Record one requested action from the teaching petition.
+
+Answer: The petitioners request restoration of freedom from Massachusetts lawmakers. A request alone does not establish an outcome.
+
+Look-fors: Requested action and maker
+
+Samples: The petitioners request restoration of freedom from Massachusetts lawmakers. A request alone does not establish an outcome. | Unsupported action or invented motive.
+
+## s04-P47, day 47
+
+Attach separate dates to the two labeled teaching sites.
+
+Answer: Trenton December 1776; Saratoga 1777.
+
+Look-fors: Two dates beside already labeled sites
+
+Samples: Trenton December 1776; Saratoga 1777. | Unsupported action or invented motive.
+
+## s04-P48, day 48
+
+Annotate one Valley Forge supply difficulty.
+
+Answer: Shortages of provisions or clothing made maintaining the camp difficult. Illness also affected soldiers.
+
+Look-fors: Accurate separate logistics detail
+
+Samples: Shortages of provisions or clothing made maintaining the camp difficult. Illness also affected soldiers. | Unsupported action or invented motive.
+
+## s04-P49, day 49
+
+Record one resource and its origin from the teaching inventory.
+
+Answer: Dutch merchants supplied arms; Spanish forces received Texas cattle; France supplied military resources. Accept one accurate resource/origin label.
+
+Look-fors: Resource and origin
+
+Samples: Dutch merchants supplied arms; Spanish forces received Texas cattle; France supplied military resources. Accept one accurate resource/origin label. | Unsupported action or invented motive.
+
+## s04-P50, day 50
+
+Annotate what remains unknown about the teaching household's motive.
+
+Answer: The made-up notice says only that nobody enlisted; motive is unknown.
+
+Look-fors: No invented motive
+
+Samples: The made-up notice says only that nobody enlisted; motive is unknown. | Unsupported action or invented motive.
+
+## s04-P51, day 51
+
+Give one action arrow each for Adams, Jefferson, Hamilton, and Lafayette.
+
+Answer: Adams argued for independence; Jefferson drafted with a committee; Hamilton urged a convention; Lafayette provided muskets.
+
+Look-fors: Four separate action labels
+
+Samples: Adams argued for independence; Jefferson drafted with a committee; Hamilton urged a convention; Lafayette provided muskets. | Unsupported action or invented motive.
+
+## s04-P52, day 52
+
+Underline retained state authority in the teaching clause.
+
+Answer: States retain powers not expressly delegated to the union.
+
+Look-fors: Correct retained-power phrase
+
+Samples: States retain powers not expressly delegated to the union. | Unsupported action or invented motive.
+
+## s04-P53, day 53
+
+Annotate the voting requirement for each teaching clause.
+
+Answer: Ordinary decisions majority; specified major decisions nine states; amendment all states.
+
+Look-fors: Three distinct decision rules
+
+Samples: Ordinary decisions majority; specified major decisions nine states; amendment all states. | Unsupported action or invented motive.
+
+## s04-P54, day 54
+
+Record the direction of the separate teaching price trend.
+
+Answer: The basket price rises from three to five; this invented model shows the same savings buy fewer baskets.
+
+Look-fors: Rising direction, invented quantities
+
+Samples: The basket price rises from three to five; this invented model shows the same savings buy fewer baskets. | Unsupported action or invented motive.
+
+## s04-P55, day 55
+
+Label an actor, demand, and date on separate historical notes.
+
+Answer: Massachusetts petitioners sought debt relief in 1786. State authorities suppressed the rebellion in 1787. Accept accurate separate labels.
+
+Look-fors: Actor | Demand | Date
+
+Samples: Massachusetts petitioners sought debt relief in 1786. State authorities suppressed the rebellion in 1787. Accept accurate separate labels. | Unsupported action or invented motive.
+
+## s04-P56, day 56
+
+Select one attributed teaching detail per source for separate evidence labels.
+
+Answer: Congress permits changing rights-destroying government; Hall petitioners seek freedom; Onondaga timeline reports leaders rejecting US draft authority in 1778.
+
+Look-fors: Three attributed details
+
+Samples: Congress permits changing rights-destroying government; Hall petitioners seek freedom; Onondaga timeline reports leaders rejecting US draft authority in 1778. | Unsupported action or invented motive.
+
+## s04-P57, day 57
+
+Build a claim display with separate attributed details and reasoning arrows.
+
+Answer: A qualified promise/protection claim with teaching Declaration, Hall and Onondaga 1778 details and separate reasoning arrows. Do not require agreement with one historical judgment.
+
+Look-fors: Claim | Attributed details | Reasoning arrows
+
+Samples: A qualified promise/protection claim with teaching Declaration, Hall and Onondaga 1778 details and separate reasoning arrows. Do not require agreement with one historical judgment. | Unsupported action or invented motive.
+
+## s04-P46-alt, day 46
+
+Explain what Records U/V establish about a promise and actual access.
+
+Answer: U promises access; V reports a closed entrance on Wednesday. The promise alone did not establish access then, and these records cannot establish every day's access.
+
+Look-fors: Promised access | Bounded actual-access evidence | Scope limit
+
+Samples: The promise did not establish access on Wednesday; V reports the closed entrance. | The promise proves access every day.
+
+## Geographic and finance keys
+
+Assessment map: A Saratoga; B Trenton; C Valley Forge; D Yorktown.
+Exit map 47: Trenton at the New Jersey bend of the Delaware; Saratoga in eastern New York.
+Exit map 48: Valley Forge in southeastern Pennsylvania; Yorktown in eastern Virginia.
+Accept approximate regional positions. Do not require distance calculations or precise coordinates.
+Modern geographic boundaries are orientation references, not eighteenth-century political borders.
+Day 45 finance practice: paint price three; scissors repayment seven plus two equals nine.
+Day 54 poster-club practice: thirteen minus ten equals three interest.
+R54: paper price six; tools repayment four plus one equals five.
+Diagnostic a means price/cost; b means loan/interest; c means next-unit rule purpose.
+These are distinct from unit 4's historical and economic content letters A to Z.
+
+## Assessment and source limits
+
+Q7b-e share one paragraph. Record their separate look-fors from that single response.
+Bay of Quinte ancestry remains browser check. Record its component not yet seen until confirmed.
+The opened Oneida and Onondaga accounts do not verify that community's ancestry detail.
+The Onondaga timeline is a present national account, not an eyewitness statement.
+Adams's March request precedes the July Declaration and cannot prove later outcomes.
+R59-7 uses a made-up library request, replacing the earlier Hall case.
+The optional public-rule alternative does not establish the omitted historical content.

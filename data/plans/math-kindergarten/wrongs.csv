@@ -1868,3 +1868,12 @@ sC-X156,Draws six/ten as parts.,,,R,"Error R: Draws six/ten as parts. Correct: S
 sC-X157,Copies three/seven.,,,X,"Error X: repeats the supplied ordered pair in the same tray roles; a different pair totaling ten, including seven/three, is valid."
 sC-K155-5,Copies visible one as hidden.,,,Z,Error Z: Copies visible one as hidden. Correct: Identifies three hidden; both parts reconnect to four.
 sC-X155-8,Two hidden.,,,Z,Error Z: copies visible two instead of the hidden one; three minus two is one.
+sC-F158-1,Keeps three as the partner of three.,,,Q,"Copies given part, leaving four places unaccounted for."
+sC-X158,"Four additions, explicitly copying given four.",,,Q,Assign Q only when copying confirmed; otherwise describe observed action.
+sC-X158,Adds to an already occupied pocket.,,,B,Revisits a place instead of tracking the six empty ones.
+sC-F159-1,Keeps one object matched twice.,,,B,Revisits a member instead of making unique pairs.
+sC-X159,Records fifteen after revisiting a bar.,,,B,"Double visit confirmed from marks or observation, never inferred from numeral alone."
+sC-X159,Fourteen marks labeled 13.,,,L,Quantity/numeral mismatch; distinguish a formation slip from quantity error.
+sC-F160-1,Keeps one mark for ten.,,,P,Confuses container with ten individual ones.
+sC-X160,"One new mark, said to stand for ten.",,,P,Ten ones represented as one counting mark.
+sC-X160,Eighteen new marks beside printed eight.,,,R,Whole used as missing part; completed record has twenty-six.

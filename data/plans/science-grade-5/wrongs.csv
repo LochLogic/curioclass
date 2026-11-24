@@ -751,3 +751,9 @@ s06-P113-repair-A,Copy the statements without relating them.,,,A,error A: Separa
 s06-P113-repair-D,Removing flakes makes water safe to drink.,,,D,error D: Appearance does not establish drinking safety.
 s06-P114-repair-B,Draw only separate labels.,,,B,error B: Labels need interactions.
 s06-P114-repair-C,It is an observed success.,,,C,error C: An expected outcome has not yet been observed.
+s06-P112-trial,The best-looking mark replaces every other trial.,,,F,error F: One favorable result omits variation.
+s06-P112-route,Change an unrelated light source.,,,I,error I: The action does not address the named water-storage part.
+s06-P113-control,A favorable result means conditions do not matter.,,,E,error E: Conditions must match regardless of outcome.
+s06-P113-failure,Only the best trial matters.,,,F,error F: One favorable result omits variation.
+s06-P114-reason,More output in a longer trial proves the design is better.,,,E,error E: Collection interval changes as well as design.
+s06-P114-instrument,One reading proves the instruments have identical precision.,,,x,error x: Different unit steps do not establish equivalent resolution.
