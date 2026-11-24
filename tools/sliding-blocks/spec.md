@@ -1,5 +1,7 @@
 # Cargo Hold (Recess game)
 
+> Settled 2026-11-24 (Cory, chat: "Yes, this build"): the brought-in 38-hold build (tools/sliding-blocks/source/cargo-hold.html) is Cargo Hold. This spec stays as the design record; where the build differs (rectangular holds, no Fleet or daily hold, its own star rule, hints), the build wins.
+
 Slide the crates around a ship's hold until the sea chest sits in the square of daylight under the hatch, then watch it
 get hauled up and out.
 

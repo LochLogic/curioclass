@@ -1866,3 +1866,4 @@ Cory answered the four finish cards on the Desk and signed off all four courses 
   different ideas. In science class we look at what the rocks and fossils show."). This is the rule for any science
   day that meets a belief: teach what the evidence shows, say it respectfully, no extra read needed.
 - **Cargo Hold hints, chat 2026-11-24:** "Keep hints." The brought-in build keeps its hint button (the spec had said none); spec open question 3 is settled.
+- **Cargo Hold build, chat 2026-11-24:** "Yes, this build." The 38-hold brought-in build is the game; the larger spec game (24 shaped hulls, Fleet, daily hold) is not planned. Spec header notes it.
