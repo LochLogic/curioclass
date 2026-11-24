@@ -138,9 +138,9 @@ s02-X30,The missing whole leaf proves matter vanished,,,E,The stated claim confl
 s02-X30,Invisible gas means living things exchange no gases,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
 s02-X31,Smaller leaves mean matter became nothing,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
 s02-X31,The bottle proves living things exchange no gases,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
-s02-X32,Organisms never exchange gases,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
-s02-X32,Dead leaves become nothing,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
-s02-X33,Only the owl changes; mice and sedges cannot,,,K,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X32,Organisms never exchange gases,,,J,Denies gas exchange across living boundaries.
+s02-X32,Dead leaves become nothing,,,E,Treats dead matter as ceasing to exist rather than returning through the environment.
+s02-X33,Only the owl changes; mice and sedges cannot,,,K,Denies effects transmitted through the owl-mouse feeding link and mouse-sedge seed dependency.
 s02-X34,The bird gets food energy straight from sunlight,,,H,The stated claim conflicts with the record or the taught matter/energy distinction.
 s02-X35,Food provides energy but no body material,,,G,The stated claim conflicts with the record or the taught matter/energy distinction.
 s02-X36,Sunlight becomes body material,,,D,The stated claim conflicts with the record or the taught matter/energy distinction.
@@ -206,3 +206,10 @@ s02-P31-1,15 mL; each step is 15 mL.,,,x,Compare the stated response with the su
 s02-P31-2,I observed that all matter disappeared when decomposers were removed.,,,E,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
 s02-P31-3,The drawings measured gas release and leaf weight loss.,,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
 s02-P31-4,Gas output to air: directly observed in the L30 drawing.,,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P32-1,No gas enters leaves,,,J,Denies the supplied incoming air-matter route.
+s02-P32-2,Dead material becomes nothing,,,E,Treats dead material as no longer existing.
+s02-P32-3,No gas can leave an organism,,,J,Treats a living boundary as closed to gas exchange.
+s02-P33-1,Grass cannot change because no rabbit predator lives here,,,K,Ignores the supplied rabbit-to-grass resource effect.
+s02-P33-2,The resident eater cannot be affected by less grass,,,K,Denies a supplied food dependency.
+s02-P33-3,The dead material becomes nothing,,,E,Denies environmental return of dead matter.
+s02-P33-4,Gas can never leave the organism,,,J,Denies outward gas exchange.

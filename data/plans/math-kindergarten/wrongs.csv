@@ -1515,12 +1515,6 @@ s07-G129-1,Shows only arriving one.,,,I,Assign this letter only when response or
 s07-G129-2,"Shows five, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-G129-3,Shows only arriving two.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-G129-4,"Shows seven, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-W130-tens,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
-s07-W130-ones,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
-s07-G130-1,Shows only arriving one.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G130-2,"Shows five, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G130-3,Shows only arriving two.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G130-4,"Shows seven, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-K130-whole,Whole tube is flat because its end is flat.,,,O,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
 s07-K130-name,Whole block is a flat square.,,,B,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
 s07-K130-place-1,Cube below the oblong box.,,,x,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
@@ -1529,35 +1523,23 @@ s07-K130-place-3,Cube above the oblong box.,,,x,"Cold-solved authored case; lett
 s07-K130-place-4,Cube below the oblong box.,,,x,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
 s07-K130-place-5,Cube behind the oblong box.,,,E,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
 s07-K130-place-6,Cube in front of the oblong box.,,,E,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
-s07-W131-tens,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
-s07-W131-ones,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
-s07-G131-1,Shows only arriving one.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G131-2,"Shows five, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G131-3,Shows only arriving two.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G131-4,"Shows seven, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-K131-depth,Sphere in front of the box when partly hidden behind it.,,,E,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
 s07-K131-face,Traces whole solid outline as a flat face.,,,x,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
-s07-W132-tens,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
-s07-W132-ones,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
-s07-G132-1,Shows only arriving one.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G132-2,"Shows five, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G132-3,Shows only arriving two.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G132-4,"Shows seven, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-K132-whole,Whole cube is a flat square.,,,B,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
 s07-K132-face,Keeps flat marker on curved side.,,,x,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
-s07-W133-tens,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
-s07-W133-ones,Skips a word in the counting sequence.,,,x,Describe the skipped word. Chorus alone never establishes an individual judgment.
-s07-G133-1,Shows only arriving one.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G133-2,"Shows five, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G133-3,Shows only arriving two.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G133-4,"Shows seven, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-K133-track,Keeps two ticks for the first box and claims 5 pieces.,,,L,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
 s07-P133,Keeps all flat label on curved side.,,,x,Feature-label correction; describe confusion between curved surface and flat face. Color reasoning is not asked by this prompt.
 s07-P134,No correction marked.,,,x,"Cold-solved authored case; letter requires observed reasoning, otherwise describe response."
-s07-G134-1,Shows only arriving one.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G134-2,"Shows five, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G134-3,Shows only arriving two.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-G134-4,"Shows seven, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-P131,Leaves tilted box without flat support.,,,x,Wrong mark alone establishes no misconception; record observed response. Cold-solved authored case.
 s07-P130,Keeps incorrect above label.,,,x,Wrong mark alone establishes no misconception; record observed response. Cold-solved authored case.
 s07-P130-exitbox,Marks sphere above container.,,,x,Wrong mark alone establishes no misconception; record observed response. Cold-solved authored case.
+s07-F2a,Omits a side after turn.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
+s07-F2b,Marks side centers.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
+s07-F2c,Marks whole cylinder curved side as flat.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
+s07-F31,Marks reference object.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
+s07-F32,Marks reference object.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
+s07-F33,Marks reference object.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
+s07-F34,Marks reference object.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
+s07-F35,Marks reference object.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
+s07-F36,Marks reference object.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
+s07-F4a,Joins cone to cylinder by pose.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.

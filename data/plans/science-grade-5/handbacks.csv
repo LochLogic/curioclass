@@ -102,3 +102,5 @@ from_day,to_day,what,where,minutes,error,note
 36,37,s02-P36-1 s02-P36-2,Separate,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
 37,38,s02-P37-1 s02-P37-2,Accuracy,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
 38,41,s02-P38-1,Reflection,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+32,33,s02-P32-2 s02-P32-3,Return,0,,Return descriptive correction-strip feedback with the exit in the existing repair slot; no separate repair task or additional minutes.
+33,34,s02-P33-3 s02-P33-4,Return,0,,Return descriptive correction-strip feedback with the exit in the existing repair slot; no separate repair task or additional minutes.
