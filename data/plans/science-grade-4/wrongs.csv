@@ -544,3 +544,16 @@ s05-P87-4,Gentler success establishes all stronger outcomes.,,,E,Error E: Genera
 s05-P88-1,Small-flow success proves every larger flow.,,,E,Error E: Generalizes beyond tested conditions.
 s05-P88-2,Erase wet-house results.,,,x,Error x: Other wrong answer; check the evidence.
 s05-P88-3,Any new change must work.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P89-repair,A small-flow success proves every flow is safe.,,,E,Error E: Record the specific evidence gap.
+s05-K89-monitor,The message makes the event stop.,,,F,Error F: Record the specific evidence gap.
+s05-K89-time,Travel ends five minutes after the event.,,,I,Error I: Record the specific evidence gap.
+s05-P89-action,Every received notice guarantees less harm.,,,F,Error F: Record the specific evidence gap.
+s05-P90-repair,Travel starts when the event starts despite alert delay.,,,I,Error I: Record the specific evidence gap.
+s05-P90-revise,Erase the larger-flow failure to make the design look successful.,,,E,Error E: Record the specific evidence gap.
+s05-P90-hearing,The chosen water protection guarantees protection from every hazard.,,,D,Error D: Record the specific evidence gap.
+s05-P91-repair,The warning stops the natural process.,,,F,Error F: Record the specific evidence gap.
+s05-K91-tag,Both keys mean higher ground.,,,H,Error H: Record the specific evidence gap.
+s05-P91-tags,An empty part proves there is no hazard.,,,C,Error C: Record the specific evidence gap.
+s05-P91-protect,Information alone ends the process.,,,F,Error F: Record the specific evidence gap.
+s05-P93-repair,An empty map region guarantees safety.,,,C,Error C: Record the specific evidence gap.
+s05-P93-revise,Erase the first response and copy an answer without evidence.,,,x,Error x: Record the specific evidence gap.

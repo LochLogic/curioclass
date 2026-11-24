@@ -695,3 +695,7 @@ s03-P56-transfer,No interpretable response.,,,x,Any other wrong response; no for
 s03-P56-hold,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
 s03-P53-attribute-height,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
 s03-P53-attribute-weight,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-F61-corners,Nonsquare rhombus called square from equal sides.,,,N,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
+s03-F61-corners,Rejects square because turned.,,,B,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
+s03-F62-K,Overlaps edge-joining pieces.,,,K,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
+s03-P62-talk,No interpretable response.,,,x,Do not infer a naming misconception from silence.

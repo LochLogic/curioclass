@@ -317,3 +317,8 @@ from_day,to_day,what,where,minutes,error,note
 86,87,s05-P86-1 s05-P86-2 s05-P86-3 s05-P86-4 s05-P86-5,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
 87,88,s05-P87-1 s05-P87-2 s05-P87-3 s05-P87-4,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
 88,89,s05-P88-1 s05-P88-2 s05-P88-3,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
+89,90,student written task,Return,0,,"Return timing labels, source labels, delivery/action record and covered Exit box with notes. No extra repair minutes."
+90,91,student written task,Return,0,,"Return repair labels, portfolio revision feedback note and hearing notes. Portfolio stays with teacher for first score after day 92."
+91,93,student written task,Read,0,,"Return repair labels, evidence tags, separate consensus notes and covered Exit box. E91 diagnostic repair joins assessment response, never day 92."
+93,94,student written task,Cat,0,,"Return repair record, revision note and D93 with private feedback. No unit 5 reteaching during the cat anchor; unresolved needs stay in handoff."
+91,93,s05-P91-repair s05-P91-tags s05-P91-protect,Read,0,,Return all day 91 written tasks with separate consensus notes in Read feedback; no day 92 repairs.
