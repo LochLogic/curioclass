@@ -775,3 +775,20 @@ s04-P80,Four moved counted as answer without locating remainder.,,,E,Only observ
 s04-P81,Five after no arrival.,,,F,Only observed matching action/reason establishes this letter.
 s04-P83,Moved group used for question location.,,,E,Only observed matching action/reason establishes this letter.
 s04-P67-one,Four unchanged after one joins.,,,G,Observed ignored arrival.
+s04-K64-hook,Only incoming three included.,,,B,"Observed first group excluded, not a wrong total alone."
+s04-K64-model,Only incoming four retained.,,,B,Observed original three excluded.
+s04-P64-shape,Rejects square solely because it stands on a corner.,,,B,Unit 3 error B: orientation controls name; distinct from unit 4 group error B.
+s04-F65-B,Only incoming group retained.,,,B,Observed starting group excluded; three alone does not establish cause.
+s04-W65,Four dots with fifth square visibly skipped.,,,A,Observed omission; distinguish from unit 4 error B.
+s04-P65-route,Five visits with one square untouched.,,,A,Observed skipped square.
+s04-P65-shape,Rejects square solely because turned.,,,B,"Unit 3 orientation error, not unit 4 exclusion error."
+s04-F66-A,One square remains untouched.,,,A,"Omission observed, not inferred from number alone."
+s04-P66-mix,"Six visits, final square untouched.",,,A,Visible omitted visit.
+s04-K67-action,Only arriving three retained.,,,B,Observed starting two excluded.
+s04-K67-sound,Only three units with one visible dot skipped.,,,A,"Visible omission, distinct from exclusion of a whole burst."
+s04-F67-B,Only three arrivals represented.,,,B,Observed first group excluded.
+s04-F67-A,One square untouched.,,,A,"Omission observed, not guessed from a wrong total."
+s04-R64-frame,Seven occupied spaces.,,,x,Unscored diagnostic. Seven alone does not establish a unit 4 register error; observe pairing before classifying.
+s04-R64-spread,Eight after moving the same seven.,,,x,"Unscored invariance diagnostic, outside this unit register; moving without adding or removing preserves seven."
+s04-R65-retry,One square without a mark.,,,A,"Observed omission in one-to-one tracking, unscored retry."
+s04-K64-question,Excludes first group in observed joining action.,,,B,Only an observed joining action is classified; no taking-away judgment today.
