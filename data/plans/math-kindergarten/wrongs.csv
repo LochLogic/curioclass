@@ -1306,3 +1306,39 @@ s06-G107-1,2,2,2,x,"Retains starting quantity without carrying out join/removal;
 s06-G107-2,4,4,4,x,"Retains starting quantity without carrying out join/removal; immediate square-action feedback. Arithmetic review, outside unit 6 counting register."
 s06-G107-3,1,1,1,x,"Retains starting quantity without carrying out join/removal; immediate square-action feedback. Arithmetic review, outside unit 6 counting register."
 s06-G107-4,5,5,5,x,"Retains starting quantity without carrying out join/removal; immediate square-action feedback. Arithmetic review, outside unit 6 counting register."
+s06-M108,Does not identify the ten-and-more parts.,,,x,Record the observed method; do not infer an error from a total alone.
+s06-F108,Same twelve called fourteen because wider.,,,I,Record the observed method; do not infer an error from a total alone.
+s06-N108,Copied numeral is not recognizable.,,,x,Record the observed method; do not infer an error from a total alone.
+s06-K108,Starts at one despite supplied six.,,,H,Record the observed method; do not infer an error from a total alone.
+s06-P108,Leaves ten and one for requested twelve.,,,x,Record the observed method; do not infer an error from a total alone.
+s06-G108-1,2,,,x,Reports starting amount rather than final quantity.
+s06-G108-2,4,,,x,Reports starting amount rather than final quantity.
+s06-G108-3,1,,,x,Reports starting amount rather than final quantity.
+s06-G108-4,5,,,x,Reports starting amount rather than final quantity.
+s06-M109,Does not identify ten individual ones.,,,x,Record the observed method; do not infer an error from a total alone.
+s06-F109,One dot plus two dots called twelve.,,,F,Record the observed method; do not infer an error from a total alone.
+s06-N109,Copied numeral is not recognizable.,,,x,Record the observed method; do not infer an error from a total alone.
+s06-K109,Starts at one despite supplied six.,,,H,Record the observed method; do not infer an error from a total alone.
+s06-P109,Leaves ten and one for requested twelve.,,,x,Record the observed method; do not infer an error from a total alone.
+s06-G109-1,2,,,x,Reports starting amount rather than final quantity.
+s06-G109-2,4,,,x,Reports starting amount rather than final quantity.
+s06-G109-3,1,,,x,Reports starting amount rather than final quantity.
+s06-G109-4,5,,,x,Reports starting amount rather than final quantity.
+s06-M110,Correct fourteen model called forty.,,,G,Record the observed method; do not infer an error from a total alone.
+s06-F110,"One first-frame dot said to replace ten, plus two further.",,,F,Record the observed method; do not infer an error from a total alone.
+s06-N110,Copied numeral is not recognizable.,,,x,Record the observed method; do not infer an error from a total alone.
+s06-K110,Starts at one despite supplied six.,,,H,Record the observed method; do not infer an error from a total alone.
+s06-P110,Correct fourteen model called forty.,,,G,Record the observed method; do not infer an error from a total alone.
+s06-G110-1,2,,,x,Reports starting amount rather than final quantity.
+s06-G110-2,4,,,x,Reports starting amount rather than final quantity.
+s06-G110-3,1,,,x,Reports starting amount rather than final quantity.
+s06-G110-4,5,,,x,Reports starting amount rather than final quantity.
+s06-M111,Replaces the ten supplied squares with one.,,,F,Record the observed method; do not infer an error from a total alone.
+s06-F111,Correct fourteen model called forty.,,,G,Record the observed method; do not infer an error from a total alone.
+s06-N111,Copied numeral is not recognizable.,,,x,Record the observed method; do not infer an error from a total alone.
+s06-K111,Starts at one despite supplied six.,,,H,Record the observed method; do not infer an error from a total alone.
+s06-P111,Leaves ten and one for requested twelve.,,,x,Record the observed method; do not infer an error from a total alone.
+s06-G111-1,2,,,x,Reports starting amount rather than final quantity.
+s06-G111-2,4,,,x,Reports starting amount rather than final quantity.
+s06-G111-3,1,,,x,Reports starting amount rather than final quantity.
+s06-G111-4,5,,,x,Reports starting amount rather than final quantity.
