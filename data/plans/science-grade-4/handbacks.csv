@@ -376,7 +376,7 @@ from_day,to_day,what,where,minutes,error,note
 112,113,s06-X112 s06-X112-animal,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
 112,113,s06-P112 s06-P112-inside s06-P112-roots s06-P112-audit s06-P112-question; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 113,114,s06-X113 s06-X113-response s06-P113-plant,Return,10,,"Two common letters, five each; others use contrasts in Evidence retrieval."
-113,114,s06-P113 s06-P113-roots s06-P113-inside s06-P113-question; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+113,114,s06-P113 s06-P113-roots s06-P113-inside s06-P113-question,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 93,96,s05-R93a s05-R93b follow-up,Return,5,D,"Receiving/response recheck after seeing repair, not new readiness."
 115,117,s06-E1-model s06-E1-predict s06-E1-test s06-E2-model s06-E2-predict s06-E2-test,Return,2,,"Hold all feedback until 117, none on 116."
 116,117,s06-E3 s06-E4,Return,3,,Both assessment days share five-minute feedback; retain original marks.
