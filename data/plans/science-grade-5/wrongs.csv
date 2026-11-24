@@ -514,10 +514,10 @@ c2-P84-properties,Shine alone selects it.,,,T,Error T: Shine alone selects it.
 c2-P84-controls,Two changed conditions isolate one cause.,,,V,Error V: Two changed conditions isolate one cause.
 c2-P84-light,Distance cannot affect brightness.,,,Y,Error Y: Distance cannot affect brightness.
 c2-P84-pattern,It stays the same all day.,,,AA,Error AA: It stays the same all day.
-c2-X84-material,Pale means A.,,,T,Error T: Pale means A.
-c2-X84-change,Every mixture must make new material.,,,W,Error W: Every mixture must make new material.
-c2-X84-light,Distance never affects apparent brightness.,,,Y,Error Y: Distance never affects apparent brightness.
-c2-X84-pattern,February stars ceased to exist.,,,AC,Error AC: February stars ceased to exist.
 c2-P84-shadow,I copied a supplied length as my personal measurement.,,,U,Error U: I copied a supplied length as my personal measurement.
 c2-R84-climate,Yesterday makes P dry climate and Q wet climate.,,,AD,Error AD: Yesterday makes P dry climate and Q wet climate.
 c2-R84-climate,P usually dry; Q usually wet.,,,AE,Error AE: reverses the printed map key.
+c2-X84,A: pale color proves U is A.,,,T,Error T: A: pale color proves U is A.
+c2-X84,B: every mixture forms new material.,,,W,Error W: B: every mixture forms new material.
+c2-X84,C: distance never affects brightness.,,,Y,Error Y: C: distance never affects brightness.
+c2-X84,D: missing stars were destroyed.,,,AC,Error AC: D: missing stars were destroyed.

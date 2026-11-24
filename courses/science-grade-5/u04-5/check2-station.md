@@ -1,5 +1,5 @@
 ---
-piece: blank
+piece: opener
 course: science-grade-5
 unit: C
 stretch: C

@@ -46,15 +46,14 @@ s01-Q5,An unrelated detail proves the claim.,,,H,"Anticipated pattern, diagnose 
 s01-Q5,Shared use means no land authority.,,,A,"Anticipated pattern, diagnose only if expressed. Correct: Card 1: conflicting communal/private practices; card 2: disputed documents."
 s01-Q6,An unrelated detail proves the claim.,,,H,"Anticipated pattern, diagnose only if expressed. Correct: Defensible claim, attributed detail from each card and reasoning connecting evidence to claim. Accept qualified arguments, not a universal Native land model."
 s01-Q7,Only decision makers have a stake.,,,P,"Anticipated pattern, diagnose only if expressed. Correct: Gardener needs delivery access; walker needs park access. Both are affected."
-s01-R14a,Shared use means no land authority.,,,A,"Anticipated pattern, diagnose only if expressed. Correct: The named elected council contradicts universal erasure of Native governments."
 s01-R14a,Every Native community disappeared.,,,B,"Anticipated pattern, diagnose only if expressed. Correct: The named elected council contradicts universal erasure of Native governments."
 s01-R14b,Every nation had identical allies and experiences.,,,C,"Anticipated pattern, diagnose only if expressed. Correct: Pequot: 1630s; King Philip: 1670s. Different nations/events require specific evidence."
 s01-R14b,The Pequot War and King Philip's War were one event.,,,M,"Anticipated pattern, diagnose only if expressed. Correct: Pequot: 1630s; King Philip: 1670s. Different nations/events require specific evidence."
-s01-R14c,All colonies had identical founding aims.,,,D,"Anticipated pattern, diagnose only if expressed. Correct: Belief protection and voting eligibility are distinct rights."
-s01-R14c,Religious dissent was protected equally everywhere.,,,I,"Anticipated pattern, diagnose only if expressed. Correct: Belief protection and voting eligibility are distinct rights."
+s01-R14c,Belief protection automatically grants every resident voting rights.,,,x,"This retry distinguishes rights, not historical founding aims."
+s01-R14c,Belief protection automatically grants every resident voting rights.,,,x,"This retry distinguishes rights, not historical founding aims."
 s01-R14d,First arrival alone explains English influence.,,,E,"Anticipated pattern, diagnose only if expressed. Correct: Repeated government can sustain language and practices beyond a visit; no ranking follows."
 s01-R14d,Influence proves English superiority.,,,L,"Anticipated pattern, diagnose only if expressed. Correct: Repeated government can sustain language and practices beyond a visit; no ranking follows."
-s01-R14e,Modern state boundaries always fit colonial maps.,,,F,"Anticipated pattern, diagnose only if expressed. Correct: Restore Delaware on the small coastal footprint south of Pennsylvania."
+s01-R14e,The supplied wrong label needs no correction.,,,x,"This prompt checks a neighbor mismatch, not modern/colonial boundary knowledge."
 s01-R14e,Neighboring colony names can be swapped.,,,N,"Anticipated pattern, diagnose only if expressed. Correct: Restore Delaware on the small coastal footprint south of Pennsylvania."
 s01-R14f,Climate alone determined all work and slavery.,,,J,"Anticipated pattern, diagnose only if expressed. Correct: The record shows frost damage; growers also choose planting dates and land. Climate and choices both matter."
 s01-R14f,Growing seasons never affect crops.,,,O,"Anticipated pattern, diagnose only if expressed. Correct: The record shows frost damage; growers also choose planting dates and land. Climate and choices both matter."
@@ -104,3 +103,14 @@ s01-K9-1,The first visitors must have been better.,,,L,Replace ranking with the 
 s01-P9-2,English language proves English people were better.,,,L,A language label does not rank people.
 s01-P9,The takeover came before 1619.,,,x,Read the dates; 1619 precedes 1624.
 s01-R7-1,No Native nations govern today.,,,B,Current nation-specific records describe present actions; reminder only.
+s01-R10-1,The visit alone proves continuing decision making.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-R11a,The two footprints are interchangeable.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-R11b,The weather chose the planting week.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-R12a,The contract has no end.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-R12b,Massachusetts belongs in the Southern band.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-R13-1,Circle triangle.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-P14-1,The statement says every community vanished.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-P14-2,Only trustees may enter.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-P14-3,Dry weather is a human action.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-P14-4,The route letter alone proves access.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-R14i,Shared use means nobody may set rules.,,,x,Unsupported response. Blank work does not diagnose an error.
