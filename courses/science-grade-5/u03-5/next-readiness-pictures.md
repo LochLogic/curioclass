@@ -11,28 +11,7 @@ credit: All ours.
 
 All drawings and numbers are invented for practice.
 
-## Motion records
-
-Magnet | plastic barrier | steel cart ->
-
-Rubbed plastic | open gap | hanging foil <-
-
-The arrows show recorded motion across separation.
-
-## Apparent paths through the same view
-
-SUN: arch 08:00 -> tower 10:00 -> gate 12:00 ---------------->
-
-Next position mark: _______________________________________________
-
-MOON: arch 19:00 -> tower 20:00 -> gate 21:00 --------------->
-
-Next position mark: _______________________________________________
-
-| Same view, day | Same view, night |
-| --- | --- |
-| Bright sky | Dark sky |
-| Ordinary stars visible? ______ | Ordinary stars visible? ______ |
+![Uncompleted sun and moon paths through three landmarks](sky-path-picture.svg)
 
 ## Whole-day daylight strips
 

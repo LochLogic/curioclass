@@ -229,10 +229,10 @@ actual-fallback-log,45,45 47 48 49 50 51 53 54 55 56 57 59 60,student science fo
 jar-drawing,45,45,student science folder,student,courses/science-grade-5/u03-1/jar-drawing.md; print only the current day; hold later checks unseen.
 powder-cards,45,45 47,student science folder,student,courses/science-grade-5/u03-1/powder-cards.md; print only the current day; hold later checks unseen.
 property-cards,46,46,student science folder,student,courses/science-grade-5/u03-1/property-cards.md; print only the current day; hold later checks unseen.
-exits-45-47,45,45 46 47,student science folder,student,courses/science-grade-5/u03-1/exits-45-47.md; print only the current day; hold later checks unseen.
-exits-48-51,48,48 49 50 51,student science folder,student,courses/science-grade-5/u03-2/exits-48-51.md; print only the current day; hold later checks unseen.
-exits-52-55,52,52 53 54 55,student science folder,student,courses/science-grade-5/u03-3/exits-52-55.md; print only the current day; hold later checks unseen.
-exits-56-58,56,56 57 58,student science folder,student,courses/science-grade-5/u03-4/exits-56-58.md; print only the current day; hold later checks unseen.
+exits-45-47,45,45 46 47,teacher folder,room,Teacher index only. Print the separately named current-day half slip; no future cases.
+exits-48-51,48,48 49 50 51,teacher folder,room,Teacher index only. Print the separately named current-day half slip; no future cases.
+exits-52-55,52,52 53 54 55,teacher folder,room,Teacher index only. Print the separately named current-day half slip; no future cases.
+exits-56-58,56,56 57 58,teacher folder,room,Teacher index only. Print the separately named current-day half slip; no future cases.
 property-records,48,48,student science folder,student,courses/science-grade-5/u03-2/property-records.md; print only the current day; hold later checks unseen.
 mineral-records,49,49,student science folder,student,courses/science-grade-5/u03-2/mineral-records.md; print only the current day; hold later checks unseen.
 temperature-records,50,50,student science folder,student,courses/science-grade-5/u03-2/temperature-records.md; print only the current day; hold later checks unseen.
@@ -260,3 +260,20 @@ retry-61-G,61,61,student science folder,student,courses/science-grade-5/u03-5/re
 retry-61-H,61,61,student science folder,student,courses/science-grade-5/u03-5/retry-61-H.md; print only the current day; hold later checks unseen.
 next-readiness,61,61,student science folder,student,courses/science-grade-5/u03-5/next-readiness.md; print only the current day; hold later checks unseen.
 next-readiness-pictures,61,61,student science folder,student,courses/science-grade-5/u03-5/next-readiness-pictures.md; print only the current day; hold later checks unseen.
+exit-45,45,45,student science folder,student,"courses/science-grade-5/u03-1/exit-45.md; half slip, current day only."
+exit-46,46,46,student science folder,student,"courses/science-grade-5/u03-1/exit-46.md; half slip, current day only."
+exit-47,47,47,student science folder,student,"courses/science-grade-5/u03-1/exit-47.md; half slip, current day only."
+exit-48,48,48,student science folder,student,"courses/science-grade-5/u03-2/exit-48.md; half slip, current day only."
+exit-49,49,49,student science folder,student,"courses/science-grade-5/u03-2/exit-49.md; half slip, current day only."
+exit-50,50,50,student science folder,student,"courses/science-grade-5/u03-2/exit-50.md; half slip, current day only."
+exit-51,51,51,student science folder,student,"courses/science-grade-5/u03-2/exit-51.md; half slip, current day only."
+exit-52,52,52,student science folder,student,"courses/science-grade-5/u03-3/exit-52.md; half slip, current day only."
+exit-53,53,53,student science folder,student,"courses/science-grade-5/u03-3/exit-53.md; half slip, current day only."
+exit-54,54,54,student science folder,student,"courses/science-grade-5/u03-3/exit-54.md; half slip, current day only."
+exit-55,55,55,student science folder,student,"courses/science-grade-5/u03-3/exit-55.md; half slip, current day only."
+exit-56,56,56,student science folder,student,"courses/science-grade-5/u03-4/exit-56.md; half slip, current day only."
+exit-57,57,57,student science folder,student,"courses/science-grade-5/u03-4/exit-57.md; half slip, current day only."
+exit-58,58,58,student science folder,student,"courses/science-grade-5/u03-4/exit-58.md; half slip, current day only."
+jar-picture,45,45,student science folder,student,"courses/science-grade-5/u03-1/jar-picture.svg; original invented diagram, included on its shared sheet."
+separation-picture,56,56,student science folder,student,"courses/science-grade-5/u03-4/separation-picture.svg; original invented diagram, included on its shared sheet."
+sky-path-picture,61,61,student science folder,student,"courses/science-grade-5/u03-5/sky-path-picture.svg; original invented diagram, included on its shared sheet."

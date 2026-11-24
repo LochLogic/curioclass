@@ -11,12 +11,7 @@ credit: All ours.
 
 Invented for practice: S56. Each panel shows one stage.
 
-| Panel | Picture description |
-| --- | --- |
-| 1 | Cup: dark grains and salt crystals beside measured water |
-| 2 | Cup: dark grains remain in liquid after gentle stirring |
-| 3 | Funnel: dark grains stay on filter; liquid enters a labelled dish |
-| 4 | Matching teacher-dried dish: crystals remain |
+![Four stages of an invented successful separation](separation-picture.svg)
 
 No heating occurs in class. The teacher supplies the matching dried dish.
 

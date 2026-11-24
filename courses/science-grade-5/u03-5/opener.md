@@ -37,3 +37,7 @@ Letters A to I apply only when the stated claim matches. An unexplained answer g
 Teacher-only answer keys give every look-for and two solved samples. Formative record uses shown, shown with help, not yet seen. End-of-unit assessment uses a separate points record. Sources.csv S03 rows check general science; all exact supplied outcomes are invented. No photographs or outside visitor are required. Original diagrams replace unavailable photos.
 
 Return E58 and all assessment components on 61. Keep original points. Return assigned retry and readiness notes privately after class on 61; readiness gaps travel to 63. Allow 75 teacher marking minutes after assessment, an untested estimate. Retain unresolved gaps.
+
+## Printing on day 61
+
+Print only up to four assigned component cards, one retry route, next-readiness and next-readiness-pictures. Keep teacher directions off child copies. Never hand out all repair cards or retry routes. The day 61 child copy stays below 350 words when printed this way.

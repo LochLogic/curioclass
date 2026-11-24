@@ -35,3 +35,7 @@ Letters A/E/F/G/I apply only when the stated claim matches. An unexplained answe
 ## Evidence and sources
 
 Teacher-only answer keys give every look-for and two solved samples. Formative record uses shown, shown with help, not yet seen. End-of-unit assessment uses a separate points record. Sources.csv S03 rows check general science; all exact supplied outcomes are invented. No photographs or outside visitor are required. Original diagrams replace unavailable photos.
+
+## Printing by day
+
+Day 52: print the reading, change-repair-cards, source-lined-notes and exit-52. Put initial model boxes on the notes back. Day 53: print planning-sheet, shadow-record and exit-53; use its source line instead of another notes sheet. Retain day 52 reading for locating, without reprinting it. On 54/55 print trial-log, the current fallback block only when needed, and the current exit. Reuse model boxes on the log back. Do not print every shared file each day.

@@ -5,41 +5,14 @@ unit: 3.2
 stretch: 3
 version: draft, not yet taught
 credit: All ours.
-exit: half
+audience: teacher
 ---
 
-# Individual paper exit tickets
+# Teacher exit-ticket index
 
-Teacher: print only today's half slip. Keep later slips unseen.
+Print only the current day's separate half slip. Hold future slips unseen.
 
-## Day 48
-
-[[s03-X48]]
-
-________________________________________________________________
-
-________________________________________________________________
-
-## Day 49
-
-[[s03-X49]]
-
-________________________________________________________________
-
-________________________________________________________________
-
-## Day 50
-
-[[s03-X50]]
-
-________________________________________________________________
-
-________________________________________________________________
-
-## Day 51
-
-[[s03-X51]]
-
-________________________________________________________________
-
-________________________________________________________________
+- Day 48: [exit-48.md](exit-48.md)
+- Day 49: [exit-49.md](exit-49.md)
+- Day 50: [exit-50.md](exit-50.md)
+- Day 51: [exit-51.md](exit-51.md)

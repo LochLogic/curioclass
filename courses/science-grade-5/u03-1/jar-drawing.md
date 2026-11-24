@@ -11,9 +11,7 @@ credit: All ours.
 
 Invented puzzle for practice. These are drawings, not food choices.
 
-| Jar A | Jar B | Jar C | Jar D |
-| --- | --- | --- | --- |
-| [white powder] | [white powder] | [white powder] | [white powder] |
+![Four invented jars with similar-looking powder](jar-picture.svg)
 
 Laboratory samples never enter food.
 
