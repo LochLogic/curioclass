@@ -1346,7 +1346,6 @@ s07-C2-4,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase
 s07-C3-1,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
 s07-C3-2,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
 s07-C3-3,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
-s07-C3-4,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
 s07-C4-1,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
 s07-C4-2,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
 s07-C4-3,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
@@ -1360,15 +1359,8 @@ s07-C5-5,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase
 s07-C5-6,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
 s07-C5-7,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
 s07-C5-compare,All Asian communities arrived together.,,,V,WE7 Filipino organizing and NE4 Irish organizing both sought better working conditions; other supported relationships accepted.
-s07-H1,A hurricane happened.,,,S,Connect the stated damage to each actor's response.
-s07-H2,Naming tornado explains it.,,,S,Connect the stated damage to each actor's response.
-s07-H3,The restriction creates rain.,,,T,Connect the stated damage to each actor's response.
-s07-H4,Everyone can return when flames disappear.,,,P,Connect the stated damage to each actor's response.
-s07-M1,Land alone made everyone choose the same place.,,,D,River towns stay connected. Earlier rail carries grain and newspapers. Later produce and teachers travel; relatives draw arrivals. Terrain provides routes; social ties shape where people settle and ideas move. Nothing dates the start of family networks.
 s07-M2a,Damage did not move anyone.,,,N,Flood makes lowland homes unusable; people move uphill or to the neighboring city. Defective wall failure displaces riverside people to another town. Both change origin and receiving settlements; permanence is unknown.
 s07-M2b,Distant places cannot be affected.,,,E,Flood fills the neighboring city's temporary housing. Wall failure brings displaced people to another town and interrupts downstream water delivery. Connections carry each effect elsewhere.
-s07-P1,A proposal is already law.,,,F,"Blocked access prompted residents' request. Council heard evidence, compared costs and voted for another entrance. An access test and comments led to a step-free route. Requesting alone was not adoption."
-s07-P2,Every place needs the same policy.,,,G,P has cost/access limits and offers a more usable entrance. Christchurch faced tight time and funding choices; consultation gave residents a voice in a draft. Both illustrate place-specific rebuilding with limited resources. Relate a principle and local difference to the student's own proposal. Neither response eliminates risk.
 s07-A1,My liking proves what communities need.,,,H,For example: People sustain community learning while adapting shared places. WE1 shows the Makah public museum maintaining access to history. P shows a council changing shelter access after evidence. Both connect community activity with public places. Accept other qualified claims with distinct details and explained links.
 s07-A2,It matters only because I like it.,,,U,A planner needs community and land evidence before choosing accessible public sites; accept other people with a specific relevant need.
 s07-A1-argument,A copied list replaces argument.,,,R,Record existing A1 argument; no duplicate task.
@@ -1394,7 +1386,6 @@ s07-P147,One source speaks for everyone.,,,I,"Check the actual source location, 
 s07-P148,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
 s07-P149,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
 s07-P150,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
-s07-P160,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
 s07-X152b,Residents have no way to contribute.,,,O,"Residents could submit evidence about needs, attend a public meeting or join authorized adult relief."
 s07-X155b,Choose what I like without evidence.,,,H,Check current route/advice accuracy and whether readers can use print or links before choosing.
 s07-P137-questions,I like our region.,,,U,"For example: Which sources show different communities in one region? The question is smaller, researchable and relevant to community and land."
@@ -1466,8 +1457,6 @@ s07-F156,Liking glitter shows the public need.,,,H,The absent label shows the ne
 s07-P156,The leader already approved my request because I wrote it.,,,F,A draft is not approval.
 s07-P156,Limited space means nothing can improve.,,,Q,Consider a smaller feasible request without claiming certainty.
 s07-K157-R,A full board makes every improvement impossible.,,,Q,A smaller card could fit.
-s07-F157,Sorting two folders proves every folder can be sorted now.,,,Q,The record retains a time limit; completion is not guaranteed.
-s07-P157,"I copied my draft and sent it, so no evidence change is needed.",,,F,Delivery is not adoption or evidence of a reasoned revision.
 s07-X157,Submitting it adopted the change.,,,F,"Only the principal can approve, and has not decided."
 s07-X157,Every student can approve this change.,,,O,The printed rule assigns this decision to the principal.
 s07-K158-R,A visitor suggestion is the signed decision.,,,F,A suggestion does not supply signed decision evidence.
@@ -1476,3 +1465,19 @@ s07-P158,I name two source titles but give no details.,,,R,A label alone does no
 s07-P158,My liking proves what all communities need.,,,H,Use relevant details and explain each link.
 s07-X158,People help. My sources are L and V.,,,R,Each source needs a detail and explained link.
 s07-X158,My liking proves what communities need.,,,H,Preference is not evidence from either record.
+s07-C3-4,Every Hmong person has the same job.,,,I,"MW4 is a particular contribution, not a description of every member."
+s07-M1,Only weather moves people; no ideas move.,,,N,"Rail and river routes, social ties, teachers and newspapers supply other evidence."
+s07-P1,The petition itself adopted the rule.,,,F,Council approval follows the request.
+s07-P2,Every place should copy exactly the same policy.,,,G,"Cost, authority, location and local needs differ."
+s07-K160-C,The caption describes everyone.,,,I,One person does not represent everyone.
+s07-K160-G,Distance means no link is possible.,,,E,The route explicitly connects the two places.
+s07-K160-P,One body handles every task.,,,O,The roster assigns separate responsibilities.
+s07-K160-A,My liking proves the claim.,,,H,Look at the evidence source.
+s07-F160,Every record describes all places.,,,I,Each record supplies a limited feature.
+s07-P160,I copy the returned answer without locating the feature.,,,R,"Locate the feature named by the feedback, not a copied answer."
+s07-F157,Ten minutes means no folder can be sorted.,,,Q,A limited task may fit; a time limit does not rule out all improvement.
+s07-P157,"I sent my request, so it is now approved.",,,F,Delivery supplies no evidence of adoption.
+s07-H1,Naming hurricane explains how every response helped.,,,S,A hazard name alone does not connect the two actions to housing and daily needs.
+s07-H2,Only the tornado matters; resident materials have no connection.,,,S,The record links resident materials with learning during disruption.
+s07-H3,Watering rules make the rain return.,,,T,Limits change use; the record does not show weather control.
+s07-H4,One national body carried out both named responses.,,,O,The record names officials and residents as different actors.
