@@ -482,36 +482,38 @@ s05-E1-table,The ocean floor is flat.,,,A,Error A: omits mapped seafloor relief.
 s05-E1-account,The ocean floor is flat.,,,A,Error A: omits mapped seafloor relief.
 s05-E1-account,All earthquakes occur at coastlines.,,,B,Error B: Makes coastline association exclusive.
 s05-E1-account,Blank areas are safe.,,,C,Error C: ignores a mapped feature or limits of the selected record.
-s05-P-notice-77,Dots are evenly spread everywhere.,,,G,Error G: Dots are evenly spread everywhere.
-s05-P-key-77,The ocean is the hatched land.,,,x,Error x: The ocean is the hatched land.
-s05-P-strip-77,All marks represent the same thing.,,,x,Error x: All marks represent the same thing.
-s05-P-question-77,There is nothing to investigate.,,,x,Error x: There is nothing to investigate.
-s05-P-state-78,Ice is not water.,,,x,Error x: Ice is not water.
-s05-P-place-78,Every water mark is ocean.,,,x,Error x: Every water mark is ocean.
-s05-P-land-78,The key gives one identical mark for land and water.,,,x,Error x: The key gives one identical mark for land and water.
-s05-P-cluster-78,Dots are evenly scattered.,,,G,Error G: Dots are evenly scattered.
-s05-K-slice-78,Every outline must represent the same height.,,,x,Error x: Every outline must represent the same height.
-s05-P-seafloor-78,The ocean floor has no height changes.,,,A,Error A: The ocean floor has no height changes.
-s05-P-keys-79,Both darker areas must be higher.,,,H,Error H: Both darker areas must be higher.
-s05-P-band-79,Every part has evenly scattered dots.,,,G,Error G: Every part has evenly scattered dots.
-s05-K-row-79,There is no ridge because the ocean floor is flat.,,,A,Error A: There is no ridge because the ocean floor is flat.
-s05-P-audit-79,Delete the trench because underwater ground is flat.,,,A,Error A: Delete the trench because underwater ground is flat.
-s05-P-talk-79,The ocean floor is flat.,,,A,Error A: The ocean floor is flat.
-s05-P-depth-80,The ocean floor is flat.,,,A,Error A: The ocean floor is flat.
-s05-P-key-80,All dark shading means higher.,,,H,Error H: All dark shading means higher.
-s05-K-tally-80,All seven dots must touch the coastline.,,,B,Error B: All seven dots must touch the coastline.
-s05-P-tally-80,Two land volcanoes because every triangle is a mountain.,,,x,Error x: Two land volcanoes because every triangle is a mountain.
-s05-P-claim-80,Only land can have earthquakes.,,,B,Error B: Only land can have earthquakes.
-s05-P-limits-80,An empty region is guaranteed safe.,,,C,Error C: An empty region is guaranteed safe.
+s05-P77-1,Dots are evenly spread everywhere.,,,G,Error G: Dots are evenly spread everywhere.
+s05-P77-2,The ocean is the hatched land.,,,x,Error x: The ocean is the hatched land.
+s05-P77-3,All marks represent the same thing.,,,x,Error x: All marks represent the same thing.
+s05-P77-4,There is nothing to investigate.,,,x,Error x: There is nothing to investigate.
+s05-P78-1,Ice is not water.,,,x,Error x: Ice is not water.
+s05-P78-2,Every water mark is ocean.,,,x,Error x: Every water mark is ocean.
+s05-P78-3,The key gives one identical mark for land and water.,,,x,Error x: The key gives one identical mark for land and water.
+s05-P78-4,Dots are evenly scattered.,,,G,Error G: Dots are evenly scattered.
+s05-K78-1,Every outline must represent the same height.,,,x,Error x: Every outline must represent the same height.
+s05-P78-5,The ocean floor has no height changes.,,,A,Error A: The ocean floor has no height changes.
+s05-P79-1,Both darker areas must be higher.,,,H,Error H: Both darker areas must be higher.
+s05-P79-2,Every part has evenly scattered dots.,,,G,Error G: Every part has evenly scattered dots.
+s05-K79-1,There is no ridge because the ocean floor is flat.,,,A,Error A: There is no ridge because the ocean floor is flat.
+s05-P79-3,Delete the trench because underwater ground is flat.,,,A,Error A: Delete the trench because underwater ground is flat.
+s05-P79-4,The ocean floor is flat.,,,A,Error A: The ocean floor is flat.
+s05-P80-1,The ocean floor is flat.,,,A,Error A: The ocean floor is flat.
+s05-P80-2,All dark shading means higher.,,,H,Error H: All dark shading means higher.
+s05-K80-1,All seven dots must touch the coastline.,,,B,Error B: All seven dots must touch the coastline.
+s05-P80-3,Two land volcanoes because every triangle is a mountain.,,,x,Error x: Two land volcanoes because every triangle is a mountain.
+s05-P80-4,Only land can have earthquakes.,,,B,Error B: Only land can have earthquakes.
+s05-P80-5,An empty region is guaranteed safe.,,,C,Error C: An empty region is guaranteed safe.
 s05-X80-exception,All the volcanoes are in the chain.,,,x,Error x: ignores the explicitly plotted off-chain volcano.
-s05-P-ocean-81,Earthquakes occur only at coastlines.,,,B,Error B: Earthquakes occur only at coastlines.
-s05-P-selection-81,An empty place must be safe.,,,C,Error C: An empty place must be safe.
-s05-P-align-81,Rotate one layer until any marks seem to match.,,,x,Error x: Rotate one layer until any marks seem to match.
-s05-P-tag-81,Place every event on the coastline regardless of W.,,,B,Error B: Place every event on the coastline regardless of W.
-s05-P-revise-81,The map proves every blank place is safe.,,,C,Error C: The map proves every blank place is safe.
+s05-P81-1,Earthquakes occur only at coastlines.,,,B,Error B: Earthquakes occur only at coastlines.
+s05-P81-2,An empty place must be safe.,,,C,Error C: An empty place must be safe.
+s05-P81-3,Rotate one layer until any marks seem to match.,,,x,Error x: Rotate one layer until any marks seem to match.
+s05-P81-4,Place every event on the coastline regardless of W.,,,B,Error B: Place every event on the coastline regardless of W.
+s05-P81-5,The map proves every blank place is safe.,,,C,Error C: The map proves every blank place is safe.
 s05-X81,Keep all earthquakes at coastlines despite D.,,,B,Error B: ignores ocean earthquake evidence from D.
-s05-P-ocean-82,Every earthquake is at a coastline.,,,B,Error B: Every earthquake is at a coastline.
-s05-P-selection-82,The empty part proves safety at every time.,,,C,Error C: The empty part proves safety at every time.
-s05-P-locate-82,Circle an older open dot as the new event.,,,x,Error x: Circle an older open dot as the new event.
-s05-P-sort-82,The older extract covers only July 2025.,,,x,Error x: The older extract covers only July 2025.
-s05-P-claim-82,Outside the plot is guaranteed safe.,,,C,Error C: Outside the plot is guaranteed safe.
+s05-P82-1,Every earthquake is at a coastline.,,,B,Error B: Every earthquake is at a coastline.
+s05-P82-2,The empty part proves safety at every time.,,,C,Error C: The empty part proves safety at every time.
+s05-P82-3,Circle an older open dot as the new event.,,,x,Error x: Circle an older open dot as the new event.
+s05-P82-4,The older extract covers only July 2025.,,,x,Error x: The older extract covers only July 2025.
+s05-P82-5,Outside the plot is guaranteed safe.,,,C,Error C: Outside the plot is guaranteed safe.
+s05-P82-6,Label invented V as the July 2025 real event.,,,x,Error x: Label invented V as the July 2025 real event.
+s05-P82-7,Treat practice years A to D as actual calendar dates.,,,x,Error x: Treat practice years A to D as actual calendar dates.
