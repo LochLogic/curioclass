@@ -1865,3 +1865,4 @@ Cory answered the four finish cards on the Desk and signed off all four courses 
   facts, no outside reader needed." Day 82 teaches the evidence plainly and adds the respectful line ("People bring
   different ideas. In science class we look at what the rocks and fossils show."). This is the rule for any science
   day that meets a belief: teach what the evidence shows, say it respectfully, no extra read needed.
+- **Cargo Hold hints, chat 2026-11-24:** "Keep hints." The brought-in build keeps its hint button (the spec had said none); spec open question 3 is settled.
