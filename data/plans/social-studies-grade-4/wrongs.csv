@@ -890,8 +890,8 @@ s05-P93-4,No Black people lived in freedom.,,,P,Cold-solved content diagnosis; e
 s05-P94-1,Congress was debating only the weather.,,,J,Cold-solved content diagnosis; equivalent supported wording accepted.
 s05-P94-2,The dispute had nothing to do with slavery.,,,J,Cold-solved content diagnosis; equivalent supported wording accepted.
 s05-P94-3,The Civil War caused the 1854 dispute.,,,O,Cold-solved content diagnosis; equivalent supported wording accepted.
-s05-P95-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P95-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
+s05-P95-1,Russia bought the claim; the United States sold it.,,,T,Specific independently solved content diagnosis; equivalent correct wording accepted.
+s05-P95-2,The organizations stopped defending land rights.,,,M,Specific independently solved content diagnosis; equivalent correct wording accepted.
 s05-P96-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
 s05-P96-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
 s05-P96-3,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
@@ -1004,3 +1004,7 @@ s05-F94-4,Any other unsupported answer.,,,x,No more specific diagnosis from this
 s05-F91-3,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
 s05-F91-4,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
 s05-P92-4,Every person in both groups had the same reason.,,,D,Cold-solved; accept equivalent supported wording.
+s05-F95-1,A disagreement about road repairs.,,,J,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F95-2,Harvest.,,,O,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F95-3,A disagreement about boat colors.,,,J,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F95-4,Sowing.,,,O,"One priority repair, fresh case; equivalent correct wording accepted."
