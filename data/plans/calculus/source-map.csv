@@ -15,7 +15,7 @@ CC 2.2,Differentiation formulas,"Sum, constant multiple, power, product and quot
 CC 2.3,More differentiation patterns,"Derivatives of the other trigonometric, exponential and logarithmic functions.",CUR-CA.5,,,cut,"Not adapted: the archive page links this section to a broken address, so no CC BY 3.0 copy is in the store; the newer copy is share-alike, reference only. Its content is taught on ours days 22 and 23 (For the lead).",,
 CC 2.4,Chain rule,Differentiate composite functions.,CUR-CA.6,2,26-27,split,"Teaching day, then practice with every earlier rule.",,
 CC 2.5,Using the chain rule,Derivatives of logarithms and of b to the x through the chain rule.,CUR-CA.5; CUR-CA.6,2,28; 30,split,"ln x on the inverse day, b to the x and log base b on day 30.",,
-CC 2.6,Related rates,Rates of linked changing quantities.,CUR-CA.9,3,41-43,split,"Triangles, containers, then practice of the steps.",,
+CC 2.6,Related rates,Rates of linked changing quantities.,CUR-CA.9,3,41-42; 44,split,"Triangles, containers, then practice of the steps on day 44, after the modeling draft (two nights for feedback).",,
 CC 2.7,Newton's method,Approximate a root with tangent lines.,,,,cut,Not a course outcome; unit 3's extension only.,,
 CC 2.8,Linear approximation,The tangent line as a local approximation.,CUR-CA.10,3,46,keep,,"yes: moved from the base order; taught after related rates, in unit 3",no: it follows the base order within the chapter
 CC 2.9,Implicit differentiation,Slopes on curves given implicitly; higher derivatives; logarithmic differentiation.,CUR-CA.7,2,31-33,split,"Circles, other curves, then second and higher derivatives; logarithmic differentiation stays an extension.",yes: moved from the base order; moved up beside the chain rule,no: all rules are built in one unit
@@ -44,8 +44,8 @@ CC 5.4,Moments and centers of mass,Moments and centroids.,,,,cut,Not a course ou
 CC 5.5,Additional applications,Further accumulation contexts.,CUR-CA.21,8,106,keep,"Contexts only, for the collision accumulation day.",,
 CC 6.0,Introduction to differential equations,Equations about rates and checking a solution.,CUR-CA.19,7,94,merge,Merged with CC 6.1 on day 94.,,
 CC 6.1,Differential equation y' = f(x),Solve y' = f(x) with an initial condition.,CUR-CA.19,7,94,merge,Merged with CC 6.0 on day 94.,,
-CC 6.2,Separable differential equations,Separate variables and use an initial condition.,CUR-CA.20,7,98,keep,,,
-CC 6.3,"Growth, decay and cooling","Proportional growth and decay, and cooling.",CUR-CA.20,7,98; 100,split,Growth and decay with separable equations; cooling as a modeling context. Mixing stays an extension.,,
+CC 6.2,Separable differential equations,Separate variables and use an initial condition.,CUR-CA.20,7,97,keep,,,
+CC 6.3,"Growth, decay and cooling","Proportional growth and decay, and cooling.",CUR-CA.20,7,97-98,split,Growth and decay with separable equations (day 97); cooling as the modeling context drafted on day 98. Mixing stays an extension.,,
 CC 7.0,Introduction to transcendental functions,Overview of inverse functions to come.,CUR-CA.6,2,28,merge,A short overview merged into the inverse-derivative day.,yes: moved from the base order; moved into unit 2,no: all derivative rules sit in unit 2
 CC 7.1,Inverse functions,Inverse functions and the derivative of an inverse.,CUR-CA.6,2,28,keep,,yes: moved from the base order; moved into unit 2,no: all derivative rules sit in unit 2
 CC 7.2,Inverse trigonometric functions,The inverse trigonometric functions on restricted domains.,CUR-CA.6,2,29,merge,"Retrieval of Precalculus, merged with CC 7.3 on day 29.",yes: moved from the base order; moved into unit 2,no: all derivative rules sit in unit 2
@@ -87,11 +87,11 @@ CC 13 to 15,"Functions of several variables, multiple integrals, vector calculus
 CC answers,Odd answers pages,Answers to odd problems.,,,,cut,Curio Class writes its own answer keys.,,
 ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,1,13-14,ours,Unit 1 end-of-unit assessment and respond day.,,
 ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,2,23-24; 34-36,ours,"e to the x and ln x (base CC 2.3 not in the store), rules practice, end-of-unit assessment and respond day.",,
-ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,3,37-40; 44-45; 49-50,ours,"Rates with units, motion, the related rates modeling task with its revision, end-of-unit assessment and respond day.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,3,37-40; 43; 45; 49-50,ours,"Rates with units, motion, the related rates modeling task (drafted day 43, revised day 45), end-of-unit assessment and respond day.",,
 ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,4,58; 61-65,ours,"Linked-graph practice, the design modeling task with its revision, mixed practice, end-of-unit assessment and respond day.",,
-ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,5,74; 80-81,ours,"Net change from a rate table (base CC 8.7 is not in the archive copy), end-of-unit assessment and respond day.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,5,74; 80-81,ours,"Net change from a rate rule and a rate graph (base CC 8.7 has no archive copy), end-of-unit assessment and respond day.",,
 ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,6,87; 92-93,ours,"Completing the square in an integrand (no base section), end-of-unit assessment and respond day.",,
-ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,7,95-97; 99; 101-102,ours,"Slope fields, Euler's method, logistic growth, end-of-unit assessment and respond day.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,7,95-96; 99-102,ours,"Slope fields, Euler's method with slope-field matching, logistic growth, the cooling model's validation and revision with mixed practice, end-of-unit assessment and respond day.",,
 ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,8,107; 109-111; 115; 118-119,ours,"The tank modeling task and revision, area with respect to y, the Cavalieri day, volume practice, end-of-unit assessment and respond day.",,
 ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,9,127; 131-132,ours,"Motion from a table of positions, end-of-unit assessment and respond day.",,
 ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,10,141-144,ours,"Which-test-and-why, mixed practice, end-of-unit assessment and respond day.",,
