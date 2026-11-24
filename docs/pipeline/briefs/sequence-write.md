@@ -129,7 +129,9 @@ step 5.
 3. **Course-level checks** come from the frame's Course-level checks table: `C` days after the unit it names, each
    followed by at least one respond day, review days where the table has them. **A course-level check right after a
    unit's end-of-unit assessment draws its items for that unit's skills from earlier units**, so it does not repeat
-   the assessment just given; the scope and sequence and the day's goal say so.
+   the assessment just given; the scope and sequence and the day's goal say so. **Every code the course owns is sampled
+   on at least one course-level check day**, or the scope and sequence names the code and says why not (Cory
+   2026-11-24, later.csv L107).
 4. **The calendar and the stagger rule** (docs/courses/CALENDAR.md): place the course-level checks on the target
    weeks given there. K to 5: no week holds two subjects' check days. K to 2: the ELA and math one-to-one checks are
    at least five school days apart. 6 to 8: no school day holds two subjects' mid-year checks. If a target week

@@ -1882,3 +1882,22 @@ Cory answered the six Roadmap cards on the Desk (written 2026-11-23, applied 202
 - **What a finished course holds:** items 10 to 13 are in (accessibility to a named level, a versioning and errata
   rule, a course-level teacher guide with pacing options, one state alignment crosswalk); 14 stays settled (L60); 15,
   a print-volume count, is not now.
+
+## 2026-11-24: Stage 4 unit plan calls (q-stage4-science, q-stage4-ela, q-open-calls-2026-11-24)
+
+Cory took the recommended pick on every call.
+- **Science:** kindergarten goggles are supplied by the school, the plans say so, with dated photographs as the
+  fallback; kindergarten's $42 is accepted as about $40; every grade 6 unit cites NSTA with a follow-your-district line;
+  grade 7 units 2 and 3 trim materials where a cheaper one gives the same evidence, and the scope totals are corrected;
+  grade 1 gets one more teaching day on the reverse direction before day 33, taken from a review day.
+- **ELA:** grade 1 brings back L.1.5 and L.1.6 and sentence conventions with two spaced touches in units 3 and 4;
+  grade 2 replaces text 04 with a documented public-domain folktale from a named culture, with a sensitivity read;
+  grade 4 keeps the 30/35/35 writing split with a short narrative piece in unit 4; grade 7's novella audio is made at
+  Art and voice, and the novella keeps the real Klamath River places with an invented family and town and a
+  sensitivity read; grade 9's choice book may go home; grade 11 replaces Occom's 1982-printed narrative with a
+  public-domain Occom text; grade 12 keeps the 1921 film.
+- **Course checks (L107):** every code a course owns is sampled on at least one course-level check day, or the scope
+  names it and says why not (sequence-write.md rule 3).
+- **Time Tides (L108):** credit the GPL-3.0 map data and keep it; restore the Wikipedia bios with CC BY-SA credit; use
+  BCE/CE; fix the anachronisms, religion-based labels and the Qing Tibet and Xinjiang wording, with a fresh
+  sensitivity read, before it is marked live.
