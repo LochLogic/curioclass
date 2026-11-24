@@ -678,3 +678,20 @@ s03-P51-corners,Calls the slanted equal-sided tile square because its sides are 
 s03-P52-frame,Calls a frame with an open join complete.,,,D,"Assign only from observed action or heard explanation, never infer unheard reasoning."
 s03-F52-name,Leaves rectangle label crossed out without interpretable reason.,,,x,"Assign only from observed action or heard explanation, never infer unheard reasoning."
 s03-P53-attribute-hold,Points only to the outside color.,,,L,Interpret from observed action or heard words; unscored practice stays in the folder.
+s03-P54-equal,Turning made one longer.,,,M,Interpret from observed action or heard words; unscored practice stays in the folder.
+s03-P55-same,Repeats very different without handling.,,,x,Interpret from observed action or heard words; unscored practice stays in the folder.
+s03-F56-M,Turning changes length.,,,M,Interpret from observed action or heard words; unscored practice stays in the folder.
+s03-W53,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-W54,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-W55,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-W56,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-P53-length,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-P53-height,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-P54-baseline,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-P54-height,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-P55-weight,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-P55-capacity,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-P56-transfer,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-P56-hold,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-P53-attribute-height,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
+s03-P53-attribute-weight,No interpretable response.,,,x,Any other wrong response; no forced diagnostic letter. Unscored practice stays in the folder.
