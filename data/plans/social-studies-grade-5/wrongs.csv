@@ -111,7 +111,7 @@ s01-P14-2,Only trustees may enter.,,,x,Unsupported response. Blank work does not
 s01-P14-3,Dry weather is a human action.,,,x,Unsupported response. Blank work does not diagnose an error.
 s01-P14-4,The route letter alone proves access.,,,x,Unsupported response. Blank work does not diagnose an error.
 s01-R14i,Shared use means nobody may set rules.,,,A,Unsupported response. Blank work does not diagnose an error.
-s02-X15a,What color is our classroom?,,,H,Diagnose only if expressed. Two answerable questions advancing the inquiry.
+s02-X15a,What color is our classroom?,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
 s02-X15b,It matters because it is important.,,,R,Diagnose only if expressed. Readers recognize overlooked Black contributions or understand freedom-seeking.
 s02-X16a,The father makes the baby free.,,,I,Diagnose only if expressed. The 1662 maternal rule makes the child enslaved; the 1667 rule denies freedom through baptism.
 s02-X16b,1619 began slavery everywhere.,,,A,Diagnose only if expressed. 1619 records a forced arrival in Virginia; Atlantic enslavement began earlier.
@@ -124,7 +124,7 @@ s02-X18b,Only southern colonies permitted slavery.,,,C,Diagnose only if expresse
 s02-X19a,Enslaved people had no families.,,,D,Diagnose only if expressed. Both sew and have families. Ruth lacks labor control and family security; Anne has greater control without equality.
 s02-X19a,Ruth cannot do skilled work.,,,Q,Diagnose only if expressed. Both sew and have families. Ruth lacks labor control and family security; Anne has greater control without equality.
 s02-X19a,Anne has guaranteed equality.,,,O,Diagnose only if expressed. Both sew and have families. Ruth lacks labor control and family security; Anne has greater control without equality.
-s02-X19b,She has an ordinary job she can leave.,,,G,Diagnose only if expressed. Sale threatens family security; her enslaver blocks learning and punishes escape.
+s02-X19b,She has an ordinary job she can leave.,,,B,This response does not establish the intended distinction; coercion is missed.
 s02-X20a,They took an ordinary trip for jobs.,,,B,"Diagnose only if expressed. Organized southward movement toward Florida to escape bondage. B is inherited testimony, not eyewitness reporting."
 s02-X20a,There was no resistance.,,,E,"Diagnose only if expressed. Organized southward movement toward Florida to escape bondage. B is inherited testimony, not eyewitness reporting."
 s02-X20b,Only fighting counts as resistance.,,,L,Diagnose only if expressed. People sought escape from control of their lives; resistance included flight as well as revolt.
@@ -163,7 +163,7 @@ s02-Q8a,A has ships. B has words.,,,H,"Diagnose only if expressed. A: heat, conf
 s02-Q8b,They were important because they were important.,,,H,"Diagnose only if expressed. Link forced suffering in Falconbridge, petitioning in Felix and skilled contribution in work panel. Accept other supported arguments."
 s02-Q9,It matters because it is important.,,,R,Diagnose only if expressed. A curator can identify Black contributions and freedom-seeking otherwise omitted.
 s02-R16,It changes nothing.,,,R,Diagnose only if expressed. The reader cannot identify whose work contributed.
-s02-R16h,Water alone.,,,H,Diagnose only if expressed. Storage sheds; water alone does not provide storage.
+s02-R16h,Water alone.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
 s02-R17,Having a free father.,,,I,Diagnose only if expressed. Baptism did not grant freedom.
 s02-R18,Every ship completes the triangle.,,,J,Diagnose only if expressed. Separate voyages do not document one ship completing all links.
 s02-R19,Every shelf must match.,,,K,Diagnose only if expressed. No; unexamined shelves may differ.
@@ -181,17 +181,17 @@ s02-R26f,Both free people today.,,,N,Diagnose only if expressed. First establish
 s02-R26g,Everyone became equal.,,,O,Diagnose only if expressed. Required service ended; equal treatment is not established.
 s02-R26h,A bridge and a letter.,,,H,Diagnose only if expressed. Collective contributes skills; letter challenges exclusion; link both to claim.
 s02-R26i,It is important.,,,R,Diagnose only if expressed. Visitor identifies previously omitted contributors.
-s02-P15-1,All ask about maps.,,,H,Diagnose only if expressed. Laws; routes; freedom.
-s02-P15-2,What caused ship illness?,,,H,Diagnose only if expressed. Who owned land?
+s02-P15-1,All ask about maps.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-P15-2,What caused ship illness?,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
 s02-P16-1,Father.,,,I,Diagnose only if expressed. Mother.
 s02-P16-2,1667 arrival.,,,A,Diagnose only if expressed. 1619 Virginia arrival; 1662 maternal law; 1667 baptism law.
 s02-P17-1,Europe to Africa.,,,B,Diagnose only if expressed. Africa to Americas.
 s02-P17-2,Confined means choosing a route.,,,B,Diagnose only if expressed. Little space; held within; fresh air moving through.
-s02-P18-1,1619.,,,C,Diagnose only if expressed. Permission begins in 1751.
+s02-P18-1,1619.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
 s02-P18-2,All thirty.,,,K,Diagnose only if expressed. Twelve of thirty; not a historical slavery count.
 s02-P19-1,Enslaved people had no family.,,,D,Diagnose only if expressed. Smith and Meg are spouses despite enslavement.
-s02-P19-2,Restriction means equality.,,,G,Diagnose only if expressed. Sale: property control; restriction: a limit.
-s02-P20-1,Massachusetts.,,,E,Diagnose only if expressed. Fort Mose is near St. Augustine in Florida.
+s02-P19-2,Restriction means equality.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-P20-1,Massachusetts.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
 s02-P20-2,Only uprising is resistance.,,,L,Diagnose only if expressed. Escape; petition; revolt.
 s02-P21-1,Each carpenter kept all wages.,,,M,"Diagnose only if expressed. James Hoban, enslaver, signs for the carpenters' wages."
 s02-P21-2,No skill is needed.,,,Q,"Diagnose only if expressed. Carpentry supports the skills claim, not a claim of freedom."
@@ -203,9 +203,13 @@ s02-P24-1,Source names without details.,,,H,"Diagnose only if expressed. Support
 s02-R1a,People moved voluntarily.,,,B,"Diagnostic only, teach as new on 16. Goods: Europe to West Africa. Enslaved people forced: West Africa to Caribbean. Sugar: Caribbean to Europe."
 s02-R1b,People moved voluntarily.,,,B,"Diagnostic only, teach as new on 16. People have rights and were forced; goods are objects."
 s02-R2,Water alone explains every job.,,,H,"Diagnostic only, teach as new on 16. Docking and sea access support ship repair and warehouse work; traders stop for repairs and storage."
-s02-P15-3,Both are the same account.,,,H,"Conflates source makers, so evidence attribution is unsupported. Diagnose only if expressed."
+s02-P15-3,Both are the same account.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
 s02-P16-3,Father sets status in 1662.,,,I,"Diagnose only if expressed. Virginia General Assembly, 1662 and 1667; maternal status and baptism, respectively."
 s02-P18-3,One person's record counts all households.,,,K,"Diagnose only if expressed. G: Georgia, 1751; W: Washington, 1799; J: Jefferson, 1774, an individual record rather than a population count."
-s02-P19-3,A ship captain.,,,N,Diagnose only if expressed. Massachusetts legislature.
+s02-P19-3,A ship captain.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
 s02-P23-3,Pennsylvania legislature.,,,P,Diagnose only if expressed. Courts.
-s02-P16-4,Water alone provides every repair service.,,,H,Unsupported feature-to-job explanation. Correct feature: dock.
+s02-P16-4,Water alone provides every repair service.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-K15-1,Both are freely chosen.,,,B,"Anticipated response; use the item look-for, then offer one precise cue."
+s02-P15-4,The summary gives every detail.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-P17-3,Ten bars.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-P18-4,"Yes, every household.",,,K,Presence is generalized to universal ownership.

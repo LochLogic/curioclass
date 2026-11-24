@@ -933,10 +933,10 @@ s05-X89,"One cell outside both stated parts, four and four.",,,A,Observe the mat
 s05-X90,Calls rearranged one/seven a new pair.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-X91,Rejects 7 = 2 + 5 solely because seven is first.,,,C,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-X92,Eight with one bookmark visibly omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
-s05-X93,Same labelled three/five redrawn as new.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X93,Same labeled three/five redrawn as new.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-X94,Six assigned hats and one omitted.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-X94,One object assigned to both categories.,,,F,Observed double assignment.
-s05-X95,Same labelled counts redrawn as new.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-X95,Same labeled counts redrawn as new.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-X96,Rejects A solely for total-left order.,,,C,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-X96,B or C because its result is eight.,,,x,Record action mismatch descriptively.
 s05-X97,Adds six because six were given.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
@@ -989,7 +989,7 @@ s05-F1-10-2,Same unordered pair as first panel.,,,B,Observe the matching action 
 s05-F1-10-2,One dot belongs to both parts.,,,F,"Observe double assignment, not numeral alone."
 s05-F1-equation,Rejects a matching equation solely because total is first.,,,C,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-F3-1,One stamp assigned to both albums.,,,F,Observe the matching action or explanation; never infer a letter from a wrong numeral.
-s05-F3-2,Same labelled allocation repeated.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-F3-2,Same labeled allocation repeated.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-F2-1,Repeats the given part as its partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-F2-2,Repeats the given part as its partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-F2-3,Repeats the given part as its partner.,,,D,Observe the matching action or explanation; never infer a letter from a wrong numeral.
@@ -1166,7 +1166,7 @@ s05-Kcover99,Repeats given three as its partner.,,,D,Cold-solved. Letter require
 s05-Krecords100,Repeats given number as partner.,,,D,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
 s05-Ktower101,Repeats given four as partner.,,,D,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
 s05-Kclose101,Erases original evidence.,,,x,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
-s05-Kfruit102,Calls rearranged four/six a different labelled pair.,,,B,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kfruit102,Calls rearranged four/six a different labeled pair.,,,B,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
 s05-FC97,Rejects total-left order solely for order.,,,C,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
 s05-FA97,Leaves one square outside both parts.,,,A,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
 s05-FD98,Repeats given part as partner.,,,D,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
@@ -1543,3 +1543,4 @@ s07-F34,Marks reference object.,,,x,Record observed mark descriptively; this alo
 s07-F35,Marks reference object.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
 s07-F36,Marks reference object.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
 s07-F4a,Joins cone to cylinder by pose.,,,x,Record observed mark descriptively; this alone does not establish a specific error-register cause. Cold-solved against reserved master.
+s05-A103-F4,Earlier record rejects 8 = 3 + 5 solely because the total comes first.,,,C,Carry the recorded equality-orientation gap from unit 4; no new question.
