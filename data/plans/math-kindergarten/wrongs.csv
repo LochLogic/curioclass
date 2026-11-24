@@ -466,3 +466,20 @@ s02-P36-2,Counts two but writes 1.,,,M,Assign a letter only from an observed act
 s02-P36-3,Says same despite extra square.,,,H,Assign a letter only from an observed action or explanation; record help separately.
 s02-F36,Continues beyond requested five.,,,D,Assign a letter only from an observed action or explanation; record help separately.
 s02-P34-4,Claims spreading the five requires label 8.,,,B,Assign only when explanation shows spacing used as quantity.
+s02-R37,Says two after seeing the extra square.,,,H,Assign only from observed action or heard explanation; record help separately.
+s02-K37-1,Adds one to four but says four.,,,H,Assign only from observed action or heard explanation; record help separately.
+s02-K37-2,Adds one to seven but says seven.,,,H,Assign only from observed action or heard explanation; record help separately.
+s02-F37,Says the added square leaves the total four.,,,H,Assign only from observed action or heard explanation; record help separately.
+s02-T37-M,Counts three but leaves label 6.,,,M,Assign only from observed action or heard explanation; record help separately.
+s02-T37-track,Misses one square.,,,K,Assign only from observed action or heard explanation; record help separately.
+s02-T37-total,Writes 5 because the four are spread.,,,B,Assign only from observed action or heard explanation; record help separately.
+s02-T37-stop,Keeps adding after reaching five.,,,D,Assign only from observed action or heard explanation; record help separately.
+s02-K37-size,Says more because numeral ink grew.,,,J,Assign only from observed action or heard explanation; record help separately.
+s02-R38,Keeps total seven after one joins.,,,H,Assign only from observed action or heard explanation; record help separately.
+s02-K38,Leaves one of the five without its partner.,,,K,Assign only from observed action or heard explanation; record help separately.
+s02-K38-less,Acknowledges extras in eight but calls eight fewer.,,,I,Assign only from observed action or heard explanation; record help separately.
+s02-K38-equal,Calls the wider five more because it is spread.,,,B,Assign only from observed action or heard explanation; record help separately.
+s02-T38-M,Counts five but retains label 2.,,,M,Assign only from observed action or heard explanation; record help separately.
+s02-T38-track,Misses one square.,,,K,Assign only from observed action or heard explanation; record help separately.
+s02-T38-total,Writes 6 because counting starts at the other end.,,,C,Assign only from observed action or heard explanation; record help separately.
+s02-T38-stop,Adds all four loose squares and passes eight.,,,D,Assign only from observed action or heard explanation; record help separately.

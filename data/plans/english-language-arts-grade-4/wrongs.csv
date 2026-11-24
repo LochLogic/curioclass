@@ -95,15 +95,15 @@ s01-A17-RF-confirm,Says a quiet shuffle for a quick shuffle without checking.,,,
 s01-A27-RF-purpose,He runs away because boys always do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A27-RF-phrasing,Observer: ignores question and sentence boundaries.,,,I,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A27-RF-confirm,Substitutes planted for scattered without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
-s01-A34-RF-purpose,He runs away because boys always do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A34-RF-purpose,Gives a claim absent from the assigned passage.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A34-RF-phrasing,Observer: ignores question and sentence boundaries.,,,I,Assign only for this demonstrated fault; missing work needs evidence.
-s01-A34-RF-confirm,Substitutes planted for scattered without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
-s01-A35-RF-purpose,He runs away because boys always do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A34-RF-confirm,Substitutes another word without checking letters.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-RF-purpose,Gives a claim absent from the assigned passage.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A35-RF-phrasing,Observer: ignores question and sentence boundaries.,,,I,Assign only for this demonstrated fault; missing work needs evidence.
-s01-A35-RF-confirm,Substitutes planted for scattered without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
-s01-A36-RF-purpose,He runs away because boys always do.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A35-RF-confirm,Substitutes another word without checking letters.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36-RF-purpose,Gives a claim absent from the assigned passage.,,,A,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A36-RF-phrasing,Observer: ignores question and sentence boundaries.,,,I,Assign only for this demonstrated fault; missing work needs evidence.
-s01-A36-RF-confirm,Substitutes planted for scattered without checking.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
+s01-A36-RF-confirm,Substitutes another word without checking letters.,,,H,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A17-topic,Seeds. Mountains.,,,AE,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A17-groups,Disconnected facts copied in any order.,,,N,Assign only for this demonstrated fault; missing work needs evidence.
 s01-A17-develop,Ben wins a poetry prize.,,,O,Assign only for this demonstrated fault; missing work needs evidence.
@@ -447,3 +447,9 @@ s01-P32-folder,Invent a source detail and call it a fact.,,,O,Unjudged instructi
 s01-P32-listen,Describe an unrelated event without explaining a writing choice.,,,AC,Unjudged instruction or folder work; use this fault for feedback only.
 s01-W32-2,Keep inscripshun after checking.,,,AL,Unjudged instruction or folder work; use this fault for feedback only.
 s01-K32-1,A.,,,T,Unjudged instruction or folder work; use this fault for feedback only.
+s01-P33-folder,Invent a source detail.,,,O,Cold-solved contrast; targets error O.
+s01-P33-talk,No relevant answer.,,,AI,Cold-solved contrast; targets error AI.
+s01-W34,Skip the middle syllable.,,,H,Cold-solved contrast; targets error H.
+s01-K34,A.,,,T,Cold-solved contrast; targets error T.
+s01-W35,Repeat.,,,H,Cold-solved contrast; targets error H.
+s01-W36,Again.,,,H,Cold-solved contrast; targets error H.
