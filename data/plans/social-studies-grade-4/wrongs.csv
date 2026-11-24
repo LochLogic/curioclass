@@ -1071,7 +1071,7 @@ s06-X111a,Two equally spaced event boxes without year positions.,,,C,Predicted r
 s06-X111b,59 years.,,,x,"59 years is an arithmetic error, not enough evidence of unequal spacing."
 s06-X112a,It has no government until statehood.,,,O,Predicted response; one error only. Shape: Explain institutions in a new fictional statehood petition.
 s06-X112b,Its delegate already has the same final House vote.,,,P,Predicted response; one error only. Shape: Identify one precise present limit in the petition case.
-s06-X113a,West; 1776.,,,L,Predicted response; one error only. Shape: Complete an unseen public record with region and dated membership event.
+s06-X113a,"West; February 6, 1788.",,,L,Error L is region only; do not combine it with a date error.
 s06-X113b,Independence and ratification are the same event.,,,N,Predicted response; one error only. Shape: Distinguish two sourced public events on a fresh local strip.
 s06-X114a,Capital uses the key's water symbol.,,,E,Predicted response; one error only. Shape: Construct a compact city/capital/water/mountain inset from unseen evidence.
 s06-X114b,Enlarge only the map while retaining its old scale.,,,Q,Predicted response; one error only. Shape: Justify source-to-response calibration after constructing the fresh inset.
@@ -1157,10 +1157,10 @@ s06-M4u,List feature names without locating them.,,,R,Predicted response; one er
 s06-P107-1,A response missing the named relationship or source position.,,,X,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P111-1,I spaced the cards evenly because each card is one event.,,,C,Error C: event counting replaces equal-year spacing.
 s06-P111-2,27 years.,,,x,Arithmetic slip; 1867 minus 1830 is 37. Not evidence of spacing error C.
-s06-P112-1,A response missing the named relationship or source position.,,,O,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P112-2,A response missing the named relationship or source position.,,,D,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P113-1,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P113-2,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P112-1,Constitution: makes national laws. Congress: sets up state government.,,,x,Function reversal; it does not establish error O about absent local government.
+s06-P112-2,B needs correcting because everyone could vote.,,,D,Error D treats statehood as universal voting rights.
+s06-P113-1,Worcester is coastal; Boston is inland.,,,L,Error L reverses the supplied public-place positions.
+s06-P113-2,Boston made this map; no link is needed.,,,x,Confuses mapped place with map maker; no geographic-position error can be inferred.
 s06-P114-1,A response missing the named relationship or source position.,,,Q,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P114-2,A response missing the named relationship or source position.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P115-1,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
@@ -1229,3 +1229,15 @@ s06-R111-B,Yes. Touching boxes prove neighboring islands.,,,B,Fresh component re
 s06-R111-L,A is south of B.,,,L,Fresh component repair or retrieval; never a held item.
 s06-R111-M,A territory is a state.,,,M,Fresh component repair or retrieval; never a held item.
 s06-K111-spacing,One event per gap.,,,C,Fresh component repair or retrieval; never a held item.
+s06-R112-C,1883 belongs halfway between 1880 and 1890.,,,C,"Isolated component, never the held petition response."
+s06-R112-N,Any changed control is admission.,,,N,"Isolated component, never the held petition response."
+s06-R112-arithmetic,42 years.,,,x,"Isolated component, never the held petition response."
+s06-K112-constitution,Only a national law can limit state government.,,,x,Institution/function confusion; it does not establish error O.
+s06-K112-congress,A state constitution is the national legislature.,,,x,Institution/function confusion; it does not establish error O.
+s06-P112-limit,Everyone gained equal voting rights at statehood.,,,D,"Isolated component, never the held petition response."
+s06-X112a,Statehood gave everyone equal voting rights.,,,D,Statehood did not end historical exclusions.
+s06-R113-D,Everyone could vote at statehood.,,,D,"Fresh invented label, not the held petition or its correction."
+s06-R113-O,No final House vote means no government.,,,O,"Fresh invented label, not the held petition or its correction."
+s06-R113-P,Committee service includes the final House vote.,,,P,"Fresh invented label, not the held petition or its correction."
+s06-C112-1,Serving on a committee gives every delegate a final House vote.,,,P,Committee work does not grant a final House vote.
+s06-P111-1,Any change of control means admission as a state.,,,N,Check the event label; changed control does not establish membership.

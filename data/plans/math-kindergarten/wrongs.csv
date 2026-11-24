@@ -1017,7 +1017,7 @@ s05-P89,One piece counted in both parts.,,,F,Observe the matching action or expl
 s05-P90,Copies unchanged one/five as new.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-P91,Rejects total-left order alone.,,,C,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-P92,Five after omitting a visible square.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
-s05-P93,Calls unchanged one/five a new allocation.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
+s05-P93,"Three plain, with one plain picture visibly omitted.",,,A,Cold-solved: four plain pictures remain after the supplied two striped. One omitted plain is error A; the old repeated-allocation wrong did not fit this completion item.
 s05-P94,Leaves the loose short block unassigned.,,,A,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-P95,Same one/five called changed.,,,B,Observe the matching action or explanation; never infer a letter from a wrong numeral.
 s05-P96,Adds incoming marks for removal.,,,x,Describe the mismatch; no forced register letter.
@@ -1119,3 +1119,32 @@ s05-F90-F,One square remains assigned to both parts.,,,F,Cold-solved original su
 s05-F90-B,Calls unchanged one/five a new pair.,,,B,Cold-solved original supplied-record case; identify a letter only from observed action.
 s05-K90-order,Calls four/two a different unordered pair from two/four.,,,B,Cold-solved original supplied-record case; identify a letter only from observed action.
 s05-C90-ten,Leaves an unmoved square outside both parts.,,,A,Cold-solved original supplied-record case; identify a letter only from observed action.
+s05-Kcount91,Five marks with one square visibly skipped.,,,x,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kequal91,Rejects 6 = 2 + 4 solely because the total comes first.,,,C,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-F-B91,Calls an unchanged one/five copy a different split.,,,B,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-F-A91,Leaves one square outside both parts.,,,A,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-F-C91,Rejects 6 = 1 + 5 solely for its order.,,,C,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kcount92,Five dots with one square visibly skipped.,,,x,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kstory92,Leaves one square outside both parts.,,,A,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-F-C92,Rejects 6 = 1 + 5 solely for total-first order.,,,C,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-F-B92,Calls the unchanged one/five a different pair.,,,B,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kcount93,Five marks with one square visibly skipped.,,,x,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kparts93,Calls unchanged one-striped/five-plain counts different.,,,B,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-F-A93,Leaves one square outside both parts.,,,A,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-F-C93,Rejects total-left equation solely for its order.,,,C,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kcount94,Five marks with one square visibly skipped.,,,x,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kblocks94,Leaves the loose block outside both parts.,,,A,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kblocks94,"Counts one shared block in both parts, reporting three/four for six.",,,F,"Six distinct objects, seven assignments because one is counted twice. Correct to disjoint three/three."
+s05-F-B94,Calls unchanged one-striped/five-plain counts different.,,,B,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-F-A94,Leaves one square outside both groups.,,,A,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kcount95,Five marks with one square visibly skipped.,,,x,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Ktiles95,Calls unchanged one-patterned/five-plain counts a new solution.,,,B,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-F-A95,Leaves one square outside both parts.,,,A,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-F-F95,Counts one square in both parts.,,,F,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kcount96,Five marks with one square visibly skipped.,,,x,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kjoin96,Draws outgoing marks for an incoming action.,,,x,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kremove96,Adds an incoming square for removal.,,,x,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kstatic96,Draws an arrival for a static pair of parts.,,,x,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Ksplit96,Leaves one of six squares unused.,,,A,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-F-B96,Calls unchanged one-patterned/five-plain counts a new solution.,,,B,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-F-C96,Rejects a true total-left equation solely for order.,,,C,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
