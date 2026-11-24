@@ -1,5 +1,6 @@
 ---
-piece: blank
+piece: story
+audience: teacher
 course: social-studies-grade-4
 unit: 5.6
 version: draft, not yet taught

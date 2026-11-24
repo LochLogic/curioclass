@@ -170,11 +170,11 @@ Hand back: day 66, Return.
 
 Shape: Revise a two-stage diverted-channel model.
 
-Answer: Gravity moved fallen pieces, blocking the old route. Diverted water takes a new route and carries grains; earlier breakage is inferred, not directly shown.
+Answer: Cracks were present before the ledge fell. Gravity moved blocks onto the beach; later waves carried loose grains away and exposed striped rock. The record does not show what first made the cracks.
 
-Look-fors: Look for the stated observation and its evidence link: Gravity moved fallen pieces, blocking the old route. Diverted water takes a new route and carries grains; earlier breakage is inferred, not directly shown.
+Look-fors: Look for the stated observation and its evidence link: Cracks were present before the ledge fell. Gravity moved blocks onto the beach; later waves carried loose grains away and exposed striped rock. The record does not show what first made the cracks.
 
-Meets: Gravity moved fallen pieces, blocking the old route. Diverted water takes a new route and carries grains; earlier breakage is inferred, not directly shown. | Does not meet: Rock can never change, so the pictures cannot show changes. (error B).
+Meets: Cracks were present before the ledge fell. Gravity moved blocks onto the beach; later waves carried loose grains away and exposed striped rock. The record does not show what first made the cracks. | Does not meet: Rock can never change, so the pictures cannot show changes. (error B).
 
 Hand back: day 67, Return.
 

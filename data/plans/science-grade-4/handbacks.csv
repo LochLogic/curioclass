@@ -109,7 +109,7 @@ from_day,to_day,what,where,minutes,error,note
 34,35,s02-P34-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
 35,38,s02-P35-1,Read feedback,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
 35,38,s02-P35-2,Read feedback,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
-38,39,s02-P38-1,opening,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+38,39,s02-P38-1 s02-E38-record,opening,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
 36,38,s02-E2-portfolio,Read feedback,0,,Locate preserved portfolio evidence; final scoring once after day 38.
 16,17,s02-P16-connect,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
 16,17,s02-P16-model,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
@@ -159,7 +159,7 @@ from_day,to_day,what,where,minutes,error,note
 40,41,C-E40-change,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
 41,43,C-R41-source,older-row response,5,,"Within reserved fifteen-minute response, five minutes per causal direction. Grade 1 causal models planned: teach missing directions as new; day 42 keeps hook."
 41,43,C-R41-receiver,older-row response,5,,"Within reserved fifteen-minute response, five minutes per causal direction. Grade 1 causal models planned: teach missing directions as new; day 42 keeps hook."
-41,42,C-P41-revise,opening,0,,"Return revised papers with written note, informational only; no extra repair."
+41,42,C-P41-revise C-E41-record,opening,0,,"Return revised papers with written note, informational only; no extra repair."
 41,42,C-P41-motion,opening,0,,"Return any completed personal repair sheet with written evidence note; informational only, no new repair slot."
 41,42,C-P41-paths,opening,0,,"Return any completed personal repair sheet with written evidence note; informational only, no new repair slot."
 41,42,C-P41-resources,opening,0,,"Return any completed personal repair sheet with written evidence note; informational only, no new repair slot."
@@ -387,3 +387,4 @@ from_day,to_day,what,where,minutes,error,note
 108,109,s06-P108-inside s06-P108-roots s06-P108-fruit  individual diagram labels and sequence papers,Return,0,,"Return all individual work, including children not heard. Feedback shares the scheduled repair slot."
 118,120,C-E118-table C-E118-audit C-E118-limit C-E118-add C-E118-compare C-E118-harm C-E118-model C-E118-predict C-E118-test,Return feedback,2,,Return once with feedback. Keep initial evidence separate from revisions.
 119,120,C-E119-select C-E119-predict C-E119-test C-E119-plant C-E119-animal,Return feedback,3,,Return once with feedback. Keep initial evidence separate from revisions.
+120,120,C-X120,Handoff,0,,Private feedback in the existing final-day Handoff; no later course day exists.

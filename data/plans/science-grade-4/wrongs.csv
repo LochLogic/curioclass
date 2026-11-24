@@ -582,7 +582,7 @@ s06-X109,Only outside parts help,,,F,Diagnose only this stated idea; incomplete 
 s06-X110,Outside parts alone suffice,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X110,Petals alone make seeds,,,G,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X111,"Only beak, skin and wings matter",,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
-s06-X112,Cutting proves roots absorbed water,,,H,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X112,Inside stem paths cannot contribute to water supply.,,,F,Excludes internal transport despite the matched broken/intact evidence.
 s06-X112,Only outside structures matter,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X113,Eye lights stone,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X114,Eyes light the insect,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
@@ -735,5 +735,5 @@ C-P120-light,Unseen means unlit.,,,AF,Conflates illumination with viewing.
 C-P120-sense,Remembering cannot change action.,,,AH,Omits learned meaning.
 C-P120-structure,Outside parts alone explain growth.,,,AI,Omits inside cooperation.
 C-P120-preserve,Label supplied invented readings as measurements I made.,,,AK,Supplied evidence is not firsthand observation.
-C-X120,"Lamp ? sign ? eye, labeled my firsthand measurement.",,,AK,"The path is accurate, but supplied invented evidence is mislabeled firsthand."
+C-X120,"Lamp to sign to eye, labeled my firsthand measurement.",,,AK,"The path is accurate, but supplied invented evidence is mislabeled firsthand."
 C-X120,The eye supplies the light to the sign.,,,AE,Reversed light direction; code separately from provenance.

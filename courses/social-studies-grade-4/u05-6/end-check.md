@@ -1,45 +1,17 @@
 ---
-piece: blank
+piece: story
+audience: teacher
 course: social-studies-grade-4
 unit: 5.6
 version: draft, not yet taught
 credit: All ours.
 ---
-# Unit 5 assessment
+# Unit 5 assessment printing guide
 
-## Side 1
+Teacher only. The response master is the Student page in d102.md. Print its Side 1 and Side 2 once per child. Its questions are drawn from the current items.csv rows; do not make another response copy from this guide.
 
-Ask for another reading.
+Q1 uses B. Q2 uses A and the four-row location/year/method task. Q3 uses C. Q4 uses F on Side 2. Q5 uses E. Q6 uses A. Q7 uses A and D. Q8 receives the held river caption. Q9 is one argument using two independent records, including G.
 
-| Question | Response |
-|---|---|
-| [[s05-E1-1]] | ____________________<br>____________________ |
-| [[s05-E1-2]] | ____________________<br>____________________ |
-| [[s05-E1-3]] | ____________________<br>____________________ |
-| [[s05-E2-1]] | ____________________<br>____________________ |
-| [[s05-E2-2]] | ____________________<br>____________________ |
-| [[s05-E2-3]] | ____________________<br>____________________ |
-| [[s05-E2-4]] | ____________________<br>____________________ |
-| [[s05-E2-5]] | ____________________<br>____________________ |
-| [[s05-E3-1]] | ____________________<br>____________________ |
-| [[s05-E3-2]] | ____________________<br>____________________ |
-| [[s05-E3-3]] | ____________________<br>____________________ |
-| [[s05-E4-1]] | ____________________<br>____________________ |
-| [[s05-E4-2]] | ____________________<br>____________________ |
+The three Q9 component labels refer to that one argument and require no additional response.
 
-## Side 2
-
-| Question | Response |
-|---|---|
-| [[s05-E5-1]] | ____________________<br>____________________ |
-| [[s05-E5-2]] | ____________________<br>____________________ |
-| [[s05-E6-1]] | Mark map. |
-| [[s05-E6-2]] | ____________________<br>____________________ |
-| [[s05-E6-3]] | ____________________<br>____________________ |
-| [[s05-E7-1]] | Mark map. |
-| [[s05-E7-2]] | ____________________<br>____________________ |
-| [[s05-E8-1]] | ____________________<br>____________________ |
-| [[s05-E8-2]] | ____________________<br>____________________ |
-| [[s05-E9-1]] | ____________________<br>____________________<br>____________________<br>____________________<br>____________________<br>____________________ |
-
-Q9: use G and another source, or G’s two distinct records. Name both.
+Print assessment-maps.md and assessment-b.md separately. Keep assessment-context.md, assessment-a-river.md and teacher-key.md adult-only. Reveal each source at its allocated question. Use the current generated key for marking.
