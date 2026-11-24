@@ -597,7 +597,7 @@ s06-X112-animal,Only outside structures matter.,,,F,Diagnose only this stated id
 s06-X113-response,Ears command movement directly.,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-P113-plant,Only outside parts supply the plant.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-R1,Open eyes light the toy.,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
-s06-R2,Feet receive the sound.,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-R2,Ears command turning directly without processing.,,,D,Explicit direct-command claim only. Do not require brain vocabulary or infer this error from a missing brain label.
 s06-E1-model,Eye lights tile.,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-E1-predict,Tile stays visible without illumination.,,,B,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-E1-test,Light crosses the opaque card.,,,I,Diagnose only this stated idea; incomplete answers are not automatically this error.
