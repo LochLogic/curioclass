@@ -963,6 +963,14 @@ def field8_lines(course, rows, fr):
     return L
 
 
+def has_order_conflict(value):
+    """True when a source-map order_conflict cell records a real conflict. Empty cells and the no-conflict prose
+    some courses keep there ("None; lesson order retained.", "Source order kept; ...", "No source lesson ...") are
+    not conflicts (ELA structure pass 2026-11-24)."""
+    v = value.strip().lower()
+    return bool(v) and not v.startswith(('none', 'no ', 'no;', 'no,', 'source order kept'))
+
+
 def field10_extras(course, unit):
     """Source-map lines (inside the skel block) and the missing-data lines for a non-social-studies unit."""
     base = base_text_of(course)
@@ -976,7 +984,7 @@ def field10_extras(course, unit):
             # one line per row (spot check 2026-11-15, bulk): goals, standards and why stay in source-map.csv
             L.append('  - %s, %s: our days %s; %s%s'
                      % (r['source'], clean(r['title']), r['days'] or 'none', r['decision'],
-                        '; order conflict' if r.get('order_conflict', '').strip() else ''))
+                        '; order conflict' if has_order_conflict(r.get('order_conflict', '')) else ''))
         L.append('- **Source-map decisions in this unit:** %s. Goals, standards, the reason for each decision and any order '
                  'conflict are in the file.' % ', '.join('%s %d' % (k, v) for k, v in sorted(count.items())))
     elif base:

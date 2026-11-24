@@ -20,7 +20,7 @@ Prepare these before instruction. Real measurements are not on file and must not
 - Day 11: an original short account of a thin partially reflective coating. Students connect its structure to the measured two-path behavior. Avoid claiming ordinary clear surfaces reflect only because of dust or that real mirrors reflect every incident ray.
 - Day 13: relative-input records plus an original receptor-to-brain reading checked against LS1.D. Use two labelled arrow types, light to receptor and signal to brain. Explain that a strong reflected image can obscure a weaker transmitted image, without claiming the brain processes only its strongest signal.
 - Day 14: paired recorded ray paths at a flat air-water boundary, with oblique and perpendicular incidence. Include a printed perpendicular reference and descriptions of the paths.
-- Day 16: withhold this comparison until then. Supply a different transparent panel with recorded views under changed lighting. Do not use the covered bird display or water-panel task reserved for day 17.
+- Day 16: withhold this comparison until then. Supply a different transparent panel with recorded views under changed lighting. Do not use the viewing-tube display or clear plastic block reserved for the assessment products begun on day 16.
 
 The no-kit routes are weaker because students analyze measurements and observations collected by others. They still select comparisons, evaluate controls and revise their own models. A simulation represents a mechanism and does not replace real evidence. Physical model and sensor limitations belong on each evidence sheet.
 
@@ -60,3 +60,19 @@ Evidence sources and limits:
 - The [plate-motion background](https://www.nps.gov/subjects/geology/plate-tectonics-evidence-of-plate-motions.htm) was read for mostly solid mantle, partial melting and boundary mechanisms. Read only for background; its adapted book figures are excluded. The [time background](https://www.nps.gov/subjects/geology/geotime.htm) distinguishes rock-record order from independent dates. The [karst background](https://www.usgs.gov/mission-areas/water-resources/science/karst-aquifers) explains dissolution into cave networks. Read their accessible agency text; quote no passage. Several older geological-survey publication pages returned access errors and are not planned readings.
 
 The safety read must examine all three physical paths, preparation, clean-up, home use and the selected clay and foam supplier information against the school guidance linked in s04.md. Stop for a failed enclosure, crumbling material, unsafe ruler use or an unaddressed sensitivity; take the paper path. The sensitivity read begins with the two community sources linked in s04.md, then adds scholarship and education guidance to reach at least five sources. No child represents a faith, states a belief or is graded on one. These later agent reads are requested, not claimed completed.
+
+## Unit 2: particle collisions across a wall
+
+From [unit 2](s02.md), field 8. Mark: light tool, spec only. Days 37 to 40 and 46. Job: students predict, compare and revise particle motion and energy-transfer accounts across a boundary. Verdict: partly fits until accessible records exist. Use identical described sequences on one display or printed cards; counters illustrate behavior and are not evidence.
+
+## Unit 3: rising air parcel and ocean circulation
+
+From [unit 3](s03.md), field 8. Rising air parcel: light tool, spec only; day 60 shows why expansion cools, day 68 practises condensation with feedback. Ocean circulation: light tool, spec only; day 86 shows why currents transport heat. Verdict for both: partly fits pending accessible printed models. Keep heated water at 40 degrees Celsius or less in any paired records.
+
+## Unit 5: tsunami wave tank
+
+From [unit 5](s05.md), field 8. Mark: light tool, spec only. Day 122, ten minutes. Job: show why seafloor displacement affects wave height and spacing. Verdict: does not exist; use printed comparisons and the tray records. A simulation represents the mechanism and is not measured evidence.
+
+## Unit 6: virtual microscope
+
+From [unit 6](s06.md), field 8. Mark: light tool, spec only. Days 141, 142, 147, 151 and 153. Job: compare fields of view and scale, with magnification as a ratio. Verdict: does not exist; the no-kit route uses the teacher's scaled fields and paired original micrographs. The boundary simulation on 153 represents boundaries, not measured evidence.

@@ -4,7 +4,7 @@ Course `math-kindergarten`, grade K, draft 2026-11-15.
 
 The course has eight units and 160 daily course days. Course day and school day are the same, so `school_day` is blank in the CSV. The frame's unit allocations stay 18, 26, 19, 20, 17, 16, 15 and 22 days. The last allocation comprises 17 unit 8 days and five course-level review days. Thus the ledger has 148 unit days and 12 course-level days: four check days, three respond days and five review days. Sections are not divided at this stage; unit days use `<unit>.1`.
 
-The CSV sets the teaching and assessment slots, without items or answer keys. The source map accounts for all 137 public first-edition base lessons: 136 retained and one cut, with ten added teaching days and seven unit assessment days. Course-level slots are separately identified as original assessment or response work. The five final base lessons occupy course-level review days. Login-gated assessments, answers and cool-downs are not used. Source links and licence information are provenance for the later day credits. All planned models are physical, with paper alternatives in `supplies`; no digital or separate drawing tool is required, so `tools` is empty. Math leaves `safety` empty as the schema requires, with the pouring flag in the day note.
+The CSV sets the teaching and assessment slots, without items or answer keys. The source map accounts for all 137 public first-edition base lessons: 136 retained and one cut, with ten added teaching days and seven unit assessment days. Course-level slots are separately identified as original assessment or response work. The five final base lessons occupy course-level review days. Login-gated assessments, answers and cool-downs are not used. Source links and licence information are provenance for the later day credits. All planned models are physical, with paper alternatives in `supplies`; no digital or separate drawing tool is required, so `tools` is empty. Math fills the optional `safety` column on loose-piece, pouring, shape, and paper and crayon days, and the pouring flag stays in the day note.
 
 ## Prerequisites, time and evidence
 
@@ -22,16 +22,16 @@ Each observation or check code is a coverage obligation: retain a prompt or obse
 |---|---:|---:|
 | Unit 1 | 960 | 810 |
 | Unit 2 | 1320 | 1300 |
-| Unit 3 | 980 | 90 |
+| Unit 3 | 980 | 110 |
 | Unit 4 | 1060 | 1040 |
 | Unit 5 | 900 | 900 |
 | Unit 6 | 820 | 820 |
 | Unit 7 | 760 | 320 |
-| Unit 8 | 875 | 855 |
+| Unit 8 | 875 | 833 |
 | Course-level review | 300 | 300 |
-| Total | 7975 | 6435 |
+| Total | 7975 | 6433 |
 
-The reservation is **6435 / 7975 = 80.7 percent**, above the 75 percent planning line. Unit plans verify it from actual lesson-part minutes with the same exclusions. Supporting work connects units deliberately: sorting uses cardinality and comparison, composed shapes become equation stories in unit 7, and teen numbers connect decompositions to the grade 1 handoff.
+The reservation is **6433 / 7975 = 80.7 percent**, above the 75 percent planning line. Unit plans verify it from actual lesson-part minutes with the same exclusions. Supporting work connects units deliberately: sorting uses cardinality and comparison, composed shapes become equation stories in unit 7, and teen numbers connect decompositions to the grade 1 handoff.
 
 ## Unit 1. Math in our world
 
@@ -83,7 +83,7 @@ No readiness or mid-unit assessment. **Days 100 to 103 form the end-of-unit wind
 
 **Days 104 to 119, weeks 21 to 24.** Retrieve a full ten-frame before counting larger collections. Track lines, rectangular arrays and marked circles to twenty; scattered sets stay at ten. Move from quantities to ten ones and additional ones, then drawings, equations and written numerals. Added day 110 gives each teen name both ways; added day 115 writes and matches 11 to 20 while retrieving zero to ten. Start-from-a-given-number counting becomes explicit, after its unit 4 routine preparation. Ten is still ten ones, rather than the grade 1 unit called a ten.
 
-No readiness or mid-unit assessment. **Days 115 to 119 form the end-of-unit window**, closing on day 119. Use retained numeral and teen products plus one assigned oral counting performance per domain: every part of writing 0 to 20 and matching counts, counting the required arrangements and counting out 1 to 20, starting at a supplied number, and composing and decomposing 11 to 19 with recorded representations. This completes K.CC.A.3 and K.CC.B.5. Respond on days 120 and 121. MP.6 precise teen language and MP.7 ten-and-some structure appear in evidence. Day 118 uses crayon marks or rubbings, with no required fingerprint or finger counting.
+No readiness or mid-unit assessment. **Days 115 to 119 form the end-of-unit window**, closing on day 119. Use retained numeral and teen products plus one assigned oral counting performance per domain: every part of writing 0 to 20 and matching counts, counting the required arrangements and counting out 1 to 20, starting at a supplied number, and composing and decomposing 11 to 19 with recorded representations. This completes K.CC.A.3 and K.CC.B.5. Respond on days 120 and 121. MP.6 precise teen language and MP.7 ten-and-some structure appear in evidence. Day 118 uses crayon marks, with no required fingerprint or finger counting.
 
 **Candidate settled:** retain the base-ten Progressions comparison as teacher preparation, zero student days. Drop counting a collection to thirty by making tens: the owned object and written range ends at twenty, and treating ten as a new unit belongs to grade 1.
 
