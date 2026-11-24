@@ -1,5 +1,5 @@
 ---
-piece: key
+piece: story
 course: math-kindergarten
 unit: 7.3
 stretch: 7
@@ -56,7 +56,7 @@ Mark what makes them different.
 
 Answer: Marks cylinder body extending beyond its circular end, unlike the flat circle.
 
-A depth arrow, trace or directed adult mark is valid. Color alone is not geometric evidence. | Shape: Independently annotate dimension difference on mismatched-size pair; practice repairs indicated labels.
+Student-page Side 2 Exit box, returned with the half ticket on day 129. A depth arrow, trace or directed adult mark is valid. Color alone is not geometric evidence. | Shape: Independently annotate dimension difference on mismatched-size pair; practice repairs indicated labels.
 
 Shown: Marks thickness beyond cylinder end. | Not yet seen: Marks only color as difference.
 
