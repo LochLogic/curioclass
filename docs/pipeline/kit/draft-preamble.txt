@@ -6,6 +6,7 @@ DRAFT RUN. This job is part of the Codex draft run (scripts/codex_draft.py, star
 - The fast lesson gate for one course is `python -X utf8 scripts/lesson_course.py <course> [<first_day> <last_day>]`; it prints the same lines as the full check for that course only, ending with a failure count. Use it wherever the job names the lesson gate.
 - If a gate cannot run in the sandbox (a missing Python module such as markdown, a missing tool such as awk), say so in one line and carry on with the work: never stop for it. The runner runs the lesson gate itself after your job.
 - The runner runs the step 0 ledger gate before your job; skip step 0. If the runner found the gate closed, its output is at the end of this prompt: write the work anyway, teach each blocked item as new (never as review), correct a ledger note that plainly cites the wrong section or a later day (through ledger.py), and list the blockers in your last message.
+- A day with no tool leaves the days.csv tool cell blank (never the word None) and tool_min blank or 0.
 - No other gate stops a job in this run. If a first gate run fails (unit plan, plan or ledger check), fix the failure when it is in your course's files and carry on; otherwise note it in one line and carry on. Never end a job with nothing written because a gate failed.
 
 The job follows.
