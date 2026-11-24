@@ -37,4 +37,4 @@ Choose one priority per child for day 86: counting/tracking, comparison, numeral
 
 Day 86 transfer: one assigned half slip per child, matched to the repaired component: count, move, next, stop, compare, fewer or symbol. No new oral interview. Keep original, descriptive feedback and a later revision before updating a judgment. Reserve thirty teacher minutes after class to record paper evidence; unheard reasoning stays pending. Carry first response and help notes intact.
 
-Day 87 receives five Return and repair minutes for day 86 feedback and assigned-slip revision, replacing center time, no new check. Update eligible component judgments afterward.
+Day 87 receives day 86 feedback and assigned-slip revision in five existing diagnostic minutes of Centers and repair, replacing one diagnostic action, no new check. Update eligible component judgments afterward.
