@@ -677,3 +677,4 @@ s03-K51-names,Calls shorter strip longer from displaced endpoints.,,,G,"Assign o
 s03-P51-corners,Calls the slanted equal-sided tile square because its sides are equal.,,,N,"Assign only from observed action or heard explanation, never infer unheard reasoning."
 s03-P52-frame,Calls a frame with an open join complete.,,,D,"Assign only from observed action or heard explanation, never infer unheard reasoning."
 s03-F52-name,Leaves rectangle label crossed out without interpretable reason.,,,x,"Assign only from observed action or heard explanation, never infer unheard reasoning."
+s03-P53-attribute-hold,Points only to the outside color.,,,L,Interpret from observed action or heard words; unscored practice stays in the folder.
