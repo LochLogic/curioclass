@@ -671,18 +671,18 @@ s06-P104-feature,The comparison condition does not need to match.,,,E,A second c
 s06-P104-contribution,"Our group worked, but I cannot identify my contribution.",,,x,Group work alone does not establish an individual decision.
 s06-P105-plot,Plot one mark at 1 and one at 1.5; drop the repeated 1.,,,G,Deleting a repeated measurement hides one trial.
 s06-P105-control,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
-s06-P106-assembly,An unrelated change fixes any failure.,,,H,Target the recorded failure.
+s06-P106-assembly,A records-only annotation proves I built the filter.,,,x,Response does not establish the requested observation or reading.
 s06-P106-inventory,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
 s06-P107-serial,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
 s06-P107-scale-v2,7 mL.,,,x,Counts marks without their 20 mL step.
 s06-P108-audit,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
-s06-P108-fault,An unrelated change fixes any failure.,,,H,Target the recorded failure.
-s06-P109-locator,An unrelated change fixes any failure.,,,H,Target the recorded failure.
+s06-P108-fault,A leak occurred even though no leak was recorded.,,,x,Response does not establish the requested observation or reading.
+s06-P109-locator,"The cloth caused the blockage, although no cause was observed.",,,x,Response does not establish the requested observation or reading.
 s06-P109-fixed,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
 s06-P110-dry,An unrelated change fixes any failure.,,,H,Target the recorded failure.
-s06-P110-mark,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P110-mark,Round up a below-threshold volume and count the goal met.,,,x,Response does not establish the requested observation or reading.
 s06-P111-dot,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
-s06-P111-criterion,Clear-looking output is safe to drink.,,,D,Appearance does not establish drinking safety.
+s06-P111-criterion,Clear appearance proves no side bypass.,,,x,Response does not establish the requested observation or reading.
 s06-P112-source,The separate facts already explain the whole result.,,,A,Separate facts need a combined conclusion.
 s06-P112-limit,Clear-looking output is safe to drink.,,,D,Appearance does not establish drinking safety.
 s06-P113-point,Part names alone show the interaction.,,,B,Names alone omit interactions.
@@ -743,3 +743,5 @@ s06-P109-repair-G,Delete the stopped-flow repeat.,,,G,Fresh component repair; re
 s06-P110-repair-H,Change cloth color and leave the support rocking.,,,H,Fresh component repair; retain original evidence.
 s06-P111-repair-E,Keep the new pour position and compare directly.,,,E,Fresh component repair; retain original evidence.
 s06-P111-repair-G,Erase the cloudier repeat.,,,G,Fresh component repair; retain original evidence.
+s06-P108-route,Water appeared from nowhere.,,,x,Use recorded route evidence.
+s06-P109-change,Changing cloth color fixes an outlet obstruction.,,,H,Use recorded route evidence.

@@ -1,5 +1,5 @@
 ---
-piece: teacher
+piece: opener
 course: social-studies-grade-5
 unit: 3.5
 stretch: 3

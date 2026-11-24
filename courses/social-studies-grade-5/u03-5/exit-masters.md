@@ -1,8 +1,9 @@
 ---
-piece: assessment
+piece: check
 course: social-studies-grade-5
 unit: 3.5
 stretch: 3
+check: exit
 version: draft, not yet taught
 credit: Curio Class original work, CC BY 4.0. Historical summaries credited below.
 ---
@@ -69,3 +70,14 @@ Write a conditional resistance claim supported by both attributed sources and re
 ________________________________________________
 
 ________________________________________________
+
+## Teacher
+
+Teacher preparation bank. Use the corresponding day file for the classroom print layout and source panels. Do not distribute this whole bank. Keep its generated answer key separate. Print only today's source panel and assigned stems.
+
+## Items
+
+[[s03-X39a]]
+[[s03-X39b]]
+[[s03-X40]]
+[[s03-X41]]

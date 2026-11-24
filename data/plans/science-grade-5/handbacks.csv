@@ -343,3 +343,5 @@ from_day,to_day,what,where,minutes,error,note
 109,110,s06-P109-repair-F s06-P109-repair-G,Return,0,,Private written feedback inside existing return; no extra conference minutes.
 110,111,s06-P110-repair-H,Return,0,,Private written feedback inside existing return; no extra conference minutes.
 111,112,s06-P111-repair-E s06-P111-repair-G,Return,0,,Private written feedback inside existing return; no extra conference minutes.
+108,109,s06-P108-route,Return,0,,Private written component feedback with existing return; no extra conference minutes.
+109,110,s06-P109-change,Return,0,,Private written component feedback with existing return; no extra conference minutes.

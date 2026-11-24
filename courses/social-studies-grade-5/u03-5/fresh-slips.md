@@ -1,8 +1,9 @@
 ---
-piece: sheet
+piece: check
 course: social-studies-grade-5
 unit: 3.5
 stretch: 3
+check: fix
 version: draft, not yet taught
 credit: Curio Class original work, CC BY 4.0. Historical summaries credited below.
 ---
@@ -39,3 +40,13 @@ Explain how this detail supports requesting a shade.
 ________________________________________________
 
 ________________________________________________
+
+## Teacher
+
+Teacher preparation bank. Use the corresponding day file for the classroom print layout and source panels. Do not distribute this whole bank. Keep its generated answer key separate. Print only today's source panel and assigned stems.
+
+## Items
+
+[[s03-F39]]
+[[s03-F40]]
+[[s03-F41]]

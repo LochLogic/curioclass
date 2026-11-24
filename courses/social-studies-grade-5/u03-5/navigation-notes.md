@@ -1,5 +1,5 @@
 ---
-piece: sheet
+piece: blank
 course: social-studies-grade-5
 unit: 3.5
 stretch: 3
@@ -8,7 +8,6 @@ credit: Curio Class original work, CC BY 4.0. Historical summaries credited belo
 ---
 # Navigation and isolated influence notes
 
-Name: __________________ Date: __________________
 
 Use map-access.md and navigation-teach.svg.
 The diagram is modern, text-based and not to scale.

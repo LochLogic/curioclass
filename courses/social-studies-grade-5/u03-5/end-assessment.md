@@ -1,8 +1,9 @@
 ---
-piece: assessment
+piece: check
 course: social-studies-grade-5
 unit: 3.5
 stretch: 3
+check: end
 version: draft, not yet taught
 credit: Curio Class original work, CC BY 4.0. Historical summaries credited below.
 ---
@@ -85,8 +86,8 @@ Q6b Explain one role's effect.
 
 ________________________________________________
 
-Old South: Milk/Washington. Shooting: beyond Town House.
-P: Revere publishes a selected portrayal of King Street deaths.
+M, modern schematic: Old North Church, Salem Street; Revere House, North Square.
+P: Revere's print emphasizes church towers beside arriving British troops.
 
 Q7a Locate both sites on M.
 
@@ -116,3 +117,27 @@ ________________________________________________
 Q9b Give two interpretations of one idea within the question.
 
 ________________________________________________
+
+## Teacher
+
+Teacher preparation bank. Use the corresponding day file for the classroom print layout and source panels. Do not distribute this whole bank. Keep its generated answer key separate. Print only today's source panel and assigned stems.
+
+## Items
+
+[[s03-Q1]]
+[[s03-Q2a]]
+[[s03-Q2b]]
+[[s03-Q3a]]
+[[s03-Q3b]]
+[[s03-Q3c]]
+[[s03-Q4a]]
+[[s03-Q4b]]
+[[s03-Q5]]
+[[s03-Q6a]]
+[[s03-Q6b]]
+[[s03-Q7a]]
+[[s03-Q7b]]
+[[s03-Q8a]]
+[[s03-Q8b]]
+[[s03-Q9a]]
+[[s03-Q9b]]

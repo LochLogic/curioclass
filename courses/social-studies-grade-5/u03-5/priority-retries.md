@@ -1,8 +1,9 @@
 ---
-piece: assessment
+piece: check
 course: social-studies-grade-5
 unit: 3.5
 stretch: 3
+check: fix
 version: draft, not yet taught
 credit: Curio Class original work, CC BY 4.0. Historical summaries credited below.
 ---
@@ -42,7 +43,7 @@ ________________________________________________
 
 ## Branch A
 
-Archive labels: a revenue law, a boundary order and a nation land complaint.
+Made up: Museum labels list a revenue law, a boundary rule and settlement disputes.
 
 Which missing detail would explain the boundary decision?
 
@@ -54,7 +55,7 @@ ________________________________________________
 
 Made up: Listed voters approve taxes. Other residents cannot vote.
 
-What remains unknown about the other residents consent?
+What remains unknown about the other residents' consent?
 
 ________________________________________________
 
@@ -94,8 +95,24 @@ ________________________________________________
 
 Made up: An archive asks who could consent to a rule.
 
-Explain how two meanings of consent could change a visitor judgment.
+Explain how two meanings of consent could change a visitor's judgment.
 
 ________________________________________________
 
 ________________________________________________
+
+## Teacher
+
+Teacher preparation bank. Use the corresponding day file for the classroom print layout and source panels. Do not distribute this whole bank. Keep its generated answer key separate. Print only today's source panel and assigned stems.
+
+## Items
+
+[[s03-F43-C]]
+[[s03-F43-D]]
+[[s03-F43-E]]
+[[s03-F43-A]]
+[[s03-F43-G]]
+[[s03-F43-J]]
+[[s03-F43-F]]
+[[s03-F43-K]]
+[[s03-F43-U]]

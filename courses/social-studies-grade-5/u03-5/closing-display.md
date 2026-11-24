@@ -1,5 +1,5 @@
 ---
-piece: sheet
+piece: blank
 course: social-studies-grade-5
 unit: 3.5
 stretch: 3
@@ -8,7 +8,6 @@ credit: Curio Class original work, CC BY 4.0. Historical summaries credited belo
 ---
 # Closing evidence display
 
-Name: __________________ Date: __________________
 
 Use three teaching-source labels and blank reasoning arrows.
 Congress, 1765 __________
