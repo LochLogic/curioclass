@@ -4,11 +4,11 @@ tray,1,1 2 4,teacher table,room,holds the ball while it is weighed and pumped; w
 protective eyewear,1,1 3,teacher table,student,"worn by the teacher and the children near the pump on day 1 and by every child for the syringes on day 3 (30 pairs, or a rotating set sanitized between groups)"
 gram-reading kitchen scale,1,1 2 4,weighing station,room,reads whole grams; trial the day before; dry the scale and the outside of anything before weighing; zero it with the tray on it; a household stand-in; day 1 shows the display on a document camera or a child holds a large-number card; day 2 weighs the soil tray; day 4 uses two scales with three groups at each
 gram-reading kitchen scales,4,4,weighing station,room,"two scales with three groups at each, so every group weighs in a 3 minute turn; trial both the day before"
-question board,1,1 2 3 4,classroom wall,class,"chart paper with the unit question and the first question, What entered the ball?; children add I-wonder slips on day 1; each day names the question it answers; answers move beside evidence"
+question board,1,1 2 3 4 5 6 7,classroom wall,class,"chart paper with the unit question and the first question, What entered the ball?; children add I-wonder slips on day 1; each day names the question it answers; answers move beside evidence"
 readiness sheet,1,1,teacher folder,student,"printed from readiness.md; one child, one sheet; sorted afterward for gap M and gap P"
 six card pieces,1,1 2,envelope,student,"cut from cereal-box card at no cost, from readiness-pieces.md; six in an envelope for each child, the same six used again on day 2"
 first drawing,1,1 3 4,science folder,student,"Dated day 1 model retained for day 3 and day 4, never erased; new apparatus need not share its dot count."
-exit ticket,1,1 2 3 4,teacher folder,student,printed from the exit rows; four minutes; read aloud when needed
+exit ticket,1,1 2 3 4 5 6 7,teacher folder,student,printed from the exit rows; four minutes; read aloud when needed
 record sheet,1,1 2 3 4,teacher folder,room,"one row for each child; the teacher keeps it; readiness M and P, the exit ticks and the error letters go here"
 family note,1,1,sent home,student,English and Spanish; nothing comes back to school
 record card N1,1,1,teacher folder,class,"invented for practice, not an observation: a flat and a pumped ball on one scale; used only in a room with no ball, pump or scale"
@@ -33,8 +33,8 @@ pot log,4,4,science folder,group,"printed from pot-log.md; dry soil, beans and w
 record card N4,4,4,teacher folder,class,"Use corrected N4 printed in d004, not shared card: empty pot 40 g; tared 100, 102, 132 g; complete 172 g. Invented for practice."
 "sugar, water, plastic cup and spoon",5,5,science folder or teacher station,group,One teaspoon sugar and 50 g water. Food allergy check before handling; no tasting.
 splash goggles and washing supplies,5,5 6 11 13,science folder or teacher station,student,Goggles from setup through cleanup. Four washing points days 11/13 or adult wet handling. Sanitize with full contact time; finish after class if needed.
-"dated dishes, salt and hand lens",6,6 7,science folder or teacher station,group,Prepare matched salt-water/plain-water dishes before day 5. No heating; N6 if damp.
-"reading cards S1 S2, N6 and dot panels",5,5 6 7,science folder or teacher station,group,Missing section 1.2 printing pieces remain outside this job scope; original records in s01 U6. Keep P/R held for X5.
+"dated dishes, salt and hand lens",6,6,science folder or teacher station,group,Prepare matched salt-water/plain-water dishes before day 5. No heating; N6 if damp.
+reading cards S1 S2,5,5 7,science folder or teacher station,group,Original invented accounts printed on day 5 student page; day 7 reviews familiar copies.
 model evidence folder,5,5 6 7 8 11 15 17,science folder or teacher station,student,Retain original drawings and dated revisions.
 whole-gram scale,8,8 9 10 11 12 13 14 16,science folder or teacher station,room,"One shared 1 g scale. Zero and verify with unchanged check object; dry exteriors, read twice. Retain failed readings, retry once then label separate fallback."
 "cup, card pieces and empty bag",8,8,science folder or teacher station,group,Dry inventory; retain all objects. No tablet or release holder in practice.
@@ -65,3 +65,8 @@ N14 comparison card,16,16,science folder or teacher station,student,Print n14-co
 assessment record,16,16 17,science folder or teacher station,room,"Print u01-4/record.md; twenty original points, separate formative record."
 response repairs and fresh retries,17,17,science folder or teacher station,student,Print response-repairs.md and one assigned retry from retries.md; private keys in teacher-key.md.
 next readiness picture cards,17,17,science folder or teacher station,student,Print next-readiness.md after retry; separate prerequisite record.
+formative class list,5,5 6 7,teacher station,class,"Teacher prepares day columns. One scale: shown, shown with help, not yet seen. Separate error notes; no points."
+stirring spoon,6,6,teacher station,group,"One per group, day 6 fresh salt mixture; content/date labels prepared alongside."
+N6,6,6 7,model evidence folder,student,Original invented fallback printed on day 6; day 7 keeps its status visible.
+liquid-model drawing spaces,5,5 6,model evidence folder,student,Drawing spaces printed directly on days 5 and 6 student pages. No separate panel sheet.
+familiar dry model panels,7,7,teacher station,class,Teacher displays the familiar drawings from days 5 and 6 for oral rehearsal. No new practice model is drafted.
