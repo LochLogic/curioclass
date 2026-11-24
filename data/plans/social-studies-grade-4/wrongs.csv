@@ -783,8 +783,8 @@ s05-X84-1,Tracks themselves bought the West.,,,C,One predicted content diagnosis
 s05-X85-1,All women wanted homes; all men wanted gold.,,,D,One predicted content diagnosis; equivalent supported wording accepted.
 s05-X85-2,The wagons never needed supplies.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
 s05-X86-1,Everybody gained equally.,,,R,One predicted content diagnosis; equivalent supported wording accepted.
-s05-X87-1,Every modern outline is an old national border.,,,E,One predicted content diagnosis; equivalent supported wording accepted.
-s05-X87-2,All modern Colorado changed hands in 1848.,,,E,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X87-1,Arizona is east of New Mexico.,,,E,Cold-solved content diagnosis.
+s05-X87-2,All modern Colorado was Mexican and transferred in 1848.,,,E,Cold-solved content diagnosis.
 s05-X88-1,Independence and annexation both happened in 1836.,,,F,One predicted content diagnosis; equivalent supported wording accepted.
 s05-X89-1,Both are eyewitness accounts from 1846.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
 s05-X89-2,Both accounts prove all their claims equally.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
@@ -867,8 +867,8 @@ s05-P85-3,The strip describes gathering fuel.,,,x,Wrong task match; not a gender
 s05-P85-4,She was still traveling and did nothing after arrival.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
 s05-P86-1,Exchange comes before the clothing request.,,,O,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
 s05-P86-2,Only settlers from the East.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
-s05-P87-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P87-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
+s05-P87-1,Every gray outline is an old national border.,,,E,Cold-solved content diagnosis.
+s05-P87-2,Oregon.,,,E,Cold-solved content diagnosis.
 s05-P88-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
 s05-P88-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
 s05-P88-3,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
@@ -941,3 +941,5 @@ s05-F86-1,All girls want training; all boys want jobs.,,,D,Cold-solved against p
 s05-K86-1,"One event came later, so it must be the cause.",,,H,Cold-solved against printed stimulus; accept equivalent supported wording.
 s05-P86-3,Yes. Monday always causes Tuesday's events.,,,H,Cold-solved against printed stimulus; accept equivalent supported wording.
 s05-P86-4,Both groups received only benefits.,,,R,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-F87-1,Tuesday rain caused Monday's vote.,,,O,Cold-solved fresh component; one diagnosis.
+s05-K87-1,A modern state always has one historical acquisition.,,,E,Cold-solved fresh component; one diagnosis.
