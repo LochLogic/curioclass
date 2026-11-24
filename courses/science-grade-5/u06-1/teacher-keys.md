@@ -1,149 +1,51 @@
 ---
-piece: blank
+piece: opener
 course: science-grade-5
 unit: 6.1
 stretch: 6
 version: draft, not yet taught
-credit: All ours, except attributed source fragments where stated.
+credit: ours
 audience: teacher
 ---
 
-# Section 6.1: teacher keys
-
-Teacher only. Keep separate before copying. Equivalent supported answers count.
-Language support does not establish a science error.
-
-## s06-X102
-
-Invented for practice. Harbor log: A floating boom held wrappers beside the dock. Council note: Floating barriers intercept litter before it spreads. A prettier harbor matters to us. We expect less floating litter next year. Revise a system drawing with both cards, labeling observation, value and projection.
-
-Key: Wrappers moving in water meet the boom and remain beside the dock. The log supports interception in the note. Retained wrappers: observation; prettier: value; less next year: projection.
-
-Look-fors: Evidence-backed interaction using both sources; three correct status labels | Shape: two-source model revision with evidence-status annotations
-
-Samples: Meets: Wrappers moving in water meet the boom and remain beside the dock. The log supports interception in the note. Retained wrappers: observation; prettier: value; less next year: projection. | Not yet: Separate facts without connection. Error A.
-
-- Separate facts without connection. Error A: Separate facts need a combined conclusion.
-- Unconnected boom and water labels. Error B: Names alone omit interactions.
-- Less litter next year was already observed. Error C: A projection is not an observation.
-
-## s06-P100-notice
-
-Record one visible detail in the runoff image.
-
-Key: Visible plume or moving water; invisible hazards cannot be identified from appearance.
-
-Look-fors: Supported component; language support recorded separately from science understanding | Shape: single component, never complete held response
-
-Samples: Meets: Visible plume or moving water; invisible hazards cannot be identified from appearance. | Not yet: Part names alone show the interaction. Error B.
-
-- Part names alone show the interaction. Error B: Names alone omit interactions.
-
-## s06-P100-route
-
-In the invented anchor, label one arrow showing what moves toward the stream.
-
-Key: Water moves from parking lot toward stream and can carry material.
-
-Look-fors: Supported component; language support recorded separately from science understanding | Shape: single component, never complete held response
-
-Samples: Meets: Water moves from parking lot toward stream and can carry material. | Not yet: Part names alone show the interaction. Error B.
-
-- Part names alone show the interaction. Error B: Names alone omit interactions.
-
-## s06-P101-locator
-
-Find the author and date on the Seattle account.
-
-Key: City water utility; April 8, 2026.
-
-Look-fors: Supported component; language support recorded separately from science understanding | Shape: single component, never complete held response
-
-Samples: Meets: City water utility; April 8, 2026. | Not yet: The separate facts already explain the whole result. Error A.
-
-- The separate facts already explain the whole result. Error A: Separate facts need a combined conclusion.
-
-## s06-P101-status
-
-The Seattle account expected enough summer water. Classify this statement as observed or expected.
-
-Key: Expected; dated account does not establish present conditions.
-
-Look-fors: Supported component; language support recorded separately from science understanding | Shape: single component, never complete held response
-
-Samples: Meets: Expected; dated account does not establish present conditions. | Not yet: The expected future result has already been observed. Error C.
-
-- The expected future result has already been observed. Error C: A projection is not an observation.
-
-## s06-P102-soil
-
-Use the soil card to explain one effect of ground cover.
-
-Key: Ground cover reduces soil movement in runoff.
-
-Look-fors: Supported component; language support recorded separately from science understanding | Shape: single component, never complete held response
-
-Samples: Meets: Ground cover reduces soil movement in runoff. | Not yet: An action unrelated to this harm route will solve it. Error I.
-
-- An action unrelated to this harm route will solve it. Error I: An action must affect the particular harm route.
-
-## s06-P102-status
-
-Invented for practice. A planner hopes for clearer water next season. Classify this statement.
-
-Key: Future hope, not next-season observation.
-
-Look-fors: Supported component; language support recorded separately from science understanding | Shape: single component, never complete held response
-
-Samples: Meets: Future hope, not next-season observation. | Not yet: The expected future result has already been observed. Error C.
-
-- The expected future result has already been observed. Error C: A projection is not an observation.
-
-## s06-X100-1
-
-Invented for practice. A delivery yard slopes into a ditch. Its pipe to a pond is blocked. Water spills over the low bank toward the pond. Draw the runoff routes shown by this record.
-
-Key: Yard to ditch, then over low bank to pond. Blocked pipe carries no flow.
-
-Look-fors: Reconstruct the obstructed directional route | Shape: Reconstruct the obstructed directional route
-
-Samples: Meets: Yard to ditch, then over low bank to pond. Blocked pipe carries no flow. | Not yet: Separate yard, ditch and pond labels. Error B.
-
-- Separate yard, ditch and pond labels. Error B: Names alone omit interactions.
-
-## s06-X100-2
-
-Using the same record, write one question about protecting the pond.
-
-Key: Example: How could less material reach the pond along this route?
-
-Look-fors: Pose a relevant protection inquiry | Shape: Pose a relevant protection inquiry
-
-Samples: Meets: Example: How could less material reach the pond along this route? | Not yet: An air-protection question with no connection to this route. Error I.
-
-- An air-protection question with no connection to this route. Error I: An action must affect the particular harm route.
-
-## s06-X101-1
-
-Invented for practice. Inspection log: A town's trash screen held wrappers after rain. Maintenance note: Leaves blocked the screen. Water then passed around its edge. Record one relevant idea from each named card.
-
-Key: Inspection log: retained wrappers. Maintenance note: leaf blockage and edge bypass.
-
-Look-fors: Attribute one relevant idea to each named source | Shape: Attribute one relevant idea to each named source
-
-Samples: Meets: Inspection log: retained wrappers. Maintenance note: leaf blockage and edge bypass. | Not yet: Copy facts separately without a shared question. Error A.
-
-- Copy facts separately without a shared question. Error A: Separate facts need a combined conclusion.
-
-## s06-X101-2
-
-Write a shared question both cards help investigate.
-
-Key: Example: When does the screen reliably keep litter from downstream water? Both cards contribute.
-
-Look-fors: Pose a shared inquiry requiring both cards | Shape: Pose a shared inquiry requiring both cards
-
-Samples: Meets: Example: When does the screen reliably keep litter from downstream water? Both cards contribute. | Not yet: Copy facts separately without a shared question. Error A.
-
-- Copy facts separately without a shared question. Error A: Separate facts need a combined conclusion.
+# Section 6.1: teacher preparation and key guide
+
+Teacher only. Keep this guide separate from every student copy.
+Read the section opener for teaching moves; use this guide to prepare and mark.
+The student's stems are in items.csv and the day pages.
+Read each question before revealing its answer.
+Use the day's single formative scale: shown, shown with help, not yet seen.
+Accept equivalent supported wording. A missing response is missing evidence, not an inferred error.
+Wrong answers and error letters remain in wrongs.csv and the generated day key.
+Factual provenance remains in sources.csv and the day Credit sections.
+
+## Day 100
+
+- **s06-P100-notice.** Visible plume or moving water; invisible hazards cannot be identified from appearance.
+- **s06-P100-resource.** Fuel is a natural energy resource; soil is affected.
+- **s06-P100-fresh.** No. Ocean water is salty; fresh water must be accessible and usable.
+- **s06-P100-arrow.** Water carries grit across pavement; arrow follows water movement.
+- **s06-P100-route.** Water moves from parking lot toward stream and can carry material.
+- **s06-P100-shadow.** Actual whole-centimeter reading and direction, or unresolved with reason. Separate backup S100: 34 cm; direction not recorded.
+- **s06-X100-2.** Example: How could less material reach the pond along this route?
+- **s06-X100-1.** Yard to ditch, then over low bank to pond. Blocked pipe carries no flow.
+
+## Day 101
+
+- **s06-P101-repair-B.** Rainwater carries dust across the roof.
+- **s06-P101-repair-I.** The cover prevents grit reaching pavement where water could carry it away.
+- **s06-P101-locator.** Seattle Public Utilities; April 8, 2026.
+- **s06-P101-link.** Storage can delay release, so some water arrives downstream later.
+- **s06-P101-status.** Expected; dated account does not establish present conditions.
+- **s06-X101-2.** Example: When does the screen reliably keep litter from downstream water? Both cards contribute.
+- **s06-X101-1.** Inspection log: retained wrappers. Maintenance note: leaf blockage and edge bypass.
+
+## Day 102
+
+- **s06-P102-repair-A.** Storage delays some water movement, so release can occur later.
+- **s06-P102-repair-BI.** The lid blocks grit leaving the bin.
+- **s06-P102-observed.** Observation: a recorded count from today.
+- **s06-P102-status.** Future hope, not next-season observation.
+- **s06-P102-soil.** Ground cover reduces soil movement in runoff.
+- **s06-X102.** Wrappers moving in water meet the boom and remain beside the dock. The log supports interception in the note. Retained wrappers: observation; prettier: value; less next year: projection.
 
