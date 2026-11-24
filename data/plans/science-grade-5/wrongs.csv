@@ -674,7 +674,7 @@ s06-P105-control,The comparison condition does not need to match.,,,E,A second c
 s06-P106-assembly,An unrelated change fixes any failure.,,,H,Target the recorded failure.
 s06-P106-inventory,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
 s06-P107-serial,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
-s06-P107-scale,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P107-scale-v2,7 mL.,,,x,Counts marks without their 20 mL step.
 s06-P108-audit,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
 s06-P108-fault,An unrelated change fixes any failure.,,,H,Target the recorded failure.
 s06-P109-locator,An unrelated change fixes any failure.,,,H,Target the recorded failure.
@@ -733,3 +733,13 @@ s06-P105-repair-F,One result proves every future result.,,,F,One result cannot e
 s06-P105-measure,4 milliliters.,,,x,Four marks represent four 20 mL intervals.
 s06-P105-repeat,Keep only the largest volume.,,,G,Selecting a favorable result hides variation.
 s06-P104-design,Change cloth layers and sand amount together.,,,E,A second changed condition hides the layer effect.
+s06-P106-repair-E,Leave the outlet heights different.,,,E,Fresh component repair; retain original evidence.
+s06-P106-repair-F,One trial proves lasting success.,,,F,Fresh component repair; retain original evidence.
+s06-P107-repair-E,Different collection times compare fairly.,,,E,Fresh component repair; retain original evidence.
+s06-P108-repair-F,The first result proves it always works.,,,F,Fresh component repair; retain original evidence.
+s06-P108-repair-G,Erase the tipped-cup trial.,,,G,Fresh component repair; retain original evidence.
+s06-P109-repair-F,One smooth test proves reliable performance.,,,F,Fresh component repair; retain original evidence.
+s06-P109-repair-G,Delete the stopped-flow repeat.,,,G,Fresh component repair; retain original evidence.
+s06-P110-repair-H,Change cloth color and leave the support rocking.,,,H,Fresh component repair; retain original evidence.
+s06-P111-repair-E,Keep the new pour position and compare directly.,,,E,Fresh component repair; retain original evidence.
+s06-P111-repair-G,Erase the cloudier repeat.,,,G,Fresh component repair; retain original evidence.
