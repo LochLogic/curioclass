@@ -21,7 +21,7 @@ People and goods need separate arrow styles.
 
 ## s02-R1a
 
-Connect Europe, West Africa, and the Caribbean on the route sheet. Label manufactured goods, forced transportation, and sugar on their routes.
+Connect Europe, West Africa, and the Caribbean on the route sheet. Label English goods, forced transportation, and sugar on their routes.
 
 ________________________________________________
 

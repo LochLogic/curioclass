@@ -12,32 +12,7 @@ Name: ____________________
 
 Our question: Whose land was it, and who decided?
 
-## Sources
-
-1. Aquinnah history, modern: disease devastated villages; communal practices conflicted with English private claims.
-
-2. Easton, 1675: leaders complained English documents claimed more land than agreed. War followed.
-
-3. Federal history: Massachusetts Bay enforced religious conformity. Rhode Island's 1663 charter protected peaceful religious disagreement.
-
-4. English charters: Rhode Island elected assembly deputies; Massachusetts Bay laws must agree with England's laws.
-
-6. Penn, laws XXXIV/XXXV, 1682: worship protection required acknowledging God; voting and office required Christian faith.
-
-These are summaries, not quotations. Easton mediated leaders' complaints.
-
-## Card 5: atlas, about 1770
-
-![Assessment map](map-assessment.svg)
-
-Name bank: New Hampshire; Massachusetts; Rhode Island; Connecticut; New York; New Jersey; Pennsylvania; Delaware; Maryland; Virginia; North Carolina; South Carolina; Georgia.
-
-New England: short summers, oats. Middle: longer seasons, wheat. Southern: long warmth, tobacco.
-Tobacco needs maturity before frost.
-
-Labor words: family; wage; bound term; enslaved.
-Meanings: A, limited service term; B, relatives' work; C, forced under slavery; D, paid employment.
-Open circle: enslaved labor. Symbols show examples, not amounts.
+Use the source sheet.
 
 ## Responses
 
@@ -77,7 +52,7 @@ ________________________________________________
 
 ### s01-Q3
 
-Use card 4. Explain continuing English influence despite other nations' exploration.
+Use card 4. Explain English influence despite other nations' exploration.
 
 ________________________________________________
 
@@ -113,7 +88,7 @@ ________________________________________________
 
 ### s01-Q6
 
-Answer our land question in a paragraph. Connect your claim to evidence from both named cards.
+Answer our land question in a paragraph using evidence from both named cards.
 
 ________________________________________________
 

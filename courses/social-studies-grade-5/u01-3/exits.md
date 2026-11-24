@@ -8,7 +8,7 @@ credit: All ours. Factual summaries credited individually.
 ---
 # Reserved exit tickets
 
-Teacher: cut by day. Hide each ticket until its exit part.
+Teacher: cut by day. Hide tickets until their exit part.
 
 ## Day 7
 
@@ -53,3 +53,4 @@ Massachusetts charter, 1629: officers took oaths. Governors could administer all
 ________________________________________________
 
 ________________________________________________
+

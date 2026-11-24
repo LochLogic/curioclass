@@ -14,7 +14,7 @@ Answer only your assigned item. Cut apart before distributing.
 
 ## s01-R14a
 
-Aquinnah history describes an elected Tribal Council today. Correct this claim: illness ended every Native community's government.
+Mashantucket Pequot records describe seven elected council members today. Correct this claim: illness ended every Native community's government.
 
 ________________________________________________
 
@@ -54,7 +54,7 @@ ________________________________________________
 
 ## s01-R14f
 
-Tobacco needs harvesting before frost. Growers choose planting times and land. Explain how climate and human choices can both affect the crop.
+Made-up farm: late frost damages wheat. Growers choose planting dates and land. Explain how climate and human choices can both affect this crop.
 
 ________________________________________________
 

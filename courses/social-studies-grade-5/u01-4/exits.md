@@ -8,23 +8,13 @@ credit: All ours. Factual summaries credited individually.
 ---
 # Reserved exit tickets
 
-Teacher: cut by day. Hide each ticket until its exit part.
+Teacher: cut by day. Hide tickets until their exit part.
 
 ## Day 10
 
 Name: ____________________
 
-### s01-X10a
-
-Use the dated exit map and name bank. Label all thirteen numbered colony footprints.
-
-![Dated exit map](map-exit-10.svg)
-
-Name bank: New Hampshire; Massachusetts; Rhode Island; Connecticut; New York; New Jersey; Pennsylvania; Delaware; Maryland; Virginia; North Carolina; South Carolina; Georgia.
-
-________________________________________________
-
-________________________________________________
+The location response is on exit-box-10.md, collected with this half-slip.
 
 ### s01-X10b
 
@@ -43,8 +33,6 @@ Middle: longer growing seasons; wheat.
 Southern: long warmth; tobacco needs maturity before frost.
 
 Soil and human choices also matter.
-
-Sources: regional geography background; federal tobacco history.
 
 ## Day 11
 
@@ -76,10 +64,11 @@ The dated inset marks New Jersey. This example shows wheat and enslaved people f
 
 ![New Jersey inset](map-exit-12.svg)
 
-Crop symbol: ______ Label: __________________
+Crop symbol: ____ Label: __________________
 
-Labor symbol: _____ Label: __________________
+Labor symbol: ___ Label: __________________
+
+________________________________________________
 
 ________________________________________________
 
-________________________________________________

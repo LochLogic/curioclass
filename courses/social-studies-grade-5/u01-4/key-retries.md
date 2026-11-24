@@ -12,11 +12,11 @@ One item per child, five minutes. Keep these cases out of group teaching.
 
 ## s01-R14a
 
-Aquinnah's present council contradicts universal erasure.
+The named elected council contradicts universal erasure of Native governments.
 
-Look for: Aquinnah's present council contradicts universal erasure..
+Look for: The named elected council contradicts universal erasure of Native governments..
 
-Meets / not yet: Aquinnah's present council contradicts universal erasure. | Unsupported or contrary response.
+Meets / not yet: The named elected council contradicts universal erasure of Native governments. | Unsupported or contrary response.
 
 Shape: Correct universal erasure using present evidence; no correction model in repair.
 
@@ -62,11 +62,11 @@ Shape: Correct a supplied neighbor mismatch, not the assessed Maine fact.
 
 ## s01-R14f
 
-Frost risks crop loss; land and planting/harvesting choices also matter.
+The record shows frost damage; growers also choose planting dates and land. Climate and choices both matter.
 
-Look for: Frost risks crop loss; land and planting/harvesting choices also matter..
+Look for: The record shows frost damage; growers also choose planting dates and land. Climate and choices both matter..
 
-Meets / not yet: Frost risks crop loss; land and planting/harvesting choices also matter. | Unsupported or contrary response.
+Meets / not yet: The record shows frost damage; growers also choose planting dates and land. Climate and choices both matter. | Unsupported or contrary response.
 
 Shape: Combine environment and human choices for a single crop.
 

@@ -10,7 +10,8 @@ credit: All ours. Factual summaries credited individually.
 
 ## Two Providence accounts
 
-Narragansett Early History, modern tribal public history:
+Narragansett Early History, modern tribal public history.
+
 In 1636, Williams acquired Providence land-use rights from Narragansett sachems.
 Founding Providence, modern federal public history:
 Williams negotiated with sachems Cononicus and Miantonomo for land.

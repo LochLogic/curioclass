@@ -8,7 +8,7 @@ credit: All ours. Factual summaries credited individually.
 ---
 # Reserved exit tickets
 
-Teacher: cut by day. Hide each ticket until its exit part.
+Teacher: cut by day. Hide tickets until their exit part.
 
 ## Day 1
 
@@ -36,7 +36,7 @@ Name: ____________________
 
 ### s01-X2
 
-Aquinnah history: European diseases killed people in whole Wampanoag villages. English private land practices conflicted with Aquinnah communal practices. Explain one disease effect and one land-practice difference.
+Pequot history: European diseases devastated Pequot communities. Mashpee history: a 1725 system treated tribal members as collective landowners. An English charter granted inheritable private claims. Explain one disease effect and one land-practice difference.
 
 ________________________________________________
 
@@ -53,3 +53,4 @@ Made-up councils: Cedar and Harbor agree to repair a dock after storms. Explain 
 ________________________________________________
 
 ________________________________________________
+

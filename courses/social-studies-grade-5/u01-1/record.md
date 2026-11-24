@@ -22,7 +22,7 @@ Student: __________________ Date: __________________
 | Evidence | Separate components | Judgment per component | Support | Priority / next date |
 |---|---|---|---|---|
 | X1a/b | questions; stake | | | |
-| X2 | disease; land practices | | | |
+| X2 | Pequot disease; collective/private rights | | | |
 | X3 | promise; limit | | | |
 | X4 | attack; survival | | | |
 | X5 | pressure; consequence | | | |
@@ -60,5 +60,6 @@ Unresolved component / receiving day: _______________________
 
 Return X1 through X11 next day, X12 day 13, assessment day 14.
 Return the unscored day 12 display with written feedback on day 14.
-Send collected day 14 retry and readiness papers to day 15 with private cues.
+Return the selected day 14 retry in day 15 Open inquiry.
+Return readiness in day 16 Route and harbor instruction; teach routes as new.
 No claim that all gaps have been repaired.

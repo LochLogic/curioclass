@@ -205,3 +205,5 @@ from_day,to_day,what,where,minutes,error,note
 64,65,s04-P64-label,Return and repair,0,,"Return private component notes with exit notes, without added repair minutes."
 65,66,s04-P65-link,Return and repair,0,,"Return private component notes with exit notes, without added repair minutes."
 67,68,s04-P67-next,Return,0,,Private notes with exit return; no extra repair minutes.
+71,72,s04-P71-pattern,Return,0,,Return private notes with exit feedback in the scheduled repair slot; no added minutes.
+72,73,s04-P72-tag,Return,0,,Return private notes with exit feedback in the scheduled repair slot; no added minutes.

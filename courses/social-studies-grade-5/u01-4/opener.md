@@ -61,3 +61,37 @@ Families may request equivalent work privately; students aged 18 or older decide
 School rules still apply.
 Day writers must hold student reading to 350 words and teacher prose to 600.
 No practice piece may rehearse held cases or complete held response forms.
+
+## Data handoff for the fresh reader
+
+X10a is judged paper in exit-box-10.md, not an extra item squeezed onto the half-slip.
+X10b remains the half-slip. Both return as one ten-minute batch on day 11.
+Assessment-sources.md is the separate source piece; assessment.md is the two-sided response master.
+The source sheet and response text together remain below 350 student words, including map labels.
+The first independent X2 uses Pequot disease, Mashpee collective owners in 1725, and an English private grant.
+It avoids the lower-grade Mashpee deed and holds Aquinnah's land-practice clause for day 13.
+No source depends on an unopened photo or blocked page.
+The alternate heritage history supports the day 14 route facts after the archive page refused a read.
+Sources were actually read on November 24, 2026, not backdated to the requested November 22 label.
+Oats replaces unverified northern corn suitability. Metacom's narrower leadership title is omitted.
+The Pequot history's war range runs 1636 to 1638; the Mystic attack is 1637.
+Keys, samples and worked cases were solved in this data pass; a fresh answer-key read still follows.
+The unit plan's older numerical marking prose is not the scale on the record master.
+Use shown, shown with help, not yet seen throughout.
+
+## Data handoff for the fresh reader
+
+X10a is judged paper in exit-box-10.md, not an extra item squeezed onto the half-slip.
+X10b remains the half-slip. Both return as one ten-minute batch on day 11.
+Assessment-sources.md is the separate source piece; assessment.md is the two-sided response master.
+The source sheet and response text together remain below 350 student words, including map labels.
+The first independent X2 uses Pequot disease, Mashpee collective owners in 1725, and an English private grant.
+It avoids the lower-grade Mashpee deed and holds Aquinnah's land-practice clause for day 13.
+No source depends on an unopened photo or blocked page.
+The alternate heritage history supports the day 14 route facts after the archive page refused a read.
+Sources were actually read on November 24, 2026, not backdated to the requested November 22 label.
+Oats replaces unverified northern corn suitability. Metacom's narrower leadership title is omitted.
+The Pequot history's war range runs 1636 to 1638; the Mystic attack is 1637.
+Keys, samples and worked cases were solved in this data pass; a fresh answer-key read still follows.
+The unit plan's older numerical marking prose is not the scale on the record master.
+Use shown, shown with help, not yet seen throughout.

@@ -10,7 +10,7 @@ credit: All ours. Factual summaries credited individually.
 
 ## Named participants
 
-Pequot War: 1636 to 1637.
+Pequot War: 1636 to 1638.
 English forces included allies from Mohegan and Narragansett nations.
 Those particular alliances do not describe every nation's experience.
 Maker: Mashantucket Pequot Tribal Nation, modern public history.

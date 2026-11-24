@@ -8,7 +8,7 @@ credit: All ours. Factual summaries credited individually.
 ---
 # Teacher only: exit keys
 
-Before class, separate this key from student pages.
+Before class, separate from student pages.
 
 ## s01-X10a
 
@@ -18,8 +18,6 @@ Look for: Thirteen separately checked placements.
 
 Meets / not yet: All thirteen match the teacher overlay. | Maine is a separate colony.
 
-Shape: Label thirteen footprints on a new dated outline.
-
 ## s01-X10b
 
 New England short summers limit growing time for small-farm crops such as oats. Longer Middle seasons support wheat. Long Southern warmth helps tobacco mature before frost. Soil and human choices also matter.
@@ -27,8 +25,6 @@ New England short summers limit growing time for small-farm crops such as oats. 
 Look for: New England link | Middle link | Southern link.
 
 Meets / not yet: Northern oats face limited growing time. Middle wheat has a longer season. Southern warmth helps tobacco mature. | Climate never matters; weather forced slavery.
-
-Shape: Explain regional climate effects from fresh notes, never a practiced three-link answer.
 
 ## s01-X11a
 
@@ -38,8 +34,6 @@ Look for: Four arrangements distinguished.
 
 Meets / not yet: Family, wage, indentured, enslaved. | All are freely paid jobs.
 
-Shape: Classify four new arrangements.
-
 ## s01-X11b
 
 Slavery existed in New England as well as the Southern colonies.
@@ -47,8 +41,6 @@ Slavery existed in New England as well as the Southern colonies.
 Look for: Northern presence inferred.
 
 Meets / not yet: Slavery also existed in New England. | Slavery existed only in the South.
-
-Shape: Infer northern presence from a new record.
 
 ## s01-X12
 
@@ -58,4 +50,3 @@ Look for: Crop symbol matches label | Labor symbol matches label.
 
 Meets / not yet: Triangle: wheat. Open circle: enslaved labor. | Northern colonies cannot have an enslavement mark.
 
-Shape: Construct a key from one new colony record.

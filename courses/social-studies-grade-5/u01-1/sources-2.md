@@ -16,10 +16,12 @@ Maker: jessie little doe baird, Mashpee Wampanoag Tribe, modern timeline.
 Epidemic strip: 1616 to 1620, diseases harmed Native communities in this region.
 Maker: National Museum of the American Indian, modern chronology.
 
-Rights diagram: Aquinnah communal practices | English private claims.
-Maker: Aquinnah, modern history.
-Shared practices include rights and authority.
-Do not assume every Native nation had identical practices.
+Rights diagram, made-up town, not a Native nation:
+The community sets shared field-use rules.
+A private garden holder sets rules for that garden.
+Both systems involve rights and decisions.
+Maker: Curio Class, invented diagram.
+Do not assume all historical communities had identical practices.
 
 Epidemic: disease spreading through a community.
 Event date: when the event happened. Account date: when the account was made.
