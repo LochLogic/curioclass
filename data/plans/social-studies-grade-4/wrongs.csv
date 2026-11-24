@@ -1077,7 +1077,7 @@ s06-X114a,Capital uses the key's water symbol.,,,E,Predicted response; one error
 s06-X114b,Enlarge only the map while retaining its old scale.,,,Q,Predicted response; one error only. Shape: Justify source-to-response calibration after constructing the fresh inset.
 s06-X115,Mountains at the river mouth.,,,L,Predicted response; one error only. Shape: Finish an unseen bounded city/river/mountain inset with conventions.
 s06-X116,The flour mill is the soil resource.,,,T,Predicted response; one error only. Shape: Transfer an invented resource/production arrangement onto a blank four-by-four grid.
-s06-X117a,The removal was freely chosen.,,,S,Predicted response; one error only. Shape: Annotate a forced route on an unseen Navajo dated-land locator.
+s06-X117a,A solid exploration line replaces the dashed forced-movement arrow.,,,E,Predicted response; one error only. Shape: Annotate a forced route on an unseen Navajo dated-land locator.
 s06-X117b,All three dated land relationships are identical.,,,F,Predicted response; one error only. Shape: Explain temporal land relationships rather than copy a boundary.
 s06-X118,Only a place list outside an unchanged outline.,,,R,Predicted response; one error only. Shape: Construct a new four-category regional inset.
 s06-X119a,Equally spaced boxes replacing equal-year positions.,,,C,Predicted response; one error only. Shape: Correct an unequal event-space representation on a new subdivided line.
@@ -1161,16 +1161,16 @@ s06-P112-1,Constitution: makes national laws. Congress: sets up state government
 s06-P112-2,B needs correcting because everyone could vote.,,,D,Error D treats statehood as universal voting rights.
 s06-P113-1,Worcester is coastal; Boston is inland.,,,L,Error L reverses the supplied public-place positions.
 s06-P113-2,Boston made this map; no link is needed.,,,x,Confuses mapped place with map maker; no geographic-position error can be inferred.
-s06-P114-1,A response missing the named relationship or source position.,,,Q,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P114-2,A response missing the named relationship or source position.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P115-1,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P115-2,A response missing the named relationship or source position.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P116-1,A response missing the named relationship or source position.,,,T,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P116-2,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P117-1,A response missing the named relationship or source position.,,,F,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P117-2,A response missing the named relationship or source position.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P118-1,A response missing the named relationship or source position.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P118-2,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P114-1,The doubled map keeps its original bar.,,,Q,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P114-2,The key calls the capital dot a lake.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P115-1,The line follows the eastern boundary.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P115-2,The wavy line means city.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P116-1,Topeka is a natural resource.,,,T,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P116-2,The river follows the southern boundary.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P117-1,All three locators show the present reservation.,,,F,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P117-2,The settlement dot is the expedition route.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P118-1,Fort Clatsop is a river.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P118-2,Crater Lake is on the northern boundary.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P119-1,A response missing the named relationship or source position.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P119-2,A response missing the named relationship or source position.,,,T,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P119-3,A response missing the named relationship or source position.,,,R,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
@@ -1241,3 +1241,13 @@ s06-R113-O,No final House vote means no government.,,,O,"Fresh invented label, n
 s06-R113-P,Committee service includes the final House vote.,,,P,"Fresh invented label, not the held petition or its correction."
 s06-C112-1,Serving on a committee gives every delegate a final House vote.,,,P,Committee work does not grant a final House vote.
 s06-P111-1,Any change of control means admission as a state.,,,N,Check the event label; changed control does not establish membership.
+s06-R114,Region A.,,,L,Fresh component task; no held source arrangement.
+s06-F114,1810.,,,N,Fresh component task; no held source arrangement.
+s06-R115,River.,,,E,Fresh component task; no held source arrangement.
+s06-R116,Unchanged.,,,Q,Fresh component task; no held source arrangement.
+s06-P116,The kitchen is the natural resource.,,,T,Fresh component task; no held source arrangement.
+s06-R117,Building.,,,T,Fresh component task; no held source arrangement.
+s06-P117,All New Mexico has one identical climate.,,,L,Fresh component task; no held source arrangement.
+s06-F117,A line following the eastern state boundary.,,,L,Fresh component task; no held source arrangement.
+s06-R118,1863 confinement.,,,F,Fresh component task; no held source arrangement.
+s06-P116-3,All three layers show only a dot labeled Topeka.,,,R,"Locations are source areas, not the earlier city reminder."

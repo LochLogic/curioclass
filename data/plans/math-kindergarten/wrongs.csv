@@ -1148,3 +1148,36 @@ s05-Kstatic96,Draws an arrival for a static pair of parts.,,,x,Cold-solved. Assi
 s05-Ksplit96,Leaves one of six squares unused.,,,A,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
 s05-F-B96,Calls unchanged one-patterned/five-plain counts a new solution.,,,B,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
 s05-F-C96,Rejects a true total-left equation solely for order.,,,C,Cold-solved. Assign a letter only for the corresponding observed action; other mistakes descriptive.
+s05-Kcount97,One square skipped.,,,x,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kcount98,One square skipped.,,,x,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kcount99,One square skipped.,,,x,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kcount100,One square skipped.,,,x,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kcount101,One square skipped.,,,x,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kcount102,One square skipped.,,,x,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kcount103,One square skipped.,,,x,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kten97,Repeats three as its partner.,,,D,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kone97,Calls the completed whole eleven.,,,x,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Ktwo97,Calls the completed whole eleven.,,,x,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kfive97,Calls the completed whole eleven.,,,x,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kequation98,Repeats given four as the partner.,,,D,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kroles98,Labels given part as both given and partner.,,,D,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kspaces98,Reports four after starting the five-place count at zero.,,,E,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kcover99,Repeats given three as its partner.,,,D,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Krecords100,Repeats given number as partner.,,,D,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Ktower101,Repeats given four as partner.,,,D,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kclose101,Erases original evidence.,,,x,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-Kfruit102,Calls rearranged four/six a different labelled pair.,,,B,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FC97,Rejects total-left order solely for order.,,,C,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FA97,Leaves one square outside both parts.,,,A,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FD98,Repeats given part as partner.,,,D,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FA98,Leaves one square outside both parts.,,,A,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FC99,Rejects total-left order solely for order.,,,C,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FD99,Repeats given part as partner.,,,D,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FD100,Repeats given part as partner.,,,D,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FE100,Assigns zero to first counted place.,,,E,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FE101,Assigns zero to first counted place.,,,E,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FD102,Repeats given part as partner.,,,D,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FE102,Assigns zero to first counted place.,,,E,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FA102,Leaves one square outside both parts.,,,A,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FC102,Rejects total-left order solely for order.,,,C,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
+s05-FF102,Counts one square in both parts.,,,F,Cold-solved. Letter requires corresponding observed action; otherwise describe the mark.
