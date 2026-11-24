@@ -100,7 +100,7 @@ public domain Go problem collections; public domain checkers problems. Each spec
 **Computer opponents** cover a real range (Cory, 2026-11-08): every board game (Go, Chess, Checkers and later ones like them) plays full games against the computer at several levels, from gentle beginners up to a genuinely strong top level, all offline in one file. Easy levels stay kind; the top ones give strong kids a real game. Go gets a
 sensitivity check on its roots (China, Japan, Korea) like any cultural tool.
 
-## On the shelf now (2026-11-22)
+## On the shelf now (2026-11-23)
 
 Live means `tools/<id>/tool.json` exists (and the game's html is built). `data/recess.json` stores a `live` flag, but
 `scripts/build_site.py` recomputes it on every build from the files, so the folder is the truth, not the json.
@@ -110,6 +110,7 @@ Live means `tools/<id>/tool.json` exists (and the game's html is built). `data/r
 | Infinite Hike | Live 2026-11-21 (hosted game) |
 | Farlight | Live 2026-11-22 (brought in) |
 | Ripple | Live 2026-11-22 (brought in) |
+| Time Tides | Live 2026-11-23 (brought in) |
 | Go, Chess, Checkers, Untangle | Live early, by Cory's Desk card |
 | Cargo Hold (`sliding-blocks`) | Spec only: no build yet |
 
@@ -150,6 +151,7 @@ hosted game. Pages link related tools and games through `pairs` in data/recess.j
 |---|---|---|
 | Farlight (`farlight`) | 2026-11-22, TypeScript and WebGPU shaders, esbuild | Em dashes out of what players read; the no-WebGPU message names no browser brands; file-size text off the title card and corner panel; a plain title and a meta description. Saves its journey on the device. Touch controls (thumbstick and buttons) came in from the source on 2026-11-22; we fitted the title card and gauges to phone screens held either way. Known, not done: no reduced-motion setting. |
 | Ripple (`ripple`, first called Resonance) | 2026-11-22, TypeScript, Vite single file | Renamed Ripple in chat (2026-11-22); MP3 saving taken out (an LGPL encoder run from a string), WAV, video and parts zip stay; "808" became "Boom bass"; dashes and tech wording out of the welcome and help text; the preload helper's `fetch` turned off in the build. Saves setups on the device. Known, not done: no reduced-motion setting (the wave slider in Settings turns the water down), and some controls need a mouse. |
+| Time Tides (`time-tides`, first called Chronia) | 2026-11-23, one HTML file, no build (`source/chronia-atlas.html` is the file as it came; `src.html` carries our changes) | Renamed Time Tides 2026-11-23; web fonts (a network load) swapped for fonts on the device; dashes and tech wording out of what players read ("graticule", "PNG", a Mac-only shortcut); a title and meta description; plain history fixes in the stories (Teotihuacan past its peak by 550, the Rashidun and not the Umayyads took Persia, Mongol khanates as rivals by 1279, the Berlin Conference set rules rather than drew the map, Westphalia as a starting point, Indigenous allies and epidemics in the fall of the Aztec and Inca empires, Indigenous nations holding the interior in 1715); dated or misspelled labels renamed (Ancestral Puebloans, Aboriginal Australians, Semitic-speaking peoples and others); the 1,513 encyclopedia summaries left out of the live copy, keeping the 191 overviews written for the game; pinch zoom and a reduced-motion mode added. Saves nothing. Known, not done: the side panel crowds phone screens, hover tips need a mouse, and the map data credit (it looks like historical-basemaps, GPL-3.0) waits on Cory. |
 
 ## Open questions
 

@@ -1,0 +1,13 @@
+{
+  "id": "time-tides",
+  "recess": true,
+  "status": "beta",
+  "updated": "2026-11-23",
+  "sources": [
+    "A Curio Class game, made outside this repository and brought in 2026-11-23 as a single file with no build (first called Chronia, renamed Time Tides 2026-11-23). source/chronia-atlas.html is that file untouched; src.html is the game with our changes, bundled into time-tides.html.",
+    "Era borders and place names look like the historical-basemaps world maps (GPL-3.0); coastlines, rivers and lakes look like Natural Earth (public domain). Neither is credited in the original file; license and credit await Cory's call.",
+    "Era stories, story arcs and 191 short overviews were written for the game; 1,513 encyclopedia summaries in the original file were left out of the live copy (unmatched entries and an unrecorded CC BY-SA source)",
+    "No image, sound or font files: the original's web fonts were swapped for fonts already on the device"
+  ],
+  "third_party": []
+}
