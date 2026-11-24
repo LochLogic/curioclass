@@ -373,3 +373,27 @@ s03-P55q,Clumps prove every mixture creates new material.,,,E,Error E: evidence 
 s03-P53,Change quantities and temperature together to isolate one cause.,,,I,Error I: evidence misread.
 s03-P54,Any pouring bubble proves a new substance.,,,G,Error G: evidence misread.
 s03-P55,Every mixture must create a new substance.,,,E,Error E: evidence misread.
+s03-P56i,Two changing conditions isolate one cause.,,,I,error I: component misconception
+s03-P56e,Mixing alone establishes a new substance.,,,E,error E: component misconception
+s03-P56log,Clear passed liquid contains nothing.,,,F,error F: component misconception
+s03-P57f,Clear liquid has no material.,,,F,error F: component misconception
+s03-P57h,Failure to collect proves a new substance.,,,H,error H: component misconception
+s03-P57model,Any brown surface must be rust.,,,A,error A: component misconception
+s03-P58g,Bubbles always prove new substance formation.,,,G,error G: component misconception
+s03-P58p,Shared color identifies every material.,,,A,error A: component misconception
+s03-E1,Copied supplied values with no personal actions leave practical components unobserved.,,,x,error x: unmatched readiness or coverage gap; no unit 3 letter inference.
+s03-E3,Watched peers and claimed clear means salt vanished.,,,F,error F: sample solved cold; see item look-fors.
+s03-E4a,Change temperature and solution amount; compare wet lumps once.,,,I,error I: sample solved cold; see item look-fors.
+s03-E4b,Filtering proves the solid existed before mixing.,,,H,error H: sample solved cold; see item look-fors.
+s03-E4c,Bubbles prove reaction and the extra trial proves warmth alone caused more solid.,,,G,error G: sample solved cold; see item look-fors.
+s03-E4c,Bubbles prove reaction and the extra trial proves warmth alone caused more solid.,,,I,error I: sample solved cold; see item look-fors.
+s03-E4d,Clear starting solutions contain nothing; solid comes from nothing.,,,F,error F: sample solved cold; see item look-fors.
+s03-N61a,They must touch.,,,x,error x: unmatched readiness or coverage gap; no unit 3 letter inference.
+s03-N61b,Both stop at gate; stars show in daytime.,,,x,error x: unmatched readiness or coverage gap; no unit 3 letter inference.
+s03-N61c,Summer has the shortest daylight.,,,x,error x: unmatched readiness or coverage gap; no unit 3 letter inference.
+s03-P56,Clear passed liquid contains no material.,,,F,error F: sample solved cold; see item look-fors.
+s03-P57,Any surface color change uniquely identifies rust.,,,A,error A: sample solved cold; see item look-fors.
+s03-P58,All mixing guarantees a new substance.,,,E,error E: sample solved cold; see item look-fors.
+s03-P61,A weight needs no unit.,,,B,error B: sample solved cold; see item look-fors.
+s03-P56m,All the sand and iron must be one new material.,,,E,error E: sample solved cold; see item look-fors.
+s03-P57c,W isolates dampness while changing cup and portion.,,,I,error I: sample solved cold; see item look-fors.
