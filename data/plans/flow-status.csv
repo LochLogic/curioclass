@@ -643,3 +643,4 @@ ss:precalculus,done,2026-11-24,"Written (sequence-write.md), sequence.py passes;
 ss:statistics,done,2026-11-24,"Written (sequence-write.md), sequence.py passes; review next (with the other core electives)"
 ss-review:core-electives,done,2026-11-24,"Claude expert read and fix pass for all 6 (docs/reviews/sequence-<course>-2026-11-24.md and -fixes-2026-11-24.md); gates pass; shared-file edits wait for a structure pass (later.csv L109)"
 ss-review:core-electives-gemini,done,2026-11-24,"Gemini second read of all 6 (S:/CurioClass-gemini/reports/sequence-*-gemini-read.md), verified and applied: docs/reviews/gemini-fixes-sequence-<course>-2026-11-24.md; gates pass"
+gate3:core-electives,done,2026-11-24,"Cory approved the baseline of all six core electives (frames and scopes and sequences, after the expert and Gemini reads) 2026-11-24"
