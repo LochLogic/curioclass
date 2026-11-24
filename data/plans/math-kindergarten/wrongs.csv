@@ -1367,3 +1367,43 @@ s06-K114,Starts at one instead of the supplied start.,,,H,Observed start must co
 s06-K115,Starts at one instead of the supplied start.,,,H,Observed start must confirm H; a later sequence error is described separately.
 s06-F1-11,1 beside eleven counted pictures.,,,x,Descriptive response; no unconfirmed misconception inferred.
 s06-F1-20,2 beside twenty counted pictures.,,,x,Descriptive response; no unconfirmed misconception inferred.
+s06-F116-E,Keeps 21 and confirms reversed digit order.,,,E,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F116-E-r,"Adds 1, making 11.",,,x,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F116-D,Keeps 1 for no objects.,,,D,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F116-D-r,Keeps 1 for no objects.,,,D,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F117-F,Says one object replaces ten.,,,F,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F117-F-r,Erases ten group and uses one object.,,,F,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F117-H,Starts one despite supplied six.,,,H,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F117-H-r,Starts one despite supplied eight.,,,H,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F118-A,Visibly skips one square.,,,A,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F118-A-r,Visibly omits final square.,,,A,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-P118-2,Replaces ten visible ones with one object.,,,F,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F118-F,Says one object replaces ten.,,,F,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F118-F-r,Replaces ten group with one object.,,,F,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F118-H,Starts one despite supplied six.,,,H,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F118-H-r,Starts one despite supplied eight.,,,H,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-G119-1,A different total after the action.,,,x,Observe the handling; recount with squares for immediate feedback. No specific unit 6 error inferred.
+s06-G119-2,A different total after the action.,,,x,Observe the handling; recount with squares for immediate feedback. No specific unit 6 error inferred.
+s06-G119-3,A different total after the action.,,,x,Observe the handling; recount with squares for immediate feedback. No specific unit 6 error inferred.
+s06-G119-4,A different total after the action.,,,x,Observe the handling; recount with squares for immediate feedback. No specific unit 6 error inferred.
+s06-P119,Points without identifying a change.,,,x,Assign letter only from observed method or explanation; otherwise describe the response.
+s06-F1-07,Numeral not matching collection.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
+s06-F1-02,Numeral not matching collection.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
+s06-F1-10,Numeral not matching collection.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
+s06-F1-04,Numeral not matching collection.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
+s06-F1-01,Numeral not matching collection.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
+s06-F1-09,Numeral not matching collection.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
+s06-F1-03,Numeral not matching collection.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
+s06-F1-08,Numeral not matching collection.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
+s06-F1-05,Numeral not matching collection.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
+s06-F1-06,Numeral not matching collection.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
+s06-A119-F1,Writes 1 for an observed empty collection.,,,D,"Observed performance only. A missing required component remains pending in scheduling, never classified from absence."
+s06-A119-F2,Omits an object while visibly tracking.,,,A,"Observed performance only. A missing required component remains pending in scheduling, never classified from absence."
+s06-A119-F3,Says one object replaces ten visible ones.,,,F,"Observed performance only. A missing required component remains pending in scheduling, never classified from absence."
+s06-A119-F4,Begins one despite supplied seven.,,,H,"Observed performance only. A missing required component remains pending in scheduling, never classified from absence."
+s06-P116,Leaves the partial record mathematically incomplete.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
+s06-K116,Restarts at one despite supplied start.,,,H,Only observed method supports a specific error letter; otherwise describe the response.
+s06-P117,Leaves the partial record mathematically incomplete.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
+s06-K117,Restarts at one despite supplied start.,,,H,Only observed method supports a specific error letter; otherwise describe the response.
+s06-P118,Leaves the partial record mathematically incomplete.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
+s06-K118,Restarts at one despite supplied start.,,,H,Only observed method supports a specific error letter; otherwise describe the response.

@@ -1,0 +1,49 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Counting record</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; } .student table.even { table-layout: fixed; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.75in; width: 48%; display: inline-block; box-sizing: border-box; padding: .18in; margin: 0 1% .15in 0; vertical-align: top; font-size: 12pt; line-height: 1.3; overflow: hidden; } .slip.half { width: 98%; } .slip p { margin: .22em 0; } .slip .foot { font-size: 7pt; line-height: 1.25; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.0in; } .slip .sketch.tall { height: 1.1in; } .slip .fig svg { max-height: 1.2in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+.blank.fblank { width: .8in; height: 1.6em; }   /* a line holding one stands about 2em: room for a stacked fraction */
+</style></head><body class="student"><h1>Counting record</h1><div style="font-size:18pt">
+
+Show how many in this panel.
+
+A
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 155" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2"><circle cx="28.0" cy="25.0" r="7"/><circle cx="61.4375" cy="25.0" r="7"/><circle cx="94.875" cy="25.0" r="7"/><circle cx="128.3125" cy="25.0" r="7"/><circle cx="161.75" cy="25.0" r="7"/><circle cx="195.1875" cy="25.0" r="7"/><circle cx="228.625" cy="25.0" r="7"/><circle cx="262.0625" cy="25.0" r="7"/><circle cx="295.5" cy="25.0" r="7"/><circle cx="328.9375" cy="25.0" r="7"/><circle cx="362.375" cy="25.0" r="7"/><circle cx="395.8125" cy="25.0" r="7"/><circle cx="429.25" cy="25.0" r="7"/><circle cx="462.6875" cy="25.0" r="7"/><circle cx="496.125" cy="25.0" r="7"/><circle cx="529.5625" cy="25.0" r="7"/><circle cx="563.0" cy="25.0" r="7"/><rect x="580" y="54" width="45" height="46"/></g></svg>
+
+B
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 155" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2"><circle cx="28" cy="25.0" r="8"/><circle cx="62" cy="25.0" r="8"/><circle cx="96" cy="25.0" r="8"/><circle cx="130" cy="25.0" r="8"/><circle cx="164" cy="25.0" r="8"/><circle cx="198" cy="25.0" r="8"/><circle cx="232" cy="25.0" r="8"/><circle cx="266" cy="25.0" r="8"/><circle cx="28" cy="130.0" r="8"/><circle cx="62" cy="130.0" r="8"/><circle cx="96" cy="130.0" r="8"/><circle cx="130" cy="130.0" r="8"/><circle cx="164" cy="130.0" r="8"/><circle cx="198" cy="130.0" r="8"/><circle cx="232" cy="130.0" r="8"/><circle cx="266" cy="130.0" r="8"/><rect x="580" y="54" width="45" height="46"/></g></svg>
+
+C
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 155" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2"><path d="M250,3V16L265,8Z" fill="black"/><circle cx="250.0" cy="20.0" r="8"/><circle cx="313.3484838468642" cy="22.814250313028673" r="8"/><circle cx="370.495976719957" cy="30.98152282344052" r="8"/><circle cx="415.84848384686427" cy="43.7023479931828" r="8"/><circle cx="444.96658584050647" cy="59.73152282344053" r="8"/><circle cx="455.0" cy="77.5" r="8"/><circle cx="444.96658584050647" cy="95.26847717655947" r="8"/><circle cx="415.84848384686427" cy="111.2976520068172" r="8"/><circle cx="370.495976719957" cy="124.01847717655949" r="8"/><circle cx="313.3484838468642" cy="132.18574968697132" r="8"/><circle cx="250.0" cy="135.0" r="8"/><circle cx="186.65151615313587" cy="132.18574968697135" r="8"/><circle cx="129.50402328004304" cy="124.01847717655949" r="8"/><circle cx="84.15151615313579" cy="111.2976520068172" r="8"/><circle cx="55.03341415949353" cy="95.26847717655949" r="8"/><circle cx="45.0" cy="77.5" r="8"/><circle cx="55.0334141594935" cy="59.73152282344053" r="8"/><circle cx="84.15151615313576" cy="43.7023479931828" r="8"/><circle cx="129.504023280043" cy="30.981522823440528" r="8"/><circle cx="186.65151615313576" cy="22.814250313028673" r="8"/><rect x="580" y="54" width="45" height="46"/></g></svg>
+
+D
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 155" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2"><polygon points="58.0,22.0 60.1,27.1 65.6,27.5 61.4,31.1 62.7,36.5 58.0,33.6 53.3,36.5 54.6,31.1 50.4,27.5 55.9,27.1"/><polygon points="197.0,53.0 199.1,58.1 204.6,58.5 200.4,62.1 201.7,67.5 197.0,64.6 192.3,67.5 193.6,62.1 189.4,58.5 194.9,58.1"/><polygon points="331.0,17.0 333.1,22.1 338.6,22.5 334.4,26.1 335.7,31.5 331.0,28.6 326.3,31.5 327.6,26.1 323.4,22.5 328.9,22.1"/><polygon points="471.0,61.0 473.1,66.1 478.6,66.5 474.4,70.1 475.7,75.5 471.0,72.6 466.3,75.5 467.6,70.1 463.4,66.5 468.9,66.1"/><polygon points="116.0,93.0 118.1,98.1 123.6,98.5 119.4,102.1 120.7,107.5 116.0,104.6 111.3,107.5 112.6,102.1 108.4,98.5 113.9,98.1"/><polygon points="274.0,108.0 276.1,113.1 281.6,113.5 277.4,117.1 278.7,122.5 274.0,119.6 269.3,122.5 270.6,117.1 266.4,113.5 271.9,113.1"/><polygon points="422.0,103.0 424.1,108.1 429.6,108.5 425.4,112.1 426.7,117.5 422.0,114.6 417.3,117.5 418.6,112.1 414.4,108.5 419.9,108.1"/><polygon points="535.0,18.0 537.1,23.1 542.6,23.5 538.4,27.1 539.7,32.5 535.0,29.6 530.3,32.5 531.6,27.1 527.4,23.5 532.9,23.1"/><polygon points="560.0,111.0 562.1,116.1 567.6,116.5 563.4,120.1 564.7,125.5 560.0,122.6 555.3,125.5 556.6,120.1 552.4,116.5 557.9,116.1"/><polygon points="364.0,66.0 366.1,71.1 371.6,71.5 367.4,75.1 368.7,80.5 364.0,77.6 359.3,80.5 360.6,75.1 356.4,71.5 361.9,71.1"/><rect x="580" y="54" width="45" height="46"/></g></svg>
+
+
+
+Invented for practice.
+
+</div><div class="foot">Curio Class, kindergarten math, section 6.4, counting-117, version draft, not yet taught, CC BY 4.0, curioclass.org</div></body></html>
