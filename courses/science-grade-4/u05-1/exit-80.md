@@ -11,7 +11,7 @@ exit: half
 
 Name: ____________________ Date: __________
 
-[[s05-X80]]
+**1.** Invented for practice. Map J shows an ocean earthquake chain and a continental volcano chain. One volcano lies away from that chain. Add the observations to the feature/location table.
 
 ![Day 80 reserved stimulus](exit-80.svg)
 
@@ -20,6 +20,8 @@ Name: ____________________ Date: __________
 | ______ | ______ |
 | ______ | ______ |
 | ______ | ______ |
+
+**2.** Use the same record. Describe a supported pattern that needs an exception.
 
 ____________________________________________________
 

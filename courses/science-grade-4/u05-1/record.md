@@ -1,74 +1,62 @@
 ---
-piece: record
+piece: opener
 course: science-grade-4
 unit: 5.1
 version: draft, not yet taught
 credit: ours
-stretch: 5
-rows: 30
-lookfors: 1=2;2=2;3=2;4=2;5=2;6=2;7=2;8=2;9=2;10=2;11=2;12=2;13=2;14=2
 ---
 
-# Unit 5 private record sheet
+# Unit 5 private formative record
 
-Use one component scale: 2 complete, 1 relevant incomplete, 0 absent/incorrect.
-Leave unavailable or unattempted evidence blank with a note. Formative marks are feedback only,
-never totaled. Readiness and day 77 initial models have descriptive notes only.
-Accept the child's labeled drawing or dictated explanation. Note neutral reading/scribing separately;
-a language gap does not automatically mean a science gap. Note any content prompting.
-Day 92: E1 six components /12; E2 six /12; revised portfolio two /4.
-Score portfolio once, from day 88 work revised day 90. Keep /24 new case and /4 separate.
-Keep originals. Day 93 gets dated revision notes beside first marks, no hidden rescore.
-Do not credit invented records as firsthand observations. Failed designs can earn full reasoning credit.
-Print roster plus one component panel per child. Names and notes stay private.
+Teacher only. Use one scale per component: shown, shown with help, not yet seen.
+Blank means unavailable evidence, not an error letter. Note absence or missing opportunity separately.
+Keep error letters beside the descriptive category only when that idea is expressed.
+Neutral reading and scribing do not change the category; content coaching is shown with help.
+Language gaps and missing evidence require notes, not automatic science errors.
+Day 77 initial models and readiness receive notes only, no category or points.
+Day 93 revisions get dated notes, no hidden rescore.
+Use assessment-record.md separately for day 92 component points.
 
-| Child | E77 notes | E78 to E82 | E83 to E88 | E89 to E91 | Public turn dates | Next move |
-|---|---|---|---|---|---|---|
-| 1 __________ | | | | | | |
-| 2 __________ | | | | | | |
-| 3 __________ | | | | | | |
-| 4 __________ | | | | | | |
-| 5 __________ | | | | | | |
-| 6 __________ | | | | | | |
-| 7 __________ | | | | | | |
-| 8 __________ | | | | | | |
-| 9 __________ | | | | | | |
-| 10 __________ | | | | | | |
-| 11 __________ | | | | | | |
-| 12 __________ | | | | | | |
-| 13 __________ | | | | | | |
-| 14 __________ | | | | | | |
-| 15 __________ | | | | | | |
-| 16 __________ | | | | | | |
-| 17 __________ | | | | | | |
-| 18 __________ | | | | | | |
-| 19 __________ | | | | | | |
-| 20 __________ | | | | | | |
-| 21 __________ | | | | | | |
-| 22 __________ | | | | | | |
-| 23 __________ | | | | | | |
-| 24 __________ | | | | | | |
-| 25 __________ | | | | | | |
-| 26 __________ | | | | | | |
-| 27 __________ | | | | | | |
-| 28 __________ | | | | | | |
-| 29 __________ | | | | | | |
-| 30 __________ | | | | | | |
+Use a dated copy for each day. Name both paper items when the half slip has two.
+Record one category for each item's look-for. Keep additional component notes beside the category.
+Everyone returns paper; hear a rotating six, at most 45 seconds each, 4.5 minutes total.
+Public talk is voluntary. A public pass does not remove the child's paper evidence.
 
-## Individual component panel
+Day: ______ Item/look-for 1: __________________ Item/look-for 2: __________________
 
-Child: ____________________ Date: __________
+| Child | Name | Evidence 1 | Evidence 2 | Error/evidence note | Public turn / return day |
+|---|---|---|---|---|---|
+| 1 | __________ | | | | |
+| 2 | __________ | | | | |
+| 3 | __________ | | | | |
+| 4 | __________ | | | | |
+| 5 | __________ | | | | |
+| 6 | __________ | | | | |
+| 7 | __________ | | | | |
+| 8 | __________ | | | | |
+| 9 | __________ | | | | |
+| 10 | __________ | | | | |
+| 11 | __________ | | | | |
+| 12 | __________ | | | | |
+| 13 | __________ | | | | |
+| 14 | __________ | | | | |
+| 15 | __________ | | | | |
+| 16 | __________ | | | | |
+| 17 | __________ | | | | |
+| 18 | __________ | | | | |
+| 19 | __________ | | | | |
+| 20 | __________ | | | | |
+| 21 | __________ | | | | |
+| 22 | __________ | | | | |
+| 23 | __________ | | | | |
+| 24 | __________ | | | | |
+| 25 | __________ | | | | |
+| 26 | __________ | | | | |
+| 27 | __________ | | | | |
+| 28 | __________ | | | | |
+| 29 | __________ | | | | |
+| 30 | __________ | | | | |
 
-| Evidence | Component marks | Note or next move |
-|---|---|---|
-| E1 | Table __ Land __ Seafloor __ Earthquakes __ Volcanoes/exception __ Model/limit __ | |
-| E2 | Proposals __ Tests __ Recommendation __ Warning/action __ Improvement __ Risk __ | |
-| Portfolio | Comparison __ Improvement __ | Actual / invented / missing opportunity: ___ |
-| Revision | Date: ___ | Changed component and evidence: ___ |
-| R93a | Illumination note only | |
-| R93b | Reception/response note only | |
-| D93 | Delivery/action note | |
+Next named repair day and part: ___________________________
 
-Hear six voluntary turns daily, at most 45 seconds each, 4.5 minutes total.
-Other children return paper that day. No serial oral assessment queue; record who was heard.
-All tickets and papers return on named hand-back days, including those of children who pass publicly.
+Unfinished need carried forward: __________________________

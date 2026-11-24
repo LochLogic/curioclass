@@ -16,9 +16,9 @@ Evidence: actual trace / invented outline fallback.
 
 | Slice | Actual height in whole centimeters | Trace |
 |---|---|---|
-| Lower | ______ | {sketch} |
-| Middle | ______ | {sketch} |
-| Upper | ______ | {sketch} |
+| Lower | ______ | <div class="sketch" style="height:1in;border:1px solid #555;"></div> |
+| Middle | ______ | <div class="sketch" style="height:1in;border:1px solid #555;"></div> |
+| Upper | ______ | <div class="sketch" style="height:1in;border:1px solid #555;"></div> |
 
 The ruler step is one centimeter. Leave actual heights blank for invented outlines.
 
@@ -26,4 +26,4 @@ Higher/lower labels: ______________________________________
 
 | Dry hill/lake model | My key |
 |---|---|
-| {sketch} | __________________ |
+| <div class="sketch" style="height:1in;border:1px solid #555;"></div> | __________________ |

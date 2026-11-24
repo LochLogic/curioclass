@@ -10,7 +10,7 @@ credit: ours
 
 ## Group 4: house-position guide
 
-Starting bed outline: {sketch}
+Starting bed outline: <div class="sketch" style="height:1in;border:1px solid #555;"></div>
 
 Three house marks: A ____ B ____ C ____
 

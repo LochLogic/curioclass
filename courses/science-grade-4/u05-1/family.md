@@ -23,7 +23,7 @@ Please contact the teacher privately about access needs or material allergies be
 Students aged 18 or older receive this note themselves and make their own participation choices.
 School rules still apply.
 
-## Español
+## Spanish
 
 La clase leerá mapas y comparará diseños que reducen daños causados por procesos de la Tierra.
 Usaremos claves, buscaremos patrones y conservaremos las excepciones en nuestras explicaciones.

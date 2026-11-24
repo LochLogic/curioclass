@@ -10,10 +10,10 @@ credit: ours
 
 Name: ____________________ Date: __________
 
-[[s05-R93a]]
+Invented for practice. A closed box holds an unlit toy. No light enters; someone looks through a tiny opening. Explain whether they could see the toy.
 
 ____________________________________________________
 
-[[s05-R93b]]
+Invented for practice. An animal hears a bell and moves toward it. Draw how sound information could lead to movement.
 
-{sketch}
+<div class="sketch" style="height:1in;border:1px solid #555;"></div>

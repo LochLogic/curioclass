@@ -1,5 +1,5 @@
 ---
-piece: key
+piece: story
 course: science-grade-4
 unit: 5.3
 version: draft, not yet taught
@@ -8,22 +8,40 @@ credit: ours
 
 # Section 5.3 exit answers
 
-Teacher only. Name this file in Before class; keep outside student print.
+Teacher only. Name in Before class; keep outside student print.
 
-## Day 86: s05-X86
+## s05-X86-ideas
 
-Two distinct causal ideas, such as intercepting above and diverting beside the entrance, or raising its path. Match input water, slope, inlet or entrance position across tests.
+Two causal site-specific sketches, such as intercepting above, diverting beside or raising the entrance.
 
-Look for: Two feasible site-linked sketches with water-route labels and one shared starting condition. Shape: two site-specific sketches plus shared test condition.
+Two distinct feasible water-route changes. Shape: Two distinct feasible water-route changes.
 
-## Day 87: s05-X87
+## s05-X87-compare
 
-The channel better meets the goal under this small flow. Record downstream wet houses for the barrier despite upstream success. Wetting alone does not establish overflow rather than diversion.
+The channel better meets both-clusters-dry under this small flow. Barrier protects only upstream.
 
-Look for: Compare against both clusters, preserve the failure, and avoid inventing its mechanism. Shape: compare supplied two-cluster outcomes and complete failure record.
+Use both clusters and limit the claim to supplied condition. Shape: Use both clusters and limit the claim to supplied condition.
 
-## Day 88: s05-X88
+## s05-X88-revise
 
-Prefer the platform for these tested flows. Propose extending the channel against observed end bypass and retesting matched flows, or another failure-linked improvement. No universal guarantee.
+Prefer platform on these tested records, or justify a conditional extended-channel proposal requiring retesting.
 
-Look for: Use counterevidence to qualify the recommendation and link the improvement to end bypass. Shape: recommendation revision from counterevidence plus next improvement.
+Use larger-flow counterevidence without universal claims. Shape: Use larger-flow counterevidence without universal claims.
+
+## s05-X86-control
+
+Match input water, slope, inlet or entrance position.
+
+One relevant shared starting condition. Shape: One relevant shared starting condition.
+
+## s05-X87-failure
+
+Downstream houses wet despite upstream houses dry. The cause is not established by wetness alone.
+
+Retain downstream wetting without inventing overflow/diversion. Shape: Retain downstream wetting without inventing overflow/diversion.
+
+## s05-X88-improve
+
+Extend the channel against end bypass, then retest matched flows; accept another change addressing that failure.
+
+Improvement linked to observed end bypass. Shape: Improvement linked to observed end bypass.

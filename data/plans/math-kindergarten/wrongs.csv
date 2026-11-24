@@ -631,3 +631,44 @@ s03-F60-K,Overlaps edge-joining pieces.,,,K,"Assign only from observed action or
 s03-F54-L,Only color as measurable here.,,,L,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F55-M,Turning changes length.,,,M,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
 s03-F60-N,Nonsquare rhombus called square from equal sides.,,,N,"Assign only from observed action or heard statement showing this idea, never an unheard reason or wrong mark alone."
+s03-K45-hook,No interpretable observation.,,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-R45-retry-count,Skips one square and says three.,,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-R45-retry-numeral,5 beside the four-square group.,,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-W45,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-R45-count,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-R45-numeral,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-R45-still,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P45-positions,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P45-count,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P45-position-below,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P45-position-beside,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P45-position-next-to,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P45-position-in-front-of,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P45-position-behind,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-K46-curve,Treats curve as a straight segment.,,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-K46-point,Dot midway along a straight segment.,,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-R46-retry-count,Counts one square twice and says seven.,,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-R46-retry-numeral,5 beside the six-square group.,,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-W46,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P46-features,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P46-closure,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-K47-circle,Says small piece covers whole larger outline.,,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-K47-square,Rejects it because it is turned.,,,B,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-W47,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P47-overlay,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P47-corners,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-K48-sides,Counts first side again and makes four marks.,,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-K48-corners,Marks five corners and omits one.,,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-K48-equal,Calls two sides unequal because they point different ways.,,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-K48-rectangle,Marks all four as the same length.,,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-W48,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P48-boundary,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P48-circle,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P49-rule,"These go here because I like them, with no shape feature.",,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-P49-count,Counts the removed circle too and says four.,,,x,Observed or heard response only; do not infer this cause from an ambiguous mark.
+s03-W49,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P49-sort,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P49-repair,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P49-position-beside,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-P49-position-above,No interpretable response.,,,x,No specific misconception inferred; use a fresh supported practice turn.
+s03-F47-J,Calls upper disk below.,,,J,"Assign only from observed/heard vertical reversal, not a silent ambiguous mark."

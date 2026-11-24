@@ -11,7 +11,11 @@ exit: half
 
 Name: ____________________ Date: __________
 
-[[s05-X85]]
+**1.** Invented for practice. Matched models carry equal loads. A broad base stands under gentle and stronger motion. A narrow base stands only under gentle motion. Recommend a design using both motion records.
+
+____________________________________________________
+
+**2.** Use the same record. Describe a test that could challenge that recommendation.
 
 ____________________________________________________
 

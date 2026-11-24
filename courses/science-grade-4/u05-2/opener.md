@@ -34,6 +34,8 @@ before portfolio. Five cleanup minutes: parallel wiping/bagging, adult containme
 
 E82 C/B returns day 83, E83 F/C day 84, E84 D/F day 85, E85 E/D day 86. Two five-minute moves
 maximum per child. Hear rotating six voluntary turns, 4.5 minutes total; others return paper.
-Use record.md's component feedback scale. Keep held base-design recommendation hidden until day 85.
+Use record.md for descriptive feedback. Keep held base-design recommendation hidden until day 85.
 No personal disaster, household inspection or evacuation-route homework. Before class name teacher-only-exit-key.md;
 keep it outside student print. Background U5-monitor, U5-alert, U5-divert, U5-flood, U5-safety.
+
+Use assessment-record.md for end-of-unit component points, separate from formative categories.

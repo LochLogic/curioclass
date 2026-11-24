@@ -432,34 +432,53 @@ C-P76-revise,Erase the original and copy answers without evidence.,,,x,Revise a 
 C-P76-fresh,Mud fill formed before the channel that holds it.,,,Z,Fresh unscored transfer; no repair rehearsal of this cut-and-fill chain. Accept labeled arrows or drawing. Written feedback returns day 77; unresolved needs remain recorded.
 C-E76-record,Supplied observations count as new firsthand measurements.,,,x,"One scale only: shown, shown with help, not yet seen. Content coaching means shown with help; neutral reading/scribing alone does not. Missing opportunity is a separate note. No total."
 C-R76-water,Dry land D must contain liquid water because it is beside the ocean.,,,x,"Diagnostic only: record state recognition and location/key separately, no grade 4 achievement claim. Six minutes answer, four sort. Day 78 teaches missing states/locations as new; land-water model stays separate retrieval."
-s05-X77,The dots are evenly scattered.,,,G,Error G: Misses clustering.
-s05-X78,The dark seafloor strip is higher.,,,H,Error H: Ignores each map key.
-s05-X79,Leave out T because the ocean floor is flat.,,,A,Error A: Omits underwater relief.
-s05-X80,Earthquakes happen only at coastlines.,,,B,Error B: Makes coastline association exclusive.
 s05-X81,Keep every belt at coastlines.,,,B,Error B: Makes coastline association exclusive.
-s05-X82,Other places are safe because this earthquake was here.,,,C,Error C: Treats a selected record as proof of safety.
-s05-X83,The alert stops the tsunami.,,,F,Error F: Confuses information with stopping the process.
-s05-X84,My wall guarantees dryness in every flood.,,,D,Error D: Promises protection in every flood.
-s05-X85,Gentle success proves the narrow base works under every motion.,,,E,Error E: Generalizes beyond tested conditions.
-s05-X86,One small-flow trial proves protection at every flow.,,,E,Error E: Generalizes beyond tested conditions.
-s05-X87,The channel must protect at every larger flow.,,,E,Error E: Generalizes beyond tested conditions.
-s05-X88,Small-flow success proves larger-flow success.,,,E,Error E: Generalizes beyond tested conditions.
-s05-X89,"Eight is less than twelve, so enough time remains.",,,I,Error I: Omits alert delay.
 s05-X90,Use only the wall; it guarantees protection despite overtopping.,,,D,Error D: Promises protection in every flood.
-s05-X91,The wall protects in every flow.,,,D,Error D: Promises protection in every flood.
-s05-X80,No dots means no hazard.,,,C,"Error C: unsupported absolute or ignored evidence, as named in the unit register."
-s05-X88,Any wall guarantees protection in every flood.,,,D,"Error D: unsupported absolute or ignored evidence, as named in the unit register."
-s05-X89,The alert stops the wave.,,,F,"Error F: unsupported absolute or ignored evidence, as named in the unit register."
-s05-X91,The ocean floor is flat.,,,A,"Error A: unsupported absolute or ignored evidence, as named in the unit register."
-s05-X91,One success proves all conditions.,,,E,"Error E: unsupported absolute or ignored evidence, as named in the unit register."
-s05-E1,All earthquakes occur at coastlines.,,,B,Error B: Makes coastline association exclusive.
-s05-E1,Blank areas are safe.,,,C,Error C: ignores a mapped feature or limits of the selected record.
-s05-E1,The ocean floor is flat.,,,A,Error A: ignores a mapped feature or limits of the selected record.
 s05-E2,"A wall protects in every flood, including untested flows.",,,D,Error D: Promises protection in every flood.
 s05-E2,A warning stops the natural process.,,,F,Error F: information or limited trials treated as universal prevention.
 s05-E2,Small-flow raising success proves protection at every flow.,,,E,Error E: information or limited trials treated as universal prevention.
-s05-P88-portfolio,Erase a failure so the design appears successful.,,,x,Error x: Record the specific gap separately.
 s05-E3-portfolio,Only successful designs deserve observation credit.,,,x,Error x: Record the specific gap separately.
 s05-D93,Louder warnings stop the process.,,,F,Error F: Confuses information with stopping the process.
 s05-R93a,Eyes light up the toy inside.,,,x,Error x: Record the specific gap separately.
 s05-R93b,The animal moves without receiving any information.,,,x,Error x: Record the specific gap separately.
+s05-X77-observe,The dots are evenly scattered.,,,G,Error G: Two observations have locators on Q.
+s05-X77-model,The dots are evenly scattered.,,,G,Error G: Retain initial model without a score.
+s05-X78-land,B; the dark center matches the high rim.,,,x,"Error x: Choice plus both land labels, not choice alone."
+s05-X78-depth,The dark seafloor strip is higher.,,,H,Error H: Apply separate seafloor key.
+s05-X79-table,Leave out T because the ocean floor is flat.,,,A,Error A: Three faithful rows.
+s05-X79-pattern,The ocean floor is flat.,,,A,Error A: Bounded land/seafloor pattern from the cards.
+s05-X80-table,Put every earthquake at a coastline.,,,B,Error B: Faithful three-row extension.
+s05-X80-exception,No dots means no hazard.,,,C,Error C: Pattern with the off-chain exception retained.
+s05-X82-fit,Other places are safe because this event was here.,,,C,Error C: Relational location comparison.
+s05-X82-limit,Other places are safe because this event was here.,,,C,Error C: One warranted one-event limit.
+s05-X83-harm,The alert stops the tsunami.,,,F,Error F: Four causal design-to-harm links.
+s05-X83-criterion,The prettiest color.,,,x,Error x: Common checkable protection criterion.
+s05-X84-ideas,Draw the same wall three times.,,,x,Error x: Distinct ways to keep the workshop floor dry.
+s05-X84-limits,No limit matters because a wall guarantees protection.,,,D,Error D: One checkable criterion and one genuine resource limit.
+s05-X85-recommend,Gentle success proves the narrow base works in every motion.,,,E,"Error E: Evidence from both matched conditions, bounded claim."
+s05-X85-challenge,"One gentle success proves every motion, so no challenge is needed.",,,E,Error E: Relevant controlled challenge with no guarantee.
+s05-X86-ideas,Draw the same idea twice.,,,x,Error x: Two distinct feasible water-route changes.
+s05-X86-control,"One small-flow success proves protection at every flow, regardless of starts.",,,E,Error E: One relevant shared starting condition.
+s05-X87-compare,The channel must protect at every larger flow.,,,E,Error E: Use both clusters and limit the claim to supplied condition.
+s05-X87-failure,No failure occurred because every barrier guarantees protection.,,,D,Error D: Retain downstream wetting without inventing overflow/diversion.
+s05-X88-revise,Small-flow success proves larger-flow success.,,,E,Error E: Use larger-flow counterevidence without universal claims.
+s05-X88-improve,No improvement is needed because any wall guarantees protection.,,,D,Error D: Improvement linked to observed end bypass.
+s05-X89-time,"Eight is less than twelve, so enough time remains.",,,I,"Error I: Combine delay and travel, compare with arrival."
+s05-X89-gap,Both slopes are monitored because homes are on both.,,,x,"Error x: Monitoring coverage, not notice reach."
+s05-X91-map,The ocean floor is flat.,,,A,Error A: Ridge/event association and isolated volcano exception.
+s05-X91-design,The wall protects in every flow.,,,D,Error D: Use changed-condition counterevidence to limit a claim.
+s05-X80-table,Earthquakes happen only at coastlines.,,,B,Error B: Makes coastline association exclusive.
+s05-X80-table,No dots means no hazard.,,,C,"Error C: unsupported absolute or ignored evidence, as named in the unit register."
+s05-X82-fit,Other places are safe because this earthquake was here.,,,C,Error C: Treats a selected record as proof of safety.
+s05-X84-limits,My wall guarantees dryness in every flood.,,,D,Error D: Promises protection in every flood.
+s05-X85-recommend,Gentle success proves the narrow base works under every motion.,,,E,Error E: Generalizes beyond tested conditions.
+s05-X86-ideas,One small-flow trial proves protection at every flow.,,,E,Error E: Generalizes beyond tested conditions.
+s05-X88-revise,Any wall guarantees protection in every flood.,,,D,"Error D: unsupported absolute or ignored evidence, as named in the unit register."
+s05-X89-time,The alert stops the wave.,,,F,"Error F: unsupported absolute or ignored evidence, as named in the unit register."
+s05-X91-design,One success proves all conditions.,,,E,"Error E: unsupported absolute or ignored evidence, as named in the unit register."
+s05-P88-compare,Erase a failure so the design looks successful.,,,x,"Error x: Accurate two-condition comparison, no score before day 92."
+s05-P88-improve,Any change must work because it is new.,,,x,"Error x: Evidence-linked causal improvement, no score before day 92."
+s05-E1-table,The ocean floor is flat.,,,A,Error A: omits mapped seafloor relief.
+s05-E1-account,The ocean floor is flat.,,,A,Error A: omits mapped seafloor relief.
+s05-E1-account,All earthquakes occur at coastlines.,,,B,Error B: Makes coastline association exclusive.
+s05-E1-account,Blank areas are safe.,,,C,Error C: ignores a mapped feature or limits of the selected record.

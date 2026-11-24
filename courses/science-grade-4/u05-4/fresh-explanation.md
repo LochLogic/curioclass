@@ -10,7 +10,7 @@ credit: ours
 
 Name: ____________________ Date: __________
 
-[[s05-D93]]
+Invented for practice. A warning reaches a lookout but not workers below. The event continues. Explain one change that could help the warning reduce harm.
 
 ____________________________________________________
 

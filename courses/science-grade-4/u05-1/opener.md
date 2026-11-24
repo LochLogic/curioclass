@@ -38,6 +38,8 @@ and dry filing, adult containment/handwashing. No child sink queue.
 G/H repair traces a cluster or applies each map key. A needs seafloor relief; B a noncoastal example;
 C the record span/selection limits. At most two five-minute moves each, preserving day 78 response.
 Practice is single-row audits, separate tallies/strips and evidence tags, never a complete held response.
-Every child returns paper. Hear rotating six, 45 seconds each, all may pass. Use the record's component
-scale for feedback, no initial-model score. End evidence is day 92. Before class name teacher-only-exit-key.md;
+Every child returns paper. Hear rotating six, 45 seconds each, all may pass. Use record.md for descriptive
+feedback, no initial-model score. End evidence is day 92. Before class name teacher-only-exit-key.md;
 keep answers outside student print. See U5-map, U5-relief and U5-safety in sources.csv for background.
+
+Use assessment-record.md for end-of-unit component points, separate from formative categories.

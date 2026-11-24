@@ -16,7 +16,7 @@ Failure locator: ________________________
 
 Observed water route: ___________________
 
-Possible change: {sketch}
+Possible change: <div class="sketch" style="height:1in;border:1px solid #555;"></div>
 
 Proposed effect on that route: _______________________
 

@@ -11,9 +11,11 @@ exit: half
 
 Name: ____________________ Date: __________
 
-[[s05-X84]]
+**1.** Invented for practice. A riverside workshop needs a dry floor. Clay, sand and cardboard are available. Draw three different possible dry-floor solutions.
 
-{sketch}
+<div class="sketch" style="height:1in;border:1px solid #555;"></div>
+
+**2.** Use the same record. Label one criterion and one constraint for comparing those solutions.
 
 ____________________________________________________
 

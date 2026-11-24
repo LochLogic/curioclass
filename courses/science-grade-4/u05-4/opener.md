@@ -28,7 +28,7 @@ for assessment and teacher-only-exit-key.md for exits; never include them in stu
 Day 92: Launch 3, maps 20, packages 18, Collection 4 minutes; no repair or apparatus rotations.
 Student packet is within 350 words with paired maps and compact tables. Neutral reading, enlargement,
 tactile versions and dictation preserve independent reasoning. After class score six components each
-for E1/E2 and two for revised portfolio, one component scale: 2 complete, 1 relevant incomplete,
+for E1/E2 and two for revised portfolio, assessment-record.md uses one component scale: 2 complete, 1 relevant incomplete,
 0 absent/incorrect, unavailable opportunity blank with note. Keep /24 and /4 separate. About four
 minutes per child marking, untested. No additional portfolio sitting time or repeated score.
 

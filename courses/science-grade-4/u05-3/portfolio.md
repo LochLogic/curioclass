@@ -12,7 +12,9 @@ Name: ____________________ Date: __________
 
 ## Day 88: independent work
 
-[[s05-P88-portfolio]]
+Compare one design across your small-flow and larger-flow records.
+
+Explain an improvement linked to that design's recorded evidence.
 
 My design and record type: ______________________________
 
@@ -22,7 +24,7 @@ Larger-flow locator and outcome: _________________________
 
 Comparison: ____________________________________________
 
-Improvement and proposed effect: {sketch}
+Improvement and proposed effect: <div class="sketch" style="height:1in;border:1px solid #555;"></div>
 
 Evidence link: _________________________________________
 

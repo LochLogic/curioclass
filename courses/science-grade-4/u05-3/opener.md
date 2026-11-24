@@ -36,5 +36,7 @@ first score day 92, four points. Design failure itself loses no reasoning credit
 portfolio for copying. E88 separately returns day 89 D/E repair. Before class name teacher-only-exit-key.md.
 
 Practice keeps raw logs separate from improvement labels, never held recommendation revision.
-Hear six voluntary turns only, 4.5 minutes; all return paper. Record component feedback and missing
+Hear six voluntary turns only, 4.5 minutes; all return paper. Record descriptive feedback and missing
 firsthand evidence when W replaces testing. Background U5-divert, U5-flood, U5-safety.
+
+Use assessment-record.md for end-of-unit component points, separate from formative categories.

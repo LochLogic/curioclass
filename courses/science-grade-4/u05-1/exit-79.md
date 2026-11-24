@@ -11,7 +11,7 @@ exit: half
 
 Name: ____________________ Date: __________
 
-[[s05-X79]]
+**1.** Invented for practice. Card R shows mountains along a western continental edge. Card S shows mountains inside another continent. Card T shows an offshore trench. Table the cards' locations and features.
 
 ![Day 79 reserved stimulus](exit-79.svg)
 
@@ -20,6 +20,8 @@ Name: ____________________ Date: __________
 | ______ | ______ |
 | ______ | ______ |
 | ______ | ______ |
+
+**2.** Use the same record. Describe the pattern those cards support.
 
 ____________________________________________________
 

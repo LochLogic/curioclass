@@ -11,7 +11,11 @@ exit: half
 
 Name: ____________________ Date: __________
 
-[[s05-X88]]
+**1.** Invented for practice. A channel protects at small flow. Larger flow bypasses its end and wets houses. A platform protects at both flows. Revise the recommendation using both flow records.
+
+____________________________________________________
+
+**2.** Use the same record. Name an improvement to test against the recorded failure.
 
 ____________________________________________________
 

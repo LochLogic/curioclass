@@ -17,7 +17,7 @@ Upstream ↓
 
 | Wall outline | House-position space |
 |---|---|
-| {sketch} | {sketch} |
+| <div class="sketch" style="height:1in;border:1px solid #555;"></div> | <div class="sketch" style="height:1in;border:1px solid #555;"></div> |
 
 ## Group 2: channel template
 
@@ -25,7 +25,7 @@ Upstream ↓
 
 | Channel route | House-position space |
 |---|---|
-| {sketch} | {sketch} |
+| <div class="sketch" style="height:1in;border:1px solid #555;"></div> | <div class="sketch" style="height:1in;border:1px solid #555;"></div> |
 
 ## Group 3: platform template
 
@@ -33,6 +33,6 @@ Upstream ↓
 
 | Raised area | House-position space |
 |---|---|
-| {sketch} | {sketch} |
+| <div class="sketch" style="height:1in;border:1px solid #555;"></div> | <div class="sketch" style="height:1in;border:1px solid #555;"></div> |
 
 My contribution: ____________________________________

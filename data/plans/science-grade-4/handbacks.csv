@@ -249,41 +249,11 @@ from_day,to_day,what,where,minutes,error,note
 75,76,C-E75-plan C-E75-measure C-E75-ice C-E75-move C-E75-life C-E75-history C-E75-match,Revision,7,,Written component feedback read in Return feedback; revised evidence uses existing categories. No practical or portfolio rescore.
 76,77,C-P76-wave C-P76-code C-P76-land C-P76-history C-P76-revise C-P76-fresh C-E76-record,opening,0,,Written formative return only; papers stay in folders. No repair minutes added to hook.
 76,78,C-R76-water,Water-location response,10,,"Five minutes state matching, five locations/key. Teach missing ideas as new; lower skill rows planned only. Land-water model is separate retrieval."
-77,78,s05-X77,Clay,5,G,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-78,79,s05-X78,Return,5,H,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-79,80,s05-X79,Return,5,A,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-79,80,s05-X79,Return,5,H,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-80,81,s05-X80,Return,5,B,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-80,81,s05-X80,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
 81,82,s05-X81,Return,5,B,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
 81,82,s05-X81,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-82,83,s05-X82,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-82,83,s05-X82,Return,5,B,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-83,84,s05-X83,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-83,84,s05-X83,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-84,85,s05-X84,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-84,85,s05-X84,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-85,86,s05-X85,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-85,86,s05-X85,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-86,87,s05-X86,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-86,87,s05-X86,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-87,88,s05-X87,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-88,89,s05-X88,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-88,89,s05-X88,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-89,90,s05-X89,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-89,90,s05-X89,Return,5,I,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
 90,91,s05-X90,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
 90,91,s05-X90,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
-76,78,C-R76-water,Water-location,10,,"Five minutes states, five locations/key. Teach missing ideas as new; no presumed pass."
-91,93,s05-X91,Read,0,,Private diagnostic note with assessment feedback; no day 92 repair.
-88,90,s05-P88-portfolio,Portfolio,15,,"Written feedback after day 88, two minutes per child; second-color revision, no score."
 90,92,s05-E3-portfolio,Collection,0,,"Collect revised work day 90. First score after day 92, four points; no sitting time."
-92,93,s05-E1,Read,0,,Private return in five-minute Read feedback; then Targeted repair 10 and Revision 15. Retain first score.
-92,93,s05-E2,Read,0,,Private return in five-minute Read feedback; then Targeted repair 10 and Revision 15. Retain first score.
-92,93,s05-E3-portfolio,Read,0,,Private return in five-minute Read feedback; then Targeted repair 10 and Revision 15. Retain first score.
-93,94,s05-D93,Hook,0,,"Brief written note, no readiness teaching; unfinished warning gaps recorded privately."
-93,95,s05-R93a,Seeing,0,,Separate illumination and sensing notes for integrated seeing/sense response. Unit 6 writer matches actual receiving part. No coaching day 93.
-93,95,s05-R93b,Seeing,0,,Separate illumination and sensing notes for integrated seeing/sense response. Unit 6 writer matches actual receiving part. No coaching day 93.
 77,78,question slips and strips,Water-location,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
 78,79,traces and land-water model,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
 79,80,row audits,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
@@ -299,4 +269,34 @@ from_day,to_day,what,where,minutes,error,note
 89,90,delivery/action record,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
 90,91,hearing notes,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
 91,93,separate consensus notes,Read,0,,Return with E91; no combined map/design practice account.
-93,94,revised assessment paper,Hook,0,,"Check marked components in day 93 Revision, return private unfinished-needs note; no new score."
+93,94,s05-D93,Cat,0,,"Brief written note, no readiness teaching; unfinished warning gaps recorded privately."
+93,95,s05-R93a,readiness,15,,One shared 15-minute Return and repair: readiness part responds to both records. Illumination and sensing notes stay distinct; no day 93 coaching.
+93,95,s05-R93b,readiness,0,,One shared 15-minute Return and repair: readiness part responds to both records. Illumination and sensing notes stay distinct; no day 93 coaching.
+93,94,revised assessment paper,Cat,0,,"Check marked components in day 93 Revision, return private unfinished-needs note; no new score."
+77,78,s05-X77-observe; s05-X77-model,Clay,5,G,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+78,79,s05-X78-land; s05-X78-depth,Return,5,H,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+79,80,s05-X79-table; s05-X79-pattern,Return,5,A,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+79,80,s05-X79-table; s05-X79-pattern,Return,5,H,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+80,81,s05-X80-table; s05-X80-exception,Return,5,B,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+80,81,s05-X80-table; s05-X80-exception,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+82,83,s05-X82-fit; s05-X82-limit,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+82,83,s05-X82-fit; s05-X82-limit,Return,5,B,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+83,84,s05-X83-harm; s05-X83-criterion,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+83,84,s05-X83-harm; s05-X83-criterion,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+84,85,s05-X84-ideas; s05-X84-limits,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+84,85,s05-X84-ideas; s05-X84-limits,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+85,86,s05-X85-recommend; s05-X85-challenge,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+85,86,s05-X85-recommend; s05-X85-challenge,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+86,87,s05-X86-ideas; s05-X86-control,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+86,87,s05-X86-ideas; s05-X86-control,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+87,88,s05-X87-compare; s05-X87-failure,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+88,89,s05-X88-revise; s05-X88-improve,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+88,89,s05-X88-revise; s05-X88-improve,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+89,90,s05-X89-time; s05-X89-gap,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+89,90,s05-X89-time; s05-X89-gap,Return,5,I,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+91,93,s05-X91-map; s05-X91-design,Read,0,,Private diagnostic note with assessment feedback; no day 92 repair.
+88,90,s05-P88-compare; s05-P88-improve,Portfolio,15,,"Written feedback after day 88, two minutes per child; second-color revision, no score."
+92,93,s05-E1-table; s05-E1-account,Read,0,,Private return in five-minute Read feedback; then Targeted repair 10 and Revision 15. Retain first score.
+90,91,s05-X89-time; s05-X89-gap unresolved I,Return,0,I,"Use the same second five-minute move already reserved for unresolved F. Choose F or I per child, never add a third move."
+92,93,s05-E2,Read,0,,Private return during Read feedback; share that five-minute part with the other assessment papers. Then Targeted repair 10 and Revision 15. Retain first score.
+92,93,s05-E3-portfolio,Read,0,,Private return during Read feedback; share that five-minute part with the other assessment papers. Then Targeted repair 10 and Revision 15. Retain first score.
