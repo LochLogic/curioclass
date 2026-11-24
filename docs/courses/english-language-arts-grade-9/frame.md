@@ -96,7 +96,7 @@ Grade 10 owns every band code started here. It reads longer whole works (Franken
 | Unit 8, e9-rl-complex-characters | e10-rl-complex-characters (RL.9-10.3) | Pairs of characters across a whole work |
 | Unit 8, e9-rl-word-choice-tone | e10-rl-word-choice-tone (RL.9-10.4; L.9-10.5) | Cumulative impact across a speech or poem |
 
-Texts not repeated across the seam: grade 10 reads no text read here. The Gettysburg Address (unit 5) is read again in grade 12 (e12-info-founding-documents) beside the Second Inaugural, a different lens; the Odyssey's Greek world is met as history in grade 7 (ss7-greek-myth) and here as the epic.
+Texts not repeated across the seam: grade 10 reads no text read here. The Gettysburg Address (unit 5) is read again in grade 12 (e12-info-founding-documents) beside the Second Inaugural, a different lens, and grade 12 does not assess the final government clause or the It is for us the living sentence this grade checks (days 91 and 94). The Second Inaugural's last paragraphs are this grade's cold passage on day 93; grade 11 unit 3 reads the whole address on day 45 and grade 12 unit 7 rereads it, and neither puts an exit or check on those paragraphs (cold-read fix 2026-11-24); the Odyssey's Greek world is met as history in grade 7 (ss7-greek-myth) and here as the epic.
 
 ## Models carried
 

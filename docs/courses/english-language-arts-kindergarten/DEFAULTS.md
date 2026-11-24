@@ -14,5 +14,5 @@ Generated 2026-11-18 by scripts/defaults.py (later.csv L76) from its band and su
 - **A cold check reads a new text,** not one taught, and does not restate the taught text's central idea.
 - **Reading fits the minutes:** about 120 words a minute in class alongside the day's other parts; more goes to a read-aloud or home reading, named. Content notes name what the texts contain, not only the topic.
 - **Repair slots fit what is routed to them.** Every hand-back lands in a named part of its day (handbacks.csv `where`) that holds its minutes; a warm-up holds one repair of at most 5 minutes (plan.py checks).
-- **Exits ask a transfer:** a new case that needs the day's idea, not the worked example in new numbers.
+- **Exits ask a transfer on the day's text:** a reserved passage or an unread part of the unit's own texts that needs the day's idea, never a card invented for the exit and never the worked passage. A Goal map's "new passage" or "fresh passage" means such a passage, unless the plan names a cold assessment text in ela-texts.csv. An item on an invented card has needs_text no (cold-read fix 2026-11-24).
 - **Talk.** Every student may pass in public talk; no one is the example of a mistake.
