@@ -1176,19 +1176,19 @@ s06-P119-2,The key calls the processing plant a natural resource.,,,T,Cold-check
 s06-P119-3,Four feature names appear in a list with no located marks.,,,R,Cold-checked concrete response; one diagnostic error.
 s06-P119-4,The response lists four places without locating them.,,,R,Cold-checked concrete response; one diagnostic error.
 s06-P119-5,Nine cards are spaced evenly by event rather than year.,,,C,Cold-checked concrete response; one diagnostic error.
-s06-P121-1,A response missing the named relationship or source position.,,,U,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P121-2,A response missing the named relationship or source position.,,,G,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P122-1,A response missing the named relationship or source position.,,,X,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P122-2,A response missing the named relationship or source position.,,,U,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P122-3,A response missing the named relationship or source position.,,,G,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P123-1,A response missing the named relationship or source position.,,,U,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P123-2,A response missing the named relationship or source position.,,,G,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P124-1,A response missing the named relationship or source position.,,,H,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P124-2,A response missing the named relationship or source position.,,,H,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P124-3,A response missing the named relationship or source position.,,,V,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P125-1,A response missing the named relationship or source position.,,,H,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P125-2,A response missing the named relationship or source position.,,,V,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P125-3,A response missing the named relationship or source position.,,,x,"Choice note, no error group: name the next-best current choice forgone. The catchall x records an individual misconception without inventing a unit error letter."
+s06-P121-1,"Water, buildings, channels.",,,U,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P121-2,The hillside.,,,x,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P122-1,Which drawing is nicest?,,,X,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P122-2,Water and factories.,,,U,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P122-3,It proves every farm in the region grows the same crop.,,,G,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P123-1,"Water, cotton, wood.",,,U,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P123-2,These accounts tell us every resident has the same job.,,,G,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P124-1,Boots: service. Haircut: good.,,,x,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P124-2,"Only businesses trade, so Inez buys and sells nothing.",,,H,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P124-3,"The mill supplies every need alone, so it buys nothing.",,,V,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P125-1,Only the mill buys and sells; Inez cannot trade.,,,H,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P125-2,The groups use only twenty-five counters.,,,x,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P125-3,Moving counters to saving destroys them.,,,x,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
 s06-P126-1,A response missing the named relationship or source position.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P126-2,A response missing the named relationship or source position.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P127-1,A response missing the named relationship or source position.,,,W,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
@@ -1257,3 +1257,7 @@ s06-P119-R2,A larger city replaces the capital.,,,K,Fresh isolated paper retriev
 s06-P119-R3,A larger city replaces the capital.,,,K,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
 s06-P119-R4,A larger city replaces the capital.,,,K,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
 s06-P119-R5,A larger city replaces the capital.,,,K,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
+s06-X121,The river makes every person take the same job.,,,G,Cold-solved predicted response; one error only. Routes to next-day repair.
+s06-X122b,The factory is a natural resource.,,,T,Cold-solved predicted response; one error only. Routes to next-day repair.
+s06-X123,"Grain, forest, water.",,,U,Cold-solved predicted response; one error only. Routes to next-day repair.
+s06-X124,Each specialist supplies every need and buys nothing.,,,V,Cold-solved predicted response; one error only. Routes to next-day repair.
