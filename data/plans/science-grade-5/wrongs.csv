@@ -620,3 +620,95 @@ s05-P99-design,Both devices changed in every way.,,,x,error x: Identical outline
 s05-P99-resource,The stream amount cannot change.,,,x,error x: Supplied matched records show fewer downstream water marks when the intake opens.
 s05-Q2a1,Endpoints do not match the supplied 975 and 25.,,,x,error x: Copying or construction gap; no specific misconception inferred.
 s05-Q2b2,No land-ice category or dominant freshwater store is identified.,,,x,error x: Location or category evidence absent; give descriptive feedback.
+s06-X102,Separate facts without connection.,,,A,Separate facts need a combined conclusion.
+s06-X102,Unconnected boom and water labels.,,,B,Names alone omit interactions.
+s06-X102,Less litter next year was already observed.,,,C,A projection is not an observation.
+s06-X103,Clear output proves safe drinking water.,,,D,Appearance does not establish drinking safety.
+s06-X105,Give baskets different water amounts.,,,E,A second changing condition confounds comparison.
+s06-X105,One good trial proves the best basket.,,,F,One result does not establish repeated performance.
+s06-X107,Keep only the preferred first trial.,,,F,One result does not establish repeated performance.
+s06-X107,Remove leaking and tilted trials.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-X108,Omit N2 to make N consistent.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-X108,N1 alone proves the best liner.,,,F,One result does not establish repeated performance.
+s06-X109,Repaint the outside without changing the split.,,,H,Target the recorded failure.
+s06-X111,Choose S from its first trial alone.,,,F,One result does not establish repeated performance.
+s06-X111,Drink the clearer output.,,,D,Appearance does not establish drinking safety.
+s06-X112,Copy the crew line and counts separately.,,,A,Separate facts need a combined conclusion.
+s06-X112,Swept runoff is drinkable.,,,D,Appearance does not establish drinking safety.
+s06-X113,"List bridge, basket and stream without interactions.",,,B,Names alone omit interactions.
+s06-X113,Complete future capture was already observed.,,,C,A projection is not an observation.
+s06-P111-plot,Delete an unfavorable repeat.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-X114-1,Copy facts separately.,,,A,Separate facts need a combined conclusion.
+s06-X114-1,List parts without connection.,,,B,Names alone omit interactions.
+s06-X114-1,The water is drinkable.,,,D,Appearance does not establish drinking safety.
+s06-X114-2,Unequal amounts still compare fairly.,,,E,A second changing condition confounds comparison.
+s06-Q1a,"The city has projects; soil has gravel, without combination.",,,A,Separate facts need a combined conclusion.
+s06-Q1a,"Land, sewer and water labels have no routes.",,,B,Names alone omit interactions.
+s06-Q1b1,Reduce engine exhaust without changing soil loss.,,,I,An action must affect the particular harm route.
+s06-Q1b2,Prevent orbital debris without addressing habitat.,,,I,An action must affect the particular harm route.
+s06-Q1b3,Prevent orbital debris to stop runoff.,,,I,An action must affect the particular harm route.
+s06-Q1b4,Replant a disconnected habitat without interrupting litter transport.,,,I,An action must affect the particular harm route.
+s06-Q1b5,Collect river litter without changing engine emissions.,,,I,An action must affect the particular harm route.
+s06-Q1b6,Filter ocean water to remove orbiting equipment.,,,I,An action must affect the particular harm route.
+s06-Q1c,A future benefit has already been measured.,,,C,A projection is not an observation.
+s06-Q1c,Clear output must be drinkable.,,,D,Appearance does not establish drinking safety.
+s06-Q2a,Use different inputs.,,,E,A second changing condition confounds comparison.
+s06-Q2a,One trial proves winner.,,,F,One result does not establish repeated performance.
+s06-Q2a,Erase unfavorable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-Q2b,B1 alone proves B always best.,,,F,One result does not establish repeated performance.
+s06-Q2b,Paint catcher without addressing failure.,,,H,Target the recorded failure.
+s06-Q2b,Delete high escape reading.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-R117,Separate copied facts.,,,A,Separate facts need a combined conclusion.
+s06-R117,Parts without route.,,,B,Names alone omit interactions.
+s06-R117,Runoff is drinkable.,,,D,Appearance does not establish drinking safety.
+s06-R117,"Repaint covers, leaving unequal slopes.",,,H,Target the recorded failure.
+s06-P100-notice,Part names alone show the interaction.,,,B,Names alone omit interactions.
+s06-P100-route,Part names alone show the interaction.,,,B,Names alone omit interactions.
+s06-P101-locator,The separate facts already explain the whole result.,,,A,Separate facts need a combined conclusion.
+s06-P101-status,The expected future result has already been observed.,,,C,A projection is not an observation.
+s06-P102-soil,An action unrelated to this harm route will solve it.,,,I,An action must affect the particular harm route.
+s06-P102-status,The expected future result has already been observed.,,,C,A projection is not an observation.
+s06-P103-sort,Clear-looking output is safe to drink.,,,D,Appearance does not establish drinking safety.
+s06-P103-limit,An unrelated change fixes any failure.,,,H,Target the recorded failure.
+s06-P104-feature,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P104-contribution,An unrelated change fixes any failure.,,,H,Target the recorded failure.
+s06-P105-plot,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P105-control,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P106-assembly,An unrelated change fixes any failure.,,,H,Target the recorded failure.
+s06-P106-inventory,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P107-serial,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P107-scale,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P108-audit,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P108-fault,An unrelated change fixes any failure.,,,H,Target the recorded failure.
+s06-P109-locator,An unrelated change fixes any failure.,,,H,Target the recorded failure.
+s06-P109-fixed,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P110-dry,An unrelated change fixes any failure.,,,H,Target the recorded failure.
+s06-P110-mark,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P111-dot,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P111-criterion,Clear-looking output is safe to drink.,,,D,Appearance does not establish drinking safety.
+s06-P112-source,The separate facts already explain the whole result.,,,A,Separate facts need a combined conclusion.
+s06-P112-limit,Clear-looking output is safe to drink.,,,D,Appearance does not establish drinking safety.
+s06-P113-point,Part names alone show the interaction.,,,B,Names alone omit interactions.
+s06-P113-repeat,The most favorable trial alone proves success.,,,F,One result does not establish repeated performance.
+s06-P114-timing,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P114-reset,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P117-A,The separate facts already explain the whole result.,,,A,Separate facts need a combined conclusion.
+s06-P117-B,Part names alone show the interaction.,,,B,Names alone omit interactions.
+s06-P117-C,The expected future result has already been observed.,,,C,A projection is not an observation.
+s06-P117-D,Clear-looking output is safe to drink.,,,D,Appearance does not establish drinking safety.
+s06-P117-E,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P117-F,The most favorable trial alone proves success.,,,F,One result does not establish repeated performance.
+s06-P117-G,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P117-H,An unrelated change fixes any failure.,,,H,Target the recorded failure.
+s06-P117-I,An action unrelated to this harm route will solve it.,,,I,An action must affect the particular harm route.
+s06-X100-1,"Separate yard, ditch and pond labels.",,,B,Names alone omit interactions.
+s06-X100-2,An air-protection question with no connection to this route.,,,I,An action must affect the particular harm route.
+s06-X101-1,Copy facts separately without a shared question.,,,A,Separate facts need a combined conclusion.
+s06-X101-2,Copy facts separately without a shared question.,,,A,Separate facts need a combined conclusion.
+s06-X104-1,One forecast proves S always works.,,,F,One result does not establish repeated performance.
+s06-X104-2,One forecast proves S always works.,,,F,One result does not establish repeated performance.
+s06-X104-2,S produces drinkable water.,,,D,Appearance does not establish drinking safety.
+s06-X106-2,Different inputs still compare fairly.,,,E,A second changing condition confounds comparison.
+s06-P110-retests,Change inputs between trials.,,,E,A second changing condition confounds comparison.
+s06-P110-retests,Remove the category-3 repeat.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-X110,Omit unfavorable repeated evidence from the model.,,,G,Retain inconvenient or unresolved trials with notes.

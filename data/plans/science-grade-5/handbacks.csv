@@ -251,3 +251,83 @@ from_day,to_day,what,where,minutes,error,note
 99,103,unit-6 design/resource handoff notes,Return,0,,"Notes only, not another readiness check or added lesson allocation."
 86,87,s05-P86-climate s05-P86-key s05-P86-recheck s05-P86-extension,Return,0,,Return support notes with existing packet; no additional conference.
 99,100,s05-P99-A s05-P99-B s05-P99-C s05-P99-D s05-P99-E s05-P99-F s05-P99-G s05-P99-H s05-P99-design s05-P99-resource,Retrieve,0,,"Private written feedback after class, same folder as assigned retry; notes only, no new promised teaching time."
+100,101,s06-X100-1 s06-X100-2,Return,5,B,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+100,101,s06-X100-1 s06-X100-2,Return,5,I,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+101,102,s06-X101-1 s06-X101-2,Return,5,A,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+102,103,s06-X102,Return,5,A,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+102,103,s06-X102,Return,5,B,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+102,103,s06-X102,Return,5,C,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+103,104,s06-X103,Return,5,D,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+104,105,s06-X104-1 s06-X104-2,Return,5,D,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+104,105,s06-X104-1 s06-X104-2,Return,5,F,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+105,106,s06-X105,Return,5,E,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+105,106,s06-X105,Return,5,F,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+106,107,s06-X106-1 s06-X106-2,Return,5,E,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+107,108,s06-X107,Return,5,F,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+107,108,s06-X107,Return,5,G,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+108,109,s06-X108,Return,5,F,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+108,109,s06-X108,Return,5,G,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+109,110,s06-X109,Return,5,H,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+110,111,s06-P110-retests s06-X110,Return,5,E,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+110,111,s06-P110-retests s06-X110,Return,5,G,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+111,112,s06-X111 s06-P111-plot,Return,5,F,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+111,112,s06-X111 s06-P111-plot,Return,5,D,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+112,113,s06-X112,Return,5,A,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+112,113,s06-X112,Return,5,D,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+113,114,s06-X113,Return,5,B,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+113,114,s06-X113,Return,5,C,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+100,102,s06-X100-1 s06-X100-2,Return,5,,"Unfinished B/I share this component round, no added time."
+101,103,s06-X101-1 s06-X101-2,Return,0,C,"Status notes share existing C round, no added minutes."
+114,117,s06-X114-1 s06-X114-2,Read,0,,Assigned A/B/D/E moves share response routes; no reteach on 115/116.
+115,117,s06-Q1a s06-Q1b1 s06-Q1b2 s06-Q1b3 s06-Q1b4 s06-Q1b5 s06-Q1b6 s06-Q1c,Read,3,,"Originals and private feedback, separate assessment record."
+116,117,s06-Q2a s06-Q2b,Read,2,,Immutable original values and named action roster.
+115,117,source errors A C B I D,Read,0,,"Alternative sources A/C, links B/I or limits D run inside twenty minutes shared with testing; each assigned letter five minutes, maximum four moves per child."
+116,117,s06-Q2a s06-Q2b,Parallel,5,E,One five-minute assigned move. Other routes run in parallel inside these same twenty minutes.
+116,117,s06-Q2a s06-Q2b,Parallel,5,F,One five-minute assigned move. Other routes run in parallel inside these same twenty minutes.
+116,117,s06-Q2a s06-Q2b,Parallel,5,G,One five-minute assigned move. Other routes run in parallel inside these same twenty minutes.
+116,117,s06-Q2a s06-Q2b,Parallel,5,H,One five-minute assigned move. Other routes run in parallel inside these same twenty minutes.
+100,101,s06-P100-notice s06-P100-route,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+101,102,s06-P101-locator s06-P101-status,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+102,103,s06-P102-soil s06-P102-status,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+103,104,s06-P103-sort s06-P103-limit,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+104,105,s06-P104-feature s06-P104-contribution,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+105,106,s06-P105-plot s06-P105-control,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+106,107,s06-P106-assembly s06-P106-inventory,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+107,108,s06-P107-serial s06-P107-scale,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+108,109,s06-P108-audit s06-P108-fault,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+109,110,s06-P109-locator s06-P109-fixed,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+110,111,s06-P110-dry s06-P110-mark,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+111,112,s06-P111-dot s06-P111-criterion,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+112,113,s06-P112-source s06-P112-limit,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+113,114,s06-P113-point s06-P113-repeat,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+114,117,s06-P114-timing s06-P114-reset,Read,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+100,101,question board and anchor components,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+100,102,question board and anchor components,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+100,112,question board and anchor components,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+100,113,question board and anchor components,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+104,105,versioned sketches and quantities,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+104,106,versioned sketches and quantities,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+104,109,versioned sketches and quantities,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+104,110,versioned sketches and quantities,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+105,106,approved dry controls,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+105,107,approved dry controls,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+105,110,approved dry controls,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+107,108,all actual serial slips or separate T107,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+107,109,all actual serial slips or separate T107,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+107,113,all actual serial slips or separate T107,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+108,109,teacher plots and fault locators,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+108,111,teacher plots and fault locators,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+110,111,V baseline and all retests,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+110,112,V baseline and all retests,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+110,113,V baseline and all retests,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+100,101,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+101,102,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+102,103,rotating six listening roster,Component,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+103,104,rotating six listening roster,Generate,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+104,105,rotating six listening roster,Dry,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+105,108,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+108,109,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+109,111,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+111,112,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+112,113,rotating six listening roster,Consensus,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+113,114,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."

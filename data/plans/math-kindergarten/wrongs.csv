@@ -1703,19 +1703,19 @@ s08-P138-1,Keeps four after one is added.,,,D,Assign this letter only if the nam
 s08-P138-2,Keeps eight after one is added.,,,D,Assign this letter only if the named action/reason is observed; otherwise describe the response.
 s08-P139-1,"Starts one, two, three instead of the supplied eight.",,,E,Assign this letter only if the named action/reason is observed; otherwise describe the response.
 s08-P139-2,Writes five again in the missing-label box.,,,x,Assign this letter only if the named action/reason is observed; otherwise describe the response.
-s08-P140-1,Does not make the described correction.,,,A,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P140-2,Does not make the described correction.,,,I,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P141-1,Does not make the described correction.,,,F,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P141-2,Does not make the described correction.,,,F,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P142-1,Does not make the described correction.,,,G,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P142-2,Does not make the described correction.,,,H,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P142-3,Does not make the described correction.,,,A,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P143-1,Does not make the described correction.,,,L,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P143-2,Does not make the described correction.,,,L,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P144-1,Does not make the described correction.,,,L,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P144-2,Does not make the described correction.,,,C,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P145-1,Does not make the described correction.,,,L,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
-s08-P145-2,Does not make the described correction.,,,x,Unexplained misses get descriptive notes. Access support separate.
+s08-P140-1,Leaves five record marks for six source rings.,,,x,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-P140-2,Counts sixteen correctly but reverses its digits.,,,I,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-P141-1,"Retains one token for ten, with two outside.",,,F,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-P141-2,Calls one token ten and two more twelve.,,,F,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-P142-1,Calls whole cube flat because its face is flat.,,,G,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-P142-2,Rejects square solely because it turned.,,,H,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-P142-3,Records eleven after omitting a square.,,,x,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-P143-1,Reports one four-square part as whole.,,,L,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-P143-2,Uses one three-ring part as total.,,,L,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-P144-1,Records arriving one as whole.,,,L,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-P144-2,"Joins stored one to four, writes five.",,,C,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-P145-1,Uses arriving one as whole total.,,,L,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-P145-2,Keeps 3 = 3 + 1 despite four actual strips.,,,x,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
 s08-P146-1,Does not make the described correction.,,,J,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-P146-2,Does not make the described correction.,,,K,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
 s08-P147-1,Does not make the described correction.,,,L,Assign letter only when described action/reason observed. Unexplained misses get descriptive notes. Access support separate.
@@ -1759,3 +1759,19 @@ s08-R139,Keeps three after adding one.,,,D,Assign a letter only for the observed
 s08-P-order139,Puts 17 after 19.,,,x,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
 s08-P-start139,"Restarts one, two, three.",,,E,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
 s08-P-label139,Revisits a dot and records ten.,,,A,Assign a letter only for the observed action named here; otherwise describe the mark. Access support separate from mathematical help.
+s08-R140,Restarts at one instead of echoing six.,,,E,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-Q140,Misses a word in the supplied stretch.,,,x,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-R141,Correctly counts sixteen but reverses its digits.,,,I,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-Q141,Misses a word in the supplied stretch.,,,x,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-R142,Leaves one token representing ten.,,,F,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-Q142,Misses a word in the supplied stretch.,,,x,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-R143-G,Calls whole box flat because one face is flat.,,,G,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-R143-H,Rejects square solely because it turns.,,,H,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-Q143,Misses a word in the supplied stretch.,,,x,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-R144,Keeps one three-ring group as whole.,,,L,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-Q144,Misses a word in the supplied stretch.,,,x,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-R145-L,Keeps arriving one as whole.,,,L,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-R145-C,"Joins stored one to four, writes five.",,,C,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-Q145,Misses a word in the supplied stretch.,,,x,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-A142-number,Marks thirteen-loop row.,,,x,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
+s08-A143-meaning,Records only one part as whole.,,,L,Use the letter only for the stated observed response; other misses get descriptive notes. Access separate.
