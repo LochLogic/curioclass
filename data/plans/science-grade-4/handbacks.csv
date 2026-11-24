@@ -336,18 +336,18 @@ from_day,to_day,what,where,minutes,error,note
 98,99,s06-X98,Return,5,B,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
 98,99,s06-P98 s06-P98-repair s06-P98-talk s06-P98-handoff,Return,0,,"Return every listed written task and individual note, including Exit boxes and records from children not heard. Feedback shares the named repair time."
 99,100,s06-X99,Return,5,D,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
-99,100,s06-P99; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+99,100,s06-P99 s06-P99-repair s06-K99-retrieval s06-K99-link; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 100,101,s06-X100,Return,5,D,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
-100,101,s06-P100; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+100,101,s06-P100 s06-P100-repair s06-P100-order; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 101,102,s06-X101,Return,5,D,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
 101,102,s06-X101,Return,5,E,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
-101,102,s06-P101; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+101,102,s06-P101 s06-P101-repair s06-P101-meaning s06-P101-compare; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 102,103,s06-X102,Return,5,D,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
 102,103,s06-X102,Return,5,E,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
-102,103,s06-P102; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+102,103,s06-P102 s06-P102-repair s06-P102-source; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 103,104,s06-X103 s06-X103-test,Return,5,D,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
 103,104,s06-X103 s06-X103-test,Return,5,E,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
-103,104,s06-P103; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+103,104,s06-P103 s06-P103-repair s06-P103-meaning s06-P103-limit; individual notes s06-X103-test,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 104,105,s06-X104 s06-X104-question,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
 104,105,s06-P104; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 105,106,s06-X105,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.

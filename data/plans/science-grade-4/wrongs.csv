@@ -647,3 +647,20 @@ s06-P98-repair,Cat shine is a source.,,,C,Treats reflected shine as self-produce
 s06-P98-talk,The eye lights the object.,,,A,Reverses receiving light into supplying light.
 s06-P98-handoff,Light arrows explain every movement.,,,x,Does not account for the distinction or change the task asks about.
 s06-P95-change,It stays visible because eyes light it.,,,A,Attributes illumination to the eyes. An unclear observation alone is never this error.
+s06-P99-repair,Eyes send light to the object,,,A,Anticipated; identify this stated idea only.
+s06-K99-retrieval,The beak makes its own food,,,x,Anticipated; identify this stated idea only.
+s06-K99-link,The receiving organ commands movement directly,,,D,Anticipated; identify this stated idea only.
+s06-P100-repair,Eyes directly command fingers,,,D,Anticipated; identify this stated idea only.
+s06-P100-order,Eyes directly command fingers,,,D,Anticipated; identify this stated idea only.
+s06-P101-repair,The sense organ directly commands movement,,,D,Anticipated; identify this stated idea only.
+s06-P101-meaning,Remembered signals cannot guide action,,,E,Anticipated; identify this stated idea only.
+s06-P101-compare,Learning cannot affect responses,,,E,Anticipated; identify this stated idea only.
+s06-P102-repair,The receiving part commands movement without processing,,,D,Anticipated; identify this stated idea only.
+s06-P102-source,Every snake has heat-sensing pits,,,x,Anticipated; identify this stated idea only.
+s06-P103-repair,Remembered meaning cannot guide action,,,E,Anticipated; identify this stated idea only.
+s06-P103-meaning,Learned meanings cannot guide action,,,E,Anticipated; identify this stated idea only.
+s06-P103-limit,The token proves sense organs directly command movement,,,D,Anticipated; identify this stated idea only.
+s06-P99-repair,Eyes see the object without illumination,,,B,Diagnose this stated idea only; omissions receive descriptive feedback.
+s06-X102,Remembered signals cannot guide action,,,E,Diagnose this stated idea only; omissions receive descriptive feedback.
+s06-X103,Ears directly command movement,,,D,Diagnose this stated idea only; omissions receive descriptive feedback.
+s06-X103-test,Ears directly command movement,,,D,Diagnose this stated idea only; omissions receive descriptive feedback.

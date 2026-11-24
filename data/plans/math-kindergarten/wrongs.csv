@@ -808,3 +808,6 @@ s04-P71-game,"Rings moved two as remaining, error E.",,,E,Removal-card branch on
 s04-F71-B,"Reports only incoming three as whole, error B.",,,B,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
 s04-K71-counter,"Treats one counter as all seven story squares, error x.",,,x,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
 s04-P71-game,"Only incoming three counted as whole, error B.",,,B,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
+s04-K69-count,"Omits seven in the oral sequence, error x.",,,x,"Oral sequence slip; no object omission observed, so do not force error A."
+s04-K70-count,"Omits seven in the oral sequence, error x.",,,x,"Oral sequence slip; no object omission observed, so do not force error A."
+s04-K71-count,"Omits seven in the oral sequence, error x.",,,x,"Oral sequence slip; no object omission observed, so do not force error A."

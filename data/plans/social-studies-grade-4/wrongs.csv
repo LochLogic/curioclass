@@ -781,7 +781,7 @@ s05-X83-1,The route crossed empty land.,,,L,One predicted content diagnosis; equ
 s05-X83-2,The road itself bought more territory.,,,C,One predicted content diagnosis; equivalent supported wording accepted.
 s05-X84-1,Tracks themselves bought the West.,,,C,One predicted content diagnosis; equivalent supported wording accepted.
 s05-X85-1,All women wanted homes; all men wanted gold.,,,D,One predicted content diagnosis; equivalent supported wording accepted.
-s05-X85-2,The wagons never needed supplies.,,,D,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X85-2,The wagons never needed supplies.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
 s05-X86-1,Everybody gained equally.,,,R,One predicted content diagnosis; equivalent supported wording accepted.
 s05-X87-1,Every modern outline is an old national border.,,,E,One predicted content diagnosis; equivalent supported wording accepted.
 s05-X87-2,All modern Colorado changed hands in 1848.,,,E,One predicted content diagnosis; equivalent supported wording accepted.
@@ -859,14 +859,14 @@ s05-P82-2,A statement made by all Native nations.,,,B,Task-specific cold-solved 
 s05-P83-1,Canal boat on the mountain road.,,,x,Task-specific cold-solved diagnosis; retrieval stays ungraded.
 s05-P83-2,The route crossed empty land.,,,L,Task-specific cold-solved diagnosis; retrieval stays ungraded.
 s05-P83-3,Wagon traveling on canal water.,,,x,Task-specific cold-solved diagnosis; retrieval stays ungraded.
-s05-P84-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P84-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P85-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P85-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P85-3,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P85-4,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P86-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
-s05-P86-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
+s05-P84-1,Box: passenger; person: freight.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-P84-2,The wagon trip takes fewer days.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-P85-1,Reporting on the gold rush.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-P85-2,Mining gold for himself.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-P85-3,The strip describes gathering fuel.,,,x,Wrong task match; not a gender-based motive error.
+s05-P85-4,She was still traveling and did nothing after arrival.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-P86-1,Exchange comes before the clothing request.,,,O,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-P86-2,Only settlers from the East.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
 s05-P87-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
 s05-P87-2,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
 s05-P88-1,This record proves everything.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
@@ -934,3 +934,10 @@ s05-F84-1,Buy the land for a country.,,,C,Cold-solved against printed stimulus; 
 s05-F84-2,"Yes, because a road is planned.",,,L,Cold-solved against printed stimulus; accept equivalent supported wording.
 s05-K84-1,Shorter travel buys the town.,,,C,Cold-solved against printed stimulus; accept equivalent supported wording.
 s05-P84-3,The journey times prove the land had no residents.,,,L,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-F85-1,Buy a country's land.,,,C,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-F85-2,"Yes, because a station is proposed.",,,L,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-P85-5,Yes. All women had one purpose.,,,D,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-F86-1,All girls want training; all boys want jobs.,,,D,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-K86-1,"One event came later, so it must be the cause.",,,H,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-P86-3,Yes. Monday always causes Tuesday's events.,,,H,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-P86-4,Both groups received only benefits.,,,R,Cold-solved against printed stimulus; accept equivalent supported wording.
