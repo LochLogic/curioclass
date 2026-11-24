@@ -482,7 +482,7 @@ s04-P81-repairF,Changing distance cannot change a source's apparent brightness.,
 s04-P81-repairG,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
 s04-P81-repairH,Earth's orbit alone makes the moon circle Earth.,,,H,error H: Omits the moon own orbit.
 s04-P81-repairI,Earth's yearly orbit explains a star's movement across one night.,,,I,error I: Uses yearly motion for a nightly pattern.
-s04-P62-hook,Marked feature or evidence status does not match the record.,,,x,"error x: descriptive component gap, no inferred misconception."
-s04-P64-observe,Marked feature or evidence status does not match the record.,,,x,"error x: descriptive component gap, no inferred misconception."
-s04-P64-label,Marked feature or evidence status does not match the record.,,,x,"error x: descriptive component gap, no inferred misconception."
-s04-P65-link,Marked feature or evidence status does not match the record.,,,x,"error x: descriptive component gap, no inferred misconception."
+s04-P62-hook,Both are our actual observations.,,,x,error x: supplied diagrams and invented records are mistaken for firsthand observations.
+s04-P64-observe,I measured the printed cord myself.,,,x,error x: reading a supplied diagram is mistaken for collecting an actual observation.
+s04-P64-label,The arrow names the object's travel path.,,,x,error x: motion path is substituted for the named gravitational force.
+s04-P65-link,The claim is true because it is the claim.,,,x,error x: repeating the claim supplies neither a supporting observation nor its causal link.
