@@ -1193,16 +1193,6 @@ s06-P126-1,Governor national; president state.,,,I,Predicted response; one error
 s06-P126-2,Deciding a case: legislative.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P127-1,The bridge record answers how the drill was turned.,,,W,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P127-2,The caption proves the building is open today.,,,x,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P128-1,A response missing the named relationship or source position.,,,J,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P128-2,A response missing the named relationship or source position.,,,G,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P129-1,A response missing the named relationship or source position.,,,Y,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P130-1,A response missing the named relationship or source position.,,,K,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P130-2,A response missing the named relationship or source position.,,,T,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P130-3,A response missing the named relationship or source position.,,,V,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P132-1,A response missing the named relationship or source position.,,,C,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P132-2,A response missing the named relationship or source position.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P132-3,A response missing the named relationship or source position.,,,R,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P132-4,A response missing the named relationship or source position.,,,H,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-R107a,Everyone must like every law.,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
 s06-R107b,They said every person already had an equal vote.,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
 s06-K107-hook,The farm diagram proves real soil quality.,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
@@ -1268,3 +1258,25 @@ s06-W127-1,Governor national; president state.,,,I,"Cold-solved day 127 response
 s06-K127-1,It cannot show when the bridge opened.,,,x,"Cold-solved day 127 response; one wrong, one error letter."
 s06-Q127-1,The museum caption proves it is open today.,,,x,"Cold-solved day 127 response; one wrong, one error letter."
 s06-X127b,D.C.'s delegate votes on final House passage.,,,P,"Cold-solved day 127 response; one wrong, one error letter."
+s06-W128-1,Both votes are allowed.,,,P,Cold-solved original anticipated response; one error.
+s06-W128-2,How tall is the fountain?,,,W,Cold-solved original anticipated response; one error.
+s06-P128-1,My five notes only give record titles.,,,J,Cold-solved original anticipated response; one error.
+s06-P128-2,The records prove everyone in each region has one job.,,,G,Cold-solved original anticipated response; one error.
+s06-P128-3,"The pictures look nicest, so that proves the claim.",,,X,Cold-solved original anticipated response; one error.
+s06-W129-1,"The workshop needs tools, so tools must have arrived.",,,J,Cold-solved original anticipated response; one error.
+s06-P129-1,Paterson and Minneapolis prove my claim using two independent makers.,,,Y,Cold-solved original anticipated response; one error.
+s06-W130-1,Two library pages.,,,Y,Cold-solved original anticipated response; one error.
+s06-W130-2,Everyone uses it.,,,G,Cold-solved original anticipated response; one error.
+s06-P130-1,Maine/Portland.,,,K,Cold-solved original anticipated response; one error.
+s06-P130-2,A machine is a natural resource.,,,T,Cold-solved original anticipated response; one error.
+s06-P130-3,Repair work provides all the food the shoemaker needs.,,,V,Cold-solved original anticipated response; one error.
+s06-P130-4,Congress is executive.,,,I,Cold-solved original anticipated response; one error.
+s06-P130-5,What tree species grow there?,,,W,Cold-solved original anticipated response; one error.
+s06-W132-1,Give every event an equal gap regardless of year.,,,C,Cold-solved original anticipated response; one error.
+s06-W132-2,It is printed on blue paper.,,,W,Cold-solved original anticipated response; one error.
+s06-W132-3,The vertical road line is the pond.,,,E,Cold-solved original anticipated response; one error.
+s06-W132-4,The worker makes every needed thing alone.,,,V,Cold-solved original anticipated response; one error.
+s06-P132-1,All three records get equal gaps.,,,C,Cold-solved original anticipated response; one error.
+s06-P132-2,Governor; White House; executive.,,,I,Cold-solved original anticipated response; one error.
+s06-P132-3,"I only listed pond, road and bridge without locating them.",,,R,Cold-solved original anticipated response; one error.
+s06-P132-4,Only the packing business trades; the worker never buys anything.,,,H,Cold-solved original anticipated response; one error.

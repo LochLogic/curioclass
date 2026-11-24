@@ -2,7 +2,7 @@ item_id,shown,compute,value,error,note
 s01-R1,I made a house from five pieces.,,,J,a missing-piece gap: record M on the readiness sort
 s01-R1,Stiff is good for a house.,,,K,a property-use gap: record P on the readiness sort
 s01-X1,It was empty. Nothing was in it.,,,A,
-s01-X1,Plan 2: weigh two different bottles.,,,D,
+s01-X1,Plan 2: weigh two different balls.,,,D,
 s01-X2a,The shelf has five pieces.,,,J,
 s01-X2a,Stiff is good.,,,K,
 s01-X2b,"Cloth itself: 64 g, the damp weight.",64,64,H,the damp reading called the dry weight
@@ -28,19 +28,19 @@ s01-P1-2,A ball with nothing drawn inside. Air is nothing.,,,A,
 s01-P1-3,Each dot is one grain of sand that you can see.,,,B,a dot is mistaken for a visible grain
 s01-P2-1,6 before and 5 after.,,,J,
 s01-P2-1,Long is good.,,,K,
-s01-K2-1,Block 3 is not in the wall.,,,J,
+s01-K2-1,Block 3 was left out.,,,J,
 s01-P2-2,Only four blocks are listed.,,,J,
-s01-K2-2,"(b) 120 g, the weight from the bag.",120,120,H,the bag reading called the dry soil weight
-s01-K2-2,(a) 120 g.,120,120,x,the whole bag reading called water
-s01-K2-2,(a) 224 g.,120+104,224,x,added the two readings
+s01-K2-2,The whole reading is dry soil.,,,H,Misidentifies included matter.
+s01-K2-2,Only the tray is being weighed.,,,x,Misidentifies included matter.
+s01-K2-2,Only the tray is being weighed.,,,x,Misidentifies included matter.
 s01-K3-1,6 dots before and 4 dots after. Some air went away.,,,I,
-s01-P3-1,"8 dots, then 3 dots.",,,I,
+s01-P3-1,Less occupied space means air disappeared.,,,I,
 s01-P3-2,It was empty.,,,A,
 s01-K4-1,Dry soil 204 g.,204,204,H,"the last reading, with beans and water in it, called dry soil"
 s01-K4-1,"Dry soil 172 g, beans 174 g, water 204 g.",172|174|204,172|174|204,x,wrote each running reading as the amount added
 s01-K4-1,"Dry soil 172 g, beans 2 g, water 204 g.",172|174-172|204,172|2|204,x,read the water from the last scale reading without subtracting
 s01-P4-3,Dry soil 164 g. Beans 167 g. Water 195 g.,,,x,wrote each running reading as the amount added
-s01-P4-1,I changed everything.,,,I,"air is said to have changed or gone, not just its spacing"
+s01-P4-1,Every container must have the same dot count.,,,x,Confuses one closed system with different apparatus.
 s01-X5,The powder stopped existing.,,,C,Interpret with this unit register letter.
 s01-X5,Each dot is a visible grain.,,,B,Interpret with this unit register letter.
 s01-X6,Dissolved solid no longer exists.,,,C,Interpret with this unit register letter.
@@ -78,3 +78,6 @@ s01-R17b,Equal labels have different heights.,,,F,Interpret with this unit regis
 s01-R17c,Cooling removes matter.,,,E,Interpret with this unit register letter.
 s01-R17d,Clear cleaner holds no dissolved matter.,,,C,Interpret with this unit register letter.
 s01-R17e,Every decrease proves gas escaped.,,,G,Interpret with this unit register letter.
+s01-P4-2,I removed dots because the air disappeared.,,,I,Interpret using the unit error register.
+s01-C2-1,Blocks show the actual size of air parts.,,,B,Interpret using the unit error register.
+s01-P3-3,Shadow: long.,,,x,Interpret using the unit error register.
