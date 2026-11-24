@@ -302,11 +302,20 @@ class Run:
 
 # ---------------------------------------------------------------- a lane
 
+FIX_FIRST = []
+
+
 def lane(subj, dry=False):
     steps = load_queue(subj)
     done = done_set()
     fails_row = 0
     grade_fails, grade_days, grade = 0, 0, None
+    midfixed = set()   # grades that already had a mid-grade fix job (one each)
+    if FIX_FIRST:   # `run <lane> --fix-first`: a lane stopped by a pile-up starts with its grade's fix job
+        todo = [st for st in steps if st[0] == 'job' and '%s:%s' % (subj, st[1]) not in done]
+        if todo:
+            midfixed.add(todo[0][3])
+            steps.insert(steps.index(todo[0]), ('job', 'M-%s-restart' % todo[0][3], 'FIX', todo[0][3], 'mid-grade', None, None))
     for st in steps:
         if STOP.exists() or (DRAFT / ('STOP-' + subj)).exists():
             log('%s: STOP file seen; lane ends' % subj)
@@ -329,7 +338,7 @@ def lane(subj, dry=False):
         key = '%s:%s' % (subj, num)
         if key in done:
             continue
-        if course != grade:
+        if course != grade or kind == 'FIX':
             grade, grade_fails, grade_days = course, 0, 0
         if dry:
             print('[dry] %s %s %s %s %s%s' % (subj, num, kind, course, detail, ('  gate: ' + gate) if gate else ''))
@@ -412,7 +421,14 @@ def lane(subj, dry=False):
             if fails_row >= MAX_FAILS:
                 stop_lane(subj, '%d failed jobs in a row (last %s %s)' % (fails_row, num, kind))
                 return
-        if grade_fails > 10 + grade_days:   # more than about one left per day; the grade fix job clears the rest
+        if grade_fails > 10 + grade_days and course not in midfixed:
+            # 2026-11-24: a pile-up first runs the grade fix job once, mid-grade, then the lane goes on
+            midfixed.add(course)
+            log('%s: %s: %d lesson gate failures in %d drafted days; running a mid-grade fix job first'
+                % (subj, course, grade_fails, grade_days))
+            steps.insert(steps.index(st) + 1, ('job', 'M-%s-%s' % (course, num), 'FIX', course, 'mid-grade', None, None))
+            continue
+        if grade_fails > 10 + grade_days:   # a second pile-up in the same grade stops the lane
             stop_lane(subj, '%s: %d lesson gate failures in %d drafted days' % (course, grade_fails, grade_days))
             return
     log('%s: lane finished' % subj)
@@ -477,6 +493,7 @@ def main(a):
     if a[0] != 'run':
         sys.exit(__doc__)
     dry = '--dry' in a
+    FIX_FIRST[:] = [1] if '--fix-first' in a else []
     if ROOT.name != 'CurioClass-draft' and not dry:
         sys.exit('the draft run only runs in S:\\CurioClass-draft (this is %s)' % ROOT)
     only = [x for x in a[1:] if x in LANES]
