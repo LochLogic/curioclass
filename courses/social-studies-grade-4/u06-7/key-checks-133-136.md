@@ -8,11 +8,11 @@ credit: ours
 ---
 # Course-level check 3 answer key
 
-Teacher only. Keep separate from student and exit pages.
+Teacher only. Keep separate from every student page and ticket.
 
-Use shown, shown with help, not yet seen per component. Leave unobserved blank. Accept equivalent wording and exact dictation. Access alone is not content help; no totals.
+One scale per component: shown, shown with help, not yet seen. Leave unobserved blank. Access reading or exact dictation alone is not content help; accept equivalent supported wording. No points or totals.
 
-For the map, compare both source layers and the matching response outline. Generalized positions and approximate scale support only approximate placements. Source-map visual comparison remains a browser check.
+Map: compare both original atlas layers and the matching response outline. Positions and scale are approximate. Visual comparison with the source remains a browser check.
 
 ## C3-E133-M
 
@@ -82,9 +82,9 @@ Wrong: To order workers to strike. Error R. A later account is mistaken for a co
 
 Their important work did not bring equal treatment. A describes building jobs and lower pay. B describes organizing for better pay and shorter work. Those details connect importance, unequal treatment and action. Neither card speaks for every individual.
 
-Look for: Claim answers the question.; Accurate relevant A detail.; Different accurate relevant B detail.; Reasoning connects both details to claim.; Claim stays within evidence.
+Look for: Claim answers the question.; Accurate relevant A detail.; Different accurate relevant B detail.; Claim stays within evidence.
 
-Wrong: They were treated equally because the railroad was finished. Error AA. Completion does not establish equal treatment and ignores pay and protest evidence.
+Wrong: They were treated equally because the railroad was finished. Error W. Completion does not establish equal treatment and ignores pay and protest evidence.
 
 ## C3-K135-M
 
@@ -116,7 +116,7 @@ The repair log says the bridge opened; its paint color does not support carts cr
 
 Look for: Selects evidence relevant to this claim.
 
-Wrong: Blue paint proves carts can cross. Error AA. Color does not establish access.
+Wrong: Blue paint proves carts can cross. Error W. Color does not establish access.
 
 ## C3-X135-M
 
@@ -148,7 +148,7 @@ Passenger ferry service ended, while cargo boats continued. One closure did not 
 
 Look for: Uses closure and continued cargo evidence.; Removes unsupported universal claim.
 
-Wrong: All boats stopped because the ferry closed. Error AA. Claim must fit both records.
+Wrong: All boats stopped because the ferry closed. Error W. Claim must fit both records.
 
 ## C3-K136-M
 
@@ -168,9 +168,9 @@ Wrong: Every person moved there to make glass. Error Z. One industry does not ex
 
 ## C3-K136-S
 
-Garden plot holders; the notice addresses them.
+Audience: garden plot holders, from the addressee. Purpose: keep the path usable for wheelbarrows, from its request. Judge only the assigned focus.
 
-Look for: Connects audience to inside addressee.
+Look for: Assigned audience or purpose is plausible.; Inside clue supports the inference.
 
 Wrong: Everyone in town because it mentions a town garden. Error Q. Topic is not the specific addressee.
 
@@ -180,7 +180,7 @@ The tally shows opening; nothing establishes that every visitor liked the room.
 
 Look for: Separates event from unsupported universal preference.
 
-Wrong: Opening proves every visitor liked it. Error AA. An event record does not establish every opinion.
+Wrong: Opening proves every visitor liked it. Error W. An event record does not establish every opinion.
 
 ## C3-X136-M
 
@@ -192,11 +192,11 @@ Wrong: Place names beside an empty grid. Error Y. Names without positions do not
 
 ## C3-X136-G
 
-Spring water supplied cloth washing; new homes appeared beside that work. Work and water use offer an explanation, not every household motive.
+Water supplied cloth washing and may help explain some later homes. Older homes existed before the washhouse, so its water use cannot explain every home.
 
-Look for: Water to cloth washing.; Work to housing evidence.; Qualified settlement explanation.
+Look for: Connects water and human work.; Uses older-home evidence to reject every home.; Retains a qualified possible link for later homes.
 
-Wrong: Water forced everyone into the same job. Error Z. Human action and evidence limits must remain visible.
+Wrong: Every home followed the washhouse. Error Z. Older homes contradict the universal settlement claim.
 
 ## C3-X136-S
 
@@ -208,14 +208,78 @@ Wrong: Invite visitors to a dock celebration. Error R. Safety request contradict
 
 ## C3-X136-C
 
-Access improved as more stalls arrived after the road opened, while the sellers note a higher fee. Effects differed; neither record speaks for everyone.
+More stalls arrived and fees rose after the road opened. These show differing changes; they do not prove everyone benefited or that the road caused both changes.
 
-Look for: Claim fits both records.; Uses each relevant attributed detail.; Explains differing effects without universal benefit.
+Look for: Claim fits both records.; Uses each attributed detail.; Keeps timing distinct from proven causation and universal benefit.
 
-Wrong: Everyone benefited because stall numbers rose. Error AA. The fees record complicates universal benefit.
+Wrong: Everyone benefited because stall numbers rose. Error W. The fees record complicates universal benefit.
 
-## Evidence limits
+## C3-E134-R
 
-A and B are later institutional accounts. B links A; two page names do not establish independent corroboration. This check asks complementary evidence and source analysis, not two eyewitness confirmations. Neither card gives workers' own words. Unit 5 is sampled, not every history topic in units 3 to 5.
+Lower pay despite important building work supports unequal treatment. Organizing for better conditions shows workers acted to change that treatment. Accept any sound link between both selected details and the stated claim.
 
-Day 133 samples a province map and resource/work/city-growth explanation. It does not establish every settlement cause or every resident's experience.
+Look for: Connects A detail to claim.; Connects B detail to claim.; Gives reasoning rather than repeating titles.
+
+Wrong: Both sources are true because they are printed. Error W. Printed status alone does not connect details to the claim.
+
+## C3-K135-S2
+
+Street sweepers; the record addresses them.
+
+Look for: Names audience.; Uses addressee clue.
+
+Wrong: All town residents because it mentions streets. Error Q. The inside addressee is more specific than the topic.
+
+## C3-K135-S3
+
+Get fallen branches cleared so carts can pass; the blocked-cart sentence supports this.
+
+Look for: Infers purpose.; Supports it with request/reason clue.
+
+Wrong: Invite a street parade. Error R. A blocked route and clearing request support repair, not celebration.
+
+## C3-X135-S2
+
+Storekeepers who hang sacks; the notice addresses them.
+
+Look for: Names audience.; Uses printed addressee clue.
+
+Wrong: Every visitor because gates are public. Error Q. Generic public users ignore the printed addressee.
+
+## C3-X135-S3
+
+Stop sacks being hung on the gate because the hinges are rusted and could fail.
+
+Look for: Infers purpose.; Uses request and damaged-hinge clue.
+
+Wrong: Sell more sacks. Error R. The request discourages this use; no sales purpose is shown.
+
+## C3-X136-S1
+
+Dock clerk Lian; April 1924.
+
+Look for: Names original maker.; Gives original date.
+
+Wrong: A boat crew wrote it in 2026. Error P. The notice metadata names a clerk and its original date.
+
+## C3-X136-S2
+
+Boat crews, because the notice addresses them.
+
+Look for: Names intended audience.; Uses addressee clue.
+
+Wrong: Anyone who likes celebrations. Error Q. The addressee is boat crews.
+
+## Limits
+
+A and B are later institutional accounts. B links A, so two page names do not establish independent eyewitness corroboration. This check uses complementary details, not workers' own testimony. Unit 5 is sampled, not every topic in units 3 to 5.
+
+A resource can enable work without determining every job or every reason for settlement. Record only the assigned response component.
+
+## C3-K136-S1
+
+Garden clerk Nico; March 1898. The 2020 archive label is later.
+
+Look for: original maker; original date separated from cataloging.
+
+Wrong: The archive wrote it in 2020. Error P: hosting is not authorship.

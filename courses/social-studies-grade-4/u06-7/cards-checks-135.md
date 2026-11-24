@@ -21,6 +21,7 @@ Town record: New cottages followed the opening of the tile works.
 
 ## Teaching S: two dates
 Archive label, 2022: This record was written by clerk Mara in 1917.
+Record: To street sweepers: Clear the fallen branches. Carts cannot pass.
 
 ## Teaching C: bridge
 Claim: Carts can cross the stream now.
@@ -43,3 +44,7 @@ The original date is missing.
 Display claim: All boat traffic ended when the ferry closed.
 Passenger record: The passenger ferry closed.
 Cargo record: Cargo boats still enter the harbor.
+
+## Held exit S2/S3
+Gate notice: To storekeepers: Stop hanging sacks on this gate.
+The hinges are rusted and could fail.

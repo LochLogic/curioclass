@@ -19,6 +19,7 @@ The workshop record says local sand was used to make glass.
 It gives no reason for any person's choice of home.
 
 ## Teaching S
+Archive label, 2020: Garden clerk Nico wrote this notice in March 1898.
 Notice: To garden plot holders: keep the path clear for wheelbarrows.
 
 ## Teaching C
@@ -31,8 +32,10 @@ Town: (1,2). Dock: (2,1). Stream: the full line x=2.
 North is up. Each square side represents 6 kilometers.
 
 ## Held exit G: Mill Gap
+Display claim: The spring caused every home here.
 Washhouse record: Spring water was used to wash cloth.
-Housing record: New homes appeared beside the washhouse after it opened.
+Housing record: Some homes stood here before the washhouse opened.
+Other homes appeared beside it after it opened.
 
 ## Held exit S
 Dock clerk Lian, April 1924.

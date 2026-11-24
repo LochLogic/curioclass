@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 112</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; } .student table.even { table-layout: fixed; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.75in; width: 48%; display: inline-block; box-sizing: border-box; padding: .18in; margin: 0 1% .15in 0; vertical-align: top; font-size: 12pt; line-height: 1.3; overflow: hidden; } .slip.half { width: 98%; } .slip p { margin: .22em 0; } .slip .foot { font-size: 7pt; line-height: 1.25; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.0in; } .slip .sketch.tall { height: 1.1in; } .slip .fig svg { max-height: 1.2in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+.blank.fblank { width: .8in; height: 1.6em; }   /* a line holding one stands about 2em: room for a stacked fraction */
+</style></head><body class="student"><h1>Day 112</h1><div style="font-size:18pt">
+
+Make a record that splits this number into ten ones and further ones.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 100" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2"><path d="M21.0,32.0Q18.9,15.9 35.0,18.0Q37.1,34.1 21.0,32.0Z M21.0,32.0L35.0,18.0"/><path d="M50.72222222222222,32.0Q48.62222222222222,15.9 64.72222222222223,18.0Q66.82222222222222,34.1 50.72222222222222,32.0Z M50.72222222222222,32.0L64.72222222222223,18.0"/><path d="M80.44444444444444,32.0Q78.34444444444445,15.9 94.44444444444444,18.0Q96.54444444444444,34.1 80.44444444444444,32.0Z M80.44444444444444,32.0L94.44444444444444,18.0"/><path d="M110.16666666666666,32.0Q108.06666666666666,15.9 124.16666666666666,18.0Q126.26666666666665,34.1 110.16666666666666,32.0Z M110.16666666666666,32.0L124.16666666666666,18.0"/><path d="M139.88888888888889,32.0Q137.7888888888889,15.9 153.88888888888889,18.0Q155.98888888888888,34.1 139.88888888888889,32.0Z M139.88888888888889,32.0L153.88888888888889,18.0"/><path d="M169.61111111111111,32.0Q167.51111111111112,15.9 183.61111111111111,18.0Q185.7111111111111,34.1 169.61111111111111,32.0Z M169.61111111111111,32.0L183.61111111111111,18.0"/><path d="M199.33333333333331,32.0Q197.23333333333332,15.9 213.33333333333331,18.0Q215.4333333333333,34.1 199.33333333333331,32.0Z M199.33333333333331,32.0L213.33333333333331,18.0"/><path d="M229.05555555555554,32.0Q226.95555555555555,15.9 243.05555555555554,18.0Q245.15555555555554,34.1 229.05555555555554,32.0Z M229.05555555555554,32.0L243.05555555555554,18.0"/><path d="M258.77777777777777,32.0Q256.67777777777775,15.9 272.77777777777777,18.0Q274.8777777777778,34.1 258.77777777777777,32.0Z M258.77777777777777,32.0L272.77777777777777,18.0"/><path d="M288.5,32.0Q286.4,15.9 302.5,18.0Q304.6,34.1 288.5,32.0Z M288.5,32.0L302.5,18.0"/><path d="M318.22222222222223,32.0Q316.1222222222222,15.9 332.22222222222223,18.0Q334.32222222222225,34.1 318.22222222222223,32.0Z M318.22222222222223,32.0L332.22222222222223,18.0"/><path d="M347.94444444444446,32.0Q345.84444444444443,15.9 361.94444444444446,18.0Q364.0444444444445,34.1 347.94444444444446,32.0Z M347.94444444444446,32.0L361.94444444444446,18.0"/><path d="M377.66666666666663,32.0Q375.5666666666666,15.9 391.66666666666663,18.0Q393.76666666666665,34.1 377.66666666666663,32.0Z M377.66666666666663,32.0L391.66666666666663,18.0"/><path d="M407.38888888888886,32.0Q405.28888888888883,15.9 421.38888888888886,18.0Q423.4888888888889,34.1 407.38888888888886,32.0Z M407.38888888888886,32.0L421.38888888888886,18.0"/><path d="M437.1111111111111,32.0Q435.01111111111106,15.9 451.1111111111111,18.0Q453.2111111111111,34.1 437.1111111111111,32.0Z M437.1111111111111,32.0L451.1111111111111,18.0"/><path d="M466.8333333333333,32.0Q464.7333333333333,15.9 480.8333333333333,18.0Q482.93333333333334,34.1 466.8333333333333,32.0Z M466.8333333333333,32.0L480.8333333333333,18.0"/><path d="M496.55555555555554,32.0Q494.4555555555555,15.9 510.55555555555554,18.0Q512.6555555555556,34.1 496.55555555555554,32.0Z M496.55555555555554,32.0L510.55555555555554,18.0"/><path d="M526.2777777777778,32.0Q524.1777777777778,15.9 540.2777777777778,18.0Q542.3777777777779,34.1 526.2777777777778,32.0Z M526.2777777777778,32.0L540.2777777777778,18.0"/><path d="M556.0,32.0Q553.9,15.9 570.0,18.0Q572.1,34.1 556.0,32.0Z M556.0,32.0L570.0,18.0"/><rect x="580" y="27" width="45" height="46"/></g></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 80" width="100%" role="img"><g fill="white" stroke="black" stroke-width="2"><rect x="10" y="10" width="620" height="60"/></g></svg>
+
+
+
+Invented for practice.
+
+</div><div class="foot">Curio Class, kindergarten math, section 6.3, exit-112, version draft, not yet taught, CC BY 4.0, curioclass.org</div></body></html>

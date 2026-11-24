@@ -1342,3 +1342,28 @@ s06-G111-1,2,,,x,Reports starting amount rather than final quantity.
 s06-G111-2,4,,,x,Reports starting amount rather than final quantity.
 s06-G111-3,1,,,x,Reports starting amount rather than final quantity.
 s06-G111-4,5,,,x,Reports starting amount rather than final quantity.
+s06-M112,One square replaces ten.,,,F,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-F112,One square replaces ten.,,,F,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-N112,Copied numeral is not recognizable.,,,x,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-P112,Retains 21 for twelve with reversal confirmed.,,,E,Observe method before assigning error letter.
+s06-M113,Points to one square said to replace ten.,,,F,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-F113,"21 for twelve, reversal confirmed.",,,E,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-N113,Copied numeral is not recognizable.,,,x,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-P113,Links 10 to one square said to replace ten.,,,F,Observe method before assigning error letter.
+s06-M114,Replaces ten supplied marks with one.,,,F,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-F114,One square replaces the full ten.,,,F,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-N114,Copied numeral is not recognizable.,,,x,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-V114-1,Eleven after skipping one square.,,,A,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-V114-2,Moves all six despite reaching four.,,,C,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-V114-3,Calls correct fourteen forty.,,,G,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-V114-4,Starts one despite supplied six.,,,H,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-P114,Leaves 3 beside four further marks.,,,x,Observe method before assigning error letter.
+s06-M115,Matches 1 to empty.,,,D,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-F115,One mark said to replace ten.,,,F,"Cold-solved; confirm observed method before assigning letter, otherwise descriptive note."
+s06-P115,Matches 12 to another quantity.,,,x,Observe method before assigning error letter.
+s06-K112,Starts at one instead of the supplied start.,,,H,Observed start must confirm H; a later sequence error is described separately.
+s06-K113,Starts at one instead of the supplied start.,,,H,Observed start must confirm H; a later sequence error is described separately.
+s06-K114,Starts at one instead of the supplied start.,,,H,Observed start must confirm H; a later sequence error is described separately.
+s06-K115,Starts at one instead of the supplied start.,,,H,Observed start must confirm H; a later sequence error is described separately.
+s06-F1-11,1 beside eleven counted pictures.,,,x,Descriptive response; no unconfirmed misconception inferred.
+s06-F1-20,2 beside twenty counted pictures.,,,x,Descriptive response; no unconfirmed misconception inferred.

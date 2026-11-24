@@ -35,7 +35,7 @@ Day 136: two five-minute meetings address the two largest needs.
 Other children use written moves and separate teaching cards.
 Two 45-second replies per meeting; four children heard at most. Record names.
 Every child completes one assigned fresh ticket. Apply only that ticket's look-fors.
-S purpose evidence does not establish maker, date or audience mastery; retain those gaps.
+S has separate origin, audience and purpose tickets. Assign the exact missing component; retain unassigned gaps.
 Allow twenty seconds per short ticket, ten minutes for thirty, an untested estimate.
 Check during the last five independent minutes and five reflection minutes.
 Map checking may take longer; record unfinished marking for later adult completion and private return.

@@ -91,3 +91,17 @@ s01-P6-2,The lens showed individual unseen salt parts.,,,B,Interpret using the u
 s01-P6-2,The clear mixture has no salt.,,,C,Interpret using the unit error register; x is another error.
 s01-P7-1,I chose unrelated evidence for each label.,,,x,Interpret using the unit error register; x is another error.
 s01-P7-1,Dots are visible grains.,,,B,Interpret using the unit error register; x is another error.
+s01-K8-1,The 63 g label sits above a bar ending at 53 g.,,,F,Label and plotted endpoint disagree.
+s01-P8-1,Discard the cup after transferring the pieces.,,,D,Removes apparatus from the second comparison.
+s01-P8-2,The 57 g bar ends at 47 g.,,,F,Endpoint is ten grams below its label.
+s01-P9-1,Replace an unexpected reading to make the pair equal.,,,x,Erases evidence instead of preserving and checking it.
+s01-P9-1,Weigh water without the bag afterward.,,,D,Changes the apparatus boundary.
+s01-P9-2,Plot a predicted value instead of the recorded endpoint.,,,F,Graph no longer encodes the raw reading.
+s01-P10-1,Guess the frozen reading instead of preserving the raw display values.,,,x,Prediction replaces observation.
+s01-P10-1,Discard the bag before the second weighing.,,,D,The compared boundaries differ.
+s01-P10-2,Lower the bar because freezing must remove matter.,,,E,Temperature is treated as a cause of matter loss despite the record.
+s01-P10-2,The endpoint differs from the raw value beside it.,,,F,Plotted amount contradicts the measurement.
+s01-P11-1,Discard the salt holder after stirring.,,,D,Complete apparatus no longer matches.
+s01-P11-1,Replace the unstable reading with an expected equal value.,,,x,A prediction replaces retained evidence.
+s01-P11-2,Clear liquid has no salt.,,,C,Visibility is confused with existence.
+s01-P11-2,Draw the endpoint at a value different from the raw record.,,,F,Graph misrepresents its measurement.

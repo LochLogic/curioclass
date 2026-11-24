@@ -16,7 +16,7 @@ Page updated: September 15, 2026.
 The page invites readers to explore the park.
 The park describes its aim to include overlooked builders.
 
-Chinese workers held many railroad jobs, including masonry, carpentry and track work.
+Chinese workers did many railroad jobs, including stonework, woodwork and track work.
 They received less pay than white workers.
 In June 1867, Chinese workers stopped work together to seek better treatment.
 

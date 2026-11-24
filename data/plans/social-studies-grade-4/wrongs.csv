@@ -1288,20 +1288,28 @@ C3-E134-A3,To order workers to strike.,,,R,A later account is mistaken for a com
 C3-E134-B1,A Chinese worker wrote this in 1867.,,,P,Confuses subject and event date with maker and account date.
 C3-E134-B2,"Only railroad workers in 1867, because it is about them.",,,Q,Topic is substituted for intended readers.
 C3-E134-B3,To order workers to strike.,,,R,A later account is mistaken for a command during the event.
-C3-E134-C,They were treated equally because the railroad was finished.,,,AA,Completion does not establish equal treatment and ignores pay and protest evidence.
+C3-E134-C,They were treated equally because the railroad was finished.,,,W,Completion does not establish equal treatment and ignores pay and protest evidence.
 C3-K135-M,The shorter bar represents less ground.,,,M,Read its labeled distance with the bar.
 C3-K135-G,A quarry is the natural resource.,,,Z,Slate is natural; a quarry is a developed work site.
 C3-K135-S,The archive wrote the original in 2022.,,,P,Hosting is not original authorship.
-C3-K135-C,Blue paint proves carts can cross.,,,AA,Color does not establish access.
+C3-K135-C,Blue paint proves carts can cross.,,,W,Color does not establish access.
 C3-X135-M,A 2-centimeter bar labeled 56 kilometers.,,,M,Same region enlarged; ground distance has not doubled.
 C3-X135-G,The river forced every family to move.,,,Z,"Records support a likely link, not universal motives."
 C3-X135-S,The clerk wrote it in 2021.,,,P,Label date cannot replace missing original date.
-C3-X135-C,All boats stopped because the ferry closed.,,,AA,Claim must fit both records.
+C3-X135-C,All boats stopped because the ferry closed.,,,W,Claim must fit both records.
 C3-K136-M,Square means school because squares look like buildings.,,,A,Appearance cannot replace this map evidence.
 C3-K136-G,Every person moved there to make glass.,,,Z,One industry does not explain everyone.
 C3-K136-S,Everyone in town because it mentions a town garden.,,,Q,Topic is not the specific addressee.
-C3-K136-C,Opening proves every visitor liked it.,,,AA,An event record does not establish every opinion.
+C3-K136-C,Opening proves every visitor liked it.,,,W,An event record does not establish every opinion.
 C3-X136-M,Place names beside an empty grid.,,,Y,Names without positions do not construct a map.
-C3-X136-G,Water forced everyone into the same job.,,,Z,Human action and evidence limits must remain visible.
+C3-X136-G,Every home followed the washhouse.,,,Z,Older homes contradict the universal settlement claim.
 C3-X136-S,Invite visitors to a dock celebration.,,,R,Safety request contradicts that purpose.
-C3-X136-C,Everyone benefited because stall numbers rose.,,,AA,The fees record complicates universal benefit.
+C3-X136-C,Everyone benefited because stall numbers rose.,,,W,The fees record complicates universal benefit.
+C3-E134-R,Both sources are true because they are printed.,,,W,Printed status alone does not connect details to the claim.
+C3-K135-S2,All town residents because it mentions streets.,,,Q,The inside addressee is more specific than the topic.
+C3-K135-S3,Invite a street parade.,,,R,"A blocked route and clearing request support repair, not celebration."
+C3-X135-S2,Every visitor because gates are public.,,,Q,Generic public users ignore the printed addressee.
+C3-X135-S3,Sell more sacks.,,,R,The request discourages this use; no sales purpose is shown.
+C3-X136-S1,A boat crew wrote it in 2026.,,,P,The notice metadata names a clerk and its original date.
+C3-X136-S2,Anyone who likes celebrations.,,,Q,The addressee is boat crews.
+C3-K136-S1,The archive wrote it in 2020.,,,P,The later label is distinct from original maker/date.
