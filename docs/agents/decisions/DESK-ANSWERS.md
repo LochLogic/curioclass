@@ -1867,3 +1867,18 @@ Cory answered the four finish cards on the Desk and signed off all four courses 
   day that meets a belief: teach what the evidence shows, say it respectfully, no extra read needed.
 - **Cargo Hold hints, chat 2026-11-24:** "Keep hints." The brought-in build keeps its hint button (the spec had said none); spec open question 3 is settled.
 - **Cargo Hold build, chat 2026-11-24:** "Yes, this build." The 38-hold brought-in build is the game; the larger spec game (24 shaped hulls, Fleet, daily hold) is not planned. Spec header notes it.
+
+## 2026-11-24: Roadmap rework calls (q-roadmap-rework-1)
+
+Cory answered the six Roadmap cards on the Desk (written 2026-11-23, applied 2026-11-24).
+- **Tools:** not at each course's finish for now. "lets come back to this when we are further into writing days, im
+  not sure when but not now." Tool building stays held until Cory sets the restart.
+- **Supply Closet and Reading Room:** parked until a course pulls from them.
+- **Old Tools items** (the Antigravity builder trial, the two Codex single-tool tests): moved to later.csv L111.
+- **After the two-lane run:** the pick (ELA grades 4 and 5, then social studies and ELA up a band) is fine, with
+  more housekeeping before the next building session.
+- **Launch:** the site is already live but has no marketing and so no users. Marketing starts when all curriculum is
+  written and tools are beyond 75 percent complete.
+- **What a finished course holds:** items 10 to 13 are in (accessibility to a named level, a versioning and errata
+  rule, a course-level teacher guide with pacing options, one state alignment crosswalk); 14 stays settled (L60); 15,
+  a print-volume count, is not now.

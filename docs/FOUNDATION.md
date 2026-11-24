@@ -149,6 +149,6 @@ Decided 2026-11-11 (Cory), from the discussion recorded in docs/agents/decisions
 
 - Closed 2026-11-14: the device assumption for kindergarten to grade 2 (section 5).
 - Closed 2026-11-11: what happens to existing tools and specs that no section plan asks for (section 6, item 5).
-- Which of these go into "What a finished course holds", listed 2026-11-11 and not yet decided: accessibility to a
-  named level, a versioning and errata rule, a course teacher guide, a state alignment document, Spanish student
-  materials, a print-volume count.
+- Closed 2026-11-24: "What a finished course holds" items. In: accessibility to a named level, a versioning and
+  errata rule, a course teacher guide, a state alignment document. Spanish student materials after the core (L60).
+  Not now: a print-volume count (docs/ROADMAP.md).

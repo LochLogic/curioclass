@@ -32,7 +32,7 @@ time, before more days are written.
   no rule 2 notes (social studies fixed 2026-11-15, later.csv L28).
 - **Unit plans**: all 259 science, ELA and math units have skeletons (scripts/unit_skeleton.py); social studies has 138 plans, read twice, fixed and through a structure pass. Judgement fields are filled at each course's run, and the ladder grades (K to 3) are done (math Goal maps: later.csv L102).
 - **Section plans and days**: the ladder runs wrote section plans and days for science K to 3 (328 days) and social studies and ELA K to 3 (1,056 days), all fixed and gated (above); the probe sections (US History I 5.2, World History I 3.4, science grade 5, Algebra II, ELA grade 11, science grade 7) have section plans only or a few days. Grade 4 math's older plans and 48 days, made under the retired pilot plan, are held for math's units (PRODUCTION-PATH; rework list in L13).
-- **The site**: not launched. scripts/course_pages.py builds hidden course and unit pages for all 52 core courses
+- **The site**: live but not marketed (marketing starts when all curriculum is written and tools are beyond 75 percent complete, Cory 2026-11-24). scripts/course_pages.py builds hidden course and unit pages for all 52 core courses
   (`SHOWN = False`); the design is [SITE-DESIGN.md](SITE-DESIGN.md). Day pages will be one source file per day,
   published as one page per section with each day as an anchor (settled 2026-11-15, see DESK-ANSWERS).
 - **Tools**: paused until step 9, the Codex queue's builds included. Live tools stay live and claim no course

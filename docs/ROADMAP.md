@@ -27,7 +27,7 @@ the site ends up, not a reason to spread thin.
 State lives in docs/HANDOFF.md. Counts by course: docs/COURSES-STATUS.md (`python -X utf8 scripts/course_status.py`).
 Tools by step: docs/BUILD-BOARD.md (`python -X utf8 scripts/board.py`). By stage: the Desk Dashboard's plan flow.
 Parked work: data/plans/later.csv. In one line, on 2026-11-22: all 52 core courses are planned down to units, days are
-written for kindergarten to grade 3 in science, social studies and ELA, and the site is not launched.
+written for kindergarten to grade 3 in science, social studies and ELA, and the site is live but not marketed.
 
 ## The course work: the order
 
@@ -105,7 +105,7 @@ The list of what "finished" means, so no step can call a course done on tools al
 9. **A fresh-agent read of the whole course** against the rubric on file, with every finding closed or listed. The
    reader is the curriculum expert (docs/agents/EXPERT.md), always run cold, after it researches outside sources.
 
-Listed 2026-11-11; whether each is in or not-now is still Cory's to decide (also FOUNDATION, "Open questions"):
+Listed 2026-11-11. Cory 2026-11-24 (Desk): 10 to 13 are in; 14 is settled (later.csv L60); 15 is not now.
 
 10. **Accessibility conformance to a named level**, for tools and for print files.
 11. **A versioning and errata rule for a live course:** how a section is versioned, held steady for a school year
@@ -114,7 +114,7 @@ Listed 2026-11-11; whether each is in or not-now is still Cory's to decide (also
 13. **A state alignment document:** one worked crosswalk on the first finished course.
 14. **Spanish student materials.** Family notes are already in English and Spanish; student pages are not. Cory
     2026-11-16: grow Spanish accessibility across the site after the core courses (later.csv L60).
-15. **A print-volume count per student:** the pages a student uses in a year.
+15. **A print-volume count per student:** the pages a student uses in a year. Not now.
 
 ## Track 1: Tools
 
@@ -128,8 +128,10 @@ docs/agents/decisions/BASELINE.md.
   or rebuilt at its finish (COURSE-RUN stage 7) for the sections that name them, live and verified, with print
   covering the rest. No tool is built or refined until a section plan names its job (FOUNDATION section 6). No
   course has reached stage 7 yet.
-- **Next.** When the first course reaches stage 7: its key tools, taken from the three bins (BASELINE rule 26), then
-  its light tools; the tool-step leftovers are later.csv L39.
+- **Next.** Held: Cory 2026-11-24 (Desk), "lets come back to this when we are further into writing days". Tools do
+  not restart at the first course finish on their own; Cory sets the restart. When they do: a course's key tools,
+  taken from the three bins (BASELINE rule 26), then its light tools; the tool-step leftovers are later.csv L39, and
+  the Antigravity builder trial and the two Codex single-tool tests are L111.
 - **Waiting with tools:** the teacher-notes backfill (docs/agents/notes-backfill.txt, checked by scripts/check_tools.py);
   the held collections (ASL after later.csv L93 and the sign-strip sample, docs/agents/roadmap/ASL-SIGN-STRIP.md;
   Spanish after its review; hard history after a fresh review, BASELINE rule 5; growing-up-q-a after Cory's own read);
@@ -142,7 +144,7 @@ docs/agents/decisions/BASELINE.md.
 ## Track 2: Supply Closet
 
 Detail: docs/SUPPLY-CLOSET-PLAN.md. The shelves are on the site (built with `--closet`, docs/SITE.md). The closet is
-not held by rule, but no closet wave has run since 2026-11-10; the course runs hold the work. Each section names
+parked (Cory 2026-11-24) until a course pulls from it, so its work is shaped by real sections. Each section names
 what it pulls from the closet (docs/ECOSYSTEM.md). In order:
 
 1. **Word Wall diagram pass on grades 9 to 12** (779 cards print "Draw it"): pilot on computer science, CTE, math and
@@ -170,7 +172,7 @@ play-tests.
 
 Detail: docs/LIBRARY-PLAN.md. About 700 stories are processed into readable text; the Reading Room is reached from the
 footer and the Supply Closet. It is not the source of course texts below the higher grades (docs/ECOSYSTEM.md, Cory
-2026-11-12). Nothing holds it by rule, and nothing has run since 2026-11-10. Next, in order:
+2026-11-12). Parked (Cory 2026-11-24) until a course pulls from it. When it resumes, in order:
 
 1. **Pilot:** ten stories in the 3 to 5 band end to end, after the format gains a text record and topics.
 2. **Enrich and verify** in waves of about 50, with topic sets.
@@ -179,7 +181,8 @@ footer and the Supply Closet. It is not the source of course texts below the hig
 
 ## Track 4: The site
 
-Detail: docs/SITE.md and docs/SITE-DESIGN.md. Not launched. Course and unit pages for all 52 core courses are built
+Detail: docs/SITE.md and docs/SITE-DESIGN.md. Live but not marketed: marketing starts when all curriculum is
+written and tools are beyond 75 percent complete (Cory 2026-11-24). Course and unit pages for all 52 core courses are built
 but hidden (scripts/course_pages.py, `SHOWN = False`). Day pages will be one source file per day, published as one
 page per section (settled 2026-11-15). Pictures live in the R2 bucket; run scripts/sync_media.py before each deploy.
 
@@ -198,11 +201,11 @@ Detail: docs/funding/ (one-pager, cost sheet, prospect list, CONTACTS.md).
    the top tiers are "get in touch". The page says plainly whether gifts are tax-deductible.
 3. **Reach without tracking:** server-side request counts and teacher stories by email. Never student analytics.
 4. **Teacher channels** (OER Commons, state OER repositories, Merlot, teacher groups) and any wide announcement wait
-   for the launch.
+   for marketing to start (all curriculum written, tools beyond 75 percent complete).
 
 ## Track 6: Going public
 
-The repo (LochLogic/curioclass) has been public since 2026-10-28. The site is not launched or announced; outreach is
+The repo (LochLogic/curioclass) has been public since 2026-10-28. The site is live but not announced or marketed; outreach is
 Track 5.
 
 ## Track 7: Curriculum
