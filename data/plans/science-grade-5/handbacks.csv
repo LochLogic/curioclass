@@ -140,3 +140,63 @@ from_day,to_day,what,where,minutes,error,note
 61,63,s03-N61a,Noncontact support,10,,Row-specific readiness from day 61; the receiving day 63 block reserves this exact ten-minute slot.
 61,63,s03-N61b,Sky support,10,,Row-specific readiness from day 61; the receiving day 63 block reserves this exact ten-minute slot.
 61,63,s03-N61c,Daylight support,10,,Row-specific readiness from day 61; the receiving day 63 block reserves this exact ten-minute slot.
+62,63,s04-X62,Model,5,A,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+63,64,s04-X63,Return,5,A,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+63,64,s04-X63,Return,5,C,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+64,65,s04-X64,Return,5,A,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+65,66,s04-X65,Return,5,A,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+66,67,s04-X66,Return,5,A,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+67,68,s04-X67,Return,5,B,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+68,69,s04-X68,Return,5,B,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+69,70,s04-X69,Return,5,B,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+69,70,s04-X69,Return,5,G,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+70,71,s04-X70,Return,5,C,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+70,71,s04-X70,Return,5,G,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+71,72,s04-X71,Return,5,D,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+72,73,s04-X72,Return,5,D,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+73,74,s04-X73,Return,5,D,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+73,74,s04-X73,Return,5,H,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+73,74,s04-X73,Return,5,I,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+74,75,s04-X74,Return,5,C,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+74,75,s04-X74,Return,5,D,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+74,75,s04-X74,Return,5,G,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+75,76,s04-X75,Return,5,F,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+76,77,s04-X76,Return,5,F,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+77,78,s04-X77,Return,5,E,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+77,78,s04-X77,Return,5,F,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+78,81,s04-X78,Private,1,,Inside five-minute feedback. No hints or feedback during 79/80.
+79,81,s04-Q1a,Private,0.5,,Private score/component notes; four rows total two minutes.
+79,81,s04-Q1b,Private,0.5,,Private score/component notes; four rows total two minutes.
+79,81,s04-Q1c,Private,0.5,,Private score/component notes; four rows total two minutes.
+79,81,s04-Q1d,Private,0.5,,Private score/component notes; four rows total two minutes.
+80,81,s04-Q2,Private,1,,Private score/component notes; two rows total two minutes.
+80,81,s04-Q3,Private,1,,Private score/component notes; two rows total two minutes.
+80,81,unit 4 priority component repairs including E78,Return,20,,All gaps share four five-minute rounds maximum per child. Four four-minute teacher visits plus four routing minutes; retain unresolved gaps.
+62,63,s04-P62-label,Opening,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+62,63,s04-P62-actual,Opening,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+63,64,s04-P63-gap,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+63,64,s04-P63-path,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+63,64,s04-P63-day,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+64,65,s04-P64-free,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+65,66,s04-P65-fragments,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+66,67,s04-P66-locate,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+67,68,s04-P67-raw,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+68,69,s04-P68-bars,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+68,69,s04-P68-conditions,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+69,70,s04-P69-lit,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+69,70,s04-P69-mark,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+70,71,s04-P70-bars,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+70,71,s04-P70-strip,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+71,72,s04-P71-tally,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+71,72,s04-P71-key,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+72,73,s04-P72-view,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+73,74,s04-P73-spin,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+73,74,s04-P73-earth,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+73,74,s04-P73-moon,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+74,75,s04-P74-locate,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+75,76,s04-P75-actual,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+75,76,s04-P75-control,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+76,77,s04-P76-audit,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+77,78,s04-P77-travel,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+77,78,s04-P77-disk,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+78,81,s04-P78-locate,Private,0,,Hold these component notes with E78 until day 81 Private feedback. Distribution only; no feedback on assessment days 79 or 80.

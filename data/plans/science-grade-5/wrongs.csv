@@ -397,3 +397,88 @@ s03-P58,All mixing guarantees a new substance.,,,E,error E: sample solved cold; 
 s03-P61,A weight needs no unit.,,,B,error B: sample solved cold; see item look-fors.
 s03-P56m,All the sand and iron must be one new material.,,,E,error E: sample solved cold; see item look-fors.
 s03-P57c,W isolates dampness while changing cup and portion.,,,I,error I: sample solved cold; see item look-fors.
+s04-X62,Both must fall toward the page bottom.,,,A,error A: Treats a page direction as universal.
+s04-X63,Down always points toward the page bottom.,,,A,error A: Treats a page direction as universal.
+s04-X63,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-X64,Earth pull must point page-down at every site.,,,A,error A: Treats a page direction as universal.
+s04-X65,Both must point toward the page bottom.,,,A,error A: Treats a page direction as universal.
+s04-X66,Page-down must mean down everywhere.,,,A,error A: Treats a page direction as universal.
+s04-X67,Fixed-stick shadows cannot change direction.,,,B,error B: Misses timed direction changes.
+s04-X68,Shadow direction never changes.,,,B,error B: Misses timed direction changes.
+s04-X69,A fixed stick's shadow never changes direction through a day.,,,B,error B: Misses timed direction changes.
+s04-X69,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-X70,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-X70,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-X71,Daily spin alone makes seasonal visibility equal.,,,D,error D: Confuses daily and yearly changes.
+s04-X72,Daily spin alone explains seasonal change.,,,D,error D: Confuses daily and yearly changes.
+s04-X73,Daily Earth spin alone explains different seasonal night-star records.,,,D,error D: Confuses daily and yearly changes.
+s04-X73,Earth's orbit alone makes the moon circle Earth.,,,H,error H: Omits the moon own orbit.
+s04-X73,Earth's yearly orbit explains a star's movement across one night.,,,I,error I: Uses yearly motion for a nightly pattern.
+s04-X74,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-X74,Daily Earth spin alone explains different seasonal night-star records.,,,D,error D: Confuses daily and yearly changes.
+s04-X74,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-X75,Distance cannot change fixed-patch brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-X76,Distance cannot affect patch brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-X77,The sun is not a star.,,,E,error E: Excludes the nearest star from its category.
+s04-X77,Changing distance cannot change a source's apparent brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-X78,Down always points toward the page bottom.,,,A,error A: Treats a page direction as universal.
+s04-X78,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-X78,Daily Earth spin alone explains different seasonal night-star records.,,,D,error D: Confuses daily and yearly changes.
+s04-X78,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-X78,Changing distance cannot change a source's apparent brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-Q1a,Shadow direction never changes.,,,B,error B: Misses timed direction changes.
+s04-Q1b,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-Q1b,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-Q1c,Daily spin alone explains these seasonal records.,,,D,error D: Confuses daily and yearly changes.
+s04-Q1d,Earth orbit alone makes moon circle Earth.,,,H,error H: Omits the moon own orbit.
+s04-Q2,Page-bottom means down at both sites.,,,A,error A: Treats a page direction as universal.
+s04-Q3,The sun is not a star.,,,E,error E: Excludes the nearest star from its category.
+s04-Q3,Changing distance cannot change a source's apparent brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-R81-gravity,Page-bottom is universal down.,,,A,error A: Treats a page direction as universal.
+s04-R81-sky,A fixed stick's shadow never changes direction through a day.,,,B,error B: Misses timed direction changes.
+s04-R81-sky,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-R81-sky,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-R81-stars,Daily Earth spin alone explains different seasonal night-star records.,,,D,error D: Confuses daily and yearly changes.
+s04-R81-stars,Earth's yearly orbit explains a star's movement across one night.,,,I,error I: Uses yearly motion for a nightly pattern.
+s04-R81-moon,Earth orbit alone circles moon.,,,H,error H: Omits the moon own orbit.
+s04-R81-light,The sun is not a star.,,,E,error E: Excludes the nearest star from its category.
+s04-R81-light,Changing distance cannot change a source's apparent brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-P62-label,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P62-actual,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P63-gap,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P63-path,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P63-day,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P64-free,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P65-fragments,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P66-locate,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P67-raw,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P68-bars,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P68-conditions,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P69-lit,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P69-mark,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P70-bars,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P70-strip,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P71-tally,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P71-key,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P72-view,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P73-spin,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P73-earth,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P73-moon,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P74-locate,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P75-actual,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P75-control,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P76-audit,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P77-travel,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P77-disk,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P78-locate,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P81-rain,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P81-map,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P81-repairA,Down always points toward the page bottom.,,,A,error A: Treats a page direction as universal.
+s04-P81-repairB,A fixed stick's shadow never changes direction through a day.,,,B,error B: Misses timed direction changes.
+s04-P81-repairC,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-P81-repairD,Daily Earth spin alone explains different seasonal night-star records.,,,D,error D: Confuses daily and yearly changes.
+s04-P81-repairE,The sun is not a star.,,,E,error E: Excludes the nearest star from its category.
+s04-P81-repairF,Changing distance cannot change a source's apparent brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-P81-repairG,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-P81-repairH,Earth's orbit alone makes the moon circle Earth.,,,H,error H: Omits the moon own orbit.
+s04-P81-repairI,Earth's yearly orbit explains a star's movement across one night.,,,I,error I: Uses yearly motion for a nightly pattern.
