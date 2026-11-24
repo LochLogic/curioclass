@@ -15,7 +15,9 @@ Historical accounts may describe slavery, land loss and war without graphic deta
 
 Optional: ask whose view a classroom account includes and whose evidence is missing. Nothing needs to be sent back. Contact the teacher for an equivalent source task if needed. Students age 18 or older receive this note themselves and make their own leave-out or consent choice. School rules also apply.
 
-## Español
+## Spanish
+
+**Español.**
 
 Preguntaremos quién ganó y quién perdió cuando creció Estados Unidos. Compararemos mapas y relatos. Distinguiremos la migración elegida del traslado forzado y la esclavitud. Nombraremos pueblos que siguen presentes y estudiaremos efectos desiguales de los cambios fronterizos.
 

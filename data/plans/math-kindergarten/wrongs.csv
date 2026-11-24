@@ -792,3 +792,19 @@ s04-R64-frame,Seven occupied spaces.,,,x,Unscored diagnostic. Seven alone does n
 s04-R64-spread,Eight after moving the same seven.,,,x,"Unscored invariance diagnostic, outside this unit register; moving without adding or removing preserves seven."
 s04-R65-retry,One square without a mark.,,,A,"Observed omission in one-to-one tracking, unscored retry."
 s04-K64-question,Excludes first group in observed joining action.,,,B,Only an observed joining action is classified; no taking-away judgment today.
+s04-F68-B,"Adds a fifth dot when no square joins, error F.",,,F,"Alternative priority branch, only with observed matching action."
+s04-F68-B,"Keeps four dots after one square joins, error G.",,,G,"Alternative priority branch, only with observed matching action."
+s04-K68-count,"Omits seven in the oral sequence, error x.",,,x,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
+s04-F68-B,"Only arriving three retained, error B.",,,B,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
+s04-K68-take,"Points to moved two as remaining, error E.",,,E,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
+s04-K68-all,"Treats moved five as the remaining group, error E.",,,E,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
+s04-F69-CE,"Rings the moved two as remaining, error E.",,,E,"Alternative priority branch; observe the question location, not only the number."
+s04-F69-CE,"Adds the removed two to make seven, error C.",,,C,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
+s04-F70-B,"Retains only three arrivals as the whole, error B.",,,B,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
+s04-K70-who,"Names a different actor, error x.",,,x,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
+s04-K70-first,"Describes only incoming two as the entire story, error B.",,,B,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
+s04-K70-retell,"Uses only incoming two as the whole, error B.",,,B,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
+s04-P71-game,"Rings moved two as remaining, error E.",,,E,Removal-card branch only; observe selected location.
+s04-F71-B,"Reports only incoming three as whole, error B.",,,B,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
+s04-K71-counter,"Treats one counter as all seven story squares, error x.",,,x,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.
+s04-P71-game,"Only incoming three counted as whole, error B.",,,B,Code only with the observed matching action or reason; a wrong number alone does not establish the letter.

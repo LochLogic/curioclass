@@ -563,7 +563,6 @@ s06-X95,No source is needed,,,B,Diagnose only this stated idea; incomplete answe
 s06-X96,Eye-mirror-star,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X96,Light crosses the opaque card,,,I,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X97,Eyes make shine,,,C,Diagnose only this stated idea; incomplete answers are not automatically this error.
-s06-X97,It sees in zero light,,,B,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X98,Eye light reaches the spoon,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X98,It stays visible without light,,,B,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X99,Whiskers command legs directly,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
@@ -632,3 +631,19 @@ s06-P112,Cutting proves uptake.,,,H,Diagnose only this stated idea; incomplete a
 s06-P113,Only outside parts help organisms.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
 s06-X97-dark,It sees without any illumination.,,,B,One stated idea; not a label for an incomplete response.
 s06-X104-question,All useful parts are outside.,,,F,One stated idea; not a label for an incomplete response.
+s06-P94-parts,The eye supplies light.,,,A,Reverses receiving light into supplying light.
+s06-P94-materials,Thick card lets light through.,,,I,Treats an opaque card as transmitting light.
+s06-P94-sort,Both ask about seeing.,,,x,Does not account for the distinction or change the task asks about.
+s06-P94-link,The lamp end receives this arrow.,,,x,Reverses the supplying and receiving ends of this segment; no eye-emission claim is stated.
+s06-P95-ready,Eyes receive the clap.,,,D,Confuses incoming information and its receiving organ.
+s06-P95-labels,The eye supplies light.,,,A,Reverses receiving light into supplying light.
+s06-P96-repair,The eye lights the toy.,,,A,Reverses receiving light into supplying light.
+s06-P96-input,Ear receives light.,,,D,Confuses incoming information and its receiving organ.
+s06-P96-predict,The outgoing arrow never changes.,,,x,Does not account for the distinction or change the task asks about.
+s06-P97-repair,Light passes through the thick card.,,,I,Treats an opaque card as transmitting light.
+s06-P97-flash,The cat supplies its shine.,,,C,Treats reflected shine as self-produced.
+s06-P97-link,"Eyes make light, so I reversed the arrow.",,,A,Reverses receiving light into supplying light.
+s06-P98-repair,Cat shine is a source.,,,C,Treats reflected shine as self-produced.
+s06-P98-talk,The eye lights the object.,,,A,Reverses receiving light into supplying light.
+s06-P98-handoff,Light arrows explain every movement.,,,x,Does not account for the distinction or change the task asks about.
+s06-P95-change,It stays visible because eyes light it.,,,A,Attributes illumination to the eyes. An unclear observation alone is never this error.

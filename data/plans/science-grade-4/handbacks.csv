@@ -322,21 +322,19 @@ from_day,to_day,what,where,minutes,error,note
 91,93,student written task,Read,0,,"Return repair labels, evidence tags, separate consensus notes and covered Exit box. E91 diagnostic repair joins assessment response, never day 92."
 93,94,student written task,Cat,0,,"Return repair record, revision note and D93 with private feedback. No unit 5 reteaching during the cat anchor; unresolved needs stay in handoff."
 91,93,s05-P91-repair s05-P91-tags s05-P91-protect,Read,0,,Return all day 91 written tasks with separate consensus notes in Read feedback; no day 92 repairs.
-93,95,s06-R1,Return,5,A,Seeing response shares time with day 94 first ideas.
-93,95,s06-R2,Return,5,D,Receiving/response before brain instruction.
 94,95,s06-X94 s06-X94-model,Return,0,A,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
-94,95,s06-P94; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+94,95,s06-P94; all component responses and individual notes; s06-X94-model Exit box,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 95,96,s06-X95,Return,5,A,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
-95,96,s06-P95; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+95,96,s06-P95; all component responses and individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 96,97,s06-X96,Return,5,A,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
 96,97,s06-X96,Return,5,I,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
-96,97,s06-P96; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+96,97,s06-P96; all component responses and individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 97,98,s06-X97 s06-X97-dark,Return,5,B,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
 97,98,s06-X97 s06-X97-dark,Return,5,C,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
-97,98,s06-P97; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+97,98,s06-P97; all component responses and individual notes; s06-X97-dark Exit box,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 98,99,s06-X98,Return,5,A,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
 98,99,s06-X98,Return,5,B,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
-98,99,s06-P98; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+98,99,s06-P98; all component responses and individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 99,100,s06-X99,Return,5,D,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
 99,100,s06-P99; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 100,101,s06-X100,Return,5,D,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
@@ -379,6 +377,6 @@ from_day,to_day,what,where,minutes,error,note
 112,113,s06-P112; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
 113,114,s06-X113 s06-X113-response s06-P113-plant,Return,10,,"Two common letters, five each; others use contrasts in Evidence retrieval."
 113,114,s06-P113; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
-93,96,s06-R1 s06-R2 follow-up,Return,5,D,"Receiving/response recheck after seeing repair, not new readiness."
+93,96,s05-R93a s05-R93b follow-up,Return,5,D,"Receiving/response recheck after seeing repair, not new readiness."
 115,117,s06-E1-model s06-E1-predict s06-E1-test s06-E2-model s06-E2-predict s06-E2-test,Return,2,,"Hold all feedback until 117, none on 116."
 116,117,s06-E3 s06-E4,Return,3,,Both assessment days share five-minute feedback; retain original marks.
