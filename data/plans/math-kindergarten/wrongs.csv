@@ -1407,3 +1407,50 @@ s06-P117,Leaves the partial record mathematically incomplete.,,,x,Only observed 
 s06-K117,Restarts at one despite supplied start.,,,H,Only observed method supports a specific error letter; otherwise describe the response.
 s06-P118,Leaves the partial record mathematically incomplete.,,,x,Only observed method supports a specific error letter; otherwise describe the response.
 s06-K118,Restarts at one despite supplied start.,,,H,Only observed method supports a specific error letter; otherwise describe the response.
+s07-X120a,Leaves a visible gap.,,,K,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X120b,Revisits a triangle and writes 4.,,,L,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X121,Marks three-rectangle build because its row spreads wider.,,,G,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X122b,"For a total question, counts only two arriving squares as the whole.",,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X123,"Chooses 7 = 3 + 3, repeating square count.",,,N,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X123,7 = 4 + 4,,,N,Repeats triangle count for both parts.
+s07-X124,Shows only arriving two as the total.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X125a,"Leaves one unassigned, claims eight and one make ten.",,,J,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X125b,Claims eight and one form all ten.,,,J,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P125-exitbox,Adds two and calls nine ten.,,,J,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X126,Marks sphere and says its picture is flat.,,,M,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X127a,Triangle from its outline.,,,F,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X127b,Traces triangular silhouette and calls whole solid triangle.,,,F,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X128a,Groups both as flat because cylinder has flat ends.,,,O,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X128b,Marks only color as difference.,,,D,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X129,Builds only a flat circle and says whole tube is flat.,,,O,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X130a,Triangle.,,,F,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X130b,In front of the container.,,,E,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X131a,Calls whole cube a flat square while building.,,,B,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X131b,Marks or calls entire cube a flat square.,,,B,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X132a,Revisits one solid and records 6.,,,L,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X132b,Chooses cone solely by matching color.,,,D,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X133a,Chooses red cone for red ball solely by color.,,,D,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X133b,Links color only.,,,D,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-F1,Calls tipped cylinder flat for its pose.,,,A,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-F2d,Links only colors for geometric similarity.,,,D,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-F2e,Rejects tilted square as square.,,,C,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-F2f,Whole cube is square.,,,B,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-F3s,Calls cylinder behind box in front.,,,E,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-F4b,Sideways cone called triangle.,,,F,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P120,Leaves a gap.,,,K,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P121,Calls four spread pieces more than six.,,,G,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P122,Question asks about whole but answer counts added part only.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P123,Uses 4 for both parts.,,,N,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P124,Adds two to six.,,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P125,Claims eight and one make ten.,,,J,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P126,Calls represented box flat because its drawing is paper.,,,M,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P127,Calls whole cube square.,,,B,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P128,Uses color alone to choose geometric group.,,,D,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P129,Calls box frame flat because front boundary is flat.,,,O,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P131,Calls whole cube-shaped component flat square.,,,B,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P132,Revisits a piece and counts seven.,,,L,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-P133,Uses only color as reason for model choice.,,,D,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-G120-1,Shows only arriving one.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-G120-2,"Shows five, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-G120-3,Shows only arriving two.,,,I,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-G120-4,"Shows seven, adding instead.",,,H,Assign this letter only when response or observed method shows it; otherwise describe the response.
