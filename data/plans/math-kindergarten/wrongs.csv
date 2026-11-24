@@ -1790,3 +1790,81 @@ s08-R150,"Joins two to three, records five.",,,C,Use letter only for described o
 s08-Q151,"Says forty, forty-one while whole groups move.",,,K,Use letter only for described observed action; otherwise describe response. Access help separate.
 s08-P148-3,"Uses empty half as whole, gives zero.",,,L,Letter only for observed described action; otherwise descriptive note.
 s08-P151-3,Calls all visible five hidden.,,,M,Letter only for observed described action; otherwise descriptive note.
+sC-E152-N01,Writes 1 for no objects.,,,K,Error K: Writes 1 for no objects. Correct: Recognizable 0 independently labels 0 dots. Accept unambiguous nonstandard formation.
+sC-E152-N02,Writes 11 for 12 dots.,,,L,Error L: Writes 11 for 12 dots. Correct: Recognizable 12 independently labels 12 dots. Accept unambiguous nonstandard formation.
+sC-E152-N03,Writes 4 for 5 dots.,,,L,Error L: Writes 4 for 5 dots. Correct: Recognizable 5 independently labels 5 dots. Accept unambiguous nonstandard formation.
+sC-E152-N04,Writes 18 for 19 dots.,,,L,Error L: Writes 18 for 19 dots. Correct: Recognizable 19 independently labels 19 dots. Accept unambiguous nonstandard formation.
+sC-E152-N05,Writes 2 for 3 dots.,,,L,Error L: Writes 2 for 3 dots. Correct: Recognizable 3 independently labels 3 dots. Accept unambiguous nonstandard formation.
+sC-E152-N06,Writes 15 for 16 dots.,,,L,Error L: Writes 15 for 16 dots. Correct: Recognizable 16 independently labels 16 dots. Accept unambiguous nonstandard formation.
+sC-E152-N07,Writes 7 for 8 dots.,,,L,Error L: Writes 7 for 8 dots. Correct: Recognizable 8 independently labels 8 dots. Accept unambiguous nonstandard formation.
+sC-E152-N08,Writes 19 for 20 dots.,,,L,Error L: Writes 19 for 20 dots. Correct: Recognizable 20 independently labels 20 dots. Accept unambiguous nonstandard formation.
+sC-E152-N09,Writes 0 for 1 dots.,,,L,Error L: Writes 0 for 1 dots. Correct: Recognizable 1 independently labels 1 dots. Accept unambiguous nonstandard formation.
+sC-E152-N10,Writes 13 for 14 dots.,,,L,Error L: Writes 13 for 14 dots. Correct: Recognizable 14 independently labels 14 dots. Accept unambiguous nonstandard formation.
+sC-E152-N11,Writes 5 for 6 dots.,,,L,Error L: Writes 5 for 6 dots. Correct: Recognizable 6 independently labels 6 dots. Accept unambiguous nonstandard formation.
+sC-E152-N12,Writes 10 for 11 dots.,,,L,Error L: Writes 10 for 11 dots. Correct: Recognizable 11 independently labels 11 dots. Accept unambiguous nonstandard formation.
+sC-E152-N13,Writes 8 for 9 dots.,,,L,Error L: Writes 8 for 9 dots. Correct: Recognizable 9 independently labels 9 dots. Accept unambiguous nonstandard formation.
+sC-E152-N14,Writes 16 for 17 dots.,,,L,Error L: Writes 16 for 17 dots. Correct: Recognizable 17 independently labels 17 dots. Accept unambiguous nonstandard formation.
+sC-E152-N15,Writes 1 for 2 dots.,,,L,Error L: Writes 1 for 2 dots. Correct: Recognizable 2 independently labels 2 dots. Accept unambiguous nonstandard formation.
+sC-E152-N16,Writes 14 for 15 dots.,,,L,Error L: Writes 14 for 15 dots. Correct: Recognizable 15 independently labels 15 dots. Accept unambiguous nonstandard formation.
+sC-E152-N17,Writes 6 for 7 dots.,,,L,Error L: Writes 6 for 7 dots. Correct: Recognizable 7 independently labels 7 dots. Accept unambiguous nonstandard formation.
+sC-E152-N18,Writes 17 for 18 dots.,,,L,Error L: Writes 17 for 18 dots. Correct: Recognizable 18 independently labels 18 dots. Accept unambiguous nonstandard formation.
+sC-E152-N19,Writes 3 for 4 dots.,,,L,Error L: Writes 3 for 4 dots. Correct: Recognizable 4 independently labels 4 dots. Accept unambiguous nonstandard formation.
+sC-E152-N20,Writes 12 for 13 dots.,,,L,Error L: Writes 12 for 13 dots. Correct: Recognizable 13 independently labels 13 dots. Accept unambiguous nonstandard formation.
+sC-E152-N21,Writes 9 for 10 dots.,,,L,Error L: Writes 9 for 10 dots. Correct: Recognizable 10 independently labels 10 dots. Accept unambiguous nonstandard formation.
+sC-E152-L,Omits one and records 19.,,,A,Error A: Omits one and records 19. Correct: Records 20. Paper records amount; only observed route establishes tracking.
+sC-E152-A,Omits one and records 17.,,,A,Error A: Omits one and records 17. Correct: Records 18. Paper records amount; only observed route establishes tracking.
+sC-E152-C,Omits one and records 12.,,,A,Error A: Omits one and records 12. Correct: Records 13. Paper records amount; only observed route establishes tracking.
+sC-E152-S,Omits one and records 8.,,,A,Error A: Omits one and records 8. Correct: Records 9. Paper records amount; only observed route establishes tracking.
+sC-E152-O,Takes all twenty.,,,J,"Error J: Takes all twenty. Correct: Nineteen inside, one outside; stops at request."
+sC-E152-T,Leaves one mark and nine.,,,P,"Error P: Leaves one mark and nine. Correct: Replaces lone group-mark with ten ones, retains nine further ones."
+sC-E152-D,Draws one mark and six more.,,,P,"Error P: Draws one mark and six more. Correct: Separates ten ones and six more, records both parts."
+sC-E153-P,Adds ninth square.,,,R,Error R: Adds ninth square. Correct: Two distinct recorded pairs total eight; zero/eight allowed. Reversing same pair alone is not a new split.
+sC-E153-Q,Repeats seven as partner.,,,Q,"Error Q: Repeats seven as partner. Correct: Preserves seven, records three further ones."
+sC-E153-A,Marks only striped appearance.,,,V,Error V: Marks only striped appearance. Correct: Two or more measurable attributes of this same box.
+sC-E153-L,Uses shifted far endpoints.,,,S,"Error S: Uses shifted far endpoints. Correct: Common start, B extends beyond A, exposed segment marked."
+sC-E153-W,Chooses larger empty A without hefting.,,,T,Error T: Chooses larger empty A without hefting. Correct: Direct comparison with heavier/lighter recorded; no numerical difference required.
+sC-E153-F,Whole cylinder flat because ends flat.,,,U,"Error U: Whole cylinder flat because ends flat. Correct: Classifies represented objects, not flat paper bearing pictures; seven correct placements."
+sC-E153-C,Rejects turned square features.,,,W,Error W: Rejects turned square features. Correct: Four sides/corners and equal sides on both despite size/turn.
+sC-E153-B,Whole cube called flat square.,,,U,Error U: Whole cube called flat square. Correct: Matching square faces; whole cubes remain solid.
+sC-P154-count,"Ten, twenty, twenty-one in tens count.",,,M,"Error M: Ten, twenty, twenty-one in tens count. Correct: Consistent count unit; echoes/partial stretches are not independent sequence evidence."
+sC-P154-gamea,Counts piece twice.,,,B,Error B: Counts piece twice. Correct: Objects and supplied answer show 4; strategy note separate.
+sC-P154-gameb,Joins during removal.,,,Y,Error Y: Joins during removal. Correct: Objects and supplied answer show 3; strategy note separate.
+sC-P155-count,"Ten, twenty, twenty-one in tens count.",,,M,"Error M: Ten, twenty, twenty-one in tens count. Correct: Consistent count unit; echoes/partial stretches are not independent sequence evidence."
+sC-P155-gamea,Counts piece twice.,,,B,Error B: Counts piece twice. Correct: Objects and supplied answer show 4; strategy note separate.
+sC-P155-gameb,Joins during removal.,,,Y,Error Y: Joins during removal. Correct: Objects and supplied answer show 3; strategy note separate.
+sC-P156-count,"Ten, twenty, twenty-one in tens count.",,,M,"Error M: Ten, twenty, twenty-one in tens count. Correct: Consistent count unit; echoes/partial stretches are not independent sequence evidence."
+sC-P156-gamea,Counts piece twice.,,,B,Error B: Counts piece twice. Correct: Objects and supplied answer show 4; strategy note separate.
+sC-P156-gameb,Joins during removal.,,,Y,Error Y: Joins during removal. Correct: Objects and supplied answer show 3; strategy note separate.
+sC-P157-count,"Ten, twenty, twenty-one in tens count.",,,M,"Error M: Ten, twenty, twenty-one in tens count. Correct: Consistent count unit; echoes/partial stretches are not independent sequence evidence."
+sC-P157-gamea,Counts piece twice.,,,B,Error B: Counts piece twice. Correct: Objects and supplied answer show 4; strategy note separate.
+sC-P157-gameb,Joins during removal.,,,Y,Error Y: Joins during removal. Correct: Objects and supplied answer show 3; strategy note separate.
+sC-K154-1,Leaves omitted member uncounted.,,,A,"Error A: Leaves omitted member uncounted. Correct: Touches omitted object once, links sixteen to full set."
+sC-K154-2,Leaves lone mark plus two.,,,P,Error P: Leaves lone mark plus two. Correct: Ten separate ones and two.
+sC-K154-3,Adds two.,,,Y,"Error Y: Adds two. Correct: Four before, two removed, two remaining."
+sC-K155-1,Copies six as partner.,,,Q,Error Q: Copies six as partner. Correct: Four further ones complete ten.
+sC-K155-2,Keeps offset starts.,,,S,"Error S: Keeps offset starts. Correct: Common start, B exposed beyond A."
+sC-K155-3,Calls whole tube flat.,,,U,Error U: Calls whole tube flat. Correct: Distinguishes face and whole.
+sC-K155-4,Names only color.,,,V,Error V: Names only color. Correct: Connects actions to measurable attributes.
+sC-X154-1,Draws all fourteen.,,,A,"Error A: Draws all fourteen. Correct: Eleven for uncrossed places; selection task, not route repair."
+sC-X154-2,Adds seventeen more.,,,P,"Error P: Adds seventeen more. Correct: Adds seven, preserves ten."
+sC-X154-3,Draws nine by joining four.,,,Y,"Error Y: Draws nine by joining four. Correct: One inside; component evidence, not whole fluency."
+sC-X154-4,Circles one group after switching units.,,,M,Error M: Circles one group after switching units. Correct: Circles four groups; partial transition only.
+sC-X154-5,Shows just four arriving.,,,R,"Error R: Shows just four arriving. Correct: Five in final region, joining both parts; component only."
+sC-X155-1,Changes second whole to ten.,,,R,Error R: Changes second whole to ten. Correct: Distinct pairs each total nine; zero/nine allowed.
+sC-X155-2,Draws two again.,,,Q,Error Q: Draws two again. Correct: Eight further marks complete ten.
+sC-X155-3,Chooses shifted far endpoint.,,,S,"Error S: Chooses shifted far endpoint. Correct: Common start, actual longer identified and exposed segment marked."
+sC-X155-4,Whole cube treated as flat square.,,,U,Error U: Whole cube treated as flat square. Correct: One square face; four equal sides/corners; whole solid.
+sC-X155-5,Only surface color.,,,V,"Error V: Only surface color. Correct: Two of length, height, weight, capacity of same object."
+sC-X155-6,Uses picture size without hefting.,,,T,Error T: Uses picture size without hefting. Correct: Matches actual direct comparison; record help.
+sC-X155-7,Chooses flat triangle.,,,U,Error U: Chooses flat triangle. Correct: Cone identified despite triangular side view.
+sC-K156-1,Calls five the whole.,,,R,Error R: Calls five the whole. Correct: Two disjoint parts account for ten.
+sC-P156-1,Adds pieces when total moves left.,,,R,Error R: Adds pieces when total moves left. Correct: Same four/six remains ten with total on either side.
+sC-P156-2,Copies one as partner.,,,Q,"Error Q: Copies one as partner. Correct: Preserves one, identifies nine further."
+sC-F156-1,Names seven as whole.,,,R,Error R: Names seven as whole. Correct: Both parts form unchanged ten.
+sC-K157-1,Only eight as whole.,,,R,Error R: Only eight as whole. Correct: Both groups form ten.
+sC-P157-1,Adds without removing from other part.,,,R,"Error R: Adds without removing from other part. Correct: Distinct pairs total ten. Optional full sweep: eleven ordered pairs (0,10) through (10,0), all sum ten."
+sC-F157-1,"Keeps five/six, eleven total.",,,R,"Error R: Keeps five/six, eleven total. Correct: One gains what other loses, ten unchanged."
+sC-X156,Draws six/ten as parts.,,,R,"Error R: Draws six/ten as parts. Correct: Six/four distinct, whole ten conserved."
+sC-X157,Copies three/seven.,,,X,"Error X: repeats the supplied ordered pair in the same tray roles; a different pair totaling ten, including seven/three, is valid."
+sC-K155-5,Copies visible one as hidden.,,,Z,Error Z: Copies visible one as hidden. Correct: Identifies three hidden; both parts reconnect to four.
+sC-X155-8,Two hidden.,,,Z,Error Z: copies visible two instead of the hidden one; three minus two is one.

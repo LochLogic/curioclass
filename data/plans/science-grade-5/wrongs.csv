@@ -683,13 +683,13 @@ s06-P110-dry,An unrelated change fixes any failure.,,,H,Target the recorded fail
 s06-P110-mark,Round up a below-threshold volume and count the goal met.,,,x,Response does not establish the requested observation or reading.
 s06-P111-dot,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
 s06-P111-criterion,Clear appearance proves no side bypass.,,,x,Response does not establish the requested observation or reading.
-s06-P112-source,The separate facts already explain the whole result.,,,A,Separate facts need a combined conclusion.
+s06-P112-source,The card says wetlands make water safe to drink.,,,D,error D: A water-storage or quality function does not establish drinking safety.
 s06-P112-limit,Clear-looking output is safe to drink.,,,D,Appearance does not establish drinking safety.
 s06-P113-point,Part names alone show the interaction.,,,B,Names alone omit interactions.
 s06-P113-repeat,The most favorable trial alone proves success.,,,F,One result does not establish repeated performance.
 s06-P114-timing,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
 s06-P114-reset,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
-s06-P117-A,The separate facts already explain the whole result.,,,A,Separate facts need a combined conclusion.
+s06-P117-A,Copy both facts separately.,,,A,error A: Does not relate the dust log to the stated mesh location.
 s06-P117-B,Part names alone show the interaction.,,,B,Names alone omit interactions.
 s06-P117-C,The expected future result has already been observed.,,,C,A projection is not an observation.
 s06-P117-D,Clear-looking output is safe to drink.,,,D,Appearance does not establish drinking safety.
@@ -745,3 +745,9 @@ s06-P111-repair-E,Keep the new pour position and compare directly.,,,E,Fresh com
 s06-P111-repair-G,Erase the cloudier repeat.,,,G,Fresh component repair; retain original evidence.
 s06-P108-route,Water appeared from nowhere.,,,x,Use recorded route evidence.
 s06-P109-change,Changing cloth color fixes an outlet obstruction.,,,H,Use recorded route evidence.
+s06-P112-repair-F,The successful trial proves the pad always works.,,,F,error F: One favorable result omits variation.
+s06-P112-repair-D,Clearer jar water is safe to drink.,,,D,error D: Appearance does not establish drinking safety.
+s06-P113-repair-A,Copy the statements without relating them.,,,A,error A: Separate statements need a supported relationship.
+s06-P113-repair-D,Removing flakes makes water safe to drink.,,,D,error D: Appearance does not establish drinking safety.
+s06-P114-repair-B,Draw only separate labels.,,,B,error B: Labels need interactions.
+s06-P114-repair-C,It is an observed success.,,,C,error C: An expected outcome has not yet been observed.

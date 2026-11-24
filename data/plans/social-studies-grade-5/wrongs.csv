@@ -334,3 +334,86 @@ s03-K43-K,The crop shows every surrounding event.,,,x,"Unsupported response; use
 s03-K43-U,Access is only a date.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
 s03-R43a,Money only means coins; the price is necessarily the production cost.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
 s03-R43b,"This is a gift, and Sam owes only eight dollars.",,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s04-X44a,Only my opinion matters.,,,W,Personal preference omits another reader.
+s04-X44a,Independence automatically gave everyone equal rights.,,,A,Treats the promise as an accomplished legal change.
+s04-X44b,Only whether I like independence.,,,W,No testable issue concerning the public claim.
+s04-X45a,Any royal command is lawful.,,,J,Obedience is mistaken for legal restraints.
+s04-X45b,Natural rights are gifts from the king.,,,B,Misses inherent rights.
+s04-X45b,The grievance proves everyone immediately gained equal protection.,,,A,An argument is not proof of an outcome.
+s04-X46,No woman ever voted anywhere.,,,A,Erases the stated state variation.
+s04-X46,Political action proves equal voting rights.,,,A,Action is not legal protection.
+s04-X47a,Trenton is in New York; Saratoga is in New Jersey.,,,X,Reverses states.
+s04-X47b,Trenton prompted the formal French alliance.,,,Y,Reverses the differentiated consequences.
+s04-X48a,Valley Forge is in Virginia; Yorktown is in Pennsylvania.,,,X,Location reversal; extend geographic repair beyond the original two places.
+s04-X48b,Valley Forge was a battle.,,,C,Confuses camp with battle.
+s04-X48b,Yorktown ended all fighting immediately.,,,L,One force surrendered; peace was broader.
+s04-X49a,All foreign help began after Saratoga.,,,K,Confuses earlier resources with the later formal alliance.
+s04-X49b,Yorktown instantly ended every campaign.,,,L,Confuses local surrender and the wider war.
+s04-X50a,Every Native nation supported Britain.,,,D,Erases distinct sovereign decisions.
+s04-X50a,Every Black fighter gained freedom.,,,M,Military participation does not prove an outcome.
+s04-X50a,All colonists wanted independence.,,,S,Erases loyal and neutral colonists.
+s04-X50a,All Black fighters were enslaved.,,,U,Erases free Black participants.
+s04-X50b,Neutral people did not care.,,,N,Invents an unsupported motive.
+s04-X51,Their titles prove their impact.,,,E,Names roles without consequences.
+s04-X51,Madison commanded the Continental Army.,,,V,Misattributes military leadership; repair role evidence.
+s04-X52a,They wanted no government.,,,F,A confederation is a government.
+s04-X52b,Congress could directly tax every resident.,,,T,States collected taxes for national contributions.
+s04-X53,Congress could tax residents directly.,,,T,Wrong national power.
+s04-X53,There was no government.,,,F,Limited powers do not mean absent government.
+s04-X53,Every ordinary decision required all states.,,,O,Confuses amendment and ordinary decisions.
+s04-X54a,B and C both show inflation.,,,H,Reverses trend meaning.
+s04-X54a,D is not unemployed because no job exists.,,,Q,Seeking and availability establish unemployment here.
+s04-X54b,A alone proves inflation.,,,H,One price is insufficient.
+s04-X54b,E is necessarily unemployed.,,,Q,No paid work alone is insufficient.
+s04-X54c,Deflation helps every borrower.,,,P,Ignores lower receipts and fixed debt.
+s04-X55a,One disliked tax explains everything.,,,G,Several interacting pressures are supplied.
+s04-X55b,The Constitution already governed during the unrest.,,,Z,Reverses chronology.
+s04-X55b,The unrest automatically produced the Convention.,,,G,Mistakes sequence for inevitability.
+s04-X56a,Independence immediately protected everyone equally.,,,A,Ignores the reported harm.
+s04-X56b,Congress says rights; Onondaga says crops.,,,R,Names details without weighing makers or significance.
+s04-X57,Her request proves lawmakers granted equal protection.,,,I,Request does not establish success.
+s04-X57,Adams mentions women; Congress mentions rights.,,,R,No reasoning links.
+s04-X57,Everyone became legally equal in July 1776.,,,A,Promise mistaken for universal accomplished protection.
+s04-Q1a,Any royal command satisfies rule of law.,,,J,No restraint on arbitrary authority.
+s04-Q1b,Natural rights are gifts from rulers.,,,B,Misses inherent rights.
+s04-Q1b,Rule of law means obeying any ruler.,,,J,Misses limits on rulers.
+s04-Q1c,Everyone gained equal rights in 1776.,,,A,Promise is not accomplished protection.
+s04-Q2a,A Trenton; B Saratoga; C Yorktown; D Valley Forge.,,,X,Reversed locations.
+s04-Q2b,Trenton encouraged the formal French alliance instead of Saratoga.,,,Y,Reverses consequences.
+s04-Q2b,French help began only after Saratoga.,,,K,Earlier supplies preceded alliance.
+s04-Q2c,Valley Forge was a battle won by cold weather.,,,C,Confuses camp with battle.
+s04-Q2d,Every British force surrendered in 1781.,,,L,Local surrender is not universal peace.
+s04-Q2e,No foreign help mattered before Saratoga.,,,K,Misstates earlier aid.
+s04-Q2e,All campaigns ended instantly at Yorktown.,,,L,Confuses surrender with peace.
+s04-Q3,Every Native nation backed Britain.,,,D,Erases sovereign differences.
+s04-Q3,Every Black participant was enslaved.,,,U,Erases free participants.
+s04-Q3,Neutral people did not care.,,,N,Invents motive.
+s04-Q3,All colonists wanted independence.,,,S,Erases loyal and neutral choices.
+s04-Q3,All service brought freedom.,,,M,Promise is not universal outcome.
+s04-Q4,Their titles alone explain their impact.,,,E,No action-effect comparison.
+s04-Q4,Franklin commanded the Continental Army.,,,V,Confuses diplomacy and military command.
+s04-Q5a1,No government existed before the Constitution.,,,F,The Articles established national government.
+s04-Q5a2,Congress could levy national taxes on residents.,,,T,Misstates power.
+s04-Q5a2,Every ordinary decision required unanimous approval.,,,O,Confuses amendment with ordinary votes.
+s04-Q5b,Only one disliked tax caused everything.,,,G,Omits interacting pressures.
+s04-Q5b,The Constitution governed during Shays' Rebellion.,,,Z,Reverses chronology.
+s04-Q6a,One expensive item would prove inflation.,,,H,Needs broad sustained trend.
+s04-Q6a,Everyone without paid work is unemployed.,,,Q,Seeking and availability matter.
+s04-Q6b,Falling prices help everyone.,,,P,Ignores stated lower receipts and fixed debt.
+s04-Q7a,Only my opinion matters.,,,W,Omits audience importance.
+s04-Q7b,Independence and equal voting rights are identical.,,,A,Promise and protection differ.
+s04-Q7b,The petition proves lawmakers granted its request.,,,I,Purpose is not outcome.
+s04-Q7c,Everyone gained equal rights immediately.,,,A,Unsupported universal outcome.
+s04-Q7d,Any two unrelated details are support.,,,R,Relevance and attribution matter.
+s04-Q7e,The two details explain themselves.,,,R,No reasoning links.
+s04-R59-1,Any command is lawful.,,,J,Use only the observed priority; other domains remain open.
+s04-R59-2,Every army surrendered.,,,L,Use only the observed priority; other domains remain open.
+s04-R59-3,All neutral people were indifferent.,,,N,Use only the observed priority; other domains remain open.
+s04-R59-4,His title alone kept them serving.,,,E,Use only the observed priority; other domains remain open.
+s04-R59-5,Every ordinary decision needs all states.,,,O,Use only the observed priority; other domains remain open.
+s04-R59-6,Candles alone prove inflation.,,,H,Use only the observed priority; other domains remain open.
+s04-R59-7,A request proves approval.,,,I,Use only the observed priority; other domains remain open.
+s04-R59-8,One rebellion alone created all reform.,,,G,Use only the observed priority; other domains remain open.
+s04-R54a,Six tokens is the production cost.,,,a,"Diagnostic price/cost confusion, not inflation."
+s04-R54b,Only four tokens are owed.,,,b,"Diagnostic loan/interest confusion, not a deflation judgment."
+s04-R59-next,It serves only the official's preference.,,,c,"Next-unit readiness: misses rule's public purpose, not the unit 4 rule-of-law item."
