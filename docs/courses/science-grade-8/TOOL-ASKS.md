@@ -24,3 +24,10 @@ Requested by [unit 6](s06.md), field 8. Key tool, spec only; does not exist. The
 5. Provide printable run records with counts, denominators, assumptions, graphs and space for a revised explanation. A one-projector room chooses the conditions together, then each learner records a prediction and interpretation. A paper-only room chooses among equivalent supplied comparisons; supplied outputs are weaker evidence of generating a run. No account or automated judgment of open writing.
 6. Provide keyboard controls, direct numerical entry, non-color labels and plain descriptions of every visual change. Offer deterministic expected-value examples separately from random runs. State whether reproduction is asexual or sexual and what inheritance rule the model assumes. Do not silently equate parent and offspring trait proportions under an unspecified sexual inheritance model.
 7. Keep every unit assessment and exit-ticket case and number set out of the tool's teaching examples. The seed-coat assessment is a hypothetical expected-value model; the tool must label model output separately from empirical observations. No living bacteria, cultures, specimens or health experiments are used.
+
+## Crosses over generations
+
+Requested by [unit 5](s05.md), field 8. Light tool, spec only; does not exist. Days 118 and 119 each use ten minutes to practice with feedback: choose parents, predict and sample offspring, and compare frequencies. Verdict: paper partly fits; large allele cards and supplied cross tables are the paper route.
+
+1. Let learners choose parents, predict offspring proportions, sample crosses and compare the counts with the prediction across repeated samples.
+2. Provide printable records of every cross, with counts and the inheritance rule the model assumes.

@@ -1865,3 +1865,39 @@ Cory answered the four finish cards on the Desk and signed off all four courses 
   facts, no outside reader needed." Day 82 teaches the evidence plainly and adds the respectful line ("People bring
   different ideas. In science class we look at what the rocks and fossils show."). This is the rule for any science
   day that meets a belief: teach what the evidence shows, say it respectfully, no extra read needed.
+- **Cargo Hold hints, chat 2026-11-24:** "Keep hints." The brought-in build keeps its hint button (the spec had said none); spec open question 3 is settled.
+- **Cargo Hold build, chat 2026-11-24:** "Yes, this build." The 38-hold brought-in build is the game; the larger spec game (24 shaped hulls, Fleet, daily hold) is not planned. Spec header notes it.
+
+## 2026-11-24: Roadmap rework calls (q-roadmap-rework-1)
+
+Cory answered the six Roadmap cards on the Desk (written 2026-11-23, applied 2026-11-24).
+- **Tools:** not at each course's finish for now. "lets come back to this when we are further into writing days, im
+  not sure when but not now." Tool building stays held until Cory sets the restart.
+- **Supply Closet and Reading Room:** parked until a course pulls from them.
+- **Old Tools items** (the Antigravity builder trial, the two Codex single-tool tests): moved to later.csv L111.
+- **After the two-lane run:** the pick (ELA grades 4 and 5, then social studies and ELA up a band) is fine, with
+  more housekeeping before the next building session.
+- **Launch:** the site is already live but has no marketing and so no users. Marketing starts when all curriculum is
+  written and tools are beyond 75 percent complete.
+- **What a finished course holds:** items 10 to 13 are in (accessibility to a named level, a versioning and errata
+  rule, a course-level teacher guide with pacing options, one state alignment crosswalk); 14 stays settled (L60); 15,
+  a print-volume count, is not now.
+
+## 2026-11-24: Stage 4 unit plan calls (q-stage4-science, q-stage4-ela, q-open-calls-2026-11-24)
+
+Cory took the recommended pick on every call.
+- **Science:** kindergarten goggles are supplied by the school, the plans say so, with dated photographs as the
+  fallback; kindergarten's $42 is accepted as about $40; every grade 6 unit cites NSTA with a follow-your-district line;
+  grade 7 units 2 and 3 trim materials where a cheaper one gives the same evidence, and the scope totals are corrected;
+  grade 1 gets one more teaching day on the reverse direction before day 33, taken from a review day.
+- **ELA:** grade 1 brings back L.1.5 and L.1.6 and sentence conventions with two spaced touches in units 3 and 4;
+  grade 2 replaces text 04 with a documented public-domain folktale from a named culture, with a sensitivity read;
+  grade 4 keeps the 30/35/35 writing split with a short narrative piece in unit 4; grade 7's novella audio is made at
+  Art and voice, and the novella keeps the real Klamath River places with an invented family and town and a
+  sensitivity read; grade 9's choice book may go home; grade 11 replaces Occom's 1982-printed narrative with a
+  public-domain Occom text; grade 12 keeps the 1921 film.
+- **Course checks (L107):** every code a course owns is sampled on at least one course-level check day, or the scope
+  names it and says why not (sequence-write.md rule 3).
+- **Time Tides (L108):** credit the GPL-3.0 map data and keep it; restore the Wikipedia bios with CC BY-SA credit; use
+  BCE/CE; fix the anachronisms, religion-based labels and the Qing Tibet and Xinjiang wording, with a fresh
+  sensitivity read, before it is marked live.

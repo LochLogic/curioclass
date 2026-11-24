@@ -86,6 +86,8 @@ No role play or simulation that puts a child in a victim's or perpetrator's plac
 - A claim is asked for with no model of claim, evidence and reasoning earlier in the unit.
 - A hard fact softened, a slur printed (rule 6), or a role play that puts a child in a victim's or perpetrator's place.
 - The exit ticket checks a fact when the goal was a skill, or a skill when the goal was a fact.
+- A high school exit asks for a weighed judgment but its Goal map row names "explain": name the verb the exit asks
+  (evaluate, argue, defend) so the climb in demand from grade to grade shows (cold read 2026-11-24, finding 7).
 
 ## What this lens does not cover
 

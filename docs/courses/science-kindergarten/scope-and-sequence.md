@@ -20,17 +20,17 @@ Collect each child's evidence once per assessment window. A later check within t
 
 The three materials paths are classroom objects, the safe household stand-ins named in the CSV, and labelled media records. Media support interpretation and explanation, but do not replace a child's own investigation or build. Retain a large paper ball, a light cardboard box with a short teacher-attached string and tape marks for physical push-and-pull tests; retain paper, cardboard and tape for child construction. Each child helps plan, conduct and record the investigation even on the minimal-materials path. Media evidence is labelled and weaker than doing the investigation. No digital tool is required, so `tools` stays empty. Every hands-on day names supplies and their safety controls, including the second-case days. Unit plans still write the year safety sheet and the sensitivity and safety reads.
 
-Materials allocations below are the expert-set planning limits inside the settled $40 annual allowance, not current retail quotations or a request for spending. Plan for 30 children in six groups of five. Existing classroom stock means crayons, paper, blunt scissors, large balls, blocks, books, shallow plastic trays and clean scrap cardboard. Reuse purchases across units and charge them only once. Unit plans check quantities and actual local costs before any purchase.
+Materials allocations below are the expert-set planning limits inside the settled allowance of about $40 a year, not current retail quotations or a request for spending. Plan for 30 children in six groups of five. Existing classroom stock means crayons, paper, blunt scissors, large balls, blocks, books, shallow plastic trays and clean scrap cardboard. Reuse purchases across units and charge them only once. The school supplies the child-sized splash goggles marked Z87.1 used in units 1, 3 and 5; where a school has none, the class watches the dated photographs and runs no trial (Cory, 2026-11-24). Unit plans check quantities and actual local costs before any purchase.
 
 | Unit | Quantities and allocation purpose beyond existing stock | Reuse | Additional allocation |
 |---|---|---|---|
 | 1 | Six box-and-string lanes, two rolls of tape, large paper-ball stand-ins as needed | Lanes, string and tape carry to unit 3 | $4 |
 | 2 | One dated class weather chart, picture records and 30 reusable response mats | Mats and chart reused through the year | $2 |
 | 3 | Six scrap-cardboard ramp/bumper sets, replacement tape | Uses unit 1 balls, blocks and books; cardboard carries to unit 5 | $5 |
-| 4 | Two class plants and growing medium, six sets of needs/place picture cards | Plants and cards remain through the year-end check | $8 |
+| 4 | Two class plants and growing medium, six sets of needs/place picture cards | Plants and cards remain through the year-end check | $10 |
 | 5 | Six shallow matched-surface stations with sand, soil, smooth rocks and water, scrap cover materials | Reuses trays, cardboard, tape and scissors; replaces only consumables | $9 |
 | 6 | Six pairs of reusable gloves and six child-sized grabbers for adult-supervised rotations, adult bag | Equipment cleaned and reused; local existing stock or the dated-photo path applies if the allocation is insufficient | $12 |
-| Total | Planning allocations, counted once for the year | Classroom stock and household stand-ins assumed | $40 |
+| Total | Planning allocations, counted once for the year | Classroom stock and household stand-ins assumed; eye protection supplied by the school | $42, accepted as about $40 (Cory, 2026-11-24) |
 
 These allocations settle the sequence's cost reservation. They do not certify that a new class kit can be bought at these amounts. The no-kit litter photo path avoids a purchase without dropping solution communication; investigation and construction retain their physical minimal paths.
 

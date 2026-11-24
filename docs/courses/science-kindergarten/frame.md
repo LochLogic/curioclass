@@ -201,4 +201,4 @@ social studies.
    alternative. Unit 5 follows unit 4 because it reuses the evidence sentence taught there. Unit 6 uses an outdoor
    pick-up where conditions permit.
 4. **Materials cost.** Settled (Cory, Desk 2026-11-14, approved as picked): about $40 a class for the year beyond
-   what a kindergarten room already has. Allocations settled by the expert: units 1 to 6, $4, $2, $5, $8, $9 and $12; the scope and sequence states quantities/reuse and the unit plans itemize local costs.
+   what a kindergarten room already has. Allocations settled by the expert: units 1 to 6, $4, $2, $5, $10, $9 and $12, $42 in all, accepted as about $40 (Cory, 2026-11-24); the school supplies the eye protection; the scope and sequence states quantities/reuse and the unit plans itemize local costs.

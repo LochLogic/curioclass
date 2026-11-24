@@ -299,6 +299,16 @@ def frame_unit(course, unit):
     return None
 
 
+def frame_skill_units(course):
+    """skill -> the first frame unit whose Skills cell lists it (cold reads 2026-11-24: owned comes from the frame)."""
+    out = {}
+    for cells in table_rows(frame_lines(course), '| # | Unit and compelling question'):
+        if cells and cells[0].isdigit() and len(cells) >= 10:
+            for s in split_list(cells[3].replace('`', '')):
+                out.setdefault(s.lstrip('~'), int(cells[0]))
+    return out
+
+
 def frame_models(course, unit):
     """(model, how) for each model of the frame's Models carried table that names this unit."""
     rows = table_rows(frame_lines(course), '| Model |')
@@ -963,6 +973,14 @@ def field8_lines(course, rows, fr):
     return L
 
 
+def has_order_conflict(value):
+    """True when a source-map order_conflict cell records a real conflict. Empty cells and the no-conflict prose
+    some courses keep there ("None; lesson order retained.", "Source order kept; ...", "No source lesson ...") are
+    not conflicts (ELA structure pass 2026-11-24)."""
+    v = value.strip().lower()
+    return bool(v) and not v.startswith(('none', 'no ', 'no;', 'no,', 'source order kept'))
+
+
 def field10_extras(course, unit):
     """Source-map lines (inside the skel block) and the missing-data lines for a non-social-studies unit."""
     base = base_text_of(course)
@@ -976,7 +994,7 @@ def field10_extras(course, unit):
             # one line per row (spot check 2026-11-15, bulk): goals, standards and why stay in source-map.csv
             L.append('  - %s, %s: our days %s; %s%s'
                      % (r['source'], clean(r['title']), r['days'] or 'none', r['decision'],
-                        '; order conflict' if r.get('order_conflict', '').strip() else ''))
+                        '; order conflict' if has_order_conflict(r.get('order_conflict', '')) else ''))
         L.append('- **Source-map decisions in this unit:** %s. Goals, standards, the reason for each decision and any order '
                  'conflict are in the file.' % ', '.join('%s %d' % (k, v) for k, v in sorted(count.items())))
     elif base:
@@ -1540,6 +1558,20 @@ def build(course, unit):
                     and grade_num(prog[s]['grade']) < cg]
         own_sk = [s for s in skills if s not in early_sk]
         bgn = begun_codes(unit, rows, [raw[int(r['day'])] for r in rows], own_sk, prog, fr)
+    # Cold reads 2026-11-24 (every core subject): owned is the frame's Skills cell for this unit, in this subject's
+    # progression; a row an earlier unit of the course owns is listed as used again, and another subject's row as
+    # cross-subject. own_sk above still feeds the begun and progression-note checks, unchanged.
+    fsu = frame_skill_units(course)
+    fown = [s for s, u in fsu.items() if u == unit and s in prog]
+    if not fsu:     # a frame with no Skills cells at all: the days.csv rows, as before
+        fown = [s for s in own_sk if s in prog]
+    prev_sk = early_sk or [s for s in skills if s in prog and s not in fown and grade_num(prog[s]['grade']) is not None
+                           and cg is not None and grade_num(prog[s]['grade']) < cg]
+    left = [s for s in skills if s in prog and s not in fown and s not in prev_sk]
+    reuse_sk = [s for s in left if fsu.get(s, unit) < unit]
+    later_sk = [s for s in left if fsu.get(s, unit) > unit]
+    loose_sk = [s for s in left if s not in fsu]
+    cross_sk = [s for s in skills if s not in prog]
     W = []
     w = W.append
 
@@ -1643,10 +1675,18 @@ def build(course, unit):
         w('%s: The codes above that are not in the standards file (%s; missing data): give each one line, in your own words, '
           'and its parts by verb.' % (MARK, ', '.join(c3_nolines)))
     w(OPEN)
-    w('- **Progression skills owned (data/progressions/%s.csv):** %s.' % (subj, '; '.join(own_sk)))
-    if early_sk:
+    w('- **Progression skills owned (data/progressions/%s.csv):** %s.' % (subj, '; '.join(fown) or 'none listed'))
+    if reuse_sk:
+        w('- **Earlier rows used again (review, not owned):** %s.' % '; '.join('%s (unit %d)' % (x, fsu[x]) for x in reuse_sk))
+    if later_sk:
+        w('- **Later rows begun here (owned by a later unit):** %s.' % '; '.join('%s (unit %d)' % (x, fsu[x]) for x in later_sk))
+    if loose_sk:
+        w('- **Rows in the days.csv skills column that no frame unit lists:** %s.' % '; '.join(loose_sk))
+    if prev_sk:
         w('- **Earlier-grade rows in the days.csv skills column (retrieval or readiness, not owned; field 4):** %s.'
-          % '; '.join('%s (grade %s)' % (x, grade_of(x, prog)) for x in early_sk))
+          % '; '.join('%s (grade %s)' % (x, grade_of(x, prog)) for x in prev_sk))
+    if cross_sk:
+        w('- **Rows from other subjects in the days.csv skills column (cross-subject, not owned):** %s.' % '; '.join(cross_sk))
     models = frame_models(course, unit)
     if models:
         w('- **Carried (frame, models carried):**')
@@ -1668,9 +1708,9 @@ def build(course, unit):
     # ---- field 3: where it sits
     w('## 3. Where it sits')
     w('')
-    assumes = uniq(a for s in own_sk if s in prog for a in split_list(prog[s]['assumes']))
-    hands = uniq(a for s in own_sk if s in prog for a in split_list(prog[s]['hands_on']))
-    own = set(own_sk)
+    assumes = uniq(a for s in fown for a in split_list(prog[s]['assumes']))
+    hands = uniq(a for s in fown for a in split_list(prog[s]['hands_on']))
+    own = set(fown)
     if not ss:
         # Leads to never names a row this course already taught or an earlier grade's row (math 5, math 8, geometry)
         done = {s for r in allrows if int(r['day']) < first for s in split_list(r['skills'])}

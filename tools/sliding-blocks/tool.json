@@ -1,0 +1,12 @@
+{
+  "id": "sliding-blocks",
+  "recess": true,
+  "status": "beta",
+  "updated": "2026-11-24",
+  "sources": [
+    "A Curio Class game, made outside this repository and brought in 2026-11-24 as a single file with no build. source/cargo-hold.html is that file untouched; src.html is the game with our changes, bundled into sliding-blocks.html.",
+    "Classic sliding-block rules (public domain; L. W. Hardy's US patent 1,017,752, 1912, long expired). All 38 holds, their names and the art are the game's own; every hold's fewest-slides number was checked by a breadth-first search on 2026-11-24 and all 38 matched.",
+    "No image, sound or font files: everything is drawn in code, sounds are made in the browser, and the text uses fonts already on the device"
+  ],
+  "third_party": []
+}

@@ -98,6 +98,12 @@ COMMON = [
 ]
 
 
+ELA_EXIT = ("**Exits ask a transfer on the day's text:** a reserved passage or an unread part of the unit's own texts "
+            "that needs the day's idea, never a card invented for the exit and never the worked passage. A Goal map's "
+            '"new passage" or "fresh passage" means such a passage, unless the plan names a cold assessment text in '
+            'ela-texts.csv. An item on an invented card has needs_text no (cold-read fix 2026-11-24).')
+
+
 def frames():
     with open(FRAMES, encoding='utf-8', newline='') as f:
         return [r for r in csv.DictReader(f) if not any(b in r['course'] for b in BLIND)]
@@ -121,7 +127,8 @@ def text(r):
          '- **The day.** %s (frames.csv); %s.' % (mins, cap),
          '- **Student page:** at most %d words a student reads, everything printed included (ours, untested)%s' % (
              student, '.' if b == 'K2' else '; ' + BAND[b][0])]
-    L += ['- ' + x for x in (BAND[b] if b == 'K2' else BAND[b][1:]) + SUBJ[r['subject']] + COMMON]
+    common = [ELA_EXIT if x.startswith('**Exits ask') and r['subject'] == 'ela' else x for x in COMMON]
+    L += ['- ' + x for x in (BAND[b] if b == 'K2' else BAND[b][1:]) + SUBJ[r['subject']] + common]
     return '\n'.join(L).replace('#  ', '# ').replace('  :', ':') + '\n'
 
 

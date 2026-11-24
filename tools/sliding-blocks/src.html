@@ -1,0 +1,3441 @@
+<!DOCTYPE html>
+<!-- Brought in as a single file from S:\CurioClass-agy\cargo-hold.html on 2026-11-24; no build. The untouched original is source/cargo-hold.html; this file is that game with our changes. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Cargo Hold</title>
+<meta name="description" content="Cargo Hold: slide the crates and barrels around a ship's hold until the sea chest sits in the square of daylight under the hatch. 38 holds, fewest slides earns three stars.">
+<style>
+  :root {
+    --bilge-deep: #0c0907;
+    --bilge-mid: #1a120c;
+    --oak-dark: #2a1c12;
+    --brass-top: #ebd08c;
+    --brass-mid: #c69c4a;
+    --brass-bot: #916a24;
+    --brass-ink: #241908;
+    --glass-bg: rgba(20, 14, 10, 0.74);
+    --glass-border: rgba(242, 206, 134, 0.26);
+    --cream: #f8eed8;
+    --cream-muted: rgba(248, 238, 216, 0.72);
+    --gold: #ffd675;
+    --amber: #f39d3b;
+    --sunlight: #fff3c4;
+    --mono: ui-monospace, 'Cascadia Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+    --serif: Georgia, 'Palatino Linotype', 'Book Antiqua', serif;
+    --sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bilge-deep);
+    color: var(--cream);
+    font-family: var(--sans);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+  }
+
+  #stage {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: default;
+  }
+
+  /* ==================== ENGRAVED BRASS MAKER'S PLATE ==================== */
+  .makers-plate {
+    position: fixed;
+    top: 12px;
+    left: 14px;
+    z-index: 20;
+    padding: 5px 12px;
+    background: linear-gradient(160deg, var(--brass-top) 0%, var(--brass-mid) 52%, var(--brass-bot) 100%);
+    border: 1px solid #6b4e1b;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 rgba(255, 249, 226, 0.55), 0 3px 10px rgba(0, 0, 0, 0.5);
+    color: var(--brass-ink);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: filter 0.15s, transform 0.15s, opacity 0.28s;
+  }
+  .makers-plate:hover { filter: brightness(1.07); transform: translateY(-1px); }
+  .makers-plate:active { transform: translateY(0); }
+  .makers-plate .rivet {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff2c6, #674a17);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+  .makers-plate .sep { opacity: 0.45; }
+
+  /* Hide gameplay HUD on Splash & Manifest */
+  body.screen-splash .makers-plate,
+  body.screen-splash .level-pill,
+  body.screen-splash .controls-bar,
+  body.screen-splash .hold-caption,
+  body.screen-manifest .makers-plate,
+  body.screen-manifest .level-pill,
+  body.screen-manifest .controls-bar,
+  body.screen-manifest .hold-caption {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+  }
+
+  /* ==================== TOP-CENTER HOLD & PAR PILL ==================== */
+  .level-pill {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.48);
+    font-size: 13px;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+    max-width: calc(100vw - 24px);
+  }
+  .level-nav {
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 16px;
+    line-height: 1;
+    padding: 2px 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0.85;
+    transition: opacity 0.15s, background 0.15s;
+  }
+  .level-nav:hover:not(:disabled) { opacity: 1; background: rgba(255, 214, 117, 0.16); }
+  .level-nav:disabled { opacity: 0.22; cursor: default; }
+
+  .level-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .level-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    opacity: 0.92;
+  }
+  .level-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--cream);
+    letter-spacing: 0.01em;
+  }
+  .pill-sep {
+    width: 1px;
+    height: 16px;
+    background: rgba(242, 206, 134, 0.22);
+  }
+  .moves-readout {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--cream);
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  .moves-readout .val {
+    font-weight: 700;
+    color: var(--sunlight);
+    min-width: 18px;
+    text-align: right;
+  }
+  .moves-readout .par {
+    font-size: 11px;
+    color: var(--cream-muted);
+  }
+  .stars-hud {
+    display: flex;
+    gap: 2px;
+    font-size: 14px;
+  }
+  .stars-hud .star {
+    color: rgba(255, 232, 175, 0.2);
+    transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.22s;
+  }
+  .stars-hud .star.lit {
+    color: var(--gold);
+    text-shadow: 0 0 8px rgba(255, 214, 117, 0.75);
+  }
+
+  /* ==================== TOP-RIGHT CONTROLS ==================== */
+  .controls-bar {
+    position: fixed;
+    top: 12px;
+    right: 14px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+  }
+  .hud-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--cream);
+    border-radius: 999px;
+    padding: 6px 11px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--sans);
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    transition: background 0.15s, border-color 0.15s, transform 0.1s, opacity 0.15s;
+  }
+  .hud-btn:hover:not(:disabled) {
+    background: rgba(46, 32, 20, 0.88);
+    border-color: rgba(255, 214, 117, 0.55);
+  }
+  .hud-btn:active:not(:disabled) { transform: scale(0.95); }
+  .hud-btn:disabled { opacity: 0.38; cursor: default; }
+  .hud-btn.active {
+    background: rgba(255, 198, 92, 0.22);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .hud-btn .key-hint {
+    font-family: var(--mono);
+    font-size: 10px;
+    opacity: 0.55;
+    padding: 0 3px;
+  }
+
+  /* ==================== BOTTOM SUBTITLE CAPTION ==================== */
+  .hold-caption {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    padding: 6px 16px;
+    background: rgba(16, 11, 8, 0.68);
+    border: 1px solid rgba(242, 206, 134, 0.18);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--cream-muted);
+    font-size: 12.5px;
+    letter-spacing: 0.015em;
+    white-space: nowrap;
+    max-width: calc(100vw - 28px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  /* ==================== CLEAR BANNER ==================== */
+  .clear-banner {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.92);
+    z-index: 30;
+    width: min(370px, calc(100vw - 32px));
+    padding: 24px 28px 22px;
+    background: linear-gradient(175deg, rgba(28, 20, 14, 0.92) 0%, rgba(16, 11, 8, 0.95) 100%);
+    border: 1px solid rgba(255, 216, 130, 0.45);
+    border-radius: 20px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.68), 0 0 46px rgba(255, 198, 92, 0.18);
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .clear-banner.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .clear-kicker {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .clear-banner h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 24px;
+    color: var(--sunlight);
+  }
+  .clear-stars {
+    font-size: 30px;
+    letter-spacing: 8px;
+    margin: 12px 0 6px;
+  }
+  .clear-stars .s {
+    display: inline-block;
+    color: rgba(255, 232, 175, 0.18);
+    transform: scale(0.75);
+    transition: transform 0.36s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.25s;
+  }
+  .clear-stars .s.got {
+    color: var(--gold);
+    text-shadow: 0 0 16px rgba(255, 210, 100, 0.85);
+    transform: scale(1.05);
+  }
+  .clear-stats {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .clear-nudge {
+    font-size: 12.5px;
+    color: var(--cream-muted);
+    margin: 0 0 18px;
+    min-height: 18px;
+  }
+  .clear-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(180deg, #ffe08a 0%, #e59b35 100%);
+    color: #241606;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-weight: 700;
+    font-size: 13.5px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(243, 157, 59, 0.38);
+    transition: transform 0.12s, filter 0.12s;
+  }
+  .btn-primary:hover { filter: brightness(1.07); transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-secondary {
+    background: rgba(255, 240, 200, 0.08);
+    color: var(--cream);
+    border: 1px solid rgba(255, 224, 160, 0.3);
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-secondary:hover { background: rgba(255, 240, 200, 0.16); }
+
+  /* ==================== SPLASH SCREEN ==================== */
+  .splash-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: radial-gradient(circle at 50% 44%, rgba(24, 16, 10, 0.25) 0%, rgba(10, 7, 5, 0.78) 100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.38s ease;
+  }
+  .splash-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .splash-card {
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    padding: 34px 30px 28px;
+    border-radius: 24px;
+    background: linear-gradient(175deg, rgba(28, 20, 14, 0.84) 0%, rgba(14, 10, 7, 0.92) 100%);
+    border: 1px solid rgba(255, 218, 140, 0.32);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 26px 75px rgba(0, 0, 0, 0.65), 0 0 65px rgba(255, 196, 92, 0.14), inset 0 1px 0 rgba(255, 244, 210, 0.15);
+    transform: translateY(14px) scale(0.97);
+    transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .splash-overlay.active .splash-card { transform: translateY(0) scale(1); }
+
+  .splash-crest {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    margin-bottom: 14px;
+    background: linear-gradient(160deg, var(--brass-top) 0%, var(--brass-mid) 52%, var(--brass-bot) 100%);
+    border: 1px solid #6b4e1b;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 rgba(255, 249, 226, 0.55), 0 3px 10px rgba(0, 0, 0, 0.4);
+    color: var(--brass-ink);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .splash-crest .rivet {
+    width: 4.5px;
+    height: 4.5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff2c6, #674a17);
+  }
+  .splash-title {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(42px, 7.5vw, 58px);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.04;
+    background: linear-gradient(180deg, #fffbe8 0%, #ffe094 55%, #e89b3c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 22px rgba(255, 196, 92, 0.32));
+  }
+  .splash-sub {
+    margin: 12px auto 24px;
+    max-width: 360px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--cream-muted);
+  }
+  .splash-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .splash-btn-play {
+    width: 100%;
+    max-width: 270px;
+    padding: 13px 26px;
+    font-size: 15px;
+  }
+  .splash-btn-manifest {
+    width: 100%;
+    max-width: 270px;
+    padding: 10px 22px;
+  }
+  .splash-progress {
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--gold);
+    opacity: 0.88;
+  }
+
+  /* ==================== HOLD MANIFEST (LEVEL PICKER) ==================== */
+  .manifest-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(10, 7, 5, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.28s ease;
+  }
+  .manifest-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .manifest-panel {
+    width: min(760px, 100%);
+    max-height: min(86vh, 720px);
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, rgba(30, 21, 15, 0.96) 0%, rgba(18, 12, 9, 0.98) 100%);
+    border: 1px solid rgba(255, 218, 140, 0.34);
+    border-radius: 20px;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+  }
+  .manifest-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px 14px;
+    border-bottom: 1px solid rgba(242, 206, 134, 0.16);
+  }
+  .manifest-header h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--sunlight);
+  }
+  .manifest-total {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--gold);
+    margin-left: auto;
+    margin-right: 14px;
+  }
+  .manifest-body {
+    padding: 16px 22px 22px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .deck-heading {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .deck-heading::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(242, 206, 134, 0.18);
+  }
+  .hold-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+    gap: 10px;
+  }
+  .hold-card {
+    text-align: left;
+    padding: 11px 13px;
+    background: rgba(255, 240, 205, 0.045);
+    border: 1px solid rgba(242, 206, 134, 0.18);
+    border-radius: 12px;
+    color: var(--cream);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.12s;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hold-card:hover {
+    background: rgba(255, 224, 155, 0.11);
+    border-color: rgba(255, 214, 117, 0.5);
+    transform: translateY(-2px);
+  }
+  .hold-card.current {
+    border-color: var(--gold);
+    background: rgba(255, 204, 102, 0.13);
+  }
+  .hold-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+  }
+  .hold-card-name {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--cream);
+  }
+  .hold-card-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--cream-muted);
+    margin-top: 2px;
+  }
+  .hold-card-stars { letter-spacing: 2px; font-size: 13px; }
+  .hold-card-stars .lit { color: var(--gold); }
+  .hold-card-stars .dim { color: rgba(255, 232, 175, 0.2); }
+
+  /* Reduced motion: no transitions on the overlays and buttons */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+
+  /* ==================== RESPONSIVE ADJUSTMENTS ==================== */
+  @media (max-width: 820px) {
+    .makers-plate .brand-long { display: none; }
+    .hud-btn .key-hint { display: none; }
+    .hud-btn .btn-lbl { display: none; }
+    .hud-btn { padding: 7px 10px; font-size: 14px; }
+    .level-pill { top: 52px; padding: 5px 11px; gap: 7px; }
+    .level-title { font-size: 13px; }
+  }
+</style>
+</head>
+<body class="screen-splash">
+
+<canvas id="stage"></canvas>
+
+<!-- Engraved Brass Maker's Plate -->
+<button class="makers-plate" id="btnPlate" title="Back to the title card">
+  <span class="rivet"></span>
+  <span class="brand-long">CURIO CLASS</span>
+  <span class="sep brand-long">·</span>
+  <span>CARGO HOLD</span>
+  <span class="rivet"></span>
+</button>
+
+<!-- Top-Center Hold & Par HUD -->
+<div class="level-pill" id="levelPill">
+  <button class="level-nav" id="btnPrev" title="Previous Hold">‹</button>
+  <div class="level-meta">
+    <span class="level-num" id="hudNum">01</span>
+    <span class="level-title" id="hudTitle">First Hatch</span>
+  </div>
+  <span class="pill-sep"></span>
+  <div class="moves-readout" title="Slides used vs. Par">
+    <span class="val" id="hudMoves">0</span>
+    <span class="par" id="hudPar">/ 3</span>
+  </div>
+  <div class="stars-hud" id="hudStars" aria-label="Projected stars">
+    <span class="star lit">★</span>
+    <span class="star lit">★</span>
+    <span class="star lit">★</span>
+  </div>
+  <button class="level-nav" id="btnNext" title="Next Hold">›</button>
+</div>
+
+<!-- Top-Right Utility Controls -->
+<div class="controls-bar" id="controlsBar">
+  <button class="hud-btn" id="btnUndo" title="Undo last slide (Z)" disabled>
+    <span>↶</span><span class="btn-lbl">Undo</span><span class="key-hint">Z</span>
+  </button>
+  <button class="hud-btn" id="btnReset" title="Reset hold (R)">
+    <span>↺</span><span class="btn-lbl">Reset</span><span class="key-hint">R</span>
+  </button>
+  <button class="hud-btn" id="btnHint" title="Lantern hint: shows one good next slide (H)">
+    <span>✦</span><span class="btn-lbl">Hint</span><span class="key-hint">H</span>
+  </button>
+  <button class="hud-btn" id="btnManifest" title="Hold Manifest (Esc)">
+    <span>☰</span><span class="btn-lbl">Holds</span>
+  </button>
+  <button class="hud-btn active" id="btnSound" title="Toggle Sound (M)">
+    <span id="soundIcon">♪</span>
+  </button>
+</div>
+
+<!-- Subtle Hold Subtitle -->
+<div class="hold-caption" id="holdCaption"></div>
+
+<!-- Level Clear Banner -->
+<div class="clear-banner" id="clearBanner" role="dialog" aria-live="polite">
+  <div class="clear-kicker" id="clearKicker">CHEST HAULED CLEAR</div>
+  <h2 id="clearTitle">First Hatch</h2>
+  <div class="clear-stars" id="clearStars">
+    <span class="s">★</span><span class="s">★</span><span class="s">★</span>
+  </div>
+  <div class="clear-stats" id="clearStats">3 slides · Par 3</div>
+  <p class="clear-nudge" id="clearNudge">Master stevedore's order!</p>
+  <div class="clear-actions">
+    <button class="btn-secondary" id="btnClearReplay">Replay</button>
+    <button class="btn-primary" id="btnClearNext">Next Hold →</button>
+  </div>
+</div>
+
+<!-- Splash Screen -->
+<div class="splash-overlay active" id="splashOverlay">
+  <div class="splash-card">
+    <div class="splash-crest">
+      <span class="rivet"></span>
+      <span>CURIO CLASS RECESS</span>
+      <span class="rivet"></span>
+    </div>
+    <h1 class="splash-title">Cargo Hold</h1>
+    <p class="splash-sub">
+      Slide the crates and barrels around the ship's hold until the brass-bound sea chest sits in the square of daylight under the hatch.
+    </p>
+    <div class="splash-actions">
+      <button class="btn-primary splash-btn-play" id="btnSplashPlay">Enter the Hold</button>
+      <button class="btn-secondary splash-btn-manifest" id="btnSplashManifest">Hold Manifest (38 Holds)</button>
+    </div>
+    <div class="splash-progress" id="splashProgress"></div>
+  </div>
+</div>
+
+<!-- Hold Manifest (Level Picker) -->
+<div class="manifest-overlay" id="manifestOverlay">
+  <div class="manifest-panel">
+    <div class="manifest-header">
+      <h2>Hold Manifest</h2>
+      <span class="manifest-total" id="manifestTotal">0 / 114 ★</span>
+      <button class="btn-secondary" id="btnManifestClose" style="padding:6px 14px;font-size:12px;">Close</button>
+    </div>
+    <div class="manifest-body" id="manifestBody"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const RMQ = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  let REDUCED = !!(RMQ && RMQ.matches);
+  if (RMQ && RMQ.addEventListener) RMQ.addEventListener('change', (ev) => { REDUCED = ev.matches; });
+
+  // =========================================================================
+  // 1. VERIFIED 38-HOLD CAMPAIGN (BFS-verified optimal par under 1-slide rule)
+  // =========================================================================
+  const DECKS = [
+    { id: 1, title: 'Deck I: Upper Hold' },
+    { id: 2, title: 'Deck II: Foredeck Locker' },
+    { id: 3, title: 'Deck III: Midships' },
+    { id: 4, title: 'Deck IV: Deep Bilge' },
+    { id: 5, title: "Deck V: The Captain's Vault" },
+  ];
+
+  const LEVELS = [
+    // ---------- DECK I: UPPER HOLD (01 to 08) ----------
+    {
+      id: 1, deck: 1, par: 3, name: "First Hatch",
+      subtitle: "Drag or click crates to slide them. Set the sea chest in the square of daylight.",
+      w: 4, h: 4, hatch: [2, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 1, w: 2, h: 2 },
+        { id: 'b1', kind: 'barrel', x: 2, y: 1, w: 1, h: 1 },
+        { id: 'c1', kind: 'crate', x: 2, y: 2, w: 2, h: 1, label: 'COCOA' },
+        { id: 'c2', kind: 'crate', x: 0, y: 3, w: 2, h: 1, label: 'TEA' },
+      ]
+    },
+    {
+      id: 2, deck: 1, par: 4, name: "Morning Light",
+      subtitle: "Clear the two crates and tuck the barrel aside, just four slides!",
+      w: 4, h: 4, hatch: [2, 0],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 0, w: 2, h: 2 },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'APPLES' },
+        { id: 'c2', kind: 'crate', x: 1, y: 2, w: 2, h: 1, label: 'HONEY' },
+        { id: 'b1', kind: 'barrel', x: 3, y: 1, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 3, deck: 1, par: 6, name: "Port Gangway",
+      subtitle: "Shift the timber crate up and tuck the barrel out of the sunbeam.",
+      w: 4, h: 4, hatch: [2, 2],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 0, w: 2, h: 2 },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'OAK' },
+        { id: 'c2', kind: 'crate', x: 1, y: 2, w: 2, h: 1, label: 'SALT' },
+        { id: 'b1', kind: 'barrel', x: 3, y: 2, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 4, deck: 1, par: 8, name: "Clear the Gangway",
+      subtitle: "Every crate is in somebody's way. Work backward from the daylight.",
+      w: 4, h: 4, hatch: [2, 2],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 0, w: 2, h: 2 },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'OAK' },
+        { id: 'c2', kind: 'crate', x: 1, y: 2, w: 2, h: 1, label: 'SALT' },
+        { id: 'b1', kind: 'barrel', x: 3, y: 2, w: 1, h: 1 },
+        { id: 'c3', kind: 'crate', x: 0, y: 3, w: 2, h: 1, label: 'TAR' },
+      ]
+    },
+    {
+      id: 5, deck: 1, par: 9, name: "The Captain's Locker",
+      subtitle: "Clear the center square. Can you haul it out in 9 slides?",
+      w: 4, h: 4, hatch: [1, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 2, w: 2, h: 2 },
+        { id: 'c1', kind: 'crate', x: 0, y: 1, w: 2, h: 1, label: 'ROPE' },
+        { id: 'c2', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'SILK' },
+        { id: 'c3', kind: 'crate', x: 2, y: 2, w: 1, h: 2, label: 'PLUMS' },
+        { id: 'b1', kind: 'barrel', x: 0, y: 0, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 3, y: 1, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 6, deck: 1, par: 9, name: "Sunlit Corner",
+      subtitle: "Tuck the barrels into the port alcove to clear a straight run.",
+      w: 4, h: 4, hatch: [2, 0],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 2, w: 2, h: 2 },
+        { id: 'c1', kind: 'crate', x: 0, y: 1, w: 2, h: 1, label: 'COCOA' },
+        { id: 'c2', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'HONEY' },
+        { id: 'b1', kind: 'barrel', x: 3, y: 1, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 2, y: 2, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 7, deck: 1, par: 10, name: "Rope Locker",
+      subtitle: "Slide the twin crates apart to reach the forward hatch.",
+      w: 4, h: 4, hatch: [0, 0],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 2, y: 2, w: 2, h: 2 },
+        { id: 'c1', kind: 'crate', x: 0, y: 0, w: 2, h: 1, label: 'ROPE' },
+        { id: 'c2', kind: 'crate', x: 1, y: 1, w: 1, h: 2, label: 'MAPLE' },
+        { id: 'c3', kind: 'crate', x: 2, y: 1, w: 2, h: 1, label: 'OATS' },
+        { id: 'b1', kind: 'barrel', x: 0, y: 2, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 1, y: 3, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 8, deck: 1, par: 10, name: "Spice Passage",
+      subtitle: "Four spice crates guard the center lane. Unstack them one by one.",
+      w: 5, h: 4, hatch: [1, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 3, y: 0, w: 2, h: 2 },
+        { id: 'c1', kind: 'crate', x: 1, y: 0, w: 2, h: 1, label: 'CLOVE' },
+        { id: 'c2', kind: 'crate', x: 1, y: 1, w: 1, h: 2, label: 'GINGER' },
+        { id: 'c3', kind: 'crate', x: 2, y: 1, w: 1, h: 2, label: 'MINT' },
+        { id: 'c4', kind: 'crate', x: 1, y: 3, w: 2, h: 1, label: 'SUGAR' },
+        { id: 'b1', kind: 'barrel', x: 0, y: 0, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 3, y: 2, w: 1, h: 1 },
+        { id: 'b3', kind: 'barrel', x: 4, y: 3, w: 1, h: 1 },
+      ]
+    },
+
+    // ---------- DECK II: FOREDECK LOCKER (09 to 16) ----------
+    {
+      id: 9, deck: 2, par: 12, name: "Bow Locker",
+      subtitle: "One extra barrel turns a familiar hold into a sharper puzzle.",
+      w: 4, h: 4, hatch: [1, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 2, w: 2, h: 2 },
+        { id: 'c1', kind: 'crate', x: 0, y: 1, w: 2, h: 1, label: 'PEARS' },
+        { id: 'c2', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'CORK' },
+        { id: 'c3', kind: 'crate', x: 2, y: 2, w: 1, h: 2, label: 'PLUMS' },
+        { id: 'b1', kind: 'barrel', x: 0, y: 0, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 3, y: 1, w: 1, h: 1 },
+        { id: 'b3', kind: 'barrel', x: 3, y: 3, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 10, deck: 2, par: 12, name: "Lantern Alcove",
+      subtitle: "A sturdy sail bale blocks the stern. Loop the crates around it.",
+      w: 5, h: 4, hatch: [3, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 1, w: 2, h: 2 },
+        { id: 'bale1', kind: 'bale', x: 2, y: 1, w: 2, h: 1, label: 'SAIL' },
+        { id: 'c1', kind: 'crate', x: 2, y: 2, w: 1, h: 2, label: 'APPLES' },
+        { id: 'c2', kind: 'crate', x: 3, y: 0, w: 2, h: 1, label: 'PEARS' },
+        { id: 'c3', kind: 'crate', x: 3, y: 2, w: 2, h: 1, label: 'LIMES' },
+        { id: 'b1', kind: 'barrel', x: 0, y: 0, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 4, y: 3, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 11, deck: 2, par: 13, name: "Compass Bay",
+      subtitle: "Work around the foremast and park the crates in the bow.",
+      w: 5, h: 4, hatch: [3, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 1, w: 2, h: 2 },
+        { id: 'm1', kind: 'mast', x: 2, y: 0, w: 1, h: 1, fixed: true },
+        { id: 'c1', kind: 'crate', x: 2, y: 1, w: 2, h: 1, label: 'MAPS' },
+        { id: 'c2', kind: 'crate', x: 3, y: 0, w: 2, h: 1, label: 'BELLS' },
+        { id: 'bale1', kind: 'bale', x: 3, y: 2, w: 2, h: 1, label: 'WOOL' },
+        { id: 'c3', kind: 'crate', x: 0, y: 3, w: 2, h: 1, label: 'AMBER' },
+        { id: 'b1', kind: 'barrel', x: 4, y: 1, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 2, y: 2, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 12, deck: 2, par: 14, name: "Tight Quarters",
+      subtitle: "Fourteen crisp slides, not a single barrel wasted.",
+      w: 4, h: 4, hatch: [2, 2],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 0, w: 2, h: 2 },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'OAK' },
+        { id: 'c2', kind: 'crate', x: 1, y: 2, w: 2, h: 1, label: 'SALT' },
+        { id: 'b1', kind: 'barrel', x: 3, y: 2, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 0, y: 2, w: 1, h: 1 },
+        { id: 'c3', kind: 'crate', x: 0, y: 3, w: 2, h: 1, label: 'TAR' },
+      ]
+    },
+    {
+      id: 13, deck: 2, par: 14, name: "Heavy Ballast",
+      subtitle: "A 2×2 sailcloth ballast bale sits right under the hatch.",
+      w: 5, h: 4, hatch: [3, 0],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 2, w: 2, h: 2 },
+        { id: 'baleBig', kind: 'bale', x: 3, y: 0, w: 2, h: 2, label: 'BALLAST' },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'PINE' },
+        { id: 'c2', kind: 'crate', x: 0, y: 1, w: 2, h: 1, label: 'CORD' },
+        { id: 'b1', kind: 'barrel', x: 2, y: 2, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 4, y: 2, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 14, deck: 2, par: 15, name: "Starboard Stow",
+      subtitle: "Split the center timber partition to open a lane to port.",
+      w: 5, h: 4, hatch: [0, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 3, y: 1, w: 2, h: 2 },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'IRON' },
+        { id: 'c2', kind: 'crate', x: 2, y: 2, w: 1, h: 2, label: 'COAL' },
+        { id: 'bale1', kind: 'bale', x: 0, y: 0, w: 2, h: 1, label: 'SAIL' },
+        { id: 'bale2', kind: 'bale', x: 0, y: 3, w: 2, h: 1, label: 'FLAX' },
+        { id: 'b1', kind: 'barrel', x: 1, y: 1, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 3, y: 0, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 15, deck: 2, par: 17, name: "Quarterdeck Hatch",
+      subtitle: "Slide the chest straight up the center after parting the crates.",
+      w: 4, h: 4, hatch: [1, 0],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 1, y: 2, w: 2, h: 2 },
+        { id: 'c1', kind: 'crate', x: 0, y: 0, w: 1, h: 2, label: 'PEARL' },
+        { id: 'c2', kind: 'crate', x: 1, y: 0, w: 2, h: 1, label: 'JADE' },
+        { id: 'c3', kind: 'crate', x: 1, y: 1, w: 2, h: 1, label: 'GOLD' },
+        { id: 'b1', kind: 'barrel', x: 3, y: 1, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 0, y: 3, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 16, deck: 2, par: 17, name: "Jibboom Rigging",
+      subtitle: "A vertical spar and a heavy ballast bale block the port side.",
+      w: 5, h: 5, hatch: [0, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 3, y: 1, w: 2, h: 2 },
+        { id: 's1', kind: 'spar', x: 2, y: 0, w: 1, h: 3, label: 'JIBBOOM' },
+        { id: 'baleBig', kind: 'bale', x: 0, y: 0, w: 2, h: 2, label: 'BALLAST' },
+        { id: 'c1', kind: 'crate', x: 0, y: 2, w: 2, h: 1, label: 'ROPE' },
+        { id: 'c2', kind: 'crate', x: 3, y: 0, w: 2, h: 1, label: 'OAK' },
+        { id: 'c3', kind: 'crate', x: 2, y: 3, w: 2, h: 1, label: 'PINE' },
+        { id: 'b1', kind: 'barrel', x: 0, y: 3, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 4, y: 3, w: 1, h: 1 },
+      ]
+    },
+
+    // ---------- DECK III: MIDSHIPS (17 to 24) ----------
+    {
+      id: 17, deck: 3, par: 19, name: "Stanchion Bend",
+      subtitle: "The iron-collared mainmast never budges. Steer the chest around it.",
+      w: 5, h: 5, hatch: [3, 3],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 0, w: 2, h: 2 },
+        { id: 'm1', kind: 'mast', x: 2, y: 2, w: 1, h: 1, fixed: true },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'TEAK' },
+        { id: 'c2', kind: 'crate', x: 3, y: 1, w: 2, h: 1, label: 'CLOVE' },
+        { id: 'bale1', kind: 'bale', x: 0, y: 2, w: 2, h: 1, label: 'SAIL' },
+        { id: 'c3', kind: 'crate', x: 3, y: 2, w: 1, h: 2, label: 'TEA' },
+        { id: 'c4', kind: 'crate', x: 1, y: 3, w: 2, h: 1, label: 'BRASS' },
+        { id: 'b1', kind: 'barrel', x: 4, y: 2, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 3, y: 4, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 18, deck: 3, par: 20, name: "Sailmaker's Loft",
+      subtitle: "A heavy ballast bale blocks the stern. Orbit it cleanly.",
+      w: 5, h: 5, hatch: [3, 3],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 0, w: 2, h: 2 },
+        { id: 'baleBig', kind: 'bale', x: 2, y: 2, w: 2, h: 2, label: 'BALLAST' },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 2, h: 1, label: 'LINEN' },
+        { id: 'c2', kind: 'crate', x: 0, y: 2, w: 1, h: 2, label: 'TWINE' },
+        { id: 'c3', kind: 'crate', x: 4, y: 1, w: 1, h: 2, label: 'SILK' },
+        { id: 'bale1', kind: 'bale', x: 1, y: 4, w: 2, h: 1, label: 'SAIL' },
+        { id: 'c4', kind: 'crate', x: 2, y: 1, w: 2, h: 1, label: 'WOOL' },
+        { id: 'b1', kind: 'barrel', x: 4, y: 0, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 1, y: 2, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 19, deck: 3, par: 20, name: "Admiral's Treasure",
+      subtitle: "A tight treasure vault. Swing past the spar and trade places with ballast.",
+      w: 5, h: 5, hatch: [3, 0],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 3, w: 2, h: 2 },
+        { id: 'baleBig', kind: 'bale', x: 3, y: 0, w: 2, h: 2, label: 'BALLAST' },
+        { id: 's1', kind: 'spar', x: 0, y: 0, w: 3, h: 1, label: 'MAINBOOM' },
+        { id: 'c1', kind: 'crate', x: 0, y: 1, w: 2, h: 1, label: 'GOLD' },
+        { id: 'c3', kind: 'crate', x: 2, y: 1, w: 1, h: 2, label: 'CORAL' },
+        { id: 'c4', kind: 'crate', x: 3, y: 2, w: 2, h: 1, label: 'AMBER' },
+        { id: 'c5', kind: 'crate', x: 2, y: 3, w: 1, h: 2, label: 'JADE' },
+        { id: 'b1', kind: 'barrel', x: 3, y: 3, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 4, y: 4, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 20, deck: 3, par: 21, name: "Coral Reef Run",
+      subtitle: "Two fixed stanchions guard the center hatch. Weave cleanly between them.",
+      w: 5, h: 5, hatch: [1, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 3, y: 3, w: 2, h: 2 },
+        { id: 'm1', kind: 'mast', x: 0, y: 2, w: 1, h: 1, fixed: true },
+        { id: 'm2', kind: 'mast', x: 4, y: 2, w: 1, h: 1, fixed: true },
+        { id: 'c1', kind: 'crate', x: 1, y: 0, w: 2, h: 1, label: 'CORAL' },
+        { id: 'c2', kind: 'crate', x: 1, y: 1, w: 2, h: 1, label: 'PEARL' },
+        { id: 'c3', kind: 'crate', x: 3, y: 0, w: 1, h: 2, label: 'AMBER' },
+        { id: 'c4', kind: 'crate', x: 1, y: 2, w: 1, h: 2, label: 'JADE' },
+        { id: 'bale1', kind: 'bale', x: 2, y: 3, w: 1, h: 2, label: 'SAIL' },
+        { id: 'c5', kind: 'crate', x: 0, y: 4, w: 2, h: 1, label: 'CEDAR' },
+        { id: 'b1', kind: 'barrel', x: 2, y: 2, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 3, y: 2, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 21, deck: 3, par: 21, name: "The Sovereign's Hold",
+      subtitle: "A spacious 6×6 hold anchored by twin masts, a spar, and ballast.",
+      w: 6, h: 6, hatch: [2, 2],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 0, w: 2, h: 2 },
+        { id: 'baleBig', kind: 'bale', x: 2, y: 2, w: 2, h: 2, label: 'BALLAST' },
+        { id: 'm1', kind: 'mast', x: 4, y: 1, w: 1, h: 1, fixed: true },
+        { id: 'm2', kind: 'mast', x: 1, y: 4, w: 1, h: 1, fixed: true },
+        { id: 's1', kind: 'spar', x: 2, y: 0, w: 3, h: 1, label: 'MAINSPAR' },
+        { id: 'c1', kind: 'crate', x: 2, y: 1, w: 2, h: 1, label: 'COCOA' },
+        { id: 'c2', kind: 'crate', x: 0, y: 2, w: 1, h: 2, label: 'OAK' },
+        { id: 'c3', kind: 'crate', x: 4, y: 2, w: 1, h: 2, label: 'IRON' },
+        { id: 'c4', kind: 'crate', x: 5, y: 0, w: 1, h: 2, label: 'SALT' },
+        { id: 'c5', kind: 'crate', x: 2, y: 4, w: 2, h: 1, label: 'HONEY' },
+        { id: 'c6', kind: 'crate', x: 4, y: 4, w: 2, h: 1, label: 'TWINE' },
+        { id: 'bale2', kind: 'bale', x: 0, y: 5, w: 2, h: 1, label: 'SAIL' },
+        { id: 'c7', kind: 'crate', x: 3, y: 5, w: 2, h: 1, label: 'CLOVE' },
+        { id: 'b1', kind: 'barrel', x: 5, y: 2, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 0, y: 4, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 22, deck: 3, par: 23, name: "Anchor Chain",
+      subtitle: "A single deck stanchion splits the hold into two tight bays.",
+      w: 5, h: 4, hatch: [0, 2],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 3, y: 0, w: 2, h: 2 },
+        { id: 'm1', kind: 'mast', x: 2, y: 0, w: 1, h: 1, fixed: true },
+        { id: 'c1', kind: 'crate', x: 0, y: 0, w: 2, h: 1, label: 'ANCHOR' },
+        { id: 'c2', kind: 'crate', x: 2, y: 1, w: 1, h: 2, label: 'BRASS' },
+        { id: 'bale1', kind: 'bale', x: 0, y: 2, w: 2, h: 1, label: 'CANVAS' },
+        { id: 'c3', kind: 'crate', x: 3, y: 2, w: 2, h: 1, label: 'CORAL' },
+        { id: 'b1', kind: 'barrel', x: 1, y: 1, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 2, y: 3, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 23, deck: 3, par: 23, name: "East Indiaman",
+      subtitle: "Crossed 3-tile spar boxes lock the center. Unlace them cleanly.",
+      w: 6, h: 5, hatch: [2, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 3, w: 2, h: 2 },
+        { id: 's1', kind: 'spar', x: 1, y: 0, w: 3, h: 1, label: 'BOWSPRIT' },
+        { id: 's2', kind: 'spar', x: 4, y: 1, w: 1, h: 3, label: 'TOPMAST' },
+        { id: 'c1', kind: 'crate', x: 0, y: 1, w: 1, h: 2, label: 'TEAK' },
+        { id: 'c2', kind: 'crate', x: 1, y: 1, w: 2, h: 1, label: 'SPICE' },
+        { id: 'c3', kind: 'crate', x: 2, y: 2, w: 2, h: 1, label: 'SILK' },
+        { id: 'c4', kind: 'crate', x: 2, y: 3, w: 2, h: 1, label: 'TEA' },
+        { id: 'bale1', kind: 'bale', x: 2, y: 4, w: 2, h: 1, label: 'COTTON' },
+        { id: 'c5', kind: 'crate', x: 5, y: 0, w: 1, h: 2, label: 'TIN' },
+        { id: 'c6', kind: 'crate', x: 5, y: 2, w: 1, h: 2, label: 'LEAD' },
+        { id: 'b1', kind: 'barrel', x: 0, y: 0, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 3, y: 1, w: 1, h: 1 },
+        { id: 'b3', kind: 'barrel', x: 1, y: 2, w: 1, h: 1 },
+        { id: 'b4', kind: 'barrel', x: 4, y: 4, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 24, deck: 3, par: 24, name: "Chartroom Vault",
+      subtitle: "Shift the yardarm spar box down to open the upper corridor.",
+      w: 5, h: 4, hatch: [0, 0],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 3, y: 2, w: 2, h: 2 },
+        { id: 's1', kind: 'spar', x: 0, y: 1, w: 3, h: 1, label: 'YARDARM' },
+        { id: 'c1', kind: 'crate', x: 0, y: 0, w: 2, h: 1, label: 'MAPS' },
+        { id: 'c2', kind: 'crate', x: 2, y: 2, w: 1, h: 2, label: 'WAX' },
+        { id: 'bale1', kind: 'bale', x: 3, y: 0, w: 2, h: 1, label: 'COTTON' },
+        { id: 'b1', kind: 'barrel', x: 0, y: 2, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 1, y: 3, w: 1, h: 1 },
+        { id: 'b3', kind: 'barrel', x: 3, y: 1, w: 1, h: 1 },
+      ]
+    },
+
+    // ---------- DECK IV: DEEP BILGE (25 to 31) ----------
+    {
+      id: 25, deck: 4, par: 24, name: "Center Sunbeam",
+      subtitle: "The daylight falls dead center, so every corner becomes a place to stow a crate.",
+      w: 5, h: 5, hatch: [1, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 3, y: 3, w: 2, h: 2 },
+        { id: 'c1', kind: 'crate', x: 1, y: 1, w: 2, h: 1, label: 'INDIGO' },
+        { id: 'c2', kind: 'crate', x: 1, y: 2, w: 1, h: 2, label: 'COCOA' },
+        { id: 'c3', kind: 'crate', x: 2, y: 2, w: 2, h: 1, label: 'CEDAR' },
+        { id: 'c4', kind: 'crate', x: 3, y: 0, w: 1, h: 2, label: 'WAX' },
+        { id: 'bale1', kind: 'bale', x: 0, y: 0, w: 2, h: 1, label: 'LINEN' },
+        { id: 'c5', kind: 'crate', x: 0, y: 2, w: 1, h: 2, label: 'TAR' },
+        { id: 'c6', kind: 'crate', x: 1, y: 4, w: 2, h: 1, label: 'OATS' },
+        { id: 'b1', kind: 'barrel', x: 2, y: 0, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 4, y: 1, w: 1, h: 1 },
+        { id: 'b3', kind: 'barrel', x: 2, y: 3, w: 1, h: 1 },
+        { id: 'b4', kind: 'barrel', x: 0, y: 4, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 26, deck: 4, par: 25, name: "Midships Swap",
+      subtitle: "Trade places with the 2×2 ballast bale around the central mast.",
+      w: 5, h: 5, hatch: [0, 0],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 3, y: 3, w: 2, h: 2 },
+        { id: 'baleBig', kind: 'bale', x: 0, y: 0, w: 2, h: 2, label: 'BALLAST' },
+        { id: 'm1', kind: 'mast', x: 2, y: 2, w: 1, h: 1, fixed: true },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 2, h: 1, label: 'COPPER' },
+        { id: 'c2', kind: 'crate', x: 3, y: 1, w: 1, h: 2, label: 'SILK' },
+        { id: 'c3', kind: 'crate', x: 0, y: 2, w: 2, h: 1, label: 'SALT' },
+        { id: 'c4', kind: 'crate', x: 1, y: 3, w: 1, h: 2, label: 'OAK' },
+        { id: 'b1', kind: 'barrel', x: 4, y: 0, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 0, y: 4, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 27, deck: 4, par: 25, name: "Tidewater Stow",
+      subtitle: "Two vertical crates and a mast create a revolving door.",
+      w: 5, h: 5, hatch: [0, 3],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 3, y: 0, w: 2, h: 2 },
+        { id: 'm1', kind: 'mast', x: 2, y: 2, w: 1, h: 1, fixed: true },
+        { id: 'c1', kind: 'crate', x: 1, y: 0, w: 1, h: 2, label: 'SALT' },
+        { id: 'c2', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'FLOUR' },
+        { id: 'c3', kind: 'crate', x: 0, y: 2, w: 2, h: 1, label: 'HONEY' },
+        { id: 'c4', kind: 'crate', x: 3, y: 2, w: 1, h: 2, label: 'OATS' },
+        { id: 'bale1', kind: 'bale', x: 1, y: 3, w: 2, h: 1, label: 'WOOL' },
+        { id: 'c5', kind: 'crate', x: 3, y: 4, w: 2, h: 1, label: 'PEARS' },
+        { id: 'b1', kind: 'barrel', x: 0, y: 0, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 4, y: 2, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 28, deck: 4, par: 26, name: "Galleon Middeck",
+      subtitle: "Two spars and a mast frame the sunlit square. Unlatch them in order.",
+      w: 6, h: 5, hatch: [2, 2],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 0, w: 2, h: 2 },
+        { id: 'm1', kind: 'mast', x: 4, y: 2, w: 1, h: 1, fixed: true },
+        { id: 's1', kind: 'spar', x: 2, y: 0, w: 3, h: 1, label: 'MAINSPAR' },
+        { id: 's2', kind: 'spar', x: 0, y: 2, w: 1, h: 3, label: 'RUDDER' },
+        { id: 'c1', kind: 'crate', x: 2, y: 1, w: 2, h: 1, label: 'COCOA' },
+        { id: 'c2', kind: 'crate', x: 2, y: 2, w: 2, h: 1, label: 'SUGAR' },
+        { id: 'c3', kind: 'crate', x: 1, y: 3, w: 2, h: 1, label: 'HONEY' },
+        { id: 'bale1', kind: 'bale', x: 3, y: 3, w: 2, h: 1, label: 'SAIL' },
+        { id: 'c4', kind: 'crate', x: 5, y: 0, w: 1, h: 2, label: 'TEAK' },
+        { id: 'c5', kind: 'crate', x: 5, y: 2, w: 1, h: 2, label: 'CEDAR' },
+        { id: 'b1', kind: 'barrel', x: 4, y: 1, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 1, y: 2, w: 1, h: 1 },
+        { id: 'b3', kind: 'barrel', x: 2, y: 4, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 29, deck: 4, par: 27, name: "Harbor Bell",
+      subtitle: "Clear the heavy ballast off the forward hatch in a 6×4 hull.",
+      w: 6, h: 4, hatch: [0, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 4, y: 1, w: 2, h: 2 },
+        { id: 'baleBig', kind: 'bale', x: 0, y: 1, w: 2, h: 2, label: 'BALLAST' },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'BELLS' },
+        { id: 'c2', kind: 'crate', x: 3, y: 1, w: 1, h: 2, label: 'BRASS' },
+        { id: 'c3', kind: 'crate', x: 2, y: 3, w: 2, h: 1, label: 'COPPER' },
+        { id: 'c4', kind: 'crate', x: 4, y: 0, w: 2, h: 1, label: 'GOLD' },
+        { id: 'c5', kind: 'crate', x: 0, y: 0, w: 2, h: 1, label: 'PEARL' },
+        { id: 'b1', kind: 'barrel', x: 1, y: 3, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 4, y: 3, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 30, deck: 4, par: 29, name: "Mainmast Pillar",
+      subtitle: "Orbit the crowded hold around the iron-collared mast.",
+      w: 5, h: 5, hatch: [3, 3],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 0, w: 2, h: 2 },
+        { id: 'm1', kind: 'mast', x: 2, y: 2, w: 1, h: 1, fixed: true },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'TEAK' },
+        { id: 'c2', kind: 'crate', x: 3, y: 1, w: 2, h: 1, label: 'CLOVE' },
+        { id: 'bale1', kind: 'bale', x: 0, y: 2, w: 2, h: 1, label: 'SAIL' },
+        { id: 'c3', kind: 'crate', x: 3, y: 2, w: 1, h: 2, label: 'TEA' },
+        { id: 'c4', kind: 'crate', x: 1, y: 3, w: 2, h: 1, label: 'BRASS' },
+        { id: 'c5', kind: 'crate', x: 2, y: 4, w: 2, h: 1, label: 'SUGAR' },
+        { id: 'b1', kind: 'barrel', x: 4, y: 0, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 0, y: 4, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 31, deck: 4, par: 31, name: "Crosswind Shift",
+      subtitle: "A tight 5×4 hold where every single slide counts.",
+      w: 5, h: 4, hatch: [2, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 0, w: 2, h: 2 },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'COCOA' },
+        { id: 'c2', kind: 'crate', x: 3, y: 1, w: 1, h: 2, label: 'GINGER' },
+        { id: 'c3', kind: 'crate', x: 0, y: 2, w: 2, h: 1, label: 'PITCH' },
+        { id: 'bale1', kind: 'bale', x: 1, y: 3, w: 2, h: 1, label: 'WOOL' },
+        { id: 'c4', kind: 'crate', x: 4, y: 0, w: 1, h: 2, label: 'SALT' },
+        { id: 'b1', kind: 'barrel', x: 2, y: 2, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 4, y: 2, w: 1, h: 1 },
+        { id: 'b3', kind: 'barrel', x: 3, y: 3, w: 1, h: 1 },
+        { id: 'b4', kind: 'barrel', x: 0, y: 3, w: 1, h: 1 },
+      ]
+    },
+
+    // ---------- DECK V: THE CAPTAIN'S VAULT (32 to 38) ----------
+    {
+      id: 32, deck: 5, par: 32, name: "Tradewind Gallery",
+      subtitle: "A 6×4 long hold where crates must pass each other in the middle.",
+      w: 6, h: 4, hatch: [4, 1],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 1, w: 2, h: 2 },
+        { id: 'm1', kind: 'mast', x: 2, y: 0, w: 1, h: 1, fixed: true },
+        { id: 'c1', kind: 'crate', x: 2, y: 1, w: 1, h: 2, label: 'SILK' },
+        { id: 'bale1', kind: 'bale', x: 3, y: 1, w: 2, h: 1, label: 'LINEN' },
+        { id: 'c2', kind: 'crate', x: 3, y: 2, w: 2, h: 1, label: 'TEA' },
+        { id: 'c3', kind: 'crate', x: 5, y: 0, w: 1, h: 2, label: 'CLOVE' },
+        { id: 'c4', kind: 'crate', x: 5, y: 2, w: 1, h: 2, label: 'SPICE' },
+        { id: 'c5', kind: 'crate', x: 0, y: 0, w: 2, h: 1, label: 'WOOL' },
+        { id: 'c6', kind: 'crate', x: 0, y: 3, w: 2, h: 1, label: 'OATS' },
+        { id: 'b1', kind: 'barrel', x: 3, y: 0, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 33, deck: 5, par: 32, name: "Twin Stanchions",
+      subtitle: "Thread the sea chest through a narrow midships channel.",
+      w: 5, h: 5, hatch: [3, 3],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 0, w: 2, h: 2 },
+        { id: 'm1', kind: 'mast', x: 2, y: 0, w: 1, h: 1, fixed: true },
+        { id: 'm2', kind: 'mast', x: 2, y: 4, w: 1, h: 1, fixed: true },
+        { id: 'c1', kind: 'crate', x: 3, y: 0, w: 2, h: 1, label: 'PEARL' },
+        { id: 'c2', kind: 'crate', x: 3, y: 1, w: 1, h: 2, label: 'GOLD' },
+        { id: 'c3', kind: 'crate', x: 0, y: 2, w: 2, h: 1, label: 'TWINE' },
+        { id: 'c4', kind: 'crate', x: 1, y: 3, w: 1, h: 2, label: 'TAR' },
+        { id: 'bale1', kind: 'bale', x: 3, y: 3, w: 2, h: 1, label: 'SAIL' },
+        { id: 'c5', kind: 'crate', x: 3, y: 4, w: 2, h: 1, label: 'COCOA' },
+        { id: 'b1', kind: 'barrel', x: 2, y: 2, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 4, y: 2, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 34, deck: 5, par: 33, name: "Lisbon Manifest",
+      subtitle: "Clear the vertical mainboom and ballast to reach the stern hatch.",
+      w: 6, h: 5, hatch: [4, 2],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 1, w: 2, h: 2 },
+        { id: 'baleBig', kind: 'bale', x: 2, y: 0, w: 2, h: 2, label: 'BALLAST' },
+        { id: 's1', kind: 'spar', x: 2, y: 2, w: 1, h: 3, label: 'MAINBOOM' },
+        { id: 'c1', kind: 'crate', x: 0, y: 0, w: 2, h: 1, label: 'CORK' },
+        { id: 'c2', kind: 'crate', x: 0, y: 3, w: 2, h: 1, label: 'PEARS' },
+        { id: 'c3', kind: 'crate', x: 3, y: 2, w: 2, h: 1, label: 'SILK' },
+        { id: 'c4', kind: 'crate', x: 4, y: 0, w: 2, h: 1, label: 'SALT' },
+        { id: 'c5', kind: 'crate', x: 5, y: 1, w: 1, h: 2, label: 'TIN' },
+        { id: 'c6', kind: 'crate', x: 3, y: 4, w: 2, h: 1, label: 'OLIVE' },
+        { id: 'b1', kind: 'barrel', x: 4, y: 1, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 35, deck: 5, par: 37, name: "The Long Spar",
+      subtitle: "Swing the sea chest cleanly past both the mast and the 3-tile spar.",
+      w: 5, h: 5, hatch: [0, 3],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 3, y: 0, w: 2, h: 2 },
+        { id: 's1', kind: 'spar', x: 1, y: 2, w: 3, h: 1, label: 'SPAR NO.1' },
+        { id: 'c1', kind: 'crate', x: 0, y: 0, w: 1, h: 2, label: 'OAK' },
+        { id: 'c2', kind: 'crate', x: 1, y: 0, w: 2, h: 1, label: 'ROPE' },
+        { id: 'c3', kind: 'crate', x: 0, y: 3, w: 2, h: 1, label: 'PITCH' },
+        { id: 'c4', kind: 'crate', x: 2, y: 3, w: 1, h: 2, label: 'IRON' },
+        { id: 'bale1', kind: 'bale', x: 3, y: 3, w: 2, h: 1, label: 'WOOL' },
+        { id: 'b1', kind: 'barrel', x: 4, y: 2, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 0, y: 4, w: 1, h: 1 },
+        { id: 'm1', kind: 'mast', x: 1, y: 1, w: 1, h: 1, fixed: true },
+      ]
+    },
+    {
+      id: 36, deck: 5, par: 37, name: "Amber Caravan",
+      subtitle: "Two opposite wall stanchions turn this 5×5 hold into an S-curve.",
+      w: 5, h: 5, hatch: [3, 0],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 3, w: 2, h: 2 },
+        { id: 'm1', kind: 'mast', x: 0, y: 1, w: 1, h: 1, fixed: true },
+        { id: 'm2', kind: 'mast', x: 4, y: 3, w: 1, h: 1, fixed: true },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 1, h: 2, label: 'AMBER' },
+        { id: 'c2', kind: 'crate', x: 3, y: 0, w: 2, h: 1, label: 'CORAL' },
+        { id: 'c3', kind: 'crate', x: 3, y: 1, w: 2, h: 1, label: 'PEARL' },
+        { id: 'c4', kind: 'crate', x: 0, y: 2, w: 2, h: 1, label: 'SILK' },
+        { id: 'bale1', kind: 'bale', x: 2, y: 3, w: 2, h: 1, label: 'COTTON' },
+        { id: 'c5', kind: 'crate', x: 2, y: 4, w: 2, h: 1, label: 'SPICE' },
+        { id: 'b1', kind: 'barrel', x: 2, y: 2, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 4, y: 2, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 37, deck: 5, par: 38, name: "Keel Timber",
+      subtitle: "Two 2×2 blocks and a 3-tile spar box share one tight bilge.",
+      w: 6, h: 5, hatch: [4, 3],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 0, y: 0, w: 2, h: 2 },
+        { id: 'baleBig', kind: 'bale', x: 4, y: 0, w: 2, h: 2, label: 'BALLAST' },
+        { id: 's1', kind: 'spar', x: 1, y: 2, w: 3, h: 1, label: 'KEEL' },
+        { id: 'c1', kind: 'crate', x: 2, y: 0, w: 2, h: 1, label: 'OAK' },
+        { id: 'c2', kind: 'crate', x: 2, y: 1, w: 2, h: 1, label: 'PINE' },
+        { id: 'c3', kind: 'crate', x: 0, y: 2, w: 1, h: 2, label: 'IRON' },
+        { id: 'c4', kind: 'crate', x: 1, y: 3, w: 2, h: 1, label: 'COPPER' },
+        { id: 'c5', kind: 'crate', x: 3, y: 3, w: 1, h: 2, label: 'BRASS' },
+        { id: 'bale1', kind: 'bale', x: 4, y: 2, w: 2, h: 1, label: 'SAIL' },
+        { id: 'c6', kind: 'crate', x: 4, y: 3, w: 2, h: 1, label: 'ROPE' },
+        { id: 'b1', kind: 'barrel', x: 5, y: 4, w: 1, h: 1 },
+      ]
+    },
+    {
+      id: 38, deck: 5, par: 41, name: "Crown Timber",
+      subtitle: "The master stevedore's final hold: forty-one slides to open daylight.",
+      w: 5, h: 5, hatch: [2, 0],
+      pieces: [
+        { id: 'chest', kind: 'chest', x: 1, y: 3, w: 2, h: 2 },
+        { id: 'm1', kind: 'mast', x: 2, y: 2, w: 1, h: 1, fixed: true },
+        { id: 'c1', kind: 'crate', x: 0, y: 0, w: 2, h: 1, label: 'TEAK' },
+        { id: 'c2', kind: 'crate', x: 2, y: 0, w: 2, h: 1, label: 'CEDAR' },
+        { id: 'c3', kind: 'crate', x: 0, y: 1, w: 1, h: 2, label: 'COCOA' },
+        { id: 'c4', kind: 'crate', x: 1, y: 1, w: 2, h: 1, label: 'MAPLE' },
+        { id: 'c5', kind: 'crate', x: 3, y: 1, w: 1, h: 2, label: 'HONEY' },
+        { id: 'bale1', kind: 'bale', x: 4, y: 0, w: 1, h: 2, label: 'WOOL' },
+        { id: 'c6', kind: 'crate', x: 3, y: 3, w: 2, h: 1, label: 'APPLES' },
+        { id: 'b1', kind: 'barrel', x: 0, y: 3, w: 1, h: 1 },
+        { id: 'b2', kind: 'barrel', x: 4, y: 2, w: 1, h: 1 },
+      ]
+    },
+  ];
+
+  // =========================================================================
+  // 2. PERSISTENCE (localStorage)
+  // =========================================================================
+  const SAVE_KEY = 'curio_cargo_hold_v1';
+  let saveData = { completed: {}, lastLevel: 0, sound: true };
+  try {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        saveData = {
+          completed: parsed.completed || {},
+          lastLevel: Number.isInteger(parsed.lastLevel) ? parsed.lastLevel : 0,
+          sound: parsed.sound !== false,
+        };
+      }
+    }
+  } catch (_) {}
+
+  function persist() {
+    try { localStorage.setItem(SAVE_KEY, JSON.stringify(saveData)); } catch (_) {}
+  }
+
+  function calcStars(moves, par) {
+    if (moves <= par) return 3;
+    const twoStarCap = Math.max(par + 2, Math.ceil(par * 1.25));
+    if (moves <= twoStarCap) return 2;
+    return 1;
+  }
+
+  function totalStars() {
+    let sum = 0;
+    for (const lv of LEVELS) {
+      const rec = saveData.completed[lv.id];
+      if (rec) sum += rec.stars || 0;
+    }
+    return sum;
+  }
+
+  // =========================================================================
+  // 3. PROCEDURAL WEB AUDIO ENGINE
+  // =========================================================================
+  const AudioFX = (() => {
+    let ctx = null;
+    let noiseBuf = null;
+    let ambientGain = null;
+    let ambientStarted = false;
+
+    function ensure() {
+      if (!saveData.sound) return null;
+      if (!ctx) {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return null;
+        ctx = new AC();
+        const len = ctx.sampleRate * 2;
+        noiseBuf = ctx.createBuffer(1, len, ctx.sampleRate);
+        const data = noiseBuf.getChannelData(0);
+        let last = 0;
+        for (let i = 0; i < len; i++) {
+          const w = Math.random() * 2 - 1;
+          last = (last + 0.04 * w) / 1.04;
+          data[i] = last * 3.2;
+        }
+      }
+      if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+      if (!ambientStarted && ctx) startAmbient();
+      return ctx;
+    }
+
+    function startAmbient() {
+      ambientStarted = true;
+      const src = ctx.createBufferSource();
+      src.buffer = noiseBuf;
+      src.loop = true;
+      const lp = ctx.createBiquadFilter();
+      lp.type = 'lowpass';
+      lp.frequency.value = 180;
+      const lfo = ctx.createOscillator();
+      lfo.frequency.value = 0.14;
+      const lfoGain = ctx.createGain();
+      lfoGain.gain.value = 55;
+      lfo.connect(lfoGain).connect(lp.frequency);
+      ambientGain = ctx.createGain();
+      ambientGain.gain.value = saveData.sound ? 0.032 : 0;
+      src.connect(lp).connect(ambientGain).connect(ctx.destination);
+      src.start();
+      lfo.start();
+    }
+
+    function setMuted(muted) {
+      if (ambientGain && ctx) {
+        ambientGain.gain.setTargetAtTime(muted ? 0 : 0.032, ctx.currentTime, 0.15);
+      }
+    }
+
+    function playSlide(kind, dist = 1) {
+      const c = ensure();
+      if (!c) return;
+      const now = c.currentTime;
+      const dur = Math.min(0.24, 0.09 + dist * 0.035);
+      const src = c.createBufferSource();
+      src.buffer = noiseBuf;
+      src.playbackRate.value = kind === 'barrel' ? 1.35 : (kind === 'chest' ? 0.78 : 1.0);
+
+      const bp = c.createBiquadFilter();
+      bp.type = 'bandpass';
+      bp.frequency.setValueAtTime(kind === 'barrel' ? 460 : (kind === 'chest' ? 230 : 320), now);
+      bp.Q.value = 2.4;
+
+      const g = c.createGain();
+      g.gain.setValueAtTime(0.001, now);
+      g.gain.linearRampToValueAtTime(kind === 'chest' ? 0.16 : 0.12, now + 0.025);
+      g.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+      src.connect(bp).connect(g).connect(c.destination);
+      src.start(now, Math.random() * 1.2, dur + 0.02);
+    }
+
+    function playThud(heavy = false) {
+      const c = ensure();
+      if (!c) return;
+      const now = c.currentTime;
+      const osc = c.createOscillator();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(heavy ? 105 : 135, now);
+      osc.frequency.exponentialRampToValueAtTime(38, now + 0.085);
+
+      const g = c.createGain();
+      g.gain.setValueAtTime(heavy ? 0.22 : 0.15, now);
+      g.gain.exponentialRampToValueAtTime(0.001, now + 0.095);
+
+      osc.connect(g).connect(c.destination);
+      osc.start(now);
+      osc.stop(now + 0.1);
+    }
+
+    function playUndo() {
+      const c = ensure();
+      if (!c) return;
+      const now = c.currentTime;
+      const osc = c.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(340, now);
+      osc.frequency.exponentialRampToValueAtTime(220, now + 0.07);
+      const g = c.createGain();
+      g.gain.setValueAtTime(0.07, now);
+      g.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      osc.connect(g).connect(c.destination);
+      osc.start(now);
+      osc.stop(now + 0.09);
+    }
+
+    function playHint() {
+      const c = ensure();
+      if (!c) return;
+      const now = c.currentTime;
+      [523.25, 659.25].forEach((freq, i) => {
+        const osc = c.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now + i * 0.08);
+        const g = c.createGain();
+        g.gain.setValueAtTime(0.001, now + i * 0.08);
+        g.gain.linearRampToValueAtTime(0.08, now + i * 0.08 + 0.015);
+        g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.35);
+        osc.connect(g).connect(c.destination);
+        osc.start(now + i * 0.08);
+        osc.stop(now + i * 0.08 + 0.38);
+      });
+    }
+
+    function playHaulOut() {
+      const c = ensure();
+      if (!c) return;
+      const now = c.currentTime;
+
+      // 1. Metallic iron hook clink at t=0.45s
+      const clinkT = now + 0.45;
+      [1480, 2240, 3190].forEach((f, idx) => {
+        const o = c.createOscillator();
+        o.type = 'sine';
+        o.frequency.setValueAtTime(f, clinkT);
+        const g = c.createGain();
+        g.gain.setValueAtTime(0.08 / (idx + 1), clinkT);
+        g.gain.exponentialRampToValueAtTime(0.0008, clinkT + 0.28);
+        o.connect(g).connect(c.destination);
+        o.start(clinkT);
+        o.stop(clinkT + 0.3);
+      });
+
+      // 2. Rhythmic wooden pulley creaks during hoist (0.72, 1.12, 1.52)
+      [0.72, 1.12, 1.52].forEach((offset, idx) => {
+        const t = now + offset;
+        const o = c.createOscillator();
+        o.type = 'sawtooth';
+        o.frequency.setValueAtTime(175 + idx * 14, t);
+        o.frequency.linearRampToValueAtTime(225 + idx * 18, t + 0.16);
+        const bp = c.createBiquadFilter();
+        bp.type = 'bandpass';
+        bp.frequency.value = 540;
+        bp.Q.value = 6;
+        const g = c.createGain();
+        g.gain.setValueAtTime(0.001, t);
+        g.gain.linearRampToValueAtTime(0.045, t + 0.04);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.22);
+        o.connect(bp).connect(g).connect(c.destination);
+        o.start(t);
+        o.stop(t + 0.24);
+      });
+
+      // 3. Warm brass ship's bell / major-9th chord at t=1.95s
+      const bellT = now + 1.95;
+      [261.63, 329.63, 392.0, 493.88, 587.33].forEach((f, idx) => {
+        const o = c.createOscillator();
+        o.type = idx < 2 ? 'triangle' : 'sine';
+        o.frequency.setValueAtTime(f, bellT + idx * 0.045);
+        const g = c.createGain();
+        g.gain.setValueAtTime(0.001, bellT + idx * 0.045);
+        g.gain.linearRampToValueAtTime(0.075 / (1 + idx * 0.18), bellT + idx * 0.045 + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0008, bellT + idx * 0.045 + 1.45);
+        o.connect(g).connect(c.destination);
+        o.start(bellT + idx * 0.045);
+        o.stop(bellT + idx * 0.045 + 1.5);
+      });
+    }
+
+    return { ensure, setMuted, playSlide, playThud, playUndo, playHint, playHaulOut };
+  })();
+
+  // =========================================================================
+  // 4. IN-BROWSER BFS OPTIMAL HINT SOLVER
+  // =========================================================================
+  function computeBestNextMove(level, pieces, maxStates = 260000) {
+    const W = level.w, H = level.h;
+    const [hx, hy] = level.hatch;
+    const fixedMask = new Uint8Array(W * H);
+    const movables = [];
+    const pieceIndices = [];
+
+    for (let i = 0; i < pieces.length; i++) {
+      const p = pieces[i];
+      if (p.fixed) {
+        for (let dy = 0; dy < p.h; dy++)
+          for (let dx = 0; dx < p.w; dx++)
+            fixedMask[(p.y + dy) * W + (p.x + dx)] = 1;
+      } else {
+        movables.push({ w: p.w, h: p.h, x: p.x, y: p.y });
+        pieceIndices.push(i);
+      }
+    }
+    const N = movables.length;
+    const shapeGroups = [];
+    const groupMap = new Map();
+    for (let i = 1; i < N; i++) {
+      const key = `${movables[i].w}x${movables[i].h}`;
+      if (!groupMap.has(key)) { const arr = []; groupMap.set(key, arr); shapeGroups.push(arr); }
+      groupMap.get(key).push(i);
+    }
+
+    function encode(pos) {
+      let s = String.fromCharCode(pos[0] + 32);
+      for (let g = 0; g < shapeGroups.length; g++) {
+        const grp = shapeGroups[g];
+        if (grp.length === 1) s += String.fromCharCode(pos[grp[0]] + 32);
+        else {
+          const vals = grp.map(idx => pos[idx]).sort((a, b) => a - b);
+          for (let k = 0; k < vals.length; k++) s += String.fromCharCode(vals[k] + 32);
+        }
+      }
+      return s;
+    }
+
+    const startPos = new Uint8Array(N);
+    for (let i = 0; i < N; i++) startPos[i] = movables[i].y * W + movables[i].x;
+    const goalCell = hy * W + hx;
+    if (startPos[0] === goalCell) return null;
+
+    const visited = new Set([encode(startPos)]);
+    const queuePos = [startPos];
+    const firstMove = [null]; // stores { mIdx, toX, toY } for the very first move from start
+    let head = 0;
+    const occ = new Uint8Array(W * H);
+    const dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+
+    while (head < queuePos.length) {
+      if (visited.size > maxStates) return null;
+      const cur = queuePos[head];
+      const fm = firstMove[head];
+      head++;
+
+      occ.set(fixedMask);
+      for (let i = 0; i < N; i++) {
+        const m = movables[i], cell = cur[i];
+        const px = cell % W, py = (cell / W) | 0;
+        for (let dy = 0; dy < m.h; dy++)
+          for (let dx = 0; dx < m.w; dx++)
+            occ[(py + dy) * W + (px + dx)] = i + 2;
+      }
+
+      for (let i = 0; i < N; i++) {
+        const m = movables[i], cell = cur[i];
+        const px = cell % W, py = (cell / W) | 0;
+        const myMark = i + 2;
+
+        for (let d = 0; d < 4; d++) {
+          const ddx = dirs[d][0], ddy = dirs[d][1];
+          let step = 1;
+          while (true) {
+            const nx = px + ddx * step, ny = py + ddy * step;
+            if (nx < 0 || ny < 0 || nx + m.w > W || ny + m.h > H) break;
+            let blocked = false;
+            for (let dy = 0; dy < m.h && !blocked; dy++)
+              for (let dx = 0; dx < m.w; dx++) {
+                const v = occ[(ny + dy) * W + (nx + dx)];
+                if (v !== 0 && v !== myMark) { blocked = true; break; }
+              }
+            if (blocked) break;
+
+            const ncell = ny * W + nx;
+            const moveObj = fm || { pieceIndex: pieceIndices[i], toX: nx, toY: ny };
+            if (i === 0 && ncell === goalCell) return moveObj;
+
+            const next = cur.slice();
+            next[i] = ncell;
+            const key = encode(next);
+            if (!visited.has(key)) {
+              visited.add(key);
+              queuePos.push(next);
+              firstMove.push(moveObj);
+            }
+            step++;
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  // =========================================================================
+  // 5. GAME STATE & LAYOUT GEOMETRY
+  // =========================================================================
+  const canvas = document.getElementById('stage');
+  const ctx = canvas.getContext('2d');
+
+  let screenMode = 'splash'; // 'splash' | 'play' | 'manifest'
+  let levelIdx = Math.min(LEVELS.length - 1, Math.max(0, saveData.lastLevel || 0));
+  let curLevel = LEVELS[levelIdx];
+  let pieces = []; // runtime objects with rx, ry (render coords), x, y (grid coords)
+  let moves = 0;
+  let undoStack = [];
+  let selectedIdx = -1;
+  let hoverIdx = -1;
+  let hintMove = null; // { pieceIndex, toX, toY, startedAt }
+
+  // Haul-out victory animation state
+  let haulAnim = null; // { t, duration, doneBannerShown }
+
+  // Dragging state
+  let drag = null;
+
+  // Particles (sunlit dust motes + wood impact puffs)
+  const dustMotes = Array.from({ length: 28 }, () => ({
+    u: Math.random(),
+    v: Math.random(),
+    r: 1.0 + Math.random() * 2.1,
+    vy: 0.018 + Math.random() * 0.032,
+    phase: Math.random() * Math.PI * 2,
+    alpha: 0.25 + Math.random() * 0.55,
+  }));
+  const impactPuffs = [];
+
+  // Layout metrics (recomputed on resize / level load)
+  let vw = window.innerWidth, vh = window.innerHeight, dpr = Math.min(2, window.devicePixelRatio || 1);
+  let board = { x: 0, y: 0, w: 0, h: 0, cell: 80 };
+
+  // Cached offscreen deck plank canvas
+  let deckCache = null;
+  let deckCacheKey = '';
+
+  function computeLayout() {
+    vw = window.innerWidth;
+    vh = window.innerHeight;
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    canvas.width = Math.round(vw * dpr);
+    canvas.height = Math.round(vh * dpr);
+    canvas.style.width = vw + 'px';
+    canvas.style.height = vh + 'px';
+
+    const topPad = vw <= 820 ? 104 : 78;
+    const botPad = 62;
+    const sidePad = Math.max(24, Math.min(72, vw * 0.08));
+    const availW = Math.max(200, vw - sidePad * 2);
+    const availH = Math.max(200, vh - topPad - botPad);
+
+    const cell = Math.floor(Math.min(availW / curLevel.w, availH / curLevel.h, 114));
+    const bw = cell * curLevel.w;
+    const bh = cell * curLevel.h;
+    const bx = Math.round((vw - bw) / 2);
+    const by = Math.round(topPad + (availH - bh) / 2);
+    board = { x: bx, y: by, w: bw, h: bh, cell };
+  }
+
+  function loadLevel(idx, keepScreen = false) {
+    levelIdx = (idx + LEVELS.length) % LEVELS.length;
+    curLevel = LEVELS[levelIdx];
+    saveData.lastLevel = levelIdx;
+    persist();
+
+    pieces = curLevel.pieces.map((p, i) => ({
+      ...p,
+      idx: i,
+      rx: p.x,
+      ry: p.y,
+      tx: p.x,
+      ty: p.y,
+      lift: 0,
+      bumpX: 0,
+      bumpY: 0,
+      seed: (p.id.charCodeAt(0) * 37 + i * 19) % 100,
+    }));
+    moves = 0;
+    undoStack = [];
+    selectedIdx = -1;
+    hoverIdx = -1;
+    hintMove = null;
+    haulAnim = null;
+    drag = null;
+    impactPuffs.length = 0;
+
+    hideClearBanner();
+    computeLayout();
+    updateHUD();
+
+    if (!keepScreen && screenMode !== 'play') {
+      setScreen('play');
+    }
+  }
+
+  // =========================================================================
+  // 6. COLLISION & VALID SLIDE RANGE HELPERS
+  // =========================================================================
+  function buildOccupancy(excludeIdx = -1) {
+    const W = curLevel.w, H = curLevel.h;
+    const occ = new Int8Array(W * H);
+    occ.fill(-1);
+    for (let i = 0; i < pieces.length; i++) {
+      if (i === excludeIdx) continue;
+      const p = pieces[i];
+      for (let dy = 0; dy < p.h; dy++)
+        for (let dx = 0; dx < p.w; dx++)
+          occ[(p.y + dy) * W + (p.x + dx)] = i;
+    }
+    return occ;
+  }
+
+  function getSlideBounds(pieceIdx, baseX = null, baseY = null) {
+    const p = pieces[pieceIdx];
+    const px = baseX !== null ? baseX : p.x;
+    const py = baseY !== null ? baseY : p.y;
+    const W = curLevel.w, H = curLevel.h;
+    const occ = buildOccupancy(pieceIdx);
+
+    function canPlace(nx, ny) {
+      if (nx < 0 || ny < 0 || nx + p.w > W || ny + p.h > H) return false;
+      for (let dy = 0; dy < p.h; dy++)
+        for (let dx = 0; dx < p.w; dx++)
+          if (occ[(ny + dy) * W + (nx + dx)] !== -1) return false;
+      return true;
+    }
+
+    let minX = px, maxX = px, minY = py, maxY = py;
+    while (canPlace(minX - 1, py)) minX--;
+    while (canPlace(maxX + 1, py)) maxX++;
+    while (canPlace(px, minY - 1)) minY--;
+    while (canPlace(px, maxY + 1)) maxY++;
+    return { minX, maxX, minY, maxY };
+  }
+
+  function spawnDustPuffs(piece, dx, dy) {
+    if (REDUCED) return;
+    const c = board.cell;
+    let cx = board.x + (piece.rx + piece.w * 0.5) * c;
+    let cy = board.y + (piece.ry + piece.h * 0.5) * c;
+    if (dx > 0) cx = board.x + (piece.rx + piece.w) * c;
+    else if (dx < 0) cx = board.x + piece.rx * c;
+    if (dy > 0) cy = board.y + (piece.ry + piece.h) * c;
+    else if (dy < 0) cy = board.y + piece.ry * c;
+
+    for (let i = 0; i < 6; i++) {
+      const spread = (Math.random() - 0.5) * c * 0.45;
+      impactPuffs.push({
+        x: cx + (dy !== 0 ? spread : 0),
+        y: cy + (dx !== 0 ? spread : 0),
+        vx: (-dx * (18 + Math.random() * 26)) + (dy !== 0 ? (Math.random() - 0.5) * 28 : 0),
+        vy: (-dy * (18 + Math.random() * 26)) + (dx !== 0 ? (Math.random() - 0.5) * 28 : 0),
+        r: 2.5 + Math.random() * 3.5,
+        life: 1.0,
+      });
+    }
+  }
+
+  function commitMove(pieceIdx, toX, toY, fromUndo = false) {
+    const p = pieces[pieceIdx];
+    const dx = toX - p.x;
+    const dy = toY - p.y;
+    if (dx === 0 && dy === 0) return false;
+
+    if (!fromUndo) {
+      // Fold rule: a slide of the same piece along the same line as the move just before joins that move,
+      // and a joined move that ends where it began disappears (so stepping with arrow keys counts fairly).
+      const last = undoStack[undoStack.length - 1];
+      const sameLine = last && last.pieceIdx === pieceIdx &&
+        ((dy === 0 && last.fromY === last.toY && last.toY === p.y) || (dx === 0 && last.fromX === last.toX && last.toX === p.x));
+      if (sameLine) {
+        last.toX = toX;
+        last.toY = toY;
+        if (last.fromX === toX && last.fromY === toY) { undoStack.pop(); moves = Math.max(0, moves - 1); }
+      } else {
+        undoStack.push({ pieceIdx, fromX: p.x, fromY: p.y, toX, toY });
+        moves++;
+      }
+      AudioFX.playSlide(p.kind, Math.abs(dx) + Math.abs(dy));
+    } else {
+      moves = Math.max(0, moves - 1);
+      AudioFX.playUndo();
+    }
+
+    p.x = toX;
+    p.y = toY;
+    p.tx = toX;
+    p.ty = toY;
+    hintMove = null;
+    updateHUD();
+
+    // Check win!
+    const chest = pieces[0];
+    if (!fromUndo && chest.x === curLevel.hatch[0] && chest.y === curLevel.hatch[1]) {
+      triggerHaulOut();
+    }
+    return true;
+  }
+
+  function undoMove() {
+    if (haulAnim || undoStack.length === 0) return;
+    const last = undoStack.pop();
+    selectedIdx = last.pieceIdx;
+    commitMove(last.pieceIdx, last.fromX, last.fromY, true);
+  }
+
+  function triggerHaulOut() {
+    selectedIdx = -1;
+    drag = null;
+    hintMove = null;
+    haulAnim = { t: 0, duration: REDUCED ? 0.3 : 2.25, doneBannerShown: false };
+    AudioFX.playHaulOut();
+
+    // Record best progress
+    const stars = calcStars(moves, curLevel.par);
+    const prev = saveData.completed[curLevel.id];
+    if (!prev || stars > prev.stars || moves < prev.bestMoves) {
+      saveData.completed[curLevel.id] = {
+        stars: Math.max(stars, prev ? prev.stars : 0),
+        bestMoves: prev ? Math.min(moves, prev.bestMoves) : moves,
+      };
+      persist();
+    }
+  }
+
+  // =========================================================================
+  // 7. POINTER & KEYBOARD INPUT (Drag + Corner Turn + Click-to-Slide + Keys)
+  // =========================================================================
+  function canvasCoords(e) {
+    const rect = canvas.getBoundingClientRect();
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  }
+
+  function hitTestPiece(px, py) {
+    const gx = (px - board.x) / board.cell;
+    const gy = (py - board.y) / board.cell;
+    for (let i = pieces.length - 1; i >= 0; i--) {
+      const p = pieces[i];
+      if (gx >= p.rx && gx <= p.rx + p.w && gy >= p.ry && gy <= p.ry + p.h) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (screenMode !== 'play' || haulAnim) return;
+    AudioFX.ensure();
+    const pt = canvasCoords(e);
+    const hit = hitTestPiece(pt.x, pt.y);
+
+    if (hit !== -1 && !pieces[hit].fixed) {
+      canvas.setPointerCapture(e.pointerId);
+      const p = pieces[hit];
+      // Snap any in-flight animation cleanly to grid before starting drag
+      p.rx = p.x;
+      p.ry = p.y;
+      const bounds = getSlideBounds(hit);
+      drag = {
+        pointerId: e.pointerId,
+        idx: hit,
+        startPx: pt.x,
+        startPy: pt.y,
+        originX: p.x,
+        originY: p.y,
+        axis: null, // 'x' | 'y'
+        bounds,
+        moved: false,
+        bumpedEdge: null,
+      };
+      selectedIdx = hit;
+      return;
+    }
+
+    // Click-to-slide if a movable piece is already selected and user taps a valid lane cell
+    if (selectedIdx !== -1 && !pieces[selectedIdx].fixed) {
+      const p = pieces[selectedIdx];
+      const gx = Math.floor((pt.x - board.x) / board.cell);
+      const gy = Math.floor((pt.y - board.y) / board.cell);
+      const b = getSlideBounds(selectedIdx);
+
+      // Clicked along horizontal lane of selected piece
+      if (gy >= p.y && gy < p.y + p.h) {
+        let targetX = null;
+        if (gx >= p.x + p.w) targetX = Math.min(b.maxX, gx - p.w + 1);
+        else if (gx < p.x) targetX = Math.max(b.minX, gx);
+        if (targetX !== null && targetX !== p.x) {
+          commitMove(selectedIdx, targetX, p.y);
+          return;
+        }
+      }
+      // Clicked along vertical lane of selected piece
+      if (gx >= p.x && gx < p.x + p.w) {
+        let targetY = null;
+        if (gy >= p.y + p.h) targetY = Math.min(b.maxY, gy - p.h + 1);
+        else if (gy < p.y) targetY = Math.max(b.minY, gy);
+        if (targetY !== null && targetY !== p.y) {
+          commitMove(selectedIdx, p.x, targetY);
+          return;
+        }
+      }
+      selectedIdx = -1;
+    }
+  });
+
+  canvas.addEventListener('pointermove', (e) => {
+    if (screenMode !== 'play' || haulAnim) return;
+    const pt = canvasCoords(e);
+
+    if (!drag) {
+      const hit = hitTestPiece(pt.x, pt.y);
+      hoverIdx = (hit !== -1 && !pieces[hit].fixed) ? hit : -1;
+      canvas.style.cursor = hoverIdx !== -1 ? 'grab' : 'default';
+      return;
+    }
+    if (e.pointerId !== drag.pointerId) return;
+
+    canvas.style.cursor = 'grabbing';
+    const p = pieces[drag.idx];
+    const c = board.cell;
+    const dxPx = pt.x - drag.startPx;
+    const dyPx = pt.y - drag.startPy;
+
+    if (!drag.moved && Math.hypot(dxPx, dyPx) > 6) {
+      drag.moved = true;
+    }
+    if (!drag.moved) return;
+
+    // Pick initial axis based on dominant drag direction (preferring an axis with room)
+    if (!drag.axis) {
+      const canX = drag.bounds.minX < drag.originX || drag.bounds.maxX > drag.originX;
+      const canY = drag.bounds.minY < drag.originY || drag.bounds.maxY > drag.originY;
+      if (Math.abs(dxPx) >= Math.abs(dyPx)) {
+        drag.axis = canX ? 'x' : (canY ? 'y' : 'x');
+      } else {
+        drag.axis = canY ? 'y' : (canX ? 'x' : 'y');
+      }
+    }
+
+    if (drag.axis === 'x') {
+      const rawX = drag.originX + dxPx / c;
+      const clampedX = Math.max(drag.bounds.minX, Math.min(drag.bounds.maxX, rawX));
+      p.rx = clampedX;
+      p.ry = drag.originY;
+
+      // Impact thud on hitting a limit
+      if (rawX < drag.bounds.minX - 0.12 && drag.bumpedEdge !== 'left') {
+        drag.bumpedEdge = 'left';
+        AudioFX.playThud(p.w * p.h >= 4);
+        spawnDustPuffs(p, -1, 0);
+      } else if (rawX > drag.bounds.maxX + 0.12 && drag.bumpedEdge !== 'right') {
+        drag.bumpedEdge = 'right';
+        AudioFX.playThud(p.w * p.h >= 4);
+        spawnDustPuffs(p, 1, 0);
+      } else if (rawX >= drag.bounds.minX && rawX <= drag.bounds.maxX) {
+        drag.bumpedEdge = null;
+      }
+
+      // Seamless corner turning: if near an integer cell and dragging strongly perpendicular
+      const snapX = Math.round(clampedX);
+      if (Math.abs(clampedX - snapX) < 0.25 && Math.abs(dyPx) > c * 0.42) {
+        const nextB = getSlideBounds(drag.idx, snapX, drag.originY);
+        const wantY = dyPx > 0 ? nextB.maxY > drag.originY : nextB.minY < drag.originY;
+        if (wantY) {
+          if (snapX !== drag.originX) {
+            commitMove(drag.idx, snapX, drag.originY);
+            if (haulAnim) return;
+          }
+          p.rx = p.x;
+          p.ry = p.y;
+          drag.originX = p.x;
+          drag.originY = p.y;
+          drag.startPx = pt.x;
+          drag.startPy = pt.y - Math.sign(dyPx) * c * 0.22;
+          drag.axis = 'y';
+          drag.bounds = getSlideBounds(drag.idx);
+          drag.bumpedEdge = null;
+        }
+      }
+    } else {
+      const rawY = drag.originY + dyPx / c;
+      const clampedY = Math.max(drag.bounds.minY, Math.min(drag.bounds.maxY, rawY));
+      p.rx = drag.originX;
+      p.ry = clampedY;
+
+      if (rawY < drag.bounds.minY - 0.12 && drag.bumpedEdge !== 'up') {
+        drag.bumpedEdge = 'up';
+        AudioFX.playThud(p.w * p.h >= 4);
+        spawnDustPuffs(p, 0, -1);
+      } else if (rawY > drag.bounds.maxY + 0.12 && drag.bumpedEdge !== 'down') {
+        drag.bumpedEdge = 'down';
+        AudioFX.playThud(p.w * p.h >= 4);
+        spawnDustPuffs(p, 0, 1);
+      } else if (rawY >= drag.bounds.minY && rawY <= drag.bounds.maxY) {
+        drag.bumpedEdge = null;
+      }
+
+      const snapY = Math.round(clampedY);
+      if (Math.abs(clampedY - snapY) < 0.25 && Math.abs(dxPx) > c * 0.42) {
+        const nextB = getSlideBounds(drag.idx, drag.originX, snapY);
+        const wantX = dxPx > 0 ? nextB.maxX > drag.originX : nextB.minX < drag.originX;
+        if (wantX) {
+          if (snapY !== drag.originY) {
+            commitMove(drag.idx, drag.originX, snapY);
+            if (haulAnim) return;
+          }
+          p.rx = p.x;
+          p.ry = p.y;
+          drag.originX = p.x;
+          drag.originY = p.y;
+          drag.startPx = pt.x - Math.sign(dxPx) * c * 0.22;
+          drag.startPy = pt.y;
+          drag.axis = 'x';
+          drag.bounds = getSlideBounds(drag.idx);
+          drag.bumpedEdge = null;
+        }
+      }
+    }
+  });
+
+  function finishDrag(e) {
+    if (!drag || (e && e.pointerId !== drag.pointerId)) return;
+    const d = drag;
+    drag = null;
+    canvas.style.cursor = 'grab';
+    if (haulAnim) return;
+
+    const p = pieces[d.idx];
+    if (d.moved) {
+      const snapX = Math.max(d.bounds.minX, Math.min(d.bounds.maxX, Math.round(p.rx)));
+      const snapY = Math.max(d.bounds.minY, Math.min(d.bounds.maxY, Math.round(p.ry)));
+      if (snapX !== p.x || snapY !== p.y) {
+        commitMove(d.idx, snapX, snapY);
+      } else {
+        p.tx = p.x;
+        p.ty = p.y;
+      }
+    }
+  }
+  canvas.addEventListener('pointerup', finishDrag);
+  canvas.addEventListener('pointercancel', finishDrag);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (screenMode === 'manifest') setScreen('play');
+      else if (screenMode === 'play') openManifest();
+      return;
+    }
+    if (screenMode !== 'play') return;
+
+    if ((e.key === 'z' || e.key === 'Z') && (e.ctrlKey || e.metaKey || !e.altKey)) {
+      e.preventDefault();
+      undoMove();
+      return;
+    }
+    if (e.key === 'r' || e.key === 'R') {
+      e.preventDefault();
+      loadLevel(levelIdx, true);
+      return;
+    }
+    if (e.key === 'h' || e.key === 'H') {
+      e.preventDefault();
+      requestHint();
+      return;
+    }
+    if (e.key === 'm' || e.key === 'M') {
+      e.preventDefault();
+      toggleSound();
+      return;
+    }
+    if (haulAnim) return;
+
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const movs = pieces.filter(p => !p.fixed).map(p => p.idx);
+      const pos = movs.indexOf(selectedIdx);
+      selectedIdx = movs[(pos + (e.shiftKey ? movs.length - 1 : 1)) % movs.length];
+      return;
+    }
+
+    const dirMap = {
+      ArrowLeft: [-1, 0], a: [-1, 0], A: [-1, 0],
+      ArrowRight: [1, 0], d: [1, 0], D: [1, 0],
+      ArrowUp: [0, -1], w: [0, -1], W: [0, -1],
+      ArrowDown: [0, 1], s: [0, 1], S: [0, 1],
+    };
+    const dir = dirMap[e.key];
+    if (dir) {
+      e.preventDefault();
+      AudioFX.ensure();
+      if (selectedIdx === -1) selectedIdx = 0;
+      const p = pieces[selectedIdx];
+      if (p.fixed) return;
+      const b = getSlideBounds(selectedIdx);
+      let nx = p.x, ny = p.y;
+      if (dir[0] < 0) nx = e.shiftKey ? b.minX : Math.max(b.minX, p.x - 1);
+      if (dir[0] > 0) nx = e.shiftKey ? b.maxX : Math.min(b.maxX, p.x + 1);
+      if (dir[1] < 0) ny = e.shiftKey ? b.minY : Math.max(b.minY, p.y - 1);
+      if (dir[1] > 0) ny = e.shiftKey ? b.maxY : Math.min(b.maxY, p.y + 1);
+      if (nx !== p.x || ny !== p.y) {
+        commitMove(selectedIdx, nx, ny);
+      } else {
+        AudioFX.playThud(false);
+        spawnDustPuffs(p, dir[0], dir[1]);
+      }
+    }
+  });
+
+  // =========================================================================
+  // 8. PROCEDURAL DIORAMA RENDERER (Canvas 2D)
+  // =========================================================================
+  function roundRect(c, x, y, w, h, r) {
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.arcTo(x + w, y, x + w, y + h, r);
+    c.arcTo(x + w, y + h, x, y + h, r);
+    c.arcTo(x, y + h, x, y, r);
+    c.arcTo(x, y, x + w, y, r);
+    c.closePath();
+  }
+
+  function ensureDeckCache() {
+    const key = `${board.w}x${board.h}:${board.cell}:${curLevel.w}x${curLevel.h}`;
+    if (deckCache && deckCacheKey === key) return;
+    deckCacheKey = key;
+    deckCache = document.createElement('canvas');
+    deckCache.width = Math.max(1, Math.round(board.w * dpr));
+    deckCache.height = Math.max(1, Math.round(board.h * dpr));
+    const g = deckCache.getContext('2d');
+    g.scale(dpr, dpr);
+
+    // Warm dark-oak floor planks
+    const plankH = Math.max(14, board.cell / 3);
+    const numPlanks = Math.ceil(board.h / plankH);
+    for (let i = 0; i < numPlanks; i++) {
+      const py = i * plankH;
+      const shade = ((i * 37) % 13) - 6;
+      g.fillStyle = `rgb(${56 + shade}, ${38 + Math.round(shade * 0.7)}, ${25 + Math.round(shade * 0.5)})`;
+      g.fillRect(0, py, board.w, plankH + 0.5);
+
+      // Subtle wood grain streaks
+      g.strokeStyle = 'rgba(20, 11, 5, 0.22)';
+      g.lineWidth = 1;
+      for (let s = 0; s < 3; s++) {
+        const sy = py + (s + 0.5) * (plankH / 3);
+        g.beginPath();
+        g.moveTo(0, sy);
+        g.bezierCurveTo(board.w * 0.33, sy + ((i + s) % 2 ? 1.5 : -1.5), board.w * 0.66, sy - 1, board.w, sy);
+        g.stroke();
+      }
+
+      // Plank oakum seam
+      g.fillStyle = 'rgba(12, 7, 4, 0.55)';
+      g.fillRect(0, py, board.w, 1.2);
+      g.fillStyle = 'rgba(255, 224, 170, 0.04)';
+      g.fillRect(0, py + 1.2, board.w, 1);
+
+      // Butt joints & treenails
+      const buttX = ((i * 137 + 53) % Math.max(60, Math.floor(board.w - 40))) + 20;
+      g.fillStyle = 'rgba(12, 7, 4, 0.55)';
+      g.fillRect(buttX, py, 1.2, plankH);
+      g.fillStyle = 'rgba(18, 10, 5, 0.7)';
+      g.beginPath();
+      g.arc(buttX - 5, py + plankH * 0.32, 1.4, 0, Math.PI * 2);
+      g.arc(buttX - 5, py + plankH * 0.68, 1.4, 0, Math.PI * 2);
+      g.arc(buttX + 6, py + plankH * 0.32, 1.4, 0, Math.PI * 2);
+      g.arc(buttX + 6, py + plankH * 0.68, 1.4, 0, Math.PI * 2);
+      g.fill();
+    }
+
+    // Subtle inlaid grid lines for crisp spatial reading
+    g.strokeStyle = 'rgba(255, 226, 175, 0.085)';
+    g.lineWidth = 1;
+    for (let x = 1; x < curLevel.w; x++) {
+      g.beginPath();
+      g.moveTo(x * board.cell + 0.5, 0);
+      g.lineTo(x * board.cell + 0.5, board.h);
+      g.stroke();
+    }
+    for (let y = 1; y < curLevel.h; y++) {
+      g.beginPath();
+      g.moveTo(0, y * board.cell + 0.5);
+      g.lineTo(board.w, y * board.cell + 0.5);
+      g.stroke();
+    }
+
+    // Inner bulkhead ambient occlusion vignette
+    const vig = g.createRadialGradient(
+      board.w * 0.5, board.h * 0.5, Math.min(board.w, board.h) * 0.25,
+      board.w * 0.5, board.h * 0.5, Math.max(board.w, board.h) * 0.78
+    );
+    vig.addColorStop(0, 'rgba(0,0,0,0)');
+    vig.addColorStop(1, 'rgba(6,4,2,0.44)');
+    g.fillStyle = vig;
+    g.fillRect(0, 0, board.w, board.h);
+  }
+
+  function drawShipHullFrame(now) {
+    // Deep bilge radial background
+    const bg = ctx.createRadialGradient(
+      board.x + (curLevel.hatch[0] + 1) * board.cell,
+      board.y + (curLevel.hatch[1] + 1) * board.cell,
+      board.cell * 0.5,
+      vw * 0.5, vh * 0.5, Math.max(vw, vh) * 0.85
+    );
+    bg.addColorStop(0, '#271a10');
+    bg.addColorStop(0.55, '#150e09');
+    bg.addColorStop(1, '#090604');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, vw, vh);
+
+    // Subtle curved hull ribs (futtocks) outside the hold
+    const framePad = Math.max(18, Math.round(board.cell * 0.28));
+    const fx = board.x - framePad;
+    const fy = board.y - framePad;
+    const fw = board.w + framePad * 2;
+    const fh = board.h + framePad * 2;
+
+    // Outer shadow of the timber coaming
+    ctx.save();
+    ctx.shadowColor = 'rgba(0,0,0,0.75)';
+    ctx.shadowBlur = 34;
+    ctx.shadowOffsetY = 14;
+    roundRect(ctx, fx, fy, fw, fh, 14);
+    const frameGrad = ctx.createLinearGradient(fx, fy, fx, fy + fh);
+    frameGrad.addColorStop(0, '#4a301d');
+    frameGrad.addColorStop(0.5, '#332013');
+    frameGrad.addColorStop(1, '#22140b');
+    ctx.fillStyle = frameGrad;
+    ctx.fill();
+    ctx.restore();
+
+    // Beveled brass-pinned bulkhead border
+    roundRect(ctx, fx, fy, fw, fh, 14);
+    ctx.strokeStyle = 'rgba(235, 198, 128, 0.28)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Timber rib notches along outer walls
+    ctx.fillStyle = '#24160d';
+    const ribStep = board.cell;
+    for (let i = 0; i <= curLevel.w; i++) {
+      const rx = board.x + i * ribStep - 4;
+      ctx.fillRect(rx, fy + 2, 8, framePad - 5);
+      ctx.fillRect(rx, board.y + board.h + 3, 8, framePad - 5);
+    }
+    for (let j = 0; j <= curLevel.h; j++) {
+      const ry = board.y + j * ribStep - 4;
+      ctx.fillRect(fx + 2, ry, framePad - 5, 8);
+      ctx.fillRect(board.x + board.w + 3, ry, framePad - 5, 8);
+    }
+
+    // Iron corner bolts on the bulkhead frame
+    const boltPts = [
+      [fx + framePad * 0.5, fy + framePad * 0.5],
+      [fx + fw - framePad * 0.5, fy + framePad * 0.5],
+      [fx + framePad * 0.5, fy + fh - framePad * 0.5],
+      [fx + fw - framePad * 0.5, fy + fh - framePad * 0.5],
+    ];
+    for (const [bx, by] of boltPts) {
+      ctx.beginPath();
+      ctx.arc(bx, by, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#18110c';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(bx - 1, by - 1, 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(235, 200, 130, 0.45)';
+      ctx.fill();
+    }
+
+    // Warm flickering corner lantern glow (top-left & bottom-right outside hold)
+    const flicker = 0.88 + 0.12 * Math.sin(now * 0.0052) * Math.cos(now * 0.0117);
+    const lanterns = [
+      [fx - 12, fy + 26],
+      [fx + fw + 12, fy + fh - 26],
+    ];
+    for (const [lx, ly] of lanterns) {
+      const lg = ctx.createRadialGradient(lx, ly, 2, lx, ly, board.cell * 1.4);
+      lg.addColorStop(0, `rgba(255, 178, 72, ${0.22 * flicker})`);
+      lg.addColorStop(0.5, `rgba(230, 122, 35, ${0.07 * flicker})`);
+      lg.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = lg;
+      ctx.beginPath();
+      ctx.arc(lx, ly, board.cell * 1.4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Recessed deck floor
+    ensureDeckCache();
+    ctx.drawImage(deckCache, board.x, board.y, board.w, board.h);
+
+    // Crisp recessed inner wall lip
+    ctx.strokeStyle = 'rgba(8, 4, 2, 0.85)';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(board.x + 1, board.y + 1, board.w - 2, board.h - 2);
+  }
+
+  function drawHatchDaylightFloor(now) {
+    const c = board.cell;
+    const swayX = Math.sin(now * 0.00085) * 2.2;
+    const swayY = Math.cos(now * 0.00065) * 1.5;
+    const hx = board.x + curLevel.hatch[0] * c;
+    const hy = board.y + curLevel.hatch[1] * c;
+    const hw = c * 2;
+    const hh = c * 2;
+
+    // Soft outer bounce light spilling onto neighboring planks
+    const spill = ctx.createRadialGradient(
+      hx + hw * 0.5 + swayX, hy + hh * 0.5 + swayY, c * 0.4,
+      hx + hw * 0.5 + swayX, hy + hh * 0.5 + swayY, c * 2.05
+    );
+    spill.addColorStop(0, 'rgba(255, 240, 185, 0.42)');
+    spill.addColorStop(0.55, 'rgba(255, 208, 118, 0.16)');
+    spill.addColorStop(1, 'rgba(255, 190, 90, 0)');
+    ctx.fillStyle = spill;
+    ctx.fillRect(board.x, board.y, board.w, board.h);
+
+    // The crisp 2x2 square of daylight
+    ctx.save();
+    roundRect(ctx, hx + 3 + swayX * 0.4, hy + 3 + swayY * 0.4, hw - 6, hh - 6, 6);
+    const sunGrad = ctx.createLinearGradient(hx, hy, hx + hw, hy + hh);
+    sunGrad.addColorStop(0, 'rgba(255, 250, 224, 0.54)');
+    sunGrad.addColorStop(0.55, 'rgba(255, 232, 168, 0.40)');
+    sunGrad.addColorStop(1, 'rgba(255, 206, 118, 0.30)');
+    ctx.fillStyle = sunGrad;
+    ctx.fill();
+
+    // Subtle brass hatch corner brackets painted/inlaid on the floor
+    ctx.strokeStyle = 'rgba(255, 238, 182, 0.72)';
+    ctx.lineWidth = 2;
+    const bk = Math.max(10, c * 0.22);
+    const x1 = hx + 5, y1 = hy + 5, x2 = hx + hw - 5, y2 = hy + hh - 5;
+    ctx.beginPath();
+    // TL
+    ctx.moveTo(x1, y1 + bk); ctx.lineTo(x1, y1); ctx.lineTo(x1 + bk, y1);
+    // TR
+    ctx.moveTo(x2 - bk, y1); ctx.lineTo(x2, y1); ctx.lineTo(x2, y1 + bk);
+    // BL
+    ctx.moveTo(x1, y2 - bk); ctx.lineTo(x1, y2); ctx.lineTo(x1 + bk, y2);
+    // BR
+    ctx.moveTo(x2 - bk, y2); ctx.lineTo(x2, y2); ctx.lineTo(x2, y2 - bk);
+    ctx.stroke();
+
+    // Subtle nautical compass/hatch emblem in the center of the daylight patch
+    const cx = hx + hw * 0.5, cy = hy + hh * 0.5;
+    ctx.strokeStyle = 'rgba(255, 244, 205, 0.34)';
+    ctx.lineWidth = 1.25;
+    ctx.beginPath();
+    ctx.arc(cx, cy, c * 0.28, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(cx - c * 0.14, cy); ctx.lineTo(cx + c * 0.14, cy);
+    ctx.moveTo(cx, cy - c * 0.14); ctx.lineTo(cx, cy + c * 0.14);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawReachableLanes() {
+    if (selectedIdx === -1 || haulAnim || screenMode !== 'play') return;
+    const p = pieces[selectedIdx];
+    if (!p || p.fixed) return;
+    const b = drag ? drag.bounds : getSlideBounds(selectedIdx);
+    const c = board.cell;
+
+    ctx.save();
+    ctx.fillStyle = 'rgba(255, 232, 165, 0.11)';
+    ctx.strokeStyle = 'rgba(255, 224, 145, 0.35)';
+    ctx.setLineDash([5, 5]);
+    ctx.lineWidth = 1.5;
+
+    // Horizontal lane
+    if (b.minX < p.x || b.maxX > p.x) {
+      const lx = board.x + b.minX * c + 4;
+      const ly = board.y + p.y * c + 4;
+      const lw = (b.maxX - b.minX + p.w) * c - 8;
+      const lh = p.h * c - 8;
+      roundRect(ctx, lx, ly, lw, lh, 7);
+      ctx.fill();
+      ctx.stroke();
+    }
+    // Vertical lane
+    if (b.minY < p.y || b.maxY > p.y) {
+      const lx = board.x + p.x * c + 4;
+      const ly = board.y + b.minY * c + 4;
+      const lw = p.w * c - 8;
+      const lh = (b.maxY - b.minY + p.h) * c - 8;
+      roundRect(ctx, lx, ly, lw, lh, 7);
+      ctx.fill();
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawPieceShadow(p, scale = 1, alphaMul = 1) {
+    const c = board.cell;
+    const hx = board.x + (curLevel.hatch[0] + 1) * c;
+    const hy = board.y + (curLevel.hatch[1] + 1) * c;
+    const px = board.x + p.rx * c;
+    const py = board.y + p.ry * c;
+    const pw = p.w * c;
+    const ph = p.h * c;
+
+    // Radial shadow direction away from hatch center
+    const vx = (px + pw * 0.5) - hx;
+    const vy = (py + ph * 0.5) - hy;
+    const len = Math.hypot(vx, vy) || 1;
+    const shDist = (p.fixed ? 10 : 6.5) + p.lift * 4;
+    const ox = (vx / len) * shDist * 0.65;
+    const oy = (vy / len) * shDist * 0.65 + 4.5;
+
+    ctx.save();
+    ctx.translate(px + pw * 0.5 + ox, py + ph * 0.5 + oy);
+    ctx.scale(scale, scale);
+    ctx.fillStyle = `rgba(6, 3, 1, ${0.44 * alphaMul})`;
+    if (p.kind === 'barrel' || p.kind === 'mast') {
+      ctx.beginPath();
+      ctx.arc(0, 0, c * 0.42, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      roundRect(ctx, -pw * 0.5 + 4, -ph * 0.5 + 4, pw - 8, ph - 8, 8);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawPieceBody(p, now, hoistScale = 1, hoistRot = 0, hoistAlpha = 1) {
+    const c = board.cell;
+    const pad = Math.max(3, Math.round(c * 0.045));
+    const px = board.x + p.rx * c + pad;
+    const py = board.y + p.ry * c + pad - p.lift * 2.5;
+    const pw = p.w * c - pad * 2;
+    const ph = p.h * c - pad * 2;
+    const isSel = p.idx === selectedIdx && screenMode === 'play' && !haulAnim;
+    const isHov = p.idx === hoverIdx && screenMode === 'play' && !haulAnim;
+
+    ctx.save();
+    ctx.globalAlpha = hoistAlpha;
+    if (hoistScale !== 1 || hoistRot !== 0) {
+      ctx.translate(px + pw * 0.5, py + ph * 0.5);
+      ctx.rotate(hoistRot);
+      ctx.scale(hoistScale, hoistScale);
+      ctx.translate(-(px + pw * 0.5), -(py + ph * 0.5));
+    }
+
+    const depth = Math.max(5, Math.round(c * 0.085));
+
+    if (p.kind === 'chest') {
+      // ---------- SEA CHEST (2x2 Hero Piece) ----------
+      // Lower beveled base
+      roundRect(ctx, px, py + depth * 0.6, pw, ph - depth * 0.6, 10);
+      ctx.fillStyle = '#33170b';
+      ctx.fill();
+
+      // Main mahogany lid body
+      roundRect(ctx, px, py, pw, ph - depth * 0.5, 10);
+      const cg = ctx.createLinearGradient(px, py, px, py + ph);
+      cg.addColorStop(0, '#7c3c1d');
+      cg.addColorStop(0.45, '#5e2912');
+      cg.addColorStop(1, '#3e1909');
+      ctx.fillStyle = cg;
+      ctx.fill();
+
+      // Horizontal mahogany planks on lid
+      ctx.strokeStyle = 'rgba(26, 9, 3, 0.55)';
+      ctx.lineWidth = 1.5;
+      for (let k = 1; k <= 3; k++) {
+        const ly = py + (ph - depth * 0.5) * (k / 4);
+        ctx.beginPath();
+        ctx.moveTo(px + 6, ly);
+        ctx.lineTo(px + pw - 6, ly);
+        ctx.stroke();
+      }
+
+      // Twin brass vertical strapping bands
+      const bandW = Math.max(9, pw * 0.09);
+      const bandPositions = [px + pw * 0.22 - bandW * 0.5, px + pw * 0.78 - bandW * 0.5];
+      for (const bx of bandPositions) {
+        const bg = ctx.createLinearGradient(bx, py, bx + bandW, py);
+        bg.addColorStop(0, '#966b22');
+        bg.addColorStop(0.45, '#f2d388');
+        bg.addColorStop(1, '#855c1a');
+        ctx.fillStyle = bg;
+        ctx.fillRect(bx, py + 2, bandW, ph - depth * 0.5 - 4);
+        // Brass rivets
+        ctx.fillStyle = '#3f2808';
+        for (let r = 0.14; r <= 0.88; r += 0.24) {
+          ctx.beginPath();
+          ctx.arc(bx + bandW * 0.5, py + (ph - depth * 0.5) * r, 1.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // Brass perimeter trim
+      roundRect(ctx, px + 1.5, py + 1.5, pw - 3, ph - depth * 0.5 - 3, 9);
+      ctx.strokeStyle = '#d9ae57';
+      ctx.lineWidth = 2.6;
+      ctx.stroke();
+
+      // Center brass lockplate & keyhole
+      const lpw = pw * 0.18, lph = ph * 0.18;
+      const lpx = px + (pw - lpw) * 0.5, lpy = py + (ph - depth * 0.5 - lph) * 0.5;
+      roundRect(ctx, lpx, lpy, lpw, lph, 4);
+      const lpg = ctx.createLinearGradient(lpx, lpy, lpx, lpy + lph);
+      lpg.addColorStop(0, '#fae09c');
+      lpg.addColorStop(1, '#a97b2c');
+      ctx.fillStyle = lpg;
+      ctx.fill();
+      ctx.strokeStyle = '#5a3d10';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+      // Keyhole
+      ctx.fillStyle = '#251507';
+      ctx.beginPath();
+      ctx.arc(lpx + lpw * 0.5, lpy + lph * 0.42, Math.max(2, lpw * 0.13), 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillRect(lpx + lpw * 0.5 - 1.5, lpy + lph * 0.45, 3, lph * 0.3);
+
+      // Twin wrought-iron lifting rings on top straps
+      for (const bx of bandPositions) {
+        const rx = bx + bandW * 0.5;
+        const ry = py + (ph - depth * 0.5) * 0.5;
+        ctx.beginPath();
+        ctx.arc(rx, ry, Math.max(5, c * 0.08), 0, Math.PI * 2);
+        ctx.strokeStyle = '#f8e4a8';
+        ctx.lineWidth = 2.2;
+        ctx.stroke();
+      }
+
+      // Subtle golden glint shimmer
+      const glint = 0.08 + 0.06 * Math.sin(now * 0.003);
+      roundRect(ctx, px + 3, py + 3, pw - 6, (ph - depth) * 0.42, 7);
+      ctx.fillStyle = `rgba(255, 240, 190, ${glint})`;
+      ctx.fill();
+
+    } else if (p.kind === 'barrel') {
+      // ---------- OAK BARREL (1x1 Round Staved Oak) ----------
+      const cx = px + pw * 0.5;
+      const cy = py + ph * 0.5;
+      const r = Math.min(pw, ph) * 0.46;
+
+      // Bottom rim depth
+      ctx.beginPath();
+      ctx.arc(cx, cy + 3.5, r, 0, Math.PI * 2);
+      ctx.fillStyle = '#2d1a0d';
+      ctx.fill();
+
+      // Iron outer hoop
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      const hg = ctx.createRadialGradient(cx - r * 0.3, cy - r * 0.3, r * 0.2, cx, cy, r);
+      hg.addColorStop(0, '#5a5a5c');
+      hg.addColorStop(0.75, '#2b2a2c');
+      hg.addColorStop(1, '#151415');
+      ctx.fillStyle = hg;
+      ctx.fill();
+
+      // Recessed oak lid
+      ctx.beginPath();
+      ctx.arc(cx, cy, r * 0.84, 0, Math.PI * 2);
+      const bg = ctx.createLinearGradient(cx - r, cy - r, cx + r, cy + r);
+      bg.addColorStop(0, '#b57b42');
+      bg.addColorStop(0.55, '#8a5628');
+      bg.addColorStop(1, '#5e3717');
+      ctx.fillStyle = bg;
+      ctx.fill();
+
+      // Barrel lid planks
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, r * 0.82, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.strokeStyle = 'rgba(40, 20, 8, 0.55)';
+      ctx.lineWidth = 1.4;
+      for (let off = -0.45; off <= 0.45; off += 0.45) {
+        ctx.beginPath();
+        ctx.moveTo(cx - r, cy + r * off);
+        ctx.lineTo(cx + r, cy + r * off);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      // Brass/wood bung plug
+      ctx.beginPath();
+      ctx.arc(cx + r * 0.34, cy - r * 0.22, Math.max(2.5, r * 0.13), 0, Math.PI * 2);
+      ctx.fillStyle = '#472810';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255, 224, 165, 0.35)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+    } else if (p.kind === 'mast') {
+      // ---------- FIXED MAINMAST / STANCHION (1x1 Immovable) ----------
+      const cx = px + pw * 0.5;
+      const cy = py + ph * 0.5;
+      const r = Math.min(pw, ph) * 0.47;
+
+      // Heavy bolted iron baseplate
+      roundRect(ctx, px + 2, py + 2, pw - 4, ph - 4, 8);
+      ctx.fillStyle = '#1e2022';
+      ctx.fill();
+      ctx.strokeStyle = '#3c4045';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // 4 corner floor bolts
+      const off = pw * 0.34;
+      ctx.fillStyle = '#6c7278';
+      for (const [bx, by] of [[-off, -off], [off, -off], [-off, off], [off, off]]) {
+        ctx.beginPath();
+        ctx.arc(cx + bx, cy + by, 2.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Iron collar ring
+      ctx.beginPath();
+      ctx.arc(cx, cy, r * 0.86, 0, Math.PI * 2);
+      const mg = ctx.createRadialGradient(cx - r * 0.25, cy - r * 0.25, 2, cx, cy, r * 0.86);
+      mg.addColorStop(0, '#5a6066');
+      mg.addColorStop(0.65, '#2a2d30');
+      mg.addColorStop(1, '#141618');
+      ctx.fillStyle = mg;
+      ctx.fill();
+
+      // Dark seasoned oak mast core (with growth rings)
+      ctx.beginPath();
+      ctx.arc(cx, cy, r * 0.64, 0, Math.PI * 2);
+      ctx.fillStyle = '#4c3220';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(22, 12, 6, 0.55)';
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r * 0.42, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(cx, cy, r * 0.2, 0, Math.PI * 2);
+      ctx.stroke();
+
+    } else if (p.kind === 'bale') {
+      // ---------- CANVAS BALE / BALLAST (Muted Teal-Slate Sailcloth + Hemp Rope) ----------
+      const isBig = p.w === 2 && p.h === 2;
+      roundRect(ctx, px, py + depth * 0.55, pw, ph - depth * 0.55, 11);
+      ctx.fillStyle = isBig ? '#1d2d30' : '#213336';
+      ctx.fill();
+
+      roundRect(ctx, px, py, pw, ph - depth * 0.45, 11);
+      const sg = ctx.createLinearGradient(px, py, px + pw, py + ph);
+      if (isBig) {
+        sg.addColorStop(0, '#476a6e');
+        sg.addColorStop(0.5, '#345256');
+        sg.addColorStop(1, '#243a3d');
+      } else {
+        sg.addColorStop(0, '#547b7d');
+        sg.addColorStop(0.5, '#3d5f62');
+        sg.addColorStop(1, '#2b4548');
+      }
+      ctx.fillStyle = sg;
+      ctx.fill();
+
+      // Subtle woven canvas crosshatch
+      ctx.strokeStyle = 'rgba(255, 248, 226, 0.06)';
+      ctx.lineWidth = 1;
+      for (let gx = px + 8; gx < px + pw - 6; gx += 8) {
+        ctx.beginPath(); ctx.moveTo(gx, py + 4); ctx.lineTo(gx, py + ph - depth - 2); ctx.stroke();
+      }
+
+      // Criss-crossed hemp lashing ropes
+      const ropeH = ph - depth * 0.45;
+      ctx.strokeStyle = '#d7b575';
+      ctx.lineWidth = Math.max(2.4, c * 0.036);
+      ctx.beginPath();
+      ctx.moveTo(px + pw * 0.5, py + 2); ctx.lineTo(px + pw * 0.5, py + ropeH - 2);
+      ctx.moveTo(px + 2, py + ropeH * 0.5); ctx.lineTo(px + pw - 2, py + ropeH * 0.5);
+      ctx.stroke();
+      ctx.strokeStyle = 'rgba(55, 36, 12, 0.55)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Rope knot at center
+      ctx.beginPath();
+      ctx.arc(px + pw * 0.5, py + ropeH * 0.5, Math.max(4, c * 0.065), 0, Math.PI * 2);
+      ctx.fillStyle = '#e5c686';
+      ctx.fill();
+      ctx.strokeStyle = '#6c4d1b';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+      // Stenciled canvas mark
+      if (p.label && c >= 56) {
+        ctx.fillStyle = 'rgba(250, 242, 218, 0.72)';
+        ctx.font = `700 ${Math.max(9, Math.round(c * 0.135))}px ui-monospace, monospace`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(p.label, px + pw * 0.5, py + (isBig ? ropeH * 0.26 : ropeH * 0.28));
+      }
+
+      roundRect(ctx, px + 1, py + 1, pw - 2, ropeH - 2, 10);
+      ctx.strokeStyle = 'rgba(255, 244, 214, 0.22)';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+    } else if (p.kind === 'spar') {
+      // ---------- 3-TILE SPAR BOX (Deep Redwood/Cedar + Iron Bands) ----------
+      const topH = ph - depth * 0.5;
+      roundRect(ctx, px, py + depth * 0.55, pw, ph - depth * 0.55, 7);
+      ctx.fillStyle = '#341a11';
+      ctx.fill();
+
+      roundRect(ctx, px, py, pw, topH, 7);
+      const rg = ctx.createLinearGradient(px, py, px, py + topH);
+      rg.addColorStop(0, '#8d4c30');
+      rg.addColorStop(0.5, '#6e3720');
+      rg.addColorStop(1, '#502614');
+      ctx.fillStyle = rg;
+      ctx.fill();
+
+      // Plank seams along long axis
+      ctx.strokeStyle = 'rgba(32, 13, 6, 0.5)';
+      ctx.lineWidth = 1.2;
+      if (p.w > p.h) {
+        ctx.beginPath();
+        ctx.moveTo(px + 5, py + topH * 0.5);
+        ctx.lineTo(px + pw - 5, py + topH * 0.5);
+        ctx.stroke();
+      } else {
+        ctx.beginPath();
+        ctx.moveTo(px + pw * 0.5, py + 5);
+        ctx.lineTo(px + pw * 0.5, py + topH - 5);
+        ctx.stroke();
+      }
+
+      // Three iron strapping bands
+      ctx.fillStyle = '#2c2e31';
+      const bandT = Math.max(5, c * 0.085);
+      for (const frac of [0.16, 0.5, 0.84]) {
+        if (p.w > p.h) {
+          ctx.fillRect(px + pw * frac - bandT * 0.5, py + 1, bandT, topH - 2);
+        } else {
+          ctx.fillRect(px + 1, py + topH * frac - bandT * 0.5, pw - 2, bandT);
+        }
+      }
+
+      if (p.label && c >= 56) {
+        ctx.save();
+        ctx.translate(px + pw * 0.5, py + topH * 0.5);
+        if (p.h > p.w) ctx.rotate(-Math.PI / 2);
+        ctx.fillStyle = 'rgba(255, 232, 185, 0.78)';
+        ctx.font = `700 ${Math.max(9, Math.round(c * 0.135))}px ui-monospace, monospace`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(p.label, 0, 0);
+        ctx.restore();
+      }
+
+      roundRect(ctx, px + 1, py + 1, pw - 2, topH - 2, 6);
+      ctx.strokeStyle = 'rgba(255, 218, 165, 0.24)';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+    } else {
+      // ---------- TIMBER CRATE (2x1 / 1x2 Slatted Honey-Pine + Cross Brace) ----------
+      const topH = ph - depth * 0.5;
+      roundRect(ctx, px, py + depth * 0.55, pw, ph - depth * 0.55, 7);
+      ctx.fillStyle = '#4a2e16';
+      ctx.fill();
+
+      roundRect(ctx, px, py, pw, topH, 7);
+      const wg = ctx.createLinearGradient(px, py, px + pw * 0.4, py + topH);
+      wg.addColorStop(0, '#c89251');
+      wg.addColorStop(0.55, '#a87439');
+      wg.addColorStop(1, '#845625');
+      ctx.fillStyle = wg;
+      ctx.fill();
+
+      // Recessed inner slat panel
+      const inset = Math.max(5, Math.round(c * 0.085));
+      roundRect(ctx, px + inset, py + inset, pw - inset * 2, topH - inset * 2, 3);
+      ctx.fillStyle = 'rgba(72, 42, 16, 0.34)';
+      ctx.fill();
+
+      // Diagonal timber cross-brace inside frame
+      ctx.save();
+      roundRect(ctx, px + inset, py + inset, pw - inset * 2, topH - inset * 2, 3);
+      ctx.clip();
+      ctx.strokeStyle = 'rgba(218, 168, 102, 0.52)';
+      ctx.lineWidth = Math.max(4, c * 0.08);
+      ctx.beginPath();
+      ctx.moveTo(px + inset, py + inset);
+      ctx.lineTo(px + pw - inset, py + topH - inset);
+      ctx.stroke();
+      ctx.restore();
+
+      // Outer wooden frame highlight & border
+      roundRect(ctx, px + 1, py + 1, pw - 2, topH - 2, 6);
+      ctx.strokeStyle = 'rgba(255, 232, 185, 0.32)';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+      // Corner nail dots
+      ctx.fillStyle = '#3b220d';
+      const nOff = inset * 0.55;
+      for (const [nx, ny] of [
+        [px + nOff, py + nOff],
+        [px + pw - nOff, py + nOff],
+        [px + nOff, py + topH - nOff],
+        [px + pw - nOff, py + topH - nOff],
+      ]) {
+        ctx.beginPath();
+        ctx.arc(nx, ny, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Stenciled harbor mark
+      if (p.label && c >= 52) {
+        ctx.save();
+        ctx.translate(px + pw * 0.5, py + topH * 0.5);
+        if (p.h > p.w) ctx.rotate(-Math.PI / 2);
+        ctx.fillStyle = 'rgba(42, 22, 8, 0.72)';
+        ctx.font = `800 ${Math.max(9, Math.round(c * 0.145))}px ui-monospace, monospace`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(p.label, 0, 0);
+        ctx.restore();
+      }
+    }
+
+    // Selection / Hover golden brass outline
+    if (isSel || isHov) {
+      ctx.save();
+      if (p.kind === 'barrel') {
+        ctx.beginPath();
+        ctx.arc(px + pw * 0.5, py + ph * 0.5, Math.min(pw, ph) * 0.47, 0, Math.PI * 2);
+      } else {
+        roundRect(ctx, px - 1, py - 1, pw + 2, ph - depth * 0.4 + 2, 10);
+      }
+      ctx.strokeStyle = isSel ? 'rgba(255, 226, 130, 0.92)' : 'rgba(255, 226, 130, 0.42)';
+      ctx.lineWidth = isSel ? 2.6 : 1.6;
+      ctx.shadowColor = 'rgba(255, 210, 100, 0.65)';
+      ctx.shadowBlur = isSel ? 12 : 6;
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    ctx.restore();
+  }
+
+  function drawSunbeamOverlayAndMotes(now, dt) {
+    const c = board.cell;
+    const swayX = Math.sin(now * 0.00085) * 2.2;
+    const hx = board.x + curLevel.hatch[0] * c + swayX * 0.4;
+    const hy = board.y + curLevel.hatch[1] * c;
+    const hw = c * 2;
+    const hh = c * 2;
+
+    // Subtle volumetric sunbeam shaft descending from overhead hatch
+    ctx.save();
+    ctx.globalCompositeOperation = 'screen';
+    const shaft = ctx.createLinearGradient(hx + hw * 0.5, 0, hx + hw * 0.5, hy + hh);
+    shaft.addColorStop(0, 'rgba(255, 246, 206, 0.16)');
+    shaft.addColorStop(0.65, 'rgba(255, 232, 165, 0.09)');
+    shaft.addColorStop(1, 'rgba(255, 218, 130, 0.02)');
+    ctx.fillStyle = shaft;
+    ctx.beginPath();
+    ctx.moveTo(hx - hw * 0.14, 0);
+    ctx.lineTo(hx + hw * 1.14, 0);
+    ctx.lineTo(hx + hw, hy + hh);
+    ctx.lineTo(hx, hy + hh);
+    ctx.closePath();
+    ctx.fill();
+
+    // Drifting golden dust motes inside the sunbeam (none in reduced motion)
+    for (const m of (REDUCED ? [] : dustMotes)) {
+      m.v -= m.vy * dt;
+      if (m.v < 0) {
+        m.v = 1.0;
+        m.u = Math.random();
+      }
+      const mx = hx + m.u * hw + Math.sin(now * 0.0014 + m.phase) * 7;
+      const my = (hy - c * 0.5) + m.v * (hh + c * 0.6);
+      const fade = Math.sin(m.v * Math.PI);
+      ctx.fillStyle = `rgba(255, 244, 198, ${m.alpha * fade * 0.85})`;
+      ctx.beginPath();
+      ctx.arc(mx, my, m.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawHintOverlay(now) {
+    if (!hintMove || haulAnim || screenMode !== 'play') return;
+    const p = pieces[hintMove.pieceIndex];
+    if (!p) return;
+    const c = board.cell;
+    const pulse = 0.65 + 0.35 * Math.sin(now * 0.007);
+
+    const sx = board.x + (p.rx + p.w * 0.5) * c;
+    const sy = board.y + (p.ry + p.h * 0.5) * c;
+    const ex = board.x + (hintMove.toX + p.w * 0.5) * c;
+    const ey = board.y + (hintMove.toY + p.h * 0.5) * c;
+
+    ctx.save();
+    // Target ghost outline
+    roundRect(ctx, board.x + hintMove.toX * c + 5, board.y + hintMove.toY * c + 5, p.w * c - 10, p.h * c - 10, 9);
+    ctx.strokeStyle = `rgba(255, 218, 115, ${0.75 * pulse})`;
+    ctx.fillStyle = `rgba(255, 218, 115, ${0.14 * pulse})`;
+    ctx.setLineDash([6, 5]);
+    ctx.lineWidth = 2.4;
+    ctx.fill();
+    ctx.stroke();
+
+    // Animated golden arrow from piece center to target center
+    ctx.setLineDash([]);
+    ctx.strokeStyle = `rgba(255, 236, 165, ${0.95 * pulse})`;
+    ctx.fillStyle = `rgba(255, 236, 165, ${0.95 * pulse})`;
+    ctx.lineWidth = 3.5;
+    ctx.lineCap = 'round';
+    ctx.shadowColor = 'rgba(255, 190, 65, 0.8)';
+    ctx.shadowBlur = 12;
+
+    ctx.beginPath();
+    ctx.moveTo(sx, sy);
+    ctx.lineTo(ex, ey);
+    ctx.stroke();
+
+    // Arrowhead
+    const ang = Math.atan2(ey - sy, ex - sx);
+    const ah = 12;
+    ctx.beginPath();
+    ctx.moveTo(ex, ey);
+    ctx.lineTo(ex - Math.cos(ang - 0.45) * ah, ey - Math.sin(ang - 0.45) * ah);
+    ctx.lineTo(ex - Math.cos(ang + 0.45) * ah, ey - Math.sin(ang + 0.45) * ah);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawHaulOutTackle(now) {
+    if (!haulAnim) return;
+    const t = haulAnim.t;
+    const c = board.cell;
+    const chest = pieces[0];
+    if (REDUCED) {
+      // Calm win: the chest stays put with a brass ring, no rope, no lift
+      drawPieceShadow(chest);
+      drawPieceBody(chest, now);
+      ctx.save();
+      roundRect(ctx, board.x + chest.rx * c + 2, board.y + chest.ry * c + 2, chest.w * c - 4, chest.h * c - 4, 12);
+      ctx.strokeStyle = '#f2c14e';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+      ctx.restore();
+      return;
+    }
+    const cx = board.x + (chest.rx + 1) * c;
+    const cy = board.y + (chest.ry + 1) * c;
+
+    // Phase 1 (0..0.45): rope + iron hook drops from top of screen to chest center
+    // Phase 2 (0.45..0.65): latch spark & taut tension
+    // Phase 3 (0.65..2.15): chest & hook hoist up and out!
+    let hookY = cy;
+    let chestScale = 1;
+    let chestRot = 0;
+    let chestAlpha = 1;
+    let shadowScale = 1;
+    let shadowAlpha = 1;
+
+    if (t < 0.45) {
+      const u = t / 0.45;
+      const ease = 1 - Math.pow(1 - u, 3);
+      hookY = -30 + (cy + 30) * ease;
+    } else if (t < 0.65) {
+      const u = (t - 0.45) / 0.2;
+      hookY = cy - Math.sin(u * Math.PI) * 5;
+      chestScale = 1 + Math.sin(u * Math.PI) * 0.03;
+    } else {
+      const u = Math.min(1, (t - 0.65) / 1.5);
+      const ease = u * u * (3 - 2 * u);
+      const liftPx = ease * (cy + c * 2.2);
+      hookY = cy - liftPx;
+      chestScale = 1 + ease * 0.42;
+      chestRot = Math.sin(u * Math.PI * 3) * 0.055 * (1 - u * 0.4);
+      chestAlpha = u > 0.72 ? Math.max(0, 1 - (u - 0.72) / 0.28) : 1;
+      shadowScale = Math.max(0.25, 1 - ease * 0.72);
+      shadowAlpha = Math.max(0, 1 - ease * 1.15);
+    }
+
+    // Draw chest's shrinking shadow on the deck below
+    if (shadowAlpha > 0.01) {
+      drawPieceShadow(chest, shadowScale, shadowAlpha);
+    }
+
+    // Draw rising chest
+    ctx.save();
+    if (t >= 0.65) {
+      const u = Math.min(1, (t - 0.65) / 1.5);
+      const ease = u * u * (3 - 2 * u);
+      ctx.translate(0, -ease * (cy + c * 2.2));
+    }
+    drawPieceBody(chest, now, chestScale, chestRot, chestAlpha);
+    ctx.restore();
+
+    // Draw braided hemp rope + wrought-iron cargo hook
+    if (chestAlpha > 0.02) {
+      ctx.save();
+      ctx.globalAlpha = chestAlpha;
+      const swayX = t >= 0.65 ? Math.sin(t * 6) * 4 : 0;
+
+      // Rope shadow
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.35)';
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.moveTo(cx + 4, -20);
+      ctx.lineTo(cx + swayX + 4, hookY);
+      ctx.stroke();
+
+      // Main hemp rope
+      ctx.strokeStyle = '#d4b06a';
+      ctx.lineWidth = 4.5;
+      ctx.beginPath();
+      ctx.moveTo(cx, -20);
+      ctx.lineTo(cx + swayX, hookY - 8);
+      ctx.stroke();
+      ctx.strokeStyle = '#7e5c24';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 5]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Wooden pulley block near top of rope
+      if (hookY > 45) {
+        roundRect(ctx, cx + swayX * 0.6 - 9, hookY - 34, 18, 22, 6);
+        ctx.fillStyle = '#5c361a';
+        ctx.fill();
+        ctx.strokeStyle = '#d9b263';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+
+      // Wrought-iron cargo hook
+      ctx.strokeStyle = '#2d3136';
+      ctx.lineWidth = 4;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.arc(cx + swayX, hookY - 2, 9, -Math.PI * 0.25, Math.PI * 1.15);
+      ctx.stroke();
+      ctx.strokeStyle = 'rgba(255, 240, 200, 0.45)';
+      ctx.lineWidth = 1.4;
+      ctx.stroke();
+
+      // Latch glint spark at t=0.45..0.68
+      if (t >= 0.45 && t < 0.72) {
+        const sp = 1 - (t - 0.45) / 0.27;
+        ctx.strokeStyle = `rgba(255, 246, 195, ${sp})`;
+        ctx.lineWidth = 2;
+        for (let k = 0; k < 6; k++) {
+          const a = (k / 6) * Math.PI * 2 + 0.3;
+          ctx.beginPath();
+          ctx.moveTo(cx + Math.cos(a) * 8, cy + Math.sin(a) * 8);
+          ctx.lineTo(cx + Math.cos(a) * (18 + (1 - sp) * 16), cy + Math.sin(a) * (18 + (1 - sp) * 16));
+          ctx.stroke();
+        }
+      }
+      ctx.restore();
+    }
+  }
+
+  function updateAndDrawPuffs(dt) {
+    for (let i = impactPuffs.length - 1; i >= 0; i--) {
+      const f = impactPuffs[i];
+      f.x += f.vx * dt;
+      f.y += f.vy * dt;
+      f.vx *= 0.9;
+      f.vy *= 0.9;
+      f.life -= dt * 2.4;
+      if (f.life <= 0) {
+        impactPuffs.splice(i, 1);
+        continue;
+      }
+      ctx.fillStyle = `rgba(235, 210, 165, ${f.life * 0.38})`;
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.r * (1.4 - f.life * 0.4), 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // =========================================================================
+  // 9. MAIN ANIMATION LOOP
+  // =========================================================================
+  let lastTime = performance.now();
+  function frame(realNow) {
+    const dt = Math.min(0.05, (realNow - lastTime) / 1000);
+    lastTime = realNow;
+    // Reduced motion: freeze the sway, flicker and glints, and move pieces in one step
+    const now = REDUCED ? 0 : realNow;
+
+    // Smooth piece interpolation (when not actively dragging that piece)
+    for (let i = 0; i < pieces.length; i++) {
+      const p = pieces[i];
+      const isDragged = drag && drag.idx === i;
+      if (!isDragged) {
+        const lerp = REDUCED ? 1 : 1 - Math.exp(-22 * dt);
+        p.rx += (p.tx - p.rx) * lerp;
+        p.ry += (p.ty - p.ry) * lerp;
+        if (Math.abs(p.tx - p.rx) < 0.002) p.rx = p.tx;
+        if (Math.abs(p.ty - p.ry) < 0.002) p.ry = p.ty;
+      }
+      const targetLift = (isDragged || i === selectedIdx) ? 1 : 0;
+      p.lift = REDUCED ? targetLift : p.lift + (targetLift - p.lift) * (1 - Math.exp(-18 * dt));
+    }
+
+    // Advance haul-out victory sequence
+    if (haulAnim) {
+      haulAnim.t += dt;
+      if (haulAnim.t >= haulAnim.duration && !haulAnim.doneBannerShown) {
+        haulAnim.doneBannerShown = true;
+        showClearBanner();
+      }
+    }
+
+    // Render scene
+    ctx.save();
+    ctx.scale(dpr, dpr);
+
+    drawShipHullFrame(now);
+    drawHatchDaylightFloor(now);
+    drawReachableLanes();
+
+    // Shadows for all non-hauling pieces
+    for (let i = 0; i < pieces.length; i++) {
+      if (haulAnim && i === 0) continue;
+      drawPieceShadow(pieces[i]);
+    }
+
+    // Draw all non-hauling pieces (selected/dragged piece on top)
+    for (let i = 0; i < pieces.length; i++) {
+      if (haulAnim && i === 0) continue;
+      if (i === selectedIdx) continue;
+      drawPieceBody(pieces[i], now);
+    }
+    if (selectedIdx !== -1 && !(haulAnim && selectedIdx === 0)) {
+      drawPieceBody(pieces[selectedIdx], now);
+    }
+
+    updateAndDrawPuffs(dt);
+    drawHintOverlay(now);
+
+    if (haulAnim) {
+      drawHaulOutTackle(now);
+    }
+
+    drawSunbeamOverlayAndMotes(now, dt);
+    ctx.restore();
+
+    requestAnimationFrame(frame);
+  }
+
+  // =========================================================================
+  // 10. UI, HUD, SCREENS & MANIFEST
+  // =========================================================================
+  const elNum = document.getElementById('hudNum');
+  const elTitle = document.getElementById('hudTitle');
+  const elMoves = document.getElementById('hudMoves');
+  const elPar = document.getElementById('hudPar');
+  const elStars = document.getElementById('hudStars');
+  const elCaption = document.getElementById('holdCaption');
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const btnUndo = document.getElementById('btnUndo');
+  const btnReset = document.getElementById('btnReset');
+  const btnHint = document.getElementById('btnHint');
+  const btnManifest = document.getElementById('btnManifest');
+  const btnSound = document.getElementById('btnSound');
+  const soundIcon = document.getElementById('soundIcon');
+  const clearBanner = document.getElementById('clearBanner');
+  const splashOverlay = document.getElementById('splashOverlay');
+  const manifestOverlay = document.getElementById('manifestOverlay');
+
+  function updateHUD() {
+    elNum.textContent = String(curLevel.id).padStart(2, '0');
+    elTitle.textContent = curLevel.name;
+    elMoves.textContent = String(moves);
+    elPar.textContent = `/ ${curLevel.par}`;
+    elCaption.textContent = curLevel.subtitle;
+    btnPrev.disabled = levelIdx === 0;
+    btnNext.disabled = levelIdx === LEVELS.length - 1;
+    btnUndo.disabled = undoStack.length === 0 || !!haulAnim;
+
+    const projStars = calcStars(Math.max(moves, 1), curLevel.par);
+    const starSpans = elStars.querySelectorAll('.star');
+    starSpans.forEach((sp, i) => sp.classList.toggle('lit', i < projStars));
+  }
+
+  function updateSplashProgress() {
+    const earned = totalStars();
+    const doneCount = Object.keys(saveData.completed).length;
+    const playBtn = document.getElementById('btnSplashPlay');
+    const prog = document.getElementById('splashProgress');
+    if (doneCount > 0) {
+      playBtn.textContent = `Continue · Hold ${String(curLevel.id).padStart(2, '0')}`;
+      prog.textContent = `${doneCount} / ${LEVELS.length} Holds Cleared  ·  ${earned} / ${LEVELS.length * 3} ★`;
+    } else {
+      playBtn.textContent = 'Enter the Hold';
+      prog.textContent = `${LEVELS.length} Handcrafted Holds · ${DECKS.length} Decks`;
+    }
+  }
+
+  function setScreen(mode) {
+    screenMode = mode;
+    document.body.classList.remove('screen-splash', 'screen-play', 'screen-manifest');
+    document.body.classList.add('screen-' + mode);
+    splashOverlay.classList.toggle('active', mode === 'splash');
+    manifestOverlay.classList.toggle('active', mode === 'manifest');
+    if (mode === 'splash') updateSplashProgress();
+    if (mode === 'manifest') renderManifest();
+  }
+
+  function showClearBanner() {
+    const stars = calcStars(moves, curLevel.par);
+    document.getElementById('clearTitle').textContent = `${String(curLevel.id).padStart(2, '0')} · ${curLevel.name}`;
+    document.getElementById('clearStats').textContent = `${moves} slides  ·  Par ${curLevel.par}`;
+
+    const nudge = document.getElementById('clearNudge');
+    if (stars === 3) {
+      nudge.textContent = moves < curLevel.par ? 'Impossible seas! Better than par!' : 'Master stevedore: exact par!';
+    } else if (stars === 2) {
+      nudge.textContent = `Smooth haul! Can you get it out in ${curLevel.par}?`;
+    } else {
+      nudge.textContent = `Got it out! Try working backward for ${curLevel.par} slides.`;
+    }
+
+    const starEls = document.querySelectorAll('#clearStars .s');
+    starEls.forEach(s => s.classList.remove('got'));
+    clearBanner.classList.add('show');
+    starEls.forEach((s, i) => {
+      if (i < stars) {
+        setTimeout(() => s.classList.add('got'), 120 + i * 160);
+      }
+    });
+
+    const nextBtn = document.getElementById('btnClearNext');
+    nextBtn.textContent = levelIdx < LEVELS.length - 1 ? 'Next Hold →' : 'Hold Manifest';
+  }
+
+  function hideClearBanner() {
+    clearBanner.classList.remove('show');
+  }
+
+  function renderManifest() {
+    const body = document.getElementById('manifestBody');
+    document.getElementById('manifestTotal').textContent = `${totalStars()} / ${LEVELS.length * 3} ★`;
+    body.innerHTML = '';
+
+    for (const deck of DECKS) {
+      const sec = document.createElement('div');
+      const h = document.createElement('div');
+      h.className = 'deck-heading';
+      h.textContent = deck.title;
+      sec.appendChild(h);
+
+      const grid = document.createElement('div');
+      grid.className = 'hold-grid';
+
+      LEVELS.filter(l => l.deck === deck.id).forEach(lv => {
+        const idx = LEVELS.indexOf(lv);
+        const rec = saveData.completed[lv.id];
+        const card = document.createElement('button');
+        card.className = 'hold-card' + (idx === levelIdx ? ' current' : '');
+
+        const s = rec ? rec.stars : 0;
+        const starsHtml = [0, 1, 2].map(i => `<span class="${i < s ? 'lit' : 'dim'}">★</span>`).join('');
+        const bestTxt = rec ? `Best ${rec.bestMoves} · Par ${lv.par}` : `Par ${lv.par} · ${lv.w}×${lv.h}`;
+
+        card.innerHTML = `
+          <div class="hold-card-top">
+            <span>HOLD ${String(lv.id).padStart(2, '0')}</span>
+            <span class="hold-card-stars">${starsHtml}</span>
+          </div>
+          <div class="hold-card-name">${lv.name}</div>
+          <div class="hold-card-foot"><span>${bestTxt}</span></div>
+        `;
+        card.addEventListener('click', () => {
+          AudioFX.ensure();
+          loadLevel(idx);
+          setScreen('play');
+        });
+        grid.appendChild(card);
+      });
+
+      sec.appendChild(grid);
+      body.appendChild(sec);
+    }
+  }
+
+  function openManifest() {
+    hideClearBanner();
+    setScreen('manifest');
+  }
+
+  function requestHint() {
+    if (haulAnim || screenMode !== 'play') return;
+    AudioFX.ensure();
+    const best = computeBestNextMove(curLevel, pieces);
+    if (best) {
+      hintMove = { ...best, startedAt: performance.now() };
+      selectedIdx = best.pieceIndex;
+      AudioFX.playHint();
+    } else {
+      elCaption.textContent = 'Too tangled to read from here. Try Undo or Reset for a fresh start!';
+    }
+  }
+
+  function toggleSound() {
+    saveData.sound = !saveData.sound;
+    persist();
+    btnSound.classList.toggle('active', saveData.sound);
+    soundIcon.textContent = saveData.sound ? '♪' : '✕';
+    AudioFX.setMuted(!saveData.sound);
+    if (saveData.sound) AudioFX.ensure();
+  }
+
+  // Wire buttons
+  document.getElementById('btnPlate').addEventListener('click', () => setScreen('splash'));
+  document.getElementById('btnSplashPlay').addEventListener('click', () => {
+    AudioFX.ensure();
+    setScreen('play');
+  });
+  document.getElementById('btnSplashManifest').addEventListener('click', () => {
+    AudioFX.ensure();
+    setScreen('manifest');
+  });
+  document.getElementById('btnManifestClose').addEventListener('click', () => setScreen('play'));
+  btnPrev.addEventListener('click', () => { if (levelIdx > 0) loadLevel(levelIdx - 1, true); });
+  btnNext.addEventListener('click', () => { if (levelIdx < LEVELS.length - 1) loadLevel(levelIdx + 1, true); });
+  btnUndo.addEventListener('click', undoMove);
+  btnReset.addEventListener('click', () => loadLevel(levelIdx, true));
+  btnHint.addEventListener('click', requestHint);
+  btnManifest.addEventListener('click', openManifest);
+  btnSound.addEventListener('click', toggleSound);
+
+  document.getElementById('btnClearReplay').addEventListener('click', () => loadLevel(levelIdx, true));
+  document.getElementById('btnClearNext').addEventListener('click', () => {
+    if (levelIdx < LEVELS.length - 1) loadLevel(levelIdx + 1, true);
+    else openManifest();
+  });
+
+  window.addEventListener('resize', () => {
+    computeLayout();
+  });
+
+  // Init sound icon state
+  btnSound.classList.toggle('active', saveData.sound);
+  soundIcon.textContent = saveData.sound ? '♪' : '✕';
+
+  // Boot into splash with Hold ready behind it
+  loadLevel(levelIdx, true);
+  setScreen('splash');
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

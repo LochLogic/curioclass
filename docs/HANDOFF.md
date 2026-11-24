@@ -6,6 +6,7 @@ which is stale, fix it and say so.
 
 ## State now
 
+- **Running from 2026-11-23: the Codex draft run (later.csv L105).** Codex writes first drafts of section plans, data and days for math K-3, social studies 4, 5 and WG-I, ELA 4-5 and science 4-6 in S:\CurioClass-draft (branch draft/codex, scripts/codex_draft.py); Claude reviews later. Never edit those courses in main while it runs.
 - **Done 2026-11-23: science K to 3 finished to COURSE-RUN stage 7 and signed off by Cory (later.csv L81).** His calls were applied 2026-11-23 (docs/reviews/signoff-fix-science-<course>-2026-11-23.md; DESK-ANSWERS 2026-11-23). Run record from 2026-11-22: The L102 exit faults fixed, a 10-day re-sample per grade (K 0.9, grade 1 1.2, grade 2 0.8, grade 3 0.8 FIRM a day), a full read and cleanup for grade 1, then the stage 7 reads, one fix pass and a safety page per course, and the K to 3 continuity pass. Gates: lesson.py 0 FAIL; plan.py only the known units.csv lines. Records docs/reviews/finish-fix-science-<course>-2026-11-22.md, continuity-science-2026-11-22.md. Cory's calls are on Desk cards q-sci-finish-k, -g1, -g2, -g3. Art, voice and tools deferred.
 - **Done 2026-11-22: science K to 3 outside-reader fixes.** The Gemini findings were verified and fixed in all four courses (commits 06044df12, a217321fe, cebb837f9; ledgers docs/reviews/gemini-fixes-science-<course>-2026-11-22.md); gates at each course's baseline. Science K to 3 stays PAUSED for Cory (later.csv L81).
 - **Done 2026-11-22: all 65 progression nodes.** SEL, ELD, library, career education and Spanish joined the earlier subjects (data/progressions/, flow-status.csv). World languages is Spanish only; ASL waits on the required review (later.csv L93).
@@ -31,7 +32,7 @@ time, before more days are written.
   no rule 2 notes (social studies fixed 2026-11-15, later.csv L28).
 - **Unit plans**: all 259 science, ELA and math units have skeletons (scripts/unit_skeleton.py); social studies has 138 plans, read twice, fixed and through a structure pass. Judgement fields are filled at each course's run, and the ladder grades (K to 3) are done (math Goal maps: later.csv L102).
 - **Section plans and days**: the ladder runs wrote section plans and days for science K to 3 (328 days) and social studies and ELA K to 3 (1,056 days), all fixed and gated (above); the probe sections (US History I 5.2, World History I 3.4, science grade 5, Algebra II, ELA grade 11, science grade 7) have section plans only or a few days. Grade 4 math's older plans and 48 days, made under the retired pilot plan, are held for math's units (PRODUCTION-PATH; rework list in L13).
-- **The site**: not launched. scripts/course_pages.py builds hidden course and unit pages for all 52 core courses
+- **The site**: live but not marketed (marketing starts when all curriculum is written and tools are beyond 75 percent complete, Cory 2026-11-24). scripts/course_pages.py builds hidden course and unit pages for all 52 core courses
   (`SHOWN = False`); the design is [SITE-DESIGN.md](SITE-DESIGN.md). Day pages will be one source file per day,
   published as one page per section with each day as an anchor (settled 2026-11-15, see DESK-ANSWERS).
 - **Tools**: paused until step 9, the Codex queue's builds included. Live tools stay live and claim no course

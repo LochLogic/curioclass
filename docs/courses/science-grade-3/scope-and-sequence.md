@@ -112,7 +112,7 @@ NGSS is the base. The Massachusetts framework is a crosswalk only and adds no ow
 | 3-LS4-2 | Explain from evidence how within-kind differences advantage survival, mate finding and reproduction; cause and effect | 64 to 68, 74 | 75: all three outcomes, not camouflage alone |
 | 3-LS4-3 | Argue from evidence that different organisms do well, poorly or not at all in a habitat; infer causes from needs and conditions | 69 to 74 | 77: argument covering all three outcomes |
 | 3-LS4-1 | Analyze kind/size/location fossil data for past life, extinction and environments; connect observable evidence with long time scales | 82 to 86, 93 to 94 | 95: unseen site inference and model |
-| 3-LS4-4 | Judge solution merit with evidence against goals/limits; environmental changes alter resources, residents and newcomers; explain interacting system parts | 83, 87 to 94 | 96: single-change system and merit argument |
+| 3-LS4-4 | Judge solution merit with evidence against goals/limits; environmental changes alter resources, residents and newcomers; explain interacting system parts | 87 to 94 | 96: single-change system and merit argument |
 | 3-ESS2-1 | Represent temperature, precipitation and wind records in tables and permitted graphs; patterns support seasonal expectations | Log throughout, 98 to 102, 107, 113 to 114 | 115: representation and seasonal explanation |
 | 3-ESS2-2 | Obtain and combine trustworthy sources; describe typical climate range and year-to-year change across regions; predict from patterns | 103 to 107, 113 to 114 | 115: source synthesis across regions |
 | 3-ESS3-1 | Judge design merit against goals/limits; people reduce hazard impacts without stopping natural processes; use cause-and-effect evidence to explain improvements | 108 to 114 | 116: unfamiliar design-merit judgment |
@@ -177,7 +177,7 @@ The frame's incremental ceiling remains under about 25 dollars per unit for 30 s
 
 Eye protection where anything can fly, magnet counts out and back, no magnets near phones or tablets, adult-only electromagnet handling with taped wire ends and disconnection between uses, allergy checks, hand washing, prompt spill removal and humane care are recorded at use. Growing lamps are adult-managed with water away from electricity. Outdoor observations move indoors during unsafe weather. The roof model uses low fan speed, fingers clear and eye protection if anything can fly; lightning remains a reading, never an electrical demonstration. The later unit plans need the course safety page, set-up/clean-up time and the frame's sensitivity and safety reads. These are planning commitments, not completed reviews.
 
-There is no base text for this course. The work is original, so no source-map.csv is required or written; reference-only elementary materials have not supplied wording, problems or images.
+There is no base text for this course. The work is original. source-map.csv holds the section rows and the teacher references G56 to G61 (paraphrase only); reference-only elementary materials have not supplied wording, problems or images.
 
 ## Shorter path
 

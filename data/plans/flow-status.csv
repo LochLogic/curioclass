@@ -631,3 +631,19 @@ finish:science-grade-1,done,2026-11-23,"Stage 7 reads, fix pass and safety page 
 finish:science-grade-2,done,2026-11-23,"Stage 7 reads, fix pass and safety page done; Cory signed off 2026-11-23 and his calls are applied (docs/reviews/signoff-fix-science-grade-2-2026-11-23.md). Art, voice and tools deferred."
 finish:science-grade-3,done,2026-11-23,"Stage 7 reads, fix pass and safety page done; Cory signed off 2026-11-23 and his calls are applied (docs/reviews/signoff-fix-science-grade-3-2026-11-23.md). Art, voice and tools deferred."
 continuity:science,active,2026-11-22,"K to 3 only: 98 claims, 88 held, 9 drifted (fixed in grades 2 and 3); docs/reviews/continuity-science-2026-11-22.md. Grades 4 and up wait."
+gate3:social-studies,done,2026-11-23,Cory approved the baseline (frames and scopes and sequences) 2026-11-23
+gate3:science,done,2026-11-23,Cory approved the baseline (frames and scopes and sequences) 2026-11-23
+gate3:english-language-arts,done,2026-11-23,Cory approved the baseline (frames and scopes and sequences) 2026-11-23
+gate3:math,done,2026-11-23,Cory approved the baseline (frames and scopes and sequences) 2026-11-23
+ss:psychology,done,2026-11-23,"Written (sequence-write.md), sequence.py passes; review next (with the other core electives)"
+ss:earth-and-space-science,done,2026-11-23,"Written (sequence-write.md), sequence.py passes incl. coverage table; review next (with the other core electives)"
+ss:environmental-science,done,2026-11-23,"Written (sequence-write.md), sequence.py passes incl. coverage table; review next (with the other core electives)"
+ss:calculus,done,2026-11-24,"Written (sequence-write.md), sequence.py passes; review next (with the other core electives)"
+ss:precalculus,done,2026-11-24,"Written (sequence-write.md), sequence.py passes; review next (with the other core electives)"
+ss:statistics,done,2026-11-24,"Written (sequence-write.md), sequence.py passes; review next (with the other core electives)"
+ss-review:core-electives,done,2026-11-24,"Claude expert read and fix pass for all 6 (docs/reviews/sequence-<course>-2026-11-24.md and -fixes-2026-11-24.md); gates pass; shared-file edits wait for a structure pass (later.csv L109)"
+ss-review:core-electives-gemini,done,2026-11-24,"Gemini second read of all 6 (S:/CurioClass-gemini/reports/sequence-*-gemini-read.md), verified and applied: docs/reviews/gemini-fixes-sequence-<course>-2026-11-24.md; gates pass"
+gate3:core-electives,done,2026-11-24,"Cory approved the baseline of all six core electives (frames and scopes and sequences, after the expert and Gemini reads) 2026-11-24"
+units-review:science,done,2026-11-24,"All 12 courses read together and fixed, structure pass, cold read (docs/reviews/units-*-science*-2026-11-24.md); cold read: not ready, 2 major (grade 7 exits repeat practice; ledger rows missing for grades 4 to 11)"
+units-review:english-language-arts,done,2026-11-24,"12 courses read and fixed (grade 6 left out), structure pass, cold read (docs/reviews/units-*-english-language-arts*-2026-11-24.md); cold read: not ready, 2 serious (ledger unseeded; K to 3 exits on invented cards)"
+units-review:math,done,2026-11-24,"11 courses read and fixed (grade 4 left out), structure pass, cold read (docs/reviews/units-*-math-2026-11-24.md and per-course reads); cold read: ready once 4 moderate items are settled"

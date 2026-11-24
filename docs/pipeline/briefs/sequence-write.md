@@ -25,7 +25,12 @@ step 5.
   sentences, why the days fall in this order, the readiness, mid-unit and end-of-unit assessment days and what each
   covers, and each "Candidate:" check-set cell settled (kept with its day cost inside the unit's days, or dropped
   with the reason). Then the course-level checks, with their weeks, and a "Shorter path" section (rule 10). Prose
-  for judgment only; the days live in the CSV.
+  for judgment only; the days live in the CSV. Science only (later.csv L104, Cory 2026-11-23): the file ends with a
+  section "Practice and crosscutting concept coverage": one row per unit plus one for the course-level checks, one
+  column per practice and per crosscutting concept the frame names, with a key naming each column. Each cell lists
+  the course days on which students do the practice or reason with the concept, counted from days.csv goals and
+  notes (a label in passing does not count; an empty cell says "none"). Every practice and concept the frame names
+  is on at least one day.
 - `data/plans/{course}/days.csv`, one row per course day, columns in this order:
   `day,stretch,unit,kind,goal,skills,codes,assess,school_day,note`
   - **day**: 1 to the frame's total, in order, none skipped.
@@ -124,7 +129,9 @@ step 5.
 3. **Course-level checks** come from the frame's Course-level checks table: `C` days after the unit it names, each
    followed by at least one respond day, review days where the table has them. **A course-level check right after a
    unit's end-of-unit assessment draws its items for that unit's skills from earlier units**, so it does not repeat
-   the assessment just given; the scope and sequence and the day's goal say so.
+   the assessment just given; the scope and sequence and the day's goal say so. **Every code the course owns is sampled
+   on at least one course-level check day**, or the scope and sequence names the code and says why not (Cory
+   2026-11-24, later.csv L107).
 4. **The calendar and the stagger rule** (docs/courses/CALENDAR.md): place the course-level checks on the target
    weeks given there. K to 5: no week holds two subjects' check days. K to 2: the ELA and math one-to-one checks are
    at least five school days apart. 6 to 8: no school day holds two subjects' mid-year checks. If a target week
@@ -149,12 +156,15 @@ step 5.
    base's, with `harms_learning` yes or no and why. Days that adapt no base lesson never carry "Base" in their goal
    or note.
 9. **Sensitivity:** a day with content the frame flags names it in the note column; the sensitivity agent's read
-   (docs/pipeline/briefs/sensitivity-read.md) comes with the unit plan.
+   (docs/pipeline/briefs/sensitivity-read.md) comes with the unit plan. In science, a day where the evidence meets a
+   belief (the age of Earth, evolution, the origin of the universe, climate change) names it in the note; the order
+   has students meet the evidence first, and the day teaches what the evidence shows, plainly and respectfully, with
+   no separate outside reader (Cory 2026-11-23: facts are facts).
 10. **A shorter path.** The scope and sequence has a short "Shorter path" section (FOUNDATION section 5, adoption
     bar C2): how the days hold on a shorter period, and a year about 10 days short, by named fold-in days (days whose
-    work folds into a neighbour, nothing assessed and no owned part cut). Each fold-in day names the minutes it
+    work folds into a neighbor, nothing assessed and no owned part cut). Each fold-in day names the minutes it
     saves, and the section states its total against the frame's day count. The same rule holds in every subject.
-11. No em dashes; "Curio Class" in full; no company names. Edit only your files. No git.
+11. No em dashes; "Curio Class" in full; US spelling; no company names. Edit only your files. No git.
 
 ## The gate
 Run `python -X utf8 scripts/sequence.py check {course}` (also run by `python -X utf8 scripts/plan.py check`): days
@@ -165,7 +175,7 @@ an end-of-unit assessment per unit, a mid-unit assessment in units over 25 days,
 course-level check, each `readiness` day on the previous unit's last day or a respond day at most 3 days before a
 unit's first day and never on a first day except unit 1's day 1, every owned skill placed, every owned code placed
 (a note), the .md file present, not empty, with its title and a section per unit, and a "Shorter path" section (a
-note). Then run `python -X utf8 scripts/frame.py calendar` and say in your last message whether your course breaks
+note). A science course whose scope has the "Practice and crosscutting concept coverage" section (required for earth-and-space-science and environmental-science) also fails when the table has fewer practice and concept columns than the frame names or a column is empty or "none" in every row (day numbers are not checked). Then run `python -X utf8 scripts/frame.py calendar` and say in your last message whether your course breaks
 the stagger rule.
 
 Final message, short: units and days, the check weeks, the gate result, the Candidate cells settled, the "For the

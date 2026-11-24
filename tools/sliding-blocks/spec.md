@@ -1,5 +1,7 @@
 # Cargo Hold (Recess game)
 
+> Settled 2026-11-24 (Cory, chat: "Yes, this build"): the brought-in 38-hold build (tools/sliding-blocks/source/cargo-hold.html) is Cargo Hold. This spec stays as the design record; where the build differs (rectangular holds, no Fleet or daily hold, its own star rule, hints), the build wins.
+
 Slide the crates around a ship's hold until the sea chest sits in the square of daylight under the hatch, then watch it
 get hauled up and out.
 
@@ -754,8 +756,7 @@ Owner: default accepted, Cory 2026-11-08; may tweak later. Each default below is
 1. Ambient hull creak: default on at very low volume (default here), or off until asked for?
 2. The daily pool leans on the small skiff hull (62 of 120) because small holds are quick to verify. Fine for launch
    (default), or rebalance toward the bigger hulls before ship?
-3. No hint button (default). If kids stall on Holds 20 to 24, a "show the next move" button that caps that solve at 1
-   star could come later.
+3. Hints: settled 2026-11-24, Cory kept the built game's hint button (chat: "Keep hints").
 4. The Fleet restarts at 8 moves after Hold 24's 22 (default: a breather, and Ship 1 is a fair start for a kid who
    skips the First voyage), rather than starting at 22.
 5. The Fleet tops out at 44 moves (default). Holds that long take minutes, beyond the 30 to 90 second guide; they are

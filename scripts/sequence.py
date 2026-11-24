@@ -231,6 +231,52 @@ def md_fails(md, slug, nunits):
     return out
 
 
+SEP_CCC = [r'asking questions|defining problems', r'developing and using models|models?', r'planning and carrying out|investigations?',
+           r'analyzing and interpreting|interpreting data', r'mathematics|computational thinking',
+           r'constructing explanations|designing solutions', r'argument from evidence|engaging in argument',
+           r'obtaining, evaluating|communicating information', r'patterns?', r'cause and effect',
+           r'scale, proportion|scale and proportion', r'systems? and system models|system models?',
+           r'energy and matter|flows? of energy', r'structure and function', r'stability and change']
+
+
+def named_sep_ccc(f):
+    """How many of the 8 practices and 7 crosscutting concepts the frame's units table names, read from the C3 /
+    "Practices and crosscutting concepts" column (falls back to the whole table when that column is absent)."""
+    head = f.get('head') or []
+    col = next((h for h in head if h == 'C3' or re.search(r'practices', h, re.I)), None)
+    text = ' '.join((r.get(col, '') if col else ' '.join(r.values())) for r in (f.get('table') or []))
+    return sum(1 for pat in SEP_CCC if re.search(pat, text, re.I))
+
+
+def science_coverage_fails(slug, md, f):
+    """Science only (L106, sequence-write.md "The files"): the scope ends with a "Practice and crosscutting concept
+    coverage" table, one column per practice and concept the frame names, none empty in every row. Applied to a
+    course whose scope has the heading, or earth-and-space-science and environmental-science (grades 4 to 8 may
+    lack it for now). Day numbers are not verified."""
+    if subject_of(slug) != 'science':
+        return []
+    text = md.read_text(encoding='utf-8') if md.exists() else ''
+    m = re.search(r'^#+\s*Practice and crosscutting concept coverage\s*$', text, re.M | re.I)
+    if not m and slug not in ('earth-and-space-science', 'environmental-science'):
+        return []
+    if not m:
+        return ['scope-and-sequence.md lacks the section "Practice and crosscutting concept coverage" (sequence-write.md, science)']
+    lines = [l for l in text[m.end():].split(chr(10) + '## ')[0].splitlines() if l.strip().startswith('|')]
+    if len(lines) < 3:
+        return ['"Practice and crosscutting concept coverage" has no table']
+    cells = lambda l: [c.strip() for c in l.strip().strip('|').split('|')]
+    head, body = cells(lines[0]), [cells(l) for l in lines[2:]]
+    out = []
+    want = named_sep_ccc(f)
+    if len(head) - 1 < want:
+        out.append('coverage table has %d practice and concept columns, the frame names %d' % (len(head) - 1, want))
+    for i, h in enumerate(head[1:], 1):
+        if all(i >= len(r) or r[i].strip().lower() in ('', 'none') for r in body):
+            out.append('coverage table column "%s" is empty or none in every row (a practice or concept the frame names '
+                       'must be on a day)' % h)
+    return out
+
+
 def check(course):
     fails, notes = [], []
     slug = frame.LEGACY.get(course, course)
@@ -243,6 +289,7 @@ def check(course):
         fails.append('no docs/courses/%s/scope-and-sequence.md' % slug)
     else:
         fails += md_fails(md, slug, f.get('units') or 0)
+        fails += science_coverage_fails(slug, md, f)
         if not re.search(r'^#+\s*Shorter path', md.read_text(encoding='utf-8'), re.M | re.I):
             notes.append('scope-and-sequence.md has no "Shorter path" section (sequence-write.md rule 10, '
                          'added 2026-11-14)')
