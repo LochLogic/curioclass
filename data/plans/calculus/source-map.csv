@@ -1,0 +1,101 @@
+source,title,goals,standards,unit,days,decision,why,order_conflict,harms_learning
+CC 0.1,Preview,See the two questions calculus answers: a tangent slope and an area.,CUR-CA.1,1,1,merge,Merged with CC 1.0 into the day 1 hook.,,
+CC 0.2,Lines,Slopes and equations of lines.,,,,cut,Algebra I and Algebra II content; the daily opening covers it and no day only reteaches it.,,
+CC 0.3,Functions,"Functions, graphs and notation.",,,,cut,Algebra I to Precalculus content; the daily opening covers it.,,
+CC 0.4,Combinations of functions,Compose functions and split a composite into inner and outer parts.,CUR-CA.6,2,26,merge,Composition retrieved inside the chain rule day (pc-composition seam).,"yes: moved from the base order; used in unit 2, not before unit 1","no: it is retrieval of Precalculus, placed where it is used"
+CC 0.5,Mathematical language,"Read if-then statements, converses and hypotheses.",CUR-CA.3,1,12,merge,Read with the intermediate value theorem; the language returns on days 18 and 53.,"yes: moved from the base order; placed after limits, beside the first theorem",no: the language is met where a theorem needs it
+CC 1.0,Slopes and velocities,"Tangent slopes, velocities and growth rates as the questions limits answer.",CUR-CA.1,1,1,merge,Merged with CC 0.1 into the day 1 hook.,,
+CC 1.1,Limit of a function,"Estimate limits from graphs and tables, one-sided limits, and limits that fail to exist.",CUR-CA.1,1,1-4,split,"Four days: approach and notation, review, one-sided limits, failure to exist.",,
+CC 1.2,Limit properties,"Limit laws, algebraic rewriting and the squeeze argument.",CUR-CA.2,1,5-8,split,Rewrites over three days and the squeeze argument on its own day.,,
+CC 1.3,Continuous functions,"Continuity, kinds of discontinuity and the intermediate value theorem.",CUR-CA.3,1,10-12,split,"Definition, a constant chosen for continuity, then the theorem.",,
+CC 1.4,Formal definition of limit,The epsilon-delta definition.,,,,cut,Not a course outcome; offered as unit 1's extension only (day 7).,,
+CC 2.0,Slope of a tangent line,Close in on a tangent slope with secant slopes.,CUR-CA.4,2,15,keep,,,
+CC 2.1,Definition of derivative,"The derivative as a limit, tangent lines, derivatives from tables and graphs, differentiability.",CUR-CA.4,2,16-19,split,"One idea a day, then practice.",,
+CC 2.2,Differentiation formulas,"Sum, constant multiple, power, product and quotient rules and the sine and cosine derivatives.",CUR-CA.5,2,20-22; 25,split,Rules over three days plus an application day.,,
+CC 2.3,More differentiation patterns,"Derivatives of the other trigonometric, exponential and logarithmic functions.",CUR-CA.5,,,cut,"Not adapted: the archive page links this section to a broken address, so no CC BY 3.0 copy is in the store; the newer copy is share-alike, reference only. Its content is taught on ours days 22 and 23 (For the lead).",,
+CC 2.4,Chain rule,Differentiate composite functions.,CUR-CA.6,2,26-27,split,"Teaching day, then practice with every earlier rule.",,
+CC 2.5,Using the chain rule,Derivatives of logarithms and of b to the x through the chain rule.,CUR-CA.5; CUR-CA.6,2,28; 30,split,"ln x on the inverse day, b to the x and log base b on day 30.",,
+CC 2.6,Related rates,Rates of linked changing quantities.,CUR-CA.9,3,41-43,split,"Triangles, containers, then practice of the steps.",,
+CC 2.7,Newton's method,Approximate a root with tangent lines.,,,,cut,Not a course outcome; unit 3's extension only.,,
+CC 2.8,Linear approximation,The tangent line as a local approximation.,CUR-CA.10,3,46,keep,,"yes: moved from the base order; taught after related rates, in unit 3",no: it follows the base order within the chapter
+CC 2.9,Implicit differentiation,Slopes on curves given implicitly; higher derivatives; logarithmic differentiation.,CUR-CA.7,2,31-33,split,"Circles, other curves, then second and higher derivatives; logarithmic differentiation stays an extension.",yes: moved from the base order; moved up beside the chain rule,no: all rules are built in one unit
+CC 3.1,Maximums and minimums,Critical points and extrema on an interval.,CUR-CA.11,4,51-52,split,"Critical points, then the extreme value theorem and the closed interval.",,
+CC 3.2,Mean value theorem,The mean value theorem and its hypotheses.,CUR-CA.11,4,53,keep,,,
+CC 3.3,The first derivative and the shape of f,"Increase, decrease and the first derivative test.",CUR-CA.11,4,54,keep,,,
+CC 3.4,The second derivative and the shape of f,"Concavity, inflection, the second derivative test and linked graphs.",CUR-CA.12,4,55-57,split,"Concavity, the second derivative test, then linked graphs.",,
+CC 3.5,Applied maximums and minimums,Optimization in context.,CUR-CA.13,4,59-60,split,"Method day, then new design settings.",,
+CC 3.6,Asymptotes,"Limits at infinity, infinite limits and asymptotes.",CUR-CA.2,1,9,keep,Limits part only; curve-sketching use is unit 4's extension.,yes: moved from the base order; moved to unit 1,no: limits at infinity belong with the other limits of CUR-CA.2
+CC 3.7,L'Hospital's rule,Indeterminate forms by derivatives.,CUR-CA.10,3,47-48,split,"The two forms, then products and differences rewritten.",yes: moved from the base order; moved before chapter 3's graph sections,no: the tangent line of day 46 explains why the rule works
+CC 4.0,Introduction to integrals,Area and accumulation as a sum of rate times width.,CUR-CA.14,5,66,keep,,,
+CC 4.1,Sigma notation and Riemann sums,"Left, right and midpoint sums in sigma notation.",CUR-CA.14,5,67,keep,,,
+CC 4.2,The definite integral,The integral as a limit of sums.,CUR-CA.14,5,69,merge,Merged with CC 4.3 on day 69.,,
+CC 4.3,Properties of the definite integral,Properties of definite integrals.,CUR-CA.14,5,69,merge,Merged with CC 4.2 on day 69.,,
+CC 4.4,"Areas, integrals and antiderivatives",Accumulation functions and their link to antiderivatives.,CUR-CA.15,5,70,keep,,,
+CC 4.5,The fundamental theorem of calculus,Both parts of the fundamental theorem.,CUR-CA.15,5,71-73,split,"Part one, practice with the chain rule, then part two.",,
+CC 4.6,Finding antiderivatives,Basic antiderivatives and change of variable.,CUR-CA.16,5,75; 77-79,split,"Basic rules, substitution, substitution with limits, practice.",,
+CC 4.7,First applications of definite integrals,"Net change, average value, distance and area between curves.",CUR-CA.21; CUR-CA.22,8,103-105; 108,split,"Accumulation, average value, motion, then area.",yes: moved from the base order; moved to the measuring unit,no: it joins the other uses of the integral after the methods
+CC 4.8,Using tables to find antiderivatives,Read a table of integrals.,CUR-CA.17,6,89,keep,"Printed table only, as the paper path in choosing a method.",yes: moved from the base order; moved to unit 6,no: the table serves the choose-the-method day
+CC 4.9,Approximating definite integrals,Trapezoidal and other numerical sums.,CUR-CA.14,5,68,keep,Trapezoidal sums only; Simpson's rule is an extension.,yes: moved from the base order; placed with the other sums before the definite integral,no: all sums are built before their limit
+CC 5.0,Introduction to applications,Thin slices add up to a whole.,CUR-CA.21,8,103,merge,A short overview merged into the unit 8 hook.,,
+CC 5.1,Volumes,"Volumes by slices, discs and washers.",CUR-CA.23; G-GMD.A.2,8,112-114,split,"Cross sections, discs, washers; the Cavalieri day before it is ours.",,
+CC 5.2,Arc lengths and surface areas,Length of a curve; surface area of revolution.,CUR-CA.24,8,116-117,split,Arc length only; surface area is not a course outcome.,,
+CC 5.3,More work,Work by integration.,,,,cut,Not a course outcome; unit 8's extension only.,,
+CC 5.4,Moments and centers of mass,Moments and centroids.,,,,cut,Not a course outcome (frame For the lead 2).,,
+CC 5.5,Additional applications,Further accumulation contexts.,CUR-CA.21,8,106,keep,"Contexts only, for the collision accumulation day.",,
+CC 6.0,Introduction to differential equations,Equations about rates and checking a solution.,CUR-CA.19,7,94,merge,Merged with CC 6.1 on day 94.,,
+CC 6.1,Differential equation y' = f(x),Solve y' = f(x) with an initial condition.,CUR-CA.19,7,94,merge,Merged with CC 6.0 on day 94.,,
+CC 6.2,Separable differential equations,Separate variables and use an initial condition.,CUR-CA.20,7,98,keep,,,
+CC 6.3,"Growth, decay and cooling","Proportional growth and decay, and cooling.",CUR-CA.20,7,98; 100,split,Growth and decay with separable equations; cooling as a modeling context. Mixing stays an extension.,,
+CC 7.0,Introduction to transcendental functions,Overview of inverse functions to come.,CUR-CA.6,2,28,merge,A short overview merged into the inverse-derivative day.,yes: moved from the base order; moved into unit 2,no: all derivative rules sit in unit 2
+CC 7.1,Inverse functions,Inverse functions and the derivative of an inverse.,CUR-CA.6,2,28,keep,,yes: moved from the base order; moved into unit 2,no: all derivative rules sit in unit 2
+CC 7.2,Inverse trigonometric functions,The inverse trigonometric functions on restricted domains.,CUR-CA.6,2,29,merge,"Retrieval of Precalculus, merged with CC 7.3 on day 29.",yes: moved from the base order; moved into unit 2,no: all derivative rules sit in unit 2
+CC 7.3,Calculus with inverse trigonometric functions,Derivatives and integrals giving inverse trigonometric functions.,CUR-CA.6; CUR-CA.16,2,29; 76,split,"Derivatives on day 29 (unit 2), integrals on day 76 (unit 5).",yes: moved from the base order; split across units 2 and 5,no: each part sits with its own rules
+CC 8.0,Introduction to improper integrals and techniques,Overview of improper integrals and methods.,CUR-CA.18,6,90,merge,Merged into the first improper integral day.,,
+CC 8.1,Improper integrals,Improper integrals of both kinds and convergence.,CUR-CA.18,6,90-91,split,"Unbounded intervals, then unbounded integrands.",yes: moved from the base order; moved after the integration methods,"no: the methods evaluate the improper integrals, and the integral test follows in unit 10"
+CC 8.2,Integration review,Review of antiderivative patterns.,CUR-CA.16,6,85,merge,"The opening of day 85, merged with CC 8.3.",,
+CC 8.3,Integration by parts,Integration by parts and the tabular method.,CUR-CA.17,6,85,merge,Merged with CC 8.2 on day 85.,,
+CC 8.4,Partial fraction decomposition,Partial fractions with distinct linear factors.,CUR-CA.17,6,86,keep,Distinct linear factors only.,,
+CC 8.5,Trigonometric substitution,Trigonometric substitution.,,,,cut,Not in CUR-CA.17; unit 6's extension only.,,
+CC 8.6,Trigonometric integrals,Integrals of powers of sine and cosine.,CUR-CA.17,6,88,keep,Squares of sine and cosine only; higher powers left out.,,
+CC 9.1,Polar coordinates,Polar coordinates and graphs.,CUR-CA.26,9,128,merge,"Retrieval of Precalculus, merged with CC 9.2 on day 128.",yes: moved from the base order; placed after the parametric sections,no: polar slope is read as a parametric curve in theta
+CC 9.2,Calculus with polar coordinates,Polar slopes and polar areas.,CUR-CA.26,9,128-130,split,"Slope, area, area between two curves.",yes: moved from the base order; placed after the parametric sections,no: polar slope is read as a parametric curve in theta
+CC 9.3,Parametric equations,Curves given parametrically.,CUR-CA.25,9,123,merge,"Retrieval of Precalculus, merged with CC 9.4 on day 123.",,
+CC 9.4,Calculus with parametric equations,"Slope, concavity, arc length and distance for parametric curves.",CUR-CA.25,9,123-124; 126,split,"Slope, concavity, then distance and arc length.",,
+CC 9.4.5,Bezier curves,Bezier curves.,,,,cut,Not a course outcome.,,
+CC 9.5,Conic sections,Conic sections.,,,,cut,"Precalculus content (pc-conics), retrieved on day 31; no day only reteaches it.",,
+CC 9.6,Properties of the conic sections,Properties of conics.,,,,cut,Precalculus content; not a course outcome.,,
+CC 10.0,Introduction to sequences and series,Can an infinite sum be finite?,CUR-CA.27,10,133,merge,Merged with CC 10.1 into the unit 10 hook.,,
+CC 10.1,Sequences,Limits of sequences.,CUR-CA.27,10,133,merge,Merged with CC 10.0 on day 133.,,
+CC 10.2,Infinite series,"Series and partial sums, the nth term test.",CUR-CA.27,10,134,merge,Merged with CC 10.3 on day 134.,,
+CC 10.3,Geometric and harmonic series,The geometric and harmonic series.,CUR-CA.27,10,134,merge,Merged with CC 10.2 on day 134.,,
+CC 10.3.5,An interlude,Why tests are needed.,CUR-CA.27,10,135,merge,Merged with CC 10.4 on day 135.,,
+CC 10.4,Integral and p-tests,The integral test and p-series.,CUR-CA.27,10,135,merge,Merged with CC 10.3.5 on day 135.,,
+CC 10.5,Comparison tests,Direct and limit comparison tests.,CUR-CA.27,10,136-137,split,"Teaching day, then practice choosing a test.",,
+CC 10.6,Alternating series,The alternating series test and its error bound.,CUR-CA.28,10,138,keep,,,
+CC 10.7,Absolute convergence and the ratio test,Absolute and conditional convergence; the ratio test.,CUR-CA.28,10,139-140,split,"Absolute against conditional, then the ratio test.",,
+CC 10.8,Power series,Radius and interval of convergence.,CUR-CA.30,11,150-151,split,"Teaching day, then practice with endpoints.",,
+CC 10.9,Representing functions with power series,"New series by substitution, differentiation and integration.",CUR-CA.30,11,153-154,split,"Substitution and powers, then term-by-term calculus.",,
+CC 10.10,Taylor and Maclaurin series,Taylor polynomials and series of the common functions.,CUR-CA.29; CUR-CA.30,11,145; 152,split,"Polynomials on day 145, series on day 152.",yes: moved from the base order; Taylor polynomials moved first in the unit,no: they grow from unit 3's tangent line before series
+CC 10.11,Approximation using Taylor polynomials,Approximation and Taylor's formula with remainder.,CUR-CA.29,11,146-148,split,"Polynomials at a point, approximation, then the Lagrange error bound.",yes: moved from the base order; moved before power series,no: approximation needs no convergence test; the interval of convergence follows
+CC 10.12,Fourier series,Fourier series.,,,,cut,Not a course outcome.,,
+CC 11.0 to 11.7,"Vectors, lines and planes in three dimensions",Vectors and geometry in space.,,,,cut,"Not a course outcome; vectors in the plane are Precalculus (pc-vectors-geometry), retrieved on day 125.",,
+CC 12.0,Introduction to vector-valued functions,Overview of vector-valued functions.,,,,cut,Space-curve overview; the plane case is taught from CC 12.1 and 12.2.,,
+CC 12.1,Vector-valued functions and curves in space,Vector-valued functions and their curves.,CUR-CA.25,9,125,merge,"Plane curves only, merged with CC 12.2 on day 125.",,
+CC 12.2,Derivatives and antiderivatives of vector-valued functions,"Velocity, speed and acceleration vectors; integrating back to position.",CUR-CA.25,9,125-126,split,"Plane motion only: vectors, then position and distance.",yes: moved from the base order; moved before series and into the plane,no: motion in the plane follows unit 8's measuring
+CC 12.3 to 12.4,"Arc length, curvature and coordinates in space","Space curves, curvature, cylindrical and spherical coordinates.",,,,cut,Curvature and three dimensions are not course outcomes.,,
+CC 13 to 15,"Functions of several variables, multiple integrals, vector calculus",Calculus in several variables.,,,,cut,Past single-variable calculus; no Curio Class course teaches it.,,
+CC answers,Odd answers pages,Answers to odd problems.,,,,cut,Curio Class writes its own answer keys.,,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,1,13-14,ours,Unit 1 end-of-unit assessment and respond day.,,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,2,23-24; 34-36,ours,"e to the x and ln x (base CC 2.3 not in the store), rules practice, end-of-unit assessment and respond day.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,3,37-40; 44-45; 49-50,ours,"Rates with units, motion, the related rates modeling task with its revision, end-of-unit assessment and respond day.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,4,58; 61-65,ours,"Linked-graph practice, the design modeling task with its revision, mixed practice, end-of-unit assessment and respond day.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,5,74; 80-81,ours,"Net change from a rate table (base CC 8.7 is not in the archive copy), end-of-unit assessment and respond day.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,6,87; 92-93,ours,"Completing the square in an integrand (no base section), end-of-unit assessment and respond day.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,7,95-97; 99; 101-102,ours,"Slope fields, Euler's method, logistic growth, end-of-unit assessment and respond day.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,8,107; 109-111; 115; 118-119,ours,"The tank modeling task and revision, area with respect to y, the Cavalieri day, volume practice, end-of-unit assessment and respond day.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,9,127; 131-132,ours,"Motion from a table of positions, end-of-unit assessment and respond day.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,10,141-144,ours,"Which-test-and-why, mixed practice, end-of-unit assessment and respond day.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,11,149; 155-157,ours,"Approximation with an error bound, a series-made integral, end-of-unit assessment and respond day.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,5,82-84,ours,"Course-level check 1 and its respond day, after unit 5.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,8,120-122,ours,"Course-level check 2 and its respond day, after unit 8.",,
+ours,Curio Class days,"Days with no base lesson, written by Curio Class.",,11,158-160,ours,"Course-level check 3 and its respond day, after unit 11.",,
