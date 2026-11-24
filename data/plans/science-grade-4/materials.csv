@@ -7,7 +7,7 @@ tape,1,1 2 3 85,classroom,room,Marks and containment.
 table-edge guard,1,1 2 3,classroom,room,Used with catch barrier on floor lane.
 catch barrier,1,1 2 3 7 8 9 11,classroom,room,Stops escaped rolls.
 impact eye protection,1,1 2 3 7 8 9 11,classroom,room,Existing stock for everyone; otherwise use invented record. No purchase decision.
-wipes,1,1 2 3 7 8 9 11 18,classroom,room,Cleaning protection.
+wipes,1,1 2 3 7 8 9 11 18 104 107 108,classroom,room,Cleaning protection.
 storage bags,1,1 2 3 7 8 9 11,classroom,room,Store protection.
 question board,1,1 2 3 4 5 6 7 8 13 16 27 35 57 58 94 97 98 99 103 104,classroom,room,Teacher retains.
 class record book,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15,classroom,room,One marking scale and heard roster.
@@ -177,7 +177,7 @@ two baking trays,59,60 65 71,labeled unit 4 storage; originals in class folder,r
 equal water cups,59,59 60 65 71,labeled unit 4 storage; originals in class folder,room,No milliliter conversion.
 ruler,60,60 65 71,labeled unit 4 storage; originals in class folder,student,Whole-centimeter step; keep beside dry edge.
 catch bucket and spill cloths,59,59 60 61 65 71,labeled unit 4 storage; originals in class folder,room,Settle sediment; solids never down sinks.
-splash goggles,59,59 60 61 65 71,labeled unit 4 storage; originals in class folder,student,All present; clean in five cleanup minutes.
+splash goggles,59,59 60 61 65 71 104 107 108,labeled unit 4 storage; originals in class folder,student,All present; clean in five cleanup minutes.
 soap and running water,59,59 60 61 65 67 68 71,labeled unit 4 storage; originals in class folder,room,Two wet handlers on tray days; stagger pairs during clay work.
 matched clay samples and plastic freezer containers,59,59 61,labeled unit 4 storage; originals in class folder,room,"Adult freezer, loose lids and headspace."
 two secured plastic jars and soft stone pieces,61,61,labeled unit 4 storage; originals in class folder,room,"Wet gentle enclosed abrasion, adult only."
@@ -264,3 +264,4 @@ family.md,94,94,family folder,student,"courses/science-grade-4/u06-1/family.md; 
 inside/outside view cards,104,104 105 106 107 108,unit 6 folder,room,Original enlarged plant-views.svg; outside and inside views kept separate.
 rootless setup drawing,105,105 106 107 108,unit 6 folder,room,Retained cut-flower panel from plant-views.svg; no roots shown.
 complete reason strips,106,106,unit 6 folder,student,"Two complete reasons printed on the student page and copied for matching, no new draft."
+blank exit-box cover,104,104,unit 6 folder,student,Reusable blank paper covers only the held Exit box while Side 2 practice remains visible.
