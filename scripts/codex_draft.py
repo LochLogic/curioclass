@@ -412,7 +412,7 @@ def lane(subj, dry=False):
             if fails_row >= MAX_FAILS:
                 stop_lane(subj, '%d failed jobs in a row (last %s %s)' % (fails_row, num, kind))
                 return
-        if grade_fails > 6 + grade_days // 3:   # shared pieces and plan rows wait for the grade fix job
+        if grade_fails > 10 + grade_days:   # more than about one left per day; the grade fix job clears the rest
             stop_lane(subj, '%s: %d lesson gate failures in %d drafted days' % (course, grade_fails, grade_days))
             return
     log('%s: lane finished' % subj)
