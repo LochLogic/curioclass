@@ -1421,7 +1421,7 @@ s07-X126,Marks sphere and says its picture is flat.,,,M,Assign this letter only 
 s07-X127a,Triangle from its outline.,,,F,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X127b,Traces triangular silhouette and calls whole solid triangle.,,,F,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X128a,Groups both as flat because cylinder has flat ends.,,,O,Assign this letter only when response or observed method shows it; otherwise describe the response.
-s07-X128b,Marks only color as difference.,,,D,Assign this letter only when response or observed method shows it; otherwise describe the response.
+s07-X128b,Marks only color as difference.,,,D,"No color distinction is printed. Error D requires recorded words explicitly citing color; unexplained marks get descriptive notes, never an inferred letter."
 s07-X129,Builds only a flat circle and says whole tube is flat.,,,O,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X130a,Triangle.,,,F,Assign this letter only when response or observed method shows it; otherwise describe the response.
 s07-X130b,In front of the container.,,,E,Assign this letter only when response or observed method shows it; otherwise describe the response.
@@ -1475,3 +1475,21 @@ s07-P124-exitbox-removal,Adds three to eight and records eleven.,,,H,8 - 3 = 5; 
 s07-K126-ten,Leaves eight and one as ten.,,,J,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
 s07-K126-model,Calls tube flat because it lies sideways.,,,A,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
 s07-K126-picture,Calls represented box flat because its drawing is paper.,,,M,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-K127-picture,Calls the represented box flat because the picture is paper.,,,M,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-K127-stack,Calls stack flat because it lies sideways.,,,A,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-K127-face,Calls the whole cube square.,,,B,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-K127-cone,Calls the solid cone triangle from its outline.,,,F,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-P127-pos1,Moves cup to the opposite side of the intended location.,,,x,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-P127-pos2,Moves cup to the opposite side of the intended location.,,,x,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-P127-pos3,Moves cup to the opposite side of the intended location.,,,x,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-P127-pos4,Moves cup to the opposite side of the intended location.,,,x,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-P127-pos5,Moves cup to the opposite side of the intended location.,,,E,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-P127-pos6,Moves cup to the opposite side of the intended location.,,,E,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-K128-cone,Calls cone triangle because of its outline.,,,F,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-K128-cube,Calls whole cube square.,,,B,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-K128-turn,Says it stops being square when turned.,,,C,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-K128-rule,Keeps cube out only because its color differs.,,,D,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-K129-turn,Rejects square name after a turn.,,,C,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-K129-group,Leaves cube out because only its color differs.,,,D,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-K129-frame,Calls whole frame a flat square because its front boundary is square.,,,B,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
+s07-K126-hook,Says every pictured object is flat because it is on paper.,,,M,Assign letter only from observed method or words; otherwise describe response. Immediate feedback; record access separately from mathematical help.
