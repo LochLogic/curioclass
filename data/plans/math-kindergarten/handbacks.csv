@@ -298,3 +298,5 @@ from_day,to_day,what,where,minutes,error,note
 101,102,s05-G101-1 s05-G101-2 s05-G101-3 s05-G101-4,Conferences and centers,0,,Immediate action/model feedback during game; return all annotated quantity marks with the already allocated exit/feedback packet next day. No added repair or oral interview.
 102,103,s05-G102-1 s05-G102-2 s05-G102-3 s05-G102-4,Feedback revision,0,,Immediate action/model feedback during game; return all annotated quantity marks with the already allocated exit/feedback packet next day. No added repair or oral interview.
 103,104,s05-G103-1 s05-G103-2 s05-G103-3 s05-G103-4,Centers,0,,Immediate action/model feedback during game; return all annotated quantity marks with the already allocated exit/feedback packet next day. No added repair or oral interview.
+87,88,s05-K87-count s05-F87-B s05-F87-quantity s05-F87-action,Return and repair,0,,"Return annotated supplied practice in existing feedback packet, no additional repair or oral round."
+88,89,s05-K88-count s05-F88-B s05-F88-quantity s05-F88-action s05-F88-A s05-F88-F,Return and repair,0,,"Return annotated supplied practice in existing feedback packet, no additional repair or oral round."

@@ -1155,11 +1155,6 @@ s06-F2-sw,Equal event spacing replaces elapsed years.,,,C,Predicted response; on
 s06-F2-we,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
 s06-M4u,List feature names without locating them.,,,R,Predicted response; one error only. Shape: Teacher records construction in M4; no additional child prompt.
 s06-P107-1,A response missing the named relationship or source position.,,,X,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P107-2,A response missing the named relationship or source position.,,,X,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P108-1,A response missing the named relationship or source position.,,,K,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P108-2,A response missing the named relationship or source position.,,,K,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P109-1,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
-s06-P109-2,A response missing the named relationship or source position.,,,K,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P110-1,A response missing the named relationship or source position.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P110-2,A response missing the named relationship or source position.,,,M,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P111-1,A response missing the named relationship or source position.,,,C,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
@@ -1210,3 +1205,20 @@ s06-P132-1,A response missing the named relationship or source position.,,,C,Pre
 s06-P132-2,A response missing the named relationship or source position.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P132-3,A response missing the named relationship or source position.,,,R,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
 s06-P132-4,A response missing the named relationship or source position.,,,H,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-R107a,Everyone must like every law.,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-R107b,They said every person already had an equal vote.,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K107-hook,The farm diagram proves real soil quality.,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K107-map,Dated records.,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P107-2,Statehood: a date list alone.,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P107-3,Which picture do I like best?,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-R108-consent,"No, unless everyone likes every decision.",,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-R108-evidence,"A paint sample, because I like its color.",,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K108-1,S3 is a capital and C3 is a state.,,,K,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P108-1,Maine: Boston.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P108-2,S3 marks the capital because the state is larger.,,,K,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-R109-key,S2 marks the capital.,,,K,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-R109-boundary,C9 alone marks the whole state.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K109-dc,State.,,,M,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K109-lookup,Row 1 from the Midwest index.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P109-1,Alabama: Jackson.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P109-2,Illinois: Indianapolis.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
