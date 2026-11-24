@@ -1,14 +1,20 @@
 ---
-piece: blank
+piece: story
 course: math-kindergarten
 unit: 4.5
 stretch: 4
 version: draft, not yet taught
 credit: All ours.
 ---
-# Day 83 A
+# Day 83 teacher transfer-card master
 
-<div style="font-size:18pt">
+Teacher only. Eight alternative picture cards, A to H. Choose one for each child from earlier written feedback. Print only its page; cut on the solid border and hand over only that card at the child's own turn. Children never receive this whole master. Each assigned card fits one side. Keep these full-size pictures and 18-point stems; read the stem aloud exactly. Do not add a key or a worked answer. With no printer, copy only the assigned card onto paper.
+
+<style>.transfer-card { border:1px solid black; padding:0.15in; font-size:18pt; line-height:1.35; } .transfer-card svg { width:100%; height:auto; } .transfer-card p { margin:0.35em 0; } h2 { font-size:18pt; }</style>
+
+<div class="transfer-card" style="font-size:18pt">
+
+<h2>Day 83 A</h2>
 
 Mark each wheel as you count all.
 
@@ -19,9 +25,10 @@ Invented for practice.
 </div>
 
 <div style="page-break-before:always"></div>
-# Day 83 B
 
-<div style="font-size:18pt">
+<div class="transfer-card" style="font-size:18pt">
+
+<h2>Day 83 B</h2>
 
 Enclose all the wheels.
 
@@ -32,9 +39,10 @@ Invented for practice.
 </div>
 
 <div style="page-break-before:always"></div>
-# Day 83 C
 
-<div style="font-size:18pt">
+<div class="transfer-card" style="font-size:18pt">
+
+<h2>Day 83 C</h2>
 
 Show how many wheels stay.
 
@@ -45,9 +53,10 @@ Invented for practice.
 </div>
 
 <div style="page-break-before:always"></div>
-# Day 83 D
 
-<div style="font-size:18pt">
+<div class="transfer-card" style="font-size:18pt">
+
+<h2>Day 83 D</h2>
 
 Join this nine-dot picture to every equation that fits.
 
@@ -60,9 +69,10 @@ Invented for practice.
 </div>
 
 <div style="page-break-before:always"></div>
-# Day 83 E
 
-<div style="font-size:18pt">
+<div class="transfer-card" style="font-size:18pt">
+
+<h2>Day 83 E</h2>
 
 Mark the kites still on the hill.
 
@@ -73,9 +83,10 @@ Invented for practice.
 </div>
 
 <div style="page-break-before:always"></div>
-# Day 83 F
 
-<div style="font-size:18pt">
+<div class="transfer-card" style="font-size:18pt">
+
+<h2>Day 83 F</h2>
 
 Show the tiles after none join.
 
@@ -86,9 +97,10 @@ Invented for practice.
 </div>
 
 <div style="page-break-before:always"></div>
-# Day 83 G
 
-<div style="font-size:18pt">
+<div class="transfer-card" style="font-size:18pt">
+
+<h2>Day 83 G</h2>
 
 Show the tiles after one joins.
 
@@ -99,9 +111,10 @@ Invented for practice.
 </div>
 
 <div style="page-break-before:always"></div>
-# Day 83 H
 
-<div style="font-size:18pt">
+<div class="transfer-card" style="font-size:18pt">
+
+<h2>Day 83 H</h2>
 
 Show both tile groups together.
 
