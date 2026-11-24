@@ -17,10 +17,10 @@ s01-X4a,"Fewer dots, because some of the air went away.",,,I,
 s01-X4b,"Stone 58 g, cutting 2 g, water 86 g.",58|60-58|86,58|2|86,x,read the water from the last scale reading without subtracting
 s01-X4b,"Stone 58 g, cutting 60 g, water 86 g.",58|60|86,58|60|86,x,wrote each running reading as the amount added
 s01-X4b,"Stone 58 g, cutting 60 g, water 26 g.",58|60|86-60,58|60|26,x,wrote the cutting's running reading without subtracting
-s01-E1,"Air is nothing, so nothing is inside the cushion.",,,A,
-s01-E1,Each dot is one grain of the solid that you can see.,,,B,
-s01-E1,"The solid vanished. The water is clear, so nothing is left.",,,C,
-s01-E2,I weighed only the water.,,,D,
+s01-E1,"Air is nothing, so nothing is inside the cushion.",,,A,Assigns no matter to air.
+s01-E1,Each dot is one grain of the solid that you can see.,,,B,Confuses model symbols with visible grains.
+s01-E1,"The solid vanished. The water is clear, so nothing is left.",,,C,Uses visibility to decide existence.
+s01-E2,I weighed only the water.,,,D,Omits the pouch from the complete boundary.
 s01-E2,I read the pouch without zeroing the empty scale first.,,,x,"a scale not zeroed; a weighing procedure gap, not in the register"
 s01-P1-1,"The same. Air is nothing, so it cannot add weight.",,,A,a first idea: gas is assigned no matter
 s01-K1-1,The ball is the same weight.,,,A,the readings are ignored; air is called nothing
@@ -105,3 +105,11 @@ s01-P11-1,Discard the salt holder after stirring.,,,D,Complete apparatus no long
 s01-P11-1,Replace the unstable reading with an expected equal value.,,,x,A prediction replaces retained evidence.
 s01-P11-2,Clear liquid has no salt.,,,C,Visibility is confused with existence.
 s01-P11-2,Draw the endpoint at a value different from the raw record.,,,F,Graph misrepresents its measurement.
+s01-K12-1,The empty holder can leave.,,,D,Omitting apparatus changes the weighed boundary.
+s01-P12-1,Remove any unused supports.,,,D,Changes the complete weighing boundary.
+s01-P13-1,I initialed everyone's actions.,,,x,Claims actions the child did not perform.
+s01-P13-2,I lowered every after bar.,,,F,Replaces recorded values with an expected pattern.
+s01-P14-1,Every fall proves gas escape.,,,G,Treats one reading change as a unique cause.
+s01-P15-1,I circled an unrelated record.,,,x,Selected record does not support the assigned evidence link.
+s01-N17a,They must have different inherited traits.,,,x,"The supplied comparison supports environmental effects, not an inheritance claim."
+s01-N17b,Losing food cannot affect survival.,,,x,"Ignores the specified food dependence; readiness gap, separate from unit 1 errors."

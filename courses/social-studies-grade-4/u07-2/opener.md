@@ -1,0 +1,55 @@
+---
+piece: opener
+audience: teacher
+course: social-studies-grade-4
+unit: 7.2
+version: draft, not yet taught
+credit: Original Curio Class text; factual credits in sources.csv.
+---
+# Section 7.2 opener
+
+## What this section does
+
+Days 142 to 145, forty minutes each. The section plan supplies each part and its minutes.
+Regions hold overlapping communities. Use distinct dates and identities. Exclusion denies targeted people rights; incarceration is confinement that denies freedom. A later source never proves relationships began only then. Use single-date fragments in practice; the exit first introduces paired-date explanations.
+
+## Before class
+
+Print the relevant cards-N file, evidence-sheet, held exit master and teacher-key.
+Keep keys and future exits sealed. The final packet and source appendix stay sealed until 159.
+Cards are original summaries; sources.csv holds URLs and passage locations.
+Use only the specified public facts, never sacred practices or protected images.
+
+## Teaching and response
+
+Use sourcing: who made it, when and why.
+Culture means what people make, do and share. People sharing a culture still differ.
+A supporting question is a smaller question that helps answer the big one.
+Return-and-repair blocks hold one five-minute comparison and one fresh five-minute label task.
+Related errors share that block. More than a third missing a component triggers a whole-class comparison.
+Otherwise meet up to six while others follow written cues. Never name a child as a mistake.
+B: Distinguish choice from force. D: Find terrain and social connections. K: Identify coercion and denied freedom. L: Read identity and political date. V: Read specific community, date and circumstances.
+
+## Supplies and held work
+
+Pencils, paper, folders, locator, question board, source cards and annotation sheets.
+Keep regional records as unscored practice. Unit records are in u07-1.
+Read cards neutrally; allow home-language rehearsal, enlarged print, dictation or a scribe.
+Every short exit is paper. No tool or queue is needed.
+A child may pass public talk. Concurrent pair turns take one minute per partner.
+Never budget a thirty-child oral round in four minutes.
+
+## Safety and other rooms
+
+All constructed cases and children are made up; say this before reading them.
+No private home, family, money, religion, body or immigration report is requested.
+No rescue tasks, disaster reenactments, frightening media, purchases or required external contact.
+A student aged 18 or older receives the family note and chooses leave-out options personally.
+School rules still apply. Paper investigation is always available.
+With no printer, copy the short card labels and provide plain response paper.
+At home, an adult reads sources and gives private feedback to one child.
+No visitor, photo or live page is required; local sources have printed fallbacks.
+
+## Word supports
+
+Migration means movement to live elsewhere. Exclusion denies a targeted group entry or rights. Incarceration means confinement that denies freedom. Naturalization is a legal process for becoming a citizen. These labels describe records, never a child or family in this room.
