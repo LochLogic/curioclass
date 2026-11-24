@@ -9,11 +9,11 @@ catch barrier,1,1 2 3 7 8 9 11,classroom,room,Stops escaped rolls.
 impact eye protection,1,1 2 3 7 8 9 11,classroom,room,Existing stock for everyone; otherwise use invented record. No purchase decision.
 wipes,1,1 2 3 7 8 9 11 18,classroom,room,Cleaning protection.
 storage bags,1,1 2 3 7 8 9 11,classroom,room,Store protection.
-question board,1,1 2 3 4 5 6 7 8 13 16 27 35 57 58,classroom,room,Teacher retains.
+question board,1,1 2 3 4 5 6 7 8 13 16 27 35 57 58 94 97 98,classroom,room,Teacher retains.
 class record book,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15,classroom,room,One marking scale and heard roster.
 Ramp record R,1,1 2 3 4 5 6 7 13 15,classroom,room,Invented fallback; never mixed with measured observations.
-pencil,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93,classroom,student,Also stationary demonstration on day 4.
-folder,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35,classroom,student,Retain records after feedback.
+pencil,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98,classroom,student,Also stationary demonstration on day 4.
+folder,1,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 94,classroom,student,Retain records after feedback.
 Car record C,7,7 8 9 10 11,classroom,room,Named in day materials; invented records labeled.
 toy cars,7,7 8 9 11,classroom,room,Named in day materials; invented records labeled.
 wooden blocks,7,7 8 9 11,classroom,room,Named in day materials; invented records labeled.
@@ -229,7 +229,7 @@ portfolio and feedback sheet,88,88 90 92 93,unit 5 folder,student,"Collect 88, f
 warning interval and coverage strips,89,89 90 91,unit 5 folder,pair,Three plus five interval separate from delivery audit.
 reserved assessment packet,92,92 93,unit 5 folder,student,"Hide until Launch, K/L/M and compact trials; teacher key separate."
 parallel repair packets,78,78 79 80 81 82 83 84 85 86 87 88 89 90 91 93,unit 5 folder,student,"Taught cases only; four routes day 93, at most two moves each."
-next-unit readiness sheet,93,93,unit 5 folder,student,"Four minutes each plus two collection, no student answers."
+next-unit readiness sheet,93,93 95 96,unit 5 folder,student,"courses/science-grade-4/u05-4/next-readiness.md; actual s05-R93a and s05-R93b on day 93 Side 2, returned with feedback on days 95 and 96. No duplicate parallel readiness check."
 section 5.1 reserved half-slip exits,77,77 78 79 80 81 82,unit 5 folder,student,"Only the current day is revealed. Days 77, 78, 79, 80 and 82: one-item half slip plus covered student-page diagram/Exit box. Day 81: one half-slip item. Exact stems; no keys on student print. Old two-question masters are not printed."
 section 5.2 reserved half-slip exits,83,83 84 85,unit 5 folder,student,Only current day printed; exact stems resolved from items.csv; no student keys.
 section 5.3 reserved half-slip exits,86,86 87 88,unit 5 folder,student,Only current day printed; exact stems resolved from items.csv; no student keys.
@@ -238,12 +238,11 @@ unit 5 assessment record,92,92 93,private teacher folder,room,One 2/1/0 componen
 volcano record T,80,80,"student page, then unit 5 folder",student,"Invented larger-event record, years J to K; two ocean volcanoes, no continental chain or isolated exception."
 three source-label slips,82,82,unit 5 folder,student,Use the three source labels from the student table; paper labels replace cut slips.
 improvement labels,88,88,unit 5 folder,student,"Separate observed failure and proposed effect, before independent portfolio."
-unit 6 readiness sheet,93,93 95 96,unit 6 folder,student,u06-1/readiness.md and readiness-key.md; final ten minutes of 93.
-cat picture sequence,94,94 97 98 113,unit 6 folder,room,u06-1/cat-sequence.md and cat-sequence.svg; original invented scenes.
-light condition sheet and Light L,95,95 96 97 98,unit 6 folder,student,"u06-1/light-record.md; actual first, then labeled invented L after failure/no kit."
+cat picture sequence,94,94 97 98 113,unit 6 folder,room,"courses/science-grade-4/u06-1/cat-sequence.md; original invented scenes, with the adjacent cat-sequence.svg picture."
+light condition sheet and Light L,95,95 96 97 98,unit 6 folder,student,"courses/science-grade-4/u06-1/light-record.md; actual first, then labeled invented L after failure or no kit."
 light-box apparatus,95,95,adult storage,room,"Box, flashlight, toy, opaque card; six three-minute visits plus transitions; adult controls source, aisles lit."
-mirror segment cards and apparatus,96,96,adult storage,room,"u06-1/mirror-segments.md; acrylic mirrors, flashlight/screens; six two-minute visits plus three setup minutes; paper fallback."
-role and input cards,95,95 96 99 100 101 102 103,unit 6 folder,group,"u06-2/role-cards.md; only eye/ear inputs on 95, brain withheld until 99."
+mirror segment cards and apparatus,96,96,adult storage,room,"courses/science-grade-4/u06-1/mirror-segments.md; acrylic mirrors, flashlight and screens. Six two-minute visits plus three setup minutes; paper fallback."
+role and input cards,95,95 96 99 100 101 102 103,unit 6 folder,group,"courses/science-grade-4/u06-2/role-cards.md; only eye and ear inputs on 95 and 96, brain withheld until 99."
 protected catch station,100,100,adult storage,room,"Soft ruler/mat, clear enclosure, two impact goggles, cleaning/drying supplies; six three-minute groups. Failed protection uses Catch C."
 catch sheet and Catch C,100,100,unit 6 folder,student,"u06-2/catch-record.md; ones, no time/distance."
 signal cards and tally sheet,101,101,unit 6 folder,group,"u06-2/signal-record.md; square/circle, exact five-cue rounds, invented S fallback."
@@ -261,3 +260,4 @@ unit 6 private assessment key and component record,115,115 116 117,unit 6 folder
 unit 6 repair cards and second color,117,117,unit 6 folder,student,"u06-5/repair-cards.md; simultaneous groups, teacher verifies during revision. Fresh route never rehearsed. Print u06-5/routed-117.md one assigned Exit box route per child."
 held exit diagram sheets,112,112 113,teacher-held unit 6 folder,student,u06-4/exit-112.md and u06-5/exit-113.md with original SVG diagrams. Withhold each case until its own exit.
 wooden block and flashlight,98,98,adult storage,room,"Lit patch only, ambient light remains. Adult handles flashlight below eyes; invented L if unclear."
+family.md,94,94,family folder,student,"courses/science-grade-4/u06-1/family.md; unit 6 family note, sent on day 94."
