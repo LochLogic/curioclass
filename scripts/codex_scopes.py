@@ -8,7 +8,7 @@ reconciles the three courses that have older work, and gives each a first read. 
     python -X utf8 scripts/codex_scopes.py --dry           print the plan, start nothing
     python -X utf8 scripts/codex_scopes.py --status        what is done, from the disk
 
-Start Menu or double-click: scripts\Start-Codex-Scopes.bat. To stop gently, create S:\CurioClass-codex\_scopes\STOP:
+Start Menu or double-click: scripts\Start-Codex-Scopes.bat. To stop gently, create S:\CurioClass\_scopes\STOP:
 nothing new starts, running jobs finish. Closing the window stops everything. Run it again any time: it picks up where
 it stopped, because what is done comes from the disk:
 
@@ -20,7 +20,7 @@ Each course is one chain, write, then reconcile where there is older work, then 
 that course (logged), never the run. Order: science, ELA, math (math last). New starts stop when the weekly Codex
 budget is at or below --min-remaining percent (default 8; Cory 2026-11-06: never hit 0) or when a usage limit shows.
 Writers and readers are blind to the older work; only the reconciler opens it.
-Logs: S:\CurioClass-codex\_scopes\summary.txt and one log per job beside it. No git: the lead commits after.
+Logs: S:\CurioClass\_scopes\summary.txt (git-ignored) and one log per job beside it. No git: the lead commits after.
 
 The fix pass (added 2026-11-15, after the Claude expert reads): `--fix` runs one job per course instead, the brief
 docs/pipeline/briefs/sequence-fix.md with the lead calls in docs/reviews/sequence-lead-calls-2026-11-15.md. A course is
@@ -36,7 +36,7 @@ from concurrent.futures import ThreadPoolExecutor
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'scripts'))
 PY = [sys.executable, '-X', 'utf8']
-RUN = r'S:\CurioClass-codex\_scopes'
+RUN = os.path.join(ROOT, '_scopes')   # was S:\CurioClass-codex\_scopes until 2026-11-25
 STOP = os.path.join(RUN, 'STOP')
 STAGGER = 120
 LIMIT_WORDS = ('usage limit', 'rate limit', 'rate_limit', 'insufficient_quota', 'try again at', 'upgrade to')
@@ -100,8 +100,8 @@ def written(course):
 
 def budget():
     try:
-        import codex_runner
-        return codex_runner.codex_remaining()
+        import codex_budget
+        return codex_budget.codex_remaining()
     except Exception:
         return None
 

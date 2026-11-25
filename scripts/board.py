@@ -23,7 +23,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 TOOLS = ROOT / 'tools'
-CODEX = ROOT.parent / 'CurioClass-codex' / 'tools'  # Codex's shared checkout (docs/agents/CODEX.md)
 sys.path.insert(0, str(ROOT / 'scripts'))
 from voice import clip_name  # noqa: E402
 
@@ -71,8 +70,6 @@ def row(tid):
         st = 'spec'
     else:
         st = 'concept'
-    if st in ('concept', 'spec') and (CODEX / tid / 'codex-report.md').exists():  # built in Codex's checkout, not pulled
-        st = 'selfcheck' if (CODEX / tid / 'codex-review.md').exists() else 'build'
     return {'stage': st, 'art': f'{a}/{an}' if an else '-', 'voice': f'{v}/{vn}' if vn else '-',
             'verify': 'PASS' if 'PASS' in verdict else ('FIX' if verdict else ''), 'plan': 'yes' if (f / 'plan.md').exists() else '',
             'sub': 'yes' if (f / 'exit.md').exists() else ''}

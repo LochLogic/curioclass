@@ -1,5 +1,11 @@
 # Codex as builder
 
+**2026-11-25 (consolidation step 3.2): the paste queue (codex_queue.py), the runner (codex_runner.py, Start Menu
+"Codex Queue") and the shared checkout S:\CurioClass-codex are retired and archived** (S:\CurioClass-archive, INDEX.csv;
+also in git history and the tag archive/codex-queue). Tool work comes back after the curriculum with the setup step 4
+settles; until then the parts of this page about the queue, the runner and the shared checkout are history. The
+budget reader lives on in scripts/codex_budget.py.
+
 **2026-11-04 (Cory): Codex is the primary builder and the phase 1 reviewer** (the cold CODEX-REVIEW.md pass in a new
 chat); Claude's Refine lenses come after. The pilot notes below are history.
 
