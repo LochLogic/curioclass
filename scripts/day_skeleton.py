@@ -78,7 +78,7 @@ def section_lines(blk, pattern):
 
 KIND_MEANS = {   # docs/GLOSSARY.md day kinds, as the sample reads asked them printed (math grade 2 unit 3)
     'Understanding': 'meets new content: the goal is taught here, from a hook and a worked example',
-    'Fluency': 'practises what earlier days taught until it comes easily; no new content is taught and no writing is drafted, revised or edited',
+    'Fluency': 'practices what earlier days taught until it comes easily; no new content is taught and no writing is drafted, revised or edited',
     'Application': 'applies taught work to a new task or case (an inquiry, a lab, a draft, a revision or edit); nothing is taught as new',
     'Check': 'an assessment day: its items sample only what earlier days taught',
     'Respond': 'acts on an assessment: reteach and revise what the checks showed, from the work students handed in',
@@ -218,7 +218,7 @@ def skill_lines(r, prog, cg):
             how = 'readiness check' if r['assess'] == 'readiness' else 'review (retrieval)'
             out.append('- %s (grade %s): earlier-grade row, %s here, not taught as new' % (s, p['grade'], how))
         else:
-            out.append('- %s (grade %s): taught or practised here' % (s, p['grade']))
+            out.append('- %s (grade %s): taught or practiced here' % (s, p['grade']))
     return out
 
 
@@ -579,7 +579,7 @@ def self_test():
     check('a begun (~) code keeps its mark and finds its statement', '**~MS-PS4-2:** (begun here' in t6 and 'no own-word line' not in t6.split('**~MS-PS4-2:**')[1].split('\n')[0])
     m5 = next((int(r['day']) for r in u.days_rows('math-grade-5') if r['stretch'] == '2'), 1)
     t5 = build('math-grade-5', m5)
-    check('earlier-grade skills are review, not the day\'s own', all('taught or practised' not in ln for ln in t5.splitlines() if '(grade 4)' in ln))
+    check('earlier-grade skills are review, not the day\'s own', all('taught or practiced' not in ln for ln in t5.splitlines() if '(grade 4)' in ln))
     check('the day kind is explained', '- what the kind means: ' in a)
     # findings built in 2026-11-16, on a copy of the social studies probe section's data with planted faults
     import csv as _csv

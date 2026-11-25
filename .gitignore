@@ -44,3 +44,7 @@ tools/*/pipeline/raw/
 
 # the Desk snapshot copies its cards and answers; rebuilt on every refresh (desk/README.md)
 desk/snap.json
+
+# day and section skeletons are working files rebuilt from data by day_skeleton.py and section_skeleton.py (consolidation 4.E)
+docs/courses/*/day-skeletons/
+docs/courses/*/section-skeletons/
