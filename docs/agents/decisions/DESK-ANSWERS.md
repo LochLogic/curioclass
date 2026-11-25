@@ -1929,3 +1929,8 @@ course_pages.py and course_status.py stop leaning on it (docs/CONSOLIDATION-PLAN
   pause point and a Fable review first: tag `pause-4e`, docs/reviews/consolidation/pause-4e-review.md, folded in as
   plan draft 6, sub-step 4.E2 (plan decision 10). Hand edits found inside the blocks get one of three outcomes
   (back-port to data, move to prose, discard) before anything is removed.
+- **Skel hand edits** (Desk card q-skel-hand-1, 4.E2 step 2: 1,841 writer-typed lines in 34 groups): Cory, "consider
+  use of previous work but act in the best interest of the end product." Each line is judged on merit, not by a
+  blanket rule: where the writer's version is better than data, it goes into data (back-port); where data is better,
+  data wins; judgment moves to prose; order confirmations and other notes with no use to a teacher are dropped.
+  Claude reads the check lines and the wording changes and records each verdict in hand-list.csv.
