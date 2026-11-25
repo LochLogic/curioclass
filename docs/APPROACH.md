@@ -52,6 +52,33 @@ English (Common Core State Standards for Mathematics, introduction). Each subjec
 own standards from its own standards document. So the order of the year, how each idea is taught, the practice,
 the checks and the supports are our choices, and this page and the subject pages are where they are explained.
 
+### Which standards: national, not federal (from the Phase 1 scope, 2026-10-22)
+
+There are no federal K-12 content standards. Federal law (ESSA, and earlier the Department of Education Organization Act) bars the federal government from setting curriculum, and each state adopts its own standards. The highest level that exists is the **national consensus framework** for each subject, written by states, teachers or professional associations. Most state standards are adopted from or modeled on these. That is our alignment target everywhere, which keeps us from tying the site to any one state.
+
+Where a subject has no national framework (Precalculus, Statistics, Calculus), the top level is the College Board AP course framework, which every state recognizes.
+
+| Subject | Framework (version) | Code level in our data | Example | Verified against |
+|---|---|---|---|---|
+| Math | Common Core State Standards for Mathematics (2010) | cluster | `3.NF.A`, `A-REI.B.4` | Cluster list per grade and domain from corestandards.org (from memory, spot-checked) |
+| ELA | Common Core ELA (2010) | standard | `RL.4.2`, `RF.K.1` | Strand rules: RL/RI/W 1-10, SL/L 1-6, RF only K-5 (RF.1-2 only K-1), no RL.8 |
+| Science | NGSS (2013) | performance expectation | `MS-PS1-4` | Every PE code in the official NGSS All-DCI PDF (exact match) |
+| Social Studies | C3 Framework (2013, rev. 2017) | Dimension 2 indicator | `D2.His.14.6-8` | Indicator list from the official C3 PDF |
+| Arts | National Core Arts Standards (2014) | discipline + anchor | `VA:Cr2`, `MU:Re7` | 11 anchors x 5 disciplines |
+| Health | National Health Education Standards (3rd ed., 2024) | standard 1-8 | `NHES.S3` | SHAPE America 2024 release |
+| PE | SHAPE America National PE Standards (2024) | standard 1-4 | `SHAPE.S2` | 2024 release (cut from 5 to 4 standards) |
+| Computer Science | **2026 CSTA PK-12 CS Standards** (released July 2026) | standard | `E3-PRO-VD-06`, `MS-SYS-NT-34` | All 196 identifiers extracted from the official 2026 PDF |
+| World Languages | ACTFL Proficiency Guidelines; World-Readiness Standards | level / goal area | `ACTFL.Novice Mid`, `WRS.Cultures` | Closed list |
+| CTE | Advance CTE Modernized Career Clusters (2024, 14 clusters) | framework | `CTE.Career Clusters` | 2024 framework (replaced 16 clusters) |
+| Personal Finance | National Standards for Personal Financial Education (2021) | standard area | `NSPFE.Managing Credit` | 6 areas |
+| Psychology | APA National Standards for HS Psychology | pillar | `APA.Cognition` | Pillar names |
+| SEL | CASEL framework | competency | `CASEL.Self-Management` | 5 competencies |
+| English learners | WIDA ELD Standards Framework (2020) | standard + key language use | `WIDA.ELD-4`, `WIDA.Argue` | 5 standards, 4 key language uses |
+| Library / research | AASL National School Library Standards (2018) | shared foundation | `AASL.Curate` | 6 foundations |
+| Precalc / Stats / Calc | College Board AP course frameworks | unit | `AP-STAT.U5` | Unit numbers |
+
+`scripts/standards.py` holds every registry, and the build fails on any code that is not real. A check proves a code exists and sits in the right grade band; best fit is a judgment for the subject pages and the reads.
+
 ## The principles
 
 They follow the order of a unit: plan, teach, practise, check, and then two that run through all of it.

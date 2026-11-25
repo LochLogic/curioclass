@@ -154,7 +154,7 @@ The limits below are for commands and checks. They are never a reason to cut the
 2. `tools/<id>/spec.md`, every line, before you write anything. It is the source of truth. Build what it says, nothing more.
 3. `docs/agents/BUILD.md`, all of it, including its wave lessons. Those are the repeat review findings, so each one is a
    check you must do. It lists the files to make.
-4. `docs/agents/decisions/BASELINE.md`, `docs/TOOL-CONTRACT.md`, `docs/KIT.md` (above all "Voice: Curio.voice"), `docs/POLISH.md`
+4. `docs/agents/decisions/BASELINE.md`, `docs/TOOL-CONTRACT.md`, `docs/KIT.md` (above all "Voice: Curio.voice"), the Polish checklist in `docs/TOOL-CONTRACT.md`
    and `docs/ART.md`.
 5. `kit/starter/src.html`: start from a copy. Skim `kit/curio.js` and `kit/curio.css`, and use them instead of re-implementing anything.
 6. If the spec names a family: `docs/families/<family>.md` and its engine file, in full. Use the engine, do not rewrite it.
@@ -185,7 +185,7 @@ As BUILD.md lists: `src.html`, `tool.draft.json` (`"stage": "built"`), `notes.md
    of `scripts/drive.py` gives the shots format. Use held clicks (`"hold": 0.12`) for anything with voice and real drags
    for dragging. There must be no console errors, warnings or exceptions.
 3. 375 wide: `python scripts/drive.py <id> --host 8795` in the background, then shots at `http://127.0.0.1:8795/host.html?w=375&h=812`.
-4. Cover every STANDARDS size, every mode, each extreme in POLISH.md, Motion off, a grayscale frame and a keyboard-only run.
+4. Cover every STANDARDS size, every mode, each extreme in the Polish checklist (TOOL-CONTRACT.md), Motion off, a grayscale frame and a keyboard-only run.
 5. Open and look at every PNG you shot. Fix overlaps, clipping, unreadable text and any "Done when" that fails.
 6. Voice: walk the main path the welcome describes, in its order and with the default settings (if the welcome says to
    turn something on first, do that first), at a 2 s tap pace with held clicks. Read `__tool.vlog` and check the STANDARDS

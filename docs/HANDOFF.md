@@ -84,6 +84,37 @@ The main session pulls first (`git pull -q --rebase origin main`), pushes with `
 commits only its own files and never edits in another session's folder. A background agent editing files blocks
 `pull --rebase`: commit after it finishes. "Bypassed rule violations" on main is normal.
 
+## Doc map: which doc owns what
+
+Each rule lives in one doc. Dated reports go in docs/reviews/; retired docs are in S:\CurioClass-archive (INDEX.csv).
+
+| Doc | Owns |
+|---|---|
+| AGENTS.md | Rules for every worker: commits, turns, the folders, house style |
+| docs/HANDOFF.md | Current state, next steps, standing facts, this map |
+| docs/VISION.md | The north star, the pillars, how the site talks, what we will not do |
+| docs/FOUNDATION.md | Purpose, who it is for, the promises, the bar, how work is checked |
+| docs/ROADMAP.md | The one plan: tracks and their status |
+| docs/PRODUCTION-PATH.md | How courses are built, layer by layer (progressions, scopes, units, days) |
+| docs/COURSE-RUN.md, docs/pipeline/ | Running a course through the pipeline; the pipeline kit and guide |
+| docs/APPROACH.md, APPROACH-MATH/ELA.md | How Curio Class teaches; which standards and why; per-subject approach |
+| docs/APPROACH-SOURCES.md | The sources behind the approach and their access notes |
+| docs/ADOPTION-BAR.md, ADOPTION-BAR-SUBJECTS.md | The adoption bar and each subject's standing against it |
+| docs/RUBRIC-*.md | The rubrics the reads score against |
+| docs/GLOSSARY.md | Our words for our things |
+| docs/agents/decisions/BASELINE.md, DESK-ANSWERS.md | Cory's standing calls; the append-only decision log |
+| docs/COURSES-STATUS.md, docs/BUILD-BOARD.md | Generated status (course_status.py, board.py); never edit by hand |
+| docs/SITE.md, docs/SITE-DESIGN.md | How today's site is built; where the site design is going |
+| docs/SUPPLY-CLOSET-PLAN.md | The Supply Closet shelves, Break Box included |
+| docs/WORKSHEETS-PLAN.md, docs/LIBRARY-PLAN.md, docs/GAMES.md | Worksheets; the Reading Room; Recess |
+| docs/ECOSYSTEM.md | How the shelves hang together |
+| docs/CURIOSITIES.md, docs/LESSON-PLANS.md | Curiosities (the second shape); tool lesson plans |
+| docs/TOOL-CONTRACT.md | What every tool must do, and the Polish checklist |
+| docs/KIT.md, docs/families/, docs/ART.md | The shared kit, family engines, the art pipeline |
+| docs/BUILD-PLAN.md, docs/TOOL-BINS.md | Tool build waves; the tool bins (generated; the tool catalog is frozen) |
+| docs/agents/*.md | Briefs for each agent role (SPEC, BUILD, REFINE, CODEX-*, DAY-WRITER and others) |
+| docs/CONSOLIDATION-PLAN.md | The consolidation, steps 0 to 6 (reports in docs/reviews/consolidation/) |
+
 ## Standing facts
 
 - 120 courses (118 active, 2 world languages shelved); 58 in the four core subjects (52 flagged core plus 6

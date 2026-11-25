@@ -7,7 +7,7 @@ If the spec is wrong or impossible, stop and report it rather than improvising.
 
 0. `docs/agents/STANDARDS.md`: standing rules (variety, sizes, voice behavior, testing, art). It wins over this brief.
 1. `tools/<tool-id>/spec.md`: everything you build.
-2. `docs/TOOL-CONTRACT.md`, `docs/KIT.md`, `docs/POLISH.md`.
+2. `docs/TOOL-CONTRACT.md` (with its Polish checklist), `docs/KIT.md`.
 3. `kit/starter/src.html`: start from a copy of it.
 4. If the spec names a family engine: `docs/families/<family>.md` and the engine file it points to.
 5. One approved tool close to this one in grade and format, as the quality bar (`python scripts/neighbors.py <id>`
@@ -39,7 +39,7 @@ If the spec is wrong or impossible, stop and report it rather than improvising.
 - One file, no network requests, 2 MB as the goal (over 6 MB needs a `Size:` reason in notes.md). All shapes, charts and diagrams drawn in SVG or canvas.
 - Use the kit for motion, sound, speech, chimes and fitting the stage. Never re-implement them.
 - Images use `art:<name>` tokens only for names in prompts.json. Draft builds show labeled placeholders.
-- Pace for a teacher reading aloud (POLISH.md). Calm mode removes movement, never time.
+- Pace for a teacher reading aloud (TOOL-CONTRACT.md, Polish). Calm mode removes movement, never time.
 - Accessible: keyboard, visible focus, 44 px targets (60 px for K-2), never color alone.
 - Facts only from the spec's Sources. No em dashes. "Curio Class", never "Curio" alone.
 

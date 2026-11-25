@@ -153,7 +153,7 @@ what it pulls from the closet (docs/ECOSYSTEM.md). In order:
 3. **Teacher-guide links, part 2** (tool pages and lesson plans link to their topic's Word Wall, chart and games).
    Travels with item 2.
 4. **The topic kit and Sub Day lite.** Waits to see how fast charts arrive.
-5. **Break Box** (docs/BREAK-BOX-PLAN.md): 390 sheets on the shelf since 2026-11-03. Open: Cory's read, Spanish,
+5. **Break Box** (docs/SUPPLY-CLOSET-PLAN.md, Break Box): 390 sheets on the shelf since 2026-11-03. Open: Cory's read, Spanish,
    the plan's extras.
 6. **Worksheets** (docs/WORKSHEETS-PLAN.md): 1,108 built (wave 2 finished 2026-11-24: its last 100 sheets were found on a branch in
    consolidation step 1, and 19 rows the 2026-11-04 trim had cut under them were restored). Open: Cory's read of the

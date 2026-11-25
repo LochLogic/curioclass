@@ -369,7 +369,7 @@ for g in games.values():
     g['tools'] = [t for mid in g['module_ids'] for t in by_module[mid] if t['built']]
     for mid in g['module_ids']:
         games_by_module[mid].append(g)
-# Break Box (docs/BREAK-BOX-PLAN.md): projects for a school break, one printed sheet each; a bad sheet stops a closet build
+# Break Box (docs/SUPPLY-CLOSET-PLAN.md, Break Box): projects for a school break, one printed sheet each; a bad sheet stops a closet build
 breaks = check_breaks.load() if CLOSET_LIVE else {}
 _bad = [p for b in breaks.values() for p in check_breaks.problems(b)] + check_breaks.grade_problems(breaks)
 if _bad:

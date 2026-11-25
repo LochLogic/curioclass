@@ -20,7 +20,7 @@ the ports your prompt names, and keep the tool folder tidy.
 
 ## 1. Look, before you read what the builder said
 
-Read `docs/agents/STANDARDS.md`, `docs/agents/decisions/BASELINE.md`, `tools/<id>/spec.md`, `docs/POLISH.md`, then in
+Read `docs/agents/STANDARDS.md`, `docs/agents/decisions/BASELINE.md`, `tools/<id>/spec.md`, the Polish checklist in `docs/TOOL-CONTRACT.md`, then in
 `docs/agents/REFINE.md` the three lenses (Teaching, Play, Craft) and how a lens reports, and in `docs/agents/BUILD.md`
 the wave lessons. Then bundle (`$env:CURIO_DRAFT=1; python scripts/bundle_tool.py <id>`) and play the whole tool once as
 a student of that grade, using `scripts/drive.py` as CODEX-BUILD.md shows.
@@ -38,7 +38,7 @@ Walk all three lenses, as written in REFINE.md, plus these. Open the frames and 
 - **Graphics.** Look at every image at its final size, and hold the scenes to the Graphics list in CODEX-BUILD.md. Is the
   set one style? Is any picture untrue to what the tool teaches? Is a person missing where the scene needs one (a classroom, a job, a family), or drawn with a stereotype? Is every people image marked `"people": true`? Is any image in
   `art:<name>` still missing that could be made?
-- **Craft.** Every STANDARDS size, Motion off, grayscale, keyboard only, the voice checks, every extreme in POLISH.md.
+- **Craft.** Every STANDARDS size, Motion off, grayscale, keyboard only, the voice checks, every extreme in the Polish checklist (TOOL-CONTRACT.md).
 
 - **Break it.** For every score, meter, check, quiz, reflection gate or "you got it" moment, write down the cheapest way
   to pass without the skill (a tap rhythm with pauses, sweeping a slider end to end, every option in turn, reading a

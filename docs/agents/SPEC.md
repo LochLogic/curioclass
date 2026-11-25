@@ -8,7 +8,7 @@ must stand on its own: anything not in the spec will not be in the tool.
 0. `docs/agents/STANDARDS.md`: standing rules (variety, sizes, voice, art). It wins over this brief. Then
    `docs/agents/decisions/BASELINE.md` (Cory's standing calls) and `docs/VISION.md`.
 1. `python scripts/neighbors.py <tool-id>`: the concept, module, standards, format, family siblings and nearby tools.
-2. `docs/PHASE2-CONCEPTS.md` sections "Variety", "Content guardrails" and "Not a quiz bank".
+2. The section "From the Phase 2 concepts" below: Variety, Content guardrails and Not a quiz bank.
 3. `docs/TOOL-CONTRACT.md` and `docs/KIT.md` (what every tool already gets for free).
 4. If the tool has a family: `docs/families/<family>.md`. Use its engine; do not invent a second one.
 5. Two approved tools as the quality bar: `tools/calm-corner/src.html` (K-2, teacher-led) and
@@ -16,6 +16,30 @@ must stand on its own: anything not in the spec will not be in the tool.
 6. Research the tool's sources from scratch. (The Gemini Flash research packets of 2026-11-09 were archived
    2026-11-24: half their quotes were not on the cited page.) Sara wrote every remaining spec
    (`docs/agents/claims/sara.txt`, done 2026-11-10); new ideas get specs only when Cory asks.
+
+## From the Phase 2 concepts (2026-10-23; moved here 2026-11-25)
+
+### Variety: not cookie-cutter
+
+Every tool is professional, but each subject mixes play styles. The checker enforces this:
+- **No format above 25% of any subject.**
+- **Each subject uses at least 8 formats** (or all of them, if it has fewer than 8 modules).
+- **No three tools in a row with the same format** within a grade.
+- **No duplicate titles.** Every tool has its own name and personality.
+
+### Content guardrails written into the concepts
+
+- **K-2 is teacher led.** Every K-2 tool, whatever its format, is designed to be driven on a projector or smartboard by the teacher while the class responds.
+- **Hard history is never gamified.** Slavery, the Holocaust and Native removal use Explorer formats with primary sources, testimony and teacher guidance. No points, timers or win states.
+- **Literature uses public-domain texts** (or our own original writing) so tools can be free and shareable.
+- **ASL tools use video by Deaf signers** and are reviewed by Deaf educators before release.
+- **Health topics** (growing up, substance use, mental health) are configurable to district policy and link to support resources.
+- **No student data leaves the device.** Recording, journaling and question-box tools store only in the browser.
+- **Finance tools are educational only.** They use historical index data, never picks or advice.
+
+### Not a quiz bank (Cory, 2026-10-23)
+
+Curio Class is a cabinet of things to explore, not a test bank. Like the Elements Inspector, many tools have no score, quiz or right answer at all. They're just good to look at, poke and talk about. When a tool does have a challenge, it stays optional (Practice/Challenge), never the point. When building any tool, ask "would a kid click around this with no instructions?" before "how do we score it?"
 
 ## Rules
 

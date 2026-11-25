@@ -39,7 +39,7 @@ check gets a fresh run on the polished bundle the same way.
    reveal, and the notes say what the unit adds; it claims no "solve", "write", "compute" or "prove" code.
 2. Every "Done when" in the spec, tested.
 3. Facts: every number, date and claim on screen or in notes matches the spec's Sources. Recompute numbers yourself.
-4. Nothing gives an answer away in a predict, quiz or hidden-information mode (POLISH, Games and quizzes).
+4. Nothing gives an answer away in a predict, quiz or hidden-information mode (TOOL-CONTRACT Polish, Games and quizzes).
 5. Language is plain and right for the grade; teacher notes name sensitive topics the standards cover (rule 8).
    What it teaches, Key skills and Support at home are true of this tool, not of the topic in general, and the home
    ideas are ones a family could really do tonight.
@@ -53,7 +53,7 @@ check gets a fresh run on the polished bundle the same way.
    clipping, text over art, unreadable sizes, placeholder art in odd spots.
 2. The defaults work for a solo student: the first screen says what to do, every waiting moment names the next
    action and the control (spoken once, then hint only).
-3. POLISH.md, all of it: pacing for reading aloud, calm mode keeps time, anything shown twice matches, words match
+3. The Polish checklist in TOOL-CONTRACT.md, all of it: pacing for reading aloud, calm mode keeps time, anything shown twice matches, words match
    the state.
 4. Feel: where did you get bored, lost or unsure? Where is a moment flat that could land? These are polish items.
 

@@ -47,7 +47,7 @@ Generated art is credited in each tool's `tool.json` sources as "Illustrations g
 ## Data files and recorded speech
 
 - `"json:<name>"` in src.html is replaced by `tools/<id>/<name>.json` at bundle time (map paths, state shapes). `scripts/na_map.py` builds the North America map used by Nations of North America and Me on the Map.
-- `"voice:*"` is replaced by the tool's recorded lines from `scripts/voice.py` (see POLISH.md, Sound and voice). Raw speech is kept in `voice/raw/` (not committed), so `--reencode` is free.
+- `"voice:*"` is replaced by the tool's recorded lines from `scripts/voice.py` (see TOOL-CONTRACT.md, Polish, Sound and voice). Raw speech is kept in `voice/raw/` (not committed), so `--reencode` is free.
 
 ## Local art (no API)
 

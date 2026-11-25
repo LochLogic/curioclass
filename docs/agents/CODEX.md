@@ -81,7 +81,7 @@ lenses (about 117k tokens on music-history-radio), and merge its findings with t
 - Its own worktree and branch off main: `git worktree add S:/CurioClass-codex-<id> -b codex/<id> origin/main`.
 - Its own scratch folder outside the repo (`S:/CurioClass-codex-scratch/<id>/`), its own Chrome ports and host port.
 - Write the brief in the tool folder as `CODEX-BRIEF.md`. Model: `tools/biased-bot/CODEX-BRIEF.md` (ground rules,
-  reading order, the rules quoted from BUILD.md, TOOL-CONTRACT, BASELINE, STANDARDS and POLISH, the family engine,
+  reading order, the rules quoted from BUILD.md, TOOL-CONTRACT, BASELINE, STANDARDS and the Polish checklist, the family engine,
   the files to make, exact check commands, the BUILD.md wave lessons as a self-check list, the report format).
   Since biased-bot, also tell it to:
   - write `audit-states.json` (BUILD.md) and run `python scripts/audit_tool.py <id> <scratch>/audit --port <its

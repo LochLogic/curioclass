@@ -61,7 +61,7 @@ the shelves that feed it. Single tools keep their own rules (BASELINE, docs/TOOL
 | Reading Room: a text record and topic sets | docs/LIBRARY-PLAN.md ("Reading level", "Topic sets"); ROADMAP Track 3 | Before the ten-story pilot |
 | Hands-on work uses things a classroom or home already has, or names a cheap stand-in | docs/agents/STANDARDS.md (Scope), docs/agents/PLAN.md | Standing, from 2026-11-10 |
 | The teaching test, tool roles, topics that name standards, depth on major work (from the catalog review) | BASELINE rules 21 and 22; the old ROADMAP "The path from here", now in docs/archive/ROADMAP-history-2026-11-22.md | Locked 2026-11-10; tool building paused until the rules are in |
-| State crosswalk: one state outside the Common Core first; CASE as a file format in and out | ROADMAP Track 7 ("Later"), docs/PHASE1-SCOPE.md | When the crosswalk starts |
+| State crosswalk: one state outside the Common Core first; CASE as a file format in and out | ROADMAP Track 7 ("Later") | When the crosswalk starts |
 
 On the crosswalk: the Blueprint's shape (our own scope and sequence of small pieces, with each state's standards mapped onto it)
 is what topics plus data/sequence.csv already are. A state view is a mapping layer on top: which topics a state
@@ -76,7 +76,7 @@ standards in; we read it in and can write our map out in it.
 | English learner supports | Named above, in no step | SPEC.md, three hooks; FINAL-REVIEW.md |
 | Access: keyboard, color, sound with text | A font and contrast bar, later | SPEC.md, three hooks; FINAL-REVIEW.md |
 | What ships, not what the spec says | The measure read specs only | The measure now also counts live and verified tools and unit days (catalog/tables/measure.md) |
-| A reader outside the project | Open in PHASE1-SCOPE | Changed 2026-11-14 (Cory): no outside reader is planned; agent reads (expert, Codex, answer key, safety, sensitivity, rights, Spanish) take that place (FOUNDATION 7.3) |
+| A reader outside the project | Open in the Phase 1 scope (archived 2026-11-25) | Changed 2026-11-14 (Cory): no outside reader is planned; agent reads (expert, Codex, answer key, safety, sensitivity, rights, Spanish) take that place (FOUNDATION 7.3) |
 | A real rubric | This file, compiled from one Blueprint and Claude's knowledge | A published rubric is filed and used in step 4 |
 | Coherence across grades | One line in the scope and sequence | Each scope and sequence row names the standards it builds on and where they are taught; a progression table per subject is built by script before step 6 (the old ROADMAP gap table, now in docs/archive/ROADMAP-history-2026-11-22.md) |
 | Evidence that it works | Left out | Not claimed. A one-page logic model is written with the probe (it was planned with the retired pilot unit); a study waits for a partner (the old ROADMAP gap table, now in docs/archive/ROADMAP-history-2026-11-22.md) |

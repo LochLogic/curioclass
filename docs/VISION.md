@@ -102,6 +102,14 @@ The bar applies to courses (the Curriculum track and the shelves that feed it). 
 and Curiosities and Recess are not measured against it. It never outranks the list below. What the bar asks, what
 we took into the plan and what we left out: docs/ADOPTION-BAR.md (BASELINE rule 20).
 
+## How the site talks (from the Phase 0 plan, 2026-10-22)
+
+- Plain, warm, short. Write for a tired teacher at 9pm planning tomorrow.
+- Lead with what the student does ("Click a state, name it"), not features.
+- "Free" means free: no "freemium", no "sign up to unlock". Say it once on each page, plainly.
+- Teachers search for "interactive", "activity", "game" and "simulation", so those words stay in titles and
+  descriptions.
+
 ## What we will not do
 
 - Accounts, ads, tracking or student analytics, ever. That holds even where a review or a district system would

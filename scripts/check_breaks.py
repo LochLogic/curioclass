@@ -1,4 +1,4 @@
-r"""Check the Break Box sheets (data/closet/breaks/<id>.md) against docs/BREAK-BOX-PLAN.md.
+r"""Check the Break Box sheets (data/closet/breaks/<id>.md) against docs/SUPPLY-CLOSET-PLAN.md (Break Box).
 
     python scripts/check_breaks.py              check every grade, exit 1 on any problem
     python scripts/check_breaks.py k 3 12       check some grades

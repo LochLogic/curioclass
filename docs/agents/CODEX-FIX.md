@@ -29,7 +29,7 @@ the ports your prompt names, keep the tool folder tidy, never an em dash, write 
 1. `tools/<id>/refine.md`, all of it: the verdict, Blocker, Should fix, Polish accepted, Settled calls.
 2. `tools/<id>/refine/sensitivity.md` if it exists. A FAIL there is a blocker list of its own, already merged into
    refine.md; read the reviewer's reasoning so your words fix the meaning, not just the sentence.
-3. `docs/agents/STANDARDS.md`, `tools/<id>/spec.md`, `docs/POLISH.md`, and in `docs/agents/REFINE.md` the Exit check gate,
+3. `docs/agents/STANDARDS.md`, `tools/<id>/spec.md`, the Polish checklist in `docs/TOOL-CONTRACT.md`, and in `docs/agents/REFINE.md` the Exit check gate,
    which is what the next reader holds you to.
 4. Then `src.html`, `notes.md`, `voice/lines.json`, `audit-states.json`, `handoff.md`.
 
