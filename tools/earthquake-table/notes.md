@@ -8,4 +8,5 @@
   archive in consolidation step 3.
 - **Idea:** docs/CURIOSITIES.md, "Earthquake Table" (build, then shake with real recorded quakes; rigid frame, cross
   bracing, tuned mass damper, base isolation).
+- **Build prompt:** build-prompt.txt, the prompt given to Antigravity (from drafts/gemini).
 - **Safety scan:** clean (check_safety.scan, 2026-11-24).

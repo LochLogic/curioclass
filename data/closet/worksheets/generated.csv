@@ -201,7 +201,6 @@ cte-explore-6,17,finance,grade=6&area=econ&skill=demand&market=goods,graph a dem
 cte-explore-6,26,finance,grade=6&area=save&skill=simple&count=m,six simple interest problems after a worked example
 cte-explore-6,28,finance,grade=6&area=save&skill=sgraph,table and graph at two simple interest rates
 cte-explore-6,30,finance,grade=6&area=save&skill=simple&count=s,simple interest plus rate change and who benefits
-cte-explore-6,33,finance,grade=6&area=risk&skill=basket,five made-up companies against a basket with graph
 cte-explore-6,36,finance,grade=6&area=spend&skill=costs&ctx=bike&count=m,e-bike price plus gear and repairs first year
 cte-explore-6,39,finance,grade=6&area=risk&skill=insure&ins=bike,warranty insurance or repair fund across three mishaps
 cte-explore-7,16,finance,grade=7&area=econ&skill=supply&market=goods,graph a supply schedule and explain the slope
@@ -248,7 +247,6 @@ personal-finance,11,finance,grade=11&area=spend&skill=log&count=m,two-week log t
 personal-finance,12,finance,grade=11&area=spend&skill=unit&count=m,eight unit prices and monthly savings from switching
 personal-finance,13,finance,grade=11&area=spend&skill=circle,budget percents and circle graph plus a saving change
 personal-finance,15,finance,grade=11&area=save&skill=goal&count=m,3 and 6 month funds and months to build
-personal-finance,16,finance,grade=11&area=save&skill=compound&count=m,compound formula balances for six accounts
 personal-finance,17,finance,grade=11&area=save&skill=deposits&count=s,monthly deposits and start-early table with graph
 personal-finance,18,finance,grade=11&area=save&skill=freq&count=s,annual monthly and daily compounding compared
 personal-finance,2,finance,grade=11&area=earn&skill=stub,label a pay stub and answer eight questions
@@ -256,14 +254,12 @@ personal-finance,20,finance,grade=11&area=save&skill=infl&count=s,real return fo
 personal-finance,24,finance,grade=11&area=credit&skill=card,minimum payment against a fixed payment at an APR
 personal-finance,25,finance,grade=11&area=credit&skill=amort&count=m,first six amortization rows and total interest
 personal-finance,3,finance,grade=11&area=earn&skill=pay&count=m,five hourly workers with overtime plus salaries
-personal-finance,37,finance,grade=11&area=risk&skill=insure&ins=renters,renters plans in quiet theft and fire years
 personal-finance,38,finance,grade=11&area=risk&skill=insure&ins=health,two health plans across three medical years
 personal-finance,6,finance,grade=11&area=earn&skill=taxret&count=m,standard deduction brackets refund or amount owed
 personal-finance,9,finance,grade=11&area=spend&skill=b50,50/30/20 split sort and rebalance after rent rises
 theater-12,22,finance,grade=12&area=risk&skill=own&own=lights,LED or tungsten rig cost over five years
 us-hist-hs,4,finance,grade=11&area=risk&skill=margin&count=m,four investors on 10 percent margin around 1929
 world-geo-6,46,finance,grade=6&area=econ&skill=exchange&count=m,convert six prices and say where cheaper
-cte-pathways,33,grammar-words,grade=10&skill=roots&focus=med&count=l,15 medical terms split and defined
 ela-1,17,grammar-words,grade=1&skill=tense&count=l,writes verb forms on time line; no cutting
 ela-1,20,grammar-words,grade=1&skill=pattern&focus=fam&count=l,15-word family sort plus new words
 ela-1,22,grammar-words,grade=1&skill=rootword&count=m,6 root word trees with endings
@@ -295,11 +291,9 @@ ela-8,33,grammar-words,grade=8&skill=roots&focus=ced&count=l,12 words from cede 
 ela-9,22,grammar-words,grade=9&skill=parallel&count=l,12 faulty parallel sentences revised
 ela-10,19,grammar-words,grade=10&skill=semi&count=l,12 sentences with mark and reason
 ela-11,25,grammar-words,grade=11&skill=hyphen&count=l,15 modifiers plus paragraph fix
-eld-1,33,grammar-words,grade=1&skill=frames&focus=ask&level=e&count=s&topic=a classroom visitor's job,4 question frames for a visitor
 eld-12,5,grammar-words,grade=12&skill=nominal&count=l,8 academic rewrites plus verb-noun table
 eld-2,5,grammar-words,grade=2&skill=signal&focus=seq&count=l,9 sequence words sorted; use 3
 eld-3,27,grammar-words,grade=3&skill=signal&focus=ce&count=l&topic=weather,cause and effect sort; sentences about weather
-eld-3,33,grammar-words,grade=3&skill=tensechange&count=l,10 present sentences changed to past
 eld-3,9,grammar-words,grade=3&skill=factop&count=m,10 fact or opinion with signal words
 eld-5,12,grammar-words,grade=5&skill=shades&count=s,5 strength ladders; one sentence
 eld-5,29,grammar-words,grade=5&skill=nominal&count=s,6 verbs to nouns plus formal sentences
@@ -358,7 +352,6 @@ eld-12,32,project-frames,kind=present&band=912&form=report&count=3&mins=3,openin
 eld-5,14,project-frames,kind=present&band=35&form=opinion&count=2&mins=1,hook claim 2 reasons counterclaim
 library-3,34,project-frames,kind=present&band=35&form=booktalk&mins=1,hook 3 details no spoilers
 library-8,17,project-frames,kind=present&band=68&form=report&count=3&mins=5,5-minute talk visuals citations practice
-cte-explore-8,33,project-frames,kind=present&band=68&form=pitch&mins=1,problem solution customers costs risks
 visual-arts-7,39,project-frames,kind=present&band=68&form=pitch&mins=2,mural pitch with the ask
 library-6,18,project-frames,kind=slides&band=68&count=6,slides sketched with speaker notes
 cte-pathways,22,project-frames,kind=slides&band=912&count=6&titles=Problem%2C Solution%2C Market%2C Numbers%2C Team%2C The ask,six named pitch slides
