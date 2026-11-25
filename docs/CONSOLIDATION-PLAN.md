@@ -84,13 +84,37 @@ tool catalog. Each word of the goal is defined below as tests that can be run, s
 | Step 4 (4.1 to 4.13) | 3 (drift report), 4, 5, 6, 7, 8, 9, 10, 11, and 2 and 12 as reports | next |
 | Step 5: tool records only, plumbing standardized | keeps tools outside the curriculum homes | after step 4 |
 | Step 6: close, counts in SCALE.md, the fact map in HANDOFF | the tests recorded as a baseline | after step 5 |
-| Word Wall conversion: the old cards become rows of the word table, the Word Wall becomes a view over it, data/closet/words goes to the archive | one home for every definition | its own step after step 6, with Cory lifting the never-touch rule on data/closet/words for that step only |
+| Word Wall conversion ("The Word Wall, rebuilt from the curriculum" below): the old cards become rows of the word table, the Word Wall becomes a view over it, data/closet/words goes to the archive | one home for every definition | its own step after step 6, before writing resumes in earnest, with Cory lifting the never-touch rule on data/closet/words for that step only |
 | As each course is written or next reviewed | 2 and 12 move from report to failing gate per course; old item suffixes stripped; skel drift fixed by the rule Cory picks | ongoing, by the course run |
 | After the curriculum is done | the tool catalog retired; topic pages, coverage and standards pages become views over the index | later.csv |
 
 The consolidation does not try to make every old file pass every test at once. It builds the tests and the tools,
 makes the shared structure pass, and turns each per-course test from a report into a failing gate as that course
 is written or reviewed, so new work can only land flat.
+
+### The Word Wall, rebuilt from the curriculum (Cory, 2026-11-25)
+
+Today the Word Wall's cards (data/closet/words, one file per subject) are keyed by tool topic, so its words come from
+the tool catalog rather than from what the days teach: the same leak as the course list (4.4). Once 4.9 is in place a
+Word Wall is built the other way round:
+
+- **Words come from the days.** A word is on a grade's wall because a day teaches it: the `[[word:...]]` marks and the
+  terms the ledgers already record as introduced.
+- **One definition per word and grade band, with its source,** in the word table. A fix is made once and shows on the
+  day page, the student sheet and the wall.
+- **Walls by unit and by grade are queries** over the index, and each card can link back to the days that use it.
+- **The backlog is a report:** "marked but undefined" (4.9) is exactly the list of cards still to write.
+
+**The conversion,** its own step after step 6 and before writing resumes in earnest, so writers who mark a word often
+find its definition waiting:
+
+1. Cory lifts the never-touch rule on data/closet/words for this step only.
+2. A script turns each old card into a row of the word table, with `from` naming its source file and topic, and
+   assigns a grade band from the topic's grade. Cards it cannot place, and words that need a second definition for a
+   younger or older band, go to a review list rather than being guessed.
+3. The Word Wall pages are built from the table. The before and after pages are compared; any difference is listed
+   and explained in the step report.
+4. data/closet/words goes to the archive, with ids-retired.csv rows for any card id that changes.
 
 ### What is not part of the goal
 
