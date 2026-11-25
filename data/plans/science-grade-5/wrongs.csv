@@ -2,7 +2,7 @@ item_id,shown,compute,value,error,note
 s01-R1,I made a house from five pieces.,,,J,a missing-piece gap: record M on the readiness sort
 s01-R1,Stiff is good for a house.,,,K,a property-use gap: record P on the readiness sort
 s01-X1,It was empty. Nothing was in it.,,,A,
-s01-X1,Plan 2: weigh two different bottles.,,,D,
+s01-X1,Plan 2: weigh two different balls.,,,D,
 s01-X2a,The shelf has five pieces.,,,J,
 s01-X2a,Stiff is good.,,,K,
 s01-X2b,"Cloth itself: 64 g, the damp weight.",64,64,H,the damp reading called the dry weight
@@ -17,10 +17,10 @@ s01-X4a,"Fewer dots, because some of the air went away.",,,I,
 s01-X4b,"Stone 58 g, cutting 2 g, water 86 g.",58|60-58|86,58|2|86,x,read the water from the last scale reading without subtracting
 s01-X4b,"Stone 58 g, cutting 60 g, water 86 g.",58|60|86,58|60|86,x,wrote each running reading as the amount added
 s01-X4b,"Stone 58 g, cutting 60 g, water 26 g.",58|60|86-60,58|60|26,x,wrote the cutting's running reading without subtracting
-s01-E1,"Air is nothing, so nothing is inside the cushion.",,,A,
-s01-E1,Each dot is one grain of the solid that you can see.,,,B,
-s01-E1,"The solid vanished. The water is clear, so nothing is left.",,,C,
-s01-E2,I weighed only the water.,,,D,
+s01-E1,"Air is nothing, so nothing is inside the cushion.",,,A,Assigns no matter to air.
+s01-E1,Each dot is one grain of the solid that you can see.,,,B,Confuses model symbols with visible grains.
+s01-E1,"The solid vanished. The water is clear, so nothing is left.",,,C,Uses visibility to decide existence.
+s01-E2,I weighed only the water.,,,D,Omits the pouch from the complete boundary.
 s01-E2,I read the pouch without zeroing the empty scale first.,,,x,"a scale not zeroed; a weighing procedure gap, not in the register"
 s01-P1-1,"The same. Air is nothing, so it cannot add weight.",,,A,a first idea: gas is assigned no matter
 s01-K1-1,The ball is the same weight.,,,A,the readings are ignored; air is called nothing
@@ -28,16 +28,766 @@ s01-P1-2,A ball with nothing drawn inside. Air is nothing.,,,A,
 s01-P1-3,Each dot is one grain of sand that you can see.,,,B,a dot is mistaken for a visible grain
 s01-P2-1,6 before and 5 after.,,,J,
 s01-P2-1,Long is good.,,,K,
-s01-K2-1,Block 3 is not in the wall.,,,J,
+s01-K2-1,Block 3 was left out.,,,J,
 s01-P2-2,Only four blocks are listed.,,,J,
-s01-K2-2,"(b) 120 g, the weight from the bag.",120,120,H,the bag reading called the dry soil weight
-s01-K2-2,(a) 120 g.,120,120,x,the whole bag reading called water
-s01-K2-2,(a) 224 g.,120+104,224,x,added the two readings
+s01-K2-2,The whole reading is dry soil.,,,H,Misidentifies included matter.
+s01-K2-2,Only the tray is being weighed.,,,x,Misidentifies included matter.
+s01-K2-2,Only the tray is being weighed.,,,x,Misidentifies included matter.
 s01-K3-1,6 dots before and 4 dots after. Some air went away.,,,I,
-s01-P3-1,"8 dots, then 3 dots.",,,I,
+s01-P3-1,Less occupied space means air disappeared.,,,I,
 s01-P3-2,It was empty.,,,A,
 s01-K4-1,Dry soil 204 g.,204,204,H,"the last reading, with beans and water in it, called dry soil"
 s01-K4-1,"Dry soil 172 g, beans 174 g, water 204 g.",172|174|204,172|174|204,x,wrote each running reading as the amount added
 s01-K4-1,"Dry soil 172 g, beans 2 g, water 204 g.",172|174-172|204,172|2|204,x,read the water from the last scale reading without subtracting
 s01-P4-3,Dry soil 164 g. Beans 167 g. Water 195 g.,,,x,wrote each running reading as the amount added
-s01-P4-1,I changed everything.,,,I,"air is said to have changed or gone, not just its spacing"
+s01-P4-1,Every container must have the same dot count.,,,x,Confuses one closed system with different apparatus.
+s01-X5,The powder stopped existing.,,,C,Interpret with this unit register letter.
+s01-X5,Each dot is a visible grain.,,,B,Interpret with this unit register letter.
+s01-X6,Dissolved solid no longer exists.,,,C,Interpret with this unit register letter.
+s01-X7,The tire contains nothing.,,,A,Interpret with this unit register letter.
+s01-X7,Dots are visible grains.,,,B,Interpret with this unit register letter.
+s01-X7,Clear water holds no mineral.,,,C,Interpret with this unit register letter.
+s01-X8,Remove the holder afterward.,,,D,Interpret with this unit register letter.
+s01-X8,Do not count the tablet initially.,,,D,Interpret with this unit register letter.
+s01-X9,Use 80 g as the after total.,,,D,Interpret with this unit register letter.
+s01-X9,"Warming creates matter, so the total must rise.",,,E,Interpret with this unit register letter.
+s01-X9,Label a bar 92 g but end it at 82 g.,,,F,Interpret with this unit register letter.
+s01-X10,After total is 100 g.,,,D,Interpret with this unit register letter.
+s01-X10,Cooling removes matter despite equal complete readings.,,,E,Interpret with this unit register letter.
+s01-X10,Equal 110 g labels have different bar heights.,,,F,Interpret with this unit register letter.
+s01-X11,Clear sugar water has no sugar.,,,C,Interpret with this unit register letter.
+s01-X11,Use 86 g after stirring.,,,D,Interpret with this unit register letter.
+s01-X11,Draw the 98 g endpoint below 98 g.,,,F,Interpret with this unit register letter.
+s01-X12,The holder can be discarded.,,,D,Interpret with this unit register letter.
+s01-X12,Every decrease proves gas escaped.,,,G,Interpret with this unit register letter.
+s01-X13,Gas has no matter.,,,A,Interpret with this unit register letter.
+s01-X13,The 134 g bar is taller than the 135 g bar.,,,F,Interpret with this unit register letter.
+s01-X14,All differences prove gas escape.,,,G,Interpret with this unit register letter.
+s01-X14,The added tray does not count.,,,D,Interpret with this unit register letter.
+s01-X15,Warming creates matter.,,,E,Interpret with this unit register letter.
+s01-X15,Clear sweetener stopped existing.,,,C,Interpret with this unit register letter.
+s01-X15,Dots are visible grains.,,,B,Interpret with this unit register letter.
+s01-E3,Use 122 g after heating or 130 g after mixing.,,,D,Interpret with this unit register letter.
+s01-E3,Shrinking removes matter despite equal complete readings.,,,E,Interpret with this unit register letter.
+s01-E3,The 138 g bar ends at 124 g.,,,F,Interpret with this unit register letter.
+s01-E4,Any decrease proves gas escaped.,,,G,Interpret with this unit register letter.
+s01-R17a,Nothing is inside.,,,A,Interpret with this unit register letter.
+s01-R17a,Dots are grains.,,,B,Interpret with this unit register letter.
+s01-R17b,Discard the cradle.,,,D,Interpret with this unit register letter.
+s01-R17b,Equal labels have different heights.,,,F,Interpret with this unit register letter.
+s01-R17c,Cooling removes matter.,,,E,Interpret with this unit register letter.
+s01-R17d,Clear cleaner holds no dissolved matter.,,,C,Interpret with this unit register letter.
+s01-R17e,Every decrease proves gas escaped.,,,G,Interpret with this unit register letter.
+s01-P4-2,I removed dots because the air disappeared.,,,I,Interpret using the unit error register.
+s01-C2-1,Blocks show the actual size of air parts.,,,B,Interpret using the unit error register.
+s01-P3-3,Shadow: long.,,,x,Interpret using the unit error register.
+s01-P5-1,I drew expected clarity although grains remained.,,,x,Interpret using the unit error register; x is another error.
+s01-K5-1,Both accounts show sugar stopped existing.,,,C,Interpret using the unit error register; x is another error.
+s01-P5-3,S1 reports sweetness.,,,x,Interpret using the unit error register; x is another error.
+s01-P5-2,I erased sugar because it vanished.,,,C,Interpret using the unit error register; x is another error.
+s01-P5-2,Each dot is a visible sugar grain.,,,B,Interpret using the unit error register; x is another error.
+s01-P6-1,Salt vanished despite the recovered residue.,,,C,Interpret using the unit error register; x is another error.
+s01-P6-2,The lens showed individual unseen salt parts.,,,B,Interpret using the unit error register; x is another error.
+s01-P6-2,The clear mixture has no salt.,,,C,Interpret using the unit error register; x is another error.
+s01-P7-1,I chose unrelated evidence for each label.,,,x,Interpret using the unit error register; x is another error.
+s01-P7-1,Dots are visible grains.,,,B,Interpret using the unit error register; x is another error.
+s01-K8-1,The 63 g label sits above a bar ending at 53 g.,,,F,Label and plotted endpoint disagree.
+s01-P8-1,Discard the cup after transferring the pieces.,,,D,Removes apparatus from the second comparison.
+s01-P8-2,The 57 g bar ends at 47 g.,,,F,Endpoint is ten grams below its label.
+s01-P9-1,Replace an unexpected reading to make the pair equal.,,,x,Erases evidence instead of preserving and checking it.
+s01-P9-1,Weigh water without the bag afterward.,,,D,Changes the apparatus boundary.
+s01-P9-2,Plot a predicted value instead of the recorded endpoint.,,,F,Graph no longer encodes the raw reading.
+s01-P10-1,Guess the frozen reading instead of preserving the raw display values.,,,x,Prediction replaces observation.
+s01-P10-1,Discard the bag before the second weighing.,,,D,The compared boundaries differ.
+s01-P10-2,Lower the bar because freezing must remove matter.,,,E,Temperature is treated as a cause of matter loss despite the record.
+s01-P10-2,The endpoint differs from the raw value beside it.,,,F,Plotted amount contradicts the measurement.
+s01-P11-1,Discard the salt holder after stirring.,,,D,Complete apparatus no longer matches.
+s01-P11-1,Replace the unstable reading with an expected equal value.,,,x,A prediction replaces retained evidence.
+s01-P11-2,Clear liquid has no salt.,,,C,Visibility is confused with existence.
+s01-P11-2,Draw the endpoint at a value different from the raw record.,,,F,Graph misrepresents its measurement.
+s01-K12-1,The empty holder can leave.,,,D,Omitting apparatus changes the weighed boundary.
+s01-P12-1,Remove any unused supports.,,,D,Changes the complete weighing boundary.
+s01-P13-1,I initialed everyone's actions.,,,x,Claims actions the child did not perform.
+s01-P13-2,I lowered every after bar.,,,F,Replaces recorded values with an expected pattern.
+s01-P14-1,Every fall proves gas escape.,,,G,Treats one reading change as a unique cause.
+s01-P15-1,I circled an unrelated record.,,,x,Selected record does not support the assigned evidence link.
+s01-N17a,They must have different inherited traits.,,,x,"The supplied comparison supports environmental effects, not an inheritance claim."
+s01-N17b,Losing food cannot affect survival.,,,x,"Ignores the specified food dependence; readiness gap, separate from unit 1 errors."
+s02-X18,Equal weights prove soil supplied the growth,,,I,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X19,New leaves prove water supplied everything,,,I,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X19,No soil means minerals are unnecessary,,,C,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X20,Sunlight enters as plant material,,,D,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X20,Five centimeters proves water supplied all growth,,,I,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X21,Neither matters because water supplies everything,,,B,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X21,R proves air caused growth despite changed water,,,I,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X22,Mostly soil,,,A,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X22,Light becomes material,,,D,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X22,Minerals are unnecessary,,,C,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X23,Living plants exchange no gases,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X23,Survival proves water is their only input,,,I,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X24,Only water has incoming matter,,,B,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X24,Light becomes new parts,,,D,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X25,Supports the claim that water supplied everything,,,I,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X26,Soil supplies most of the 30 g,,,A,Confuses rooting medium with chief growth source despite 30 g plant gain and 2 g net soil loss.
+s02-X26,Air cannot matter because water supplies everything,,,B,Rejects air despite different outcomes under equal water and other matched inputs.
+s02-X27,Fallen leaves become nothing,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X28,Plants exchange no gases with air,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X29,Dead matter disappears,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X29,Decomposers exchange no gases,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X30,The missing whole leaf proves matter vanished,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X30,Invisible gas means living things exchange no gases,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X31,Smaller leaves mean matter became nothing,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X31,The bottle proves living things exchange no gases,,,J,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X32,Organisms never exchange gases,,,J,Denies gas exchange across living boundaries.
+s02-X32,Dead leaves become nothing,,,E,Treats dead matter as ceasing to exist rather than returning through the environment.
+s02-X33,Only the owl changes; mice and sedges cannot,,,K,Denies effects transmitted through the owl-mouse feeding link and mouse-sedge seed dependency.
+s02-X34,The bird gets food energy straight from sunlight,,,H,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X35,Food provides energy but no body material,,,G,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X36,Sunlight becomes body material,,,D,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X36,Energy cycles through soil into plants,,,F,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X36,Food has no building material,,,G,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X37,Soil supplies nearly all new plant matter,,,A,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X37,Decaying leaves become nothing,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X38,Sunlight is plant material,,,D,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X38,Dead snails vanish,,,E,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-X38,Waste returns energy to reeds,,,F,The stated claim conflicts with the record or the taught matter/energy distinction.
+s02-E1,Mostly soil.,,,A,Plant gain exceeds soil loss.
+s02-E1,Water alone.,,,B,Controlled air comparison challenges water-only.
+s02-E1,Minerals unnecessary.,,,C,Neither record omits minerals.
+s02-E1,Sunlight adds material.,,,D,Light supplies energy.
+s02-E2,Dead matter vanishes.,,,E,Matter returns to environmental pools.
+s02-E2,No gas exchange.,,,J,Living organisms exchange gases.
+s02-E2,Newcomer cannot affect others.,,,K,Shared dependencies transmit effects.
+s02-E3,Energy cycles back to plants.,,,F,Matter reuse is not an energy cycle.
+s02-E3,Food supplies no material.,,,G,Food matter builds and repairs.
+s02-E3,Animals obtain food energy directly from sunlight.,,,H,Plant food carries that energy.
+s02-R41S,Mainly soil.,,,A,Disregards soil constraint.
+s02-R41S,Water alone.,,,B,Disregards controlled air.
+s02-R41S,Minerals unnecessary.,,,C,Minerals were included.
+s02-R41S,Sunlight is material.,,,D,Light is energy.
+s02-R41S,Any growth proves its source.,,,I,Source claims need controlled evidence.
+s02-R41R,Dead parts vanish.,,,E,Matter remains and returns.
+s02-R41R,No gas exchange occurs.,,,J,Organisms exchange gases.
+s02-R41E,Energy cycles through soil.,,,F,Energy leaves as warmth.
+s02-R41E,Food gives no building material.,,,G,Food provides matter too.
+s02-R41E,Sunlight feeds the goat directly.,,,H,Food carries energy from plants.
+s02-R41K,The newcomer cannot affect existing organisms.,,,K,Both use limited shared food.
+s02-P18-1,All the tree gain came from soil.,,,A,Ignores the much smaller reported soil loss.
+s02-P18-2,Sunlight becomes plant stuff.,,,D,Confuses sunlight energy with matter.
+s02-P19-1,Growth can never depend on surroundings.,,,x,Rejects the supplied environmental link.
+s02-P19-2,Food availability cannot affect this beetle.,,,x,Ignores its stated food need.
+s02-P19-3,Minerals are unnecessary.,,,C,Ignores the changed mineral supply and result.
+s02-P20-1,The invented value was my actual measurement.,,,x,Erases provenance of an unclear reading.
+s02-P20-2,The invented shadow was our actual reading.,,,x,Confuses supplied and observed evidence.
+s02-P21-1,Water supplies everything regardless of air.,,,B,Dismisses the controlled air difference.
+s02-P21-2,Height alone identifies the source of all added matter.,,,I,A size measure cannot isolate source contributions.
+s02-P22-1,The historical record proves water alone supplied growth.,,,B,Historical input comparison did not control air.
+s02-P21-3,B is an observation from A21.,,,x,The record did not test the different plant type.
+s02-P22-2,Light becomes plant material.,,,D,Confuses sunlight energy with matter.
+s02-P22-3,Minerals are unnecessary.,,,C,Soil-free water can still supply minerals.
+s02-P23-1,Upright leaves prove I observed water entering roots,,,I,Infers an unseen route directly from an upright-leaf observation.
+s02-P24-1,Light label as incoming plant matter,,,D,Confuses energy with matter.
+s02-P25-1,H18 proves water supplied everything,,,I,Overclaims from a record without air controls or matched dry plant weights.
+s02-P26-1,Soil-free means no minerals,,,C,Minerals remain present in the water.
+s02-K23-1,A sealed lid stops every exchange inside,,,J,The lid closes the outer boundary; plant and inside air can still exchange gases.
+s02-P24-2,Light dots become plant material,,,D,"Light supplies energy, not incoming matter."
+s02-P26-2,A21 proves water supplies all matter,,,B,Equal-water changed-air outcomes challenge water-only.
+s02-P27-1,The detached twig is no longer matter.,,,E,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P27-2,The twig has lost half its weight.,,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P27-3,The twig will stay there forever.,,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-K28-1,The jar drawing proves a cricket eats grass inside it.,,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P28-1,I observed decomposers releasing gases through the jar wall.,,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P28-2,M1: cricket to grass. M2: lizard to cricket.,,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P29-1,All three cards go only to soil.,,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P29-2,"Released gases to soil, M6.",,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P30-1,The fragments prove that the leaf lost 5 grams.,,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P30-2,The leaf drawing directly measures gases leaving.,,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P31-1,15 mL; each step is 15 mL.,,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P31-2,I observed that all matter disappeared when decomposers were removed.,,,E,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P31-3,The drawings measured gas release and leaf weight loss.,,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P31-4,Gas output to air: directly observed in the L30 drawing.,,,x,Compare the stated response with the supplied record and look-fors; do not infer a misconception from a blank.
+s02-P32-1,No gas enters leaves,,,J,Denies the supplied incoming air-matter route.
+s02-P32-2,Dead material becomes nothing,,,E,Treats dead material as no longer existing.
+s02-P32-3,No gas can leave an organism,,,J,Treats a living boundary as closed to gas exchange.
+s02-P33-1,Grass cannot change because no rabbit predator lives here,,,K,Ignores the supplied rabbit-to-grass resource effect.
+s02-P33-2,The resident eater cannot be affected by less grass,,,K,Denies a supplied food dependency.
+s02-P33-3,The dead material becomes nothing,,,E,Denies environmental return of dead matter.
+s02-P33-4,Gas can never leave the organism,,,J,Denies outward gas exchange.
+s02-P34-2,Only the newcomer can change.,,,K,Error K: ignores a shared-resource dependency.
+s02-K34-1,Sunlight becomes grass material.,,,D,Error D: confuses energy with matter.
+s02-P34-1,The cricket gets food energy directly from sunlight.,,,H,Error H: omits plant food between sunlight and the animal.
+s02-P35-3,The cricket gets food energy straight from sunlight.,,,H,Error H: omits plant food between sunlight and the animal.
+s02-P35-1,The 18 g reading proves sunlight became plant matter.,,,D,Error D: confuses energy with matter.
+s02-P35-2,Food supplies energy but no building material.,,,G,Error G: denies food building material.
+s02-P35-4,I saw that no gases move in any living plant.,,,J,Error J: does not use the specified record or legend.
+s02-P36-3,Food supplies no building material.,,,G,Error G: denies food building material.
+s02-K36-1,Energy cycles from waste through soil into plant food.,,,F,Error F: applies matter cycling to energy.
+s02-P36-1,The unclear shadow proves sunlight became material.,,,D,Error D: confuses energy with matter.
+s02-P36-2,T9 means energy cycles back into plant food.,,,F,Error F: applies matter cycling to energy.
+s02-P37-3,Sunlight becomes plant material.,,,D,Error D: confuses energy with matter.
+s02-P37-4,Energy cycles through soil into plants.,,,F,Error F: applies matter cycling to energy.
+s02-P37-5,Food has no building material.,,,G,Error G: denies food building material.
+s02-P37-1,Soil supplies nearly all new plant matter.,,,A,Error A: treats soil as the chief plant matter source.
+s02-P37-2,Decaying leaves become nothing.,,,E,Error E: treats dead matter as disappearing.
+s02-P37-6,Living plants exchange no gases.,,,J,Error J: does not use the specified record or legend.
+s02-P38-2,Soil supplies nearly all new plant matter.,,,A,Error A: treats soil as the chief plant matter source.
+s02-P38-3,Dead matter becomes nothing.,,,E,Error E: treats dead matter as disappearing.
+s02-P38-1,C6 proves energy cycles back into plants.,,,F,Error F: applies matter cycling to energy.
+s02-P41-A,Mostly soil.,,,A,The gain/loss contrast limits the claim.
+s02-P41-B,Water alone explains the change.,,,B,The comparison changes air while holding water equal.
+s02-P41-C,No minerals enter without soil.,,,C,The record includes minerals in water.
+s02-P41-D,Sunlight adds plant material.,,,D,The label denotes energy rather than material.
+s02-P41-I,Growth alone identifies its source.,,,I,Controlled conditions matter for identifying causes.
+s02-P41-E,Dead matter vanishes.,,,E,The component retains an environmental material destination.
+s02-P41-J,No gases cross a living boundary.,,,J,The outgoing gas route crosses the boundary.
+s02-P41-F,Energy cycles through soil into plant food.,,,F,Outward warmth does not return as plant food energy.
+s02-P41-G,Food supplies no building material.,,,G,Building body parts uses food matter.
+s02-P41-H,Animals get food energy directly from sunlight.,,,H,Plant food is the intervening step.
+s02-P41-K,The newcomer cannot affect existing organisms.,,,K,The two eaters share the food supply.
+s02-P41-1,I changed it because someone said so.,,,x,"No evidence/change link yet; descriptive process feedback only, not a science misconception."
+c1-E42a,Air is nothing; only the filled chamber contains matter.,,,A,Gas is assigned no matter.
+c1-E42a,Each dot is one visible grain.,,,B,Confuses representational and observable scale.
+c1-E42b,The dissolved flakes no longer exist.,,,C,Visibility is used to decide existence.
+c1-E42b,The dots show flakes we could see through a lens.,,,B,Unseen parts are confused with visible fragments.
+c1-E42c,After heating is 155 g.,,,D,Omits unchanged tray from one side.
+c1-E42c,Cooling destroys matter although the readings match.,,,E,Temperature is treated as an amount change.
+c1-E42c,The bar stops at 150 g although its caption says 175 g.,,,F,Graph does not encode its recorded amount.
+c1-E42d,The lower case reading proves gas escaped.,,,G,Treats one result as a unique cause.
+c1-E43a,Most plant gain is soil.,,,H,Plant gain far exceeds soil loss.
+c1-E43a,Water alone supplied all gain.,,,I,Omits controlled air evidence.
+c1-E43a,Sunlight turns into plant material.,,,J,Confuses energy with matter.
+c1-E43a,Taller growth identifies the exact source fraction.,,,K,Growth does not isolate a quantitative source share.
+c1-E43a,No soil means no minerals are present.,,,L,Ignores the supplied mineral input.
+c1-E43b,Dead leaves vanish into nothing.,,,M,Omits environmental return.
+c1-E43c,Energy cycles back through soil to plants.,,,N,Applies matter reuse to energy.
+c1-E43c,The animal receives food energy directly from sunlight.,,,O,Omits the plant-food link.
+c1-E43c,Food supplies no building material.,,,P,Treats food only as fuel.
+c1-P44a,Compression removes the air.,,,A,Confuses occupied space with matter.
+c1-P44b,Only the liquid.,,,D,Changes what is weighed.
+c1-P44c,Water is changed.,,,I,Ignores the equal-water condition.
+c1-P44d,Sunlight is material.,,,J,Energy treated as matter.
+c1-X44,The clear liquid contains none of the dissolved matter.,,,C,Uses visibility as proof of disappearance.
+c1-X44,The matching readings prove matter vanished.,,,E,Contradicts the complete-system evidence.
+c1-R44a,Tile and strip are flexible because both are smooth.,,,S,Texture is confused with flexibility.
+c1-R44b,A is best because it leaked first.,,,Q,Reverses the purpose of resisting water.
+c1-R44c,Both returned because everything reverses on cooling.,,,R,Ignores the egg record.
+s03-X45,White proves A,,,A,A: One shared visible property identifies a substance.
+s03-X45,Record starting weight without a unit,,,B,B: A measurement needs no unit.
+s03-X46,"L, because shine proves stiffness",,,A,A: One shared visible property identifies a substance.
+s03-X47,Weigh starting portions but omit grams,,,B,B: A measurement needs no unit.
+s03-X47,Grains alone prove salt,,,A,A: One observed property does not establish identity; the record never gives color.
+s03-X48,S cannot be metal because it is nonmagnetic,,,C,C: Every metal is attracted by a magnet.
+s03-X48,Clear means water,,,A,A: One shared visible property identifies a substance.
+s03-X49,Its hardness is 4 cm,,,D,D: A hardness rank is a length.
+s03-X49,Both match because both are pale,,,A,A: One shared visible property identifies a substance.
+s03-X50,Different plate temperatures still isolate bar material.,,,I,I: Changes plate temperature as well as bar material.
+s03-X51,Keep both identities because white proves salt,,,A,A: One shared visible property identifies a substance.
+s03-X52,Nothing remained while clear,,,F,F: Dissolved material disappears.
+s03-X52,Change amounts and temperature together to isolate mixing,,,I,I: Changing two conditions isolates a cause.
+s03-X53,Keep both mixing changes to identify one cause,,,I,I: Changing two conditions isolates a cause.
+s03-X54,Any pouring bubble proves a new substance,,,G,G: Every bubble proves a new substance formed.
+s03-X55,The additive alone caused clumps despite different starting temperatures.,,,I,I: Changing two conditions isolates a cause.
+s03-X55,All mixing must create new material,,,E,E: Every mixture makes a new substance.
+s03-X56,Dissolved material vanished from dish B.,,,F,F: Dissolved material disappears.
+s03-X56,No recovery once proves new material.,,,H,H: Reversibility alone determines whether a new substance formed.
+s03-X57,Any bubble proves a new substance,,,G,G: Every bubble proves a new substance formed.
+s03-X58,White proves its identity,,,A,A: One shared visible property identifies a substance.
+s03-X58,Failure to spoon apart proves new substance,,,H,H: Reversibility alone determines whether a new substance formed.
+s03-E1,Units are unnecessary.,,,B,B: A measurement needs no unit.
+s03-E1,White alone identifies the powder.,,,A,A: One shared visible property identifies a substance.
+s03-E2P,White proves salt.,,,A,A: One shared visible property identifies a substance.
+s03-E2M,"Every metal is magnetic, so all match.",,,C,C: Every metal is attracted by a magnet.
+s03-E2R,R has hardness measured in centimeters.,,,D,D: A hardness rank is a length.
+s03-E2L,Clear proves water.,,,A,A: One shared visible property identifies a substance.
+s03-E3,Every mix forms new substance.,,,E,E: Every mixture makes a new substance.
+s03-E3,Clear means salt disappeared.,,,F,F: Dissolved material disappears.
+s03-E4a,Two changes isolate temperature.,,,I,I: Changing two conditions isolates a cause.
+s03-E4b,Any mixture automatically makes new material.,,,E,E: Every mixture makes a new substance.
+s03-E4b,Filtering alone determines whether material is new.,,,H,H: Reversibility alone determines whether a new substance formed.
+s03-E4c,Any bubble proves formation.,,,G,G: Every bubble proves a new substance formed.
+s03-E4c,Two changes isolate one cause.,,,I,I: Changing two conditions isolates a cause.
+s03-E4d,Clear solutions contain no material.,,,F,F: Dissolved material disappears.
+s03-R61P,All match because blue.,,,A,A: One shared visible property identifies a substance.
+s03-R61Q,31 needs no unit.,,,B,B: A measurement needs no unit.
+s03-R61M,It vanished when clear.,,,F,F: Dissolved material disappears.
+s03-R61I,Several changes still isolate mixing.,,,I,I: Changing two conditions isolates a cause.
+s03-R61C,Every metal must be pulled.,,,C,C: Every metal is attracted by a magnet.
+s03-R61E,Every mixture makes new substance.,,,E,E: Every mixture makes a new substance.
+s03-R61G,Any bubble proves a new substance.,,,G,G: Every bubble proves a new substance formed.
+s03-R61H,Any failed separation proves formation.,,,H,H: Reversibility alone determines whether a new substance formed.
+s03-R61Q,Hardness is 7 cm.,,,D,D: Confuses measured length with scratch resistance.
+s03-K45-1,Color proves identical materials.,,,A,One shared property cannot establish identity.
+s03-P45,White alone proves salt.,,,A,Appearance is not identity.
+s03-P45q,Which powder tastes sweet?,,,x,Unsafe tasting.
+s03-P45t,Taste both.,,,x,Unsafe method.
+s03-P45t,Record weight without a unit.,,,B,Measurement needs a unit.
+s03-P46rA,Blue proves the same material.,,,A,Shared color does not establish identity.
+s03-P46rB,18 alone needs no unit.,,,B,Measurement needs a unit.
+s03-K46-1,18 without unit or source.,,,B,Measurement needs a unit.
+s03-K46-2,Hardness means length.,,,D,Scratch resistance is not length.
+s03-P46,Smooth always means flexible.,,,x,Does not follow the stated property record.
+s03-P46b,H is rough because it stays stiff.,,,x,Does not follow the stated property record.
+s03-P46c,J is smooth because it stays stiff.,,,x,Does not follow the stated property record.
+s03-P46d,D is best because it leaked first.,,,x,Does not follow the stated property record.
+s03-P46e,All covers resist the same water.,,,x,Does not follow the stated property record.
+s03-P47,"V47 water, 20, with no unit.",,,B,Water volume needs mL.
+s03-P47r,Green proves the same substance.,,,A,Shared color is not identity.
+s03-P47o,My supplied values are firsthand measurements.,,,x,Supplied records do not show personal actions.
+s03-P47c,Grains alone prove salt.,,,A,A single observation cannot identify the material.
+s03-P48a,"Both are rough, so both must be the same material.",,,A,Error A: A shared visible property does not establish identity.
+s03-P48b,"12, with no unit.",,,B,Error B: A measurement needs its unit.
+s03-P48c,"The sample cannot conduct, even though the checking strip failed.",,,x,Error x: Use actual or supplied evidence without inventing a result.
+s03-P48s,A clear liquid must be water.,,,A,Error A: A shared visible property does not establish identity.
+s03-P48,All metals must pull.,,,C,Error C: Not every metal is attracted by a magnet.
+s03-P49a,"Both are black, so both must be the same material.",,,A,Error A: A shared visible property does not establish identity.
+s03-P49c,Every metal must be pulled.,,,C,Error C: Not every metal is attracted by a magnet.
+s03-P49l,Length 3 without a unit.,,,B,Error B: A measurement needs its unit.
+s03-P49,Its hardness is 3 cm.,,,D,Error D: A scratch comparison is not a length.
+s03-P50a,"Both are gray, so both must be the same material.",,,A,Error A: A shared visible property does not establish identity.
+s03-P50d,Hardness: 6 cm.,,,D,Error D: A scratch comparison is not a length.
+s03-P50f,The starting water temperature can differ to isolate spoon material.,,,I,Error I: Changing two conditions does not isolate a cause.
+s03-P50,Handle reading 27 with no unit.,,,B,Error B: A measurement needs its unit.
+s03-P50r,Energy always goes from handle to water.,,,x,Error x: Use actual or supplied evidence without inventing a result.
+s03-P51f,Different depths still isolate spoon material.,,,I,Error I: Changing two conditions does not isolate a cause.
+s03-P51q,Matching appearance always proves matching identity.,,,A,Error A: A shared visible property does not establish identity.
+s03-P51,Weight needs no unit.,,,B,Error B: A measurement needs its unit.
+s03-P51t,The empty cup weight is the powder weight.,,,x,Error x: Use actual or supplied evidence without inventing a result.
+s03-P52a,Appearance alone identifies every sample.,,,A,Error A: evidence misread.
+s03-P52b,Nothing remains when material cannot be seen.,,,F,Error F: evidence misread.
+s03-K52-1,Change dampness and pulling strength together to isolate dampness.,,,I,Error I: evidence misread.
+s03-P52c,The reading proves every mixture makes new material.,,,E,Error E: evidence misread.
+s03-P52d,Every changed appearance proves a new substance.,,,E,Error E: evidence misread.
+s03-P52,Paragraph 1 says material vanished.,,,F,Error F: evidence misread.
+s03-P52r,Both returned just because someone tried.,,,H,Error H: evidence misread.
+s03-P52w,It returned only because all changes must reverse.,,,H,Error H: evidence misread.
+s03-P53h,Changing stick length still gives a matched comparison.,,,I,Error I: evidence misread.
+s03-P53f,Clear appearance means no material remains.,,,F,Error F: evidence misread.
+s03-P53i,Change dampness and pulling strength together to isolate dampness.,,,I,Error I: evidence misread.
+s03-P53n,Three repeated trials guarantee the claim is true.,,,x,Error x: evidence misread.
+s03-P54i,Change liquid type and amount together to identify one cause.,,,I,Error I: evidence misread.
+s03-P54m,All bubbles prove a new substance.,,,G,Error G: evidence misread.
+s03-P55g,Any pouring bubble proves a new substance.,,,G,Error G: evidence misread.
+s03-P55t,Every mixture must create a new substance.,,,E,Error E: evidence misread.
+s03-P55s,Change dampness and cup size together to isolate dampness.,,,I,Error I: evidence misread.
+s03-P55q,Clumps prove every mixture creates new material.,,,E,Error E: evidence misread.
+s03-P53,Change quantities and temperature together to isolate one cause.,,,I,Error I: evidence misread.
+s03-P54,Any pouring bubble proves a new substance.,,,G,Error G: evidence misread.
+s03-P55,Every mixture must create a new substance.,,,E,Error E: evidence misread.
+s03-P56i,Two changing conditions isolate one cause.,,,I,error I: component misconception
+s03-P56e,Mixing alone establishes a new substance.,,,E,error E: component misconception
+s03-P56log,Clear passed liquid contains nothing.,,,F,error F: component misconception
+s03-P57f,Clear liquid has no material.,,,F,error F: component misconception
+s03-P57h,Failure to collect proves a new substance.,,,H,error H: component misconception
+s03-P57model,Any brown surface must be rust.,,,A,error A: component misconception
+s03-P58g,Bubbles always prove new substance formation.,,,G,error G: component misconception
+s03-P58p,Shared color identifies every material.,,,A,error A: component misconception
+s03-E1,Copied supplied values with no personal actions leave practical components unobserved.,,,x,error x: unmatched readiness or coverage gap; no unit 3 letter inference.
+s03-E3,Watched peers and claimed clear means salt vanished.,,,F,error F: sample solved cold; see item look-fors.
+s03-E4a,Change temperature and solution amount; compare wet lumps once.,,,I,error I: sample solved cold; see item look-fors.
+s03-E4b,Filtering proves the solid existed before mixing.,,,H,error H: sample solved cold; see item look-fors.
+s03-E4c,Bubbles prove reaction and the extra trial proves warmth alone caused more solid.,,,G,error G: sample solved cold; see item look-fors.
+s03-E4c,Bubbles prove reaction and the extra trial proves warmth alone caused more solid.,,,I,error I: sample solved cold; see item look-fors.
+s03-E4d,Clear starting solutions contain nothing; solid comes from nothing.,,,F,error F: sample solved cold; see item look-fors.
+s03-N61a,They must touch.,,,x,error x: unmatched readiness or coverage gap; no unit 3 letter inference.
+s03-N61b,Both stop at gate; stars show in daytime.,,,x,error x: unmatched readiness or coverage gap; no unit 3 letter inference.
+s03-N61c,Summer has the shortest daylight.,,,x,error x: unmatched readiness or coverage gap; no unit 3 letter inference.
+s03-P56,Clear passed liquid contains no material.,,,F,error F: sample solved cold; see item look-fors.
+s03-P57,Any surface color change uniquely identifies rust.,,,A,error A: sample solved cold; see item look-fors.
+s03-P58,All mixing guarantees a new substance.,,,E,error E: sample solved cold; see item look-fors.
+s03-P61,A weight needs no unit.,,,B,error B: sample solved cold; see item look-fors.
+s03-P56m,All the sand and iron must be one new material.,,,E,error E: sample solved cold; see item look-fors.
+s03-P57c,W isolates dampness while changing cup and portion.,,,I,error I: sample solved cold; see item look-fors.
+s04-X62,Both must fall toward the page bottom.,,,A,error A: Treats a page direction as universal.
+s04-X63,Down always points toward the page bottom.,,,A,error A: Treats a page direction as universal.
+s04-X63,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-X64,Earth pull must point page-down at every site.,,,A,error A: Treats a page direction as universal.
+s04-X65,Both must point toward the page bottom.,,,A,error A: Treats a page direction as universal.
+s04-X66,Page-down must mean down everywhere.,,,A,error A: Treats a page direction as universal.
+s04-X67,Fixed-stick shadows cannot change direction.,,,B,error B: Misses timed direction changes.
+s04-X68,Shadow direction never changes.,,,B,error B: Misses timed direction changes.
+s04-X69,A fixed stick's shadow never changes direction through a day.,,,B,error B: Misses timed direction changes.
+s04-X69,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-X70,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-X70,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-X71,Daily spin alone makes seasonal visibility equal.,,,D,error D: Confuses daily and yearly changes.
+s04-X72,Daily spin alone explains seasonal change.,,,D,error D: Confuses daily and yearly changes.
+s04-X73,Daily Earth spin alone explains different seasonal night-star records.,,,D,error D: Confuses daily and yearly changes.
+s04-X73,Earth's orbit alone makes the moon circle Earth.,,,H,error H: Omits the moon own orbit.
+s04-X73,Earth's yearly orbit explains a star's movement across one night.,,,I,error I: Uses yearly motion for a nightly pattern.
+s04-X74,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-X74,Daily Earth spin alone explains different seasonal night-star records.,,,D,error D: Confuses daily and yearly changes.
+s04-X74,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-X75,Distance cannot change fixed-patch brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-X76,Distance cannot affect patch brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-X77,The sun is not a star.,,,E,error E: Excludes the nearest star from its category.
+s04-X77,Changing distance cannot change a source's apparent brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-X78,Down always points toward the page bottom.,,,A,error A: Treats a page direction as universal.
+s04-X78,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-X78,Daily Earth spin alone explains different seasonal night-star records.,,,D,error D: Confuses daily and yearly changes.
+s04-X78,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-X78,Changing distance cannot change a source's apparent brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-Q1a,Shadow direction never changes.,,,B,error B: Misses timed direction changes.
+s04-Q1b,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-Q1b,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-Q1c,Daily spin alone explains these seasonal records.,,,D,error D: Confuses daily and yearly changes.
+s04-Q1d,Earth orbit alone makes moon circle Earth.,,,H,error H: Omits the moon own orbit.
+s04-Q2,Page-bottom means down at both sites.,,,A,error A: Treats a page direction as universal.
+s04-Q3,The sun is not a star.,,,E,error E: Excludes the nearest star from its category.
+s04-Q3,Changing distance cannot change a source's apparent brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-R81-gravity,Page-bottom is universal down.,,,A,error A: Treats a page direction as universal.
+s04-R81-sky,A fixed stick's shadow never changes direction through a day.,,,B,error B: Misses timed direction changes.
+s04-R81-sky,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-R81-sky,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-R81-stars,Daily Earth spin alone explains different seasonal night-star records.,,,D,error D: Confuses daily and yearly changes.
+s04-R81-stars,Earth's yearly orbit explains a star's movement across one night.,,,I,error I: Uses yearly motion for a nightly pattern.
+s04-R81-moon,Earth orbit alone circles moon.,,,H,error H: Omits the moon own orbit.
+s04-R81-light,The sun is not a star.,,,E,error E: Excludes the nearest star from its category.
+s04-R81-light,Changing distance cannot change a source's apparent brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-P62-label,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P62-actual,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P63-gap,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P63-path,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P63-day,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P64-free,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P65-fragments,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P66-locate,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P67-raw,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P68-bars,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P68-conditions,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P69-lit,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P69-mark,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P70-bars,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P70-strip,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P71-tally,"Five visible evenings, including cloudy Winter 5.",,,x,error x: Descriptive mismatch; do not infer a more specific misconception.
+s04-P71-key,Two months.,,,x,error x: Descriptive mismatch; do not infer a more specific misconception.
+s04-P72-view,Both arrows point toward the sun.,,,x,error x: Descriptive mismatch; do not infer a more specific misconception.
+s04-P73-spin,I moved Earth around the sun instead of turning it.,,,x,error x: Descriptive mismatch; do not infer a more specific misconception.
+s04-P73-earth,I moved the far markers while Earth stayed still.,,,x,error x: Descriptive mismatch; do not infer a more specific misconception.
+s04-P73-moon,We observed the real moon orbit in this desk test.,,,x,error x: Descriptive mismatch; do not infer a more specific misconception.
+s04-P74-locate,May bar marked but January raw entry marked.,,,x,error x: Descriptive mismatch; do not infer a more specific misconception.
+s04-P75-actual,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P75-control,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P76-audit,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P77-travel,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P77-disk,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P78-locate,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P81-rain,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P81-map,Marked evidence does not match record.,,,x,Descriptive follow-up; no inferred misconception.
+s04-P81-repairA,Down always points toward the page bottom.,,,A,error A: Treats a page direction as universal.
+s04-P81-repairB,A fixed stick's shadow never changes direction through a day.,,,B,error B: Misses timed direction changes.
+s04-P81-repairC,Every month has equal daylight duration.,,,C,error C: Replaces evidence with a fixed twelve-hour rule.
+s04-P81-repairD,Daily Earth spin alone explains different seasonal night-star records.,,,D,error D: Confuses daily and yearly changes.
+s04-P81-repairE,The sun is not a star.,,,E,error E: Excludes the nearest star from its category.
+s04-P81-repairF,Changing distance cannot change a source's apparent brightness.,,,F,error F: Ignores spreading over a larger area.
+s04-P81-repairG,Earth's yearly orbit causes the daily light-dark cycle.,,,G,error G: Uses yearly motion for a daily pattern.
+s04-P81-repairH,Earth's orbit alone makes the moon circle Earth.,,,H,error H: Omits the moon own orbit.
+s04-P81-repairI,Earth's yearly orbit explains a star's movement across one night.,,,I,error I: Uses yearly motion for a nightly pattern.
+s04-P62-hook,Both are our actual observations.,,,x,error x: supplied diagrams and invented records are mistaken for firsthand observations.
+s04-P64-observe,I measured the printed cord myself.,,,x,error x: reading a supplied diagram is mistaken for collecting an actual observation.
+s04-P64-label,The arrow names the object's travel path.,,,x,error x: motion path is substituted for the named gravitational force.
+s04-P65-link,The claim is true because it is the claim.,,,x,error x: repeating the claim supplies neither a supporting observation nor its causal link.
+s04-K67-sun,"South, beside the shadow.",,,x,Descriptive gap; no misconception inferred.
+s04-P67-next,My predicted mark was measured.,,,x,Descriptive gap; no misconception inferred.
+s04-K68-pencils,Bars start at different baselines.,,,x,Descriptive gap; no misconception inferred.
+s04-P70-bars,Every month has equal daylight duration.,,,C,error C: replaces changing supplied durations with equality.
+s04-P69-mark,"Left of the peg, toward the lamp.",,,x,Reverses source side and shadow side; descriptive gap outside the lettered register.
+s04-P71-pattern,Harbor appears equally often in both seasons.,,,x,error x: Descriptive follow-up on the stated response.
+s04-P72-tag,Our class directly observed N71 in the sky.,,,x,error x: Descriptive follow-up on the stated response.
+s04-K75-1,The paths converge farther from the source.,,,x,Use a descriptive next step for this model feature.
+s04-P76-footprint,"My observation was unclear, but I replaced it with a made-up measurement.",,,x,Use a descriptive next step for this model feature.
+s04-P77-scale,The grain shows the true scaled size of Earth.,,,x,Use a descriptive next step for this model feature.
+c2-E82-measure,I copied a number without reading an instrument.,,,U,Error U: I copied a number without reading an instrument.
+c2-E82-powder,B must match because its color matches.,,,T,Error T: B must match because its color matches.
+c2-E82-metal,C must match because its color matches.,,,T,Error T: C must match because its color matches.
+c2-E82-mineral,F must match because its color matches.,,,T,Error T: F must match because its color matches.
+c2-E82-liquid,G must match because its color matches.,,,T,Error T: G must match because its color matches.
+c2-E82-plan,Warm salt cups and cold controls isolate salt addition.,,,V,Error V: Warm salt cups and cold controls isolate salt addition.
+c2-E82-log,My partner performed every action; I copied the supplied record.,,,U,Error U: My partner performed every action; I copied the supplied record.
+c2-E82-claim,"Every mixture makes a new substance, so clarity proves formation.",,,W,"Error W: Every mixture makes a new substance, so clarity proves formation."
+c2-E83-distance,B: sun is not a star.,,,X,Error X: B: sun is not a star.
+c2-E83-light,Distance cannot change apparent brightness at fixed output.,,,Y,Error Y: Distance cannot change apparent brightness at fixed output.
+c2-E83-size,A larger image proves the sun physically exceeds every other star.,,,Z,Error Z: A larger image proves the sun physically exceeds every other star.
+c2-E83-shadow,A fixed stick always has one shadow direction.,,,AA,Error AA: A fixed stick always has one shadow direction.
+c2-E83-daylight,Daylight duration is identical in both months.,,,AB,Error AB: Daylight duration is identical in both months.
+c2-E83-stars,L ceased to exist in September.,,,AC,Error AC: L ceased to exist in September.
+c2-P84-properties,Shine alone selects it.,,,T,Error T: Shine alone selects it.
+c2-P84-controls,Two changed conditions isolate one cause.,,,V,Error V: Two changed conditions isolate one cause.
+c2-P84-light,Distance cannot affect brightness.,,,Y,Error Y: Distance cannot affect brightness.
+c2-P84-pattern,It stays the same all day.,,,AA,Error AA: It stays the same all day.
+c2-P84-shadow,I copied a supplied length as my personal measurement.,,,U,Error U: I copied a supplied length as my personal measurement.
+c2-R84-climate,Yesterday makes P dry climate and Q wet climate.,,,AD,Error AD: Yesterday makes P dry climate and Q wet climate.
+c2-R84-climate,P usually dry; Q usually wet.,,,AE,Error AE: reverses the printed map key.
+c2-X84,A: pale color proves U is A.,,,T,Error T: A: pale color proves U is A.
+c2-X84,B: every mixture forms new material.,,,W,Error W: B: every mixture forms new material.
+c2-X84,C: distance never affects brightness.,,,Y,Error Y: C: distance never affects brightness.
+c2-X84,D: missing stars were destroyed.,,,AC,Error AC: D: missing stars were destroyed.
+s05-X89-1,Carrying loose grains is weathering.,,,B,Transport is erosion; stationary breaking is weathering.
+s05-X89-2,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-X89-2,Carrying loose grains is weathering.,,,B,Transport is erosion; stationary breaking is weathering.
+s05-X90-1,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-X90-2,Fresh water is always safe to drink.,,,G,"Low salt does not establish testing, treatment or access."
+s05-X91,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-X91,Unseen air cannot act.,,,C,Observable effects support unseen-air interaction.
+s05-X92,All salt water is ocean water.,,,D,Inland saline lakes and groundwater also belong in salt water.
+s05-X93,All salt water is ocean water.,,,D,Inland saline lakes and groundwater also belong in salt water.
+s05-X94,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-X94,Surface and other fresh water means only lakes and rivers.,,,F,"The full remainder includes other stores, such as soil moisture."
+s05-X95-1,Equal lengths on different scales mean equal amounts.,,,H,Compare values using the same units and scale.
+s05-X95-2,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-X96,All salt water is ocean water.,,,D,Inland saline lakes and groundwater also belong in salt water.
+s05-X96,Fresh water is always safe to drink.,,,G,"Low salt does not establish testing, treatment or access."
+s05-X97-1,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-X97-2,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-Q1a,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-Q1a,Carrying loose grains is weathering.,,,B,Transport is erosion; stationary breaking is weathering.
+s05-Q1b,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-Q1b,Carrying loose grains is weathering.,,,B,Transport is erosion; stationary breaking is weathering.
+s05-Q1c,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-Q1d,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-Q1d,Unseen air cannot act.,,,C,Observable effects support unseen-air interaction.
+s05-Q1e,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-Q2a2,All salt water is ocean water.,,,D,Inland saline lakes and groundwater also belong in salt water.
+s05-Q2b1,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-Q2b1,Surface and other fresh water means only lakes and rivers.,,,F,"The full remainder includes other stores, such as soil moisture."
+s05-Q2c1,Equal lengths on different scales mean equal amounts.,,,H,Compare values using the same units and scale.
+s05-Q2c1,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-Q2c2,Equal lengths on different scales mean equal amounts.,,,H,Compare values using the same units and scale.
+s05-Q2c3,Fresh water is always safe to drink.,,,G,"Low salt does not establish testing, treatment or access."
+s05-R99-systems,"Land, water, air.",,,A,Names alone do not show an interaction.
+s05-R99-systems,Carrying loose grains is weathering.,,,B,Transport is erosion; stationary breaking is weathering.
+s05-R99-air,Unseen air cannot act.,,,C,Observable effects support unseen-air interaction.
+s05-R99-distribution,The fresh-only whole is all water.,,,E,"A fresh subset is a different, smaller whole."
+s05-R99-distribution,Surface and other fresh water means only lakes and rivers.,,,F,"The full remainder includes other stores, such as soil moisture."
+s05-R99-distribution,Equal lengths on different scales mean equal amounts.,,,H,Compare values using the same units and scale.
+s05-R99-salt,All salt water is ocean water.,,,D,Inland saline lakes and groundwater also belong in salt water.
+s05-R99-access,Fresh water is always safe to drink.,,,G,"Low salt does not establish testing, treatment or access."
+s05-P99-A,Names prove an interaction.,,,A,Unit 5 component repair letter A; use separate repair-key.md after the component attempt.
+s05-P99-B,Transport is weathering.,,,B,Unit 5 component repair letter B; use separate repair-key.md after the component attempt.
+s05-P99-C,Unseen air cannot act.,,,C,Unit 5 component repair letter C; use separate repair-key.md after the component attempt.
+s05-P99-D,Only ocean belongs under salt water.,,,D,error D: Non-ocean saline groundwater is wrongly excluded from the salt category.
+s05-P99-E,Both mean all water.,,,E,Unit 5 component repair letter E; use separate repair-key.md after the component attempt.
+s05-P99-F,Only lakes and rivers belong.,,,F,Unit 5 component repair letter F; use separate repair-key.md after the component attempt.
+s05-P99-G,The contamination test alone gives the salt amount.,,,G,error G: Conflates evidence about salt amount with evidence about contamination; distinguish fresh from tested safe.
+s05-P99-H,Equal lengths always mean equal amounts.,,,H,Unit 5 component repair letter H; use separate repair-key.md after the component attempt.
+s05-X85,"Land, water, air.",,,A,Parts named without an action.
+s05-X85,Unseen air cannot act.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-P85,The drawing proves every cause.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-P85-retrieve,Both are weathering.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-K85-air,Unseen air cannot act.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-P85-sort,My guess proves the cause.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-X86-1,"Land, water, air.",,,A,Parts named without an action.
+s05-X86-1,Unseen air cannot act.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-X86-2,One dry day makes the long-term climate dry.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-P86,All air stops permanently.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-P86-climate,One afternoon determines the climate.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-P86-key,M rainy; N snowy.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-P86-recheck,One gust establishes the usual season.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-K86-arrow,"Land, water, air.",,,A,Parts named without an action.
+s05-P86-extension,Both describe this afternoon.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-X87,"Land, water, air.",,,A,Parts named without an action.
+s05-P87,The ridge destroys air.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-K87-stages,Air vanishes at the ridge.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-X88-1,"Land, water, air.",,,A,Parts named without an action.
+s05-X88-2,"Land, water, air.",,,A,Parts named without an action.
+s05-X88-3,Unseen air cannot act.,,,C,Unseen air excluded or lost despite supplied evidence.
+s05-P88,Water cannot affect another system.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-K88-actions,Water cannot affect another system.,,,x,"Descriptive evidence, timescale or key-reading gap; no A/C diagnosis."
+s05-P88-compare,Naming parts alone explains both.,,,A,Parts named without an action.
+s05-K89,Carrying is weathering.,,,B,Transport is erosion; breaking down is weathering.
+s05-K90,I point uphill.,,,x,The hollow is stated to be lower; no registered misconception inferred.
+s05-P89,I replaced an unclear view with a claimed measurement.,,,x,Preserve uncertainty; distinguish supplied from actual observations.
+s05-P90,A map symbol proves tested safety.,,,G,Terrain symbols provide no water-testing evidence.
+s05-P91,Two disconnected names show an interaction.,,,A,Connect parts with an action and matching observation.
+s05-P92-2,Triangle means lake.,,,x,Teacher-only feedback: Mountain.
+s05-K92-1,Enlarging the shaded group adds squares.,,,x,Teacher-only feedback: Any five of sixteen equal squares are shaded. The shaded group can be enlarged separately.
+s05-K92-2,Equal intervals can represent different numbers of units.,,,H,Teacher-only feedback: One bar runs from zero to seven; equal axis intervals represent equal badge units.
+s05-P92,All underground spaces form one giant lake.,,,x,Groundwater occupies water-filled spaces in earth materials; no universal underground lake.
+s05-P93-2,One hundredth is ten tiles.,,,x,Teacher-only feedback: One tile is marked.
+s05-P93-3,Only ocean water belongs in salt water.,,,D,"Teacher-only feedback: Salt water, about 97 of 100 shares; includes ocean and non-ocean saline stores."
+s05-P93,Salt means only ocean.,,,D,Include salty groundwater and inland saline lakes.
+s05-P94,Both wholes mean all water.,,,E,The lifted strip includes fresh water alone.
+s05-P94,Soil moisture cannot join the remainder.,,,F,Surface and other fresh water includes stores beyond lakes and rivers.
+s05-P95-2,0.04 is larger than 0.18.,,,x,Teacher-only feedback: 0.18 units is larger.
+s05-K95-1,Any longer printed strip must mean more water.,,,H,Teacher-only feedback: One swamp strip begins at zero and ends at 0.03 parts per 100 fresh-water shares.
+s05-P95,Printed lengths always mean equal amounts.,,,H,"Compare zero, units and scale before interpreting length."
+s05-C92-1,A surface view always shows every water store.,,,x,Teacher-only feedback: It may not show water in underground spaces.
+s05-C93-1,More blue area always means more stored water.,,,x,Teacher-only feedback: Area alone gives no depth or stored volume; use amount evidence.
+s05-C94-1,One fresh-only share is one all-water share.,,,E,Teacher-only feedback: It belongs to the fresh subset within all water; it is not one all-water share.
+s05-C95-1,Larger printing increases the water quantity.,,,H,Teacher-only feedback: The same supplied quantities are represented with larger printed lengths.
+s05-P96,The graph proves every fresh source safe.,,,G,error G: Global freshwater distribution is mistaken for local drinking-water safety.
+s05-P97,Unsupported claims need no evidence.,,,x,error x: Component lacks a matching source locator; use descriptive feedback.
+s05-P99-design,Both devices changed in every way.,,,x,error x: Identical outlines and slot counts are ignored; only spacing differs.
+s05-P99-resource,The stream amount cannot change.,,,x,error x: Supplied matched records show fewer downstream water marks when the intake opens.
+s05-Q2a1,Endpoints do not match the supplied 975 and 25.,,,x,error x: Copying or construction gap; no specific misconception inferred.
+s05-Q2b2,No land-ice category or dominant freshwater store is identified.,,,x,error x: Location or category evidence absent; give descriptive feedback.
+s06-X102,Separate facts without connection.,,,A,Separate facts need a combined conclusion.
+s06-X102,Unconnected boom and water labels.,,,B,Names alone omit interactions.
+s06-X102,Less litter next year was already observed.,,,C,A projection is not an observation.
+s06-X103,Clear output proves safe drinking water.,,,D,Appearance does not establish drinking safety.
+s06-X105,Give baskets different water amounts.,,,E,A second changing condition confounds comparison.
+s06-X105,One good trial proves the best basket.,,,F,One result does not establish repeated performance.
+s06-X107,Keep only the preferred first trial.,,,F,One result does not establish repeated performance.
+s06-X107,Remove leaking and tilted trials.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-X108,Omit N2 to make N consistent.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-X108,N1 alone proves the best liner.,,,F,One result does not establish repeated performance.
+s06-X109,Repaint the outside without changing the split.,,,H,Target the recorded failure.
+s06-X111,Choose S from its first trial alone.,,,F,One result does not establish repeated performance.
+s06-X111,Drink the clearer output.,,,D,Appearance does not establish drinking safety.
+s06-X112,Copy the crew line and counts separately.,,,A,Separate facts need a combined conclusion.
+s06-X112,Swept runoff is drinkable.,,,D,Appearance does not establish drinking safety.
+s06-X113,"List bridge, basket and stream without interactions.",,,B,Names alone omit interactions.
+s06-X113,Complete future capture was already observed.,,,C,A projection is not an observation.
+s06-P111-plot,Delete an unfavorable repeat.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-X114-1,Copy facts separately.,,,A,Separate facts need a combined conclusion.
+s06-X114-1,List parts without connection.,,,B,Names alone omit interactions.
+s06-X114-1,The water is drinkable.,,,D,Appearance does not establish drinking safety.
+s06-X114-2,Unequal amounts still compare fairly.,,,E,A second changing condition confounds comparison.
+s06-Q1a,"The city has projects; soil has gravel, without combination.",,,A,Separate facts need a combined conclusion.
+s06-Q1a,"Land, sewer and water labels have no routes.",,,B,Names alone omit interactions.
+s06-Q1b1,Reduce engine exhaust without changing soil loss.,,,I,An action must affect the particular harm route.
+s06-Q1b2,Prevent orbital debris without addressing habitat.,,,I,An action must affect the particular harm route.
+s06-Q1b3,Prevent orbital debris to stop runoff.,,,I,An action must affect the particular harm route.
+s06-Q1b4,Replant a disconnected habitat without interrupting litter transport.,,,I,An action must affect the particular harm route.
+s06-Q1b5,Collect river litter without changing engine emissions.,,,I,An action must affect the particular harm route.
+s06-Q1b6,Filter ocean water to remove orbiting equipment.,,,I,An action must affect the particular harm route.
+s06-Q1c,A future benefit has already been measured.,,,C,A projection is not an observation.
+s06-Q1c,Clear output must be drinkable.,,,D,Appearance does not establish drinking safety.
+s06-Q2a,Use different inputs.,,,E,A second changing condition confounds comparison.
+s06-Q2a,One trial proves winner.,,,F,One result does not establish repeated performance.
+s06-Q2a,Erase unfavorable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-Q2b,B1 alone proves B always best.,,,F,One result does not establish repeated performance.
+s06-Q2b,Paint catcher without addressing failure.,,,H,Target the recorded failure.
+s06-Q2b,Delete high escape reading.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-R117,Separate copied facts.,,,A,Separate facts need a combined conclusion.
+s06-R117,Parts without route.,,,B,Names alone omit interactions.
+s06-R117,Runoff is drinkable.,,,D,Appearance does not establish drinking safety.
+s06-R117,"Repaint covers, leaving unequal slopes.",,,H,Target the recorded failure.
+s06-P100-notice,The picture proves drinking safety.,,,x,Appearance cannot establish invisible hazards or drinking safety.
+s06-P100-route,Part names alone show the interaction.,,,B,Names alone omit interactions.
+s06-P101-status,The expected future result has already been observed.,,,C,A projection is not an observation.
+s06-P102-soil,An action unrelated to this harm route will solve it.,,,I,An action must affect the particular harm route.
+s06-P102-status,The expected future result has already been observed.,,,C,A projection is not an observation.
+s06-P104-feature,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P104-contribution,"Our group worked, but I cannot identify my contribution.",,,x,Group work alone does not establish an individual decision.
+s06-P105-plot,Plot one mark at 1 and one at 1.5; drop the repeated 1.,,,G,Deleting a repeated measurement hides one trial.
+s06-P105-control,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P106-assembly,A records-only annotation proves I built the filter.,,,x,Response does not establish the requested observation or reading.
+s06-P106-inventory,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P107-serial,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P107-scale-v2,7 mL.,,,x,Counts marks without their 20 mL step.
+s06-P108-audit,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P108-fault,A leak occurred even though no leak was recorded.,,,x,Response does not establish the requested observation or reading.
+s06-P109-locator,"The cloth caused the blockage, although no cause was observed.",,,x,Response does not establish the requested observation or reading.
+s06-P109-fixed,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P110-dry,An unrelated change fixes any failure.,,,H,Target the recorded failure.
+s06-P110-mark,Round up a below-threshold volume and count the goal met.,,,x,Response does not establish the requested observation or reading.
+s06-P111-dot,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P111-criterion,Clear appearance proves no side bypass.,,,x,Response does not establish the requested observation or reading.
+s06-P112-source,The card says wetlands make water safe to drink.,,,D,error D: A water-storage or quality function does not establish drinking safety.
+s06-P112-limit,Clear-looking output is safe to drink.,,,D,Appearance does not establish drinking safety.
+s06-P113-point,Part names alone show the interaction.,,,B,Names alone omit interactions.
+s06-P113-repeat,The most favorable trial alone proves success.,,,F,One result does not establish repeated performance.
+s06-P114-timing,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P114-reset,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P117-A,Copy both facts separately.,,,A,error A: Does not relate the dust log to the stated mesh location.
+s06-P117-B,Part names alone show the interaction.,,,B,Names alone omit interactions.
+s06-P117-C,The expected future result has already been observed.,,,C,A projection is not an observation.
+s06-P117-D,Clear-looking output is safe to drink.,,,D,Appearance does not establish drinking safety.
+s06-P117-E,The comparison condition does not need to match.,,,E,A second changing condition confounds comparison.
+s06-P117-F,The most favorable trial alone proves success.,,,F,One result does not establish repeated performance.
+s06-P117-G,Delete the unfavorable or unreadable trial.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P117-H,An unrelated change fixes any failure.,,,H,Target the recorded failure.
+s06-P117-I,An action unrelated to this harm route will solve it.,,,I,An action must affect the particular harm route.
+s06-X100-1,"Separate yard, ditch and pond labels.",,,B,Names alone omit interactions.
+s06-X100-2,An air-protection question with no connection to this route.,,,I,An action must affect the particular harm route.
+s06-X101-2,Copy facts separately without a shared question.,,,A,Separate facts need a combined conclusion.
+s06-X104-1,One forecast proves S always works.,,,F,One result does not establish repeated performance.
+s06-X104-2,One forecast proves S always works.,,,F,One result does not establish repeated performance.
+s06-X104-2,S produces drinkable water.,,,D,Appearance does not establish drinking safety.
+s06-X106-2,Different inputs still compare fairly.,,,E,A second changing condition confounds comparison.
+s06-P110-retests,Change inputs between trials.,,,E,A second changing condition confounds comparison.
+s06-P110-retests,Remove the category-3 repeat.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-X110,Omit unfavorable repeated evidence from the model.,,,G,Retain inconvenient or unresolved trials with notes.
+s06-P100-resource,The depot building is the natural resource.,,,x,The response does not meet the stated task.
+s06-P100-fresh,"Yes, ocean water is fresh.",,,x,The response does not meet the stated task.
+s06-P100-arrow,"Water, pavement, grit.",,,B,Part names alone omit the interaction.
+s06-P100-shadow,Copy 34 cm into the actual log without observing.,,,x,The response does not meet the stated task.
+s06-P101-repair-B,"Roof, rain, dust.",,,B,Part names alone omit the action.
+s06-P101-repair-I,It removes gases from distant air.,,,I,That action does not address the described route.
+s06-P101-link,Wetlands and rivers are separate labels.,,,B,The answer needs an interaction.
+s06-P101-locator,The author and date do not matter.,,,x,Source locations need a maker and date when available.
+s06-X101-1,The inspection log reports leaf blockage; the maintenance note reports retained wrappers.,,,x,This reverses which named source supplies each idea.
+s06-P102-repair-A,Storage. Release. These words alone explain everything.,,,A,Separate facts need a connecting explanation.
+s06-P102-repair-BI,The lid changes distant engine exhaust.,,,I,This does not address the recorded grit route.
+s06-P102-observed,A future projection.,,,C,A recorded result is not a projection.
+s06-P103-repair-A,Water; plants; soil. Separate labels fully explain it.,,,A,Labels alone do not connect source information.
+s06-P103-repair-B,"Roof and barrel, without an action.",,,B,A parts list omits the interaction.
+s06-P103-repair-C,An observed result from next spring.,,,C,Expectation is not observation.
+s06-P103-retrieve,Change message meanings during the comparison.,,,E,Different comparison conditions can hide a design effect.
+s06-P103-measure-v2,2 milliliters.,,,x,The mark count must be multiplied by the printed 20 mL interval.
+s06-P103-sort,The collection target is a material restriction.,,,x,A checkable performance target is a criterion.
+s06-P103-limit,Using at least two cups meets the one-cup limit.,,,x,Two cups exceed the stated maximum.
+s06-P104-repair-D,It is safe to drink.,,,D,Clear appearance does not establish drinking safety.
+s06-P105-repair-D,Less cloudy means safe to drink.,,,D,Appearance is not a drinking-safety test.
+s06-P105-repair-F,One result proves every future result.,,,F,One result cannot establish repeated performance.
+s06-P105-measure,4 milliliters.,,,x,Four marks represent four 20 mL intervals.
+s06-P105-repeat,Keep only the largest volume.,,,G,Selecting a favorable result hides variation.
+s06-P104-design,Change cloth layers and sand amount together.,,,E,A second changed condition hides the layer effect.
+s06-P106-repair-E,Leave the outlet heights different.,,,E,Fresh component repair; retain original evidence.
+s06-P106-repair-F,One trial proves lasting success.,,,F,Fresh component repair; retain original evidence.
+s06-P107-repair-E,Different collection times compare fairly.,,,E,Fresh component repair; retain original evidence.
+s06-P108-repair-F,The first result proves it always works.,,,F,Fresh component repair; retain original evidence.
+s06-P108-repair-G,Erase the tipped-cup trial.,,,G,Fresh component repair; retain original evidence.
+s06-P109-repair-F,One smooth test proves reliable performance.,,,F,Fresh component repair; retain original evidence.
+s06-P109-repair-G,Delete the stopped-flow repeat.,,,G,Fresh component repair; retain original evidence.
+s06-P110-repair-H,Change cloth color and leave the support rocking.,,,H,Fresh component repair; retain original evidence.
+s06-P111-repair-E,Keep the new pour position and compare directly.,,,E,Fresh component repair; retain original evidence.
+s06-P111-repair-G,Erase the cloudier repeat.,,,G,Fresh component repair; retain original evidence.
+s06-P108-route,Water appeared from nowhere.,,,x,Use recorded route evidence.
+s06-P109-change,Changing cloth color fixes an outlet obstruction.,,,H,Use recorded route evidence.
+s06-P112-repair-F,The successful trial proves the pad always works.,,,F,error F: One favorable result omits variation.
+s06-P112-repair-D,Clearer jar water is safe to drink.,,,D,error D: Appearance does not establish drinking safety.
+s06-P113-repair-A,Copy the statements without relating them.,,,A,error A: Separate statements need a supported relationship.
+s06-P113-repair-D,Removing flakes makes water safe to drink.,,,D,error D: Appearance does not establish drinking safety.
+s06-P114-repair-B,Draw only separate labels.,,,B,error B: Labels need interactions.
+s06-P114-repair-C,It is an observed success.,,,C,error C: An expected outcome has not yet been observed.
+s06-P112-trial,The best-looking mark replaces every other trial.,,,F,error F: One favorable result omits variation.
+s06-P112-route,Change an unrelated light source.,,,I,error I: The action does not address the named water-storage part.
+s06-P113-control,A favorable result means conditions do not matter.,,,E,error E: Conditions must match regardless of outcome.
+s06-P113-failure,Only the best trial matters.,,,F,error F: One favorable result omits variation.
+s06-P114-reason,More output in a longer trial proves the design is better.,,,E,error E: Collection interval changes as well as design.
+s06-P114-instrument,One reading proves the instruments have identical precision.,,,x,error x: Different unit steps do not establish equivalent resolution.
+c5-E118-model,Plants and soil are nearby.,,,AF,Names proximity without an observed interaction.
+c5-E118-coast,Moving sand is rock breaking.,,,AG,Calls transport weathering rather than movement of existing grains.
+c5-E118-life,"Crab and grass, with no water connection.",,,AF,Explains living things but omits the ocean system.
+c5-E118-air,Invisible air cannot interact.,,,AH,Rejects an interacting system because it cannot be seen.
+c5-E118-all,Every salt share is ocean.,,,AI,Confuses all salt water with its ocean subset.
+c5-E118-all,Both bars are fresh-water shares.,,,AJ,Uses the wrong whole.
+c5-E118-fresh,"Ice holds 6,870 of every 10,000 all-water shares.",,,AJ,Changes the fresh-only whole to all water.
+c5-E118-fresh,The 120 shares are only lakes and rivers.,,,AK,Deletes other stores from the remainder.
+c5-E118-inset,Draw equally long bars on different axes.,,,AM,Different scales hide unequal quantities.
+c5-E118-limit,Fresh means safe to drink.,,,AL,Low salt does not establish drinking safety.
+c5-E119-leaflet,A has gardens. B has habitat.,,,AN,Copies disconnected facts.
+c5-E119-leaflet,"Pavement, garden, groundwater, without actions.",,,AO,A parts list omits interactions.
+c5-E119-leaflet,The garden makes all water safe to drink.,,,AL,The sources establish no drinking safety.
+c5-E119-impacts,Shrubs remove existing debris from orbit.,,,AU,Action does not address the affected route or place.
+c5-E119-status,General benefits are our measured outcome.,,,AP,Treats projection as an observation of this proposal.
+c5-E119-plan,Different loads give a fair comparison.,,,AQ,Load confounds the seam comparison.
+c5-E119-plan,One trial proves the wider seam best.,,,AR,Single result does not reveal variation.
+c5-E119-plan,Delete the trial where the seam opened.,,,AS,Deletes failure evidence.
+c5-E119-plan,Read a 0.2 millimeter change with a millimeter ruler.,,,AT,Claims finer resolution than the instrument step.
+c5-P120-systems,Invisible air cannot act.,,,AH,Rejects evidence of air affecting plants.
+c5-P120-graphs,Earth all-water shares.,,,AJ,Changes the fresh-only whole and mistakes invented tokens for Earth estimates.
+c5-P120-sources,Prediction already measured.,,,AP,Conflates predicted and observed results.
+c5-P120-testing,Different slopes are fair.,,,AQ,Slope could cause the difference.
+c5-P120-handoff,Copied table proves I conducted.,,,U,Copied data is not observed personal conducting.
+c5-X120,One observation proves permanent success.,,,AR,Overgeneralizes from one observation.
+c5-X120,"Boom, pond, litter, without arrows.",,,AO,Lists parts without modeled actions.
+c5-P120-erosion,"Gravel moved, so it broke.",,,AG,Motion does not establish breaking.
+c5-P120-salt,All salt water is ocean.,,,AI,Confuses category with subset.
+c5-P120-other,Remove soil moisture.,,,AK,Deletes a supplied remainder member.
+c5-P120-safe,Fresh means safe.,,,AL,Salt test does not establish drinking safety.
+c5-P120-scale,Equal lengths mean equal quantities.,,,AM,Ignores different axis scales.
+c5-P120-faults,Delete it to show success.,,,AS,Hides failure evidence.
+c5-P120-step,The ruler resolves0.3 centimeters.,,,AT,Claims finer resolution than its stated step.
+c5-P120-action,Catch stream litter to remove exhaust.,,,AU,Does not address exhaust route.

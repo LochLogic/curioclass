@@ -26,6 +26,8 @@ Stops (no Claude tokens are used; everything is automatic):
 - a lane stops itself after 3 failed jobs in a row (codex error, no last message, or a closed ledger gate), or when a
   grade's lesson gate failures pile up: more than 4 plus one for every 4 days drafted in that grade;
 - the file _draft\STOP stops every lane gently (running jobs finish); _draft\STOP-<lane> stops one lane.
+A per-job note in _draft
+otes\<lane>-<job>.txt is added to that job's prompt; a job listed in done.txt never runs.
 Restarting picks up where it stopped (done jobs are in _draft\done.txt; a stopped lane is in _draft\stopped.txt;
 delete its line to let it go on).
 
@@ -57,7 +59,7 @@ LANES = {   # subject: courses in grade order (Cory 2026-11-22; math-grade-4 is 
     'ela': ['english-language-arts-grade-4', 'english-language-arts-grade-5'],
     'science': ['science-grade-4', 'science-grade-5', 'science-grade-6'],
 }
-KINDS = {'SEC', 'DATA', 'DAY', 'CHECKS', 'TEXT', 'TEXT2'}
+KINDS = {'SEC', 'DATA', 'DAY', 'CHECKS', 'TEXT', 'TEXT2'}   # plus FIX: one grade fix per course (docs/pipeline/kit/draft-fix.txt)
 STALL = 20 * 60
 TIMEBOX = 3 * 3600
 STAGGER = 120          # seconds between lane starts (two sandboxes starting at once failed their handshake, 2026-11-04)
@@ -152,7 +154,14 @@ def load_queue(subj):
         elif kind in KINDS:
             steps.append(('job', num, kind, course, detail, f, gate if kind in ('DAY', 'CHECKS') else None))
         gate = None
-    return steps
+    out = []   # a grade fix job after each course's last step (Cory 2026-11-23: keep a good baseline for later grades)
+    for i, st in enumerate(steps):
+        out.append(st)
+        c = st[3] if st[0] == 'job' else st[1]
+        nxt = steps[i + 1] if i + 1 < len(steps) else None
+        if nxt is None or (nxt[3] if nxt[0] == 'job' else nxt[1]) != c:
+            out.append(('job', 'F-' + c, 'FIX', c, 'grade', None, None))
+    return out
 
 
 def done_set():
@@ -293,11 +302,20 @@ class Run:
 
 # ---------------------------------------------------------------- a lane
 
+FIX_FIRST = []
+
+
 def lane(subj, dry=False):
     steps = load_queue(subj)
     done = done_set()
     fails_row = 0
     grade_fails, grade_days, grade = 0, 0, None
+    midfixed = set()   # grades that already had a mid-grade fix job (one each)
+    if FIX_FIRST:   # `run <lane> --fix-first`: a lane stopped by a pile-up starts with its grade's fix job
+        todo = [st for st in steps if st[0] == 'job' and '%s:%s' % (subj, st[1]) not in done]
+        if todo:
+            midfixed.add(todo[0][3])
+            steps.insert(steps.index(todo[0]), ('job', 'M-%s-restart' % todo[0][3], 'FIX', todo[0][3], 'mid-grade', None, None))
     for st in steps:
         if STOP.exists() or (DRAFT / ('STOP-' + subj)).exists():
             log('%s: STOP file seen; lane ends' % subj)
@@ -320,12 +338,16 @@ def lane(subj, dry=False):
         key = '%s:%s' % (subj, num)
         if key in done:
             continue
-        if course != grade:
+        if course != grade or kind == 'FIX':
             grade, grade_fails, grade_days = course, 0, 0
         if dry:
             print('[dry] %s %s %s %s %s%s' % (subj, num, kind, course, detail, ('  gate: ' + gate) if gate else ''))
             continue
-        text = (QUEUES / subj / fname).read_text(encoding='utf-8')
+        if kind == 'FIX':
+            text = (ROOT / 'docs/pipeline/kit/draft-fix.txt').read_text(encoding='utf-8')
+            text = text.replace('{COURSE}', course).replace('{SUBJ}', subj)
+        else:
+            text = (QUEUES / subj / fname).read_text(encoding='utf-8')
         while True:   # one pass per try; a usage limit pauses every lane and tries the same job again
             while PAUSE_UNTIL[0] > time.time():
                 time.sleep(60)
@@ -335,12 +357,17 @@ def lane(subj, dry=False):
             t0 = time.time()
             if gate:
                 code, out = py(*gate.split()[3:]) if gate.startswith('python -X utf8 ') else (1, 'bad gate line')
-                if code:
-                    result = 'gate-closed'
-                    log('%s %s %s %s: ledger gate closed: %s' % (subj, num, kind, course, out.strip().splitlines()[-1:]))
+                if code:   # a draft writes the days anyway (Cory 2026-11-23); the job is told what the gate found
+                    log('%s %s %s %s: ledger gate closed, drafting anyway: %s' % (subj, num, kind, course, out.strip().splitlines()[-1:]))
+                    gate_note = '\n\nThe runner ran the step 0 ledger gate and it is CLOSED. Its output:\n' + out.strip()[-3000:] + '\n'
             run = None
             if result == 'ok':
                 prompt = (ROOT / 'docs/pipeline/kit/draft-preamble.txt').read_text(encoding='utf-8') + text
+                if gate and code:
+                    prompt += gate_note
+                extra = DRAFT / 'notes' / ('%s-%s.txt' % (subj, num))
+                if extra.exists():   # a per-job note (say, work already done by hand that the job must keep)
+                    prompt += '\n\nNote for this job (it wins over the job above):\n' + extra.read_text(encoding='utf-8')
                 prompt = LESSONGATE.sub(lambda m: 'python -X utf8 scripts/lesson_course.py ' + m.group(1), prompt)
                 prompt = REPO.sub(lambda m: m.group(0) + '-draft', prompt)
                 log('%s start %s %s %s %s' % (subj, num, kind, course, detail))
@@ -355,17 +382,30 @@ def lane(subj, dry=False):
                     continue
                 if not run.last.strip():
                     result = 'failed'
-                elif 'gate closed' in run.last[:400]:
-                    result = 'gate-closed'
+                elif re.search(r'(changed nothing|no files changed|zero rows added)', run.last[:1500], re.I):
+                    result = 'wrote-nothing'
             break
         if result == 'ok' and kind in ('DAY', 'CHECKS'):
             nums = [int(x) for x in re.findall(r'\d+', gate or '')[-2:]] if gate else []
             if len(nums) == 2:
                 code, out = py('scripts/lesson_course.py', course, str(nums[0]), str(nums[1]))
                 m = re.search(r'lesson_course: (\d+) failure\(s\) in (\d+) day', out)
+                if m and int(m.group(1)) and run and run.thread and not run.limit:
+                    # the lesson gate cannot run inside the sandbox, so the runner hands its failures back once
+                    fails = '\n'.join(ln for ln in out.splitlines() if ln.startswith('  FAIL'))[-6000:]
+                    log('%s %s: %s gate failures; handing them back to the session to fix' % (subj, num, m.group(1)))
+                    run.t0 = time.time()
+                    run._session(['exec', 'resume', '-c', 'sandbox_mode="workspace-write"', run.thread],
+                                 'The runner ran the lesson gate on your days (it cannot run in your sandbox). Fix every '
+                                 'failure below in your days and their data, as your job says (never bend content to pass '
+                                 'a gate; a rule that truly does not fit stays, listed as a template point). Then send '
+                                 'your last message again, updated.\n\n' + fails, '-fix')
+                    code, out = py('scripts/lesson_course.py', course, str(nums[0]), str(nums[1]))
+                    m = re.search(r'lesson_course: (\d+) failure\(s\) in (\d+) day', out)
                 if m:
                     gfails, ndays = int(m.group(1)), int(m.group(2))
-                    grade_fails += gfails
+                    dm = re.search(r'(\d+) in day files', out)
+                    grade_fails += int(dm.group(1)) if dm else gfails   # pile-up counts day-file failures only
                     grade_days += ndays
         with LOCK:
             commit(subj, '%s %s %s (job %s, %s)' % (kind.lower(), course, detail, num, result))
@@ -381,7 +421,14 @@ def lane(subj, dry=False):
             if fails_row >= MAX_FAILS:
                 stop_lane(subj, '%d failed jobs in a row (last %s %s)' % (fails_row, num, kind))
                 return
-        if grade_fails > 4 + grade_days // 4:
+        if grade_fails > 10 + grade_days and course not in midfixed:
+            # 2026-11-24: a pile-up first runs the grade fix job once, mid-grade, then the lane goes on
+            midfixed.add(course)
+            log('%s: %s: %d lesson gate failures in %d drafted days; running a mid-grade fix job first'
+                % (subj, course, grade_fails, grade_days))
+            steps.insert(steps.index(st) + 1, ('job', 'M-%s-%s' % (course, num), 'FIX', course, 'mid-grade', None, None))
+            continue
+        if grade_fails > 10 + grade_days:   # a second pile-up in the same grade stops the lane
             stop_lane(subj, '%s: %d lesson gate failures in %d drafted days' % (course, grade_fails, grade_days))
             return
     log('%s: lane finished' % subj)
@@ -446,6 +493,7 @@ def main(a):
     if a[0] != 'run':
         sys.exit(__doc__)
     dry = '--dry' in a
+    FIX_FIRST[:] = [1] if '--fix-first' in a else []
     if ROOT.name != 'CurioClass-draft' and not dry:
         sys.exit('the draft run only runs in S:\\CurioClass-draft (this is %s)' % ROOT)
     only = [x for x in a[1:] if x in LANES]

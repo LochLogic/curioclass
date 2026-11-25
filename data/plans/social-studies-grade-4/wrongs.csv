@@ -1,0 +1,1483 @@
+item_id,shown,compute,value,error,note
+s01-P1-1,Both show everything.,,,J,"Predicted response; use look-fors, not spelling."
+s01-P1-2,Only the title is a map part.,,,A,"Predicted response; use look-fors, not spelling."
+s01-P1-3,River.,,,A,"Predicted response; use look-fors, not spelling."
+s01-P1-4,4 meters.,,,C,"Predicted response; use look-fors, not spelling."
+s01-P1-5,North.,,,B,"Predicted response; use look-fors, not spelling."
+s01-K1-1,Which pencil is prettiest?,,,M,"Predicted response; use look-fors, not spelling."
+s01-P1-6,The pencil strip answers the map question.,,,M,"Predicted response; use look-fors, not spelling."
+s01-P1-7,It is useful only because it is my favorite.,,,M,"Predicted response; use look-fors, not spelling."
+s01-X1,Only a physical map can be useful.,,,J,"Predicted response; use look-fors, not spelling."
+s01-P1-E,Only my favorite matters.,,,M,"Predicted response; use look-fors, not spelling."
+s01-F2-1,River because it looks long.,,,A,"Predicted response; use look-fors, not spelling."
+s01-F2-2,Page-up stays north.,,,B,"Predicted response; use look-fors, not spelling."
+s01-P2-1,The coast is the river.,,,Q,"Predicted response; use look-fors, not spelling."
+s01-P2-2,The river line is the lake.,,,A,"Predicted response; use look-fors, not spelling."
+s01-P2-3,The interior land is the ocean.,,,Q,"Predicted response; use look-fors, not spelling."
+s01-P2-4,Long shapes are always rivers.,,,A,"Predicted response; use look-fors, not spelling."
+s01-P2-R,Water.,,,A,"Predicted response; use look-fors, not spelling."
+s01-P2-E,The bay at 1 is Lake Winnipeg.,,,Q,"Predicted response; use look-fors, not spelling."
+s01-X2,The name alone proves it.,,,A,"Predicted response; use look-fors, not spelling."
+s01-P3-R,Dots mean water.,,,A,"Predicted response; use look-fors, not spelling."
+s01-K3-1,A country border is the mountain range.,,,A,"Predicted response; use look-fors, not spelling."
+s01-P3-1,The hatch marks the desert.,,,Q,"Predicted response; use look-fors, not spelling."
+s01-F3-1,The Navajo Nation disappeared.,,,F,"Predicted response; use look-fors, not spelling."
+s01-P3-2,Nunavut is a Native nation.,,,E,"Predicted response; use look-fors, not spelling."
+s01-P3-3,Both are water.,,,Q,"Predicted response; use look-fors, not spelling."
+s01-P3-E,No label means nobody lives there.,,,K,"Predicted response; use look-fors, not spelling."
+s01-X3,The white country line is the range.,,,A,"Predicted response; use look-fors, not spelling."
+s01-P4-R,No school label means no school.,,,K,"Predicted response; use look-fors, not spelling."
+s01-P4-1,Western means northern.,,,E,"Predicted response; use look-fors, not spelling."
+s01-P4-2,The belts cross the ocean between continents.,,,Q,"Predicted response; use look-fors, not spelling."
+s01-P4-3,One continuous straight belt joins the continents.,,,Q,"Predicted response; use look-fors, not spelling."
+s01-P4-4,Both maps show every landform.,,,x,"Predicted response; use look-fors, not spelling."
+s01-P4-E,Both regions are in South America.,,,E,"Predicted response; use look-fors, not spelling."
+s01-X4,Canada and Brazil.,,,E,"Predicted response; use look-fors, not spelling."
+s01-P2-RC,3 meters.,,,C,"Predicted response; use look-fors, not spelling."
+s01-P2-RJ,Only one map can ever help anyone.,,,J,"Predicted response; use look-fors, not spelling."
+s01-P2-RM,Like the prettiest map.,,,M,"Predicted response; use look-fors, not spelling."
+s01-P5-R,Country.,,,E,Predicted response; score the geographic idea separately from spelling.
+s01-K5-1,A 336-centimeter strip.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-P5-1,A 392-centimeter strip.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-P5-2,A 448-centimeter strip.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-F5-1,Both labels say centimeters.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-F5-2,56 centimeters on land.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-P5-3,The ruler directly measures kilometers.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-X5,5 kilometers.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-X5,80 kilometers for the entire segment.,,,C,Treats the scale label as the whole segment distance.
+s01-P6-R,224 centimeters.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-P6-1,"Whole bar: 112 kilometers, about 112 miles.",,,C,Predicted response; score the geographic idea separately from spelling.
+s01-F6-1,About 336 miles.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-F6-2,About 140 miles.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-P6-2,448 kilometers; about 448 miles.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-P6-3,Both unit columns should contain the same number.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-X6,90 kilometers; about 90 miles.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-X6,60 kilometers for all the bars.,,,C,Ignores the additional half bar.
+s01-P7-R,224 miles; about 140 kilometers.,,,C,Predicted response; score the geographic idea separately from spelling.
+s01-K7-1,The claim needs no detail.,,,H,Predicted response; score the geographic idea separately from spelling.
+s01-P7-1,Every window covers the same area.,,,D,Predicted response; score the geographic idea separately from spelling.
+s01-P7-2,Every view shows Ash Road.,,,D,Predicted response; score the geographic idea separately from spelling.
+s01-F7-1,Hall and pond.,,,O,Predicted response; score the geographic idea separately from spelling.
+s01-P7-3,Every map shows everything.,,,N,Predicted response; score the geographic idea separately from spelling.
+s01-X7,Library and river.,,,O,Predicted response; score the geographic idea separately from spelling.
+s01-X7,All three maps contain the local streets.,,,D,Does not distinguish wider extent from retained street detail.
+s01-P8-R,Every wider map has every road.,,,D,Predicted response; score the geographic idea separately from spelling.
+s01-P8-1,I like this map.,,,H,Predicted response; score the geographic idea separately from spelling.
+s01-P8-2,Town views cover the entire state.,,,D,Predicted response; score the geographic idea separately from spelling.
+s01-P8-3,Every pond must be on the continent map.,,,N,Predicted response; score the geographic idea separately from spelling.
+s01-P8-4,The map shows every person.,,,H,Predicted response; score the geographic idea separately from spelling.
+s01-X8,I like this map.,,,H,Predicted response; score the geographic idea separately from spelling.
+s01-X8,The continent map gives every street.,,,D,Expects local detail on the broad view.
+s01-X8,The town map shows everything.,,,N,No specific limit recognized.
+s01-P9-R,Every view shows the bench.,,,D,Does not meet the geographic or source look-for.
+s01-P9-R,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-K9-1,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-K9-1,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-K9-2,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-K9-2,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P9-1,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-P9-1,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P9-2,Northwest Territories is a province.,,,E,Does not meet the geographic or source look-for.
+s01-P9-2,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P9-3,I like this map.,,,H,Does not meet the geographic or source look-for.
+s01-P9-3,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-X9,Alberta is a country.,,,E,Alberta is a province within Canada; score this category separately.
+s01-X9,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P10-R,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-P10-R,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-K10-1,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-K10-1,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-K10-2,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-K10-2,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P10-1,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-P10-1,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P10-2,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-P10-2,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P10-3,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-P10-3,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P10-4,Cuba contains all of the Caribbean.,,,E,Does not meet the geographic or source look-for.
+s01-P10-4,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-X10,Sonora is a country.,,,E,Sonora is a Mexican state; score this category separately.
+s01-X10,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P11-R,The division is a separate country.,,,E,Does not meet the geographic or source look-for.
+s01-P11-R,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P11-1,The maps are good because I like them.,,,H,Does not meet the geographic or source look-for.
+s01-P11-1,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-K11-1,State R is inside Reed County.,,,E,Does not meet the geographic or source look-for.
+s01-K11-1,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P11-2,Reed County is inside Alder City.,,,E,Does not meet the geographic or source look-for.
+s01-P11-2,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P11-3,Cherokee Nation has no government today.,,,F,Does not meet the geographic or source look-for.
+s01-P11-3,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P11-4,The larger place must point inside the smaller one.,,,E,Does not meet the geographic or source look-for.
+s01-P11-4,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-X11,Pima County contains Arizona.,,,E,Does not meet the geographic or source look-for.
+s01-X11,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P11-E,Every nation must be an independent country.,,,L,Does not meet the geographic or source look-for.
+s01-P11-E,Any other unsupported response.,,,x,Use the teacher look-fors; do not score handwriting or grammar.
+s01-P11-E,Citizen Potawatomi Nation has government only in the past.,,,F,"Card N describes government today, not only the past."
+s01-P11-E,Saskatchewan is a separate country.,,,E,The printed division label identifies a province within Canada.
+s01-X9,Nunavut is a province.,,,E,Nunavut is a territory; score this category separately.
+s01-X10,Barbados is a state.,,,E,Barbados is a Caribbean country; score this category separately.
+s01-P12-R,The county contains the state.,,,E,Accept equivalent supported wording. Accept the correction matching the assigned record; never put nation on the containment ladder.
+s01-P12-R,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P12-R,Cherokee Nation has no government today.,,,F,The printed reference describes present government.
+s01-P12-R,Every nation must be an independent country.,,,L,Self-government does not require independent-country status.
+s01-P12-1,Prime meridian is the only zero line.,,,P,Accept equivalent supported wording. Zero lines are equator and prime meridian.
+s01-P12-1,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-K12-1,"70 degrees west, 10 degrees north.",,,G,Accept equivalent supported wording. Follow A horizontally to its latitude label: 10 degrees north.
+s01-K12-1,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P12-2,"B: 80 degrees west, 30 degrees north.",,,G,Accept equivalent supported wording. Reads the two crossing lines for each existing star; preserves hemisphere and order.
+s01-P12-2,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P12-3,Latitude measures from the prime meridian.,,,P,Accept equivalent supported wording. Distinguishes direction a line runs from direction its number measures.
+s01-P12-3,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-X12,X placed using longitude as latitude.,,,G,"Accept equivalent supported wording. Marks the intersection, not a neighboring cell."
+s01-X12,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-X12,Uses prime meridian as the north/south zero line.,,,P,"Latitude starts at the equator, not the prime meridian."
+s01-P13-R,Latitude begins at prime meridian.,,,P,Accept equivalent supported wording. Corrects only the assigned order or zero-line error; no point pair is produced.
+s01-P13-R,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P13-1,A changes latitude; B changes longitude.,,,G,Accept equivalent supported wording. A runs along a parallel. B follows a meridian. No full point coordinates required.
+s01-P13-1,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P13-2,Horizontal lines are longitude.,,,G,"Accept equivalent supported wording. Uses direction measured, not the line direction alone; no ordered pair requested."
+s01-P13-2,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P13-3,Measure latitude east/west from prime meridian.,,,P,Accept equivalent supported wording. Repairs ordering and reference line without locating a point.
+s01-P13-3,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P13-4,A degree label is a kilometer distance.,,,x,"Accept equivalent supported wording. Explains degree labels with the general reference, not a supplied coordinate pair."
+s01-P13-5,The first label is whichever is larger.,,,G,Accept equivalent supported wording. Uses an accurate reference link. All children submit a written explanation; public talk optional.
+s01-P13-5,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-X13,"Y: 90 degrees west, 20 degrees north.",,,G,Accept equivalent supported wording. Reads Y latitude first with hemispheres.
+s01-X13,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-X13,Measures latitude north from prime meridian.,,,P,Latitude starts at the equator; a correctly placed Z is still credited separately.
+s01-P14-R,Longitude comes first.,,,G,Accept equivalent supported wording. Corrects assigned ordering or zero-line statement without reading or plotting an assessment point.
+s01-P14-R,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P14-1,Only the titles are evidence.,,,H,Accept equivalent supported wording. Identifies source-linked details and the inference linking them to the given claim.
+s01-P14-1,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P14-2,A and B are nice.,,,H,"Accept equivalent supported wording. Uses a relevant detail from A, identifies A and links it to the supplied claim."
+s01-P14-2,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P14-3,A marks Mississippi River.,,,I,Accept equivalent supported wording. Names B and its own relevant detail; does not repeat A evidence.
+s01-P14-3,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P14-4,It supports it because I wrote it.,,,H,Accept equivalent supported wording. Explains the link rather than repeating the detail alone.
+s01-P14-4,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-X14,They are useful because they have titles.,,,H,Accept equivalent supported wording. Makes a comparative claim with reasoning.
+s01-X14,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-X14,Walking Map shows paths and a pond; no Region Map detail.,,,I,A detail from each named map is required.
+s01-X14,Both maps show everything about the park.,,,N,Region Map omits paths; neither map establishes all human information.
+s01-A1a,4 is a desert.,,,Q,Accept equivalent supported wording. Scores each correctly located physical category separately. Index and title remain visible.
+s01-A1a,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A1b,The dotted boundary is the river.,,,A,"Accept equivalent supported wording. Links river identification to the printed solid-line key, not appearance alone."
+s01-A1b,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A1c,"North, because P is above Q.",,,B,Accept equivalent supported wording. Scores direction and arrow reasoning; accepts a correctly rotated compass drawing.
+s01-A1c,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A1d,3 kilometers.,,,C,Accept equivalent supported wording. Measures 3 centimeters.
+s01-A1d,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A1d,800 kilometers.,,,C,Counts one bar without the half bar.
+s01-A2a,Manitoba is an independent country.,,,E,Accept equivalent supported wording. Records each location and category separately; uses the map key and index.
+s01-A2a,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A2b,Dane is the country containing Wisconsin.,,,E,Accept equivalent supported wording. Scores all four place terms and the two definitions separately; accepts labelled arrows.
+s01-A2b,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A2c,"L: 110 degrees west, 30 degrees north.",,,G,Accept equivalent supported wording. Locates K at the intersection.
+s01-A2c,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A2c,Latitude is measured from prime meridian.,,,P,Wrong zero-line reference; do not infer this error from an unexplained misplaced point.
+s01-A2d,Every nation must be an independent country.,,,L,Accept equivalent supported wording. Uses card evidence for present government and distinguishes nation from state or independent country.
+s01-A2d,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A2d,Chickasaw Nation has no government today.,,,F,Card H describes elected officials and a court in the present.
+s01-A3a,"Library, park, lake.",,,O,"Accept equivalent supported wording. Scores a cultural location and an environmental relationship separately. Library, park and street are explicitly invented."
+s01-A3a,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A3b,Every view shows the same information.,,,D,"Accept equivalent supported wording. Uses each wider view for a visible nested location, not just a list."
+s01-A3b,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A3c,F shows every local street.,,,D,Accept equivalent supported wording. Chooses F for statewide planning and names a supported missing detail; it is not a driving-directions map.
+s01-A3c,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A4a,Maps show everything about every resident.,,,N,"Accept equivalent supported wording. Score claim, reasoning and supported limit once here, under D3.4."
+s01-A4a,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A4a,The maps are useful; no mapped evidence.,,,H,The claim has no evidence link.
+s01-A4a,No label means nobody lives there.,,,K,An omission does not establish absence of residents.
+s01-A4b,Two titles without a relevant detail from each.,,,I,Accept equivalent supported wording. Score source-linked evidence and the two links only. Do not award the claim twice.
+s01-A4b,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A4c,Only my question matters.,,,M,Accept equivalent supported wording. Another reader is named.
+s01-A4c,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-A4c,Only one map use is possible.,,,J,A different supported question and reader are possible.
+s01-P16-R,Copies an assessment answer without addressing the cue.,,,x,"Accept equivalent supported wording. Use earlier practice from the named day, not a rehearsal of the fresh repair card."
+s01-P16-1,Solid line is river because it looks like water.,,,A,Accept equivalent supported wording. Uses the new legend for the symbol correction; rotates directions using its own arrow. Score only the privately assigned component.
+s01-P16-1,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P16-1,Page-right is east despite the downward north arrow.,,,B,"Direction depends on the printed north arrow, not the page edge."
+s01-P16-2,A 1.5-centimeter strip.,,,C,Confuses the number of 4-centimeter bars with centimeters; one and a half bars measure 6 centimeters.
+s01-P16-2,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P16-3,Mexico lies inside the country Yucatán.,,,E,Accept equivalent supported wording. Corrects political category and containment using the new inset; Saskatchewan is reminder only.
+s01-P16-3,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P16-4,A Native nation must be a United States state.,,,L,"Accept equivalent supported wording. Corrects the general nation/country confusion, without inventing a Native nation or asking about a child."
+s01-P16-4,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P16-4,Native nations have no government today.,,,F,The government reference describes present self-government.
+s01-P16-5,Latitude measures east/west from prime meridian.,,,P,Accept equivalent supported wording. Repairs reference labels without reproducing an assessment point.
+s01-P16-5,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P16-6,The wider view has every street.,,,D,Accept equivalent supported wording. Uses visible omission; a wider area does not require every local detail.
+s01-P16-6,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P16-7,The market has many visitors because both maps exist.,,,I,Accept equivalent supported wording. Adds the missing map-specific evidence and its link; no invented attendance figure.
+s01-P16-7,Any other unsupported response,,,x,Record the missing component; do not infer an error from silence.
+s01-P16-7,Both titles prove everyone attends the market.,,,H,Titles do not supply evidence about attendance.
+s01-P16-7,These maps establish every visitor's needs.,,,N,"The maps establish selected spatial details, not all human needs."
+s01-P16-S,Awards points without describing a change.,,,x,"Accept equivalent supported wording. Reflection only, retained in folder; not a second scored record."
+s01-A1a,4 c,,,Q,The Chihuahuan Desert letter is not the Appalachian Mountains location.
+s02-X17,The teacher likes maps.,,,P,Only class preference gives importance. Compare the stimulus; judge content separately from English grammar.
+s02-X18,The decorated cover is best.,,,J,Decoration determines usefulness. Compare the stimulus; judge content separately from English grammar.
+s02-X18,Only agreeing sources count.,,,A,Only agreeing views count. Compare the stimulus; judge content separately from English grammar.
+s02-X19,An official table answers every question.,,,B,"Official, printed or tabular means useful for every question. Compare the stimulus; judge content separately from English grammar."
+s02-X19,Only agreeing sources count.,,,A,Only agreeing views count. Compare the stimulus; judge content separately from English grammar.
+s02-X19,The decorated cover is best.,,,J,Decoration determines usefulness. Compare the stimulus; judge content separately from English grammar.
+s02-X20,Printed means current.,,,B,"Official, printed or tabular means useful for every question. Compare the stimulus; judge content separately from English grammar."
+s02-X21,A liking proves a fact.,,,C,Printed preference is factual proof. Compare the stimulus; judge content separately from English grammar.
+s02-X21,One opinion makes all false.,,,K,One opinion makes all claims false. Compare the stimulus; judge content separately from English grammar.
+s02-X21,Checkable means true.,,,L,Checkable means verified true. Compare the stimulus; judge content separately from English grammar.
+s02-X22,This evidence proves an unrelated claim.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
+s02-X22,Two titles prove it.,,,N,Source titles replace details. Compare the stimulus; judge content separately from English grammar.
+s02-X23,These peoples existed only long ago.,,,M,Indigenous peoples exist only in the past. Compare the stimulus; judge content separately from English grammar.
+s02-X23,Every person does the same thing.,,,I,One sample describes everyone. Compare the stimulus; judge content separately from English grammar.
+s02-X24,Canada's prime minister is its president.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
+s02-X25,The map proves it is always warm.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
+s02-X26,Every person does the same thing.,,,I,One sample describes everyone. Compare the stimulus; judge content separately from English grammar.
+s02-X26,This evidence proves an unrelated claim.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
+s02-X27,A liking proves a fact.,,,C,Printed preference is factual proof. Compare the stimulus; judge content separately from English grammar.
+s02-X27,This evidence proves an unrelated claim.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
+s02-X27,Checkable means true.,,,L,Checkable means verified true. Compare the stimulus; judge content separately from English grammar.
+s02-X28,Coastal sounds better.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
+s02-X29,Good because short.,,,H,Liking or length is enough to critique. Compare the stimulus; judge content separately from English grammar.
+s02-X29,Three trams must run because the depot lists three.,,,D,A depot inventory does not establish the number operating.
+s02-X30,Glass jars and metal lids.,,,E,Listing goods explains reliance. Compare the stimulus; judge content separately from English grammar.
+s02-X30,Each makes everything alone.,,,O,Specialized producers make everything alone. Compare the stimulus; judge content separately from English grammar.
+s02-X31,Oats.,,,E,Listing goods explains reliance. Compare the stimulus; judge content separately from English grammar.
+s02-X31,Mexico exports oats to Canada.,,,D,"Reverses the supplied arrow; Canada is origin, Mexico destination."
+s02-X32,Everyone wins.,,,F,Everyone in a country gains or loses together. Compare the stimulus; judge content separately from English grammar.
+s02-X33,Everyone gains.,,,F,Everyone in a country gains or loses together. Compare the stimulus; judge content separately from English grammar.
+s02-X33,Imported parts; repairs; replacement tools.,,,E,Lists case features without tracing changed customer purchases to either business effect.
+s02-X34,True because I like it.,,,G,Preference replaces supported claim. Compare the stimulus; judge content separately from English grammar.
+s02-X34,Two titles prove it.,,,N,Source titles replace details. Compare the stimulus; judge content separately from English grammar.
+s02-X35,True because I like it.,,,G,Preference replaces supported claim. Compare the stimulus; judge content separately from English grammar.
+s02-X35,Two titles prove it.,,,N,Source titles replace details. Compare the stimulus; judge content separately from English grammar.
+s02-X35,Everyone gains.,,,F,Everyone in a country gains or loses together. Compare the stimulus; judge content separately from English grammar.
+s02-X36,A liking proves a fact.,,,C,Printed preference is factual proof. Compare the stimulus; judge content separately from English grammar.
+s02-X36,This evidence proves an unrelated claim.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
+s02-E1,This evidence proves an unrelated claim.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
+s02-E1,Every person does the same thing.,,,I,One sample describes everyone. Compare the stimulus; judge content separately from English grammar.
+s02-E2a,Pretty pictures only.,,,J,Decoration determines usefulness. Compare the stimulus; judge content separately from English grammar.
+s02-E2b,Only agreeing promotions matter.,,,A,Only agreeing views count. Compare the stimulus; judge content separately from English grammar.
+s02-E2c,D and E.,,,N,Source titles replace details. Compare the stimulus; judge content separately from English grammar.
+s02-E2d,Tables are always reliable.,,,B,"Official, printed or tabular means useful for every question. Compare the stimulus; judge content separately from English grammar."
+s02-E2e,A promotion proves everyone gains.,,,Q,Promotion proves universal benefits. Compare the stimulus; judge content separately from English grammar.
+s02-E3a,A liking proves a fact.,,,C,Printed preference is factual proof. Compare the stimulus; judge content separately from English grammar.
+s02-E3a,Checkable means true.,,,L,Checkable means verified true. Compare the stimulus; judge content separately from English grammar.
+s02-E3b,A and B have names.,,,N,Source titles replace details. Compare the stimulus; judge content separately from English grammar.
+s02-E3c,One opinion makes all of C false.,,,K,One opinion makes all claims false. Compare the stimulus; judge content separately from English grammar.
+s02-E4a,Good because short.,,,H,Liking or length is enough to critique. Compare the stimulus; judge content separately from English grammar.
+s02-E4b,This evidence proves an unrelated claim.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
+s02-E5a,A goods list explains reliance.,,,E,Listing goods explains reliance. Compare the stimulus; judge content separately from English grammar.
+s02-E5a,Each makes everything alone.,,,O,Specialized producers make everything alone. Compare the stimulus; judge content separately from English grammar.
+s02-E5b,Every person in Canada gains.,,,F,Everyone in a country gains or loses together. Compare the stimulus; judge content separately from English grammar.
+s02-E6,True because I like it.,,,G,Preference replaces supported claim. Compare the stimulus; judge content separately from English grammar.
+s02-E6,This evidence proves an unrelated claim.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
+s02-E6,Two titles prove it.,,,N,Source titles replace details. Compare the stimulus; judge content separately from English grammar.
+s02-E7,Every person does the same thing.,,,I,One sample describes everyone. Compare the stimulus; judge content separately from English grammar.
+s02-E7,These peoples existed only long ago.,,,M,Indigenous peoples exist only in the past. Compare the stimulus; judge content separately from English grammar.
+s02-E7,This evidence proves an unrelated claim.,,,D,Evidence supports an unrelated or contradicted claim. Compare the stimulus; judge content separately from English grammar.
+s02-E8,True because I like it.,,,G,Preference replaces supported claim. Compare the stimulus; judge content separately from English grammar.
+s02-E8,Two titles prove it.,,,N,Source titles replace details. Compare the stimulus; judge content separately from English grammar.
+s02-E9,Only our teacher needs it.,,,P,Only class preference gives importance. Compare the stimulus; judge content separately from English grammar.
+s02-E10,D and E are my sources.,,,N,Source titles replace details. Compare the stimulus; judge content separately from English grammar.
+s02-K17-1,No relevant detail.,,,x,Cold solved against the printed original classroom stimulus. Locate the two stops. | Ask which towns have stops; the diagram can answer.
+s02-P17-2,No relevant detail.,,,x,Cold solved against the printed original classroom stimulus. Names one country and records an answerable question; choice is not scored for correctness.
+s02-P18-R,The teacher likes maps.,,,P,Focuses on class preference rather than the printed reader need; component repair only.
+s02-P18-1,No relevant detail.,,,x,Cold solved against the printed original classroom stimulus. Question is answerable from the diagram and the stated detail is visible.
+s02-K18-1,No relevant detail.,,,x,Cold solved against the printed original classroom stimulus. Notice the collection of maps. | Name the collection an atlas.
+s02-P18-2,The page has a pretty border.,,,J,"Cold solved against the printed original classroom stimulus. Selects the actual storage detail, not decoration."
+s02-P19-R,Its decoration proves visitors like them.,,,J,Cold solved against the printed original classroom stimulus. Judges supplied contents and identifies the absent experience.
+s02-K19-1,No relevant detail.,,,x,Cold solved against the printed original classroom stimulus. Find the intended readers. | Put caretakers in the audience field.
+s02-P19-1,No relevant detail.,,,x,Cold solved against the printed original classroom stimulus. One accurately attributed detail linked to the preparation question.
+s02-P19-2,Only agreeing sellers matter.,,,A,Cold solved against the printed original classroom stimulus. Names an affected voice absent from each set and relevant information it could add.
+s02-P20-R,Official lists answer every question.,,,B,Cold solved against the printed original classroom stimulus. Rejects automatic usefulness based on official origin; names an actual omission.
+s02-K20-1,No relevant detail.,,,x,"Cold solved against the printed original classroom stimulus. Find the caretakers, its intended readers. | Read the placement instruction. | Use it for the preparation question, within its setting."
+s02-P20-1,No relevant detail.,,,x,Cold solved against the printed original classroom stimulus. Maker and setting correctly linked to a relevant detail and the access question.
+s02-P20-2,A posted notice shows everyone's feelings.,,,B,Cold solved against the printed original classroom stimulus. Links intended audience and purpose to an absent kind of evidence.
+s02-P21-R,Printing makes it current.,,,B,Cold solved against the printed original classroom stimulus. Uses date/audience and seeks a current stock record instead of assuming print updates itself.
+s02-K21-1,No relevant detail.,,,x,"Cold solved against the printed original classroom stimulus. Find a record about delivery, not appearance. | Compare its actual day with the claim. | A matching record supports only that delivery."
+s02-P21-1,Five must be true because it is checkable.,,,L,Cold solved against the printed original classroom stimulus. Names six with the inventory; recognizes a checkable claim can be contradicted.
+s02-P21-2,One opinion makes every record false.,,,K,Cold solved against the printed original classroom stimulus. Repairs each link separately; no mixed-sign evaluation practiced.
+s02-P22-R,Checkable means eight is true.,,,L,"Cold solved against the printed original classroom stimulus. Uses count evidence rather than liking, blanket dismissal or assumed truth."
+s02-K22-1,A new title makes it independent.,,,N,"Cold solved against the printed original classroom stimulus. Trace B back to A. | Count one origin, not two titles."
+s02-P22-1,Two titles prove the count.,,,N,Cold solved against the printed original classroom stimulus. Identifies a relevant check without voting or claiming agreement exists.
+s02-P22-2,No relevant detail.,,,x,Cold solved against the printed original classroom stimulus. All four fields present; no completed country response.
+s02-P22-3,No relevant detail.,,,x,Cold solved against the printed original classroom stimulus. Heading precedes its related detail.
+s02-P22-4,No relevant detail.,,,x,Cold solved against the printed original classroom stimulus. Identifies a precise evidenced detail.
+s02-P22-5,Keep five because the draft is printed.,,,B,Cold solved against the printed original classroom stimulus. Replaces five with six and retains the evidence basis.
+s02-P17,I like buses.,,,x,Cold checked against the supplied classroom source; Researchable smaller question about a visible route or stop detail.
+s02-P17b,The line is pretty.,,,x,Cold checked against the supplied classroom source; A supportable claim with one accurately described diagram detail.
+s02-P18,All are maps.,,,x,Cold checked against the supplied classroom source; All four teaching-source labels; allow kind/format overlap supported by contents.
+s02-P19,The title alone makes it useful.,,,B,Cold checked against the supplied classroom source; Maker is caretakers' office; date is 2010; audience is caretakers; format is posted notice.
+s02-P20,Everyone everywhere.,,,B,Cold checked against the supplied classroom source; Underlines caretakers as audience and preparing equipment as purpose.
+s02-P21,A liking verifies five chairs.,,,C,Cold checked against the supplied classroom source; Inventory tests and contradicts five chairs; receipt supports Monday; color liking has no agreed factual test.
+s02-P22,B and C both copy A.,,,x,Cold checked against the supplied classroom source; Marks B and traces its information back to A; C has an independent origin.
+s02-P21-2,A liking proves a count.,,,C,Distinct component misconception; relevant verification is needed.
+s02-P21-2,Checkable means true.,,,L,Distinct component misconception; relevant verification is needed.
+s02-P19-2,The seller proves every user benefits.,,,Q,Distinct component misconception; relevant verification is needed.
+s02-P22-R,A liking proves eight tubs.,,,C,Distinct component misconception; relevant verification is needed.
+s02-P22-R,One liking makes every count false.,,,K,Distinct component misconception; relevant verification is needed.
+s02-P23-R,On a bench.,,,D,Cold-solved component error; content separate from grammar.
+s02-P23-1,This counts everybody in the country.,,,I,Cold-solved component error; content separate from grammar.
+s02-P23,All Indigenous peoples are one people.,,,I,Cold-solved component error; content separate from grammar.
+s02-P23,The Haida Nation exists only in the past.,,,M,Cold-solved component error; content separate from grammar.
+s02-P23,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-X23,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-P23-R,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-P23-1,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-P24-R,Long ago only.,,,M,Cold-solved component error; content separate from grammar.
+s02-P24,The prime minister is a president.,,,D,Cold-solved component error; content separate from grammar.
+s02-P24,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-X24,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-P24-R,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-P25-R,The permit office.,,,D,Cold-solved component error; content separate from grammar.
+s02-P25-1,The city is labeled with the other country.,,,D,Cold-solved component error; content separate from grammar.
+s02-P25,The Rideau Canal was made by nature.,,,D,Cold-solved component error; content separate from grammar.
+s02-P25,This map proves warmth.,,,D,Cold-solved component error; content separate from grammar.
+s02-P25,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-X25,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-P25-R,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-P25-1,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-P26-R,Warm all year.,,,D,Cold-solved component error; content separate from grammar.
+s02-P26-1,Glue.,,,D,Cold-solved component error; content separate from grammar.
+s02-P26-2,Accuracy.,,,H,Cold-solved component error; content separate from grammar.
+s02-P26,Everyone works in one industry.,,,I,Cold-solved component error; content separate from grammar.
+s02-X26,Everyone in Montreal loads ships.,,,I,Cold-solved component error; content separate from grammar.
+s02-P26,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-X26,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-P26-R,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-P26-1,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-P26-2,Any other unsupported or missing response.,,,x,Check the printed evidence and look-fors; record the unmet component.
+s02-X23,Every Métis person speaks Michif.,,,I,Cold-solved sample: unsupported generalization or mismatch with printed evidence.
+s02-P23-1,This counts everybody in Canada.,,,I,Cold-solved sample: unsupported generalization or mismatch with printed evidence.
+s02-P25-1,Ottawa labeled Mexico.,,,D,Cold-solved sample: unsupported generalization or mismatch with printed evidence.
+s02-P27-R,All school stools.,,,I,Use the supplied record only; return one criterion cue.
+s02-P27-S,Any source proves the sentence.,,,D,Use the supplied record only; return one criterion cue.
+s02-P27,A list without sources.,,,D,Missing named criterion or relevant source detail; give one private cue.
+s02-P28-R,A proven fact.,,,C,Use the supplied record only; return one criterion cue.
+s02-P28-B,One count must be false.,,,L,Use the supplied record only; return one criterion cue.
+s02-P28,I like it.,,,D,Missing named criterion or relevant source detail; give one private cue.
+s02-P28q,No source needed.,,,D,Missing named criterion or relevant source detail; give one private cue.
+s02-P29-R,Any classroom supply.,,,D,Use the supplied record only; return one criterion cue.
+s02-E8b,My liking is enough.,,,G,"Reply needs relevant source evidence, not preference."
+s02-P29,I like it.,,,H,Missing named criterion or relevant source detail; give one private cue.
+s02-P29b,Longer is always better.,,,H,Missing named criterion or relevant source detail; give one private cue.
+s02-P29q,I like it.,,,D,Missing named criterion or relevant source detail; give one private cue.
+s02-E11,It is good because I like it.,,,H,Liking does not critique order or detail.
+s02-E12,It is good because I like it.,,,H,Liking does not critique order or detail.
+s02-P30-R,Paint sounds nicer.,,,H,Cold-solved against supplied case; content separate from grammar.
+s02-P30-R2,The poster.,,,x,Cold-solved against supplied case; content separate from grammar.
+s02-K30-K,The customers deliver paper.,,,x,Cold-solved against supplied case; content separate from grammar.
+s02-P30-L,Notebook customers to shop.,,,x,Cold-solved against supplied case; content separate from grammar.
+s02-P31-R,Signs.,,,x,Cold-solved against supplied case; content separate from grammar.
+s02-K31-K,Canada imports wheat.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-K31-Kb,Canada exports vegetables.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-P31-B,Numbers of workers.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-P32-R2,Candles and wax.,,,E,Cold-solved against supplied case; content separate from grammar.
+s02-P32-R,Town Beck.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-K32-K,Everyone in Canada gets more work.,,,F,Cold-solved against supplied case; content separate from grammar.
+s02-P33-F,A large national total brings orders.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-P33-R,Every shop gains.,,,F,Cold-solved against supplied case; content separate from grammar.
+s02-P33-S,Both are individual farm records.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-P33-B,A large total proves its loss.,,,D,Cold-solved against supplied case; content separate from grammar.
+s02-P33,The national goods total proves this farm sells less.,,,D,A national value does not establish the invented farm buyer switch; use the case record.
+s02-P30-R,"The circle means paint, according to the chart.",,,D,Contradicts the supplied symbol key; the chart says tape.
+s02-P30a,Nothing crosses.,,,x,Cold-checked against the printed stimulus and the complete item key.
+s02-P30b,The cocoa.,,,x,Cold-checked against the printed stimulus and the complete item key.
+s02-P30,Paper is the buyer.,,,x,Cold-checked against the printed stimulus and the complete item key.
+s02-P31,The arrowhead is the origin.,,,D,Cold-checked against the printed stimulus and the complete item key.
+s02-P32,All groups gain alike.,,,F,Cold-checked against the printed stimulus and the complete item key.
+s02-P34-R,Every baker gains.,,,F,Only the bakery receiving the order is supported.
+s02-P34,A title is enough.,,,N,A relevant detail is needed.
+s02-P35,The article and its diagram are independent makers.,,,N,A derivative rendering is not a distinct maker.
+s02-P35-R,I like reading rooms.,,,G,Liking does not support the given claim.
+s02-P36,Audience: 2010.,,,B,Date and intended readers are distinct.
+s02-P36-R,Every shop gains.,,,F,The input link does not show universal gains.
+s02-P36-D1,Maker means intended readers.,,,B,Confuses maker and audience.
+s02-P36-D2,Import means goes out.,,,E,Reverses the country viewpoint.
+s02-P36-D3,A title is enough.,,,N,A title is not a supporting detail.
+s02-P38a,Only agreeing accounts matter.,,,A,Need complementary evidence.
+s02-P38b,Tuesday proves comfort.,,,D,Opening day does not measure comfort.
+s02-P38c,Delays help everyone.,,,F,Missing input can interrupt this producer.
+s02-P38d,Everyone benefits because I like canals.,,,G,Preference does not establish support or universal benefits.
+C1-E39-1,1 Sierra Nevada; 2 Colorado River; 3 Great Basin Desert.,,,A,Compare keyed feature marks.
+C1-E39-2,Thin boundary lines mean rivers.,,,A,The thick line is the river mark.
+C1-E39-4,The whole country of Canada is shaded.,,,E,The index target is a division within Canada.
+C1-E39-5,A province is a separate country.,,,E,"Use containment, without treating a division as independent."
+C1-E39-6,T is in the cell beside the crossing.,,,G,"A coordinate identifies a crossing, not a cell."
+C1-E39-3,5 kilometers,5,5,M,Paper length substituted for ground distance.
+C1-E39-3,360 kilometers,2*180,360,M,Counts two whole bars but omits the remaining half.
+C1-E40-1,All four are facts because they are printed.,,,L,A printed claim still needs relevant evidence; separate preferences.
+C1-E40-2,"The leaflet says it, so the map agrees.",,,D,Read the separate map detail instead of repeating the first source.
+C1-E40-3,The map proves every visitor should choose Alaska.,,,C,Location evidence cannot establish a preference.
+C1-E40-3,One opinion makes all the leaflet false.,,,K,Judge each claim separately.
+C1-K41-1,Triangles mean water.,,,A,The supplied teaching key says hills.
+C1-K41-2,3 kilometers.,,,M,"Count represented units, not bars."
+C1-K41-3,Latitude is the column number.,,,G,"Use the labeled margin, not a letter-grid habit."
+C1-K41-4,A path map proves nicest smell.,,,C,The source does not record that preference.
+C1-P41-CP,Both are independent countries.,,,E,Distinguish a division from its containing country.
+C1-P41-A,The square is east of the circle.,,,B,Use the downward north arrow.
+C1-P41-C,"A stays at 60 N, 50 W.",,,G,Read target latitude then longitude.
+C1-P41-D,The right location proves quietest.,,,C,A location detail cannot establish a preference.
+C1-P41-B,210 kilometers,210,210,M,Omits the half-bar portion.
+C1-X41,The map proves everyone likes the bridge.,,,C,Separate a mapped location from an unmapped preference.
+s03-X42,Old buildings are fun.,,,N,Interest alone does not explain the writer's need.
+s03-X43a,V; deepest always means oldest.,,,K,The later pit changes original associations.
+s03-X43b,Only record attractive finds.,,,F,Every context matters.
+s03-X43b,Nobody else needs to check.,,,O,Research needs checkable records.
+s03-X44a,"Place 18,000 two ticks from today.",,,A,"Read the years-ago labels, not elapsed ticks from the left."
+s03-X44b,"7,000 years ago.",,,A,Smaller years-ago is more recent.
+s03-X45a,It proves the whole inland journey.,,,C,A crossing does not establish conditions farther south.
+s03-X45b,Yes; exposed land proves the corridor.,,,C,Separate land and ice keys address different conditions.
+s03-X46a,The first people arrived exactly then.,,,B,A dated find is not a first-arrival record.
+s03-X46b,It proves arrival only by boat.,,,B,Presence does not identify a journey.
+s03-X46b,Coastal travel rules out Beringia.,,,J,Land and coast can join.
+s03-X47,One Native story for everyone.,,,L,Distinct nations have distinct accounts.
+s03-X48a,Coastal find proves boat arrival.,,,B,A coastal location does not trace a journey.
+s03-X48a,An open inland route proves use.,,,C,Usability does not establish use.
+s03-X48b,Choose the route we like.,,,H,Preference is not evidence.
+s03-X49a,160 kilometers.,,,x,"Scale mismatch; supply scale support, not a D label."
+s03-X49b,The shade marks one nation.,,,D,Cultural groupings are not political territory.
+s03-X50a,Everyone made points.,,,P,One object does not show everyone's work.
+s03-X50a,The shape proves private beliefs.,,,E,Visible form does not establish private belief.
+s03-X50b,The surface proves beliefs.,,,E,Do not infer beliefs from texture.
+s03-X50b,Everyone made pottery.,,,P,One fragment does not establish every occupation.
+s03-X51a,Every resident farmed because walls survive.,,,P,"Crop evidence is the card, not every person's job."
+s03-X51b,The rooms prove everyone farmed.,,,P,Buildings do not establish every job.
+s03-X52a,The builders vanished.,,,G,Material survival does not describe descendants' lives.
+s03-X52b,All Pueblo people disappeared.,,,G,Current communities contradict disappearance.
+s03-X53a,It names every builder's nation.,,,P,A structure does not identify every builder.
+s03-X53b,No descendants remain.,,,G,A living nation names an ancestral relationship.
+s03-X53b,Only Osage ancestors built every structure.,,,P,No exclusive-identity claim is supported.
+s03-X54a,Taking it preserves all context.,,,F,Removal breaks in-place associations even if a written location caption survives.
+s03-X54b,Nobody; the people vanished.,,,G,The statement names a continuing relationship.
+s03-X55a,The title proves the answer.,,,I,A title is not evidence.
+s03-X55a,It proves every route people took.,,,H,The claim exceeds the evidence.
+s03-X55b,Every past practice stayed identical.,,,H,Continuity is not unchanged practice.
+s03-X55b,It has another title.,,,I,"Use a relevant detail, not its title."
+s03-X56,The shape proves beliefs.,,,E,Form does not establish private beliefs.
+s03-X56,My favorite idea is true.,,,H,Preference is not support.
+s03-X56,Two titles suffice.,,,I,Each record needs a relevant contribution.
+s03-X57a,It proves first arrival by boat.,,,B,Neither first arrival nor route follows from one date.
+s03-X57b,The people vanished.,,,G,The statement names living descendants.
+s03-A1a,B is earlier than A.,,,A,12600 is more recent than21000 to23000 years ago.
+s03-A1b,Land proves the entire corridor.,,,C,Crossing and corridor conditions differ.
+s03-A1b,The footprints prove arrival by boat.,,,B,Dated presence does not trace a journey.
+s03-A1b,Boats exclude Beringia.,,,J,Land and coast can join.
+s03-A1c,Deepest always means oldest.,,,K,The pit changes original associations.
+s03-A2a,The two groups form one nation.,,,D,Cultural categories are not political territory.
+s03-A2b,It proves everyone's beliefs.,,,E,Material form does not establish private belief.
+s03-A2b,Every resident did that job.,,,P,One material record does not show every occupation.
+s03-A2c,It proves everyone's beliefs.,,,E,Material form does not establish private belief.
+s03-A2c,Every resident did that job.,,,P,One material record does not show every occupation.
+s03-A2d,It proves everyone's beliefs.,,,E,Material form does not establish private belief.
+s03-A2d,Every resident did that job.,,,P,One material record does not show every occupation.
+s03-A2e,It proves everyone's beliefs.,,,E,Material form does not establish private belief.
+s03-A2e,Every resident did that job.,,,P,One material record does not show every occupation.
+s03-A2f,Every resident had one job.,,,P,Large construction is not an occupation list.
+s03-A2g,One color is one nation.,,,D,The categories are not borders.
+s03-A3a,Keep only valuable objects.,,,F,Careful context is more useful than selecting attractive finds.
+s03-A3b,An opinion replaces records.,,,O,Interpretations need evidence.
+s03-A3c,One expert's guess settles it.,,,O,Different methods let researchers test interpretations.
+s03-A3d,Every person had the same job.,,,P,The strip supports a bounded inference.
+s03-A3e,The alignment proves sacred beliefs.,,,E,Orientation alone cannot establish private meaning.
+s03-A4a,History began with European arrivals.,,,M,Earlier Native societies belong in American history.
+s03-A4b,The people vanished.,,,G,Sources identify continuing communities.
+s03-A4b,Take objects to save context.,,,F,Removal can break location associations.
+s03-A5a,My favorite route must be right.,,,H,Preference is not evidence.
+s03-A5b,Two titles are enough.,,,I,Each maker contributes a relevant detail.
+s03-A5b,Two details from Pigati count as two makers.,,,I,One maker is not multiple sources.
+s03-A5c,I like old things.,,,N,Interest does not explain another person's need.
+s03-R1,12000 is later than9000.,,,A,Larger years-ago is farther back.
+s03-R1,The find identifies its path.,,,B,Presence is not a path.
+s03-R2,Keep the best-looking sample.,,,F,Every sample needs context.
+s03-R2,One opinion is enough.,,,O,Layer comparison needs records.
+s03-R3,The nation vanished.,,,G,Current self-government contradicts disappearance.
+s03-R4,Titles are enough.,,,I,Use actual distinct details.
+s03-R4,Everyone was happy.,,,H,The records do not show every experience.
+s03-K42-1,Those walls are nice.,,,N,Does not meet the stated evidence or record requirement.
+s03-P42e,I like it.,,,N,Does not meet the stated evidence or record requirement.
+s03-P43-RN,Old gates are fun.,,,N,Does not meet the stated evidence or record requirement.
+s03-P43-RT,Three years.,,,A,Does not meet the stated evidence or record requirement.
+s03-K43-1,Lift it before recording its position.,,,F,Does not meet the stated evidence or record requirement.
+s03-P43-Q,One guess replaces records.,,,O,Does not meet the stated evidence or record requirement.
+s03-P44-RF,Only list the shiniest find.,,,F,Does not meet the stated evidence or record requirement.
+s03-P44-RK,Yes. Deepest always means oldest.,,,K,Does not meet the stated evidence or record requirement.
+s03-P44-RO,Pick the most confident person.,,,O,Does not meet the stated evidence or record requirement.
+s03-P44-Q,One year.,,,A,Does not meet the stated evidence or record requirement.
+s03-P42a,1900.,,,x,Does not match the supplied record or interval.
+s03-P42b,One century.,,,x,Does not match the supplied record or interval.
+s03-P42c,All Native nations disappeared.,,,x,Does not match the supplied record or interval.
+s03-P42d,That wall looks nice.,,,x,Does not match the supplied record or interval.
+s03-P43-1,Choose the prettiest object.,,,F,Selects attractive finds instead of the method matching the missing record.
+s03-P43-2,Choose the prettiest object.,,,F,Selects attractive finds instead of the method matching the missing record.
+s03-P43-3,Choose the prettiest object.,,,F,Selects attractive finds instead of the method matching the missing record.
+s03-P43-4,Choose the prettiest object.,,,F,Selects attractive finds instead of the method matching the missing record.
+s03-P43-5,Choose the prettiest object.,,,F,Selects attractive finds instead of the method matching the missing record.
+s03-P43-6,Choose the prettiest object.,,,F,Selects attractive finds instead of the method matching the missing record.
+s03-P44-1,14 years ago.,,,A,Does not match the supplied record or interval.
+s03-P44-2,6 years ago.,,,A,Does not match the supplied record or interval.
+s03-P44-3,16 years ago.,,,A,Does not match the supplied record or interval.
+s03-P44-4,9 years ago.,,,A,Does not match the supplied record or interval.
+s03-P44-5,4 years ago.,,,A,Does not match the supplied record or interval.
+s03-P44-6,"6,000 years ago.",,,A,Does not match the supplied record or interval.
+s03-P43-RG,All Native nations disappeared.,,,x,Does not meet the stated evidence or record requirement.
+s03-P45-R,"2,000 years ago.",,,A,"12,000 years ago."
+s03-K45-1,The whole southern passage is proved.,,,C,Crossing between Asia and North America.
+s03-P45-Q,The land connection answers every southern question.,,,C,"Was ice blocking the passage? Accept a relevant question about southern ice, food or passage."
+s03-P45-1,This proves every part of a journey.,,,C,"Match one evidence label to one question, without inferring a complete route."
+s03-P45-2,This proves every part of a journey.,,,C,"Match one evidence label to one question, without inferring a complete route."
+s03-P45-3,This proves every part of a journey.,,,C,"Match one evidence label to one question, without inferring a complete route."
+s03-P46-R,Continent names.,,,C,Food traces.
+s03-K46-1,"Yes, it records the complete journey.",,,B,No. It reports dated points at one place.
+s03-P46-Q,Dated proves the full trip.,,,B,"Every, from the statement about every stage. Accept trace with a relevant explanation."
+s03-P46-1,The complete route is proved.,,,B,A dated find does not record every travel stage.
+s03-P46-2,The complete route is proved.,,,B,A dated find does not record every travel stage.
+s03-P46-3,The complete route is proved.,,,B,A dated find does not record every travel stage.
+s03-P47-RB,The record gives the exact first arrival.,,,B,Its date is missing.
+s03-P47-RJ,Land never with coast.,,,J,Land then coast.
+s03-K47-1,Every Native nation.,,,L,Hopi Tribe.
+s03-P47-Q,One teller speaks for everyone.,,,L,"The name identifies whose account it is, without making it speak for everyone."
+s03-P47-1,One teller speaks for all nations.,,,L,Attribute the public statement and identify the question focus without testing beliefs.
+s03-P47-2,One teller speaks for all nations.,,,L,Attribute the public statement and identify the question focus without testing beliefs.
+s03-P47-3,One teller speaks for all nations.,,,L,Attribute the public statement and identify the question focus without testing beliefs.
+s03-P47-4,A belief test.,,,L,Attribute the public statement and identify the question focus without testing beliefs.
+s03-P47-5,A belief test.,,,L,Attribute the public statement and identify the question focus without testing beliefs.
+s03-P47-6,A belief test.,,,L,Attribute the public statement and identify the question focus without testing beliefs.
+s03-P48-R,All Native nations.,,,L,"Andrea A. Hunter, Osage Nation."
+s03-P48-G,Every journey stage.,,,B,Dated presence.
+s03-P48-2,Coastal travel makes Beringia impossible.,,,J,A Beringia crossing could precede coastal travel; neither segment is proved by this report.
+s03-P48-W,"I like the coast, so it is proved.",,,H,Source 46A reports dated points at Nipéhe. Made objects support presence there; the full journey remains unknown. Accept a cautious combined-route possibility linked to the evidence limit.
+s03-P48,The points prove all stages.,,,B,A dated location does not trace every journey stage.
+s03-P46-S,A traveler recording every journey stage.,,,B,Molly Rosbach; 2022; public readers. Accept the university research report as maker attribution.
+s03-P49-R,"I like the path, so they used it.",,,H,Compare the response with the supplied record; address this component only.
+s03-P50-R,One nation.,,,D,Compare the response with the supplied record; address this component only.
+s03-P50-R2,A whole bar.,,,x,Compare the response with the supplied record; address this component only.
+s03-P51-R,Every resident made bowls.,,,P,Compare the response with the supplied record; address this component only.
+s03-P51-R2,The shape proves all beliefs.,,,E,Compare the response with the supplied record; address this component only.
+s03-P52-R,The doorway proves everyone farmed.,,,P,Compare the response with the supplied record; address this component only.
+s03-P53-R,The people disappeared.,,,G,Compare the response with the supplied record; address this component only.
+s03-P53-T,2013 dates the mound.,,,x,Compare the response with the supplied record; address this component only.
+s03-P53-O,The outline names every builder.,,,P,Compare the response with the supplied record; address this component only.
+s03-P54-R,The outline names every builder.,,,P,Compare the response with the supplied record; address this component only.
+s03-P54-R2,No nation remains.,,,G,Compare the response with the supplied record; address this component only.
+s03-P55-F,Only the title.,,,F,Contrast with the specific recorded detail or label; descriptive feedback.
+s03-P55-G,No communities remain.,,,G,Contrast with the specific recorded detail or label; descriptive feedback.
+s03-P55-M,History starts with Europe.,,,M,Contrast with the specific recorded detail or label; descriptive feedback.
+s03-P56-R,My favorite hinge.,,,H,Contrast with the specific recorded detail or label; descriptive feedback.
+s03-P57-R,A belief.,,,E,Contrast with the specific recorded detail or label; descriptive feedback.
+s03-P57-H,Site evidence.,,,H,Contrast with the specific recorded detail or label; descriptive feedback.
+s03-P57-I,Object detail.,,,I,Contrast with the specific recorded detail or label; descriptive feedback.
+s03-P59-T,Toward zero.,,,A,Contrast with the specific recorded detail or label; descriptive feedback.
+s03-P59-M,Only the title.,,,F,Contrast with the specific recorded detail or label; descriptive feedback.
+s03-P59-C,Every nation has one author.,,,L,Contrast with the specific recorded detail or label; descriptive feedback.
+s03-P59-S,Notice is the detail.,,,I,Contrast with the specific recorded detail or label; descriptive feedback.
+s03-P59-F,Everything is perfect.,,,H,Contrast with the specific recorded detail or label; descriptive feedback.
+s03-R4N,Old rooms are interesting.,,,N,Interest does not explain the caretaker's need for accurate repair information.
+s04-X60-1,Which ship looks prettiest?,,,R,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X60-2,I like ships.,,,R,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X61-1,The nail tells everyone's thoughts.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X61-1,Naming object and journal explains their contributions.,,,S,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X62-1,Our class made it today.,,,H,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X62-2,Our class is the audience.,,,H,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X62-2,The title alone proves purpose.,,,M,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X63-1,The dates show purpose.,,,M,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X63-1,Both were made for our class.,,,H,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X64-1,The plan proves every saga episode.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X64-2,Any camp proves a meeting there.,,,U,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X64-2,The Norse were the first people here.,,,C,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X65-1,Only harmless curiosity.,,,D,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X65-2,It supplies every fact about the voyage.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X66-1,The arrival was on empty islands.,,,C,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X66-2,Claiming the islands proves everyone agreed.,,,N,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X67-1,Every detail is confirmed because both are reports.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X67-2,Two printings confirm it independently.,,,K,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X68-1,Everyone gained equally.,,,E,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X68-1,Disease explains every Native loss.,,,L,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X69-1,"Coast straight to Tenochtitlan, skipping Tlaxcala.",,,x,Missing inland stop; inspect route order separately from actor knowledge.
+s04-X69-2,Cortés fought alone.,,,Q,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X69-2,All Native communities fought on one side.,,,Q,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X70-1,Both peoples vanished.,,,O,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X72-2,Only harmless curiosity.,,,D,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X72-2,Seeking wealth benefited everyone.,,,E,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X73-1,Every event gets equal gaps.,,,F,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X73-1,Put 1475 at the 1500 endpoint.,,,T,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X74-1,Both activities fill the entire grid.,,,T,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X74-2,Both happened in one port.,,,G,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X74-2,The shipyard caused warehouses because their years overlap.,,,P,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X75-1,My preferred leaflet must be true.,,,I,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X75-1,Two copies prove it independently.,,,K,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X76-1,Declaration proves agreement.,,,N,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X76-1,"Map and record are evidence, with no details.",,,J,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X76-1,I like the ruler.,,,I,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X77-1,Copies always count as independent sources.,,,K,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-X77-2,Every event should have the same gap.,,,F,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E1a,Both reveal everyone's thoughts.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E1b,Every drawing is eyewitness evidence.,,,A,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E1c,Printed soon afterward means the artist witnessed the landing.,,,A,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E1d,"Object, map, drawing, journal.",,,S,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E2a,They were the first people here.,,,C,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E2b,The pin proves every saga episode.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E2c,The camp proves a meeting at this exact place.,,,U,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E3a,Both sailed to empty lands.,,,C,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E3b,Nobody already lived there.,,,C,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E3c,Only harmless curiosity.,,,D,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E3d,A ruler's claim proves agreement.,,,N,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E3d,Everyone benefited equally.,,,E,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E4a,Both events get equal gaps.,,,F,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E4b,Each short event fills the entire grid.,,,T,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E4c,They happened in one place.,,,G,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E4c,Their overlap proves one caused the other.,,,P,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E5a,Our class wrote it today.,,,H,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E5b,Today's students were the intended audience.,,,H,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E5b,The title alone proves purpose.,,,M,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E6a,I like ships best.,,,I,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E6a,"Voyages happened, then more voyages happened.",,,V,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E6a,"E and G, with no details.",,,J,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E6a,Two details from E are two sources.,,,W,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-E6b,Ships are fun for me.,,,R,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-R79-1,The object proves the whole story.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-R79-2,Everyone benefited equally.,,,E,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-R79-3,"1508, because that label must be right.",,,F,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-R79-4,The title alone proves use.,,,J,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P60-1,Which flag looks nicest?,,,I,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P60-2,Only someone who likes sails needs history.,,,R,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P60-3,Both were eyewitnesses.,,,A,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P60-4,Nobody lived there.,,,C,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P61-1,It reveals everyone's thoughts.,,,B,"Object and find context support tool use, not thoughts. Accept other relevant tool-use questions."
+s04-P61-2,The map tells every opinion.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P61-3,Any old drawing is eyewitness evidence.,,,A,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P62-1,The later recorder saw every event.,,,A,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P62-2,The modern author traveled with Coronado.,,,A,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P62-3,Our class.,,,H,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P62-4,Its title proves every purpose.,,,M,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P63-1,Record rainfall.,,,M,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P63-2,Our class.,,,H,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P63-3,Everyone's opinion.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P64-1,Greenland came before Europe.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P64-2,It is proof of every later story.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P64-3,Norse sailors were the first people.,,,C,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P65-1,Instrument use.,,,D,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P65-2,Only weather recording.,,,D,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P65-3,The astrolabe gives precise longitude.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P65-4,Its design proves it could sail anywhere safely.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P66-1,The destination had no inhabitants.,,,C,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P66-2,Disease explains every loss.,,,L,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P66-3,It proves residents consented.,,,N,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P67-1,The copy is another independent observer.,,,K,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P67-2,Every source answers every question.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P67-3,Our class.,,,H,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P72-3,The community vanished.,,,O,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P73-2,Three centimeters because every event needs a full interval.,,,T,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P75-1,An object gives everyone's thoughts.,,,B,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P75-2,A favorite ship color explains the aim.,,,I,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P75-3,The index independently confirms the register.,,,K,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P76-1,Source titles alone prove my claim.,,,J,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P76-2,Two details from one source are two sources.,,,W,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P77-1,Copies are independent.,,,K,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P77-2,Every event gets the same gap regardless of years.,,,F,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P77-3,Any old record is eyewitness evidence.,,,A,"Predicted, untested. Judge evidence separately from spelling; permit dictation."
+s04-P79-1,It must be eyewitness evidence.,,,A,Predicted response; reteach on this made-up case before a different unseen R79 task.
+s04-P79-2,Every resident has already benefited.,,,E,Predicted response; reteach on this made-up case before a different unseen R79 task.
+s04-P79-3,Any event needs equal gaps regardless of years.,,,F,Predicted response; reteach on this made-up case before a different unseen R79 task.
+s04-P79-4,The title alone proves voyage speed.,,,J,Predicted response; reteach on this made-up case before a different unseen R79 task.
+s04-P60-5,All four ask which flag is nicest.,,,R,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P61-4,What did every sailor think?,,,B,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P61-5,The costume designer choosing green fabric.,,,R,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P61-6,The painter choosing yellow paint.,,,R,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P62-5,Every sailor was happy.,,,B,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P62-6,A witnessed event.,,,A,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P62-7,Our class.,,,H,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P62-8,2026.,,,H,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P63-4,Our class.,,,H,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P63-5,Describe a feast.,,,M,"Predicted, untested. Separate content from spelling; allow neutral reading and dictation."
+s04-P60-6,The islands were empty.,,,C,Unscored folder practice; accept any supported single-source detail or clue.
+s04-P61-7,The object reveals every thought.,,,B,Unscored folder practice; accept any supported single-source detail or clue.
+s04-P62-9,Our class is always the audience.,,,H,Unscored folder practice; accept any supported single-source detail or clue.
+s04-P60-7,The historian's later comparison.,,,A,Unmarked fresh retrieval; witnessing distinguishes these records.
+s04-P64-4,Today's class.,,,H,"Predicted, untested. Separate content from language; permit dictation."
+s04-P64-5,Today's class; bring boards.,,,H,"Predicted, untested. Separate content from language; permit dictation."
+s04-P65-5,A modern drawing proves every camp activity.,,,B,"Predicted, untested. Separate content from language; permit dictation."
+s04-P65-6,Yes. Any camp drawing is an eyewitness record.,,,A,"Predicted, untested. Separate content from language; permit dictation."
+s04-P65-7,It is only a navigation tool.,,,D,"Predicted, untested. Separate content from language; permit dictation."
+s04-P66-4,Only harmless curiosity.,,,D,"Predicted, untested. Separate content from language; permit dictation."
+s04-P66-5,Only harmless curiosity.,,,D,"Predicted, untested. Separate content from language; permit dictation."
+s04-P67-4,A claim proves everyone agreed.,,,N,"Predicted, untested. Separate content from language; permit dictation."
+s04-P67-5,Disease explains every loss.,,,L,"Predicted, untested. Separate content from language; permit dictation."
+s04-P64-5,Only the message title establishes purpose.,,,M,"Predicted, untested; use the requested action."
+s04-P67-6,The visitor's claim proves consent.,,,N,"Predicted, untested; no agreement is recorded."
+s04-P65-8,A compass gives latitude; sail shape cannot help near the wind.,,,B,"Held Exit box; predicted, untested. Separate content from language; allow dictation."
+s04-P66-6,Disease alone explains every population loss.,,,L,"Held Exit box; predicted, untested. Separate content from language; allow dictation."
+s04-P68-1,Europe toward Americas.,,,x,"Predicted, untested. Other response; diagnose from the actual work."
+s04-P68-2,Both go Americas toward Europe.,,,x,"Predicted, untested. Other response; diagnose from the actual work."
+s04-P68-3,Every resident benefits equally.,,,E,"Predicted, untested. Judge the stated evidence, not spelling."
+s04-K68-1,It blocked a doorway.,,,x,"Predicted, untested. Other response; diagnose from the actual work."
+s04-P68-4,Newsletter.,,,K,"Predicted, untested. Judge the stated evidence, not spelling."
+s04-P68-5,Flyer.,,,K,"Predicted, untested. Judge the stated evidence, not spelling."
+s04-P68-6,Our class.,,,H,"Predicted, untested. Judge the stated evidence, not spelling."
+s04-P69-1,Coastal.,,,x,"Predicted, untested. Other response; diagnose from the actual work."
+s04-P69-2,Helps another force: defender. Resists an attack: ally.,,,Q,"Predicted, untested. Judge the stated evidence, not spelling."
+s04-P69-3,Yes. All Native communities agreed.,,,Q,"Predicted, untested. Judge the stated evidence, not spelling."
+s04-P69-4,Yes. Everyone has equal access.,,,E,"Predicted, untested. Judge the stated evidence, not spelling."
+s04-P69-5,Disease was the only harm.,,,L,"Predicted, untested. Judge the stated evidence, not spelling."
+s04-P69-6,Yes. Visitors may use it.,,,E,"Predicted, untested. Judge the stated evidence, not spelling."
+s04-P70-1,Past only.,,,O,"Predicted, untested. Judge the stated evidence, not spelling."
+s04-P70-2,Instructors.,,,x,"Predicted, untested. Other response; diagnose from the actual work."
+s04-P70-3,The title alone is evidence.,,,J,"Predicted, untested. Judge the stated evidence, not spelling."
+s04-P70-4,Ally.,,,Q,"Predicted, untested. Judge the stated evidence, not spelling."
+s04-P70-5,Defender.,,,Q,"Predicted, untested. Judge the stated evidence, not spelling."
+s04-P71-1,"Gulf, France, Newfoundland.",,,x,"Predicted, untested. This response addresses the actual ask."
+s04-P71-2,The declaration proves agreement.,,,N,"Predicted, untested. This response addresses the actual ask."
+s04-P71-3,Only the distant past.,,,O,"Predicted, untested. This response addresses the actual ask."
+s04-X71-1,"Draw straight across land, missing the river.",,,x,"Predicted, untested. This response addresses the actual ask."
+s04-X71-2,Only French newcomers lived there.,,,C,"Predicted, untested. This response addresses the actual ask."
+s04-P72-1,"Culiacán, Compostela.",,,x,"Predicted, untested. This response addresses the actual ask."
+s04-P72-2,Observed effect: everyone became wealthy.,,,E,"Predicted, untested. This response addresses the actual ask."
+s04-X72-1,Mark Compostela instead of Hawikuh.,,,x,"Predicted, untested. This response addresses the actual ask."
+s04-P73-1,One centimeter regardless of the supplied scale.,,,x,"Predicted, untested. This response addresses the actual ask."
+s04-P73-3,Put 1534 at the 1600 tick.,,,T,"Predicted, untested. This response addresses the actual ask."
+s04-P74-1,1540 to 1542.,,,x,"Predicted, untested. This response addresses the actual ask."
+s04-P74-2,Southwest.,,,G,"Predicted, untested. This response addresses the actual ask."
+s04-P71-4,Exhibit is the time word.,,,J,"Predicted, untested; judge the requested component only."
+s04-P71-5,The title alone shows present activity.,,,J,"Predicted, untested; judge the requested component only."
+s04-P72-4,"Yes, arrival makes it empty.",,,C,"Predicted, untested; judge the requested component only."
+s04-P72-5,"Yes, the flag proves agreement.",,,N,"Predicted, untested; judge the requested component only."
+s04-P73-4,Everyone gained equal access.,,,E,"Predicted, untested; judge the requested component only."
+s04-P73-5,Each gap is one year.,,,F,"Predicted, untested; judge the requested component only."
+s04-P73-6,Three centimeters because every marker fills a century.,,,T,"Predicted, untested; judge the requested component only."
+s04-P73-7,"Yes, the shared year proves cause.",,,P,"Predicted, untested; judge the requested component only."
+s04-P73-8,Extend it three centimeters.,,,T,"Predicted, untested; judge the requested component only."
+s04-P74-3,Five centimeters.,,,T,"Predicted, untested; judge the requested component only."
+s04-P74-4,Four centimeters.,,,x,"Predicted, untested; judge the requested component only."
+s04-P74-5,"Yes, sharing years proves cause.",,,P,"Predicted, untested; judge the requested component only."
+s04-P73-9,Only harmless curiosity.,,,D,"Predicted, untested; the supplied target establishes a practical aim."
+s04-P75-4,Both places are the same.,,,G,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P75-5,"Yes, because both happened together.",,,P,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P75-6,"Eight centimeters, filling the century.",,,T,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P76-3,The keeper likes blue.,,,I,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P76-4,The table is a new independent count.,,,K,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P76-5,The writer likes hats.,,,I,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P76-6,The label is an independent observation.,,,K,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P77-4,The outside council proves agreement.,,,N,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P77-5,A supported claim about the whole voyage.,,,J,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P77-6,Two sources.,,,W,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P77-7,Any agreement is impossible.,,,N,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P77-8,A detail proving what happened.,,,J,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P77-9,Two statements always mean two sources.,,,W,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-X76-1,The residents certainly opposed the ruler.,,,N,Absence of recorded consent does not establish actual opposition; accept only bounded inference.
+s04-E6c,"E and G are two titles, with no details.",,,J,Titles alone do not supply distinct source evidence. Score the same Q6 paragraph.
+s04-E6c,Two details from E are two sources.,,,W,Two details from one document remain one source. Score the same Q6 paragraph.
+s04-P75-7,The writer likes ships.,,,I,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P75-8,Both activities occur in the same place.,,,G,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P75-9,"Yes, because the activities share time.",,,P,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s04-P75-10,"Six centimeters, filling the century.",,,T,"Predicted, untested; fresh single-feature repair, not a held exit shape."
+s05-X80-1,Which map color do I like?,,,U,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X81-1,I marked New Hampshire.,,,E,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X81-2,Both immediately make states.,,,A,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X82-1,Both happened in 1846.,,,F,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X82-2,Outside signatures prove Native agreement.,,,B,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X83-1,The route crossed empty land.,,,L,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X83-2,The road itself bought more territory.,,,C,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X84-1,Tracks themselves bought the West.,,,C,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X85-1,All women wanted homes; all men wanted gold.,,,D,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X85-2,The wagons never needed supplies.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-X86-1,Everybody gained equally.,,,R,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X87-1,Arizona is east of New Mexico.,,,E,Cold-solved content diagnosis.
+s05-X87-2,All modern Colorado was Mexican and transferred in 1848.,,,E,Cold-solved content diagnosis.
+s05-X88-1,Independence and annexation both happened in 1836.,,,F,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X89-1,Both are eyewitness accounts from 1846.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X89-2,Both accounts prove all their claims equally.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X90-1,Polk saying so settles ownership.,,,G,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X90-2,The later payment proves a freely chosen sale.,,,N,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X91-1,They must have moved north.,,,S,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X92-1,All were choosing jobs.,,,I,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X93-1,Forced work is a chosen job.,,,I,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X94-1,The division had nothing to do with slavery.,,,J,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X94-2,1865 to 1861.,,,O,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X95-1,Paying Russia proves Tlingit consent.,,,B,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X96-1,Both were one event in 1893.,,,F,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X96-2,Annexation immediately made Hawaii a state.,,,A,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X97-1,Both were purchases from Russia.,,,T,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X97-2,Puerto Ricans no longer live as a people.,,,M,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X98-1,The date alone proves why it happened.,,,H,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X99-1,Everyone gained equally.,,,R,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X100-1,Two map details count as two sources.,,,Q,One predicted content diagnosis; equivalent supported wording accepted.
+s05-X101-1,Every group gained equally.,,,R,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E1-1,Transport itself created territory.,,,C,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E1-2,The canal bought the land.,,,C,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E1-3,Rails themselves added territory.,,,C,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E2-1,It immediately became a state.,,,A,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E2-2,It was purchased from Britain.,,,T,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E2-3,It immediately became a state.,,,A,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E2-4,It was purchased from Russia.,,,T,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E2-5,All four were purchased.,,,T,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E3-1,All women wanted homes; all men wanted gold.,,,D,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E3-2,Their traveling camp already had permanent houses.,,,x,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E3-3,They were still only traveling.,,,x,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E4-1,All named people were one group.,,,x,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E4-2,Enslavement was chosen employment.,,,I,Cold check: Required: contrast constrained decisions to leave with a journey and enslavement imposed by force. Free Black lives may be noted but are not required by this stem.
+s05-E5-1,The division was unrelated to slavery.,,,J,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E5-2,War caused the earlier dispute.,,,O,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E6-1,Modern boundaries always equal former national boundaries.,,,E,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E6-2,Both events happened in 1836.,,,F,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E6-3,All Arizona and New Mexico came in 1836.,,,F,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E7-1,All modern Colorado was transferred from Mexico.,,,E,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E7-2,"Both accounts are equally proven, so the border was settled.",,,G,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E8-1,The date alone proves the cause.,,,H,One predicted content diagnosis; equivalent supported wording accepted.
+s05-E8-2,A larger map proves Native consent.,,,B,"Cold check: Require two distinct supported changes, not every listed effect. The purchase transferred a foreign claim, not immediate Native ownership or consent."
+s05-E9-1,Growth was good because I like maps.,,,K,"Cold check: Judge the claim and reasoning here. Evidence relevance, organization and distinct source support have their own component rows."
+s05-E9-2,Two titles without supporting details.,,,Q,Cold check: Judge the evidence in the single Q9 response; do not request another answer.
+s05-E9-3,There are dates but no connected gain-and-loss argument.,,,K,Cold check: Judge organization in Q9; a relevant event list without a linked argument does not suffice.
+s05-E9-4,Two details from one record are two sources.,,,Q,Cold check: G1 petition and G2 congressional resolution count as two records; two titles or two details from one record do not.
+s05-X80-1,Why was nobody living there?,,,L,Separate predicted content error; no compound diagnosis.
+s05-X84-1,Tracks prove nobody lived there.,,,L,Separate predicted content error; no compound diagnosis.
+s05-X86-1,The later reservation caused earlier arrivals.,,,O,Separate predicted content error; no compound diagnosis.
+s05-X86-1,Two dates alone prove cause.,,,H,Separate predicted content error; no compound diagnosis.
+s05-X88-1,Enslavement was freely chosen work.,,,I,Separate predicted content error; no compound diagnosis.
+s05-X93-1,Every Black person remained enslaved.,,,P,Separate predicted content error; no compound diagnosis.
+s05-X95-1,This was war with Russia.,,,T,Separate predicted content error; no compound diagnosis.
+s05-X96-2,Annexation proves everyone agreed.,,,B,Separate predicted content error; no compound diagnosis.
+s05-X98-1,Puerto Rico immediately became a state.,,,A,Separate predicted content error; no compound diagnosis.
+s05-X99-1,Later deliveries caused the earlier bridge.,,,O,Separate predicted content error; no compound diagnosis.
+s05-X100-1,Everyone gained equally.,,,R,Separate predicted content error; no compound diagnosis.
+s05-X100-1,"I like boats, so growth was good.",,,K,Separate predicted content error; no compound diagnosis.
+s05-X101-1,All movement was a job choice.,,,I,Separate predicted content error; no compound diagnosis.
+s05-E2-5,Purchases prove Native agreement.,,,B,Separate predicted content error; no compound diagnosis.
+s05-E2-5,The land was empty.,,,L,Separate predicted content error; no compound diagnosis.
+s05-E7-2,Treaty payment proves a freely chosen sale.,,,N,Separate predicted content error; no compound diagnosis.
+s05-E9-1,Everyone benefited equally.,,,R,Separate predicted content error; no compound diagnosis.
+s05-P80-1,At 1700.,,,F,Task-specific cold-solved diagnosis; retrieval stays ungraded.
+s05-P80-2,Any settlement is a colony.,,,x,Task-specific cold-solved diagnosis; retrieval stays ungraded.
+s05-P80-3,A route without times gives the journey duration.,,,U,Task-specific cold-solved diagnosis; retrieval stays ungraded.
+s05-P81-1,East.,,,E,Task-specific cold-solved diagnosis; retrieval stays ungraded.
+s05-P81-2,30 kilometers.,,,x,Task-specific cold-solved diagnosis; retrieval stays ungraded.
+s05-P81-3,Alaska 1898.,,,F,Task-specific cold-solved diagnosis; retrieval stays ungraded.
+s05-P82-1,Nobody lived there.,,,L,Task-specific cold-solved diagnosis; retrieval stays ungraded.
+s05-P82-2,A statement made by all Native nations.,,,B,Task-specific cold-solved diagnosis; retrieval stays ungraded.
+s05-P83-1,Canal boat on the mountain road.,,,x,Task-specific cold-solved diagnosis; retrieval stays ungraded.
+s05-P83-2,The route crossed empty land.,,,L,Task-specific cold-solved diagnosis; retrieval stays ungraded.
+s05-P83-3,Wagon traveling on canal water.,,,x,Task-specific cold-solved diagnosis; retrieval stays ungraded.
+s05-P84-1,Box: passenger; person: freight.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-P84-2,The wagon trip takes fewer days.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-P85-1,Reporting on the gold rush.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-P85-2,Mining gold for himself.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-P85-3,The strip describes gathering fuel.,,,x,Wrong task match; not a gender-based motive error.
+s05-P85-4,She was still traveling and did nothing after arrival.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-P86-1,Exchange comes before the clothing request.,,,O,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-P86-2,Only settlers from the East.,,,x,Cold-solved: this response contradicts or fails to identify the printed detail; do not infer another error.
+s05-P87-1,Every gray outline is an old national border.,,,E,Cold-solved content diagnosis.
+s05-P87-2,Oregon.,,,E,Cold-solved content diagnosis.
+s05-P88-1,Both events belong at 1836.,,,F,Cold-solved content diagnosis.
+s05-P88-2,Enslaved people freely chose the work.,,,I,Cold-solved content diagnosis.
+s05-P88-3,All Tejanos supported independence.,,,D,Cold-solved content diagnosis.
+s05-P89-1,An unnamed historian wrote it.,,,G,Cold-solved content diagnosis.
+s05-P89-2,All three are eyewitness war accounts.,,,G,Cold-solved content diagnosis.
+s05-P89-3,Texas independence ended this war in 1836.,,,F,Cold-solved content diagnosis.
+s05-P90-1,Later payment caused earlier fighting.,,,O,Cold-solved content diagnosis.
+s05-P90-2,It proves everyone wanted closure.,,,G,Cold-solved content diagnosis.
+s05-P91-1,It proves every home was protected.,,,G,Cold-solved content diagnosis; equivalent supported wording accepted.
+s05-P91-2,The southern strip transferred with the 1848 treaty.,,,E,Cold-solved content diagnosis; equivalent supported wording accepted.
+s05-P91-3,The promise alone proves that it was fulfilled.,,,G,Cold-solved content diagnosis; equivalent supported wording accepted.
+s05-P92-1,The card says farmland rents were falling.,,,x,Cold-solved content diagnosis; equivalent supported wording accepted.
+s05-P92-2,Every German immigrant had exactly the same reason.,,,D,Cold-solved content diagnosis; equivalent supported wording accepted.
+s05-P92-3,The card lists only military service.,,,x,Cold-solved content diagnosis; equivalent supported wording accepted.
+s05-P93-1,"Yes, slavery was legal only in southern colonies.",,,x,Cold-solved content diagnosis; equivalent supported wording accepted.
+s05-P93-2,"Yes, enslaved people could freely leave.",,,I,Cold-solved content diagnosis; equivalent supported wording accepted.
+s05-P93-3,She asked to be enslaved again.,,,x,Cold-solved content diagnosis; equivalent supported wording accepted.
+s05-P93-4,No Black people lived in freedom.,,,P,Cold-solved content diagnosis; equivalent supported wording accepted.
+s05-P94-1,Congress was debating only the weather.,,,J,Cold-solved content diagnosis; equivalent supported wording accepted.
+s05-P94-2,The dispute had nothing to do with slavery.,,,J,Cold-solved content diagnosis; equivalent supported wording accepted.
+s05-P94-3,The Civil War caused the 1854 dispute.,,,O,Cold-solved content diagnosis; equivalent supported wording accepted.
+s05-P95-1,Russia bought the claim; the United States sold it.,,,T,Specific independently solved content diagnosis; equivalent correct wording accepted.
+s05-P95-2,The organizations stopped defending land rights.,,,M,Specific independently solved content diagnosis; equivalent correct wording accepted.
+s05-P96-1,Queen Liliuokalani wrote Silva's later account.,,,G,Specific independently solved content diagnosis; equivalent correct wording accepted.
+s05-P96-2,The organizations campaigned for annexation.,,,B,Specific independently solved content diagnosis; equivalent correct wording accepted.
+s05-P96-3,Admission and annexation both mean statehood.,,,A,Specific independently solved content diagnosis; equivalent correct wording accepted.
+s05-P97-1,A purchase from Russia.,,,T,Specific independently solved content diagnosis; equivalent correct wording accepted.
+s05-P97-2,These peoples no longer have public activities.,,,M,Specific independently solved content diagnosis; equivalent correct wording accepted.
+s05-P97-3,Puerto Rico had no local government before invasion.,,,L,Specific independently solved content diagnosis; equivalent correct wording accepted.
+s05-P98-1,"Evenly space the five events, ignoring the gaps in years.",,,H,Cold check: Place 1803 three tenths after 1800; 1846 six tenths after 1840; 1867 seven tenths after 1860; both 1898 labels eight tenths after 1890.
+s05-P98-2,Four bars represent 25 kilometers altogether.,,,x,Cold check: Count four equal whole bars; 25 + 25 + 25 + 25 = 100 kilometers.
+s05-P98-3,Hawaii belongs in the Caribbean inset.,,,E,Cold check: Accept a label beside the island chain; never place it in the Caribbean or on the mainland.
+s05-P99-1,The agreement proves all Native residents consented.,,,B,Cold check: Link the boundary agreement to changed outside-government claims. The agreement alone does not establish Native consent.
+s05-P99-2,The purchased land had no residents.,,,L,Cold check: Connect the purchase with access to northern Pacific territory. Do not infer empty land or universal benefit.
+s05-P100-1,A page title proves all residents agree.,,,K,"Cold check: Connect one listed public institution to continuing government, naming the source."
+s05-P100-2,All transferred peoples vanished.,,,M,Cold check: Use a relevant advocacy detail to reject the universal claim; this page cannot describe everyone.
+s05-P101-1,Independence and annexation both happened in 1836.,,,F,"Cold check: Keep independence, joining the United States and the war as separate events."
+s05-P101-2,A canal carries trains.,,,C,"Cold check: Match each vehicle to its route, without explaining all three mechanisms in one argument."
+s05-P101-3,Forced transport means choosing a job.,,,I,Cold check: Match the two meanings separately. Forced transport is not chosen employment.
+s05-P103-access,Every record proves agreement.,,,C,One predicted content diagnosis; equivalent supported wording accepted.
+s05-P103-sources,Every record proves agreement.,,,Q,One predicted content diagnosis; equivalent supported wording accepted.
+s05-P103-residence,Every record proves agreement.,,,S,One predicted content diagnosis; equivalent supported wording accepted.
+s05-P103-continuity,Every record proves agreement.,,,M,One predicted content diagnosis; equivalent supported wording accepted.
+s05-K80,Shading means nobody lived there.,,,L,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-P80-4,Travel will be answered on day 103.,,,U,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-P80-5,My favorite color proves the answer.,,,U,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-F81-1,The cover color shows duration.,,,U,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-F81-2,No people use the unshaded yard.,,,L,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-F81-3,1600.,,,F,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-F81-4,Independent country.,,,x,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-P81-4,The shaded area had no residents.,,,L,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-F82-1,Opening a road makes a new state.,,,A,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-F82-2,West.,,,E,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-F82-3,30 kilometers.,,,x,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-P82-3,The new map proves the land was empty.,,,L,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-F83-1,All dock users made it.,,,B,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-F83-2,1740.,,,F,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-F83-3,The bridge opening.,,,A,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-F83-4,Unshaded land has no users.,,,L,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-P83-4,A bigger border proves everyone benefited.,,,C,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-K81-1,It only opens a new road.,,,A,Cold-solved task-specific misconception. Accept equivalent supported wording.
+s05-F84-1,Buy the land for a country.,,,C,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-F84-2,"Yes, because a road is planned.",,,L,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-K84-1,Shorter travel buys the town.,,,C,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-P84-3,The journey times prove the land had no residents.,,,L,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-F85-1,Buy a country's land.,,,C,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-F85-2,"Yes, because a station is proposed.",,,L,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-P85-5,Yes. All women had one purpose.,,,D,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-F86-1,All girls want training; all boys want jobs.,,,D,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-K86-1,"One event came later, so it must be the cause.",,,H,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-P86-3,Yes. Monday always causes Tuesday's events.,,,H,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-P86-4,Both groups received only benefits.,,,R,Cold-solved against printed stimulus; accept equivalent supported wording.
+s05-F87-1,Tuesday rain caused Monday's vote.,,,O,Cold-solved fresh component; one diagnosis.
+s05-K87-1,A modern state always has one historical acquisition.,,,E,Cold-solved fresh component; one diagnosis.
+s05-F88-1,The dotted edge must follow the current garden edge.,,,E,Cold-solved fresh component; one diagnosis.
+s05-K88-1,Independence.,,,F,Cold-solved fresh component; one diagnosis.
+s05-F89-1,Leaving and joining mean the same action.,,,F,Cold-solved fresh component; one diagnosis.
+s05-P89-4,The Oregon history witnessed California fighting.,,,G,Cold-solved fresh component; one diagnosis.
+s05-P89-5,These supply firsthand accounts from every affected people.,,,G,Cold-solved fresh component; one diagnosis.
+s05-K89-1,The clerk saying so proves the boundary.,,,G,Cold-solved fresh component; one diagnosis.
+s05-F90-1,The clerk saying so proves everyone agreed.,,,G,Cold-solved fresh component; one diagnosis.
+s05-P90-3,Payment proves a freely chosen sale without pressure.,,,N,Cold-solved fresh component; one diagnosis.
+s05-F87-2,Saturday lamps caused Friday repairs.,,,O,Cold-solved fresh component; one diagnosis.
+s05-F88-2,The pond edge must follow the playground outline.,,,E,Cold-solved fresh component; one diagnosis.
+s05-F89-2,Leaving and joining are the same.,,,F,Cold-solved fresh component; one diagnosis.
+s05-F90-2,Buying benches proves every resident wanted them.,,,G,Cold-solved fresh component; one diagnosis.
+s05-F87-1,Dates alone explain planting.,,,H,Separate priority component; one diagnosis.
+s05-F87-1,Every group gained space.,,,R,Separate priority component; one diagnosis.
+s05-F87-2,Dates alone explain repairs.,,,H,Separate priority component; one diagnosis.
+s05-F87-2,Every group gained room space.,,,R,Separate priority component; one diagnosis.
+s05-F89-1,The captive freely chose work.,,,I,Separate priority component; one diagnosis.
+s05-F89-2,The captive freely chose work.,,,I,Separate priority component; one diagnosis.
+s05-F91-1,The clerk's claim proves everyone agreed.,,,G,Cold-solved; accept equivalent supported wording.
+s05-F91-2,Payment proves a freely chosen agreement.,,,N,Cold-solved; accept equivalent supported wording.
+s05-K91-1,Yes; every promise is always fulfilled.,,,G,Cold-solved; accept equivalent supported wording.
+s05-F92-1,The house must move when its district changes.,,,S,Cold-solved; accept equivalent supported wording.
+s05-F92-2,The shop must move into the new district.,,,S,Cold-solved; accept equivalent supported wording.
+s05-K92-1,Luz is the immigrant because every visitor is an immigrant.,,,x,Cold-solved; accept equivalent supported wording.
+s05-F93-1,For life means they could freely quit.,,,I,Cold-solved; accept equivalent supported wording.
+s05-F93-2,The child could freely leave.,,,I,Cold-solved; accept equivalent supported wording.
+s05-K93-1,She asked to be enslaved again.,,,x,Cold-solved; accept equivalent supported wording.
+s05-F94-1,They could freely quit.,,,I,Cold-solved; accept equivalent supported wording.
+s05-F94-2,All Black people were enslaved.,,,P,Cold-solved; accept equivalent supported wording.
+s05-F94-3,Children could freely choose to leave enslavement.,,,I,Cold-solved; accept equivalent supported wording.
+s05-F94-4,Every Black person was enslaved.,,,P,Cold-solved; accept equivalent supported wording.
+s05-F91-3,The notice proves all visitors agreed.,,,G,Cold-solved; accept equivalent supported wording.
+s05-F91-4,Payment proves the losing council had a free choice.,,,N,Cold-solved; accept equivalent supported wording.
+s05-X91-1,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-X92-1,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-X93-1,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-X94-1,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-X94-2,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-P91-1,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-P91-2,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-P91-3,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-P92-2,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-P93-2,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-P93-4,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-P94-1,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-P94-2,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-P94-3,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-F91-1,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-F91-2,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-K91-1,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-F92-1,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-F92-2,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-F93-1,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-F93-2,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-F94-1,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-F94-2,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-F94-3,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-F94-4,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-F91-3,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-F91-4,Any other unsupported answer.,,,x,No more specific diagnosis from this answer alone.
+s05-P92-4,Every person in both groups had the same reason.,,,D,Cold-solved; accept equivalent supported wording.
+s05-F95-1,A disagreement about road repairs.,,,J,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F95-2,Harvest.,,,O,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F95-3,A disagreement about boat colors.,,,J,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F95-4,Sowing.,,,O,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F96-1,Every resident's choice.,,,B,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F96-2,Purchase.,,,T,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F96-3,Every library user's choice.,,,B,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F96-4,Purchase.,,,T,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F97-1,State admission.,,,A,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F97-2,Every park user's choice.,,,B,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F97-3,"Yes, every boundary change creates a state.",,,A,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F97-4,Every swimmer's choice.,,,B,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F97-5,Lunch.,,,F,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F97-6,Doors open.,,,F,"One priority repair, fresh case; equivalent correct wording accepted."
+s05-F98-1,Every transfer is a purchase.,,,T,Cold answer check: Gift; no payment is stated.
+s05-F98-2,The club no longer exists.,,,M,Cold answer check: Members meet weekly in 2026.
+s05-F99-1,Buying an island makes it a state.,,,A,Cold answer check: The country buys the island; no admission evidence appears.
+s05-F99-2,The date caused the delay.,,,H,Cold answer check: The broken cart prevents moving the books.
+s05-F99-3,It became a state automatically.,,,A,"Cold answer check: The gift shows acquisition, but does not establish admission as a state."
+s05-F99-4,A later painting caused the lock.,,,H,Cold answer check: The locked cupboard prevents access to the paints.
+s05-F100-1,The date caused the smears.,,,H,Cold answer check: Wet ink causes smearing.
+s05-F100-2,The patch caused the earlier tear.,,,O,Cold answer check: The paper tears before the patch is added.
+s05-F100-3,Everyone gained the same thing.,,,R,Cold answer check: Visitors lose seats.
+s05-F100-4,The date spilled beads.,,,H,Cold answer check: The torn bag allows beads to spill.
+s05-F100-5,The later glue caused the earlier crack.,,,O,Cold answer check: The cup cracks before glue is applied.
+s05-F100-6,All groups gained equally.,,,R,Cold answer check: Readers lose quiet space.
+s05-F101-1,Favorite paint color proves the roof leaks.,,,K,Cold answer check: The damp-ceiling report is evidence for a leaking roof.
+s05-F101-2,Two titles are two supporting details.,,,Q,Cold answer check: The custodian made the report.
+s05-F101-3,Every group gains equally.,,,R,Cold answer check: Players lose court space.
+s05-F101-4,Favorite curtain color proves flooding.,,,K,Cold answer check: The water-depth report supports the flooding claim.
+s05-F101-5,A title supplies a supporting detail.,,,Q,Cold answer check: The gardener made the report.
+s05-F101-6,Every group gains equally.,,,R,Cold answer check: Readers lose quiet space.
+s05-P103-group-access,The route creates more territory.,,,C,Cold answer check: The two workshops are the endpoints.
+s05-P103-group-sources,One notice copies the other.,,,Q,Cold answer check: The gatekeeper reports shutting the gate; the visitor reports watching it close.
+s05-P103-group-residence,The school moves when the boundary moves.,,,S,Cold answer check: The school location stays fixed.
+s05-P103-group-continuity,The garden group no longer exists.,,,M,Cold answer check: 2026; volunteers meet weekly.
+s05-F98-3,Every transfer is a purchase.,,,T,Cold answer check: Gift or donation; no purchase is stated.
+s05-F98-4,The garden group vanished.,,,M,Cold answer check: Volunteers meet monthly in 2026.
+C2-E104-1,"14,550 is later, so the claim fits.",,,N,Diagnose this component separately against the supplied record.
+C2-E104-2,These tools prove everyone arrived by boat.,,,O,Diagnose this component separately against the supplied record.
+C2-E104-3,The university wrote the original letter in 2026.,,,P,Diagnose this component separately against the supplied record.
+C2-E104-4,"Tourists, because islands are nice.",,,Q,Diagnose this component separately against the supplied record.
+C2-E104-5,To entertain children; he asks for nothing.,,,R,Diagnose this component separately against the supplied record.
+C2-E105-1,Both are eyewitness accounts of the landing.,,,S,Diagnose this component separately against the supplied record.
+C2-E105-2,"The king gave permission, so the landing place is proved.",,,T,Diagnose this component separately against the supplied record.
+C2-E105-3,Sugar mills caused the earlier voyage.,,,U,Diagnose this component separately against the supplied record.
+C2-E105-4,Mills existed there before the crop arrived.,,,U,Diagnose this component separately against the supplied record.
+C2-E105-5,Pigs went east from the Caribbean on this arrow.,,,V,Diagnose this component separately against the supplied record.
+C2-K106-date,"7,200 reaches farther back.",,,N,Diagnose this component separately against the supplied record.
+C2-K106-clue,It requests a party.,,,R,Diagnose this component separately against the supplied record.
+C2-K106-kinds,The permit proves the path was finished.,,,S,Diagnose this component separately against the supplied record.
+C2-K106-cause,Wet boxes broke the roof.,,,U,Diagnose this component separately against the supplied record.
+C2-E106-date,"9,400 is later, so the label fits.",,,N,Diagnose this component separately against the supplied record.
+C2-E106-clue,It is for cooks who should bring spoons.,,,Q,Diagnose this component separately against the supplied record.
+C2-E106-kinds,Both are eyewitness accounts of the celebration.,,,S,Diagnose this component separately against the supplied record.
+C2-E106-cause,The waiting potters caused the earlier gate closure.,,,U,Diagnose this component separately against the supplied record.
+s06-X107a,Which picture is prettiest?,,,X,Predicted response; one error only. Shape: Produce a decision-relevant question for an unseen worker-choice record.
+s06-X107b,I like blue.,,,X,Predicted response; one error only. Shape: Explain another person's practical need for the answer.
+s06-X108a,Rhode Island labelled Connecticut.,,,L,Predicted response; one error only. Shape: Produce one state and its capital from a new outline.
+s06-X108b,The largest coastal dot must be the capital.,,,K,Predicted response; one error only. Shape: Infer a capital's position from a separate river strip.
+s06-X109a,Delaware in the Northeast.,,,L,Predicted response; one error only. Shape: Recognize one complete state/capital/region combination on a fresh numbered outline.
+s06-X109b,Lansing in the Upper Peninsula.,,,L,Predicted response; one error only. Shape: Recognize the second state/capital/region combination without a completed reference response.
+s06-X110a,Puerto Rico in the Pacific.,,,L,Predicted response; one error only. Shape: Produce a mainland and ocean location record on a fresh inset arrangement.
+s06-X110b,The touching boxes mean the islands are neighbors.,,,B,Predicted response; one error only. Shape: Explain page arrangement versus ocean positions for the unseen island pair.
+s06-X111a,Two equally spaced event boxes without year positions.,,,C,Predicted response; one error only. Shape: Construct two date positions on a new equal-year line.
+s06-X111b,59 years.,,,x,"59 years is an arithmetic error, not enough evidence of unequal spacing."
+s06-X112a,It has no government until statehood.,,,O,Predicted response; one error only. Shape: Explain institutions in a new fictional statehood petition.
+s06-X112b,Its delegate already has the same final House vote.,,,P,Predicted response; one error only. Shape: Identify one precise present limit in the petition case.
+s06-X113a,"West; February 6, 1788.",,,L,Error L is region only; do not combine it with a date error.
+s06-X113b,Independence and ratification are the same event.,,,N,Predicted response; one error only. Shape: Distinguish two sourced public events on a fresh local strip.
+s06-X114a,Capital uses the key's water symbol.,,,E,Predicted response; one error only. Shape: Construct a compact city/capital/water/mountain inset from unseen evidence.
+s06-X114b,Enlarge only the map while retaining its old scale.,,,Q,Predicted response; one error only. Shape: Justify source-to-response calibration after constructing the fresh inset.
+s06-X115,Mountains at the river mouth.,,,L,Predicted response; one error only. Shape: Finish an unseen bounded city/river/mountain inset with conventions.
+s06-X116,The flour mill is the soil resource.,,,T,Predicted response; one error only. Shape: Transfer an invented resource/production arrangement onto a blank four-by-four grid.
+s06-X117a,A solid exploration line replaces the dashed forced-movement arrow.,,,E,Predicted response; one error only. Shape: Annotate a forced route on an unseen Navajo dated-land locator.
+s06-X117b,All three dated land relationships are identical.,,,F,Predicted response; one error only. Shape: Explain temporal land relationships rather than copy a boundary.
+s06-X118,Only a place list outside an unchanged outline.,,,R,Predicted response; one error only. Shape: Construct a new four-category regional inset.
+s06-X119a,Equally spaced boxes replacing equal-year positions.,,,C,Predicted response; one error only. Shape: Correct an unequal event-space representation on a new subdivided line.
+s06-X119b,73 years.,,,x,Cold-checked predicted response; one diagnostic error. Arithmetic alone does not establish event-spacing error.
+s06-X121,"Water, homes, fields.",,,U,Predicted response; one error only. Shape: Explain one resource-to-settlement or movement relationship from an unseen invented map.
+s06-X122a,Which drawing is nicest?,,,X,Predicted response; one error only. Shape: Ask a researchable question about an unseen two-record harbor.
+s06-X122b,The titles say Map and Grower.,,,J,Predicted response; one error only. Shape: Synthesize an original map and independent invented account into an adaptation explanation.
+s06-X123,Every Western resident cuts trees.,,,G,Predicted response; one error only. Shape: Compare new regional models with a previously taught Northeast case.
+s06-X124,Only the bakery exchanges anything.,,,H,Predicted response; one error only. Shape: Construct a two-actor reason/sale/purchase record for unseen specialists.
+s06-X125a,Both supply every need alone.,,,V,Predicted response; one error only. Shape: Follow unseen worker/business exchanges in a complete table.
+s06-X125b,Saving destroys the money.,,,x,"Choice note, no error group: name the next-best current choice forgone. The catchall x records an individual misconception without inventing a unit error letter."
+s06-X126a,Congress is the judicial branch.,,,I,Predicted response; one error only. Shape: Complete matches on a new arrangement of three labeled building drawings.
+s06-X126b,The governor works at the White House.,,,I,Predicted response; one error only. Shape: Explain exclusion of a state office from a national-building set.
+s06-X127a,The monument has no public use.,,,x,Predicted response; one error only. Shape: Infer a public use from an unseen Washington Monument caption.
+s06-X127b,No resident votes in any election.,,,x,Predicted response; one error only. Shape: State a precise congressional limit alongside the new public-resource case.
+s06-X128,Map A and Notice B are my evidence.,,,J,Predicted response; one error only. Shape: Qualify an evidence-based tentative answer using an unseen map and employer notice.
+s06-X129a,Two details from C only.,,,Y,Predicted response; one error only. Shape: Organize an unframed claim with independent evidence from unseen farm/port records.
+s06-X129b,The picture is pretty.,,,X,Predicted response; one error only. Shape: Explain each distinct source-to-claim connection.
+s06-X130a,The region supplies every need without purchases.,,,V,Predicted response; one error only. Shape: Repair a false universal/self-sufficiency claim from a new clay/grain record.
+s06-X130b,State governor/White House.,,,I,Predicted response; one error only. Shape: Recall one building/branch relationship without a completed three-way sort.
+s06-M1a,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-M1b,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-M1c,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-M1d,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-M1e,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-M1f,D.C. is a state.,,,M,Predicted response; one error only. Shape: Three-location district and Caribbean record on new outline.
+s06-M1g,The inset boxes mean adjacent mainland lands.,,,B,Predicted response; one error only. Shape: Match all five locations on an unseen ocean-dot arrangement.
+s06-F1a,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-F1b,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-F1c,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-F1d,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-F1e,A larger city replaces the capital.,,,K,Predicted response; one error only. Shape: One regional state/capital record on an unseen multi-region outline.
+s06-F1f,D.C. is a state.,,,M,Predicted response; one error only. Shape: Three-location district and Caribbean record on new outline.
+s06-F1g,The inset boxes mean adjacent mainland lands.,,,B,Predicted response; one error only. Shape: Match all five locations on an unseen ocean-dot arrangement.
+s06-M2a,Each event gets an equal space.,,,C,Predicted response; one error only. Shape: Construct five date positions from an unseen mixed-region array.
+s06-M2b,Count boxes rather than elapsed years.,,,C,Predicted response; one error only. Shape: Calculate the interval on the independently completed mixed-region line.
+s06-F2a,Each event gets an equal space.,,,C,Predicted response; one error only. Shape: Construct five date positions from an unseen mixed-region array.
+s06-F2b,Count boxes rather than elapsed years.,,,C,Predicted response; one error only. Shape: Calculate the interval on the independently completed mixed-region line.
+s06-M3a,Statehood gave everyone the vote.,,,D,Predicted response; one error only. Shape: Explain two institutional benefits without a taught full paragraph.
+s06-M3b,A territory has no government.,,,O,Predicted response; one error only. Shape: Name a precise current limit separately from historical institutions.
+s06-F2c,Everyone gained an equal vote.,,,D,Predicted response; one error only. Shape: A concise historical institutions/rights distinction on fresh evidence.
+s06-F2d,All territories have voting senators.,,,P,Predicted response; one error only. Shape: Name a present institutional limit without copying a petition answer.
+s06-M4,Only the map is resized while its scale stays fixed.,,,Q,Predicted response; one error only. Shape: Construct an unseen six-feature Northeast map.
+s06-M5c,"Homeland, confinement and present reservation are identical.",,,F,Predicted response; one error only. Shape: Classify an unseen combined Arizona/New Mexico dated map without constructing it.
+s06-M5b,"Only a place list, with no features located on the map.",,,R,Predicted response; one error only. Shape: Unaided revision of a fresh day 119 construction after written feedback.
+s06-M5m,"Only a place list, with no features located on the map.",,,R,Predicted response; one error only. Shape: Unaided revision of a fresh day 119 construction after written feedback.
+s06-M5w,"Only a place list, with no features located on the map.",,,R,Predicted response; one error only. Shape: Unaided revision of a fresh day 119 construction after written feedback.
+s06-M5l,"Only a place list, with no features located on the map.",,,R,Predicted response; one error only. Shape: Unaided revision of a fresh day 119 construction after written feedback.
+s06-M5t,Equal event boxes still replace equal-year positions.,,,C,Predicted response; one error only. Shape: Unaided revision of a fresh day 119 construction after written feedback.
+s06-F3a,Capital and river share an unexplained symbol.,,,E,Predicted response; one error only. Shape: Complete missing capital/water/mountain key entries on a new partly drawn map.
+s06-F3b,Scale changes while the map does not.,,,Q,Predicted response; one error only. Shape: Supply missing conventions on an unfamiliar partly drawn map.
+s06-F3c,Milk processing is a natural resource.,,,T,Predicted response; one error only. Shape: Complete three resource/production categories from an unseen Wisconsin source.
+s06-F3d,Forced removal is labelled free migration.,,,S,"Predicted response; one error only. Shape: Independently synthesize physical, climate, dated land, forced movement, exploration and settlement information."
+s06-F3e,One unexplained symbol stands for every category.,,,E,Predicted response; one error only. Shape: Complete three cultural/site categories on a fresh partly drawn map.
+s06-F3u,Only list the places.,,,R,Predicted response; one error only. Shape: Observe construction conventions in the F3d product; no additional paper question.
+s06-F4q,Which picture is prettiest?,,,X,Predicted response; one error only. Shape: Generate an unseen locality question from independently credited records.
+s06-F4g,The river forced every resident into one job.,,,G,Predicted response; one error only. Shape: Analyze geographic and historical evidence for linked uses without an unsupported soil overlay.
+s06-F4c,"I like the town, so it proves the claim.",,,X,Predicted response; one error only. Shape: Organize a qualified claim using the unseen source pair.
+s06-F4s,Two NPS titles alone establish two independent makers.,,,Y,Predicted response; one error only. Shape: Explain separate source-to-claim links from independently credited records.
+s06-F4i,Only I need it because I like the picture.,,,X,Predicted response; one error only. Shape: Explain a practical need belonging to another user of the inquiry.
+s06-F4settle,Water is a resource.,,,U,Predicted response; one error only. Shape: Observe the settlement explanation already in F4; no extra child prompt.
+s06-F4move,Name the river without explaining movement.,,,U,Predicted response; one error only. Shape: Observe the movement explanation already in F4; no extra child prompt.
+s06-F5w,Only the dairy trades.,,,H,Predicted response; one error only. Shape: Explain an unseen worker's specialization and exchanges in one row.
+s06-F5b,The dairy supplies every need alone.,,,V,Predicted response; one error only. Shape: Explain the paired business's specialization and exchanges.
+s06-F6a,Governor/White House/national.,,,I,Predicted response; one error only. Shape: Complete an unseen capital/worker/branch/building record.
+s06-F6b,Records are only decoration.,,,W,Predicted response; one error only. Shape: Infer a civic use from a reserved public-record caption.
+s06-F6c,D.C. residents elect voting senators.,,,P,Predicted response; one error only. Shape: State the current congressional limit without a statehood opinion.
+s06-M2-se,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-M2-mw,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-M2-sw,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-M2-we,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-F2-se,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-F2-mw,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-F2-sw,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-F2-we,Equal event spacing replaces elapsed years.,,,C,Predicted response; one error only. Shape: Teacher records the regional component of the existing timeline; no additional child prompt.
+s06-M4u,List feature names without locating them.,,,R,Predicted response; one error only. Shape: Teacher records construction in M4; no additional child prompt.
+s06-P107-1,A response missing the named relationship or source position.,,,X,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P111-1,I spaced the cards evenly because each card is one event.,,,C,Error C: event counting replaces equal-year spacing.
+s06-P111-2,27 years.,,,x,Arithmetic slip; 1867 minus 1830 is 37. Not evidence of spacing error C.
+s06-P112-1,Constitution: makes national laws. Congress: sets up state government.,,,x,Function reversal; it does not establish error O about absent local government.
+s06-P112-2,B needs correcting because everyone could vote.,,,D,Error D treats statehood as universal voting rights.
+s06-P113-1,Worcester is coastal; Boston is inland.,,,L,Error L reverses the supplied public-place positions.
+s06-P113-2,Boston made this map; no link is needed.,,,x,Confuses mapped place with map maker; no geographic-position error can be inferred.
+s06-P114-1,The doubled map keeps its original bar.,,,Q,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P114-2,The key calls the capital dot a lake.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P115-1,The line follows the eastern boundary.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P115-2,The wavy line means city.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P116-1,Topeka is a natural resource.,,,T,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P116-2,The river follows the southern boundary.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P117-1,All three locators show the present reservation.,,,F,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P117-2,The settlement dot is the expedition route.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P118-1,Fort Clatsop is a river.,,,E,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P118-2,Crater Lake is on the northern boundary.,,,L,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P119-1,"A key labels a circle as a lake, but the lake uses a triangle.",,,E,Cold-checked concrete response; one diagnostic error.
+s06-P119-2,The key calls the processing plant a natural resource.,,,T,Cold-checked concrete response; one diagnostic error.
+s06-P119-3,Four feature names appear in a list with no located marks.,,,R,Cold-checked concrete response; one diagnostic error.
+s06-P119-4,The response lists four places without locating them.,,,R,Cold-checked concrete response; one diagnostic error.
+s06-P119-5,Nine cards are spaced evenly by event rather than year.,,,C,Cold-checked concrete response; one diagnostic error.
+s06-P121-1,"Water, buildings, channels.",,,U,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P121-2,The hillside.,,,x,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P122-1,Which drawing is nicest?,,,X,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P122-2,Water and factories.,,,U,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P122-3,It proves every farm in the region grows the same crop.,,,G,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P123-1,"Water, cotton, wood.",,,U,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P123-2,These accounts tell us every resident has the same job.,,,G,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P124-1,Boots: service. Haircut: good.,,,x,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P124-2,"Only businesses trade, so Inez buys and sells nothing.",,,H,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P124-3,"The mill supplies every need alone, so it buys nothing.",,,V,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P125-1,Only the mill buys and sells; Inez cannot trade.,,,H,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P125-2,The groups use only twenty-five counters.,,,x,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P125-3,Moving counters to saving destroys them.,,,x,"Cold-solved predicted response; one error only. Practice uses separate components, never the held arrangement."
+s06-P126-1,Governor national; president state.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P126-2,Deciding a case: legislative.,,,I,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P127-1,The bridge record answers how the drill was turned.,,,W,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-P127-2,The caption proves the building is open today.,,,x,Predicted response; one error only. Shape: Practice one component; never the held exit arrangement.
+s06-R107a,Everyone must like every law.,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-R107b,They said every person already had an equal vote.,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K107-hook,The farm diagram proves real soil quality.,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K107-map,Dated records.,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P107-2,Statehood: a date list alone.,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P107-3,Which picture do I like best?,,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-R108-consent,"No, unless everyone likes every decision.",,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-R108-evidence,"A paint sample, because I like its color.",,,X,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K108-1,S3 is a capital and C3 is a state.,,,K,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P108-1,Maine: Boston.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P108-2,S3 marks the capital because the state is larger.,,,K,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-R109-key,S2 marks the capital.,,,K,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-R109-boundary,C9 alone marks the whole state.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K109-dc,State.,,,M,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K109-lookup,Row 1 from the Midwest index.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P109-1,Alabama: Jackson.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P109-2,Illinois: Indianapolis.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-R110-1,A nearby dot outside Ohio is enough.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K110-inset,A place in a separate box becomes a territory.,,,M,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-K110-ocean,North of the equator in the Caribbean.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P110-1,New Mexico: Phoenix.,,,L,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-P110-2,Wake Island is a state because it has a map dot.,,,M,"Cold-solved for the day; one predicted error, not an observed rate."
+s06-R111-B,Yes. Touching boxes prove neighboring islands.,,,B,Fresh component repair or retrieval; never a held item.
+s06-R111-L,A is south of B.,,,L,Fresh component repair or retrieval; never a held item.
+s06-R111-M,A territory is a state.,,,M,Fresh component repair or retrieval; never a held item.
+s06-K111-spacing,One event per gap.,,,C,Fresh component repair or retrieval; never a held item.
+s06-R112-C,1883 belongs halfway between 1880 and 1890.,,,C,"Isolated component, never the held petition response."
+s06-R112-N,Any changed control is admission.,,,N,"Isolated component, never the held petition response."
+s06-R112-arithmetic,42 years.,,,x,"Isolated component, never the held petition response."
+s06-K112-constitution,Only a national law can limit state government.,,,x,Institution/function confusion; it does not establish error O.
+s06-K112-congress,A state constitution is the national legislature.,,,x,Institution/function confusion; it does not establish error O.
+s06-P112-limit,Everyone gained equal voting rights at statehood.,,,D,"Isolated component, never the held petition response."
+s06-X112a,Statehood gave everyone equal voting rights.,,,D,Statehood did not end historical exclusions.
+s06-R113-D,Everyone could vote at statehood.,,,D,"Fresh invented label, not the held petition or its correction."
+s06-R113-O,No final House vote means no government.,,,O,"Fresh invented label, not the held petition or its correction."
+s06-R113-P,Committee service includes the final House vote.,,,P,"Fresh invented label, not the held petition or its correction."
+s06-C112-1,Serving on a committee gives every delegate a final House vote.,,,P,Committee work does not grant a final House vote.
+s06-P111-1,Any change of control means admission as a state.,,,N,Check the event label; changed control does not establish membership.
+s06-R114,Region A.,,,L,Fresh component task; no held source arrangement.
+s06-F114,1810.,,,N,Fresh component task; no held source arrangement.
+s06-R115,River.,,,E,Fresh component task; no held source arrangement.
+s06-R116,Unchanged.,,,Q,Fresh component task; no held source arrangement.
+s06-P116,The kitchen is the natural resource.,,,T,Fresh component task; no held source arrangement.
+s06-R117,Building.,,,T,Fresh component task; no held source arrangement.
+s06-P117,All New Mexico has one identical climate.,,,L,Fresh component task; no held source arrangement.
+s06-F117,A line following the eastern state boundary.,,,L,Fresh component task; no held source arrangement.
+s06-R118,1863 confinement.,,,F,Fresh component task; no held source arrangement.
+s06-P116-3,All three layers show only a dot labeled Topeka.,,,R,"Locations are source areas, not the earlier city reminder."
+s06-R119,A triangle still marks the tree.,,,E,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
+s06-P119-R1,A larger city replaces the capital.,,,K,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
+s06-P119-R2,A larger city replaces the capital.,,,K,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
+s06-P119-R3,A larger city replaces the capital.,,,K,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
+s06-P119-R4,A larger city replaces the capital.,,,K,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
+s06-P119-R5,A larger city replaces the capital.,,,K,Fresh isolated paper retrieval or made-up symbol retry; no held assessment layout.
+s06-X121,The river makes every person take the same job.,,,G,Cold-solved predicted response; one error only. Routes to next-day repair.
+s06-X122b,The factory is a natural resource.,,,T,Cold-solved predicted response; one error only. Routes to next-day repair.
+s06-X123,"Grain, forest, water.",,,U,Cold-solved predicted response; one error only. Routes to next-day repair.
+s06-X124,Each specialist supplies every need and buys nothing.,,,V,Cold-solved predicted response; one error only. Routes to next-day repair.
+s06-W126-1,The shoemaker supplies all needed fruit alone.,,,V,Cold-solved day 126 practice; no held building arrangement.
+s06-R126-1,It is a building where the president works.,,,x,Cold-solved day 126 practice; no held building arrangement.
+s06-K126-1,Decide a court case.,,,x,Cold-solved day 126 practice; no held building arrangement.
+s06-W127-1,Governor national; president state.,,,I,"Cold-solved day 127 response; one wrong, one error letter."
+s06-K127-1,It cannot show when the bridge opened.,,,x,"Cold-solved day 127 response; one wrong, one error letter."
+s06-Q127-1,The museum caption proves it is open today.,,,x,"Cold-solved day 127 response; one wrong, one error letter."
+s06-X127b,D.C.'s delegate votes on final House passage.,,,P,"Cold-solved day 127 response; one wrong, one error letter."
+s06-W128-1,Both votes are allowed.,,,P,Cold-solved original anticipated response; one error.
+s06-W128-2,How tall is the fountain?,,,W,Cold-solved original anticipated response; one error.
+s06-P128-1,My five notes only give record titles.,,,J,Cold-solved original anticipated response; one error.
+s06-P128-2,The records prove everyone in each region has one job.,,,G,Cold-solved original anticipated response; one error.
+s06-P128-3,"The pictures look nicest, so that proves the claim.",,,X,Cold-solved original anticipated response; one error.
+s06-W129-1,"The workshop needs tools, so tools must have arrived.",,,J,Cold-solved original anticipated response; one error.
+s06-P129-1,Paterson and Minneapolis prove my claim using two independent makers.,,,Y,Cold-solved original anticipated response; one error.
+s06-W130-1,Two library pages.,,,Y,Cold-solved original anticipated response; one error.
+s06-W130-2,Everyone uses it.,,,G,Cold-solved original anticipated response; one error.
+s06-P130-1,Maine/Portland.,,,K,Cold-solved original anticipated response; one error.
+s06-P130-2,A machine is a natural resource.,,,T,Cold-solved original anticipated response; one error.
+s06-P130-3,Repair work provides all the food the shoemaker needs.,,,V,Cold-solved original anticipated response; one error.
+s06-P130-4,Congress is executive.,,,I,Cold-solved original anticipated response; one error.
+s06-P130-5,What tree species grow there?,,,W,Cold-solved original anticipated response; one error.
+s06-W132-1,Give every event an equal gap regardless of year.,,,C,Cold-solved original anticipated response; one error.
+s06-W132-2,It is printed on blue paper.,,,W,Cold-solved original anticipated response; one error.
+s06-W132-3,The vertical road line is the pond.,,,E,Cold-solved original anticipated response; one error.
+s06-W132-4,The worker makes every needed thing alone.,,,V,Cold-solved original anticipated response; one error.
+s06-P132-1,All three records get equal gaps.,,,C,Cold-solved original anticipated response; one error.
+s06-P132-2,Governor; White House; executive.,,,I,Cold-solved original anticipated response; one error.
+s06-P132-3,"I only listed pond, road and bridge without locating them.",,,R,Cold-solved original anticipated response; one error.
+s06-P132-4,Only the packing business trades; the worker never buys anything.,,,H,Cold-solved original anticipated response; one error.
+C3-E133-M,A list of place names without positions.,,,Y,A list does not construct a map.
+C3-E133-G,Forests made every person settle there and build ships.,,,Z,Sources name human skills too; they do not describe every resident.
+C3-E134-A1,A Chinese worker wrote this in 1867.,,,P,Confuses subject and event date with maker and account date.
+C3-E134-A2,"Only railroad workers in 1867, because it is about them.",,,Q,Topic is substituted for intended readers.
+C3-E134-A3,To order workers to strike.,,,R,A later account is mistaken for a command during the event.
+C3-E134-B1,A Chinese worker wrote this in 1867.,,,P,Confuses subject and event date with maker and account date.
+C3-E134-B2,"Only railroad workers in 1867, because it is about them.",,,Q,Topic is substituted for intended readers.
+C3-E134-B3,To order workers to strike.,,,R,A later account is mistaken for a command during the event.
+C3-E134-C,They were treated equally because the railroad was finished.,,,W,Completion does not establish equal treatment and ignores pay and protest evidence.
+C3-K135-M,The shorter bar represents less ground.,,,M,Read its labeled distance with the bar.
+C3-K135-G,A quarry is the natural resource.,,,Z,Slate is natural; a quarry is a developed work site.
+C3-K135-S,The archive wrote the original in 2022.,,,P,Hosting is not original authorship.
+C3-K135-C,Blue paint proves carts can cross.,,,W,Color does not establish access.
+C3-X135-M,A 2-centimeter bar labeled 56 kilometers.,,,M,Same region enlarged; ground distance has not doubled.
+C3-X135-G,The river forced every family to move.,,,Z,"Records support a likely link, not universal motives."
+C3-X135-S,The clerk wrote it in 2021.,,,P,Label date cannot replace missing original date.
+C3-X135-C,All boats stopped because the ferry closed.,,,W,Claim must fit both records.
+C3-K136-M,Square means school because squares look like buildings.,,,A,Appearance cannot replace this map evidence.
+C3-K136-G,Every person moved there to make glass.,,,Z,One industry does not explain everyone.
+C3-K136-S,Everyone in town because it mentions a town garden.,,,Q,Topic is not the specific addressee.
+C3-K136-C,Opening proves every visitor liked it.,,,W,An event record does not establish every opinion.
+C3-X136-M,Place names beside an empty grid.,,,Y,Names without positions do not construct a map.
+C3-X136-G,Every home followed the washhouse.,,,Z,Older homes contradict the universal settlement claim.
+C3-X136-S,Invite visitors to a dock celebration.,,,R,Safety request contradicts that purpose.
+C3-X136-C,Everyone benefited because stall numbers rose.,,,W,The fees record complicates universal benefit.
+C3-E134-R,Both sources are true because they are printed.,,,W,Printed status alone does not connect details to the claim.
+C3-K135-S2,All town residents because it mentions streets.,,,Q,The inside addressee is more specific than the topic.
+C3-K135-S3,Invite a street parade.,,,R,"A blocked route and clearing request support repair, not celebration."
+C3-X135-S2,Every visitor is the intended reader.,,,Q,The catalog label conflicts with the more specific inside addressee.
+C3-X135-S3,The notice aims to sell more sacks.,,,R,The request and its safety reason contradict a sales purpose.
+C3-X136-S1,Boat crews made it; the original date is unknown.,,,P,The index guess conflicts with the original signature and date.
+C3-X136-S2,Anyone who likes celebrations.,,,Q,The addressee is boat crews.
+C3-K136-S1,The archive wrote it in 2020.,,,P,The later label is distinct from original maker/date.
+C3-X135-R1,Repairs ended Monday because the plan said Monday.,,,W,The claim exceeds what this record supports.
+C3-X136-R1,The North lamp was definitely not checked because its page is missing.,,,W,The claim exceeds what this record supports.
+s07-X137,Because I like centers.,,,U,Community needs and land conditions affect usable access. The planner needs evidence about both.
+s07-X138,Everyone chose that work.,,,B,The work built houses and prepared docks; enslaved people could not freely refuse. No unstated free-African fact required.
+s07-X139,All African Americans had one kind of work.,,,I,"It adds Black town-building and self-government, beyond the incomplete account of enslavement."
+s07-X140,Only European immigrants shaped the Midwest.,,,A,Arab and Chaldean Americans also contributed civic knowledge and participation in public decisions.
+s07-X141,Every African American was a soldier.,,,I,Some soldiers built roads; the claim does not cover every African American. No unstated army-post detail required.
+s07-X142,Only miners shaped Western communities.,,,A,Mason supported institutions as well as owning property. Add this supported work beyond miners; no unstated identity required.
+s07-X143,They freely chose new jobs.,,,B,"Flower businesses provided livelihoods. Government removal and confinement disrupted these businesses and denied choice, unlike a freely chosen job move."
+s07-X144,These show every Seattle resident's work.,,,I,D shows Duwamish public history and cultural learning. W shows community participation in exhibits. Neither describes every resident's views or experience. W concerns several communities.
+s07-X145,The pass alone made people move.,,,D,Connect the continuing pass and changed listed goods with terrain access and relatives. Earlier vehicles and the beginning of family ties are not shown.
+s07-X146,A storm happened.,,,S,Broken pipes disrupted safe water. Officials supplied an alternative; residents helped it reach people needing water.
+s07-X147,There was drought.,,,S,Water shortage reduced crops. Assistance addressed farm losses; food collections addressed resulting food needs.
+s07-X149,Human construction could not matter.,,,C,The built defect also contributed to failure. Storm and structural weakness both mattered. Road loss disrupted a connection; legal blame is not established.
+s07-X150,Where people lived did not change.,,,N,People left unusable district housing. Both receiving towns gained temporary residents. Permanence and return remain unknown.
+s07-X152,One national body controls every service.,,,O,"The record assigns town, county and national responsibilities separately."
+s07-X153,Submitting the request adopted it.,,,F,It remains a proposal. Neither the request nor unauthorized posting supplies the board approval this rule requires.
+s07-X155,No author or date can be found.,,,R,The office and date are explicitly printed on the source label.
+s07-X156,Delay means improvement is impossible.,,,Q,"Staff limits delay capacity. Coordinated trained help could address staffing, without guaranteeing opening."
+s07-X148a,One national body did everything.,,,O,Flooding blocked travel. Officials redirected travel; residents supported supply access during disruption.
+s07-X148b,Sharing water creates rain and reopens the ramp.,,,T,Sharing and using supplies addressed limited water. Nothing shows the ramp reopened or drought ended.
+s07-C1-1,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C1-2,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C1-3,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C1-4,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C1-5,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C2-1,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C2-2,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C2-3,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C2-4,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C3-1,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C3-2,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C3-3,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C4-1,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C4-2,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C4-3,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C4-4,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C4-5,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C5-1,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C5-2,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C5-3,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C5-4,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C5-5,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C5-6,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C5-7,Everyone in this group had one job.,,,I,"Accurate, source-linked phrase about these particular people."
+s07-C5-compare,All Asian communities arrived together.,,,V,WE7 Filipino organizing and NE4 Irish organizing both sought better working conditions; other supported relationships accepted.
+s07-M2a,Damage did not move anyone.,,,N,Flood makes lowland homes unusable; people move uphill or to the neighboring city. Defective wall failure displaces riverside people to another town. Both change origin and receiving settlements; permanence is unknown.
+s07-M2b,Distant places cannot be affected.,,,E,Flood fills the neighboring city's temporary housing. Wall failure brings displaced people to another town and interrupts downstream water delivery. Connections carry each effect elsewhere.
+s07-A1,My liking proves what communities need.,,,H,For example: People sustain community learning while adapting shared places. WE1 shows the Makah public museum maintaining access to history. P shows a council changing shelter access after evidence. Both connect community activity with public places. Accept other qualified claims with distinct details and explained links.
+s07-A2,It matters only because I like it.,,,U,A planner needs community and land evidence before choosing accessible public sites; accept other people with a specific relevant need.
+s07-A1-argument,A copied list replaces argument.,,,R,Record existing A1 argument; no duplicate task.
+s07-P2-product,A letter makes the request adopted policy.,,,F,Reader/hazard | attributed evidence/currentness or conditional fallback | documented process or missing-stage honesty | geographic/civic challenge/opportunity | feasible step and limit | justified revision after feedback.
+s07-R160-G,Distance prevents effects.,,,E,The failed freezer disrupted a connected medicine delivery.
+s07-R160-P,Requests adopted it.,,,F,Requests/hearing preceded approval; later heat evidence led to an hours revision.
+s07-R160-A,Liking is evidence.,,,H,Communities adapt shared places to sustain activities: repair keeps shared cooking possible; moved lessons sustain learning during smoke. Accept other supported links.
+s07-R160-C,Native nations exist only in the past.,,,J,The Makah Tribe maintains its own government today; MT is the Makah Tribe's public information page.
+s07-R160-H,Naming hail explains every response.,,,S,Staff repaired the structure; covers protected exposed plants during repairs.
+s07-RET137,A ramp appeared because I like ramps.,,,H,A preference does not establish the change. The recent drawing shows the ramp.
+s07-RET155,Guess without evidence.,,,H,"Evidence of need, existing advice, alternatives and consequences before choosing fairly."
+s07-P137,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
+s07-P138,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
+s07-P139,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
+s07-P140,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
+s07-P141,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
+s07-P142,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
+s07-P143,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
+s07-P144,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
+s07-P145,Land alone explains every movement.,,,D,The made-up Southwest record explicitly includes neighbors exchanging advice; terrain is not the sole connection.
+s07-P146,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
+s07-P147,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
+s07-P148,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
+s07-P149,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
+s07-P150,One source speaks for everyone.,,,I,"Check the actual source location, date, actor and scope; unscored practice."
+s07-X152b,Residents have no way to contribute.,,,O,"Residents could submit evidence about needs, attend a public meeting or join authorized adult relief."
+s07-X155b,Choose what I like without evidence.,,,H,Check current route/advice accuracy and whether readers can use print or links before choosing.
+s07-P137-questions,I like our region.,,,U,"For example: Which sources show different communities in one region? The question is smaller, researchable and relevant to community and land."
+s07-P137-evidence,Another picture proves all communities are included.,,,I,Other community accounts; another picture alone still concerns the same building.
+s07-F138,Another hall drawing gives every community a voice.,,,I,"Circle lift; choose other community records. The drawings date a building change, not every community."
+s07-F139,Both chose their work.,,,B,Volunteer: chosen. Ordered person: forced. The order does not give a choice.
+s07-F140,All clubs rehearsed on Tuesday.,,,I,Circle One club. Other clubs: unknown. The note only covers the named club.
+s07-F141,Only this club can belong in the archive.,,,A,Another community record adds a different voice; another newsletter remains the same club voice.
+s07-F142,Both tags name everyone.,,,I,1701 matches Spanish; 1840 matches Mexican. Underline one choir and one band. Tags describe only their named groups.
+s07-F142,1701 matches Mexican; 1840 matches Spanish.,,,L,Keep each printed date with its own identity label.
+s07-F143,Both labels describe everyone.,,,I,"Spanish goes with 1760; Mexican goes with 1835. Box one on each label. These are particular people, not everyone."
+s07-K143-1,The later token proves lamps began in 2000.,,,x,"Then: 1900, red lamp. Now: 2000, blue lamp. Underline lamp in both tokens."
+s07-K143-2,Only the land connects these clubs.,,,D,Underline sends repair sketches to another club. Clubs share ideas through their connection.
+s07-F143,Spanish goes with 1835; Mexican goes with 1760.,,,L,Read each printed identity and date together.
+s07-X143,Confinement protected the growers.,,,K,"The caption establishes force and confinement, not protection. Removal disrupted their businesses and denied choice."
+s07-X143,All Asian American communities had this same history.,,,V,This caption describes the named Richmond Japanese American community.
+s07-F144,They freely chose to leave.,,,B,"Underline must leave and cannot refuse. Box one writing club. The notice identifies force, not a freely chosen move; other groups are not described."
+s07-F144,This notice proves every group had the same experience.,,,I,Only the named writing club is described.
+s07-F145,The record describes every group.,,,I,Underline one neighborhood troupe. Another group's work is unknown from this record; three plays belong to this troupe alone.
+s07-K146-R,The hill.,,,D,Use the printed evidence. Neighbors send repair advice.
+s07-F146,The ridge.,,,D,Use the printed evidence. Musicians exchange songs.
+s07-K146,Every resident.,,,O,Use the printed evidence. Town crews.
+s07-X146,Officials did everything.,,,O,Residents delivered the supplied water.
+s07-K147-R,A town crew.,,,S,Use the printed evidence. A cracked fountain.
+s07-F147,Adult volunteers are the official actor.,,,O,Use the separate printed evidence labels. Damage: a fence broke. Official actor: town staff.
+s07-K147,Tornado winds for minutes.,,,M,Use the printed evidence. Rainfall shortage through several months.
+s07-X147,The shortage lasted only minutes.,,,M,The record describes a dry growing season.
+s07-K148-R,One afternoon.,,,M,Use the printed evidence. Four months.
+s07-F148,Wind gust; no effect is named.,,,M,Use the separate printed evidence labels. Long rainfall shortage; the pond dries.
+s07-K148,Adults use official clearance before reopening a site.,,,T,Use the printed evidence. A watering limit changes use; it does not create rainfall.
+s07-X148b,The boat ramp must now be safe.,,,P,No reopening or clearance is shown.
+s07-X148a,A hurricane happened.,,,S,Connect interrupted travel with both responses.
+s07-K149-R,The forecast predicts rain.,,,T,Use the printed evidence. The notice limits watering.
+s07-F149,A quiet yard proves safe access; watering rules create rainfall.,,,P,Use the separate printed evidence labels. Access evidence: permission is pending. Water-use rule: watering limits remain.
+s07-K149,The downstream valley.,,,C,Use the printed evidence. The South Fork Dam.
+s07-K150-R,Rain falls.,,,C,Use the printed evidence. A damaged drain.
+s07-F150,Wind bends reeds.,,,C,Use the printed evidence. A cracked signal cable stops messages.
+s07-X150,Only the closed district changed.,,,E,Both receiving towns gained temporary residents.
+s07-X151,Only the port and bridge places were affected.,,,E,Inland shops received less fruit after the port closed. Deliveries used routes through another county after the bridge closed.
+s07-K151-R,The record shows no change in residence.,,,N,Departure: Reed Flats closed. Receiving place: residents now sleep in Fern District.
+s07-F151,Only Larch Rooms changed.,,,E,Origin: Larch Rooms. Receiving place: Elm District. Renting rooms shows a residence change.
+s07-K151-1,The bakery has no connection to the store.,,,E,"The bakery lost its ingredient order. The higher quote is stated evidence, not a rule for every outage."
+s07-P151,Every worker moved homes.,,,N,Wind: unusable apartment rooms; another district offers temporary rooms. Fire: closed workplaces; another town records job inquiries. Neither proves everyone moved.
+s07-P151-E,Nothing changed beyond the damaged place.,,,E,The replacement supply quote costs more after deliveries stopped. Repair crews moved temporarily to Birch Town. Accept two accurate linked explanations without assuming permanent relocation.
+s07-K152-R,Distance prevents any effect.,,,E,The cable connects the break to the clinic refrigerator.
+s07-F152,The museum cannot be affected.,,,E,The stopped train connects the interruption with the canceled museum visit.
+s07-RET152,Only national officials can do public work.,,,O,"Accept a public service, such as a warning or library, and attending a meeting, volunteering or staying informed. This is retrieval, not a claim about universal responsibility."
+s07-K152-1,The request proves adoption.,,,F,Asking for a warning sign shows a proposal. A request is not an authorized adoption.
+s07-P152,One source establishes every authority and stage.,,,I,"AID: eligibility limits; other help may exist. FL1: weaknesses, study commission and code taking effect. FL2: public input and technical recommendations. Request: asking, not adoption. The selected cards do not name the author of exact code wording."
+s07-K153-R,One national office made every decision.,,,O,Library committee is the named body. The signature is a decision feature.
+s07-F153,A wider area always has authority.,,,O,Parks office. The printed role is authority evidence for this invented task.
+s07-P153,The commission name proves it proposed and adopted every later word.,,,F,"FL1: 1992 weaknesses show a problem; 1996 commission shows investigation, not the exact proposer. The 2002 code taking effect shows implementation. FL2 shows later review and public input. Exact proposer, authorization record and a specific enacted revision are absent from these selected cards."
+s07-K154-R,Every request is a decision.,,,F,Asks for identifies a request. Signed minutes authorize identifies a decision feature. These are separate documents and cases.
+s07-F154,The draft wording proves adoption.,,,F,Suggests is a proposal feature; signed minutes approve is a decision feature. Do not combine these into one policy history.
+s07-K154-1,Any remaining task means no improvement is possible.,,,Q,"Temporary housing, detailed planning, relocation underway or large projects show a continuing task. Accept one supporting phrase."
+s07-P154,The same response must work everywhere.,,,G,"JP: planning and temporary housing address a large rebuilding task; some higher-land relocation was underway. Better-protected housing is an opening, not proof every home is safe. FL2: public and technical input offer a way to improve rules; the record does not establish every building is safe."
+s07-X154,Copy the same plan everywhere.,,,G,"Both records show limited stall funding. Moving the market or approving a raised reopening site offers a place for trading to resume. Higher sites may reduce flood exposure, but neither record proves safety or full reopening."
+s07-K152-2,An amendment is only the original request.,,,F,Adopted shows an authorized decision in these invented minutes. Later amendment changes shows revision. A revision changes an adopted action.
+s07-X154,Short funding means no improvement is possible.,,,Q,Funding remains a challenge; relocation or approved reopening still offers a limited improvement.
+s07-X153,"The principal posted a room, so the request became policy.",,,F,Only board approval adopts changes under the stipulated rule; unauthorized posting cannot supply it.
+s07-K151-1,Every disaster raises prices.,,,x,A higher quote is stated in Orchard only. Neither distant-effect exit record states a price change.
+s07-P151-E,The crews moved permanently.,,,N,The record says temporarily. Accept temporary relocation; do not infer permanent residence.
+s07-K155-R,Sweeping makes every hallway safe.,,,G,One hallway is the documented scope.
+s07-F155,Nothing can improve until every hallway is perfect.,,,Q,A limited action can address the documented obstruction.
+s07-P155,"I like posters, so the town must need them.",,,H,Preference does not establish a public need.
+s07-P155,Every place must copy this step.,,,G,Check local conditions and authority first.
+s07-K156-R,Purple is the evidence of need.,,,H,"Use a detail about access, not preference."
+s07-F156,Liking glitter shows the public need.,,,H,The absent label shows the need.
+s07-P156,The leader already approved my request because I wrote it.,,,F,A draft is not approval.
+s07-P156,Limited space means nothing can improve.,,,Q,Consider a smaller feasible request without claiming certainty.
+s07-K157-R,A full board makes every improvement impossible.,,,Q,A smaller card could fit.
+s07-X157,Submitting it adopted the change.,,,F,"Only the principal can approve, and has not decided."
+s07-X157,Every student can approve this change.,,,O,The printed rule assigns this decision to the principal.
+s07-K158-R,A visitor suggestion is the signed decision.,,,F,A suggestion does not supply signed decision evidence.
+s07-F158,Every public body is named here.,,,O,The work order names only park staff.
+s07-P158,I name two source titles but give no details.,,,R,A label alone does not provide support.
+s07-P158,My liking proves what all communities need.,,,H,Use relevant details and explain each link.
+s07-X158,People help. My sources are L and V.,,,R,Each source needs a detail and explained link.
+s07-X158,My liking proves what communities need.,,,H,Preference is not evidence from either record.
+s07-C3-4,Every Hmong person has the same job.,,,I,"MW4 is a particular contribution, not a description of every member."
+s07-M1,Only weather moves people; no ideas move.,,,N,"Rail and river routes, social ties, teachers and newspapers supply other evidence."
+s07-P1,The petition itself adopted the rule.,,,F,Council approval follows the request.
+s07-P2,Every place should copy exactly the same policy.,,,G,"Cost, authority, location and local needs differ."
+s07-K160-C,The caption describes everyone.,,,I,One person does not represent everyone.
+s07-K160-G,Distance means no link is possible.,,,E,The route explicitly connects the two places.
+s07-K160-P,One body handles every task.,,,O,The roster assigns separate responsibilities.
+s07-K160-A,My liking proves the claim.,,,H,Look at the evidence source.
+s07-F160,Every record describes all places.,,,I,Each record supplies a limited feature.
+s07-P160,I copy the returned answer without locating the feature.,,,R,"Locate the feature named by the feedback, not a copied answer."
+s07-F157,Ten minutes means no folder can be sorted.,,,Q,A limited task may fit; a time limit does not rule out all improvement.
+s07-P157,"I sent my request, so it is now approved.",,,F,Delivery supplies no evidence of adoption.
+s07-H1,Naming hurricane explains how every response helped.,,,S,A hazard name alone does not connect the two actions to housing and daily needs.
+s07-H2,Only the tornado matters; resident materials have no connection.,,,S,The record links resident materials with learning during disruption.
+s07-H3,Watering rules make the rain return.,,,T,Limits change use; the record does not show weather control.
+s07-H4,One national body carried out both named responses.,,,O,The record names officials and residents as different actors.

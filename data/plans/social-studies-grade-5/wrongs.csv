@@ -1,0 +1,469 @@
+item_id,shown,compute,value,error,note
+s01-X1a,The yard is better. No questions are given.,,,H,A conclusion replaces answerable supporting questions; error H only when expressed.
+s01-X1b,Only decision makers have a stake.,,,P,"Anticipated pattern, diagnose only if expressed. Correct: Users could lose activity space; accept a supported consequence."
+s01-X2,Every Native community disappeared.,,,B,"Anticipated pattern, diagnose only if expressed. Correct: Disease harmed Pequot communities. Mashpee held land for the tribe, unlike inheritable private English grants; both involve rights."
+s01-X2,Shared use means no land authority.,,,A,"Anticipated pattern, diagnose only if expressed. Correct: Disease harmed Pequot communities. Mashpee held land for the tribe, unlike inheritable private English grants; both involve rights."
+s01-X3,Shared use means no land authority.,,,A,"Anticipated pattern, diagnose only if expressed. Correct: Shared storm repairs are promised. No consent to later land transfers is established."
+s01-X3,The repair promise proves consent to every later land transfer.,,,H,The promise supplies no evidence of later land consent; error H only when expressed.
+s01-X4,Every Native community disappeared.,,,B,"Anticipated pattern, diagnose only if expressed. Correct: English forces burned Mystic and killed Pequot people. Survivors contradict disappearance."
+s01-X4,Every nation had identical allies and experiences.,,,C,"Anticipated pattern, diagnose only if expressed. Correct: English forces burned Mystic and killed Pequot people. Survivors contradict disappearance."
+s01-X5,Every nation had identical allies and experiences.,,,C,"Anticipated pattern, diagnose only if expressed. Correct: Struggle to recover land under colonization; displacement or enslavement."
+s01-X5,An unrelated detail proves the claim.,,,H,"Anticipated pattern, diagnose only if expressed. Correct: Struggle to recover land under colonization; displacement or enslavement."
+s01-X5,The Pequot War and King Philip's War were one event.,,,M,"Anticipated pattern, diagnose only if expressed. Correct: Struggle to recover land under colonization; displacement or enslavement."
+s01-X6,Every Native community disappeared.,,,B,"Anticipated, not observed. Present activities document continuing nations; Aquinnah states program capacity, not a measured result."
+s01-X6,Every nation had identical allies and experiences.,,,C,"Anticipated, not observed. Present activities document continuing nations; Aquinnah states program capacity, not a measured result."
+s01-X7a,All colonies had identical founding aims.,,,D,"Anticipated pattern, diagnose only if expressed. Correct: Protection for beliefs and investment profit are different founding aims."
+s01-X7b,Religious dissent was protected equally everywhere.,,,I,"Anticipated pattern, diagnose only if expressed. Correct: Dissent could be punished; religious freedom was limited."
+s01-X8,An unrelated detail proves the claim.,,,H,"Anticipated pattern, diagnose only if expressed. Correct: Accept an answerable question and supported finding with Penn, title and II/III."
+s01-X9,First arrival alone explains English influence.,,,E,"Anticipated pattern, diagnose only if expressed. Correct: Repeated official English and allegiance to English authority could sustain practices. No universal-rights inference."
+s01-X9,Influence proves English superiority.,,,L,"Anticipated pattern, diagnose only if expressed. Correct: Repeated official English and allegiance to English authority could sustain practices. No universal-rights inference."
+s01-X9,An unrelated detail proves the claim.,,,H,"Anticipated pattern, diagnose only if expressed. Correct: Repeated official English and allegiance to English authority could sustain practices. No universal-rights inference."
+s01-X10a,Modern state boundaries always fit colonial maps.,,,F,"Anticipated pattern, diagnose only if expressed. Correct: 1 Georgia; 2 South Carolina; 3 North Carolina; 4 Virginia; 5 Maryland; 6 Delaware; 7 Pennsylvania; 8 New Jersey; 9 New York; 10 Connecticut; 11 Rhode Island; 12 Massachusetts including Maine; 13 New Hampshire."
+s01-X10a,Neighboring colony names can be swapped.,,,N,"Anticipated pattern, diagnose only if expressed. Correct: 1 Georgia; 2 South Carolina; 3 North Carolina; 4 Virginia; 5 Maryland; 6 Delaware; 7 Pennsylvania; 8 New Jersey; 9 New York; 10 Connecticut; 11 Rhode Island; 12 Massachusetts including Maine; 13 New Hampshire."
+s01-X10b,Growing seasons never affect crops.,,,O,"Anticipated pattern, diagnose only if expressed. Correct: New England short summers limit growing time for small-farm crops such as oats. Longer Middle seasons support wheat. Long Southern warmth helps tobacco mature before frost. Soil and human choices also matter."
+s01-X10b,Climate alone determined all work and slavery.,,,J,"Anticipated pattern, diagnose only if expressed. Correct: New England short summers limit growing time for small-farm crops such as oats. Longer Middle seasons support wheat. Long Southern warmth helps tobacco mature before frost. Soil and human choices also matter."
+s01-X11a,Term service and slavery were ordinary freely paid jobs.,,,K,"Anticipated pattern, diagnose only if expressed. Correct: Family; hired or wage; indentured or bound term; enslaved."
+s01-X11b,Slavery existed only in Southern colonies.,,,G,"Anticipated pattern, diagnose only if expressed. Correct: Slavery existed in New England as well as the Southern colonies."
+s01-X12,Slavery existed only in Southern colonies.,,,G,"Anticipated pattern, diagnose only if expressed. Correct: Two distinct symbols labeled wheat and enslaved labor; keep people separate from goods."
+s01-Q1a,Every Native community disappeared.,,,B,"Anticipated pattern, diagnose only if expressed. Correct: Deaths harmed communities; do not infer universal disappearance."
+s01-Q1b,Shared use means no land authority.,,,A,"Anticipated pattern, diagnose only if expressed. Correct: English private claims conflicted with specifically attributed Aquinnah communal practices."
+s01-Q1c,The Pequot War and King Philip's War were one event.,,,M,"Anticipated pattern, diagnose only if expressed. Correct: Easton reports leaders complained that English documents claimed more land than agreed."
+s01-Q1c,An unrelated detail proves the claim.,,,H,"Anticipated pattern, diagnose only if expressed. Correct: Easton reports leaders complained that English documents claimed more land than agreed."
+s01-Q2a,All colonies had identical founding aims.,,,D,"Anticipated pattern, diagnose only if expressed. Correct: Massachusetts Bay enforced conformity; Rhode Island protected peaceful disagreement."
+s01-Q2a,Religious dissent was protected equally everywhere.,,,I,"Anticipated pattern, diagnose only if expressed. Correct: Massachusetts Bay enforced conformity; Rhode Island protected peaceful disagreement."
+s01-Q2b,An unrelated detail proves the claim.,,,H,"Anticipated pattern, diagnose only if expressed. Correct: Confirm or qualify a supported preface finding; identify Penn, Frame of Government, preface. Laws show limits on equality."
+s01-Q3,First arrival alone explains English influence.,,,E,"Anticipated pattern, diagnose only if expressed. Correct: Repeated English-language government, assemblies and English-law limits sustained practices beyond voyages; other influences remained."
+s01-Q3,Influence proves English superiority.,,,L,"Anticipated pattern, diagnose only if expressed. Correct: Repeated English-language government, assemblies and English-law limits sustained practices beyond voyages; other influences remained."
+s01-Q4a,Modern state boundaries always fit colonial maps.,,,F,"Anticipated pattern, diagnose only if expressed. Correct: 1 New Hampshire; 2 Massachusetts including Maine; 3 Rhode Island; 4 Connecticut; 5 New York; 6 New Jersey; 7 Pennsylvania; 8 Delaware; 9 Maryland; 10 Virginia; 11 North Carolina; 12 South Carolina; 13 Georgia."
+s01-Q4a,Neighboring colony names can be swapped.,,,N,"Anticipated pattern, diagnose only if expressed. Correct: 1 New Hampshire; 2 Massachusetts including Maine; 3 Rhode Island; 4 Connecticut; 5 New York; 6 New Jersey; 7 Pennsylvania; 8 Delaware; 9 Maryland; 10 Virginia; 11 North Carolina; 12 South Carolina; 13 Georgia."
+s01-Q4b,Growing seasons never affect crops.,,,O,"Anticipated pattern, diagnose only if expressed. Correct: Northern short seasons limit growing time for oats; longer Middle seasons support wheat; long Southern warmth helps tobacco mature before frost. Accept supported alternatives and qualifications."
+s01-Q4b,Climate alone determined all work and slavery.,,,J,"Anticipated pattern, diagnose only if expressed. Correct: Northern short seasons limit growing time for oats; longer Middle seasons support wheat; long Southern warmth helps tobacco mature before frost. Accept supported alternatives and qualifications."
+s01-Q4c,Term service and slavery were ordinary freely paid jobs.,,,K,"Anticipated pattern, diagnose only if expressed. Correct: Family=B; wage=D; bound term=A; enslaved=C."
+s01-Q4d,Slavery existed only in Southern colonies.,,,G,"Anticipated pattern, diagnose only if expressed. Correct: Circle the open-circle labor symbol in Massachusetts."
+s01-Q5,An unrelated detail proves the claim.,,,H,"Anticipated pattern, diagnose only if expressed. Correct: Card 1: conflicting communal/private practices; card 2: disputed documents."
+s01-Q5,Shared use means no land authority.,,,A,"Anticipated pattern, diagnose only if expressed. Correct: Card 1: conflicting communal/private practices; card 2: disputed documents."
+s01-Q6,An unrelated detail proves the claim.,,,H,"Anticipated pattern, diagnose only if expressed. Correct: Defensible claim, attributed detail from each card and reasoning connecting evidence to claim. Accept qualified arguments, not a universal Native land model."
+s01-Q7,Only decision makers have a stake.,,,P,"Anticipated pattern, diagnose only if expressed. Correct: Gardener needs delivery access; walker needs park access. Both are affected."
+s01-R14a,Every Native community disappeared.,,,B,"Anticipated pattern, diagnose only if expressed. Correct: The named elected council contradicts universal erasure of Native governments."
+s01-R14b,Every nation had identical allies and experiences.,,,C,"Anticipated pattern, diagnose only if expressed. Correct: Pequot: 1630s; King Philip: 1670s. Different nations/events require specific evidence."
+s01-R14b,The Pequot War and King Philip's War were one event.,,,M,"Anticipated pattern, diagnose only if expressed. Correct: Pequot: 1630s; King Philip: 1670s. Different nations/events require specific evidence."
+s01-R14c,Belief protection automatically grants every resident voting rights.,,,x,"This retry distinguishes rights, not historical founding aims."
+s01-R14d,First arrival alone explains English influence.,,,E,"Anticipated pattern, diagnose only if expressed. Correct: Repeated government can sustain language and practices beyond a visit; no ranking follows."
+s01-R14d,Influence proves English superiority.,,,L,"Anticipated pattern, diagnose only if expressed. Correct: Repeated government can sustain language and practices beyond a visit; no ranking follows."
+s01-R14e,The supplied wrong label needs no correction.,,,x,"This prompt checks a neighbor mismatch, not modern/colonial boundary knowledge."
+s01-R14e,Neighboring colony names can be swapped.,,,N,"Anticipated pattern, diagnose only if expressed. Correct: Restore Delaware on the small coastal footprint south of Pennsylvania."
+s01-R14f,Climate alone determined all work and slavery.,,,J,"Anticipated pattern, diagnose only if expressed. Correct: The record shows frost damage; growers also choose planting dates and land. Climate and choices both matter."
+s01-R14f,Growing seasons never affect crops.,,,O,"Anticipated pattern, diagnose only if expressed. Correct: The record shows frost damage; growers also choose planting dates and land. Climate and choices both matter."
+s01-R14g,Term service and slavery were ordinary freely paid jobs.,,,K,"Anticipated pattern, diagnose only if expressed. Correct: Both constrain freedom; indenture has a stated endpoint, unlike slavery."
+s01-R14h,An unrelated detail proves the claim.,,,H,"Anticipated pattern, diagnose only if expressed. Correct: Readers risk losing access time; the recorded request supports their stake."
+s01-R14h,Only decision makers have a stake.,,,P,"Anticipated pattern, diagnose only if expressed. Correct: Readers risk losing access time; the recorded request supports their stake."
+s01-K1-1,The room made the map.,,,H,"Anticipated, not observed. Correct: Curio Class is the maker."
+s01-P1-2,Both sources were made by the king.,,,H,"Anticipated, not observed. Correct: Homeland account: Aquinnah. Charter claim: Charles II, 1663."
+s01-P1-3,3 miles.,,,x,"Anticipated, not observed. Correct: 75 miles."
+s01-P1-4,The king was always right.,,,H,"Anticipated, not observed. Correct: Accept a relevant answerable historical question without requiring a preferred position."
+s01-R2-1,Only the mapmaker needs information.,,,P,"Anticipated, not observed. Correct: A usable entrance or another route into the library."
+s01-K2-1,The museum wrote this in 1616.,,,H,"Anticipated, not observed. Correct: 1616 to 1620 are event years. The modern chronology was made later."
+s01-P2-2,Nobody has rights in the shared field.,,,A,"Anticipated, not observed. Correct: The community."
+s01-R3-1,Shared use means nobody has rights.,,,A,"Anticipated, not observed. Correct: The neighbors jointly have authority under the stated rules."
+s01-K3-1,The library signed the agreement in 1621.,,,H,"Anticipated, not observed. Correct: Event: 1621. Maker: Law Library of Congress, modern account."
+s01-P3-2,The surrounding land.,,,H,"Anticipated, not observed. Correct: Lantern."
+s01-R4-1,Every later decision about the land.,,,H,"Anticipated, not observed. Correct: Snow clearing."
+s01-K4-1,The nation wrote its website in 1636.,,,H,"Anticipated, not observed. Correct: 1636 to 1638 is the Pequot War event range; the tribal history is modern."
+s01-P4-2,Every Native nation had identical allies.,,,C,"Anticipated, not observed. Correct: English forces connected to Mohegan or Narragansett allies, labeled as this war's alliance."
+s01-R5-1,Every Native nation.,,,C,"Anticipated, not observed. Correct: Mohegan or Narragansett."
+s01-R5-2,Long ago only.,,,B,"Anticipated, not observed. Correct: Today."
+s01-K5-1,The title alone proves every report is true.,,,H,"Anticipated, not observed. Correct: The meeting was intended to prevent war."
+s01-P5-2,Both wars began at the same date.,,,M,"Anticipated, not observed. Correct: 1675, between 1670 and 1680, after the Pequot War."
+s01-R6-1,They were one event.,,,M,"Anticipated, not observed. Correct: King Philip's War."
+s01-R6-2,Every nation had identical allies.,,,H,"Anticipated, not observed. Correct: To prevent war."
+s01-K6-1,All nations have the same court.,,,C,"Anticipated, not observed. Correct: Aquinnah; its Tribal Council represents members in tribal affairs."
+s01-P6-2,One council governs all three.,,,C,"Anticipated, not observed. Correct: Mashpee Wampanoag: Tribal Court. Narragansett: Tribal Council. Mashantucket Pequot: Government."
+s01-R3-2,Every community disappeared.,,,B,The supplied current homeland sentence describes living communities; diagnose only if expressed.
+s01-X3b,Hilltown to Valley.,,,x,"Anticipated, not observed; use the supplied record to check the response."
+s01-X6b,These nations have no governments.,,,B,"Anticipated, not observed; use the supplied record to check the response."
+s01-R7-1,One record speaks for every nation.,,,C,Separate each present record and its own nation.
+s01-K7-1,Trade: every colony had the same aim.,,,D,The fragment concerns a religious community.
+s01-K7-2,What food did Penn like?,,,H,No meal detail appears in this preface selection.
+s01-P7-2,Trade: all colonies had one aim.,,,D,"Use this fragment, not a rule that all aims match."
+s01-P7-3,The fragment says every dissenter was protected.,,,I,Questioning is stated; a guarantee of protection is not.
+s01-P7-4,Favorite meal.,,,H,The preface concerns government safeguards.
+s01-P7,The title is enough; the author and section do not matter.,,,H,"Keep author, title and section together."
+s01-R8-1,"Trade, because all settlements seek trade.",,,D,Use the stated storm-repair aim.
+s01-R8-2,Visitors may use everything.,,,I,A welcome does not remove the stated tool restriction; analogy only.
+s01-P8-2,"A, because any detail will do.",,,H,Administration is in B.
+s01-P8-3,Only the author matters.,,,H,"Include the identifying title, date and section."
+s01-P8-4,What did Penn eat for breakfast?,,,H,The supplied civic fragments cannot answer this.
+s01-P8,Penn made everyone politically equal.,,,H,Neither preface fragment establishes universal political equality.
+s01-X8,Everyone voted.,,,H,"The stem limits freemen to eligible voters, not everyone."
+s01-R9-1,"Good, because any word supports a finding.",,,H,Evade is the relevant action.
+s01-K9-1,The first visitors must have been better.,,,L,Replace ranking with the stated change in authority.
+s01-P9-2,English language proves English people were better.,,,L,A language label does not rank people.
+s01-P9,The takeover came before 1619.,,,x,Read the dates; 1619 precedes 1624.
+s01-R7-1,No Native nations govern today.,,,B,Current nation-specific records describe present actions; reminder only.
+s01-R10-1,The visit alone proves continuing decision making.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-R11a,The two footprints are interchangeable.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-R11b,The weather chose the planting week.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-R12a,The contract has no end.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-R12b,Massachusetts belongs in the Southern band.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-R13-1,Circle triangle.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-P14-1,The statement says every community vanished.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-P14-2,Only trustees may enter.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-P14-3,Dry weather is a human action.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-P14-4,The route letter alone proves access.,,,x,Unsupported response. Blank work does not diagnose an error.
+s01-R14i,Shared use means nobody may set rules.,,,A,Unsupported response. Blank work does not diagnose an error.
+s02-X15a,What color is our classroom?,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-X15b,It matters because it is important.,,,R,Diagnose only if expressed. Readers recognize overlooked Black contributions or understand freedom-seeking.
+s02-X16a,The father makes the baby free.,,,I,Diagnose only if expressed. The 1662 maternal rule makes the child enslaved; the 1667 rule denies freedom through baptism.
+s02-X16b,1619 began slavery everywhere.,,,A,Diagnose only if expressed. 1619 records a forced arrival in Virginia; Atlantic enslavement began earlier.
+s02-X17a,People chose to migrate for work.,,,B,"Diagnose only if expressed. Europe to Africa: manufactured goods; Africa to Americas: people forcibly transported, Middle Passage; Americas to Europe: plantation goods."
+s02-X17a,Every ship sailed all three links.,,,J,"Diagnose only if expressed. Europe to Africa: manufactured goods; Africa to Americas: people forcibly transported, Middle Passage; Americas to Europe: plantation goods."
+s02-X17b,They chose a comfortable trip.,,,B,Diagnose only if expressed. Crowding and heat endanger health; confinement prevents escaping these conditions.
+s02-X18a,The North had no slavery.,,,C,Diagnose only if expressed. They show northern slavery and one leader enslaving someone; they cannot establish a household proportion.
+s02-X18a,Every household enslaved someone.,,,K,Diagnose only if expressed. They show northern slavery and one leader enslaving someone; they cannot establish a household proportion.
+s02-X18b,Only southern colonies permitted slavery.,,,C,Diagnose only if expressed. Yes. Georgia was the last of these colonies to end its ban.
+s02-X19a,Enslaved people had no families.,,,D,Diagnose only if expressed. Both sew and have families. Ruth lacks labor control and family security; Anne has greater control without equality.
+s02-X19a,Ruth cannot do skilled work.,,,Q,Diagnose only if expressed. Both sew and have families. Ruth lacks labor control and family security; Anne has greater control without equality.
+s02-X19a,Anne has guaranteed equality.,,,O,Diagnose only if expressed. Both sew and have families. Ruth lacks labor control and family security; Anne has greater control without equality.
+s02-X19b,She has an ordinary job she can leave.,,,B,This response does not establish the intended distinction; coercion is missed.
+s02-X20a,They took an ordinary trip for jobs.,,,B,"Diagnose only if expressed. Organized southward movement toward Florida to escape bondage. B is inherited testimony, not eyewitness reporting."
+s02-X20a,There was no resistance.,,,E,"Diagnose only if expressed. Organized southward movement toward Florida to escape bondage. B is inherited testimony, not eyewitness reporting."
+s02-X20b,Only fighting counts as resistance.,,,L,Diagnose only if expressed. People sought escape from control of their lives; resistance included flight as well as revolt.
+s02-X21,Being hired out makes the carpenter free.,,,F,Diagnose only if expressed. Carpentry is skilled; enslaver controls payment; keeping a permitted share does not grant freedom.
+s02-X21,The carpenter controls all wages.,,,M,Diagnose only if expressed. Carpentry is skilled; enslaver controls payment; keeping a permitted share does not grant freedom.
+s02-X21,No skill is shown.,,,Q,Diagnose only if expressed. Carpentry is skilled; enslaver controls payment; keeping a permitted share does not grant freedom.
+s02-X22a,David is free because he submitted a request.,,,N,"Diagnose only if expressed. Ada, Ben and Celia; David has no decision granting freedom."
+s02-X22b,A request is a court judgment.,,,N,Diagnose only if expressed. David asks lawmakers to act; Celia already has a judgment declaring freedom.
+s02-X22c,All slavery ends after an agreed term.,,,G,Diagnose only if expressed. No. Ada has a fixed service endpoint; hereditary bondage passes through maternal status without that endpoint.
+s02-X23a,Both were freed immediately by one northern law.,,,P,Diagnose only if expressed. The Pennsylvania child remains bound by delayed service; the Massachusetts parent controls paid work.
+s02-X23b,Freedom guaranteed equal treatment.,,,O,One household has legal freedom and lives together; neither case proves equality or every family experience.
+s02-X23b,Black people had no families.,,,D,One household has legal freedom and lives together; neither case proves equality or every family experience.
+s02-X24,Both mention people. Freedom is good.,,,H,Diagnose only if expressed. A supported claim links the Portsmouth freedom request and Vassall land request to control of life and family support. A request itself grants neither freedom nor land.
+s02-Q1a,Baptism automatically freed an enslaved person.,,,x,The 1667 law denied this route to freedom; no chronology error is inferred.
+s02-Q1a,Status followed the father.,,,I,Diagnose only if expressed. 1662 follows maternal status; 1667 blocks freedom through baptism.
+s02-Q1b,Only southern colonies ever permitted it.,,,C,"Diagnose only if expressed. 1751, when Georgia permitted slavery."
+s02-Q1c,Every household enslaved someone.,,,K,Diagnose only if expressed. Common but not universal; proportions differed. It is not an all-colony count.
+s02-Q1d,No early leader enslaved anyone.,,,S,Diagnose only if expressed. George Washington or Thomas Jefferson.
+s02-Q2a,People moved willingly for jobs.,,,B,"Diagnose only if expressed. Goods Europe to Africa; people forced Africa to Americas, Middle Passage; plantation goods Americas to Europe."
+s02-Q2a,Every ship completed the triangle.,,,J,"Diagnose only if expressed. Goods Europe to Africa; people forced Africa to Americas, Middle Passage; plantation goods Americas to Europe."
+s02-Q2b,Passengers chose safe conditions.,,,B,Diagnose only if expressed. Heat and lack of fresh air caused illness and deaths in confined space.
+s02-Q3a,Enslaved people had no families.,,,D,Diagnose only if expressed. Both built families and worked. Slavery threatened separation and denied labor/pay control; freedom gave greater control without equality.
+s02-Q3a,Enslaved people had no skills.,,,Q,Diagnose only if expressed. Both built families and worked. Slavery threatened separation and denied labor/pay control; freedom gave greater control without equality.
+s02-Q3a,Free people had equal treatment everywhere.,,,O,Diagnose only if expressed. Both built families and worked. Slavery threatened separation and denied labor/pay control; freedom gave greater control without equality.
+s02-Q3b,B is a court order freeing everyone.,,,N,Diagnose only if expressed. Felix petitions the governor and provincial legislature for relief from slavery; not a court ruling.
+s02-Q4a,Only making bowls is a restriction.,,,x,This answer identifies no restriction; it does not establish a fixed-term-service misconception.
+s02-Q4b,Enslaved people accepted bondage.,,,E,Diagnose only if expressed. Denied control and threatened violence or separation could motivate collective freedom-seeking.
+s02-Q5,Hiring made the tailors free.,,,F,Diagnose only if expressed. Tailoring requires skill; wages go to enslavers; hiring does not grant freedom.
+s02-Q5,Tailors automatically kept all pay.,,,M,Diagnose only if expressed. Tailoring requires skill; wages go to enslavers; hiring does not grant freedom.
+s02-Q5,Tailoring takes no skill.,,,Q,Diagnose only if expressed. Tailoring requires skill; wages go to enslavers; hiring does not grant freedom.
+s02-Q6a,A petition itself is a judgment.,,,N,"Diagnose only if expressed. Completed term, immediate grant and court judgment establish release; a pending request is not a decision."
+s02-Q6b,All slavery ends after service.,,,G,Diagnose only if expressed. A term has a stated endpoint; hereditary bondage has no agreed service endpoint and passes through maternal status.
+s02-Q7a,One law immediately freed everyone.,,,P,Diagnose only if expressed. Pennsylvania delayed post-act children's release through service until 28; Massachusetts courts made slavery unenforceable by 1783.
+s02-Q7b,Freedom guaranteed equal treatment.,,,O,Diagnose only if expressed. Any two: legally free family life; property ownership; paid work/control of wages. No equality guarantee.
+s02-Q8a,A has ships. B has words.,,,H,"Diagnose only if expressed. A: heat, confinement, lack of air, sickness/death. B: denied control of children/property or request for relief. Require relevance."
+s02-Q8b,They were important because they were important.,,,H,"Diagnose only if expressed. Link forced suffering in Falconbridge, petitioning in Felix and skilled contribution in work panel. Accept other supported arguments."
+s02-Q9,It matters because it is important.,,,R,Diagnose only if expressed. A curator can identify Black contributions and freedom-seeking otherwise omitted.
+s02-R16,It changes nothing.,,,R,Diagnose only if expressed. The reader cannot identify whose work contributed.
+s02-R16h,Water alone.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-R17,Having a free father.,,,I,Diagnose only if expressed. Baptism did not grant freedom.
+s02-R18,Every ship completes the triangle.,,,J,Diagnose only if expressed. Separate voyages do not document one ship completing all links.
+s02-R19,Every shelf must match.,,,K,Diagnose only if expressed. No; unexamined shelves may differ.
+s02-R20,Separated people have no family.,,,D,Diagnose only if expressed. A parent-child bond motivates effort to maintain contact despite separation.
+s02-R21,Only fighting counts.,,,L,Diagnose only if expressed. A request challenges denied freedom without armed revolt.
+s02-R22,The blacksmith kept all pay.,,,M,Diagnose only if expressed. Who received and controlled payment remains unknown.
+s02-R23,The writer already changed the law.,,,N,Diagnose only if expressed. Lawmakers must act; receiving a request is not enacting a law.
+s02-R24,After release.,,,P,Diagnose only if expressed. From adoption to release deadline.
+s02-R26a,The baptism clause.,,,I,Diagnose only if expressed. Maternal clause addresses inheritance; baptism concerns a possible change.
+s02-R26b,It proves every link.,,,J,Diagnose only if expressed. Later destination or completion of other links is unknown.
+s02-R26c,One proves all did.,,,K,Diagnose only if expressed. Total households and number enslaving people in the same defined place/time.
+s02-R26d,Only armed action counts as resistance.,,,L,Diagnose only if expressed. A bond motivates a request challenging denied control; resistance need not be armed.
+s02-R26e,Skill proves freedom.,,,F,Diagnose only if expressed. Skill and payment alone do not document legal release.
+s02-R26f,Both free people today.,,,N,Diagnose only if expressed. First establishes future release but is not yet effective; request establishes no release.
+s02-R26g,Everyone became equal.,,,O,Diagnose only if expressed. Required service ended; equal treatment is not established.
+s02-R26h,A clock tower and a letter.,,,H,Diagnose only if expressed. Collective contributes skills; letter challenges exclusion; link both to claim.
+s02-R26i,It is important.,,,R,Diagnose only if expressed. Visitor identifies previously omitted contributors.
+s02-P15-1,All ask about maps.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-P15-2,What caused ship illness?,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-P16-1,Father.,,,I,Diagnose only if expressed. Mother.
+s02-P16-2,1667 arrival.,,,A,Diagnose only if expressed. 1619 Virginia arrival; 1662 maternal law; 1667 baptism law.
+s02-P17-1,Europe to Africa.,,,B,Diagnose only if expressed. Africa to Americas.
+s02-P17-2,Confined means choosing a route.,,,B,Diagnose only if expressed. Little space; held within; fresh air moving through.
+s02-P18-1,1619.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-P18-2,All thirty.,,,K,Diagnose only if expressed. Twelve of thirty; not a historical slavery count.
+s02-P19-1,Enslaved people had no family.,,,D,Diagnose only if expressed. Smith and Meg are spouses despite enslavement.
+s02-P19-2,Restriction means equality.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-P20-1,Massachusetts.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-P20-2,Only uprising is resistance.,,,L,Diagnose only if expressed. Escape; petition; revolt.
+s02-P21-1,The brickmaker automatically keeps all pay.,,,M,The receipt names the enslaver as recipient; error M ignores payment control.
+s02-P21-2,No skill is needed.,,,Q,Mold-shaped bricks supply craft evidence; error Q denies the skill shown.
+s02-P22-1,Lawmakers answered a petition.,,,N,Diagnose only if expressed. The enslaver issued a manumission deed; payment alone is not the deed.
+s02-P22-2,Legislature.,,,N,Diagnose only if expressed. Court.
+s02-P23-1,Everyone immediately.,,,P,Diagnose only if expressed. 28.
+s02-P23-2,Guaranteed equality.,,,O,Diagnose only if expressed. Property; no voting guarantee established.
+s02-P24-1,Source names without details.,,,H,"Diagnose only if expressed. Supported claim uses Smith chapter 2 and Vassall 1781. Each detail has a link. Keep separate components, not a paragraph."
+s02-R1a,People moved voluntarily.,,,B,"Diagnostic only, teach as new on 16. Goods: Europe to West Africa. Enslaved people forced: West Africa to Caribbean. Sugar: Caribbean to Europe."
+s02-R1b,People moved voluntarily.,,,B,"Diagnostic only, teach as new on 16. People have rights and were forced; goods are objects."
+s02-R2,Water alone explains every job.,,,H,"Diagnostic only, teach as new on 16. Docking and sea access support ship repair and warehouse work; traders stop for repairs and storage."
+s02-P15-3,Both are the same account.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-P16-3,Father sets status in 1662.,,,I,"Diagnose only if expressed. Virginia General Assembly, 1662 and 1667; maternal status and baptism, respectively."
+s02-P18-3,One person's record counts all households.,,,K,"Diagnose only if expressed. G: Georgia, 1751; W: Washington, 1799; J: Jefferson, 1774, an individual record rather than a population count."
+s02-P19-3,A ship captain.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-P23-3,Pennsylvania legislature.,,,P,Diagnose only if expressed. Courts.
+s02-P16-4,Water alone provides every repair service.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-K15-1,Both are freely chosen.,,,B,"Anticipated response; use the item look-for, then offer one precise cue."
+s02-P15-4,The summary gives every detail.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-P17-3,Ten bars.,,,x,This response does not establish the intended distinction; no specific registered misconception is inferred.
+s02-P18-4,"Yes, every household.",,,K,Presence is generalized to universal ownership.
+s03-X27a,A date is an interpretive idea.,,,V,"Assign only for this expressed misconception, never blank work. Contrast a factual label with competing meanings of authority."
+s03-X27b,The question matters only to its asker.,,,U,"Assign only for this expressed misconception, never blank work. Connect inquiry to another reader useful historical decision."
+s03-X28,France fought every Native nation; Native decisions did not matter.,,,H,"Assign only for this expressed misconception, never blank work. Use specific nation evidence of independent aims."
+s03-X28,All Native nations had one allegiance.,,,T,"Assign only for this expressed misconception, never blank work. Attribute separate nation choices; location does not prove allegiance."
+s03-X29a,"War, taxes and independence happened simultaneously.",,,A,"Assign only for this expressed misconception, never blank work. Rebuild one dated relationship."
+s03-X29b,Only war debt explains the boundary; Native land concerns had no role.,,,H,Debt alone does not explain a land boundary. Revisit security and land abuses; assign H for explicit erasure of Native concerns.
+s03-X30a,The Tea Act introduced all colonial taxes.,,,B,"Assign only for this expressed misconception, never blank work. Contrast earlier duties with the retained duty."
+s03-X30b,The Tea Act introduced all colonial taxes.,,,B,"Assign only for this expressed misconception, never blank work. Contrast earlier duties with the retained duty."
+s03-X31,Colonial governments began in 1776.,,,G,"Assign only for this expressed misconception, never blank work. Place an institution before independence."
+s03-X31,Representation means abolishing taxes.,,,I,"Assign only for this expressed misconception, never blank work. Distinguish elected consent from no taxes."
+s03-X31,Colonial governments represented everyone.,,,P,"Assign only for this expressed misconception, never blank work. Identify eligibility restrictions."
+s03-X32a,All resistance was peaceful.,,,J,"Assign only for this expressed misconception, never blank work. Distinguish a petition from intimidation."
+s03-X32b,All resistance was peaceful.,,,J,"Assign only for this expressed misconception, never blank work. Distinguish a petition from intimidation."
+s03-X33,Maker and date complete sourcing.,,,C,"Assign only for this expressed misconception, never blank work. Infer audience and purpose from separate internal clues."
+s03-X34a,Agreement proves every detail.,,,D,"Assign only for this expressed misconception, never blank work. Separate a shared fact from a disputed detail."
+s03-X34b,Maker and date complete sourcing.,,,C,"Assign only for this expressed misconception, never blank work. Infer audience and purpose from separate internal clues."
+s03-X34b,A source with a purpose is useless.,,,M,"Assign only for this expressed misconception, never blank work. Name a useful bounded question and a limit."
+s03-X35a,Agreement proves every detail.,,,D,"Assign only for this expressed misconception, never blank work. Separate a shared fact from a disputed detail."
+s03-X35a,Nationality determines accuracy.,,,R,"Assign only for this expressed misconception, never blank work. Compare access and evidence rather than nationality."
+s03-X35b,An argument needs no evidence-based reasoning.,,,E,"Assign only for this expressed misconception, never blank work. Connect one attributed detail to a claim."
+s03-X35b,A source with a purpose is useless.,,,M,"Assign only for this expressed misconception, never blank work. Name a useful bounded question and a limit."
+s03-X36,"War, taxes and independence happened simultaneously.",,,A,"Assign only for this expressed misconception, never blank work. Rebuild one dated relationship."
+s03-X36,Every resistance event was an American battlefield victory.,,,Q,"Assign only for this expressed misconception, never blank work. Distinguish method from military outcome."
+s03-X37a,Every resistance event was an American battlefield victory.,,,Q,"Assign only for this expressed misconception, never blank work. Distinguish method from military outcome."
+s03-X37b,Leaving Boston ended the whole war.,,,S,"Assign only for this expressed misconception, never blank work. Distinguish one city from continued fighting elsewhere."
+s03-X38a,Women and Black people only watched.,,,F,"Assign only for this expressed misconception, never blank work. Identify a documented action and possible effect."
+s03-X38a,All women supported independence.,,,N,"Assign only for this expressed misconception, never blank work. Distinguish actions, affiliations and unknown motives."
+s03-X38b,Women and Black people only watched.,,,F,"Assign only for this expressed misconception, never blank work. Identify a documented action and possible effect."
+s03-X39a,A map establishes intentions.,,,L,"Assign only for this expressed misconception, never blank work. Separate location from evidence of purpose."
+s03-X39b,Attucks death proves his private intentions.,,,O,"Assign only for this expressed misconception, never blank work. Distinguish later remembrance from private intention."
+s03-X39b,Women and Black people only watched.,,,F,"Assign only for this expressed misconception, never blank work. Identify a documented action and possible effect."
+s03-X40,An argument needs no evidence-based reasoning.,,,E,"Assign only for this expressed misconception, never blank work. Connect one attributed detail to a claim."
+s03-X41,An argument needs no evidence-based reasoning.,,,E,"Assign only for this expressed misconception, never blank work. Connect one attributed detail to a claim."
+s03-Q1,Maker and date complete sourcing.,,,C,"Assign only for this expressed misconception, never blank work. Infer audience and purpose from separate internal clues."
+s03-Q2a,Agreement proves every detail.,,,D,"Assign only for this expressed misconception, never blank work. Separate a shared fact from a disputed detail."
+s03-Q2a,Nationality determines accuracy.,,,R,"Assign only for this expressed misconception, never blank work. Compare access and evidence rather than nationality."
+s03-Q2a,A source with a purpose is useless.,,,M,"Assign only for this expressed misconception, never blank work. Name a useful bounded question and a limit."
+s03-Q2b,An argument needs no evidence-based reasoning.,,,E,"Assign only for this expressed misconception, never blank work. Connect one attributed detail to a claim."
+s03-Q3a,France fought every Native nation; Native decisions did not matter.,,,H,"Assign only for this expressed misconception, never blank work. Use specific nation evidence of independent aims."
+s03-Q3a,All Native nations had one allegiance.,,,T,"Assign only for this expressed misconception, never blank work. Attribute separate nation choices; location does not prove allegiance."
+s03-Q3b,"War, taxes and independence happened simultaneously.",,,A,"Assign only for this expressed misconception, never blank work. Rebuild one dated relationship."
+s03-Q3c,The Tea Act introduced all colonial taxes.,,,B,"Assign only for this expressed misconception, never blank work. Contrast earlier duties with the retained duty."
+s03-Q4a,Representation means abolishing taxes.,,,I,"Assign only for this expressed misconception, never blank work. Distinguish elected consent from no taxes."
+s03-Q4b,Colonial governments began in 1776.,,,G,"Assign only for this expressed misconception, never blank work. Place an institution before independence."
+s03-Q4b,Colonial governments represented everyone.,,,P,"Assign only for this expressed misconception, never blank work. Identify eligibility restrictions."
+s03-Q5,All resistance was peaceful.,,,J,"Assign only for this expressed misconception, never blank work. Distinguish a petition from intimidation."
+s03-Q5,Every resistance event was an American battlefield victory.,,,Q,"Assign only for this expressed misconception, never blank work. Distinguish method from military outcome."
+s03-Q5,Leaving Boston ended the whole war.,,,S,"Assign only for this expressed misconception, never blank work. Distinguish one city from continued fighting elsewhere."
+s03-Q6a,Women and Black people only watched.,,,F,"Assign only for this expressed misconception, never blank work. Identify a documented action and possible effect."
+s03-Q6a,All women supported independence.,,,N,"Assign only for this expressed misconception, never blank work. Distinguish actions, affiliations and unknown motives."
+s03-Q6b,Women and Black people only watched.,,,F,"Assign only for this expressed misconception, never blank work. Identify a documented action and possible effect."
+s03-Q7a,A map establishes intentions.,,,L,"Assign only for this expressed misconception, never blank work. Separate location from evidence of purpose."
+s03-Q7b,Attucks death proves his private intentions.,,,O,"Assign only for this expressed misconception, never blank work. Distinguish later remembrance from private intention."
+s03-Q7b,An engraving is a photograph.,,,K,"Assign only for this expressed misconception, never blank work. Identify one maker choice in a constructed image."
+s03-Q8a,An argument needs no evidence-based reasoning.,,,E,"Assign only for this expressed misconception, never blank work. Connect one attributed detail to a claim."
+s03-Q8b,An argument needs no evidence-based reasoning.,,,E,"Assign only for this expressed misconception, never blank work. Connect one attributed detail to a claim."
+s03-Q9a,The question matters only to its asker.,,,U,"Assign only for this expressed misconception, never blank work. Connect inquiry to another reader useful historical decision."
+s03-Q9b,A date is an interpretive idea.,,,V,"Assign only for this expressed misconception, never blank work. Contrast a factual label with competing meanings of authority."
+s03-F43-C,The date identifies the audience.,,,x,"Cold-checked mismatch repaired: diagnose the expressed component, not an unrelated historical error or a blank."
+s03-F43-D,A copied record supplies independent confirmation.,,,x,"Cold-checked mismatch repaired: diagnose the expressed component, not an unrelated historical error or a blank."
+s03-F43-E,The word ferry alone proves equality.,,,x,"Cold-checked mismatch repaired: diagnose the expressed component, not an unrelated historical error or a blank."
+s03-F43-A,Revenue alone explains every boundary rule.,,,x,"Cold-checked mismatch repaired: diagnose the expressed component, not an unrelated historical error or a blank."
+s03-F43-G,The limited vote proves every resident agreed.,,,x,"Cold-checked mismatch repaired: diagnose the expressed component, not an unrelated historical error or a blank."
+s03-F43-J,A port departure ends the whole war.,,,x,"Cold-checked mismatch repaired: diagnose the expressed component, not an unrelated historical error or a blank."
+s03-F43-F,A house location proves private allegiance.,,,x,"Cold-checked mismatch repaired: diagnose the expressed component, not an unrelated historical error or a blank."
+s03-F43-K,One witness proves every detail.,,,x,"Cold-checked mismatch repaired: diagnose the expressed component, not an unrelated historical error or a blank."
+s03-F43-U,A date is the only meaning of consent.,,,x,"Cold-checked mismatch repaired: diagnose the expressed component, not an unrelated historical error or a blank."
+s03-P27,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-P28,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-P29,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-P30,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-P31,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-P32,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-F27,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-F28,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-F29,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-F30,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-F31,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-F32,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-T30a,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-T30b,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-T27,A conclusion not supported by the supplied record.,,,x,Any other wrong answer; give component feedback without inventing a diagnostic error.
+s03-K33,Every record has the same audience.,,,C,Separate addressee clues from maker/date and purpose.
+s03-K34,Leaving makes all earlier observations useless.,,,M,A time limit does not erase earlier evidence.
+s03-P33,Thursday is the audience.,,,C,The date does not identify readers.
+s03-P34,The engraving records every moment exactly.,,,K,A constructed image selects a portrayal.
+s03-P35,Copying details explains their connection.,,,E,Explain how the detail supports the claim.
+s03-P36,All actions occurred at once.,,,A,Attend to separate dated actions.
+s03-P37,British troops lost Bunker Hill.,,,Q,The text identifies a costly British victory.
+s03-P38,An action proves every private motive.,,,N,Distinguish action from private motive.
+s03-F33,The signed request is intimidation.,,,J,No threat is stated.
+s03-F34,Report is the audience.,,,C,The addressee identifies recipients.
+s03-F35,Both disputed weights are confirmed.,,,D,Only the color gains support.
+s03-F36,The entire building was checked.,,,D,The inspection covers one stair.
+s03-F37,The Thursday reply came first.,,,A,Monday precedes Thursday within the given week.
+s03-F38,The page describes the whole route.,,,S,The page covers one segment only.
+s03-K39-1,Translation proves agreement.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-P39-2,The drawing establishes a real Boston route.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-F39,Carrying flour proves support for a cause.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-P39,A location establishes private intentions.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-X39a,The two locations are interchanged.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-K40-1,Standing beside a clock proves agreement.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-F40,The location proves agreement with the notice.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-P40,A date alone proves everyone agreed.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-K41-1,The word bench proves the request.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-P41-2,Three dates with no details.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-F41,Glare proves every request should be granted.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-P41,Copying a detail supplies its reasoning.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-Q7a,The two new sites are interchanged.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-Q7b,A print proves every event and every viewer agreed.,,,K,Confuses a selected public portrayal with complete observation and measured audience response.
+s03-K43-C,The date names the readers.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-K43-D,Two copies are two independent observers.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-K43-E,The detail explains itself.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-K43-A,Every rule has the same cause.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-K43-G,Everyone must have agreed.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-K43-J,One round decides the whole contest.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-K43-F,Repairing proves allegiance.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-K43-K,The crop shows every surrounding event.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-K43-U,Access is only a date.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-R43a,Money only means coins; the price is necessarily the production cost.,,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s03-R43b,"This is a gift, and Sam owes only eight dollars.",,,x,"Unsupported response; use a written component cue, never diagnose silence."
+s04-X44a,Only my opinion matters.,,,W,Personal preference omits another reader.
+s04-X44a,Independence automatically gave everyone equal rights.,,,A,Treats the promise as an accomplished legal change.
+s04-X44b,Only whether I like independence.,,,W,No testable issue concerning the public claim.
+s04-X45a,Any royal command is lawful.,,,J,Obedience is mistaken for legal restraints.
+s04-X45b,Natural rights are gifts from the king.,,,B,Misses inherent rights.
+s04-X45b,The grievance proves everyone immediately gained equal protection.,,,A,An argument is not proof of an outcome.
+s04-X46,No woman ever voted anywhere.,,,A,Erases the stated state variation.
+s04-X46,Political action proves equal voting rights.,,,A,Action is not legal protection.
+s04-X47a,Trenton is in New York; Saratoga is in New Jersey.,,,X,Reverses states.
+s04-X47b,Trenton prompted the formal French alliance.,,,Y,Reverses the differentiated consequences.
+s04-X48a,Valley Forge is in Virginia; Yorktown is in Pennsylvania.,,,X,Location reversal; extend geographic repair beyond the original two places.
+s04-X48b,Valley Forge was a battle.,,,C,Confuses camp with battle.
+s04-X48b,Yorktown ended all fighting immediately.,,,L,One force surrendered; peace was broader.
+s04-X49a,The equipment and supplies could not support resistance.,,,x,Ignores contributions. This undated stem cannot diagnose when aid began; record K only if timing is volunteered.
+s04-X49b,Crossing the Atlantic made supplying troops effortless.,,,x,Denies the supply constraint instead of explaining a difficulty.
+s04-X50a,Every Native nation supported Britain.,,,D,Erases distinct sovereign decisions.
+s04-X50a,Every Black fighter gained freedom.,,,M,Military participation does not prove an outcome.
+s04-X50a,All colonists wanted independence.,,,S,Erases loyal and neutral colonists.
+s04-X50a,All Black fighters were enslaved.,,,U,Erases free Black participants.
+s04-X50b,Neutral people did not care.,,,N,Invents an unsupported motive.
+s04-X51,Their titles prove their impact.,,,E,Names roles without consequences.
+s04-X51,Madison commanded the Continental Army.,,,V,Misattributes military leadership; repair role evidence.
+s04-X52a,They wanted no government.,,,F,A confederation is a government.
+s04-X52b,Congress could directly tax every resident.,,,T,States collected taxes for national contributions.
+s04-X53,Congress could tax residents directly.,,,T,Wrong national power.
+s04-X53,There was no government.,,,F,Limited powers do not mean absent government.
+s04-X53,Every ordinary decision required all states.,,,O,Confuses amendment and ordinary decisions.
+s04-X54a,B and C both show inflation.,,,H,Reverses trend meaning.
+s04-X54a,D is not unemployed because no job exists.,,,Q,Seeking and availability establish unemployment here.
+s04-X54b,A alone proves inflation.,,,H,One price is insufficient.
+s04-X54b,E is necessarily unemployed.,,,Q,No paid work alone is insufficient.
+s04-X54c,Deflation helps every borrower.,,,P,Ignores lower receipts and fixed debt.
+s04-X55a,One disliked tax explains everything.,,,G,Several interacting pressures are supplied.
+s04-X55b,The Constitution already governed during the unrest.,,,Z,Reverses chronology.
+s04-X55b,The unrest automatically produced the Convention.,,,G,Mistakes sequence for inevitability.
+s04-X56a,Independence immediately protected everyone equally.,,,A,Ignores the reported harm.
+s04-X56b,Congress says rights; Onondaga says crops.,,,R,Names details without weighing makers or significance.
+s04-X57,Her request proves lawmakers granted equal protection.,,,I,Request does not establish success.
+s04-X57,Adams mentions women; Congress mentions rights.,,,R,No reasoning links.
+s04-X57,Everyone became legally equal in July 1776.,,,A,Promise mistaken for universal accomplished protection.
+s04-Q1a,Any royal command satisfies rule of law.,,,J,No restraint on arbitrary authority.
+s04-Q1b,Natural rights are gifts from rulers.,,,B,Misses inherent rights.
+s04-Q1b,Rule of law means obeying any ruler.,,,J,Misses limits on rulers.
+s04-Q1c,Everyone gained equal rights in 1776.,,,A,Promise is not accomplished protection.
+s04-Q2a,A Trenton; B Saratoga; C Yorktown; D Valley Forge.,,,X,Reversed locations.
+s04-Q2b,Trenton encouraged the formal French alliance instead of Saratoga.,,,Y,Reverses consequences.
+s04-Q2b,French help began only after Saratoga.,,,K,Earlier supplies preceded alliance.
+s04-Q2c,Valley Forge was a battle won by cold weather.,,,C,Confuses camp with battle.
+s04-Q2d,Every British force surrendered in 1781.,,,L,Local surrender is not universal peace.
+s04-Q2e,No foreign help mattered before Saratoga.,,,K,Misstates earlier aid.
+s04-Q2e,All campaigns ended instantly at Yorktown.,,,L,Confuses surrender with peace.
+s04-Q3,Every Native nation backed Britain.,,,D,Erases sovereign differences.
+s04-Q3,Every Black participant was enslaved.,,,U,Erases free participants.
+s04-Q3,Neutral people did not care.,,,N,Invents motive.
+s04-Q3,All colonists wanted independence.,,,S,Erases loyal and neutral choices.
+s04-Q3,All service brought freedom.,,,M,Promise is not universal outcome.
+s04-Q4,Their titles alone explain their impact.,,,E,No action-effect comparison.
+s04-Q4,Franklin commanded the Continental Army.,,,V,Confuses diplomacy and military command.
+s04-Q5a1,No government existed before the Constitution.,,,F,The Articles established national government.
+s04-Q5a2,Congress could levy national taxes on residents.,,,T,Misstates power.
+s04-Q5a2,Every ordinary decision required unanimous approval.,,,O,Confuses amendment with ordinary votes.
+s04-Q5b,Only one disliked tax caused everything.,,,G,Omits interacting pressures.
+s04-Q5b,The Constitution governed during Shays' Rebellion.,,,Z,Reverses chronology.
+s04-Q6a,One expensive item would prove inflation.,,,H,Needs broad sustained trend.
+s04-Q6a,Everyone without paid work is unemployed.,,,Q,Seeking and availability matter.
+s04-Q6b,Falling prices help everyone.,,,P,Ignores stated lower receipts and fixed debt.
+s04-Q7a,Only my opinion matters.,,,W,Omits audience importance.
+s04-Q7b,Independence and equal voting rights are identical.,,,A,Promise and protection differ.
+s04-Q7b,The petition proves lawmakers granted its request.,,,I,Purpose is not outcome.
+s04-Q7c,Everyone gained equal rights immediately.,,,A,Unsupported universal outcome.
+s04-Q7d,Any two unrelated details are support.,,,R,Relevance and attribution matter.
+s04-Q7e,The two details explain themselves.,,,R,No reasoning links.
+s04-R59-1,Any command is lawful.,,,J,Use only the observed priority; other domains remain open.
+s04-R59-2,Every army surrendered.,,,L,Use only the observed priority; other domains remain open.
+s04-R59-3,All neutral people were indifferent.,,,N,Use only the observed priority; other domains remain open.
+s04-R59-4,His title alone kept them serving.,,,E,Use only the observed priority; other domains remain open.
+s04-R59-5,Every ordinary decision needs all states.,,,O,Use only the observed priority; other domains remain open.
+s04-R59-6,Candles alone prove inflation.,,,H,Use only the observed priority; other domains remain open.
+s04-R59-7,A request proves approval.,,,I,Use only the observed priority; other domains remain open.
+s04-R59-8,One rebellion alone created all reform.,,,G,Use only the observed priority; other domains remain open.
+s04-R54a,Six tokens is the production cost.,,,a,"Diagnostic price/cost confusion, not inflation."
+s04-R54b,Only four tokens are owed.,,,b,"Diagnostic loan/interest confusion, not a deflation judgment."
+s04-R59-next,It serves only the official's preference.,,,c,"Next-unit readiness: misses rule's public purpose, not the unit 4 rule-of-law item."
+s04-K44-1,Every decision must please everyone.,,,x,Anticipated response; judge only the requested component.
+s04-P44-2,Which color is prettiest?,,,W,Anticipated response; judge only the requested component.
+s04-K45-1,Repayment is seven tokens.,,,b,Anticipated response; judge only the requested component.
+s04-P45-1,Repayment is eleven tokens.,,,b,Anticipated response; judge only the requested component.
+s04-K45-2,The accusation about armies is the purpose.,,,x,Anticipated response; judge only the requested component.
+s04-K46-B,Rights are gifts from the king.,,,B,Anticipated response; judge only the requested component.
+s04-F46-B,Only the ruler creates these rights.,,,B,Anticipated response; judge only the requested component.
+s04-K46-J,Only residents follow rules; officials can ignore them.,,,J,Anticipated response; judge only the requested component.
+s04-F46-J,The refusal automatically changes the rule.,,,J,Anticipated response; judge only the requested component.
+s04-K46-A,The request proves approval.,,,A,Anticipated response; judge only the requested component.
+s04-F46-A,Officials approved a fountain.,,,A,Anticipated response; judge only the requested component.
+s04-K46-W,Only my favorite color matters.,,,W,Anticipated response; judge only the requested component.
+s04-F46-W,Only whether I like the question matters.,,,W,Anticipated response; judge only the requested component.
+s04-P44,Both sources were made by Congress in July 1776.,,,x,Incorrect requested source annotation.
+s04-P45,The grievance concerns a harvest.,,,x,Incorrect requested source annotation.
+s04-P46,They request a new army.,,,x,Incorrect requested source annotation.
+s04-P46-alt,U proves everyone entered every day.,,,x,Incorrect requested source annotation.
+s04-K47-A,The request proves access.,,,A,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F47-A,The path must be open.,,,A,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K48-X,New Jersey.,,,X,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F48-X,New York.,,,X,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K48-Y,The deliveries repaired the bridge.,,,Y,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F48-Y,Food access opened the storehouse.,,,Y,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K49-C,Building shelters is a battle.,,,C,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F49-C,Winning a battle.,,,C,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K49-L,Every army stopped fighting.,,,L,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F49-L,Peace everywhere is proved.,,,L,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K50-K,No help existed before Friday.,,,K,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F50-K,Nothing arrived earlier.,,,K,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K50-L,All fighting ended.,,,L,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F50-L,All other forces gave up.,,,L,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K51-D,Both councils joined.,,,D,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F51-D,Vale decided for both.,,,D,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K51-M,Service guarantees the permit.,,,M,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F51-M,Permission was certainly granted.,,,M,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K51-N,The owner does not care.,,,N,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F51-N,The seller dislikes customers.,,,N,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K51-S,Everyone supports the path.,,,S,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F51-S,Everyone approves.,,,S,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K51-U,One force means one legal status.,,,U,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-F51-U,Both must have the same legal status.,,,U,"Goes beyond or reverses the printed evidence. Invented record, not historical testimony."
+s04-K51-team,Their titles explain success.,,,E,Names roles without actions or effects.
+s04-K50-resource,The record shows no helpful resource.,,,x,Ignores the resource explicitly linked to continued action.
+s04-F50-resource,Travel needs no resources.,,,x,Ignores the resource explicitly linked to continued action.
+s04-P47,Trenton 1777; Saratoga December 1776.,,,x,Reverses the given event dates.
+s04-P48,Valley Forge was a battle.,,,C,Confuses camp logistics with fighting.
+s04-P49,A Dutch army supplied every resource.,,,x,Invents a force and erases distinct origins.
+s04-P50,The household did not care.,,,N,Invents a motive absent from the notice.
+s04-P51,Their titles alone explain their actions.,,,E,Omits the four specified actions.
+s04-P50-alt,Everyone must already have access.,,,x,Treats the promise as proof of access; does not sample historical knowledge.

@@ -1,0 +1,59 @@
+---
+piece: blank
+course: science-grade-5
+unit: 5.2
+stretch: 5
+version: draft, not yet taught
+credit: All ours.
+---
+
+# Section 5.2: covered independent paper
+
+Keep covered until independent work. Print one day only.
+Each record headed invented is invented for practice.
+
+## Day 89
+
+[[s05-X89-1]]
+
+| Model |
+| --- |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+
+[[s05-X89-2]]
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+## Day 90
+
+![Supplied record or blank work area](held-map-90.svg)
+
+[[s05-X90-1]]
+
+_______________________________
+
+[[s05-X90-2]]
+
+_______________________________
+
+## Day 91
+
+[[s05-X91]]
+
+| Model |
+| --- |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |

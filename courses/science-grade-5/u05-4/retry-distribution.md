@@ -1,0 +1,30 @@
+---
+piece: blank
+course: science-grade-5
+unit: 5.4
+stretch: 5
+version: draft, not yet taught
+credit: All ours.
+---
+
+# Day 99: distribution retry
+
+Name: __________________ Date: __________
+
+Assigned fresh retry only. This record is invented for practice.
+
+[[s05-R99-distribution]]
+
+![Blank fresh-drawer axes](retry-axes.svg)
+
+
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________
+
+________________________________________________________________

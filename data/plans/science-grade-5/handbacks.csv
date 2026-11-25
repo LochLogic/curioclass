@@ -3,12 +3,354 @@ from_day,to_day,what,where,minutes,error,note
 1,2,s01-R1,support or extension,4,K,property-use gap (P on the record sheet): four minutes testing stiffness as a support; ready children explain why blocks cannot show the true size of unseen parts
 1,2,s01-X1,Rebuild,2,D,"only if more than a third made it: at the start of Rebuild, hold up two unlike balls and ask what else differs besides air; the plan said day 2 reopen, which has no part"
 1,2,s01-P1-3,Support or extension,1,B,a dot called a grain: the closing question says a dot stands for parts far too small to see
-1,3,day 1 drawing and ball readings,Squeeze and compare,2,,reopened beside today's syringe drawings; the first drawing is never erased
+1,3,day 1 drawing and ball readings,Squeeze and compare,0,,"Reopened within the same two-minute A evidence review, no second block."
 1,3,s01-X1,Squeeze and compare,2,A,only if many made it: the first two minutes of day 3 lay an empty drawing beside a dotted drawing and the day 1 readings
 2,3,s01-X2a,Squeeze and compare,1,J,trace each piece from the gate to the shelf; a small group takes the rest
 2,3,s01-X2a,Squeeze and compare,1,K,finish This piece helps because ___ so the shelf can ___; a small group takes the rest
-2,4,s01-X2b,Plant beans,3,H,"the day 2 tray weighed again and set beside its first weight, sorted for which weighs soil; inside the pot part, since the pot weighing needs it"
-3,4,s01-X3a,Revise the air model,3,I,"only the error most children made runs, at the end of Revise the air model; the other is one picture and one sentence for a small group"
-3,4,s01-X3b,Revise the air model,3,L,"only the error most children made runs, at the end of Revise the air model; the other is one picture and one sentence for a small group"
+2,4,s01-X2b,Plant beans in weighed soil,3,H,"Three minutes: exclude tray and water, retain operational dry baseline, use prepared dry stock or corrected N4."
+3,4,s01-X3a,Revise the air model,1,I,One-minute feedback route within final two minutes of Revise; further support during recording.
+3,4,s01-X3b,Revise the air model,1,L,One-minute feedback route within final two minutes of Revise; further support during recording.
 4,5,revised air drawing and its caption,revise,,,day 5 revises the drawings from section 1.1 to show where dissolved matter could be
-4,41,pot log,weighing,,,"unit 2: the plant is lifted out and weighed and the soil dried and weighed again, against this record of dry soil, beans and water in grams"
+4,41,pot log,Reflection and handoff,0,,Archive day 4 baseline with unit 2 records. No new weighing or repair is claimed in this response lesson.
+4,5,s01-X4a s01-X4b,Revise,5,A I x,"Return preserved bottle and added-gram feedback in Revise, five minutes; bottle is never practised beforehand."
+5,6,s01-X5,Reopen,5,C,Everyone receives feedback; C move. B repaired day 7.
+5,7,s01-X5,Reopen,5,B,"Shared five-minute slot with X6: largest gap only, not sequential repairs."
+6,7,s01-X6,Reopen,0,C,Return inside same five minutes; choose B or C route.
+7,8,s01-X7,Return,10,,First five-minute alternatives A/D; second B/C. Teacher leads largest gap.
+8,9,s01-X8,Return,5,D,Return everyone; complete inventory move.
+9,10,s01-X9,Return,10,,First five D/E alternatives; second five F.
+10,11,s01-X10,Return,10,,First five D/E alternatives; second five F.
+11,12,s01-X11,Return,10,,First five apparatus/residue D/C; second five F.
+12,13,s01-X12,Return,5,,Combined D/G boundary and alternative-cause move.
+13,14,s01-X13,Return,10,,First five A; second five F.
+14,15,s01-X14,Return,5,,G/D oral repair only.
+15,17,s01-X15,Feedback,1,,Hold until after day 16 assessment; no coaching before collection.
+16,17,s01-E1 s01-E2 s01-E3 s01-E4,Feedback,4,,"Return to everyone, preserve twenty original points; missing firsthand evidence blank."
+16,17,unit 1 assessment gaps,Return,20,,"Four simultaneous groups, one per child; four four-minute teacher visits plus four routing minutes."
+17,18,s01-R17a s01-R17b s01-R17c s01-R17d s01-R17e,Hook,3,,Return assigned fresh retry with descriptive feedback inside the twelve-minute Hook and retrieval part; reserve three minutes.
+17,19,s01-N17a s01-N17b,Prerequisite,10,,"Ten-minute Prerequisite teaching part: four water/growth, four resources, two fresh explanations or extension. Separate from unit 1 points."
+5,6,s01-P5-1 s01-P5-2 s01-P5-3,Reopen,0,,Descriptive feedback within receiving part; no additional sequential repair. All students receive their paper.
+6,7,s01-P6-1 s01-P6-2,Reopen,0,,Descriptive feedback within receiving part; no additional sequential repair. All students receive their paper.
+7,8,s01-P7-1,Return,0,,Descriptive feedback within receiving part; no additional sequential repair. All students receive their paper.
+8,9,s01-P8-1 s01-P8-2,Return,0,,Descriptive feedback within receiving part; no additional sequential repair. All students receive their paper.
+9,10,s01-P9-1 s01-P9-2,Return,0,,Descriptive feedback within receiving part; no additional sequential repair. All students receive their paper.
+10,11,s01-P10-1 s01-P10-2,Return,0,,Descriptive feedback within receiving part; no additional sequential repair. All students receive their paper.
+11,12,s01-P11-1 s01-P11-2,Return,0,,Descriptive feedback within receiving part; no additional sequential repair. All students receive their paper.
+12,13,s01-P12-1,Return,0,,Descriptive feedback within receiving part; no additional sequential repair. All students receive their paper.
+13,14,s01-P13-1 s01-P13-2,Return,0,,Descriptive feedback within receiving part; no additional sequential repair. All students receive their paper.
+14,15,s01-P14-1,Return,0,,Descriptive feedback within receiving part; no additional sequential repair. All students receive their paper.
+15,17,s01-P15-1,Feedback,0,,Descriptive feedback within receiving part; no additional sequential repair. All students receive their paper.
+1,2,s01-X1,Support or extension,0,,Return teacher feedback for all 30 children; repair time is counted in the separate error routes.
+2,3,s01-X2a s01-X2b,Squeeze and compare,0,,Return teacher feedback for all 30 children; repair time is counted in the separate error routes.
+3,4,s01-X3a s01-X3b,Compare drawings,0,,Return teacher feedback for all 30 children; repair time is counted in the separate error routes.
+4,5,s01-P4-1 s01-P4-2 s01-P4-3,Revise,0,,Return the student page with its Exit box; practice is not scored.
+18,19,s02-X18,Evidence,5,I,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+19,20,s02-X19,Return,5,I,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+19,20,s02-X19,Return,5,C,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+20,21,s02-X20,Return,5,D,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+20,21,s02-X20,Return,5,I,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+21,22,s02-X21,Return,5,B,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+21,22,s02-X21,Return,5,I,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+22,23,s02-X22,Return,5,,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case. Shared A/C move, not ten minutes."
+22,23,s02-X22,Return,5,D,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+23,24,s02-X23,Return,5,J,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+23,24,s02-X23,Return,5,I,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+24,25,s02-X24,Return,5,B,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+24,25,s02-X24,Return,5,D,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+25,26,s02-X25,Return,5,I,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+26,27,s02-X26,Return,5,,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case. Shared A/B move."
+27,28,s02-X27,Return,5,E,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+28,29,s02-X28,Return,5,J,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+29,30,s02-X29,Return,5,E,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+29,30,s02-X29,Return,5,J,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+30,31,s02-X30,Return,5,E,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+30,31,s02-X30,Return,5,J,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+31,32,s02-X31,Return,5,E,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+31,32,s02-X31,Return,5,J,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+32,33,s02-X32,Return,5,E,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+32,33,s02-X32,Return,5,J,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+33,34,s02-X33,Return,5,K,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+34,35,s02-X34,Return,5,H,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+35,36,s02-X35,Return,5,G,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+36,37,s02-X36,Return,5,D,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+36,37,s02-X36,Return,5,F,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+36,37,s02-X36,Return,5,G,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+37,38,s02-X37,Return,5,A,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+37,38,s02-X37,Return,5,E,"All papers returned. Two-minute familiar component contrast, two-minute individual correction, one-minute collection. No held case."
+38,41,s02-X38,Private,2,,Return E38 with private route feedback. No return on days 39/40.
+39,41,s02-E1,Private,1,,Original component points; same five-minute Private feedback allocation.
+40,41,s02-E2 s02-E3,Private,2,,Return original component points; all four papers share five minutes.
+38,41,E38 and assessment targeted component corrections,Return,20,,Four five-minute rounds; at most one letter move per child per round. Whole-class move replaces a round. Retain extra unresolved gaps.
+18,19,s02-P18-1 s02-P18-2,Observe,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+19,20,s02-P19-1 s02-P19-2 s02-P19-3,Height,2,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+20,21,s02-P20-1 s02-P20-2,Single-study,2,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+21,22,s02-P21-1 s02-P21-2 s02-P21-3,Evidence,2,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+22,23,s02-P22-1,Predict,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+23,24,s02-P23-1,Evidence,2,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+24,25,s02-P24-1,Evidence,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+25,26,s02-P25-1,Evidence,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+26,27,s02-P26-1,Location,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+27,28,s02-P27-1 s02-P27-2,Separate,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+28,29,s02-P28-1 s02-P28-2,Evidence,2,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+29,30,s02-P29-1,Separate,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+30,31,s02-P30-1 s02-P30-2,Component,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+31,32,s02-P31-1 s02-P31-2,Needs,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+32,33,s02-P32-1,Resource,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+33,34,s02-P33-1 s02-P33-2,Evidence,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+34,35,s02-P34-1,Food-use,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+35,36,s02-P35-1 s02-P35-2 s02-P35-4,Separate,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+36,37,s02-P36-1 s02-P36-2,Separate,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+37,38,s02-P37-1 s02-P37-2 s02-P37-6,Accuracy,1,,Return descriptive paper feedback on every individual component response inside this part. Optional rotating-six hearing samples public talk only.
+38,41,s02-P38-1 s02-P38-2 s02-P38-3,Reflection,1,,Return checklist feedback and any recorded oral/pointing evidence in the same minute; absence stays blank.
+32,33,s02-P32-2 s02-P32-3,Return,0,,Return descriptive correction-strip feedback with the exit in the existing repair slot; no separate repair task or additional minutes.
+33,34,s02-P33-3 s02-P33-4,Return,0,,Return descriptive correction-strip feedback with the exit in the existing repair slot; no separate repair task or additional minutes.
+34,35,s02-P34-2,Return,0,,Return correction feedback with exit in existing repair time; no added repair task.
+35,36,s02-P35-3,Return,0,,Return correction feedback with exit in existing repair time; no added repair task.
+36,37,s02-P36-3,Return,0,,Return correction feedback with exit in existing repair time; no added repair task.
+37,38,s02-P37-3 s02-P37-4 s02-P37-5,Return,0,,Return correction feedback with exit in existing repair time; no added repair task.
+42,44,c1-E42a c1-E42b c1-E42c c1-E42d,Private feedback,2,,Return original marked paper with one private next step. Preserve original evidence. Two returns fit the five-minute feedback part.
+43,44,c1-E43a c1-E43b c1-E43c,Private feedback,2,,Return original marked paper with one private next step. Preserve original evidence. Two returns fit the five-minute feedback part.
+44,46,c1-R44a,Properties repair,10,,Diagnostic readiness row and written next step. Slot already allocated in s03; properties and purpose separate on day 46; change on day 52. Unwritten receiving days remain runner handoffs.
+44,46,c1-R44b,Purpose repair,10,,Diagnostic readiness row and written next step. Slot already allocated in s03; properties and purpose separate on day 46; change on day 52. Unwritten receiving days remain runner handoffs.
+44,52,c1-R44c,Change repair,10,,Diagnostic readiness row and written next step. Slot already allocated in s03; properties and purpose separate on day 46; change on day 52. Unwritten receiving days remain runner handoffs.
+45,46,s03-X45,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+45,46,s03-X45,Return and repair,5,B,B: Locate the standard unit beside one complete reading. Whole-class version replaces the group move; no added minutes.
+46,47,s03-X46,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+47,48,s03-X47,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+47,48,s03-X47,Return and repair,5,B,B: Locate the standard unit beside one complete reading. Whole-class version replaces the group move; no added minutes.
+48,49,s03-X48,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+48,49,s03-X48,Return and repair,5,C,C: Locate contrasting known steel and copper magnet observations. Whole-class version replaces the group move; no added minutes.
+49,50,s03-X49,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+49,50,s03-X49,Return and repair,5,D,D: Locate scratch results separately from a labelled length. Whole-class version replaces the group move; no added minutes.
+50,51,s03-X50,Return and repair,5,I,I: Locate the fixed condition in a familiar valid comparison. Whole-class version replaces the group move; no added minutes.
+51,52,s03-X51,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+52,53,s03-X52,Return and repair,5,F,F: Locate retained unseen material in a familiar diagram. Whole-class version replaces the group move; no added minutes.
+52,53,s03-X52,Return and repair,5,I,I: Locate the fixed condition in a familiar valid comparison. Whole-class version replaces the group move; no added minutes.
+53,54,s03-X53,Return and repair,5,I,I: Locate the fixed condition in a familiar valid comparison. Whole-class version replaces the group move; no added minutes.
+54,55,s03-X54,Return and repair,5,G,G: Locate a recorded source of introduced air. Whole-class version replaces the group move; no added minutes.
+55,56,s03-X55,Return and repair,5,I,I: Locate the fixed condition in a familiar valid comparison. Whole-class version replaces the group move; no added minutes.
+55,56,s03-X55,Return and repair,5,E,E: Locate one starting/resulting property comparison. Whole-class version replaces the group move; no added minutes.
+56,57,s03-X56,Return and repair,5,F,F: Locate retained unseen material in a familiar diagram. Whole-class version replaces the group move; no added minutes.
+56,57,s03-X56,Return and repair,5,H,H: Locate what one separation method cannot establish. Whole-class version replaces the group move; no added minutes.
+57,58,s03-X57,Return and repair,5,G,G: Locate a recorded source of introduced air. Whole-class version replaces the group move; no added minutes.
+58,61,s03-X58,Return and repair,5,A,A: Locate a distinguishing property of familiar lookalikes. Whole-class version replaces the group move; no added minutes.
+58,61,s03-X58,Return and repair,5,H,H: Locate what one separation method cannot establish. Whole-class version replaces the group move; no added minutes.
+59,61,s03-E1 s03-E2P s03-E2M s03-E2R s03-E2L,Private feedback,2,,Return original points and component notes together. Prioritize repairs in four rounds total including E58; never promise a round for every item.
+60,61,s03-E3 s03-E4a s03-E4b s03-E4c s03-E4d,Private feedback,3,,Return original points and component notes together. Prioritize repairs in four rounds total including E58; never promise a round for every item.
+61,63,s03-N61a,Noncontact support,10,,Row-specific readiness from day 61; the receiving day 63 block reserves this exact ten-minute slot.
+61,63,s03-N61b,Sky support,10,,Row-specific readiness from day 61; the receiving day 63 block reserves this exact ten-minute slot.
+61,63,s03-N61c,Daylight support,10,,Row-specific readiness from day 61; the receiving day 63 block reserves this exact ten-minute slot.
+62,63,s04-X62,Model,5,A,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+63,64,s04-X63,Return,5,A,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+63,64,s04-X63,Return,5,C,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+64,65,s04-X64,Return,5,A,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+65,66,s04-X65,Return,5,A,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+66,67,s04-X66,Return,5,A,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+67,68,s04-X67,Return,5,B,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+68,69,s04-X68,Return,5,B,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+69,70,s04-X69,Return,5,B,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+69,70,s04-X69,Return,5,G,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+70,71,s04-X70,Return,5,C,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+70,71,s04-X70,Return,5,G,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+71,72,s04-X71,Return,5,D,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+72,73,s04-X72,Return,5,D,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+73,74,s04-X73,Return,5,D,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+73,74,s04-X73,Return,5,H,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+73,74,s04-X73,Return,5,I,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+74,75,s04-X74,Return,5,C,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+74,75,s04-X74,Return,5,D,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+74,75,s04-X74,Return,5,G,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+75,76,s04-X75,Return,5,F,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+76,77,s04-X76,Return,5,F,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+77,78,s04-X77,Return,5,E,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+77,78,s04-X77,Return,5,F,Private notes for every paper; matching stated claim only gets a letter. Extension stays inside slot.
+78,81,s04-X78,Private,1,,Inside five-minute feedback. No hints or feedback during 79/80.
+79,81,s04-Q1a s04-Q1b s04-Q1c s04-Q1d,Private,2,,Distribute four private component notes in two minutes total; original points preserved.
+80,81,s04-Q2,Private,1,,Private score/component notes; two rows total two minutes.
+80,81,s04-Q3,Private,1,,Private score/component notes; two rows total two minutes.
+80,81,unit 4 priority component repairs including E78,Return,20,,All gaps share four five-minute rounds maximum per child. Four four-minute teacher visits plus four routing minutes; retain unresolved gaps.
+62,63,s04-P62-label,Opening,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+62,63,s04-P62-actual,Opening,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+63,64,s04-P63-gap,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+63,64,s04-P63-path,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+63,64,s04-P63-day,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+64,65,s04-P64-free,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+65,66,s04-P65-fragments,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+66,67,s04-P66-locate,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+67,68,s04-P67-raw,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+68,69,s04-P68-bars,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+68,69,s04-P68-conditions,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+69,70,s04-P69-lit,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+69,70,s04-P69-mark,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+70,71,s04-P70-bars,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+70,71,s04-P70-strip,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+71,72,s04-P71-tally,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+71,72,s04-P71-key,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+72,73,s04-P72-view,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+73,74,s04-P73-spin,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+73,74,s04-P73-earth,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+73,74,s04-P73-moon,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+74,75,s04-P74-locate,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+75,76,s04-P75-actual,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+75,76,s04-P75-control,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+76,77,s04-P76-audit,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+77,78,s04-P77-travel,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+77,78,s04-P77-disk,Return,0,,"Distribute private component notes together with the exit notes in this named block. Reteaching minutes already allocated to the exit letter moves, never added twice."
+78,81,s04-P78-locate,Private,0,,Hold these component notes with E78 until day 81 Private feedback. Distribution only; no feedback on assessment days 79 or 80.
+62,63,s04-P62-hook,Opening,0,,"Return private component notes with exit notes, without added repair minutes."
+64,65,s04-P64-observe,Return and repair,0,,"Return private component notes with exit notes, without added repair minutes."
+64,65,s04-P64-label,Return and repair,0,,"Return private component notes with exit notes, without added repair minutes."
+65,66,s04-P65-link,Return and repair,0,,"Return private component notes with exit notes, without added repair minutes."
+67,68,s04-P67-next,Return,0,,Private notes with exit return; no extra repair minutes.
+71,72,s04-P71-pattern,Return,0,,Return private notes with exit feedback in the scheduled repair slot; no added minutes.
+72,73,s04-P72-tag,Return,0,,Return private notes with exit feedback in the scheduled repair slot; no added minutes.
+75,76,s04-K75-1,Return,0,,Private component note returned inside the existing repair allocation; no additional reteaching minutes.
+76,77,s04-P76-footprint,Return,0,,Private component note returned inside the existing repair allocation; no additional reteaching minutes.
+77,78,s04-P77-scale,Return,0,,Private component note returned inside the existing repair allocation; no additional reteaching minutes.
+82,84,c2-E82-measure c2-E82-powder c2-E82-metal c2-E82-mineral c2-E82-liquid c2-E82-plan c2-E82-log c2-E82-claim,Private feedback,2,,One private next step; missing practical evidence separate.
+83,84,c2-E83-distance c2-E83-light c2-E83-size c2-E83-shadow c2-E83-daylight c2-E83-stars,Private feedback,3,,One priority gap; no public comparison.
+85,86,s05-X85,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+85,86,s05-X85,Return,5,C,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+86,87,s05-X86-1 s05-X86-2,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+86,87,s05-X86-1 s05-X86-2,Return,5,C,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+87,88,s05-X87,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+88,89,s05-X88-1 s05-X88-2 s05-X88-3,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+88,89,s05-X88-1 s05-X88-2 s05-X88-3,Return,5,C,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+89,90,s05-X89-1 s05-X89-2,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+89,90,s05-X89-1 s05-X89-2,Return,5,B,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+90,91,s05-X90-1 s05-X90-2,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+90,91,s05-X90-1 s05-X90-2,Return,5,G,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+91,92,s05-X91,Return,5,A,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+91,92,s05-X91,Return,5,C,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+92,93,s05-X92,Return,5,D,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+93,94,s05-X93,Return,5,D,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+94,95,s05-X94,Return,5,E,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+94,95,s05-X94,Return,5,F,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+95,96,s05-X95-1 s05-X95-2,Return,5,E,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+95,96,s05-X95-1 s05-X95-2,Return,5,H,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+96,97,s05-X96,Return,5,D,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+96,97,s05-X96,Return,5,G,"Return all papers inside these parallel routes, not extra time per item. Unlettered location, copying or climate gaps get descriptive feedback in their matched route. Preserve originals."
+85,86,s05-P85 s05-P85-retrieve s05-P85-sort,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+86,87,s05-P86,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+87,88,s05-P87,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+88,89,s05-P88 s05-P88-compare,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+89,90,s05-P89,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+90,91,s05-P90,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+91,92,s05-P91,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+92,93,s05-P92 s05-P92-2,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+93,94,s05-P93 s05-P93-2 s05-P93-3,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+94,95,s05-P94,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+95,96,s05-P95 s05-P95-2,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+96,97,s05-P96,Return,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+97,98,s05-P97,Independent,0,,Return retained notes with folder; no added conference or score. Day 98 folder stays closed without interpretation.
+84,86,c2-R84-climate,Climate,10,,"Existing readiness, not repeated on 85: three minutes timescales, four key matching, three fresh oral comparison. Missing results: teach as new."
+97,99,s05-X97-1 s05-X97-2,feedback,0,,"Return with assessment feedback, never on 98."
+98,99,s05-Q1a s05-Q1b s05-Q1c s05-Q1d s05-Q1e s05-Q2a1 s05-Q2a2 s05-Q2b1 s05-Q2b2 s05-Q2c1 s05-Q2c2 s05-Q2c3,feedback,5,,"Return original 24 points privately; priorities go to existing separate repair rounds, no rescore."
+98,99,Q1/Q2 and E97 priority component gaps,Return,15,,Three five-minute parallel rounds maximum per child. Teacher three four-minute visits plus three routing minutes. Whole-class move replaces a round; log remaining gaps.
+99,100,s05-R99-systems s05-R99-air s05-R99-distribution s05-R99-salt s05-R99-access,Retrieve,0,,Return private written feedback after class; no promised extra repair lesson. Forward unresolved gaps with existing unit-6 retrieval.
+99,103,unit-6 design/resource handoff notes,Return,0,,"Notes only, not another readiness check or added lesson allocation."
+86,87,s05-P86-climate s05-P86-key s05-P86-recheck s05-P86-extension,Return,0,,Return support notes with existing packet; no additional conference.
+99,100,s05-P99-A s05-P99-B s05-P99-C s05-P99-D s05-P99-E s05-P99-F s05-P99-G s05-P99-H s05-P99-design s05-P99-resource,Retrieve,0,,"Private written feedback after class, same folder as assigned retry; notes only, no new promised teaching time."
+100,101,s06-X100-1 s06-X100-2,Return,5,B,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+100,101,s06-X100-1 s06-X100-2,Return,5,I,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+101,102,s06-X101-1 s06-X101-2,Return,5,A,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+102,103,s06-X102,Return,5,A,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+102,103,s06-X102,Return,5,B,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+102,103,s06-X102,Return,5,C,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+103,104,s06-X103,Return,5,D,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+104,105,s06-X104-1 s06-X104-2,Return,5,D,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+104,105,s06-X104-1 s06-X104-2,Return,5,F,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+105,106,s06-X105,Return,5,E,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+105,106,s06-X105,Return,5,F,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+106,107,s06-X106-1 s06-X106-2,Return,5,E,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+107,108,s06-X107,Return,5,F,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+107,108,s06-X107,Return,5,G,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+108,109,s06-X108,Return,5,F,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+108,109,s06-X108,Return,5,G,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+109,110,s06-X109,Return,5,H,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+110,111,s06-P110-retests s06-X110,Return,5,E,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+110,111,s06-P110-retests s06-X110,Return,5,G,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+111,112,s06-X111 s06-P111-plot,Return,5,F,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+111,112,s06-X111 s06-P111-plot,Return,5,D,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+112,113,s06-X112,Return,5,A,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+112,113,s06-X112,Return,5,D,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+113,114,s06-X113,Return,5,B,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+113,114,s06-X113,Return,5,C,Private originals plus fresh component move. More than a third uses reserved round; otherwise assigned parallel work. Log unresolved needs.
+100,102,s06-X100-1 s06-X100-2,Return,5,,"Unfinished B/I share this component round, no added time."
+101,103,s06-X101-1 s06-X101-2,Return,0,C,"Status notes share existing C round, no added minutes."
+114,117,s06-X114-1 s06-X114-2,Read,0,,Assigned A/B/D/E moves share response routes; no reteach on 115/116.
+115,117,s06-Q1a s06-Q1b1 s06-Q1b2 s06-Q1b3 s06-Q1b4 s06-Q1b5 s06-Q1b6 s06-Q1c,Read,3,,"Originals and private feedback, separate assessment record."
+116,117,s06-Q2a s06-Q2b,Read,2,,Immutable original values and named action roster.
+115,117,source errors A C B I D,Read,0,,"Alternative sources A/C, links B/I or limits D run inside twenty minutes shared with testing; each assigned letter five minutes, maximum four moves per child."
+116,117,s06-Q2a s06-Q2b,Parallel,5,E,One five-minute assigned move. Other routes run in parallel inside these same twenty minutes.
+116,117,s06-Q2a s06-Q2b,Parallel,5,F,One five-minute assigned move. Other routes run in parallel inside these same twenty minutes.
+116,117,s06-Q2a s06-Q2b,Parallel,5,G,One five-minute assigned move. Other routes run in parallel inside these same twenty minutes.
+116,117,s06-Q2a s06-Q2b,Parallel,5,H,One five-minute assigned move. Other routes run in parallel inside these same twenty minutes.
+100,101,s06-P100-notice s06-P100-route,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+101,102,s06-P101-locator s06-P101-status,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+102,103,s06-P102-soil s06-P102-status,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+103,104,s06-P103-sort s06-P103-limit,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+104,105,s06-P104-feature s06-P104-contribution,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+105,106,s06-P105-plot s06-P105-control,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+106,107,s06-P106-assembly s06-P106-inventory,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+107,108,s06-P107-serial s06-P107-scale-v2,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+108,109,s06-P108-audit s06-P108-fault,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+109,110,s06-P109-locator s06-P109-fixed,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+110,111,s06-P110-dry s06-P110-mark,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+111,112,s06-P111-dot s06-P111-criterion,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+112,113,s06-P112-source s06-P112-limit,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+113,114,s06-P113-point s06-P113-repeat,Return,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+114,117,s06-P114-timing s06-P114-reset,Read,0,,"Private written feedback after class, no extra conference minutes; content and language notes separate."
+100,101,question board and anchor components,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+100,102,question board and anchor components,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+100,112,question board and anchor components,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+100,113,question board and anchor components,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+104,105,versioned sketches and quantities s06-P104-design,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+104,106,versioned sketches and quantities,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+104,109,versioned sketches and quantities,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+104,110,versioned sketches and quantities,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+105,106,approved dry controls,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+105,107,approved dry controls,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+105,110,approved dry controls,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+107,108,all actual serial slips or separate T107,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+107,109,all actual serial slips or separate T107,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+107,113,all actual serial slips or separate T107,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+108,109,teacher plots and fault locators,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+108,111,teacher plots and fault locators,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+110,111,V baseline and all retests,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+110,112,V baseline and all retests,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+110,113,V baseline and all retests,Return,0,,"Retained evidence inside existing work, no extra repair minutes."
+100,101,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+101,102,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+102,103,rotating six listening roster,Component,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+103,104,rotating six listening roster,Generate,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+104,105,rotating six listening roster,Dry,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+105,108,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+108,109,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+109,111,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+111,112,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+112,113,rotating six listening roster,Consensus,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+113,114,rotating six listening roster,Share,0,,"Carry exact heard names into the next named hearing. Six 45-second turns use the already planned 4.5 minutes, no extra time. Others submit paper; a pass remains unheard. Cycle thirty across five hearings; no public hearing is promised on 106, 107 or 110."
+100,101,s06-P100-resource s06-P100-fresh s06-P100-arrow s06-P100-shadow,Return,0,,"Private written component feedback with existing return, no added conference minutes."
+101,102,s06-P101-repair-B s06-P101-repair-I s06-P101-link,Return,0,,"Private written component feedback with existing return, no added conference minutes."
+102,103,s06-P102-repair-A s06-P102-repair-BI s06-P102-observed,Return,0,,"Private written component feedback with existing return, no added conference minutes."
+103,104,s06-P103-repair-A s06-P103-repair-B s06-P103-repair-C s06-P103-retrieve s06-P103-measure-v2,Return,0,,"Private written component feedback with existing return, no added conference minutes."
+104,105,s06-P104-repair-D,Return,0,,"Private written component feedback with existing return, no added conference minutes."
+105,106,s06-P105-repair-D s06-P105-repair-F s06-P105-measure s06-P105-repeat,Return,0,,"Private written component feedback with existing return, no added conference minutes."
+106,107,s06-P106-repair-E s06-P106-repair-F,Return,0,,Private written feedback inside existing return; no extra conference minutes.
+107,108,s06-P107-repair-E,Return,0,,Private written feedback inside existing return; no extra conference minutes.
+108,109,s06-P108-repair-F s06-P108-repair-G,Return,0,,Private written feedback inside existing return; no extra conference minutes.
+109,110,s06-P109-repair-F s06-P109-repair-G,Return,0,,Private written feedback inside existing return; no extra conference minutes.
+110,111,s06-P110-repair-H,Return,0,,Private written feedback inside existing return; no extra conference minutes.
+111,112,s06-P111-repair-E s06-P111-repair-G,Return,0,,Private written feedback inside existing return; no extra conference minutes.
+108,109,s06-P108-route,Return,0,,Private written component feedback with existing return; no extra conference minutes.
+109,110,s06-P109-change,Return,0,,Private written component feedback with existing return; no extra conference minutes.
+112,113,s06-P112-repair-F s06-P112-repair-D,Return,0,,Private written feedback in existing return; no added conference minutes.
+113,114,s06-P113-repair-A s06-P113-repair-D,Return,0,,Private written feedback in existing return; no added conference minutes.
+114,117,s06-P114-repair-B s06-P114-repair-C,Read,0,,Private written feedback in existing return; no added conference minutes.
+112,113,s06-P112-trial s06-P112-route,Return,0,,Private component feedback inside existing return; no added conference minutes.
+113,114,s06-P113-control s06-P113-failure,Return,0,,Private component feedback inside existing return; no added conference minutes.
+114,117,s06-P114-instrument s06-P114-reason,Read,0,,Private component feedback inside existing return; no added conference minutes.
+118,120,c5-E118-model c5-E118-coast c5-E118-life c5-E118-air c5-E118-all c5-E118-fresh c5-E118-inset c5-E118-limit,Return and repair,10,,At most two five-minute system/graph moves; log further gaps. Return originals during Read feedback.
+119,120,c5-E119-leaflet c5-E119-impacts c5-E119-status c5-E119-plan,Return and repair,10,,At most two five-minute source/test moves; no new conducting evidence.
+116,119,unchanged individual practical record,Directions,0,,Teacher attaches before class; no new collection or score. Missing conducting remains unobserved.

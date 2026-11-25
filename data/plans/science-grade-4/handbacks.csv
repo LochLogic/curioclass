@@ -1,0 +1,390 @@
+from_day,to_day,what,where,minutes,error,note
+1,2,s01-X1,Return and repair,5,I,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+1,2,s01-Pq1,Return and repair,0,,Feedback handed back with ticket; pages then stay in folders.
+2,3,s01-X2,Return and repair,5,G,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+2,3,s01-Pr2,Return and repair,0,,Feedback handed back with ticket; pages then stay in folders.
+3,4,s01-X3,Return and repair,5,H,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+3,4,s01-X3,Return and repair,5,B,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+3,4,s01-Pr3,Return and repair,0,,Feedback handed back with ticket; pages then stay in folders.
+4,5,s01-X4,Return and repair,5,A,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+4,5,s01-X4,Return and repair,5,B,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+4,5,s01-Pr4,Return and repair,0,,Feedback handed back with ticket; pages then stay in folders.
+5,6,s01-X5,Return and repair,5,A,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+5,6,s01-Pn5,Return and repair,0,,Feedback handed back with ticket; pages then stay in folders.
+6,7,s01-X6,Return and repair,5,A,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+6,7,s01-X6,Return and repair,5,B,Return all tickets with one specific next step; more than ten misses triggers whole-class repair.
+6,7,s01-Pm6,Return and repair,0,,Feedback handed back with ticket; pages then stay in folders.
+7,8,s01-X7,Return and repair,5,F,Return all with next step; more than ten misses triggers shared repair.
+7,8,s01-X7,Return and repair,5,C,Return all with next step; more than ten misses triggers shared repair.
+7,8,s01-X7,Return and repair,5,J,Return all with next step; more than ten misses triggers shared repair.
+7,8,s01-Po7,Return and repair,0,,Return record feedback with ticket; retain in folder. Continue heard roster with previously unheard children.
+8,9,s01-X8,Return and repair,5,C,Return all with next step; more than ten misses triggers shared repair.
+8,9,s01-X8,Return and repair,5,I,Return all with next step; more than ten misses triggers shared repair.
+8,9,s01-P8 s01-Pu8,Return and repair,0,,Return record feedback with ticket; retain in folder. Continue heard roster with previously unheard children.
+9,10,s01-X9,Return and repair,5,D,Return all with next step; more than ten misses triggers shared repair.
+9,10,s01-X9,Return and repair,5,A,Return all with next step; more than ten misses triggers shared repair.
+9,10,s01-P9,Return and repair,0,,Return record feedback with ticket; retain in folder. Continue heard roster with previously unheard children.
+10,11,s01-X10,Return and repair,5,C,Return all with next step; more than ten misses triggers shared repair.
+10,11,s01-X10,Return and repair,5,D,Return all with next step; more than ten misses triggers shared repair.
+10,11,s01-X10,Return and repair,5,E,Return all with next step; more than ten misses triggers shared repair.
+10,11,s01-Ps10,Return and repair,0,,Return record feedback with ticket; retain in folder. Continue heard roster with previously unheard children.
+11,12,s01-X11,Return and repair,5,F,Return feedback; retain the original in the folder.
+11,12,s01-X11,Return and repair,5,A,Return feedback; retain the original in the folder.
+11,12,s01-X11,Return and repair,5,C,Return feedback; retain the original in the folder.
+11,12,s01-Po11 s01-Pn11,Return and repair,0,,Return feedback; retain the original in the folder.
+12,13,s01-X12,Return and repair,5,C,Return feedback; retain the original in the folder.
+12,13,s01-X12,Return and repair,5,J,Return feedback; retain the original in the folder.
+12,13,s01-Ps12,Return and repair,0,,Return feedback; retain the original in the folder.
+13,15,s01-X13,Read feedback,0,,"Written component feedback; targeted support is in Response stations, counted there once."
+13,15,s01-K13,Read feedback,0,,Return evidence-tag feedback; retain tags.
+14,15,s01-A1 s01-A2,Read feedback,5,,"Written gap feedback; station repair minutes counted once in Response stations, not here."
+15,16,s01-P15-revise s01-A3 s01-A4,Cleanup,0,,Return the same revised packets and their final component categories during paper pickup; no extra assessment or repair.
+16,17,s02-X16,Return and repair,5,A,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+17,18,s02-X17,Response and repair,5,G,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+18,19,s02-X18,Return and repair,5,H,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+19,20,s02-X19,Return and repair,5,A,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+20,21,s02-X20,Return and repair,5,B,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+21,22,s02-X21,Return and repair,5,B,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+22,23,s02-X22,Return and repair,5,L,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+23,24,s02-X23,Return and repair,5,A,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+24,25,s02-X24,Return and repair,5,C,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+25,26,s02-X25,Return and repair,5,B,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+26,27,s02-X26,Return and repair,5,C,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+27,28,s02-X27,Return and repair,5,D,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+28,29,s02-X28,Return and repair,5,D,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+29,30,s02-X29,Return and repair,5,D,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+30,31,s02-X30,Return and repair,5,I,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+31,32,s02-X31,Return and repair,5,J,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+32,33,s02-X32,Return and repair,5,K,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+33,34,s02-X33,Return and repair,5,F,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+34,35,s02-X34,Return and repair,5,E,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+29,30,individual design record,Return and repair,5,,Written feedback only; independent revision day 35.
+30,35,individual design feedback and original record,Portfolio revision,15,,Revise in second color; retain originals for single portfolio score.
+35,36,s02-E2-portfolio,Portfolio evidence,5,,Locate already revised evidence; no build/interview. Score once after day 38.
+35,38,s02-X35,Read feedback,0,,Read alongside end feedback within five minutes; no day 36 repair.
+36,38,s02-E1-sound s02-E1-light s02-E1-heat s02-E1-current s02-E2,Read feedback,2,,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+37,38,s02-E3,Read feedback,3,,Return every paper with descriptive feedback. Paper supplies individual evidence for all children.
+36,39,unchanged child observation record,opening,0,,Informational handoff only; no promised repair or portfolio rescore.
+38,40,source-gap note,opening,0,,"Informational handoff only, no promised additional lesson."
+16,17,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+17,18,observation or design or source-note sheet,Response and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+18,19,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+19,20,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+20,21,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+21,22,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+22,23,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+23,24,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+24,25,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+25,26,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+26,27,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+27,28,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+28,29,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+29,30,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+30,31,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+31,32,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+32,33,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+33,34,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+34,35,observation or design or source-note sheet,Return and repair,0,,"Written note returned with ticket, no additional repair minutes. Retain originals."
+15,18,s02-R1,Response and repair,5,H,First five readiness minutes after the five-minute E17 repair.
+15,18,s02-R1,Light and warming comparisons,5,H,Completes ten readiness minutes before other comparisons; keep within twenty-minute block.
+16,17,s02-P16-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+17,18,s02-P17-1,Response and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+18,19,s02-P18-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+18,19,s02-P18-2,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+19,20,s02-P19-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+20,21,s02-P20-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+21,22,s02-P21-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+22,23,s02-P22-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+23,24,s02-P23-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+24,25,s02-P24-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+25,26,s02-P25-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+26,27,s02-P26-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+27,28,s02-P27-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+28,29,s02-P28-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+29,30,s02-P29-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+30,31,s02-P30-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+31,32,s02-P31-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+32,33,s02-P32-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+33,34,s02-P33-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+34,35,s02-P34-1,Return and repair,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+35,38,s02-P35-1,Read feedback,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+35,38,s02-P35-2,Read feedback,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+38,39,s02-P38-1 s02-E38-record,opening,0,,Return personal sheet with a written note in the named block; no extra repair minutes. Day 38 revised paper is returned as an informational next-opening handoff.
+36,38,s02-E2-portfolio,Read feedback,0,,Locate preserved portfolio evidence; final scoring once after day 38.
+16,17,s02-P16-connect,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+16,17,s02-P16-model,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+16,17,s02-P16-question,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+17,18,s02-P17-repair,Response and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+17,18,s02-P17-path,Response and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+18,19,s02-P18-repair,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+18,19,s02-P18-sun,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+19,20,s02-P19-repair,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+19,20,s02-P19-model,Return and repair,0,,Return this personal practice with descriptive feedback alongside the daily ticket; no additional repair minutes.
+19,20,s02-P19-retry,Return and repair,0,,"When used, return the optional sunlight retry record with day 19 papers and descriptive feedback; no additional repair minutes. Preserve missing live evidence."
+20,21,s02-P20-repair,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+20,21,s02-P20-retry,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+21,22,s02-P21-repair,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+21,22,s02-P21-retry,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+22,23,s02-P22-repair,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+22,23,s02-P22-retry,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+22,23,s02-K22-1,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+23,24,s02-P23-repair,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+23,24,s02-P23-retry,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+23,24,s02-P23-model,Return and repair,0,,"Return with ticket and descriptive feedback, no extra repair minutes. Optional retry only when used."
+25,26,s02-P25-repair,Return and repair,0,,Return with ticket and descriptive feedback; no additional repair minutes.
+25,26,s02-P25-observe,Return and repair,0,,Return with ticket and descriptive feedback; no additional repair minutes.
+26,27,s02-P26-repair,Return and repair,0,,Return with the packet; no extra repair minutes.
+27,28,s02-P27-repair,Return and repair,0,,Return with ticket; no additional repair minutes.
+27,28,s02-K27-1,Return and repair,0,,Return with ticket; no additional repair minutes.
+28,29,s02-P28-repair,Return and repair,0,,Return with ticket; no extra repair minutes.
+29,30,s02-P29-repair,Return and repair,0,,Return with ticket; no additional repair minutes.
+24,25,s02-P24-repair,Return and repair,0,,Return with ticket and packet feedback; no additional repair minutes.
+24,25,s02-P24-budget,Return and repair,0,,Return with ticket and packet feedback; no additional repair minutes.
+24,25,s02-K24-2,Return and repair,0,,Return with ticket and packet feedback; no additional repair minutes.
+30,31,s02-P30-retrieval,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
+30,31,s02-K30-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
+31,32,s02-K31-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
+32,33,s02-K32-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
+33,34,s02-K33-1,Return and repair,0,,Return with descriptive feedback on the same practice sheet; no extra repair minutes.
+39,41,C-E39-speed,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+39,41,C-E39-question,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+39,41,C-E39-predict,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+39,41,C-E39-sound,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+39,41,C-E39-light,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+39,41,C-E39-heat,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+39,41,C-E39-current,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+40,41,C-E40-origin,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+40,41,C-E40-use,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+40,41,C-E40-effects,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+40,41,C-E40-change,Return feedback,0,,"Written component feedback in five-minute opening; shared twelve-minute repair and eighteen-minute revision, no extra minutes per item."
+41,43,C-R41-source,older-row response,5,,"Within reserved fifteen-minute response, five minutes per causal direction. Grade 1 causal models planned: teach missing directions as new; day 42 keeps hook."
+41,43,C-R41-receiver,older-row response,5,,"Within reserved fifteen-minute response, five minutes per causal direction. Grade 1 causal models planned: teach missing directions as new; day 42 keeps hook."
+41,42,C-P41-revise C-E41-record,opening,0,,"Return revised papers with written note, informational only; no extra repair."
+41,42,C-P41-motion,opening,0,,"Return any completed personal repair sheet with written evidence note; informational only, no new repair slot."
+41,42,C-P41-paths,opening,0,,"Return any completed personal repair sheet with written evidence note; informational only, no new repair slot."
+41,42,C-P41-resources,opening,0,,"Return any completed personal repair sheet with written evidence note; informational only, no new repair slot."
+41,42,C-P41-question,opening,0,,"Return completed personal question with written note, informational only."
+42,44,s03-X42,Return,0,A,"Return tentative models with E43; its A repair supplies five shared minutes, no added slot."
+42,43,s03-P42-observe; s03-P42-question,Older-row,0,,Written notes to folders; keep question board open.
+43,44,s03-X43,Return,10,A,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+44,45,s03-X44,Return,10,B,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+45,46,s03-X45,Return,5,A,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+46,47,s03-X46,Return,10,B,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+47,48,s03-X47,Return,5,A,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+48,49,s03-X48,Return,5,E,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+49,50,s03-X49,Return,5,F,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+50,51,s03-X50a s03-X50b,Return,5,E,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+51,52,s03-X51,Return,5,C,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+52,53,s03-X52,Return,5,D,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+53,54,s03-X53,Return,5,C,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+54,56,s03-X54a s03-X54b,Read,0,E,"Return all. Ten-minute A/B slots split five each. Day 50 repairs commonest E/F, others get written prompts. E48 D has five separate Criteria minutes. E53 C/D share five. E54 returns with feedback then parallel repairs."
+48,49,s03-X48,Criteria,5,D,"Five-minute D move before criteria agreement, separate from E48 E Return slot."
+46,47,s03-T46-model,Portfolio,10,,"Written component feedback; second-color revision, originals preserved; no points until day 55."
+48,51,s03-P48-source s03-P48-research,Return,2,,Source revisions share five minutes with proposals; E50 takes other five.
+50,51,s03-P50-proposals s03-P50-encode s03-P50-decode s03-P50-assemble,Return,3,,Source/proposal revision total five minutes; preserve unresolved individual gaps.
+53,54,s03-P53-compare,Return,5,F,Separate five-minute failure/change move; E53 C/D takes other five.
+53,54,s03-T53-alternatives s03-T53-comparison s03-T53-trials s03-T53-improvement s03-T53-encode s03-T53-decode s03-T53-voice,Portfolio,10,,"Written components then private revision, originals retained; first score day 55."
+51,52,s03-P51-log,Changed,0,,Return annotated quiet logs alongside new records; no added repair.
+52,53,s03-P52-log,Personal,0,,Annotated both-condition logs support individual notes within ten minutes.
+46,55,s03-T46-model,Earlier-evidence,0,,Earlier revised records identified in one four-minute selection slot; first scoring after class; no new scored response.
+48,55,s03-P48-source,Earlier-evidence,0,,Earlier revised records identified in one four-minute selection slot; first scoring after class; no new scored response.
+50,55,s03-P50-proposals,Earlier-evidence,0,,Earlier revised records identified in one four-minute selection slot; first scoring after class; no new scored response.
+51,55,s03-P51-log,Earlier-evidence,0,,Earlier revised records identified in one four-minute selection slot; first scoring after class; no new scored response.
+52,55,s03-P52-log,Earlier-evidence,0,,Earlier revised records identified in one four-minute selection slot; first scoring after class; no new scored response.
+53,55,s03-P53-compare s03-T53-alternatives s03-T53-comparison s03-T53-trials s03-T53-improvement s03-T53-encode s03-T53-decode s03-T53-voice,Earlier-evidence,0,,Earlier revised records identified in one four-minute selection slot; first scoring after class; no new scored response.
+55,56,s03-E1 s03-E2-alternatives s03-E2-comparison s03-E2-trials s03-E2-improvement s03-E2-encode s03-E2-decode s03-E2-voice s03-E3,Read,5,,"Return 24-point component feedback plus diagnostic observations. Repairs in fifteen parallel minutes, no rescoring."
+55,56,s03-D55-wave s03-D55-codes s03-D55-picture,Targeted,0,,"Unscored diagnostics route into existing repair time, no added minutes."
+56,59,s03-R56,response,10,,Carrying/design-evidence five minutes each within day 59 response. No correction beforehand or unit 3 letter.
+43,44,s03-P43-table,Return,0,,"Written formative notes, no added repair. Public rotation optional; paper from everyone is reached. Day 57 hook stays intact."
+44,45,s03-P44-labels,Return,0,,"Written formative notes, no added repair. Public rotation optional; paper from everyone is reached. Day 57 hook stays intact."
+45,46,s03-P45-motion,Return,0,,"Written formative notes, no added repair. Public rotation optional; paper from everyone is reached. Day 57 hook stays intact."
+46,47,s03-P46-features,Return,0,,"Written formative notes, no added repair. Public rotation optional; paper from everyone is reached. Day 57 hook stays intact."
+47,48,s03-P47-evidence,Return,0,,"Written formative notes, no added repair. Public rotation optional; paper from everyone is reached. Day 57 hook stays intact."
+49,50,s03-P49-criteria; s03-P49-tap-rule; s03-P49-proposals,Return,0,,"Written formative notes, no added repair. Public rotation optional; paper from everyone is reached. Day 57 hook stays intact."
+54,55,s03-P54-anchor s03-P54-sort,Collection,0,,"Written formative notes, no added repair. Public rotation optional; paper from everyone is reached. Day 57 hook stays intact."
+56,57,s03-P56-revision s03-P56-reflect s03-P56-A s03-P56-B s03-P56-C s03-P56-D s03-P56-E s03-P56-F,opening,0,,"Written formative notes, no added repair. Public rotation optional; paper from everyone is reached. Day 57 hook stays intact."
+48,49,s03-P48-encode; s03-P48-decode; s03-P48-voice,Return,0,,Return written component notes to every child. No added repair; shared-rule E repair already occupies five minutes.
+43,44,s03-P43-source; s03-P43-receiver; s03-P43-signal,Return and repair,0,,Written component notes only; no additional repair minutes.
+44,45,s03-P44-travel,Return and repair,0,,Written component notes only; no additional repair minutes.
+45,46,s03-P45-energy,Return and repair,0,,Written component notes only; no additional repair minutes.
+48,49,s03-P48-return; s03-P48-design,Return,0,,Written component notes returned to everyone; no additional repair slot.
+51,52,s03-P51-return,Return,0,,Written component feedback to everyone; no additional repair minutes.
+52,53,s03-P52-return,Return,0,,Written component feedback to everyone; no additional repair minutes.
+53,54,s03-P53-return,Return,0,,Written component feedback to everyone; no additional repair minutes.
+54,55,s03-P54-return,Collection,0,,Written component feedback to everyone; no additional repair minutes.
+57,58,s04-X57-model s04-X57-question,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+58,59,s04-X58,response,0,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+59,60,s04-X59-plan s04-X59-start,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+60,61,s04-X60-record s04-X60-cause,Compare controls,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+61,62,s04-X61,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+62,63,s04-X62-graph s04-X62-claim s04-XB62-process,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+63,64,s04-X63,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+64,65,s04-XB64-ice s04-XB64-wind s04-XB64-root s04-XB64-burrow s04-X64,Explain,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+65,66,s04-X65-distance s04-X65-cause s04-XB65-roots,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+66,67,s04-X66-model s04-X66-question,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+67,68,s04-X67,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+68,69,s04-X68,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+69,70,s04-X69,Return,5,,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+70,73,s04-X70,Targeted repair,5,H,"All papers returned with feedback, including children not heard. More than ten misses triggers named repair replacing rehearsal. Day 59 readiness response stays fixed."
+59,60,s04-P59-response s04-P59-plan s04-P59-baseline,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+60,61,s04-P60-measure,Compare controls,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+61,62,s04-P61-clay s04-P61-abrasion,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+65,70,s04-P65-retrieve s04-P65-measure,Feedback revision,7,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+66,70,s04-P66-revise s04-P66-records,Feedback revision,8,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+67,68,s04-P67-retrieve s04-P67-build s04-P67-cards,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+68,69,s04-P68-model s04-P68-photo,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+69,70,s04-P69-notes s04-P69-accounts,Return,0,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+71,73,s04-E1-measure s04-E1-cause s04-E1-ice s04-E1-wind s04-E1-animal s04-E1-rain,Revision,10,C,"Return all records with feedback; preserve originals. Assessment revisions never change original scores. Error C is routed here with its causal-comparison feedback, not to the independent day 72 assessment."
+72,73,s04-E2-order s04-E2-match s04-E2-deform s04-E2-cut s04-E2-limit,Revision,10,,Return all records with feedback; preserve originals. Assessment revisions never change original scores.
+71,75,s04-E1-measure original individual practical record,Investigation audit,0,,Retain unchanged for course check; no new turn or second unit score.
+57,58,s04-P57-notice s04-P57-initial s04-P57-slow s04-P57-questions,Return,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
+58,59,s04-P58-sort,response,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
+62,63,s04-P62-retrieve s04-P62-graph,Return,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
+63,64,s04-P63-paper,Return,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
+64,65,s04-P64-records,Explain,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
+70,73,s04-P70-consensus s04-P70-feedback,Targeted repair,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
+73,74,s04-P73-revision s04-P73-change s04-P73-fresh s04-P73-rock s04-P73-land s04-P73-layer s04-P73-history s04-P73-ruler,Launch,0,,All papers returned with written formative notes in this named part. Pages then stay in student folders; no added repair time or score.
+62,63,s04-P62-arrows,Return,0,,Return written feedback with other day 62 pages; retain original arrows.
+74,76,C-E74-band C-E74-float C-E74-create C-E74-compare C-E74-test C-E74-encode C-E74-decode C-E74-voice C-E74-question C-E74-predict,Revision,6,,Written component feedback read in Return feedback; revised evidence uses existing categories. No practical or portfolio rescore.
+75,76,C-E75-plan C-E75-measure C-E75-ice C-E75-move C-E75-life C-E75-history C-E75-match,Revision,7,,Written component feedback read in Return feedback; revised evidence uses existing categories. No practical or portfolio rescore.
+76,77,C-P76-wave C-P76-code C-P76-land C-P76-history C-P76-revise C-P76-fresh C-E76-record,opening,0,,Written formative return only; papers stay in folders. No repair minutes added to hook.
+76,78,C-R76-water,Water-location response,10,,"Five minutes state matching, five locations/key. Teach missing ideas as new; lower skill rows planned only. Land-water model is separate retrieval."
+81,82,s05-X81,Return,5,B,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+81,82,s05-X81,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+90,91,s05-X90,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+90,91,s05-X90,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+90,92,s05-E3-portfolio,Collection,0,,"Collect revised work day 90. First score after day 92, four points; no sitting time."
+77,78,"notice pages, question slips and strips",Water-location,0,,Written notes only in Water-location response; no extra repair block. All papers returned.
+78,79,"student pages, traces and land-water model",Return,0,,Written feedback returned in Return and repair; no extra minutes.
+79,80,student pages and row audits,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+80,81,student pages and tallies,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+81,82,student pages and evidence tags,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+82,83,source sort,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+83,84,source annotations,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+84,85,causal strips,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+85,86,unscored shaking log,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+86,87,preparation guides,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+87,88,small-flow log,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+88,89,larger-flow log,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+89,90,delivery/action record,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+90,91,hearing notes,Return,0,,"All thirty receive feedback or retained paper; six public turns optional, others use paper evidence."
+91,93,separate consensus notes,Read,0,,Return with E91; no combined map/design practice account.
+93,94,s05-D93,Cat,0,,"Brief written note, no readiness teaching; unfinished warning gaps recorded privately."
+93,95,s05-R93a,readiness,15,,One shared 15-minute Return and repair: readiness part responds to both records. Illumination and sensing notes stay distinct; no day 93 coaching.
+93,95,s05-R93b,readiness,0,,One shared 15-minute Return and repair: readiness part responds to both records. Illumination and sensing notes stay distinct; no day 93 coaching.
+93,94,revised assessment paper,Cat,0,,"Check marked components in day 93 Revision, return private unfinished-needs note; no new score."
+77,78,s05-X77-observe s05-X77-model,Clay,5,G,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
+78,79,s05-X78-land s05-X78-depth,Return,5,H,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
+79,80,s05-X79-table s05-X79-pattern,Return,5,A,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
+79,80,s05-X79-table s05-X79-pattern,Return,5,H,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
+80,81,s05-X80-table s05-X80-exception,Return,5,B,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
+80,81,s05-X80-table s05-X80-exception,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
+82,83,s05-X82-fit s05-X82-limit,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
+82,83,s05-X82-fit s05-X82-limit,Return,5,B,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return the one-item half slip and student-page Exit box together.
+83,84,s05-X83-harm s05-X83-criterion,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+83,84,s05-X83-harm s05-X83-criterion,Return,5,C,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+84,85,s05-X84-ideas s05-X84-limits,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+84,85,s05-X84-ideas s05-X84-limits,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+85,86,s05-X85-recommend s05-X85-challenge,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+85,86,s05-X85-recommend s05-X85-challenge,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+86,87,s05-X86-ideas s05-X86-control,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+86,87,s05-X86-ideas s05-X86-control,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+87,88,s05-X87-compare s05-X87-failure,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+88,89,s05-X88-revise s05-X88-improve,Return,5,D,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+88,89,s05-X88-revise s05-X88-improve,Return,5,E,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work. Return half slip and paper Exit box together.
+89,90,s05-X89-time; s05-X89-gap,Return,5,F,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+89,90,s05-X89-time; s05-X89-gap,Return,5,I,Return all tickets privately; two five-minute moves maximum per child. Other gaps confer during work.
+91,93,s05-X91-map; s05-X91-design,Read,0,,Private diagnostic note with assessment feedback; no day 92 repair.
+88,90,s05-P88-compare s05-P88-improve,Portfolio,15,,"Written feedback after day 88, two minutes per child; second-color revision, no score."
+92,93,s05-E1-table; s05-E1-account,Read,0,,Private return in five-minute Read feedback; then Targeted repair 10 and Revision 15. Retain first score.
+90,91,s05-X89-time; s05-X89-gap unresolved I,Return,0,I,"Use the same second five-minute move already reserved for unresolved F. Choose F or I per child, never add a third move."
+92,93,s05-E2,Read,0,,Private return during Read feedback; share that five-minute part with the other assessment papers. Then Targeted repair 10 and Revision 15. Retain first score.
+92,93,s05-E3-portfolio,Read,0,,Private return during Read feedback; share that five-minute part with the other assessment papers. Then Targeted repair 10 and Revision 15. Retain first score.
+77,78,s05-P77-1 s05-P77-2 s05-P77-3 s05-P77-4,Water-location response,0,,"Return student written task with feedback, no extra repair minutes. For point-only practice, feedback is immediate; preserve the paper record. Conditional V rows apply only if used."
+78,79,s05-P78-1 s05-P78-2 s05-P78-3 s05-P78-4 s05-P78-5,Return,0,,"Return student written task with feedback, no extra repair minutes. For point-only practice, feedback is immediate; preserve the paper record. Conditional V rows apply only if used."
+79,80,s05-P79-1 s05-P79-2 s05-P79-3 s05-P79-4,Return,0,,"Return student written task with feedback, no extra repair minutes. For point-only practice, feedback is immediate; preserve the paper record. Conditional V rows apply only if used."
+80,81,s05-P80-1 s05-P80-2 s05-P80-3 s05-P80-4 s05-P80-5,Return,0,,"Return student written task with feedback, no extra repair minutes. For point-only practice, feedback is immediate; preserve the paper record. Conditional V rows apply only if used."
+81,82,s05-P81-1 s05-P81-2 s05-P81-3 s05-P81-4 s05-P81-5,Return,0,,"Return student written task with feedback, no extra repair minutes. For point-only practice, feedback is immediate; preserve the paper record. Conditional V rows apply only if used."
+82,83,s05-P82-1 s05-P82-2 s05-P82-3 s05-P82-4 s05-P82-5 s05-P82-6 s05-P82-7,Return,0,,"Return student written task with feedback, no extra repair minutes. For point-only practice, feedback is immediate; preserve the paper record. Conditional V rows apply only if used."
+77,78,s05-X77-model,Clay,0,,Return the paper Exit box with written feedback alongside the half slip; existing repair minutes are unchanged. Initial model day 77 remains unscored.
+78,79,s05-X78-depth,Return,0,,Return the paper Exit box with written feedback alongside the half slip; existing repair minutes are unchanged. Initial model day 77 remains unscored.
+79,80,s05-X79-pattern,Return,0,,Return the paper Exit box with written feedback alongside the half slip; existing repair minutes are unchanged. Initial model day 77 remains unscored.
+80,81,s05-X80-exception,Return,0,,Return the paper Exit box with written feedback alongside the half slip; existing repair minutes are unchanged. Initial model day 77 remains unscored.
+82,83,s05-X82-limit,Return,0,,Return the paper Exit box with written feedback alongside the half slip; existing repair minutes are unchanged. Initial model day 77 remains unscored.
+83,84,s05-P83-1 s05-P83-2 s05-P83-3 s05-P83-4 s05-P83-5,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
+84,85,s05-P84-1 s05-P84-2 s05-P84-3 s05-P84-4 s05-P84-5 s05-P84-6,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
+85,86,s05-P85-1 s05-P85-2 s05-P85-3 s05-P85-4,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
+86,87,s05-P86-1 s05-P86-2 s05-P86-3 s05-P86-4 s05-P86-5,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
+87,88,s05-P87-1 s05-P87-2 s05-P87-3 s05-P87-4,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
+88,89,s05-P88-1 s05-P88-2 s05-P88-3,Return,0,,Return student written task with descriptive notes alongside logs/strips. Point-only work gets immediate feedback; no additional repair minutes.
+89,90,student written task,Return,0,,"Return timing labels, source labels, delivery/action record and covered Exit box with notes. No extra repair minutes."
+90,91,student written task,Return,0,,"Return repair labels, portfolio revision feedback note and hearing notes. Portfolio stays with teacher for first score after day 92."
+91,93,student written task,Read,0,,"Return repair labels, evidence tags, separate consensus notes and covered Exit box. E91 diagnostic repair joins assessment response, never day 92."
+93,94,student written task,Cat,0,,"Return repair record, revision note and D93 with private feedback. No unit 5 reteaching during the cat anchor; unresolved needs stay in handoff."
+91,93,s05-P91-repair s05-P91-tags s05-P91-protect,Read,0,,Return all day 91 written tasks with separate consensus notes in Read feedback; no day 92 repairs.
+94,95,s06-X94 s06-X94-model,Return,0,A,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+94,95,s06-X94-model s06-P94 s06-P94-parts s06-P94-materials s06-P94-sort s06-P94-link,Return,0,,"Return every listed written task and individual note, including Exit boxes and records from children not heard. Feedback shares the named repair time."
+95,96,s06-X95,Return,5,A,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+95,96,s06-P95 s06-P95-ready s06-P95-labels s06-P95-change,Return,0,,"Return every listed written task and individual note, including Exit boxes and records from children not heard. Feedback shares the named repair time."
+96,97,s06-X96,Return,5,A,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+96,97,s06-X96,Return,5,I,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+96,97,s06-P96 s06-P96-repair s06-P96-input s06-P96-predict,Return,0,,"Return every listed written task and individual note, including Exit boxes and records from children not heard. Feedback shares the named repair time."
+97,98,s06-X97 s06-X97-dark,Return,5,B,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+97,98,s06-X97 s06-X97-dark,Return,5,C,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+97,98,s06-P97 s06-X97-dark s06-P97-repair s06-P97-flash s06-P97-link,Return,0,,"Return every listed written task and individual note, including Exit boxes and records from children not heard. Feedback shares the named repair time."
+98,99,s06-X98,Return,5,A,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+98,99,s06-X98,Return,5,B,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+98,99,s06-P98 s06-P98-repair s06-P98-talk s06-P98-handoff,Return,0,,"Return every listed written task and individual note, including Exit boxes and records from children not heard. Feedback shares the named repair time."
+99,100,s06-X99,Return,5,D,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+99,100,s06-P99 s06-P99-repair s06-K99-retrieval s06-K99-link; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+100,101,s06-X100,Return,5,D,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+100,101,s06-P100 s06-P100-repair s06-P100-order; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+101,102,s06-X101,Return,5,D,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+101,102,s06-X101,Return,5,E,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+101,102,s06-P101 s06-P101-repair s06-P101-meaning s06-P101-compare; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+102,103,s06-X102,Return,5,D,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+102,103,s06-X102,Return,5,E,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+102,103,s06-P102 s06-P102-repair s06-P102-source; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+103,104,s06-X103 s06-X103-test,Return,5,D,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+103,104,s06-X103 s06-X103-test,Return,5,E,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+103,104,s06-P103 s06-P103-repair s06-P103-meaning s06-P103-limit; individual notes s06-X103-test,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+104,105,s06-X104 s06-X104-question,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+104,105,s06-P104  individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+105,106,s06-X105,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+105,106,s06-X105,Return,5,H,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+105,106,s06-P105  individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+106,107,s06-X106,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+106,107,s06-X106,Return,5,H,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+106,107,s06-P106  individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+107,108,s06-X107,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+107,108,s06-X107,Return,5,H,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+107,108,s06-P107  individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+108,109,s06-X108,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+108,109,s06-X108,Return,5,G,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+108,109,s06-P108  individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+109,110,s06-X109,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+109,110,s06-X109,Return,5,G,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+109,110,s06-P109 s06-P109-inside s06-P109-flower s06-P109-route s06-P109-young; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+110,111,s06-X110,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+110,111,s06-X110,Return,5,G,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+110,111,s06-X110,Return,5,H,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+110,111,s06-P110 s06-P110-inside s06-P110-flower s06-K110 s06-P110-talk; individual notes s06-K110 evidence-location note,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+111,112,s06-X111,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+111,112,s06-X111,Return,5,H,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+111,112,s06-P111 s06-P111-inside s06-P111-flower s06-P111-roots s06-P111-talk s06-P111-coverage; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+112,113,s06-P112-roots,Return,5,H,"Recurring missing-root provenance error in practice, not the new rooted-seedling exit. Use its already reserved five-minute repair."
+112,113,s06-X112 s06-X112-animal,Return,5,F,Return all papers; repair this letter in shared slot. Missing functions get descriptive feedback.
+112,113,s06-P112 s06-P112-inside s06-P112-roots s06-P112-audit s06-P112-question; individual notes,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+113,114,s06-X113 s06-X113-response s06-P113-plant,Return,10,,"Two common letters, five each; others use contrasts in Evidence retrieval."
+113,114,s06-P113 s06-P113-roots s06-P113-inside s06-P113-question,Return,0,,"Return every child's paper, including those not heard in rotating-six talk; feedback shares repair time."
+93,96,s05-R93a s05-R93b follow-up,Return,5,D,"Receiving/response recheck after seeing repair, not new readiness."
+115,117,s06-E1-model s06-E1-predict s06-E1-test s06-E2-model s06-E2-predict s06-E2-test,Return,2,,"Hold all feedback until 117, none on 116."
+116,117,s06-E3 s06-E4,Return,3,,Both assessment days share five-minute feedback; retain original marks.
+104,105,s06-X104  s06-P104-repair s06-P104-memory s06-P104-cycle s06-P104-jobs s06-P104-label,Return,0,,"Return all individual work, including children not heard. Feedback shares the scheduled repair slot."
+105,106,s06-P105-repair s06-P105-reason s06-P105-evidence s06-P105-limit,Return,0,,"Return all individual work, including children not heard. Feedback shares the scheduled repair slot."
+106,107,s06-P106-inside s06-P106-roots s06-P106-reason s06-P106-say,Return,0,,"Return all individual work, including children not heard. Feedback shares the scheduled repair slot."
+107,108,s06-P107-inside s06-P107-roots s06-P107-link  dated observation tables and individual source tags,Return,0,,"Return all individual work, including children not heard. Feedback shares the scheduled repair slot."
+108,109,s06-P108-inside s06-P108-roots s06-P108-fruit  individual diagram labels and sequence papers,Return,0,,"Return all individual work, including children not heard. Feedback shares the scheduled repair slot."
+118,120,C-E118-table C-E118-audit C-E118-limit C-E118-add C-E118-compare C-E118-harm C-E118-model C-E118-predict C-E118-test,Return feedback,2,,Return once with feedback. Keep initial evidence separate from revisions.
+119,120,C-E119-select C-E119-predict C-E119-test C-E119-plant C-E119-animal,Return feedback,3,,Return once with feedback. Keep initial evidence separate from revisions.
+120,120,C-X120,Handoff,0,,Private feedback in the existing final-day Handoff; no later course day exists.

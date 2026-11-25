@@ -1,0 +1,824 @@
+  FAIL section 1.1 (social-studies-grade-5-u01-1) is not in data/units.csv
+  FAIL section 1.2 (social-studies-grade-5-u01-2) is not in data/units.csv
+  FAIL section 1.3 (social-studies-grade-5-u01-3) is not in data/units.csv
+  FAIL section 1.4 (social-studies-grade-5-u01-4) is not in data/units.csv
+  FAIL day 14: no exit question in items.csv
+  FAIL section 2.1 (social-studies-grade-5-u02-1) is not in data/units.csv
+  FAIL section 2.2 (social-studies-grade-5-u02-2) is not in data/units.csv
+  FAIL section 2.3 (social-studies-grade-5-u02-3) is not in data/units.csv
+  FAIL section 2.4 (social-studies-grade-5-u02-4) is not in data/units.csv
+  FAIL day 26: no exit question in items.csv
+  FAIL section 3.1 (social-studies-grade-5-u03-1) is not in data/units.csv
+  FAIL section 3.2 (social-studies-grade-5-u03-2) is not in data/units.csv
+  FAIL section 3.3 (social-studies-grade-5-u03-3) is not in data/units.csv
+  FAIL section 3.4 (social-studies-grade-5-u03-4) is not in data/units.csv
+  FAIL section 3.5 (social-studies-grade-5-u03-5) is not in data/units.csv
+  FAIL day 42: opening 38 + tool  minutes is more than the 30 minute lesson
+  FAIL day 43: no exit question in items.csv
+  FAIL section 4.1 (social-studies-grade-5-u04-1) is not in data/units.csv
+  FAIL section 4.2 (social-studies-grade-5-u04-2) is not in data/units.csv
+  FAIL section 4.3 (social-studies-grade-5-u04-3) is not in data/units.csv
+  FAIL section 4.4 (social-studies-grade-5-u04-4) is not in data/units.csv
+  FAIL day 52: opening 32 + tool  minutes is more than the 30 minute lesson
+  FAIL day 53: opening 32 + tool  minutes is more than the 30 minute lesson
+  FAIL day 54: opening 32 + tool  minutes is more than the 30 minute lesson
+  FAIL day 55: opening 32 + tool  minutes is more than the 30 minute lesson
+  FAIL day 56: opening 32 + tool  minutes is more than the 30 minute lesson
+  FAIL day 58: opening 40 + tool  minutes is more than the 30 minute lesson
+  FAIL day 59: opening 40 + tool  minutes is more than the 30 minute lesson
+  FAIL day 59: no exit question in items.csv
+  FAIL day 3: shows names s01-X3b, which is neither an exit of day 3 nor an end-of-unit item of unit 1
+  FAIL day 6: shows names s01-X6b, which is neither an exit of day 6 nor an end-of-unit item of unit 1
+  FAIL day 6: shows names s01-X6b, which is neither an exit of day 6 nor an end-of-unit item of unit 1
+  FAIL day 14: shows names s01-R14a, which is neither an exit of day 14 nor an end-of-unit item of unit 1
+  FAIL day 14: shows names s01-R14b, which is neither an exit of day 14 nor an end-of-unit item of unit 1
+  FAIL day 14: shows names s01-R14c, which is neither an exit of day 14 nor an end-of-unit item of unit 1
+  FAIL day 14: shows names s01-R14d, which is neither an exit of day 14 nor an end-of-unit item of unit 1
+  FAIL day 14: shows names s01-R14e, which is neither an exit of day 14 nor an end-of-unit item of unit 1
+  FAIL day 14: shows names s01-R14f, which is neither an exit of day 14 nor an end-of-unit item of unit 1
+  FAIL day 14: shows names s01-R14g, which is neither an exit of day 14 nor an end-of-unit item of unit 1
+  FAIL day 14: shows names s01-R14h, which is neither an exit of day 14 nor an end-of-unit item of unit 1
+  FAIL day 14: shows names s01-R14i, which is neither an exit of day 14 nor an end-of-unit item of unit 1
+  FAIL day 14: shows names s02-R1a, which is neither an exit of day 14 nor an end-of-unit item of unit 1
+  FAIL day 14: shows names s02-R1b, which is neither an exit of day 14 nor an end-of-unit item of unit 1
+  FAIL day 14: shows names s02-R2, which is neither an exit of day 14 nor an end-of-unit item of unit 1
+  FAIL materials.csv row 32 (unit 2 readiness master): day 14 is listed, but its materials, print line and Before class never name it
+courses/social-studies-grade-5/u01-1/d001.md: teacher 536 words, student 211 words (119 frame, 92 questions), 40 min, 2 side(s), at home 83 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u01-1/d002.md: teacher 506 words, student 186 words (140 frame, 46 questions), 40 min, 2 side(s), at home 93 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u01-1/d003.md: teacher 523 words, student 201 words (125 frame, 76 questions), 40 min, 2 side(s), at home 97 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u01-2/d004.md: teacher 488 words, student 146 words (100 frame, 46 questions), 40 min, 2 side(s), at home 91 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u01-2/d005.md: teacher 514 words, student 180 words (125 frame, 55 questions), 40 min, 2 side(s), at home 88 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u01-2/d006.md: teacher 526 words, student 201 words (120 frame, 81 questions), 40 min, 2 side(s), at home 90 words, 35 min, 5 failure(s)
+  FAIL courses/social-studies-grade-5/u01-2/d006.md: the written task s01-P6 is judged but day 7 never hands it back (handbacks.csv)
+  FAIL courses/social-studies-grade-5/u01-2/d006.md: the written task s01-R6-1 is judged but day 7 never hands it back (handbacks.csv)
+  FAIL courses/social-studies-grade-5/u01-2/d006.md: the written task s01-R6-2 is judged but day 7 never hands it back (handbacks.csv)
+  FAIL courses/social-studies-grade-5/u01-2/d006.md: the written task s01-P6-2 is judged but day 7 never hands it back (handbacks.csv)
+  FAIL courses/social-studies-grade-5/u01-2/d006.md: the written task s01-X6b is judged but day 7 never hands it back (handbacks.csv)
+courses/social-studies-grade-5/u01-3/d007.md: teacher 550 words, student 268 words (173 frame, 95 questions), 40 min, 2 side(s), at home 101 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u01-3/d008.md: teacher 534 words, student 190 words (119 frame, 71 questions), 40 min, 2 side(s), at home 94 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u01-3/d009.md: teacher 562 words, student 205 words (159 frame, 46 questions), 40 min, 2 side(s), at home 96 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u01-4/d010.md: teacher 530 words, student 173 words (106 frame, 67 questions), 40 min, 2 side(s), at home 88 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u01-4/d011.md: teacher 561 words, student 250 words (180 frame, 70 questions), 40 min, 2 side(s), at home 103 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u01-4/d012.md: teacher 522 words, student 223 words (164 frame, 59 questions), 40 min, 2 side(s), at home 88 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u01-4/d013.md: teacher 422 words, student 175 words (45 frame, 130 questions), 40 min, 2 side(s), at home 81 words, 45 min, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u01-4/d013.md: end items can show error(s) A, B, D, E, F, G, H, I, J, K, L, M, N, O, P, but the respond part names no group for them
+courses/social-studies-grade-5/u01-4/d014.md: teacher 565 words, student 142 words (96 frame, 46 questions), 40 min, 2 side(s), at home 94 words, 40 min, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u01-4/d014.md: the last At home part is "Readiness"; on a teaching day it is the exit ticket
+courses/social-studies-grade-5/u02-1/d015.md: teacher 506 words, student 178 words (98 frame, 80 questions), 40 min, 2 side(s), at home 90 words, 40 min, 0 failure(s)
+courses/social-studies-grade-5/u02-1/d016.md: teacher 549 words, student 215 words (117 frame, 98 questions), 40 min, 2 side(s), at home 86 words, 40 min, 0 failure(s)
+courses/social-studies-grade-5/u02-1/d017.md: teacher 520 words, student 149 words (90 frame, 59 questions), 40 min, 2 side(s), at home 85 words, 40 min, 0 failure(s)
+courses/social-studies-grade-5/u02-2/d018.md: teacher 537 words, student 198 words (114 frame, 84 questions), 40 min, 2 side(s), at home 93 words, 40 min, 0 failure(s)
+courses/social-studies-grade-5/u02-2/d019.md: teacher 557 words, student 179 words (86 frame, 93 questions), 40 min, 2 side(s), at home 91 words, 40 min, 0 failure(s)
+courses/social-studies-grade-5/u02-2/d020.md: teacher 564 words, student 171 words (91 frame, 80 questions), 40 min, 2 side(s), at home 95 words, 40 min, 0 failure(s)
+courses/social-studies-grade-5/u02-3/d021.md: teacher 465 words, student 95 words (43 frame, 52 questions), 40 min, 1 side(s), at home 79 words, 40 min, 0 failure(s)
+courses/social-studies-grade-5/u02-3/d022.md: teacher 492 words, student 142 words (84 frame, 58 questions), 40 min, 2 side(s), at home 81 words, 40 min, 0 failure(s)
+courses/social-studies-grade-5/u02-3/d023.md: teacher 481 words, student 179 words (87 frame, 92 questions), 40 min, 2 side(s), at home 86 words, 40 min, 0 failure(s)
+courses/social-studies-grade-5/u02-4/d024.md: teacher 508 words, student 111 words (84 frame, 27 questions), 40 min, 3 side(s) FAIL: more than two, at home 90 words, 40 min, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u02-4/d024.md: the student page prints to more than two sides
+courses/social-studies-grade-5/u02-4/d025.md: teacher 257 words, student 286 words (117 frame, 169 questions), 40 min, 2 side(s), at home 85 words, 45 min, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u02-4/d025.md: end items can show error(s) B, C, D, E, F, G, H, I, J, K, M, N, O, P, Q, R, S, but the respond part names no group for them
+  NOTE courses/social-studies-grade-5/u02-4/d025.md: the section plan's day 25 block names 350, 600, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-5/u02-4/d026.md: teacher 473 words, student 57 words (57 frame, 0 questions), 40 min, 2 side(s), at home 91 words, 40 min, 10 failure(s)
+  FAIL courses/social-studies-grade-5/u02-4/d026.md: the written task s02-R26a is judged but day 27 never hands it back (handbacks.csv)
+  FAIL courses/social-studies-grade-5/u02-4/d026.md: the written task s02-R26b is judged but day 27 never hands it back (handbacks.csv)
+  FAIL courses/social-studies-grade-5/u02-4/d026.md: the written task s02-R26c is judged but day 27 never hands it back (handbacks.csv)
+  FAIL courses/social-studies-grade-5/u02-4/d026.md: the written task s02-R26d is judged but day 27 never hands it back (handbacks.csv)
+  FAIL courses/social-studies-grade-5/u02-4/d026.md: the written task s02-R26e is judged but day 27 never hands it back (handbacks.csv)
+  FAIL courses/social-studies-grade-5/u02-4/d026.md: the written task s02-R26f is judged but day 27 never hands it back (handbacks.csv)
+  FAIL courses/social-studies-grade-5/u02-4/d026.md: the written task s02-R26g is judged but day 27 never hands it back (handbacks.csv)
+  FAIL courses/social-studies-grade-5/u02-4/d026.md: the written task s02-R26h is judged but day 27 never hands it back (handbacks.csv)
+  FAIL courses/social-studies-grade-5/u02-4/d026.md: the written task s02-R26i is judged but day 27 never hands it back (handbacks.csv)
+  FAIL courses/social-studies-grade-5/u02-4/d026.md: the last At home part is "Handoff"; on a teaching day it is the exit ticket
+courses/social-studies-grade-5/u03-1/d027.md: teacher 526 words, student 155 words (115 frame, 40 questions), 40 min, 2 side(s), at home 91 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u03-1/d028.md: teacher 528 words, student 210 words (192 frame, 18 questions), 40 min, 2 side(s), at home 92 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u03-1/d029.md: teacher 496 words, student 158 words (133 frame, 25 questions), 40 min, 2 side(s), at home 93 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u03-2/d030.md: teacher 501 words, student 190 words (142 frame, 48 questions), 40 min, 2 side(s), at home 90 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u03-2/d031.md: teacher 526 words, student 89 words (77 frame, 12 questions), 40 min, 1 side(s), at home 86 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u03-2/d032.md: teacher 511 words, student 134 words (114 frame, 20 questions), 40 min, 2 side(s), at home 90 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u03-3/d033.md: teacher 468 words, student 160 words (135 frame, 25 questions), 40 min, 2 side(s), at home 83 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u03-3/d034.md: teacher 523 words, student 175 words (145 frame, 30 questions), 40 min, 2 side(s), at home 84 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u03-3/d035.md: teacher 520 words, student 160 words (139 frame, 21 questions), 40 min, 2 side(s), at home 88 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u03-4/d036.md: teacher 516 words, student 130 words (115 frame, 15 questions), 40 min, 2 side(s), at home 83 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u03-4/d037.md: teacher 504 words, student 173 words (152 frame, 21 questions), 40 min, 2 side(s), at home 90 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u03-4/d038.md: teacher 587 words, student 194 words (171 frame, 23 questions), 40 min, 2 side(s), at home 89 words, 35 min, 0 failure(s)
+courses/social-studies-grade-5/u03-5/d039.md: teacher 448 words, student 188 words (144 frame, 44 questions), 40 min, 2 side(s), at home 72 words, 40 min, 0 failure(s)
+courses/social-studies-grade-5/u03-5/d040.md: teacher 486 words, student 147 words (132 frame, 15 questions), 40 min, 2 side(s), at home 69 words, 40 min, 0 failure(s)
+courses/social-studies-grade-5/u03-5/d041.md: teacher 478 words, student 143 words (116 frame, 27 questions), 40 min, 2 side(s), at home 81 words, 40 min, 0 failure(s)
+courses/social-studies-grade-5/u03-5/d042.md: teacher 463 words, student 271 words (155 frame, 116 questions), 40 min, 2 side(s), at home 76 words, 40 min, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u03-5/d042.md: end items can show error(s) A, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, but the respond part names no group for them
+courses/social-studies-grade-5/u03-5/d043.md: teacher 556 words, student 66 words (43 frame, 23 questions), 40 min, 2 side(s), at home 85 words, 40 min, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-5/d043.md: the last At home part is "Next readiness"; on a teaching day it is the exit ticket
+courses/social-studies-grade-5/u04-1/d044.md: teacher 504 words, student 127 words (84 frame, 43 questions), 40 min, 2 side(s), at home 85 words, 36 min, 0 failure(s)
+courses/social-studies-grade-5/u04-1/d045.md: teacher 486 words, student 148 words (85 frame, 63 questions), 40 min, 2 side(s), at home 84 words, 38 min, 0 failure(s)
+courses/social-studies-grade-5/u04-1/d046.md: teacher 509 words, student 157 words (140 frame, 17 questions), 40 min, 2 side(s), at home 88 words, 38 min, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-1/d046.md: the section plan's day 46 block names 1776, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/social-studies-grade-5/u04-2/d047.md: teacher 479 words, student 134 words (118 frame, 16 questions), 40 min, 2 side(s), at home 89 words, 38 min, 0 failure(s)
+courses/social-studies-grade-5/u04-2/d048.md: teacher 486 words, student 118 words (104 frame, 14 questions), 40 min, 2 side(s), at home 92 words, 38 min, 0 failure(s)
+courses/social-studies-grade-5/u04-2/d049.md: teacher 472 words, student 126 words (106 frame, 20 questions), 40 min, 2 side(s), at home 86 words, 38 min, 0 failure(s)
+courses/social-studies-grade-5/u04-2/d050.md: teacher 539 words, student 238 words (202 frame, 36 questions), 40 min, 2 side(s), at home 99 words, 38 min, 0 failure(s)
+courses/social-studies-grade-5/u04-2/d051.md: teacher 446 words, student 121 words (110 frame, 11 questions), 40 min, 2 side(s), at home 83 words, 38 min, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-1/exits.md: blank, 110 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-1/family.md: family, 239 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-1/key-exits.md: story, 171 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-1/opener.md: opener, 480 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-1/record.md: record, 293 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-1/source-log.md: blank, 47 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-1/sources-1.md: blank, 132 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-1/sources-2.md: blank, 122 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-1/sources-3.md: blank, 90 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-1/timeline.md: blank, 65 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-1/topic-cards.md: blank, 43 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-2/exits.md: blank, 104 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-2/key-exits.md: story, 141 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-2/opener.md: opener, 482 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-2/sources-4.md: blank, 89 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-2/sources-5.md: blank, 106 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-2/sources-6.md: blank, 96 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-3/exits.md: blank, 107 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-3/key-exits.md: story, 160 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-3/opener.md: opener, 485 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-3/research-notes.md: blank, 35 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-3/sources-7.md: blank, 110 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-3/sources-8.md: blank, 78 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-3/sources-9.md: blank, 64 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/assessment-sources.md: blank, 139 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/assessment.md: blank, 160 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/claim-components.md: blank, 47 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/exit-box-10.md: blank, 59 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/exits.md: blank, 158 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/key-assessment.md: story, 800 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/key-exits.md: story, 219 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/key-maps.md: story, 114 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/key-readiness-next.md: story, 144 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/key-retries.md: story, 451 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/map-display.md: blank, 52 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/opener.md: opener, 876 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/readiness-next.md: blank, 98 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/retries.md: blank, 182 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/sources-10.md: blank, 133 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/sources-11.md: blank, 120 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u01-4/sources-12.md: blank, 117 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-1/exit-15.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-1/exit-16.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-1/exit-17.md: blank, 26 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-1/family.md: family, 217 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-1/fresh-checks.md: blank, 18 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-1/key-u2.md: story, 3794 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-1/law-slips-16.md: blank, 98 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-1/network-17.md: blank, 121 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-1/opener.md: opener, 394 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-1/readiness.md: check, 76 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-1/record.md: record, 610 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-1/route-harbor-16.md: blank, 103 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-1/source-noticing-15.md: blank, 75 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-2/action-cards-20.md: blank, 98 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-2/exit-18.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-2/exit-19.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-2/exit-20.md: blank, 36 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-2/fresh-checks.md: blank, 18 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-2/opener.md: opener, 452 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-2/rights-fragments-19.md: blank, 155 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-2/scope-cards-18.md: blank, 150 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-3/change-slips-23.md: blank, 98 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-3/exit-21.md: blank, 9 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-3/exit-22.md: blank, 17 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-3/exit-23.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-3/fresh-checks.md: blank, 18 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-3/hiring-slips-21.md: blank, 97 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-3/opener.md: opener, 422 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-3/procedure-slips-22.md: blank, 126 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-4/assessment-25.md: blank, 61 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-4/assessment-sources-25.md: blank, 134 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-4/claim-display-24.md: blank, 85 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-4/context-25.md: opener, 349 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-4/exit-24.md: blank, 34 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-4/fresh-checks.md: blank, 18 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-4/opener.md: opener, 487 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u02-4/repair-cues-26.md: opener, 173 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-1/cause-chain.md: sheet, 89 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-1/cause-chain.md: preset "" is not a row of data/closet/worksheets/generated.csv
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-1/exit-masters.md: assessment, 183 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-1/exit-masters.md: piece "assessment" is not one of opener, record, check, facts, family, sheet, blank, story
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-1/family.md: family, 232 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-1/family.md: no "## Spanish" section
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-1/fresh-slips.md: sheet, 67 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-1/fresh-slips.md: preset "" is not a row of data/closet/worksheets/generated.csv
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-1/key-u3.md: teacher, 9656 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-1/key-u3.md: piece "teacher" is not one of opener, record, check, facts, family, sheet, blank, story
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-1/nation-notes.md: sheet, 101 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-1/nation-notes.md: preset "" is not a row of data/closet/worksheets/generated.csv
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-1/opener.md: opener, 365 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-1/question-board.md: sheet, 115 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-1/question-board.md: preset "" is not a row of data/closet/worksheets/generated.csv
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-1/record.md: record, 117 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-1/repair-guide.md: teacher, 134 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-1/repair-guide.md: piece "teacher" is not one of opener, record, check, facts, family, sheet, blank, story
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-2/action-cards.md: sheet, 111 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-2/action-cards.md: preset "" is not a row of data/closet/worksheets/generated.csv
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-2/exit-masters.md: assessment, 224 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-2/exit-masters.md: piece "assessment" is not one of opener, record, check, facts, family, sheet, blank, story
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-2/fresh-slips.md: sheet, 62 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-2/fresh-slips.md: preset "" is not a row of data/closet/worksheets/generated.csv
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-2/key-u3.md: teacher, 17 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-2/key-u3.md: piece "teacher" is not one of opener, record, check, facts, family, sheet, blank, story
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-2/opener.md: opener, 362 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-2/policy-cards.md: sheet, 110 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-2/policy-cards.md: preset "" is not a row of data/closet/worksheets/generated.csv
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-2/power-notes.md: sheet, 111 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-2/power-notes.md: preset "" is not a row of data/closet/worksheets/generated.csv
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-2/record.md: record, 110 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-2/repair-guide.md: teacher, 135 words, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-2/repair-guide.md: piece "teacher" is not one of opener, record, check, facts, family, sheet, blank, story
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-3/component-records.md: blank, 89 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-3/evidence-display.md: blank, 78 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-3/exit-masters.md: opener, 216 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-3/fresh-slips.md: blank, 67 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-3/key-u3.md: opener, 17 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-3/opener.md: opener, 384 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-3/portrayal-notes.md: blank, 117 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-3/record.md: record, 107 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-3/repair-guide.md: opener, 129 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-4/action-inventory.md: blank, 137 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-4/exit-masters.md: opener, 208 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-4/fresh-slips.md: blank, 70 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-4/key-u3.md: opener, 17 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-4/opener.md: opener, 376 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-4/record.md: record, 103 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-4/repair-guide.md: opener, 137 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-4/resistance-strips.md: blank, 113 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-4/route-record.md: blank, 99 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-5/closing-display.md: blank, 68 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-5/end-assessment.md: check, 327 words, student page 3 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u03-5/end-assessment.md: the student page prints to more than two sides
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-5/evidence-sort.md: blank, 101 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-5/exit-masters.md: check, 265 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-5/fresh-slips.md: check, 111 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-5/key-u3.md: opener, 17 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-5/map-access.md: opener, 191 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-5/navigation-notes.md: blank, 115 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-5/opener.md: opener, 476 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-5/priority-retries.md: check, 245 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-5/readiness.md: check, 71 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-5/record.md: record, 291 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u03-5/repair-guide.md: opener, 133 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/family.md: family, 255 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/finance-practice.md: blank, 78 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/held-exits.md: blank, 128 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/opener.md: opener, 551 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/parallel-evidence.md: blank, 48 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/practice-44.md: blank, 22 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/practice-45.md: blank, 20 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/practice-46.md: blank, 21 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/readiness.md: blank, 71 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/record.md: blank, 166 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/recording.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/teacher-key.md: blank, 6904 words, student page 32 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/social-studies-grade-5/u04-1/teacher-key.md: the student page prints to more than two sides
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/teaching-sources.md: blank, 165 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-1/timeline.md: blank, 39 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-2/held-exits.md: blank, 281 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-2/opener.md: opener, 557 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-2/practice-47.md: blank, 22 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-2/practice-48.md: blank, 19 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-2/practice-49.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-2/practice-50.md: blank, 22 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-2/practice-51.md: blank, 24 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-2/recording.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-2/teaching-sources.md: blank, 393 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-3/exit-box-54.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-3/held-exits.md: blank, 261 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-3/opener.md: opener, 563 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-3/practice-52.md: blank, 21 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-3/practice-53.md: blank, 21 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-3/practice-54.md: blank, 22 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-3/practice-55.md: blank, 23 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-3/recheck-54.md: blank, 27 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-3/recording.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-3/teaching-sources.md: blank, 345 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-4/assessment-directions.md: blank, 189 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-4/assessment.md: blank, 335 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-4/held-exits.md: blank, 170 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-4/next-readiness.md: blank, 36 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-4/opener.md: opener, 551 words, 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-4/practice-56.md: blank, 24 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-4/practice-57.md: blank, 24 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-4/recording.md: blank, 53 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-4/retry.md: blank, 153 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+courses/social-studies-grade-5/u04-4/teaching-sources.md: blank, 100 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: Tomorrow sends work to day 52, which is not written yet; its writer must pick it up
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the written task s04-P51 is judged but day 52 is not written yet; its writer must hand back s04-P51
+  NOTE courses/social-studies-grade-5/u04-2/d051.md: the exit ticket s04-X51 goes back, but day 52 is not written yet; its writer must hand back s04-X51
+lesson_course: 63 failure(s) in 51 day(s), 18 in day files

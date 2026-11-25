@@ -1,0 +1,739 @@
+item_id,shown,compute,value,error,note
+s01-P1,The next mark stays at C.,,,x,Error x: The next mark stays at C.
+s01-K1,My guess proves every result.,,,I,Error I: My guess proves every result.
+s01-Pq1,I observed what tomorrow will do.,,,I,Error I: I observed what tomorrow will do.
+s01-X1,My guess proves every future result.,,,I,Error I: My guess proves every future result.
+s01-P2,Observed; the child said it.,,,I,Error I: Observed; the child said it.
+s01-K2,Changing both makes it fairer.,,,G,Error G: Changing both makes it fairer.
+s01-Pr2,Different cups prove speed matters.,,,G,Error G: Different cups prove speed matters.
+s01-X2,Use a different lid for each speed.,,,G,Error G: Use a different lid for each speed.
+s01-P3,Keep changing cups.,,,G,Error G: Keep changing cups.
+s01-K3,The pencil travels 7 centimeters.,,,H,Error H: The pencil travels 7 centimeters.
+s01-Pp3,The axis measures energy in centimeters.,,,B,Error B: The axis measures energy in centimeters.
+s01-Pr3,Erase the awkward result and invent a matching one.,,,x,Error x: Erase the awkward result and invent a matching one.
+s01-X3,First travel is 15 centimeters.,,,H,Error H: First travel is 15 centimeters.
+s01-X3,The axis shows energy in centimeters.,,,B,Error B: distance unit confused with energy.
+s01-P4,The endpoint 7 is the travel.,,,H,Error H: The endpoint 7 is the travel.
+s01-P4,Centimeters measure energy.,,,B,Error B: distance is not an energy quantity.
+s01-Pr4,The cup moved centimeters of energy.,,,B,Error B: The cup moved centimeters of energy.
+s01-K4,The same marble has equal energy at both speeds.,,,A,Error A: The same marble has equal energy at both speeds.
+s01-X4,The same disk has equal energy at both speeds.,,,A,Error A: The same disk has equal energy at both speeds.
+s01-X4,Distances measure energy in centimeters.,,,B,"Error B: travel is an indicator, not energy units."
+s01-P5,Same marble means equal energy.,,,A,Error A: Same marble means equal energy.
+s01-P5,Centimeters measure energy.,,,B,Error B: distance confused with energy.
+s01-K5,Fast means fast; evidence is unnecessary.,,,x,Error x: Fast means fast; evidence is unnecessary.
+s01-Pn5,The cup traveled centimeters of energy.,,,B,Error B: The cup traveled centimeters of energy.
+s01-X5,Same cylinder means equal energy.,,,A,Error A: Same cylinder means equal energy.
+s01-P6,One marble always has equal motion energy.,,,A,Error A: One marble always has equal motion energy.
+s01-K6,B supplies evidence by repeating faster.,,,x,Error x: B supplies evidence by repeating faster.
+s01-Pm6,Same tire proves equal energy.,,,A,Error A: Same tire proves equal energy.
+s01-X6,The same hoop always has equal energy.,,,A,Error A: The same hoop always has equal energy.
+s01-X6,Tube travel measures energy in centimeters.,,,B,Error B: effect indicator confused with energy measurement.
+s01-Pr7,The same marble always has equal motion energy.,,,A,Error A: same object mistaken for equal energy.
+s01-Pr7,The cup moved centimeters of energy.,,,B,Error B: Centimeters measure distance.
+s01-K7,The push arrow leaves the crate and carries energy into air.,,,J,Error J: force arrow confused with energy path.
+s01-Ke7,The force arrow carries energy away into the air.,,,J,Error J: force arrow confused with energy path.
+s01-Pq7,A is ready because best tells us what to measure.,,,F,Error F: no observable outcome.
+s01-Po7,My prediction counts as something already observed.,,,I,Error I: prediction confused with observation.
+s01-X7,Which speed is best?,,,F,Error F: no observable outcome.
+s01-X7,The slowing ball loses energy because it disappears.,,,C,Error C: Name a receiving destination.
+s01-X7,The contact push arrow leaves the carton for the air.,,,J,Error J: Put force arrow on receiver.
+s01-Pr8,Which speed is best needs no further detail.,,,F,Error F: no observable outcome.
+s01-Pr8,The car slows because energy disappears.,,,C,Error C: Motion change supports transfer.
+s01-Pr8,The push on the block starts in the air.,,,J,Error J: Start force arrow on receiver.
+s01-P8,Record the prediction as the observed result.,,,I,Error I: prediction confused with observation.
+s01-Pu8,Erase the observation to match the prediction.,,,I,Error I: prediction confused with observation.
+s01-X8,The can slows because its energy disappears.,,,C,Error C: missing transfer destinations.
+s01-X8,"The pictured slowing is only a prediction, not an observation.",,,I,Error I: Panel supplies observations.
+s01-Pr9,The next roll is already observed because I predicted it.,,,I,Error I: prediction confused with observation.
+s01-Pr9,The car slowing means its energy disappeared.,,,C,Error C: Identify a receiving destination.
+s01-K9,My expected quiet sound counts as observed sound.,,,I,Error I: prediction confused with observation.
+s01-P9,"Sound receives all energy, so block motion needs no record.",,,D,Error D: sound mistaken for the only destination.
+s01-Pc9,All energy became sound.,,,D,Error D: sound mistaken for the only destination.
+s01-X9,The same wheel has equal starting motion energy at both speeds.,,,A,Error A: same object mistaken for equal energy.
+s01-X9,All the wheel energy became sound.,,,D,Error D: Box motion is another destination.
+s01-Pr10,All collision energy became sound.,,,D,Error D: sound mistaken for the only destination.
+s01-Pr10,The same car has equal energy at both speeds.,,,A,Error A: Speed changes motion energy.
+s01-K10,"We did not feel warmth, so warming cannot happen.",,,E,Error E: detection limit mistaken for absence.
+s01-Pa10,Energy disappears when the car slows.,,,C,Error C: missing transfer destinations.
+s01-Ps10,Warming is impossible because hands did not detect it.,,,E,Error E: detection limit mistaken for absence.
+s01-X10,Energy disappeared when the sphere slowed.,,,C,Error C: missing transfer destinations.
+s01-X10,All energy became the click.,,,D,Error D: Cone and remaining sphere motion also have energy.
+s01-X10,"No warmth was felt, so no warming happened.",,,E,Error E: Account explains warming below this task detection.
+s01-Pr11,All energy became sound,,,D,Does not meet the look-fors: All energy became sound
+s01-Pr11,Energy disappears,,,C,Loses energy instead of tracing destinations.
+s01-Pr11,No felt warmth proves no warming,,,E,Confuses detection limits with absence.
+s01-Po11,My expected result is an observation,,,I,Does not meet the look-fors: My expected result is an observation
+s01-Pn11,A prediction proves what happened,,,I,Does not meet the look-fors: A prediction proves what happened
+s01-X11,Which speed is best?,,,F,Does not meet the look-fors: Which speed is best?
+s01-X11,The same wagon has equal starting energy at both speeds,,,A,Ignores speed when comparing the same object.
+s01-X11,The wagon loses energy because energy vanishes,,,C,Does not trace transfer.
+s01-Pr12,Which speed is best?,,,F,Does not meet the look-fors: Which speed is best?
+s01-Pr12,Same car means equal energy at both speeds,,,A,Ignores the speed difference.
+s01-Pr12,Energy vanishes,,,C,Loses energy rather than tracing destinations.
+s01-Pa12,A push arrow carries energy into air,,,J,Does not meet the look-fors: A push arrow carries energy into air
+s01-Ps12,Sound receives all energy,,,D,Does not meet the look-fors: Sound receives all energy
+s01-X12,Energy vanished as the bead slowed,,,C,Does not meet the look-fors: Energy vanished as the bead slowed
+s01-X12,The force arrow carries energy from the card into air,,,J,Confuses force acting on an object with an energy destination.
+s01-Pr13,A force arrow carries energy into air,,,J,Does not meet the look-fors: A force arrow carries energy into air
+s01-Pr13,Energy vanishes,,,C,Does not trace energy destinations.
+s01-K13,Same marble means equal starting energy,,,A,Does not meet the look-fors: Same marble means equal starting energy
+s01-Pp13,The ball slows because energy vanishes,,,C,Does not meet the look-fors: The ball slows because energy vanishes
+s01-X13,The same orange has equal initial motion energy at both speeds,,,A,Does not meet the look-fors: The same orange has equal initial motion energy at both speeds
+s01-X13,The energy vanishes after contact,,,C,Omits destinations.
+s01-X13,All energy becomes sound,,,D,Discards observed motion and account-based warming.
+s01-A1,Same spool means equal starting energy,,,A,Does not meet the look-fors: Same spool means equal starting energy
+s01-A1,The spool has 12 centimeters of energy,,,B,"Centimeters describe flap travel, not energy."
+s01-A2,All energy vanishes when the spool slows,,,C,Does not meet the look-fors: All energy vanishes when the spool slows
+s01-A2,All energy becomes sound,,,D,Omits motion and warming destinations.
+s01-A2,Warming must be felt to exist,,,E,Confuses lack of detection with no warming.
+s01-A2,Which speed is best?,,,F,Names no observable outcome.
+s01-A2,The force arrow carries energy into air,,,J,Confuses object force with energy destinations.
+s01-P15-1,Centimeters measure energy,,,B,Does not meet the look-fors: Centimeters measure energy
+s01-P15-1,Same marble always means equal motion energy,,,A,Ignores speed in the same-object comparison.
+s01-P15-2,All energy becomes sound,,,D,Does not meet the look-fors: All energy becomes sound
+s01-P15-2,Energy vanishes when motion slows,,,C,Omits transfer and destinations.
+s01-P15-3,No felt warmth proves no warming,,,E,Does not meet the look-fors: No felt warmth proves no warming
+s01-P15-4,Which speed is best? is testable without an outcome,,,F,Does not meet the look-fors: Which speed is best? is testable without an outcome
+s01-P15-4,Force arrows carry energy into air,,,J,Confuses object force with energy destination.
+s01-P15-revise,Erase the record and replace it with a prediction,,,I,Does not meet the look-fors: Erase the record and replace it with a prediction
+s01-A3,Same spool means equal starting energy,,,A,Persisting in revised s01-A1 work: Does not meet the look-fors: Same spool means equal starting energy
+s01-A3,The spool has 12 centimeters of energy,,,B,"Persisting in revised s01-A1 work: Centimeters describe flap travel, not energy."
+s01-A4,All energy vanishes when the spool slows,,,C,Persisting in revised s01-A2 work: Does not meet the look-fors: All energy vanishes when the spool slows
+s01-A4,All energy becomes sound,,,D,Persisting in revised s01-A2 work: Omits motion and warming destinations.
+s01-A4,Warming must be felt to exist,,,E,Persisting in revised s01-A2 work: Confuses lack of detection with no warming.
+s01-A4,Which speed is best?,,,F,Persisting in revised s01-A2 work: Names no observable outcome.
+s01-A4,The force arrow carries energy into air,,,J,Persisting in revised s01-A2 work: Confuses object force with energy destinations.
+s02-R1,The shaded square warms more because sunlight cannot warm surfaces.,,,H,Missing sunlight cause selects ten-minute day 18 response.
+s02-X16,The lamp makes energy from nothing.,,,A,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X17,A proves the air path because the rod joins both supports.,,,G,Joining rod permits a competing solid path; it cannot establish an air route.
+s02-X18,The dark patch must be warmer because it looks dark.,,,H,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X19,The cooler metal lid creates warmth without receiving energy.,,,A,A diagnoses energy creation without an input. A direction-only reversal gets a conference rather than this letter.
+s02-X20,One lead from one terminal completes the path.,,,B,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X21,One lead is enough to power this buzzer.,,,B,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X22,A switch across an uncut wire must control the lamp.,,,L,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X23,The generator creates energy without an input.,,,A,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X24,Any attractive alarm succeeds without a success rule.,,,C,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X25,One lead completes the circuit.,,,B,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X26,We need no rule for success.,,,C,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X27,"Paint improves the signal because I prefer its color, without test evidence.",,,D,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X28,More detections prove improvement even though conditions changed.,,,D,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X29,The improvement claim needs no test evidence.,,,D,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X30,The manufactured battery is the natural resource.,,,I,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X31,Natural gas is replenished within human lifetimes.,,,J,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X32,Burning fuel releases no air pollutants.,,,K,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X33,This improvement removes every environmental effect.,,,F,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X34,Wind has no environmental effects because it is renewable.,,,E,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-X35,A better contact removes the effects of mining its materials.,,,F,Use the evidence and the error-register repair; unrelated or blank work gets a conference.
+s02-E1-sound,A shared board proves the air route.,,,G,Resolve using actual station evidence.
+s02-E1-light,Dark appearance proves greater warmth.,,,H,Resolve using actual station evidence.
+s02-E1-heat,The cooler spoon creates energy without receiving any.,,,A,A diagnoses energy creation without an input. A direction-only reversal gets a conference rather than this letter.
+s02-E1-current,One lead from one cell terminal completes the path.,,,B,Resolve using actual station evidence.
+s02-E2,The generator creates energy.,,,A,Name motion input.
+s02-E2,No criterion is needed.,,,C,Each pull must light the signal.
+s02-E2,My preferred change needs no retest.,,,D,Use failure evidence and comparable retest.
+s02-E2-portfolio,"Our group succeeded, so no personal evidence is needed.",,,x,"Missing personal evidence is an evidence gap, not preference or unmatched-test error D. Confer and locate original implementation records; do not infer performance from team success."
+s02-E3,Renewable water means the dam changes nothing.,,,E,Renewal does not erase effects.
+s02-E3,The passage removes every effect.,,,F,Flooded habitat remains.
+s02-X35,The generator needs no input.,,,A,Use comparable evidence and input-to-output reasoning.
+s02-X35,Improvement needs no tests.,,,D,Use comparable evidence and input-to-output reasoning.
+s02-P16-connect,The cup made energy from nothing.,,,A,Ignores motion input from the moving marble.
+s02-P16-1,The light makes energy without input.,,,A,Leaves out the moving handle input.
+s02-P16-model,Energy appears from nothing inside.,,,A,Substitutes creation for input and transfer.
+s02-P16-question,The light is best.,,,x,A preference is not an investigable question.
+s02-P17-repair,The lamp creates energy from nothing.,,,A,Names creation rather than input.
+s02-P17-1,I saw movement because I expected it.,,,x,A prediction is not a recorded observation.
+s02-P17-path,A shared board proves the air path.,,,G,Shared support permits a competing contact path.
+s02-P18-repair,Touching supports prove the air path.,,,G,Shared contact gives a competing route.
+s02-P18-sun,Sunlight cannot warm a surface.,,,H,Rejects sunlight warming despite the supplied comparison.
+s02-P18-1,The opaque card lets all light pass straight through.,,,x,Misreads the material observation; not evidence of a warming error.
+s02-P18-2,"Dark must be warmer, whatever the readings.",,,H,Uses appearance instead of the temperature comparison.
+s02-P19-repair,"Dark looks warmer, so it must be warmer.",,,H,Substitutes appearance for the recorded change.
+s02-P19-1,The metal spoon makes warmth without receiving energy.,,,A,Treats metal as creating energy without input.
+s02-P19-model,I added metal makes energy from nothing.,,,A,Makes creation without an input the explanation.
+s02-P19-retry,The darker patch must be warmer regardless of readings.,,,H,Appearance substitutes for the actual temperature comparison.
+s02-P20-repair,The spoon creates energy.,,,A,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P20-retry,"The cloth looks warmer, so no reading is needed.",,,H,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P20-1,One terminal connection completes the path.,,,B,Cold-solved diagnostic; unrelated work gets a conference.
+s02-P21-repair,One terminal connection completes the path.,,,B,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P21-retry,"The cloth looks warmer, so no reading is needed.",,,H,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P21-1,One connection powers the buzzer.,,,B,Cold-solved diagnostic; unrelated work gets a conference.
+s02-P22-repair,One connection powers the buzzer.,,,B,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P22-retry,"The cloth looks warmer, so no reading is needed.",,,H,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-K22-1,The generator creates energy without input.,,,A,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P22-1,The open switch completes this single-gap loop.,,,x,Cold-solved diagnostic; unrelated work gets a conference.
+s02-P23-repair,An open gap completes this loop.,,,x,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P23-retry,"The cloth looks warmer, so no reading is needed.",,,H,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P23-model,The generator creates energy without input.,,,A,Cold-solved diagnostic; blank or unrelated work gets a conference.
+s02-P23-1,Lamp circuit: heat.,,,x,Names contact warming instead of current carrying energy through the complete cell-lamp circuit.
+s02-P24-repair,The generator creates energy without input.,,,A,Error A; use the named repair. Blank work gets a conference.
+s02-K24-1,Any attractive signal succeeds without a success rule.,,,C,Error C; use the named repair. Blank work gets a conference.
+s02-P24-budget,There is no budget limit to check.,,,C,Error C; use the named repair. Blank work gets a conference.
+s02-K24-2,Only one terminal must connect.,,,B,Error B; use the named repair. Blank work gets a conference.
+s02-P25-repair,"A pleasant appearance is enough, without any success result.",,,C,Error C; use the named repair. Blank work gets a conference.
+s02-P25-observe,Any attractive signal succeeds without a success rule.,,,C,Error C; use the named repair. Blank work gets a conference.
+s02-P26-repair,One terminal connection completes the circuit.,,,B,Error B; use the named repair. Blank work gets a conference.
+s02-P27-repair,We need no rule for success.,,,C,Error C; use the named repair. Blank work gets a conference.
+s02-K27-1,My preferred change proves improvement without testing.,,,D,Error D; use the named repair. Blank work gets a conference.
+s02-P28-repair,A preferred change proves improvement without test evidence.,,,D,Error D; use the named repair. Blank work gets a conference.
+s02-P29-repair,"More detections always prove improvement, even with changed conditions.",,,D,Error D; use the named repair. Blank work gets a conference.
+s02-P30-retrieval,The road cannot change nesting places.,,,x,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-K30-1,The solar cell is the natural energy supply.,,,I,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P30-1,A made battery is a natural resource.,,,I,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-K31-1,Oil is replenished within a human lifetime.,,,J,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P31-1,A gas deposit is replenished as quickly as people extract it.,,,J,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-K32-1,Every land animal keeps the same habitat after flooding.,,,x,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P32-1,Burning solid fuel leaves no material behind.,,,x,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-K33-1,Every gas is captured by the particle filter.,,,F,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P33-1,The filter removes every environmental effect.,,,F,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P34-1,Zero rounded shares prove the resource was absent.,,,x,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P35-1,The generator makes energy without input.,,,A,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P35-2,"Our group liked it, so no comparable retest evidence is needed.",,,D,Diagnose only this reasoning; blank or unrelated work gets a conference.
+s02-P38-A,The crank creates energy.,,,A,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-B,One connection to one terminal is enough.,,,B,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-L,A switch across an uncut wire stops current in that wire.,,,L,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-C,An attractive device needs no criterion.,,,C,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-D,"I like my change, so it is proved better.",,,D,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-E,A renewable resource cannot affect the surroundings.,,,E,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-F,The filter removes every consequence.,,,F,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-I,The manufactured battery itself is a natural resource.,,,I,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-J,Natural gas is replaced as quickly as people use it.,,,J,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-K,Burning releases no pollutants.,,,K,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-G,A shared support proves transfer through air.,,,G,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-H,A dark-looking patch must be warmer without temperature evidence.,,,H,Assigned five-minute response move; use the familiar teaching record.
+s02-P38-1,I changed my answer because the key says so.,,,x,No identified evidence link; confer without assigning a misconception letter.
+C-E39-speed,The same toy always has equal motion energy.,,,A,Error A: Equal energy assigned to the same object at different speeds.
+C-E39-question,Which speed is nicest?,,,C,Error C: Collision question lacks observable outcome.
+C-E39-predict,Energy disappears when the toy slows.,,,B,Error B: Energy disappears when motion slows.
+C-E39-sound,A shared board proves sound crossed air.,,,F,Error F: Shared support proves sound crossed air.
+C-E39-light,Dark color proves this patch is warmer.,,,O,Error O: Appearance replaces temperature evidence.
+C-E39-heat,No resolved change proves no energy passed.,,,E,Error E: Unresolved instrument change proves no transfer.
+C-E39-current,One wire to one terminal completes the lamp circuit.,,,G,Error G: One terminal connection completes a circuit.
+C-E39-predict,All energy becomes sound.,,,D,Error D: motion and warming destinations omitted.
+C-E39-current,The generator creates energy.,,,H,Error H: input and conversion omitted.
+C-E40-origin,A refinery is the natural origin of crude oil.,,,I,Error I: Refinery is the natural origin of crude oil.
+C-E40-origin,Oil deposits refill each year.,,,J,Error J: slow formation confused with yearly replenishment.
+C-E40-use,"Only the made truck is needed, with no natural resource.",,,x,Error x: Unsupported or unavailable evidence; confer.
+C-E40-effects,Extracting and moving oil never affect surroundings.,,,K,Error K: Extracting or moving oil has no environmental effects.
+C-E40-change,Two ship walls remove every effect.,,,L,Error L: One improvement removes every environmental effect.
+C-P41-motion,Energy vanishes when the puck slows.,,,B,Error B: Energy disappears when motion slows.
+C-P41-paths,One terminal alone still supplies the whole path.,,,G,Error G: One terminal connection completes a circuit.
+C-P41-resources,The smaller site removes every effect.,,,L,Error L: One improvement removes every environmental effect.
+C-P41-revise,Copy corrections without evidence.,,,x,Error x: Unsupported or unavailable evidence; confer.
+C-E41-record,Treat supplied observations as firsthand performance.,,,x,Error x: Unsupported or unavailable evidence; confer.
+C-R41-source,The ruler keeps making sound after vibration stops.,,,M,Error M: Ruler keeps making sound after vibration stops.
+C-R41-receiver,The silent comparison does not matter.,,,N,Error N: Silent comparison ignored in sound-caused motion.
+C-E39-heat,The cooler spoon makes its own warmth.,,,P,Error P: source-to-recipient transfer replaced by creation.
+C-P41-question,Which speed is best?,,,C,Error C: observable outcome absent.
+s03-X42,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X43,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X43,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-X44,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-X44,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X45,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X46,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X46,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-X47,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X48,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-X48,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-X49,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-X49,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-X50a,Digits can be read in any order.,,,E,Disregards agreed order.
+s03-X50b,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-X51,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
+s03-X52,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-X53,Choose B for speed; correct messages are unnecessary.,,,C,"Error C: explicitly discards the accuracy criterion, even though the chosen system is B. A bare B is insufficient evidence of comparing both criteria."
+s03-X53,Shorter pauses guarantee success without more tests.,,,D,Error D: extends the old test evidence to an untested changed system.
+s03-X54a,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-X54a,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-X54b,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-T46-model,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-T46-model,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-T53-alternatives,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-T53-alternatives,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-T53-comparison,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
+s03-T53-comparison,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-T53-trials,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-T53-improvement,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-T53-improvement,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-T53-encode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-T53-decode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-T53-voice,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-E1,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-E1,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-E2-alternatives,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-E2-alternatives,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-E2-comparison,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
+s03-E2-comparison,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-E2-trials,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-E2-improvement,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-E2-improvement,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-E2-encode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-E2-decode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-E2-voice,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-E3,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-E3,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-E3,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-D55-wave,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-D55-wave,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-D55-codes,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-D55-codes,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-D55-picture,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P42-observe,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-P42-question,No evidence is given.,,,x,"Incomplete evidence; component feedback, no unit error diagnosis."
+s03-P43-table,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-P43-table,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-P44-labels,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-P45-motion,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-P46-features,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-P47-evidence,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-P48-source,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P48-research,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-P48-encode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P48-decode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P48-voice,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P49-criteria,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
+s03-P49-criteria,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-P49-tap-rule,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P49-proposals,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P49-proposals,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-P50-proposals,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P50-proposals,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-P50-encode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P50-decode,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P51-log,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-P52-log,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-P53-compare,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
+s03-P53-compare,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-P53-compare,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-P54-anchor,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-P54-anchor,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P54-sort,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P56-revision,No evidence is given.,,,x,"Incomplete evidence; component feedback, no unit error diagnosis."
+s03-P56-reflect,No evidence is given.,,,x,"Incomplete evidence; component feedback, no unit error diagnosis."
+s03-P56-A,The marked material travels to the far end with a crest.,,,A,Confuses local material motion with traveling pattern and energy.
+s03-P56-B,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-P56-C,The fastest code wins even with wrong messages.,,,C,Ignores accuracy while comparing duration.
+s03-P56-D,Success in one condition proves success everywhere.,,,D,Extends a claim beyond complete tested conditions.
+s03-P56-E,Any receiver understands marks without a shared rule.,,,E,"Omits agreed meanings, order or boundaries."
+s03-P56-F,The prettier system performs better.,,,F,Substitutes appearance for performance evidence.
+s03-R56,Cloth stops the rain.,,,x,"Carrying diagnostic, not a unit 3 letter."
+s03-R56,Cloth is better because prettier.,,,x,"Design-evidence diagnostic, not a unit 3 letter."
+s03-K42-features,Wider peak spacing always makes waves taller.,,,B,Treats amplitude and wavelength as inseparable.
+s03-P43-source,No evidence is given.,,,x,Missing evidence for the named claim.
+s03-P43-receiver,No evidence is given.,,,x,Missing evidence for the named claim.
+s03-P43-signal,No evidence is given.,,,x,Missing evidence for the named claim.
+s03-P44-travel,The marked material travels to the far end with a crest.,,,A,Confuses the named wave features or motions.
+s03-P45-energy,The marked material travels to the far end with a crest.,,,A,Confuses the named wave features or motions.
+s03-P48-return,The coil material travels to the far end.,,,A,Confuses local material motion and traveling pattern.
+s03-P48-design,The prettier system performs better.,,,F,Appearance is not a reception criterion.
+s03-P50-assemble,Any receiver understands marks without a shared rule.,,,E,Omits agreed meanings or boundaries.
+s03-P51-return,The receiver can choose any order or gap.,,,E,Agreed order and boundaries; preserve the original and revise from feedback.
+s03-P52-return,A quick run makes every message correct.,,,C,"Attend to accuracy before duration; use actual quiet records, not a supplied acceptance table."
+s03-P53-return,One quiet success proves success everywhere.,,,D,Limit a claim to both observed conditions; preserve uncertainty about untested settings.
+s03-P54-return,The quickest quiet run settles every comparison.,,,C,Apply accuracy and duration in each recorded setting; identify error D separately when a claim exceeds conditions.
+s03-P54-return,Quiet success proves the conversation trial passed.,,,D,Error D: extends success from one condition to a different condition without its evidence.
+s04-X57-model,The drawing proves exactly when every rock fell.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-X57-question,How old is every river in the world?,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-X58,Only carrying occurred because weathering must move material.,,,A,Error A: Only carrying occurred because weathering must move material.
+s04-X59-plan,Change both because any difference proves the grain-size effect.,,,C,Error C: Change both because any difference proves the grain-size effect.
+s04-X59-start,Final cracks prove freezing caused them without a starting record.,,,C,Error C: Final cracks prove freezing caused them without a starting record.
+s04-X60-record,Keep only trial 1 because it supports the cause.,,,C,Error C: Keep only trial 1 because it supports the cause.
+s04-X60-cause,One supporting trial proves the edge effect.,,,C,Error C: One supporting trial proves the edge effect.
+s04-X61,Clay cannot weather while its pieces stay together.,,,A,Error A: Clay cannot weather while its pieces stay together.
+s04-X62-graph,"High flow always goes farther, so omit low-flow 8.",,,C,"Error C: High flow always goes farther, so omit low-flow 8."
+s04-X62-claim,Repeats prove high flow always carries farther.,,,C,Error C: Repeats prove high flow always carries farther.
+s04-XB62-process,Distance cannot show erosion because no rock broke.,,,A,Error A: Distance cannot show erosion because no rock broke.
+s04-X63,Two repeats prove pebbles caused it even though tilt also changed.,,,C,Error C: Two repeats prove pebbles caused it even though tilt also changed.
+s04-XB64-ice,No weathering occurred because nothing traveled.,,,A,Error A: No weathering occurred because nothing traveled.
+s04-XB64-wind,Dust must have been newly broken by wind.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-XB64-root,Living things cannot change land.,,,D,Error D: Living things cannot change land.
+s04-XB64-burrow,Animals cannot change land.,,,D,Error D: Animals cannot change land.
+s04-X64,Rain can reshape soil but cannot affect the plants that grow.,,,E,Error E: Rain can reshape soil but cannot affect the plants that grow.
+s04-X65-distance,Planted moved 10 centimeters and bare moved 5 centimeters.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-X65-cause,Water does not matter; cover alone caused the difference.,,,C,Error C: Water does not matter; cover alone caused the difference.
+s04-XB65-roots,Plants cannot change land.,,,D,Error D: Plants cannot change land.
+s04-X66-model,"Rock can never change, so the pictures cannot show changes.",,,B,"Error B: Rock can never change, so the pictures cannot show changes."
+s04-X66-question,The picture gives every layer an exact age.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-X67,All layers were land because upper roots prove every environment.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-X68,"Lowest always means oldest, even after overturning.",,,F,"Error F: Lowest always means oldest, even after overturning."
+s04-X69,The channel must always have occupied its present position.,,,H,Error H: The channel must always have occupied its present position.
+s04-X70,The river always occupied exactly its present position.,,,H,Error H: The river always occupied exactly its present position.
+s04-E1-measure,I wrote expected readings without observing.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-E1-cause,One trial proves slope caused it even if water changed.,,,C,Error C: One trial proves slope caused it even if water changed.
+s04-E1-ice,Neither weathered because pieces did not travel.,,,A,Error A: Neither weathered because pieces did not travel.
+s04-E1-wind,Moving grains prove new rock breakage.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-E1-animal,Only plants can change land.,,,D,Error D: Only plants can change land.
+s04-E1-rain,Rain changes grooves but cannot affect which plants live.,,,E,Error E: Rain changes grooves but cannot affect which plants live.
+s04-E2-order,All layers formed together in the same environment.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-E2-match,Matching colors prove all exposures are the same.,,,G,Error G: Matching colors prove all exposures are the same.
+s04-E2-deform,The break happened before any layer existed.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-E2-cut,Today's river always occupied this notch.,,,H,Error H: Today's river always occupied this notch.
+s04-E2-limit,Every feature appeared at once because it is visible now.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P57-notice,The image gives an exact age.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P57-initial,My first guess proves the cause.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P57-slow,Deep channels must form in one event.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P58-sort,Cracks cannot weather unless they travel.,,,A,Error A: Cracks cannot weather unless they travel.
+s04-P59-response,Prettier barriers work better without evidence.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P59-plan,Change slope and water to prove slope caused it.,,,C,Error C: Change slope and water to prove slope caused it.
+s04-P59-baseline,Every final crack must be new.,,,C,Error C: Every final crack must be new.
+s04-P60-measure,Replace failed readings with expected results.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P61-clay,Rock never changes because clay did not.,,,B,Error B: Rock never changes because clay did not.
+s04-P61-abrasion,Moving stones must be smaller.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P62-retrieve,Unequal intervals can stand for equal counts.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P62-graph,Omit inconvenient results to prove a cause.,,,C,Error C: Omit inconvenient results to prove a cause.
+s04-P63-paper,Repeats prove every possible setting.,,,C,Error C: Repeats prove every possible setting.
+s04-P64-records,Living things cannot change land.,,,D,Error D: Living things cannot change land.
+s04-P65-retrieve,Any planted slope must always lose less soil.,,,C,Error C: Any planted slope must always lose less soil.
+s04-P65-measure,This proves only roots caused every difference.,,,C,Error C: This proves only roots caused every difference.
+s04-P66-revise,A tray proves an exact canyon rate.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P66-records,Rain cannot affect which plants survive.,,,E,Error E: Rain cannot affect which plants survive.
+s04-P67-retrieve,Any loose shell proves a recent sea.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P67-build,Clay gives exact rock ages.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P67-cards,Similar colors prove one environment.,,,G,Error G: Similar colors prove one environment.
+s04-P68-model,Lowest always means oldest after any bending.,,,F,Error F: Lowest always means oldest after any bending.
+s04-P68-photo,Lowest on the screen always means oldest.,,,F,Error F: Lowest on the screen always means oldest.
+s04-P69-notes,A source proves any story I prefer.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P69-accounts,Colors alone prove every match.,,,G,Error G: Colors alone prove every match.
+s04-P70-consensus,A vote replaces evidence.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P70-feedback,Change readings to match expectations.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P73-revision,Copy an answer without evidence.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P73-change,My explanation changed because it is longer.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P73-fresh,The path proves an exact age.,,,x,Error x: Unsupported or incomplete evidence; silence alone is not a misconception.
+s04-P57-questions,I know everything already.,,,x,Error x: no question about the phenomenon.
+s04-P62-arrows,Every movement proves weathering because weathering means travel.,,,A,Error A: confuses breaking with carrying.
+s04-P73-rock,"It did not move, so it cannot weather.",,,A,Error A: Repair the stated misconception using the assigned record.
+s04-P73-land,Plants and animals cannot change land.,,,D,Error D: Repair the stated misconception using the assigned record.
+s04-P73-layer,Lowest always means oldest after any change.,,,F,Error F: Repair the stated misconception using the assigned record.
+s04-P73-history,Colors alone prove every match.,,,G,Error G: Repair the stated misconception using the assigned record.
+s04-P73-ruler,Travel is 8 centimeters.,,,x,Error x: End reading substituted for travel.
+C-E74-band,K must be shorter because its peaks are closer.,,,R,"Look for independent rest-to-peak height and peak-spacing comparisons, local motion and separate energy travel. Accept labeled sketches. No numerical wave measures."
+C-E74-float,The float rides each peak to the far wall.,,,Q,Look for two moments near the marker and separate local-motion and pattern/energy arrows. Accept small local sideways motion; do not require perfectly stationary water.
+C-E74-create,Show the same blank card for both meanings.,,,U,"Look for an additional system, both meanings, agreed boundaries and compliance with materials and volume limits."
+C-E74-compare,A wins because it is fastest.,,,S,"Look for all three systems, accuracy and duration, both conditions and limits. Do not invent results for the new code."
+C-E74-test,One quiet success proves it works in every condition.,,,T,"Look for both conditions, fixed positions, decoded accuracy, elapsed duration and both success rules. An untested proposal has no claimed performance."
+C-E74-encode,"0100, using opposite color meanings.",,,U,Look for four digits in stated order; correct digit-labeled cells count.
+C-E74-decode,A black cell can go anywhere because order does not matter.,,,U,"Look for correct cell placement in a two-by-two tile, not only a black-cell count."
+C-E74-voice,Digits become any voice without a decoding rule.,,,U,"Look for encoding into digits and decoding into sound, with agreed order preserved. No device or voice recording required."
+C-E74-question,Which speed is nicest?,,,C,Look for changed speed and observable collision effect; best or nicest alone is not observable.
+C-E74-predict,Energy disappears when the cylinder slows.,,,B,"Look for both objects before/after, evidence-linked slower prediction, sound/warming destinations and measured/inferred distinction. No unsupported sound-volume prediction required."
+C-E75-plan,Changing slope and water together proves water caused the difference.,,,V,"Look for exactly one changed condition, explicit controls and repeated before/after observations."
+C-E75-measure,The distances are 12 and 7 centimeters because end marks are distances.,12-0|7-0,12|7,x,"Look for end minus start, whole centimeters, both observations, carrying evidence and causal limit. Supplied sequence is not a new practical measurement. Day 71 original practical status stays unchanged."
+C-E75-ice,Weathering requires pieces to travel away.,,,W,"Look for new breakage in place and the unfrozen comparison. Supplied time sequence supports reasoning, not firsthand freezing performance."
+C-E75-move,Both records prove rock broke into smaller pieces.,,,W,"Look for each agent connected to recorded movement, distinguished from breaking. No rate calculation."
+C-E75-life,Root growth and rain have no effects.,,,X,"Look for root/crack, rain/channel and water/plant-condition evidence links separately."
+C-E75-history,The basin existed before its rock layers and never changed.,,,Z,"Look for layer order, marine-over-plant change, deformation after host layers, later basin cutting and one timing limit. Corrected arrows with labels count; no essay needed."
+C-E75-match,Same colors prove a match even when fossil order differs.,,,Y,"Look for near/far sequence and fossil evidence, rejection of color-only certainty and a limit."
+C-P76-wave,The tag travels with the peaks.,,,Q,Wave route only. Teach missing labels explicitly using this record before revising day 74.
+C-P76-code,A quick wrong message is successful.,,,S,Code route uses familiar day 51 quiet and day 52 conversation logs. Point to an accuracy failure and boundary or rule needed; do not use held assessment answers as models.
+C-P76-land,Only long-distance movement changes land.,,,W,"Land route connects breakage to controlled causal evidence. Teach missing terms explicitly, never cite planned-only work as review."
+C-P76-history,Folding happened before the layers it folds existed.,,,Z,"History route uses earlier day 68 model drawings, never an assessment case as worked example."
+C-P76-revise,Erase the original and copy answers without evidence.,,,x,Revise a marked component from each check when both have gaps. Equivalent drawings/dictation count. Feedback identifies missing links without dictating answers.
+C-P76-fresh,Mud fill formed before the channel that holds it.,,,Z,Fresh unscored transfer; no repair rehearsal of this cut-and-fill chain. Accept labeled arrows or drawing. Written feedback returns day 77; unresolved needs remain recorded.
+C-E76-record,Supplied observations count as new firsthand measurements.,,,x,"One scale only: shown, shown with help, not yet seen. Content coaching means shown with help; neutral reading/scribing alone does not. Missing opportunity is a separate note. No total."
+C-R76-water,Dry land D must contain liquid water because it is beside the ocean.,,,x,"Diagnostic only: record state recognition and location/key separately, no grade 4 achievement claim. Six minutes answer, four sort. Day 78 teaches missing states/locations as new; land-water model stays separate retrieval."
+s05-X81,Keep every belt at coastlines.,,,B,Error B: Makes coastline association exclusive.
+s05-X90,Use only the wall; it guarantees protection despite overtopping.,,,D,Error D: Promises protection in every flood.
+s05-E2,"A wall protects in every flood, including untested flows.",,,D,Error D: Promises protection in every flood.
+s05-E2,A warning stops the natural process.,,,F,Error F: information or limited trials treated as universal prevention.
+s05-E2,Small-flow raising success proves protection at every flow.,,,E,Error E: information or limited trials treated as universal prevention.
+s05-E3-portfolio,Only successful designs deserve observation credit.,,,x,Error x: Record the specific gap separately.
+s05-D93,Louder warnings stop the process.,,,F,Error F: Confuses information with stopping the process.
+s05-R93a,Eyes light up the toy inside.,,,x,Error x: Record the specific gap separately.
+s05-R93b,The animal moves without receiving any information.,,,x,Error x: Record the specific gap separately.
+s05-X77-observe,The dots are evenly scattered.,,,G,Error G: Two observations have locators on Q.
+s05-X77-model,The dots are evenly scattered.,,,G,Error G: Retain initial model without a score.
+s05-X78-land,B; the dark center matches the high rim.,,,x,"Error x: Choice plus both land labels, not choice alone."
+s05-X78-depth,The dark seafloor strip is higher.,,,H,Error H: Apply separate seafloor key.
+s05-X79-table,Leave out T because the ocean floor is flat.,,,A,Error A: Three faithful rows.
+s05-X79-pattern,The ocean floor is flat.,,,A,Error A: Bounded land/seafloor pattern from the cards.
+s05-X80-table,Put every earthquake at a coastline.,,,B,Error B: Faithful three-row extension.
+s05-X80-exception,No dots means no hazard.,,,C,Error C: Pattern with the off-chain exception retained.
+s05-X82-fit,Other places are safe because this event was here.,,,C,Error C: Relational location comparison.
+s05-X82-limit,Other places are safe because this event was here.,,,C,Error C: One warranted one-event limit.
+s05-X83-harm,The alert stops the tsunami.,,,F,Error F: Four causal design-to-harm links.
+s05-X83-criterion,The prettiest color.,,,x,Error x: Common checkable protection criterion.
+s05-X84-ideas,Draw the same wall three times.,,,x,Error x: Distinct ways to keep the workshop floor dry.
+s05-X84-limits,No limit matters because a wall guarantees protection.,,,D,Error D: One checkable criterion and one genuine resource limit.
+s05-X85-recommend,Gentle success proves the narrow base works in every motion.,,,E,"Error E: Evidence from both matched conditions, bounded claim."
+s05-X85-challenge,"One gentle success proves every motion, so no challenge is needed.",,,E,Error E: Relevant controlled challenge with no guarantee.
+s05-X86-ideas,Draw the same idea twice.,,,x,Error x: Two distinct feasible water-route changes.
+s05-X86-control,"One small-flow success proves protection at every flow, regardless of starts.",,,E,Error E: One relevant shared starting condition.
+s05-X87-compare,The channel must protect at every larger flow.,,,E,Error E: Use both clusters and limit the claim to supplied condition.
+s05-X87-failure,No failure occurred because every barrier guarantees protection.,,,D,Error D: Retain downstream wetting without inventing overflow/diversion.
+s05-X88-revise,Small-flow success proves larger-flow success.,,,E,Error E: Use larger-flow counterevidence without universal claims.
+s05-X88-improve,No improvement is needed because any wall guarantees protection.,,,D,Error D: Improvement linked to observed end bypass.
+s05-X89-time,"Eight is less than twelve, so enough time remains.",,,I,"Error I: Combine delay and travel, compare with arrival."
+s05-X89-gap,Both slopes are monitored because homes are on both.,,,x,"Error x: Monitoring coverage, not notice reach."
+s05-X91-map,The ocean floor is flat.,,,A,Error A: Ridge/event association and isolated volcano exception.
+s05-X91-design,The wall protects in every flow.,,,D,Error D: Use changed-condition counterevidence to limit a claim.
+s05-X80-table,Earthquakes happen only at coastlines.,,,B,Error B: Makes coastline association exclusive.
+s05-X80-table,No dots means no hazard.,,,C,"Error C: unsupported absolute or ignored evidence, as named in the unit register."
+s05-X82-fit,Other places are safe because this earthquake was here.,,,C,Error C: Treats a selected record as proof of safety.
+s05-X84-limits,My wall guarantees dryness in every flood.,,,D,Error D: Promises protection in every flood.
+s05-X85-recommend,Gentle success proves the narrow base works under every motion.,,,E,Error E: Generalizes beyond tested conditions.
+s05-X86-ideas,One small-flow trial proves protection at every flow.,,,E,Error E: Generalizes beyond tested conditions.
+s05-X88-revise,Any wall guarantees protection in every flood.,,,D,"Error D: unsupported absolute or ignored evidence, as named in the unit register."
+s05-X89-time,The alert stops the wave.,,,F,"Error F: unsupported absolute or ignored evidence, as named in the unit register."
+s05-X91-design,One success proves all conditions.,,,E,"Error E: unsupported absolute or ignored evidence, as named in the unit register."
+s05-P88-compare,Erase a failure so the design looks successful.,,,x,"Error x: Accurate two-condition comparison, no score before day 92."
+s05-P88-improve,Any change must work because it is new.,,,x,"Error x: Evidence-linked causal improvement, no score before day 92."
+s05-E1-table,The ocean floor is flat.,,,A,Error A: omits mapped seafloor relief.
+s05-E1-account,The ocean floor is flat.,,,A,Error A: omits mapped seafloor relief.
+s05-E1-account,All earthquakes occur at coastlines.,,,B,Error B: Makes coastline association exclusive.
+s05-E1-account,Blank areas are safe.,,,C,Error C: ignores a mapped feature or limits of the selected record.
+s05-P77-1,Dots are evenly spread everywhere.,,,G,Error G: Dots are evenly spread everywhere.
+s05-P77-2,The ocean is the hatched land.,,,x,Error x: The ocean is the hatched land.
+s05-P77-3,All marks represent the same thing.,,,x,Error x: All marks represent the same thing.
+s05-P77-4,There is nothing to investigate.,,,x,Error x: There is nothing to investigate.
+s05-P78-1,Ice is not water.,,,x,Error x: Ice is not water.
+s05-P78-2,Every water mark is ocean.,,,x,Error x: Every water mark is ocean.
+s05-P78-3,The key gives one identical mark for land and water.,,,x,Error x: The key gives one identical mark for land and water.
+s05-P78-4,Dots are evenly scattered.,,,G,Error G: Dots are evenly scattered.
+s05-K78-1,Every outline must represent the same height.,,,x,Error x: Every outline must represent the same height.
+s05-P78-5,The ocean floor has no height changes.,,,A,Error A: The ocean floor has no height changes.
+s05-P79-1,Both darker areas must be higher.,,,H,Error H: Both darker areas must be higher.
+s05-P79-2,Every part has evenly scattered dots.,,,G,Error G: Every part has evenly scattered dots.
+s05-K79-1,There is no ridge because the ocean floor is flat.,,,A,Error A: There is no ridge because the ocean floor is flat.
+s05-P79-3,Delete the trench because underwater ground is flat.,,,A,Error A: Delete the trench because underwater ground is flat.
+s05-P79-4,The ocean floor is flat.,,,A,Error A: The ocean floor is flat.
+s05-P80-1,The ocean floor is flat.,,,A,Error A: The ocean floor is flat.
+s05-P80-2,All dark shading means higher.,,,H,Error H: All dark shading means higher.
+s05-K80-1,All seven dots must touch the coastline.,,,B,Error B: All seven dots must touch the coastline.
+s05-P80-3,Two land volcanoes because every triangle is a mountain.,,,x,Error x: Two land volcanoes because every triangle is a mountain.
+s05-P80-4,Only land can have earthquakes.,,,B,Error B: Only land can have earthquakes.
+s05-P80-5,An empty region is guaranteed safe.,,,C,Error C: An empty region is guaranteed safe.
+s05-X80-exception,All the volcanoes are in the chain.,,,x,Error x: ignores the explicitly plotted off-chain volcano.
+s05-P81-1,Earthquakes occur only at coastlines.,,,B,Error B: Earthquakes occur only at coastlines.
+s05-P81-2,An empty place must be safe.,,,C,Error C: An empty place must be safe.
+s05-P81-3,Rotate one layer until any marks seem to match.,,,x,Error x: Rotate one layer until any marks seem to match.
+s05-P81-4,Place every event on the coastline regardless of W.,,,B,Error B: Place every event on the coastline regardless of W.
+s05-P81-5,The map proves every blank place is safe.,,,C,Error C: The map proves every blank place is safe.
+s05-X81,Keep all earthquakes at coastlines despite D.,,,B,Error B: ignores ocean earthquake evidence from D.
+s05-P82-1,Every earthquake is at a coastline.,,,B,Error B: Every earthquake is at a coastline.
+s05-P82-2,The empty part proves safety at every time.,,,C,Error C: The empty part proves safety at every time.
+s05-P82-3,Circle an older open dot as the new event.,,,x,Error x: Circle an older open dot as the new event.
+s05-P82-4,The older extract covers only July 2025.,,,x,Error x: The older extract covers only July 2025.
+s05-P82-5,Outside the plot is guaranteed safe.,,,C,Error C: Outside the plot is guaranteed safe.
+s05-P82-6,Label invented V as the July 2025 real event.,,,x,Error x: Label invented V as the July 2025 real event.
+s05-P82-7,Treat practice years A to D as actual calendar dates.,,,x,Error x: Treat practice years A to D as actual calendar dates.
+s05-P83-1,An empty region must be safe.,,,C,Error C: Makes selected absence prove safety.
+s05-P83-2,Every earthquake touches a coast.,,,B,Error B: Treats all earthquakes as coastal.
+s05-P83-3,Every barrier guarantees dryness.,,,D,Error D: Promises all protection succeeds.
+s05-P83-4,Monitoring stops an eruption.,,,F,Error F: Makes information stop the event.
+s05-P83-5,An alert stops the waves.,,,F,Error F: Makes information stop the event.
+s05-P84-1,Receiving information stops the event.,,,F,Error F: Makes information stop the event.
+s05-P84-2,No plotted dot means no hazard.,,,C,Error C: Makes selected absence prove safety.
+s05-P84-3,Every wall guarantees protection.,,,D,Error D: Promises all protection succeeds.
+s05-P84-4,Monitoring makes shaking stop.,,,F,Error F: Makes information stop the event.
+s05-P84-5,One success proves all conditions.,,,E,Error E: Generalizes beyond tested conditions.
+s05-P84-6,Different loads show whether braces helped.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P85-1,Every barrier holds every flow.,,,D,Error D: Promises all protection succeeds.
+s05-P85-2,A message stops the event.,,,F,Error F: Makes information stop the event.
+s05-P85-3,Erase fallen results so the model succeeds.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P85-4,Gentler success proves all motions.,,,E,Error E: Generalizes beyond tested conditions.
+s05-P86-1,One gentler success proves every future condition.,,,E,Error E: Generalizes beyond tested conditions.
+s05-P86-2,Every wall always protects.,,,D,Error D: Promises all protection succeeds.
+s05-P86-3,Different input amounts make a matched design comparison.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P86-4,Erase failures from the recording guide.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P86-5,Every prepared wall guarantees dry houses.,,,D,Error D: Promises all protection succeeds.
+s05-P87-1,One flow proves every flow.,,,E,Error E: Generalizes beyond tested conditions.
+s05-P87-2,Every wall guarantees protection.,,,D,Error D: Promises all protection succeeds.
+s05-P87-3,No visible route means no failure occurred.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P87-4,Gentler success establishes all stronger outcomes.,,,E,Error E: Generalizes beyond tested conditions.
+s05-P88-1,Small-flow success proves every larger flow.,,,E,Error E: Generalizes beyond tested conditions.
+s05-P88-2,Erase wet-house results.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P88-3,Any new change must work.,,,x,Error x: Other wrong answer; check the evidence.
+s05-P89-repair,A small-flow success proves every flow is safe.,,,E,Error E: Record the specific evidence gap.
+s05-K89-monitor,The message makes the event stop.,,,F,Error F: Record the specific evidence gap.
+s05-K89-time,Travel ends five minutes after the event.,,,I,Error I: Record the specific evidence gap.
+s05-P89-action,Every received notice guarantees less harm.,,,F,Error F: Record the specific evidence gap.
+s05-P90-repair,Travel starts when the event starts despite alert delay.,,,I,Error I: Record the specific evidence gap.
+s05-P90-revise,Erase the larger-flow failure to make the design look successful.,,,E,Error E: Record the specific evidence gap.
+s05-P90-hearing,The chosen water protection guarantees protection from every hazard.,,,D,Error D: Record the specific evidence gap.
+s05-P91-repair,The warning stops the natural process.,,,F,Error F: Record the specific evidence gap.
+s05-K91-tag,Both keys mean higher ground.,,,H,Error H: Record the specific evidence gap.
+s05-P91-tags,An empty part proves there is no hazard.,,,C,Error C: Record the specific evidence gap.
+s05-P91-protect,Information alone ends the process.,,,F,Error F: Record the specific evidence gap.
+s05-P93-repair,An empty map region guarantees safety.,,,C,Error C: Record the specific evidence gap.
+s05-P93-revise,Erase the first response and copy an answer without evidence.,,,x,Error x: Record the specific evidence gap.
+s06-X94,Eyes light the path,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X95,Eyes light the wall,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X95,No source is needed,,,B,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X96,Eye-mirror-star,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X96,Light crosses the opaque card,,,I,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X97,Eyes make shine,,,C,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X98,Eye light reaches the spoon,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X98,It stays visible without light,,,B,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X99,Whiskers command legs directly,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X100,Ears directly command the neck,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X101,Remembered signals cannot guide action,,,E,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X101,Eyes command legs directly,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X102,Nose and ears command movement without brains,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X103,Remembered meaning cannot guide action,,,E,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X104,Only outside parts can help,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X105,Inside parts cannot contribute to these jobs,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X106,A proves what roots did,,,H,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X106,Only outside parts transport water,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X107,Cutting proves root uptake,,,H,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X107,Only outside parts matter,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X108,Petals alone produce seeds,,,G,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X109,Only outside parts help,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X110,Outside parts alone suffice,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X110,Petals alone make seeds,,,G,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X111,"Only beak, skin and wings matter",,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X112,Inside stem paths cannot contribute to water supply.,,,F,Excludes internal transport despite the matched broken/intact evidence.
+s06-X112,Only outside structures matter,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X113,Eye lights stone,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X114,Eyes light the insect,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X114,Learning cannot affect action,,,E,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X114,Petals alone make seeds,,,G,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X94-model,Eyes light the path.,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X103-test,Remembered meaning cannot guide action.,,,E,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X112-animal,Only outside structures matter.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X113-response,Ears command movement directly.,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P113-plant,Only outside parts supply the plant.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-R1,Open eyes light the toy.,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-R2,Ears command turning directly without processing.,,,D,Explicit direct-command claim only. Do not require brain vocabulary or infer this error from a missing brain label.
+s06-E1-model,Eye lights tile.,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-E1-predict,Tile stays visible without illumination.,,,B,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-E1-test,Light crosses the opaque card.,,,I,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-E2-model,Nose commands legs directly.,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-E2-predict,Remembered experience cannot change action.,,,E,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-E2-test,Same odor must always cause the same action.,,,E,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-E3,Petals alone make seeds.,,,G,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-E4,Only fur matters.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X117-light,Eyes supply light.,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X117-sense,Remembering cannot guide action.,,,E,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X117-plant,Cutting proves roots worked.,,,H,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X117-animal,Only scales matter.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P94,Eyes generate light.,,,C,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P95,Eyes light the object.,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P96,Arrow starts at the eye.,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P97,No source is needed.,,,B,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P98,Eye supplies light.,,,A,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P99,Ears command movement directly.,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P100,Eyes directly command fingers.,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P101,Learning cannot affect responses.,,,E,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P102,Sense organ commands movement directly.,,,D,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P103,Learned meanings cannot guide action.,,,E,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P104,I replace our unclear result with the supplied color result.,,,x,Changes the actual observation to match a supplied fallback.
+s06-P105,A plant must walk to respond.,,,x,A growing shoot can respond to light without walking.
+s06-P106,A wind-moved seed supports protection from eating.,,,x,Matches true evidence to an unrelated claim.
+s06-P107,Cutting directly shows root uptake.,,,H,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-P108,Seeds turn into pollen after fruit appears.,,,x,Reverses the sequence and confuses pollen with seeds.
+s06-P113,Only outside parts help organisms.,,,F,Diagnose only this stated idea; incomplete answers are not automatically this error.
+s06-X97-dark,It sees without any illumination.,,,B,One stated idea; not a label for an incomplete response.
+s06-X104-question,Why can no inside part help?,,,F,The question assumes internal parts cannot contribute. Do not diagnose from an open question alone.
+s06-P94-parts,The eye supplies light.,,,A,Reverses receiving light into supplying light.
+s06-P94-materials,Thick card lets light through.,,,I,Treats an opaque card as transmitting light.
+s06-P94-sort,Both ask about seeing.,,,x,Does not account for the distinction or change the task asks about.
+s06-P94-link,The lamp end receives this arrow.,,,x,Reverses the supplying and receiving ends of this segment; no eye-emission claim is stated.
+s06-P95-ready,Eyes receive the clap.,,,D,Confuses incoming information and its receiving organ.
+s06-P95-labels,The eye supplies light.,,,A,Reverses receiving light into supplying light.
+s06-P96-repair,The eye lights the toy.,,,A,Reverses receiving light into supplying light.
+s06-P96-input,Ear receives light.,,,D,Confuses incoming information and its receiving organ.
+s06-P96-predict,The outgoing arrow never changes.,,,x,Does not account for the distinction or change the task asks about.
+s06-P97-repair,Light passes through the thick card.,,,I,Treats an opaque card as transmitting light.
+s06-P97-flash,The cat supplies its shine.,,,C,Treats reflected shine as self-produced.
+s06-P97-link,"Eyes make light, so I reversed the arrow.",,,A,Reverses receiving light into supplying light.
+s06-P98-repair,Cat shine is a source.,,,C,Treats reflected shine as self-produced.
+s06-P98-talk,The eye lights the object.,,,A,Reverses receiving light into supplying light.
+s06-P98-handoff,Light arrows explain every movement.,,,x,Does not account for the distinction or change the task asks about.
+s06-P95-change,It stays visible because eyes light it.,,,A,Attributes illumination to the eyes. An unclear observation alone is never this error.
+s06-P99-repair,Eyes send light to the object,,,A,Anticipated; identify this stated idea only.
+s06-K99-retrieval,The beak makes its own food,,,x,Anticipated; identify this stated idea only.
+s06-K99-link,The receiving organ commands movement directly,,,D,Anticipated; identify this stated idea only.
+s06-P100-repair,Eyes directly command fingers,,,D,Anticipated; identify this stated idea only.
+s06-P100-order,Eyes directly command fingers,,,D,Anticipated; identify this stated idea only.
+s06-P101-repair,The sense organ directly commands movement,,,D,Anticipated; identify this stated idea only.
+s06-P101-meaning,Remembered signals cannot guide action,,,E,Anticipated; identify this stated idea only.
+s06-P101-compare,Learning cannot affect responses,,,E,Anticipated; identify this stated idea only.
+s06-P102-repair,The receiving part commands movement without processing,,,D,Anticipated; identify this stated idea only.
+s06-P102-source,Every snake has heat-sensing pits,,,x,Anticipated; identify this stated idea only.
+s06-P103-repair,Remembered meaning cannot guide action,,,E,Anticipated; identify this stated idea only.
+s06-P103-meaning,Learned meanings cannot guide action,,,E,Anticipated; identify this stated idea only.
+s06-P103-limit,The token proves sense organs directly command movement,,,D,Anticipated; identify this stated idea only.
+s06-P99-repair,Eyes see the object without illumination,,,B,Diagnose this stated idea only; omissions receive descriptive feedback.
+s06-X102,Remembered signals cannot guide action,,,E,Diagnose this stated idea only; omissions receive descriptive feedback.
+s06-X103,Ears directly command movement,,,D,Diagnose this stated idea only; omissions receive descriptive feedback.
+s06-X103-test,Ears directly command movement,,,D,Diagnose this stated idea only; omissions receive descriptive feedback.
+s06-C99,The receiving organ directly commands movement,,,D,Anticipated; identify this stated idea only.
+s06-C100,The counts show eyes directly commanding fingers,,,D,Anticipated; identify this stated idea only.
+s06-C101,Learning cannot affect responses,,,E,Anticipated; identify this stated idea only.
+s06-C102,Receiving parts command movement directly,,,D,Anticipated; identify this stated idea only.
+s06-C103,Remembered meanings cannot guide actions,,,E,Anticipated; identify this stated idea only.
+s06-X104-question,Were the watered plants' leaves firm?,,,x,The record already answers this question. Give descriptive feedback only.
+s06-P104-repair,The receiving organ commands the action directly.,,,D,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P104-memory,Remembered meanings cannot guide action.,,,E,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P104-cycle,The same adult becomes its own seed.,,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P104-jobs,The difference guarantees survival.,,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P104-label,Only external parts can help the plant.,,,F,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P105-repair,Only the outside surface can carry water.,,,F,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P105-reason,Stored water guarantees the plant survives.,,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P105-evidence,This supports seed travel.,,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P105-limit,The cut flower tests roots taking in water.,,,H,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P106-inside,Outside parts are the only parts that can transport water.,,,F,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P106-roots,The drawing shows roots taking up water.,,,H,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P106-reason,"The seed moves in wind, so this shows protection from eating.",,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P106-say,A moved seed supports the protection claim.,,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P107-inside,Only outside parts can help water move.,,,F,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P107-roots,The cut stem has tested root uptake.,,,H,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P107-link,Only outside parts do useful work.,,,F,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P108-inside,Only outside parts do useful work.,,,F,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P108-roots,The cut flower directly tested root uptake.,,,H,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-P108-fruit,The seed is a pollen grain.,,,x,Diagnose the stated idea only. Incomplete work receives descriptive feedback.
+s06-X108,Inside parts cannot contribute to reproduction.,,,F,Explicit denial of internal reproductive contribution; incomplete labels alone do not diagnose this.
+s06-P109,Only outside parts matter,,,F,Use only for the explicit stated error; missing links receive descriptive feedback.
+s06-P109-inside,Inside parts do nothing,,,F,Use only for the explicit stated error; missing links receive descriptive feedback.
+s06-P109-flower,Petals alone make seeds,,,G,Use only for the explicit stated error; missing links receive descriptive feedback.
+s06-P109-route,Only the outside intake part contributes,,,F,Use only for the explicit stated error; missing links receive descriptive feedback.
+s06-P109-young,The shell makes food and every egg becomes a young bird,,,x,Use only for the explicit stated error; missing links receive descriptive feedback.
+s06-P110,Rootless observation proves uptake,,,H,Explicit stated error only; separate unsupported evidence from missing content.
+s06-P110-inside,Outside parts alone suffice,,,F,Explicit stated error only; separate unsupported evidence from missing content.
+s06-P110-flower,Petals alone make seeds,,,G,Explicit stated error only; separate unsupported evidence from missing content.
+s06-K110,The cut flower directly shows roots absorbing water,,,H,Explicit stated error only; separate unsupported evidence from missing content.
+s06-P110-talk,A rootless cutting alone proves root uptake,,,H,Explicit stated error only; separate unsupported evidence from missing content.
+s06-P111,Only external structures contribute,,,F,Explicit idea only; missing components get descriptive feedback.
+s06-P111-inside,Only outside structures help,,,F,Explicit idea only; missing components get descriptive feedback.
+s06-P111-flower,Petals alone make seeds,,,G,Explicit idea only; missing components get descriptive feedback.
+s06-P111-roots,The rootless setup tests roots taking water,,,H,Explicit idea only; missing components get descriptive feedback.
+s06-P111-talk,Only outside parts help,,,F,Explicit idea only; missing components get descriptive feedback.
+s06-P111-coverage,One food-processing label proves all four functions,,,x,Explicit idea only; missing components get descriptive feedback.
+s06-P112,Cutting proves uptake,,,H,Explicit claim only; descriptive feedback for missing evidence.
+s06-P112-inside,Only outside structures help,,,F,Explicit claim only; descriptive feedback for missing evidence.
+s06-P112-roots,The rootless cutting tests root uptake,,,H,Explicit claim only; descriptive feedback for missing evidence.
+s06-P112-audit,A list of names proves every function,,,x,Explicit claim only; descriptive feedback for missing evidence.
+s06-P112-question,Our records guarantee every animal survives,,,x,Explicit claim only; descriptive feedback for missing evidence.
+s06-X112-animal,Having these parts guarantees survival,,,x,An interaction can help survival; a source model does not guarantee an outcome.
+s06-P113-roots,The cutting tested roots,,,H,Apply only to the stated idea; describe other gaps separately.
+s06-P113-inside,Only the outside mouth matters,,,F,Apply only to the stated idea; describe other gaps separately.
+s06-K113,The toy is visible without illumination,,,B,Apply only to the stated idea; describe other gaps separately.
+s06-P113-question,No question or chart is identified,,,x,Apply only to the stated idea; describe other gaps separately.
+s06-P114-retrieve,An unrelated observation is offered,,,x,Apply only to the stated idea; describe other gaps separately.
+s06-P114-match,Only outside parts have jobs,,,F,Apply only to the stated idea; describe other gaps separately.
+s06-P114-link,Receiving parts command action directly,,,D,Apply only to the stated idea; describe other gaps separately.
+s06-P117-repair,A needed link stays absent,,,x,Apply only to the stated idea; describe other gaps separately.
+s06-P117-revise,The first response is erased without an evidence-linked repair,,,x,Apply only to the stated idea; describe other gaps separately.
+C-E118-table,W has no features because the ocean floor is flat.,,,AA,Omits mapped underwater relief.
+C-E118-audit,"All events must be coastal, even those marked inland.",,,AA,Replaces mapped evidence with an absolute rule.
+C-E118-limit,Every empty space is safe forever.,,,AB,Ignores the selected record and its time limit.
+C-E118-add,Dig a new river channel despite the no-digging limit.,,,AD,Ignores a stated design constraint.
+C-E118-compare,The wall meets the goal in every flow because small flow wets no stores.,,,AD,Omits larger-flow failures.
+C-E118-harm,A warning stops the river from flooding.,,,AC,Confuses reducing harm with stopping the process.
+C-E118-model,Eye → mirror → dial supplies the light.,,,AE,Reverses receiving and emitting.
+C-E118-predict,The dial stays visible because light passes through the opaque card.,,,AF,Treats an opaque obstruction as transmitting.
+C-E118-test,Erase the lamp because an unseen dial cannot be illuminated.,,,AF,Confuses interrupted viewing with lost illumination.
+C-E119-select,A is better because ears order legs directly.,,,AG,Omits brain processing.
+C-E119-predict,It cannot act because a remembered sign never guides movement.,,,AH,Denies learned meaning and a different sensory input.
+C-E119-test,"Only ears receive information, even in the silent sign test.",,,AG,Excludes a supported sensory input.
+C-E119-plant,Petals alone become seeds without other flower parts.,,,AJ,Omits reproductive cooperation.
+C-E119-animal,Skin and legs do all four jobs without inside parts.,,,AI,Omits inside/outside interactions.
+C-P120-map,An empty island is certainly safe.,,,AB,Record absence is not safety.
+C-P120-design,Gentle success proves every flood is stopped.,,,AC,Retains a universal guarantee.
+C-P120-light,Unseen means unlit.,,,AF,Conflates illumination with viewing.
+C-P120-sense,Remembering cannot change action.,,,AH,Omits learned meaning.
+C-P120-structure,Outside parts alone explain growth.,,,AI,Omits inside cooperation.
+C-P120-preserve,Label supplied invented readings as measurements I made.,,,AK,Supplied evidence is not firsthand observation.
+C-X120,"Lamp to sign to eye, labeled my firsthand measurement.",,,AK,"The path is accurate, but supplied invented evidence is mislabeled firsthand."
+C-X120,The eye supplies the light to the sign.,,,AE,Reversed light direction; code separately from provenance.
