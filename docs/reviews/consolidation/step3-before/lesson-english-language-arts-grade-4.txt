@@ -1,0 +1,838 @@
+  FAIL s01-X02: text_id g4-u1-x02 has no row in data/plans/ela-texts.csv
+  FAIL s01-X03: text_id g4-u1-x03 has no row in data/plans/ela-texts.csv
+  FAIL s01-X04: text_id g4-u1-x04 has no row in data/plans/ela-texts.csv
+  FAIL s01-P4-X1: text_id g4-u1-x04 has no row in data/plans/ela-texts.csv
+  FAIL s01-X03b: text_id g4-u1-x03 has no row in data/plans/ela-texts.csv
+  FAIL s01-X05: text_id g4-u1-x05 has no row in data/plans/ela-texts.csv
+  FAIL s01-X06: text_id g4-u1-x06 has no row in data/plans/ela-texts.csv
+  FAIL s01-X06b: text_id g4-u1-x06 has no row in data/plans/ela-texts.csv
+  FAIL s01-X06c: text_id g4-u1-x06 has no row in data/plans/ela-texts.csv
+  FAIL s01-X07: text_id g4-u1-x07 has no row in data/plans/ela-texts.csv
+  FAIL s01-X08: text_id g4-u1-x08 has no row in data/plans/ela-texts.csv
+  FAIL s01-X10: text_id g4-u1-x10 has no row in data/plans/ela-texts.csv
+  FAIL s01-X11: text_id g4-u1-x11 has no row in data/plans/ela-texts.csv
+  FAIL s01-X12: text_id g4-u1-x12 has no row in data/plans/ela-texts.csv
+  FAIL s01-X14: text_id g4-u1-x14 has no row in data/plans/ela-texts.csv
+  FAIL s01-X15: text_id g4-u1-x15 has no row in data/plans/ela-texts.csv
+  FAIL s01-X16: text_id g4-u1-x16 has no row in data/plans/ela-texts.csv
+  FAIL s01-P14-2: text_id g4-u1-sign has no row in data/plans/ela-texts.csv
+  FAIL s01-P15-1: text_id g4-u1-sign has no row in data/plans/ela-texts.csv
+  FAIL s01-P16-1: text_id g4-u1-sign has no row in data/plans/ela-texts.csv
+  FAIL s01-X18-1: text_id g4-u1-x18 has no row in data/plans/ela-texts.csv
+  FAIL s01-X18-2: text_id g4-u1-x18 has no row in data/plans/ela-texts.csv
+  FAIL s01-X19: text_id g4-u1-x19 has no row in data/plans/ela-texts.csv
+  FAIL s01-X20: text_id g4-u1-x20 has no row in data/plans/ela-texts.csv
+  FAIL s01-X21: text_id g4-u1-x21 has no row in data/plans/ela-texts.csv
+  FAIL s01-X22-1: text_id g4-u1-x22 has no row in data/plans/ela-texts.csv
+  FAIL s01-X22-2: text_id g4-u1-x22 has no row in data/plans/ela-texts.csv
+  FAIL s01-X23: text_id g4-u1-x23 has no row in data/plans/ela-texts.csv
+  FAIL s01-X24: text_id g4-u1-x24 has no row in data/plans/ela-texts.csv
+  FAIL s01-X25: text_id g4-u1-x25 has no row in data/plans/ela-texts.csv
+  FAIL s01-X26-1: text_id g4-u1-x26 has no row in data/plans/ela-texts.csv
+  FAIL s01-X26-2: text_id g4-u1-x26 has no row in data/plans/ela-texts.csv
+  FAIL s01-X28: text_id g4-u1-x28 has no row in data/plans/ela-texts.csv
+  FAIL s01-X29: text_id g4-u1-x29 has no row in data/plans/ela-texts.csv
+  FAIL s01-X31: text_id g4-u1-x31 has no row in data/plans/ela-texts.csv
+  FAIL s01-X32: text_id g4-u1-x32 has no row in data/plans/ela-texts.csv
+  FAIL s01-X33: text_id g4-u1-x33 has no row in data/plans/ela-texts.csv
+  FAIL s01-K14-1: text_id g4-u1-sign has no row in data/plans/ela-texts.csv
+  FAIL s01-K14-2: text_id g4-u1-sign has no row in data/plans/ela-texts.csv
+  FAIL s01-K15-2: text_id g4-u1-sign has no row in data/plans/ela-texts.csv
+  FAIL s01-R8: text_id g4-u1-sign has no row in data/plans/ela-texts.csv
+  FAIL s01-R9: text_id g4-u1-sign has no row in data/plans/ela-texts.csv
+  FAIL s01-P15-6: text_id g4-u1-sign has no row in data/plans/ela-texts.csv
+  FAIL s01-P16-8: text_id g4-u1-sign has no row in data/plans/ela-texts.csv
+  FAIL s01-P16-9: text_id g4-u1-sign has no row in data/plans/ela-texts.csv
+  FAIL s01-K24-1: needs_text must be yes or no (does the answer need the text?)
+  FAIL s01-K24-2: needs_text must be yes or no (does the answer need the text?)
+  FAIL s01-K24-3: needs_text must be yes or no (does the answer need the text?)
+  FAIL s01-R26: needs_text must be yes or no (does the answer need the text?)
+  FAIL s01-P26-listen: needs_text must be yes or no (does the answer need the text?)
+  FAIL s01-K27-1: needs_text must be yes or no (does the answer need the text?)
+  FAIL s01-K27-2: needs_text must be yes or no (does the answer need the text?)
+  FAIL items.csv: 68 percent of questions need the text; at least 80 percent must
+  FAIL s01-X08: stem wraps student text in quote marks beside other words ("Wait!..."); the marks print
+  FAIL s01-A07-meaning: part (whole) of RL.4.4 is not listed in parts.csv
+  FAIL s01-A13b-evidence and s01-A30-audience have the same stem
+  FAIL s01-A13b-evidence and s01-A34b-evidence have the same stem
+  FAIL s01-A13b-evidence and s01-A35-range have the same stem
+  FAIL s01-A13b-evidence and s01-A38c have the same stem
+  FAIL s01-A30-audience and s01-A34b-evidence have the same stem
+  FAIL s01-A30-audience and s01-A35-range have the same stem
+  FAIL s01-A30-audience and s01-A38c have the same stem
+  FAIL s01-A34b-evidence and s01-A35-range have the same stem
+  FAIL s01-A34b-evidence and s01-A38c have the same stem
+  FAIL s01-A35-range and s01-A38c have the same stem
+  FAIL s01-P5-8 and s01-P7-9 have the same stem
+  FAIL s01-P22-2 and s01-K23-R2 have the same stem
+  FAIL s01-P23-1 and s01-K24-R1 have the same stem
+  FAIL s01-P24-1 and s01-K25-R1 have the same stem
+  FAIL s01-P24-2 and s01-K25-R2 have the same stem
+  FAIL s01-P25-1 and s01-K26-R2 have the same stem
+  FAIL s01-P25-2 and s01-K26-R1 have the same stem
+  FAIL s01-W22 and s01-W26-1 have the same stem
+  FAIL s01-W22 and s01-W27-1 have the same stem
+  FAIL s01-P10-6 and s01-P11-9 have the same stem
+  FAIL s01-P10-10 and s01-P11-8 have the same stem
+  FAIL s01-P10-10 and s01-P12-8 have the same stem
+  FAIL s01-P10-10 and s01-P13-3 have the same stem
+  FAIL s01-P11-6 and s01-P12-9 have the same stem
+  FAIL s01-P11-8 and s01-P12-8 have the same stem
+  FAIL s01-P11-8 and s01-P13-3 have the same stem
+  FAIL s01-P12-8 and s01-P13-3 have the same stem
+  FAIL s01-K19-2 and s01-K24-R2 have the same stem
+  FAIL s01-K22-3 and s01-K23-R1 have the same stem
+  FAIL s01-W22-2 and s01-W26-2 have the same stem
+  FAIL s01-W22-2 and s01-W27-2 have the same stem
+  FAIL s01-K24-1 and s01-K27-1 have the same stem
+  FAIL s01-K24-2 and s01-K27-2 have the same stem
+  FAIL s01-W26-1 and s01-W27-1 have the same stem
+  FAIL s01-W26-2 and s01-W27-2 have the same stem
+  FAIL section 1.1 (english-language-arts-grade-4-u01-1) is not in data/units.csv
+  FAIL section 1.2 (english-language-arts-grade-4-u01-2) is not in data/units.csv
+  FAIL section 1.3 (english-language-arts-grade-4-u01-3) is not in data/units.csv
+  FAIL section 1.4 (english-language-arts-grade-4-u01-4) is not in data/units.csv
+  FAIL section 1.5 (english-language-arts-grade-4-u01-5) is not in data/units.csv
+  FAIL section 1.6 (english-language-arts-grade-4-u01-6) is not in data/units.csv
+  FAIL section 1.7 (english-language-arts-grade-4-u01-7) is not in data/units.csv
+  FAIL section 1.8 (english-language-arts-grade-4-u01-8) is not in data/units.csv
+  FAIL day 37: no exit question in items.csv
+  FAIL sources.csv u1-original-lt: a reserved source is printed only on its assessment day
+  FAIL day 6: shows names s01-X06b, which is neither an exit of day 6 nor an end-of-unit item of unit 1
+  FAIL day 6: shows names s01-X06c, which is neither an exit of day 6 nor an end-of-unit item of unit 1
+  FAIL day 6: shows phrase "transfer after Rossetti study" is not in the goal "Explain similes, metaphors and word relationships in a Rossetti poem."
+  FAIL day 7: shows phrase "Reread for meaning" is not in the goal "Reread a Dickinson poem for meaning and expression and explain a proverb or idiom in context."
+  FAIL day 7: shows phrase "expression and self-correction" is not in the goal "Reread a Dickinson poem for meaning and expression and explain a proverb or idiom in context."
+  FAIL day 7: shows phrase "explain an expression in context" is not in the goal "Reread a Dickinson poem for meaning and expression and explain a proverb or idiom in context."
+  FAIL day 7: the goal piece "Reread a Dickinson poem for meaning" names no item in shows
+  FAIL day 7: the goal piece "expression" names no item in shows
+  FAIL day 7: the goal piece "explain a proverb" names no item in shows
+  FAIL day 7: the goal piece "idiom in context." names no item in shows
+  FAIL day 8: shows phrase "Compare prose, verse and drama presentation" is not in the goal "Compare the same moment in prose, verse and a short drama scene."
+  FAIL day 8: shows phrase "narration and live performance connections" is not in the goal "Compare the same moment in prose, verse and a short drama scene."
+  FAIL day 8: the goal piece "Compare the same moment in prose" names no item in shows
+  FAIL day 8: the goal piece "verse" names no item in shows
+  FAIL day 8: the goal piece "a short drama scene." names no item in shows
+  FAIL day 9: shows phrase "Explicit action and inference with evidence" is not in the goal "Assess poem theme and summary, poetry versus prose and use of textual evidence."
+  FAIL day 9: shows phrase "structural forms" is not in the goal "Assess poem theme and summary, poetry versus prose and use of textual evidence."
+  FAIL day 9: shows phrase "retained purpose/meaning" is not in the goal "Assess poem theme and summary, poetry versus prose and use of textual evidence."
+  FAIL day 9: shows phrase "successive phrasing" is not in the goal "Assess poem theme and summary, poetry versus prose and use of textual evidence."
+  FAIL day 9: shows phrase "confirmation" is not in the goal "Assess poem theme and summary, poetry versus prose and use of textual evidence."
+  FAIL day 23: shows phrase "planning and revision" is not in the goal "Plan the essay and draft an introduction for a named reader."
+  FAIL day 24: shows phrase "facts, definitions and details" is not in the goal "Develop the first body paragraph with facts, definitions, details and quotations."
+  FAIL day 24: shows phrase "links" is not in the goal "Develop the first body paragraph with facts, definitions, details and quotations."
+  FAIL day 24: shows phrase "precision" is not in the goal "Develop the first body paragraph with facts, definitions, details and quotations."
+  FAIL day 24: the goal piece "definitions" names no item in shows
+  FAIL day 24: the goal piece "details" names no item in shows
+  FAIL day 25: shows phrase "sentence control" is not in the goal "Develop the second body paragraph and link ideas with precise language."
+  FAIL day 26: shows phrase "critique against one look-for" is not in the goal "Write a conclusion and critique the full essay against one look-for."
+  FAIL day 26: shows names s01-X26-2, which is neither an exit of day 26 nor an end-of-unit item of unit 1
+  FAIL day 26: shows phrase "full essay critique and revision" is not in the goal "Write a conclusion and critique the full essay against one look-for."
+  FAIL day 26: the goal piece "critique the full essay against one look-for." names no item in shows
+  FAIL day 27: shows phrase "links" is not in the goal "Assess revision of the informative essay for organization, evidence and sentence control."
+  FAIL day 27: shows phrase "precise language" is not in the goal "Assess revision of the informative essay for organization, evidence and sentence control."
+  FAIL day 27: shows phrase "conclusion" is not in the goal "Assess revision of the informative essay for organization, evidence and sentence control."
+  FAIL day 27: shows phrase "capitals" is not in the goal "Assess revision of the informative essay for organization, evidence and sentence control."
+  FAIL day 27: shows phrase "quotation punctuation" is not in the goal "Assess revision of the informative essay for organization, evidence and sentence control."
+  FAIL day 27: shows phrase "reference spelling" is not in the goal "Assess revision of the informative essay for organization, evidence and sentence control."
+  FAIL day 27: shows phrase "reading" is not in the goal "Assess revision of the informative essay for organization, evidence and sentence control."
+  FAIL day 28: shows phrase "Plan images and line endings" is not in the goal "Plan an original poem after studying the poems and the revised essay."
+  FAIL day 28: shows phrase "preparation process" is not in the goal "Plan an original poem after studying the poems and the revised essay."
+  FAIL day 28: shows names s01-P28-folder, which is neither an exit of day 28 nor an end-of-unit item of unit 1
+  FAIL day 28: shows names (unjudged),, which has no row in items.csv
+  FAIL day 28: shows names retained, which has no row in items.csv
+  FAIL day 28: shows names for, which has no row in items.csv
+  FAIL day 28: shows phrase "poem clarity" is not in the goal "Plan an original poem after studying the poems and the revised essay."
+  FAIL day 28: the goal piece "Plan an original poem after studying the poems" names no item in shows
+  FAIL day 28: the goal piece "the revised essay." names no item in shows
+  FAIL day 29: shows phrase "Draft images and deliberate lines" is not in the goal "Draft an original poem with deliberate images and line breaks."
+  FAIL day 29: shows phrase "own draft" is not in the goal "Draft an original poem with deliberate images and line breaks."
+  FAIL day 29: shows names s01-P29-folder, which is neither an exit of day 29 nor an end-of-unit item of unit 1
+  FAIL day 29: shows names (unjudged),, which has no row in items.csv
+  FAIL day 29: shows names later, which has no row in items.csv
+  FAIL day 29: shows phrase "actual word analysis" is not in the goal "Draft an original poem with deliberate images and line breaks."
+  FAIL day 29: shows names (five, which has no row in items.csv
+  FAIL day 29: shows names due, which has no row in items.csv
+  FAIL day 29: shows names readers, which has no row in items.csv
+  FAIL day 29: shows names only), which has no row in items.csv
+  FAIL day 29: the goal piece "Draft an original poem with deliberate images" names no item in shows
+  FAIL day 29: the goal piece "line breaks." names no item in shows
+  FAIL day 30: shows phrase "Meaningful revision and change explanation" is not in the goal "Assess revising the poem for clearer words and purposeful punctuation."
+  FAIL day 30: shows phrase "purpose and reader clarity in the same retained poem" is not in the goal "Assess revising the poem for clearer words and purposeful punctuation."
+  FAIL day 30: shows piece "judgment day 31 only" is not "phrase = id id"
+  FAIL day 31: shows phrase "Introduction for a new reader" is not in the goal "Analyze a presentation model and draft an introduction about the poem's inspiration."
+  FAIL day 31: shows phrase "own introduction" is not in the goal "Analyze a presentation model and draft an introduction about the poem's inspiration."
+  FAIL day 31: shows names s01-P31-folder, which is neither an exit of day 31 nor an end-of-unit item of unit 1
+  FAIL day 31: shows names (unjudged),, which has no row in items.csv
+  FAIL day 31: shows names retained, which has no row in items.csv
+  FAIL day 31: shows names for, which has no row in items.csv
+  FAIL day 31: shows names later, which has no row in items.csv
+  FAIL day 31: shows names presentation, which has no row in items.csv
+  FAIL day 31: shows names collection, which has no row in items.csv
+  FAIL day 31: shows phrase "ordered main idea/details" is not in the goal "Analyze a presentation model and draft an introduction about the poem's inspiration."
+  FAIL day 31: shows names s01-R12, which is neither an exit of day 31 nor an end-of-unit item of unit 1
+  FAIL day 31: shows phrase "purposeful visual" is not in the goal "Analyze a presentation model and draft an introduction about the poem's inspiration."
+  FAIL day 31: shows names s01-P31-2, which is neither an exit of day 31 nor an end-of-unit item of unit 1
+  FAIL day 31: the goal piece "Analyze a presentation model" names no item in shows
+  FAIL day 31: the goal piece "draft an introduction about the poem's inspiration." names no item in shows
+  FAIL day 32: shows phrase "Evidence-based reading influence connection" is not in the goal "Write the explanation connecting the original poem to its inspiration."
+  FAIL day 32: shows phrase "own explanation" is not in the goal "Write the explanation connecting the original poem to its inspiration."
+  FAIL day 32: shows names s01-P32-folder, which is neither an exit of day 32 nor an end-of-unit item of unit 1
+  FAIL day 32: shows names (unjudged),, which has no row in items.csv
+  FAIL day 32: shows names later, which has no row in items.csv
+  FAIL day 32: shows names retained, which has no row in items.csv
+  FAIL day 32: shows names presentation, which has no row in items.csv
+  FAIL day 32: shows names collection, which has no row in items.csv
+  FAIL day 32: shows phrase "actual speaking rehearsal" is not in the goal "Write the explanation connecting the original poem to its inspiration."
+  FAIL day 32: shows names s01-P32-listen, which is neither an exit of day 32 nor an end-of-unit item of unit 1
+  FAIL day 32: shows names (six, which has no row in items.csv
+  FAIL day 32: shows names only,, which has no row in items.csv
+  FAIL day 32: shows names unjudged), which has no row in items.csv
+  FAIL day 32: the goal piece "Write the explanation connecting the original poem to its inspiration." names no item in shows
+  FAIL day 36: shows names s01-A34a; an assessment day names its own end-of-unit items
+  FAIL day 37: shows names no exit of the day; the exit ticket must check the goal
+  FAIL handbacks.csv row 12: day 12 is written but never names day 4 (or E4, or the items sent)
+  FAIL handbacks.csv row 29: day 12 is written but never names day 4 (or E4, or the items sent)
+  FAIL handbacks.csv row 30: day 12 is written but never names day 8 (or E8, or the items sent)
+  FAIL handbacks.csv row 111: day 27 is written but never names day 25 (or E25, or the items sent)
+  FAIL materials.csv row 24 (discussion moves chart and role notes): names u01-1/discussion-moves.md, which does not exist; day 1 is written, so write the piece or fix the name
+  FAIL materials.csv row 25 (sound and spelling wall): names u01-1/sound-spelling-wall.md, which does not exist; day 1 is written, so write the piece or fix the name
+  FAIL materials.csv row 26 (story map with a message box): names u01-1/story-map.md, which does not exist; day 3 is written, so write the piece or fix the name
+  FAIL materials.csv row 27 (R3 paw picture): names u01-1/paw-picture.md, which does not exist; day 2 is written, so write the piece or fix the name
+  FAIL materials.csv row 28 (choice packet): names u01-1/choice-packet.md, which does not exist; day 1 is written, so write the piece or fix the name
+  FAIL materials.csv row 29 (feature overlays): names u01-1/feature-overlays.md, which does not exist; day 4 is written, so write the piece or fix the name
+  FAIL materials.csv row 30 (skill cards): names u01-1/skill-cards.md, which does not exist; day 1 is written, so write the piece or fix the name
+  FAIL materials.csv row 31 (fall reading cards): names u01-1/fall-reading-cards.md, which does not exist; day 1 is written, so write the piece or fix the name
+  FAIL materials.csv row 32 (unit 1 component record): names u01-1/record.md, which does not exist; day 1 is written, so write the piece or fix the name
+  FAIL materials.csv row 33 (family note): names u01-1/family.md, which does not exist; day 1 is written, so write the piece or fix the name
+  FAIL materials.csv row 34 (section 1.2 choice cards): names u01-2/choice-cards.md, which does not exist; day 5 is written, so write the piece or fix the name
+  FAIL materials.csv row 35 (section 1.3 choice cards): names u01-3/choice-cards.md, which does not exist; day 10 is written, so write the piece or fix the name
+  FAIL materials.csv row 36 (section 1.4 choice cards): names u01-4/choice-cards.md, which does not exist; day 14 is written, so write the piece or fix the name
+  FAIL materials.csv row 37 (fictional sign inspection model): names u01-4/sign-inspection.md, which does not exist; day 14 is written, so write the piece or fix the name
+  FAIL materials.csv row 38 (pattern probe and feedback card): names u01-4/pattern-probe.md, which does not exist; day 14 is written, so write the piece or fix the name
+  FAIL materials.csv row 40 (section 1.1 independent exit cards): names u01-1/exit-cards.md, which does not exist; day 1 is written, so write the piece or fix the name
+  FAIL materials.csv row 41 (section 1.2 independent exit cards): names u01-2/exit-cards.md, which does not exist; day 5 is written, so write the piece or fix the name
+  FAIL materials.csv row 42 (section 1.3 independent exit cards): names u01-3/exit-cards.md, which does not exist; day 10 is written, so write the piece or fix the name
+  FAIL materials.csv row 43 (section 1.4 independent exit cards): names u01-4/exit-cards.md, which does not exist; day 14 is written, so write the piece or fix the name
+  FAIL materials.csv row 44 (unit 1 assessment day 9 materials): names u01-1/assessment-guide.md, which does not exist; day 9 is written, so write the piece or fix the name
+  FAIL materials.csv row 44 (unit 1 assessment day 9 materials): names assessment-key.md, which does not exist; day 9 is written, so write the piece or fix the name
+  FAIL materials.csv row 45 (unit 1 assessment day 13 materials): names u01-1/assessment-guide.md, which does not exist; day 13 is written, so write the piece or fix the name
+  FAIL materials.csv row 45 (unit 1 assessment day 13 materials): names assessment-key.md, which does not exist; day 13 is written, so write the piece or fix the name
+  FAIL materials.csv row 46 (unit 1 assessment day 17 materials): names u01-1/assessment-guide.md, which does not exist; day 17 is written, so write the piece or fix the name
+  FAIL materials.csv row 46 (unit 1 assessment day 17 materials): names assessment-key.md, which does not exist; day 17 is written, so write the piece or fix the name
+  FAIL materials.csv row 47 (unit 1 assessment day 27 materials): names u01-1/assessment-guide.md, which does not exist; day 27 is written, so write the piece or fix the name
+  FAIL materials.csv row 47 (unit 1 assessment day 27 materials): names assessment-key.md, which does not exist; day 27 is written, so write the piece or fix the name
+  FAIL materials.csv row 48 (unit 1 assessment day 29 materials): names u01-1/assessment-guide.md, which does not exist; day 29 is written, so write the piece or fix the name
+  FAIL materials.csv row 48 (unit 1 assessment day 29 materials): names assessment-key.md, which does not exist; day 29 is written, so write the piece or fix the name
+  FAIL materials.csv row 49 (unit 1 assessment day 30 materials): names u01-1/assessment-guide.md, which does not exist; day 30 is written, so write the piece or fix the name
+  FAIL materials.csv row 49 (unit 1 assessment day 30 materials): names assessment-key.md, which does not exist; day 30 is written, so write the piece or fix the name
+  FAIL materials.csv row 50 (unit 1 assessment day 34 materials): names u01-1/assessment-guide.md, which does not exist; day 34 is written, so write the piece or fix the name
+  FAIL materials.csv row 50 (unit 1 assessment day 34 materials): names assessment-key.md, which does not exist; day 34 is written, so write the piece or fix the name
+  FAIL materials.csv row 51 (unit 1 assessment day 35 materials): names u01-1/assessment-guide.md, which does not exist; day 35 is written, so write the piece or fix the name
+  FAIL materials.csv row 51 (unit 1 assessment day 35 materials): names assessment-key.md, which does not exist; day 35 is written, so write the piece or fix the name
+  FAIL materials.csv row 52 (unit 1 assessment day 36 materials): names u01-1/assessment-guide.md, which does not exist; day 36 is written, so write the piece or fix the name
+  FAIL materials.csv row 52 (unit 1 assessment day 36 materials): names assessment-key.md, which does not exist; day 36 is written, so write the piece or fix the name
+  FAIL materials.csv row 53 (unit 1 assessment day 38 materials): names u01-1/assessment-guide.md, which does not exist; day 38 is written, so write the piece or fix the name
+  FAIL materials.csv row 53 (unit 1 assessment day 38 materials): names assessment-key.md, which does not exist; day 38 is written, so write the piece or fix the name
+  FAIL materials.csv row 57 (feature and intensity labels): names u01-2/feature-labels.md, which does not exist; day 5 is written, so write the piece or fix the name
+  FAIL materials.csv row 58 (poem meaning feedback sheet): names u01-2/meaning-feedback.md, which does not exist; day 7 is written, so write the piece or fix the name
+  FAIL materials.csv row 59 (source-label cards): names u01-3/source-labels.md, which does not exist; day 11 is written, so write the piece or fix the name
+  FAIL materials.csv row 60 (independent assessment response pages): names u01-1/assessment-pages.md, which does not exist; day 9 is written, so write the piece or fix the name
+  FAIL materials.csv row 72 (section 1.8 record): names u01-8/record.md, which does not exist; day 33 is written, so write the piece or fix the name
+  FAIL source-map.csv row 2 (EL G4 M2 U1 L1): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 3 (EL G4 M2 U1 L2): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 4 (EL G4 M2 U1 L3): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 5 (EL G4 M2 U1 L4): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 6 (EL G4 M2 U1 L5): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 7 (EL G4 M2 U1 L6): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 8 (EL G4 M2 U1 L7): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 9 (EL G4 M2 U1 L8): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 10 (EL G4 M2 U1 L9): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 11 (EL G4 M2 U1 L10): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 12 (EL G4 M2 U1 L11): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 13 (EL G4 M2 U1 L12): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 14 (EL G4 M2 U2 L1): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 15 (EL G4 M2 U2 L2): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 16 (EL G4 M2 U2 L3): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 17 (EL G4 M2 U2 L4): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 18 (EL G4 M2 U2 L5): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 19 (EL G4 M2 U2 L6): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 20 (EL G4 M2 U2 L7): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 21 (EL G4 M2 U2 L8): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 22 (EL G4 M2 U2 L9): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 23 (EL G4 M2 U2 L10): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 24 (EL G4 M2 U2 L11): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 25 (EL G4 M2 U2 L12): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 26 (EL G4 M2 U3 L1): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 27 (EL G4 M2 U3 L2): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 28 (EL G4 M2 U3 L3): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 29 (EL G4 M2 U3 L4): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 30 (EL G4 M2 U3 L5): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 31 (EL G4 M2 U3 L6): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 32 (EL G4 M2 U3 L7): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 33 (EL G4 M2 U3 L8): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 34 (EL G4 M2 U3 L9): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 35 (EL G4 M2 U3 L10): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 36 (EL G4 M2 U3 L11): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 37 (EL G4 M2 U3 L12): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 38 (EL G4 M2 U3 L13): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 39 (EL G4 M2 U3 L14): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 40 (EL G4 M2 U3 L15): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 41 (EL G4 M3 U1 L1): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 42 (EL G4 M3 U1 L2): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 43 (EL G4 M3 U1 L3): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 44 (EL G4 M3 U1 L4): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 45 (EL G4 M3 U1 L5): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 46 (EL G4 M3 U1 L6): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 47 (EL G4 M3 U1 L7): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 48 (EL G4 M3 U1 L8): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 49 (EL G4 M3 U1 L9): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 50 (EL G4 M3 U1 L10): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 51 (EL G4 M3 U1 L11): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 52 (EL G4 M3 U2 L1): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 53 (EL G4 M3 U2 L2): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 54 (EL G4 M3 U2 L3): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 55 (EL G4 M3 U2 L4): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 56 (EL G4 M3 U2 L5): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 57 (EL G4 M3 U2 L6): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 58 (EL G4 M3 U2 L7): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 59 (EL G4 M3 U2 L8): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 60 (EL G4 M3 U2 L9): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 61 (EL G4 M3 U2 L10): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 62 (EL G4 M3 U2 L11): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 63 (EL G4 M3 U2 L12): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 64 (EL G4 M3 U2 L13): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 65 (EL G4 M3 U3 L1): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 66 (EL G4 M3 U3 L2): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 67 (EL G4 M3 U3 L3): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 68 (EL G4 M3 U3 L4): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 69 (EL G4 M3 U3 L5): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 70 (EL G4 M3 U3 L6): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 71 (EL G4 M3 U3 L7): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 72 (EL G4 M3 U3 L8): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 73 (EL G4 M3 U3 L9): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 74 (EL G4 M3 U3 L10): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 75 (EL G4 M3 U3 L11): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 76 (EL G4 M3 U3 L12): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 77 (EL G4 M3 U3 L13): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 78 (EL G4 M3 U3 L14): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 79 (EL G4 M3 U3 L15): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 80 (EL G4 M4 U1 L1): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 81 (EL G4 M4 U1 L2): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 82 (EL G4 M4 U1 L3): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 83 (EL G4 M4 U1 L4): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 84 (EL G4 M4 U1 L5): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 85 (EL G4 M4 U1 L6): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 86 (EL G4 M4 U1 L7): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 87 (EL G4 M4 U1 L8): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 88 (EL G4 M4 U1 L9): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 89 (EL G4 M4 U1 L10): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 90 (EL G4 M4 U2 L1): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 91 (EL G4 M4 U2 L2): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 92 (EL G4 M4 U2 L3): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 93 (EL G4 M4 U2 L4): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 94 (EL G4 M4 U2 L5): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 95 (EL G4 M4 U2 L6): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 96 (EL G4 M4 U2 L7): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 97 (EL G4 M4 U2 L8): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 98 (EL G4 M4 U2 L9): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 99 (EL G4 M4 U2 L10): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 100 (EL G4 M4 U2 L11): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 101 (EL G4 M4 U2 L12): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 102 (EL G4 M4 U2 L13): days must be day numbers, space separated
+  FAIL source-map.csv row 102 (EL G4 M4 U2 L13): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 103 (EL G4 M4 U3 L1): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 104 (EL G4 M4 U3 L2): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 105 (EL G4 M4 U3 L3): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 106 (EL G4 M4 U3 L4): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 107 (EL G4 M4 U3 L5): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 108 (EL G4 M4 U3 L6): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 109 (EL G4 M4 U3 L7): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 110 (EL G4 M4 U3 L8): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 111 (EL G4 M4 U3 L9): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 112 (EL G4 M4 U3 L10): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 113 (EL G4 M4 U3 L11): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 114 (EL G4 M4 U3 L12): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 115 (EL G4 M4 U3 L13): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 116 (EL G4 M4 U3 L14): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 117 (EL G4 M4 U3 L15): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 118 (ours): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 119 (ours): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 120 (ours): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 142 (EL G4 M1 U2 L10): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 143 (EL G4 M1 U2 L11): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 144 (EL G4 M1 U2 L12): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 145 (EL G4 M1 U2 L13): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 146 (EL G4 M1 U2 L14): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 152 (EL G4 M1 U3 L6): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 153 (EL G4 M1 U3 L7): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 154 (EL G4 M1 U3 L8): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 155 (EL G4 M1 U3 L9): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 156 (EL G4 M1 U3 L10): an order conflict needs harms_learning (yes, no or unclear)
+  FAIL source-map.csv row 157 (EL G4 M1 U3 L11): an order conflict needs harms_learning (yes, no or unclear)
+courses/english-language-arts-grade-4/u01-1/d001.md: teacher 960 words, student 180 words (49 frame, 131 questions), 90 min, 2 side(s), at home 97 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-1/d002.md: teacher 932 words, student 168 words (53 frame, 115 questions), 90 min, 2 side(s), at home 96 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-1/d003.md: teacher 955 words, student 203 words (68 frame, 135 questions), 90 min, 2 side(s), at home 96 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-1/d003.md: the student page prints s01-P3-7 before s01-X03b, but the day teaches them the other way round
+courses/english-language-arts-grade-4/u01-1/d004.md: teacher 1029 words, student 229 words (69 frame, 160 questions), 90 min, 2 side(s), at home 90 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-1/d004.md: the student page prints s01-P4-10 before s01-P4-X1, but the day teaches them the other way round
+  NOTE courses/english-language-arts-grade-4/u01-1/d004.md: the section plan's day 4 block names 1923, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-4/u01-2/d005.md: teacher 922 words, student 156 words (47 frame, 109 questions), 90 min, 2 side(s), at home 87 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-2/d005.md: the section plan's day 5 block names 049, 1923, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-4/u01-2/d006.md: teacher 934 words, student 223 words (57 frame, 166 questions), 90 min, 3 side(s) FAIL: more than two, at home 87 words, 35 min, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-2/d006.md: the student page prints to more than two sides
+  NOTE courses/english-language-arts-grade-4/u01-2/d006.md: the student page prints s01-P6-10 before s01-X06b, but the day teaches them the other way round
+courses/english-language-arts-grade-4/u01-2/d007.md: teacher 909 words, student 188 words (73 frame, 115 questions), 90 min, 2 side(s), at home 92 words, 35 min, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-2/d007.md: a sentence in s01-X07 is 16 words; grades 3 to 5 keep to 15
+courses/english-language-arts-grade-4/u01-2/d008.md: teacher 937 words, student 193 words (63 frame, 130 questions), 90 min, 2 side(s), at home 95 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-2/d009.md: teacher 437 words, student 159 words (54 frame, 105 questions), 90 min, 2 side(s), at home 90 words, 45 min, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-2/d009.md: items 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 are judged after class, but day 10 never hands back "day 9's assessment"
+  NOTE courses/english-language-arts-grade-4/u01-2/d009.md: end items can show error(s) A, B, C, H, I, O, but the respond part names no group for them
+  NOTE courses/english-language-arts-grade-4/u01-2/d009.md: the section plan's day 9 block names 30, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-4/u01-3/d010.md: teacher 784 words, student 167 words (52 frame, 115 questions), 90 min, 2 side(s), at home 104 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-3/d010.md: the section plan's day 10 block names 1926, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-4/u01-3/d011.md: teacher 863 words, student 170 words (48 frame, 122 questions), 90 min, 2 side(s), at home 101 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-3/d011.md: the student page prints s01-P11-6 before s01-P11-7, but the day teaches them the other way round
+courses/english-language-arts-grade-4/u01-3/d012.md: teacher 907 words, student 178 words (56 frame, 122 questions), 90 min, 2 side(s), at home 109 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-3/d013.md: teacher 442 words, student 147 words (68 frame, 79 questions), 90 min, 2 side(s), at home 122 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-3/d013.md: end items can show error(s) A, AH, AI, AK, D, J, K, L, M, O, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-4/d014.md: teacher 863 words, student 171 words (52 frame, 119 questions), 90 min, 2 side(s), at home 86 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-4/d015.md: teacher 913 words, student 185 words (74 frame, 111 questions), 90 min, 2 side(s), at home 96 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-4/d016.md: teacher 891 words, student 215 words (77 frame, 138 questions), 90 min, 2 side(s), at home 81 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-4/d016.md: the student page prints s01-P16-9 before s01-P16-1, but the day teaches them the other way round
+courses/english-language-arts-grade-4/u01-4/d017.md: teacher 414 words, student 219 words (109 frame, 110 questions), 90 min, 2 side(s), at home 78 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-4/d017.md: end items can show error(s) A, AE, H, I, N, O, P, Q, R, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-5/d018.md: teacher 826 words, student 226 words (120 frame, 106 questions), 90 min, 2 side(s), at home 89 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-5/d018.md: the student page prints s01-W18 before s01-X18-1, but the day teaches them the other way round
+  NOTE courses/english-language-arts-grade-4/u01-5/d018.md: the section plan's day 18 block names 740, 950, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-4/u01-5/d019.md: teacher 800 words, student 184 words (98 frame, 86 questions), 90 min, 2 side(s), at home 97 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-5/d020.md: teacher 872 words, student 196 words (106 frame, 90 questions), 90 min, 2 side(s), at home 93 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-5/d021.md: teacher 832 words, student 173 words (107 frame, 66 questions), 90 min, 2 side(s), at home 93 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-5/d022.md: teacher 1010 words, student 237 words (116 frame, 121 questions), 90 min, 2 side(s), at home 89 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-5/d022.md: the student page prints s01-W22-2 before s01-X22-2, but the day teaches them the other way round
+courses/english-language-arts-grade-4/u01-6/d023.md: teacher 705 words, student 122 words (104 frame, 18 questions), 90 min, 2 side(s), at home 90 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-6/d024.md: teacher 805 words, student 221 words (88 frame, 133 questions), 90 min, 2 side(s), at home 95 words, 35 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-6/d024.md: the section plan's day 24 block names 200, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-4/u01-6/d025.md: teacher 767 words, student 177 words (96 frame, 81 questions), 90 min, 2 side(s), at home 96 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-6/d026.md: teacher 876 words, student 191 words (112 frame, 79 questions), 90 min, 2 side(s), at home 91 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-6/d027.md: teacher 484 words, student 143 words (95 frame, 48 questions), 90 min, 2 side(s), at home 103 words, 45 min, 19 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: items 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 are judged after class, but day 28 never hands back "day 27's assessment"
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-groups is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-develop is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-links is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-precise is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-close is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-audience is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-process is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-sentence is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-fragment is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-runon is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-name is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-opening is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-speech-comma is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-speech-marks is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-quote-comma is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-quote-marks is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-reference is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-6/d027.md: end item s01-A27-spelling is not on the student page, so the At home view cannot say where it is
+  NOTE courses/english-language-arts-grade-4/u01-6/d027.md: end items can show error(s) A, AE, AF, AG, AL, H, I, N, O, P, Q, R, S, T, U, V, W, X, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-7/d028.md: teacher 772 words, student 197 words (70 frame, 127 questions), 90 min, 2 side(s), at home 99 words, 35 min, 2 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-7/d028.md: [[s01-X26-1]] belongs to day 26
+  FAIL courses/english-language-arts-grade-4/u01-7/d028.md: [[s01-X26-2]] belongs to day 26
+courses/english-language-arts-grade-4/u01-7/d029.md: teacher 842 words, student 194 words (100 frame, 94 questions), 90 min, 2 side(s), at home 106 words, 35 min, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-7/d029.md: [[s01-X28]] belongs to day 28
+  NOTE courses/english-language-arts-grade-4/u01-7/d029.md: the section plan's day 29 block names 69, which the day and its items never use; if the data overruled the plan, correct the plan
+courses/english-language-arts-grade-4/u01-7/d030.md: teacher 438 words, student 128 words (94 frame, 34 questions), 90 min, 2 side(s), at home 91 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-7/d030.md: end items can show error(s) Q, S, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-7/d031.md: teacher 868 words, student 233 words (90 frame, 143 questions), 90 min, 2 side(s), at home 88 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-7/d032.md: teacher 857 words, student 202 words (105 frame, 97 questions), 90 min, 2 side(s), at home 99 words, 35 min, 2 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-7/d032.md: the written task s01-P32-1 is judged but day 33 never hands it back (handbacks.csv)
+  FAIL courses/english-language-arts-grade-4/u01-7/d032.md: the written task s01-P32-folder is judged but day 33 never hands it back (handbacks.csv)
+courses/english-language-arts-grade-4/u01-8/d033.md: teacher 761 words, student 122 words (85 frame, 37 questions), 90 min, 2 side(s), at home 109 words, 35 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-8/d034.md: teacher 649 words, student 169 words (48 frame, 121 questions), 90 min, 2 side(s), at home 102 words, 40 min, 0 failure(s)
+courses/english-language-arts-grade-4/u01-8/d035.md: teacher 409 words, student 147 words (39 frame, 108 questions), 90 min, 2 side(s), at home 92 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d035.md: end items can show error(s) A, AA, AJ, B, C, D, H, I, Y, Z, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/d036.md: teacher 430 words, student 103 words (59 frame, 44 questions), 90 min, 1 side(s), at home 108 words, 45 min, 19 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-topic is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-groups is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-develop is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-links is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-precise is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-close is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-audience is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-process is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-sentence is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-fragment is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-runon is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-name is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-opening is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-speech-comma is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-speech-marks is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-quote-comma is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-quote-marks is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-reference is not on the student page, so the At home view cannot say where it is
+  FAIL courses/english-language-arts-grade-4/u01-8/d036.md: end item s01-A36b-spelling is not on the student page, so the At home view cannot say where it is
+  NOTE courses/english-language-arts-grade-4/u01-8/d036.md: end items can show error(s) A, AE, AF, AG, AL, H, I, N, O, P, Q, R, S, T, U, V, W, X, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/d037.md: teacher 1019 words, student 265 words (65 frame, 200 questions), 90 min, 2 side(s), at home 102 words, 35 min, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-8/d037.md: the last At home part is "Reread"; on a teaching day it is the exit ticket
+  NOTE courses/english-language-arts-grade-4/u01-8/d037.md: the student page prints s01-F37-form before s01-F37-meaning, but the day teaches them the other way round
+courses/english-language-arts-grade-4/u01-8/d038.md: teacher 478 words, student 89 words (57 frame, 32 questions), 90 min, 1 side(s), at home 110 words, 45 min, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/assessment-guide.md: blank, 803 words, student page 4 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-1/assessment-guide.md: the student page prints to more than two sides
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/assessment-key.md: blank, 11498 words, student page 52 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-1/assessment-key.md: the student page prints to more than two sides
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/assessment-pages.md: blank, 46 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/choice-packet.md: blank, 22 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/discussion-moves.md: blank, 74 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/exit-cards.md: blank, 36 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/exit-key.md: blank, 960 words, student page 4 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-1/exit-key.md: the student page prints to more than two sides
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/fall-reading-cards.md: blank, 68 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/family.md: family, 225 words, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-1/family.md: no "## Spanish" section
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/feature-overlays.md: blank, 35 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/opener.md: opener, 667 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/paw-picture.md: blank, 25 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/practice-key.md: blank, 4709 words, student page 19 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-1/practice-key.md: the student page prints to more than two sides
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/reading-log.md: blank, 15 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/record.md: blank, 408 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/retrieval.md: blank, 43 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/skill-cards.md: blank, 33 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/sound-spelling-wall.md: blank, 35 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-1/story-map.md: blank, 40 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-2/choice-cards.md: blank, 43 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-2/choice-key.md: blank, 2004 words, student page 9 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-2/choice-key.md: the student page prints to more than two sides
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-2/exit-cards.md: blank, 36 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-2/exit-key.md: blank, 641 words, student page 3 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-2/exit-key.md: the student page prints to more than two sides
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-2/feature-labels.md: blank, 141 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-2/meaning-feedback.md: blank, 27 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-2/opener.md: opener, 707 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-3/choice-cards.md: blank, 30 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-3/choice-key.md: blank, 476 words, student page 3 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-3/choice-key.md: the student page prints to more than two sides
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-3/exit-cards.md: blank, 38 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-3/exit-key.md: blank, 418 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-3/opener.md: opener, 743 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-3/role-feedback.md: blank, 49 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-3/source-labels.md: blank, 48 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-4/choice-cards.md: blank, 30 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-4/choice-key.md: blank, 631 words, student page 3 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-4/choice-key.md: the student page prints to more than two sides
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-4/exit-cards.md: blank, 27 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-4/exit-key.md: blank, 394 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-4/opener.md: opener, 739 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-4/pattern-key.md: key, 99 words, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-4/pattern-key.md: piece "key" is not one of opener, record, check, facts, family, sheet, blank, story
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-4/pattern-probe.md: blank, 52 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-4/sign-inspection.md: blank, 84 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-4/writing-feedback.md: blank, 37 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-5/exit-cards.md: blank, 36 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-5/exit-key.md: blank, 325 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-5/exit-texts.md: blank, 152 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-5/faulty-essay.md: blank, 64 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-5/feedback.md: blank, 37 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-5/inspection-cards.md: blank, 39 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-5/inspection-key.md: blank, 198 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-5/opener.md: opener, 835 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-5/record.md: blank, 161 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-5/source-tags.md: blank, 26 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-6/assessment-pages.md: blank, 26 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-6/convention-key.md: blank, 193 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-6/convention-slips.md: blank, 61 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-6/exit-cards.md: blank, 31 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-6/exit-key.md: blank, 330 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-6/exit-texts.md: blank, 112 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-6/folder-pages.md: blank, 30 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-6/inspection-cards.md: blank, 30 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-6/inspection-key.md: blank, 125 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-6/opener.md: opener, 1049 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-6/record.md: blank, 161 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-7/assessment-pages.md: blank, 26 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-7/exit-cards.md: blank, 30 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-7/exit-key.md: blank, 272 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-7/exit-texts.md: blank, 110 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-7/inspection-cards.md: blank, 33 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-7/inspection-key.md: blank, 155 words, student page 2 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-7/opener.md: opener, 871 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-7/poem-pages.md: blank, 21 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-7/presentation-inspection.md: blank, 64 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-7/probe-card.md: blank, 38 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-7/record.md: blank, 161 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/administration.md: blank, 270 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/assessment-pages.md: blank, 51 words, student page 3 side(s) FAIL: more than two, 1 failure(s)
+  FAIL courses/english-language-arts-grade-4/u01-8/assessment-pages.md: the student page prints to more than two sides
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/discussion-notes.md: blank, 36 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/exit-cards.md: blank, 18 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/exit-key.md: blank, 90 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/exit-texts.md: blank, 56 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/inspection-cards.md: blank, 24 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/inspection-key.md: blank, 84 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/opener.md: opener, 739 words, 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/record.md: blank, 161 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/response-sheet.md: blank, 27 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+courses/english-language-arts-grade-4/u01-8/visual-page.md: blank, 15 words, student page 1 side(s), 0 failure(s)
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: Tomorrow sends work to day 39, which is not written yet; its writer must pick it up
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: the written task s01-P38-1 is judged but day 39 is not written yet; its writer must hand back s01-P38-1
+  NOTE courses/english-language-arts-grade-4/u01-8/d038.md: end items can show error(s) AB, AC, AD, AH, AI, AK, AM, AN, J, K, L, M, but the respond part names no group for them
+lesson_course: 422 failure(s) in 38 day(s), 47 in day files

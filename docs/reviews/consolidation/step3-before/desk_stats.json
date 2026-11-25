@@ -1,0 +1,4352 @@
+{
+ "stages": [
+  "noidea",
+  "concept",
+  "spec",
+  "build",
+  "selfcheck",
+  "refine",
+  "fix",
+  "exit",
+  "artvoice",
+  "finish",
+  "live"
+ ],
+ "subjects": [
+  {
+   "name": "English Language Arts",
+   "planned": 160,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 147,
+   "build": 3,
+   "selfcheck": 5,
+   "refine": 0,
+   "fix": 1,
+   "exit": 0,
+   "artvoice": 0,
+   "finish": 0,
+   "live": 4
+  },
+  {
+   "name": "Math",
+   "planned": 144,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 111,
+   "build": 1,
+   "selfcheck": 17,
+   "refine": 0,
+   "fix": 1,
+   "exit": 0,
+   "artvoice": 0,
+   "finish": 0,
+   "live": 14
+  },
+  {
+   "name": "Social Studies",
+   "planned": 131,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 122,
+   "build": 0,
+   "selfcheck": 4,
+   "refine": 0,
+   "fix": 0,
+   "exit": 0,
+   "artvoice": 0,
+   "finish": 0,
+   "live": 5
+  },
+  {
+   "name": "Science",
+   "planned": 110,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 74,
+   "build": 3,
+   "selfcheck": 18,
+   "refine": 0,
+   "fix": 5,
+   "exit": 0,
+   "artvoice": 1,
+   "finish": 0,
+   "live": 9
+  },
+  {
+   "name": "Arts and Music",
+   "planned": 72,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 0,
+   "build": 0,
+   "selfcheck": 51,
+   "refine": 0,
+   "fix": 6,
+   "exit": 0,
+   "artvoice": 1,
+   "finish": 0,
+   "live": 14
+  },
+  {
+   "name": "Computer Science",
+   "planned": 67,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 39,
+   "build": 0,
+   "selfcheck": 11,
+   "refine": 0,
+   "fix": 3,
+   "exit": 0,
+   "artvoice": 6,
+   "finish": 0,
+   "live": 8
+  },
+  {
+   "name": "Health and PE",
+   "planned": 32,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 16,
+   "build": 0,
+   "selfcheck": 4,
+   "refine": 0,
+   "fix": 3,
+   "exit": 0,
+   "artvoice": 1,
+   "finish": 0,
+   "live": 8
+  },
+  {
+   "name": "English Language Development",
+   "planned": 22,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 16,
+   "build": 0,
+   "selfcheck": 1,
+   "refine": 0,
+   "fix": 0,
+   "exit": 0,
+   "artvoice": 0,
+   "finish": 0,
+   "live": 5
+  },
+  {
+   "name": "World Languages",
+   "planned": 20,
+   "noidea": 0,
+   "concept": 7,
+   "spec": 11,
+   "build": 0,
+   "selfcheck": 0,
+   "refine": 0,
+   "fix": 0,
+   "exit": 0,
+   "artvoice": 0,
+   "finish": 0,
+   "live": 2
+  },
+  {
+   "name": "Career and Technical Education",
+   "planned": 19,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 12,
+   "build": 0,
+   "selfcheck": 3,
+   "refine": 0,
+   "fix": 0,
+   "exit": 0,
+   "artvoice": 0,
+   "finish": 0,
+   "live": 4
+  },
+  {
+   "name": "Library and Research Skills",
+   "planned": 13,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 7,
+   "build": 0,
+   "selfcheck": 2,
+   "refine": 0,
+   "fix": 1,
+   "exit": 0,
+   "artvoice": 1,
+   "finish": 0,
+   "live": 2
+  },
+  {
+   "name": "Social and Emotional Learning",
+   "planned": 10,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 2,
+   "build": 0,
+   "selfcheck": 0,
+   "refine": 0,
+   "fix": 0,
+   "exit": 0,
+   "artvoice": 0,
+   "finish": 0,
+   "live": 8
+  },
+  {
+   "name": "Recess",
+   "planned": 9,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 0,
+   "build": 0,
+   "selfcheck": 0,
+   "refine": 0,
+   "fix": 0,
+   "exit": 0,
+   "artvoice": 0,
+   "finish": 0,
+   "live": 9
+  }
+ ],
+ "bands": [
+  {
+   "name": "K-2",
+   "planned": 162,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 101,
+   "build": 1,
+   "selfcheck": 17,
+   "refine": 0,
+   "fix": 6,
+   "exit": 0,
+   "artvoice": 1,
+   "finish": 0,
+   "live": 36
+  },
+  {
+   "name": "3-5",
+   "planned": 189,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 139,
+   "build": 0,
+   "selfcheck": 24,
+   "refine": 0,
+   "fix": 4,
+   "exit": 0,
+   "artvoice": 4,
+   "finish": 0,
+   "live": 18
+  },
+  {
+   "name": "6-8",
+   "planned": 202,
+   "noidea": 0,
+   "concept": 0,
+   "spec": 152,
+   "build": 0,
+   "selfcheck": 28,
+   "refine": 0,
+   "fix": 5,
+   "exit": 0,
+   "artvoice": 2,
+   "finish": 0,
+   "live": 15
+  },
+  {
+   "name": "9-12",
+   "planned": 234,
+   "noidea": 0,
+   "concept": 1,
+   "spec": 154,
+   "build": 6,
+   "selfcheck": 47,
+   "refine": 0,
+   "fix": 5,
+   "exit": 0,
+   "artvoice": 3,
+   "finish": 0,
+   "live": 18
+  },
+  {
+   "name": "Across bands",
+   "planned": 22,
+   "noidea": 0,
+   "concept": 6,
+   "spec": 11,
+   "build": 0,
+   "selfcheck": 0,
+   "refine": 0,
+   "fix": 0,
+   "exit": 0,
+   "artvoice": 0,
+   "finish": 0,
+   "live": 5
+  }
+ ],
+ "total": {
+  "name": "All tools",
+  "planned": 809,
+  "noidea": 0,
+  "concept": 7,
+  "spec": 557,
+  "build": 7,
+  "selfcheck": 116,
+  "refine": 0,
+  "fix": 20,
+  "exit": 0,
+  "artvoice": 10,
+  "finish": 0,
+  "live": 92
+ },
+ "where": {
+  "big-book-pointer": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "rhyme-time-rumble": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "letter-lanterns": [
+   "English Language Arts",
+   "K-2",
+   "fix"
+  ],
+  "story-stage": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "meet-the-book-makers": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "my-story-strip": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "sentence-train": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "word-meaning-yard": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "turn-and-talk-wheel": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "blend-bakery": [
+   "English Language Arts",
+   "K-2",
+   "selfcheck"
+  ],
+  "echo-reader": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "story-map-treasure": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "who-said-that": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "text-feature-makeover": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "first-next-last": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "word-zoo": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "postcard-writer": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "context-clue-hunt": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "vowel-team-tag": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "nonsense-words": [
+   "English Language Arts",
+   "K-2",
+   "live"
+  ],
+  "sight-words": [
+   "English Language Arts",
+   "K-2",
+   "live"
+  ],
+  "moral-of-the-story": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "two-sides-theater": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "main-idea-umbrella": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "author-s-mailbox": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "hamburger-paragraph": [
+   "English Language Arts",
+   "K-2",
+   "live"
+  ],
+  "contraction-crusher": [
+   "English Language Arts",
+   "K-2",
+   "live"
+  ],
+  "word-lab": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "syllable-surgeon": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "stay-in-character": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "story-building-blocks": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "headline-writer": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "structure-spotter": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "class-pet-pitch": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "dialogue-director": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "story-blanks": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "idiom-illustrator": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "theme-tracker": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "genre-remix": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "myth-museum": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "blueprint-builder": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "eyewitness-vs-reporter": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "quote-picker": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "research-rover": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "grammar-garage": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "root-detective-cards": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "inference-interrogation": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "character-face-off": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "simile-slam": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "fact-fusion": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "claim-court": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "essay-rope-team": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "slow-mo-writer": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "comma-chameleon": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "tense-time-line": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "plot-rollercoaster": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "perspective-camera": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "summary-squeeze": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "argument-x-ray": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "debate-prep-desk": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "source-sorter": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "book-group-table": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "sentence-remixer": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "word-thermometer": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "setting-swap": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "history-or-fiction": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "poetry-soundboard": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "logic-gym": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "two-authors-one-event": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "counterclaim-rally": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "explainer-studio": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "sentence-tree-builder": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "allusion-hunter": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "dramatic-irony-theater": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "old-patterns-new-stories": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "paragraph-surgeon": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "bike-lane-briefing": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "claim-vs-claim": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "flashback-editor": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "pitch-deck-studio": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "verb-switchboard": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "character-web": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "tension-meter": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "shakespeare-remix": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "rhetoric-spotter": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "founding-words-explorer": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "argument-builder-pro": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "research-notebook": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "parallel-parking": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "world-lit-atlas": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "tone-dial": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "page-to-screen": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "fallacy-field-guide": [
+   "English Language Arts",
+   "9-12",
+   "selfcheck"
+  ],
+  "thesis-workshop": [
+   "English Language Arts",
+   "9-12",
+   "build"
+  ],
+  "socratic-seminar-board": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "punctuation-power-ups": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "american-lit-timeline": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "satire-decoder": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "premise-inspector": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "source-mixer": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "rhetorical-situation-simulator": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "personal-essay-studio": [
+   "English Language Arts",
+   "9-12",
+   "selfcheck"
+  ],
+  "usage-panel": [
+   "English Language Arts",
+   "9-12",
+   "selfcheck"
+  ],
+  "globe-theatre-stage": [
+   "English Language Arts",
+   "9-12",
+   "build"
+  ],
+  "ambiguity-lab": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "argument-map": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "question-sharpener": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "speech-coach": [
+   "English Language Arts",
+   "9-12",
+   "selfcheck"
+  ],
+  "ad-agency": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "word-family-tree": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "classroom-phrases-game": [
+   "English Language Development",
+   "K-2",
+   "live"
+  ],
+  "bedtime-retell": [
+   "English Language Development",
+   "K-2",
+   "spec"
+  ],
+  "shape-talk": [
+   "English Language Development",
+   "K-2",
+   "live"
+  ],
+  "i-spy-science": [
+   "English Language Development",
+   "K-2",
+   "live"
+  ],
+  "community-map-words": [
+   "English Language Development",
+   "K-2",
+   "live"
+  ],
+  "talk-moves-trainer": [
+   "English Language Development",
+   "3-5",
+   "spec"
+  ],
+  "opinion-builder": [
+   "English Language Development",
+   "3-5",
+   "spec"
+  ],
+  "math-explainer": [
+   "English Language Development",
+   "3-5",
+   "spec"
+  ],
+  "cause-and-effect-rewind": [
+   "English Language Development",
+   "3-5",
+   "spec"
+  ],
+  "time-machine-talk": [
+   "English Language Development",
+   "3-5",
+   "spec"
+  ],
+  "summary-scaffold": [
+   "English Language Development",
+   "6-8",
+   "spec"
+  ],
+  "word-problem-decoder": [
+   "English Language Development",
+   "6-8",
+   "spec"
+  ],
+  "cer-builder": [
+   "English Language Development",
+   "6-8",
+   "spec"
+  ],
+  "perspective-frames": [
+   "English Language Development",
+   "6-8",
+   "spec"
+  ],
+  "idiom-island": [
+   "English Language Development",
+   "6-8",
+   "live"
+  ],
+  "counterpoint-frames": [
+   "English Language Development",
+   "9-12",
+   "spec"
+  ],
+  "definition-duel": [
+   "English Language Development",
+   "9-12",
+   "spec"
+  ],
+  "chart-narrator": [
+   "English Language Development",
+   "9-12",
+   "spec"
+  ],
+  "is-the-historian-right": [
+   "English Language Development",
+   "9-12",
+   "selfcheck"
+  ],
+  "inbox-simulator": [
+   "English Language Development",
+   "9-12",
+   "spec"
+  ],
+  "library-adventure": [
+   "Library and Research Skills",
+   "K-2",
+   "live"
+  ],
+  "wonder-wall": [
+   "Library and Research Skills",
+   "K-2",
+   "live"
+  ],
+  "keyword-fishing": [
+   "Library and Research Skills",
+   "3-5",
+   "selfcheck"
+  ],
+  "credit-card-builder": [
+   "Library and Research Skills",
+   "3-5",
+   "selfcheck"
+  ],
+  "fake-or-fact-lab": [
+   "Library and Research Skills",
+   "6-8",
+   "artvoice"
+  ],
+  "research-quest": [
+   "Library and Research Skills",
+   "6-8",
+   "fix"
+  ],
+  "boolean-builder": [
+   "Library and Research Skills",
+   "9-12",
+   "spec"
+  ],
+  "fair-use-review": [
+   "Library and Research Skills",
+   "9-12",
+   "spec"
+  ],
+  "windblown-pages": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "alike-and-different-books": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "question-cube": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "because-bridge": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "poem-drum": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "vocabulary-jar": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "big-question-chart": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "owl-wants-more": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "show-and-tell-spotlight": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "class-phone-call": [
+   "English Language Arts",
+   "K-2",
+   "build"
+  ],
+  "i-choose-because": [
+   "English Language Development",
+   "K-2",
+   "spec"
+  ],
+  "draft-car-wash": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "radio-hour-notes": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "planetarium-guide": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "script-read-through": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "main-idea-pinboard": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "glossary-makers": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "mood-in-the-pictures": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "how-it-works-diagrams": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "swap-the-teller": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "side-by-side-reader": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "show-don-t-tell": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "note-card-shuffle": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "draft-versus-draft": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "theme-evidence-ladder": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "claim-quote-comment": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "page-audio-screen": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "podcast-listening-club": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "docent-tour-talk": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "context-roots-dictionary": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "double-meanings": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "pause-and-break": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "tricky-word-lab": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "explainer-sections": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "blizzard-scenes": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "memoir-and-biography": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "then-what-happened": [
+   "English Language Development",
+   "Across bands",
+   "spec"
+  ],
+  "editors-in-the-margin": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "theme-ledger": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "idea-threads": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "portrait-in-four-media": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "audience-shift-briefing": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "key-term-tracker": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "pacing-strip": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "many-voices-book": [
+   "Library and Research Skills",
+   "K-2",
+   "spec"
+  ],
+  "windows-and-mirrors-shelf": [
+   "Library and Research Skills",
+   "3-5",
+   "spec"
+  ],
+  "rabbit-hole-notebook": [
+   "Library and Research Skills",
+   "6-8",
+   "spec"
+  ],
+  "enduring-questions": [
+   "Library and Research Skills",
+   "9-12",
+   "spec"
+  ],
+  "source-portfolio": [
+   "Library and Research Skills",
+   "9-12",
+   "spec"
+  ],
+  "little-book-press": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "deadline-desk": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "linked-feature": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "living-explainer": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "read-along-shelf": [
+   "English Language Arts",
+   "K-2",
+   "spec"
+  ],
+  "stretch-shelf": [
+   "English Language Arts",
+   "3-5",
+   "spec"
+  ],
+  "climbing-reads": [
+   "English Language Arts",
+   "6-8",
+   "spec"
+  ],
+  "tough-text-club": [
+   "English Language Arts",
+   "9-12",
+   "spec"
+  ],
+  "line-safari": [
+   "Arts and Music",
+   "K-2",
+   "live"
+  ],
+  "art-passport": [
+   "Arts and Music",
+   "K-2",
+   "live"
+  ],
+  "paint-mixer": [
+   "Arts and Music",
+   "3-5",
+   "live"
+  ],
+  "near-and-far": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "art-style-match": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "design-fixer": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "vanishing-point-studio": [
+   "Arts and Music",
+   "6-8",
+   "live"
+  ],
+  "art-through-time": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "gallery-critique": [
+   "Arts and Music",
+   "9-12",
+   "selfcheck"
+  ],
+  "city-skyline-studio": [
+   "Arts and Music",
+   "9-12",
+   "fix"
+  ],
+  "virtual-gallery": [
+   "Arts and Music",
+   "9-12",
+   "fix"
+  ],
+  "beat-buddies": [
+   "Arts and Music",
+   "K-2",
+   "live"
+  ],
+  "sound-elevator": [
+   "Arts and Music",
+   "K-2",
+   "live"
+  ],
+  "orchestra-zoo": [
+   "Arts and Music",
+   "K-2",
+   "live"
+  ],
+  "note-ninja": [
+   "Arts and Music",
+   "3-5",
+   "live"
+  ],
+  "melody-maker": [
+   "Arts and Music",
+   "3-5",
+   "live"
+  ],
+  "song-form-builder": [
+   "Arts and Music",
+   "3-5",
+   "live"
+  ],
+  "chord-explorer": [
+   "Arts and Music",
+   "6-8",
+   "live"
+  ],
+  "world-music-map": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "band-practice": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "theory-gym": [
+   "Arts and Music",
+   "9-12",
+   "selfcheck"
+  ],
+  "music-history-radio": [
+   "Arts and Music",
+   "9-12",
+   "fix"
+  ],
+  "beat-lab": [
+   "Arts and Music",
+   "9-12",
+   "live"
+  ],
+  "act-it-out": [
+   "Arts and Music",
+   "K-2",
+   "selfcheck"
+  ],
+  "character-voice-booth": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "stage-blocker": [
+   "Arts and Music",
+   "6-8",
+   "live"
+  ],
+  "director-s-chair": [
+   "Arts and Music",
+   "9-12",
+   "selfcheck"
+  ],
+  "levels-and-pathways": [
+   "Arts and Music",
+   "K-2",
+   "fix"
+  ],
+  "dance-pattern-puzzle": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "choreography-board": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "dance-styles-explorer": [
+   "Arts and Music",
+   "9-12",
+   "selfcheck"
+  ],
+  "frame-it": [
+   "Arts and Music",
+   "6-8",
+   "live"
+  ],
+  "flipbook-studio": [
+   "Arts and Music",
+   "6-8",
+   "artvoice"
+  ],
+  "storyboard-studio": [
+   "Arts and Music",
+   "9-12",
+   "selfcheck"
+  ],
+  "brand-builder": [
+   "Arts and Music",
+   "9-12",
+   "selfcheck"
+  ],
+  "habit-hero": [
+   "Health and PE",
+   "K-2",
+   "live"
+  ],
+  "lunch-tray-builder": [
+   "Health and PE",
+   "K-2",
+   "live"
+  ],
+  "feelings-faces": [
+   "Health and PE",
+   "K-2",
+   "live"
+  ],
+  "safety-street": [
+   "Health and PE",
+   "K-2",
+   "live"
+  ],
+  "label-detective": [
+   "Health and PE",
+   "3-5",
+   "live"
+  ],
+  "body-systems-tour": [
+   "Health and PE",
+   "3-5",
+   "spec"
+  ],
+  "germ-spread-sim": [
+   "Health and PE",
+   "3-5",
+   "live"
+  ],
+  "growing-up-q-a": [
+   "Health and PE",
+   "3-5",
+   "spec"
+  ],
+  "pressure-point": [
+   "Health and PE",
+   "6-8",
+   "spec"
+  ],
+  "stress-toolkit": [
+   "Health and PE",
+   "6-8",
+   "spec"
+  ],
+  "relationship-spectrum": [
+   "Health and PE",
+   "6-8",
+   "spec"
+  ],
+  "screen-week": [
+   "Health and PE",
+   "6-8",
+   "spec"
+  ],
+  "game-day-fuel": [
+   "Health and PE",
+   "9-12",
+   "selfcheck"
+  ],
+  "first-aid-responder": [
+   "Health and PE",
+   "9-12",
+   "fix"
+  ],
+  "health-claim-checker": [
+   "Health and PE",
+   "9-12",
+   "spec"
+  ],
+  "mind-map": [
+   "Health and PE",
+   "9-12",
+   "live"
+  ],
+  "animal-moves": [
+   "Health and PE",
+   "K-2",
+   "live"
+  ],
+  "target-toss": [
+   "Health and PE",
+   "K-2",
+   "artvoice"
+  ],
+  "playbook": [
+   "Health and PE",
+   "3-5",
+   "spec"
+  ],
+  "fitness-circuit": [
+   "Health and PE",
+   "3-5",
+   "spec"
+  ],
+  "rules-referee": [
+   "Health and PE",
+   "6-8",
+   "selfcheck"
+  ],
+  "goal-tracker": [
+   "Health and PE",
+   "6-8",
+   "spec"
+  ],
+  "fitness-program-designer": [
+   "Health and PE",
+   "9-12",
+   "spec"
+  ],
+  "captain-s-choices": [
+   "Health and PE",
+   "9-12",
+   "selfcheck"
+  ],
+  "robot-dance": [
+   "Computer Science",
+   "K-2",
+   "live"
+  ],
+  "me-vs-the-counter": [
+   "Computer Science",
+   "K-2",
+   "selfcheck"
+  ],
+  "secret-keeper": [
+   "Computer Science",
+   "K-2",
+   "spec"
+  ],
+  "snowy-mail-route": [
+   "Computer Science",
+   "K-2",
+   "live"
+  ],
+  "spot-the-ai": [
+   "Computer Science",
+   "K-2",
+   "selfcheck"
+  ],
+  "computer-builder": [
+   "Computer Science",
+   "K-2",
+   "live"
+  ],
+  "loop-garden": [
+   "Computer Science",
+   "K-2",
+   "live"
+  ],
+  "teach-the-robot": [
+   "Computer Science",
+   "K-2",
+   "live"
+  ],
+  "input-or-output": [
+   "Computer Science",
+   "K-2",
+   "selfcheck"
+  ],
+  "traffic-light-coder": [
+   "Computer Science",
+   "3-5",
+   "fix"
+  ],
+  "score-keeper": [
+   "Computer Science",
+   "3-5",
+   "live"
+  ],
+  "internet-journey": [
+   "Computer Science",
+   "3-5",
+   "artvoice"
+  ],
+  "code-tracer": [
+   "Computer Science",
+   "3-5",
+   "live"
+  ],
+  "data-table-builder": [
+   "Computer Science",
+   "3-5",
+   "selfcheck"
+  ],
+  "biased-bot": [
+   "Computer Science",
+   "3-5",
+   "artvoice"
+  ],
+  "network-help-desk": [
+   "Computer Science",
+   "3-5",
+   "artvoice"
+  ],
+  "game-remix": [
+   "Computer Science",
+   "3-5",
+   "live"
+  ],
+  "leaf-sorter-ai": [
+   "Computer Science",
+   "3-5",
+   "spec"
+  ],
+  "data-defenders": [
+   "Computer Science",
+   "3-5",
+   "artvoice"
+  ],
+  "design-for-a-friend": [
+   "Computer Science",
+   "3-5",
+   "selfcheck"
+  ],
+  "chore-flowcharts": [
+   "Computer Science",
+   "6-8",
+   "spec"
+  ],
+  "code-kitchen": [
+   "Computer Science",
+   "6-8",
+   "selfcheck"
+  ],
+  "model-mechanic": [
+   "Computer Science",
+   "6-8",
+   "selfcheck"
+  ],
+  "misleading-charts": [
+   "Computer Science",
+   "6-8",
+   "selfcheck"
+  ],
+  "packet-race": [
+   "Computer Science",
+   "6-8",
+   "spec"
+  ],
+  "phishing-spotter": [
+   "Computer Science",
+   "6-8",
+   "selfcheck"
+  ],
+  "cipher-vault": [
+   "Computer Science",
+   "6-8",
+   "fix"
+  ],
+  "algorithm-audit": [
+   "Computer Science",
+   "6-8",
+   "spec"
+  ],
+  "sorting-showdown": [
+   "Computer Science",
+   "9-12",
+   "spec"
+  ],
+  "api-playground": [
+   "Computer Science",
+   "9-12",
+   "spec"
+  ],
+  "ai-evaluator": [
+   "Computer Science",
+   "9-12",
+   "spec"
+  ],
+  "simulation-studio": [
+   "Computer Science",
+   "9-12",
+   "artvoice"
+  ],
+  "network-architect": [
+   "Computer Science",
+   "9-12",
+   "spec"
+  ],
+  "capture-the-flag": [
+   "Computer Science",
+   "9-12",
+   "artvoice"
+  ],
+  "data-policy-council": [
+   "Computer Science",
+   "9-12",
+   "selfcheck"
+  ],
+  "fingerspell-flash": [
+   "World Languages",
+   "Across bands",
+   "live"
+  ],
+  "asl-hello-booth": [
+   "World Languages",
+   "Across bands",
+   "concept"
+  ],
+  "asl-bingo-night": [
+   "World Languages",
+   "Across bands",
+   "concept"
+  ],
+  "sign-parameters-lab": [
+   "World Languages",
+   "Across bands",
+   "concept"
+  ],
+  "asl-family-tree": [
+   "World Languages",
+   "Across bands",
+   "concept"
+  ],
+  "face-the-grammar": [
+   "World Languages",
+   "Across bands",
+   "concept"
+  ],
+  "classifier-scenes": [
+   "World Languages",
+   "Across bands",
+   "live"
+  ],
+  "deaf-culture-explorer": [
+   "World Languages",
+   "Across bands",
+   "concept"
+  ],
+  "asl-story-theater": [
+   "World Languages",
+   "9-12",
+   "concept"
+  ],
+  "hola-hallway": [
+   "World Languages",
+   "Across bands",
+   "spec"
+  ],
+  "calendario-vivo": [
+   "World Languages",
+   "Across bands",
+   "spec"
+  ],
+  "mi-casa": [
+   "World Languages",
+   "Across bands",
+   "spec"
+  ],
+  "mi-d\u00eda": [
+   "World Languages",
+   "Across bands",
+   "spec"
+  ],
+  "el-restaurante": [
+   "World Languages",
+   "Across bands",
+   "spec"
+  ],
+  "verb-conjugation-race": [
+   "World Languages",
+   "Across bands",
+   "spec"
+  ],
+  "por-d\u00f3nde": [
+   "World Languages",
+   "Across bands",
+   "spec"
+  ],
+  "detective-del-pasado": [
+   "World Languages",
+   "Across bands",
+   "spec"
+  ],
+  "mundo-hispano": [
+   "World Languages",
+   "Across bands",
+   "spec"
+  ],
+  "consejero": [
+   "World Languages",
+   "9-12",
+   "spec"
+  ],
+  "debate-en-espa\u00f1ol": [
+   "World Languages",
+   "9-12",
+   "spec"
+  ],
+  "career-cluster-explorer": [
+   "Career and Technical Education",
+   "6-8",
+   "live"
+  ],
+  "career-match-quiz": [
+   "Career and Technical Education",
+   "6-8",
+   "live"
+  ],
+  "workplace-scenarios": [
+   "Career and Technical Education",
+   "6-8",
+   "selfcheck"
+  ],
+  "path-planner": [
+   "Career and Technical Education",
+   "9-12",
+   "spec"
+  ],
+  "interview-simulator": [
+   "Career and Technical Education",
+   "9-12",
+   "spec"
+  ],
+  "startup-booth": [
+   "Career and Technical Education",
+   "9-12",
+   "spec"
+  ],
+  "prototype-lab": [
+   "Career and Technical Education",
+   "9-12",
+   "spec"
+  ],
+  "hospital-shift": [
+   "Career and Technical Education",
+   "9-12",
+   "spec"
+  ],
+  "paycheck-decoder": [
+   "Career and Technical Education",
+   "9-12",
+   "selfcheck"
+  ],
+  "first-apartment-budget": [
+   "Career and Technical Education",
+   "9-12",
+   "live"
+  ],
+  "compound-interest-head-start": [
+   "Career and Technical Education",
+   "9-12",
+   "spec"
+  ],
+  "the-credit-card-diaries": [
+   "Career and Technical Education",
+   "9-12",
+   "spec"
+  ],
+  "market-time-machine": [
+   "Career and Technical Education",
+   "9-12",
+   "live"
+  ],
+  "covered-insurance-claims": [
+   "Career and Technical Education",
+   "9-12",
+   "spec"
+  ],
+  "feelings-weather-report": [
+   "Social and Emotional Learning",
+   "K-2",
+   "live"
+  ],
+  "calm-corner": [
+   "Social and Emotional Learning",
+   "K-2",
+   "live"
+  ],
+  "walk-in-their-shoes": [
+   "Social and Emotional Learning",
+   "3-5",
+   "live"
+  ],
+  "comeback-club": [
+   "Social and Emotional Learning",
+   "3-5",
+   "live"
+  ],
+  "conflict-coach": [
+   "Social and Emotional Learning",
+   "6-8",
+   "live"
+  ],
+  "decision-tree": [
+   "Social and Emotional Learning",
+   "6-8",
+   "live"
+  ],
+  "resilience-map": [
+   "Social and Emotional Learning",
+   "9-12",
+   "live"
+  ],
+  "community-project-planner": [
+   "Social and Emotional Learning",
+   "9-12",
+   "live"
+  ],
+  "attic-gadget-box": [
+   "Computer Science",
+   "K-2",
+   "spec"
+  ],
+  "question-jar": [
+   "Computer Science",
+   "K-2",
+   "spec"
+  ],
+  "who-uses-this-device": [
+   "Computer Science",
+   "K-2",
+   "spec"
+  ],
+  "tablet-buddy": [
+   "Computer Science",
+   "K-2",
+   "spec"
+  ],
+  "line-leader-picker": [
+   "Computer Science",
+   "K-2",
+   "fix"
+  ],
+  "morning-meeting-board": [
+   "Computer Science",
+   "K-2",
+   "spec"
+  ],
+  "tap-to-start-puppets": [
+   "Computer Science",
+   "K-2",
+   "spec"
+  ],
+  "inventors-hall": [
+   "Computer Science",
+   "3-5",
+   "spec"
+  ],
+  "job-shadow-day": [
+   "Computer Science",
+   "3-5",
+   "spec"
+  ],
+  "family-tech-vote": [
+   "Computer Science",
+   "3-5",
+   "spec"
+  ],
+  "fair-survey-kit": [
+   "Computer Science",
+   "3-5",
+   "spec"
+  ],
+  "marble-ramp-trials": [
+   "Computer Science",
+   "3-5",
+   "spec"
+  ],
+  "team-code-relay": [
+   "Computer Science",
+   "3-5",
+   "spec"
+  ],
+  "adventure-outline-cards": [
+   "Computer Science",
+   "3-5",
+   "spec"
+  ],
+  "three-route-rules": [
+   "Computer Science",
+   "3-5",
+   "spec"
+  ],
+  "inside-the-keypress": [
+   "Computer Science",
+   "3-5",
+   "spec"
+  ],
+  "metadata-x-ray": [
+   "Computer Science",
+   "6-8",
+   "spec"
+  ],
+  "lunch-survey-cleanup": [
+   "Computer Science",
+   "6-8",
+   "selfcheck"
+  ],
+  "accessibility-test-team": [
+   "Computer Science",
+   "6-8",
+   "spec"
+  ],
+  "county-connection-grant": [
+   "Computer Science",
+   "6-8",
+   "spec"
+  ],
+  "ai-fit-check": [
+   "Computer Science",
+   "6-8",
+   "spec"
+  ],
+  "ai-code-inspector": [
+   "Computer Science",
+   "6-8",
+   "spec"
+  ],
+  "industry-device-tour": [
+   "Computer Science",
+   "6-8",
+   "spec"
+  ],
+  "eras-of-computing": [
+   "Computer Science",
+   "6-8",
+   "spec"
+  ],
+  "emerging-tech-pitch": [
+   "Computer Science",
+   "9-12",
+   "spec"
+  ],
+  "cloud-through-time": [
+   "Computer Science",
+   "9-12",
+   "spec"
+  ],
+  "dice-in-the-chatbot": [
+   "Computer Science",
+   "9-12",
+   "spec"
+  ],
+  "pull-request-review": [
+   "Computer Science",
+   "9-12",
+   "spec"
+  ],
+  "sprint-board": [
+   "Computer Science",
+   "9-12",
+   "spec"
+  ],
+  "catalog-column-rules": [
+   "Computer Science",
+   "9-12",
+   "spec"
+  ],
+  "computing-team-stories": [
+   "Computer Science",
+   "9-12",
+   "spec"
+  ],
+  "coin-cell-greenhouse": [
+   "Computer Science",
+   "9-12",
+   "spec"
+  ],
+  "snow-season-prices": [
+   "Career and Technical Education",
+   "6-8",
+   "spec"
+  ],
+  "economy-checkup": [
+   "Career and Technical Education",
+   "6-8",
+   "spec"
+  ],
+  "interest-rate-dial": [
+   "Career and Technical Education",
+   "6-8",
+   "selfcheck"
+  ],
+  "startup-shares": [
+   "Career and Technical Education",
+   "6-8",
+   "spec"
+  ],
+  "e-bike-buyer": [
+   "Career and Technical Education",
+   "6-8",
+   "spec"
+  ],
+  "weekend-drawing-share": [
+   "Arts and Music",
+   "K-2",
+   "selfcheck"
+  ],
+  "hallway-art-museum": [
+   "Arts and Music",
+   "K-2",
+   "selfcheck"
+  ],
+  "traveling-art-show": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "place-mood-makeover": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "school-wall-mural": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "sketchbook-process-journal": [
+   "Arts and Music",
+   "9-12",
+   "selfcheck"
+  ],
+  "parade-and-bedtime-music": [
+   "Arts and Music",
+   "K-2",
+   "selfcheck"
+  ],
+  "name-song-practice": [
+   "Arts and Music",
+   "K-2",
+   "selfcheck"
+  ],
+  "recorder-concert-rehearsal": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "cartoon-soundtrack-mixer": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "folk-song-arranger": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "cover-version-review": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "recital-practice-plan": [
+   "Arts and Music",
+   "9-12",
+   "selfcheck"
+  ],
+  "puppet-show-feelings": [
+   "Arts and Music",
+   "K-2",
+   "fix"
+  ],
+  "moon-base-drama": [
+   "Arts and Music",
+   "K-2",
+   "fix"
+  ],
+  "neighborhood-issue-play": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "audience-talkback": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "three-viewpoints-scene": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "scene-staging-comparison": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "stage-lighting-plot": [
+   "Arts and Music",
+   "9-12",
+   "selfcheck"
+  ],
+  "monologue-rehearsal": [
+   "Arts and Music",
+   "9-12",
+   "selfcheck"
+  ],
+  "feeling-scarf-dance": [
+   "Arts and Music",
+   "K-2",
+   "selfcheck"
+  ],
+  "family-dance-night": [
+   "Arts and Music",
+   "K-2",
+   "selfcheck"
+  ],
+  "poem-to-movement": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "recital-stage-directions": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "dancers-on-tour": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "dance-hall-decades": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "choreography-for-a-cause": [
+   "Arts and Music",
+   "9-12",
+   "selfcheck"
+  ],
+  "museum-courtyard-performance": [
+   "Arts and Music",
+   "9-12",
+   "selfcheck"
+  ],
+  "sound-and-picture-book": [
+   "Arts and Music",
+   "K-2",
+   "selfcheck"
+  ],
+  "field-trip-slideshow": [
+   "Arts and Music",
+   "K-2",
+   "selfcheck"
+  ],
+  "cereal-ad-questions": [
+   "Arts and Music",
+   "K-2",
+   "selfcheck"
+  ],
+  "stop-motion-clay-shoot": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "toy-ad-reality-check": [
+   "Arts and Music",
+   "3-5",
+   "selfcheck"
+  ],
+  "morning-show-crew": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "viral-video-breakdown": [
+   "Arts and Music",
+   "6-8",
+   "selfcheck"
+  ],
+  "mini-documentary-crew": [
+   "Arts and Music",
+   "9-12",
+   "selfcheck"
+  ],
+  "weekend-substance-choices": [
+   "Health and PE",
+   "9-12",
+   "spec"
+  ],
+  "recess-upstander": [
+   "Health and PE",
+   "3-5",
+   "spec"
+  ],
+  "worry-size-sorter": [
+   "Health and PE",
+   "3-5",
+   "fix"
+  ],
+  "safety-sweep-house": [
+   "Health and PE",
+   "3-5",
+   "fix"
+  ],
+  "fridge-goal-chart": [
+   "Health and PE",
+   "K-2",
+   "spec"
+  ],
+  "parachute-teamwork": [
+   "Health and PE",
+   "K-2",
+   "spec"
+  ],
+  "scarf-juggling-ladder": [
+   "Health and PE",
+   "3-5",
+   "selfcheck"
+  ],
+  "partner-skill-coach": [
+   "Health and PE",
+   "Across bands",
+   "spec"
+  ],
+  "friend-moves-practice": [
+   "Social and Emotional Learning",
+   "K-2",
+   "spec"
+  ],
+  "first-impressions-check": [
+   "Social and Emotional Learning",
+   "9-12",
+   "spec"
+  ],
+  "hundred-hop": [
+   "Math",
+   "K-2",
+   "live"
+  ],
+  "sheep-count": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "snack-scale": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "bus-stop": [
+   "Math",
+   "K-2",
+   "fix"
+  ],
+  "ten-frame-spillover": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "who-wins": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "toy-box-sort": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "shape-spy": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "pattern-block-windows": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "story-replay": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "make-ten-machine": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "balance-the-beam": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "number-path-rescue": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "crayon-boxes": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "bead-slider": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "paperclip-ruler": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "clock-shop": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "class-poll": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "pizza-party": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "picky-robot-shapes": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "lost-and-found": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "fact-rally": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "marching-band": [
+   "Math",
+   "K-2",
+   "live"
+  ],
+  "place-value-vault": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "jump-line": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "estimation-station": [
+   "Math",
+   "K-2",
+   "selfcheck"
+  ],
+  "corner-store": [
+   "Math",
+   "K-2",
+   "live"
+  ],
+  "lunch-line-data": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "garden-grid": [
+   "Math",
+   "K-2",
+   "spec"
+  ],
+  "equal-groups-zoo": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "multiplication-dungeon": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "pattern-painter": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "roller-coaster-rounding": [
+   "Math",
+   "3-5",
+   "selfcheck"
+  ],
+  "fraction-trail": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "kitchen-lab": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "graph-glow-up": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "tile-the-floor": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "fence-builder": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "shape-family-tree": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "growth-spurt": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "egg-carton-factory": [
+   "Math",
+   "3-5",
+   "selfcheck"
+  ],
+  "rule-machine": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "stadium-count": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "area-model-builder": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "road-trip-logbook": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "fraction-wall-duel": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "recipe-scaler": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "money-and-meters": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "unit-ladder": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "community-plot-planner": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "skate-park-angles": [
+   "Math",
+   "3-5",
+   "selfcheck"
+  ],
+  "quilt-block-studio": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "expression-escape": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "two-rule-race": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "zoom-by-tens": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "grocery-run": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "fraction-kitchen": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "shrink-ray": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "camp-cook-share-out": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "seed-sprout-data": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "box-packer": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "sea-search-grid": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "shape-sieve": [
+   "Math",
+   "3-5",
+   "spec"
+  ],
+  "smoothie-lab": [
+   "Math",
+   "6-8",
+   "live"
+  ],
+  "how-many-fit": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "factor-forge": [
+   "Math",
+   "6-8",
+   "live"
+  ],
+  "deep-sea-dive": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "expression-garden": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "balance-puzzle": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "summer-stand": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "net-folder": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "sign-shop": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "question-lab": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "box-plot-builder": [
+   "Math",
+   "6-8",
+   "selfcheck"
+  ],
+  "tax-and-tip": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "hot-air-and-sandbags": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "remainder-loop": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "expression-match": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "phone-plan-showdown": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "blueprint-studio": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "clay-cutting-bench": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "big-wheel-small-wheel": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "intersection-angles": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "aquarium-builder": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "jellybean-jar": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "carnival-odds": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "square-root-hunt": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "size-of-everything": [
+   "Math",
+   "6-8",
+   "live"
+  ],
+  "ski-slope-designer": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "two-trains": [
+   "Math",
+   "6-8",
+   "live"
+  ],
+  "function-machine-factory": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "story-graphs": [
+   "Math",
+   "6-8",
+   "selfcheck"
+  ],
+  "transformation-dock": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "square-slicer": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "snow-globe-maker": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "data-detective": [
+   "Math",
+   "6-8",
+   "spec"
+  ],
+  "exponent-rule-builder": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "unit-sense": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "algebra-tile-studio": [
+   "Math",
+   "9-12",
+   "selfcheck"
+  ],
+  "polynomials-as-numbers": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "model-my-world": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "equation-golf": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "intersection-quest": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "graph-story-lab": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "which-model-wins": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "launch-pad": [
+   "Math",
+   "9-12",
+   "selfcheck"
+  ],
+  "correlation-guessing-game": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "rigid-motion-twins": [
+   "Math",
+   "9-12",
+   "build"
+  ],
+  "proof-tower": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "shadow-measure": [
+   "Math",
+   "9-12",
+   "selfcheck"
+  ],
+  "ramp-and-roof": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "circle-theorem-explorer": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "coordinate-proof-lab": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "slice-and-stack": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "packaging-challenge": [
+   "Math",
+   "9-12",
+   "selfcheck"
+  ],
+  "medical-test-paradox": [
+   "Math",
+   "9-12",
+   "selfcheck"
+  ],
+  "imaginary-island": [
+   "Math",
+   "9-12",
+   "live"
+  ],
+  "rollercoaster-polynomials": [
+   "Math",
+   "9-12",
+   "live"
+  ],
+  "work-rate-crew": [
+   "Math",
+   "9-12",
+   "selfcheck"
+  ],
+  "outbreak-model": [
+   "Math",
+   "9-12",
+   "live"
+  ],
+  "ferris-wheel": [
+   "Math",
+   "9-12",
+   "live"
+  ],
+  "undo-machine": [
+   "Math",
+   "9-12",
+   "live"
+  ],
+  "savings-plan": [
+   "Math",
+   "9-12",
+   "live"
+  ],
+  "poll-workshop": [
+   "Math",
+   "9-12",
+   "live"
+  ],
+  "function-family-reunion": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "identity-proof-race": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "flight-planner": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "image-transformer": [
+   "Math",
+   "9-12",
+   "selfcheck"
+  ],
+  "polar-rose-studio": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "conic-focus-finder": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "zoom-to-the-limit": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "data-desk-distributions": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "design-the-study": [
+   "Math",
+   "9-12",
+   "selfcheck"
+  ],
+  "game-show-strategist": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "sample-machine": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "courtroom-statistics": [
+   "Math",
+   "9-12",
+   "selfcheck"
+  ],
+  "fair-dice-investigation": [
+   "Math",
+   "9-12",
+   "selfcheck"
+  ],
+  "hole-hunter": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "speedometer": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "optimization-workshop": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "rain-gauge": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "solid-spinner": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "slope-field-garden": [
+   "Math",
+   "9-12",
+   "spec"
+  ],
+  "fire-lookout-triangles": [
+   "Math",
+   "9-12",
+   "selfcheck"
+  ],
+  "push-the-pumpkin": [
+   "Science",
+   "K-2",
+   "selfcheck"
+  ],
+  "shade-builder": [
+   "Science",
+   "K-2",
+   "spec"
+  ],
+  "terrarium-pal": [
+   "Science",
+   "K-2",
+   "spec"
+  ],
+  "weather-wardrobe": [
+   "Science",
+   "K-2",
+   "spec"
+  ],
+  "beaver-builders": [
+   "Science",
+   "K-2",
+   "spec"
+  ],
+  "vibration-station": [
+   "Science",
+   "K-2",
+   "selfcheck"
+  ],
+  "shadow-puppet-studio": [
+   "Science",
+   "K-2",
+   "spec"
+  ],
+  "nature-inventor": [
+   "Science",
+   "K-2",
+   "spec"
+  ],
+  "who-s-my-baby": [
+   "Science",
+   "K-2",
+   "spec"
+  ],
+  "sky-diary": [
+   "Science",
+   "K-2",
+   "spec"
+  ],
+  "three-pigs-lab": [
+   "Science",
+   "K-2",
+   "live"
+  ],
+  "melt-or-not": [
+   "Science",
+   "K-2",
+   "live"
+  ],
+  "plant-experiment-shelf": [
+   "Science",
+   "K-2",
+   "spec"
+  ],
+  "habitat-hunt": [
+   "Science",
+   "K-2",
+   "live"
+  ],
+  "fast-or-slow": [
+   "Science",
+   "K-2",
+   "spec"
+  ],
+  "island-maker": [
+   "Science",
+   "K-2",
+   "spec"
+  ],
+  "tug-of-war-arena": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "magnet-maze": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "life-cycle-wheel": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "wolf-pack-survival": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "puppy-traits": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "fossil-clues": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "climate-postcards": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "bowling-lab": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "contraption-workshop": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "secret-code-signals": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "how-animals-see": [
+   "Science",
+   "3-5",
+   "live"
+  ],
+  "canyon-reader": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "erosion-table": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "world-layers-map": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "town-planner-disaster-ready": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "particle-zoom": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "mystery-powders": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "which-way-is-down": [
+   "Science",
+   "3-5",
+   "selfcheck"
+  ],
+  "living-pond": [
+   "Science",
+   "3-5",
+   "fix"
+  ],
+  "shadow-clock": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "star-lanterns": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "sphere-connections": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "community-solutions": [
+   "Science",
+   "3-5",
+   "spec"
+  ],
+  "moon-phase-model": [
+   "Science",
+   "6-8",
+   "live"
+  ],
+  "pocket-universe": [
+   "Science",
+   "6-8",
+   "fix"
+  ],
+  "earth-s-calendar": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "plate-puzzle": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "rock-recycler": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "raindrop-s-journey": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "front-line": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "ocean-conveyor": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "cooler-challenge": [
+   "Science",
+   "6-8",
+   "selfcheck"
+  ],
+  "cell-city": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "molecule-forge": [
+   "Science",
+   "6-8",
+   "fix"
+  ],
+  "made-from": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "particle-party": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "reaction-kitchen": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "leaf-factory": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "predator-prey-island": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "energy-pyramid": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "invasive-species-alert": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "resource-map": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "crash-test-lab": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "electromagnet-lab": [
+   "Science",
+   "6-8",
+   "selfcheck"
+  ],
+  "half-pipe-energy": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "wave-tank": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "copy-of-a-copy": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "gene-pool": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "flower-lure": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "bug-hunt": [
+   "Science",
+   "6-8",
+   "selfcheck"
+  ],
+  "fossil-and-bone-bench": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "hazard-forecaster": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "town-footprint": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "warming-evidence-desk": [
+   "Science",
+   "6-8",
+   "selfcheck"
+  ],
+  "span-and-spire": [
+   "Science",
+   "6-8",
+   "fix"
+  ],
+  "membrane-gatekeeper": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "body-thermostat": [
+   "Science",
+   "9-12",
+   "selfcheck"
+  ],
+  "mitosis-mixer": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "energy-accountant": [
+   "Science",
+   "9-12",
+   "selfcheck"
+  ],
+  "protein-factory": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "punnett-predictor": [
+   "Science",
+   "9-12",
+   "selfcheck"
+  ],
+  "tree-of-life": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "carrying-capacity": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "reserve-designer": [
+   "Science",
+   "9-12",
+   "selfcheck"
+  ],
+  "star-life-story": [
+   "Science",
+   "9-12",
+   "build"
+  ],
+  "orbit-lab": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "feedback-loop-builder": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "water-shapes-earth": [
+   "Science",
+   "9-12",
+   "selfcheck"
+  ],
+  "climate-dashboard": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "lake-commons": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "elements-inspector": [
+   "Science",
+   "9-12",
+   "live"
+  ],
+  "bond-battle": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "equation-balancer": [
+   "Science",
+   "9-12",
+   "build"
+  ],
+  "mole-bakery": [
+   "Science",
+   "9-12",
+   "build"
+  ],
+  "hand-warmer-lab": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "equilibrium-seesaw": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "gas-law-lab": [
+   "Science",
+   "9-12",
+   "selfcheck"
+  ],
+  "ph-mystery-liquids": [
+   "Science",
+   "9-12",
+   "selfcheck"
+  ],
+  "half-life-dice": [
+   "Science",
+   "9-12",
+   "artvoice"
+  ],
+  "motion-graph-match": [
+   "Science",
+   "9-12",
+   "live"
+  ],
+  "curling-stones": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "collision-lab": [
+   "Science",
+   "9-12",
+   "live"
+  ],
+  "field-lines": [
+   "Science",
+   "9-12",
+   "live"
+  ],
+  "zipline-energy": [
+   "Science",
+   "9-12",
+   "selfcheck"
+  ],
+  "circuit-builder": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "sound-studio": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "spectrum-explorer": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "biome-atlas": [
+   "Science",
+   "9-12",
+   "selfcheck"
+  ],
+  "population-dashboard": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "grid-operator": [
+   "Science",
+   "9-12",
+   "selfcheck"
+  ],
+  "up-the-watershed": [
+   "Science",
+   "9-12",
+   "fix"
+  ],
+  "design-challenge-studio": [
+   "Science",
+   "9-12",
+   "selfcheck"
+  ],
+  "nerve-signal-relay": [
+   "Science",
+   "6-8",
+   "spec"
+  ],
+  "hot-meets-cold": [
+   "Science",
+   "9-12",
+   "spec"
+  ],
+  "playground-rules": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "me-on-the-map": [
+   "Social Studies",
+   "K-2",
+   "live"
+  ],
+  "then-and-now-flip": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "backpack-pack": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "symbol-spotter": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "community-helpers-village": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "compass-rose-quest": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "my-life-timeline": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "market-day": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "festival-parade": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "town-council": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "three-towns": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "changemaker-cards": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "piggy-bank-planner": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "resource-detective": [
+   "Social Studies",
+   "K-2",
+   "live"
+  ],
+  "map-maker": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "then-and-now-overlay": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "promise-check": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "paper-plane-assembly-line": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "day-in-the-life": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "state-story-timeline": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "state-quest": [
+   "Social Studies",
+   "3-5",
+   "live"
+  ],
+  "bill-to-law-board-game": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "state-economy-map": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "settle-the-valley": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "nations-of-north-america": [
+   "Social Studies",
+   "3-5",
+   "live"
+  ],
+  "ship-s-log": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "revolution-road": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "rights-match": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "colonial-trade-routes": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "five-themes-field-trip": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "hunter-to-farmer": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "river-kingdom": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "silk-road-traders": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "agora-assembly": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "rome-republic-to-empire": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "region-compare": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "constantinople-defense": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "house-of-wisdom": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "salt-and-gold-caravan": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "mongol-messenger": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "manor-life": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "tenochtitlan-builder": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "printing-press": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "columbian-exchange": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "colonial-newsroom": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "constitutional-convention": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "two-parties": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "expansion-map": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "mill-town": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "voices-of-freedom": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "civil-war-map-room": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "reconstruction-amendments": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "ideas-that-spread": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "factory-floor": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "scramble-for-africa": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "alliance-web": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "inflation-wallet": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "remembrance-archive": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "cold-war-crisis-room": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "independence-timeline": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "where-s-my-phone-from": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "baron-or-builder": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "muckraker-studio": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "empire-debate": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "stock-market-1929": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "home-front-mobilizer": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "movement-strategy-room": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "two-space-races": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "decades-explorer": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "build-a-government": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "who-has-the-power": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "checks-and-balances": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "supreme-court-simulator": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "campaign-manager": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "who-decides": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "one-more-hour": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "concert-ticket-market": [
+   "Social Studies",
+   "9-12",
+   "live"
+  ],
+  "the-buyout": [
+   "Social Studies",
+   "9-12",
+   "selfcheck"
+  ],
+  "economy-dashboard": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "fed-chair": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "two-villages": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "trade-island": [
+   "Social Studies",
+   "9-12",
+   "selfcheck"
+  ],
+  "brain-explorer": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "illusion-lab": [
+   "Social Studies",
+   "9-12",
+   "selfcheck"
+  ],
+  "train-your-dog": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "one-life-many-stages": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "go-along": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "trait-lab": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "case-conference": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "wonder-kite": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "how-do-you-know": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "teddy-bear-makers": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "storm-helpers": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "pen-pal-parcels": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "capsule-from-1965": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "the-last-carousel-ride": [
+   "Social Studies",
+   "K-2",
+   "spec"
+  ],
+  "inquiry-ladder": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "source-scout": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "made-for-whom": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "why-the-pony-express-ended": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "history-article-review": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "school-fix-it-meeting": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "tools-for-change": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "pool-repair-vote": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "ripple-street": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "barter-bay": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "learn-and-earn": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "interest-seesaw": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "skateboard-fund-chances": [
+   "Social Studies",
+   "3-5",
+   "spec"
+  ],
+  "cocoa-chain": [
+   "Social Studies",
+   "3-5",
+   "selfcheck"
+  ],
+  "panel-of-experts": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "historians-disagree": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "evidence-corkboard": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "unlabeled-archive": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "who-gets-to-vote": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "museum-label-writer": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "levers-of-power": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "motion-on-the-floor": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "shaping-our-week": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "smoke-and-honey": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "border-trade-post": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "the-shrinking-lake": [
+   "Social Studies",
+   "6-8",
+   "spec"
+  ],
+  "missing-voices-archive": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "behind-the-podcast": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "claim-repair-shop": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "causes-web": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "jury-room": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "layers-and-scales": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "suburb-boom": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "climate-on-the-move": [
+   "Social Studies",
+   "9-12",
+   "spec"
+  ],
+  "farlight": [
+   "Recess",
+   "3-5",
+   "live"
+  ],
+  "ripple": [
+   "Recess",
+   "Across bands",
+   "live"
+  ],
+  "time-tides": [
+   "Recess",
+   "3-5",
+   "live"
+  ],
+  "go": [
+   "Recess",
+   "Across bands",
+   "live"
+  ],
+  "chess": [
+   "Recess",
+   "3-5",
+   "live"
+  ],
+  "checkers": [
+   "Recess",
+   "K-2",
+   "live"
+  ],
+  "sliding-blocks": [
+   "Recess",
+   "3-5",
+   "live"
+  ],
+  "untangle": [
+   "Recess",
+   "6-8",
+   "live"
+  ],
+  "infinite-hike": [
+   "Recess",
+   "Across bands",
+   "live"
+  ]
+ },
+ "at": "2026-11-25T07:10:16+00:00"
+}

@@ -1,0 +1,33 @@
+sequence us-history-i: 0 failure(s)
+us-history-i: 50 items and 64 wrong answers checked, 0 failure(s)
+  note unit 5 error A rests on memory, not a source
+  note unit 5 error B rests on memory, not a source
+  note unit 5 error C rests on memory, not a source
+  note unit 5 error D rests on memory, not a source
+  note unit 5 error E rests on memory, not a source
+  note unit 5 error F rests on memory, not a source
+  note unit 5 error G rests on memory, not a source
+  note unit 5 error H rests on memory, not a source
+  note unit 5 error I rests on memory, not a source
+  note unit 5 error L rests on memory, not a source
+  note unit 5 error M rests on memory, not a source
+  note unit 5 error N rests on memory, not a source
+  note unit 5 error O rests on memory, not a source
+  note unit 5: 10948 words of prose outside the generated tables (s05.md)
+  note day 79: hand-backs need 8 minutes in "Warm-up", a 5-minute part in its day (handbacks.csv row 8, handbacks.csv row 9); widen the part or route fewer repairs there
+  note day 80: hand-backs need 7 minutes in "Warm-up", a 5-minute part in its day (handbacks.csv row 10, handbacks.csv row 11); widen the part or route fewer repairs there
+  note day 81: hand-backs need 7 minutes in "Warm-up", a 5-minute part in its day (handbacks.csv row 7, handbacks.csv row 15); widen the part or route fewer repairs there
+  note units planned in prose but not yet in data: 1, 2, 3, 4, 6, 7, 8, 9
+  FAIL one-ask: s05-R2: the stem has 2 question marks, so it asks 2 things (one ask per item)
+  FAIL one-ask: s05-E5: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s05-E9: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s05-X73: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s05-X80: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s05-X81: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s05-X87: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s05-X90: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL shape-note: u05-2.md day 78: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u05-2.md day 79: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u05-2.md day 80: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u05-2.md day 81: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u05-2.md day 82: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
