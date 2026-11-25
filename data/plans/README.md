@@ -108,6 +108,12 @@ Before a unit has parts or items, a course's `days.csv` is the scope and sequenc
 runs that gate for a plan folder with a days.csv and no parts or items. The `days.csv` row in the first table
 describes the written-day columns of a planned unit.
 
+## The ledger (`<course>/ledger.csv`, consolidation step 4.D, 2026-11-25)
+
+One file per course, written only through `scripts/ledger.py` (add, seed, promote, note); its commands still name a
+subject and read that subject's courses in ladder order. Any other plan CSV row is written with
+`python -X utf8 scripts/rows.py upsert <course> <table> --key <cols> col=value ... [--dry-run]`.
+
 ## The course list (`course-list.csv`, consolidation step 4.C, 2026-11-25)
 
 The one hand-kept list of the 120 courses. Every other course list (docs/COURSES-STATUS.md, the Desk, `frames.csv`)

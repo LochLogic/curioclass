@@ -1917,3 +1917,15 @@ Cory, in chat: the curriculum is the product. The tools never give shape to the 
 done, the tools are reshaped to fit it. The tool-era topic catalog (modules.csv, sequence.csv, coverage.csv,
 data/concepts, the shape files) is frozen as tool-side data, and no curriculum script reads it.
 course_pages.py and course_status.py stop leaning on it (docs/CONSOLIDATION-PLAN.md step 4.1).
+
+## 2026-11-25: consolidation step 4 go, and data copies out of written plans (q-skel-drift-1)
+
+- **Draft 5** (Cory: "Let's fold it all in"): every finding of the full Fable review of step 4 taken (plan decision 9).
+- **Block one go** (Cory: "Okay. I'm nervous but yes, let's begin."): 4.A to 4.G, stopping only where a count decides
+  a choice. 4.A to 4.E were built and pushed.
+- **Skel copies** (Desk card q-skel-drift-1, after the 4.E census: 860 of 916 written plans differ from a fresh
+  render): stop storing the copies at all. Written plans keep only the judgment prose; the mechanical fields render
+  from data in skeletons, the site build and a read view for writers, so each fact lives in one place. Cory asked for a
+  pause point and a Fable review first: tag `pause-4e`, docs/reviews/consolidation/pause-4e-review.md, folded in as
+  plan draft 6, sub-step 4.E2 (plan decision 10). Hand edits found inside the blocks get one of three outcomes
+  (back-port to data, move to prose, discard) before anything is removed.
