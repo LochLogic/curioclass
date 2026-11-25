@@ -9,7 +9,8 @@ Antigravity homes on C:, the tool pipeline and the curriculum layers.
 
 Draft 4, 2026-11-25: steps 0 to 3 are done (reports in docs/reviews/consolidation/). Step 4 is rewritten after a
 Fable read of it (docs/reviews/consolidation/step4-fable-read.md), and the end goal is defined as tests
-("The end goal" below). Step 4 has not started.
+("The end goal" below). Same day: linked words added as 4.9 (architecture only) and the Word Wall conversion
+as a later step of its own. Step 4 has not started.
 
 ## Why
 
@@ -35,19 +36,19 @@ tool catalog. Each word of the goal is defined below as tests that can be run, s
    for the days and their texts (`texts/`). Plus four shared homes: data/standards/, data/progressions/, data/plans/ledgers/, and
    data/plans/ for the cross-course tables (course list, frames, calendar, later, defects); the shared format docs
    in docs/courses/*.md (LESSON-DAY, UNIT-PLAN, CALENDAR) are templates, not course content. *Test:* a layout check
-   lists any curriculum file outside these homes (built with the 4.10 linter).
+   lists any curriculum file outside these homes (built with the 4.11 linter).
 3. One home per fact, written down. The fact map (below) names the owner of every kind of fact; anything else that
-   holds it is either generated from the owner and marked so, or gone. *Test:* the 4.6 drift report and the 4.11
+   holds it is either generated from the owner and marked so, or gone. *Test:* the 4.6 drift report and the 4.12
    list leave no fact with two hand-kept homes.
-4. No curriculum list is built from the tool catalog. *Test:* the 4.10 linter's catalog check passes, and the course
+4. No curriculum list is built from the tool catalog. *Test:* the 4.11 linter's catalog check passes, and the course
    list, course pages and status page read curriculum sources only (4.4, 4.5).
 
 **Efficient** (cheap to find, cheap to change, cheap to check):
 
 5. Any object is found by id: `uses.py <id>` answers "what uses this?" in seconds, across all courses (4.7).
-6. Any change runs as a script with a dry run and an impact list, never as hand edits across files (4.9).
-7. One command per job, named in the doc map; mechanical rules are lint, not reader tokens (4.10).
-8. Generated things are never edited by hand and never stored twice (4.11).
+6. Any change runs as a script with a dry run and an impact list, never as hand edits across files (4.10).
+7. One command per job, named in the doc map; mechanical rules are lint, not reader tokens (4.11).
+8. Generated things are never edited by hand and never stored twice (4.12).
 
 **Well organized** (every piece is accounted for and connected):
 
@@ -71,6 +72,7 @@ tool catalog. Each word of the goal is defined below as tests that can be run, s
 | What was taught when | data/plans/ledgers/ | coverage reads |
 | Status of a day | its frontmatter `version:` | index, flow-status reads |
 | Retired and merged ids | data/ids-retired.csv (4.8) | registry |
+| Words: definitions and fun facts by grade band | data/plans/words.csv (4.9) | highlighted words on day pages; the Word Wall, after its conversion |
 | Parked work | data/plans/later.csv | Desk Dashboard |
 | What is in the live bucket | the two R2 manifests (sync_media.py) | none |
 
@@ -79,9 +81,10 @@ tool catalog. Each word of the goal is defined below as tests that can be run, s
 | Stage | Meets tests | When |
 |---|---|---|
 | Steps 0 to 3: one folder, rescue, Codex merge, cleanup | 1 | done 2026-11-25 |
-| Step 4 (4.1 to 4.12) | 3 (drift report), 4, 5, 6, 7, 8, 9, 10, 11, and 2 and 12 as reports | next |
+| Step 4 (4.1 to 4.13) | 3 (drift report), 4, 5, 6, 7, 8, 9, 10, 11, and 2 and 12 as reports | next |
 | Step 5: tool records only, plumbing standardized | keeps tools outside the curriculum homes | after step 4 |
 | Step 6: close, counts in SCALE.md, the fact map in HANDOFF | the tests recorded as a baseline | after step 5 |
+| Word Wall conversion: the old cards become rows of the word table, the Word Wall becomes a view over it, data/closet/words goes to the archive | one home for every definition | its own step after step 6, with Cory lifting the never-touch rule on data/closet/words for that step only |
 | As each course is written or next reviewed | 2 and 12 move from report to failing gate per course; old item suffixes stripped; skel drift fixed by the rule Cory picks | ongoing, by the course run |
 | After the curriculum is done | the tool catalog retired; topic pages, coverage and standards pages become views over the index | later.csv |
 
@@ -94,7 +97,7 @@ is written or reviewed, so new work can only land flat.
 - Moving to a real database server. Plain files in git stay the source: they diff, review and back up as they are,
   and the index is a generated view that can be loaded into SQLite whenever a query needs it.
 - Opaque ids, a general batch-edit framework, interchange exporters, reading-level lint and sampled reads: each
-  waits for its first real need (later.csv rows, step 4.12).
+  waits for its first real need (later.csv rows, step 4.13).
 
 ## Ground rules for every step
 
@@ -284,16 +287,17 @@ for tool plumbing, `course + day` as the day key, `[[...]]` as the house link sy
 | No way to ask "what uses this?" | Every change means searching thousands of files | the index and `uses.py`, report only, then a resolve gate (4.7) |
 | No record of retired or merged ids | An alias is lost the first time a file moves | `data/ids-retired.csv`, append-only, and a generated registry (4.8) |
 | Version-suffixed item ids (636 of 14,587, three spellings) | Ids change when an item is revised | a rule and a check on new ids; old ones stripped as each course is next reviewed (4.8) |
-| Mass edits done by hand or by one-off scripts | No dry run, no impact list | one page of change workflow (4.9) |
-| House rules restated across AGENTS.md, briefs and lenses | Readers spend tokens on what a script can catch | a four-check linter (4.10) |
-| Generated files committed beside sources with no marking | Hand edits land in generated files | one source and generated list (4.11) |
+| No home for word definitions in the curriculum; the Word Wall's cards (data/closet/words) are keyed by tool topic | Highlighted words and definitions would have no owner, or a second one | a word node type, one owner table, and `[[word:...]]` links that are safe before any definition exists (4.9) |
+| Mass edits done by hand or by one-off scripts | No dry run, no impact list | one page of change workflow (4.10) |
+| House rules restated across AGENTS.md, briefs and lenses | Readers spend tokens on what a script can catch | a four-check linter (4.11) |
+| Generated files committed beside sources with no marking | Hand edits land in generated files | one source and generated list (4.12) |
 
 ### 4.1 Widen the gates
 
 scripts/consolidation_gates.py adds `unitplan.py check`, `frame.py check`, `sequence.py`, `check_site.py`, the
 skeleton scripts' `--self-test`, and `build_site.py --courses` into a scratch output folder (a flag is added if the
 build has none) followed by a link check over the course pages. A new baseline is recorded (`step4-before`) before
-4.2 starts.
+4.2 starts, and main is tagged `pre-step4` and the tag pushed, as step 0 tagged the start.
 
 ### 4.2 Empty the pilot queue; hold the pilot apart
 
@@ -333,7 +337,7 @@ fix, a standards page for every code a course frame owns, is the site work that 
 
 ### 4.6 Skeletons are generated
 
-The skeleton folders are listed as generated (4.11). When a section or day passes its gate its skeleton is removed
+The skeleton folders are listed as generated (4.12). When a section or day passes its gate its skeleton is removed
 with `git rm` (no archive row: git history keeps it and the script rebuilds it). coursegen.py's folder test changes
 at most one line; the briefs keep working because each job regenerates what it needs. For the `<!-- skel -->` blocks
 in written plans: a report-only check re-renders them from the CSVs and lists drift; Cory decides the fix from the
@@ -364,15 +368,42 @@ count. No plans are regenerated in step 4.
   Old suffixes are stripped when each course is next reviewed, recorded in ids-retired.csv.
 - No opaque day ids now. `course + day` stays the key. When the first real insertion of a day is needed, a scripted
   `renumber` (dry run first) rewrites days.csv, the day-keyed CSVs, the ledgers, the file names and `leans_on`
-  together, through the 4.9 workflow. Opaque ids, if ever wanted, live in a days.csv column, as a separate step.
+  together, through the 4.10 workflow. Opaque ids, if ever wanted, live in a days.csv column, as a separate step.
 
-### 4.9 The change workflow (one page)
+### 4.9 Words: the architecture for linked words, not the links
+
+Cory, 2026-11-25: build the architecture for highlighted words with definitions and fun facts; write no individual
+links or definitions in step 4.
+
+- **The owner:** `data/plans/words.csv` (working name until the naming card below is answered), committed, created
+  with its columns and no rows: word, grade band, definition, fun fact, source of the fun fact (a claim-level source,
+  Cory decision 5), status, and a `from` column for where a row was converted from (used by the Word Wall
+  conversion). Key: word plus grade band, so kindergarten "energy" and grade 8 "energy" are two rows.
+- **The link:** lesson.py learns `[[word:<word>]]` in the same commit, as it knows `[[fig:]]` and `[[note:]]`. A word
+  with no row for the day's grade band renders as plain text, so a mark can never break a page and words can be marked
+  before any definition exists.
+- **The index:** word nodes and "day uses word" edges (4.7). Two reports, never failing gates: marked but undefined
+  (the definition backlog) and defined but never used.
+- **The rules:** one paragraph in docs/CHANGES.md and in the writing briefs on how to mark a word (mark it by hand
+  where it is taught; no automatic highlighting, since words with two meanings, such as table and cell, would be
+  marked wrong).
+- **Waiting on design, not built here** (later.csv rows): how a marked word prints (a popup does not print; for
+  example a small "words today" box on the student sheet), the popup's keyboard, screen reader and phone behavior, and
+  who writes definitions (reading level per grade band, a fresh-agent sensitivity read of fun facts).
+- **Naming:** the feature, the file and the link prefix get locked names in docs/GLOSSARY.md before the commit; one
+  Desk question card with a pick, q-word-names-1 (word, term, vocabulary and Word Wall are all in use somewhere
+  today).
+- **The Word Wall** (/closet/word-wall/, source data/closet/words, never touched) stays frozen with the tool catalog.
+  Its cards are converted into the owner table in a later step of its own (the end goal's "How we get there"), after
+  which the Word Wall is a view over the table.
+
+### 4.10 The change workflow (one page)
 
 docs/CHANGES.md: request (a step of this plan, later.csv or the Desk), impact list (`uses.py`), a script with
 `--dry-run` that prints a diff summary, the gates, one log line. No framework code beyond what each migration needs.
 Errata with course versions waits for a course that is taught (ROADMAP finished-course item 11).
 
-### 4.10 The linter (four checks)
+### 4.11 The linter (four checks)
 
 `scripts/lint.py`: no em dashes, "Curio Class" in full, a US spelling word list, and no curriculum script opening a
 tool catalog file. It runs on changed files in `turn.py end` and on everything in the consolidation gate. Reading
@@ -383,7 +414,7 @@ level of the piece, and checkable specifics (numbers, dates, names, scientific a
 texts and in tools) carry a claim-level source. Applied when a file is next written or touched, not as a pass over old
 files.
 
-### 4.11 Source and generated
+### 4.12 Source and generated
 
 - **Source:** markdown, CSV, scripts, art and voice.
 - **Generated, not committed:** build/, dist/, tool bundles, data/index/, the registry, data/curioclass.db, any plan
@@ -398,10 +429,10 @@ files.
   modules.csv, tools-concepts.csv, sequence.csv, coverage.csv, data/concepts/, docs/agents/catalog/shape/.
 - Large media stays out of git (art/raw, voice/raw, library art), backed up to X: and R2.
 
-### 4.12 Order
+### 4.13 Order
 
 4.1, 4.2, 4.3, 4.4, 4.5, 4.6 (the cuts, each small and fully covered by the gates), then 4.7 and 4.8 (built over
-data that is no longer about to move), then 4.9, 4.10 and 4.11. The deferred items get their later.csv rows in the
+data that is no longer about to move), then 4.9 (words), then 4.10, 4.11 and 4.12. The deferred items get their later.csv rows in the
 4.2 commit.
 
 ## Step 5: tools, plumbing standardized and play left free
@@ -459,7 +490,7 @@ the memory notes, and write a short record of what moved where (the archive inde
 2. Tether Drift: a Recess game, not ready; kept as a side project (step 1 table, later.csv row).
 3. The 45 Flash research packets: checked, no later use; archived with SPEC.md's packet line and RESEARCH-PACKET.md.
 4. The visible kit frame becomes optional (step 5.3) once the contract scripts pass.
-5. Sources as we go, at the level of step 4.10: every piece names its sources, checkable specifics carry their own;
+5. Sources as we go, at the level of step 4.11: every piece names its sources, checkable specifics carry their own;
    not every statement.
 6. Gemini/Api.txt stays where it is, untouched, for when tool work resumes.
 7. The scale of the project is recorded for later marketing in docs/funding/SCALE.md: the before counts now, the
