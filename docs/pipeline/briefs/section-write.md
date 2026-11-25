@@ -17,7 +17,7 @@ shared context is loaded once and the handoffs between sections are seen togethe
 6. The course frame docs/courses/{course}/frame.md: only the row and notes for unit {unit}, and its Sensitive
    topics lines.
 
-Do not open: anything under .claude/, docs/Return/, S:\CurioClass-spec2, data/closet/words, closet/words,
+Do not open: anything under .claude/, docs/Return/, data/closet/words, closet/words,
 data/media-manifest.txt, courses/math-4/, docs/courses/math-4/, docs/courses/ela-6/, data/plans/math-4/,
 *-spine.md, data/units.csv, or any file with math-4 or ela-6 in its name.
 

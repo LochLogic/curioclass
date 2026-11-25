@@ -1,5 +1,8 @@
 # Codex build brief, any tool (Curio Class)
 
+**Paused 2026-11-25:** the folder this brief names (S:\CurioClass-codex or S:\CurioClass-spec2) was archived in consolidation
+step 3.3. Before this brief runs again it needs a new home folder (see the top note in docs/agents/CODEX.md).
+
 You are building ONE tool for Curio Class (curioclass.org), a free, public K-12 site of interactive classroom tools.
 Each tool is one self-contained HTML file that a teacher projects or a student opens on a school laptop. Three blind
 reviewers will check your work later, so build it as if it ships to real students tomorrow.

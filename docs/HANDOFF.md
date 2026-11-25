@@ -74,9 +74,7 @@ The folders (the truth is the GitHub repository, branch `main`):
 
 | Folder | Branch | Who works there |
 |---|---|---|
-| `S:\CurioClass` | `main` | The main session |
-| `S:\CurioClass-spec2` | `spec/sara` | Sara's sessions only; they push to `spec/sara` and to `main` |
-| `S:\CurioClass-codex` | `codex/queue` | Codex |
+| `S:\CurioClass` | `main` | The main session, and every other worker (one checkout since 2026-11-25; old branches are tags `archive/*`) |
 | `S:\CurioClass-sources` | none | Base texts and references (AGENTS.md) |
 | `S:\CurioClass-archive` | none | Set-aside files; anything needing deletion moves to `<what>-<date>\` here |
 

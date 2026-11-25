@@ -1,5 +1,8 @@
 # Guest spec writer (Curio Class)
 
+**Paused 2026-11-25:** the folder this brief names (S:\CurioClass-codex or S:\CurioClass-spec2) was archived in consolidation
+step 3.3. Before this brief runs again it needs a new home folder (see the top note in docs/agents/CODEX.md).
+
 **DONE (2026-11-10).** Every id in `claims/sara.txt` is specced and merged. If Sara opens a new session, tell her
 there is nothing left to spec and to ask Cory before starting anything.
 

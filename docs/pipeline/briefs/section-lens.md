@@ -45,7 +45,7 @@ then `Count: fixed F, rejected R, lead L.` Edit only the section plans u{uu}-*.m
 ## Both stages
 
 No git commands of any kind. Python runs as `python -X utf8`. Never open: anything under .claude/, docs/Return/,
-S:\CurioClass-spec2, data/closet/words, closet/words, data/media-manifest.txt, courses/math-4/, docs/courses/math-4/,
+data/closet/words, closet/words, data/media-manifest.txt, courses/math-4/, docs/courses/math-4/,
 docs/courses/ela-6/, data/plans/math-4/, *-spine.md, data/units.csv, or any file with math-4 or ela-6 in its name.
 Other agents work on other units at the same time: touch only your unit's files. Helper files go only in a folder
 named for your job under the temp folder. Final message: one line,

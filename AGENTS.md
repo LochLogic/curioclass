@@ -42,7 +42,7 @@ their own work, and do so only while nobody holds the turn (`turn.py status` say
 - The gates are `python -X utf8 scripts/plan.py check` and `python -X utf8 scripts/lesson.py check`; build pages
   with `python -X utf8 scripts/lesson.py build --pdf` (build/ is local output, git-ignored since 2026-11-24).
 - Never touch: data/closet/words, closet/words, data/media-manifest.txt, docs/Return/ (Cory's private folder,
-  git-ignored), anything under .claude/, or the folder S:\CurioClass-spec2.
+  git-ignored), or anything under .claude/.
 - Questions of scope, money, people or audience belong to Cory: put them in your last message, never decide them.
   Item-level choices (a number, a wording, a key) you decide and say so.
 - A decision changes the doc that holds the rule, in place, and adds one line to

@@ -1,5 +1,8 @@
 # Codex fix brief, any tool (Curio Class)
 
+**Paused 2026-11-25:** the folder this brief names (S:\CurioClass-codex or S:\CurioClass-spec2) was archived in consolidation
+step 3.3. Before this brief runs again it needs a new home folder (see the top note in docs/agents/CODEX.md).
+
 You are fixing ONE Curio Class tool after its Claude Refine. Three cold Claude lenses (Teaching, Play, Craft), and a
 sensitivity reviewer where the topic needed one, played the tool and merged what they found into
 `tools/<id>/refine.md`. Your job is to fix what that list asks for, prove each fix, and say plainly what you did not fix.
