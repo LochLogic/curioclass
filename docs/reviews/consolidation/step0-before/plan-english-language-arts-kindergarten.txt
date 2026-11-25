@@ -1,0 +1,522 @@
+sequence english-language-arts-kindergarten: 0 failure(s)
+english-language-arts-kindergarten: 517 items and 707 wrong answers checked, 34 failure(s)
+  FAIL section 1.1 (english-language-arts-kindergarten-u01-1) is not in data/units.csv
+  FAIL section 1.2 (english-language-arts-kindergarten-u01-2) is not in data/units.csv
+  FAIL section 1.3 (english-language-arts-kindergarten-u01-3) is not in data/units.csv
+  FAIL section 1.4 (english-language-arts-kindergarten-u01-4) is not in data/units.csv
+  FAIL section 1.5 (english-language-arts-kindergarten-u01-5) is not in data/units.csv
+  FAIL section 1.6 (english-language-arts-kindergarten-u01-6) is not in data/units.csv
+  FAIL section 1.7 (english-language-arts-kindergarten-u01-7) is not in data/units.csv
+  FAIL section 2.1 (english-language-arts-kindergarten-u02-1) is not in data/units.csv
+  FAIL section 2.10 (english-language-arts-kindergarten-u02-10) is not in data/units.csv
+  FAIL section 2.2 (english-language-arts-kindergarten-u02-2) is not in data/units.csv
+  FAIL section 2.3 (english-language-arts-kindergarten-u02-3) is not in data/units.csv
+  FAIL section 2.4 (english-language-arts-kindergarten-u02-4) is not in data/units.csv
+  FAIL section 2.5 (english-language-arts-kindergarten-u02-5) is not in data/units.csv
+  FAIL section 2.6 (english-language-arts-kindergarten-u02-6) is not in data/units.csv
+  FAIL section 2.7 (english-language-arts-kindergarten-u02-7) is not in data/units.csv
+  FAIL section 2.8 (english-language-arts-kindergarten-u02-8) is not in data/units.csv
+  FAIL section 2.9 (english-language-arts-kindergarten-u02-9) is not in data/units.csv
+  FAIL section 3.1 (english-language-arts-kindergarten-u03-1) is not in data/units.csv
+  FAIL section 3.2 (english-language-arts-kindergarten-u03-2) is not in data/units.csv
+  FAIL section 3.3 (english-language-arts-kindergarten-u03-3) is not in data/units.csv
+  FAIL section 3.4 (english-language-arts-kindergarten-u03-4) is not in data/units.csv
+  FAIL section 3.5 (english-language-arts-kindergarten-u03-5) is not in data/units.csv
+  FAIL section 3.6 (english-language-arts-kindergarten-u03-6) is not in data/units.csv
+  FAIL section 3.7 (english-language-arts-kindergarten-u03-7) is not in data/units.csv
+  FAIL section 3.8 (english-language-arts-kindergarten-u03-8) is not in data/units.csv
+  FAIL section 3.9 (english-language-arts-kindergarten-u03-9) is not in data/units.csv
+  FAIL section 4.1 (english-language-arts-kindergarten-u04-1) is not in data/units.csv
+  FAIL section 4.2 (english-language-arts-kindergarten-u04-2) is not in data/units.csv
+  FAIL section 4.3 (english-language-arts-kindergarten-u04-3) is not in data/units.csv
+  FAIL section 4.4 (english-language-arts-kindergarten-u04-4) is not in data/units.csv
+  FAIL section 4.5 (english-language-arts-kindergarten-u04-5) is not in data/units.csv
+  FAIL section 4.6 (english-language-arts-kindergarten-u04-6) is not in data/units.csv
+  FAIL section 4.7 (english-language-arts-kindergarten-u04-7) is not in data/units.csv
+  FAIL section 4.8 (english-language-arts-kindergarten-u04-8) is not in data/units.csv
+  note unit 1 error A rests on memory, not a source
+  note unit 1 error B rests on memory, not a source
+  note unit 1 error C rests on memory, not a source
+  note unit 1 error D rests on memory, not a source
+  note unit 1 error E rests on memory, not a source
+  note unit 1 error F rests on memory, not a source
+  note unit 1 error G rests on memory, not a source
+  note unit 1 error H rests on memory, not a source
+  note unit 1 error I rests on memory, not a source
+  note unit 1 error J rests on memory, not a source
+  note unit 1 error K rests on memory, not a source
+  note unit 1 error L rests on memory, not a source
+  note unit 1 error M rests on memory, not a source
+  note unit 1 error N rests on memory, not a source
+  note unit 1 error O rests on memory, not a source
+  note unit 1 error P rests on memory, not a source
+  note unit 1 error Q rests on memory, not a source
+  note unit 1 error R rests on memory, not a source
+  note unit 1 error S rests on memory, not a source
+  note unit 1 error T rests on memory, not a source
+  note unit 1 error U rests on memory, not a source
+  note unit 1 error V rests on memory, not a source
+  note unit 1 error W rests on memory, not a source
+  note unit 1 error X rests on memory, not a source
+  note unit 1 error AA rests on memory, not a source
+  note unit 1 error AC rests on memory, not a source
+  note unit 1 error AD rests on memory, not a source
+  note unit 1 error AE rests on memory, not a source
+  note unit 1 error AF rests on memory, not a source
+  note unit 1 error AG rests on memory, not a source
+  note unit 1: 24950 words of prose outside the generated tables (s01.md)
+  note unit 2 error A rests on memory, not a source
+  note unit 2 error B rests on memory, not a source
+  note unit 2 error C rests on memory, not a source
+  note unit 2 error D rests on memory, not a source
+  note unit 2 error E rests on memory, not a source
+  note unit 2 error F rests on memory, not a source
+  note unit 2 error G rests on memory, not a source
+  note unit 2 error H rests on memory, not a source
+  note unit 2 error I rests on memory, not a source
+  note unit 2 error J rests on memory, not a source
+  note unit 2 error K rests on memory, not a source
+  note unit 2 error L rests on memory, not a source
+  note unit 2 error M rests on memory, not a source
+  note unit 2 error N rests on memory, not a source
+  note unit 2 error O rests on memory, not a source
+  note unit 2 error P rests on memory, not a source
+  note unit 2 error Q rests on memory, not a source
+  note unit 2 error R rests on memory, not a source
+  note unit 2 error S rests on memory, not a source
+  note unit 2 error T rests on memory, not a source
+  note unit 2 error U rests on memory, not a source
+  note unit 2 error V rests on memory, not a source
+  note unit 2 error W rests on memory, not a source
+  note unit 2 error X rests on memory, not a source
+  note unit 2 error Y rests on memory, not a source
+  note unit 2 error Z rests on memory, not a source
+  note unit 2 error AA rests on memory, not a source
+  note unit 2 error AB rests on memory, not a source
+  note unit 2 error AC rests on memory, not a source
+  note unit 2 error AD rests on memory, not a source
+  note unit 2 error AE rests on memory, not a source
+  note unit 2 error AF rests on memory, not a source
+  note unit 2 error AG rests on memory, not a source
+  note unit 2 error AH rests on memory, not a source
+  note unit 2 error AI rests on memory, not a source
+  note unit 2 error AJ rests on memory, not a source
+  note unit 2 error AK rests on memory, not a source
+  note unit 2 error AL rests on memory, not a source
+  note unit 2 error AM rests on memory, not a source
+  note unit 2 error AN rests on memory, not a source
+  note unit 2 error AO rests on memory, not a source
+  note unit 2 error AP rests on memory, not a source
+  note unit 2 error AQ rests on memory, not a source
+  note unit 2 error AR rests on memory, not a source
+  note unit 2 error AS rests on memory, not a source
+  note unit 2 error AT rests on memory, not a source
+  note unit 2 error AU rests on memory, not a source
+  note unit 2 error AV rests on memory, not a source
+  note unit 2 error AW rests on memory, not a source
+  note unit 2 error AX rests on memory, not a source
+  note unit 2: 29495 words of prose outside the generated tables (s02.md)
+  note unit 3 error A rests on memory, not a source
+  note unit 3 error B rests on memory, not a source
+  note unit 3 error C rests on memory, not a source
+  note unit 3 error D rests on memory, not a source
+  note unit 3 error E rests on memory, not a source
+  note unit 3 error F rests on memory, not a source
+  note unit 3 error G rests on memory, not a source
+  note unit 3 error H rests on memory, not a source
+  note unit 3 error I rests on memory, not a source
+  note unit 3 error J rests on memory, not a source
+  note unit 3 error K rests on memory, not a source
+  note unit 3 error L rests on memory, not a source
+  note unit 3 error M rests on memory, not a source
+  note unit 3 error N rests on memory, not a source
+  note unit 3 error O rests on memory, not a source
+  note unit 3 error P rests on memory, not a source
+  note unit 3 error Q rests on memory, not a source
+  note unit 3 error R rests on memory, not a source
+  note unit 3 error S rests on memory, not a source
+  note unit 3 error T rests on memory, not a source
+  note unit 3 error U rests on memory, not a source
+  note unit 3 error V rests on memory, not a source
+  note unit 3 error W rests on memory, not a source
+  note unit 3 error X rests on memory, not a source
+  note unit 3 error Y rests on memory, not a source
+  note unit 3 error Z rests on memory, not a source
+  note unit 3 error AA rests on memory, not a source
+  note unit 3 error AB rests on memory, not a source
+  note unit 3 error AC rests on memory, not a source
+  note unit 3 error AD rests on memory, not a source
+  note unit 3 error AE rests on memory, not a source
+  note unit 3 error AF rests on memory, not a source
+  note unit 3 error AG rests on memory, not a source
+  note unit 3 error AH rests on memory, not a source
+  note unit 3 error AI rests on memory, not a source
+  note unit 3 error AJ rests on memory, not a source
+  note unit 3 error AK rests on memory, not a source
+  note unit 3: 27903 words of prose outside the generated tables (s03.md)
+  note unit 4: error Q has no wrong-answer row on any exit or unit assessment item (day 6 read)
+  note unit 4 error A rests on memory, not a source
+  note unit 4 error B rests on memory, not a source
+  note unit 4 error C rests on memory, not a source
+  note unit 4 error E rests on memory, not a source
+  note unit 4 error F rests on memory, not a source
+  note unit 4 error G rests on memory, not a source
+  note unit 4 error H rests on memory, not a source
+  note unit 4 error I rests on memory, not a source
+  note unit 4 error J rests on memory, not a source
+  note unit 4 error K rests on memory, not a source
+  note unit 4 error L rests on memory, not a source
+  note unit 4 error M rests on memory, not a source
+  note unit 4 error N rests on memory, not a source
+  note unit 4 error O rests on memory, not a source
+  note unit 4 error P rests on memory, not a source
+  note unit 4 error Q rests on memory, not a source
+  note unit 4 error R rests on memory, not a source
+  note unit 4 error S rests on memory, not a source
+  note unit 4 error T rests on memory, not a source
+  note unit 4 error U rests on memory, not a source
+  note unit 4 error V rests on memory, not a source
+  note unit 4 error W rests on memory, not a source
+  note unit 4 error X rests on memory, not a source
+  note unit 4 error Y rests on memory, not a source
+  note unit 4 error Z rests on memory, not a source
+  note unit 4 error AA rests on memory, not a source
+  note unit 4 error AB rests on memory, not a source
+  note unit 4 error AC rests on memory, not a source
+  note unit 4 error AD rests on memory, not a source
+  note unit 4 error AE rests on memory, not a source
+  note unit 4 error AF rests on memory, not a source
+  note unit 4 error AG rests on memory, not a source
+  note unit 4 error AH rests on memory, not a source
+  note unit 4 error AI rests on memory, not a source
+  note unit 4 error AJ rests on memory, not a source
+  note unit 4 error AK rests on memory, not a source
+  note unit 4 error AL rests on memory, not a source
+  note unit 4 error AM rests on memory, not a source
+  note unit 4 error AN rests on memory, not a source
+  note unit 4 error AO rests on memory, not a source
+  note unit 4 error AP rests on memory, not a source
+  note unit 4 error AQ rests on memory, not a source
+  note unit 4 error AR rests on memory, not a source
+  note unit 4 error AS rests on memory, not a source
+  note unit 4: 27435 words of prose outside the generated tables (s04.md)
+  note day 1: the goal piece "Open the toy question" is set-up, shown by no item; is it really set-up?
+  note day 1: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 2: the goal piece "Read the sharing story" is set-up, shown by no item; is it really set-up?
+  note day 2: the goal piece "title page" is set-up, shown by no item; is it really set-up?
+  note day 2: the goal piece "author" is set-up, shown by no item; is it really set-up?
+  note day 2: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 3: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 4: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 6: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 7: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 8: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 9: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 10: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 11: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 12: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 13: the goal piece "Read Toy Riddles" is set-up, shown by no item; is it really set-up?
+  note day 13: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 14: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 15: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 16: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 19: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 20: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 21: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 22: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 23: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 24: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 25: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 26: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 27: the goal piece "Rehearse several interview exchanges" is shown by no exit of the day, only by s01-I1, s01-I3; does the exit check the goal?
+  note day 33: the goal piece "Share the toy-choice opinion with a partner" is set-up, shown by no item; is it really set-up?
+  note day 35: the goal piece "open the weather question" is set-up, shown by no item; is it really set-up?
+  note day 35: the goal piece "retrieve a toy-story detail" is set-up, shown by no item; is it really set-up?
+  note day 35: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 36: the goal piece "read weather words" is set-up, shown by no item; is it really set-up?
+  note day 36: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 37: the goal piece "reread the warmer-and-cooler passage" is set-up, shown by no item; is it really set-up?
+  note day 37: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 38: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 39: the goal piece "Read rain and snow passages" is set-up, shown by no item; is it really set-up?
+  note day 39: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 40: the goal piece "Reread weather information" is set-up, shown by no item; is it really set-up?
+  note day 40: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 41: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 42: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 43: the goal piece "Read the clouds passage" is set-up, shown by no item; is it really set-up?
+  note day 43: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 44: the goal piece "Read the rainbow passage" is set-up, shown by no item; is it really set-up?
+  note day 44: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 45: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 47: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 48: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 49: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 50: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 51: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 52: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 53: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 54: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 55: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 56: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 57: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 58: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 59: the goal piece "reading its opening section without abridging it" is set-up, shown by no item; is it really set-up?
+  note day 59: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 60: the goal piece "Read the second section" is set-up, shown by no item; is it really set-up?
+  note day 60: the goal piece "track the character" is set-up, shown by no item; is it really set-up?
+  note day 60: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 61: the goal piece "Read the third section" is set-up, shown by no item; is it really set-up?
+  note day 61: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 62: the goal piece "Read the fourth section" is set-up, shown by no item; is it really set-up?
+  note day 62: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 64: the goal piece "Respond to story-map evidence with a familiar short weather story" is set-up, shown by no item; is it really set-up?
+  note day 64: the goal piece "fresh retell" is shown by no exit of the day, only by s02-R1; does the exit check the goal?
+  note day 65: the goal piece "jointly plan a character, setting and event" is set-up, shown by no item; is it really set-up?
+  note day 65: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 66: the goal piece "reread the short story" is set-up, shown by no item; is it really set-up?
+  note day 66: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 67: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 68: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 69: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 70: the goal piece "writing" is set-up, shown by no item; is it really set-up?
+  note day 70: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 71: the goal piece "rehearse nouns" is shown by no exit of the day, only by s02-G1a; does the exit check the goal?
+  note day 71: the goal piece "verbs" is shown by no exit of the day, only by s02-G1a; does the exit check the goal?
+  note day 72: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 76: the goal piece "Share the finished story" is set-up, shown by no item; is it really set-up?
+  note day 79: the goal piece "Respond to the mid-year check in small groups" is shown by no exit of the day, only by c1-X79a, c1-X79b, c1-X79c; does the exit check the goal?
+  note day 79: the goal piece "verify improvement on fresh taught-content tasks" is shown by no exit of the day, only by c1-X79d; does the exit check the goal?
+  note day 80: the goal piece "Open the tree question" is set-up, shown by no item; is it really set-up?
+  note day 80: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 81: the goal piece "Use the living-things reading" is set-up, shown by no item; is it really set-up?
+  note day 81: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 82: the goal piece "Read the needs passage" is set-up, shown by no item; is it really set-up?
+  note day 82: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 83: the goal piece "Read the air-and-water passage" is set-up, shown by no item; is it really set-up?
+  note day 83: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 84: the goal piece "Read the tree-growth story" is set-up, shown by no item; is it really set-up?
+  note day 84: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 85: the goal piece "prepare a science talk from two provided texts" is set-up, shown by no item; is it really set-up?
+  note day 85: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 88: the goal piece "a fresh example drawn from the same texts" is set-up, shown by no item; is it really set-up?
+  note day 88: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 89: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 90: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 91: the goal piece "Reread the animal passage" is shown by no exit of the day, only by s03-T2a, s03-T2b; does the exit check the goal?
+  note day 92: the goal piece "Read Tree Texts" is set-up, shown by no item; is it really set-up?
+  note day 92: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 93: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 94: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 95: the goal piece "Read We Depend on Trees" is set-up, shown by no item; is it really set-up?
+  note day 95: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 96: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 100: the goal piece "Share the animal piece" is shown by no exit of the day, only by s03-T3; does the exit check the goal?
+  note day 101: the goal piece "a fresh retry" is set-up, shown by no item; is it really set-up?
+  note day 101: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 102: the goal piece "retrieve the research-cycle steps" is set-up, shown by no item; is it really set-up?
+  note day 102: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 103: the goal piece "Read a local-tree selection from Tree Texts" is set-up, shown by no item; is it really set-up?
+  note day 103: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 104: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 105: the goal piece "Jointly compose another detail" is set-up, shown by no item; is it really set-up?
+  note day 105: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 106: the goal piece "Read another provided tree selection" is set-up, shown by no item; is it really set-up?
+  note day 106: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 108: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 111: the goal piece "Observe decoding" is shown by no exit of the day, only by s03-F111a; does the exit check the goal?
+  note day 111: the goal piece "phonetic spelling" is shown by no exit of the day, only by s03-F111b; does the exit check the goal?
+  note day 112: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 113: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 114: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 115: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 116: the goal piece "Share the collage" is shown by no exit of the day, only by s03-W116, s03-S1a, s03-S1b, s03-S1c; does the exit check the goal?
+  note day 119: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 120: the goal piece "Read the apartment-tree story whole" is set-up, shown by no item; is it really set-up?
+  note day 120: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 121: the goal piece "Reread a difficult moment" is set-up, shown by no item; is it really set-up?
+  note day 121: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 122: the goal piece "Read the second tree-care story whole" is set-up, shown by no item; is it really set-up?
+  note day 122: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 123: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 124: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 125: the goal piece "two-column comparison" is shown by no exit of the day, only by s04-C1a, s04-C1b, s04-C1c, s04-C1d; does the exit check the goal?
+  note day 128: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 129: the goal piece "Read why trees matter to a community" is set-up, shown by no item; is it really set-up?
+  note day 129: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 130: the goal piece "Reread the whole reasons text" is set-up, shown by no item; is it really set-up?
+  note day 130: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 131: the goal piece "Read the planting text whole" is set-up, shown by no item; is it really set-up?
+  note day 131: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 133: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 134: the goal piece "Read the true account of Wangari Maathai whole" is set-up, shown by no item; is it really set-up?
+  note day 134: the goal piece "name the people and place" is set-up, shown by no item; is it really set-up?
+  note day 134: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 135: the goal piece "Return to the account's organizing and planting passage" is set-up, shown by no item; is it really set-up?
+  note day 135: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 136: the goal piece "Reread the account's actions and outcomes" is set-up, shown by no item; is it really set-up?
+  note day 136: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 137: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 139: the goal piece "informational-comparison evidence with familiar texts" is set-up, shown by no item; is it really set-up?
+  note day 139: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 140: the goal piece "Reread the planting account" is set-up, shown by no item; is it really set-up?
+  note day 140: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 141: the goal piece "Return to tree-care stories" is set-up, shown by no item; is it really set-up?
+  note day 141: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 144: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 145: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 146: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 147: the goal piece "Reread the planting text" is set-up, shown by no item; is it really set-up?
+  note day 147: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 148: the goal piece "Use details from the texts to strengthen the card's sketch" is shown by no exit of the day, only by s04-R148; does the exit check the goal?
+  note day 148: the goal piece "and spoken explanation" is shown by no exit of the day, only by s04-R148; does the exit check the goal?
+  note day 149: the goal piece "Exchange feedback" is set-up, shown by no item; is it really set-up?
+  note day 149: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 150: the goal piece "Finish the card" is set-up, shown by no item; is it really set-up?
+  note day 150: the goal piece "compare the familiar story experiences" is shown by no exit of the day, only by s04-C3a, s04-C3b; does the exit check the goal?
+  note day 151: the goal piece "Finish the illustration" is set-up, shown by no item; is it really set-up?
+  note day 151: the goal piece "compare the two familiar information texts" is shown by no exit of the day, only by s04-C4av2, s04-C4bv2; does the exit check the goal?
+  note day 152: the goal piece "the author point" is shown by no exit of the day, only by s04-C5av2; does the exit check the goal?
+  note day 152: the goal piece "the reasons heard in the information text" is shown by no exit of the day, only by s04-C5bv2; does the exit check the goal?
+  note day 153: the goal piece "share cards with a clear explanation" is shown by no exit of the day, only by s04-S153a, s04-S153c; does the exit check the goal?
+  note day 153: the goal piece "helpful drawing" is shown by no exit of the day, only by s04-S153b; does the exit check the goal?
+  note day 154: the goal piece "finish card sharing" is shown by no exit of the day, only by s04-S154b, s04-S154c; does the exit check the goal?
+  note day 154: the goal piece "the same explanation task" is shown by no exit of the day, only by s04-S154a; does the exit check the goal?
+  note day 155: the goal piece "record every child's contribution" is set-up, shown by no item; is it really set-up?
+  note day 155: shows names no end-of-unit item; the unit assessment does not see this goal
+  note day 156: the goal piece "complete the digital-publication record" is shown by no exit of the day, only by s04-P156; does the exit check the goal?
+  note day 156: the goal piece "both tool kinds" is shown by no exit of the day, only by s04-P156; does the exit check the goal?
+  note day 160: the goal piece "Respond to the year-end check and prepare the grade 1 handoff with what the fresh retry changed" is shown by no exit of the day, only by c2-X160a, c2-X160b, c2-X160c, c2-X160d, c2-X160e; does the exit check the goal?
+  note day 18: hand-backs land in "assessment", which names no timed part of the day in its day (handbacks.csv row 38); name the part in `where`, or give the day a slot for them
+  note day 75: hand-backs land in "assessment", which names no timed part of the day in its day (handbacks.csv row 78); name the part in `where`, or give the day a slot for them
+  note day 77: hand-backs land in "assessment", which names no timed part of the day in its day (handbacks.csv row 212, handbacks.csv row 213, handbacks.csv row 214, handbacks.csv row 215, handbacks.csv row 216, handbacks.csv row 217); name the part in `where`, or give the day a slot for them
+  note day 78: hand-backs land in "assessment", which names no timed part of the day in its day (handbacks.csv row 218, handbacks.csv row 219, handbacks.csv row 220, handbacks.csv row 221, handbacks.csv row 222, handbacks.csv row 223); name the part in `where`, or give the day a slot for them
+  note day 158: hand-backs land in "assessment", which names no timed part of the day in its day (handbacks.csv row 224, handbacks.csv row 225, handbacks.csv row 226, handbacks.csv row 227); name the part in `where`, or give the day a slot for them
+  note day 159: hand-backs land in "assessment", which names no timed part of the day in its day (handbacks.csv row 228, handbacks.csv row 229, handbacks.csv row 230, handbacks.csv row 231); name the part in `where`, or give the day a slot for them
+  FAIL one-ask: s01-X1: the stem has 2 question marks, so it asks 2 things (one ask per item)
+  FAIL one-ask: s01-T3: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s02-G1d: the stem has 6 question marks, so it asks 6 things (one ask per item)
+  FAIL one-ask: s02-P1a: the stem has 3 question marks, so it asks 3 things (one ask per item)
+  FAIL shape-note: u01-1.md day 1: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-1.md day 2: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-1.md day 3: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-1.md day 4: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-2.md day 6: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-2.md day 7: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-2.md day 8: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-3.md day 9: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-3.md day 10: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-3.md day 11: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-3.md day 12: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-3.md day 13: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-3.md day 14: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-4.md day 15: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-4.md day 16: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-4.md day 19: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-5.md day 20: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-5.md day 21: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-5.md day 22: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-5.md day 23: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-5.md day 24: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-5.md day 25: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-6.md day 26: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-6.md day 27: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-6.md day 30: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-7.md day 31: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-7.md day 32: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-7.md day 33: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u01-7.md day 34: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-1.md day 35: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-1.md day 36: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-1.md day 37: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-1.md day 38: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-10.md day 76: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-2.md day 39: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-2.md day 40: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-2.md day 41: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-2.md day 42: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-3.md day 43: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-3.md day 44: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-3.md day 45: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-4.md day 47: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-4.md day 48: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-5.md day 49: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-5.md day 50: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-5.md day 51: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-5.md day 52: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-5.md day 53: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-6.md day 54: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-6.md day 55: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-6.md day 56: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-6.md day 57: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-6.md day 58: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-7.md day 59: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-7.md day 60: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-7.md day 61: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-7.md day 62: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-8.md day 65: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-8.md day 66: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-8.md day 67: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-8.md day 68: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-8.md day 69: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-9.md day 70: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-9.md day 71: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-9.md day 72: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u02-9.md day 73: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-1.md day 80: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-1.md day 81: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-1.md day 82: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-1.md day 83: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-1.md day 84: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-2.md day 85: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-2.md day 88: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-3.md day 89: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-3.md day 90: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-3.md day 91: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-3.md day 92: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-3.md day 93: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-3.md day 94: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-4.md day 95: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-4.md day 96: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-5.md day 100: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-5.md day 101: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-6.md day 102: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-6.md day 103: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-6.md day 104: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-6.md day 105: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-6.md day 106: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-7.md day 108: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-8.md day 111: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-8.md day 112: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-8.md day 113: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-8.md day 114: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-9.md day 115: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-9.md day 116: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-9.md day 117: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-9.md day 118: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-1.md day 119: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-1.md day 120: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-1.md day 121: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-1.md day 122: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-1.md day 123: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-1.md day 124: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-2.md day 125: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-2.md day 128: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-3.md day 129: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-3.md day 130: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-3.md day 131: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-4.md day 133: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-4.md day 134: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-4.md day 135: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-4.md day 136: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-5.md day 137: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-5.md day 139: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-6.md day 140: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-6.md day 141: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-6.md day 144: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-6.md day 145: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-7.md day 146: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-7.md day 147: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-7.md day 149: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-8.md day 155: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u04-8.md day 157: the day has an exit but no "Shared shape" note naming the practice shape against the exit's

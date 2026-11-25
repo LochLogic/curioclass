@@ -1,0 +1,37 @@
+sequence world-history-i: 0 failure(s)
+world-history-i: 40 items and 42 wrong answers checked, 0 failure(s)
+  note unit 3 error A rests on memory, not a source
+  note unit 3 error B rests on memory, not a source
+  note unit 3 error C rests on memory, not a source
+  note unit 3 error D rests on memory, not a source
+  note unit 3 error E rests on memory, not a source
+  note unit 3 error F rests on memory, not a source
+  note unit 3 error G rests on memory, not a source
+  note unit 3 error H rests on memory, not a source
+  note unit 3 error I rests on memory, not a source
+  note unit 3 error J rests on memory, not a source
+  note unit 3 error K rests on memory, not a source
+  note unit 3 error L rests on memory, not a source
+  note unit 3 error M rests on memory, not a source
+  note unit 3 error N rests on memory, not a source
+  note unit 3 error O rests on memory, not a source
+  note unit 3: 8686 words of prose outside the generated tables (s03.md)
+  note day 42: the goal piece "(Ghana, Mali and Songhai" is shown by no exit of the day, only by s03-A2a; does the exit check the goal?
+  note day 42: the goal piece "Axum or the Swahili city-states" is shown by no exit of the day, only by s03-A2b-v2; does the exit check the goal?
+  note day 42: the goal piece "the Mongol Empire)" is shown by no exit of the day, only by s03-A2d; does the exit check the goal?
+  note day 43: the goal piece "Map-and-explain task, day 2: culture" is shown by no exit of the day, only by s03-A2-v2; does the exit check the goal?
+  note day 43: the goal piece "finished and shared" is shown by no exit of the day, only by s03-A2-v2; does the exit check the goal?
+  note day 46: shows names no end-of-unit item; the unit assessment does not see this goal
+  note units planned in prose but not yet in data: 1, 2, 4, 5, 6, 7, 8, 9, 10
+  FAIL one-ask: s03-X31: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s03-X33: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s03-X37: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s03-X38: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s03-X39: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s03-X43-v2: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s03-A1-v2: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL one-ask: s03-A5b: the stem joins a second ask to the first ("and explain", "and tell why"); split it
+  FAIL shape-note: u03-4.md day 42: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-4.md day 43: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-4.md day 44: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
+  FAIL shape-note: u03-4.md day 46: the day has an exit but no "Shared shape" note naming the practice shape against the exit's
