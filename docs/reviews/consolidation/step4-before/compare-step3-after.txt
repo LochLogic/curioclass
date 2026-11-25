@@ -1,0 +1,1137 @@
+== build_site (2 new line(s))
+  521 course and unit pages -> S:\CurioClass\build\gates\step4-before\dist\courses (hidden)
+  6768 pages, 83 built tools, 717 on the bench, 3742 in sitemap -> dist/
+== check_site (1 new line(s)) [no before file]
+  6777 pages checked, 10 redirects (1 splat), 0 broken internal links, 0 external loads, 8610 files (limit 20000), 0 over 25 MiB
+== frame (129 new line(s)) [no before file]
+  frame algebra-i: 0 failure(s)
+  frame algebra-ii: 0 failure(s)
+  frame biology: 0 failure(s)
+  frame calculus: 0 failure(s)
+  frame chemistry: 0 failure(s)
+  frame civics-government-and-civic-life: 0 failure(s)
+  frame earth-and-space-science: 0 failure(s)
+  frame economics: 0 failure(s)
+  frame english-language-arts-grade-10: 0 failure(s)
+  frame english-language-arts-grade-11: 0 failure(s)
+  frame english-language-arts-grade-12: 0 failure(s)
+  frame english-language-arts-grade-1: 0 failure(s)
+  frame english-language-arts-grade-2: 0 failure(s)
+  frame english-language-arts-grade-3: 0 failure(s)
+  frame english-language-arts-grade-4: 0 failure(s)
+  frame english-language-arts-grade-5: 0 failure(s)
+  frame english-language-arts-grade-6: 0 failure(s)
+  frame english-language-arts-grade-7: 0 failure(s)
+  frame english-language-arts-grade-8: 0 failure(s)
+  frame english-language-arts-grade-9: 0 failure(s)
+  frame english-language-arts-kindergarten: 0 failure(s)
+  frame environmental-science: 0 failure(s)
+  frame geometry: 0 failure(s)
+  frame math-grade-1: 0 failure(s)
+  frame math-grade-2: 0 failure(s)
+  frame math-grade-3: 0 failure(s)
+  frame math-grade-4: 0 failure(s)
+  frame math-grade-5: 0 failure(s)
+  frame math-grade-6: 0 failure(s)
+  frame math-grade-7: 0 failure(s)
+  frame math-grade-8: 0 failure(s)
+  frame math-kindergarten: 0 failure(s)
+  frame physics: 0 failure(s)
+  frame precalculus: 0 failure(s)
+  frame psychology: 0 failure(s)
+  frame science-grade-1: 0 failure(s)
+  frame science-grade-2: 0 failure(s)
+  frame science-grade-3: 0 failure(s)
+  frame science-grade-4: 0 failure(s)
+  frame science-grade-5: 0 failure(s)
+== selftest-day_skeleton (17 new line(s)) [no before file]
+  all passed
+  ok     a begun (~) code keeps its mark and finds its statement
+  ok     an assessment day gets the Assessment section
+  ok     an end item on a teaching day is a data error
+  ok     an unchecked source on the day is a STOP
+  ok     carried scored work prints its made day and feedback days
+  ok     deterministic
+  ok     earlier-grade skills are review, not the day's own
+  ok     header has the fixed fields
+  ok     incoming hand-backs name the receiving part and its minutes
+  ok     last day names no next day
+  ok     never overwrites without --force
+  ok     outgoing hand-backs are listed on the day that makes them
+  ok     scored work with no feedback day is a STOP
+  ok     teacher page lists all nine parts
+  ok     the day kind is explained
+  ok     the end items print their keys
+== selftest-section_skeleton (10 new line(s)) [no before file]
+  all passed
+  ok     U3 day rows are cut to the section
+  ok     all eleven fields
+  ok     an unknown section is a data error
+  ok     deterministic
+  ok     merged U fields are carried into each section
+  ok     never overwrites without --force
+  ok     no em dash
+  ok     one day block per day
+  ok     sections cover the unit
+== selftest-unit_skeleton (42 new line(s)) [no before file]
+  all passed
+  ok    K row last used in K is readiness in grade 3
+  ok    a grade 2 teaching day makes the K row retrieval
+  ok    a model first used in an earlier unit is not "introduced here"
+  ok    a respond or check day is no one-hop use
+  ok    a retrieval day is not a use
+  ok    a section over 15 days is flagged
+  ok    a task for the next unit is credited to it
+  ok    begun: ~ in days.csv, and "unit N completes" outside the frame owned list
+  ok    checks on different codes are no pair
+  ok    code first taught day 3 is untaught at day 2
+  ok    code taught day 1 counts before day 2
+  ok    compelling question split: Adding within 20
+  ok    compelling question split: Douglass
+  ok    compelling question split: Similarity
+  ok    compelling question split: Smallpox: who gets the credit?
+  ok    coverage: owned code on no assessment day, parts and begun codes handled
+  ok    days.csv missing column stops
+  ok    design sentence ends before the anchor
+  ok    deterministic (biology unit 1)
+  ok    earlier-grade skills-column id is a retrieval row, named
+  ok    engineering expectation with no crosscutting concept says so
+  ok    evidence pair within ten days, reuse read
+  ok    grade 2 row is retrieval, named on day 1
+  ok    grouped safety column
+  ok    kept evidence day found
+  ok    near-duplicate items merge
+  ok    no pair beyond ten days
+  ok    non-number day stops
+  ok    note shorthand names a part
+  ok    old-layout source map stops
+  ok    one-layout source map reads
+  ok    own-grade skills are never earlier rows
+  ok    readiness check naming the row clears the fault
+  ok    retrieval junk dropped, whole task kept
+  ok    reuse note maps a code to its source day
+  ok    row in use this year needs no task by id
+  ok    row missing from the progression is flagged
+  ok    same-day teaching counts with same_day
+  ok    short row stops
+== sequence (109 new line(s)) [no before file]
+  note day 100: Fluency, first day in the course for 3.OA.B.5, 3.MD.C.7c (practice of a taught skill, or first teaching?)
+  note day 100: reads like hands-on work but names no supplies and no safety
+  note day 101: Fluency, first day in the course for A-SSE.A.1b, A-SSE.B.3c, F-IF.C.8, F-IF.C.8b, A-SSE.B.3 (practice of a taught skill, or first teaching?)
+  note day 101: reads like hands-on work but names no supplies and no safety
+  note day 102: Fluency, first day in the course for HS-LS4-3 (practice of a taught skill, or first teaching?)
+  note day 106: Fluency, but the note says "Teach" (Understanding or Application?)
+  note day 111: Fluency, first day in the course for A-SSE.B.3 (practice of a taught skill, or first teaching?)
+  note day 115: reads like hands-on work but names no supplies and no safety
+  note day 117: reads like hands-on work but names no supplies and no safety
+  note day 119: Fluency, first day in the course for MA.6.T4a.2 (practice of a taught skill, or first teaching?)
+  note day 126: Fluency, first day in the course for HS-ETS1-3 (practice of a taught skill, or first teaching?)
+  note day 137: reads like hands-on work but names no supplies and no safety
+  note day 138: Fluency, but the note says "teach" (Understanding or Application?)
+  note day 13: Fluency, but the goal revises a piece of writing (Application?)
+  note day 142: reads like hands-on work but names no supplies and no safety
+  note day 144: Fluency, first day in the course for MA.6.T5b.2 (practice of a taught skill, or first teaching?)
+  note day 157: reads like hands-on work but names no supplies and no safety
+  note day 158: reads like hands-on work but names no supplies and no safety
+  note day 15: Fluency, first day in the course for 3.OA.C.7, 3.OA.D.9 (practice of a taught skill, or first teaching?)
+  note day 19: reads like hands-on work but names no supplies and no safety
+  note day 1: Fluency, first day in the course for 2.OA.B.2 (practice of a taught skill, or first teaching?)
+  note day 1: reads like hands-on work but names no supplies and no safety
+  note day 21: Fluency, first day in the course for A-REI.B.3 (practice of a taught skill, or first teaching?)
+  note day 22: reads like hands-on work but names no supplies and no safety
+  note day 24: reads like hands-on work but names no supplies and no safety
+  note day 25: Fluency, first day in the course for 3.MD.C.6 (practice of a taught skill, or first teaching?)
+  note day 25: Fluency, first day in the course for A-CED.A.4 (practice of a taught skill, or first teaching?)
+  note day 25: reads like hands-on work but names no supplies and no safety
+  note day 27: Fluency, first day in the course for MA.7.T2a.2 (practice of a taught skill, or first teaching?)
+  note day 29: reads like hands-on work but names no supplies and no safety
+  note day 2: Fluency, first day in the course for MA.7.T1a.2 (practice of a taught skill, or first teaching?)
+  note day 30: reads like hands-on work but names no supplies and no safety
+  note day 31: reads like hands-on work but names no supplies and no safety
+  note day 38: reads like hands-on work but names no supplies and no safety
+  note day 3: Fluency, first day in the course for MA.USII.T1.3, MA.USII.T1.3b (practice of a taught skill, or first teaching?)
+  note day 40: Fluency, first day in the course for MA.6.T3b.2 (practice of a taught skill, or first teaching?)
+  note day 41: Fluency, first day in the course for MA.7.T2b.2e (practice of a taught skill, or first teaching?)
+  note day 41: Fluency, first day in the course for ~G-SRT.B.5 (practice of a taught skill, or first teaching?)
+  note day 41: reads like hands-on work but names no supplies and no safety
+  note day 46: Fluency, first day in the course for MA.USII.T3.4 (practice of a taught skill, or first teaching?)
+== unitplan-algebra-i (7 new line(s)) [no before file]
+  PASS docs/courses/algebra-i/s01.md
+  PASS docs/courses/algebra-i/s02.md
+  PASS docs/courses/algebra-i/s03.md
+  PASS docs/courses/algebra-i/s04.md
+  PASS docs/courses/algebra-i/s05.md
+  PASS docs/courses/algebra-i/s06.md
+  PASS docs/courses/algebra-i/s07.md
+== unitplan-algebra-ii (9 new line(s)) [no before file]
+  PASS docs/courses/algebra-ii/s01.md
+  PASS docs/courses/algebra-ii/s02.md
+  PASS docs/courses/algebra-ii/s03.md
+  PASS docs/courses/algebra-ii/s04.md
+  PASS docs/courses/algebra-ii/s05.md
+  PASS docs/courses/algebra-ii/s06.md
+  PASS docs/courses/algebra-ii/s07.md
+  PASS docs/courses/algebra-ii/u01-1.md
+  PASS docs/courses/algebra-ii/u01-2.md
+== unitplan-biology (10 new line(s)) [no before file]
+  PASS docs/courses/biology/s01.md
+  PASS docs/courses/biology/s02.md
+  PASS docs/courses/biology/s03.md
+  PASS docs/courses/biology/s04.md
+  PASS docs/courses/biology/s05.md
+  PASS docs/courses/biology/s06.md
+  PASS docs/courses/biology/s07.md
+  PASS docs/courses/biology/s08.md
+  PASS docs/courses/biology/s09.md
+  PASS docs/courses/biology/s10.md
+== unitplan-calculus (1 new line(s)) [no before file]
+  no unit plans found for: calculus
+== unitplan-chemistry (11 new line(s)) [no before file]
+  PASS docs/courses/chemistry/s01.md
+  PASS docs/courses/chemistry/s02.md
+  PASS docs/courses/chemistry/s03.md
+  PASS docs/courses/chemistry/s04.md
+  PASS docs/courses/chemistry/s05.md
+  PASS docs/courses/chemistry/s06.md
+  PASS docs/courses/chemistry/s07.md
+  PASS docs/courses/chemistry/s08.md
+  PASS docs/courses/chemistry/s09.md
+  PASS docs/courses/chemistry/s10.md
+  PASS docs/courses/chemistry/s11.md
+== unitplan-civics-government-and-civic-life (10 new line(s)) [no before file]
+  PASS docs/courses/civics-government-and-civic-life/s01.md
+  PASS docs/courses/civics-government-and-civic-life/s02.md
+  PASS docs/courses/civics-government-and-civic-life/s03.md
+  PASS docs/courses/civics-government-and-civic-life/s04.md
+  PASS docs/courses/civics-government-and-civic-life/s05.md
+  PASS docs/courses/civics-government-and-civic-life/s06.md
+  PASS docs/courses/civics-government-and-civic-life/s07.md
+  PASS docs/courses/civics-government-and-civic-life/s08.md
+  PASS docs/courses/civics-government-and-civic-life/s09.md
+  PASS docs/courses/civics-government-and-civic-life/s10.md
+== unitplan-earth-and-space-science (1 new line(s)) [no before file]
+  no unit plans found for: earth-and-space-science
+== unitplan-economics (9 new line(s)) [no before file]
+  PASS docs/courses/economics/s01.md
+  PASS docs/courses/economics/s02.md
+  PASS docs/courses/economics/s03.md
+  PASS docs/courses/economics/s04.md
+  PASS docs/courses/economics/s05.md
+  PASS docs/courses/economics/s06.md
+  PASS docs/courses/economics/s07.md
+  PASS docs/courses/economics/s08.md
+  PASS docs/courses/economics/s09.md
+== unitplan-english-language-arts-grade-1 (39 new line(s)) [no before file]
+  PASS docs/courses/english-language-arts-grade-1/s01.md
+  PASS docs/courses/english-language-arts-grade-1/s02.md
+  PASS docs/courses/english-language-arts-grade-1/s03.md
+  PASS docs/courses/english-language-arts-grade-1/s04.md
+  PASS docs/courses/english-language-arts-grade-1/u01-1.md
+  PASS docs/courses/english-language-arts-grade-1/u01-2.md
+  PASS docs/courses/english-language-arts-grade-1/u01-3.md
+  PASS docs/courses/english-language-arts-grade-1/u01-4.md
+  PASS docs/courses/english-language-arts-grade-1/u01-5.md
+  PASS docs/courses/english-language-arts-grade-1/u01-6.md
+  PASS docs/courses/english-language-arts-grade-1/u01-7.md
+  PASS docs/courses/english-language-arts-grade-1/u02-1.md
+  PASS docs/courses/english-language-arts-grade-1/u02-10.md
+  PASS docs/courses/english-language-arts-grade-1/u02-2.md
+  PASS docs/courses/english-language-arts-grade-1/u02-3.md
+  PASS docs/courses/english-language-arts-grade-1/u02-4.md
+  PASS docs/courses/english-language-arts-grade-1/u02-5.md
+  PASS docs/courses/english-language-arts-grade-1/u02-6.md
+  PASS docs/courses/english-language-arts-grade-1/u02-7.md
+  PASS docs/courses/english-language-arts-grade-1/u02-8.md
+  PASS docs/courses/english-language-arts-grade-1/u02-9.md
+  PASS docs/courses/english-language-arts-grade-1/u03-1.md
+  PASS docs/courses/english-language-arts-grade-1/u03-10.md
+  PASS docs/courses/english-language-arts-grade-1/u03-2.md
+  PASS docs/courses/english-language-arts-grade-1/u03-3.md
+  PASS docs/courses/english-language-arts-grade-1/u03-4.md
+  PASS docs/courses/english-language-arts-grade-1/u03-5.md
+  PASS docs/courses/english-language-arts-grade-1/u03-6.md
+  PASS docs/courses/english-language-arts-grade-1/u03-7.md
+  PASS docs/courses/english-language-arts-grade-1/u03-8.md
+  PASS docs/courses/english-language-arts-grade-1/u03-9.md
+  PASS docs/courses/english-language-arts-grade-1/u04-1.md
+  PASS docs/courses/english-language-arts-grade-1/u04-2.md
+  PASS docs/courses/english-language-arts-grade-1/u04-3.md
+  PASS docs/courses/english-language-arts-grade-1/u04-4.md
+  PASS docs/courses/english-language-arts-grade-1/u04-5.md
+  PASS docs/courses/english-language-arts-grade-1/u04-6.md
+  PASS docs/courses/english-language-arts-grade-1/u04-7.md
+  PASS docs/courses/english-language-arts-grade-1/u04-8.md
+== unitplan-english-language-arts-grade-10 (7 new line(s)) [no before file]
+  PASS docs/courses/english-language-arts-grade-10/s01.md
+  PASS docs/courses/english-language-arts-grade-10/s02.md
+  PASS docs/courses/english-language-arts-grade-10/s03.md
+  PASS docs/courses/english-language-arts-grade-10/s04.md
+  PASS docs/courses/english-language-arts-grade-10/s05.md
+  PASS docs/courses/english-language-arts-grade-10/s06.md
+  PASS docs/courses/english-language-arts-grade-10/s07.md
+== unitplan-english-language-arts-grade-11 (11 new line(s)) [no before file]
+  PASS docs/courses/english-language-arts-grade-11/s01.md
+  PASS docs/courses/english-language-arts-grade-11/s02.md
+  PASS docs/courses/english-language-arts-grade-11/s03.md
+  PASS docs/courses/english-language-arts-grade-11/s04.md
+  PASS docs/courses/english-language-arts-grade-11/s05.md
+  PASS docs/courses/english-language-arts-grade-11/s06.md
+  PASS docs/courses/english-language-arts-grade-11/s07.md
+  PASS docs/courses/english-language-arts-grade-11/s08.md
+  PASS docs/courses/english-language-arts-grade-11/s09.md
+  PASS docs/courses/english-language-arts-grade-11/u01-1.md
+  PASS docs/courses/english-language-arts-grade-11/u01-2.md
+== unitplan-english-language-arts-grade-12 (8 new line(s)) [no before file]
+  PASS docs/courses/english-language-arts-grade-12/s01.md
+  PASS docs/courses/english-language-arts-grade-12/s02.md
+  PASS docs/courses/english-language-arts-grade-12/s03.md
+  PASS docs/courses/english-language-arts-grade-12/s04.md
+  PASS docs/courses/english-language-arts-grade-12/s05.md
+  PASS docs/courses/english-language-arts-grade-12/s06.md
+  PASS docs/courses/english-language-arts-grade-12/s07.md
+  PASS docs/courses/english-language-arts-grade-12/s08.md
+== unitplan-english-language-arts-grade-2 (42 new line(s)) [no before file]
+  PASS docs/courses/english-language-arts-grade-2/s01.md
+  PASS docs/courses/english-language-arts-grade-2/s02.md
+  PASS docs/courses/english-language-arts-grade-2/s03.md
+  PASS docs/courses/english-language-arts-grade-2/s04.md
+  PASS docs/courses/english-language-arts-grade-2/u01-1.md
+  PASS docs/courses/english-language-arts-grade-2/u01-2.md
+  PASS docs/courses/english-language-arts-grade-2/u01-3.md
+  PASS docs/courses/english-language-arts-grade-2/u01-4.md
+  PASS docs/courses/english-language-arts-grade-2/u01-5.md
+  PASS docs/courses/english-language-arts-grade-2/u01-6.md
+  PASS docs/courses/english-language-arts-grade-2/u02-1.md
+  PASS docs/courses/english-language-arts-grade-2/u02-2.md
+  PASS docs/courses/english-language-arts-grade-2/u02-3.md
+  PASS docs/courses/english-language-arts-grade-2/u02-4.md
+  PASS docs/courses/english-language-arts-grade-2/u02-5.md
+  PASS docs/courses/english-language-arts-grade-2/u02-6.md
+  PASS docs/courses/english-language-arts-grade-2/u02-7.md
+  PASS docs/courses/english-language-arts-grade-2/u02-8.md
+  PASS docs/courses/english-language-arts-grade-2/u02-9.md
+  PASS docs/courses/english-language-arts-grade-2/u03-1.md
+  PASS docs/courses/english-language-arts-grade-2/u03-10.md
+  PASS docs/courses/english-language-arts-grade-2/u03-11.md
+  PASS docs/courses/english-language-arts-grade-2/u03-12.md
+  PASS docs/courses/english-language-arts-grade-2/u03-2.md
+  PASS docs/courses/english-language-arts-grade-2/u03-3.md
+  PASS docs/courses/english-language-arts-grade-2/u03-4.md
+  PASS docs/courses/english-language-arts-grade-2/u03-5.md
+  PASS docs/courses/english-language-arts-grade-2/u03-6.md
+  PASS docs/courses/english-language-arts-grade-2/u03-7.md
+  PASS docs/courses/english-language-arts-grade-2/u03-8.md
+  PASS docs/courses/english-language-arts-grade-2/u03-9.md
+  PASS docs/courses/english-language-arts-grade-2/u04-1.md
+  PASS docs/courses/english-language-arts-grade-2/u04-10.md
+  PASS docs/courses/english-language-arts-grade-2/u04-2.md
+  PASS docs/courses/english-language-arts-grade-2/u04-3.md
+  PASS docs/courses/english-language-arts-grade-2/u04-4.md
+  PASS docs/courses/english-language-arts-grade-2/u04-5.md
+  PASS docs/courses/english-language-arts-grade-2/u04-6.md
+  PASS docs/courses/english-language-arts-grade-2/u04-7.md
+  PASS docs/courses/english-language-arts-grade-2/u04-8.md
+== unitplan-english-language-arts-grade-3 (39 new line(s)) [no before file]
+  PASS docs/courses/english-language-arts-grade-3/s01.md
+  PASS docs/courses/english-language-arts-grade-3/s02.md
+  PASS docs/courses/english-language-arts-grade-3/s03.md
+  PASS docs/courses/english-language-arts-grade-3/s04.md
+  PASS docs/courses/english-language-arts-grade-3/u01-1.md
+  PASS docs/courses/english-language-arts-grade-3/u01-2.md
+  PASS docs/courses/english-language-arts-grade-3/u01-3.md
+  PASS docs/courses/english-language-arts-grade-3/u01-4.md
+  PASS docs/courses/english-language-arts-grade-3/u01-5.md
+  PASS docs/courses/english-language-arts-grade-3/u01-6.md
+  PASS docs/courses/english-language-arts-grade-3/u01-7.md
+  PASS docs/courses/english-language-arts-grade-3/u01-8.md
+  PASS docs/courses/english-language-arts-grade-3/u02-1.md
+  PASS docs/courses/english-language-arts-grade-3/u02-2.md
+  PASS docs/courses/english-language-arts-grade-3/u02-3.md
+  PASS docs/courses/english-language-arts-grade-3/u02-4.md
+  PASS docs/courses/english-language-arts-grade-3/u02-5.md
+  PASS docs/courses/english-language-arts-grade-3/u02-6.md
+  PASS docs/courses/english-language-arts-grade-3/u02-7.md
+  PASS docs/courses/english-language-arts-grade-3/u02-8.md
+  PASS docs/courses/english-language-arts-grade-3/u02-9.md
+  PASS docs/courses/english-language-arts-grade-3/u03-1.md
+  PASS docs/courses/english-language-arts-grade-3/u03-2.md
+  PASS docs/courses/english-language-arts-grade-3/u03-3.md
+  PASS docs/courses/english-language-arts-grade-3/u03-4.md
+  PASS docs/courses/english-language-arts-grade-3/u03-5.md
+  PASS docs/courses/english-language-arts-grade-3/u03-6.md
+  PASS docs/courses/english-language-arts-grade-3/u03-7.md
+  PASS docs/courses/english-language-arts-grade-3/u03-8.md
+  PASS docs/courses/english-language-arts-grade-3/u03-9.md
+  PASS docs/courses/english-language-arts-grade-3/u04-1.md
+  PASS docs/courses/english-language-arts-grade-3/u04-2.md
+  PASS docs/courses/english-language-arts-grade-3/u04-3.md
+  PASS docs/courses/english-language-arts-grade-3/u04-4.md
+  PASS docs/courses/english-language-arts-grade-3/u04-5.md
+  PASS docs/courses/english-language-arts-grade-3/u04-6.md
+  PASS docs/courses/english-language-arts-grade-3/u04-7.md
+  PASS docs/courses/english-language-arts-grade-3/u04-8.md
+  PASS docs/courses/english-language-arts-grade-3/u04-9.md
+== unitplan-english-language-arts-grade-4 (38 new line(s)) [no before file]
+  FAIL docs/courses/english-language-arts-grade-4/s01.md (4)
+  PASS docs/courses/english-language-arts-grade-4/s02.md
+  PASS docs/courses/english-language-arts-grade-4/s03.md
+  PASS docs/courses/english-language-arts-grade-4/s04.md
+  PASS docs/courses/english-language-arts-grade-4/u01-1.md
+  PASS docs/courses/english-language-arts-grade-4/u01-2.md
+  PASS docs/courses/english-language-arts-grade-4/u01-3.md
+  PASS docs/courses/english-language-arts-grade-4/u01-4.md
+  PASS docs/courses/english-language-arts-grade-4/u01-5.md
+  PASS docs/courses/english-language-arts-grade-4/u01-6.md
+  PASS docs/courses/english-language-arts-grade-4/u01-7.md
+  PASS docs/courses/english-language-arts-grade-4/u01-8.md
+  PASS docs/courses/english-language-arts-grade-4/u02-1.md
+  PASS docs/courses/english-language-arts-grade-4/u02-2.md
+  PASS docs/courses/english-language-arts-grade-4/u02-3.md
+  PASS docs/courses/english-language-arts-grade-4/u02-4.md
+  PASS docs/courses/english-language-arts-grade-4/u02-5.md
+  PASS docs/courses/english-language-arts-grade-4/u02-6.md
+  PASS docs/courses/english-language-arts-grade-4/u02-7.md
+  PASS docs/courses/english-language-arts-grade-4/u03-1.md
+  PASS docs/courses/english-language-arts-grade-4/u03-2.md
+  PASS docs/courses/english-language-arts-grade-4/u03-3.md
+  PASS docs/courses/english-language-arts-grade-4/u03-4.md
+  PASS docs/courses/english-language-arts-grade-4/u03-5.md
+  PASS docs/courses/english-language-arts-grade-4/u03-6.md
+  PASS docs/courses/english-language-arts-grade-4/u03-7.md
+  PASS docs/courses/english-language-arts-grade-4/u03-8.md
+  PASS docs/courses/english-language-arts-grade-4/u04-1.md
+  PASS docs/courses/english-language-arts-grade-4/u04-2.md
+  PASS docs/courses/english-language-arts-grade-4/u04-3.md
+  PASS docs/courses/english-language-arts-grade-4/u04-4.md
+  PASS docs/courses/english-language-arts-grade-4/u04-5.md
+  PASS docs/courses/english-language-arts-grade-4/u04-6.md
+  PASS docs/courses/english-language-arts-grade-4/u04-7.md
+  docs/courses/english-language-arts-grade-4/s01.md:178: observation day 29: no item row names RF.4.3a in its code cell
+  docs/courses/english-language-arts-grade-4/s01.md:178: observation day 29: no item row names RL.4.4 in its code cell
+  docs/courses/english-language-arts-grade-4/s01.md:178: observation day 7: no item row names RF.4.3a in its code cell
+  docs/courses/english-language-arts-grade-4/s01.md:178: observation day 7: no item row names RL.4.4 in its code cell
+== unitplan-english-language-arts-grade-5 (4 new line(s)) [no before file]
+  PASS docs/courses/english-language-arts-grade-5/s01.md
+  PASS docs/courses/english-language-arts-grade-5/s02.md
+  PASS docs/courses/english-language-arts-grade-5/s03.md
+  PASS docs/courses/english-language-arts-grade-5/s04.md
+== unitplan-english-language-arts-grade-6 (6 new line(s)) [no before file]
+  PASS docs/courses/english-language-arts-grade-6/s01.md
+  PASS docs/courses/english-language-arts-grade-6/s02.md
+  PASS docs/courses/english-language-arts-grade-6/s03.md
+  PASS docs/courses/english-language-arts-grade-6/s04.md
+  PASS docs/courses/english-language-arts-grade-6/s05.md
+  PASS docs/courses/english-language-arts-grade-6/s06.md
+== unitplan-english-language-arts-grade-7 (7 new line(s)) [no before file]
+  PASS docs/courses/english-language-arts-grade-7/s01.md
+  PASS docs/courses/english-language-arts-grade-7/s02.md
+  PASS docs/courses/english-language-arts-grade-7/s03.md
+  PASS docs/courses/english-language-arts-grade-7/s04.md
+  PASS docs/courses/english-language-arts-grade-7/s05.md
+  PASS docs/courses/english-language-arts-grade-7/s06.md
+  docs/courses/english-language-arts-grade-7/s06.md:-: note (not a failure): anchor text g7-u6-01 "Reports and pages on the Klamath dam removal (2022 to 2024) and recovery, with charts" in data/plans/ela-texts.csv is named in neither field 2 nor field 10
+== unitplan-english-language-arts-grade-8 (5 new line(s)) [no before file]
+  PASS docs/courses/english-language-arts-grade-8/s01.md
+  PASS docs/courses/english-language-arts-grade-8/s02.md
+  PASS docs/courses/english-language-arts-grade-8/s03.md
+  PASS docs/courses/english-language-arts-grade-8/s04.md
+  PASS docs/courses/english-language-arts-grade-8/s05.md
+== unitplan-english-language-arts-grade-9 (8 new line(s)) [no before file]
+  PASS docs/courses/english-language-arts-grade-9/s01.md
+  PASS docs/courses/english-language-arts-grade-9/s02.md
+  PASS docs/courses/english-language-arts-grade-9/s03.md
+  PASS docs/courses/english-language-arts-grade-9/s04.md
+  PASS docs/courses/english-language-arts-grade-9/s05.md
+  PASS docs/courses/english-language-arts-grade-9/s06.md
+  PASS docs/courses/english-language-arts-grade-9/s07.md
+  PASS docs/courses/english-language-arts-grade-9/s08.md
+== unitplan-english-language-arts-kindergarten (38 new line(s)) [no before file]
+  PASS docs/courses/english-language-arts-kindergarten/s01.md
+  PASS docs/courses/english-language-arts-kindergarten/s02.md
+  PASS docs/courses/english-language-arts-kindergarten/s03.md
+  PASS docs/courses/english-language-arts-kindergarten/s04.md
+  PASS docs/courses/english-language-arts-kindergarten/u01-1.md
+  PASS docs/courses/english-language-arts-kindergarten/u01-2.md
+  PASS docs/courses/english-language-arts-kindergarten/u01-3.md
+  PASS docs/courses/english-language-arts-kindergarten/u01-4.md
+  PASS docs/courses/english-language-arts-kindergarten/u01-5.md
+  PASS docs/courses/english-language-arts-kindergarten/u01-6.md
+  PASS docs/courses/english-language-arts-kindergarten/u01-7.md
+  PASS docs/courses/english-language-arts-kindergarten/u02-1.md
+  PASS docs/courses/english-language-arts-kindergarten/u02-10.md
+  PASS docs/courses/english-language-arts-kindergarten/u02-2.md
+  PASS docs/courses/english-language-arts-kindergarten/u02-3.md
+  PASS docs/courses/english-language-arts-kindergarten/u02-4.md
+  PASS docs/courses/english-language-arts-kindergarten/u02-5.md
+  PASS docs/courses/english-language-arts-kindergarten/u02-6.md
+  PASS docs/courses/english-language-arts-kindergarten/u02-7.md
+  PASS docs/courses/english-language-arts-kindergarten/u02-8.md
+  PASS docs/courses/english-language-arts-kindergarten/u02-9.md
+  PASS docs/courses/english-language-arts-kindergarten/u03-1.md
+  PASS docs/courses/english-language-arts-kindergarten/u03-2.md
+  PASS docs/courses/english-language-arts-kindergarten/u03-3.md
+  PASS docs/courses/english-language-arts-kindergarten/u03-4.md
+  PASS docs/courses/english-language-arts-kindergarten/u03-5.md
+  PASS docs/courses/english-language-arts-kindergarten/u03-6.md
+  PASS docs/courses/english-language-arts-kindergarten/u03-7.md
+  PASS docs/courses/english-language-arts-kindergarten/u03-8.md
+  PASS docs/courses/english-language-arts-kindergarten/u03-9.md
+  PASS docs/courses/english-language-arts-kindergarten/u04-1.md
+  PASS docs/courses/english-language-arts-kindergarten/u04-2.md
+  PASS docs/courses/english-language-arts-kindergarten/u04-3.md
+  PASS docs/courses/english-language-arts-kindergarten/u04-4.md
+  PASS docs/courses/english-language-arts-kindergarten/u04-5.md
+  PASS docs/courses/english-language-arts-kindergarten/u04-6.md
+  PASS docs/courses/english-language-arts-kindergarten/u04-7.md
+  PASS docs/courses/english-language-arts-kindergarten/u04-8.md
+== unitplan-environmental-science (1 new line(s)) [no before file]
+  no unit plans found for: environmental-science
+== unitplan-geometry (8 new line(s)) [no before file]
+  PASS docs/courses/geometry/s01.md
+  PASS docs/courses/geometry/s02.md
+  PASS docs/courses/geometry/s03.md
+  PASS docs/courses/geometry/s04.md
+  PASS docs/courses/geometry/s05.md
+  PASS docs/courses/geometry/s06.md
+  PASS docs/courses/geometry/s07.md
+  PASS docs/courses/geometry/s08.md
+== unitplan-math-4 (2 new line(s)) [no before file]
+  no unit plans found for: math-4
+  not a course in data/plans/frames.csv: math-4
+== unitplan-math-grade-1 (8 new line(s)) [no before file]
+  PASS docs/courses/math-grade-1/s01.md
+  PASS docs/courses/math-grade-1/s02.md
+  PASS docs/courses/math-grade-1/s03.md
+  PASS docs/courses/math-grade-1/s04.md
+  PASS docs/courses/math-grade-1/s05.md
+  PASS docs/courses/math-grade-1/s06.md
+  PASS docs/courses/math-grade-1/s07.md
+  PASS docs/courses/math-grade-1/s08.md
+== unitplan-math-grade-2 (9 new line(s)) [no before file]
+  PASS docs/courses/math-grade-2/s01.md
+  PASS docs/courses/math-grade-2/s02.md
+  PASS docs/courses/math-grade-2/s03.md
+  PASS docs/courses/math-grade-2/s04.md
+  PASS docs/courses/math-grade-2/s05.md
+  PASS docs/courses/math-grade-2/s06.md
+  PASS docs/courses/math-grade-2/s07.md
+  PASS docs/courses/math-grade-2/s08.md
+  PASS docs/courses/math-grade-2/s09.md
+== unitplan-math-grade-3 (8 new line(s)) [no before file]
+  PASS docs/courses/math-grade-3/s01.md
+  PASS docs/courses/math-grade-3/s02.md
+  PASS docs/courses/math-grade-3/s03.md
+  PASS docs/courses/math-grade-3/s04.md
+  PASS docs/courses/math-grade-3/s05.md
+  PASS docs/courses/math-grade-3/s06.md
+  PASS docs/courses/math-grade-3/s07.md
+  PASS docs/courses/math-grade-3/s08.md
+== unitplan-math-grade-4 (9 new line(s)) [no before file]
+  PASS docs/courses/math-grade-4/s01.md
+  PASS docs/courses/math-grade-4/s02.md
+  PASS docs/courses/math-grade-4/s03.md
+  PASS docs/courses/math-grade-4/s04.md
+  PASS docs/courses/math-grade-4/s05.md
+  PASS docs/courses/math-grade-4/s06.md
+  PASS docs/courses/math-grade-4/s07.md
+  PASS docs/courses/math-grade-4/s08.md
+  PASS docs/courses/math-grade-4/s09.md
+== unitplan-math-grade-5 (10 new line(s)) [no before file]
+  PASS docs/courses/math-grade-5/s01.md
+  PASS docs/courses/math-grade-5/s02.md
+  PASS docs/courses/math-grade-5/s03.md
+  PASS docs/courses/math-grade-5/s04.md
+  PASS docs/courses/math-grade-5/s05.md
+  PASS docs/courses/math-grade-5/s06.md
+  PASS docs/courses/math-grade-5/s07.md
+  PASS docs/courses/math-grade-5/s08.md
+  PASS docs/courses/math-grade-5/s09.md
+  PASS docs/courses/math-grade-5/s10.md
+== unitplan-math-grade-6 (8 new line(s)) [no before file]
+  PASS docs/courses/math-grade-6/s01.md
+  PASS docs/courses/math-grade-6/s02.md
+  PASS docs/courses/math-grade-6/s03.md
+  PASS docs/courses/math-grade-6/s04.md
+  PASS docs/courses/math-grade-6/s05.md
+  PASS docs/courses/math-grade-6/s06.md
+  PASS docs/courses/math-grade-6/s07.md
+  PASS docs/courses/math-grade-6/s08.md
+== unitplan-math-grade-7 (8 new line(s)) [no before file]
+  PASS docs/courses/math-grade-7/s01.md
+  PASS docs/courses/math-grade-7/s02.md
+  PASS docs/courses/math-grade-7/s03.md
+  PASS docs/courses/math-grade-7/s04.md
+  PASS docs/courses/math-grade-7/s05.md
+  PASS docs/courses/math-grade-7/s06.md
+  PASS docs/courses/math-grade-7/s07.md
+  PASS docs/courses/math-grade-7/s08.md
+== unitplan-math-grade-8 (8 new line(s)) [no before file]
+  PASS docs/courses/math-grade-8/s01.md
+  PASS docs/courses/math-grade-8/s02.md
+  PASS docs/courses/math-grade-8/s03.md
+  PASS docs/courses/math-grade-8/s04.md
+  PASS docs/courses/math-grade-8/s05.md
+  PASS docs/courses/math-grade-8/s06.md
+  PASS docs/courses/math-grade-8/s07.md
+  PASS docs/courses/math-grade-8/s08.md
+== unitplan-math-kindergarten (47 new line(s)) [no before file]
+  FAIL docs/courses/math-kindergarten/s02.md (2)
+  PASS docs/courses/math-kindergarten/s01.md
+  PASS docs/courses/math-kindergarten/s03.md
+  PASS docs/courses/math-kindergarten/s04.md
+  PASS docs/courses/math-kindergarten/s05.md
+  PASS docs/courses/math-kindergarten/s06.md
+  PASS docs/courses/math-kindergarten/s07.md
+  PASS docs/courses/math-kindergarten/s08.md
+  PASS docs/courses/math-kindergarten/u01-1.md
+  PASS docs/courses/math-kindergarten/u01-2.md
+  PASS docs/courses/math-kindergarten/u01-3.md
+  PASS docs/courses/math-kindergarten/u01-4.md
+  PASS docs/courses/math-kindergarten/u01-5.md
+  PASS docs/courses/math-kindergarten/u02-1.md
+  PASS docs/courses/math-kindergarten/u02-2.md
+  PASS docs/courses/math-kindergarten/u02-3.md
+  PASS docs/courses/math-kindergarten/u02-4.md
+  PASS docs/courses/math-kindergarten/u02-5.md
+  PASS docs/courses/math-kindergarten/u02-6.md
+  PASS docs/courses/math-kindergarten/u02-7.md
+  PASS docs/courses/math-kindergarten/u03-1.md
+  PASS docs/courses/math-kindergarten/u03-2.md
+  PASS docs/courses/math-kindergarten/u03-3.md
+  PASS docs/courses/math-kindergarten/u03-4.md
+  PASS docs/courses/math-kindergarten/u03-5.md
+  PASS docs/courses/math-kindergarten/u04-1.md
+  PASS docs/courses/math-kindergarten/u04-2.md
+  PASS docs/courses/math-kindergarten/u04-3.md
+  PASS docs/courses/math-kindergarten/u04-4.md
+  PASS docs/courses/math-kindergarten/u04-5.md
+  PASS docs/courses/math-kindergarten/u05-1.md
+  PASS docs/courses/math-kindergarten/u05-2.md
+  PASS docs/courses/math-kindergarten/u05-3.md
+  PASS docs/courses/math-kindergarten/u05-4.md
+  PASS docs/courses/math-kindergarten/u06-1.md
+  PASS docs/courses/math-kindergarten/u06-2.md
+  PASS docs/courses/math-kindergarten/u06-3.md
+  PASS docs/courses/math-kindergarten/u06-4.md
+  PASS docs/courses/math-kindergarten/u07-1.md
+  PASS docs/courses/math-kindergarten/u07-2.md
+== unitplan-physics (11 new line(s)) [no before file]
+  PASS docs/courses/physics/s01.md
+  PASS docs/courses/physics/s02.md
+  PASS docs/courses/physics/s03.md
+  PASS docs/courses/physics/s04.md
+  PASS docs/courses/physics/s05.md
+  PASS docs/courses/physics/s06.md
+  PASS docs/courses/physics/s07.md
+  PASS docs/courses/physics/s08.md
+  PASS docs/courses/physics/s09.md
+  PASS docs/courses/physics/s10.md
+  docs/courses/physics/s10.md:127: note (not a failure): "(E, F)" tags two letters; if it is one wrong answer, keep one
+== unitplan-precalculus (1 new line(s)) [no before file]
+  no unit plans found for: precalculus
+== unitplan-psychology (1 new line(s)) [no before file]
+  no unit plans found for: psychology
+== unitplan-science-grade-1 (21 new line(s)) [no before file]
+  PASS docs/courses/science-grade-1/s01.md
+  PASS docs/courses/science-grade-1/s02.md
+  PASS docs/courses/science-grade-1/s03.md
+  PASS docs/courses/science-grade-1/s04.md
+  PASS docs/courses/science-grade-1/s05.md
+  PASS docs/courses/science-grade-1/s06.md
+  PASS docs/courses/science-grade-1/s07.md
+  PASS docs/courses/science-grade-1/s08.md
+  PASS docs/courses/science-grade-1/u01-1.md
+  PASS docs/courses/science-grade-1/u01-2.md
+  PASS docs/courses/science-grade-1/u02-1.md
+  PASS docs/courses/science-grade-1/u02-2.md
+  PASS docs/courses/science-grade-1/u03-1.md
+  PASS docs/courses/science-grade-1/u04-1.md
+  PASS docs/courses/science-grade-1/u04-2.md
+  PASS docs/courses/science-grade-1/u05-1.md
+  PASS docs/courses/science-grade-1/u05-2.md
+  PASS docs/courses/science-grade-1/u06-1.md
+  PASS docs/courses/science-grade-1/u06-2.md
+  PASS docs/courses/science-grade-1/u07-1.md
+  PASS docs/courses/science-grade-1/u08-1.md
+== unitplan-science-grade-2 (23 new line(s)) [no before file]
+  PASS docs/courses/science-grade-2/s01.md
+  PASS docs/courses/science-grade-2/s02.md
+  PASS docs/courses/science-grade-2/s03.md
+  PASS docs/courses/science-grade-2/s04.md
+  PASS docs/courses/science-grade-2/s05.md
+  PASS docs/courses/science-grade-2/s06.md
+  PASS docs/courses/science-grade-2/s07.md
+  PASS docs/courses/science-grade-2/u01-1.md
+  PASS docs/courses/science-grade-2/u01-2.md
+  PASS docs/courses/science-grade-2/u01-3.md
+  PASS docs/courses/science-grade-2/u02-1.md
+  PASS docs/courses/science-grade-2/u02-2.md
+  PASS docs/courses/science-grade-2/u02-3.md
+  PASS docs/courses/science-grade-2/u03-1.md
+  PASS docs/courses/science-grade-2/u03-2.md
+  PASS docs/courses/science-grade-2/u03-3.md
+  PASS docs/courses/science-grade-2/u04-1.md
+  PASS docs/courses/science-grade-2/u04-2.md
+  PASS docs/courses/science-grade-2/u05-1.md
+  PASS docs/courses/science-grade-2/u05-2.md
+  PASS docs/courses/science-grade-2/u06-1.md
+  PASS docs/courses/science-grade-2/u07-1.md
+  PASS docs/courses/science-grade-2/u07-2.md
+== unitplan-science-grade-3 (27 new line(s)) [no before file]
+  PASS docs/courses/science-grade-3/s01.md
+  PASS docs/courses/science-grade-3/s02.md
+  PASS docs/courses/science-grade-3/s03.md
+  PASS docs/courses/science-grade-3/s04.md
+  PASS docs/courses/science-grade-3/s05.md
+  PASS docs/courses/science-grade-3/s06.md
+  PASS docs/courses/science-grade-3/u01-1.md
+  PASS docs/courses/science-grade-3/u01-2.md
+  PASS docs/courses/science-grade-3/u01-3.md
+  PASS docs/courses/science-grade-3/u02-1.md
+  PASS docs/courses/science-grade-3/u02-2.md
+  PASS docs/courses/science-grade-3/u02-3.md
+  PASS docs/courses/science-grade-3/u03-1.md
+  PASS docs/courses/science-grade-3/u03-2.md
+  PASS docs/courses/science-grade-3/u03-3.md
+  PASS docs/courses/science-grade-3/u03-4.md
+  PASS docs/courses/science-grade-3/u04-1.md
+  PASS docs/courses/science-grade-3/u04-2.md
+  PASS docs/courses/science-grade-3/u04-3.md
+  PASS docs/courses/science-grade-3/u04-4.md
+  PASS docs/courses/science-grade-3/u05-1.md
+  PASS docs/courses/science-grade-3/u05-2.md
+  PASS docs/courses/science-grade-3/u05-3.md
+  PASS docs/courses/science-grade-3/u06-1.md
+  PASS docs/courses/science-grade-3/u06-2.md
+  PASS docs/courses/science-grade-3/u06-3.md
+  PASS docs/courses/science-grade-3/u06-4.md
+== unitplan-science-grade-4 (28 new line(s)) [no before file]
+  PASS docs/courses/science-grade-4/s01.md
+  PASS docs/courses/science-grade-4/s02.md
+  PASS docs/courses/science-grade-4/s03.md
+  PASS docs/courses/science-grade-4/s04.md
+  PASS docs/courses/science-grade-4/s05.md
+  PASS docs/courses/science-grade-4/s06.md
+  PASS docs/courses/science-grade-4/u01-1.md
+  PASS docs/courses/science-grade-4/u01-2.md
+  PASS docs/courses/science-grade-4/u01-3.md
+  PASS docs/courses/science-grade-4/u01-4.md
+  PASS docs/courses/science-grade-4/u02-1.md
+  PASS docs/courses/science-grade-4/u02-2.md
+  PASS docs/courses/science-grade-4/u02-3.md
+  PASS docs/courses/science-grade-4/u02-4.md
+  PASS docs/courses/science-grade-4/u02-5.md
+  PASS docs/courses/science-grade-4/u03-1.md
+  PASS docs/courses/science-grade-4/u03-2.md
+  PASS docs/courses/science-grade-4/u03-3.md
+  PASS docs/courses/science-grade-4/u03-4.md
+  PASS docs/courses/science-grade-4/u05-1.md
+  PASS docs/courses/science-grade-4/u05-2.md
+  PASS docs/courses/science-grade-4/u05-3.md
+  PASS docs/courses/science-grade-4/u05-4.md
+  PASS docs/courses/science-grade-4/u06-1.md
+  PASS docs/courses/science-grade-4/u06-2.md
+  PASS docs/courses/science-grade-4/u06-3.md
+  PASS docs/courses/science-grade-4/u06-4.md
+  PASS docs/courses/science-grade-4/u06-5.md
+== unitplan-science-grade-5 (37 new line(s)) [no before file]
+  FAIL docs/courses/science-grade-5/s04.md (1)
+  PASS docs/courses/science-grade-5/s01.md
+  PASS docs/courses/science-grade-5/s02.md
+  PASS docs/courses/science-grade-5/s03.md
+  PASS docs/courses/science-grade-5/s05.md
+  PASS docs/courses/science-grade-5/s06.md
+  PASS docs/courses/science-grade-5/u01-1.md
+  PASS docs/courses/science-grade-5/u01-2.md
+  PASS docs/courses/science-grade-5/u01-3.md
+  PASS docs/courses/science-grade-5/u01-4.md
+  PASS docs/courses/science-grade-5/u02-1.md
+  PASS docs/courses/science-grade-5/u02-2.md
+  PASS docs/courses/science-grade-5/u02-3.md
+  PASS docs/courses/science-grade-5/u02-4.md
+  PASS docs/courses/science-grade-5/u02-5.md
+  PASS docs/courses/science-grade-5/u02-6.md
+  PASS docs/courses/science-grade-5/u03-1.md
+  PASS docs/courses/science-grade-5/u03-2.md
+  PASS docs/courses/science-grade-5/u03-3.md
+  PASS docs/courses/science-grade-5/u03-4.md
+  PASS docs/courses/science-grade-5/u03-5.md
+  PASS docs/courses/science-grade-5/u04-1.md
+  PASS docs/courses/science-grade-5/u04-2.md
+  PASS docs/courses/science-grade-5/u04-3.md
+  PASS docs/courses/science-grade-5/u04-4.md
+  PASS docs/courses/science-grade-5/u04-5.md
+  PASS docs/courses/science-grade-5/u05-1.md
+  PASS docs/courses/science-grade-5/u05-2.md
+  PASS docs/courses/science-grade-5/u05-3.md
+  PASS docs/courses/science-grade-5/u05-4.md
+  PASS docs/courses/science-grade-5/u06-1.md
+  PASS docs/courses/science-grade-5/u06-2.md
+  PASS docs/courses/science-grade-5/u06-3.md
+  PASS docs/courses/science-grade-5/u06-4.md
+  PASS docs/courses/science-grade-5/u06-5.md
+  PASS docs/courses/science-grade-5/u06-6.md
+  docs/courses/science-grade-5/s04.md:297: day 72 kind "Application", days.csv has "Understanding"
+== unitplan-science-grade-6 (6 new line(s)) [no before file]
+  PASS docs/courses/science-grade-6/s01.md
+  PASS docs/courses/science-grade-6/s02.md
+  PASS docs/courses/science-grade-6/s03.md
+  PASS docs/courses/science-grade-6/s04.md
+  PASS docs/courses/science-grade-6/s05.md
+  PASS docs/courses/science-grade-6/s06.md
+== unitplan-science-grade-7 (8 new line(s)) [no before file]
+  PASS docs/courses/science-grade-7/s01.md
+  PASS docs/courses/science-grade-7/s02.md
+  PASS docs/courses/science-grade-7/s03.md
+  PASS docs/courses/science-grade-7/s04.md
+  PASS docs/courses/science-grade-7/s05.md
+  PASS docs/courses/science-grade-7/s06.md
+  PASS docs/courses/science-grade-7/u01-1.md
+  PASS docs/courses/science-grade-7/u01-2.md
+== unitplan-science-grade-8 (6 new line(s)) [no before file]
+  PASS docs/courses/science-grade-8/s01.md
+  PASS docs/courses/science-grade-8/s02.md
+  PASS docs/courses/science-grade-8/s03.md
+  PASS docs/courses/science-grade-8/s04.md
+  PASS docs/courses/science-grade-8/s05.md
+  PASS docs/courses/science-grade-8/s06.md
+== unitplan-science-kindergarten (19 new line(s)) [no before file]
+  PASS docs/courses/science-kindergarten/s01.md
+  PASS docs/courses/science-kindergarten/s02.md
+  PASS docs/courses/science-kindergarten/s03.md
+  PASS docs/courses/science-kindergarten/s04.md
+  PASS docs/courses/science-kindergarten/s05.md
+  PASS docs/courses/science-kindergarten/s06.md
+  PASS docs/courses/science-kindergarten/u01-1.md
+  PASS docs/courses/science-kindergarten/u01-2.md
+  PASS docs/courses/science-kindergarten/u02-1.md
+  PASS docs/courses/science-kindergarten/u02-2.md
+  PASS docs/courses/science-kindergarten/u03-1.md
+  PASS docs/courses/science-kindergarten/u03-2.md
+  PASS docs/courses/science-kindergarten/u04-1.md
+  PASS docs/courses/science-kindergarten/u04-2.md
+  PASS docs/courses/science-kindergarten/u04-3.md
+  PASS docs/courses/science-kindergarten/u05-1.md
+  PASS docs/courses/science-kindergarten/u05-2.md
+  PASS docs/courses/science-kindergarten/u06-1.md
+  PASS docs/courses/science-kindergarten/u06-2.md
+== unitplan-social-studies-grade-1 (34 new line(s)) [no before file]
+  PASS docs/courses/social-studies-grade-1/s01.md
+  PASS docs/courses/social-studies-grade-1/s02.md
+  PASS docs/courses/social-studies-grade-1/s03.md
+  PASS docs/courses/social-studies-grade-1/s04.md
+  PASS docs/courses/social-studies-grade-1/s05.md
+  PASS docs/courses/social-studies-grade-1/s06.md
+  PASS docs/courses/social-studies-grade-1/s07.md
+  PASS docs/courses/social-studies-grade-1/s08.md
+  PASS docs/courses/social-studies-grade-1/u01-1.md
+  PASS docs/courses/social-studies-grade-1/u01-2.md
+  PASS docs/courses/social-studies-grade-1/u01-3.md
+  PASS docs/courses/social-studies-grade-1/u02-1.md
+  PASS docs/courses/social-studies-grade-1/u02-2.md
+  PASS docs/courses/social-studies-grade-1/u03-1.md
+  PASS docs/courses/social-studies-grade-1/u03-2.md
+  PASS docs/courses/social-studies-grade-1/u03-3.md
+  PASS docs/courses/social-studies-grade-1/u04-1.md
+  PASS docs/courses/social-studies-grade-1/u04-2.md
+  PASS docs/courses/social-studies-grade-1/u04-3.md
+  PASS docs/courses/social-studies-grade-1/u05-1.md
+  PASS docs/courses/social-studies-grade-1/u05-2.md
+  PASS docs/courses/social-studies-grade-1/u05-3.md
+  PASS docs/courses/social-studies-grade-1/u06-1.md
+  PASS docs/courses/social-studies-grade-1/u06-2.md
+  PASS docs/courses/social-studies-grade-1/u06-3.md
+  PASS docs/courses/social-studies-grade-1/u06-4.md
+  PASS docs/courses/social-studies-grade-1/u07-1.md
+  PASS docs/courses/social-studies-grade-1/u07-2.md
+  PASS docs/courses/social-studies-grade-1/u07-3.md
+  PASS docs/courses/social-studies-grade-1/u07-4.md
+  PASS docs/courses/social-studies-grade-1/u08-1.md
+  PASS docs/courses/social-studies-grade-1/u08-2.md
+  PASS docs/courses/social-studies-grade-1/u08-3.md
+  PASS docs/courses/social-studies-grade-1/u08-4.md
+== unitplan-social-studies-grade-2 (32 new line(s)) [no before file]
+  PASS docs/courses/social-studies-grade-2/s01.md
+  PASS docs/courses/social-studies-grade-2/s02.md
+  PASS docs/courses/social-studies-grade-2/s03.md
+  PASS docs/courses/social-studies-grade-2/s04.md
+  PASS docs/courses/social-studies-grade-2/s05.md
+  PASS docs/courses/social-studies-grade-2/s06.md
+  PASS docs/courses/social-studies-grade-2/s07.md
+  PASS docs/courses/social-studies-grade-2/u01-1.md
+  PASS docs/courses/social-studies-grade-2/u01-2.md
+  PASS docs/courses/social-studies-grade-2/u01-3.md
+  PASS docs/courses/social-studies-grade-2/u01-4.md
+  PASS docs/courses/social-studies-grade-2/u02-1.md
+  PASS docs/courses/social-studies-grade-2/u02-2.md
+  PASS docs/courses/social-studies-grade-2/u02-3.md
+  PASS docs/courses/social-studies-grade-2/u02-4.md
+  PASS docs/courses/social-studies-grade-2/u03-1.md
+  PASS docs/courses/social-studies-grade-2/u03-2.md
+  PASS docs/courses/social-studies-grade-2/u03-3.md
+  PASS docs/courses/social-studies-grade-2/u03-4.md
+  PASS docs/courses/social-studies-grade-2/u04-1.md
+  PASS docs/courses/social-studies-grade-2/u04-2.md
+  PASS docs/courses/social-studies-grade-2/u05-1.md
+  PASS docs/courses/social-studies-grade-2/u05-2.md
+  PASS docs/courses/social-studies-grade-2/u05-3.md
+  PASS docs/courses/social-studies-grade-2/u05-4.md
+  PASS docs/courses/social-studies-grade-2/u06-1.md
+  PASS docs/courses/social-studies-grade-2/u06-2.md
+  PASS docs/courses/social-studies-grade-2/u06-3.md
+  PASS docs/courses/social-studies-grade-2/u07-1.md
+  PASS docs/courses/social-studies-grade-2/u07-2.md
+  PASS docs/courses/social-studies-grade-2/u07-3.md
+  PASS docs/courses/social-studies-grade-2/u07-4.md
+== unitplan-social-studies-grade-3 (46 new line(s)) [no before file]
+  PASS docs/courses/social-studies-grade-3/s01.md
+  PASS docs/courses/social-studies-grade-3/s02.md
+  PASS docs/courses/social-studies-grade-3/s03.md
+  PASS docs/courses/social-studies-grade-3/s04.md
+  PASS docs/courses/social-studies-grade-3/s05.md
+  PASS docs/courses/social-studies-grade-3/s06.md
+  PASS docs/courses/social-studies-grade-3/s07.md
+  PASS docs/courses/social-studies-grade-3/u01-1.md
+  PASS docs/courses/social-studies-grade-3/u01-2.md
+  PASS docs/courses/social-studies-grade-3/u01-3.md
+  PASS docs/courses/social-studies-grade-3/u01-4.md
+  PASS docs/courses/social-studies-grade-3/u01-5.md
+  PASS docs/courses/social-studies-grade-3/u01-6.md
+  PASS docs/courses/social-studies-grade-3/u02-1.md
+  PASS docs/courses/social-studies-grade-3/u02-2.md
+  PASS docs/courses/social-studies-grade-3/u02-3.md
+  PASS docs/courses/social-studies-grade-3/u02-4.md
+  PASS docs/courses/social-studies-grade-3/u02-5.md
+  PASS docs/courses/social-studies-grade-3/u02-6.md
+  PASS docs/courses/social-studies-grade-3/u03-1.md
+  PASS docs/courses/social-studies-grade-3/u03-2.md
+  PASS docs/courses/social-studies-grade-3/u03-3.md
+  PASS docs/courses/social-studies-grade-3/u03-4.md
+  PASS docs/courses/social-studies-grade-3/u03-5.md
+  PASS docs/courses/social-studies-grade-3/u04-1.md
+  PASS docs/courses/social-studies-grade-3/u04-2.md
+  PASS docs/courses/social-studies-grade-3/u04-3.md
+  PASS docs/courses/social-studies-grade-3/u04-4.md
+  PASS docs/courses/social-studies-grade-3/u04-5.md
+  PASS docs/courses/social-studies-grade-3/u05-1.md
+  PASS docs/courses/social-studies-grade-3/u05-2.md
+  PASS docs/courses/social-studies-grade-3/u05-3.md
+  PASS docs/courses/social-studies-grade-3/u05-4.md
+  PASS docs/courses/social-studies-grade-3/u05-5.md
+  PASS docs/courses/social-studies-grade-3/u05-6.md
+  PASS docs/courses/social-studies-grade-3/u05-7.md
+  PASS docs/courses/social-studies-grade-3/u05-8.md
+  PASS docs/courses/social-studies-grade-3/u06-1.md
+  PASS docs/courses/social-studies-grade-3/u06-2.md
+  PASS docs/courses/social-studies-grade-3/u06-3.md
+== unitplan-social-studies-grade-4 (45 new line(s)) [no before file]
+  PASS docs/courses/social-studies-grade-4/s01.md
+  PASS docs/courses/social-studies-grade-4/s02.md
+  PASS docs/courses/social-studies-grade-4/s03.md
+  PASS docs/courses/social-studies-grade-4/s04.md
+  PASS docs/courses/social-studies-grade-4/s05.md
+  PASS docs/courses/social-studies-grade-4/s06.md
+  PASS docs/courses/social-studies-grade-4/s07.md
+  PASS docs/courses/social-studies-grade-4/u01-1.md
+  PASS docs/courses/social-studies-grade-4/u01-2.md
+  PASS docs/courses/social-studies-grade-4/u01-3.md
+  PASS docs/courses/social-studies-grade-4/u01-4.md
+  PASS docs/courses/social-studies-grade-4/u02-1.md
+  PASS docs/courses/social-studies-grade-4/u02-2.md
+  PASS docs/courses/social-studies-grade-4/u02-3.md
+  PASS docs/courses/social-studies-grade-4/u02-4.md
+  PASS docs/courses/social-studies-grade-4/u02-5.md
+  PASS docs/courses/social-studies-grade-4/u03-1.md
+  PASS docs/courses/social-studies-grade-4/u03-2.md
+  PASS docs/courses/social-studies-grade-4/u03-3.md
+  PASS docs/courses/social-studies-grade-4/u03-4.md
+  PASS docs/courses/social-studies-grade-4/u03-5.md
+  PASS docs/courses/social-studies-grade-4/u04-1.md
+  PASS docs/courses/social-studies-grade-4/u04-2.md
+  PASS docs/courses/social-studies-grade-4/u04-3.md
+  PASS docs/courses/social-studies-grade-4/u04-4.md
+  PASS docs/courses/social-studies-grade-4/u04-5.md
+  PASS docs/courses/social-studies-grade-4/u05-1.md
+  PASS docs/courses/social-studies-grade-4/u05-2.md
+  PASS docs/courses/social-studies-grade-4/u05-3.md
+  PASS docs/courses/social-studies-grade-4/u05-4.md
+  PASS docs/courses/social-studies-grade-4/u05-5.md
+  PASS docs/courses/social-studies-grade-4/u05-6.md
+  PASS docs/courses/social-studies-grade-4/u06-1.md
+  PASS docs/courses/social-studies-grade-4/u06-2.md
+  PASS docs/courses/social-studies-grade-4/u06-3.md
+  PASS docs/courses/social-studies-grade-4/u06-4.md
+  PASS docs/courses/social-studies-grade-4/u06-5.md
+  PASS docs/courses/social-studies-grade-4/u06-6.md
+  PASS docs/courses/social-studies-grade-4/u06-7.md
+  PASS docs/courses/social-studies-grade-4/u07-1.md
+== unitplan-social-studies-grade-5 (53 new line(s)) [no before file]
+  PASS docs/courses/social-studies-grade-5/s01.md
+  PASS docs/courses/social-studies-grade-5/s02.md
+  PASS docs/courses/social-studies-grade-5/s03.md
+  PASS docs/courses/social-studies-grade-5/s04.md
+  PASS docs/courses/social-studies-grade-5/s05.md
+  PASS docs/courses/social-studies-grade-5/s06.md
+  PASS docs/courses/social-studies-grade-5/s07.md
+  PASS docs/courses/social-studies-grade-5/s08.md
+  PASS docs/courses/social-studies-grade-5/s09.md
+  PASS docs/courses/social-studies-grade-5/s10.md
+  PASS docs/courses/social-studies-grade-5/u01-1.md
+  PASS docs/courses/social-studies-grade-5/u01-2.md
+  PASS docs/courses/social-studies-grade-5/u01-3.md
+  PASS docs/courses/social-studies-grade-5/u01-4.md
+  PASS docs/courses/social-studies-grade-5/u02-1.md
+  PASS docs/courses/social-studies-grade-5/u02-2.md
+  PASS docs/courses/social-studies-grade-5/u02-3.md
+  PASS docs/courses/social-studies-grade-5/u02-4.md
+  PASS docs/courses/social-studies-grade-5/u03-1.md
+  PASS docs/courses/social-studies-grade-5/u03-2.md
+  PASS docs/courses/social-studies-grade-5/u03-3.md
+  PASS docs/courses/social-studies-grade-5/u03-4.md
+  PASS docs/courses/social-studies-grade-5/u03-5.md
+  PASS docs/courses/social-studies-grade-5/u04-1.md
+  PASS docs/courses/social-studies-grade-5/u04-2.md
+  PASS docs/courses/social-studies-grade-5/u04-3.md
+  PASS docs/courses/social-studies-grade-5/u04-4.md
+  PASS docs/courses/social-studies-grade-5/u05-1.md
+  PASS docs/courses/social-studies-grade-5/u05-2.md
+  PASS docs/courses/social-studies-grade-5/u05-3.md
+  PASS docs/courses/social-studies-grade-5/u05-4.md
+  PASS docs/courses/social-studies-grade-5/u06-1.md
+  PASS docs/courses/social-studies-grade-5/u06-2.md
+  PASS docs/courses/social-studies-grade-5/u06-3.md
+  PASS docs/courses/social-studies-grade-5/u06-4.md
+  PASS docs/courses/social-studies-grade-5/u06-5.md
+  PASS docs/courses/social-studies-grade-5/u07-1.md
+  PASS docs/courses/social-studies-grade-5/u07-2.md
+  PASS docs/courses/social-studies-grade-5/u07-3.md
+  PASS docs/courses/social-studies-grade-5/u07-4.md
+== unitplan-social-studies-kindergarten (25 new line(s)) [no before file]
+  PASS docs/courses/social-studies-kindergarten/s01.md
+  PASS docs/courses/social-studies-kindergarten/s02.md
+  PASS docs/courses/social-studies-kindergarten/s03.md
+  PASS docs/courses/social-studies-kindergarten/s04.md
+  PASS docs/courses/social-studies-kindergarten/s05.md
+  PASS docs/courses/social-studies-kindergarten/s06.md
+  PASS docs/courses/social-studies-kindergarten/u01-1.md
+  PASS docs/courses/social-studies-kindergarten/u01-2.md
+  PASS docs/courses/social-studies-kindergarten/u01-3.md
+  PASS docs/courses/social-studies-kindergarten/u02-1.md
+  PASS docs/courses/social-studies-kindergarten/u02-2.md
+  PASS docs/courses/social-studies-kindergarten/u02-3.md
+  PASS docs/courses/social-studies-kindergarten/u02-4.md
+  PASS docs/courses/social-studies-kindergarten/u03-1.md
+  PASS docs/courses/social-studies-kindergarten/u03-2.md
+  PASS docs/courses/social-studies-kindergarten/u03-3.md
+  PASS docs/courses/social-studies-kindergarten/u03-4.md
+  PASS docs/courses/social-studies-kindergarten/u04-1.md
+  PASS docs/courses/social-studies-kindergarten/u04-2.md
+  PASS docs/courses/social-studies-kindergarten/u05-1.md
+  PASS docs/courses/social-studies-kindergarten/u05-2.md
+  PASS docs/courses/social-studies-kindergarten/u05-3.md
+  PASS docs/courses/social-studies-kindergarten/u06-1.md
+  PASS docs/courses/social-studies-kindergarten/u06-2.md
+  PASS docs/courses/social-studies-kindergarten/u06-3.md
+== unitplan-statistics (1 new line(s)) [no before file]
+  no unit plans found for: statistics
+== unitplan-us-government-and-politics (11 new line(s)) [no before file]
+  PASS docs/courses/us-government-and-politics/s01.md
+  PASS docs/courses/us-government-and-politics/s02.md
+  PASS docs/courses/us-government-and-politics/s03.md
+  PASS docs/courses/us-government-and-politics/s04.md
+  PASS docs/courses/us-government-and-politics/s05.md
+  PASS docs/courses/us-government-and-politics/s06.md
+  PASS docs/courses/us-government-and-politics/s07.md
+  PASS docs/courses/us-government-and-politics/s08.md
+  PASS docs/courses/us-government-and-politics/s09.md
+  docs/courses/us-government-and-politics/s09.md:93: note (not a failure): "(L, C)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/us-government-and-politics/s09.md:97: note (not a failure): "(E, G)" tags two letters; if it is one wrong answer, keep one
+== unitplan-us-history-i (10 new line(s)) [no before file]
+  PASS docs/courses/us-history-i/s01.md
+  PASS docs/courses/us-history-i/s02.md
+  PASS docs/courses/us-history-i/s03.md
+  PASS docs/courses/us-history-i/s04.md
+  PASS docs/courses/us-history-i/s05.md
+  PASS docs/courses/us-history-i/s06.md
+  PASS docs/courses/us-history-i/s07.md
+  PASS docs/courses/us-history-i/s08.md
+  PASS docs/courses/us-history-i/s09.md
+  PASS docs/courses/us-history-i/u05-2.md
+== unitplan-us-history-ii (15 new line(s)) [no before file]
+  PASS docs/courses/us-history-ii/s01.md
+  PASS docs/courses/us-history-ii/s02.md
+  PASS docs/courses/us-history-ii/s03.md
+  PASS docs/courses/us-history-ii/s04.md
+  PASS docs/courses/us-history-ii/s05.md
+  PASS docs/courses/us-history-ii/s06.md
+  PASS docs/courses/us-history-ii/s07.md
+  PASS docs/courses/us-history-ii/s08.md
+  PASS docs/courses/us-history-ii/s09.md
+  PASS docs/courses/us-history-ii/s10.md
+  PASS docs/courses/us-history-ii/s11.md
+  PASS docs/courses/us-history-ii/s12.md
+  docs/courses/us-history-ii/s12.md:126: note (not a failure): "(F, H)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/us-history-ii/s12.md:127: note (not a failure): "(B, D)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/us-history-ii/s12.md:130: note (not a failure): "(B, C)" tags two letters; if it is one wrong answer, keep one
+== unitplan-world-geography-and-ancient-civilizations-i (15 new line(s)) [no before file]
+  PASS docs/courses/world-geography-and-ancient-civilizations-i/s01.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-i/s02.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-i/s03.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-i/s04.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-i/s05.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-i/s06.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-i/s07.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-i/s08.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-i/s09.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-i/s10.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-i/s11.md
+  docs/courses/world-geography-and-ancient-civilizations-i/s04.md:121: note (not a failure): "(A, Z)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-geography-and-ancient-civilizations-i/s04.md:127: note (not a failure): "(F, U)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-geography-and-ancient-civilizations-i/s04.md:132: note (not a failure): "(G, R)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-geography-and-ancient-civilizations-i/s04.md:133: note (not a failure): "(C, L)" tags two letters; if it is one wrong answer, keep one
+== unitplan-world-geography-and-ancient-civilizations-ii (12 new line(s)) [no before file]
+  PASS docs/courses/world-geography-and-ancient-civilizations-ii/s01.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-ii/s02.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-ii/s03.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-ii/s04.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-ii/s05.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-ii/s06.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-ii/s07.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-ii/s08.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-ii/s09.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-ii/s10.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-ii/s11.md
+  PASS docs/courses/world-geography-and-ancient-civilizations-ii/s12.md
+== unitplan-world-history-i (11 new line(s)) [no before file]
+  PASS docs/courses/world-history-i/s01.md
+  PASS docs/courses/world-history-i/s02.md
+  PASS docs/courses/world-history-i/s03.md
+  PASS docs/courses/world-history-i/s04.md
+  PASS docs/courses/world-history-i/s05.md
+  PASS docs/courses/world-history-i/s06.md
+  PASS docs/courses/world-history-i/s07.md
+  PASS docs/courses/world-history-i/s08.md
+  PASS docs/courses/world-history-i/s09.md
+  PASS docs/courses/world-history-i/s10.md
+  PASS docs/courses/world-history-i/u03-4.md
+== unitplan-world-history-ii (19 new line(s)) [no before file]
+  PASS docs/courses/world-history-ii/s01.md
+  PASS docs/courses/world-history-ii/s02.md
+  PASS docs/courses/world-history-ii/s03.md
+  PASS docs/courses/world-history-ii/s04.md
+  PASS docs/courses/world-history-ii/s05.md
+  PASS docs/courses/world-history-ii/s06.md
+  PASS docs/courses/world-history-ii/s07.md
+  PASS docs/courses/world-history-ii/s08.md
+  PASS docs/courses/world-history-ii/s09.md
+  PASS docs/courses/world-history-ii/s10.md
+  PASS docs/courses/world-history-ii/s11.md
+  docs/courses/world-history-ii/s02.md:102: note (not a failure): "(B, K)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s02.md:70: note (not a failure): "(A, H)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s02.md:71: note (not a failure): "(B, C)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s02.md:74: note (not a failure): "(F, L)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s02.md:75: note (not a failure): "(G, K)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s11.md:76: note (not a failure): "(A, B)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s11.md:83: note (not a failure): "(B, D)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s11.md:84: note (not a failure): "(G, J)" tags two letters; if it is one wrong answer, keep one
+compare step3-after -> step4-before: 1263 new line(s)
