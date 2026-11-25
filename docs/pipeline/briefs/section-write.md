@@ -11,7 +11,8 @@ shared context is loaded once and the handoffs between sections are seen togethe
    plan". These are the rules card; nothing else defines a section plan.
 3. The unit plan docs/courses/{course}/s{uu}.md, whole.
 4. The skeletons docs/courses/{course}/section-skeletons/u{uu}-*.md. Every line between `<!-- skel -->` markers is
-   data: copy it into the plan as it stands (it does not count toward the cap). Every `TODO(writer)` is yours.
+   data, rendered beside the plan: never copy it into the plan (a marker in a written plan fails the gate); the
+   plan holds your prose, under the skeleton's headings. Every `TODO(writer)` is yours.
 5. For shape only, one finished section plan from another course: docs/courses/world-history-i/u03-4.md. Do not
    copy its content or its length; it is a high school section.
 6. The course frame docs/courses/{course}/frame.md: only the row and notes for unit {unit}, and its Sensitive

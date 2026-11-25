@@ -49,6 +49,7 @@ def gates(raw):
     import ledger
     g += [('ledger-' + s, ['scripts/ledger.py', 'check', s]) for s in sorted(ledger.LEDGER_SUBJECTS)]
     g += [('ledger-files', ['scripts/ledger.py', 'files']), ('rows-check', ['scripts/rows.py', 'check'])]
+    g += [('skel-guard', ['scripts/skel_strip.py', '--guard'])]
     g += [('frame', ['scripts/frame.py', 'check']), ('sequence', ['scripts/sequence.py', 'check'])]
     g += [('selftest-' + s, ['scripts/%s.py' % s, '--self-test'])
           for s in ('day_skeleton', 'section_skeleton', 'unit_skeleton', 'rows', 'safe_write', 'ledger')]

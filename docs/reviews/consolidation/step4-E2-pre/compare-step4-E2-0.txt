@@ -1,0 +1,54 @@
+== build_site (1 new line(s))
+  521 course and unit pages -> S:\CurioClass\build\gates\step4-E2-pre\dist\courses (hidden)
+== plan-english-language-arts-grade-3 (1 new line(s))
+  note unit 3: 24698 words of prose outside the generated tables (s03.md)
+== plan-social-studies-grade-2 (2 new line(s))
+  note unit 4: 6415 words of prose outside the generated tables (s04.md)
+  note unit 5: 7400 words of prose outside the generated tables (s05.md)
+== plan-social-studies-grade-3 (4 new line(s))
+  note unit 1: 9858 words of prose outside the generated tables (s01.md)
+  note unit 3: 8856 words of prose outside the generated tables (s03.md)
+  note unit 4: 9295 words of prose outside the generated tables (s04.md)
+  note unit 5: 12120 words of prose outside the generated tables (s05.md)
+== plan-social-studies-grade-4 (3 new line(s))
+  note unit 2: 8113 words of prose outside the generated tables (s02.md)
+  note unit 5: 8778 words of prose outside the generated tables (s05.md)
+  note unit 7: 10740 words of prose outside the generated tables (s07.md)
+== plan-social-studies-grade-5 (1 new line(s))
+  note unit 4: 7993 words of prose outside the generated tables (s04.md)
+== unitplan-english-language-arts-grade-2 (1 new line(s))
+  docs/courses/english-language-arts-grade-2/s01.md:249: note (not a failure): "(A, C)" tags two letters; if it is one wrong answer, keep one
+== unitplan-english-language-arts-grade-4 (4 new line(s))
+  docs/courses/english-language-arts-grade-4/s01.md:187: observation day 29: no item row names RF.4.3a in its code cell
+  docs/courses/english-language-arts-grade-4/s01.md:187: observation day 29: no item row names RL.4.4 in its code cell
+  docs/courses/english-language-arts-grade-4/s01.md:187: observation day 7: no item row names RF.4.3a in its code cell
+  docs/courses/english-language-arts-grade-4/s01.md:187: observation day 7: no item row names RL.4.4 in its code cell
+== unitplan-math-kindergarten (2 new line(s))
+  docs/courses/math-kindergarten/s02.md:75: assessment day 36: no item for K.CC.B.4c
+  docs/courses/math-kindergarten/s02.md:75: assessment day 36: no item for K.CC.C.7
+== unitplan-physics (1 new line(s))
+  docs/courses/physics/s10.md:140: note (not a failure): "(E, F)" tags two letters; if it is one wrong answer, keep one
+== unitplan-science-grade-5 (1 new line(s))
+  PASS docs/courses/science-grade-5/s04.md
+== unitplan-us-government-and-politics (2 new line(s))
+  docs/courses/us-government-and-politics/s09.md:103: note (not a failure): "(E, G)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/us-government-and-politics/s09.md:99: note (not a failure): "(L, C)" tags two letters; if it is one wrong answer, keep one
+== unitplan-us-history-ii (3 new line(s))
+  docs/courses/us-history-ii/s12.md:131: note (not a failure): "(F, H)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/us-history-ii/s12.md:132: note (not a failure): "(B, D)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/us-history-ii/s12.md:135: note (not a failure): "(B, C)" tags two letters; if it is one wrong answer, keep one
+== unitplan-world-geography-and-ancient-civilizations-i (4 new line(s))
+  docs/courses/world-geography-and-ancient-civilizations-i/s04.md:126: note (not a failure): "(A, Z)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-geography-and-ancient-civilizations-i/s04.md:132: note (not a failure): "(F, U)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-geography-and-ancient-civilizations-i/s04.md:137: note (not a failure): "(G, R)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-geography-and-ancient-civilizations-i/s04.md:138: note (not a failure): "(C, L)" tags two letters; if it is one wrong answer, keep one
+== unitplan-world-history-ii (8 new line(s))
+  docs/courses/world-history-ii/s02.md:108: note (not a failure): "(B, K)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s02.md:76: note (not a failure): "(A, H)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s02.md:77: note (not a failure): "(B, C)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s02.md:80: note (not a failure): "(F, L)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s02.md:81: note (not a failure): "(G, K)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s11.md:82: note (not a failure): "(A, B)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s11.md:89: note (not a failure): "(B, D)" tags two letters; if it is one wrong answer, keep one
+  docs/courses/world-history-ii/s11.md:90: note (not a failure): "(G, J)" tags two letters; if it is one wrong answer, keep one
+compare step4-E2-0 -> step4-E2-pre: 38 new line(s)

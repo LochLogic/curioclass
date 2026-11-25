@@ -91,7 +91,7 @@ Geometry hands Algebra II right triangle trigonometry, radian measure and the un
 | number-line | Introduced in grade 2 (m2-number-line); last carried by alg1-data-displays (Algebra I) | Unit 6 (partitioning a segment) | none |
 | unit-circle | New here: introduced by geo-arcs-sectors-radians (a circle of radius 1, where radian measure equals arc length) | Unit 7 | none here; Algebra II unit 6 |
 | tree-diagram | Introduced in grade 7 (m7-compound-events), unused in grade 8 and Algebra I | Unit 8 (reactivated) | none |
-| two-way-table | Introduced in grade 8 (m8-two-way-tables); last carried by alg1-two-way-tables (Algebra I) | Unit 8 | none |
+| two-way-table | Introduced in grade 8 (m8-two-way-tables); last carried by alg1-two-way-tables (Algebra I) | Unit 8 (reactivated) | none |
 
 ## Units
 

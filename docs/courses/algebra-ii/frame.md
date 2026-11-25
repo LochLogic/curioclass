@@ -95,8 +95,8 @@ No row of the progression is handed on: Algebra II is the last core course. The 
 | number-line | Introduced in grade 2 (m2-number-line); last carried by geo-partition-segments (Geometry) | Unit 3 (rational exponents located) | none |
 | scatter-plot | Introduced in grade 8 (m8-scatter-plots); last carried by alg1-scatter-linear-models (Algebra I), unused in Geometry | Unit 5 (reactivated: a familiar data set plotted first) | none |
 | transformation | Introduced in grade 8 (m8-rigid-motions); last carried by geo-rigid-motion-definitions and later Geometry units | Unit 5 | none |
-| unit-circle | Introduced in Geometry (geo-arcs-sectors-radians) | Unit 6 | none |
-| coordinate-plane | Introduced in grade 5 (m5-coordinate-system); last carried by geo-rigid-motion-definitions and later Geometry units | Unit 6 | none |
+| unit-circle | Introduced in Geometry (geo-arcs-sectors-radians) | Unit 6 (reactivated) | none |
+| coordinate-plane | Introduced in grade 5 (m5-coordinate-system); last carried by geo-rigid-motion-definitions and later Geometry units | Unit 6 (reactivated) | none |
 | dot-plot | Introduced in grade 2 (m2-line-plots); last carried by alg1-data-displays (Algebra I), unused in Geometry | Unit 7 (reactivated) | none |
 | histogram | Introduced in grade 6 (m6-data-displays); last carried by alg1-data-displays (Algebra I), unused in Geometry | Unit 7 (reactivated) | none |
 

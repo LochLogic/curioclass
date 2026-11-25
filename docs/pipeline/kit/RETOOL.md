@@ -106,3 +106,13 @@ Source: the pause-4e Fable review (docs/reviews/consolidation/pause-4e-review.md
 | Skeleton generators kept an existing file, so a job reran them and read a stale skeleton (review / consolidation 4.E) | day_skeleton.py and section_skeleton.py always rebuild; section.txt rebuilds its skeletons at job start; coursegen always emits the build line |
 | Two jobs writing one course's ledger at once could lose rows (review / consolidation 4.D) | scripts/safe_write.py (a lock per file, a temp name per process, retries) under ledger.py and rows.py, with race self-tests; common.txt says jobs in one course may both write through them |
 | draft-fix.txt still said "section not in data/units.csv" failures are known (review / consolidation 4.B) | the line is dropped |
+
+## Retool 5: KIT-VERSION 6 (2026-11-25)
+
+Source: consolidation 4.E2 (docs/CONSOLIDATION-PLAN.md), Cory's choice to stop storing fact copies in plans. No grade running.
+
+| Finding (stage that found / made it) | Where it went |
+|---|---|
+| Written plans stored copies of data inside `<!-- skel -->` blocks, and the copies drifted from data (consolidation 4.E census: 6,250 lines not in a fresh render) | blocks stripped from all 916 plans; facts render from data through scripts/plan_facts.py (skeletons, plan.py packets, Front Office, the writer's read view); `skel-guard` gate and unitplan.py check fail on any marker in a plan |
+| Briefs told writers to keep or fill the marked fields in the plan (consolidation 4.E2) | plan-codex.md, plan-codex-ela.md, plan-codex-math.md, plan-codex-science.md, plan-codex-read.md and section-write.md: the facts are read with `plan_facts.py <course> <file>`, never copied into the plan; the plan holds judgment prose only |
+| Generators wrote UK spellings into rendered lines (consolidation 4.E2) | unit_skeleton.py and section_skeleton.py write "practiced" |

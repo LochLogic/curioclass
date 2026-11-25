@@ -47,6 +47,13 @@ def course_meta(course):
     return m['subject'], m['grade'], mins
 
 
+def plan_read(f):
+    """A written plan with its facts rendered from data beside the prose (plan_facts.merged, 4.E2)."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import plan_facts
+    return plan_facts.read(f)
+
+
 def day_range(course):
     """(least, most) minutes a day of the course, from its frame; (60, 60) when the frame states none."""
     sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -572,7 +579,7 @@ def cross_day(course, days, items, last, fails, notes):
         f = ROOT / 'docs' / 'courses' / course / ('u%02d-%s.md' % (int(a), b2))
         if not f.exists():
             return None, None
-        m = re.search(r'^## Day %d\b.*?(?=^## |\Z)' % n, f.read_text(encoding='utf-8'), re.M | re.S)
+        m = re.search(r'^## Day %d\b.*?(?=^## |\Z)' % n, plan_read(f), re.M | re.S)
         if not m:
             return None, None
         return [(int(x.group(1)), x.group(2).strip(), '') for x in
@@ -1205,7 +1212,7 @@ def new_gates(course):
                        % i['item_id'])
     exit_days = {i['day'] for i in items if i['check'] == 'exit'}
     for f in sorted((DOCS / course).glob('u[0-9][0-9]-[0-9]*.md')):
-        blocks = re.split(r'^## Day (\d+)\s*$', f.read_text(encoding='utf-8'), flags=re.M)
+        blocks = re.split(r'^## Day (\d+)\s*$', plan_read(f), flags=re.M)
         for k in range(1, len(blocks) - 1, 2):
             d, body = blocks[k], blocks[k + 1]
             if d in exit_days and not re.search(r'\*\*(?:Shared shape|Shape)\b|\bshape note\b', body, re.I):
@@ -1325,7 +1332,7 @@ def pack(course, s):
                     '', 'Spec: tools/%s/spec.md' % t]
     for f in [DOCS / course / ('s%02d.md' % int(s))] + sorted((DOCS / course).glob('u%02d-*.md' % int(s))):
         if f.exists():   # the unit plan, then each section plan: a day writer needs the section's prose too
-            prose = re.sub(r'<!-- gen:.*?<!-- /gen -->', '(table above)', f.read_text(encoding='utf-8'), flags=re.S)
+            prose = re.sub(r'<!-- gen:.*?<!-- /gen -->', '(table above)', plan_read(f), flags=re.S)
             out += ['', '## The plan\'s prose (%s)' % f.name, '', prose]
     open_d = [d for d in rows_defects() if d['course'] == course and d['status'] == 'open' and ('s%02d' % int(s)) in d['artifact']]
     if open_d:

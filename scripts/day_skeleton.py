@@ -184,7 +184,8 @@ def unit_field(course, unit, n):
     p = u.DOCS / course / ('s%02d.md' % unit) if unit else None
     if not p or not p.exists():
         return ''
-    m = re.search(r'^## %d\..*?\n(.*?)(?=^## |\Z)' % n, p.read_text(encoding='utf-8'), re.M | re.S)
+    import plan_facts              # the plan's prose with its facts rendered from data (4.E2)
+    m = re.search(r'^## %d\..*?\n(.*?)(?=^## |\Z)' % n, plan_facts.read(p), re.M | re.S)
     return re.sub(r'<!-- /?skel -->', '', m.group(1)).strip() if m else ''
 
 

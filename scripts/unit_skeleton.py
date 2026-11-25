@@ -11,13 +11,16 @@ from the shared core alone. --data-dir DIR reads DIR/<course>/days.csv, source-m
 DIR/calendar.csv instead of data/plans (for tests, so synthetic data never sits in data/plans); the frame, the
 progression and the standards still come from the repository.
 
-Writes docs/courses/<course>/s{uu}.md in the shape of docs/courses/UNIT-PLAN.md (the unit plan, fields 1 to 10; the
-section plans follow later, PRODUCTION-PATH step 7). Never overwrites an existing file without --force, so a change
-here reaches new skeletons only and written plans never need a re-run. Lettered parts: a choice standard (is_choice:
+Writes the skeleton to docs/courses/<course>/unit-skeletons/s{uu}.md (an ignored working file, always rebuilt; it is
+the writer's read view of the facts) in the shape of docs/courses/UNIT-PLAN.md (the unit plan, fields 1 to 10; the
+section plans follow later, PRODUCTION-PATH step 7). When the plan docs/courses/<course>/s{uu}.md does not exist yet,
+it also writes the starter plan: the skeleton with its fact blocks taken out (headings and writer markers only). A
+written plan is never touched: its facts render from data (scripts/plan_facts.py, consolidation 4.E2); --force is
+accepted and changes nothing. Lettered parts: a choice standard (is_choice:
 "one of", "from the list", "research one", parts marked "option:") owes no part, one option in depth and the rest
 surveyed; when days.csv cites parts of a code, a unit owes only the parts it cites; a "such as" list gives examples,
 never required parts (structure pass 2026-11-14). --out DIR
-writes DIR/<course>/s{uu}.md instead (for tests). Output is deterministic: same data, same bytes.
+writes under DIR/<course>/ instead (for tests). Output is deterministic: same data, same bytes.
 
 Filled from: data/plans/<course>/days.csv (days, kinds, goals, codes, assessment days, notes), data/plans/calendar.csv
 (school days, weeks), data/progressions/social-studies.csv (skills, what they assume and hand on), the standards files
@@ -27,7 +30,7 @@ question, models carried, check set, sensitive topics) and data/plans/<course>/s
 Math adds: cluster weights (data/standards/ccss-math-focus.csv), the frame's practices, tools and supplies named in
 day notes (or in tools/supplies columns and materials.csv where they exist), base-text lesson rows from source-map.csv.
 ELA adds: the frame's text set, owned codes grouped by strand with the days they are taught (kind Understanding) and
-practised (other kinds), writing types and writing days, base-text rows. Science adds: the anchoring phenomenon, the
+practiced (other kinds), writing types and writing days, base-text rows. Science adds: the anchoring phenomenon, the
 frame's practices and crosscutting concepts, a three-dimensions table (one row per performance expectation, filled from
 data/standards/ngss-pe-dimensions.csv with the expectation lines, limits and emphases), safety and materials notes from
 the days.csv tools, supplies and safety columns, day notes and the frame, base-text rows. ELA text rows come from
@@ -442,6 +445,8 @@ def unit_nums(text):
     """The unit numbers a frame cell names ('Units 2, 3 (x), 4' gives 2, 3 and 4); a unit of another grade or course
     ('grade 8 unit 3', 'Geometry unit 2') is not counted."""
     text = re.sub(r'\([^)]*\)', ' ', text)
+    if re.fullmatch(r'\s*\d+(?:\s*(?:,|and|to)\s*\d+)*\s*\.?\s*', text):   # a bare list ('2, 4, 7'): the Units column
+        text = 'Units ' + text
     out = set()
     for m in re.finditer(r'\b[Uu]nits?\s+(\d+(?:\s*(?:,|and|to)\s*\d+)*)', text):
         before = text[:m.start()].rstrip()
@@ -553,8 +558,8 @@ def strand_of(code):
 
 
 def day_uses(rows, code):
-    """(taught, practised) day numbers where days.csv names the code or one of its lettered parts. Taught: kind
-    Understanding; practised: every other kind."""
+    """(taught, practiced) day numbers where days.csv names the code or one of its lettered parts. Taught: kind
+    Understanding; practiced: every other kind."""
     names = {code} | set(children(code))
     taught, prac = [], []
     for r in rows:
@@ -817,7 +822,7 @@ def field2_extras(course, unit, rows, codes, fr, anchor):
             if c3:
                 L.append('- **Text set (frame, C3 column):** %s' % c3)
             L.append('- **Text records:** no rows in data/plans/ela-texts.csv for this course and unit.')
-        L.append('- **Owned codes by strand (days.csv: taught = days of kind Understanding, practised = days of any other kind):**')
+        L.append('- **Owned codes by strand (days.csv: taught = days of kind Understanding, practiced = days of any other kind):**')
         by = {}
         for c in codes:
             if len(c) > 1 and c[-1].islower() and c[:-1] in codes:
@@ -828,7 +833,7 @@ def field2_extras(course, unit, rows, codes, fr, anchor):
             parts = []
             for c in by[key]:
                 t, p = day_uses(rows, c)
-                parts.append('%s (taught: %s; practised: %s)' % (c, days_or_none(t), days_or_none(p)))
+                parts.append('%s (taught: %s; practiced: %s)' % (c, days_or_none(t), days_or_none(p)))
             L.append('  - %s (%s): %s' % (key[1], key[0], '; '.join(parts)))
         wnums = []
         for c in codes:
@@ -861,7 +866,7 @@ def field2_extras(course, unit, rows, codes, fr, anchor):
             L.append('%s: Text complexity: for each anchor, the measure where usable, the qualitative demands, the reader and task, and the support, in a line each.' % MARK)
         L.append('%s: Word list: draw about 8 to 10 words a week from this unit\'s texts, met before, during and after reading, and write them to data/plans/%s/wordlist.csv (unit, word, text_id, week, when).' % (MARK, course))
         L.append('%s: Main piece of writing: its type, the process (plan, draft, revise, edit, publish) or on-demand, the day it is assigned and the day it is finished; and the writing tasks above that are short pieces.' % MARK)
-        L.append('%s: Taught versus practised: check the split above against the unit\'s goals and say which owned codes the unit teaches and which it only practises.' % MARK)
+        L.append('%s: Taught versus practiced: check the split above against the unit\'s goals and say which owned codes the unit teaches and which it only practises.' % MARK)
     elif SUBJ == 'science':
         L.append(OPEN)
         if anchor:
@@ -1418,7 +1423,14 @@ CODETOK = re.compile(r'(?<![\w.])[A-Z0-9][A-Za-z0-9]*(?:[.-][A-Za-z0-9]+)+')
 def evidence_days(rows):
     """Days of a unit with no assess value whose note keeps their product as assessment evidence (math 8 day 34,
     math 5 day 51): an assessment day reuses that record (sequence-write.md rule 2, Collect once)."""
-    return [r for r in rows if not r['assess'] and KEPT.search(r['note'])]
+    return [r for r in rows if not r['assess'] and kept_in(r['note'])]
+
+
+def kept_in(note):
+    """True when the note keeps a product as evidence; 'not assessment evidence' and 'no end-of-unit evidence' do
+    not (math K day 19, 4.E2 judge h0500)."""
+    return any(not re.search(r'\b(?:not|no|never|without)\s+(?:\w+\s+)?$', note[:m.start()], re.I)
+               for m in KEPT.finditer(note))
 
 
 def mentions(text, code):
@@ -1442,7 +1454,7 @@ def reuse_sources(note, day, codes, byday):
     for sent in re.split(r'(?<=\.)\s+|;\s*', note):
         if not (REUSE.search(sent) or re.search(r'\brecollect\w*|\bre-?scor\w*', sent, re.I)):
             continue
-        ds = sorted(x for x in day_nums(sent) if x != day and x in byday)
+        ds = sorted(x for x in day_nums(sent) if x < day and x in byday)
         if not ds:
             continue
         named = [c for c in codes if mentions(sent, c)]
@@ -1508,7 +1520,7 @@ def begun_codes(unit, rows, rawrows, own_sk, prog, fr):
             if not m:
                 continue
             n = int(next(g for g in m.groups() if g))
-            if n == unit:
+            if n <= unit or re.search(r'\b(?:not|never)\b[^.]{0,30}$', sent[:m.start()], re.I):
                 continue
             named = [c for c in mine if re.search(r'(?<![\w.])%s(?![\w])' % re.escape(c), sent)]
             for c in named or mine:
@@ -1880,7 +1892,9 @@ def build(course, unit):
             lo, hi = frame_meta.get('minutes_min', ''), frame_meta.get('minutes_max', '')
             mins = lo if lo == hi else '%s to %s' % (lo, hi)
             hosts = re.search(r"(unit %d's|next unit's) readiness" % (unit + 1), r['note'], re.I)
-            named_mins = uniq(m.group(0).lower() for m in MINS.finditer(r['note']))
+            own = [s for s in re.split(r'(?<=\.)\s+|\s*\|\s*', r['note'])
+                   if not any(x != d for x in day_nums(s))]
+            named_mins = uniq(m.group(0).lower() for s in own for m in MINS.finditer(s))
             w('- **Time:** %s; %d row%s below to sample.%s'
               % (('%s minutes a day (data/plans/frames.csv)%s' % (mins, ", less 10 for the next unit's readiness check on this day" if hosts else ''))
                  if lo else 'day length not in data/plans/frames.csv', len(full), '' if len(full) == 1 else 's',
@@ -2226,8 +2240,16 @@ def self_test():
     check('wap spelled out on the weight line', any('widely applicable prerequisite' in x for x in header_weight(['G-SRT.B.5'])))
     set_subject('science')
     check('engineering expectation with no crosscutting concept says so', 'None listed for this engineering' in pe_row('K-2-ETS1-1'))
-    check('a model first used in an earlier unit is not "introduced here"',
-          any(m == 'food-web' and 'first used in unit 3' in h for m, h in frame_models('science-grade-7', 4)))
+    # the science 7 food-web cell that first showed this changed in 4.E2 (unit 4 is now its first use), so a fixture
+    _fl = frame_lines
+    globals()['frame_lines'] = lambda course: ['| Model | Where it comes from | Unit that first uses it here | Units that use it again |',
+                                               '|---|---|---|---|',
+                                               '| food-web | grade 5 | Unit 3 readiness day 41 checks this; unit 4 retrieves it | Unit 5 |']
+    try:
+        check('a model first used in an earlier unit is not "introduced here"',
+              any(m == 'food-web' and 'first used in unit 3' in h for m, h in frame_models('science-grade-7', 4)))
+    finally:
+        globals()['frame_lines'] = _fl
     # 4. assessed before taught; a lettered part counts its parent
     al = [dict(day=str(d), stretch='1', unit='1.1', kind=k, goal='', skills='', codes=c, assess=a, note='')
           for d, k, c, a in [(1, 'Understanding', '3-PS2-1', ''), (2, 'Check', '3-PS2-1;3-PS2-2', 'end'),
@@ -2306,18 +2328,23 @@ def main(a):
             raise SystemExit('%s has no unit %s (units: %s)' % (course, a[1], runs_text(units)))
         units = [int(a[1])]
     folder = (out / course) if out else (DOCS / course)
-    folder.mkdir(parents=True, exist_ok=True)
+    side = folder / 'unit-skeletons'
+    side.mkdir(parents=True, exist_ok=True)
+    import plan_facts
     for u in units:
-        p = folder / ('s%02d.md' % u)
-        if p.exists() and not force:
-            print('exists, kept:', p)
-            continue
         try:
             text = build(course, u)
         except DataError as e:
             raise DataError('unit_skeleton: %s unit %d not written: %s' % (course, u, e))
-        p.write_text(text, encoding='utf-8', newline='\n')
-        print('wrote', p, '(%d TODO, %d words, about %d tokens)' % (text.count(MARK), len(text.split()), len(text) // 4))
+        s = side / ('s%02d.md' % u)
+        s.write_text(text, encoding='utf-8', newline='\n')
+        print('wrote', s, '(%d TODO, %d words, about %d tokens)' % (text.count(MARK), len(text.split()), len(text) // 4))
+        p = folder / ('s%02d.md' % u)
+        if p.exists():
+            print('plan exists, kept:', p)
+            continue
+        p.write_text(plan_facts.strip(text), encoding='utf-8', newline='\n')
+        print('wrote', p, '(the starter plan: headings and writer markers; its facts render from data)')
     return 0
 
 

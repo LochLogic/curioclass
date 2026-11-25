@@ -307,8 +307,9 @@ counting U5 and U7 to U11.
   TOOL-ASKS.md (rule 10).
 
 How to count: every word in the file outside the fields left out, the title and the header paragraph
-included. A whole field is in or out; nothing is counted by the line. A generated table, the day list and the lines
-between `<!-- skel -->` markers do not count.
+included. A whole field is in or out; nothing is counted by the line. A generated table and the day list do not count. A written plan
+holds no mechanical facts: they render from data (`python -X utf8 scripts/plan_facts.py <course> <file>` shows a plan
+with them), and a `<!-- skel -->` marker in a written plan fails the gate.
 
 When over, cut in this order:
 

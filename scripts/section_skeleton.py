@@ -35,8 +35,12 @@ DAYNUM = re.compile(r'(?<![\w.\-/])(\d{1,3})(?![\w.\-/%])')
 # ---- reading the unit plan
 
 def plan_text(course, unit):
+    """The unit plan's prose with its facts rendered from data (plan_facts.merged, 4.E2), or None."""
     p = u.DOCS / course / ('s%02d.md' % unit)
-    return p.read_text(encoding='utf-8') if p.exists() else None
+    if not p.exists():
+        return None
+    import plan_facts
+    return plan_facts.merged(course, p.name, p.read_text(encoding='utf-8'))
 
 
 def field(text, head):
@@ -453,7 +457,7 @@ def build(course, section):
         w('- Earlier-grade skills on these days (review): %s' % ', '.join(rev))
         w(u.CLOSE)
         w('')
-    w('%s: what earlier work is practised on each day.%s' % (u.MARK, ' The warm-up; the fluency target, or "none; the '
+    w('%s: what earlier work is practiced on each day.%s' % (u.MARK, ' The warm-up; the fluency target, or "none; the '
                                                               'standard sets none".' if subj == 'math' else ''))
     w('')
     w('## 9. Supports and extension')

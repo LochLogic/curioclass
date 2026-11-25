@@ -1,8 +1,8 @@
 # Job: Codex second read of every unit plan of {course}
 
 You are the second, independent reader of the unit plans of the course {course}: docs/courses/{course}/s01.md to the
-last. Codex wrote them from skeletons made by scripts/unit_skeleton.py (fields between `<!-- skel -->` markers are
-mechanical); a Claude expert has also read them, but do not open its report (docs/reviews/plan-{course}-{date}.md):
+last. Codex wrote them from skeletons made by scripts/unit_skeleton.py. A plan file holds prose only: its mechanical
+facts render from data, so read each plan with `python -X utf8 scripts/plan_facts.py {course} sNN.md`; a Claude expert has also read them, but do not open its report (docs/reviews/plan-{course}-{date}.md):
 your read must be your own.
 
 Read AGENTS.md, docs/agents/EXPERT.md, docs/GLOSSARY.md, docs/courses/UNIT-PLAN.md and

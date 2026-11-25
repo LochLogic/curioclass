@@ -172,7 +172,11 @@ def to_html(md):
 
 
 def doc_html(path, strip_title=True):
-    text = path.read_text(encoding='utf-8')
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import plan_facts    # a written plan shows today's facts from data beside its prose (4.E2)
+    text = plan_facts.read(path)
     meta, text = front_matter(text)
     md = clean_markdown(text)
     title = ''

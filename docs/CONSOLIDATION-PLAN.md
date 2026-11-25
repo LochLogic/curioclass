@@ -453,6 +453,24 @@ fact then lives in one place, so drift can't come back." The design is the pause
    allowed in-file copies: they are already gated against days.csv. data/homes.csv names them in 4.H.
 8. Full gate run and compare, as after any data move.
 
+- Built 2026-11-25 (kit version 6). Cory's answer to q-skel-hand-1: judge each hand line on merit, use earlier work
+  where it is better, let data win where data is better. Five judge passes signed docs/reviews/consolidation/step4-E2/
+  hand-list.csv (`final`, `final_why`): discard 1438, move 235, back-port 168. Back-ports went through rows.py, plus
+  frame and unit plan table cells by hand ("Licence" to "License" in three math source maps). Renderer fixes found by
+  the judges: kept-evidence notes that say "not", reuse sources only from earlier days, the field 5 Time line counting
+  only a day's own minutes. scripts/plan_facts.py is the one renderer behind every reader (unitplan.py, plan.py,
+  front_office_docs.py, the writer's read view `plan_facts.py <course> <file>`). scripts/skel_strip.py removed 9,464
+  blocks from 916 plans (62,998 lines; 246 moved lines kept as prose). Proof: 3,112 section and day renders before and
+  after differ only by moved lines now shown as prose. Moved standards lines that repeated the rendered standard were
+  cut down to the writer's parts split (91 lines), which brought six unit plans back under the 1,600-word cap. 403
+  bold-label paragraphs that Markdown joined onto the list item above got a blank line; three orphan sub-bullets got a
+  label. Front Office JSON before and after: the moved judgment lines appear and list wrapping changes; nothing is
+  lost. Guard: the `skel-guard` gate (`skel_strip.py --guard`) and unitplan.py check fail on any marker in a plan.
+  skel_drift.py and skel_census.py retired (copies in S:\CurioClass-archive\skel-tools-2026-11-25\). Gates: step4-E2-0
+  26 non-zero, step4-E2-final 25. The only new lines are shifted line numbers and the math K day 36 item gap (later.csv
+  L122). Left open: L122 to L124 (items for codes the facts now show, a US spelling sweep of plan prose, math 8 source
+  days in the renderer).
+
 ### 4.F The index, and the five reports (L)
 
 - `scripts/index.py` builds `data/index.db` (SQLite, git-ignored, rebuilt on every gate run: the scans take seconds)

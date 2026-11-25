@@ -49,6 +49,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import unit_skeleton as sk  # noqa: E402
+import plan_facts  # noqa: E402   facts render from data beside the prose (4.E2)
 
 MARK = sk.MARK
 CAP = 1600          # a unit plan (UNIT-PLAN.md, "Length")
@@ -88,7 +89,9 @@ def check_file(path, course, unit):
     def bad(line, what):
         msgs.append('%s:%s: %s' % (path, line if line else '-', what))
 
-    text = Path(path).read_text(encoding='utf-8')
+    if '<!-- skel' in Path(path).read_text(encoding='utf-8'):
+        bad(0, 'stored <!-- skel --> block in the plan: facts render from data (plan_facts.py), keep only judgment prose')
+    text = plan_facts.read(path)
     lines = text.splitlines()
     sk.set_subject(sk.subject_of(course))
     rows = sk.unit_days(course, unit)
@@ -255,6 +258,7 @@ def check_file(path, course, unit):
             skip.update(range(s, e))
     body = '\n'.join(ln for i, ln in enumerate(lines) if i not in skip)
     body = re.sub(r'<!-- skel -->.*?<!-- /skel -->', ' ', body, flags=re.S)
+    body = re.sub(r'^.*%s$' % re.escape(plan_facts.FROM_DATA), ' ', body, flags=re.M)   # a heading the merged view adds
     body = re.sub(r'<!--.*?-->', ' ', body, flags=re.S)
     body = re.sub(r'Sections: .*?\.(?= Days by kind)', ' ', body)   # generated from days.csv, not writing
     count = len(re.findall(r'\S+', body))
@@ -272,12 +276,14 @@ LOST_Q = re.compile(r'\w\?\w|(?<![\w(\[\s])\?\w|�')
 
 def check_section(path, course, unit):
     """Failures for one section plan u{uu}-{n}.md (see the module doc)."""
-    text = Path(path).read_text(encoding='utf-8')
+    text = plan_facts.read(path)
     lines = text.split('\n')
     msgs = []
 
     def bad(i, what):
         msgs.append('%s:%d: %s' % (shown(path), i + 1, what))
+    if '<!-- skel' in Path(path).read_text(encoding='utf-8'):
+        bad(-1, 'stored <!-- skel --> block in the plan: facts render from data (plan_facts.py), keep only judgment prose')
     sec = re.search(r'u(\d+)-(\d+)\.md$', str(path))
     sid = '%d.%d' % (int(sec.group(1)), int(sec.group(2)))
     nums = [int(r['day']) for r in sk.days_rows(course) if (r.get('unit') or '').strip() == sid]
@@ -296,7 +302,7 @@ def check_section(path, course, unit):
             bad(i, 'an em dash')
         if re.search(r'\bCurio\b(?! Class)', ln):
             bad(i, '"Curio" without " Class"')
-        if 'http' not in ln and '`' not in ln and LOST_Q.search(ln):
+        if 'http' not in ln and '`' not in ln and LOST_Q.search(re.sub(r'\S+/\S*\?\S*', ' ', ln)):   # a URL query is not lost
             bad(i, 'a "?" standing for a lost character')
     for f in range(1, 12):
         if f not in heads:
@@ -338,6 +344,7 @@ def check_section(path, course, unit):
             skip.update(range(start, end))
     body = '\n'.join(ln for i, ln in enumerate(lines) if i not in skip)
     body = re.sub(r'<!-- skel -->.*?<!-- /skel -->', ' ', body, flags=re.S)
+    body = re.sub(r'^.*%s$' % re.escape(plan_facts.FROM_DATA), ' ', body, flags=re.M)   # a heading the merged view adds
     body = re.sub(r'<!--.*?-->', ' ', body, flags=re.S)
     count = len(re.findall(r'\S+', body))
     if count > SEC_CAP:
@@ -472,7 +479,7 @@ def new_gates(path, course, unit):
     """Lines of the exit-kind and practice-shape checks for one unit plan: every teaching day of the unit (a day that is
     not an assessment or respond day) has a goal-map row; its exit kind is produce or recognise and agrees with its
     goal verb; its practice shape is named and differs from its exit shape."""
-    text = Path(path).read_text(encoding='utf-8') if Path(path).exists() else Path(sk.ROOT / path).read_text(encoding='utf-8')
+    text = plan_facts.read(path)
     lines = text.splitlines()
     sk.set_subject(sk.subject_of(course))
     urows = sk.unit_days(course, unit)
