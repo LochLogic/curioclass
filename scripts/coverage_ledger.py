@@ -118,12 +118,7 @@ def status(code):
 # built tools that someone has played against the spec, one tool id per line (hand-kept; empty until step 4)
 vp = os.path.join(CAT, 'verified.txt')
 VERIFIED = {ln.split()[0] for ln in io.open(vp, encoding='utf-8') if ln.strip() and not ln.startswith('#')} if os.path.exists(vp) else set()
-# data/units.csv, when it exists: course_id or subject,grade plus days. Nothing in data names a unit yet.
-unit_days = collections.Counter()
-up = os.path.join(ROOT, 'data', 'units.csv')
-if os.path.exists(up):
-    for u in rd('data/units.csv'):          # status: planned, draft, reviewed, live. Only live units count
-        if u.get('status') == 'live': unit_days[(u.get('subject', ''), u.get('grade', ''))] += int(u.get('days') or 0)
+unit_days = collections.Counter()   # live unit days; data/units.csv retired in consolidation step 4.B
 out, measure = [], []
 for (subject, grade), mods in courses.items():
     listed = collections.defaultdict(list)

@@ -16,7 +16,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lesson  # noqa: E402
 
-KNOWN = 'is not in data/units.csv'   # known, ignored by every course run
 
 
 def main(a):
@@ -48,7 +47,7 @@ def main(a):
     keep = [ln for ln in out.splitlines() if 'courses/%s/' % course in ln or ln.startswith('  FAIL')]
     print('\n'.join(keep))
     def counts(ln):
-        if not ln.startswith('  FAIL') or KNOWN in ln:
+        if not ln.startswith('  FAIL'):
             return False
         if len(a) < 3:
             return True

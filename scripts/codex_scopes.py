@@ -56,7 +56,7 @@ SUBJECT_NOTE = {
 }
 BLIND = ('Blind rule: do not open docs/courses/ela-6/, docs/courses/ela-6-spine.md, docs/courses/math-4/, '
          'docs/courses/math-4-spine.md, docs/courses/math-3-5-progression*.md, docs/courses/science-4-spine.md, '
-         'docs/courses/NEXT-SPINES.md, data/plans/math-4/, data/units.csv, courses/math-4/, im-g4-draft-map.csv, or '
+         'docs/courses/NEXT-SPINES.md, data/plans/math-4/, courses/math-4/, im-g4-draft-map.csv, or '
          'docs/reviews/*reconcile*, *math-4*, *ela-6*, science-4-spine*. Another course\'s scope and sequence may '
          'be written at the same time as yours; do not edit it.')
 OLD = {

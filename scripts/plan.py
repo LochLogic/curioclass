@@ -514,11 +514,10 @@ def names_material(name, text):
     return norm(name) in norm(text)
 
 
-def cross_day(course, days, items, units, fails, notes):
+def cross_day(course, days, items, last, fails, notes):
     """The unit 4 test's cross-day facts: hand-backs, materials, reserved examples and the source map. A day inside
-    the course's days in data/units.csv whose section is not in days.csv yet is allowed: its writer picks the row up."""
+    the course's length (frames.csv `days`) that is not in days.csv yet is allowed: its writer picks the row up."""
     known = {int(d['day']): d for d in days}
-    last = sum(int(u['days']) for u in units if u['days'].isdigit())
     parsed = {}
 
     def exists(n):
@@ -715,8 +714,8 @@ def check(course):
     if not days or not (parts or items):   # a course is never called checked on zero records (Codex 1)
         return ['%s: the plan stage needs days.csv with parts.csv or items.csv; at the scope stage run scripts/sequence.py'
                 % course], [], 0, 0
-    with io.open(ROOT / 'data' / 'units.csv', encoding='utf-8', newline='') as f:
-        units = [u for u in csv.DictReader(f) if u['subject'] == subj and u['grade'] == grade]
+    import frame
+    horizon = int((frame.meta(course) or {}).get('days') or 0)   # the course's length; data/units.csv retired in step 4.B
     codes = set()
     std = ROOT / 'data' / 'standards' / 'ccss-math-standards.txt'
     if subj == 'math' and std.exists():
@@ -1004,15 +1003,6 @@ def check(course):
                              % (s, nums[0], nums[1], nums[-1]))
             else:
                 fails.append('unit %s: day numbers are not consecutive: %s' % (s, nums))
-        for u in sorted({d['unit'] for d in sd} if s != 'C' else ()):   # course-level days have no section
-            # a teaching section is "9.2"; a cumulative check or its respond day is named as in units.csv ("check-2")
-            uid = '%s-u%02d-%s' % (course, int(u.split('.')[0]), u.split('.')[1]) if '.' in u else '%s-%s' % (course, u)
-            row = next((x for x in units if x['unit_id'] == uid), None)
-            n = sum(1 for d in sd if d['unit'] == u)
-            if row is None:
-                fails.append('section %s (%s) is not in data/units.csv' % (u, uid))
-            elif int(row['days']) != n:
-                fails.append('section %s: data/units.csv says %s days, days.csv has %d' % (u, row['days'], n))
         for d in sd:
             lab = 'day %s' % d['day']
             if d['kind'] not in KINDS:
@@ -1152,7 +1142,7 @@ def check(course):
         if r['use'] == 'reserved' and any(d['day'] in r['days'].split() and d['kind'] != 'Check' for d in days):
             fails.append(lab + ': a reserved source is printed only on its assessment day')
     trace(course, days, items, parts, wrongs, fails, notes)
-    cross_day(course, days, items, units, fails, notes)
+    cross_day(course, days, items, horizon, fails, notes)
     planned = sorted({int(m[1]) for f in (DOCS / course).glob('s[0-9][0-9].md') for m in [re.match(r's(\d+)', f.name)]})
     missing = [n for n in planned if str(n) not in stretches]
     if missing:
