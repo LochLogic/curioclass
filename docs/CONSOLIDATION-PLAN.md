@@ -1,8 +1,10 @@
 # Consolidation plan: one flat product, then an architecture that scales
 
-Status: draft 2, 2026-11-24, for Cory. Not approved; nothing in it has been done. Draft 1 was reviewed against the
+Status: draft 3, 2026-11-24, for Cory. Not approved; nothing in it has been done. Draft 1 was reviewed against the
 repository by a fresh Fable agent the same day; its 16 findings are folded in (the review's evidence is summarized
-where a finding changed the plan). Built on a read-only census of 2026-11-24: every sibling folder, the Codex and
+where a finding changed the plan). Draft 3 takes Cory's comments of 2026-11-24: nothing old is left standing beside
+the new model ("live things" now migrate, step 4.1), earlier decisions that change are listed (step 4.0), this
+consolidation is the mass edit (the change workflow moves in, step 4.4), and his six decisions are recorded at the end. Built on a read-only census of 2026-11-24: every sibling folder, the Codex and
 Antigravity homes on C:, the tool pipeline and the curriculum layers.
 
 ## Why
@@ -37,16 +39,15 @@ one folder (S:\CurioClass), one home per fact, nothing lost, and an architecture
 5. **Ignored files first.** Before any worktree or folder is removed: `git status --ignored`, and unique ignored
    material is copied out (lesson of 2026-11-09).
 6. **Secrets stay put.** `Gemini/Api.txt` looks like a credential. It is not opened, moved or archived; Cory decides.
-7. **Live things stay.** These look old but are read by the deploy, the gates or the pipeline, so this plan does not
-   move them:
-   - `math-4` and `ela-6`: live plan ids (turn.py has math-4 jobs).
-   - `data/modules.csv` (build_site.py and about 30 scripts), `data/sequence.csv` (the site Map), `data/units.csv`
-     (plan.py, the gate), `data/coverage.csv` and `data/concepts` (the catalog scripts, board.py, desk_stats.py).
-   - `section-skeletons/` and `day-skeletons/` (stage 5 sidecars of COURSE-RUN, written by section_skeleton.py and
-     day_skeleton.py, required by coursegen.py).
-   - `data/media-manifest.txt` and `data/docs-manifest.txt`: the record of what is in the live R2 bucket. They are
-     state, stay committed, and are changed only by sync_media.py.
-   Retiring any of them is a later job of its own, which starts by changing the scripts that read them.
+7. **Live things are migrated, never just moved.** These look old but the deploy, the gates or the pipeline read
+   them: `math-4` and `ela-6` (live plan ids), `data/units.csv` (plan.py), `data/modules.csv` (build_site.py and about
+   30 scripts), `data/sequence.csv` (the site Map), `data/coverage.csv` and `data/concepts` (the catalog scripts,
+   board.py, desk_stats.py), `section-skeletons/` and `day-skeletons/` (required by coursegen.py). Steps 1 to 3 leave
+   them alone. Step 4.1 migrates each into the one curriculum model: the scripts that read it change first, the gates
+   pass on the new source, and only then does the old file go to the archive, so nothing old is left standing beside
+   the new. The two R2 manifests (`data/media-manifest.txt`, `data/docs-manifest.txt`) are the exception: they are
+   the record of what is in the live bucket, not a duplicate of anything, so they stay committed and are changed only
+   by sync_media.py.
 
 ## The order
 
@@ -68,8 +69,8 @@ docs/courses), and every commit main gains first widens the merge.
    math-4 build files, docs-manifest.txt, COURSES-STATUS.md, build/lessons for 16 courses, 31 Codex review stubs,
    this plan). The draft worktree has 81 untracked build files and the agent worktree one build folder. Fourteen of
    main's untracked build files are files draft/codex adds, so the merge would stop on them. The build/ decision
-   (Cory decision 1) is made here:
-   - **Recommended: untrack build/.** The site never reads build/ (build_site.py, course_pages.py and sync_media.py
+   (Cory decision 1, taken: untrack it) lands here:
+   - **Untrack build/.** The site never reads build/ (build_site.py, course_pages.py and sync_media.py
      ship dist/), only 548 build files are tracked on main, and AGENTS.md's "build/ is committed" is already untrue in
      practice. build/ goes into .gitignore on main and on draft/codex (one commit each, `git rm -r --cached build`),
      so the merge does not add 3,022 more.
@@ -91,13 +92,13 @@ Sources stay until step 3 archives them.
 | Item | From | To |
 |---|---|---|
 | Earthquake Table (Curiosities No. 14) | S:\CurioClass-agy\earthquake-table.html | tools/earthquake-table/source/, linked to docs/CURIOSITIES.md; stage set from what it is (a build, unchecked) |
-| Tether Drift | S:\CurioClass-agy\tether-drift.html | tools/<id>/source/ if it is a Curio Class tool (Cory decision 2), else archive |
+| Tether Drift | S:\CurioClass-agy\tether-drift.html | a Recess game, not ready (Cory decision 2): tools/tether-drift/source/ with stage Build, not in data/recess.json and not on the site, a later.csv row "side project, finish when Recess work resumes" |
 | Six Gemini sequence reads of 2026-11-24 | S:\CurioClass-gemini\reports\sequence-*-gemini-read.md | docs/reviews/ beside their gemini-fixes ledgers |
 | Time Tides data pipeline | C:\Users\Cory\.gemini\antigravity\brain\6fbd6632...\ (assemble_atlas.py, build_data.py, build_bios.py, stories_data.py, raw_geojson, cliopatria zip, bios cache) | tools/time-tides/pipeline/ (scripts and small data in git; large raw data in pipeline/raw/, ignored like art/raw) |
 | All raw art and voice | every tools/*/art/raw and tools/*/voice/raw in every worktree and S:\CurioClass-codex | hash-compared against main, folder by folder; anything missing or different is copied in. Known so far: chess, equation-balancer, globe-theatre-stage, star-life-story and thesis-workshop have no raw folder on main; mole-bakery has 14 raw files in codex and 6 on main |
 | Class Phone Call build | agy/build branch | tools/class-phone-call/ (src.html, art, voice, reports), at the stage its reports support |
 | docs/agents/AGY-BUILD.md | agy/build branch | archive (Antigravity's build brief; anything still a rule is already in docs/agents) |
-| 45 Flash research packets | agy/build branch | archive: they failed a spot check (2026-11-10); a later.csv row if Cory wants them reread (Cory decision 3) |
+| 45 Flash research packets | agy/build branch | archive (Cory decision 3, checked): all 45 are for social studies tools whose specs Sara already wrote from scratch (2026-11-10), half their quotes were not on the cited page and 95 of 265 links were dead, and docs/agents/SPEC.md already tells spec writers to research from scratch. No later use found. SPEC.md's packet line and RESEARCH-PACKET.md go to the archive with them |
 | Main's own ignored work | _scratch/ (596 MB: goalmap, l87, ladder, ladder2, probe4, probe5, scifix, sara-check and more) and drafts/ (desk, paste-ready, private, gemini) | inventoried folder by folder; each goes to the repository, the archive, or stays, in a list Cory sees. Known: drafts/desk/desk.html and snap.json go to desk/ (the Desk page source, with a README on publishing it); _scratch/ladder/gen.py goes to scripts/ (HANDOFF names it) |
 | Approach Principles PDF | S:\CurioClass-spec2\shots\ | docs/ beside APPROACH.md if it is that document's print, else archive |
 | Codex generated images (5.6 GB, 2,651) | C:\Users\Cory\.codex\generated_images | archive only, with a map of image to tool where the Codex session logs show it; not in git |
@@ -164,8 +165,11 @@ One commit each, in this order:
 ## Step 4: architecture for scale
 
 The curriculum will grow tenfold. The architecture should make three things cheap: finding everything that uses a
-thing, changing it everywhere by script, and knowing a change broke nothing. The closest models are the open textbook
-and courseware platforms, not general documentation:
+thing, changing it everywhere by script, and knowing a change broke nothing. This consolidation is the mass edit that
+architecture is built for: it touches every layer once, so the model, the tooling and the migrations land together,
+and later work only follows the model.
+
+The closest models are the open textbook and courseware platforms, not general documentation:
 
 - **OpenStax**: modules with permanent ids, collections that order them, generated outputs never edited by hand.
 - **Kolibri Studio and Khan Academy content trees**: every node has a stable content id kept apart from its position
@@ -175,10 +179,40 @@ and courseware platforms, not general documentation:
 - **DITA** (technical publishing): typed topics and key-based links; its cautionary tale is over-reuse, where nobody
   dares edit a shared piece.
 
-The plan builds on what the repository already has: day frontmatter lists its dependencies in `leans_on:`, CSVs carry
-ids (text_id, codes, skills), and `scripts/build_db.py` already builds an ignored SQLite file, `data/curioclass.db`.
+### 4.0 Earlier decisions that change, and what is rebuilt
 
-### 4.1 Permanent ids
+Some of what exists is sound and is kept as it is: day files as markdown with frontmatter, the CSV plan data per
+course (days, items, wrongs, parts, materials), the progressions, the gate scripts, the ledgers as the term record,
+the kit for tool plumbing. These are rebuilt or replaced:
+
+| Today | Problem | Becomes |
+|---|---|---|
+| Two curriculum catalogs side by side: the topic catalog (modules.csv, 815 modules; sequence.csv; coverage.csv, 2,400 rows; data/concepts) from the tool-building phase, and the course model (progressions, frames, scopes, unit and section plans, days) from the course phase | The same subject knowledge is described twice, in two shapes, kept by hand, and drifts; tools hang off modules while days hang off courses | **One curriculum graph** (4.1): standards and skills at the bottom, courses, units, sections and days on one side, topics and tools on the other, all linked to the same skills and standards |
+| data/units.csv (60 rows, the math-4 pilot) read by plan.py | A third unit list beside frames.csv and days.csv | retired into frames.csv and days.csv; plan.py reads those |
+| math-4 and ela-6 pilot ids beside math-grade-4 and english-language-arts-grade-6 | Two names for one course, two sets of folders | migrated to the full course ids, the old ids kept as aliases in the registry; turn.py jobs renamed |
+| Unit plans that hold tables also kept in CSVs (the Codex run replaced some with pointers, which caused the carry-overs) | Two homes for the same facts | **CSV holds structured facts, markdown holds prose**; any table in a plan that repeats CSV data is generated from the CSV, never typed |
+| section-skeletons/ and day-skeletons/ kept after the real plan or day is written | Two files per section or day, one stale | a skeleton is a working file: once its plan or day passes, it goes to the archive and coursegen.py accepts the written file in its place |
+| Status in many places: day frontmatter `version:`, flow-status.csv, defects.csv, later.csv, Desk items, tool stage guessed from file names | No single answer to "where is this?" | **one status field per object** in its source (frontmatter for days, the stage CSV for tools, a column for plan rows); flow-status.csv, the dashboard and the Desk read it |
+| Positional ids (day number), version-suffixed item ids | Ids change when the curriculum changes | stable ids (4.2) |
+| One worktree per AI platform, a union merge rule in .git/info | Work splits and merges silently go wrong | one working folder, short branches, key-aware merges (steps 0 and 2) |
+| About 41 top-level plan docs, rules restated across AGENTS.md, briefs and lenses | Agents read the wrong rule | one doc map; each rule stated once, and the mechanical rules become lint (4.6) |
+| 122 scripts, several overlapping (plan.py, unitplan.py, lesson.py, lesson_course.py, coursegen.py) | Hard to know which gate is the gate | one command per job named in the doc map; overlapping scripts merged or retired as each migration touches them, not as a separate rewrite |
+
+### 4.1 One curriculum graph, and the migrations into it
+
+Every object is a node with an id; every relation is an edge. Node types: standard, skill (progression node), course,
+unit, section, day, item, text, term, routine, topic, tool, worksheet, Recess game, source. Edges: day teaches skill,
+item checks standard, day reads text, tool practices skill, topic groups skills, term introduced on day, and so on.
+
+- **Topics become views over the graph.** A topic (today a module) keeps its id and title, so the site's topic pages
+  and links survive, but its standards and skills are edges, and its place in the Map is derived from the order of the
+  skills it groups. coverage.csv is no longer typed: "which standards have a tool, a worksheet, a day" is a query.
+- **Tools attach to skills and standards**, not only to modules, so a tool shows on the days that teach its skill.
+- **Migrations**, one at a time, each with the scripts that read the old file changed first and before and after gates:
+  units.csv; the math-4 and ela-6 ids; the skeletons; modules.csv, sequence.csv and coverage.csv into the graph (the
+  largest, done last, with the site build compared page by page before and after); data/concepts.
+
+### 4.2 Permanent ids
 
 - **Ids carry no position.** A day's id is not its number (inserting a day would renumber every later id and every
   link). Each day gets a short opaque id minted once and stored in its frontmatter (`id:`); the day number, unit and
@@ -186,66 +220,66 @@ ids (text_id, codes, skills), and `scripts/build_db.py` already builds an ignore
 - **Versions are not ids.** An item's id is its stem without the version suffix (`s02-A6` for `s02-A6v2`); `v2` is
   its version. A revised item keeps its id.
 - **The registry** (`data/registry.csv`: id, type, path, title, aliases, replaced_by, plus the pointer to the source
-  file that holds its status, owner and version) is generated from the files and CSVs by a script and never edited by
-  hand. Legacy ids (math-4 beside math-grade-4, ela-6) are aliases from day one. A retired object keeps its row with
-  `replaced_by` set; an id is never reused.
-- **No CSV is rewritten.** Type prefixes (`text:`, `tool:`, `std:`) exist only in the registry and in prose links; CSV
-  columns keep their bare ids.
+  that holds its status, owner and version) is generated from the files and CSVs by a script and never edited by hand.
+  Legacy ids are aliases from day one. A retired object keeps its row with `replaced_by` set; an id is never reused.
+- **No CSV is rewritten for prefixes.** Type prefixes (`text:`, `tool:`, `std:`) exist only in the registry and in
+  prose links; CSV columns keep their bare ids.
 - **Standards.** The human code stays (RL.1.2, with the publisher in the registry). A `case_guid` column is added when
   the 1EdTech CASE identifiers are imported, since CASE identifies items by GUID, not by code.
 
-### 4.2 The "what uses this?" index
+### 4.3 The "what uses this?" index
 
-- `scripts/index.py` extends build_db.py's database (one file, `data/curioclass.db`): tables objects and links (from,
-  to, kind, where). Version 1 links come from `leans_on:`, the CSV id columns and existing relative markdown links. No
-  new syntax is needed to start.
+- `scripts/index.py` extends build_db.py's database (one file, `data/curioclass.db`): the graph's nodes and edges.
+  Version 1 edges come from `leans_on:`, the CSV id columns and existing relative markdown links; no new syntax is
+  needed to start.
 - `scripts/uses.py <id>` lists everything that uses an object, by course and day; `uses.py --changed` lists what
   depends on the files changed since the last commit.
 - **Gate.** Every `leans_on` path and every id in a CSV column resolves. It starts as a report and becomes a failing
   gate after one clean run.
-- **Prose link syntax later.** `[[text:g1-u2-c47]]` is added only where the build needs a rendered title, and lesson.py
-  learns to render it in the same commit.
+- **Prose links by id.** `[[text:g1-u2-c47]]` is added where the build needs a rendered title, and lesson.py learns to
+  render it in the same commit. Plain paths in prose are converted by one scripted pass during this step (4.4), since
+  every day is touched anyway when its id is minted.
 
-### 4.3 Routines by reference, not by inclusion
+### 4.4 The change workflow, built now and used by this consolidation
 
-The census found no real verbatim reuse to factor out: over 1,462 day files, only one line of 60 or more characters
-appears word for word in 30 or more days (a credit URL). Routines are described in each day's own words on purpose,
-because every day stands alone for a teacher and for a cold reader. So:
+Every change to published material, starting with the migrations of 4.1 and the id pass of 4.2, goes: request (the
+step of this plan, later later.csv or the Desk) to impact list (`uses.py`) to scripted batch edit with a dry run and a
+diff report to gates to an errata entry with the course version (finished-course item 11). A mass edit is a script
+with a dry run, as bots do on Wikipedia, never hundreds of hand edits. Building it first means every later step of
+this plan runs through it, so it is tested on real work before the curriculum grows.
 
-- Each routine (written discussion, turn and talk, and the rest) gets a registry entry (id, name) and one canonical
-  description in one doc. Days link to it by id; `uses.py routine:<id>` finds every day to fix by script.
-- Inclusion of shared text is reconsidered only if the index later shows real repeated blocks, and then only in
-  generated print pieces (family note footers, credits).
+### 4.5 Source and generated
 
-### 4.4 Source and generated
-
-- Source: markdown, CSV, scripts, art and voice. Generated and not committed: build/ (decided in step 0), tool bundles
-  (already ignored), the registry, the index.
+- Source: markdown, CSV, scripts, art and voice. Generated and not committed: build/ (step 0), tool bundles (already
+  ignored), the registry, the index, any plan table generated from CSV (4.0).
 - Generated but committed: docs/COURSES-STATUS.md and docs/BUILD-BOARD.md, because HANDOFF links them and people read
   them on GitHub. A gate fails when either is out of date.
-- State, committed, changed only by its script: data/media-manifest.txt and data/docs-manifest.txt (sync_media.py).
+- State, committed, changed only by its script: the two R2 manifests (sync_media.py).
 - Large media stays out of git (art/raw, voice/raw, library art), backed up to X: and R2.
 
-### 4.5 The house-rules linter
+### 4.6 Writing aids from large datasets
 
-One style check runs on every file in the spirit of the Vale linter documentation teams use: no em dashes, "Curio
-Class" in full, US spelling, reading level by grade, banned phrases, step names from docs/GLOSSARY.md. Readers stop
-spending tokens on what a script can catch.
-
-### 4.6 Deferred until a real mass edit asks for them
-
-- A change workflow (request, impact list from uses.py, scripted batch edit with a dry run and a diff, gates, an
-  errata entry with the course version), as bots do on Wikipedia.
-- Sampled reads by risk (new authors, new kinds of day, low gate margins), checked against a gold set, as large
-  labeled datasets are checked.
-- Interchange formats: Common Cartridge for schools' learning platforms, QTI for items, LRMI and schema.org alignment
-  metadata for day pages, and the Learning Commons Knowledge Graph's standards crosswalks, which could be imported
-  rather than rebuilt (license terms checked first).
+- **House rules as a linter.** No em dashes, "Curio Class" in full, US spelling, reading level by grade, banned
+  phrases, step names from docs/GLOSSARY.md: one style check runs on every file, in the spirit of the Vale linter
+  documentation teams use. Readers stop spending tokens on what a script can catch. Built in this step.
+- **Structure first, prose second.** Plans and days are written into shapes generated from data (unit plan skeletons
+  already are); the generated tables of 4.0 extend this.
+- **Sources as we go (Cory decision 5).** Every text, day and tool names its sources at the level of the piece, and
+  checkable specifics carry a claim-level source: numbers, dates, names, scientific and historical facts in
+  informational texts and in tools. Ordinary sentences, stories and teacher moves do not. Applied when a file is next
+  written or touched, not as a pass over old files.
+- **Sampled reads by risk** (new authors, new kinds of day, low gate margins), checked against a gold set, as large
+  labeled datasets are checked. Designed here, first used when the Codex draft review resumes (paused by Cory).
+- **Interchange later, shaped now.** The graph's fields are chosen so exports need no rework: Common Cartridge for
+  schools' learning platforms, QTI for items, LRMI and schema.org alignment metadata for day pages. The Learning
+  Commons Knowledge Graph's standards crosswalks could be imported rather than rebuilt (license terms checked first).
+  The exporters themselves wait for a school that needs them.
 
 ### 4.7 Order
 
-4.1 and 4.2 together (registry, index, uses.py, the resolve gate), then 4.5, each with before and after gates and its
-own commit. The id frontmatter is minted by one scripted pass; prose links follow on touch, never as one mass rewrite.
+4.4 (the workflow) and 4.3 (the index) first, since everything after runs through them; then 4.2 (ids minted by one
+scripted pass, prose links converted in the same pass); then the 4.1 migrations one at a time, modules last; then 4.6
+(the linter). Each lands with before and after gates and its own commit.
 
 ## Step 5: tools, plumbing standardized and play left free
 
@@ -272,7 +306,7 @@ What changes, in this order:
    `header .seg button`, excludes controls by `el.closest('header')` and assumes the kit ids) and curio.js bind to the
    ids and the declared modes, not to the header element. These script changes land and pass on the three pilot tools
    first.
-3. **Then the visible frame becomes optional.** The header, the stage-plus-panel grid, `.panel`, `.hint` and
+3. **Then the visible frame becomes optional (Cory decision 4, taken).** The header, the stage-plus-panel grid, `.panel`, `.hint` and
    `.big-btn` (curio.css, docs/KIT.md) become defaults a tool may restyle or drop, as long as the contract in 2 holds.
 4. **A sameness check, the opposite of a design system.** At Refine, the tool is compared with the tools of its grade
    band on look, voice and world; too close fails. Mechanics are compared only within a family, since the family
@@ -290,16 +324,17 @@ What changes, in this order:
 
 ## Step 6: close
 
-Switch the scheduled tasks back on (only those Cory still wants), refresh the Desk, update HANDOFF.md, AGENTS.md and
+Switch the scheduled tasks back on (only those Cory still wants), fill the after counts in docs/funding/SCALE.md, refresh the Desk, update HANDOFF.md, AGENTS.md and
 the memory notes, and write a short record of what moved where (the archive index holds the detail).
 
-## Decisions for Cory before step 0
+## Decisions taken (Cory, 2026-11-24)
 
-1. build/: untrack it on main and on draft/codex before the merge (recommended), or commit the outstanding build
-   output.
-2. Tether Drift: a Curio Class tool (it gets a catalog row) or a side project (archive)?
-3. The 45 Flash research packets: archive only, or reread later?
-4. The visible kit frame becoming optional (step 5.3), once the contract scripts pass: yes or no.
-5. A source on every factual claim in every text and day as a required authoring rule: now, later, or no. (It is a
-   large cost, so it is a decision, not part of the architecture.)
-6. Gemini/Api.txt: rotate and remove, or leave.
+1. build/: untracked on main and on draft/codex before the merge (step 0.4).
+2. Tether Drift: a Recess game, not ready; kept as a side project (step 1 table, later.csv row).
+3. The 45 Flash research packets: checked, no later use; archived with SPEC.md's packet line and RESEARCH-PACKET.md.
+4. The visible kit frame becomes optional (step 5.3) once the contract scripts pass.
+5. Sources as we go, at the level of step 4.6: every piece names its sources, checkable specifics carry their own;
+   not every statement.
+6. Gemini/Api.txt stays where it is, untouched, for when tool work resumes.
+7. The scale of the project is recorded for later marketing in docs/funding/SCALE.md: the before counts now, the
+   after counts at step 6.
